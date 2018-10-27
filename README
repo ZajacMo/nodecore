@@ -1,0 +1,142 @@
+Game: NODECORE
+
+- From "hardcore", because this will be a more restrictive gameplay style.
+- Also we are focusing on the core concept of nodes/voxels in the world.
+
+
+
+DESIGN PHILOSOPHY
+
+- Everything is a node/voxel.  There are no items that can't be placed in-world.
+	- There are no item entities, and items cannot be thrown; must be placed.
+- Each node can only fit one thing, EXCEPT containers, which can hold ONE additional stack.
+	- Use temporary visual entities to represent those visually.
+- Each node serves one function, or as few as possible.
+	- e.g. to build a furnace, you need:
+		- A node to act as fuel.
+		- A node of fire.
+		- (Possibly) a node to mediate heat transfer, such as an iron griddle.
+		- A node to be cooked, which will transform in-place.
+	- Builds will be big and clunky BY DESIGN.
+	- "Redstone" wires and torches, NOT delay-repeaters.
+		- Maybe no switches either (require buttons and an RS latch?)
+	- Container nodes hold only one stack.
+		- Can use temporary item ents for visual.
+- Ultra-simple inventory.
+	- Hotbar only, no GUI, no rearranging (place in-world to rearrange)
+		- Tools can place items in next available slot after tool.
+	- Limited space, bulky/valuable things stack poorly.
+	- Use of carryable containers encouraged.
+		- Expand "drawers" by activating a handle.
+		- Bags expand when placed in-world, collapse when dug.
+		- Containers can be nested.
+- Separate control actions:
+	- Left-click-and-hold to dig, trying to pick up whole thing if possible.
+		- Nodes that require/consume a special tool transform into a "loose"
+		  version that can be re-dug without the tool.
+	- Repeatedly left-click in short time window to punch.
+		- Puncheable nodes must have non-trivial dig times.
+		- In-place transformation, such as a "break apart" craft.
+		- Pluck stack out of container.
+			- Sneak-punch to split stacks.
+		- Punching tool may matter, and may consume tool or affect performance.
+	- Right-click to try to use as item.
+		- Place stack in container.
+		- Simple "combining" crafts.
+	- Sneak-right-click with item to force place as node.
+	- Face MAY matter.
+		- Punching a log on ends can split to planks, on bark does not.
+- Crafting in-world:
+	- Simple stuff by right-click-using one item on another.
+	- Intermediate stuff have multiple steps, partially-finished nodes.
+		- Tools could be built by placing stick, then adding stones/planks/etc.
+	- Gathering materials in an area and using a tool.
+	- Placing things in a specific arrangement.
+	- More complex builds in all 3 dimensions?
+
+	
+DESIGN ROADMAP
+
+- Define player and hand tool.
+- Implement minimal mapgen nodes.
+- Library functions for handling nodecore interactions.
+	- Define node callbacks for extended actions, like
+	  multipunch and sneak-multipunch.
+	- Check-for-recipe util.
+	- Wallmounted pop-off-as-item and item_entity overrides
+	  to transform into falling node.
+	- Flat-item node for tools and such: like sz_stuff_pile
+	- Need punch-groups for controlling tool capabilities
+	  necessary to multipunch; are damage groups usable here?
+- Wood tech.
+	- By hand, only dirt/sand can be dug, not trees/leaves.
+		- Logs are level-2 choppy
+		- Dirt converts to loose dirt, falling node.
+	- Multi-punching leaves reveals branches.
+	- Multi-punching branches breaks them into sticks.
+		- Sticks are wallmounted, so they probably fall.
+	- Combine a stick onto another stick to form a staff.
+	- Craft an adze, combine a branch onto a stick.
+		- Level 1 choppy
+	- Adze can split logs on end into planks.
+		- Level 1 choppy
+	- Using planks on a staff forms tools as each plank is added:
+		- Shovel, axe, pick.
+		- Each is level 2, axe can dig logs
+	- Leaves without a nearby log decay into either dead leaves or saplings
+		- Both are falling nodes.
+		- Dead leaves left on dirt/grass decay to nothing and convert
+		  grass below to podzol
+- Stone tech.
+	- Dig up stone, ore using pick.
+		- Converts to loose cobble / loose ore (hand-diggable, falling)
+		- Tin, copper, iron.
+	- Combine loose cobble onto staffs to form stone tools
+		- Level 3
+- Fire tech.
+	- Create fire.
+		- Place a stick atop a pile of dead leaves.
+		- Multi-punch stick with staff, probabilistic success.
+		- Convert leaves to cinder.
+	- Cinder node:
+		- Keeps track of fuel quantity and quality.
+			- Quality in levels.
+			- Natural wood (and leaf/stick) sources are level 1.
+			- Duration/quantity in seconds, logs last longest.
+		- Produces fire nodes above and on all sides where eligible.
+		- Cannot be dug by hand, hurts.
+		- May randomly convert to loose cinder (falling).
+		- Converts to ash when exhausted (falling).
+	- Fire node:
+		- Requires at least one nearby air node or goes out.
+		- Cannot be put out by hand, hurts.
+		- Consume fuel quantity from burning cinder nodes below/beside, distribute
+		  consumption semi-randomly.
+		- Apply heat to all nodes above/beside.
+			- Fuel nodes may convert to cinders if heated and air is present.
+			- Heat quality combined from sum of fuel sources.
+	- Smelting/cooking.
+		- Create and try to contain a fire, place node above fire to cook.
+		- Logs can be cooked (if smothered to prevent igniting) into charcoal (loose, falling).
+		- Ores can be cooked, converting into slag and molten metal.
+		- Different ores require different heat intensity.
+			- Tin and copper easily accessible, may only require wood.
+			- Iron requires an investment in charcoal.
+	- Molten metal:
+		- Flowing liquid, burns, ignition source.
+		- Automatically quenched after some time.
+		- If flows next to water, quench immediately at that location.
+			- Ingot will replace water; be sure to use infinite spring.
+		- Quenching:
+			- Trace out network, find all sources.
+				- Apply alloying recipes.
+			- Remove source nodes.
+			- Determine endpoint (in water, or random bottom node)
+			- Invisible "waiting" entity waits until all molten nodes gone.
+				- Places ingot at destination.
+		- Ingots placed near molten metals will sometimes melt (for alloying).
+		- Ingots can be re-melted above sufficiently-hot fire.
+	- Metal tools from ingots:
+		- Copper and tin, level 4
+		- Bronze, level 5
+		- Iron, level 6
