@@ -78,8 +78,9 @@ minetest.register_node(modname .. ":stack", {
 		walkable = true,
 		selection_box = stackbox,
 		collision_box = stackbox,
+		drop = {},
 		groups = {
-			scoopy = 3,
+			crumbly = 3,
 			falling_node = 1
 		},
 		paramtype = "light",
@@ -92,22 +93,24 @@ minetest.register_node(modname .. ":stack", {
 				minetest.add_entity(pos, modname .. ":stackent")
 			end
 		end,
-		on_destruct = function(pos)
+		after_destruct = function(pos)
 			for k, v in pairs(findstackents(pos)) do
 				v:remove()
 			end
+			minetest.check_for_falling(pos)
 		end,
-		on_dig = function(pos, ...)
-			local def = minetest.registered_nodes[modname .. ":stack"]
-			local old = def.drop
-			local function helper(...)
-				rawset(def, "drop", old)
-				return ...
+		on_dig = function(pos, node, digger)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			local stack = inv:get_stack("solo", 1)
+			if stack and not stack:is_empty() and digger then
+				stack = digger:get_inventory()
+				:add_item("main", stack)
+				inv:set_stack("solo", 1, stack:to_string())
 			end
-			rawset(def, "drop", minetest.get_meta(pos):get_inventory()
-				:get_stack("solo", 1):to_string())
-			print(minetest.serialize(def.drop))
-			return helper(minetest.node_dig(pos, ...))
+			if not stack or stack:is_empty() then
+				return minetest.remove_node(pos)
+			end
 		end
 	})
 
@@ -139,3 +142,20 @@ local item = {
 }
 setmetatable(item, bii)
 minetest.register_entity(":__builtin:item", item)
+
+local bifn = minetest.registered_entities["__builtin:falling_node"]
+local falling = {
+	set_node = function(self, node, meta, ...)
+		if node and node.name == modname .. ":stack"
+		and meta and meta.inventory and meta.inventory.solo then
+			local stack = ItemStack(meta.inventory.solo[1] or "")
+			if not stack:is_empty() then
+				minetest.item_drop(stack, nil, self.object:getpos())
+				return self.object:remove()
+			end
+		end
+		return bifn.set_node(self, node, meta, ...)
+	end
+}
+setmetatable(falling, bifn)
+minetest.register_entity(":__builtin:falling_node", falling)
