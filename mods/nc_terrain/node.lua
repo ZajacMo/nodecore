@@ -27,69 +27,105 @@ end
 
 -- Register standard mapgen node types.
 regterrain({
-	description = "Stone",
-	mapgen = {
-		"stone",
-		"stone_with_coal",
-		"stone_with_iron",
-		"mese",
-		"cobble",
-		"mossycobble"
-	},
-})
-regterrain({ description = "Dirt" })
+		description = "Stone",
+		mapgen = {
+			"stone",
+			"stone_with_coal",
+			"stone_with_iron",
+			"desert_stone",
+			"sandstone",
+			"sandstonebrick",
+			"stair_sandstone_block",
+			"mese",
+			"cobble",
+			"stair_cobble",
+			"stair_desert_stone",
+			"mossycobble"
+		},
+	})
+
+minetest.register_alias("mapgen_snow", "air")
+minetest.register_alias("mapgen_snowblock", "air")
+minetest.register_alias("mapgen_junglegrass", "air")
+
 regterrain({
-	description = "Dirt with Grass",
-	tiles = {
-		modname .. "_grass_top.png",
-		modname .. "_dirt.png",
-		modname .. "_dirt.png^" .. modname .. "_grass_side.png"
- 	},
-})
+		description = "Dirt",
+		mapgen = {
+			"dirt",
+			"ice",
+		}
+	})
 regterrain({
-	description = "Gravel",
-	groups = { falling_node = 1 },
-})
+		description = "Dirt with Grass",
+		tiles = {
+			modname .. "_grass_top.png",
+			modname .. "_dirt.png",
+			modname .. "_dirt.png^" .. modname .. "_grass_side.png"
+		},
+		mapgen = {
+			"dirt_with_grass",
+			"dirt_with_snow"
+		}
+	})
 regterrain({
-	description = "Sand",
-	groups = { falling_node = 1 },
-	mapgen = { "sand", "clay" },
-})
+		description = "Gravel",
+		groups = { falling_node = 1 },
+	})
 regterrain({
-	description = "Tree",
-	tiles = {
-		modname .. "_tree_top.png",
-		modname .. "_tree_top.png",
-		modname .. "_tree_side.png"
-	},
-})
+		description = "Sand",
+		groups = { falling_node = 1 },
+		mapgen = {
+			"sand",
+			"clay",
+			"desert_sand" 
+		},
+	})
 regterrain({
-	description = "Leaves",
-	paramtype = "light",
-})
+		description = "Tree",
+		tiles = {
+			modname .. "_tree_top.png",
+			modname .. "_tree_top.png",
+			modname .. "_tree_side.png"
+		},
+		mapgen = {
+			"tree",
+			"jungletree",
+			"pine_tree"
+		}
+	})
 regterrain({
-	description = "Water",
-	mapgen = { "water_source" },
-	paramtype = "light",
-	drawtype = "liquid",
-	liquidtype = "source",
-	alpha = 160,
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	drowning = 1,
-	drop = ""
-})
+		description = "Leaves",
+		paramtype = "light",
+		mapgen = {
+			"leaves",
+			"apple",
+			"jungleleaves",
+			"pine_needles"
+		}
+	})
 regterrain({
-	description = "Lava",
-	mapgen = { "lava_source" },
-	light_source = 13,
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	drowning = 1,
-	damage_per_second = 8,
-	drop = ""
-})
+		description = "Water",
+		mapgen = { "river_water_source", "water_source" },
+		paramtype = "light",
+		drawtype = "liquid",
+		liquidtype = "source",
+		alpha = 160,
+		walkable = false,
+		pointable = false,
+		diggable = false,
+		buildable_to = true,
+		drowning = 1,
+		drop = ""
+	})
+regterrain({
+		description = "Lava",
+		mapgen = { "lava_source" },
+		light_source = 13,
+		walkable = false,
+		pointable = false,
+		diggable = false,
+		buildable_to = true,
+		drowning = 1,
+		damage_per_second = 8,
+		drop = ""
+	})
