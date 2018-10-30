@@ -1,3 +1,5 @@
+local minetest = minetest
+
 minetest.register_item(":", {
 	type = "none",
 	wield_image = "nc_hand.png",

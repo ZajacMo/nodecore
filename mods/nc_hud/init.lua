@@ -1,3 +1,5 @@
+local minetest = minetest
+
 local health_bar_definition =
 {
 	hud_elem_type = "statbar",

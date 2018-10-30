@@ -1,3 +1,4 @@
+local minetest = minetest
 local modname = minetest.get_current_modname()
 
 minetest.register_biome({
