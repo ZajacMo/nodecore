@@ -1,7 +1,8 @@
 local minetest = minetest
 local modname = minetest.get_current_modname()
 
-local function stackentprops(stack, func)
+local function stackentprops(stack, func, rot)
+	rot = rot or 1
 	local t = {
 		hp_max = 1,
 		physical = false,
@@ -12,14 +13,15 @@ local function stackentprops(stack, func)
 		textures = {""},
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},
-		is_visible = false,
-		automatic_rotate = math.pi * 0.05,
+		is_visible = false
 	}
 	if stack then
 		t.is_visible = true
 		t.textures[1] = stack:get_name()
 		local s = stack:get_count() / stack:get_stack_max() * 0.35 + 0.05
 		t.visual_size = {x = s, y = s}
+		t.automatic_rotate = rot * 0.15 * math.sqrt(stack:get_stack_max()
+			/ stack:get_count())
 		if func then func(s) end
 	end
 	return t
@@ -39,10 +41,11 @@ minetest.register_entity(modname .. ":stackent", {
 			if not inv then return self:die() end
 			local stack = inv:get_stack("solo", 1)
 			if not stack or stack:get_count() < 1 then return self:die() end
+			self.rot = self.rot or math.random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
-						pos.y = math.floor(pos.y + 0.5) - 0.5 + s
-						self.object:setpos(pos)
-					end))
+					pos.y = math.floor(pos.y + 0.5) - 0.5 + s
+					self.object:setpos(pos)
+				end, self.rot))
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
@@ -65,7 +68,8 @@ local stackbox = {
 local function findstackents(pos)
 	local found = {}
 	for k, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
-		if v.get_luaentity and v:get_luaentity().is_stack then
+		if v and v.get_luaentity and v:get_luaentity()
+		and v:get_luaentity().is_stack then
 			found[#found + 1] = v
 		end
 	end
