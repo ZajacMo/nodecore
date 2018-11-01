@@ -1,20 +1,24 @@
 local minetest = minetest
 local modname = minetest.get_current_modname()
 
-local function infername(def)
+local function regterrain(def)
 	def.name = def.name or def.description:gsub("%W", "_"):lower()
 	def.fullname = modname .. ":" .. def.name
-end
-
-local function regterrain(def)
-	infername(def)
 
 	def.tiles = def.tiles or { def.fullname:gsub("%W", "_") .. ".png" }
 	def.is_ground_content = true
 
-	def.mapgen = def.mapgen or { def.name }
+	if def.liquidtype then
+		def.mapgen = { }
+		def.liquid_alternative_flowing = def.fullname .. "_flowing"		
+		def.liquid_alternative_source = def.fullname .. "_source"
+		def.fullname = def.fullname .. "_" .. def.liquidtype
+		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
+		print(dump(def))
+	else
+		def.mapgen = def.mapgen or { def.name }
+	end
 
-	print(dump(def))
 	minetest.register_node(def.fullname, def)
 
 	for k, v in pairs(def.mapgen) do
@@ -25,21 +29,15 @@ end
 local function clone(t) return minetest.deserialize(minetest.serialize(t)) end
 
 local function regliquid(def)
-	infername(def)
-	def.tiles = def.tiles or { def.fullname:gsub("%W", "_") .. ".png" }
-
-	def.liquid_alternative_flowing = def.fullname .. "_flowing"
-	def.liquid_alternative_source = def.fullname .. "_source"
-
-	print(dump(def))
-	
 	local t = clone(def)
-	t.name = t.name .. "_source"
+	t.drawtype = "liquid"
+	t.liquidtype = "source"
 	regterrain(t)
 
 	t = clone(def)
-	t.name = t.name .. "_flowing"
-	t.mapgen = nil
+	t.drawtype = "flowingliquid"
+	t.liquidtype = "flowing"
+	t.paramtype2 = "flowingliquid"
 	regterrain(t)
 end
 
@@ -71,6 +69,9 @@ regterrain({
 		mapgen = {
 			"dirt",
 			"ice",
+		},
+		groups = {
+			crumbly = 3
 		}
 	})
 regterrain({
@@ -83,15 +84,25 @@ regterrain({
 		mapgen = {
 			"dirt_with_grass",
 			"dirt_with_snow"
-		}
+		},
+		groups = {
+			crumbly = 3
+		},
+		drop = modname .. ":dirt"
 	})
 regterrain({
 		description = "Gravel",
-		groups = { falling_node = 1 },
+		groups = { 
+			crumbly = 1,
+			falling_node = 1
+		},
 	})
 regterrain({
 		description = "Sand",
-		groups = { falling_node = 1 },
+		groups = { 
+			crumbly = 3,
+			falling_node = 1 
+		},
 		mapgen = {
 			"sand",
 			"clay",
@@ -126,10 +137,8 @@ regliquid({
 		description = "Water",
 		mapgen = { "river_water_source", "water_source" },
 		paramtype = "light",
-		drawtype = "liquid",
-		liquidtype = "source",
 		liquid_viscosity = 1,
-		liquid_renewable = false,
+		liquid_renewable = true,
 		alpha = 160,
 		walkable = false,
 		pointable = false,
@@ -143,7 +152,6 @@ regliquid({
 		description = "Lava",
 		mapgen = { "lava_source" },
 		paramtype = "light",
-		drawtype = "liquid",
 		liquid_viscosity = 7,
 		liquid_renewable = false,
 		light_source = 13,
