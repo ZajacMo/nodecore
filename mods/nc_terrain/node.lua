@@ -1,29 +1,46 @@
 local minetest = minetest
 local modname = minetest.get_current_modname()
 
-local function regterrain(def)
-	-- Fixup the name, inferring it from description, and adding mod
-	-- prefix, if needed.
-	local infername = def.description:gsub("%W", "_"):lower()
-	def.name = def.name or modname .. ":" .. infername
-	if def.name:gsub(":", "") == def.name then
-		def.name = mod .. ":" .. def.name
-	end
+local function infername(def)
+	def.name = def.name or def.description:gsub("%W", "_"):lower()
+	def.fullname = modname .. ":" .. def.name
+end
 
-	-- Default some standard values.
-	def.tiles = def.tiles or { def.name:gsub("%W", "_") .. ".png" }
+local function regterrain(def)
+	infername(def)
+
+	def.tiles = def.tiles or { def.fullname:gsub("%W", "_") .. ".png" }
 	def.is_ground_content = true
 
-	-- Default mapgen aliases.
-	def.mapgen = def.mapgen or { infername }
+	def.mapgen = def.mapgen or { def.name }
 
-	-- Register the node.
-	minetest.register_node(def.name, def)
+	print(dump(def))
+	minetest.register_node(def.fullname, def)
 
-	-- Register any mapgen aliases.
 	for k, v in pairs(def.mapgen) do
-		minetest.register_alias("mapgen_" .. v, def.name)
+		minetest.register_alias("mapgen_" .. v, def.fullname)
 	end
+end
+
+local function clone(t) return minetest.deserialize(minetest.serialize(t)) end
+
+local function regliquid(def)
+	infername(def)
+	def.tiles = def.tiles or { def.fullname:gsub("%W", "_") .. ".png" }
+
+	def.liquid_alternative_flowing = def.fullname .. "_flowing"
+	def.liquid_alternative_source = def.fullname .. "_source"
+
+	print(dump(def))
+	
+	local t = clone(def)
+	t.name = t.name .. "_source"
+	regterrain(t)
+
+	t = clone(def)
+	t.name = t.name .. "_flowing"
+	t.mapgen = nil
+	regterrain(t)
 end
 
 -- Register standard mapgen node types.
@@ -104,23 +121,31 @@ regterrain({
 			"pine_needles"
 		}
 	})
-regterrain({
+
+regliquid({
 		description = "Water",
 		mapgen = { "river_water_source", "water_source" },
 		paramtype = "light",
 		drawtype = "liquid",
 		liquidtype = "source",
+		liquid_viscosity = 1,
+		liquid_renewable = false,
 		alpha = 160,
 		walkable = false,
 		pointable = false,
 		diggable = false,
 		buildable_to = true,
 		drowning = 1,
-		drop = ""
+		drop = "",
+		post_effect_color = {a = 103, r = 30, g = 76, b = 90}
 	})
-regterrain({
+regliquid({
 		description = "Lava",
 		mapgen = { "lava_source" },
+		paramtype = "light",
+		drawtype = "liquid",
+		liquid_viscosity = 7,
+		liquid_renewable = false,
 		light_source = 13,
 		walkable = false,
 		pointable = false,
@@ -128,5 +153,6 @@ regterrain({
 		buildable_to = true,
 		drowning = 1,
 		damage_per_second = 8,
-		drop = ""
+		drop = "",
+		post_effect_color = {a = 191, r = 255, g = 64, b = 0}
 	})
