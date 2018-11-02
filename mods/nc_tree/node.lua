@@ -19,27 +19,18 @@ minetest.register_node(modname .. ":tree", {
 		},
 	})
 
-minetest.register_node(modname .. ":leaves_loose", {
-		description = "Loose Leaves",
-		drawtype = "allfaces_optional",
-		paramtype = "light",
-		tiles = { modname .. "_leaves_dry.png" },
-		groups = {
-			snappy = 3,
-			falling_node = 1,
-			repose = 1
-		},
-		walkable = false
-	})
-
 minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
 		tiles = { modname .. "_leaves.png" },
 		groups = { snappy = 2 },
-		drop = "",
-		after_dig_node = function(pos)
-			minetest.set_node(pos, {name = modname .. ":leaves_loose"})
-		end
+		alternate_loose = {
+			tiles = { modname .. "_leaves_dry.png" },
+			walkable = false,
+			groups = {
+				snappy = 3,
+				falling_repose = 1
+			}
+		}
 	})

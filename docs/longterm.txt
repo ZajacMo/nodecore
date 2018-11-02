@@ -27,6 +27,8 @@ LONG-TERM DESIGN IDEAS
 	- Top-tier tools, e.g. diamond-tipped, are very different from
 	  metal/stone/wood, require new processes.
 
+- More biomes, exploration diversity.
+
 
 ........................................................................
 ========================================================================

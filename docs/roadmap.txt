@@ -2,8 +2,8 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- Finish appeasing the mapgens.
-	- Biomes reserved for long-term.
+- crack_anylength texture, maybe something abstract like a hexagonal
+  pie graph or something.
 - Library functions for handling nodecore interactions.
 	- Define node callbacks for extended actions, like
 	  multipunch and sneak-multipunch.

@@ -13,4 +13,20 @@ end
 local modname = minetest.get_current_modname()
 local path = minetest.get_modpath(modname)
 
-dofile(path .. "/regnode.lua")
+nodecore.registered_on_register_node = {}
+local oldreg = minetest.register_node
+function minetest.register_node(name, def, ...)
+	for _, v in ipairs(nodecore.registered_on_register_node) do
+		local x = v(name, def, ...)
+		if x then return x end
+	end
+	return oldreg(name, def, ...)
+end
+function nodecore.register_on_register_node(func)
+	local t = nodecore.registered_on_register_node
+	t[#t + 1] = func
+end
+
+dofile(path .. "/node_drop_in_place.lua")
+dofile(path .. "/node_falling_repose.lua")
+dofile(path .. "/node_alternate_loose.lua")

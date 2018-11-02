@@ -76,6 +76,12 @@ end
 
 regterrain({
 		description = "Dirt",
+		alternate_loose = {
+			groups = {
+				crumbly = 3,
+				falling_repose = 2
+			}
+		},
 		mapgen = {
 			"dirt",
 			"ice",
@@ -98,25 +104,32 @@ regterrain({
 		groups = {
 			crumbly = 3
 		},
-		drop = "",
-		after_dig_node = function(pos)
-			minetest.set_node(pos, {name = modname .. ":dirt"})
-		end
+		drop_in_place = modname .. ":dirt"
 	})
 regterrain({
 		description = "Gravel",
+		alternate_loose = {
+			groups = {
+				crumbly = 2,
+				falling_repose = 2
+			}
+		},
 		groups = { 
 			crumbly = 1,
-			falling_node = 1,
-			repose = 2
+			falling_node = 1
 		},
 	})
 regterrain({
 		description = "Sand",
+		alternate_loose = {
+			groups = {
+				crumbly = 3,
+				falling_repose = 1
+			}
+		},
 		groups = { 
 			crumbly = 3,
-			falling_node = 1,
-			repose = 1
+			falling_node = 1
 		},
 		mapgen = {
 			"sand",
