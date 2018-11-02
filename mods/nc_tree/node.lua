@@ -23,7 +23,7 @@ minetest.register_node(modname .. ":leaves_loose", {
 		description = "Loose Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
-		tiles = { modname .. "_leaves.png" },
+		tiles = { modname .. "_leaves_dry.png" },
 		groups = {
 			snappy = 3,
 			falling_node = 1
