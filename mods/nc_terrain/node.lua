@@ -9,15 +9,14 @@ local function regterrain(def)
 	def.is_ground_content = true
 
 	if def.liquidtype then
-		def.mapgen = { }
 		def.liquid_alternative_flowing = def.fullname .. "_flowing"		
 		def.liquid_alternative_source = def.fullname .. "_source"
 		def.fullname = def.fullname .. "_" .. def.liquidtype
 		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
 		print(dump(def))
-	else
-		def.mapgen = def.mapgen or { def.name }
 	end
+
+	def.mapgen = def.mapgen or { def.name }
 
 	minetest.register_node(def.fullname, def)
 
@@ -35,6 +34,7 @@ local function regliquid(def)
 	regterrain(t)
 
 	t = clone(def)
+	t.mapgen = { }
 	t.drawtype = "flowingliquid"
 	t.liquidtype = "flowing"
 	t.paramtype2 = "flowingliquid"
