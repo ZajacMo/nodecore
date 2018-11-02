@@ -98,7 +98,10 @@ regterrain({
 		groups = {
 			crumbly = 3
 		},
-		drop = modname .. ":dirt"
+		drop = "",
+		after_dig_node = function(pos)
+			minetest.set_node(pos, {name = modname .. ":dirt"})
+		end
 	})
 regterrain({
 		description = "Gravel",
