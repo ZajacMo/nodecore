@@ -13,7 +13,6 @@ local function regterrain(def)
 		def.liquid_alternative_source = def.fullname .. "_source"
 		def.fullname = def.fullname .. "_" .. def.liquidtype
 		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
-		print(dump(def))
 	end
 
 	def.mapgen = def.mapgen or { def.name }
