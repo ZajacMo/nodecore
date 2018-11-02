@@ -124,6 +124,7 @@ regterrain({
 	})
 regterrain({
 		description = "Leaves",
+		drawtype = "allfaces_optional",
 		paramtype = "light",
 		mapgen = {
 			"leaves",
