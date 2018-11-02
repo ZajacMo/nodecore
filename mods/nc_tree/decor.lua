@@ -39,30 +39,30 @@ local trunk = {
 }
 local bot = {
 	"     ",
-	" lll ",
-	" ltl ",
-	" lll ",
+	" fff ",
+	" ftf ",
+	" fff ",
 	"     ",
 }
 local low = {
-	" lll ",
-	"lllll",
-	"lltll",
-	"lllll",
-	" lll ",
+	" fff ",
+	"flllf",
+	"fltlf",
+	"flllf",
+	" fff ",
 }
 local hi = {
-	" lll ",
-	"lllll",
-	"lllll",
-	"lllll",
-	" lll ",
+	" fff ",
+	"flllf",
+	"flllf",
+	"flllf",
+	" fff ",
 }
 local top = {
 	"     ",
-	" lll ",
-	" lll ",
-	" lll ",
+	" fff ",
+	" fff ",
+	" fff ",
 	"     ",
 }
 
@@ -87,6 +87,7 @@ minetest.register_decoration({
 				r = {name = modname .. ":root", prob = 255, force_place = true},
 				t = {name = modname .. ":tree", prob = 255},
 				l = {name = modname .. ":leaves", prob = 255},
+				f = {name = modname .. ":leaves", prob = 216},
 			},
 			{
 				root,
