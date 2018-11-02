@@ -43,9 +43,9 @@ minetest.register_entity(modname .. ":stackent", {
 			if not stack or stack:get_count() < 1 then return self:die() end
 			self.rot = self.rot or math.random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
-					pos.y = math.floor(pos.y + 0.5) - 0.5 + s
-					self.object:setpos(pos)
-				end, self.rot))
+						pos.y = math.floor(pos.y + 0.5) - 0.5 + s
+						self.object:setpos(pos)
+					end, self.rot))
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
@@ -85,7 +85,8 @@ minetest.register_node(modname .. ":stack", {
 		drop = {},
 		groups = {
 			crumbly = 3,
-			falling_node = 1
+			falling_node = 1,
+			repose = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -115,6 +116,15 @@ minetest.register_node(modname .. ":stack", {
 			if not stack or stack:is_empty() then
 				return minetest.remove_node(pos)
 			end
+		end,
+		repose_drop = function(posfrom, posto, node)
+			local meta = minetest.get_meta(posfrom)
+			local inv = meta:get_inventory()
+			local stack = inv:get_stack("solo", 1)
+			if stack and not stack:is_empty() then
+				minetest.item_drop(stack, nil, posto)
+			end
+			return minetest.remove_node(posfrom)
 		end
 	})
 

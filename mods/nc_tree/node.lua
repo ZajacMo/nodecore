@@ -26,8 +26,10 @@ minetest.register_node(modname .. ":leaves_loose", {
 		tiles = { modname .. "_leaves_dry.png" },
 		groups = {
 			snappy = 3,
-			falling_node = 1
-		}
+			falling_node = 1,
+			repose = 1
+		},
+		walkable = false
 	})
 
 minetest.register_node(modname .. ":leaves", {

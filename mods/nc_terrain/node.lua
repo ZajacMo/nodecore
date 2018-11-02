@@ -107,14 +107,16 @@ regterrain({
 		description = "Gravel",
 		groups = { 
 			crumbly = 1,
-			falling_node = 1
+			falling_node = 1,
+			repose = 2
 		},
 	})
 regterrain({
 		description = "Sand",
 		groups = { 
 			crumbly = 3,
-			falling_node = 1 
+			falling_node = 1,
+			repose = 1
 		},
 		mapgen = {
 			"sand",
