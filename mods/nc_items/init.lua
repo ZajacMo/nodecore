@@ -125,7 +125,8 @@ minetest.register_node(modname .. ":stack", {
 				minetest.item_drop(stack, nil, posto)
 			end
 			return minetest.remove_node(posfrom)
-		end
+		end,
+		on_punch = function() end
 	})
 
 local bii = minetest.registered_entities["__builtin:item"]
