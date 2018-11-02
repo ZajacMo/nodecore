@@ -18,7 +18,7 @@ local function stackentprops(stack, func, rot)
 	if stack then
 		t.is_visible = true
 		t.textures[1] = stack:get_name()
-		local s = stack:get_count() / stack:get_stack_max() * 0.35 + 0.05
+		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()
 		t.visual_size = {x = s, y = s}
 		t.automatic_rotate = rot * 0.15 * math.sqrt(stack:get_stack_max()
 			/ stack:get_count())
