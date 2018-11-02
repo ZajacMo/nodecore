@@ -60,9 +60,20 @@ regterrain({
 		},
 	})
 
-minetest.register_alias("mapgen_snow", "air")
-minetest.register_alias("mapgen_snowblock", "air")
-minetest.register_alias("mapgen_junglegrass", "air")
+for _, v in ipairs({
+		"snow",
+		"snowblock",
+		"junglegrass",
+		"tree",
+		"jungletree",
+		"pine_tree",
+		"leaves",
+		"apple",
+		"jungleleaves",
+		"pine_needles"
+		}) do
+	minetest.register_alias("mapgen_" .. v, "air")
+end
 
 regterrain({
 		description = "Dirt",
@@ -108,30 +119,6 @@ regterrain({
 			"clay",
 			"desert_sand" 
 		},
-	})
-regterrain({
-		description = "Tree",
-		tiles = {
-			modname .. "_tree_top.png",
-			modname .. "_tree_top.png",
-			modname .. "_tree_side.png"
-		},
-		mapgen = {
-			"tree",
-			"jungletree",
-			"pine_tree"
-		}
-	})
-regterrain({
-		description = "Leaves",
-		drawtype = "allfaces_optional",
-		paramtype = "light",
-		mapgen = {
-			"leaves",
-			"apple",
-			"jungleleaves",
-			"pine_needles"
-		}
 	})
 
 regliquid({
