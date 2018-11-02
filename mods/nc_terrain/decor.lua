@@ -6,8 +6,8 @@ minetest.register_decoration({
 		place_on = {modname .. ":dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.016,
-			scale = 0.022,
+			offset = -0.008,
+			scale = 0.012,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
 			octaves = 3,
