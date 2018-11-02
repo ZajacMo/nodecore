@@ -60,9 +60,9 @@ local hi = {
 }
 local top = {
 	"     ",
-	" fff ",
-	" fff ",
-	" fff ",
+	" lll ",
+	" lll ",
+	" lll ",
 	"     ",
 }
 
