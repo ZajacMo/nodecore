@@ -30,3 +30,5 @@ end
 dofile(path .. "/node_drop_in_place.lua")
 dofile(path .. "/node_falling_repose.lua")
 dofile(path .. "/node_alternate_loose.lua")
+
+dofile(path .. "/action_node_pummel.lua")

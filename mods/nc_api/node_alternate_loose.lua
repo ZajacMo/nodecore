@@ -26,13 +26,20 @@ nodecore.register_on_register_node(function(name, def)
 				end
 			end
 		end
-		
+
 		underride(loose, def)
-		
+
 		loose.name = name .. "_loose"
 		loose.description = "Loose " .. loose.description
 		loose.groups = underride({}, loose.groups or {})
 		loose.groups.falling_node = 1
+
+		if loose.groups.crumbly and not loose.no_repack then
+			loose.on_pummel = loose.on_pummel or function(pos, node, stats)
+				if stats.duration < 3 then return end
+				minetest.set_node(pos, {name = name})
+			end
+		end
 
 		loose.alternate_loose = nil
 		loose.alternate_solid = nil
