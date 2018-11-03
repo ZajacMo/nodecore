@@ -12,7 +12,6 @@ local path = minetest.get_modpath(modname)
 dofile(path .. "/node.lua")
 
 dofile(path .. "/sticks.lua")
-dofile(path .. "/adze.lua")
 
 dofile(path .. "/schematic.lua")
 dofile(path .. "/decor.lua")

@@ -1,17 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest
-= minetest
+    = minetest
 -- LUALOCALS > ---------------------------------------------------------
-
-nodecore.last_player_node_punch = nodecore.last_player_node_punch or {}
 
 local pummeling = {}
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if not puncher:is_player() then return end
 		local pname = puncher:get_player_name()
-
-		nodecore.last_player_node_punch[pname] = pointed
 
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_nodes[node.name]

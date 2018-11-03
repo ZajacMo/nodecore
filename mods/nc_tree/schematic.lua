@@ -1,3 +1,8 @@
+-- LUALOCALS < ---------------------------------------------------------
+local error, ipairs, minetest, nodecore
+    = error, ipairs, minetest, nodecore
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 local function ezschem(key, yslices, init)

@@ -30,8 +30,7 @@ minetest.register_node(modname .. ":stack", {
 				minetest.item_drop(stack, nil, posto)
 			end
 			return minetest.remove_node(posfrom)
-		end,
-		on_punch = function() end
+		end
 	})
 
 local function buildable_to(pos)
@@ -62,6 +61,7 @@ local item = {
 		self.itemstring = ""
 		self.object:remove()
 	end,
+	on_punch = function() end
 }
 setmetatable(item, bii)
 minetest.register_entity(":__builtin:item", item)

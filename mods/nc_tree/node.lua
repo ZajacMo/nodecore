@@ -23,7 +23,23 @@ minetest.register_node(modname .. ":tree", {
 		},
 		groups = {
 			choppy = 3
-		}
+		},
+		drop = modname .. ":log"
+	})
+
+minetest.register_node(modname .. ":log", {
+		description = "Tree",
+		paramtype2 = "facedir",
+		tiles = {
+			modname .. "_tree_top.png",
+			modname .. "_tree_top.png",
+			modname .. "_tree_side.png"
+		},
+		groups = {
+			choppy = 4,
+			falling_node = 1
+		},
+		on_place = minetest.rotate_and_place
 	})
 
 minetest.register_node(modname .. ":leaves", {

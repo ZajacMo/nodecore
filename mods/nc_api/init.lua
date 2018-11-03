@@ -43,6 +43,14 @@ function nodecore.pickrand(tbl, weight)
 	end
 end
 
+function nodecore.extend_node(name, func)
+	local orig = minetest.registered_nodes[name]
+	local copy = {}
+	for k, v in pairs(orig) do copy[k] = v end
+	copy = func(copy, orig) or copy
+	minetest.register_node(":" .. name, copy)
+end
+
 function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
 
 local path = minetest.get_modpath(modname)

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, ipairs, minetest
-    = error, ipairs, minetest
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_decoration({

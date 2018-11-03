@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore
-= ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
