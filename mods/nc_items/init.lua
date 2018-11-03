@@ -1,4 +1,10 @@
-local minetest = minetest
+-- LUALOCALS < ---------------------------------------------------------
+local ItemStack, math, minetest, pairs, setmetatable, type, vector
+    = ItemStack, math, minetest, pairs, setmetatable, type, vector
+local math_floor, math_random, math_sqrt
+    = math.floor, math.random, math.sqrt
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 local function stackentprops(stack, func, rot)
@@ -20,7 +26,7 @@ local function stackentprops(stack, func, rot)
 		t.textures[1] = stack:get_name()
 		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()      
 		t.visual_size = {x = s, y = s}
-		t.automatic_rotate = rot * 0.15 * math.sqrt(stack:get_stack_max()
+		t.automatic_rotate = rot * 0.15 * math_sqrt(stack:get_stack_max()
 			/ stack:get_count())
 		if func then func(s) end
 	end
@@ -41,9 +47,9 @@ minetest.register_entity(modname .. ":stackent", {
 			if not inv then return self:die() end
 			local stack = inv:get_stack("solo", 1)
 			if not stack or stack:get_count() < 1 then return self:die() end
-			self.rot = self.rot or math.random(1, 2) * 2 - 3
+			self.rot = self.rot or math_random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
-						pos.y = math.floor(pos.y + 0.5) - 0.5 + s
+						pos.y = math_floor(pos.y + 0.5) - 0.5 + s
 						self.object:setpos(pos)
 					end, self.rot))
 		end,
@@ -134,10 +140,7 @@ local item = {
 	on_step = function(self, dtime)
 		bii.on_step(self, dtime)
 		if self.physical_state then return end
-		local pos = self.object:getpos()
-		pos.x = math.floor(pos.x + 0.5)
-		pos.y = math.floor(pos.y + 0.5)
-		pos.z = math.floor(pos.z + 0.5)
+		local pos = vector.round(self.object:getpos())
 		local node = minetest.get_node(pos)
 		local def = minetest.registered_nodes[node.name]
 		if not def.buildable_to then return end

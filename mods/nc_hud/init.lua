@@ -1,3 +1,8 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest
+    = minetest
+-- LUALOCALS > ---------------------------------------------------------
+
 local minetest = minetest
 
 local health_bar_definition =

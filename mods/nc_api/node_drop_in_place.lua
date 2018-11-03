@@ -1,5 +1,7 @@
-local minetest = minetest
-local nodecore = nodecore
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore, type
+    = minetest, nodecore, type
+-- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_on_register_node(function(name, def)
 		local dip = def.drop_in_place

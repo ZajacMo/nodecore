@@ -1,5 +1,7 @@
-local minetest = minetest
-local nodecore = nodecore
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
+-- LUALOCALS > ---------------------------------------------------------
 
 local function underride(to, from)
 	for k, v in pairs(from) do
@@ -37,6 +39,8 @@ nodecore.register_on_register_node(function(name, def)
 		if loose.groups.crumbly and not loose.no_repack then
 			loose.on_pummel = loose.on_pummel or function(pos, node, stats)
 				if stats.duration < 3 then return end
+				if not stats.puncher:get_wielded_item()
+				:get_tool_capabilities().damage_groups.slappy then return end
 				minetest.set_node(pos, {name = name})
 			end
 		end

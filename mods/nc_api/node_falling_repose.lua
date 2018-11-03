@@ -1,5 +1,9 @@
-local minetest = minetest
-local nodecore = nodecore
+-- LUALOCALS < ---------------------------------------------------------
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_random
+    = math.random
+-- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_on_register_node(function(name, def)
 		def.groups = def.groups or {}
@@ -51,7 +55,7 @@ local function repose_transform(pos, node)
 	ok = check_empty(pos, 0, -repose, -1)
 	if ok then open[#open + 1] = ok end
 	if #open < 1 then return end
-	return def.repose_drop(pos, open[math.random(1, #open)], node)
+	return def.repose_drop(pos, open[math_random(1, #open)], node)
 end
 
 local reposeq
@@ -76,7 +80,7 @@ minetest.register_abm({
 			end
 			local f = function() repose_transform(pos, node) end
 			if #reposeq > qmax then
-				local i = math.random(1, qqty)
+				local i = math_random(1, qqty)
 				if i < qmax then reposeq[i] = f end
 			else
 				reposeq[#reposeq + 1] = f

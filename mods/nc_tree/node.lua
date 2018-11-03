@@ -1,4 +1,8 @@
-local minetest = minetest
+-- LUALOCALS < ---------------------------------------------------------
+local minetest
+    = minetest
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":root", {

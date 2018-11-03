@@ -1,4 +1,8 @@
-local minetest = minetest
+-- LUALOCALS < ---------------------------------------------------------
+local error, ipairs, minetest
+    = error, ipairs, minetest
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 local function ezschem(key, yslices, init)

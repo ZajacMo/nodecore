@@ -1,3 +1,8 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest
+    = minetest
+-- LUALOCALS > ---------------------------------------------------------
+
 minetest.register_on_joinplayer(function(player)
 	player:set_properties({
 		visual = "upright_sprite",

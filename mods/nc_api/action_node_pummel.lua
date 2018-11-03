@@ -1,5 +1,7 @@
-local minetest = minetest
-local nodecore = nodecore
+-- LUALOCALS < ---------------------------------------------------------
+local minetest
+    = minetest
+-- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
 
@@ -13,7 +15,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		local now = minetest.get_us_time() / 1000000
 		local pum = {
-			puncher = puncher
+			puncher = puncher,
 			pname = pname,
 			pos = pos,
 			pointed = pointed,

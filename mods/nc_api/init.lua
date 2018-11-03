@@ -1,3 +1,10 @@
+-- LUALOCALS < ---------------------------------------------------------
+local dofile, ipairs, minetest, nodecore, pairs, rawset, type
+    = dofile, ipairs, minetest, nodecore, pairs, rawset, type
+-- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+
 local nodecore = {}
 rawset(_G, "nodecore", nodecore)
 
@@ -10,8 +17,6 @@ for k, v in pairs(minetest) do
 		nodecore[k] = v
 	end
 end
-local modname = minetest.get_current_modname()
-local path = minetest.get_modpath(modname)
 
 nodecore.registered_on_register_node = {}
 local oldreg = minetest.register_node
@@ -26,6 +31,8 @@ function nodecore.register_on_register_node(func)
 	local t = nodecore.registered_on_register_node
 	t[#t + 1] = func
 end
+
+local path = minetest.get_modpath(modname)
 
 dofile(path .. "/node_drop_in_place.lua")
 dofile(path .. "/node_falling_repose.lua")

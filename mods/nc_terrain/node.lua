@@ -1,4 +1,8 @@
-local minetest = minetest
+-- LUALOCALS < ---------------------------------------------------------
+local ipairs, minetest, pairs
+    = ipairs, minetest, pairs
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 local function regterrain(def)
