@@ -40,11 +40,12 @@ local function check_empty(pos, dx, dy, dz)
 	end
 	return {x = pos.x + dx, y = pos.y, z = pos.z + dz}
 end
-local function repose_transform(pos, node)
+function nodecore.falling_repose_check(pos)
 	if minetest.check_single_for_falling(pos) then return end
-	node = node or minetest.get_node(pos)
+	local node = minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
 	local repose = def.groups.falling_repose
+	if not repose then return end
 	local open = {}
 	local ok = check_empty(pos, 1, -repose, 0)
 	if ok then open[1] = ok end
@@ -78,7 +79,7 @@ minetest.register_abm({
 				qqty = 0
 				minetest.after(0, reposeall)
 			end
-			local f = function() repose_transform(pos, node) end
+			local f = function() nodecore.falling_repose_check(pos) end
 			if #reposeq > qmax then
 				local i = math_random(1, qqty)
 				if i < qmax then reposeq[i] = f end

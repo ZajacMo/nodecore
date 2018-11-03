@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, pairs, setmetatable, type, vector
-    = ItemStack, math, minetest, pairs, setmetatable, type, vector
+= ItemStack, math, minetest, pairs, setmetatable, type, vector
 local math_floor, math_random, math_sqrt
-    = math.floor, math.random, math.sqrt
+= math.floor, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -36,17 +36,14 @@ end
 minetest.register_entity(modname .. ":stackent", {
 		initial_properties = stackentprops(),
 		is_stack = true,
-		die = function(self)
-			return self.object:remove()
-		end,
 		itemcheck = function(self)
 			local pos = self.object:getpos()
 			local meta = minetest.get_meta(pos)
-			if not meta then return self:die() end
+			if not meta then return self.object:remove() end
 			local inv = meta:get_inventory()
-			if not inv then return self:die() end
+			if not inv then return self.object:remove() end
 			local stack = inv:get_stack("solo", 1)
-			if not stack or stack:get_count() < 1 then return self:die() end
+			if not stack or stack:get_count() < 1 then return self.object:remove() end
 			self.rot = self.rot or math_random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
 						pos.y = math_floor(pos.y + 0.5) - 0.5 + s
@@ -108,7 +105,9 @@ minetest.register_node(modname .. ":stack", {
 			for k, v in pairs(findstackents(pos)) do
 				v:remove()
 			end
-			minetest.check_for_falling(pos)
+			minetest.after(0, function()
+					minetest.check_for_falling(pos)
+				end)
 		end,
 		on_dig = function(pos, node, digger)
 			local meta = minetest.get_meta(pos)
@@ -135,15 +134,21 @@ minetest.register_node(modname .. ":stack", {
 		on_punch = function() end
 	})
 
+local function buildable_to(pos)
+	return minetest.registered_nodes[minetest.get_node(pos).name].buildable_to and pos
+end
 local bii = minetest.registered_entities["__builtin:item"]
 local item = {
 	on_step = function(self, dtime)
 		bii.on_step(self, dtime)
 		if self.physical_state then return end
 		local pos = vector.round(self.object:getpos())
-		local node = minetest.get_node(pos)
-		local def = minetest.registered_nodes[node.name]
-		if not def.buildable_to then return end
+		pos = buildable_to(pos)
+		or buildable_to({x = pos.x + 1, y = pos.y, z = pos.z})
+		or buildable_to({x = pos.x - 1, y = pos.y, z = pos.z})
+		or buildable_to({x = pos.x, y = pos.y, z = pos.z + 1})
+		or buildable_to({x = pos.x, y = pos.y, z = pos.z - 1})
+		if not pos then return end
 		local stack = ItemStack(self.itemstring)
 		local name = stack:get_name()
 		if stack:get_count() == 1 and minetest.registered_nodes[name] then
