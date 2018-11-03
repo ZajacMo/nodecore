@@ -2,36 +2,27 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- crack_anylength texture, maybe something abstract like a hexagonal
-  pie graph or something.
 - Library functions for handling nodecore interactions.
-	- Define node callbacks for extended actions, like
-	  multipunch and sneak-multipunch.
 	- Check-for-recipe util.
 	- Wallmounted pop-off-as-item and item_entity overrides
 	  to transform into falling node.
 	- Flat-item node for tools and such: like sz_stuff_pile
 	- Need punch-groups for controlling tool capabilities
 	  necessary to multipunch; are damage groups usable here?
+- Plant life stuff
+	- Leaf decay.
+	- Grass growth/smothering.
+	- Leaves settle into grass as podzol?
+- Tree cultivation
+	- Place loose dirt atop eggcorn; converts into planted eggcorn
+	  that looks like loose dirt and falls into hole.
+	- Tree growth mechanics.
 - Wood tech.
-	- By hand, only dirt/sand can be dug, not trees/leaves.
-		- Logs are level-2 choppy
-		- Dirt converts to loose dirt, falling node.
-	- Multi-punching leaves reveals branches.
-	- Multi-punching branches breaks them into sticks.
-		- Sticks are wallmounted, so they probably fall.
-	- Combine a stick onto another stick to form a staff.
-	- Craft an adze, combine a branch onto a stick.
-		- Level 1 choppy
 	- Adze can split logs on end into planks.
 		- Level 1 choppy
 	- Using planks on a staff forms tools as each plank is added:
 		- Shovel, axe, pick.
 		- Each is level 2, axe can dig logs
-	- Leaves without a nearby log decay into either dead leaves or saplings
-		- Both are falling nodes.
-		- Dead leaves left on dirt/grass decay to nothing and convert
-		  grass below to podzol
 - Stone tech.
 	- Dig up stone, ore using pick.
 		- Converts to loose cobble / loose ore (hand-diggable, falling)
