@@ -5,17 +5,25 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+--[[
+Nodes with the "falling_repose" group will not only fall if unsupported
+from below, but if there is a sufficient drop off the sides, so simulate
+an "angle of repose."
+--]]
+
+function nodecore.falling_repose_drop(posfrom, posto, node)
+	minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
+	minetest.remove_node(posfrom)
+	posfrom.y = posfrom.y + 1
+	return minetest.check_for_falling(posfrom)
+end
+
 nodecore.register_on_register_node(function(name, def)
 		def.groups = def.groups or {}
 
 		if def.groups.falling_repose then def.groups.falling_node = 1 end
 
-		def.repose_drop = def.repose_drop or function(posfrom, posto, node)
-			minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
-			minetest.remove_node(posfrom)
-			posfrom.y = posfrom.y + 1
-			return minetest.check_for_falling(posfrom)
-		end
+		def.repose_drop = def.repose_drop or nodecore.falling_repose_drop
 	end)
 
 function minetest.spawn_falling_node(pos, node, meta)
@@ -46,6 +54,15 @@ function nodecore.falling_repose_check(pos)
 	local def = minetest.registered_nodes[node.name]
 	local repose = def.groups.falling_repose
 	if not repose then return end
+
+	-- Reposing nodes can always sit comfortably atop
+	-- a non-moving node; it's only when stacked on other
+	-- falling nodes that they can slip off.
+	if not (minetest.registered_nodes[minetest.get_node(
+			{x = pos.x, y = pos.y - 1, z = pos.z}).name].groups
+		or {}).falling_node
+	then return end
+
 	local open = {}
 	local ok = check_empty(pos, 1, -repose, 0)
 	if ok then open[1] = ok end
@@ -68,7 +85,7 @@ local function reposeall()
 	qqty = nil
 end
 minetest.register_abm({
-		label = "Falling Material Repose",
+		label = "Falling Repose",
 		nodenames = {"group:falling_repose"},
 		neighbors = {"air"},
 		interval = 2,

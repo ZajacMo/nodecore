@@ -1,83 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, pairs, setmetatable, type, vector
-    = ItemStack, math, minetest, pairs, setmetatable, type, vector
-local math_floor, math_random, math_sqrt
-    = math.floor, math.random, math.sqrt
+local ItemStack, minetest, nodecore, setmetatable, vector
+    = ItemStack, minetest, nodecore, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function stackentprops(stack, func, rot)
-	rot = rot or 1
-	local t = {
-		hp_max = 1,
-		physical = false,
-		collide_with_objects = false,
-		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "wielditem",
-		visual_size = {x = 0.4, y = 0.4 },
-		textures = {""},
-		spritediv = {x = 1, y = 1},
-		initial_sprite_basepos = {x = 0, y = 0},
-		is_visible = false
-	}
-	if stack then
-		t.is_visible = true
-		t.textures[1] = stack:get_name()
-		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()      
-		t.visual_size = {x = s, y = s}
-		t.automatic_rotate = rot * 0.15 * math_sqrt(stack:get_stack_max()
-			/ stack:get_count())
-		if func then func(s) end
-	end
-	return t
-end
-
-minetest.register_entity(modname .. ":stackent", {
-		initial_properties = stackentprops(),
-		is_stack = true,
-		itemcheck = function(self)
-			local pos = self.object:getpos()
-			local meta = minetest.get_meta(pos)
-			if not meta then return self.object:remove() end
-			local inv = meta:get_inventory()
-			if not inv then return self.object:remove() end
-			local stack = inv:get_stack("solo", 1)
-			if not stack or stack:get_count() < 1 then return self.object:remove() end
-			self.rot = self.rot or math_random(1, 2) * 2 - 3
-			self.object:set_properties(stackentprops(stack, function(s)
-						pos.y = math_floor(pos.y + 0.5) - 0.5 + s
-						self.object:setpos(pos)
-					end, self.rot))
-		end,
-		on_activate = function(self)
-			self.cktime = 0.00001
-		end,
-		on_step = function(self, dtime)
-			self.cktime = (self.cktime or 0) - dtime
-			if self.cktime > 0 then return end
-			self.cktime = 1
-			return self:itemcheck()
-		end
-	})
-
-local stackbox = {
-	type = "fixed",
-	fixed = {
-		{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
-	},
-}
-
-local function findstackents(pos)
-	local found = {}
-	for k, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
-		if v and v.get_luaentity and v:get_luaentity()
-		and v:get_luaentity().is_stack then
-			found[#found + 1] = v
-		end
-	end
-	return found
-end
+local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
 
 minetest.register_node(modname .. ":stack", {
 		drawtype = "airlike",
@@ -89,39 +17,11 @@ minetest.register_node(modname .. ":stack", {
 		groups = {
 			crumbly = 3,
 			falling_node = 1,
-			falling_repose = 1
+			falling_repose = 1,
+			visinv = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
-		on_construct = function(pos)
-			local meta = minetest.get_meta(pos)
-			local inv = meta:get_inventory()
-			inv:set_size("solo", 1)
-			if #(findstackents(pos)) < 1 then
-				minetest.add_entity(pos, modname .. ":stackent")
-			end
-		end,
-		after_destruct = function(pos)
-			for k, v in pairs(findstackents(pos)) do
-				v:remove()
-			end
-			minetest.after(0, function()
-					minetest.check_for_falling(pos)
-				end)
-		end,
-		on_dig = function(pos, node, digger)
-			local meta = minetest.get_meta(pos)
-			local inv = meta:get_inventory()
-			local stack = inv:get_stack("solo", 1)
-			if stack and not stack:is_empty() and digger then
-				stack = digger:get_inventory()
-				:add_item("main", stack)
-				inv:set_stack("solo", 1, stack:to_string())
-			end
-			if not stack or stack:is_empty() then
-				return minetest.remove_node(pos)
-			end
-		end,
 		repose_drop = function(posfrom, posto, node)
 			local meta = minetest.get_meta(posfrom)
 			local inv = meta:get_inventory()
