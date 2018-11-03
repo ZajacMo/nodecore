@@ -23,10 +23,12 @@ local looseimg = "^nc_api_loose.png"
 
 function nodecore.pummel_repack_node(duration, replace)
 	if type(replace) ~= "table" then replace = {name = replace} end
-	return function (pos, node, stats, replace)
+	return function (pos, node, stats)
 		if stats.duration < duration then return end
-		if not stats.puncher:get_wielded_item()
-		:get_tool_capabilities().damage_groups.slappy then return end
+		local wield = stats.puncher:get_wielded_item()
+		if not wield then return end
+		local dg = wield:get_tool_capabilities().damage_groups
+		if not dg or not dg.slappy then return end
 		minetest.set_node(pos, replace)		
 	end
 end
