@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+= ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -34,6 +34,8 @@ nodecore.register_leaf_drops(function(pos, node, list)
 			prob = 0.2 * (node.param2 * node.param2)}
 	end)
 
+nodecore.staff_tool_recipes = nodecore.staff_tool_recipes or {}
+
 minetest.register_node(modname .. ":staff", {
 		description = "Staff",
 		drawtype = "nodebox",
@@ -51,25 +53,11 @@ minetest.register_node(modname .. ":staff", {
 		on_rightclick = function(pos, node, clicker, stack, pointed, ...)
 			if pointed.above.y <= pointed.under.y then return end
 			if stack:is_empty() then return end
-			local function become(name)
-				minetest.remove_node(pos)
-				minetest.item_drop(ItemStack(name), nil, pointed.under)
-				if stack then stack:set_count(stack:get_count() - 1) end
-				return stack
-			end
-			if stack:get_name() == modname .. ":stick" then
-				return become(modname .. ":adze")
-			end
+			local become = nodecore.staff_tool_recipes[stack:get_name()]
+			if not become then return end
+			minetest.remove_node(pos)
+			minetest.item_drop(ItemStack(become), nil, pointed.under)
+			if stack then stack:set_count(stack:get_count() - 1) end
+			return stack
 		end	
-	})
-
-minetest.register_tool(modname .. ":adze", {
-		description = "Adze",
-		inventory_image = modname .. "_adze.png",
-		tool_capabilities = {
-			full_punch_interval = 1.2,
-			groupcaps = {
-				choppy = {times={[3]=1.60}, uses=20, maxlevel=1},
-			}
-		},
 	})
