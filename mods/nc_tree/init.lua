@@ -7,4 +7,5 @@ local modname = minetest.get_current_modname()
 local path = minetest.get_modpath(modname)
 
 dofile(path .. "/node.lua")
+dofile(path .. "/sticks.lua")
 dofile(path .. "/decor.lua")

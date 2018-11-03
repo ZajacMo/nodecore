@@ -5,10 +5,9 @@ local dofile, ipairs, minetest, nodecore, pairs, rawset, type
 
 local modname = minetest.get_current_modname()
 
-local nodecore = {}
+nodecore = nodecore or {}
 rawset(_G, "nodecore", nodecore)
 
-local minetest = minetest
 for k, v in pairs(minetest) do
 	if type(v) == "function" then
 		-- Late-bind in case minetest methods overridden.

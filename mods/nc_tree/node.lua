@@ -23,6 +23,9 @@ minetest.register_node(modname .. ":tree", {
 			modname .. "_tree_top.png",
 			modname .. "_tree_side.png"
 		},
+		groups = {
+			choppy = 3
+		}
 	})
 
 minetest.register_node(modname .. ":leaves", {
@@ -46,13 +49,9 @@ minetest.register_node(modname .. ":leaves", {
 				local e = modname .. ":eggcorn"
 				local b = modname .. ":stick"
 				local p = {l, l, l, l, l, l, l, l, b, b, e}
-				if node.param2 > 0 then
+				for i = 1, node.param2 do
 					p[#p + 1] = e
 					p[#p + 1] = e
-				end
-				if node.param2 > 1 then
-					p[#p + 1] = b
-					p[#p + 1] = b
 					p[#p + 1] = b
 					p[#p + 1] = b
 				end
@@ -63,6 +62,7 @@ minetest.register_node(modname .. ":leaves", {
 	})
 
 local function fixed(t) return {type = "fixed", fixed = t} end
+
 minetest.register_node(modname .. ":eggcorn", {
 		description = "EggCorn",
 		drawtype = "plantlike",
@@ -70,39 +70,10 @@ minetest.register_node(modname .. ":eggcorn", {
 		visual_scale = 0.5,
 		collision_box = fixed({-3/16, -0.5, -3/16, 3/16, 0, 3/16}),
 		selection_box = fixed({-3/16, -0.5, -3/16, 3/16, 0, 3/16}),
+		inventory_image = modname .. "_eggcorn.png",
 		tiles = { modname .. "_eggcorn.png" },
 		groups = {
 			snappy = 3,
-			falling_repose = 1
-		}
-	})
-
-minetest.register_node(modname .. ":stick", {
-		drawtype = "nodebox",
-		node_box = fixed({-1/16, -0.5, -1/16, 1/16, 0, 1/16}),
-		tiles = {
-			modname .. "_tree_top.png",
-			modname .. "_tree_top.png",
-			modname .. "_tree_side.png"
-		},
-		paramtype = "light",
-		groups = {
-			snappy = 2,
-			falling_repose = 1
-		}
-	})
-
-minetest.register_node(modname .. ":staff", {
-		drawtype = "nodebox",
-		node_box = fixed({-1/16, -0.5, -1/16, 1/16, 0.5, 1/16}),
-		tiles = {
-			modname .. "_tree_top.png",
-			modname .. "_tree_top.png",
-			modname .. "_tree_side.png"
-		},
-		paramtype = "light",
-		groups = {
-			snappy = 2,
 			falling_repose = 1
 		}
 	})
