@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, pairs, setmetatable, type, vector
-= ItemStack, math, minetest, pairs, setmetatable, type, vector
+    = ItemStack, math, minetest, pairs, setmetatable, type, vector
 local math_floor, math_random, math_sqrt
-= math.floor, math.random, math.sqrt
+    = math.floor, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
