@@ -1,16 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, type
-    = ItemStack, minetest, type
+local ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function fixed(t) return {type = "fixed", fixed = t} end
-
 minetest.register_node(modname .. ":stick", {
 		description = "Stick",
 		drawtype = "nodebox",
-		node_box = fixed({-1/16, -0.5, -1/16, 1/16, 0, 1/16}),
+		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
 		tiles = {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",
@@ -30,10 +28,16 @@ minetest.register_node(modname .. ":stick", {
 		end
 	})
 
+nodecore.register_leaf_drops(function(pos, node, list)
+		list[#list + 1] = {
+			name = modname .. ":stick",
+			prob = 0.2 * (node.param2 * node.param2)}
+	end)
+
 minetest.register_node(modname .. ":staff", {
 		description = "Staff",
 		drawtype = "nodebox",
-		node_box = fixed({-1/16, -0.5, -1/16, 1/16, 0.5, 1/16}),
+		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
 		tiles = {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",
@@ -65,7 +69,7 @@ minetest.register_tool(modname .. ":adze", {
 		tool_capabilities = {
 			full_punch_interval = 1.2,
 			groupcaps = {
-				choppy = {times={[3]=1.60}, uses=5, maxlevel=1},
+				choppy = {times={[3]=1.60}, uses=20, maxlevel=1},
 			}
 		},
 	})

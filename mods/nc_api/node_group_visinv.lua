@@ -143,6 +143,7 @@ end
 local old_get_node_drops = minetest.get_node_drops
 minetest.get_node_drops = function(...)
 	local drops = old_get_node_drops(...)
+	if not digpos then return drops end
 	drops = drops or {}
 	local meta = minetest.get_meta(digpos)
 	local inv = meta:get_inventory()

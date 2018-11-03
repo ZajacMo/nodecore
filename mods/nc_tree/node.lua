@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, type
-    = math, minetest, type
-local math_random
-    = math.random
+local ipairs, minetest, nodecore, type
+    = ipairs, minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -44,36 +42,20 @@ minetest.register_node(modname .. ":leaves", {
 		},
 		alternate_solid = {
 			after_dig_node = function(pos, node)
-				node = node or minetest.get_node(node)
-				local l = modname .. ":leaves_loose"
-				local e = modname .. ":eggcorn"
-				local b = modname .. ":stick"
-				local p = {l, l, l, l, l, l, l, l, b, b, e}
-				for i = 1, node.param2 do
-					p[#p + 1] = e
-					p[#p + 1] = e
-					p[#p + 1] = b
-					p[#p + 1] = b
+				node = node or minetest.get_node(pos)
+				local t = {}
+				for i, v in ipairs(nodecore.registered_leaf_drops) do
+					t = v(pos, node, t) or t
 				end
-				minetest.place_node(pos,
-					{name = p[math_random(1, #p)]})
+				local p = nodecore.pickrand(t, function(x) return x.prob end)
+				if not p then return end
+				minetest.place_node(pos, p)
 			end
 		}
 	})
+nodecore.register_leaf_drops(function(pos, node, list)
+		list[#list + 1] = {name = modname .. ":leaves_loose"}
+	end)
 
 local function fixed(t) return {type = "fixed", fixed = t} end
 
-minetest.register_node(modname .. ":eggcorn", {
-		description = "EggCorn",
-		drawtype = "plantlike",
-		paramtype = "light",
-		visual_scale = 0.5,
-		collision_box = fixed({-3/16, -0.5, -3/16, 3/16, 0, 3/16}),
-		selection_box = fixed({-3/16, -0.5, -3/16, 3/16, 0, 3/16}),
-		inventory_image = modname .. "_eggcorn.png",
-		tiles = { modname .. "_eggcorn.png" },
-		groups = {
-			snappy = 3,
-			falling_repose = 1
-		}
-	})
