@@ -11,7 +11,6 @@ rawset(_G, "nodecore", nodecore)
 local path = minetest.get_modpath(modname)
 
 dofile(path .. "/utils.lua")
-dofile(path .. "/hints.lua")
 
 dofile(path .. "/node_on_register.lua")
 dofile(path .. "/node_drop_in_place.lua")
