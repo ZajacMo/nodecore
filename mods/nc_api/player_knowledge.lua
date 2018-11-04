@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, pairs
-    = ipairs, minetest, pairs
+local ipairs, minetest, nodecore, pairs
+    = ipairs, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local knowcache = {}
@@ -19,6 +19,7 @@ local function addknow(player, tag)
 	know = minetest.serialize(know)
 	player:set_attribute("knowledge", know)
 end
+nodecore.player_knowledge_add = addknow
 
 minetest.register_on_punchnode(function(pos, node, puncher)
 		addknow(puncher, "punch:" .. node.name)
