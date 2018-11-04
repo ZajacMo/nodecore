@@ -29,7 +29,8 @@ function nodecore.pummel_repack_node(duration, replace)
 		if not wield then return end
 		local dg = wield:get_tool_capabilities().damage_groups
 		if not dg or not dg.slappy then return end
-		minetest.set_node(pos, replace)		
+		minetest.set_node(pos, replace)
+		return true
 	end
 end
 

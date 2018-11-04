@@ -45,5 +45,6 @@ nodecore.extend_node("nc_tree:tree", function(copy, orig)
 			if defer > 0 then
 				minetest.item_drop(ItemStack(plank .. " " .. defer), nil, pos)
 			end
+			return true
 		end
 	end)

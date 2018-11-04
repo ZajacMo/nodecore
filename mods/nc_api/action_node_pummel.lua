@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
@@ -38,6 +38,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		pummeling[pname] = pum
 
 		if def.on_pummel(pos, node, pum) then
+			nodecore.player_knowledge_add(puncher, "pummel:" .. node.name)
 			pummeling[pname] = nil
 		end
 	end)

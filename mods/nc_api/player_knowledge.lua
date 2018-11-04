@@ -38,10 +38,6 @@ minetest.item_place = hook(minetest.item_place, function(stack, player)
 		if stack:is_empty() then return end
 		addknow(player, "place:" .. stack:get_name())
 	end)
-minetest.item_drop = hook(minetest.item_drop, function(stack, player)
-		if stack:is_empty() then return end
-		addknow(player, "drop:" .. stack:get_name())
-	end)
 
 local function invscan()
 	for _, player in ipairs(minetest.get_connected_players()) do
