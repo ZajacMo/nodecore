@@ -18,7 +18,6 @@ local function addknow(player, tag)
 	know[tag] = true
 	know = minetest.serialize(know)
 	player:set_attribute("knowledge", know)
-	minetest.chat_send_player(pname, "learned: " .. tag)
 end
 
 minetest.register_on_punchnode(function(pos, node, puncher)
