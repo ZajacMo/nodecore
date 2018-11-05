@@ -61,7 +61,9 @@ minetest.register_abm({
 
 local function mkfire(pos, dx, dy, dz)
 	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	if minetest.get_node(pos).name ~= "air" then return end
+	local name = minetest.get_node(pos).name
+	if name == modname .. ":fire" then return true end
+	if name ~= "air" then return end
 	return minetest.set_node(pos, {name = modname .. ":fire"})
 end
 minetest.register_abm({
@@ -71,10 +73,13 @@ minetest.register_abm({
 		nodenames = {modname .. ":fuel"},
 		neighbors = {"air"},
 		action = function(pos)
-			mkfire(pos, 0, 1, 0)
-			mkfire(pos, 1, 0, 0)
-			mkfire(pos, -1, 0, 0)
-			mkfire(pos, 0, 0, 1)
-			mkfire(pos, 0, 0, -1)
+			local f = mkfire(pos, 0, 1, 0)
+			f = mkfire(pos, 1, 0, 0) or f
+			f = mkfire(pos, -1, 0, 0) or f
+			f = mkfire(pos, 0, 0, 1) or f
+			f = mkfire(pos, 0, 0, -1) or f
+			if not f then 
+				return minetest.set_node(pos, {name = modname .. ":ash"})
+			end
 		end
 	})
