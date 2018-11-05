@@ -16,6 +16,7 @@ minetest.register_node(modname .. ":stick", {
 		},
 		paramtype = "light",
 		groups = {
+			shafty = 1,
 			snappy = 2,
 			falling_repose = 1
 		},
@@ -47,6 +48,7 @@ minetest.register_node(modname .. ":staff", {
 		},
 		paramtype = "light",
 		groups = {
+			shafty = 1,
 			snappy = 2,
 			falling_repose = 2
 		},

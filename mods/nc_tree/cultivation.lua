@@ -56,6 +56,6 @@ minetest.register_abm({
 		action = function(pos, node)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-			minetest.place_schematic(place, nodecore.tree_schematic, "random", {})
+			minetest.place_schematic(place, nodecore.tree_schematic, "random", {}, false)
 		end
 	})
