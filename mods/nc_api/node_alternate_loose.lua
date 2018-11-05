@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+= minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -21,14 +21,16 @@ end
 
 local looseimg = "^nc_api_loose.png"
 
+local function can_repack(pos, node, stats)
+	local wield = stats.puncher:get_wielded_item()
+	if not wield then return end
+	local dg = wield:get_tool_capabilities().damage_groups
+	return dg and dg.slappy
+end
 function nodecore.pummel_repack_node(duration, replace)
 	if type(replace) ~= "table" then replace = {name = replace} end
 	return function (pos, node, stats)
 		if stats.duration < duration then return end
-		local wield = stats.puncher:get_wielded_item()
-		if not wield then return end
-		local dg = wield:get_tool_capabilities().damage_groups
-		if not dg or not dg.slappy then return end
 		minetest.set_node(pos, replace)
 		return true
 	end
@@ -61,6 +63,7 @@ nodecore.register_on_register_node(function(name, def)
 		if loose.groups.crumbly and not loose.no_repack then
 			loose.on_pummel = loose.on_pummel
 			or nodecore.pummel_repack_node(3, name)
+			loose.can_pummel = loose.can_pummel or can_repack
 		end
 
 		loose.alternate_loose = nil

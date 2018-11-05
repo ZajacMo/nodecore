@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+= ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -15,16 +15,22 @@ minetest.register_node(plank, {
 	})
 
 nodecore.extend_node("nc_tree:tree", function(copy, orig)
-		local op = orig.on_pummel or function() end
-		copy.on_pummel = function(pos, node, stats, ...)
-			if (stats.pointed.above.y - stats.pointed.under.y) ~= 1
-			or stats.duration < 5 then
-				return op(pos, node, stats, ...)
+		local oc = orig.can_pummel or function() end
+		copy.can_pummel = function(pos, node, stats, ...)
+			if (stats.pointed.above.y - stats.pointed.under.y) ~= 1 then
+				return oc(pos, node, stats)
 			end
 			local wielded = stats.puncher:get_wielded_item()
 			local caps = wielded:get_tool_capabilities()
 			local choppy = caps and caps.groupcaps and caps.groupcaps.choppy
 			if not choppy then
+				return oc(pos, node, stats, ...)
+			end
+			return "plank"
+		end
+		local op = orig.on_pummel or function() end
+		copy.on_pummel = function(pos, node, stats, ...)
+			if stats.check ~= "plank" or stats.duration < 5 then
 				return op(pos, node, stats, ...)
 			end
 			minetest.remove_node(pos)
