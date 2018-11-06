@@ -39,23 +39,19 @@ minetest.register_node(modname .. ":ash", {
 		groups = { falling_node = 1, crumbly = 3 }
 	})
 
+local fueltest = {name = modname .. ":fuel"}
 minetest.register_abm({
 		label = "Fire Requires Fuel",
 		interval = 1,
 		chance = 1,
 		nodenames = {modname .. ":fire"},
 		action = function(pos)
-			local node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z })
-			if node.name == modname .. ":fuel" then return end
-			node = minetest.get_node({x = pos.x + 1, y = pos.y, z = pos.z })
-			if node.name == modname .. ":fuel" then return end
-			node = minetest.get_node({x = pos.x - 1, y = pos.y, z = pos.z })
-			if node.name == modname .. ":fuel" then return end
-			node = minetest.get_node({x = pos.x, y = pos.y, z = pos.z + 1})
-			if node.name == modname .. ":fuel" then return end
-			node = minetest.get_node({x = pos.x, y = pos.y, z = pos.z - 1})
-			if node.name == modname .. ":fuel" then return end
-			return minetest.remove_node(pos)
+			if not nodecore.node_is({x = pos.x, y = pos.y - 1, z = pos.z }, fueltest)
+			or not nodecore.node_is({x = pos.x + 1, y = pos.y, z = pos.z }, fueltest)
+			or not nodecore.node_is({x = pos.x - 1, y = pos.y, z = pos.z }, fueltest)
+			or not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z + 1 }, fueltest)
+			or not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z - 1 }, fueltest)
+			then return minetest.remove_node(pos) end
 		end
 	})
 

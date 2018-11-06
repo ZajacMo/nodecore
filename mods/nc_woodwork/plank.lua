@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+= ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -17,20 +17,15 @@ minetest.register_node(plank, {
 nodecore.extend_node("nc_tree:tree", function(copy, orig)
 		local oc = orig.can_pummel or function() end
 		copy.can_pummel = function(pos, node, stats, ...)
-			if (stats.pointed.above.y - stats.pointed.under.y) ~= 1 then
-				return oc(pos, node, stats)
+			if (stats.pointed.above.y - stats.pointed.under.y) == 1
+			and nodecore.wieldgroup(stats.puncher, "choppy") then
+				return plank
 			end
-			local wielded = stats.puncher:get_wielded_item()
-			local caps = wielded:get_tool_capabilities()
-			local choppy = caps and caps.groupcaps and caps.groupcaps.choppy
-			if not choppy then
-				return oc(pos, node, stats, ...)
-			end
-			return "plank"
+			return oc(pos, node, stats)
 		end
 		local op = orig.on_pummel or function() end
 		copy.on_pummel = function(pos, node, stats, ...)
-			if stats.check ~= "plank" or stats.duration < 5 then
+			if stats.check ~= plank or stats.duration < 5 then
 				return op(pos, node, stats, ...)
 			end
 			minetest.remove_node(pos)
@@ -41,8 +36,7 @@ nodecore.extend_node("nc_tree:tree", function(copy, orig)
 					{x = pos.x, y = pos.y, z = pos.z + 1},
 					{x = pos.x, y = pos.y, z = pos.z - 1}
 					}) do
-				if minetest.registered_nodes[minetest.get_node(v)
-				.name].buildable_to then
+				if nodecore.buildable_to(v) then
 					minetest.item_drop(ItemStack(plank), nil, v)
 				else
 					defer = defer + 1

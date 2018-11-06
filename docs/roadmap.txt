@@ -3,8 +3,9 @@ ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
 - Library functions for handling nodecore interactions.
-	- API-ify pummel-splitting things, add planks to staffs,
-	  staffs to sticks.
+	- API-ify pummel-splitting recipes.
+	- Hint system.
+	- Node check compiler, e.g. for buildable_to, name, groups, etc.
 	- Check-for-recipe util.
 	- Wallmounted pop-off-as-item and item_entity overrides
 	  to transform into falling node.
@@ -18,15 +19,19 @@ ROADMAP (SHORT-TERM)
 	- Grass growth/smothering.
 	- Leaves settle into grass as podzol?
 - Wood tech.
-	- Using planks on a staff forms tools as each plank is added:
+	- Pummel planks to chip off sticks and form tool-heads:
 		- Shovel, axe, pick.
-		- Each is level 2, axe can dig logs
+	- Use toolhead on staff to form tool.
+		- Axe can dig logs.
+		- Pick can break stone into cobble.
+		- Shovel can dig solid dirt as-is.
 - Stone tech.
 	- Dig up stone, ore using pick.
 		- Converts to loose cobble / loose ore (hand-diggable, falling)
 		- Tin, copper, iron.
 	- Combine loose cobble onto staffs to form stone tools
 		- Level 3
+		- Stone tools dig faster than wood, but are more brittle
 - Fire tech.
 	- Create fire.
 		- Place a stick atop a pile of dead leaves.

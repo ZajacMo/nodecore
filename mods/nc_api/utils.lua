@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, pairs, type
-    = ipairs, math, minetest, nodecore, pairs, type
+= ipairs, math, minetest, nodecore, pairs, type
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -18,6 +18,34 @@ function nodecore.mkreg()
 	local t = {}
 	local f = function(x) t[#t + 1] = x end
 	return f, t
+end
+
+local node_is_skip = {name = true, param2 = true, param = true, groups = true}
+function nodecore.node_is(node_or_pos, match)
+	if not node_or_pos.name then node_or_pos = minetest.get_node(node_or_pos) end
+	if match.name and node_or_pos.name ~= match.name then return end
+	if match.param2 and node_or_pos.param2 ~= match.param2 then return end
+	if match.param and node_or_pos.param ~= match.param then return end
+	local def = minetest.registered_nodes[node_or_pos.name]
+	if match.groups then
+		if not def.groups then return end
+		for k, v in match.groups do
+			if v == true then
+				if not def.groups[k] then return end
+			else
+				if def.groups[k] ~= v then return end
+			end
+		end
+	end
+	for k, v in pairs(match) do
+		if not node_is_skip[k] then
+			if def[k] ~= v then return end
+		end
+	end
+	return true
+end
+function nodecore.buildable_to(node_or_pos)
+	return nodecore.node_is(node_or_pos, {buildable_to = true})
 end
 
 function nodecore.pickrand(tbl, weight)
@@ -48,3 +76,9 @@ function nodecore.extend_node(name, func)
 end
 
 function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
+
+function nodecore.wieldgroup(who, group)
+	local wielded = who and who:get_wielded_item()
+	local caps = wielded and wielded:get_tool_capabilities()
+	return caps and caps.groupcaps and caps.groupcaps[group]
+end
