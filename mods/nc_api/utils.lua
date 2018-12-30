@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, pairs, type
-= ipairs, math, minetest, nodecore, pairs, type
+    = ipairs, math, minetest, nodecore, pairs, type
 local math_random
-= math.random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do

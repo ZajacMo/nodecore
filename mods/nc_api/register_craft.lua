@@ -1,0 +1,147 @@
+-- LUALOCALS < ---------------------------------------------------------
+local ItemStack, error, ipairs, math, minetest, nodecore, pairs, table,
+      type
+    = ItemStack, error, ipairs, math, minetest, nodecore, pairs, table,
+      type
+local math_floor, table_insert
+    = math.floor, table.insert
+-- LUALOCALS > ---------------------------------------------------------
+
+local old_place = minetest.item_place_node
+
+local recipes = {}
+function nodecore.register_craft(recipe)
+	if type(recipe.nodes) ~= "table" then
+		error "missing required recipe.nodes table"
+	end
+	recipe.root = nil
+	local canrot
+	for _, v in pairs(recipe.nodes) do
+		v.x = v.x or 0
+		v.y = v.y or 0
+		v.z = v.z or 0
+		canrot = canrot or v.x ~= 0 or v.z ~= 0
+		if v.x == 0 and v.y == 0 and v.z == 0 then
+			recipe.root = v
+		end
+	end
+	if not canrot then recipe.norotate = true end
+	if not recipe.root or not recipe.root.match then
+		error "recipe.nodes must have a match for 0,0,0"
+	end
+	local newp = recipe.priority or 0
+	local min = 1
+	local max = #recipes + 1
+	while max > min do
+		local try = math_floor((min + max) / 2)
+		local oldp = recipes[try].priority or 0
+		if newp < oldp then
+			min = try + 1
+		else
+			max = try
+		end
+	end
+	table_insert(recipes, min, recipe)
+end
+
+local function match(pos, node, m)
+	node = node or minetest.get_node(pos)
+	if type(m) == "string" then
+		return node.name == m
+	end
+	if type(m) == "table" then
+		for k, v in pairs(m) do
+			if node[k] ~= v then return end
+		end
+		return true
+	end
+	if type(m) == "function" then
+		return m(pos, node)
+	end
+	error("unsupported match type " .. type(m))
+end
+
+local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, zz)
+	local function rel(x, y, z)
+		return {
+			x = pos.x + xx * x + zx * z,
+			y = pos.y + y,
+			z = pos.z + xz * x + zz * z
+		}
+	end
+	if recipe.check and not recipe.check(pos, rel, placer, pointed_thing) then return end
+	if recipe.normal and (pointed_thing.type ~= "node" or
+		(recipe.normal.x or 0) ~= pointed_thing.above.x - pointed_thing.under.x or
+		(recipe.normal.y or 0) ~= pointed_thing.above.y - pointed_thing.under.y or
+		(recipe.normal.z or 0) ~= pointed_thing.above.z - pointed_thing.under.z)
+	then return end
+	for _, v in pairs(recipe.nodes) do
+		if v ~= recipe.root and v.match then
+			local p = rel(v.x, v.y, v.z)
+			if not match(p, nil, v.match) then return end
+		end
+	end
+	for _, v in pairs(recipe.nodes) do
+		if v.replace then
+			local p = rel(v.x, v.y, v.z)
+			local r = v.replace
+			while type(r) == "function" do
+				r = r(p, v)
+			end
+			if r and type(r) == "string" then
+				r = {name = r}
+			end
+			if r then minetest.set_node(p, r) end
+		end
+	end
+	if recipe.items then
+		for _, v in pairs(recipe.items) do
+			minetest.item_drop(ItemStack(v), nil, rel(v.x or 0, v.y or 0, v.z or 0))
+		end
+	end
+	if recipe.after then recipe.after(pos, rel, placer, pointed_thing) end
+	return true
+end
+
+local function craftloop(pos, node, placer, pointed_thing)
+	for _, rc in ipairs(recipes) do
+		if match(rc.root, node, rc.root.match) then
+			if craftcheck(rc, pos, node, placer, pointed_thing,
+				1, 0, 0, 1) then return true end
+			if not rc.norotate then
+				if craftcheck(rc, pos, node, placer, pointed_thing,
+					0, -1, 1, 0) then return true end
+				if craftcheck(rc, pos, node, placer, pointed_thing,
+					-1, 0, 0, -1) then return true end
+				if craftcheck(rc, pos, node, placer, pointed_thing,
+					0, 1, -1, 0) then return true end
+				if not rc.nomirror then
+					if craftcheck(rc, pos, node, placer, pointed_thing,
+						-1, 0, 0, 1) then return true end
+					if craftcheck(rc, pos, node, placer, pointed_thing,
+						0, 1, 1, 0) then return true end
+					if craftcheck(rc, pos, node, placer, pointed_thing,
+						1, 0, 0, -1) then return true end
+					if craftcheck(rc, pos, node, placer, pointed_thing,
+						0, -1, -1, 0) then return true end
+				end
+			end
+		end
+	end
+end
+
+function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
+	local old_add = minetest.add_node
+	minetest.add_node = function(pos, node, ...)
+		local function helper2(...)
+			craftloop(pos, node, placer, pointed_thing)
+			return ...
+		end
+		return helper2(old_add(pos, node, ...))
+	end
+	local function helper(...)
+		minetest.add_node = old_add
+		return ...
+	end
+	return helper(old_place(itemstack, placer, pointed_thing, ...))
+end

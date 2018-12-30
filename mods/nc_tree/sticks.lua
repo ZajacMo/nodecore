@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -19,14 +19,7 @@ minetest.register_node(modname .. ":stick", {
 			shafty = 1,
 			snappy = 2,
 			falling_repose = 1
-		},
-		on_rightclick = function(pos, node, clicker, stack, pointed)
-			if pointed.above.y <= pointed.under.y then return end
-			if stack:is_empty() or stack:get_name() ~= modname .. ":stick" then return end
-			minetest.set_node(pointed.under, {name = modname .. ":staff"})
-			stack:set_count(stack:get_count() - 1)
-			return stack
-		end
+		}
 	})
 
 nodecore.register_leaf_drops(function(pos, node, list)
@@ -34,8 +27,6 @@ nodecore.register_leaf_drops(function(pos, node, list)
 			name = modname .. ":stick",
 			prob = 0.2 * (node.param2 * node.param2)}
 	end)
-
-nodecore.staff_tool_recipes = nodecore.staff_tool_recipes or {}
 
 minetest.register_node(modname .. ":staff", {
 		description = "Staff",
@@ -51,15 +42,13 @@ minetest.register_node(modname .. ":staff", {
 			shafty = 1,
 			snappy = 2,
 			falling_repose = 2
-		},
-		on_rightclick = function(pos, node, clicker, stack, pointed, ...)
-			if pointed.above.y <= pointed.under.y then return end
-			if stack:is_empty() then return end
-			local become = nodecore.staff_tool_recipes[stack:get_name()]
-			if not become then return end
-			minetest.remove_node(pos)
-			minetest.item_drop(ItemStack(become), nil, pointed.under)
-			if stack then stack:set_count(stack:get_count() - 1) end
-			return stack
-		end	
+		}
+	})
+
+nodecore.register_craft({
+		normal = {y = 1},
+		nodes = {
+			{match = modname .. ":stick", replace = "air"},
+			{y = -1, match = modname .. ":stick", replace = modname .. ":staff"}
+		}
 	})

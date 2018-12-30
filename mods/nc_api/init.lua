@@ -21,3 +21,5 @@ dofile(path .. "/node_group_visinv.lua")
 dofile(path .. "/action_node_pummel.lua")
 
 dofile(path .. "/player_knowledge.lua")
+
+dofile(path .. "/register_craft.lua")
