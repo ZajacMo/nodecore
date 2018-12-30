@@ -8,4 +8,5 @@ local path = minetest.get_modpath(modname)
 
 dofile(path .. "/adze.lua")
 dofile(path .. "/plank.lua")
+dofile(path .. "/staff.lua")
 dofile(path .. "/toolhead.lua")

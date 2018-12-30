@@ -20,7 +20,7 @@ nodecore.register_craft({
 		normal = {y = 1},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
-			{y = -1, match = "nc_tree:staff", replace = "air"},
+			{y = -1, match = modname .. ":staff", replace = "air"},
 		},
 		items = {
 			{y = -1, name = modname .. ":adze"}
