@@ -9,7 +9,7 @@ local function toolhead(name, from, sticks)
 	local n = modname .. ":toolhead_" .. name:lower()
 	local t = n:gsub(":", "_") .. ".png"
 	minetest.register_craftitem(n, {
-			description = name .. " Tool Head",
+			description = "Plank " .. name .. " Head",
 			inventory_image = t
 		})
 	nodecore.extend_item(from, function(copy, orig)
