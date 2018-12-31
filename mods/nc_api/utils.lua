@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, pairs, type
-    = ipairs, math, minetest, nodecore, pairs, type
+= ipairs, math, minetest, nodecore, pairs, type
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -23,6 +23,12 @@ end
 local node_is_skip = {name = true, param2 = true, param = true, groups = true}
 function nodecore.node_is(node_or_pos, match)
 	if not node_or_pos.name then node_or_pos = minetest.get_node(node_or_pos) end
+	while type(match) == "function" do
+		match = match(node_or_pos)
+		if not match then return end
+		if match == true then return true end
+	end
+	if type(match) == "string" then match = {name = match} end
 	if match.name and node_or_pos.name ~= match.name then return end
 	if match.param2 and node_or_pos.param2 ~= match.param2 then return end
 	if match.param and node_or_pos.param ~= match.param then return end

@@ -44,23 +44,6 @@ function nodecore.register_craft(recipe)
 	table_insert(recipes, min, recipe)
 end
 
-local function match(pos, node, m)
-	node = node or minetest.get_node(pos)
-	if type(m) == "string" then
-		return node.name == m
-	end
-	if type(m) == "table" then
-		for k, v in pairs(m) do
-			if node[k] ~= v then return end
-		end
-		return true
-	end
-	if type(m) == "function" then
-		return m(pos, node)
-	end
-	error("unsupported match type " .. type(m))
-end
-
 local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, zz)
 	local function rel(x, y, z)
 		return {
@@ -78,7 +61,7 @@ local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, 
 	for _, v in pairs(recipe.nodes) do
 		if v ~= recipe.root and v.match then
 			local p = rel(v.x, v.y, v.z)
-			if not match(p, nil, v.match) then return end
+			if not nodecore.node_is(p, v.match) then return end
 		end
 	end
 	for _, v in pairs(recipe.nodes) do
@@ -105,7 +88,7 @@ end
 
 local function craftloop(pos, node, placer, pointed_thing)
 	for _, rc in ipairs(recipes) do
-		if match(rc.root, node, rc.root.match) then
+		if nodecore.node_is(node, rc.root.match) then
 			if craftcheck(rc, pos, node, placer, pointed_thing,
 				1, 0, 0, 1) then return true end
 			if not rc.norotate then
