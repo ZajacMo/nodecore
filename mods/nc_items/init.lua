@@ -7,6 +7,14 @@ local modname = minetest.get_current_modname()
 
 local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
 
+local function invdef(pos)
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	local stack = inv:get_stack("solo", 1)
+	if not stack or stack:is_empty() then return end
+	return minetest.registered_items[stack:get_name()]
+end
+
 minetest.register_node(modname .. ":stack", {
 		drawtype = "airlike",
 		tiles = { "nc_items_matte.png" },
@@ -30,6 +38,14 @@ minetest.register_node(modname .. ":stack", {
 				minetest.item_drop(stack, nil, posto)
 			end
 			return minetest.remove_node(posfrom)
+		end,
+		can_pummel = function(pos, ...)
+			local def = invdef(pos)
+			return def and def.can_pummel and def.can_pummel(pos, ...)
+		end,
+		on_pummel = function(pos, ...)
+			local def = invdef(pos)
+			return def and def.on_pummel and def.on_pummel(pos, ...)
 		end
 	})
 

@@ -67,13 +67,14 @@ function nodecore.pickrand(tbl, weight)
 	end
 end
 
-function nodecore.extend_node(name, func)
-	local orig = minetest.registered_nodes[name]
+function nodecore.extend_item(name, func)
+	local orig = minetest.registered_items[name]
 	local copy = {}
 	for k, v in pairs(orig) do copy[k] = v end
 	copy = func(copy, orig) or copy
-	minetest.register_node(":" .. name, copy)
+	minetest.register_item(":" .. name, copy)
 end
+nodecore.extend_node = nodecore.extend_item
 
 function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
 
