@@ -8,7 +8,7 @@ local modname = minetest.get_current_modname()
 local function toolhead(name, from, sticks)
 	local n
 	if name then
-		local n = modname .. ":toolhead_" .. name:lower()
+		n = modname .. ":toolhead_" .. name:lower()
 		local t = n:gsub(":", "_") .. ".png"
 		minetest.register_craftitem(n, {
 				description = "Plank " .. name .. " Head",
@@ -32,7 +32,7 @@ local function toolhead(name, from, sticks)
 		function(pos, node, stats)
 			if stats.duration < 5 then return end
 			minetest.remove_node(pos)
-			if n then minetest.item_drop(ItemStack(n), nil, pos) end
+			if n then nodecore.place_stack(pos, n) end
 			if sticks then
 				minetest.item_drop(ItemStack("nc_tree:stick " .. sticks),
 					nil, {x = pos.x, y = pos.y + 1, z = pos.z})
