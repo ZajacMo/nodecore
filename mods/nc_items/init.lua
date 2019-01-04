@@ -112,7 +112,7 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	not placer:get_player_control().sneak then
 		local n = minetest.get_node(pointed_thing.under)
 		local nn = n.name
-		if minetest.registered_nodes[nn] and core.registered_nodes[nn].on_rightclick then
+		if minetest.registered_nodes[nn] and minetest.registered_nodes[nn].on_rightclick then
 			return minetest.registered_nodes[nn].on_rightclick(pointed_thing.under, n,
 				placer, itemstack, pointed_thing) or itemstack, false
 		end
@@ -120,8 +120,9 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	if itemstack:get_definition().type == "node" then
 		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
 	end
-
-	nodecore.place_stack(minetest.get_pointed_thing_position(pointed_thing, true),
-		itemstack:take_item(), placer, pointed_thing)
+	if not itemstack:is_empty() then
+		nodecore.place_stack(minetest.get_pointed_thing_position(pointed_thing, true),
+			itemstack:take_item(), placer, pointed_thing)
+	end
 	return itemstack
 end
