@@ -87,7 +87,6 @@ local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, 
 end
 
 function nodecore.craft_check(pos, node, placer, pointed_thing)
-			minetest.chat_send_all(minetest.serialize(node))
 	for _, rc in ipairs(recipes) do
 		if nodecore.node_is(node, rc.root.match) then
 			if craftcheck(rc, pos, node, placer, pointed_thing,
