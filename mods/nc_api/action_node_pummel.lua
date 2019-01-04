@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, vector
-    = minetest, nodecore, vector
+= minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
@@ -81,3 +81,21 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 			pummeling[pname] = nil
 		end
 	end)
+
+function nodecore.add_pummel(nodedef, check, commit)
+	local sym = {}
+	local oc = nodedef.can_pummel or function() end
+	nodedef.can_pummel = function(...)
+		return check(...) and sym or oc(...)
+	end
+	local op = nodedef.on_pummel or function() end
+	nodedef.on_pummel = function(pos, node, stats, ...)
+		return stats.check == sym and commit(pos, node, stats, ...)
+		or op(pos, node, stats, ...)
+	end
+end
+function nodecore.extend_pummel(name, check, commit)
+	nodecore.extend_node(name, function(copy)
+			return nodecore.add_pummel(copy, check, commit)
+		end)
+end
