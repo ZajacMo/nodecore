@@ -61,8 +61,9 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		inv:set_stack("solo", 1, stack)
 	end
 	if placer and pointed_thing then
-		return nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
+		nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
 	end
+	minetest.check_for_falling(pos)
 end
 
 local function buildable_to(pos)
