@@ -15,6 +15,15 @@ local function toolhead(name, from, sticks)
 				inventory_image = t,
 				stack_max = 1
 			})
+		--[[
+		nodecore.register_craft({
+				normal = {y = 1},
+				nodes = {
+					{match = n, replace = "air"},
+					{y = -1, match = modname .. ":staff", replace = error("TOOLDEF")}
+				}
+			})
+		--]]
 	end
 	nodecore.extend_pummel(from, 
 		function(pos, node, stats)

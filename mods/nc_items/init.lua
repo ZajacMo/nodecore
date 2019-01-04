@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore, setmetatable, vector
-    = ItemStack, minetest, nodecore, setmetatable, vector
+= ItemStack, minetest, nodecore, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -49,6 +49,22 @@ minetest.register_node(modname .. ":stack", {
 		end
 	})
 
+function nodecore.place_stack(pos, stack, placer, pointed_thing)
+	stack = ItemStack(stack)
+	local name = stack:get_name()
+	if stack:get_count() == 1 and stack:get_definition().type == "node" then
+		minetest.set_node(pos, {name = name})
+	else
+		minetest.set_node(pos, {name = modname .. ":stack"})
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		inv:set_stack("solo", 1, stack)
+	end
+	if placer and pointed_thing then
+		return nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
+	end
+end
+
 local function buildable_to(pos)
 	return minetest.registered_nodes[minetest.get_node(pos).name].buildable_to and pos
 end
@@ -64,16 +80,7 @@ local item = {
 		or buildable_to({x = pos.x, y = pos.y, z = pos.z + 1})
 		or buildable_to({x = pos.x, y = pos.y, z = pos.z - 1})
 		if not pos then return end
-		local stack = ItemStack(self.itemstring)
-		local name = stack:get_name()
-		if stack:get_count() == 1 and minetest.registered_nodes[name] then
-			minetest.set_node(pos, {name = name})
-		else
-			minetest.set_node(pos, {name = modname .. ":stack"})
-			local meta = minetest.get_meta(pos)
-			local inv = meta:get_inventory()
-			inv:set_stack("solo", 1, self.itemstring)
-		end
+		nodecore.place_stack(pos, self.itemstring)
 		self.itemstring = ""
 		self.object:remove()
 	end,
@@ -98,3 +105,22 @@ local falling = {
 }
 setmetatable(falling, bifn)
 minetest.register_entity(":__builtin:falling_node", falling)
+
+function minetest.item_place(itemstack, placer, pointed_thing, param2)
+	if pointed_thing.type == "node" and placer and
+	not placer:get_player_control().sneak then
+		local n = core.get_node(pointed_thing.under)
+		local nn = n.name
+		if minetest.registered_nodes[nn] and core.registered_nodes[nn].on_rightclick then
+			return minetest.registered_nodes[nn].on_rightclick(pointed_thing.under, n,
+				placer, itemstack, pointed_thing) or itemstack, false
+		end
+	end
+	if itemstack:get_definition().type == "node" then
+		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
+	end
+
+	nodecore.place_stack(minetest.get_pointed_thing_position(pointed_thing, true),
+		itemstack:take_item(), placer, pointed_thing)
+	return itemstack
+end

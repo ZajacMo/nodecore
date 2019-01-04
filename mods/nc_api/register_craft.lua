@@ -25,10 +25,10 @@ function nodecore.register_craft(recipe)
 			recipe.root = v
 		end
 	end
-	if not canrot then recipe.norotate = true end
 	if not recipe.root or not recipe.root.match then
 		error "recipe.nodes must have a match for 0,0,0"
 	end
+	if not canrot then recipe.norotate = true end
 	local newp = recipe.priority or 0
 	local min = 1
 	local max = #recipes + 1
@@ -86,7 +86,8 @@ local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, 
 	return true
 end
 
-local function craftloop(pos, node, placer, pointed_thing)
+function nodecore.craft_check(pos, node, placer, pointed_thing)
+			minetest.chat_send_all(minetest.serialize(node))
 	for _, rc in ipairs(recipes) do
 		if nodecore.node_is(node, rc.root.match) then
 			if craftcheck(rc, pos, node, placer, pointed_thing,
@@ -117,7 +118,7 @@ function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
 	local old_add = minetest.add_node
 	minetest.add_node = function(pos, node, ...)
 		local function helper2(...)
-			craftloop(pos, node, placer, pointed_thing)
+			nodecore.craft_check(pos, node, placer, pointed_thing)
 			return ...
 		end
 		return helper2(old_add(pos, node, ...))
