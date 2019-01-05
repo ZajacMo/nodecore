@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, nodecore, type
-    = ipairs, minetest, nodecore, type
+= ipairs, minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -20,6 +20,9 @@ minetest.register_node(modname .. ":tree", {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",
 			modname .. "_tree_side.png"
+		},
+		groups = {
+			choppy = 2
 		}
 	})
 
