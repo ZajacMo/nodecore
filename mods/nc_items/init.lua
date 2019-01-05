@@ -66,20 +66,17 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	minetest.check_for_falling(pos)
 end
 
-local function buildable_to(pos)
-	return minetest.registered_nodes[minetest.get_node(pos).name].buildable_to and pos
-end
 local bii = minetest.registered_entities["__builtin:item"]
 local item = {
 	on_step = function(self, dtime)
 		bii.on_step(self, dtime)
 		if self.physical_state then return end
 		local pos = vector.round(self.object:getpos())
-		pos = buildable_to(pos)
-		or buildable_to({x = pos.x + 1, y = pos.y, z = pos.z})
-		or buildable_to({x = pos.x - 1, y = pos.y, z = pos.z})
-		or buildable_to({x = pos.x, y = pos.y, z = pos.z + 1})
-		or buildable_to({x = pos.x, y = pos.y, z = pos.z - 1})
+		pos = nodecore.buildable_to(pos)
+		or nodecore.buildable_to({x = pos.x + 1, y = pos.y, z = pos.z})
+		or nodecore.buildable_to({x = pos.x - 1, y = pos.y, z = pos.z})
+		or nodecore.buildable_to({x = pos.x, y = pos.y, z = pos.z + 1})
+		or nodecore.buildable_to({x = pos.x, y = pos.y, z = pos.z - 1})
 		if not pos then return end
 		nodecore.place_stack(pos, self.itemstring)
 		self.itemstring = ""
@@ -121,8 +118,10 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
 	end
 	if not itemstack:is_empty() then
-		nodecore.place_stack(minetest.get_pointed_thing_position(pointed_thing, true),
-			itemstack:take_item(), placer, pointed_thing)
+		local above = minetest.get_pointed_thing_position(pointed_thing, true)
+		if above and nodecore.buildable_to(above) then
+			nodecore.place_stack(above, itemstack:take_item(), placer, pointed_thing)
+		end
 	end
 	return itemstack
 end

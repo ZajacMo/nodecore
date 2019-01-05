@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, pairs
-    = ipairs, minetest, pairs
+= ipairs, minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -60,6 +60,9 @@ regterrain({
 			"stair_cobble",
 			"stair_desert_stone",
 			"mossycobble"
+		},
+		groups = {
+			cracky = 3
 		},
 	})
 

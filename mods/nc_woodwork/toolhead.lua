@@ -5,25 +5,37 @@ local ItemStack, minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local function toolhead(name, from, sticks)
+local function toolhead(name, from, group, sticks)
 	local n
 	if name then
 		n = modname .. ":toolhead_" .. name:lower()
 		local t = n:gsub(":", "_") .. ".png"
 		minetest.register_craftitem(n, {
-				description = "Plank " .. name .. " Head",
+				description = "Wooden " .. name .. " Head",
 				inventory_image = t,
 				stack_max = 1
 			})
-		--[[
+		local m = modname .. ":tool_" .. name:lower()
+		local u = m:gsub(":", "_") .. ".png"
+		minetest.register_tool(m, {
+				description = "Wooden " .. name,
+				inventory_image = u,
+				tool_capabilities = {
+					groupcaps={
+						[group] = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=20},
+					},
+				},
+			})
 		nodecore.register_craft({
 				normal = {y = 1},
 				nodes = {
 					{match = n, replace = "air"},
-					{y = -1, match = modname .. ":staff", replace = error("TOOLDEF")}
+					{y = -1, match = modname .. ":staff", replace = "air"},
+				},
+				items = {
+					{y = -1, name = m},
 				}
 			})
-		--]]
 	end
 	nodecore.extend_pummel(from, 
 		function(pos, node, stats)
@@ -41,8 +53,8 @@ local function toolhead(name, from, sticks)
 		end)
 end
 
-toolhead("Mallet", modname .. ":plank", 2)
-toolhead("Spade", modname .. ":toolhead_mallet", 1)
-toolhead("Axe", modname .. ":toolhead_spade", 1)
-toolhead("Pick", modname .. ":toolhead_axe", 2)
-toolhead(nil, modname.. ":toolhead_pick", 2)
+toolhead("Mallet", modname .. ":plank", "poundy", 2)
+toolhead("Spade", modname .. ":toolhead_mallet", "crumbly", 1)
+toolhead("Axe", modname .. ":toolhead_spade", "choppy", 1)
+toolhead("Pick", modname .. ":toolhead_axe", "cracky", 2)
+toolhead(nil, modname.. ":toolhead_pick", nil, 2)
