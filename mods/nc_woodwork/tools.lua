@@ -22,7 +22,13 @@ local function toolhead(name, from, group, sticks)
 				inventory_image = u,
 				tool_capabilities = {
 					groupcaps={
-						[group] = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=20},
+						[group] = {
+							times = {
+								[1] = 4.00,
+								[2] = 1.00,
+								[3] = 0.50},
+							uses = 20
+						},
 					},
 				},
 			})
@@ -55,6 +61,6 @@ end
 
 toolhead("Mallet", modname .. ":plank", "poundy", 2)
 toolhead("Spade", modname .. ":toolhead_mallet", "crumbly", 1)
-toolhead("Axe", modname .. ":toolhead_spade", "choppy", 1)
-toolhead("Pick", modname .. ":toolhead_axe", "cracky", 2)
+toolhead("Hatchet", modname .. ":toolhead_spade", "choppy", 1)
+toolhead("Pick", modname .. ":toolhead_hatchet", "cracky", 2)
 toolhead(nil, modname.. ":toolhead_pick", nil, 2)
