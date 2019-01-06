@@ -46,6 +46,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 			pointed = pointed,
 			node = node,
 			start = now,
+			wield = puncher:get_wielded_item():to_string(),
 			count = 0
 		}
 
@@ -54,6 +55,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if old and hash(old.pos) == hash(pum.pos)
 		and hash(old.pointed.above) == hash(pum.pointed.above)
 		and hash(old.pointed.under) == hash(pum.pointed.under)
+		and pum.wield == old.wield
 		and old.last >= (now - 2)
 		then pum = old end
 

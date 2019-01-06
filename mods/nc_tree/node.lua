@@ -12,6 +12,9 @@ minetest.register_node(modname .. ":root", {
 			"nc_terrain_dirt.png",
 			"nc_terrain_dirt.png^" .. modname .. "_roots.png"
 		},
+		groups = {
+			flammable = 50
+		}
 	})
 
 minetest.register_node(modname .. ":tree", {
@@ -22,7 +25,8 @@ minetest.register_node(modname .. ":tree", {
 			modname .. "_tree_side.png"
 		},
 		groups = {
-			choppy = 2
+			choppy = 2,
+			flammable = 5
 		}
 	})
 
@@ -37,6 +41,7 @@ minetest.register_node(modname .. ":leaves", {
 			walkable = false,
 			groups = {
 				snappy = 3,
+				flammable = 1,
 				falling_repose = 1
 			}
 		},

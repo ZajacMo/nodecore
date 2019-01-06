@@ -27,7 +27,7 @@ function nodecore.node_is(node_or_pos, match)
 	local def = minetest.registered_nodes[node_or_pos.name]
 	if match.groups then
 		if not def.groups then return end
-		for k, v in match.groups do
+		for k, v in pairs(match.groups) do
 			if v == true then
 				if not def.groups[k] then return end
 			else

@@ -21,7 +21,7 @@ local function toolhead(name, from, group, sticks)
 				description = "Wooden " .. name,
 				inventory_image = u,
 				tool_capabilities = {
-					groupcaps={
+					groupcaps = {
 						[group] = {
 							times = {
 								[1] = 4.00,

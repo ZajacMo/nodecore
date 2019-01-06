@@ -10,7 +10,8 @@ minetest.register_node(plank, {
 		description = "Wooden Plank",
 		tiles = { modname .. "_plank.png" },
 		groups = {
-			choppy = 3
+			choppy = 3,
+			flammable = 2
 		}
 	})
 
