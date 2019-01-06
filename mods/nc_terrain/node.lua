@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, pairs
-= ipairs, minetest, pairs
+    = ipairs, minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()

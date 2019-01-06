@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, setmetatable, vector
-= ItemStack, minetest, nodecore, setmetatable, vector
+local ItemStack, minetest, nodecore, setmetatable, type, vector
+    = ItemStack, minetest, nodecore, setmetatable, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()

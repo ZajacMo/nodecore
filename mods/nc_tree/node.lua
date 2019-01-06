@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, type
-= ipairs, minetest, nodecore, type
+local minetest, nodecore, type
+    = minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -41,15 +41,8 @@ minetest.register_node(modname .. ":leaves", {
 			}
 		},
 		alternate_solid = {
-			after_dig_node = function(pos, node)
-				node = node or minetest.get_node(pos)
-				local t = {}
-				for i, v in ipairs(nodecore.registered_leaf_drops) do
-					t = v(pos, node, t) or t
-				end
-				local p = nodecore.pickrand(t, function(x) return x.prob end)
-				if not p then return end
-				minetest.place_node(pos, p)
+			after_dig_node = function(...)
+				return nodecore.leaf_decay(...)
 			end
 		}
 	})

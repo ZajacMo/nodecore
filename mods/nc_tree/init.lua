@@ -1,15 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile, minetest, nodecore
-    = dofile, minetest, nodecore
+local dofile, minetest
+    = dofile, minetest
 -- LUALOCALS > ---------------------------------------------------------
-
-nodecore.register_leaf_drops, nodecore.registered_leaf_drops
-= nodecore.mkreg()
 
 local modname = minetest.get_current_modname()
 local path = minetest.get_modpath(modname)
 
+dofile(path .. "/api.lua")
 dofile(path .. "/node.lua")
+dofile(path .. "/leafdecay.lua")
 
 dofile(path .. "/stick.lua")
 

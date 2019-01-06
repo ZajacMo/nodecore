@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, minetest, nodecore
-= ItemStack, ipairs, minetest, nodecore
+    = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -38,5 +38,6 @@ nodecore.extend_pummel("nc_tree:tree",
 		if defer > 0 then
 			minetest.item_drop(ItemStack(plank .. " " .. defer), nil, pos)
 		end
+		nodecore.wear_current_tool(stats.puncher, {choppy = 3}, 2)
 		return true
 	end)

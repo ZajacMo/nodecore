@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore
-= ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -54,6 +54,7 @@ local function toolhead(name, from, group, sticks)
 			if sticks then
 				minetest.item_drop(ItemStack("nc_tree:stick " .. sticks),
 					nil, {x = pos.x, y = pos.y + 1, z = pos.z})
+				nodecore.wear_current_tool(stats.puncher, {choppy = 3})
 			end
 			return true
 		end)
