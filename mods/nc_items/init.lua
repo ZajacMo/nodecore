@@ -11,7 +11,8 @@ local function invdef(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stack = inv:get_stack("solo", 1)
-	if not stack or stack:is_empty() then return end
+	if not stack or stack:is_empty()
+	or stack:get_count() ~= 1 then return end
 	return minetest.registered_items[stack:get_name()]
 end
 
