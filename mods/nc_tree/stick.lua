@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
-    = math, minetest, nodecore
+= math, minetest, nodecore
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -62,9 +62,9 @@ if nodecore.loaded_mods().nc_fire then
 					}
 					if nodecore.node_is(below,
 						{groups = {flammable = 1}}) then
-						minetest.remove_node(pos)
 						minetest.set_node(below, {name = "nc_fire:fuel"})
 					end
+					minetest.set_node(pos, {name = "nc_fire:fire"})
 				end
 				nodecore.wear_current_tool(stats.puncher, {shafty = 1}, 1)
 			end)
