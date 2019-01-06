@@ -119,7 +119,7 @@ nodecore.register_on_register_node(function(name, def)
 		end
 	end)
 
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "VisInv Check",
 		nodenames = {"group:visinv"},
 		interval = 1,

@@ -34,7 +34,7 @@ for k, v in pairs(loosedirt) do planted[k] = v end
 planted.drop = ldname
 minetest.register_node(epname, planted)
 
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "EggCorn Planting",
 		nodenames = {modname .. ":eggcorn"},
 		interval = 2,
@@ -48,7 +48,7 @@ minetest.register_abm({
 		end
 	})
 
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "EggCorn Growing",
 		nodenames = {epname},
 		interval = 10,

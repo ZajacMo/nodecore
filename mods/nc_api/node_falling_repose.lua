@@ -84,7 +84,7 @@ local function reposeall()
 	reposeq = nil
 	qqty = nil
 end
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "Falling Repose",
 		nodenames = {"group:falling_repose"},
 		neighbors = {"air"},

@@ -40,7 +40,7 @@ minetest.register_node(modname .. ":ash", {
 	})
 
 local fueltest = {name = modname .. ":fuel"}
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "Fire Requires Fuel",
 		interval = 1,
 		chance = 1,
@@ -62,7 +62,7 @@ local function mkfire(pos, dx, dy, dz)
 	if name ~= "air" then return end
 	return minetest.set_node(pos, {name = modname .. ":fire"})
 end
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "Fuel Spawns Fire",
 		interval = 1,
 		chance = 1,
