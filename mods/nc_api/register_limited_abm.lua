@@ -15,6 +15,7 @@ function nodecore.register_limited_abm(def)
 	def.limited_interval = def.limited_interval or 1
 	def.limited_jitter = def.limited_jitter or 0.05
 	def.limited_action = def.action or function() end
+	def.catch_up = def.catch_up or false
 
 	if not def.label then
 		def.label = minetest.get_current_modname() .. ":" .. genlabels
