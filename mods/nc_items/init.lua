@@ -24,6 +24,8 @@ minetest.register_node(modname .. ":stack", {
 		collision_box = stackbox,
 		drop = {},
 		groups = {
+			flammable = 1,
+			burn_away = 1,
 			crumbly = 3,
 			falling_node = 1,
 			falling_repose = 1,

@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
-    = math, minetest, nodecore
+= math, minetest, nodecore
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -34,6 +34,15 @@ nodecore.register_limited_abm({
 			local def = minetest.registered_nodes[node.name]
 			local flam = def and def.groups and def.groups.flammable
 			if not flam then return end
+			if def.groups.visinv then
+				local stack = minetest.get_meta(pos)
+				:get_inventory():get_stack("solo", 1)
+				if stack and not stack:is_empty() then
+					local idef = minetest.registered_items[stack:get_name()]
+					flam = idef and idef.groups and idef.groups.flammable
+				end
+			end
+			if not flam then return end
 			if math_random(1, flam) ~= 1 then return end
 			minetest.set_node(pos, {name = def.groups.burn_away
 					and (modname .. ":fire")
@@ -43,10 +52,14 @@ nodecore.register_limited_abm({
 
 local function mkfire(pos, dx, dy, dz)
 	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	local name = minetest.get_node(pos).name
-	if name == modname .. ":fire" then return true end
-	if name ~= "air" then return end
-	return minetest.set_node(pos, {name = modname .. ":fire"})
+	if nodecore.node_is(pos, modname .. ":fire") then return true end
+	if nodecore.node_is(pos, "air") then
+		return minetest.set_node(pos, {name = modname .. ":fire"})
+	end
+	if nodecore.node_is(pos, "ignore") then return true end
+	if nodecore.node_is(pos, {groups = {flammable = true, burn_away = true}}) then
+		return minetest.set_node(pos, {name = modname .. ":fire"})
+	end
 end
 nodecore.register_limited_abm({
 		label = "Fuel Burning/Snuffing",

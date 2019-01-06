@@ -13,13 +13,22 @@ local function toolhead(name, from, group, sticks)
 		minetest.register_craftitem(n, {
 				description = "Wooden " .. name .. " Head",
 				inventory_image = t,
-				stack_max = 1
+				stack_max = 1,
+				groups = {
+					flammable = 2,
+					burn_away = 1
+				}
 			})
 		local m = modname .. ":tool_" .. name:lower()
 		local u = m:gsub(":", "_") .. ".png"
 		minetest.register_tool(m, {
 				description = "Wooden " .. name,
 				inventory_image = u,
+				groups = {
+					flammable = 2,
+					burn_away = 1
+
+				},
 				tool_capabilities = {
 					groupcaps = {
 						[group] = {

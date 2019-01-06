@@ -16,6 +16,8 @@ minetest.register_node(modname .. ":eggcorn", {
 		tiles = { modname .. "_eggcorn.png" },
 		groups = {
 			snappy = 3,
+			flammable = 3,
+			burn_away = 1,
 			falling_repose = 1
 		}
 	})
