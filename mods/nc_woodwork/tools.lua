@@ -60,7 +60,7 @@ local function toolhead(name, from, group, sticks)
 		end)
 end
 
-toolhead("Mallet", modname .. ":plank", "poundy", 2)
+toolhead("Mallet", modname .. ":plank", "thumpy", 2)
 toolhead("Spade", modname .. ":toolhead_mallet", "crumbly", 1)
 toolhead("Hatchet", modname .. ":toolhead_spade", "choppy", 1)
 toolhead("Pick", modname .. ":toolhead_hatchet", "cracky", 2)
