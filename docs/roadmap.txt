@@ -5,26 +5,15 @@ ROADMAP (SHORT-TERM)
 - Library functions for handling nodecore interactions.
 	- API-ify pummel-splitting recipes.
 	- Hint system.
-	- Node check compiler, e.g. for buildable_to, name, groups, etc.
-	- Check-for-recipe util.
 	- Wallmounted pop-off-as-item and item_entity overrides
 	  to transform into falling node.
-	- Flat-item node for tools and such: like sz_stuff_pile
-	- Need punch-groups for controlling tool capabilities
-	  necessary to multipunch; are damage groups usable here?
 - Plant life stuff
 	- Better tree growth, i.e. track cumulative time, apply
 	  environmental factors.
-	- Leaf decay.
-	- Grass growth/smothering.
-	- Leaves settle into grass as podzol?
+	- Leaves settle into grass as podzol?  Composting/decay?
 - Wood tech.
-	- Pummel planks to chip off sticks and form tool-heads:
-		- Shovel, axe, pick.
-	- Use toolhead on staff to form tool.
-		- Axe can dig logs.
-		- Pick can break stone into cobble.
-		- Shovel can dig solid dirt as-is.
+	- Pick can break stone into cobble, then loose cobble.
+	- Shovel can dig solid dirt as-is.
 - Stone tech.
 	- Dig up stone, ore using pick.
 		- Converts to loose cobble / loose ore (hand-diggable, falling)
@@ -33,27 +22,6 @@ ROADMAP (SHORT-TERM)
 		- Level 3
 		- Stone tools dig faster than wood, but are more brittle
 - Fire tech.
-	- Create fire.
-		- Place a stick atop a pile of dead leaves.
-		- Multi-punch stick with staff, probabilistic success.
-		- Convert leaves to cinder.
-	- Cinder node:
-		- Keeps track of fuel quantity and quality.
-			- Quality in levels.
-			- Natural wood (and leaf/stick) sources are level 1.
-			- Duration/quantity in seconds, logs last longest.
-		- Produces fire nodes above and on all sides where eligible.
-		- Cannot be dug by hand, hurts.
-		- May randomly convert to loose cinder (falling).
-		- Converts to ash when exhausted (falling).
-	- Fire node:
-		- Requires at least one nearby air node or goes out.
-		- Cannot be put out by hand, hurts.
-		- Consume fuel quantity from burning cinder nodes below/beside, distribute
-		  consumption semi-randomly.
-		- Apply heat to all nodes above/beside.
-			- Fuel nodes may convert to cinders if heated and air is present.
-			- Heat quality combined from sum of fuel sources.
 	- Smelting/cooking.
 		- Create and try to contain a fire, place node above fire to cook.
 		- Logs can be cooked (if smothered to prevent igniting) into charcoal (loose, falling).
