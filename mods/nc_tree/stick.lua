@@ -61,7 +61,7 @@ if nodecore.loaded_mods().nc_fire then
 						z = pos.z + dir.z
 					}
 					if nodecore.node_is(below,
-						{groups = {flammable = true}}) then
+						{groups = {flammable = 1}}) then
 						minetest.remove_node(pos)
 						minetest.set_node(below, {name = "nc_fire:fuel"})
 					end
