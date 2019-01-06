@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
-= math, minetest, nodecore
+    = math, minetest, nodecore
 local math_random
-= math.random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -20,6 +20,8 @@ minetest.register_node(modname .. ":stick", {
 		groups = {
 			shafty = 1,
 			snappy = 2,
+			flammable = 2,
+			burn_away = 1,
 			falling_repose = 1
 		}
 	})

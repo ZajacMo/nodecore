@@ -19,10 +19,7 @@ nodecore.register_limited_abm({
 			and not nodecore.node_is({x = pos.x - 1, y = pos.y, z = pos.z }, fueltest)
 			and not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z + 1 }, fueltest)
 			and not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z - 1 }, fueltest)
-			then
-				minetest.log("fire goes out at " .. minetest.pos_to_string(pos))
-				return minetest.remove_node(pos) 
-			end
+			then return minetest.remove_node(pos) end
 		end
 	})
 
@@ -38,7 +35,9 @@ nodecore.register_limited_abm({
 			local flam = def and def.groups and def.groups.flammable
 			if not flam then return end
 			if math_random(1, flam) ~= 1 then return end
-			minetest.set_node(pos, {name = modname .. ":fuel"})
+			minetest.set_node(pos, {name = def.groups.burn_away
+					and (modname .. ":fire")
+					or (modname .. ":fuel")})
 		end
 	})
 
