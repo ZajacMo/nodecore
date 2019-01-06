@@ -15,8 +15,7 @@ ROADMAP (SHORT-TERM)
 	- Pick can break stone into cobble, then loose cobble.
 	- Shovel can dig solid dirt as-is.
 - Stone tech.
-	- Dig up stone, ore using pick.
-		- Converts to loose cobble / loose ore (hand-diggable, falling)
+	- Dig up ore using pick.
 		- Tin, copper, iron.
 	- Combine loose cobble onto staffs to form stone tools
 		- Level 3

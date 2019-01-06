@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-= minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[

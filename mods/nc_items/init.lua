@@ -17,8 +17,15 @@ local function invdef(pos)
 end
 
 minetest.register_node(modname .. ":stack", {
-		drawtype = "airlike",
-		tiles = { "nc_items_matte.png" },
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5}
+		),
+		use_texture_alpha = true,
+		tiles = {
+			"nc_items_shadow.png",
+			"nc_items_blank.png",
+		},
 		walkable = true,
 		selection_box = stackbox,
 		collision_box = stackbox,
