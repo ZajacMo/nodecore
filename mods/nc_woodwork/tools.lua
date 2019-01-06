@@ -1,11 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+= ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function toolhead(name, from, group, sticks)
+local function toolhead(name, from, group, sticks, times)
+	slow = slow or 1
 	local n
 	if name then
 		n = modname .. ":toolhead_" .. name:lower()
@@ -32,10 +33,11 @@ local function toolhead(name, from, group, sticks)
 				tool_capabilities = {
 					groupcaps = {
 						[group] = {
-							times = {
+							times = times or {
 								[1] = 4.00,
 								[2] = 1.00,
-								[3] = 0.50},
+								[3] = 0.50
+							},
 							uses = 20
 						},
 					},
@@ -69,8 +71,19 @@ local function toolhead(name, from, group, sticks)
 		end)
 end
 
-toolhead("Mallet", modname .. ":plank", "thumpy", 2)
-toolhead("Spade", modname .. ":toolhead_mallet", "crumbly", 1)
-toolhead("Hatchet", modname .. ":toolhead_spade", "choppy", 1)
-toolhead("Pick", modname .. ":toolhead_hatchet", "cracky", 2)
-toolhead(nil, modname.. ":toolhead_pick", nil, 2)
+toolhead("Mallet", modname .. ":plank",
+	"thumpy", 2, {
+		[2] = 5.00,
+		[3] = 2.00
+	})
+toolhead("Spade", modname .. ":toolhead_mallet",
+	"crumbly", 1)
+toolhead("Hatchet", modname .. ":toolhead_spade",
+	"choppy", 1)
+toolhead("Pick", modname .. ":toolhead_hatchet",
+	"cracky", 2, {
+		[2] = 20.00,
+		[3] = 10.00
+	})
+toolhead(nil, modname.. ":toolhead_pick",
+	nil, 2)

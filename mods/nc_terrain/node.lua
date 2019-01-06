@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, pairs
-    = ipairs, minetest, pairs
+= ipairs, minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -53,9 +53,18 @@ regterrain({
 			"stone_with_iron",
 			"desert_stone",
 			"sandstone",
+			"mese",
+		},
+		groups = {
+			cracky = 3
+		},
+		drop_in_place = modname .. ":cobble",
+	})
+regterrain({
+		description = "Cobble",
+		mapgen = {
 			"sandstonebrick",
 			"stair_sandstone_block",
-			"mese",
 			"cobble",
 			"stair_cobble",
 			"stair_desert_stone",
@@ -63,6 +72,13 @@ regterrain({
 		},
 		groups = {
 			cracky = 3
+		},
+		alternate_loose = {
+			repack_level = 2,
+			groups = {
+				crumbly = 2,
+				falling_repose = 3
+			}
 		},
 	})
 
