@@ -13,7 +13,7 @@ function nodecore.scan_flood(pos, range, func)
 	for d = 0, range do
 		local next = {}
 		for i, p in ipairs(q) do
-			local res = func(p)
+			local res = func(p, d)
 			if res then return res end
 			if res == nil then
 				for k, v in pairs(dirs) do
