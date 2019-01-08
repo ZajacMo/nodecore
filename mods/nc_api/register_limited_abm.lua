@@ -8,14 +8,16 @@ local math_random
 local genlabels = 0
 
 function nodecore.register_limited_abm(def)
-	def.limited_queue = {}
-	def.limited_seen = {}
-	def.limited_qty = 0
-	def.limited_max = def.limit_max or 1000
-	def.limited_interval = def.limited_interval or 1
-	def.limited_jitter = def.limited_jitter or 0.05
-	def.limited_action = def.action or function() end
-	def.catch_up = def.catch_up or false
+	def = nodecore.underride(def, {
+			limited_queue = {},
+			limited_seen = {},
+			limited_qty = 0,
+			limited_max = 1000,
+			limited_interval = 1,
+			limited_jitter = 0.05,
+			limited_action = def.action or function() end,
+			catch_up = false
+		})
 
 	if not def.label then
 		def.label = minetest.get_current_modname() .. ":" .. genlabels

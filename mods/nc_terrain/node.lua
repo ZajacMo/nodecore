@@ -76,6 +76,7 @@ regterrain({
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
+				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3
 			}

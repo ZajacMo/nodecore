@@ -83,7 +83,7 @@ toolhead("Hatchet", modname .. ":toolhead_spade",
 toolhead("Pick", modname .. ":toolhead_hatchet",
 	"cracky", 2, {
 		[2] = 20.00,
-		[3] = 10.00
+		[3] = 5.00
 	})
 toolhead(nil, modname.. ":toolhead_pick",
 	nil, 2)

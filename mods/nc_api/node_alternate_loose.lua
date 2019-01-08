@@ -12,13 +12,6 @@ transform to the loose one when dug, and the loose to solid when
 pummeled.
 --]]
 
-local function underride(to, from)
-	for k, v in pairs(from) do
-		to[k] = to[k] or v
-	end
-	return to
-end
-
 local looseimg = "^nc_api_loose.png"
 
 local function can_repack(level)
@@ -44,7 +37,7 @@ nodecore.register_on_register_node(function(name, def)
 		if not loose then return end
 
 		if not loose.tiles then
-			loose.tiles = underride({}, def.tiles)
+			loose.tiles = nodecore.underride({}, def.tiles)
 			for k, v in pairs(loose.tiles) do
 				if type(v) == "string" then
 					loose.tiles[k] = v .. looseimg
@@ -56,11 +49,11 @@ nodecore.register_on_register_node(function(name, def)
 			end
 		end
 
-		underride(loose, def)
+		nodecore.underride(loose, def)
 
 		loose.name = name .. "_loose"
 		loose.description = "Loose " .. loose.description
-		loose.groups = underride({}, loose.groups or {})
+		loose.groups = nodecore.underride({}, loose.groups or {})
 		loose.groups.falling_node = 1
 
 		if loose.groups.crumbly and not loose.no_repack then
@@ -74,7 +67,7 @@ nodecore.register_on_register_node(function(name, def)
 		loose.alternate_solid = nil
 		minetest.register_node(loose.name, loose)
 
-		local solid = underride(def.alternate_solid or {}, def)
+		local solid = nodecore.underride(def.alternate_solid or {}, def)
 		solid.drop_in_place = solid.drop_in_place or loose.name
 
 		solid.alternate_loose = nil

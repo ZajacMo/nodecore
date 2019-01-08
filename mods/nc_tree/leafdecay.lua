@@ -9,7 +9,7 @@ nodecore.register_limited_abm({
 		label = "Leaf Decay",
 		interval = 1,
 		chance = 10,
-		limit_max = 100,
+		limited_max = 100,
 		nodenames = {modname .. ":leaves"},
 		action = function(pos)
 			if not nodecore.scan_flood(pos, 5, function(p)

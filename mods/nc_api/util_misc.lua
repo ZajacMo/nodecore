@@ -14,6 +14,19 @@ for k, v in pairs(minetest) do
 	end
 end
 
+local function underride(t, u, v, ...)
+	if v then underride(u, v, ...) end
+	for k, v in pairs(u) do
+		if t[k] == nil then
+			t[k] = v
+		elseif type(t[k]) == "table" and type(v) == "table" then
+			underride(t[k], v)
+		end
+	end
+	return t
+end
+nodecore.underride = underride
+
 function nodecore.mkreg()
 	local t = {}
 	local f = function(x) t[#t + 1] = x end
