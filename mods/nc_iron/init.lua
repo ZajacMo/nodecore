@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-= minetest, nodecore
+local VoxelArea, minetest, nodecore
+    = VoxelArea, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()

@@ -1,6 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile, minetest, nodecore, rawset
-    = dofile, minetest, nodecore, rawset
+-- SKIP: nodecore
+local dofile, minetest, rawget, rawset
+    = dofile, minetest, rawget, rawset
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
