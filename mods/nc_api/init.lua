@@ -5,7 +5,7 @@ local dofile, minetest, nodecore, rawset
 
 local modname = minetest.get_current_modname()
 
-nodecore = nodecore or {}
+local nodecore = rawget(_G, "nodecore") or {}
 rawset(_G, "nodecore", nodecore)
 
 local path = minetest.get_modpath(modname)

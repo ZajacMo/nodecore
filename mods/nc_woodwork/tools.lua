@@ -6,7 +6,6 @@ local ItemStack, minetest, nodecore
 local modname = minetest.get_current_modname()
 
 local function toolhead(name, from, group, sticks, times)
-	slow = slow or 1
 	local n
 	if name then
 		n = modname .. ":toolhead_" .. name:lower()
