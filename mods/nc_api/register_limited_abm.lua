@@ -23,6 +23,7 @@ function nodecore.register_limited_abm(def)
 		def.label = minetest.get_current_modname() .. ":" .. genlabels
 		genlabels = genlabels + 1
 	end
+	def.limited_alert = def.limited_alert or def.limited_max
 
 	def.action = function(pos, ...)
 		local hash = minetest.hash_node_position(pos)
@@ -48,7 +49,7 @@ function nodecore.register_limited_abm(def)
 			+ def.limited_jitter * math_random() * 2,
 			pumpq)
 
-		if def.limited_qty >= def.limited_max then
+		if def.limited_qty >= def.limited_alert then
 			minetest.log("limited abm \"" .. def.label .. "\" filled ("
 				.. def.limited_qty .. "/" .. def.limited_max .. ")")
 		end
