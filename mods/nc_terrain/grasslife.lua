@@ -15,6 +15,9 @@ nodecore.register_limited_abm({
 		action = function(pos, node)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if (minetest.get_node_light(above) or 0) < 13 then return end
+			local nodedef = minetest.registered_nodes[name]
+			if nodedef and nodedef.liquidtype ~= "none"
+			and nodedef.drawtype ~= "airlike" then return end
 			return minetest.set_node(pos, {name = grass})
 		end
 	})
