@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local function reg(suff, def)
 	def = nodecore.underride(def, {
-			description = "Iron " .. suff,
+			description = "Ferrous " .. suff,
 			name = suff:lower(),
 			tiles = { modname .. "_" .. suff:lower() .. ".png" },
 			is_ground_content = true,
