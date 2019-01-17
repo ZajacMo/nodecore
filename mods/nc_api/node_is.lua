@@ -30,7 +30,9 @@ function nodecore.node_is(node_or_pos, match)
 		for k, v in pairs(match.groups) do
 			if v == true then
 				if not def.groups[k] then return end
-			else
+			elseif v == false then
+				if def.groups[k] then return end
+			else				
 				if def.groups[k] ~= v then return end
 			end
 		end

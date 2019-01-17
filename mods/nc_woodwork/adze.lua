@@ -9,8 +9,7 @@ minetest.register_tool(modname .. ":adze", {
 		description = "Wooden Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
-			flammable = 2,
-			burn_away = 1
+			flammable = 2
 		},
 		tool_capabilities = {
 			full_punch_interval = 1.2,

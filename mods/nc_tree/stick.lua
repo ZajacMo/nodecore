@@ -21,7 +21,6 @@ minetest.register_node(modname .. ":stick", {
 			shafty = 1,
 			snappy = 2,
 			flammable = 2,
-			burn_away = 1,
 			falling_repose = 1
 		}
 	})
@@ -64,7 +63,7 @@ if nodecore.loaded_mods().nc_fire then
 					}
 					if nodecore.node_is(below,
 						{groups = {flammable = 1}}) then
-						minetest.set_node(below, {name = "nc_fire:fuel"})
+						nodecore.ignite(below)
 					end
 					minetest.set_node(pos, {name = "nc_fire:fire"})
 				end

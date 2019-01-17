@@ -15,8 +15,7 @@ local function toolhead(name, from, group, sticks, times)
 				inventory_image = t,
 				stack_max = 1,
 				groups = {
-					flammable = 2,
-					burn_away = 1
+					flammable = 2
 				}
 			})
 		local m = modname .. ":tool_" .. name:lower()
@@ -25,9 +24,7 @@ local function toolhead(name, from, group, sticks, times)
 				description = "Wooden " .. name,
 				inventory_image = u,
 				groups = {
-					flammable = 2,
-					burn_away = 1
-
+					flammable = 2
 				},
 				tool_capabilities = {
 					groupcaps = {

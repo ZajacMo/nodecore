@@ -19,7 +19,6 @@ minetest.register_node(modname .. ":staff", {
 			shafty = 2,
 			snappy = 2,
 			flammable = 2,
-			burn_away = 1,
 			falling_repose = 2
 		}
 	})

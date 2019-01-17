@@ -23,25 +23,38 @@ minetest.register_node(modname .. ":fire", {
 		buildable_to = true,
 	})
 
-minetest.register_node(modname .. ":fuel", {
-		description = "Burning Embers",
-		tiles = {modname .. "_fuel.png"},
-		paramtype = "light",
-		light_source = 6,
-		groups = { 
-			igniter = 1,
-			fire_fuel = 1,
-			falling_node = 1
-		},
-		drop = "",
-		diggable = false,
-		on_punch = function(pos, node, puncher)
-			puncher:set_hp(puncher:get_hp() - 1)
-		end
-	})
+local function ember(n, t)
+	minetest.register_node(modname .. ":ember" .. n, {
+			description = "Burning Embers",
+			tiles = {t},
+			paramtype = "light",
+			light_source = 6,
+			groups = { 
+				igniter = 1,
+				ember = n,
+				falling_node = 1
+			},
+			drop = "",
+			diggable = false,
+			on_punch = function(pos, node, puncher)
+				puncher:set_hp(puncher:get_hp() - 1)
+			end
+		})
+end
+ember(1, modname .. "_ash.png^(" .. modname .. "_ember1.png^[opacity:128)")
+ember(2, modname .. "_ash.png^" .. modname .. "_ember1.png")
+ember(3, modname .. "_ash.png^" .. modname .. "_ember1.png^(" .. modname .. "_ember2.png^[opacity:128)")
+ember(4, modname .. "_ash.png^" .. modname .. "_ember2.png")
+ember(5, modname .. "_ash.png^" .. modname .. "_ember2.png^(" .. modname .. "_ember3.png^[opacity:128)")
+ember(6, modname .. "_ember3.png")
+minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
 
 minetest.register_node(modname .. ":ash", {
 		description = "Ash",
 		tiles = {modname .. "_ash.png"},
-		groups = { falling_node = 1, crumbly = 3 }
+		groups = {
+			falling_node = 1,
+			falling_repose = 1,
+			crumbly = 3
+		}
 	})

@@ -128,3 +128,9 @@ function nodecore.loaded_mods()
 	end
 	return t
 end
+
+function nodecore.node_group(name, pos, node)
+	node = node or minetest.get_node(pos)
+	local def = minetest.registered_nodes[node.name]
+	return def and def.groups and def.groups[name]
+end

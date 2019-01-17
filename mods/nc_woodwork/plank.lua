@@ -11,7 +11,8 @@ minetest.register_node(plank, {
 		tiles = { modname .. "_plank.png" },
 		groups = {
 			choppy = 3,
-			flammable = 2
+			flammable = 2,
+			fire_fuel = 5
 		}
 	})
 

@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
     = math, minetest, nodecore
-local math_random
-    = math.random
+local math_pow, math_random
+    = math.pow, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local fueltest = {groups = {fire_fuel = true}}
+local fueltest = {groups = {ember = true}}
 nodecore.register_limited_abm({
-		label = "Fire Requires Fuel",
+		label = "Fire Requires Embers",
 		interval = 1,
 		chance = 1,
 		nodenames = {modname .. ":fire"},
@@ -44,9 +44,7 @@ nodecore.register_limited_abm({
 			end
 			if not flam then return end
 			if math_random(1, flam) ~= 1 then return end
-			minetest.set_node(pos, {name = def.groups.burn_away
-					and (modname .. ":fire")
-					or (modname .. ":fuel")})
+			nodecore.ignite(pos, node)
 		end
 	})
 
@@ -57,7 +55,7 @@ local function mkfire(pos, dx, dy, dz)
 		return minetest.set_node(pos, {name = modname .. ":fire"})
 	end
 	if nodecore.node_is(pos, "ignore") then return true end
-	if nodecore.node_is(pos, {groups = {flammable = true, burn_away = true}}) then
+	if nodecore.node_is(pos, {groups = {flammable = true, fire_fuel = false}}) then
 		return minetest.set_node(pos, {name = modname .. ":fire"})
 	end
 end
@@ -65,16 +63,18 @@ nodecore.register_limited_abm({
 		label = "Fuel Burning/Snuffing",
 		interval = 1,
 		chance = 1,
-		nodenames = {modname .. ":fuel"},
+		nodenames = {"group:ember"},
 		neighbors = {"air"},
-		action = function(pos)
+		action = function(pos, node)
 			local f = mkfire(pos, 0, 1, 0)
 			f = mkfire(pos, 1, 0, 0) or f
 			f = mkfire(pos, -1, 0, 0) or f
 			f = mkfire(pos, 0, 0, 1) or f
 			f = mkfire(pos, 0, 0, -1) or f
-			if not f then 
-				return minetest.set_node(pos, {name = modname .. ":ash"})
+			if math_random(1, math_pow(2,
+					nodecore.node_group("ember", pos, node)
+					+ (f and 4 or 0))) == 1 then 
+				return nodecore.snuff(pos, node)
 			end
 		end
 	})

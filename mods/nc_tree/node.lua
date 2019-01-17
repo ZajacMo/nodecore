@@ -13,7 +13,8 @@ minetest.register_node(modname .. ":root", {
 			"nc_terrain_dirt.png^" .. modname .. "_roots.png"
 		},
 		groups = {
-			flammable = 50
+			flammable = 50,
+			fire_fuel = 4
 		}
 	})
 
@@ -26,7 +27,8 @@ minetest.register_node(modname .. ":tree", {
 		},
 		groups = {
 			choppy = 2,
-			flammable = 5
+			flammable = 5,
+			fire_fuel = 6
 		}
 	})
 
@@ -35,13 +37,18 @@ minetest.register_node(modname .. ":leaves", {
 		drawtype = "allfaces_optional",
 		paramtype = "light",
 		tiles = { modname .. "_leaves.png" },
-		groups = { snappy = 2 },
+		groups = {
+			snappy = 2,
+			flammable = 3,
+			fire_fuel = 2
+		},
 		alternate_loose = {
 			tiles = { modname .. "_leaves_dry.png" },
 			walkable = false,
 			groups = {
 				snappy = 3,
 				flammable = 1,
+				fire_fuel = 2,
 				falling_repose = 1
 			}
 		},
