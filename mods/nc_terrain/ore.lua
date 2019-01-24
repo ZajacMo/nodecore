@@ -11,7 +11,7 @@ minetest.register_ore({
 		ore = modname .. ":gravel",
 		wherein = modname .. ":stone",
 		clust_size = 5,
-		clust_scarcity = 16 * 16 * 16,
+		clust_scarcity = 8 * 8 * 8,
 		random_factor = 0,
 		noise_params = {
 			offset  = 0,
