@@ -86,7 +86,6 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
-		neighbors = {"air"},
 		action = function(pos, node)
 			if doused(pos) then
 				return nodecore.snuff(pos, node)
