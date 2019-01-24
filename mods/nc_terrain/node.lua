@@ -62,6 +62,7 @@ regterrain({
 	})
 regterrain({
 		description = "Cobble",
+		tiles = { modname .. "_gravel.png^" .. modname .. "_cobble.png" },
 		mapgen = {
 			"sandstonebrick",
 			"stair_sandstone_block",

@@ -7,9 +7,8 @@ local modname = minetest.get_current_modname()
 
 local function reg(suff, def)
 	def = nodecore.underride(def, {
-			description = "Ferrous " .. suff,
+			description = "Lode " .. suff,
 			name = suff:lower(),
-			tiles = { modname .. "_" .. suff:lower() .. ".png" },
 			is_ground_content = true,
 			groups = { cracky = 3 }
 		})
@@ -20,9 +19,16 @@ local function reg(suff, def)
 	return def.fullname
 end
 
-local stone = reg("Stone", {drop_in_place = "nc_terrain:cobble"})
-local ore = reg("Ore", {drop_in_place = "nc_iron:cobble"})
+local stone = reg("Stone", {
+		tiles = { "nc_terrain_stone.png^(" .. modname .. "_stain.png^[opacity:48)" },
+		drop_in_place = "nc_terrain:cobble"
+		})
+local ore = reg("Ore", {
+		tiles = { "nc_terrain_stone.png^" .. modname .. "_stain.png^[opacity:128" },
+		drop_in_place = "nc_iron:cobble"
+		})
 reg("Cobble", {
+		tiles = { modname .. "_stain.png^[noalpha^nc_terrain_cobble.png" },
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
@@ -42,7 +48,7 @@ local function regore(name, def)
 				random_factor = 0,
 				noise_params = {
 					offset  = 0,
-					scale   = 3,
+					scale   = 4,
 					spread  = {x=60, y=5, z=60},
 					seed    = 12497,
 					octaves = 3,
