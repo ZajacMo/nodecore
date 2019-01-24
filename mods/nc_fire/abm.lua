@@ -23,6 +23,25 @@ nodecore.register_limited_abm({
 		end
 	})
 
+local function mkfire(pos, dx, dy, dz, testonly)
+	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+	if nodecore.node_is(pos, modname .. ":fire") then return true end
+	if nodecore.node_is(pos, "air") then
+		return testonly or minetest.set_node(pos, {name = modname .. ":fire"})
+	end
+	if nodecore.node_is(pos, "ignore") then return true end
+	if nodecore.node_is(pos, {groups = {flammable = true, fire_fuel = false}}) then
+		return testonly or minetest.set_node(pos, {name = modname .. ":fire"})
+	end
+end
+
+local function doused(pos)
+	return #minetest.find_nodes_in_area(
+		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+		{"group:coolant"}) > 0
+end
+
 nodecore.register_limited_abm({
 		label = "Flammables Ignite",
 		interval = 5,
@@ -30,6 +49,18 @@ nodecore.register_limited_abm({
 		nodenames = {"group:flammable"},
 		neighbors = {"group:igniter"},
 		action = function(pos, node)
+			-- Cannot be wet.
+			if doused(pos) then return end
+
+			-- Must have oxygen supply.
+			if not mkfire(pos, 0, 1, 0, true)
+			and not mkfire(pos, 1, 0, 0, true)
+			and not mkfire(pos, -1, 0, 0, true)
+			and not mkfire(pos, 0, 0, 1, true)
+			and not mkfire(pos, 0, 0, -1, true)
+			then return end
+
+			-- Get flammability level.
 			node = node or minetest.get_node(pos)
 			local def = minetest.registered_nodes[node.name]
 			local flam = def and def.groups and def.groups.flammable
@@ -43,22 +74,13 @@ nodecore.register_limited_abm({
 				end
 			end
 			if not flam then return end
+
+			-- Ignite randomly.
 			if math_random(1, flam) ~= 1 then return end
 			nodecore.ignite(pos, node)
 		end
 	})
 
-local function mkfire(pos, dx, dy, dz)
-	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	if nodecore.node_is(pos, modname .. ":fire") then return true end
-	if nodecore.node_is(pos, "air") then
-		return minetest.set_node(pos, {name = modname .. ":fire"})
-	end
-	if nodecore.node_is(pos, "ignore") then return true end
-	if nodecore.node_is(pos, {groups = {flammable = true, fire_fuel = false}}) then
-		return minetest.set_node(pos, {name = modname .. ":fire"})
-	end
-end
 nodecore.register_limited_abm({
 		label = "Fuel Burning/Snuffing",
 		interval = 1,
@@ -66,6 +88,9 @@ nodecore.register_limited_abm({
 		nodenames = {"group:ember"},
 		neighbors = {"air"},
 		action = function(pos, node)
+			if doused(pos) then
+				return nodecore.snuff(pos, node)
+			end
 			local f = mkfire(pos, 0, 1, 0)
 			f = mkfire(pos, 1, 0, 0) or f
 			f = mkfire(pos, -1, 0, 0) or f

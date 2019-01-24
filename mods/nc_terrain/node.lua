@@ -176,6 +176,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 1,
 		drop = "",
+		groups = { coolant = 1 },
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90}
 	})
 regliquid({
@@ -192,5 +193,6 @@ regliquid({
 		drowning = 1,
 		damage_per_second = 8,
 		drop = "",
+		groups = { igniter = 1 },
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0}
 	})
