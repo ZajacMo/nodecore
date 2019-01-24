@@ -49,13 +49,13 @@ local function regore(name, def)
 				noise_params = {
 					offset  = 0,
 					scale   = 4,
-					spread  = {x=60, y=5, z=60},
+					spread  = {x=40, y=5, z=40},
 					seed    = 12497,
 					octaves = 3,
 					persist = 0.5,
 					flags = "eased",
 				},
-				noise_threshold = 1.2		
+				noise_threshold = 1.3		
 				}, def))
 end
 regore(ore, {

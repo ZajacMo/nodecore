@@ -8,4 +8,5 @@ local path = minetest.get_modpath(modname)
 
 dofile(path .. "/node.lua")
 dofile(path .. "/biome.lua")
+dofile(path .. "/ore.lua")
 dofile(path .. "/grasslife.lua")
