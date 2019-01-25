@@ -106,7 +106,7 @@ function nodecore.wear_current_tool(player, groups, qty)
 	local wielded = player:get_wielded_item()
 	if wielded then
 		local wdef = wielded:get_definition()
-		if wdef.stack_max > 1 then
+		if wdef.stack_max > 1 and qty then
 			local have = wielded:get_count() - qty
 			if have <= 0 then
 				wielded = ItemStack("")
