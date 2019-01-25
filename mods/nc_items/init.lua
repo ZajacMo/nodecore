@@ -90,13 +90,16 @@ local item = {
 		bii.on_step(self, dtime)
 		if self.physical_state then return end
 		local pos = vector.round(self.object:getpos())
+		local i = ItemStack(self.itemstring)
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
-				return p.y <= pos.y and nodecore.buildable_to(p)
-				and p or nil
+				if p.y > pos.y then return end
+				i = minetest.get_meta(p):get_inventory():add_item("solo", i)
+				if i:is_empty() then return p end
+				if nodecore.buildable_to(p) then return p end
 			end)
 		if not pos then return end
-		nodecore.place_stack(pos, self.itemstring)
+		if not i:is_empty() then nodecore.place_stack(pos, i) end
 		self.itemstring = ""
 		self.object:remove()
 	end,
