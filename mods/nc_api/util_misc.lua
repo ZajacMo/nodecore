@@ -163,7 +163,6 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			z = v.z > 0 and pos.z + 0.4 or v.z < 0 and pos.z - 0.4 or pos.z,
 		}
 		local obj = minetest.add_item(p, stack)
-		minetest.chat_send_all(minetest.serialize(obj and p))
 		if obj then obj:setvelocity(v) end
 	end
 end

@@ -18,7 +18,6 @@ nodecore.extend_item(chip, function(copy, orig)
 					if nodecore.node_is(pos, {
 							visinv = {name = v.from, wear = 0}
 							}) then
-						minetest.chat_send_all(minetest.serialize(v))
 						minetest.remove_node(pos)
 						nodecore.item_eject(pos, v.to)
 						itemstack:set_count(itemstack:get_count() - 1)
