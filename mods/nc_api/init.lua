@@ -14,16 +14,17 @@ local path = minetest.get_modpath(modname)
 dofile(path .. "/util_misc.lua")
 dofile(path .. "/util_scan_flood.lua")
 dofile(path .. "/util_logtrace.lua")
+dofile(path .. "/util_node_is.lua")
 
 dofile(path .. "/register_craft.lua")
 dofile(path .. "/register_limited_abm.lua")
 
-dofile(path .. "/node_is.lua")
-dofile(path .. "/node_on_register.lua")
-dofile(path .. "/node_drop_in_place.lua")
-dofile(path .. "/node_falling_repose.lua")
-dofile(path .. "/node_alternate_loose.lua")
-dofile(path .. "/node_group_visinv.lua")
+dofile(path .. "/item_on_register.lua")
+dofile(path .. "/item_drop_in_place.lua")
+dofile(path .. "/item_falling_repose.lua")
+dofile(path .. "/item_alternate_loose.lua")
+dofile(path .. "/item_group_visinv.lua")
+dofile(path .. "/item_oldnames.lua")
 
 dofile(path .. "/action_node_pummel.lua")
 

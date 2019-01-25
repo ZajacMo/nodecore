@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+= minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -32,7 +32,9 @@ local function pummel_repack_node(mult, replace)
 	end
 end
 
-nodecore.register_on_register_node(function(name, def)
+nodecore.register_on_register_item(function(name, def)
+		if def.type ~= "node" then return end
+
 		local loose = def.alternate_loose
 		if not loose then return end
 
@@ -52,6 +54,11 @@ nodecore.register_on_register_node(function(name, def)
 		nodecore.underride(loose, def)
 
 		loose.name = name .. "_loose"
+		if loose.oldnames then
+			for k, v in pairs(loose.oldnames) do
+				loose.oldnames[k] = v .. "_loose"
+			end
+		end
 		loose.description = "Loose " .. loose.description
 		loose.groups = nodecore.underride({}, loose.groups or {})
 		loose.groups.falling_node = 1

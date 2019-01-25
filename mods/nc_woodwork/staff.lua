@@ -9,6 +9,7 @@ minetest.register_node(modname .. ":staff", {
 		description = "Staff",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
+		oldnames = {"nc_tree:staff"},
 		tiles = {
 			"nc_tree_tree_top.png",
 			"nc_tree_tree_top.png",
@@ -22,7 +23,6 @@ minetest.register_node(modname .. ":staff", {
 			falling_repose = 2
 		}
 	})
-minetest.register_alias("nc_tree:staff", modname .. ":staff")
 
 nodecore.register_craft({
 		normal = {y = 1},

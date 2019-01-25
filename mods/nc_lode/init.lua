@@ -13,6 +13,7 @@ local function reg(suff, def)
 			groups = { cracky = 3 }
 		})
 	def.fullname = modname .. ":" .. def.name
+	def.oldnames = {"nc_iron:" .. def.name}
 
 	minetest.register_node(def.fullname, def)
 
@@ -20,15 +21,15 @@ local function reg(suff, def)
 end
 
 local stone = reg("Stone", {
-		tiles = { "nc_terrain_stone.png^(" .. modname .. "_stain.png^[opacity:48)" },
+		tiles = { "nc_terrain_stone.png^(" .. modname .. "_raw.png^[opacity:48)" },
 		drop_in_place = "nc_terrain:cobble"
 		})
 local ore = reg("Ore", {
-		tiles = { "nc_terrain_stone.png^" .. modname .. "_stain.png^[opacity:128" },
+		tiles = { "nc_terrain_stone.png^" .. modname .. "_raw.png^[opacity:128" },
 		drop_in_place = "nc_iron:cobble"
 		})
 reg("Cobble", {
-		tiles = { modname .. "_stain.png^[noalpha^nc_terrain_cobble.png" },
+		tiles = { modname .. "_raw.png^[noalpha^nc_terrain_cobble.png" },
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
@@ -69,8 +70,8 @@ regore(stone, {
 		clust_scarcity = 2 * 2 * 2,
 	})
 
-local c_ore = minetest.get_content_id("nc_iron:ore")
-local c_istone = minetest.get_content_id("nc_iron:stone")
+local c_ore = minetest.get_content_id(ore)
+local c_istone = minetest.get_content_id(stone)
 local c_stone = minetest.get_content_id("nc_terrain:stone")
 
 minetest.register_on_generated(function(minp, maxp)

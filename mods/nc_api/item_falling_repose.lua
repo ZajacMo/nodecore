@@ -18,7 +18,9 @@ function nodecore.falling_repose_drop(posfrom, posto, node)
 	return minetest.check_for_falling(posfrom)
 end
 
-nodecore.register_on_register_node(function(name, def)
+nodecore.register_on_register_item(function(name, def)
+		if def.type ~= "node" then return end
+		
 		def.groups = def.groups or {}
 
 		if def.groups.falling_repose then def.groups.falling_node = 1 end
