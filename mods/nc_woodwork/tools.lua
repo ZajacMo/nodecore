@@ -26,18 +26,9 @@ local function toolhead(name, from, group, sticks, times)
 				groups = {
 					flammable = 2
 				},
-				tool_capabilities = {
-					groupcaps = {
-						[group] = {
-							times = times or {
-								[1] = 4.00,
-								[2] = 1.00,
-								[3] = 0.50
-							},
-							uses = 20
-						},
-					},
-				},
+				tool_capabilities = nodecore.toolcaps({
+						[group] = 2
+					})
 			})
 		nodecore.register_craft({
 				normal = {y = 1},

@@ -38,7 +38,7 @@ minetest.register_node(modname .. ":leaves", {
 		paramtype = "light",
 		tiles = { modname .. "_leaves.png" },
 		groups = {
-			snappy = 2,
+			snappy = 1,
 			flammable = 3,
 			fire_fuel = 2
 		},
@@ -46,9 +46,7 @@ minetest.register_node(modname .. ":leaves", {
 			tiles = { modname .. "_leaves_dry.png" },
 			walkable = false,
 			groups = {
-				snappy = 3,
 				flammable = 1,
-				fire_fuel = 2,
 				falling_repose = 1
 			}
 		},

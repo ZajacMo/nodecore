@@ -18,7 +18,7 @@ minetest.register_node(modname .. ":staff", {
 		paramtype = "light",
 		groups = {
 			shafty = 2,
-			snappy = 2,
+			snappy = 1,
 			flammable = 2,
 			falling_repose = 2
 		}

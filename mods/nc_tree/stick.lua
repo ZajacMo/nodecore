@@ -19,7 +19,7 @@ minetest.register_node(modname .. ":stick", {
 		paramtype = "light",
 		groups = {
 			shafty = 1,
-			snappy = 2,
+			snappy = 1,
 			flammable = 2,
 			falling_repose = 1
 		}

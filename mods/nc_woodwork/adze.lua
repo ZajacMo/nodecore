@@ -11,12 +11,9 @@ minetest.register_tool(modname .. ":adze", {
 		groups = {
 			flammable = 2
 		},
-		tool_capabilities = {
-			full_punch_interval = 1.2,
-			groupcaps = {
-				choppy = {times={[3]=6.00, [4]=3.00}, uses=5, maxlevel=1},
-			}
-		},
+		tool_capabilities = nodecore.toolcaps({
+				choppy = 1
+			})
 	})
 
 nodecore.register_craft({

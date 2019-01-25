@@ -10,7 +10,7 @@ local function reg(suff, def)
 			description = "Lode " .. suff,
 			name = suff:lower(),
 			is_ground_content = true,
-			groups = { cracky = 3 }
+			groups = { cracky = 2 }
 		})
 	def.fullname = modname .. ":" .. def.name
 	def.oldnames = {"nc_iron:" .. def.name}
@@ -34,7 +34,7 @@ reg("Cobble", {
 			repack_level = 2,
 			groups = {
 				cracky = 0,
-				crumbly = 2,
+				crumbly = 1,
 				falling_repose = 3
 			}
 		}

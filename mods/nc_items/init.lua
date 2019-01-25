@@ -32,7 +32,7 @@ minetest.register_node(modname .. ":stack", {
 		drop = {},
 		groups = {
 			flammable = 1,
-			crumbly = 3,
+			snappy = 1,
 			falling_repose = 1,
 			visinv = 1
 		},

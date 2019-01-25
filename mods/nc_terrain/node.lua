@@ -56,7 +56,7 @@ regterrain({
 			"mese",
 		},
 		groups = {
-			cracky = 3
+			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",
 	})
@@ -72,7 +72,7 @@ regterrain({
 			"mossycobble"
 		},
 		groups = {
-			cracky = 3
+			cracky = 1
 		},
 		alternate_loose = {
 			repack_level = 2,
@@ -103,7 +103,6 @@ regterrain({
 		description = "Dirt",
 		alternate_loose = {
 			groups = {
-				crumbly = 3,
 				falling_repose = 2
 			}
 		},
@@ -112,7 +111,7 @@ regterrain({
 			"ice",
 		},
 		groups = {
-			crumbly = 3
+			crumbly = 1
 		}
 	})
 regterrain({
@@ -127,7 +126,7 @@ regterrain({
 			"dirt_with_snow"
 		},
 		groups = {
-			crumbly = 3
+			crumbly = 2
 		},
 		drop_in_place = modname .. ":dirt"
 	})
@@ -148,12 +147,11 @@ regterrain({
 		description = "Sand",
 		alternate_loose = {
 			groups = {
-				crumbly = 3,
 				falling_repose = 1
 			}
 		},
 		groups = { 
-			crumbly = 3,
+			crumbly = 1,
 			falling_node = 1
 		},
 		mapgen = {

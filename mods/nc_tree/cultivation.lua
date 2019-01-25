@@ -15,7 +15,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		inventory_image = modname .. "_eggcorn.png",
 		tiles = { modname .. "_eggcorn.png" },
 		groups = {
-			snappy = 3,
+			snappy = 1,
 			flammable = 3,
 			falling_repose = 1
 		}

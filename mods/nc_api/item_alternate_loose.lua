@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-= minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -16,13 +16,10 @@ local looseimg = "^nc_api_loose.png"
 
 local function can_repack(level)
 	return function(pos, node, stats)
-		local wield = stats.puncher:get_wielded_item()
-		if not wield then return end
-		local dg = wield:get_tool_capabilities().groupcaps
-		return dg and dg.thumpy and dg.thumpy
-		and dg.thumpy.times[level]
+		return nodecore.toolspeed(stats.puncher:get_wielded_item(), {thumpy = level})
 	end
 end
+
 local function pummel_repack_node(mult, replace)
 	if type(replace) ~= "table" then replace = {name = replace} end
 	return function (pos, node, stats)
@@ -65,7 +62,7 @@ nodecore.register_on_register_item(function(name, def)
 
 		if loose.groups.crumbly and not loose.no_repack then
 			loose.can_pummel = loose.can_pummel
-			or can_repack(loose.repack_level or 3)
+			or can_repack(loose.repack_level or 1)
 			loose.on_pummel = loose.on_pummel
 			or pummel_repack_node(loose.repack_time or 1, name)
 		end

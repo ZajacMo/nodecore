@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}

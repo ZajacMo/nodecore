@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
+= ItemStack, ipairs, math, minetest, nodecore, pairs, type
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -119,6 +119,22 @@ function nodecore.wear_current_tool(player, groups, qty)
 		end
 		return player:set_wielded_item(wielded)
 	end
+end
+
+function nodecore.toolspeed(wield, groups)
+	if not wield then return end
+	local dg = wield:get_tool_capabilities().groupcaps
+	local t
+	for gn, lv in pairs(groups) do
+		local gt = dg[gn]
+		gt = gt and gt.times
+		gt = gt and gt[lv]
+		if not t or t > gt then t = gt end
+	end
+	if not t and not wield:is_empty() then
+		return nodecore.toolspeed(ItemStack(""), groups)
+	end
+	return t
 end
 
 function nodecore.loaded_mods()

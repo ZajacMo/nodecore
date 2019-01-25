@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore, pairs, type
+    = math, minetest, nodecore, pairs, type
 local math_floor, math_random, math_sqrt
     = math.floor, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------

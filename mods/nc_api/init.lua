@@ -15,6 +15,7 @@ dofile(path .. "/util_misc.lua")
 dofile(path .. "/util_scan_flood.lua")
 dofile(path .. "/util_logtrace.lua")
 dofile(path .. "/util_node_is.lua")
+dofile(path .. "/util_toolcaps.lua")
 
 dofile(path .. "/register_craft.lua")
 dofile(path .. "/register_limited_abm.lua")
