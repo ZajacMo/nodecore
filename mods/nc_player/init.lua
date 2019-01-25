@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest
-    = minetest
+= minetest
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_on_joinplayer(function(player)
@@ -21,4 +21,14 @@ minetest.register_on_joinplayer(function(player)
 			.. "background[0,0;8,1;nc_player_invbg.png;true]"
 			.. "listcolors[#00000000;#00000000;#00000000]"
 			.. "list[current_player;main;0,0;8,1;]")
+	end)
+
+minetest.register_on_dieplayer(function(player)
+		local inv = player:get_inventory()
+		local pos = player:getpos()
+
+		for i = 1, inv:get_size("main") do
+			nodecore.item_eject(pos, inv:get_stack("main", i), 10)
+		end
+		inv:set_list("main", {})
 	end)

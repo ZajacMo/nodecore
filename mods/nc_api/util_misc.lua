@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
+= ItemStack, ipairs, math, minetest, nodecore, pairs, type
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -152,12 +152,12 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 	for i = 1, (qty or 1) do
 		local v = {
 			x = vel.x + (math_random() - 0.5) * speed,
-			y = vel.y + (math_random() - 0.5) * speed,
+			y = vel.y + math_random() * speed,
 			z = vel.z + (math_random() - 0.5) * speed,
 		}
 		local p = {
 			x = v.x > 0 and pos.x + 0.5 or pos.x - 0.5,
-			y = v.y > 0 and pos.y + 0.5 or pos.y - 0.5,
+			y = pos.y + 0.5,
 			z = v.z > 0 and pos.z + 0.5 or pos.z - 0.5,
 		}
 		local obj = minetest.add_item(p, stack)
