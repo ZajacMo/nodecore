@@ -90,11 +90,11 @@ local item = {
 		bii.on_step(self, dtime)
 		if self.physical_state then return end
 		local pos = vector.round(self.object:getpos())
-		pos = nodecore.buildable_to(pos)
-		or nodecore.buildable_to({x = pos.x + 1, y = pos.y, z = pos.z})
-		or nodecore.buildable_to({x = pos.x - 1, y = pos.y, z = pos.z})
-		or nodecore.buildable_to({x = pos.x, y = pos.y, z = pos.z + 1})
-		or nodecore.buildable_to({x = pos.x, y = pos.y, z = pos.z - 1})
+		pos = nodecore.scan_flood(pos, 5,
+			function(p)
+				return p.y <= pos.y and nodecore.buildable_to(p)
+				and p or nil
+			end)
 		if not pos then return end
 		nodecore.place_stack(pos, self.itemstring)
 		self.itemstring = ""
