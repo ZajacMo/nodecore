@@ -15,7 +15,6 @@ minetest.register_item(":", {
 			})
 	})
 
-local function cheat() return {times={[1]=0.25, [2]=0.25, [3]=0.25}, uses=0} end
 minetest.register_tool("nc_hand:cheat", {
 		inventory_image = "nc_hand.png^[invert:rgb",
 		wield_image = "nc_hand.png^[invert:rgb",

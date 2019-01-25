@@ -19,7 +19,8 @@ minetest.register_node(plank, {
 nodecore.extend_pummel("nc_tree:tree",
 	function(pos, node, stats)
 		return (stats.pointed.above.y - stats.pointed.under.y) == 1
-		and nodecore.wieldgroup(stats.puncher, "choppy")
+		and nodecore.toolspeed(stats.puncher:get_wielded_item(),
+			{choppy = 1})
 	end,
 	function(pos, node, stats)
 		if stats.duration < stats.check + 2 then return end
