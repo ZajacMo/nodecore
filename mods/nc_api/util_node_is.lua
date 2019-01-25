@@ -1,30 +1,42 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+= minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local node_is_skip = {name = true, param2 = true, param = true, groups = true}
-function nodecore.node_is(node_or_pos, match)
-	if not node_or_pos.name then
+local node_is_skip = {
+	name = true,
+	param2 = true,
+	param = true,
+	groups = true,
+	visinv = true,
+	count = true,
+	wear = true,
+	metadata = true,
+}
+function nodecore.node_is(thing, match)
+	if not thing.name then
 		local p = { }
-		for k, v in pairs(minetest.get_node(node_or_pos)) do
+		for k, v in pairs(minetest.get_node(thing)) do
 			p[k] = v
 		end
-		for k, v in pairs(node_or_pos) do
+		for k, v in pairs(thing) do
 			p[k] = v
 		end
-		node_or_pos = p
+		thing = p
 	end
 	while type(match) == "function" do
-		match = match(node_or_pos)
+		match = match(thing)
 		if not match then return end
-		if match == true then return node_or_pos end
+		if match == true then return thing end
 	end
 	if type(match) == "string" then match = {name = match} end
-	if match.name and node_or_pos.name ~= match.name then return end
-	if match.param2 and node_or_pos.param2 ~= match.param2 then return end
-	if match.param and node_or_pos.param ~= match.param then return end
-	local def = minetest.registered_nodes[node_or_pos.name]
+	if match.name and thing.name ~= match.name then return end
+	if match.param2 and thing.param2 ~= match.param2 then return end
+	if match.param and thing.param ~= match.param then return end
+	if match.count and thing.count ~= match.count then return end
+	if match.wear and thing.wear ~= match.wear then return end
+	if match.metadata and thing.metadata ~= match.metadata then return end
+	local def = minetest.registered_items[thing.name]
 	if match.groups then
 		if not def.groups then return end
 		for k, v in pairs(match.groups) do
@@ -42,7 +54,18 @@ function nodecore.node_is(node_or_pos, match)
 			if def[k] ~= v then return end
 		end
 	end
-	return node_or_pos
+	if match.visinv then
+		local stack = minetest.get_meta(thing)
+		:get_inventory():get_stack("solo", 1)
+		if not stack or stack:is_empty() then return end
+		local p = { }
+		p.name = stack:get_name()
+		p.count = stack:get_count()
+		p.wear = stack:get_wear()
+		p.metadata = stack:get_metadata()
+		return nodecore.node_is(p, match.visinv)
+	end
+	return thing
 end
 function nodecore.buildable_to(node_or_pos)
 	return nodecore.node_is(node_or_pos, {buildable_to = true})

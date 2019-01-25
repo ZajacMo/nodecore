@@ -21,12 +21,11 @@ function nodecore.toolcaps(opts)
 		if lv then
 			local times = {}
 			for n = 1, lv do
-				times[n] = math_pow(0.75, lv - n) * bt
+				times[n] = math_pow(0.5, lv - n) * bt
 			end
 			gcaps[gn] = {
 				times = times,
-				uses = 5 * math_pow(3, lv) * opts.uses,
-				maxlevel = lv
+				uses = 5 * math_pow(3, lv) * opts.uses
 			}
 		end
 	end

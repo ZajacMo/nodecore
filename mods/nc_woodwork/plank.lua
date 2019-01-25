@@ -25,22 +25,7 @@ nodecore.extend_pummel("nc_tree:tree",
 	function(pos, node, stats)
 		if stats.duration < stats.check + 2 then return end
 		minetest.remove_node(pos)
-		local defer = 0
-		for _, v in ipairs({
-				{x = pos.x + 1, y = pos.y, z = pos.z},
-				{x = pos.x - 1, y = pos.y, z = pos.z},
-				{x = pos.x, y = pos.y, z = pos.z + 1},
-				{x = pos.x, y = pos.y, z = pos.z - 1}
-				}) do
-			if nodecore.buildable_to(v) then
-				minetest.item_drop(ItemStack(plank), nil, v)
-			else
-				defer = defer + 1
-			end
-		end
-		if defer > 0 then
-			minetest.item_drop(ItemStack(plank .. " " .. defer), nil, pos)
-		end
+		nodecore.item_eject(pos, plank, 5, 4)
 		nodecore.wear_current_tool(stats.puncher, {choppy = 3}, 2)
 		return true
 	end)

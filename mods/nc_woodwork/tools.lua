@@ -5,7 +5,7 @@ local ItemStack, minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local function toolhead(name, from, group, sticks, times)
+local function toolhead(name, from, group, sticks)
 	local n
 	if name then
 		n = modname .. ":toolhead_" .. name:lower()
@@ -48,8 +48,7 @@ local function toolhead(name, from, group, sticks, times)
 			minetest.remove_node(pos)
 			if n then nodecore.place_stack(pos, n) end
 			if sticks then
-				minetest.item_drop(ItemStack("nc_tree:stick " .. sticks),
-					nil, {x = pos.x, y = pos.y + 1, z = pos.z})
+				nodecore.item_eject(pos, "nc_tree:stick", 5, sticks)
 				nodecore.wear_current_tool(stats.puncher, {choppy = 3})
 			end
 			return true
@@ -57,18 +56,12 @@ local function toolhead(name, from, group, sticks, times)
 end
 
 toolhead("Mallet", modname .. ":plank",
-	"thumpy", 2, {
-		[2] = 5.00,
-		[3] = 2.00
-	})
+	"thumpy", 2)
 toolhead("Spade", modname .. ":toolhead_mallet",
 	"crumbly", 1)
 toolhead("Hatchet", modname .. ":toolhead_spade",
 	"choppy", 1)
 toolhead("Pick", modname .. ":toolhead_hatchet",
-	"cracky", 2, {
-		[2] = 20.00,
-		[3] = 5.00
-	})
+	"cracky", 2)
 toolhead(nil, modname.. ":toolhead_pick",
 	nil, 2)

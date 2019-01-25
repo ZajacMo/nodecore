@@ -26,6 +26,7 @@ dofile(path .. "/item_falling_repose.lua")
 dofile(path .. "/item_alternate_loose.lua")
 dofile(path .. "/item_group_visinv.lua")
 dofile(path .. "/item_oldnames.lua")
+dofile(path .. "/item_tool_wears_to.lua")
 
 dofile(path .. "/action_node_pummel.lua")
 

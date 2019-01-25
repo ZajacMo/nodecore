@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type
-= ItemStack, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
 local math_random
-= math.random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -148,6 +148,8 @@ function nodecore.node_group(name, pos, node)
 end
 
 function nodecore.item_eject(pos, stack, speed, qty, vel)
+	stack = ItemStack(stack)
+	speed = speed or 0
 	vel = vel or {x = 0, y = 0, z = 0}
 	for i = 1, (qty or 1) do
 		local v = {
@@ -156,11 +158,12 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			z = vel.z + (math_random() - 0.5) * speed,
 		}
 		local p = {
-			x = v.x > 0 and pos.x + 0.5 or pos.x - 0.5,
-			y = pos.y + 0.5,
-			z = v.z > 0 and pos.z + 0.5 or pos.z - 0.5,
+			x = v.x > 0 and pos.x + 0.4 or v.x < 0 and pos.x - 0.4 or pos.x,
+			y = pos.y + 0.25,
+			z = v.z > 0 and pos.z + 0.4 or v.z < 0 and pos.z - 0.4 or pos.z,
 		}
 		local obj = minetest.add_item(p, stack)
+		minetest.chat_send_all(minetest.serialize(obj and p))
 		if obj then obj:setvelocity(v) end
 	end
 end

@@ -43,7 +43,7 @@ minetest.register_node(modname .. ":stack", {
 			local inv = meta:get_inventory()
 			local stack = inv:get_stack("solo", 1)
 			if stack and not stack:is_empty() then
-				minetest.item_drop(stack, nil, posto)
+				nodecore.item_eject(posto, stack)
 			end
 			return minetest.remove_node(posfrom)
 		end,
@@ -115,7 +115,7 @@ local falling = {
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				minetest.item_drop(stack, nil, self.object:getpos())
+				nodecore.item_eject(self.object:getpos(), stack)
 				return self.object:remove()
 			end
 		end

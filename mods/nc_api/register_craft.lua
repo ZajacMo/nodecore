@@ -79,7 +79,7 @@ local function craftcheck(recipe, pos, node, placer, pointed_thing, xx, xz, zx, 
 	end
 	if recipe.items then
 		for _, v in pairs(recipe.items) do
-			minetest.item_drop(ItemStack(v), nil, rel(v.x or 0, v.y or 0, v.z or 0))
+			nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0), v)
 		end
 	end
 	if recipe.after then recipe.after(pos, rel, placer, pointed_thing) end
