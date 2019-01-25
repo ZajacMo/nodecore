@@ -55,6 +55,6 @@ minetest.register_node(modname .. ":ash", {
 		groups = {
 			falling_node = 1,
 			falling_repose = 1,
-			crumbly = 3
+			crumbly = 1
 		}
 	})
