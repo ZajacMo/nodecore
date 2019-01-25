@@ -26,7 +26,7 @@ local stone = reg("Stone", {
 		})
 local ore = reg("Ore", {
 		tiles = { "nc_terrain_stone.png^" .. modname .. "_raw.png^[opacity:128" },
-		drop_in_place = "nc_iron:cobble"
+		drop_in_place = modname .. ":cobble"
 		})
 reg("Cobble", {
 		tiles = { modname .. "_raw.png^[noalpha^nc_terrain_cobble.png" },

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore, setmetatable, type, vector
-    = ItemStack, minetest, nodecore, setmetatable, type, vector
+= ItemStack, minetest, nodecore, setmetatable, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -47,14 +47,24 @@ minetest.register_node(modname .. ":stack", {
 			end
 			return minetest.remove_node(posfrom)
 		end,
-		can_pummel = function(pos, ...)
-			local def = invdef(pos)
-			return def and def.can_pummel and def.can_pummel(pos, ...)
-		end,
-		on_pummel = function(pos, ...)
-			local def = invdef(pos)
-			return def and def.on_pummel and def.on_pummel(pos, ...)
-		end
+		pummeldefs = { 
+			{
+				check = function(pos, node, stats, ...)
+					local def = invdef(pos)
+					if not def or not def.pummeldefs then return end
+					stats.def = def
+					for i, v in ipairs(def.pummeldefs) do
+						local ok = v.check(pos, node, stats, ...)
+						if ok then return {v.resolve, ok} end
+					end
+				end,
+				resolve = function(pos, node, stats, ...)
+					local r = stats.check[1]
+					stats.check = stats.check[2]
+					return r(pos, node, stats, ...)
+				end
+			}
+		}
 	})
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)

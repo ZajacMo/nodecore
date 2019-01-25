@@ -15,6 +15,7 @@ local function toolhead(name, from, group, sticks, times)
 				inventory_image = t,
 				stack_max = 1,
 				groups = {
+					choppy = 1,
 					flammable = 2
 				}
 			})
@@ -41,12 +42,9 @@ local function toolhead(name, from, group, sticks, times)
 				}
 			})
 	end
-	nodecore.extend_pummel(from, 
+	nodecore.extend_pummel(from, nodecore.pummel_toolspeed,
 		function(pos, node, stats)
-			return nodecore.wieldgroup(stats.puncher, "choppy")
-		end,
-		function(pos, node, stats)
-			if stats.duration < 5 then return end
+			if stats.duration < stats.check + 2 then return end
 			minetest.remove_node(pos)
 			if n then nodecore.place_stack(pos, n) end
 			if sticks then

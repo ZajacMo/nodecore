@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+= minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -20,7 +20,7 @@ local function can_repack(level)
 	end
 end
 
-local function pummel_repack_node(mult, replace)
+local function repack_node(mult, replace)
 	if type(replace) ~= "table" then replace = {name = replace} end
 	return function (pos, node, stats)
 		if stats.duration < (mult * stats.check) then return end
@@ -61,10 +61,9 @@ nodecore.register_on_register_item(function(name, def)
 		loose.groups.falling_node = 1
 
 		if loose.groups.crumbly and not loose.no_repack then
-			loose.can_pummel = loose.can_pummel
-			or can_repack(loose.repack_level or 1)
-			loose.on_pummel = loose.on_pummel
-			or pummel_repack_node(loose.repack_time or 1, name)
+			nodecore.add_pummel(loose,
+				can_repack(loose.repack_level or 1),
+				repack_node(loose.repack_time or 1, name))
 		end
 
 		loose.alternate_loose = nil

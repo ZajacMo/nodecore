@@ -70,7 +70,6 @@ function nodecore.extend_item(name, func)
 	copy = func(copy, orig) or copy
 	minetest.register_item(":" .. name, copy)
 end
-nodecore.extend_node = nodecore.extend_item
 
 function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
 
@@ -80,6 +79,22 @@ function nodecore.wieldgroup(who, group)
 	if nodedef then return nodedef.groups and nodedef.groups[group] end
 	local caps = wielded and wielded:get_tool_capabilities()
 	return caps and caps.groupcaps and caps.groupcaps[group]
+end
+
+function nodecore.toolspeed(what, groups)
+	if not what then return end
+	local dg = what:get_tool_capabilities().groupcaps
+	local t
+	for gn, lv in pairs(groups) do
+		local gt = dg[gn]
+		gt = gt and gt.times
+		gt = gt and gt[lv]
+		if gt and (not t or t > gt) then t = gt end
+	end
+	if not t and not what:is_empty() then
+		return nodecore.toolspeed(ItemStack(""), groups)
+	end
+	return t
 end
 
 function nodecore.interval(after, func)
@@ -119,22 +134,6 @@ function nodecore.wear_current_tool(player, groups, qty)
 		end
 		return player:set_wielded_item(wielded)
 	end
-end
-
-function nodecore.toolspeed(wield, groups)
-	if not wield then return end
-	local dg = wield:get_tool_capabilities().groupcaps
-	local t
-	for gn, lv in pairs(groups) do
-		local gt = dg[gn]
-		gt = gt and gt.times
-		gt = gt and gt[lv]
-		if not t or t > gt then t = gt end
-	end
-	if not t and not wield:is_empty() then
-		return nodecore.toolspeed(ItemStack(""), groups)
-	end
-	return t
 end
 
 function nodecore.loaded_mods()

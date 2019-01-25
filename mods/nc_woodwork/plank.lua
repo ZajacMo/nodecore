@@ -22,7 +22,7 @@ nodecore.extend_pummel("nc_tree:tree",
 		and nodecore.wieldgroup(stats.puncher, "choppy")
 	end,
 	function(pos, node, stats)
-		if stats.duration < 5 then return end
+		if stats.duration < stats.check + 2 then return end
 		minetest.remove_node(pos)
 		local defer = 0
 		for _, v in ipairs({

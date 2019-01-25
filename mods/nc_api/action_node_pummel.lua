@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+= minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
@@ -36,7 +36,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_nodes[node.name]
-		if not def.on_pummel then return end
+		if not def.pummeldefs then return end
 
 		local now = minetest.get_us_time() / 1000000
 		local pum = {
@@ -45,6 +45,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 			pos = pos,
 			pointed = pointed,
 			node = node,
+			def = def,
 			start = now,
 			wield = puncher:get_wielded_item():to_string(),
 			count = 0
@@ -64,12 +65,19 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		pum.duration = now - pum.start
 		pummeling[pname] = pum
 
-		if def.can_pummel then
-			pum.check = def.can_pummel(pos, node, pum)
-			if not pum.check then
-				pummeling[pname] = nil
-				return
+		local resolve
+		for i, v in ipairs(def.pummeldefs) do
+			if not resolve then
+				local ok = v.check(pos, node, pum)
+				if ok then
+					resolve = v.resolve
+					pum.check = ok
+				end
 			end
+		end
+		if not resolve then
+			pummeling[pname] = nil
+			return
 		end
 
 		if pum.count > 1 then
@@ -77,27 +85,29 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 			pum.particles = particlefx(pname, pointed)
 		end
 
-		if def.on_pummel(pos, node, pum) then
+		if resolve(pos, node, pum) then
 			if pum.particles then minetest.delete_particlespawner(pum.particles) end
 			nodecore.player_knowledge_add(puncher, "pummel:" .. node.name)
 			pummeling[pname] = nil
 		end
 	end)
 
-function nodecore.add_pummel(nodedef, check, commit)
-	local sym = {}
-	local oc = nodedef.can_pummel or function() end
-	nodedef.can_pummel = function(...)
-		return check(...) and sym or oc(...)
-	end
-	local op = nodedef.on_pummel or function() end
-	nodedef.on_pummel = function(pos, node, stats, ...)
-		return stats.check == sym and commit(pos, node, stats, ...)
-		or op(pos, node, stats, ...)
-	end
+function nodecore.add_pummel(nodedef, check, resolve)
+	nodedef.pummeldefs = nodedef.pummeldefs or {}
+	nodedef.pummeldefs[#nodedef.pummeldefs + 1] = {
+		check = check,
+		resolve = resolve
+	}
 end
-function nodecore.extend_pummel(name, check, commit)
-	nodecore.extend_node(name, function(copy)
-			return nodecore.add_pummel(copy, check, commit)
+function nodecore.extend_pummel(name, check, resolve)
+	nodecore.extend_item(name, function(copy)
+			return nodecore.add_pummel(copy, check, resolve)
 		end)
+end
+
+function nodecore.pummel_toolspeed(pos, node, stats)
+	return nodecore.toolspeed(
+		stats.puncher:get_wielded_item(),
+		stats.def.groups
+	)
 end
