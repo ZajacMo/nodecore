@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-= minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -24,6 +24,7 @@ local function repack_node(mult, replace)
 	if type(replace) ~= "table" then replace = {name = replace} end
 	return function (pos, node, stats)
 		if stats.duration < (mult * stats.check) then return end
+		nodecore.wear_current_tool(stats.puncher, {thumpy = 1})
 		minetest.set_node(pos, replace)
 		return true
 	end

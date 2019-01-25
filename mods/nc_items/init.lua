@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, setmetatable, type, vector
-= ItemStack, minetest, nodecore, setmetatable, type, vector
+local ItemStack, ipairs, minetest, nodecore, setmetatable, type, vector
+    = ItemStack, ipairs, minetest, nodecore, setmetatable, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -11,9 +11,9 @@ local function invdef(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stack = inv:get_stack("solo", 1)
-	if not stack or stack:is_empty()
-	or stack:get_count() ~= 1 then return end
-	return minetest.registered_items[stack:get_name()]
+	if not stack or stack:is_empty() then return end
+	local def = minetest.registered_items[stack:get_name()]
+	return stack:get_count() == (def.pummel_stack or 1) and def or nil
 end
 
 minetest.register_node(modname .. ":stack", {

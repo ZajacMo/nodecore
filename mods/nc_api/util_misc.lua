@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type
-= ItemStack, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
 local math_random
-= math.random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -91,9 +91,6 @@ function nodecore.toolspeed(what, groups)
 		gt = gt and gt[lv]
 		if gt and (not t or t > gt) then t = gt end
 	end
-	if not t and not what:is_empty() then
-		return nodecore.toolspeed(ItemStack(""), groups)
-	end
 	return t
 end
 
@@ -148,4 +145,18 @@ function nodecore.node_group(name, pos, node)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
 	return def and def.groups and def.groups[name]
+end
+
+function nodecore.item_eject(pos, stack, speed, qty, vel)
+	vel = vel or {x = 0, y = 0, z = 0}
+	for i = 1, (qty or 1) do
+		local obj = minetest.add_item(pos, stack)
+		if obj then
+			obj:setvelocity({
+					x = vel.x + (math_random() - 0.5) * speed,
+					y = vel.y + (math_random() - 0.5) * speed,
+					z = vel.z + (math_random() - 0.5) * speed
+				})
+		end
+	end
 end
