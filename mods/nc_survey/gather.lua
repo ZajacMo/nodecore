@@ -1,11 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local SecureRandom, math, minetest
-    = SecureRandom, math, minetest
-local math_random
-    = math.random
+local SecureRandom, math, minetest, nodecore, os, pairs
+    = SecureRandom, math, minetest, nodecore, os, pairs
+local math_random, os_clock
+    = math.random, os.clock
 -- LUALOCALS > ---------------------------------------------------------
 
 local store = minetest.get_mod_storage()
+nodecore.surveydata.store = store
 
 ------------------------------------------------------------------------
 -- World-level stats
@@ -30,6 +31,7 @@ minetest.register_on_shutdown(function() return worldadd("shutdowns", 1) end)
 
 local players = store:get_string("players")
 players = players and minetest.deserialize(players) or {}
+nodecore.surveydata.players = players
 
 local function statadd(pn, stat, qty)
 	if not pn then return end
@@ -69,16 +71,65 @@ minetest.register_on_player_hpchange(function(whom, change)
 ------------------------------------------------------------------------
 -- Update timer
 
+local playdb = { }
+local idlemin = 5
+local function procstep(dt, player)
+	local pn = getpn(player)
+	if not pn then return end
+	local pd = playdb[pn] or {}
+	playdb[pn] = pd
+
+	local pos = player:getpos()
+	local dir = player:get_look_dir()
+	local cur = { pos.x, pos.y, pos.z, dir.x, dir.y, dir.z }
+	local moved
+	if pd.last then
+		for i = 1, 6 do
+			moved = moved or pd.last[i] ~= cur[i]
+		end
+	end
+	pd.last = cur
+
+	local t = pd.t or 0
+	if moved then
+		pd.t = 0
+		if t >= idlemin then
+			statadd(pn, "idle", t)
+			return statadd(pn, "move", dt)
+		else
+			return statadd(pn, "move", t + dt)
+		end
+	else
+		if t >= idlemin then
+			return statadd(pn, "idle", dt)
+		else
+			pd.t = t + dt
+			if (t + dt) >= idlemin then
+				return statadd(pn, "idle", t + dt)
+			end
+		end
+	end
+end
+
+local clockstart = os_clock()
 local timestart = minetest.get_us_time()
 local function timer()
+	minetest.after(10, timer)
+
 	local now = minetest.get_us_time()
-	local duration = (now - timestart) / 1000 / 1000
+	local dt = (now - timestart) / 1000 / 1000
 	timestart = now
 
-	worldadd("uptime", duration)
+	local clock = os_clock()
+	local dc = clock - clockstart
+	clockstart = clock
 
+	worldadd("uptime", dt)
+	worldadd("paused", dc - dt)
+	for _, player in pairs(minetest.get_connected_players()) do
+		procstep(dt, player)
+	end
 	store:set_string("players", minetest.serialize(players))
-
-	minetest.after(10, timer)
 end
 timer()
+minetest.register_on_shutdown(timer)
