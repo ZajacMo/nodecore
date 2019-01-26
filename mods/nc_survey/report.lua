@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-= math, minetest, nodecore, pairs, table
-local math_floor, math_mod, math_pi, math_random, math_sin,
-table_concat
-= math.floor, math.mod, math.pi, math.random, math.sin,
-table.concat
+local math, minetest, nodecore, os, pairs, table
+    = math, minetest, nodecore, os, pairs, table
+local math_floor, math_mod, math_pi, math_random, math_sin, os_clock,
+      table_concat
+    = math.floor, math.mod, math.pi, math.random, math.sin, os.clock,
+      table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local http = minetest.request_http_api()
+local http = ...
 if http then
 
 	local store = nodecore.surveydata.store
@@ -22,12 +22,14 @@ if http then
 		for k, v in pairs(t.player_knowledge) do
 			t.player_knowledge[k] = minetest.deserialize(v)
 		end
+		local started = os_clock()
 		return http.fetch({
 				url = "https://ec.mine.nu/nodecoresurvey/post",
 				post_data = minetest.write_json(t),
 				extra_headers = {["Content-Type"] = "application/json"}
 			},
 			function(res)
+				res.duration = os_clock() - started
 				return minetest.log(modname .. ": " .. minetest.serialize(res))
 			end)
 	end
@@ -36,7 +38,7 @@ if http then
 		minetest.after(300, reporttimer)
 		report()
 	end
-	reporttimer()
+	minetest.after(0, reporttimer)
 
 elseif minetest.settings:get(modname .. "_off") == nil then
 
@@ -65,9 +67,11 @@ elseif minetest.settings:get(modname .. "_off") == nil then
 			s(colorfancy("\n" .. ("="):rep(80)))
 			s("Welcome to NodeCore!  Please support the "
 					.. "game's development by enabling anonymous "
-					.. "statisics collection!\nUse the \""
-				.. c("#80FF00", "/" .. modname)
-				.. "\" command to learn more, or set the \""
+					.. "statisics collection!\nAdd \""
+				.. c("#80FF00", modname)
+				.. "\" to your \""
+				.. c("#80FF00", "secure.http_mods")
+				.. "\" setting to enable, or set the \""
 				.. c("#FF8000", modname .. "_off")
 				.. "\" setting to disable this message.")
 			s(colorfancy(("="):rep(80) .. "\n"))
