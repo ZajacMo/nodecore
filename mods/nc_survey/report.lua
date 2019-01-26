@@ -18,9 +18,10 @@ if http then
 	local function report()
 		local t = store:to_table().fields
 		t.players = players
-		t.player_knowledge = nodecore.player_knowledge()
-		for k, v in pairs(t.player_knowledge) do
-			t.player_knowledge[k] = minetest.deserialize(v)
+		for k, v in pairs(nodecore.player_knowledge()) do
+			local n = k == "singleplayer" and k or minetest.sha1(k)
+			t.players[n] = t.players[n] or {}
+			t.players[n].knowledge = minetest.deserialize(v)
 		end
 		local started = os_clock()
 		return http.fetch({
