@@ -50,8 +50,6 @@ if nodecore.loaded_mods().nc_fire then
 					if stats.ignite < stats.wearout then
 						stats.wearout = stats.ignite
 					end
-					minetest.log("firesticks: " .. stats.wearout .. " | "
-						.. stats.ignite)
 				end
 				if stats.duration < stats.wearout then return end
 				if stats.duration >= stats.ignite then

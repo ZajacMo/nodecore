@@ -26,7 +26,6 @@ fallnode.on_step = function(self, dtime, ...)
 	local q = dmg[self] or 0
 	local v = vector.length(vel)
 	q = q + v * v * dtime
-	minetest.log(q)
 	if q > 1 then
 		local n = math_floor(q)
 		for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
