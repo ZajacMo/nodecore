@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
+vector
+= ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
+vector
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -74,14 +74,10 @@ minetest.register_node(modname .. ":stack", {
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	stack = ItemStack(stack)
 	local name = stack:get_name()
-	if stack:get_count() == 1 and stack:get_definition().type == "node" then
-		minetest.set_node(pos, {name = name})
-	else
-		minetest.set_node(pos, {name = modname .. ":stack"})
-		local meta = minetest.get_meta(pos)
-		local inv = meta:get_inventory()
-		inv:set_stack("solo", 1, stack)
-	end
+	minetest.set_node(pos, {name = modname .. ":stack"})
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	inv:set_stack("solo", 1, stack)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
 	end
