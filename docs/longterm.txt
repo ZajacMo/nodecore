@@ -21,11 +21,12 @@ LONG-TERM DESIGN IDEAS
 - Tool level differences.
 	- Advanced tools are NOT just the same as regular tools with
 	  certain buffs.
-	- Wood is slower than stone, but stone is more brittle and
-	  loses durability faster.
 	- Different metals and materials require different processes.
-	- Top-tier tools, e.g. diamond-tipped, are very different from
+	  Top-tier tools, e.g. diamond-tipped, are very different from
 	  metal/stone/wood, require new processes.
+	- Higher-tier tools may "silk touch" and skip certain transforms
+	  e.g. pick up stone as non-loose cobble or raw stone, so
+	  players have a way to get some things in inventory.
 
 - More biomes, exploration diversity.
 

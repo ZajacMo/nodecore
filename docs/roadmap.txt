@@ -2,6 +2,7 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Snooper and analytics engine.
 - Library functions for handling nodecore interactions.
 	- API-ify pummel-splitting recipes.
 	- Hint system.
@@ -11,41 +12,20 @@ ROADMAP (SHORT-TERM)
 	- Better tree growth, i.e. track cumulative time, apply
 	  environmental factors.
 	- Leaves settle into grass as podzol?  Composting/decay?
-- Wood tech.
-	- Pick can break stone into cobble, then loose cobble.
-	- Shovel can dig solid dirt as-is.
-- Stone tech.
-	- Dig up ore using pick.
-		- Tin, copper, iron.
-	- Combine loose cobble onto staffs to form stone tools
-		- Level 3
-		- Stone tools dig faster than wood, but are more brittle
 - Fire tech.
 	- Smelting/cooking.
 		- Create and try to contain a fire, place node above fire to cook.
-		- Logs can be cooked (if smothered to prevent igniting) into charcoal (loose, falling).
 		- Ores can be cooked, converting into slag and molten metal.
-		- Different ores require different heat intensity.
-			- Tin and copper easily accessible, may only require wood.
-			- Iron requires an investment in charcoal.
-	- Molten metal:
-		- Flowing liquid, burns, ignition source.
-		- Automatically quenched after some time.
-		- If flows next to water, quench immediately at that location.
-			- Ingot will replace water; be sure to use infinite spring.
-		- Quenching:
-			- Trace out network, find all sources.
-				- Apply alloying recipes.
-			- Remove source nodes.
-			- Determine endpoint (in water, or random bottom node)
-			- Invisible "waiting" entity waits until all molten nodes gone.
-				- Places ingot at destination.
-		- Ingots placed near molten metals will sometimes melt (for alloying).
-		- Ingots can be re-melted above sufficiently-hot fire.
-	- Metal tools from ingots:
-		- Copper and tin, level 4
-		- Bronze, level 5
-		- Iron, level 6
+	- Metal casting, annealing, tempering
+		- Heat ore -> glowing prills
+		- air-cool glowing prills -> annealed prills
+		- Hammer annealed prills -> annealed metal
+		- Hammer annealed metal -> annealed tool heads + annealed prills
+		- Create and use annealed tools
+		- Heat annealed tool heads -> glowing tool heads
+		- Quench glowing tool heads -> tempered tool heads
+		- Create and use tempered tools (much higher durability)
+		- Heat tempered tools -> glowing tool heads to recycle
 
 
 ........................................................................
