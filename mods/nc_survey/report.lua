@@ -66,8 +66,8 @@ elseif minetest.settings:get(modname .. "_off") == nil then
 			local c = minetest.colorize
 			s(colorfancy("\n" .. ("="):rep(80)))
 			s("Welcome to NodeCore!  Please support the "
-					.. "game's development by enabling anonymous "
-					.. "statisics collection!\nAdd \""
+				.. "game's development by enabling anonymous "
+				.. "statisics collection!\nAdd \""
 				.. c("#80FF00", modname)
 				.. "\" to your \""
 				.. c("#80FF00", "secure.http_mods")

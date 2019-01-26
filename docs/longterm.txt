@@ -2,6 +2,11 @@
 LONG-TERM DESIGN IDEAS
 ------------------------------------------------------------------------
 
+- More support and feedback info.
+	- A chat command with more info?
+	- A feedback command to submit comments?
+	- Merge support info with survey nag?
+
 - Hint system for new players.
 
 - Digital logic.
@@ -34,7 +39,6 @@ LONG-TERM DESIGN IDEAS
 	- Some spread explosively (fire), some creeping (blights).
 
 - More biomes, exploration diversity.
-
 
 ........................................................................
 ========================================================================

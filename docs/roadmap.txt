@@ -2,9 +2,6 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- Snooper and analytics engine.
-	- Expand player stats with activity counts.
-	- Opt-in ask-owner-only http-based submission system.
 - Fire tech.
 	- Smelting/cooking.
 		- Create and try to contain a fire, place node above fire to cook.
@@ -28,7 +25,6 @@ ROADMAP (SHORT-TERM)
 	- Inventory slots around central node each holds 1 stack.
 	- Dig central node to bundle up, store content in metadata.
 	- Containers may have "levels" to control nesting.
-
 
 ........................................................................
 ========================================================================
