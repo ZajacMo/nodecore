@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local error, ipairs, math, minetest, nodecore, pairs, table, type
-= error, ipairs, math, minetest, nodecore, pairs, table, type
+    = error, ipairs, math, minetest, nodecore, pairs, table, type
 local math_floor, table_insert
-= math.floor, table.insert
+    = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local old_place = minetest.item_place_node

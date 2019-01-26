@@ -1,6 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, setmetatable, type, vector
-    = ItemStack, ipairs, minetest, nodecore, setmetatable, type, vector
+local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
+      vector
+    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
+      vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -103,7 +107,13 @@ local item = {
 		self.itemstring = ""
 		self.object:remove()
 	end,
-	on_punch = function() end
+	on_punch = function(self)
+		local v = self.object:get_velocity()
+		v.x = v.x + math_random() * 5 - 2.5
+		v.y = v.y + math_random() * 5 - 2.5
+		v.z = v.z + math_random() * 5 - 2.5
+		self.object:set_velocity(v)
+	end
 }
 setmetatable(item, bii)
 minetest.register_entity(":__builtin:item", item)
