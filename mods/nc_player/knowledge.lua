@@ -3,6 +3,8 @@ local ipairs, minetest, nodecore, pairs
     = ipairs, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
+local store = minetest.get_mod_storage()
+
 local knowcache = {}
 
 local function addknow(player, tag)
@@ -10,16 +12,20 @@ local function addknow(player, tag)
 	local pname = player:get_player_name()
 	local know = knowcache[pname]
 	if not know then
-		know = player:get_attribute("knowledge")
-		if know then know = minetest.deserialize(know) end
+		know = store:get_string(pname)
+		know = know and minetest.deserialize(know)
 		know = know or { }
 	end
 	if know[tag] then return end
 	know[tag] = true
 	know = minetest.serialize(know)
-	player:set_attribute("knowledge", know)
+	store:set_string(pname, know)
 end
 nodecore.player_knowledge_add = addknow
+
+function nodecore.player_knowledge()
+	return store:to_table().fields
+end
 
 minetest.register_on_punchnode(function(pos, node, puncher)
 		addknow(puncher, "punch:" .. node.name)

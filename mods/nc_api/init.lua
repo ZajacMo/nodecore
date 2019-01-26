@@ -29,5 +29,3 @@ dofile(path .. "/item_oldnames.lua")
 dofile(path .. "/item_tool_wears_to.lua")
 
 dofile(path .. "/action_node_pummel.lua")
-
-dofile(path .. "/player_knowledge.lua")

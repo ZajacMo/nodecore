@@ -3,15 +3,8 @@ ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
 - Snooper and analytics engine.
-- Library functions for handling nodecore interactions.
-	- API-ify pummel-splitting recipes.
-	- Hint system.
-	- Wallmounted pop-off-as-item and item_entity overrides
-	  to transform into falling node.
-- Plant life stuff
-	- Better tree growth, i.e. track cumulative time, apply
-	  environmental factors.
-	- Leaves settle into grass as podzol?  Composting/decay?
+	- Expand player stats with activity counts.
+	- Opt-in ask-owner-only http-based submission system.
 - Fire tech.
 	- Smelting/cooking.
 		- Create and try to contain a fire, place node above fire to cook.
@@ -26,6 +19,15 @@ ROADMAP (SHORT-TERM)
 		- Quench glowing tool heads -> tempered tool heads
 		- Create and use tempered tools (much higher durability)
 		- Heat tempered tools -> glowing tool heads to recycle
+- Plant life stuff
+	- Better tree growth, i.e. track cumulative time, apply
+	  environmental factors.
+	- Leaves settle into grass as podzol?  Composting/decay?
+- Portable containers.
+	- A bag that expands when placed, if room.
+	- Inventory slots around central node each holds 1 stack.
+	- Dig central node to bundle up, store content in metadata.
+	- Containers may have "levels" to control nesting.
 
 
 ........................................................................

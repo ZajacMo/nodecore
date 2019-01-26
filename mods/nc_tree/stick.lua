@@ -42,6 +42,7 @@ if nodecore.loaded_mods().nc_fire then
 					node = node or minetest.get_node(pos)
 					local def = minetest.registered_nodes[node.name]
 					local shafty = def and def.groups and def.groups.shafty
+					if not shafty then return end
 					shafty = shafty * nodecore.wieldgroup(stats.puncher,
 						"shafty")
 					if shafty < 1 then return end
