@@ -36,7 +36,7 @@ if http then
 	end
 	minetest.register_on_shutdown(report)
 	local function reporttimer()
-		minetest.after(300, reporttimer)
+		minetest.after(900, reporttimer)
 		report()
 	end
 	minetest.after(0, reporttimer)
