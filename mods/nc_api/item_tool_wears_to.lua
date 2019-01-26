@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore
-= ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_on_register_item(function(name, def)

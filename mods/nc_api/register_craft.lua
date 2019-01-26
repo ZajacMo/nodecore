@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, error, ipairs, math, minetest, nodecore, pairs, table,
-      type
-    = ItemStack, error, ipairs, math, minetest, nodecore, pairs, table,
-      type
+local error, ipairs, math, minetest, nodecore, pairs, table, type
+    = error, ipairs, math, minetest, nodecore, pairs, table, type
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------

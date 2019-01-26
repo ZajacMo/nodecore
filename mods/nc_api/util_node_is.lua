@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, type
-= minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local node_is_skip = {
@@ -13,6 +13,7 @@ local node_is_skip = {
 	wear = true,
 	metadata = true,
 }
+
 function nodecore.node_is(thing, match)
 	if not thing.name then
 		local p = { }
@@ -34,7 +35,10 @@ function nodecore.node_is(thing, match)
 	if match.param2 and thing.param2 ~= match.param2 then return end
 	if match.param and thing.param ~= match.param then return end
 	if match.count and thing.count ~= match.count then return end
-	if match.wear and thing.wear ~= match.wear then return end
+	if match.wear then
+		if match.wear < 1 then match.wear = match.wear * 65535 end
+		if thing.wear > match.wear then return end
+	end
 	if match.metadata and thing.metadata ~= match.metadata then return end
 	local def = minetest.registered_items[thing.name]
 	if match.groups then
