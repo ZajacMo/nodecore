@@ -18,6 +18,11 @@ ROADMAP (SHORT-TERM)
 		- Quench glowing tool heads -> tempered tool heads
 		- Create and use tempered tools (much higher durability)
 		- Heat tempered tools -> glowing tool heads to recycle
+- Half-slabs
+	- Intermediate step between planks and tool-heads.
+	- Chop dirt with an axe.
+	- Hammer together 4 stones instead of 8.
+	- Pummel tree from the side with a higher tier axe, stone/metal?
 - Plant life stuff
 	- Better tree growth, i.e. track cumulative time, apply
 	  environmental factors.
