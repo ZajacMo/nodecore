@@ -19,7 +19,7 @@ minetest.register_on_joinplayer(function(player)
 		player:set_inventory_formspec("size[8,1]"
 			.. "bgcolor[#000000C0;true]"
 			.. "background[0,0;8,1;nc_player_invbg.png;true]"
-			.. "listcolors[#00000000;#00000000;#00000000]"
+			.. "listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
 			.. "list[current_player;main;0,0;8,1;]")
 	end)
 
