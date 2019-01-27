@@ -1,11 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, vector
-    = ipairs, minetest, nodecore, vector
+local ipairs, math, minetest, nodecore, vector
+= ipairs, math, minetest, nodecore, vector
+local math_floor, math_random
+= math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
 
-local function particlefx(pname, pointed)
+local function fxcore(pname, pointed, img)
+	img = img .. "^[mask:[combine\\:16x16\\:"
+	.. math_floor(math_random() * 12) .. ","
+	.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
+	
+	minetest.log(img)
+
 	local a = pointed.above
 	local b = pointed.under
 	local vel = vector.subtract(a, b)
@@ -15,6 +23,7 @@ local function particlefx(pname, pointed)
 	local s1 = vector.add(vector.add(mid, vector.multiply(p1, 0.5)), vector.multiply(p2, 0.5))
 	local s2 = vector.add(vector.add(mid, vector.multiply(p1, -0.5)), vector.multiply(p2, -0.5))
 	vel = vector.multiply(vel, 0.5)
+
 	return minetest.add_particlespawner({
 			amount = 5,
 			time = 1.5,
@@ -24,10 +33,26 @@ local function particlefx(pname, pointed)
 			maxvel = vel,
 			minexptime = 0.4,
 			maxexptime = 0.9,
-			scale = 0.05,
-			texture = "nc_api_pummel.png",
+			minsize = 1,
+			maxsize = 5,
+			texture = img,
 			playername = pname
 		})
+end
+
+local function particlefx(pname, pointed, def)
+	local img = {}
+	if def.tiles then
+		for i = 1, 6 do
+			img[#img + 1] = def.tiles[i > #def.tiles and #def.tiles or i]
+		end
+	elseif def.inventory_image then
+		img[1] = def.inventory_image
+	end
+	if #img < 1 then return minetest.log("no pummel tile images found!") end
+	img = nodecore.pickrand(img)
+	if img.name then img = img.name end
+	for i = 1, 4 do fxcore(pname, pointed, img) end
 end
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
@@ -82,7 +107,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if pum.count > 1 then
 			if pum.particles then minetest.delete_particlespawner(pum.particles) end
-			pum.particles = particlefx(pname, pointed)
+			pum.particles = particlefx(pname, pointed, def)
 		end
 
 		if resolve(pos, node, pum) then
