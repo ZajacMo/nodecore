@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, type
     = math, minetest, nodecore, pairs, type
-local math_floor, math_random, math_sqrt
-    = math.floor, math.random, math.sqrt
+local math_floor, math_pi, math_random, math_sqrt
+    = math.floor, math.pi, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -35,8 +35,10 @@ local function stackentprops(stack, func, rot)
 		t.textures[1] = stack:get_name()
 		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()      
 		t.visual_size = {x = s, y = s}
-		t.automatic_rotate = rot * 0.15 * math_sqrt(stack:get_stack_max()
-			/ stack:get_count())
+		local max = stack:get_stack_max()
+		local ratio = max / stack:get_count()
+		t.automatic_rotate = rot * (ratio == 1 and max > 1
+			and 0.05 or 0.15) * math_sqrt(ratio)
 		if func then func(s) end
 	end
 	return t
@@ -58,6 +60,7 @@ minetest.register_entity(modname .. ":stackent", {
 						pos.y = math_floor(pos.y + 0.5) - 0.5 + s
 						self.object:setpos(pos)
 					end, self.rot))
+			self.object:set_yaw(math_random() * math_pi * 2)
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
