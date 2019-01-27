@@ -1,7 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local dofile, minetest, nodecore
+    = dofile, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+local path = minetest.get_modpath(modname)
+
+local version = dofile(path .. "/version.lua")
 
 minetest.register_on_joinplayer(function(player)
 		player:set_properties({
@@ -16,11 +21,19 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_image("nc_hud_bg.png")
 		player:hud_set_hotbar_selected_image("nc_hud_sel.png")
 
-		player:set_inventory_formspec("size[8,1]"
+		player:set_inventory_formspec("size[8,5]"
 			.. "bgcolor[#000000C0;true]"
-			.. "background[0,0;8,1;nc_player_invbg.png;true]"
+			.. "background[0,0;8,5;nc_player_invbg.png;true]"
 			.. "listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
-			.. "list[current_player;main;0,0;8,1;]")
+			.. "list[current_player;main;0,4;8,5;]"
+			.. "box[-0.25,-0.25;8.5,3.25;#000000C0]"
+			.. "label[0,0;NodeCore - "
+			.. minetest.formspec_escape(version)
+			.. "\n\n"
+			.. "(C)2018-2019 by Aaron Suen <warr1024@gmail.com>\n"
+			.. "MIT License:  http://www.opensource.org/licenses/MIT\n\n"
+			.. "GitLab:    https://gitlab.com/sztest/nodecore\n"
+			.. "Discord:   https://discord.gg/SHq2tkb]")
 	end)
 
 minetest.register_on_dieplayer(function(player)
