@@ -72,9 +72,9 @@ elseif minetest.settings:get(modname .. "_off") == nil then
 				.. c("#80FF00", modname)
 				.. "\" to your \""
 				.. c("#80FF00", "secure.http_mods")
-				.. "\" setting to enable, or set the \""
-				.. c("#FF8000", modname .. "_off")
-				.. "\" setting to disable this message.")
+				.. "\" setting to opt in, or enter \""
+				.. c("#FF8000", "/set " .. modname .. "_off 1")
+				.. "\" to disable this message.")
 			s(colorfancy(("="):rep(80) .. "\n"))
 		end)
 end
