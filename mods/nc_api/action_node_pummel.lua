@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, vector
-= ipairs, math, minetest, nodecore, vector
+    = ipairs, math, minetest, nodecore, vector
 local math_floor, math_random
-= math.floor, math.random
+    = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local pummeling = {}
@@ -25,7 +25,7 @@ local function fxcore(pname, pointed, img)
 	vel = vector.multiply(vel, 0.5)
 
 	return minetest.add_particlespawner({
-			amount = 5,
+			amount = 3,
 			time = 1.5,
 			minpos = s1,
 			maxpos = s2,
