@@ -2,6 +2,8 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Right-click a stack with same items to add to it.
+	- Picking up and re-dropping gets very tedious.
 - Fire tech.
 	- Smelting/cooking.
 		- Create and try to contain a fire, place node above fire to cook.
