@@ -12,8 +12,6 @@ local function fxcore(pname, pointed, img)
 	.. math_floor(math_random() * 12) .. ","
 	.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
 	
-	minetest.log(img)
-
 	local a = pointed.above
 	local b = pointed.under
 	local vel = vector.subtract(a, b)
