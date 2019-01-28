@@ -166,3 +166,10 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 		if obj then obj:setvelocity(v) end
 	end
 end
+
+function nodecore.quenched(pos)
+	return #minetest.find_nodes_in_area(
+		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+		{"group:coolant"}) > 0
+end

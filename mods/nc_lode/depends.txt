@@ -1,2 +1,3 @@
 nc_api
+nc_items
 nc_terrain

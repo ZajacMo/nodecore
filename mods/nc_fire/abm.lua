@@ -35,13 +35,6 @@ local function mkfire(pos, dx, dy, dz, testonly)
 	end
 end
 
-local function doused(pos)
-	return #minetest.find_nodes_in_area(
-		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-		{"group:coolant"}) > 0
-end
-
 nodecore.register_limited_abm({
 		label = "Flammables Ignite",
 		interval = 5,
@@ -50,7 +43,7 @@ nodecore.register_limited_abm({
 		neighbors = {"group:igniter"},
 		action = function(pos, node)
 			-- Cannot be wet.
-			if doused(pos) then return end
+			if nodecore.quenched(pos) then return end
 
 			-- Must have oxygen supply.
 			if not mkfire(pos, 0, 1, 0, true)
@@ -87,7 +80,7 @@ nodecore.register_limited_abm({
 		chance = 1,
 		nodenames = {"group:ember"},
 		action = function(pos, node)
-			if doused(pos) then
+			if nodecore.quenched(pos) then
 				return nodecore.snuff(pos, node)
 			end
 			local f = mkfire(pos, 0, 1, 0)

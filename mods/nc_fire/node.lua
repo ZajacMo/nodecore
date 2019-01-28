@@ -13,7 +13,8 @@ minetest.register_node(modname .. ":fire", {
 		paramtype = "light",
 		light_source = 12,
 		groups = {
-			igniter = 1
+			igniter = 1,
+			flame = 1
 		},
 		damage_per_second = 2,
 		propagates_sunlight = true,
