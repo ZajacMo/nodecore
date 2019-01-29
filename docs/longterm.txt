@@ -2,14 +2,17 @@
 LONG-TERM DESIGN IDEAS
 ------------------------------------------------------------------------
 
-- More support and feedback info.
-	- A chat command with more info?
-	- A feedback command to submit comments?
-	- Merge support info with survey nag?
+- Support/feedback improvements.
+	- Kill the snooper if it's not serving its purpose.
+		- Maybe leave the gathering and kill the reporting.
+		- Users can still upload worlds with stats included.
+		- Move stats back into player attributes.
+	- Improve in-game hint stuff.
+		- Feedback/issues URL?
+			- Look for new URL buttons in 5.0+
+		- Achievement/hint system?
 
-- Hint system for new players.
-
-- Digital logic.
+- Digital logic.	
 	- "Redstone dust", falling/attached, hard to place freely.
 	- One primitive logic gate, NAND or NOR.
 	- No delay/buffers; transform to mechanical for delays.
@@ -38,7 +41,13 @@ LONG-TERM DESIGN IDEAS
 	- From exploration, deliving too deep, leaving things to rot, etc.
 	- Some spread explosively (fire), some creeping (blights).
 
+- Cultivation and farming
+	- Plant-like CA animals, like bee nests and clouds of bees?
+	  Termine mounds?  Ant colonies?  Coral?
+	  
 - More biomes, exploration diversity.
+	- Water and lava springs.
+	- Lava deep underground as a bedrock replacement?
 
 ........................................................................
 ========================================================================

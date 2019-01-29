@@ -1,7 +1,15 @@
-local ver = "$Format:%at-%h$"
+-- LUALOCALS < ---------------------------------------------------------
+local math, tonumber
+    = math, tonumber
+local math_floor
+    = math.floor
+-- LUALOCALS > ---------------------------------------------------------
 
-ver = (ver:sub(1, 1) == "$")
-and "DEVELOPMENT VERSION"
-or ("Version " .. ver)
+local stamp = tonumber("$Format:%at$")
+if not stamp then
+	return "DEVELOPMENT VERSION"
+end
+stamp = math_floor((stamp - 1540612800) / 60)
+stamp = ("00000000" .. stamp):sub(-8)
 
-return ver
+return "Version " .. stamp .. .. "-$Format:%h$"

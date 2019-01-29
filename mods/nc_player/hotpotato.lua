@@ -1,3 +1,8 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, pairs
+    = minetest, pairs
+-- LUALOCALS > ---------------------------------------------------------
+
 local function hotpotatoes(player)
 	local inv = player:get_inventory()
 	local hurt = 0
