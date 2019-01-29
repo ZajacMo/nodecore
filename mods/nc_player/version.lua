@@ -12,4 +12,4 @@ end
 stamp = math_floor((stamp - 1540612800) / 60)
 stamp = ("00000000" .. stamp):sub(-8)
 
-return "Version " .. stamp .. .. "-$Format:%h$"
+return "Version " .. stamp .. "-$Format:%h$"
