@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
+vector
+= ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
+vector
 local math_random
-    = math.random
+= math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -73,6 +73,11 @@ minetest.register_node(modname .. ":stack", {
 			local inv = minetest.get_meta(pos):get_inventory()
 			local s = inv:get_stack("solo", 1)
 			if s and s:get_name() == stack:get_name() then
+				if whom and whom:get_player_control().sneak then
+					if inv:add_item("solo", ItemStack(stack:get_name()))
+					:is_empty() then stack:take_item(1) end
+					return stack
+				end
 				return inv:add_item("solo", stack)
 			end
 			return minetest.item_place_node(stack, whom, pointed)
@@ -82,11 +87,11 @@ minetest.register_node(modname .. ":stack", {
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	stack = ItemStack(stack)
 	local name = stack:get_name()
-	
+
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	stack = minetest.get_meta(below):get_inventory():add_item("solo", stack)
 	if stack:is_empty() then return end
-	
+
 	minetest.set_node(pos, {name = modname .. ":stack"})
 	minetest.get_meta(pos):get_inventory():set_stack("solo", 1, stack)
 	if placer and pointed_thing then
