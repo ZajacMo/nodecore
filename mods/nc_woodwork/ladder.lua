@@ -19,7 +19,7 @@ minetest.register_node(modname .. ":ladder", {
 			{-lw, -lt, -lt, lw, lt, lt},
 			{-lt, -lt, -lw, lt, lt, lw}
 		),
-		tiles = {tt, tt, "nc_tree_tree_side.png"},
+		tiles = {tt},
 		groups = {
 			snappy = 1,
 			flammable = 2,
@@ -48,7 +48,7 @@ minetest.register_node(modname .. ":frame", {
 			{-ll, -lt, -lt, ll, lt, lt},
 			{-lt, -lt, -ll, lt, lt, ll}
 		),
-		tiles = {tt, tt, "nc_tree_tree_side.png"},
+		tiles = {tt},
 		groups = {
 			snappy = 1,
 			flammable = 2,
