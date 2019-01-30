@@ -17,7 +17,7 @@ minetest.register_node(modname .. ":fire", {
 			flame = 1
 		},
 		damage_per_second = 2,
-		propagates_sunlight = true,
+		sunlight_propagates = true,
 		walkable = false,
 		pointable = false,
 		diggable = false,
