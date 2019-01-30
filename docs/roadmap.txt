@@ -2,37 +2,27 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- Make neighbor/distance calcs consistent.
-	- We're using scan_flood in some places, face checks in others,
-	  and find_nodes_in_area (cuboid) in others.
-	- Diamond shape would be most consistent.
-	- Should require face touching, not diagonal.
-- Clean up eggcorns.
-	- Balance quantity per tree.
-	- Switch to craftitem drawtype?  They don't look right.
-- Crushing damage refinements.
-	- Make certain types of nodes (e.g. eggcorns, dead leaves)
-	  do far less or no damage.  
-		- Base on classes?  Have a crush_damage_mult prop?
-	- Fractional HP API, using player attributes
-- Right-click a stack with same items to add to it.
-	- Picking up and re-dropping gets very tedious.
-- Ladders should fall like staves.  Maybe another node to act as a frame?
-	- Staves crossed to form wooden mullions?
+- Portable containers.
+	- A bag that expands when placed, if room.
+	- Inventory slots around central node each holds 1 stack.
+	- Dig central node to bundle up, store content in metadata.
+	- Containers may have "levels" to control nesting.
 - Fire tech.
-	- Smelting/cooking.
-		- Create and try to contain a fire, place node above fire to cook.
-		- Ores can be cooked, converting into slag and molten metal.
+	- Make fuel consumed slower by reducing flame exposure.
+		- Encourages designing a better furnace.
 	- Metal casting, annealing, tempering
-		- Heat ore -> glowing prills
-		- air-cool glowing prills -> annealed prills
-		- Hammer annealed prills -> annealed metal
-		- Hammer annealed metal -> annealed tool heads + annealed prills
+		- Hammer annealed prills -> annealed metal slabs/blocks
+		- Hammer annealed slabs/blocks -> annealed tool heads
 		- Create and use annealed tools
 		- Heat annealed tool heads -> glowing tool heads
 		- Quench glowing tool heads -> tempered tool heads
 		- Create and use tempered tools (much higher durability)
 		- Heat tempered tools -> glowing tool heads to recycle
+- Make neighbor/distance calcs consistent.
+	- We're using scan_flood in some places, face checks in others,
+	  and find_nodes_in_area (cuboid) in others.
+	- Diamond shape would be most consistent.
+	- Should require face touching, not diagonal.
 - Half-slabs
 	- Intermediate step between planks and tool-heads.
 	- Chop dirt with an axe.
@@ -42,11 +32,6 @@ ROADMAP (SHORT-TERM)
 	- Better tree growth, i.e. track cumulative time, apply
 	  environmental factors.
 	- Leaves settle into grass as podzol?  Composting/decay?
-- Portable containers.
-	- A bag that expands when placed, if room.
-	- Inventory slots around central node each holds 1 stack.
-	- Dig central node to bundle up, store content in metadata.
-	- Containers may have "levels" to control nesting.
 
 ........................................................................
 ========================================================================

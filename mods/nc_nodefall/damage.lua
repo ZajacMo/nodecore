@@ -20,12 +20,19 @@ dmggc()
 
 local oldtick = fallnode.on_step
 fallnode.on_step = function(self, dtime, ...)
+	if not self.crush_damage then
+		local def = minetest.registered_items[self.node.name]
+		self.crush_damage = def.crush_damage or 0
+	end
+	if self.crush_damage <= 0 then
+		return oldtick(self, dtime, ...)
+	end
+
 	local pos = self.object:getpos()
 	local vel = self.object:getvelocity()
-
 	local q = dmg[self] or 0
 	local v = vector.length(vel)
-	q = q + v * v * dtime
+	q = q + v * v * dtime * self.crush_damage
 	if q > 1 then
 		local n = math_floor(q)
 		for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do

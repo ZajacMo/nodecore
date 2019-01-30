@@ -23,8 +23,9 @@ minetest.register_node(modname .. ":eggcorn", {
 
 nodecore.register_leaf_drops(function(pos, node, list)
 		list[#list + 1] = {
-			name = modname .. ":eggcorn",
-			prob = 0.1 * (node.param2 + 1)}
+			name = "air",
+			item = modname .. ":eggcorn",
+			prob = 0.05 * (node.param2 + 1)}
 	end)
 
 local ldname = "nc_terrain:dirt_loose"

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, vector
-    = ipairs, math, minetest, nodecore, vector
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,7 +11,7 @@ local function fxcore(pname, pointed, img)
 	img = img .. "^[mask:[combine\\:16x16\\:"
 	.. math_floor(math_random() * 12) .. ","
 	.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
-	
+
 	local a = pointed.above
 	local b = pointed.under
 	local vel = vector.subtract(a, b)
@@ -50,7 +50,16 @@ local function particlefx(pname, pointed, def)
 	if #img < 1 then return minetest.log("no pummel tile images found!") end
 	img = nodecore.pickrand(img)
 	if img.name then img = img.name end
-	for i = 1, 4 do fxcore(pname, pointed, img) end
+
+	local t = {}
+	for i = 1, 4 do
+		t[#t + 1] = fxcore(pname, pointed, img)
+	end
+	return function()
+		for k, v in pairs(t) do
+			minetest.delete_particlespawner(v)
+		end
+	end
 end
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
@@ -104,12 +113,12 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		end
 
 		if pum.count > 1 then
-			if pum.particles then minetest.delete_particlespawner(pum.particles) end
+			if pum.particles then pum.particles() end
 			pum.particles = particlefx(pname, pointed, def)
 		end
 
 		if resolve(pos, node, pum) then
-			if pum.particles then minetest.delete_particlespawner(pum.particles) end
+			if pum.particles then pum.particles() end
 			nodecore.player_knowledge_add(puncher, "pummel:" .. node.name)
 			pummeling[pname] = nil
 		end

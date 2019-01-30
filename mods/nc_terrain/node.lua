@@ -58,7 +58,7 @@ regterrain({
 		groups = {
 			cracky = 2
 		},
-		drop_in_place = modname .. ":cobble",
+		drop_in_place = modname .. ":cobble"
 	})
 regterrain({
 		description = "Cobble",
@@ -82,6 +82,7 @@ regterrain({
 				falling_repose = 3
 			}
 		},
+		crush_damage = 2
 	})
 
 for _, v in ipairs({
@@ -112,7 +113,8 @@ regterrain({
 		},
 		groups = {
 			crumbly = 1
-		}
+		},
+		crush_damage = 1
 	})
 regterrain({
 		description = "Dirt with Grass",
@@ -142,6 +144,7 @@ regterrain({
 			crumbly = 1,
 			falling_node = 1
 		},
+		crush_damage = 1
 	})
 regterrain({
 		description = "Sand",
@@ -159,6 +162,7 @@ regterrain({
 			"clay",
 			"desert_sand" 
 		},
+		crush_damage = 0.5
 	})
 
 regliquid({

@@ -39,7 +39,8 @@ local function ember(n, t)
 			diggable = false,
 			on_punch = function(pos, node, puncher)
 				puncher:set_hp(puncher:get_hp() - 1)
-			end
+			end,
+			crush_damage = 1
 		})
 end
 ember(1, modname .. "_ash.png^(" .. modname .. "_ember1.png^[opacity:128)")
@@ -57,5 +58,6 @@ minetest.register_node(modname .. ":ash", {
 			falling_node = 1,
 			falling_repose = 1,
 			crumbly = 1
-		}
+		},
+		crush_damage = 0.25
 	})

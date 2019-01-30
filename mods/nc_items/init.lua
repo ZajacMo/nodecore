@@ -68,16 +68,27 @@ minetest.register_node(modname .. ":stack", {
 					return r(pos, node, stats, ...)
 				end
 			}
-		}
+		},
+		on_rightclick = function(pos, node, whom, stack, pointed, ...)
+			local inv = minetest.get_meta(pos):get_inventory()
+			local s = inv:get_stack("solo", 1)
+			if s and s:get_name() == stack:get_name() then
+				return inv:add_item("solo", stack)
+			end
+			return minetest.item_place_node(stack, whom, pointed)
+		end
 	})
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	stack = ItemStack(stack)
 	local name = stack:get_name()
+	
+	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+	stack = minetest.get_meta(below):get_inventory():add_item("solo", stack)
+	if stack:is_empty() then return end
+	
 	minetest.set_node(pos, {name = modname .. ":stack"})
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	inv:set_stack("solo", 1, stack)
+	minetest.get_meta(pos):get_inventory():set_stack("solo", 1, stack)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
 	end

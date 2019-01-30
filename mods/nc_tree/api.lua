@@ -15,5 +15,6 @@ function nodecore.leaf_decay(pos, node)
 	local p = nodecore.pickrand(t, function(x) return x.prob end)
 	if not p then return end
 	minetest.set_node(pos, p)
+	if p.item then nodecore.item_eject(pos, p.item) end
 	return minetest.check_for_falling(pos)
 end

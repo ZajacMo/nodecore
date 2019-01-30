@@ -51,12 +51,14 @@ reg("Slab", {
 		node_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, 0, 0.5),
 		tiles = { modname .. "_#.png" },
 		paramtype = "light",
-		light_source = 6
+		light_source = 6,
+		crush_damage = 1
 	})
 reg("Block", {
 		type = "node",
 		tiles = { modname .. "_#.png" },
-		light_source = 8
+		light_source = 8,
+		crush_damage = 4
 	})
 
 local flame = {groups = {flame = true}}

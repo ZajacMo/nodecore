@@ -23,8 +23,10 @@ minetest.register_node(modname .. ":ladder", {
 		groups = {
 			snappy = 1,
 			flammable = 2,
-			fire_fuel = 1
+			fire_fuel = 1,
+			falling_node = 1
 		},
+		crush_damage = 0.25,
 		paramtype = "light",
 		sunlight_propagates = true,
 		climbable = true
@@ -35,5 +37,32 @@ nodecore.register_craft({
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
 			{x = -1, match = modname .. ":staff", replace = modname .. ":ladder"},
+		}
+	})
+
+minetest.register_node(modname .. ":frame", {
+		description = "Wooden Frame",
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(
+			{-lt, -ll, -lt, lt, ll, lt},
+			{-ll, -lt, -lt, ll, lt, lt},
+			{-lt, -lt, -ll, lt, lt, ll}
+		),
+		tiles = {tt, tt, "nc_tree_tree_side.png"},
+		groups = {
+			snappy = 1,
+			flammable = 2,
+			fire_fuel = 1
+		},
+		paramtype = "light",
+		climbable = true,
+		sunlight_propagates = true,
+	})
+
+nodecore.register_craft({
+		normal = {x = 1},
+		nodes = {
+			{match = modname .. ":staff", replace = "air"},
+			{x = -1, match = modname .. ":staff", replace = modname .. ":frame"},
 		}
 	})
