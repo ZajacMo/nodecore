@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-vector
-= ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-vector
+      vector
+    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
+      vector
 local math_random
-= math.random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()

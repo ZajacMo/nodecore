@@ -119,8 +119,9 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if resolve(pos, node, pum) then
 			if pum.particles then pum.particles() end
-			nodecore.player_knowledge_add(puncher, "pummel:" .. node.name)
-			pummeling[pname] = nil
+			--nodecore.player_knowledge_add(puncher, "pummel:" .. node.name)
+			pummeling[
+			okpname] = nil
 		end
 	end)
 

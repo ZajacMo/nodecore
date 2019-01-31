@@ -2,6 +2,8 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Submit to ContentDB
+	- Need screenshots.
 - Portable containers.
 	- A bag that expands when placed, if room.
 	- Inventory slots around central node each holds 1 stack.
