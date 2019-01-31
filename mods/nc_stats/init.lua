@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, os, pairs, table, type, vector
     = math, minetest, os, pairs, table, type, vector
-local math_random, os_clock, os_date, table_remove
-    = math.random, os.clock, os.date, table.remove
+local math_random, os_date, table_remove
+    = math.random, os.date, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
