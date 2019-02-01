@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_sqrt
+    = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -30,11 +32,9 @@ nodecore.register_leaf_drops(function(pos, node, list)
 
 local ldname = "nc_terrain:dirt_loose"
 local epname = modname .. ":eggcorn_planted"
-local loosedirt = minetest.registered_nodes[ldname]
-local planted = {}
-for k, v in pairs(loosedirt) do planted[k] = v end
-planted.drop = ldname
-minetest.register_node(epname, planted)
+minetest.register_node(epname, nodecore.underride({drop = ldname},
+		minetest.registered_nodes[ldname]))
+minetest.log(minetest.serialize(minetest.registered_nodes[epname]))
 
 nodecore.register_limited_abm({
 		label = "EggCorn Planting",
@@ -54,10 +54,34 @@ nodecore.register_limited_abm({
 		label = "EggCorn Growing",
 		nodenames = {epname},
 		interval = 10,
-		chance = 10,
+		chance = 1,
 		action = function(pos, node)
-			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-			minetest.place_schematic(place, nodecore.tree_schematic, "random", {}, false)
+			local meta = minetest.get_meta(pos)
+			local d = 0
+			local w = 1
+			nodecore.scan_flood(pos, 3, function(p)
+					local nn = minetest.get_node(p).name
+					local def = minetest.registered_nodes[nn]
+					if not def or not def.groups then
+						return false
+					end
+					if def.groups.soil then
+						d = d + def.groups.soil
+						w = w + 0.2
+					elseif def.groups.water then
+						w = w + def.groups.water
+						return false
+					else
+						return false
+					end
+				end)
+			local g = (meta:get_float("growth") or 0) + math_sqrt(d * w)
+			if g >= 2500 then
+				meta:from_table({})
+				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
+				return minetest.place_schematic(place, nodecore.tree_schematic,
+					"random", {}, false)
+			end
+			meta:set_float("growth", g)
 		end
 	})

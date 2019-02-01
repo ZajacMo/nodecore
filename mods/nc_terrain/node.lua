@@ -104,7 +104,8 @@ regterrain({
 		description = "Dirt",
 		alternate_loose = {
 			groups = {
-				falling_repose = 2
+				falling_repose = 2,
+				soil = 2
 			}
 		},
 		mapgen = {
@@ -112,7 +113,8 @@ regterrain({
 			"ice",
 		},
 		groups = {
-			crumbly = 1
+			crumbly = 1,
+			soil = 1
 		},
 		crush_damage = 1
 	})
@@ -128,7 +130,8 @@ regterrain({
 			"dirt_with_snow"
 		},
 		groups = {
-			crumbly = 2
+			crumbly = 2,
+			soil = 1
 		},
 		drop_in_place = modname .. ":dirt"
 	})
@@ -178,7 +181,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 1,
 		drop = "",
-		groups = { coolant = 1 },
+		groups = { coolant = 1, water = 2 },
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90}
 	})
 regliquid({
