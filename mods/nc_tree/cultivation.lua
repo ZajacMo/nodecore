@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
     = math, minetest, nodecore
-local math_sqrt
-    = math.sqrt
+local math_random, math_sqrt
+    = math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()

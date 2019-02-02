@@ -57,7 +57,8 @@ minetest.register_node(modname .. ":leaves", {
 		}
 	})
 nodecore.register_leaf_drops(function(pos, node, list)
-		list[#list + 1] = {name = modname .. ":leaves_loose"}
+		list[#list + 1] = {name = modname .. ":leaves_loose", prob = 0.5}
+		list[#list + 1] = {name = "air"}
 	end)
 
 local function fixed(t) return {type = "fixed", fixed = t} end
