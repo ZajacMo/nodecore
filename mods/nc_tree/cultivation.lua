@@ -34,7 +34,6 @@ local ldname = "nc_terrain:dirt_loose"
 local epname = modname .. ":eggcorn_planted"
 minetest.register_node(epname, nodecore.underride({drop = ldname},
 		minetest.registered_nodes[ldname]))
-minetest.log(minetest.serialize(minetest.registered_nodes[epname]))
 
 nodecore.register_limited_abm({
 		label = "EggCorn Planting",
@@ -75,8 +74,9 @@ nodecore.register_limited_abm({
 						return false
 					end
 				end)
-			local g = (meta:get_float("growth") or 0) + math_sqrt(d * w)
-			if g >= 2500 then
+			local g = (meta:get_float("growth") or 0)
+			+ math_sqrt(d * w) * math_random()
+			if g >= 5000 then
 				meta:from_table({})
 				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
 				return minetest.place_schematic(place, nodecore.tree_schematic,
