@@ -3,10 +3,6 @@ LONG-TERM DESIGN IDEAS
 ------------------------------------------------------------------------
 
 - Support/feedback improvements.
-	- Kill the snooper if it's not serving its purpose.
-		- Maybe leave the gathering and kill the reporting.
-		- Users can still upload worlds with stats included.
-		- Move stats back into player attributes.
 	- Improve in-game hint stuff.
 		- Feedback/issues URL?
 			- Look for new URL buttons in 5.0+
@@ -17,6 +13,7 @@ LONG-TERM DESIGN IDEAS
 	- One primitive logic gate, NAND or NOR.
 	- No delay/buffers; transform to mechanical for delays.
 	- Buttons/touchplates, no switches (build a latch for state).
+	- Pistons or rack&pinions for affecting world stuff.
 
 - System for transporting cargo.
 	- Trains of minecarts?
@@ -48,6 +45,11 @@ LONG-TERM DESIGN IDEAS
 - More biomes, exploration diversity.
 	- Water and lava springs.
 	- Lava deep underground as a bedrock replacement?
+	
+- Vague Ideas:
+	- Cement or silk touch for obtaining smoothstone for building.
+	- Strata and/or bedrock.
+	- Hardcore buckets for water.
 
 ........................................................................
 ========================================================================
