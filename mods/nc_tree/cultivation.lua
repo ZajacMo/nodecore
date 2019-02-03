@@ -19,7 +19,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		groups = {
 			snappy = 1,
 			flammable = 3,
-			falling_repose = 1
+			attached_node = 1
 		}
 	})
 
