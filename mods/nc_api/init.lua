@@ -4,11 +4,10 @@ local dofile, minetest, rawget, rawset
     = dofile, minetest, rawget, rawset
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local nodecore = rawget(_G, "nodecore") or {}
 rawset(_G, "nodecore", nodecore)
 
+local modname = minetest.get_current_modname()
 local path = minetest.get_modpath(modname)
 
 dofile(path .. "/util_misc.lua")

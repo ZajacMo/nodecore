@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local hotitems = {}
 
-local function reg(shape, rawdef)
+function nodecore.register_lode(shape, rawdef)
 	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
 		local def = nodecore.underride({}, rawdef)
 		def = nodecore.underride(def, {
@@ -41,11 +41,7 @@ local function reg(shape, rawdef)
 	end
 end
 
-reg("Prill", {
-		type = "craft",
-		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png"
-	})
-reg("Slab", {
+nodecore.register_lode("Slab", {
 		type = "node",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, 0, 0.5),
@@ -54,12 +50,48 @@ reg("Slab", {
 		light_source = 6,
 		crush_damage = 1
 	})
-reg("Block", {
+nodecore.register_lode("Block", {
 		type = "node",
 		tiles = { modname .. "_#.png" },
 		light_source = 8,
 		crush_damage = 4
 	})
+
+nodecore.register_lode("Prill", {
+		type = "craft",
+		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
+	})
+
+nodecore.extend_item(modname .. ":prill_hot", function(def)
+		def.pummel_stack = 4
+	end)
+nodecore.extend_pummel(modname .. ":prill_hot",
+	function(pos, node, stats)
+		return nodecore.toolspeed(
+			stats.puncher:get_wielded_item(),
+			{ thumpy = 3 })
+	end,
+	function(pos, node, stats)
+		if stats.duration >= stats.check then
+			minetest.set_node(pos, {name = modname .. ":slab_hot"})
+		end
+	end)
+
+nodecore.extend_pummel(modname .. ":slab_hot",
+	function(pos, node, stats)
+		if stats.pointed.above.y <= stats.pointed.under.y then return end
+		if minetest.get_node(stats.pointed.under).name ~= modname .. ":slab_hot" then return end
+		return nodecore.toolspeed(
+			stats.puncher:get_wielded_item(),
+			{ thumpy = 3 })
+	end,
+	function(pos, node, stats)
+		if stats.duration >= stats.check then
+			minetest.remove_node(pos)
+			minetest.set_node({x = pos.x, y = pos.y - 1, z = pos.z},
+				{name = modname .. ":block_hot"})
+		end
+	end)
 
 local flame = {groups = {flame = true}}
 local function heated(pos)
