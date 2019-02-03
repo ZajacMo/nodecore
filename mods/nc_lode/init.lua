@@ -8,4 +8,3 @@ local path = minetest.get_modpath(modname)
 
 dofile(path .. "/ore.lua")
 dofile(path .. "/metallurgy.lua")
-

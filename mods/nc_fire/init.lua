@@ -9,4 +9,3 @@ local path = minetest.get_modpath(modname)
 dofile(path .. "/api.lua")
 dofile(path .. "/node.lua")
 dofile(path .. "/abm.lua")
-

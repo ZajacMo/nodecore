@@ -11,6 +11,8 @@ rawset(_G, "nodecore", nodecore)
 
 local path = minetest.get_modpath(modname)
 
+dofile(path .. "/issue7020.lua")
+
 dofile(path .. "/util_misc.lua")
 dofile(path .. "/util_scan_flood.lua")
 dofile(path .. "/util_logtrace.lua")
