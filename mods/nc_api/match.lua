@@ -53,10 +53,10 @@ function nodecore.match(thing, crit)
 		end
 	end
 
-	if crit.inv then
+	if crit.stack then
 		local stack = minetest.get_meta(thing):get_inventory():get_stack("solo", 1)
 		if not stack or stack:is_empty() then return end
-		return nodecore.match({stack = stack}, crit.inv)
+		return nodecore.match({stack = stack}, crit.stack)
 	end
 
 	return thing

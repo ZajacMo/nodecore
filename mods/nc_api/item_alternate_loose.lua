@@ -62,6 +62,7 @@ nodecore.register_on_register_item(function(name, def)
 		loose.groups.falling_node = 1
 
 		if loose.groups.crumbly and not loose.no_repack then
+			-- PUMDEF
 			nodecore.add_pummel(loose,
 				can_repack(loose.repack_level or 1),
 				repack_node(loose.repack_time or 1, name))

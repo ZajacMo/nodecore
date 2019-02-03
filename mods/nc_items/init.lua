@@ -35,7 +35,6 @@ minetest.register_node(modname .. ":stack", {
 		collision_box = stackbox,
 		drop = {},
 		groups = {
-			flammable = 1,
 			snappy = 1,
 			falling_repose = 1,
 			visinv = 1
@@ -52,6 +51,7 @@ minetest.register_node(modname .. ":stack", {
 			return minetest.remove_node(posfrom)
 		end,
 		pummeldefs = { 
+			-- PUMDEF
 			{
 				check = function(pos, node, stats, ...)
 					local def = invdef(pos)

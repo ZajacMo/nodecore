@@ -65,6 +65,7 @@ nodecore.register_lode("Prill", {
 nodecore.extend_item(modname .. ":prill_hot", function(def)
 		def.pummel_stack = 4
 	end)
+-- PUMDEF
 nodecore.extend_pummel(modname .. ":prill_hot",
 	function(pos, node, stats)
 		return nodecore.toolspeed(
@@ -77,6 +78,7 @@ nodecore.extend_pummel(modname .. ":prill_hot",
 		end
 	end)
 
+-- PUMDEF
 nodecore.extend_pummel(modname .. ":slab_hot",
 	function(pos, node, stats)
 		if stats.pointed.above.y <= stats.pointed.under.y then return end
@@ -97,17 +99,17 @@ local flame = {groups = {flame = true}}
 local function heated(pos)
 	if nodecore.quenched(pos) then return end
 	local f = 0
-	if nodecore.node_is({x = pos.x, y = pos.y - 1, z = pos.z}, flame)
+	if nodecore.match({x = pos.x, y = pos.y - 1, z = pos.z}, flame)
 	then f = f + 1 end
-	if nodecore.node_is({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
+	if nodecore.match({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
 	then f = f + 1 end
-	if nodecore.node_is({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-	if nodecore.node_is({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
+	if nodecore.match({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
 	then f = f + 1 end
 	if f >= 3 then return true end
-	if nodecore.node_is({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
+	if nodecore.match({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
+	then f = f + 1 end
+	if f >= 3 then return true end
+	if nodecore.match({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
 	then f = f + 1 end
 	if f >= 3 then return true end
 end
@@ -131,7 +133,7 @@ nodecore.register_limited_abm({
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if timecounter(minetest:get_meta(pos), 30,
-				not nodecore.node_is(below, {walkable = true}) and heated(pos)) then
+				not nodecore.match(below, {walkable = true}) and heated(pos)) then
 				nodecore.item_eject(below, modname .. ":prill_hot 2")
 				minetest:get_meta(pos):from_table({})
 				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})

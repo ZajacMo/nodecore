@@ -17,6 +17,7 @@ dofile(path .. "/util_node_is.lua")
 dofile(path .. "/util_toolcaps.lua")
 
 dofile(path .. "/match.lua")
+dofile(path .. "/digparticles.lua")
 
 dofile(path .. "/register_limited_abm.lua")
 

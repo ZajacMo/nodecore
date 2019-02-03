@@ -10,6 +10,7 @@ minetest.register_craftitem(modname .. ":chip", {
 		inventory_image = modname .. "_stone.png",
 		pummel_stack = 8,
 		pummeldefs = {
+			-- PUMDEF
 			{
 				check = function(pos, node, stats)
 					return nodecore.toolspeed(
@@ -26,6 +27,7 @@ minetest.register_craftitem(modname .. ":chip", {
 		}
 	})
 
+-- PUMDEF
 nodecore.extend_pummel("nc_terrain:cobble_loose",
 	function(pos, node, stats)
 		return nodecore.toolspeed(
