@@ -95,7 +95,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	minetest.set_node(pos, {name = modname .. ":stack"})
 	minetest.get_meta(pos):get_inventory():set_stack("solo", 1, stack)
 	if placer and pointed_thing then
-		nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
+		nodecore.craft_check(pos, {name = stack:get_name()}, {
+				action = "place",
+				crafter = placer,
+				pointed = pointed_thing
+			})
 	end
 	minetest.check_for_falling(pos)
 end

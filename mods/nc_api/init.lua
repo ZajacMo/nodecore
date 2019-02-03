@@ -16,7 +16,8 @@ dofile(path .. "/util_logtrace.lua")
 dofile(path .. "/util_node_is.lua")
 dofile(path .. "/util_toolcaps.lua")
 
-dofile(path .. "/register_craft.lua")
+dofile(path .. "/match.lua")
+
 dofile(path .. "/register_limited_abm.lua")
 
 dofile(path .. "/item_on_register.lua")

@@ -8,7 +8,7 @@ local match_skip = {
 	param2 = true,
 	param = true,
 	groups = true,
-	inv = true,
+	stack = true,
 	count = true,
 	wear = true
 }
@@ -36,7 +36,7 @@ function nodecore.match(thing, crit)
 
 	local def = minetest.registered_items[thing.name]
 	if crit.groups then
-		if not def.groups then return end
+		if not def or not def.groups then return end
 		for k, v in pairs(crit.groups) do
 			if v == true then
 				if not def.groups[k] then return end
@@ -49,7 +49,7 @@ function nodecore.match(thing, crit)
 	end
 	for k, v in pairs(crit) do
 		if not match_skip[k] then
-			if def[k] ~= v then return end
+			if not def or def[k] ~= v then return end
 		end
 	end
 

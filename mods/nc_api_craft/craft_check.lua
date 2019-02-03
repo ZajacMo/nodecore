@@ -50,23 +50,23 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	return true
 end
 
-function nodecore.craft_check(rtype, pos, node, data)
+function nodecore.craft_check(pos, node, data)
 	data = data or {}
-	local function go(xx, xz, zx, zz)
+	local function go(rc, xx, xz, zx, zz)
 		return craftcheck(rc, pos, node, data, xx, xz, zx, zz)
 	end
 	for _, rc in ipairs(nodecore.craft_recipes) do
 		if nodecore.match(node, rc.root.match) and data.action == rc.action then
-			if go(1, 0, 0, 1) then return true end
+			if go(rc, 1, 0, 0, 1) then return true end
 			if not rc.norotate then
-				if go(0, -1, 1, 0) then return true end
-				if go(-1, 0, 0, -1) then return true end
-				if go(0, 1, -1, 0) then return true end
+				if go(rc, 0, -1, 1, 0) then return true end
+				if go(rc, -1, 0, 0, -1) then return true end
+				if go(rc, 0, 1, -1, 0) then return true end
 				if not rc.nomirror then
-					if go(-1, 0, 0, 1) then return true end
-					if go(0, 1, 1, 0) then return true end
-					if go(1, 0, 0, -1) then return true end
-					if go(0, -1, -1, 0) then return true end
+					if go(rc, -1, 0, 0, 1) then return true end
+					if go(rc, 0, 1, 1, 0) then return true end
+					if go(rc, 1, 0, 0, -1) then return true end
+					if go(rc, 0, -1, -1, 0) then return true end
 				end
 			end
 		end
