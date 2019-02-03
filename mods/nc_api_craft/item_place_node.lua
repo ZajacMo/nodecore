@@ -8,7 +8,8 @@ function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
 	local old_add = minetest.add_node
 	minetest.add_node = function(pos, node, ...)
 		local function helper2(...)
-			nodecore.craft_check("place", pos, node, {
+			nodecore.craft_check(pos, node, {
+					action = "place",
 					crafter = placer,
 					pointed = pointed_thing 
 				})

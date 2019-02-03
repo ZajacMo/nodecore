@@ -62,4 +62,3 @@ nodecore.register_leaf_drops(function(pos, node, list)
 	end)
 
 local function fixed(t) return {type = "fixed", fixed = t} end
-

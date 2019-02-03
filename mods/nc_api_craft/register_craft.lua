@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, nodecore, pairs, table, type
-    = error, math, nodecore, pairs, table, type
+local error, math, nodecore, pairs, table
+    = error, math, nodecore, pairs, table
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,7 +9,7 @@ local craft_recipes = {}
 nodecore.craft_recipes = craft_recipes
 
 function nodecore.register_craft(recipe)
-	recipe.type = recipe.type or "place"
+	recipe.action = recipe.action or "place"
 	local canrot
 	recipe.nodes = recipe.nodes or {}
 	for _, v in pairs(recipe.nodes) do
@@ -32,22 +32,16 @@ function nodecore.register_craft(recipe)
 	end
 	local newp = recipe.priority or 0
 
-	local rectype = craft_recipes[recipe.type]
-	if not rectype then
-		rectype = {}
-		craft_recipes[recipe.type] = rt
-	end
-
 	local min = 1
-	local max = #rectype + 1
+	local max = #craft_recipes + 1
 	while max > min do
 		local try = math_floor((min + max) / 2)
-		local oldp = rectype[try].priority or 0
+		local oldp = craft_recipes[try].priority or 0
 		if newp < oldp then
 			min = try + 1
 		else
 			max = try
 		end
 	end
-	table_insert(rectype, min, recipe)
+	table_insert(craft_recipes, min, recipe)
 end
