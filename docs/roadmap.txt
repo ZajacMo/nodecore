@@ -8,10 +8,12 @@ ROADMAP (SHORT-TERM)
 	- Dig central node to bundle up, store content in metadata.
 	- Containers may have "levels" to control nesting.
 - Fire tech.
-	- Make fuel consumed slower by reducing flame exposure.
-		- Encourages designing a better furnace.
-	- Need to make lode ore require same or higher tier tools than
-	  stone, not lower.  Should not be hand-diggable in any form.
+	- Fire rework.
+		- Make fuel consumed slower by reducing flame exposure.
+			- Encourages designing a better furnace.
+		- Smothering produces charcoal instead of ash.
+			- Can be reburned.
+		- Make ash whiter, charcoal black.
 	- Metal casting, annealing, tempering
 		- Axe annealed blocks/slabs -> annealed prills
 		- Hammer annealed slabs -> annealed tool heads

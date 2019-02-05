@@ -22,7 +22,7 @@ local oldtick = fallnode.on_step
 fallnode.on_step = function(self, dtime, ...)
 	if not self.crush_damage then
 		local def = minetest.registered_items[self.node.name]
-		self.crush_damage = def.crush_damage or 0
+		self.crush_damage = def and def.crush_damage or 0
 	end
 	if self.crush_damage <= 0 then
 		return oldtick(self, dtime, ...)

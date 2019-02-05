@@ -1,32 +1,45 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: nodecore
-local dofile, minetest, rawget, rawset
-    = dofile, minetest, rawget, rawset
+local dofile, minetest, rawget, rawset, table
+    = dofile, minetest, rawget, rawset, table
+local table_concat, table_insert
+    = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local nodecore = rawget(_G, "nodecore") or {}
 rawset(_G, "nodecore", nodecore)
 
-local modname = minetest.get_current_modname()
-local path = minetest.get_modpath(modname)
+local include = rawget(_G, "include") or function(...)
+	local parts = {...}
+	table_insert(parts, 1, minetest.get_modpath(minetest.get_current_modname()))
+	if parts[#parts]:sub(-4) ~= ".lua" then
+		parts[#parts] = parts[#parts] .. ".lua"
+	end
+	minetest.log(table_concat(parts, "/"))
+	return dofile(table_concat(parts, "/"))
+end
+rawset(_G, "include", include)
 
-dofile(path .. "/util_misc.lua")
-dofile(path .. "/util_scan_flood.lua")
-dofile(path .. "/util_logtrace.lua")
-dofile(path .. "/util_node_is.lua")
-dofile(path .. "/util_toolcaps.lua")
+nodecore.version = include("version")
 
-dofile(path .. "/match.lua")
-dofile(path .. "/digparticles.lua")
+include("issue7020")
 
-dofile(path .. "/register_limited_abm.lua")
+include("util_misc")
+include("util_scan_flood")
+include("util_logtrace")
+include("util_node_is")
+include("util_toolcaps")
+include("match")
+include("digparticles")
 
-dofile(path .. "/item_on_register.lua")
-dofile(path .. "/item_drop_in_place.lua")
-dofile(path .. "/item_falling_repose.lua")
-dofile(path .. "/item_alternate_loose.lua")
-dofile(path .. "/item_group_visinv.lua")
-dofile(path .. "/item_oldnames.lua")
-dofile(path .. "/item_tool_wears_to.lua")
+include("register_limited_abm")
 
-dofile(path .. "/action_node_pummel.lua")
+include("item_on_register")
+include("item_drop_in_place")
+include("item_falling_repose")
+include("item_alternate_loose")
+include("item_group_visinv")
+include("item_oldnames")
+include("item_tool_wears_to")
+
+include("action_node_pummel")

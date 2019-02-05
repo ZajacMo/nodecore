@@ -14,12 +14,12 @@ minetest.register_node(modname .. ":eggcorn", {
 		visual_scale = 0.5,
 		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		inventory_image = modname .. "_eggcorn.png",
+		inventory_image = "[combine:24x24:4,4=" .. modname .. "_eggcorn.png",
 		tiles = { modname .. "_eggcorn.png" },
 		groups = {
 			snappy = 1,
 			flammable = 3,
-			falling_repose = 1
+			attached_node = 1
 		}
 	})
 

@@ -6,23 +6,23 @@ local minetest
 local health_bar_definition =
 {
 	hud_elem_type = "statbar",
-	position = { x=0.5, y=1 },
+	position = {x = 0.5, y = 1},
 	text = "heart_bg.png",
 	number = 20,
 	direction = 0,
-	size = { x=24, y=24 },
-	offset = { x=(-10*24)-25, y=-(48+24+16)},
+	size = {x = 24, y = 24},
+	offset = { x = (-10 * 24) - 25, y = -(48 + 24 + 16)},
 }
 
 local breath_bar_definition =
 {
 	hud_elem_type = "statbar",
-	position = { x=0.5, y=1 },
+	position = {x = 0.5, y = 1},
 	text = "bubble_bg.png",
 	number = 20,
 	direction = 0,
-	size = { x=24, y=24 },
-	offset = {x=25,y=-(48+24+16)},
+	size = {x = 24, y = 24},
+	offset = {x = 25, y = -(48 + 24 + 16)},
 }
 
 local reg_bubbles = {}
