@@ -205,15 +205,15 @@ local function sethint(player)
 			found[#found + 1] = hint.text
 		end
 	end
-	found = nodecore.pickrand(found)
-	if not found then
-		player:set_inventory_formspec(nodecore.inventory_formspec)
-	end
-
-	return player:set_inventory_formspec(nodecore.inventory_formspec
-		.. "label[0,3.1;...have you "
-		.. minetest.formspec_escape(found)
-		.. " yet...?")
+	local hint = nodecore.pickrand(found)
+	if hint then
+		return player:set_inventory_formspec(nodecore.inventory_formspec
+			.. "label[0,3.1;...have you "
+			.. minetest.formspec_escape(hint)
+			.. " yet...?")
+	else
+		return player:set_inventory_formspec(nodecore.inventory_formspec)
+	end		
 end
 
 minetest.register_on_joinplayer(function(player)
