@@ -138,7 +138,7 @@ local embers = addhint("started a fire by rubbing sticks together",
 	},
 	"nc_tree:stick")
 
-addhint("gotten a fire going with long-lasting fuel?",
+addhint("gotten a fire going with long-lasting fuel",
 	{true,
 		"nc_fire:ember5",
 		"nc_fire:ember6",
