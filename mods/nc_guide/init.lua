@@ -138,7 +138,7 @@ local embers = addhint("started a fire by rubbing sticks together",
 	},
 	"nc_tree:stick")
 
-addhint("gotten a fire going with long-lasting fuel?",
+addhint("gotten a fire going with long-lasting fuel",
 	{true,
 		"nc_fire:ember5",
 		"nc_fire:ember6",
@@ -191,10 +191,10 @@ addhint("quenched lode",
 local function sethint(player)
 	local pname = player:get_player_name()
 
-	local rawdb = nodecore.statsdb[pname]
+	local rawdb = nodecore.statsdb[pname] or {}
 	local db = {}
 	for _, r in ipairs({"inv", "punch", "dig", "place"}) do
-		for k, v in pairs(rawdb[r]) do
+		for k, v in pairs(rawdb[r] or {}) do
 			db[k] = v
 		end
 	end
