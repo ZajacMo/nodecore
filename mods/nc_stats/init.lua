@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, os, pairs, table, type, vector
-    = math, minetest, os, pairs, table, type, vector
+local math, minetest, nodecore, os, pairs, table, type, vector
+    = math, minetest, nodecore, os, pairs, table, type, vector
 local math_random, os_date, table_remove
     = math.random, os.date, table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,6 +12,7 @@ local modstore = minetest.get_mod_storage()
 -- DATABASE SETUP
 
 local db = {}
+nodecore.statsdb = db
 
 do
 	local s = modstore:get_string(modname)

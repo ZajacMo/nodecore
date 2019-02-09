@@ -6,7 +6,7 @@ local minetest, nodecore
 local version = nodecore.version
 version = version and ("Version " .. version) or "DEVELOPMENT VERSION"
 
-local formspec = "size[8,5]"
+nodecore.inventory_formspec = "size[8,5]"
 .. "bgcolor[#000000C0;true]"
 .. "background[0,0;8,5;nc_player_invbg.png;true]"
 .. "listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
@@ -33,7 +33,7 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_image("nc_hud_bg.png")
 		player:hud_set_hotbar_selected_image("nc_hud_sel.png")
 
-		player:set_inventory_formspec(formspec)
+		player:set_inventory_formspec(nodecore.inventory_formspec)
 	end)
 
 minetest.register_on_dieplayer(function(player)
