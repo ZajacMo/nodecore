@@ -191,10 +191,10 @@ addhint("quenched lode",
 local function sethint(player)
 	local pname = player:get_player_name()
 
-	local rawdb = nodecore.statsdb[pname]
+	local rawdb = nodecore.statsdb[pname] or {}
 	local db = {}
 	for _, r in ipairs({"inv", "punch", "dig", "place"}) do
-		for k, v in pairs(rawdb[r]) do
+		for k, v in pairs(rawdb[r] or {}) do
 			db[k] = v
 		end
 	end
