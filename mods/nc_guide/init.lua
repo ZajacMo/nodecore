@@ -66,6 +66,14 @@ addhint("crafted an adze out of sticks",
 	"nc_woodwork:adze",
 	{true, "nc_tree:stick", "nc_woodwork:staff"})
 
+addhint("constructed a wooden ladder",
+	"nc_woodwork:ladder",
+	{true, "nc_tree:stick", "nc_woodwork:staff"})
+
+addhint("constructed a wooden frame",
+	"nc_woodwork:frame",
+	{true, "nc_tree:stick", "nc_woodwork:staff"})
+
 addhint("split a tree trunk into planks",
 	"nc_woodwork:plank",
 	{true, "nc_woodwork:adze", "nc_woodwork:tool_hatchet"})
@@ -80,7 +88,7 @@ local woodhead = addhint("made wooden tool heads out of planks",
 	"nc_woodwork:plank")
 
 addhint("assembled a wooden tool",
-	{
+	{true,
 		"nc_woodwork:tool_mallet",
 		"nc_woodwork:tool_spade",
 		"nc_woodwork:tool_hatchet",
@@ -156,7 +164,7 @@ addhint("dug out lode ore",
 	"nc_lode:cobble_loose",
 	lodeore.goal)
 
-local lodesmelt = addhint("smelted lode out of lode cobble",
+local lodesmelt = addhint("extracted metal from lode cobble",
 	{true,
 		"nc_lode:prill_hot",
 		"nc_lode:prill_annealed",
