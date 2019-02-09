@@ -37,8 +37,9 @@ local function ember(n, t)
 			},
 			drop = "",
 			diggable = false,
-			on_punch = function(pos, node, puncher)
+			on_punch = function(pos, node, puncher, ...)
 				puncher:set_hp(puncher:get_hp() - 1)
+				return minetest.node_punch(pos, node, puncher, ...)
 			end,
 			crush_damage = 1
 		})
