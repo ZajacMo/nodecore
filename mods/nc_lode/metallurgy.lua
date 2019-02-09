@@ -65,7 +65,7 @@ nodecore.register_lode("Prill", {
 nodecore.extend_item(modname .. ":prill_hot", function(def)
 		def.pummel_stack = 4
 	end)
--- PUMDEF
+-- PUMDEF: tool time
 nodecore.extend_pummel(modname .. ":prill_hot",
 	function(pos, node, stats)
 		return nodecore.toolspeed(
@@ -78,7 +78,7 @@ nodecore.extend_pummel(modname .. ":prill_hot",
 		end
 	end)
 
--- PUMDEF
+-- PUMDEF: tool time, normal, nearby node
 nodecore.extend_pummel(modname .. ":slab_hot",
 	function(pos, node, stats)
 		if stats.pointed.above.y <= stats.pointed.under.y then return end

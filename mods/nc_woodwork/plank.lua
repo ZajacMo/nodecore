@@ -16,7 +16,7 @@ minetest.register_node(plank, {
 		}
 	})
 
--- PUMDEF
+-- PUMDEF: tool time, normal
 nodecore.extend_pummel("nc_tree:tree",
 	function(pos, node, stats)
 		return (stats.pointed.above.y - stats.pointed.under.y) == 1

@@ -33,7 +33,7 @@ nodecore.register_leaf_drops(function(pos, node, list)
 
 if nodecore.loaded_mods().nc_fire then
 	function nodecore.register_stick_fire_starting(name)
-		-- PUMDEF
+		-- PUMDEF: item group
 		nodecore.extend_pummel(name,
 			function(pos, node, stats)
 				return nodecore.wieldgroup(stats.puncher, "shafty")

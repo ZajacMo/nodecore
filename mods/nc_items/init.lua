@@ -51,7 +51,7 @@ minetest.register_node(modname .. ":stack", {
 			return minetest.remove_node(posfrom)
 		end,
 		pummeldefs = { 
-			-- PUMDEF
+			-- PUMDEF: inner item
 			{
 				check = function(pos, node, stats, ...)
 					local def = invdef(pos)

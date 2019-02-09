@@ -42,7 +42,7 @@ local function toolhead(name, from, group, sticks)
 				}
 			})
 	end
-	-- PUMDEF
+	-- PUMDEF: tool time
 	nodecore.extend_pummel(from, nodecore.pummel_toolspeed,
 		function(pos, node, stats)
 			if stats.duration < stats.check + 2 then return end

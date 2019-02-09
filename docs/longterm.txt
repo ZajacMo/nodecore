@@ -45,11 +45,13 @@ LONG-TERM DESIGN IDEAS
 - More biomes, exploration diversity.
 	- Water and lava springs.
 	- Lava deep underground as a bedrock replacement?
-	
+
 - Vague Ideas:
 	- Cement or silk touch for obtaining smoothstone for building.
 	- Strata and/or bedrock.
 	- Hardcore buckets for water.
+	- A way to heal, possibly by doing an ambient environment check
+	  and healing players who spend time in "natural" environs?
 
 ........................................................................
 ========================================================================
