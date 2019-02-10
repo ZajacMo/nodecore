@@ -19,7 +19,7 @@ local function pummelparticles(data)
 	vel = vector.multiply(vel, 0.5)
 
 	data.clearfx = nodecore.digparticles(nodedef, {
-			amount = 12,
+			amount = 8,
 			time = 1.5,
 			minpos = s1,
 			maxpos = s2,
