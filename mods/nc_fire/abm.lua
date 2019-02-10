@@ -14,23 +14,23 @@ nodecore.register_limited_abm({
 		chance = 1,
 		nodenames = {modname .. ":fire"},
 		action = function(pos)
-			if not nodecore.node_is({x = pos.x, y = pos.y - 1, z = pos.z }, fueltest)
-			and not nodecore.node_is({x = pos.x + 1, y = pos.y, z = pos.z }, fueltest)
-			and not nodecore.node_is({x = pos.x - 1, y = pos.y, z = pos.z }, fueltest)
-			and not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z + 1 }, fueltest)
-			and not nodecore.node_is({x = pos.x, y = pos.y, z = pos.z - 1 }, fueltest)
+			if not nodecore.match({x = pos.x, y = pos.y - 1, z = pos.z }, fueltest)
+			and not nodecore.match({x = pos.x + 1, y = pos.y, z = pos.z }, fueltest)
+			and not nodecore.match({x = pos.x - 1, y = pos.y, z = pos.z }, fueltest)
+			and not nodecore.match({x = pos.x, y = pos.y, z = pos.z + 1 }, fueltest)
+			and not nodecore.match({x = pos.x, y = pos.y, z = pos.z - 1 }, fueltest)
 			then return minetest.remove_node(pos) end
 		end
 	})
 
 local function mkfire(pos, dx, dy, dz, testonly)
 	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	if nodecore.node_is(pos, modname .. ":fire") then return true end
-	if nodecore.node_is(pos, "air") then
+	if nodecore.match(pos, modname .. ":fire") then return true end
+	if nodecore.match(pos, "air") then
 		return testonly or minetest.set_node(pos, {name = modname .. ":fire"})
 	end
-	if nodecore.node_is(pos, "ignore") then return true end
-	if nodecore.node_is(pos, {groups = {flammable = true, fire_fuel = false}}) then
+	if nodecore.match(pos, "ignore") then return true end
+	if nodecore.match(pos, {groups = {flammable = true, fire_fuel = false}}) then
 		return testonly or minetest.set_node(pos, {name = modname .. ":fire"})
 	end
 end

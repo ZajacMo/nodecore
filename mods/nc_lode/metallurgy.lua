@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local hotitems = {}
 
-local function reg(shape, rawdef)
+function nodecore.register_lode(shape, rawdef)
 	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
 		local def = nodecore.underride({}, rawdef)
 		def = nodecore.underride(def, {
@@ -41,11 +41,7 @@ local function reg(shape, rawdef)
 	end
 end
 
-reg("Prill", {
-		type = "craft",
-		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png"
-	})
-reg("Slab", {
+nodecore.register_lode("Slab", {
 		type = "node",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, 0, 0.5),
@@ -54,28 +50,63 @@ reg("Slab", {
 		light_source = 6,
 		crush_damage = 1
 	})
-reg("Block", {
+nodecore.register_lode("Block", {
 		type = "node",
 		tiles = { modname .. "_#.png" },
 		light_source = 8,
 		crush_damage = 4
 	})
 
+nodecore.register_lode("Prill", {
+		type = "craft",
+		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
+	})
+
+nodecore.register_craft({
+		label = "forge lode slab",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
+		nodes = {
+			{
+				match = {stack = {name = modname .. ":prill_hot", count = 4}},
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":slab_hot"
+		}
+	})
+nodecore.register_craft({
+		label = "forge lode block",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = {stack = {name = modname .. ":prill_hot", count = 8}},
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":block_hot"
+		}
+	})
+
 local flame = {groups = {flame = true}}
 local function heated(pos)
 	if nodecore.quenched(pos) then return end
 	local f = 0
-	if nodecore.node_is({x = pos.x, y = pos.y - 1, z = pos.z}, flame)
+	if nodecore.match({x = pos.x, y = pos.y - 1, z = pos.z}, flame)
 	then f = f + 1 end
-	if nodecore.node_is({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
+	if nodecore.match({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
 	then f = f + 1 end
-	if nodecore.node_is({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-	if nodecore.node_is({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
+	if nodecore.match({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
 	then f = f + 1 end
 	if f >= 3 then return true end
-	if nodecore.node_is({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
+	if nodecore.match({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
+	then f = f + 1 end
+	if f >= 3 then return true end
+	if nodecore.match({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
 	then f = f + 1 end
 	if f >= 3 then return true end
 end
@@ -99,7 +130,7 @@ nodecore.register_limited_abm({
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if timecounter(minetest:get_meta(pos), 30,
-				not nodecore.node_is(below, {walkable = true}) and heated(pos)) then
+				not nodecore.match(below, {walkable = true}) and heated(pos)) then
 				nodecore.item_eject(below, modname .. ":prill_hot 2")
 				minetest:get_meta(pos):from_table({})
 				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})

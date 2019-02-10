@@ -35,18 +35,16 @@ local epname = modname .. ":eggcorn_planted"
 minetest.register_node(epname, nodecore.underride({drop = ldname},
 		minetest.registered_nodes[ldname]))
 
-nodecore.register_limited_abm({
-		label = "EggCorn Planting",
-		nodenames = {modname .. ":eggcorn"},
-		interval = 2,
-		chance = 2,
-		action = function(pos, node)
-			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if minetest.get_node(above).name ~= ldname then return end
-			minetest.remove_node(pos)
-			minetest.set_node(above, {name = epname})
-			minetest.check_single_for_falling(above)
-		end
+nodecore.register_craft({
+		normal = {y = 1},
+		nodes = {
+			{match = "nc_terrain:dirt_loose", replace = "air"},
+			{
+				y = -1,
+				match = modname .. ":eggcorn",
+				replace = modname .. ":eggcorn_planted"
+			},
+		}
 	})
 
 nodecore.register_limited_abm({

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local ItemStack, math, minetest, nodecore
+    = ItemStack, math, minetest, nodecore
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -18,7 +18,7 @@ minetest.register_node(modname .. ":stick", {
 		},
 		paramtype = "light",
 		groups = {
-			shafty = 1,
+			firestick = 1,
 			snappy = 1,
 			flammable = 2,
 			falling_repose = 1
@@ -32,42 +32,35 @@ nodecore.register_leaf_drops(function(pos, node, list)
 	end)
 
 if nodecore.loaded_mods().nc_fire then
-	function nodecore.register_stick_fire_starting(name)
-		nodecore.extend_pummel(name,
-			function(pos, node, stats)
-				return nodecore.wieldgroup(stats.puncher, "shafty")
-			end,
-			function(pos, node, stats)
-				if not stats.wearout or not stats.ignite then
-					node = node or minetest.get_node(pos)
-					local def = minetest.registered_nodes[node.name]
-					local shafty = def and def.groups and def.groups.shafty
-					if not shafty then return end
-					shafty = shafty * nodecore.wieldgroup(stats.puncher,
-						"shafty")
-					if shafty < 1 then return end
-					stats.wearout = (1 + math_random()) * shafty
-					stats.ignite = math_random() * 5
-					if stats.ignite < stats.wearout then
-						stats.wearout = stats.ignite
-					end
+	nodecore.register_craft({
+			label = "stick fire starting",
+			action = "pummel",
+			nodes = {
+				{match = {groups = {firestick = true}}}
+			},
+			consumewield = 1,
+			duration = 5,
+			before = function(pos, rel, data)
+				local w = data.wield and ItemStack(data.wield):get_name() or ""
+				local wd = minetest.registered_items[w] or {}
+				local wg = wd.groups or {}
+				local fs = wg.firestick or 1
+				local nd = minetest.registered_items[data.node.name] or {}
+				local ng = nd.groups or {}
+				fs = fs * (ng.firestick or 1)
+				if math_random(1, 4) > fs then return end
+				minetest.set_node(pos, {name = "nc_fire:fire"})
+				if math_random(1, 4) > fs then return end
+				local dir = nodecore.pickrand(nodecore.dirs())
+				local below = {
+					x = pos.x + dir.x,
+					y = pos.y + dir.y,
+					z = pos.z + dir.z
+				}
+				if nodecore.match(below,
+					{groups = {flammable = 1}}) then
+					nodecore.ignite(below)
 				end
-				if stats.duration < stats.wearout then return end
-				if stats.duration >= stats.ignite then
-					local dir = nodecore.pickrand(nodecore.dirs())
-					local below = {
-						x = pos.x + dir.x,
-						y = pos.y + dir.y,
-						z = pos.z + dir.z
-					}
-					if nodecore.node_is(below,
-						{groups = {flammable = 1}}) then
-						nodecore.ignite(below)
-					end
-					minetest.set_node(pos, {name = "nc_fire:fire"})
-				end
-				nodecore.wear_current_tool(stats.puncher, {shafty = 1}, 1)
-			end)
-	end
-	nodecore.register_stick_fire_starting(modname .. ":stick")
+			end
+		})
 end

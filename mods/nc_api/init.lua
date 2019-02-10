@@ -1,7 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: nodecore
-local dofile, minetest, rawget, rawset, table
-    = dofile, minetest, rawget, rawset, table
+local dofile, include, minetest, rawget, rawset, table
+    = dofile, include, minetest, rawget, rawset, table
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -29,8 +29,10 @@ include("util_scan_flood")
 include("util_logtrace")
 include("util_node_is")
 include("util_toolcaps")
+include("match")
 
-include("register_craft")
+include("fx_digparticles")
+
 include("register_limited_abm")
 
 include("item_on_register")
@@ -40,5 +42,3 @@ include("item_alternate_loose")
 include("item_group_visinv")
 include("item_oldnames")
 include("item_tool_wears_to")
-
-include("action_node_pummel")

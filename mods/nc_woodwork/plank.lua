@@ -16,16 +16,15 @@ minetest.register_node(plank, {
 		}
 	})
 
-nodecore.extend_pummel("nc_tree:tree",
-	function(pos, node, stats)
-		return (stats.pointed.above.y - stats.pointed.under.y) == 1
-		and nodecore.toolspeed(stats.puncher:get_wielded_item(),
-			{choppy = 1})
-	end,
-	function(pos, node, stats)
-		if stats.duration < stats.check + 2 then return end
-		minetest.remove_node(pos)
-		nodecore.item_eject(pos, plank, 5, 4)
-		nodecore.wear_current_tool(stats.puncher, {choppy = 3}, 2)
-		return true
-	end)
+nodecore.register_craft({
+		label = "split tree to planks",
+		action = "pummel",
+		toolgroups = {choppy = 1},
+		normal = {y = 1},
+		nodes = {
+			{match = "nc_tree:tree", replace = "air"}
+		},
+		items = {
+			{name = plank, count = 4, scatter = 5}
+		}
+	})

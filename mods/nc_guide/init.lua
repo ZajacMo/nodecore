@@ -53,7 +53,8 @@ addhint("found eggcorns",
 	"nc_tree:eggcorn")
 
 addhint("planted an eggcorn",
-	"nc_tree:eggcorn_planted")
+	"nc_tree:eggcorn_planted",
+	"nc_tree:eggcorn")
 
 addhint("found sticks",
 	"nc_tree:stick")

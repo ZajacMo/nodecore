@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
+local ItemStack, math, minetest, nodecore, setmetatable, type, vector
+    = ItemStack, math, minetest, nodecore, setmetatable, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -35,7 +33,6 @@ minetest.register_node(modname .. ":stack", {
 		collision_box = stackbox,
 		drop = {},
 		groups = {
-			flammable = 1,
 			snappy = 1,
 			falling_repose = 1,
 			visinv = 1
@@ -51,24 +48,6 @@ minetest.register_node(modname .. ":stack", {
 			end
 			return minetest.remove_node(posfrom)
 		end,
-		pummeldefs = { 
-			{
-				check = function(pos, node, stats, ...)
-					local def = invdef(pos)
-					if not def or not def.pummeldefs then return end
-					stats.def = def
-					for i, v in ipairs(def.pummeldefs) do
-						local ok = v.check(pos, node, stats, ...)
-						if ok then return {v.resolve, ok} end
-					end
-				end,
-				resolve = function(pos, node, stats, ...)
-					local r = stats.check[1]
-					stats.check = stats.check[2]
-					return r(pos, node, stats, ...)
-				end
-			}
-		},
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
 			local inv = minetest.get_meta(pos):get_inventory()
 			local s = inv:get_stack("solo", 1)
@@ -95,7 +74,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	minetest.set_node(pos, {name = modname .. ":stack"})
 	minetest.get_meta(pos):get_inventory():set_stack("solo", 1, stack)
 	if placer and pointed_thing then
-		nodecore.craft_check(pos, {name = stack:get_name()}, placer, pointed_thing)
+		nodecore.craft_check(pos, {name = stack:get_name()}, {
+				action = "place",
+				crafter = placer,
+				pointed = pointed_thing
+			})
 	end
 	minetest.check_for_falling(pos)
 end
@@ -168,3 +151,23 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	end
 	return itemstack
 end
+
+if nodecore.loaded_mods().nc_fire then
+	nodecore.register_limited_abm({
+		label = "Flammable ItemStacks Ignite",
+		interval = 5,
+		chance = 1,
+		nodenames = {modname .. ":stack"},
+		neighbors = {"group:igniter"},
+		action = function(pos, node)
+			if nodecore.quenched(pos) then return end
+			
+			local def = invdef(pos)
+			local flam = def and def.groups and def.groups.flammable
+			if not flam then return end
+
+			if math_random(1, flam) ~= 1 then return end
+			nodecore.ignite(pos, node)
+		end
+	})
+	end

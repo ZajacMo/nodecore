@@ -15,7 +15,7 @@ nodecore.extend_item(chip, function(copy, orig)
 			if itemstack:get_name() == chip and pointed_thing.type == "node" then
 				local pos = pointed_thing.under
 				for i, v in ipairs(nodecore.registered_stone_tip_tools) do
-					if nodecore.node_is(pos, {visinv = {
+					if nodecore.match(pos, {stack = {
 								name = v.from,
 								wear = 0.02
 							}}) then
