@@ -42,5 +42,3 @@ include("item_alternate_loose")
 include("item_group_visinv")
 include("item_oldnames")
 include("item_tool_wears_to")
-
-include("action_node_pummel")

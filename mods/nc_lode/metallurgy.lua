@@ -62,38 +62,35 @@ nodecore.register_lode("Prill", {
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
-nodecore.extend_item(modname .. ":prill_hot", function(def)
-		def.pummel_stack = 4
-	end)
--- PUMDEF: tool time
-nodecore.extend_pummel(modname .. ":prill_hot",
-	function(pos, node, stats)
-		return nodecore.toolspeed(
-			stats.puncher:get_wielded_item(),
-			{ thumpy = 3 })
-	end,
-	function(pos, node, stats)
-		if stats.duration >= stats.check then
-			minetest.set_node(pos, {name = modname .. ":slab_hot"})
-		end
-	end)
-
--- PUMDEF: tool time, normal, nearby node
-nodecore.extend_pummel(modname .. ":slab_hot",
-	function(pos, node, stats)
-		if stats.pointed.above.y <= stats.pointed.under.y then return end
-		if minetest.get_node(stats.pointed.under).name ~= modname .. ":slab_hot" then return end
-		return nodecore.toolspeed(
-			stats.puncher:get_wielded_item(),
-			{ thumpy = 3 })
-	end,
-	function(pos, node, stats)
-		if stats.duration >= stats.check then
-			minetest.remove_node(pos)
-			minetest.set_node({x = pos.x, y = pos.y - 1, z = pos.z},
-				{name = modname .. ":block_hot"})
-		end
-	end)
+nodecore.register_craft({
+		label = "forge lode slab",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
+		nodes = {
+			{
+				match = {stack = {name = modname .. ":prill_hot", count = 4}},
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":slab_hot"
+		}
+	})
+nodecore.register_craft({
+		label = "forge lode block",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = {stack = {name = modname .. ":prill_hot", count = 8}},
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":block_hot"
+		}
+	})
 
 local flame = {groups = {flame = true}}
 local function heated(pos)
