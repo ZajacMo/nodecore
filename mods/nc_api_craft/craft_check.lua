@@ -41,7 +41,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if not t then return end
 		mindur = mindur + t
 	end
-	if mindur > 0 and not data.duration or data.duration < mindur then
+	if mindur > 0 and (not data.duration or data.duration < mindur) then
 		if data.inprogress then return data.inprogress(data, recipe) end
 		return
 	end
