@@ -23,11 +23,11 @@ end
 local stone = reg("Stone", {
 		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png^[opacity:48)" },
 		drop_in_place = "nc_terrain:cobble"
-		})
+	})
 local ore = reg("Ore", {
 		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png)" },
 		drop_in_place = modname .. ":cobble"
-		})
+	})
 reg("Cobble", {
 		tiles = { modname .. "_ore.png^nc_terrain_cobble.png" },
 		alternate_loose = {
