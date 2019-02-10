@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, type
-    = ipairs, minetest, nodecore, pairs, type
+local ItemStack, ipairs, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
@@ -11,14 +11,10 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			z = pos.z + xz * x + zz * z
 		}
 	end
-	local function wield()
-		local w = data.crafter and data.crafter:get_wielded_item()
-		wield = function() return w end
-		return w
-	end
+	data.wield = ItemStack(data.wield or data.crafter and data.crafter:get_wielded_item())
 	if recipe.check and not recipe.check(pos, data, rel) then return end
-	if recipe.wield and (not wield() or not nodecore.match(
-			{stack = wield()}, recipe.wield)) then return end
+	if recipe.wield and (not data.wield or not nodecore.match(
+			{stack = data.wield}, recipe.wield)) then return end
 	if recipe.normal then
 		if data.pointed.type ~= "node" or
 		recipe.normal.y ~= data.pointed.above.y - data.pointed.under.y then return end
@@ -29,8 +25,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	end
 	local mindur = recipe.duration or 0
 	if recipe.toolgroups then
-		if not wield() then return end
-		local dg = wield():get_tool_capabilities().groupcaps
+		if not data.wield then return end
+		local dg = data.wield:get_tool_capabilities().groupcaps
 		local t
 		for gn, lv in pairs(recipe.toolgroups) do
 			local gt = dg[gn]
@@ -51,6 +47,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			if not nodecore.match(p, v.match) then return end
 		end
 	end
+	if recipe.before then recipe.before(pos, rel, data) end
 	for _, v in pairs(recipe.nodes) do
 		if v.replace then
 			local p = rel(v.x, v.y, v.z)
@@ -66,7 +63,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	end
 	if recipe.items then
 		for _, v in pairs(recipe.items) do
-			nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0), v, recipe.itemscatter)
+			nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0),
+				v.name, v.scatter, v.count, v.velocity)
 		end
 	end
 	if recipe.consumewield then
@@ -89,6 +87,7 @@ function nodecore.craft_check(pos, node, data)
 	node.x = pos.x
 	node.y = pos.y
 	node.z = pos.z
+	data.node = node
 	for _, rc in ipairs(nodecore.craft_recipes) do
 		if nodecore.match(node, rc.root.match) and data.action == rc.action then
 			if go(rc, 1, 0, 0, 1) then return true end

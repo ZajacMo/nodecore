@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, nodecore, pairs, table
-    = error, math, nodecore, pairs, table
+local error, math, nodecore, pairs, table, type
+    = error, math, nodecore, pairs, table, type
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,6 +38,13 @@ function nodecore.register_craft(recipe)
 		recipe.normal.x = recipe.normal.x or 0
 		recipe.normal.y = recipe.normal.y or 0
 		recipe.normal.z = recipe.normal.z or 0
+	end
+	if recipe.items then
+		for k, v in pairs(recipe.items) do
+			if type(v) == "string" then
+				recipe.items[k] = {name = v}
+			end
+		end
 	end
 	local newp = recipe.priority or 0
 

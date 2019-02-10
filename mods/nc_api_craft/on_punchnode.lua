@@ -75,7 +75,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if pum.count < 2 then return end
 
-		if nodecore.craft_check(pos, node, pum) then
+		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then
 			pummeling[pname] = nil
 			return
 		end

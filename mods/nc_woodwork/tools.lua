@@ -42,18 +42,20 @@ local function toolhead(name, from, group, sticks)
 				}
 			})
 	end
-	-- PUMDEF: tool time
-	nodecore.extend_pummel(from, nodecore.pummel_toolspeed,
-		function(pos, node, stats)
-			if stats.duration < stats.check + 2 then return end
-			minetest.remove_node(pos)
-			if n then nodecore.place_stack(pos, n) end
-			if sticks then
-				nodecore.item_eject(pos, "nc_tree:stick", 5, sticks)
-				nodecore.wear_current_tool(stats.puncher, {choppy = 3})
-			end
-			return true
-		end)
+
+	sticks = sticks and {name = "nc_tree:stick", count = sticks, scatter = 5} or nil
+	nodecore.register_craft({
+			label = "carve " .. from,
+			action = "pummel",
+			toolgroups = {choppy = 1},
+			nodes = {
+				{match = from, replace = "air"}
+			},
+			items = {
+				{name = n},
+				sticks
+			}
+		})
 end
 
 toolhead("Mallet", modname .. ":plank",

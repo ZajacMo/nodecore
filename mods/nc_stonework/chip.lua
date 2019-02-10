@@ -17,14 +17,7 @@ nodecore.register_craft({
 			{match = "nc_terrain:cobble_loose", replace = "air"}
 		},
 		items = {
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
-			modname .. ":chip",
+			{name = modname .. ":chip", count = 8, scatter = 5}
 		},
 		toolgroups = {cracky = 2},
 		itemscatter = 5

@@ -17,7 +17,7 @@ minetest.register_node(modname .. ":staff", {
 		},
 		paramtype = "light",
 		groups = {
-			shafty = 2,
+			firestick = 2,
 			snappy = 1,
 			flammable = 2,
 			falling_repose = 2
@@ -31,7 +31,3 @@ nodecore.register_craft({
 			{y = -1, match = "nc_tree:stick", replace = modname .. ":staff"}
 		}
 	})
-
-if nodecore.register_stick_fire_starting then
-	nodecore.register_stick_fire_starting(modname .. ":staff")
-end
