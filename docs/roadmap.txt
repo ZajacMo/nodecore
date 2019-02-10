@@ -36,8 +36,12 @@ ROADMAP (SHORT-TERM)
 	- Randomize player appearance/colors
 	- Hardcore names...?
 - Plant life stuff
-	- Better tree growth, i.e. track cumulative time, apply
-	  environmental factors.
+	- Tree growth catchup.
+		- Set last time calc at place-time and in ABM
+		- Define growth rate as gaussian, compute cumulative
+		  growth as a single box-mueller transform upon ABM
+		- Visually show progress, e.g. display a sprout or
+		  something above, to give feedback.
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
 	  OR loose dirt should grow grass.
