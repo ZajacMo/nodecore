@@ -2,9 +2,6 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- REGRESSIONS:
-	- Stack node burn-up when inv is flammable
-		- Maybe it makes sense to have another group for this?
 - Portable containers.
 	- A bag that expands when placed, if room.
 	- Inventory slots around central node each holds 1 stack.

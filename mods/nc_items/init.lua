@@ -151,3 +151,23 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	end
 	return itemstack
 end
+
+if nodecore.loaded_mods().nc_fire then
+	nodecore.register_limited_abm({
+		label = "Flammable ItemStacks Ignite",
+		interval = 5,
+		chance = 1,
+		nodenames = {modname .. ":stack"},
+		neighbors = {"group:igniter"},
+		action = function(pos, node)
+			if nodecore.quenched(pos) then return end
+			
+			local def = invdef(pos)
+			local flam = def and def.groups and def.groups.flammable
+			if not flam then return end
+
+			if math_random(1, flam) ~= 1 then return end
+			nodecore.ignite(pos, node)
+		end
+	})
+	end
