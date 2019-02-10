@@ -7,7 +7,12 @@ local function pummelparticles(data)
 	local pointed = data.pointed
 	local nodedef = data.nodedef
 	local pname = data.pname
-	
+
+	local stack = minetest.get_meta(data.node):get_inventory():get_stack("solo", 1)
+	if stack and not stack:is_empty() then
+		nodedef = minetest.registered_items[stack:get_name()] or nodedef
+	end
+
 	local a = pointed.above
 	local b = pointed.under
 	local vel = vector.subtract(a, b)
@@ -59,7 +64,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		local old = pummeling[pname]
 		if old and old.clearfx then old.clearfx() end
-		
+
 		local hash = minetest.hash_node_position
 		if old and hash(old.pos) == hash(pum.pos)
 		and hash(old.pointed.above) == hash(pum.pointed.above)

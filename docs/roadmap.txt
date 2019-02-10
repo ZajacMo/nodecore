@@ -3,7 +3,6 @@ ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
 - REGRESSIONS:
-	- Pummel particles on stacks
 	- Stack node burn-up when inv is flammable
 		- Maybe it makes sense to have another group for this?
 - Portable containers.
