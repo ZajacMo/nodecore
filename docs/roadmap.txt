@@ -2,18 +2,22 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- New materials to craft with.
+	- Tree sap from stumps?  Create resin sheets with them?
+	- Glassmaking?
+- Consider unifying heat/cooling system.
+	- Move heat and quench calcs all into API.
+		- Cumulative heat helpers?
+		- Maybe generalized time-cumulative helpers that
+		  could be used with plant growth too?
+	- Unify heat transformations into recipe system with
+	  cooking recipes?
 - Portable containers.
 	- A bag that expands when placed, if room.
 	- Inventory slots around central node each holds 1 stack.
 	- Dig central node to bundle up, store content in metadata.
 	- Containers may have "levels" to control nesting.
 - Fire tech.
-	- Fire rework.
-		- Make fuel consumed slower by reducing flame exposure.
-			- Encourages designing a better furnace.
-		- Smothering produces charcoal instead of ash.
-			- Can be reburned.
-		- Make ash whiter, charcoal black.
 	- Metal casting, annealing, tempering
 		- Axe annealed blocks/slabs -> annealed prills
 		- Hammer annealed slabs -> annealed tool heads
@@ -22,6 +26,20 @@ ROADMAP (SHORT-TERM)
 		- Quench glowing tool heads -> tempered tool heads
 		- Create and use tempered tools (much higher durability)
 		- Heat tempered tools -> glowing tool heads to recycle
+	- Fire rework.
+		- Make fuel consumed slower by reducing flame exposure.
+			- Encourages designing a better furnace.
+		- Smothering produces charcoal instead of ash.
+			- Can be reburned.  Maybe easier to ignite?
+			  Maybe rejuvenate fuel in exchange for effort?
+		- Make ash whiter, charcoal black.
+- Hint system updates.
+	- Track recipe completion in stats.
+	- Use recipes for hint guide instead of just items in hand.
+	- Need to explain core mechanics.
+		- Crafting is now done by building.
+		- Punching repeatedly w/o digging does things.
+		- Some things may matter, like which face you hit.
 - Make neighbor/distance calcs consistent.
 	- We're using scan_flood in some places, face checks in others,
 	  and find_nodes_in_area (cuboid) in others.
