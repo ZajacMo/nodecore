@@ -102,7 +102,29 @@ function nodecore.interval(after, func)
 	minetest.after(after, go)
 end
 
-function nodecore.wear_current_tool(player, groups, qty)
+function nodecore.wear_wield(player, groups, qty)
+	local wielded = player:get_wielded_item()
+	if wielded then
+		local wdef = wielded:get_definition()
+		local tp = wielded:get_tool_capabilities()
+		local dp = minetest.get_dig_params(groups, tp)
+		if wdef and wdef.after_use then
+			wielded = wdef.after_use(wielded, player, nil, dp) or wielded
+		else
+			if not minetest.settings:get_bool("creative_mode") then
+				wielded:add_wear(dp.wear * (qty or 1))
+				if wielded:get_count() <= 0 and wdef.sound
+				and wdef.sound.breaks then
+					minetest.sound_play(wdef.sound.breaks,
+						{pos = pos, gain = 0.5})
+				end
+			end
+		end
+		return player:set_wielded_item(wielded)
+	end
+end
+
+function nodecore.consume_wield(player, qty)
 	local wielded = player:get_wielded_item()
 	if wielded then
 		local wdef = wielded:get_definition()
@@ -112,21 +134,6 @@ function nodecore.wear_current_tool(player, groups, qty)
 				wielded = ItemStack("")
 			else
 				wielded:set_count(have)
-			end
-		else
-			local tp = wielded:get_tool_capabilities()
-			local dp = minetest.get_dig_params(groups, tp)
-			if wdef and wdef.after_use then
-				wielded = wdef.after_use(wielded, player, nil, dp) or wielded
-			else
-				if not minetest.settings:get_bool("creative_mode") then
-					wielded:add_wear(dp.wear * (qty or 1))
-					if wielded:get_count() <= 0 and wdef.sound
-					and wdef.sound.breaks then
-						minetest.sound_play(wdef.sound.breaks,
-							{pos = pos, gain = 0.5})
-					end
-				end
 			end
 		end
 		return player:set_wielded_item(wielded)

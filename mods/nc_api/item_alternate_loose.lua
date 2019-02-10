@@ -62,10 +62,16 @@ nodecore.register_on_register_item(function(name, def)
 		loose.groups.falling_node = 1
 
 		if loose.groups.crumbly and not loose.no_repack then
-			-- PUMDEF: tool time
-			nodecore.add_pummel(loose,
-				can_repack(loose.repack_level or 1),
-				repack_node(loose.repack_time or 1, name))
+			minetest.after(0, function()
+					nodecore.register_craft({
+							label = "repack " .. loose.name,
+							action = "pummel",
+							nodes = {
+								{match = loose.name, replace = name}
+							},
+							toolgroups = {thumpy = loose.repack_level or 1},
+						})
+				end)
 		end
 
 		loose.alternate_loose = nil

@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, setmetatable, type,
-      vector
+local ItemStack, math, minetest, nodecore, setmetatable, type, vector
+    = ItemStack, math, minetest, nodecore, setmetatable, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -50,25 +48,6 @@ minetest.register_node(modname .. ":stack", {
 			end
 			return minetest.remove_node(posfrom)
 		end,
-		pummeldefs = { 
-			-- PUMDEF: inner item
-			{
-				check = function(pos, node, stats, ...)
-					local def = invdef(pos)
-					if not def or not def.pummeldefs then return end
-					stats.def = def
-					for i, v in ipairs(def.pummeldefs) do
-						local ok = v.check(pos, node, stats, ...)
-						if ok then return {v.resolve, ok} end
-					end
-				end,
-				resolve = function(pos, node, stats, ...)
-					local r = stats.check[1]
-					stats.check = stats.check[2]
-					return r(pos, node, stats, ...)
-				end
-			}
-		},
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
 			local inv = minetest.get_meta(pos):get_inventory()
 			local s = inv:get_stack("solo", 1)

@@ -14,11 +14,12 @@ local match_skip = {
 }
 
 function nodecore.match(thing, crit)
+	if not thing then return end
 	local stack = thing.stack
 	if stack then
 		thing.name = stack:get_name()
 		thing.count = stack:get_count()
-		thing.wear = stack:get_wear()	
+		thing.wear = stack:get_wear()
 	end
 	if not thing.name then
 		thing = nodecore.underride(thing, minetest.get_node(thing))
@@ -55,8 +56,9 @@ function nodecore.match(thing, crit)
 
 	if crit.stack then
 		local stack = minetest.get_meta(thing):get_inventory():get_stack("solo", 1)
-		if not stack or stack:is_empty() then return end
-		return nodecore.match({stack = stack}, crit.stack)
+		if (not stack) or stack:is_empty() then return end
+		thing.stack = stack
+		return nodecore.match(thing, crit.stack)
 	end
 
 	return thing

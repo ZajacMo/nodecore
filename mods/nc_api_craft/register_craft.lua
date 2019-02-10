@@ -8,6 +8,8 @@ local math_floor, table_insert
 local craft_recipes = {}
 nodecore.craft_recipes = craft_recipes
 
+local id = 0
+
 function nodecore.register_craft(recipe)
 	recipe.action = recipe.action or "place"
 	local canrot
@@ -23,6 +25,13 @@ function nodecore.register_craft(recipe)
 	end
 	if not recipe.root or not recipe.root.match then
 		error "recipe.nodes must have a match for 0,0,0"
+	end
+	if not recipe.label then
+		id = id + 1
+		recipe.label = "unnamed " .. recipe.action .. " " .. id
+	end
+	if recipe.toolgroups and recipe.toolwear ~= false then
+		recipe.toolwear = 1
 	end
 	if not canrot then recipe.norotate = true end
 	if recipe.normal then
