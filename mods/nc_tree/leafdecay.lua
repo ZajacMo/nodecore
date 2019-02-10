@@ -13,7 +13,7 @@ nodecore.register_limited_abm({
 		limited_alert = 1000,
 		nodenames = {modname .. ":leaves"},
 		action = function(pos)
-			if not nodecore.scan_flood(pos, 3, function(p)
+			if not nodecore.scan_flood(pos, 5, function(p)
 					local n = minetest.get_node(p).name
 					if n == modname .. ":tree"
 					or n == "ignore" then

@@ -26,7 +26,9 @@ local function fallcheck(name, start)
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
 
-	repeat pos.y = pos.y - 1 until not nodecore.match(pos, falling)
+	local miny = pos.y - 64
+	repeat pos.y = pos.y - 1 until pos.y < miny or not nodecore.match(pos, falling)
+	if pos.y < miny then return end
 	pos.y = pos.y + 1
 	local prev = minetest.get_node(pos).name
 	nodecore.falling_repose_check(pos)
