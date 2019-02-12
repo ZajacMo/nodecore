@@ -2,6 +2,7 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Remove slabs.  Non-cube things are anathema after all.
 - Fire tech.
 	- Metal casting, annealing, tempering
 		- Axe annealed blocks -> annealed prills
@@ -21,15 +22,18 @@ ROADMAP (SHORT-TERM)
 - New materials to craft with.
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
-	- Tree sap from stumps?  Create resin sheets with them?
+	- Tree sap from stumps?  Resin?  Rubber?  Shellac?
 	- Glassmaking?
+	- Small plants?  Reeds?  Mallows?
 	- Sea stars, sponges, anenome, coral, other underwater things?
 	- Fungi, esp. tree-destroying ones, blight?
-	- Oil, natural gas?
+	- Oil, natural gas?  Fossils and fossil fuels?
 	- Geode, hydra crystals, radioactives?
 	- Shipwrecks or alien tech
 	- Spice worms
 	- Non-portable things, like "spawners" or wormholes
+	- Lightning, meteor strikes?
+	- Tubers and taproots, cacti, and other "defensive" plantlife
 - Consider unifying heat/cooling system.
 	- Move heat and quench calcs all into API.
 		- Cumulative heat helpers?
@@ -42,6 +46,7 @@ ROADMAP (SHORT-TERM)
 	- Inventory slots around central node each holds 1 stack.
 	- Dig central node to bundle up, store content in metadata.
 	- Containers may have "levels" to control nesting.
+	- Fluid containers.  Water bladder?
 - Hint system updates.
 	- Track recipe completion in stats.
 	- Use recipes for hint guide instead of just items in hand.

@@ -37,6 +37,8 @@ LONG-TERM DESIGN IDEAS
 	- Cellular automata hazards.
 	- From exploration, deliving too deep, leaving things to rot, etc.
 	- Some spread explosively (fire), some creeping (blights).
+	- Healing, possibly from "relaxation" and peaceful environment.
+	- HC death/spawn.
 
 - Cultivation and farming
 	- Plant-like CA animals, like bee nests and clouds of bees?
@@ -49,9 +51,6 @@ LONG-TERM DESIGN IDEAS
 - Vague Ideas:
 	- Cement or silk touch for obtaining smoothstone for building.
 	- Strata and/or bedrock.
-	- Hardcore buckets for water.
-	- A way to heal, possibly by doing an ambient environment check
-	  and healing players who spend time in "natural" environs?
 
 ........................................................................
 ========================================================================
