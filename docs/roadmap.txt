@@ -2,24 +2,9 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- New materials to craft with.
-	- Tree sap from stumps?  Create resin sheets with them?
-	- Glassmaking?
-- Consider unifying heat/cooling system.
-	- Move heat and quench calcs all into API.
-		- Cumulative heat helpers?
-		- Maybe generalized time-cumulative helpers that
-		  could be used with plant growth too?
-	- Unify heat transformations into recipe system with
-	  cooking recipes?
-- Portable containers.
-	- A bag that expands when placed, if room.
-	- Inventory slots around central node each holds 1 stack.
-	- Dig central node to bundle up, store content in metadata.
-	- Containers may have "levels" to control nesting.
 - Fire tech.
 	- Metal casting, annealing, tempering
-		- Axe annealed blocks/slabs -> annealed prills
+		- Axe annealed blocks -> annealed prills
 		- Hammer annealed slabs -> annealed tool heads
 		- Create and use annealed tools
 		- Heat annealed tool heads -> glowing tool heads
@@ -33,6 +18,30 @@ ROADMAP (SHORT-TERM)
 			- Can be reburned.  Maybe easier to ignite?
 			  Maybe rejuvenate fuel in exchange for effort?
 		- Make ash whiter, charcoal black.
+- New materials to craft with.
+	- Dungeon materials, stonework?
+	- Decorations for dungeons
+	- Tree sap from stumps?  Create resin sheets with them?
+	- Glassmaking?
+	- Sea stars, sponges, anenome, coral, other underwater things?
+	- Fungi, esp. tree-destroying ones, blight?
+	- Oil, natural gas?
+	- Geode, hydra crystals, radioactives?
+	- Shipwrecks or alien tech
+	- Spice worms
+	- Non-portable things, like "spawners" or wormholes
+- Consider unifying heat/cooling system.
+	- Move heat and quench calcs all into API.
+		- Cumulative heat helpers?
+		- Maybe generalized time-cumulative helpers that
+		  could be used with plant growth too?
+	- Unify heat transformations into recipe system with
+	  cooking recipes?
+- Portable containers.
+	- A bag that expands when placed, if room.
+	- Inventory slots around central node each holds 1 stack.
+	- Dig central node to bundle up, store content in metadata.
+	- Containers may have "levels" to control nesting.
 - Hint system updates.
 	- Track recipe completion in stats.
 	- Use recipes for hint guide instead of just items in hand.
