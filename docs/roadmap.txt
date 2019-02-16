@@ -2,7 +2,6 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- Remove slabs.  Non-cube things are anathema after all.
 - Fire tech.
 	- Metal casting, annealing, tempering
 		- Axe annealed blocks -> annealed prills
@@ -13,6 +12,15 @@ ROADMAP (SHORT-TERM)
 		- Create and use tempered tools (much higher durability)
 		- Heat tempered tools -> glowing tool heads to recycle
 	- Fire rework.
+		- Migrate to first-class API.
+			- Proper API for burning up items
+				- on_burn?  burns_to?
+			- Move heat and quench calcs all into API.
+			- Cumulative heat helpers?
+				- Maybe generalized time-cumulative helpers that
+				  could be used with plant growth too?
+			- Unify heat transformations into recipe system with
+			  cooking recipes?
 		- Make fuel consumed slower by reducing flame exposure.
 			- Encourages designing a better furnace.
 		- Smothering produces charcoal instead of ash.
@@ -34,19 +42,13 @@ ROADMAP (SHORT-TERM)
 	- Non-portable things, like "spawners" or wormholes
 	- Lightning, meteor strikes?
 	- Tubers and taproots, cacti, and other "defensive" plantlife
-- Consider unifying heat/cooling system.
-	- Move heat and quench calcs all into API.
-		- Cumulative heat helpers?
-		- Maybe generalized time-cumulative helpers that
-		  could be used with plant growth too?
-	- Unify heat transformations into recipe system with
-	  cooking recipes?
 - Portable containers.
 	- A bag that expands when placed, if room.
 	- Inventory slots around central node each holds 1 stack.
 	- Dig central node to bundle up, store content in metadata.
 	- Containers may have "levels" to control nesting.
 	- Fluid containers.  Water bladder?
+	- Storage shelving?
 - Hint system updates.
 	- Track recipe completion in stats.
 	- Use recipes for hint guide instead of just items in hand.
@@ -74,6 +76,7 @@ ROADMAP (SHORT-TERM)
 		  growth as a single box-mueller transform upon ABM
 		- Visually show progress, e.g. display a sprout or
 		  something above, to give feedback.
+		- Require light.  
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
 	  OR loose dirt should grow grass.

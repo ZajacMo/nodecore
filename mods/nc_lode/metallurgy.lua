@@ -41,15 +41,6 @@ function nodecore.register_lode(shape, rawdef)
 	end
 end
 
-nodecore.register_lode("Slab", {
-		type = "node",
-		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, 0, 0.5),
-		tiles = { modname .. "_#.png" },
-		paramtype = "light",
-		light_source = 6,
-		crush_damage = 1
-	})
 nodecore.register_lode("Block", {
 		type = "node",
 		tiles = { modname .. "_#.png" },
@@ -62,21 +53,6 @@ nodecore.register_lode("Prill", {
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
-nodecore.register_craft({
-		label = "forge lode slab",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = {stack = {name = modname .. ":prill_hot", count = 4}},
-				replace = "air"
-			}
-		},
-		items = {
-			modname .. ":slab_hot"
-		}
-	})
 nodecore.register_craft({
 		label = "forge lode block",
 		action = "pummel",

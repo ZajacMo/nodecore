@@ -34,6 +34,8 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_selected_image("nc_hud_sel.png")
 
 		player:set_inventory_formspec(nodecore.inventory_formspec)
+		
+		player:set_properties({stepheight = 1.2})
 	end)
 
 minetest.register_on_dieplayer(function(player)
