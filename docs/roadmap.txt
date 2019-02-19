@@ -61,11 +61,9 @@ ROADMAP (SHORT-TERM)
 	  and find_nodes_in_area (cuboid) in others.
 	- Diamond shape would be most consistent.
 	- Should require face touching, not diagonal.
-- Half-slabs
-	- Intermediate step between planks and tool-heads.
-	- Chop dirt with an axe.
-	- Hammer together 4 stones instead of 8.
-	- Pummel tree from the side with a higher tier axe, stone/metal?
+- Rock strata
+	- Harder stone deeper down, requires better tools.
+	- Effective way to limit access to ores with tech advancement.
 - Social features
 	- Randomize player appearance/colors
 	- Hardcore names...?
