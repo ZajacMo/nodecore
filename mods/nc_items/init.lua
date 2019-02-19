@@ -85,10 +85,19 @@ end
 
 local bii = minetest.registered_entities["__builtin:item"]
 local item = {
-	on_step = function(self, dtime)
-		bii.on_step(self, dtime)
-		if self.physical_state then return end
-		local pos = vector.round(self.object:getpos())
+	on_step = function(self, dtime, ...)
+		bii.on_step(self, dtime, ...)
+
+		local pos = self.object:getpos()
+		if not self.oldpos or not vector.equals(pos, self.oldpos) then
+			self.oldpos = pos
+			self.sitting = 0
+			return
+		end
+		self.sitting = (self.sitting or 0) + dtime
+		if self.sitting < 0.25 then return end
+
+		pos = vector.round(pos)
 		local i = ItemStack(self.itemstring)
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
@@ -102,12 +111,15 @@ local item = {
 		self.itemstring = ""
 		self.object:remove()
 	end,
-	on_punch = function(self)
-		local v = self.object:get_velocity()
-		v.x = v.x + math_random() * 5 - 2.5
-		v.y = v.y + math_random() * 5 - 2.5
-		v.z = v.z + math_random() * 5 - 2.5
-		self.object:set_velocity(v)
+	on_punch = function(self, ...)
+		local r = bii.on_punch(self, ...)
+		if self.itemstring ~= "" then
+			local v = self.object:get_velocity()
+			v.x = v.x + math_random() * 5 - 2.5
+			v.y = v.y + math_random() * 5 - 2.5
+			v.z = v.z + math_random() * 5 - 2.5
+			self.object:set_velocity(v)
+		end
 	end
 }
 setmetatable(item, bii)
@@ -154,20 +166,20 @@ end
 
 if nodecore.loaded_mods().nc_fire then
 	nodecore.register_limited_abm({
-		label = "Flammable ItemStacks Ignite",
-		interval = 5,
-		chance = 1,
-		nodenames = {modname .. ":stack"},
-		neighbors = {"group:igniter"},
-		action = function(pos, node)
-			if nodecore.quenched(pos) then return end
-			
-			local def = invdef(pos)
-			local flam = def and def.groups and def.groups.flammable
-			if not flam then return end
+			label = "Flammable ItemStacks Ignite",
+			interval = 5,
+			chance = 1,
+			nodenames = {modname .. ":stack"},
+			neighbors = {"group:igniter"},
+			action = function(pos, node)
+				if nodecore.quenched(pos) then return end
 
-			if math_random(1, flam) ~= 1 then return end
-			nodecore.ignite(pos, node)
-		end
-	})
-	end
+				local def = invdef(pos)
+				local flam = def and def.groups and def.groups.flammable
+				if not flam then return end
+
+				if math_random(1, flam) ~= 1 then return end
+				nodecore.ignite(pos, node)
+			end
+		})
+end
