@@ -5,14 +5,12 @@ local minetest, nodecore, pairs, type
 
 local modname = minetest.get_current_modname()
 
-local hotitems = {}
-
 function nodecore.register_lode(shape, rawdef)
 	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
 		local def = nodecore.underride({}, rawdef)
 		def = nodecore.underride(def, {
 				description = temper .. " Lode " .. shape,
-				name = (shape .. "_" .. temper):lower(),
+				name = (shape .. "_" .. temper):lower():gsub(" ", "_"),
 				groups = { cracky = 3 },
 				["metal_temper_" .. temper:lower()] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
@@ -34,8 +32,13 @@ function nodecore.register_lode(shape, rawdef)
 			end
 			def.tiles = t
 		end
-		def.inventory_image = def.inventory_image and 
-		def.inventory_image:gsub("#", temper:lower())
+		for k, v in pairs(def) do
+			if type(v) == "string" then
+				def[k] = v:gsub("##", temper):gsub("#", temper:lower())
+			end
+		end
+
+		if def.bytemper then def.bytemper(temper, def) end
 
 		minetest.register_item(modname .. ":" .. def.name, def)
 	end
@@ -51,21 +54,6 @@ nodecore.register_lode("Block", {
 nodecore.register_lode("Prill", {
 		type = "craft",
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
-	})
-
-nodecore.register_craft({
-		label = "forge lode block",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		nodes = {
-			{
-				match = {stack = {name = modname .. ":prill_hot", count = 8}},
-				replace = "air"
-			}
-		},
-		items = {
-			modname .. ":block_hot"
-		}
 	})
 
 local flame = {groups = {flame = true}}
@@ -141,3 +129,35 @@ nodecore.register_limited_abm({
 			end
 			return inv:set_stack("solo", 1, stack)
 		end})
+
+-- Because of how massive they are, forging a block is a hot-working process.
+nodecore.register_craft({
+		label = "forge lode block",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = {stack = {name = modname .. ":prill_hot", count = 8}},
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":block_hot"
+		}
+	})
+
+-- Blocks can be chopped back into prills using only hardened tools.
+nodecore.register_craft({
+		label = "break apart lode block",
+		action = "pummel",
+		toolgroups = {choppy = 5},
+		nodes = {
+			{
+				match = modname .. ":block_annealed",
+				replace = "air"
+			}
+		},
+		items = {
+			{name = modname .. ":prill_annealed", count = 8, scatter = 5}
+		}
+	})

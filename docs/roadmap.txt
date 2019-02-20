@@ -6,14 +6,6 @@ ROADMAP (SHORT-TERM)
 	- Brief time now spent as a loose item causes things to be
 	  picked up when what I want to do is pummel them again.
 - Fire tech.
-	- Metal casting, annealing, tempering
-		- Axe annealed blocks -> annealed prills
-		- Hammer annealed slabs -> annealed tool heads
-		- Create and use annealed tools
-		- Heat annealed tool heads -> glowing tool heads
-		- Quench glowing tool heads -> tempered tool heads
-		- Create and use tempered tools (much higher durability)
-		- Heat tempered tools -> glowing tool heads to recycle
 	- Fire rework.
 		- Migrate to first-class API.
 			- Proper API for burning up items
@@ -64,6 +56,8 @@ ROADMAP (SHORT-TERM)
 	  and find_nodes_in_area (cuboid) in others.
 	- Diamond shape would be most consistent.
 	- Should require face touching, not diagonal.
+- Make item updates search farther after they've been settled
+  for longer.  Allow some upwards motion...?
 - Rock strata
 	- Harder stone deeper down, requires better tools.
 	- Effective way to limit access to ores with tech advancement.
