@@ -10,7 +10,7 @@ local function toolhead(name, group)
 
 	nodecore.register_lode("toolhead_" .. n, {
 			type = "craft",
-			description = "# Lode " .. name .. " Head",
+			description = "## Lode " .. name .. " Head",
 			inventory_image = modname .. "_#.png^[mask:" ..
 			modname .. "_toolhead_" .. n .. ".png",
 			stack_max = 1
