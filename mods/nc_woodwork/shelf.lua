@@ -1,0 +1,69 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore
+    = minetest, nodecore
+-- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+
+local function pickup(pos, whom)
+	local inv = minetest.get_meta(pos):get_inventory()
+	local stack = inv:get_stack("solo", 1)
+	if not stack or stack:is_empty() then return true end
+	stack = whom:get_inventory():add_item("main", stack)
+	inv:set_stack("solo", 1, stack)
+	return stack:is_empty()
+end
+
+minetest.register_node(modname .. ":shelf", {
+		description = "Wooden Shelf",
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5},
+			{-0.5, 7/16, -0.5, 0.5, 0.5, 0.5},
+			{-0.5, -7/16, -0.5, -7/16, 7/16, -7/16},
+			{-0.5, -7/16, 7/16, -7/16, 7/16, 0.5},
+			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
+			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
+		),
+		tiles = { "nc_tree_tree_side.png^(" .. modname ..
+			"_plank.png^[mask:" .. modname .. "_shelf.png)" },
+		groups = {
+			choppy = 1,
+			visinv = 1
+		},
+		paramtype = "light",
+		on_construct = function(pos)
+			local inv = minetest.get_meta(pos):get_inventory()
+			inv:set_size("solo", 1)
+			nodecore.visinv_update_ents(pos)
+		end,
+		on_rightclick = function(pos, node, clicker, stack, pointed_thing)
+			if not stack or stack:is_empty() then return end
+			minetest.log(minetest.serialize(pos))
+			local inv = minetest.get_meta(pos):get_inventory()
+			stack = inv:add_item("solo", stack)
+			nodecore.visinv_update_ents(pos)
+			return stack
+		end,
+		on_punch = function(pos, node, puncher)
+			return pickup(pos, puncher)
+		end,
+		on_dig = function(pos, node, digger, ...)
+			if pickup(pos, digger) then
+				return minetest.node_dig(pos, node, digger, ...)
+			end
+		end
+	})
+
+nodecore.register_craft({
+		nodes = {
+			{match = modname .. ":plank", replace = "air"},
+			{x = -1, z = -1, match = modname .. ":frame", replace = "air"},
+			{x = 1, z = -1, match = modname .. ":frame", replace = "air"},
+			{x = -1, z = 1, match = modname .. ":frame", replace = "air"},
+			{x = 1, z = 1, match = modname .. ":frame", replace = "air"},
+		},
+		items = {
+			modname .. ":shelf 2"
+		}
+	})

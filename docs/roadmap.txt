@@ -2,9 +2,16 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Shelving needs to burn up in fire, but leave contents behind.
 - Add direct stack node placement support to recipes
 	- Brief time now spent as a loose item causes things to be
 	  picked up when what I want to do is pummel them again.
+- Containers.
+	- Storage shelving?
+	- A bag that expands when placed, if room.
+		- Inventory slots around central node each holds 1 stack.
+		- Dig central node to bundle up, store content in metadata.
+		- Containers may have "levels" to control nesting.
 - Fire tech.
 	- Fire rework.
 		- Migrate to first-class API.
@@ -37,13 +44,6 @@ ROADMAP (SHORT-TERM)
 	- Non-portable things, like "spawners" or wormholes
 	- Lightning, meteor strikes?
 	- Tubers and taproots, cacti, and other "defensive" plantlife
-- Portable containers.
-	- A bag that expands when placed, if room.
-	- Inventory slots around central node each holds 1 stack.
-	- Dig central node to bundle up, store content in metadata.
-	- Containers may have "levels" to control nesting.
-	- Fluid containers.  Water bladder?
-	- Storage shelving?
 - Hint system updates.
 	- Track recipe completion in stats.
 	- Use recipes for hint guide instead of just items in hand.
