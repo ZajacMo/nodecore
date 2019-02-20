@@ -29,7 +29,6 @@ minetest.register_on_generated(function(minp, maxp)
 		for n = 1, qty do
 			local x = math_floor(math_random() * (maxp.x - minp.x)) + minp.x
 			local z = math_floor(math_random() * (maxp.z - minp.z)) + minp.z
-			minetest.log(x .. "," .. z)
 			local starty = maxp.y
 			if starty > (maxy + 1) then starty = (maxy + 1) end
 			local endy = minp.y
