@@ -2,6 +2,9 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Add direct stack node placement support to recipes
+	- Brief time now spent as a loose item causes things to be
+	  picked up when what I want to do is pummel them again.
 - Fire tech.
 	- Metal casting, annealing, tempering
 		- Axe annealed blocks -> annealed prills
