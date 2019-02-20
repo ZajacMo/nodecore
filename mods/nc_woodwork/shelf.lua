@@ -25,6 +25,9 @@ minetest.register_node(modname .. ":shelf", {
 			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
 			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
 		),
+		selection_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
+		),
 		tiles = { "nc_tree_tree_side.png^(" .. modname ..
 			"_plank.png^[mask:" .. modname .. "_shelf.png)" },
 		groups = {
@@ -39,7 +42,6 @@ minetest.register_node(modname .. ":shelf", {
 		end,
 		on_rightclick = function(pos, node, clicker, stack, pointed_thing)
 			if not stack or stack:is_empty() then return end
-			minetest.log(minetest.serialize(pos))
 			local inv = minetest.get_meta(pos):get_inventory()
 			stack = inv:add_item("solo", stack)
 			nodecore.visinv_update_ents(pos)
