@@ -77,7 +77,7 @@ local c_stone = minetest.get_content_id("nc_terrain:stone")
 minetest.register_on_generated(function(minp, maxp)
 		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
-		local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+		local area = VoxelArea:new({MinEdge = emin, MaxEdge =  emax})
 
 		local function bad(x, y, z)
 			local c = data[area:index(x, y, z)]
@@ -109,7 +109,6 @@ minetest.register_on_generated(function(minp, maxp)
 		end
 
 		vm:set_data(data)
-		vm:set_lighting{day = 0, night = 0}
-		vm:calc_lighting()
+		-- Nothing here should affect light; skip recalc.
 		vm:write_to_map()
 	end)
