@@ -1,11 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile, minetest
-    = dofile, minetest
+local include, minetest
+    = include, minetest
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 local path = minetest.get_modpath(modname)
 
-dofile(path .. "/api.lua")
-dofile(path .. "/node.lua")
-dofile(path .. "/abm.lua")
+include('api')
+include('node')
+include('abm')
+include('firestarting')

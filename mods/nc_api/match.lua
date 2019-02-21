@@ -22,9 +22,9 @@ function nodecore.match(thing, crit)
 	if stack then
 		thing.name = stack:get_name()
 		thing.count = stack:get_count()
-		crit.count = crit.count or 1
+		if crit.count == nil then crit.count = 1 end
 		thing.wear = stack:get_wear()
-		crit.wear = crit.wear or 0
+		if crit.wear == nil then crit.wear = 0 end
 	end
 	if not thing.name then
 		thing = nodecore.underride(thing, minetest.get_node(thing))
