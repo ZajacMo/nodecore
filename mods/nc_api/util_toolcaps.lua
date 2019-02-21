@@ -8,7 +8,7 @@ local math_pow
 local basetimes = {
 	cracky = 3,
 	thumpy = 2,
-	choppy = 0.7,
+	choppy = 2,
 	crumbly = 0.5,
 	snappy = 0.4,
 }
