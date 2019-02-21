@@ -2,8 +2,6 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- BUG: Chopping a stack of logs breaks into 4 planks; should not chop
-  if more than 1 log in stack.
 - BUG: Shelving needs to burn up in fire, but leave contents behind.
 - Containers.
 	- A bag that expands when placed, if room.

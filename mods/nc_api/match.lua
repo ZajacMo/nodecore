@@ -15,17 +15,21 @@ local match_skip = {
 
 function nodecore.match(thing, crit)
 	if not thing then return end
+
+	if type(crit) == "string" then crit = {name = crit} end
+
 	local stack = thing.stack
 	if stack then
 		thing.name = stack:get_name()
 		thing.count = stack:get_count()
+		crit.count = crit.count or 1
 		thing.wear = stack:get_wear()
+		crit.wear = crit.wear or 0
 	end
 	if not thing.name then
 		thing = nodecore.underride(thing, minetest.get_node(thing))
 	end
 
-	if type(crit) == "string" then crit = {name = crit} end
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
