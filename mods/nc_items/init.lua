@@ -80,7 +80,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 				pointed = pointed_thing
 			})
 	end
-	minetest.check_for_falling(pos)
+	return minetest.check_for_falling(pos)
 end
 
 local bii = minetest.registered_entities["__builtin:item"]
@@ -132,7 +132,8 @@ local falling = {
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				nodecore.item_eject(self.object:getpos(), stack)
+				nodecore.item_eject(self.object:getpos(), stack,
+					nil, nil, {x = 0, y = 0.01, z = 0})
 				return self.object:remove()
 			end
 		end
