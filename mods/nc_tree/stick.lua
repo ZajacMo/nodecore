@@ -35,6 +35,9 @@ if nodecore.loaded_mods().nc_fire then
 	nodecore.register_craft({
 			label = "stick fire starting",
 			action = "pummel",
+			wield = {
+				groups = {firestick = true}
+			},
 			nodes = {
 				{match = {groups = {firestick = true}}}
 			},
