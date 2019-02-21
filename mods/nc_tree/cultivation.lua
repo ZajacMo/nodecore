@@ -36,6 +36,7 @@ minetest.register_node(epname, nodecore.underride({drop = ldname},
 		minetest.registered_nodes[ldname]))
 
 nodecore.register_craft({
+		label = "eggcorn planting",
 		normal = {y = 1},
 		nodes = {
 			{match = "nc_terrain:dirt_loose", replace = "air"},
