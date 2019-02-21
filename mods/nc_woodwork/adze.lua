@@ -17,6 +17,7 @@ minetest.register_tool(modname .. ":adze", {
 	})
 
 nodecore.register_craft({
+		label = "assemble wood adze",
 		normal = {y = 1},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},

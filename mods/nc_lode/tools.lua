@@ -40,6 +40,7 @@ local function toolhead(name, group)
 
 	for _, t in pairs({"annealed", "tempered"}) do
 		nodecore.register_craft({
+				label = "assemble lode " .. n,
 				normal = {y = 1},
 				nodes = {
 					{match = modname .. ":toolhead_" .. n .. "_" .. t,

@@ -25,6 +25,7 @@ minetest.register_node(modname .. ":staff", {
 	})
 
 nodecore.register_craft({
+		label = "assemble staff",
 		normal = {y = 1},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
