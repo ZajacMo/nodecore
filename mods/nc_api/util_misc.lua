@@ -158,6 +158,11 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 	stack = ItemStack(stack)
 	speed = speed or 0
 	vel = vel or {x = 0, y = 0, z = 0}
+	if speed == 0 and vel.x == 0 and vel.y == 0 and vel.z == 0
+	and nodecore.place_stack and minetest.get_node(pos).name == "air" then
+		stack:set_count(stack:get_count() * (qty or 1))
+		return nodecore.place_stack(pos, stack)
+	end
 	for i = 1, (qty or 1) do
 		local v = {
 			x = vel.x + (math_random() - 0.5) * speed,
