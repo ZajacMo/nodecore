@@ -12,6 +12,14 @@ function nodecore.ignite(pos, node)
 	if fuel < 0 then fuel = 0 end
 	if fuel > 6 then fuel = 6 end
 	fuel = math_floor(fuel)
+	local stack
+	if nodecore.node_group("eject_inv_on_burn", pos, node) then
+		stack = nodecore.stack_get(pos)
+		if stack and (not stack:is_empty()) then
+			local p = nodecore.scan_flood(pos, 2, nodecore.buildable_to)
+			nodecore.item_eject(p or pos, stack, 1)
+		end
+	end
 	minetest.set_node(pos, {name = modname .. ((fuel > 0)
 				and (":ember" .. fuel) or ":fire")})
 	minetest.after(0, function() minetest.check_for_falling(pos) end)

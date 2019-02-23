@@ -137,7 +137,7 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = {stack = {name = modname .. ":prill_hot", count = 8}},
+				match = {name = modname .. ":prill_hot", count = 8},
 				replace = "air"
 			}
 		},

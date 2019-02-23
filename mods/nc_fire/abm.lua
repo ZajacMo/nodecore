@@ -58,15 +58,6 @@ nodecore.register_limited_abm({
 			local def = minetest.registered_nodes[node.name]
 			local flam = def and def.groups and def.groups.flammable
 			if not flam then return end
-			if def.groups.visinv then
-				local stack = minetest.get_meta(pos)
-				:get_inventory():get_stack("solo", 1)
-				if stack and not stack:is_empty() then
-					local idef = minetest.registered_items[stack:get_name()]
-					flam = idef and idef.groups and idef.groups.flammable
-				end
-			end
-			if not flam then return end
 
 			-- Ignite randomly.
 			if math_random(1, flam) ~= 1 then return end

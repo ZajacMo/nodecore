@@ -28,7 +28,7 @@ nodecore.register_craft({
 		action = "pummel",
 		nodes = {
 			{
-				match = {stack = {name = modname .. ":chip", count = 8}},
+				match = {name = modname .. ":chip", count = 8},
 				replace = "nc_terrain:cobble_loose"
 			}
 		},

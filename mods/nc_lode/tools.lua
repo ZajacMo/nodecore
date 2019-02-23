@@ -66,8 +66,8 @@ local function forge(from, fromqty, to, prills)
 			toolgroups = {thumpy = 3},
 			nodes = {
 				{
-					match = {stack = {name = modname .. ":" .. from .. "_annealed",
-							count = fromqty}},
+					match = {name = modname .. ":" .. from .. "_annealed",
+							count = fromqty},
 					replace = "air"
 				},
 				{
