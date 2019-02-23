@@ -15,10 +15,10 @@ nodecore.extend_item(chip, function(copy, orig)
 			if itemstack:get_name() == chip and pointed_thing.type == "node" then
 				local pos = pointed_thing.under
 				for i, v in ipairs(nodecore.registered_stone_tip_tools) do
-					if nodecore.match(pos, {stack = {
-								name = v.from,
-								wear = 0.02
-							}}) then
+					if nodecore.match(pos, {
+							name = v.from,
+							wear = 0.02
+							}) then
 						minetest.remove_node(pos)
 						nodecore.item_eject(pos, v.to)
 						itemstack:set_count(itemstack:get_count() - 1)
