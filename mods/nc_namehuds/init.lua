@@ -50,10 +50,26 @@ minetest.register_on_leaveplayer(function(player)
 
 -- Vague health descriptions
 local health = {
-	"critical", "critical", "critical", "critical",
-	"wounded", "wounded", "wounded", "wounded", "wounded", "wounded",
-	"injured", "injured", "injured", "injured", "injured", "injured",
-	"healthy", "healthy", "healthy", "healthy"
+	"critically injured",
+	"critically injured",
+	"heavily injured",
+	"heavily injured",
+	"heavily injured",
+	"heavily injured",
+	"injured",
+	"injured",
+	"injured",
+	"injured",
+	"injured",
+	"injured",
+	"slightly injured",
+	"slightly injured",
+	"slightly injured",
+	"slightly injured",
+	"barely scratched",
+	"barely scratched",
+	"barely scratched",
+	"uninjured"
 }
 
 -- Get custom text for a visible HUD.
@@ -127,6 +143,8 @@ local function canseeface(p1, n1, p2, n2, los)
 	-- Compute normalized 2d vector from one player to another.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
+	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.6, z = o2.z})
+	if ll < 5 then return end
 	local dx = o1.x - o2.x
 	local dz = o1.z - o2.z
 	local d = dx * dx + dz * dz
