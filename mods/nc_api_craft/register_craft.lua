@@ -46,6 +46,9 @@ function nodecore.register_craft(recipe)
 			end
 		end
 	end
+	if recipe.wield and type(recipe.wield) == "table" then
+		recipe.wield.count = recipe.wield.count or false
+	end
 	local newp = recipe.priority or 0
 
 	local min = 1

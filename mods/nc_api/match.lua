@@ -22,9 +22,7 @@ function nodecore.match(thing, crit)
 	if stack then
 		thing.name = stack:get_name()
 		thing.count = stack:get_count()
-		if crit.count == nil then crit.count = 1 end
 		thing.wear = stack:get_wear()
-		if crit.wear == nil then crit.wear = 0 end
 	end
 	if not thing.name then
 		thing = nodecore.underride(thing, minetest.get_node(thing))
@@ -34,6 +32,7 @@ function nodecore.match(thing, crit)
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
 	if crit.count and thing.count ~= crit.count then return end
+	if crit.count == nil and thing.count and thing.count ~= 1 then return end
 	if crit.wear then
 		if crit.wear < 1 then crit.wear = crit.wear * 65535 end
 		if thing.wear > crit.wear then return end
@@ -61,8 +60,10 @@ function nodecore.match(thing, crit)
 	if crit.stack then
 		local stack = minetest.get_meta(thing):get_inventory():get_stack("solo", 1)
 		if (not stack) or stack:is_empty() then return end
-		thing.stack = stack
-		return nodecore.match(thing, crit.stack)
+		local copy = {}
+		for k, v in pairs(thing) do copy[k] = v end
+		copy.stack = stack
+		return nodecore.match(copy, crit.stack)
 	end
 
 	return thing

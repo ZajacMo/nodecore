@@ -9,8 +9,7 @@ nodecore.register_craft({
 		label = "stick fire starting",
 		action = "pummel",
 		wield = {
-			groups = {firestick = true},
-			count = false
+			groups = {firestick = true}
 		},
 		nodes = {
 			{match = {groups = {firestick = true}}}
