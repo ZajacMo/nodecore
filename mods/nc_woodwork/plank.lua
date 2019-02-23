@@ -28,3 +28,16 @@ nodecore.register_craft({
 			{name = plank, count = 4, scatter = 5}
 		}
 	})
+
+nodecore.register_craft({
+		label = "bash planks to sticks",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
+		nodes = {
+			{match = plank, replace = "air"}
+		},
+		items = {
+			{name = "nc_tree:stick", count = 4, scatter = 5}
+		}
+	})

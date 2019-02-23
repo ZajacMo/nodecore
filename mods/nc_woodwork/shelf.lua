@@ -63,7 +63,7 @@ nodecore.register_craft({
 			{x = 1, z = 1, match = modname .. ":frame", replace = "air"},
 		},
 		items = {
-			modname .. ":shelf 2"
+			modname .. ":shelf 4"
 		}
 	})
 
@@ -77,6 +77,6 @@ nodecore.register_craft({
 			{x = 1, z = 0, match = modname .. ":frame", replace = "air"},
 		},
 		items = {
-			modname .. ":shelf 2"
+			modname .. ":shelf 4"
 		}
 	})

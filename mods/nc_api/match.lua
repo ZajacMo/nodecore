@@ -13,17 +13,10 @@ local match_skip = {
 	wear = true
 }
 
-local seen = {}
 function nodecore.match(thing, crit)
 	if not thing then return end
 
 	if type(crit) == "string" then crit = {name = crit} end
-
-	local n = minetest.serialize(crit)
-	if not seen[n] then
-		seen[n] = true
-		minetest.log(n)
-	end
 
 	thing.count = thing.count or 1
 
