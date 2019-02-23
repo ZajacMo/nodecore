@@ -1,16 +1,33 @@
 ========================================================================
 LONG-TERM DESIGN IDEAS
 ------------------------------------------------------------------------
+NEW CONTENT
 
-- Support/feedback improvements.
-	- Improve in-game hint stuff.
-		- Feedback/issues URL?
-			- Look for new URL buttons in 5.0+
-		- Achievement/hint system?
+- Rock strata get harder the further down you go
+	- Need stronger tools.
+	- Limit access to some ores.
 
-- Digital logic.	
-	- "Redstone dust", falling/attached, hard to place freely.
-	- One primitive logic gate, NAND or NOR.
+- New materials to craft with.
+	- Dungeon materials, stonework?
+	- Decorations for dungeons
+	- Tree sap from stumps?  Resin?  Rubber?  Shellac?
+	- Glassmaking?
+	- Small plants?  Reeds?  Mallows?
+	- Sea stars, sponges, anenome, coral, other underwater things?
+	- Fungi, esp. tree-destroying ones, blight?
+	- Oil, natural gas?  Fossils and fossil fuels?
+	- Geode, hydra crystals, radioactives?
+	- Shipwrecks or alien tech
+	- Spice worms
+	- Non-portable things, like "spawners" or wormholes
+	- Lightning, meteor strikes?
+	- Tubers and taproots, cacti, and other "defensive" plantlife
+
+- Digital logic.
+	- Some "redstone dust" kind of ore.  Ceruleium?  Maybe a
+	  foam made with sponges, or other substrate?
+	- Ternary logic?
+	- Run wires over glass over other wires as a FET?
 	- No delay/buffers; transform to mechanical for delays.
 	- Buttons/touchplates, no switches (build a latch for state).
 	- Pistons or rack&pinions for affecting world stuff.
@@ -43,14 +60,41 @@ LONG-TERM DESIGN IDEAS
 - Cultivation and farming
 	- Plant-like CA animals, like bee nests and clouds of bees?
 	  Termine mounds?  Ant colonies?  Coral?
-	  
+
 - More biomes, exploration diversity.
 	- Water and lava springs.
 	- Lava deep underground as a bedrock replacement?
+	- Watershed mapgen?
 
-- Vague Ideas:
-	- Cement or silk touch for obtaining smoothstone for building.
-	- Strata and/or bedrock.
+------------------------------------------------------------------------
+USABILITY
+
+- Hint system updates.
+	- Track recipe completion in stats.
+	- Use recipes for hint guide instead of just items in hand.
+	- Need to explain core mechanics.
+		- Crafting is now done by building.
+		- Punching repeatedly w/o digging does things.
+		- Some things may matter, like which face you hit.
+	- Feedback/issues URL?
+		- Look for new URL buttons in 5.0+
+
+- Social features
+	- Randomize player appearance/colors.
+	- Players show damage on texture?
+	- Players show wielditem on texture or floating ent?
+
+------------------------------------------------------------------------
+REFACTORS AND REFINEMENTS
+
+- Make neighbor/distance calcs consistent.
+	- We're using scan_flood in some places, face checks in others,
+	  and find_nodes_in_area (cuboid) in others.
+	- Diamond shape would be most consistent.
+	- Should require face touching, not diagonal.
+
+- Make item updates search farther after they've been settled
+  for longer.  Allow some upwards motion...?
 
 ........................................................................
 ========================================================================
