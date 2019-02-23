@@ -112,8 +112,7 @@ nodecore.register_limited_abm({
 		chance = 1,
 		nodenames = {"group:visinv"},
 		action = function(pos, node)
-			local inv = minetest.get_meta(pos):get_inventory()
-			local stack = inv:get_stack("solo", 1)
+			local stack = nodecore.stack_get(pos)
 			if stack:is_empty() then return end
 			local def = minetest.registered_items[stack:get_name()]
 			if not def then return end
@@ -127,7 +126,7 @@ nodecore.register_limited_abm({
 			elseif timecounter(stack:get_meta(), 30, heated(pos)) then
 				return replacestack(pos, def.metal_alt_hot, stack)
 			end
-			return inv:set_stack("solo", 1, stack)
+			return nodecore.stack_set(pos, stack)
 		end})
 
 -- Because of how massive they are, forging a block is a hot-working process.

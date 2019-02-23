@@ -8,7 +8,7 @@ local function pummelparticles(data)
 	local nodedef = data.nodedef
 	local pname = data.pname
 
-	local stack = minetest.get_meta(data.node):get_inventory():get_stack("solo", 1)
+	local stack = nodecore.stack_get(data.node)
 	if stack and not stack:is_empty() then
 		nodedef = minetest.registered_items[stack:get_name()] or nodedef
 	end

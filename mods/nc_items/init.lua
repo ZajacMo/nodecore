@@ -10,9 +10,7 @@ local modname = minetest.get_current_modname()
 local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
 
 local function invdef(pos)
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	local stack = inv:get_stack("solo", 1)
+	local stack = nodecore.stack_get(pos)
 	if not stack or stack:is_empty() then return end
 	local def = minetest.registered_items[stack:get_name()]
 	return stack:get_count() == (def.pummel_stack or 1) and def or nil
@@ -41,26 +39,14 @@ minetest.register_node(modname .. ":stack", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		repose_drop = function(posfrom, posto, node)
-			local meta = minetest.get_meta(posfrom)
-			local inv = meta:get_inventory()
-			local stack = inv:get_stack("solo", 1)
+			local stack = nodecore.stack_get(posfrom)
 			if stack and not stack:is_empty() then
 				nodecore.item_eject(posto, stack)
 			end
 			return minetest.remove_node(posfrom)
 		end,
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
-			local inv = minetest.get_meta(pos):get_inventory()
-			local s = inv:get_stack("solo", 1)
-			if s and s:get_name() == stack:get_name() then
-				if whom and whom:get_player_control().sneak then
-					if inv:add_item("solo", ItemStack(stack:get_name()))
-					:is_empty() then stack:take_item(1) end
-					return stack
-				end
-				return inv:add_item("solo", stack)
-			end
-			return minetest.item_place_node(stack, whom, pointed)
+			return nodecore.stack_add(pos, stack)
 		end
 	})
 
@@ -69,11 +55,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	local name = stack:get_name()
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	stack = minetest.get_meta(below):get_inventory():add_item("solo", stack)
+	stack = nodecore.stack_add(below, stack)
 	if stack:is_empty() then return end
 
 	minetest.set_node(pos, {name = modname .. ":stack"})
-	minetest.get_meta(pos):get_inventory():set_stack("solo", 1, stack)
+	nodecore.stack_set(pos, stack)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {
 				action = "place",
@@ -103,7 +89,7 @@ local item = {
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
 				if p.y > pos.y then return end
-				i = minetest.get_meta(p):get_inventory():add_item("solo", i)
+				i = nodecore.stack_add(p, i)
 				if i:is_empty() then return p end
 				if nodecore.buildable_to(p) then return p end
 			end)

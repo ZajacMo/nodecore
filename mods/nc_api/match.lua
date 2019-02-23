@@ -39,7 +39,7 @@ function nodecore.match(thing, crit)
 	end
 	local def = minetest.registered_items[thing.name]
 	if (not thing.stacked) and def.groups and def.groups.is_stack_only then
-		local stack = minetest.get_meta(thing):get_inventory():get_stack("solo", 1)
+		local stack = nodecore.stack_get(thing)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
 			def = minetest.registered_items[thing.name]

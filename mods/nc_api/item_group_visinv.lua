@@ -49,11 +49,7 @@ minetest.register_entity(modname .. ":stackent", {
 		is_stack = true,
 		itemcheck = function(self)
 			local pos = self.object:getpos()
-			local meta = minetest.get_meta(pos)
-			if not meta then return self.object:remove() end
-			local inv = meta:get_inventory()
-			if not inv then return self.object:remove() end
-			local stack = inv:get_stack("solo", 1)
+			local stack = nodecore.stack_get(pos)
 			if not stack or stack:get_count() < 1 then return self.object:remove() end
 			self.rot = self.rot or math_random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
@@ -150,9 +146,7 @@ minetest.get_node_drops = function(...)
 	local drops = old_get_node_drops(...)
 	if not digpos then return drops end
 	drops = drops or {}
-	local meta = minetest.get_meta(digpos)
-	local inv = meta:get_inventory()
-	local stack = inv:get_stack("solo", 1)
+	local stack = nodecore.stack_get(digpos)
 	if stack and not stack:is_empty() then
 		drops[#drops + 1] = stack
 	end

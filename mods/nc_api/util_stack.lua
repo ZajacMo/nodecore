@@ -20,7 +20,8 @@ function nodecore.stack_add(pos, stack)
 end
 
 function nodecore.stack_giveto(pos, player)
-	local stack = nodecore.solostack_get(pos)
+	local stack = nodecore.stack_get(pos)
 	stack = player:get_inventory():add_item("main", stack)
-	return nodecore.solostack_set(pos, stack)
+	nodecore.stack_set(pos, stack)
+	return stack:is_empty()
 end

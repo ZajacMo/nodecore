@@ -5,15 +5,6 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local function pickup(pos, whom)
-	local inv = minetest.get_meta(pos):get_inventory()
-	local stack = inv:get_stack("solo", 1)
-	if not stack or stack:is_empty() then return true end
-	stack = whom:get_inventory():add_item("main", stack)
-	inv:set_stack("solo", 1, stack)
-	return stack:is_empty()
-end
-
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
 		drawtype = "nodebox",
@@ -45,16 +36,13 @@ minetest.register_node(modname .. ":shelf", {
 		end,
 		on_rightclick = function(pos, node, clicker, stack, pointed_thing)
 			if not stack or stack:is_empty() then return end
-			local inv = minetest.get_meta(pos):get_inventory()
-			stack = inv:add_item("solo", stack)
-			nodecore.visinv_update_ents(pos)
-			return stack
+			return nodecore.stack_add(pos, stack)
 		end,
 		on_punch = function(pos, node, puncher)
-			return pickup(pos, puncher)
+			return nodecore.stack_giveto(pos, puncher)
 		end,
 		on_dig = function(pos, node, digger, ...)
-			if pickup(pos, digger) then
+			if nodecore.stack_giveto(pos, digger) then
 				return minetest.node_dig(pos, node, digger, ...)
 			end
 		end
