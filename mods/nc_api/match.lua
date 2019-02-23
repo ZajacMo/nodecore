@@ -13,18 +13,32 @@ local match_skip = {
 	wear = true
 }
 
+local seen = {}
 function nodecore.match(thing, crit)
 	if not thing then return end
 
 	if type(crit) == "string" then crit = {name = crit} end
 
+	local n = minetest.serialize(crit)
+	if not seen[n] then
+		seen[n] = true
+		minetest.log(n)
+	end
+
 	thing.count = thing.count or 1
 
+	thing = nodecore.underride({}, thing)
+	if thing.stack then
+		thing.name = thing.stack:get_name()
+		thing.count = thing.stack:get_count()
+		thing.wear = thing.stack:get_wear()	
+		thing.stacked = true
+	end
 	if not thing.name then
 		thing = nodecore.underride(thing, minetest.get_node(thing))
 	end
 	local def = minetest.registered_items[thing.name]
-	if (not thing.stackcheck) and def.groups and def.groups.is_stack_only then
+	if (not thing.stacked) and def.groups and def.groups.is_stack_only then
 		local stack = minetest.get_meta(thing):get_inventory():get_stack("solo", 1)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
@@ -32,7 +46,7 @@ function nodecore.match(thing, crit)
 			thing.count = stack:get_count()
 			thing.wear = stack:get_wear()
 		end
-		thing.stackcheck = true
+		thing.stacked = true
 	end
 
 	if crit.name and thing.name ~= crit.name then return end

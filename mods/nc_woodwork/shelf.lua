@@ -32,7 +32,10 @@ minetest.register_node(modname .. ":shelf", {
 			"_plank.png^[mask:" .. modname .. "_shelf.png)" },
 		groups = {
 			choppy = 1,
-			visinv = 1
+			visinv = 1,
+			flammable = 2,
+			fire_fuel = 3,
+			eject_inv_on_burn = 1
 		},
 		paramtype = "light",
 		on_construct = function(pos)
