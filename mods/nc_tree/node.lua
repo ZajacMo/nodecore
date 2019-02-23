@@ -40,14 +40,16 @@ minetest.register_node(modname .. ":leaves", {
 		groups = {
 			snappy = 1,
 			flammable = 3,
-			fire_fuel = 2
+			fire_fuel = 2,
+			green = 3
 		},
 		alternate_loose = {
 			tiles = { modname .. "_leaves_dry.png" },
 			walkable = false,
 			groups = {
 				flammable = 1,
-				falling_repose = 1
+				falling_repose = 1,
+				green = 1
 			}
 		},
 		alternate_solid = {

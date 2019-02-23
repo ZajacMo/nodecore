@@ -30,6 +30,7 @@ include("util_logtrace")
 include("util_node_is")
 include("util_toolcaps")
 include("util_stack")
+include("util_phealth")
 include("match")
 
 include("fx_digparticles")
