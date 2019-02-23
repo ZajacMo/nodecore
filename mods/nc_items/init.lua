@@ -35,7 +35,8 @@ minetest.register_node(modname .. ":stack", {
 		groups = {
 			snappy = 1,
 			falling_repose = 1,
-			visinv = 1
+			visinv = 1,
+			is_stack_only = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,

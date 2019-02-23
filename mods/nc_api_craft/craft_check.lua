@@ -88,6 +88,13 @@ function nodecore.craft_check(pos, node, data)
 	node.y = pos.y
 	node.z = pos.z
 	data.node = node
+	local reg = minetest.registered_items[node.name]
+	local groups = reg and reg.groups or {}
+	if groups.is_stack_only then
+		local stack = minetest.get_meta(pos):get_inventory():get_stack("solo", 1)
+		node.name = stack:get_name()
+		node.count = stack:get_count()
+		node.wear = stack:get_wear()	end
 	for _, rc in ipairs(nodecore.craft_recipes) do
 		if nodecore.match(node, rc.root.match) and data.action == rc.action then
 			if go(rc, 1, 0, 0, 1) then return true end
