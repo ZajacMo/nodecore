@@ -58,6 +58,7 @@ local function playeradd(qty, player, ...)
 	end
 	dbadd(qty, false, "players", ...)
 end
+nodecore.player_stat_add = playeradd
 
 ------------------------------------------------------------------------
 -- PLAYER EVENTS
@@ -87,7 +88,8 @@ minetest.register_on_player_hpchange(function(whom, change, reason)
 	end)
 
 minetest.register_on_cheat(function(player, name)
-		playeradd(1, player, "cheat", name or "?")
+		playeradd(1, player, "cheat", type(name) == "table"
+			and name.type or name or "?")
 	end)
 
 minetest.register_on_chat_message(function(name, msg)

@@ -73,6 +73,9 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 	end
 	if recipe.after then recipe.after(pos, rel, data) end
+	if nodecore.player_stat_add then
+		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
+	end
 	minetest.log((data.crafter and data.crafter:get_player_name() or "unknown")
 		.. " completed recipe \"" .. recipe.label .. "\" at " ..
 		minetest.pos_to_string(pos) .. " upon " .. node.name)
