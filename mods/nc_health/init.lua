@@ -71,9 +71,21 @@ minetest.register_globalstep(function(dt)
 		end
 	end)
 
-minetest.register_on_respawnplayer(function(player)
+minetest.register_on_dieplayer(function(player)
+		-- flush attributes
 		player:set_attribute("healthenv", "")
 		cache[player:get_player_name()] = nil
+		nodecore.addphealth(player, -20)
+		
+		local inv = player:get_inventory()
+		local pos = player:getpos()
+		for i = 1, inv:get_size("main") do
+			nodecore.item_eject(pos, inv:get_stack("main", i), 20)
+		end
+		inv:set_list("main", {})
+	end)
+
+minetest.register_on_respawnplayer(function(player)
 		player:set_hp(1)
 		player:set_attribute("dhp", "-0.4999")
 	end)
