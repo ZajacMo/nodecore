@@ -64,7 +64,16 @@ minetest.register_globalstep(function(dt)
 		while t > 0.1 do
 			t = t - 0.1
 			for _, player in pairs(minetest.get_connected_players()) do
-				envcheck(player)
+				if player:get_hp() > 0 then
+					envcheck(player)
+				end
 			end
 		end
+	end)
+
+minetest.register_on_respawnplayer(function(player)
+		player:set_attribute("healthenv", "")
+		cache[player:get_player_name()] = nil
+		player:set_hp(1)
+		player:set_attribute("dhp", "-0.4999")
 	end)
