@@ -200,21 +200,29 @@ local function sethint(player)
 		end
 	end
 
+	local done = 0
 	local found = {}
 	for _, hint in ipairs(nodecore.hints) do
-		if hint.reqs(db) and not hint.goal(db) then
+		if hint.goal(db) then
+			done = done + 1
+		elseif hint.reqs(db) then
 			found[#found + 1] = hint.text
 		end
 	end
 	local hint = nodecore.pickrand(found)
-	if hint then
-		return player:set_inventory_formspec(nodecore.inventory_formspec
-			.. "label[0,3.1;...have you "
-			.. minetest.formspec_escape(hint)
-			.. " yet...?")
-	else
-		return player:set_inventory_formspec(nodecore.inventory_formspec)
-	end		
+	hint = hint and (hint .. " yet") or "checked for a new version recently"
+
+	local prog = #found
+	local left = #(nodecore.hints) - prog - done
+	local stats = left .. ":" .. prog .. ":" .. done
+
+	return player:set_inventory_formspec(nodecore.inventory_formspec
+		.. "label[0,3.1;"
+		.. minetest.formspec_escape("...have you " .. hint .. "...?")
+		.. "]label[7.1,3.1;"
+		.. minetest.formspec_escape(stats)
+		.. "]"
+	)
 end
 
 minetest.register_on_joinplayer(function(player)
