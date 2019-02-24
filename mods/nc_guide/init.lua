@@ -199,6 +199,9 @@ addhint("constructed a shelf",
 	"nc_woodwork:shelf",
 	{ "nc_woodwork:frame", "nc_woodwork:plank" })
 
+addhint("found sponges",
+	{ "nc_sponge:sponge", "nc_sponge:sponge_wet", "nc_sponge:sponge_living" })
+
 local function sethint(player)
 	local pname = player:get_player_name()
 
