@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs
-    = ipairs, math, minetest, nodecore, pairs
-local math_floor, math_sqrt
-    = math.floor, math.sqrt
+local ipairs, minetest, nodecore, pairs
+    = ipairs, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -46,7 +44,7 @@ local function regliquid(def)
 	regterrain(t)
 end
 
--- Register standard mapgen node types.
+local strata = {}
 regterrain({
 		description = "Stone",
 		mapgen = {
@@ -60,19 +58,20 @@ regterrain({
 		groups = {
 			cracky = 2
 		},
-		drop_in_place = modname .. ":cobble"
+		drop_in_place = modname .. ":cobble",
+		strata = strata
 	})
+strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
 	regterrain({
 			description = "Hard Stone " .. i,
-			tiles = { modname .. "_stone.png^(" .. modname
-				.. "_stone_hard.png^[opacity:"
-				.. math_floor(math_sqrt(i) * 96) .. ")" },
+			tiles = { nodecore.hard_stone_tile(i) },
 			groups = {
 				cracky = i + 2
 			},
 			drop_in_place = modname .. ":cobble"
 		})
+	strata[i + 1] = modname .. ":hard_stone_" .. i
 end
 
 regterrain({

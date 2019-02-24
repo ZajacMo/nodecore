@@ -20,14 +20,41 @@ local function reg(suff, def)
 	return def.fullname
 end
 
+local stratstone = {}
+local stratore = {}
 local stone = reg("Stone", {
-		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png^[opacity:48)" },
-		drop_in_place = "nc_terrain:cobble"
+		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
+			.. modname .. "_mask_ore.png^[opacity:48)" },
+		drop_in_place = "nc_terrain:cobble",
+		strata = stratstone
 	})
+stratstone[1] = stone
 local ore = reg("Ore", {
-		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png)" },
-		drop_in_place = modname .. ":cobble"
+		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
+			.. modname .. "_mask_ore.png)" },
+		drop_in_place = modname .. ":cobble",
+		strata = stratore
 	})
+stratore[1] = ore
+for i = 1, nodecore.hard_stone_strata do
+	local hst = nodecore.hard_stone_tile(i)
+	stratstone[i + 1] = reg("Stone_" .. i, {
+			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
+				.. modname .. "_mask_ore.png^[opacity:48)" },
+			drop_in_place = "nc_terrain:cobble",
+			strata = stratstone,
+			groups = {cracky = i + 2}
+		})
+
+	stratore[i + 1] = reg("Ore_" .. i, {
+			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
+				.. modname .. "_mask_ore.png)" },
+			drop_in_place = modname .. ":cobble",
+			strata = stratore,
+			groups = {cracky = i + 2}
+		})
+end
+
 reg("Cobble", {
 		tiles = { modname .. "_ore.png^nc_terrain_cobble.png" },
 		alternate_loose = {
@@ -42,7 +69,6 @@ reg("Cobble", {
 
 local function regore(name, def)
 	return minetest.register_ore(nodecore.underride(def, {
-				y_min = -64,
 				name = name,
 				ore_type = "scatter",
 				ore = name,

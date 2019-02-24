@@ -33,6 +33,15 @@ function nodecore.mkreg()
 	return f, t
 end
 
+function nodecore.memoize(func)
+	local cache
+	return function()
+		if cache then return cache[1] end
+		cache = {func()}
+		return cache[1]
+	end
+end
+
 function nodecore.dirs()
 	return {
 		{x = 1, y = 0, z = 0},
