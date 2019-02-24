@@ -79,7 +79,7 @@ addhint("split a tree trunk into planks",
 	"nc_woodwork:plank",
 	{true, "nc_woodwork:adze", "nc_woodwork:tool_hatchet"})
 
-local woodhead = addhint("made wooden tool heads out of planks",
+local woodhead = addhint("carved wooden tool heads from planks",
 	{true,
 		"nc_woodwork:toolhead_mallet",
 		"nc_woodwork:toolhead_spade",
@@ -97,7 +97,7 @@ addhint("assembled a wooden tool",
 	},
 	woodhead.goal)
 
-addhint("made all the different kinds of wooden tool heads",
+addhint("made each kinds of wooden tool head",
 	{
 		"nc_woodwork:toolhead_mallet",
 		"nc_woodwork:toolhead_spade",
@@ -118,7 +118,7 @@ addhint("broken cobble into chips",
 	"nc_stonework:chip",
 	"nc_terrain:cobble_loose")
 
-addhint("added a stone tip onto a tool",
+addhint("put a stone tip onto a tool",
 	{true,
 		"nc_stonework:tool_mallet",
 		"nc_stonework:tool_spade",
@@ -127,7 +127,7 @@ addhint("added a stone tip onto a tool",
 	},
 	"nc_stonework:chip")
 
-local embers = addhint("started a fire by rubbing sticks together",
+local embers = addhint("made fire by rubbing sticks together",
 	{true,
 		"nc_fire:ember1",
 		"nc_fire:ember2",
@@ -139,7 +139,7 @@ local embers = addhint("started a fire by rubbing sticks together",
 	},
 	"nc_tree:stick")
 
-addhint("gotten a fire going with long-lasting fuel",
+addhint("set fire to long-lasting fuels",
 	{true,
 		"nc_fire:ember5",
 		"nc_fire:ember6",
@@ -165,7 +165,7 @@ addhint("dug out lode ore",
 	"nc_lode:cobble_loose",
 	lodeore.goal)
 
-local lodesmelt = addhint("extracted metal from lode cobble",
+local lodesmelt = addhint("melted down lode metal",
 	{true,
 		"nc_lode:prill_hot",
 		"nc_lode:prill_annealed",
