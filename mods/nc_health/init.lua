@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local math_random, math_sqrt
+    = math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -82,7 +82,7 @@ local function mobility(player)
 	encumb = encumb / invsize
 	if encumb <= health then return setspeed(player, 1) end
 	
-	return setspeed(player, 1 - (encumb - health) * 0.8)
+	return setspeed(player, 1 - math_sqrt(encumb - health) * 0.8)
 end
 
 local t = 0
