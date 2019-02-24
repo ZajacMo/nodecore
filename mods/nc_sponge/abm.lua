@@ -8,7 +8,7 @@ local modname = minetest.get_current_modname()
 nodecore.register_limited_abm({
 		label = "Sponge Growth",
 		interval = 10,
-		chance = 100,
+		chance = 1000,
 		limited_max = 100,
 		nodenames = {"group:water"},
 		neighbors = {modname .. ":sponge_living"},
