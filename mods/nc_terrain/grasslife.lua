@@ -8,7 +8,7 @@ local grass = "nc_terrain:dirt_with_grass"
 
 nodecore.register_limited_abm({
 		label = "Grass Spread",
-		nodenames = {dirt},
+		nodenames = {dirt, "nc_terrain:dirt_loose"},
 		neighbors = {grass},
 		interval = 6,
 		chance = 50,
