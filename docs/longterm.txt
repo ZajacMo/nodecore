@@ -19,15 +19,6 @@ NEW CONTENT
 	- Lightning, meteor strikes?
 	- Tubers and taproots, cacti, and other "defensive" plantlife
 
-- Digital logic.
-	- Some "redstone dust" kind of ore.  Ceruleium?  Maybe a
-	  foam made with sponges, or other substrate?
-	- Ternary logic?
-	- Run wires over glass over other wires as a FET?
-	- No delay/buffers; transform to mechanical for delays.
-	- Buttons/touchplates, no switches (build a latch for state).
-	- Pistons or rack&pinions for affecting world stuff.
-
 - System for transporting cargo.
 	- Trains of minecarts?
 	- Conveyors, elevators?

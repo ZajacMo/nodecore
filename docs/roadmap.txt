@@ -14,6 +14,14 @@ ROADMAP (SHORT-TERM)
 		- Inventory slots around central node each holds 1 stack.
 		- Dig central node to bundle up, store content in metadata.
 	- For now, nesting is not allowed.
+- Digital logic.
+	- Some "redstone dust" kind of ore.  Ceruleium?  Maybe a
+	  foam made with sponges, or other substrate?
+	- Ternary logic?
+	- Run wires over glass over other wires as a FET?
+	- No delay/buffers; transform to mechanical for delays.
+	- Buttons/touchplates, no switches (build a latch for state).
+	- Pistons or rack&pinions for affecting world stuff.
 - Fire tech.
 	- Fire rework.
 		- Migrate to first-class API.
