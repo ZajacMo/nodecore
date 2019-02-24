@@ -5,6 +5,10 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+local side = "nc_tree_tree_side.png"
+local top = side .. "^(" .. modname .. "_plank.png^[mask:"
+.. modname .. "_shelf.png)"
+
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
 		drawtype = "nodebox",
@@ -20,8 +24,7 @@ minetest.register_node(modname .. ":shelf", {
 		selection_box = nodecore.fixedbox(
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 		),
-		tiles = { "nc_tree_tree_side.png^(" .. modname ..
-			"_plank.png^[mask:" .. modname .. "_shelf.png)" },
+		tiles = { top, top, side },
 		groups = {
 			choppy = 1,
 			visinv = 1,
