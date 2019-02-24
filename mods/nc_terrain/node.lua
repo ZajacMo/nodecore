@@ -65,9 +65,6 @@ regterrain({
 for i = 1, nodecore.hard_stone_strata do
 	regterrain({
 			description = "Hard Stone " .. i,
-			drawtype = "glasslike",
-			paramtype = "light",
-			light_source = i * 3,
 			tiles = { modname .. "_stone.png^(" .. modname
 				.. "_stone_hard.png^[opacity:"
 				.. math_floor(math_sqrt(i) * 96) .. ")" },
