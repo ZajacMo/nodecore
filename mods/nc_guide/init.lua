@@ -173,21 +173,31 @@ local lodesmelt = addhint("extracted metal from lode cobble",
 	},
 	"nc_lode:cobble_loose")
 
-addhint("annealed lode",
-	{true,
-		"nc_lode:prill_annealed",
-		"nc_lode:slab_annealed",
-		"nc_lode:block_annealed"
-	},
+local anvil = addhint("constructed a lode anvil",
+	"nc_lode:block_tempered",
 	lodesmelt.goal)
 
-addhint("quenched lode",
+local annealhead = addhint("cold-forged a lode tool head",
 	{true,
-		"nc_lode:prill_tempered",
-		"nc_lode:slab_tempered",
-		"nc_lode:block_tempered"
+		"nc_lode:toolhead_mallet_annealed",
+		"nc_lode:toolhead_spade_annealed",
+		"nc_lode:toolhead_hatchet_annealed",
+		"nc_lode:toolhead_pick_annealed"
 	},
-	lodesmelt.goal)
+	anvil.goal)
+
+addhint("tempered a lode tool head",
+	{true,
+		"nc_lode:toolhead_mallet_tempered",
+		"nc_lode:toolhead_spade_tempered",
+		"nc_lode:toolhead_hatchet_tempered",
+		"nc_lode:toolhead_pick_tempered"
+	},
+	annealhead.goal)
+
+addhint("constructed a shelf",
+	"nc_woodwork:shelf",
+	{ "nc_woodwork:frame", "nc_woodwork:plank" })
 
 local function sethint(player)
 	local pname = player:get_player_name()
