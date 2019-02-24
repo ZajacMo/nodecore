@@ -36,6 +36,7 @@ include("match")
 include("fx_digparticles")
 
 include("register_limited_abm")
+include("mapgen_shared")
 
 include("item_on_register")
 include("item_drop_in_place")

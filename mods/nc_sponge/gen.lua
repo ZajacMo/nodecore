@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local VoxelArea, math, minetest
-    = VoxelArea, math, minetest
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -14,15 +14,8 @@ local c_sand = minetest.get_content_id("nc_terrain:sand")
 local c_water = minetest.get_content_id("nc_terrain:water_source")
 local c_sponge = minetest.get_content_id(modname .. ":sponge_living")
 
-
-minetest.register_on_generated(function(minp, maxp)
+nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 		if minp.y > maxy or maxp.y < miny then return end
-
-		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
-		local data = vm:get_data()
-		local area = VoxelArea:new({MinEdge = emin, MaxEdge =  emax})
-
-		local dirty
 
 		local qty = math_floor(math_random() * (maxp.x - minp.x)
 			* (maxp.z - minp.z) / (16 * 16))
@@ -41,18 +34,10 @@ minetest.register_on_generated(function(minp, maxp)
 					waterabove = true
 				elseif cur == c_sand and waterabove then
 					data[area:index(x, y + 1, z)] = c_sponge
-					dirty = true
 					break
 				else
 					break
 				end
 			end
 		end
-
-		if not dirty then return end
-
-		vm:set_data(data)
-		vm:set_lighting{day = 0, night = 0}
-		vm:calc_lighting()
-		vm:write_to_map()
 	end)

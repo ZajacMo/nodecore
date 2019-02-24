@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local VoxelArea, minetest, nodecore
-    = VoxelArea, minetest, nodecore
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -42,6 +42,7 @@ reg("Cobble", {
 
 local function regore(name, def)
 	return minetest.register_ore(nodecore.underride(def, {
+				y_min = -64,
 				name = name,
 				ore_type = "scatter",
 				ore = name,
@@ -74,11 +75,7 @@ local c_ore = minetest.get_content_id(ore)
 local c_istone = minetest.get_content_id(stone)
 local c_stone = minetest.get_content_id("nc_terrain:stone")
 
-minetest.register_on_generated(function(minp, maxp)
-		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
-		local data = vm:get_data()
-		local area = VoxelArea:new({MinEdge = emin, MaxEdge =  emax})
-
+nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 		local function bad(x, y, z)
 			local c = data[area:index(x, y, z)]
 			return c ~= c_stone and c ~= c_istone
@@ -107,8 +104,4 @@ minetest.register_on_generated(function(minp, maxp)
 				end
 			end
 		end
-
-		vm:set_data(data)
-		-- Nothing here should affect light; skip recalc.
-		vm:write_to_map()
 	end)

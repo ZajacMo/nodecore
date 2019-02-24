@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, pairs
-    = ipairs, minetest, pairs
+local ipairs, math, minetest, nodecore, pairs
+    = ipairs, math, minetest, nodecore, pairs
+local math_floor, math_sqrt
+    = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -60,6 +62,22 @@ regterrain({
 		},
 		drop_in_place = modname .. ":cobble"
 	})
+for i = 1, nodecore.hard_stone_strata do
+	regterrain({
+			description = "Hard Stone " .. i,
+			drawtype = "glasslike",
+			paramtype = "light",
+			light_source = i * 3,
+			tiles = { modname .. "_stone.png^(" .. modname
+				.. "_stone_hard.png^[opacity:"
+				.. math_floor(math_sqrt(i) * 96) .. ")" },
+			groups = {
+				cracky = i + 2
+			},
+			drop_in_place = modname .. ":cobble"
+		})
+end
+
 regterrain({
 		description = "Cobble",
 		tiles = { modname .. "_gravel.png^" .. modname .. "_cobble.png" },
