@@ -5,13 +5,22 @@ local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.addphealth(player, hp)
-	local total = player:get_hp() + hp
+local function getphealth(player)
+	return player:get_hp()
 	+ tonumber(player:get_attribute("dhp") or "0")
-	if total > 20 then total = 20 end
-	if total < 0 then total = 0 end
-	local whole = math_ceil(total)
-	local dhp = total - whole
+end
+nodecore.getphealth = getphealth
+
+local function setphealth(player, hp)
+	if hp > 20 then hp = 20 end
+	if hp < 0 then hp = 0 end
+	local whole = math_ceil(hp)
+	local dhp = hp - whole
 	player:set_attribute("dhp", tostring(dhp))
 	return player:set_hp(whole)
+end
+nodecore.setphealth = setphealth
+
+function nodecore.addphealth(player, hp)
+	return setphealth(player, getphealth(player) + hp)
 end

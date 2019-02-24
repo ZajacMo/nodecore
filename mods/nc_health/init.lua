@@ -58,6 +58,33 @@ local function envcheck(player)
 
 end
 
+local function setspeed(player, speed)
+	if speed > 1 then speed = 1 end
+	if speed < 0 then speed = 0 end
+	local phys = player:get_physics_override()
+	if phys.speed == speed then return end
+	phys.speed = speed
+	return player:set_physics_override(phys)
+end
+
+local function mobility(player)
+	local health = nodecore.getphealth(player) / 20
+	if health >= 1 then return setspeed(player, 1) end
+
+	local inv = player:get_inventory()
+	local encumb = 0
+	local invsize = inv:get_size("main")
+	for i = 1, invsize do
+		if not inv:get_stack("main", i):is_empty() then
+			encumb = encumb + 1
+		end
+	end
+	encumb = encumb / invsize
+	if encumb <= health then return setspeed(player, 1) end
+	
+	return setspeed(player, 1 - (encumb - health) * 0.8)
+end
+
 local t = 0
 minetest.register_globalstep(function(dt)
 		t = t + dt
@@ -66,6 +93,7 @@ minetest.register_globalstep(function(dt)
 			for _, player in pairs(minetest.get_connected_players()) do
 				if player:get_hp() > 0 then
 					envcheck(player)
+					mobility(player)
 				end
 			end
 		end
@@ -78,7 +106,7 @@ minetest.register_on_dieplayer(function(player)
 			nodecore.item_eject(pos, inv:get_stack("main", i), 20)
 		end
 		inv:set_list("main", {})
-		
+
 		-- flush attributes
 		player:set_attribute("healthenv", "")
 		cache[player:get_player_name()] = nil
@@ -86,6 +114,6 @@ minetest.register_on_dieplayer(function(player)
 	end)
 
 minetest.register_on_respawnplayer(function(player)
-		player:set_hp(1)
-		player:set_attribute("dhp", "-0.4999")
+		nodecore.setphealth(player, 0.0001)
+		mobility(player)
 	end)
