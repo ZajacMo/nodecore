@@ -57,6 +57,10 @@ minetest.register_entity(modname .. ":stackent", {
 						self.object:setpos(pos)
 					end, self.rot))
 			self.object:set_yaw(math_random() * math_pi * 2)
+			if pos.y - math_floor(pos.y) ~= 1/64 then
+				pos.y = pos.y + 1/64
+				self.object:setpos(pos)
+			end
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
@@ -111,7 +115,7 @@ end
 
 nodecore.register_on_register_item(function(name, def)
 		if def.type ~= "node" then return end
-		
+
 		def.groups = def.groups or {}
 
 		if def.groups.visinv then
