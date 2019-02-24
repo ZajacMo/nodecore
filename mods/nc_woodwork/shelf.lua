@@ -16,6 +16,7 @@ minetest.register_node(modname .. ":shelf", {
 			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
 			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
 		),
+		collisonbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		selection_box = nodecore.fixedbox(
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 		),
