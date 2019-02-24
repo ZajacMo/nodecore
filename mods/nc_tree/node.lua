@@ -14,8 +14,10 @@ minetest.register_node(modname .. ":root", {
 		},
 		groups = {
 			flammable = 50,
-			fire_fuel = 4
-		}
+			fire_fuel = 4,
+			choppy = 4
+		},
+		drop_in_place = "nc_terrain:dirt_loose"
 	})
 
 minetest.register_node(modname .. ":tree", {
