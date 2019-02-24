@@ -2,6 +2,13 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Update README.
+	- Add "gameplay basics"
+		- Crafting in-world
+		- Pummeling
+		- Sensitivity to which node face
+		- Check inventory screen for hints
+	- Installation guide?
 - Containers.
 	- A bag that expands when placed, if room.
 		- Inventory slots around central node each holds 1 stack.

@@ -3,10 +3,6 @@ LONG-TERM DESIGN IDEAS
 ------------------------------------------------------------------------
 NEW CONTENT
 
-- Rock strata get harder the further down you go
-	- Need stronger tools.
-	- Limit access to some ores.
-
 - New materials to craft with.
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
@@ -49,6 +45,7 @@ NEW CONTENT
 - Sane indoor lighting.
 	- Maintaining fires or sunlight are not sustainable enough.
 	- Access to light is a barrier to deep mining.
+	- Use digital logic components for this?
 
 - Hazards and "monsters".
 	- Cellular automata hazards.
@@ -72,10 +69,6 @@ USABILITY
 - Hint system updates.
 	- Track recipe completion in stats.
 	- Use recipes for hint guide instead of just items in hand.
-	- Need to explain core mechanics.
-		- Crafting is now done by building.
-		- Punching repeatedly w/o digging does things.
-		- Some things may matter, like which face you hit.
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
 
