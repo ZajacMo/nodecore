@@ -208,7 +208,7 @@ minetest.register_globalstep(function()
 						end
 						if i.t ~= t then
 							p1:hud_change(i.i, "text", t)
-							i.t = text
+							i.t = t
 						end
 					elseif i then
 						-- Remove HUD if visibility lost.
