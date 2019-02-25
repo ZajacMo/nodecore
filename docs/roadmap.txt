@@ -2,6 +2,7 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
+- Audit for interact priv checks.
 - Update README.
 	- Add "gameplay basics"
 		- Crafting in-world

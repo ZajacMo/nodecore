@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, string, tonumber
-    = math, minetest, pairs, string, tonumber
+local math, minetest, nodecore, pairs, string, tonumber
+    = math, minetest, nodecore, pairs, string, tonumber
 local math_sqrt, string_format
     = math.sqrt, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -84,6 +84,10 @@ local function gettext(p2, n2)
 		w = w:get_name()
 		local r = minetest.registered_items[w]
 		t = t .. "\n" .. (r and r.description or w)
+	end
+
+	if not nodecore.interact(n2) then
+		t = t .. "\nSPECTATOR"
 	end
 
 	return t

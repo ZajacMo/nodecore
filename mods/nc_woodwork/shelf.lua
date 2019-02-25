@@ -39,6 +39,7 @@ minetest.register_node(modname .. ":shelf", {
 			nodecore.visinv_update_ents(pos)
 		end,
 		on_rightclick = function(pos, node, clicker, stack, pointed_thing)
+			if not nodecore.interact(clicker) then return end
 			if pointed_thing.above.y ~= pointed_thing.under.y then return end
 			if not stack or stack:is_empty() then return end
 			local def = minetest.registered_items[stack:get_name()]
@@ -48,6 +49,7 @@ minetest.register_node(modname .. ":shelf", {
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_punch = function(pos, node, puncher, pointed_thing)
+			if not nodecore.interact(puncher) then return end
 			if pointed_thing.above.y ~= pointed_thing.under.y then return end
 			return nodecore.stack_giveto(pos, puncher)
 		end,

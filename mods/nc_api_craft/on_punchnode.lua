@@ -43,6 +43,7 @@ local pummeling = {}
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if not puncher:is_player() then return end
 		local pname = puncher:get_player_name()
+		if not nodecore.interact(pname) then return end
 
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}

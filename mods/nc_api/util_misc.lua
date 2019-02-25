@@ -82,6 +82,13 @@ end
 
 function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
 
+function nodecore.interact(player)
+	if type(player) ~= "string" then
+		player = player:get_player_name()
+	end
+	return minetest.get_player_privs(player).interact
+end
+
 function nodecore.wieldgroup(who, group)
 	local wielded = who and who:get_wielded_item()
 	local nodedef = minetest.registered_nodes[wielded:get_name()]

@@ -11,6 +11,8 @@ local falling = {groups = {falling_node = true}}
 local radius = {x = 2, y = 2, z = 2}
 
 local function fallcheck(name, start)
+	if not nodecore.interact(name) then return end
+	
 	local target = vector.add(start, {
 			x = math_random() * 128 - 64,
 			y = math_random() * 128 - 64,

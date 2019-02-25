@@ -46,6 +46,7 @@ minetest.register_node(modname .. ":stack", {
 			return minetest.remove_node(posfrom)
 		end,
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
+			if not nodecore.interact(whom) then return stack end
 			return nodecore.stack_add(pos, stack)
 		end
 	})
@@ -98,8 +99,9 @@ local item = {
 		self.itemstring = ""
 		self.object:remove()
 	end,
-	on_punch = function(self, ...)
-		local r = bii.on_punch(self, ...)
+	on_punch = function(self, whom, ...)
+		if not nodecore.interact(whom) then return end
+		local r = bii.on_punch(self, whom, ...)
 		if self.itemstring ~= "" then
 			local v = self.object:get_velocity()
 			v.x = v.x + math_random() * 5 - 2.5
@@ -131,6 +133,7 @@ setmetatable(falling, bifn)
 minetest.register_entity(":__builtin:falling_node", falling)
 
 function minetest.item_place(itemstack, placer, pointed_thing, param2)
+	if not nodecore.interact(placer) then return end
 	if pointed_thing.type == "node" and placer and
 	not placer:get_player_control().sneak then
 		local n = minetest.get_node(pointed_thing.under)

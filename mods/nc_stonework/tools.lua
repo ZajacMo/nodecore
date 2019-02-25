@@ -12,6 +12,7 @@ nodecore.registered_stone_tip_tools
 local chip = modname .. ":chip"
 nodecore.extend_item(chip, function(copy, orig)
 		copy.on_place = function(itemstack, placer, pointed_thing, ...)
+			if not nodecore.interact(placer) then return end
 			if itemstack:get_name() == chip and pointed_thing.type == "node" then
 				local pos = pointed_thing.under
 				for i, v in ipairs(nodecore.registered_stone_tip_tools) do
