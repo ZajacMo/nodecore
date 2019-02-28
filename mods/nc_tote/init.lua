@@ -12,7 +12,7 @@ local function meta(pos)
 end
 
 local function totedug(pos, node, meta, digger)
-	local dump = {}
+	local dump
 	for dx = -1, 1 do
 		for dz = -1, 1 do
 			local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
@@ -27,6 +27,7 @@ local function totedug(pos, node, meta, digger)
 						end
 					end
 				end
+				dump = dump or {}
 				dump[#dump + 1] = {
 					x = dx,
 					z = dz,
@@ -38,7 +39,7 @@ local function totedug(pos, node, meta, digger)
 		end
 	end
 	local drop = ItemStack(modname .. ":handle")
-	drop:get_meta():set_string("inv", minetest.serialize(dump))
+	drop:get_meta():set_string("inv", dump and minetest.serialize(dump))
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
@@ -50,6 +51,11 @@ local function toteplace(stack, placer, pointed)
 	stack = ItemStack(stack)
 	local inv = stack:get_meta():get_string("inv")
 	inv = inv and (inv ~= "") and minetest.deserialize(inv)
+	if not inv then
+		minetest.set_node(pos, {name = stack:get_name()})
+		stack:set_count(stack:get_count() - 1)
+		return stack
+	end
 
 	local commit = {{pos, {name = stack:get_name()}, {}}}
 	for _, v in ipairs(inv) do
