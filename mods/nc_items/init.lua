@@ -56,8 +56,10 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	local name = stack:get_name()
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	stack = nodecore.stack_add(below, stack)
-	if stack:is_empty() then return end
+	if nodecore.match(below, {name = name, count = false}) then
+		stack = nodecore.stack_add(below, stack)
+		if stack:is_empty() then return end
+	end
 
 	minetest.set_node(pos, {name = modname .. ":stack"})
 	nodecore.stack_set(pos, stack)
