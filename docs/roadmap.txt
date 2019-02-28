@@ -15,14 +15,27 @@ ROADMAP (SHORT-TERM)
 		- Inventory slots around central node each holds 1 stack.
 		- Dig central node to bundle up, store content in metadata.
 	- For now, nesting is not allowed.
-- Digital logic.
-	- Some "redstone dust" kind of ore.  Ceruleium?  Maybe a
-	  foam made with sponges, or other substrate?
-	- Ternary logic?
-	- Run wires over glass over other wires as a FET?
-	- No delay/buffers; transform to mechanical for delays.
+- Digital logic + lighting via optics.
+	- Mirrors
+		- Change light angle
+		- Focus sunlight?
+	- Prism Node
+		- 1 face (back) is VCC face, must be fed light to do anything.
+		- 3 faces (front, left, right) are output faces, emit collimated light.
+		- 2 faces (top, bottom) are interference faces, switch off output if fed light.
+		- Create a light source (airlike) wherever prism beams hit, if not another prism.
+		- Beams can pass through one another.
+	- Lamp Crystal Node
+		- Inert when placed, reverts to inert form when dug.
+		- When provided a light source over time, it starts to glow.
+		- Glows perpetually once charged, until dug.
+		- Light can be used as input for prisms.
 	- Buttons/touchplates, no switches (build a latch for state).
 	- Pistons or rack&pinions for affecting world stuff.
+- Visceral threats.
+	- Need some kind of "oh shit"-factor hazards for e.g. deeper mining.
+	- Flammable gas?  Toxic gas?  Radioactives?
+	- Monsters: stone-lurkers, mimics.
 - Fire tech.
 	- Fire rework.
 		- Migrate to first-class API.

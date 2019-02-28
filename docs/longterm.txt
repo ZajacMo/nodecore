@@ -7,7 +7,6 @@ NEW CONTENT
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
 	- Tree sap from stumps?  Resin?  Rubber?  Shellac?
-	- Glassmaking?
 	- Small plants?  Reeds?  Mallows?
 	- Sea stars, sponges, anenome, coral, other underwater things?
 	- Fungi, esp. tree-destroying ones, blight?
@@ -58,7 +57,9 @@ NEW CONTENT
 USABILITY
 
 - Hint system updates.
-	- Track recipe completion in stats.
+	- Need a "witness" system for spontaneous in-world processes,
+	  such as tree growth or lode cooling.  Credit players within
+	  a certain distance and line-of-sight.  
 	- Use recipes for hint guide instead of just items in hand.
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
