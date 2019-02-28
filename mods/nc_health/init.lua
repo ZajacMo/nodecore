@@ -50,10 +50,10 @@ local function envcheck(player)
 		agg.dirty = nil
 		player:set_attribute("healthenv",
 			minetest.serialize(agg))
-		nodecore.addphealth(player, 0.01 + (agg.green + 0.02)
+		nodecore.addphealth(player, 0.005 + (agg.green + 0.02)
 			* (agg.water + 0.1)
 			* (agg.space + 5)
-			* (agg.light + 8) / 240)
+			* (agg.light + 8) / 500)
 	end
 
 end
