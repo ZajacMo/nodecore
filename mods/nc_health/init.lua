@@ -103,7 +103,7 @@ minetest.register_on_dieplayer(function(player)
 		local inv = player:get_inventory()
 		local pos = player:getpos()
 		for i = 1, inv:get_size("main") do
-			nodecore.item_eject(pos, inv:get_stack("main", i), 20)
+			nodecore.item_eject(pos, inv:get_stack("main", i), 10)
 		end
 		inv:set_list("main", {})
 
