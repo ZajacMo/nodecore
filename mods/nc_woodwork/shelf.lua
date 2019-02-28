@@ -30,7 +30,8 @@ minetest.register_node(modname .. ":shelf", {
 			visinv = 1,
 			flammable = 2,
 			fire_fuel = 3,
-			eject_inv_on_burn = 1
+			eject_inv_on_burn = 1,
+			totable = 1
 		},
 		paramtype = "light",
 		on_construct = function(pos)
