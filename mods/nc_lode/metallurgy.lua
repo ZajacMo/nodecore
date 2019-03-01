@@ -77,7 +77,9 @@ end
 
 local function timecounter(meta, max, check)
 	if not check then
-		meta:from_table({})
+		local t = meta:to_table()
+		t.fields.time = nil
+		meta:from_table(t)
 		return
 	end
 	local t = (meta:get_int("time") or 0) + 1
@@ -123,7 +125,8 @@ nodecore.register_limited_abm({
 				if timecounter(stack:get_meta(), 120, not heated(pos)) then
 					return replacestack(pos, def.metal_alt_annealed, stack)
 				end
-			elseif timecounter(stack:get_meta(), 30, heated(pos)) then
+			elseif (def.metal_temper_annealed or def.metal_temper_tempered)
+			and timecounter(stack:get_meta(), 30, heated(pos)) then
 				return replacestack(pos, def.metal_alt_hot, stack)
 			end
 			return nodecore.stack_set(pos, stack)

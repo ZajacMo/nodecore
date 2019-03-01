@@ -50,7 +50,7 @@ minetest.register_entity(modname .. ":stackent", {
 		itemcheck = function(self)
 			local pos = self.object:getpos()
 			local stack = nodecore.stack_get(pos)
-			if not stack or stack:get_count() < 1 then return self.object:remove() end
+			if not stack or stack:is_empty() then return self.object:remove() end
 			self.rot = self.rot or math_random(1, 2) * 2 - 3
 			self.object:set_properties(stackentprops(stack, function(s)
 						pos.y = math_floor(pos.y + 0.5) - 0.5 + s

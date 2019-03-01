@@ -41,8 +41,12 @@ local function totedug(pos, node, meta, digger)
 	local drop = ItemStack(modname .. ":handle")
 	if dump then
 		local meta = drop:get_meta()
-		meta:set_string("inv", minetest.serialize(dump))
-		meta:set_string("description", "Tote (" .. #dump .. " Slots)")
+		meta:set_string("carrying", minetest.serialize(dump))
+		if #dump == 1 then
+			meta:set_string("description", "Tote (1 Slot)")
+		else
+			meta:set_string("description", "Tote (" .. #dump .. " Slots)")
+		end
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
@@ -53,7 +57,7 @@ local function toteplace(stack, placer, pointed)
 	if not pos then return stack end
 
 	stack = ItemStack(stack)
-	local inv = stack:get_meta():get_string("inv")
+	local inv = stack:get_meta():get_string("carrying")
 	inv = inv and (inv ~= "") and minetest.deserialize(inv)
 	if not inv then
 		minetest.set_node(pos, {name = stack:get_name()})
