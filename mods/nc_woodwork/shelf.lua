@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore
-    = minetest, nodecore
+= minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -20,7 +20,6 @@ minetest.register_node(modname .. ":shelf", {
 			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
 			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
 		),
-		collisonbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		selection_box = nodecore.fixedbox(
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
 		),
@@ -63,28 +62,24 @@ minetest.register_node(modname .. ":shelf", {
 
 nodecore.register_craft({
 		label = "assemble wood shelf",
+		norotate = true,
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
-			{x = -1, z = -1, match = modname .. ":frame", replace = "air"},
-			{x = 1, z = -1, match = modname .. ":frame", replace = "air"},
-			{x = -1, z = 1, match = modname .. ":frame", replace = "air"},
-			{x = 1, z = 1, match = modname .. ":frame", replace = "air"},
-		},
-		items = {
-			modname .. ":shelf 4"
+			{x = -1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = 1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = -1, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = 1, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
 		}
 	})
 
 nodecore.register_craft({
 		label = "assemble wood shelf",
+		norotate = true,
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
-			{x = 0, z = -1, match = modname .. ":frame", replace = "air"},
-			{x = 0, z = 1, match = modname .. ":frame", replace = "air"},
-			{x = -1, z = 0, match = modname .. ":frame", replace = "air"},
-			{x = 1, z = 0, match = modname .. ":frame", replace = "air"},
-		},
-		items = {
-			modname .. ":shelf 4"
+			{x = 0, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = 0, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = -1, z = 0, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{x = 1, z = 0, match = modname .. ":frame", replace = modname .. ":shelf"},
 		}
 	})
