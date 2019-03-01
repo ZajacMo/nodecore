@@ -39,7 +39,11 @@ local function totedug(pos, node, meta, digger)
 		end
 	end
 	local drop = ItemStack(modname .. ":handle")
-	drop:get_meta():set_string("inv", dump and minetest.serialize(dump))
+	if dump then
+		local meta = drop:get_meta()
+		meta:set_string("inv", minetest.serialize(dump))
+		meta:set_string("description", "Tote (" .. #dump .. " Slots)")
+	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
@@ -80,13 +84,45 @@ end
 
 minetest.register_node(modname .. ":handle", {
 		description = "Tote Handle",
-		tiles = { "nc_woodwork_plank.png" },
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, -3/8, 0.5},
+			{-0.5, -3/8, -0.5, -3/8, 3/8, -3/8},
+			{-0.5, -3/8, 3/8, -3/8, 3/8, 0.5},
+			{3/8, -3/8, -0.5, 0.5, 3/8, -3/8},
+			{3/8, -3/8, 3/8, 0.5, 3/8, 0.5},
+			{-0.5, 1/4, -0.5, -3/8, 3/8, 0.5},
+			{3/8, 1/4, -0.5, 0.5, 3/8, 0.5},
+			{-0.5, 3/8, -1/8, 0.5, 0.5, 1/8}
+		),
+		selection_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, 3/8, 0.5}
+		),
+		paramtype = "light",
+		tiles = {
+			"nc_lode_annealed.png",
+			"nc_lode_annealed.png",
+			"nc_lode_annealed.png^[lowpart:75:nc_tree_tree_side.png"
+			.. "^[lowpart:12.5:nc_lode_annealed.png"
+		},
 		groups = {
-			choppy = 1,
-			flammable = 2,
+			snappy = 1,
 			fire_fuel = 5
 		},
 		after_dig_node = totedug,
 		on_place = toteplace,
 		drop = ""
+	})
+
+nodecore.register_craft({
+		label = "craft tote handle",
+		norotate = true,
+		nodes = {
+			{match = "nc_woodwork:frame", replace = "air"},
+			{y = -1, match = "nc_lode:block_annealed", replace = modname .. ":handle"},
+			{y = -1, x = 1, match = "nc_woodwork:shelf"},
+			{y = -1, x = -1, match = "nc_woodwork:shelf"},
+			{y = -1, z = 1, match = "nc_woodwork:shelf"},
+			{y = -1, z = -1, match = "nc_woodwork:shelf"},
+		}
 	})
