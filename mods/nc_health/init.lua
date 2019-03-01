@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_random, math_sqrt
-    = math.random, math.sqrt
+local math_pow, math_random, math_sqrt
+    = math.pow, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -46,7 +46,7 @@ local function envcheck(player)
 		agg[k] = ((agg[k] or 0) * 99 + v) / 100
 	end
 	agg.dirty = (agg.dirty or 0) + 1
-	if agg.dirty >= 20 then
+	if agg.dirty >= 5 then
 		agg.dirty = nil
 		player:set_attribute("healthenv",
 			minetest.serialize(agg))
@@ -82,14 +82,15 @@ local function mobility(player)
 	encumb = encumb / invsize
 	if encumb <= health then return setspeed(player, 1) end
 	
-	return setspeed(player, 1 - math_sqrt(encumb - health) * 0.8)
+	return setspeed(player, math_pow(1 - math_sqrt(encumb - health) * 0.8,
+			math_random() * 2 + 1))
 end
 
 local t = 0
 minetest.register_globalstep(function(dt)
 		t = t + dt
-		while t > 0.1 do
-			t = t - 0.1
+		while t > 0.5 do
+			t = t - 0.5
 			for _, player in pairs(minetest.get_connected_players()) do
 				if player:get_hp() > 0 then
 					envcheck(player)
