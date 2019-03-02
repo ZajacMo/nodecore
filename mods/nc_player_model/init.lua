@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
+local math, minetest, nodecore, pairs, string, table
+    = math, minetest, nodecore, pairs, string, table
 local math_floor, table_concat
     = math.floor, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -73,10 +73,11 @@ local function updatevisuals(player)
 end
 
 minetest.register_on_joinplayer(function(player)
+		local isold = minetest.get_version().string:sub(1, 2) == "0."
 		player:set_properties({
 				visual = "mesh",
 				visual_size = {x = 1, y = 1, z = 1},
-				mesh = modname .. ".b3d"
+				mesh = modname .. (isold and "_old" or "") .. ".b3d"
 			})
 		player:set_local_animation(
 			anim.stand,
