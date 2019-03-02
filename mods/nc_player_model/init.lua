@@ -76,7 +76,7 @@ minetest.register_on_joinplayer(function(player)
 		local isold = minetest.get_version().string:sub(1, 2) == "0."
 		player:set_properties({
 				visual = "mesh",
-				visual_size = {x = 1, y = 1, z = 1},
+				visual_size = {x = 0.9, y = 0.9, z = 0.9},
 				mesh = modname .. (isold and "_old" or "") .. ".b3d"
 			})
 		player:set_local_animation(
