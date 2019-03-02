@@ -1,0 +1,15 @@
+========================================================================
+CONTRIBUTION WISHLIST
+------------------------------------------------------------------------
+
+- Player model enhancements
+	- Hat/hair surfaces.
+	- Texturable square attached to hand for wield item.
+		- Note that, in NC, unlike most MT games, tools are
+		  oriented upright, not diagonally, so wield surface
+		  would also probably be orthogonal.
+	- Small texturable squares jutting out from beltline to display
+	  player inventory visibly.
+
+........................................................................
+========================================================================
