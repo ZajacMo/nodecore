@@ -12,7 +12,7 @@ CONTRIBUTION WISHLIST
 	  player inventory visibly.
 	- Make U/V map for corresponding faces exactly match MTG Sam
 	  model, or MC Steve, so users can more easily adapt their
-	  existing skins.  
+	  existing skins.
 
 ........................................................................
 ========================================================================
