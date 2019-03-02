@@ -61,6 +61,7 @@ end
 local function setspeed(player, speed)
 	if speed > 1 then speed = 1 end
 	if speed < 0 then speed = 0 end
+	speed = speed * 1.25
 	local phys = player:get_physics_override()
 	if phys.speed == speed then return end
 	phys.speed = speed

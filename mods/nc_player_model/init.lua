@@ -15,7 +15,7 @@ local anim = {
 	lay       = {x = 58, y = 58},
 	walk_mine = {x = 59, y = 103},
 }
-local animspeed = 57
+local animspeed = 57 * 1.25
 
 local function setcached(func)
 	local cache = {}
