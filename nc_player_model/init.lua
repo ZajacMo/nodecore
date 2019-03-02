@@ -1,3 +1,5 @@
+do return end
+
 local anim = {
 	stand     = {x = 0,   y = 0},
 	sit       = {x = 1,  y = 1},
