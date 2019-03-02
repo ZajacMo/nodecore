@@ -48,34 +48,10 @@ minetest.register_on_leaveplayer(function(player)
 ------------------------------------------------------------------------
 -- GLOBAL TICK HUD MANAGEMENT
 
--- Vague health descriptions
-local health = {
-	"critically injured",
-	"critically injured",
-	"heavily injured",
-	"heavily injured",
-	"heavily injured",
-	"heavily injured",
-	"injured",
-	"injured",
-	"injured",
-	"injured",
-	"injured",
-	"injured",
-	"slightly injured",
-	"slightly injured",
-	"slightly injured",
-	"slightly injured",
-	"barely scratched",
-	"barely scratched",
-	"barely scratched",
-	"uninjured"
-}
-
 -- Get custom text for a visible HUD.
 local function gettext(p2, n2)
 	-- First line: distance units, player HP.
-	local t = "m " .. (health[p2:get_hp()] or "?")
+	local t = "m"
 
 	-- Check for a wielded item, and add its description
 	-- to a line below if available.
