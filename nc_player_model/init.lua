@@ -7,7 +7,7 @@ local anim = {
 	walk_mine = {x = 59, y = 103},
 }	
 
-player_api.register_model("nc_player.b3d", {
+player_api.register_model("nc_player_model.b3d", {
 	animation_speed = 57,
 	animations = anim,
 	collisionbox = {-0.3, 0.0, -0.3, 0.3, 1.83, 0.3},
@@ -17,7 +17,7 @@ player_api.register_model("nc_player.b3d", {
 
 minetest.register_on_joinplayer(function(player)
 	minetest.after(1, function()
-		player_api.set_model(player, "nc_player.b3d")
+		player_api.set_model(player, "nc_player_model.b3d")
 		player:set_local_animation(
 			{x = 0,   y = 0},
 			{x = 2, y = 41},
