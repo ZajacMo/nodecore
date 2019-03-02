@@ -14,5 +14,10 @@ CONTRIBUTION WISHLIST
 	  model, or MC Steve, so users can more easily adapt their
 	  existing skins.
 
+- Better textures for pretty much everything.
+	- For player models, "demographically neutral/ambiguous" is
+	  preferred.
+		- Indeterminate age, race, gender, etc.
+
 ........................................................................
 ========================================================================
