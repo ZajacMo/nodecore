@@ -44,7 +44,6 @@ local function toolhead(name, from, group, sticks)
 			})
 	end
 
-	sticks = sticks and {name = "nc_tree:stick", count = sticks, scatter = 5} or nil
 	nodecore.register_craft({
 			label = "carve " .. from,
 			action = "pummel",
@@ -53,8 +52,9 @@ local function toolhead(name, from, group, sticks)
 				{match = from, replace = "air"}
 			},
 			items = {
-				{name = n},
-				sticks
+				n and {name = n} or nil,
+				sticks and {name = "nc_tree:stick",
+					count = sticks, scatter = 5} or nil
 			}
 		})
 end
