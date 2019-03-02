@@ -10,6 +10,9 @@ CONTRIBUTION WISHLIST
 		  would also probably be orthogonal.
 	- Small texturable squares jutting out from beltline to display
 	  player inventory visibly.
+	- Make U/V map for corresponding faces exactly match MTG Sam
+	  model, or MC Steve, so users can more easily adapt their
+	  existing skins.  
 
 ........................................................................
 ========================================================================
