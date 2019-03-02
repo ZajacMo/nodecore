@@ -123,8 +123,8 @@ local function canseeface(p1, n1, p2, n2, los)
 	-- Compute normalized 2d vector from one player to another.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.6, z = o2.z})
-	if ll < 5 then return end
+	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
+	if ll < 3 then return end
 	local dx = o1.x - o2.x
 	local dz = o1.z - o2.z
 	local d = dx * dx + dz * dz
