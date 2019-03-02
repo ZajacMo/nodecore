@@ -1,0 +1,64 @@
+========================================================================
+ROADMAP (SHORT-TERM)
+------------------------------------------------------------------------
+
+- Fix bug allowing totes to be placed into shelves.
+- Update README.
+	- Add "gameplay basics"
+		- Crafting in-world
+		- Pummeling
+		- Sensitivity to which node face
+		- Check inventory screen for hints
+	- Installation guide?
+- Digital logic + lighting via optics.
+	- Mirrors
+		- Change light angle
+		- Focus sunlight?
+	- Prism Node
+		- 1 face (back) is VCC face, must be fed light to do anything.
+		- 3 faces (front, left, right) are output faces, emit collimated light.
+		- 2 faces (top, bottom) are interference faces, switch off output if fed light.
+		- Create a light source (airlike) wherever prism beams hit, if not another prism.
+		- Beams can pass through one another.
+	- Lamp Crystal Node
+		- Inert when placed, reverts to inert form when dug.
+		- When provided a light source over time, it starts to glow.
+		- Glows perpetually once charged, until dug.
+		- Light can be used as input for prisms.
+	- Buttons/touchplates, no switches (build a latch for state).
+	- Pistons or rack&pinions for affecting world stuff.
+- Visceral threats.
+	- Need some kind of "oh shit"-factor hazards for e.g. deeper mining.
+	- Flammable gas?  Toxic gas?  Radioactives?
+	- Monsters: stone-lurkers, mimics.
+- Fire tech.
+	- Fire rework.
+		- Migrate to first-class API.
+			- Proper API for burning up items
+				- on_burn?  burns_to?
+			- Move heat and quench calcs all into API.
+			- Cumulative heat helpers?
+				- Maybe generalized time-cumulative helpers that
+				  could be used with plant growth too?
+			- Unify heat transformations into recipe system with
+			  cooking recipes?
+		- Make fuel consumed slower by reducing flame exposure.
+			- Encourages designing a better furnace.
+		- Smothering produces charcoal instead of ash.
+			- Can be reburned.  Maybe easier to ignite?
+			  Maybe rejuvenate fuel in exchange for effort?
+		- Make ash whiter, charcoal black.
+- Plant life stuff
+	- Tree growth catchup.
+		- Set last time calc at place-time and in ABM
+		- Define growth rate as gaussian, compute cumulative
+		  growth as a single box-mueller transform upon ABM
+		- Visually show progress, e.g. display a sprout or
+		  something above, to give feedback.
+		- Require light.  
+	- Leaves settle into grass as podzol?  Composting/decay?
+	- Dirt/sand/etc should self-compact if buried or over time.
+	  OR loose dirt should grow grass.
+
+........................................................................
+========================================================================

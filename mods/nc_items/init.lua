@@ -1,0 +1,179 @@
+-- LUALOCALS < ---------------------------------------------------------
+local ItemStack, math, minetest, nodecore, setmetatable, type, vector
+    = ItemStack, math, minetest, nodecore, setmetatable, type, vector
+local math_random
+    = math.random
+-- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+
+local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
+
+local function invdef(pos)
+	local stack = nodecore.stack_get(pos)
+	if not stack or stack:is_empty() then return end
+	local def = minetest.registered_items[stack:get_name()]
+	return stack:get_count() == (def.pummel_stack or 1) and def or nil
+end
+
+minetest.register_node(modname .. ":stack", {
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5}
+		),
+		use_texture_alpha = true,
+		tiles = {
+			"nc_items_shadow.png",
+			"nc_items_blank.png",
+		},
+		walkable = true,
+		selection_box = stackbox,
+		collision_box = stackbox,
+		drop = {},
+		groups = {
+			snappy = 1,
+			falling_repose = 1,
+			visinv = 1,
+			is_stack_only = 1
+		},
+		paramtype = "light",
+		sunlight_propagates = true,
+		repose_drop = function(posfrom, posto, node)
+			local stack = nodecore.stack_get(posfrom)
+			if stack and not stack:is_empty() then
+				nodecore.item_eject(posto, stack)
+			end
+			return minetest.remove_node(posfrom)
+		end,
+		on_rightclick = function(pos, node, whom, stack, pointed, ...)
+			if not nodecore.interact(whom) then return stack end
+			return nodecore.stack_add(pos, stack)
+		end
+	})
+
+function nodecore.place_stack(pos, stack, placer, pointed_thing)
+	stack = ItemStack(stack)
+	local name = stack:get_name()
+
+	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+	if nodecore.match(below, {name = name, count = false}) then
+		stack = nodecore.stack_add(below, stack)
+		if stack:is_empty() then return end
+	end
+
+	minetest.set_node(pos, {name = modname .. ":stack"})
+	nodecore.stack_set(pos, stack)
+	if placer and pointed_thing then
+		nodecore.craft_check(pos, {name = stack:get_name()}, {
+				action = "place",
+				crafter = placer,
+				pointed = pointed_thing
+			})
+	end
+
+	return minetest.check_for_falling(pos)
+end
+
+local bii = minetest.registered_entities["__builtin:item"]
+local item = {
+	on_step = function(self, dtime, ...)
+		bii.on_step(self, dtime, ...)
+
+		local pos = self.object:getpos()
+		if not self.oldpos or not vector.equals(pos, self.oldpos) then
+			self.oldpos = pos
+			self.sitting = 0
+			return
+		end
+		self.sitting = (self.sitting or 0) + dtime
+		if self.sitting < 0.25 then return end
+
+		pos = vector.round(pos)
+		local i = ItemStack(self.itemstring)
+		pos = nodecore.scan_flood(pos, 5,
+			function(p)
+				if p.y > pos.y then return end
+				i = nodecore.stack_add(p, i)
+				if i:is_empty() then return p end
+				if nodecore.buildable_to(p) then return p end
+			end)
+		if not pos then return end
+		if not i:is_empty() then nodecore.place_stack(pos, i) end
+		self.itemstring = ""
+		self.object:remove()
+	end,
+	on_punch = function(self, whom, ...)
+		if not nodecore.interact(whom) then return end
+		local r = bii.on_punch(self, whom, ...)
+		if self.itemstring ~= "" then
+			local v = self.object:get_velocity()
+			v.x = v.x + math_random() * 5 - 2.5
+			v.y = v.y + math_random() * 5 - 2.5
+			v.z = v.z + math_random() * 5 - 2.5
+			self.object:set_velocity(v)
+		end
+	end
+}
+setmetatable(item, bii)
+minetest.register_entity(":__builtin:item", item)
+
+local bifn = minetest.registered_entities["__builtin:falling_node"]
+local falling = {
+	set_node = function(self, node, meta, ...)
+		if node and node.name == modname .. ":stack"
+		and meta and meta.inventory and meta.inventory.solo then
+			local stack = ItemStack(meta.inventory.solo[1] or "")
+			if not stack:is_empty() then
+				nodecore.item_eject(self.object:getpos(), stack,
+					nil, nil, {x = 0, y = 0.01, z = 0})
+				return self.object:remove()
+			end
+		end
+		return bifn.set_node(self, node, meta, ...)
+	end
+}
+setmetatable(falling, bifn)
+minetest.register_entity(":__builtin:falling_node", falling)
+
+function minetest.item_place(itemstack, placer, pointed_thing, param2)
+	if not nodecore.interact(placer) then return end
+	if pointed_thing.type == "node" and placer and
+	not placer:get_player_control().sneak then
+		local n = minetest.get_node(pointed_thing.under)
+		local nn = n.name
+		if minetest.registered_nodes[nn] and minetest.registered_nodes[nn].on_rightclick then
+			return minetest.registered_nodes[nn].on_rightclick(pointed_thing.under, n,
+				placer, itemstack, pointed_thing) or itemstack, false
+		end
+	end
+	if itemstack:get_definition().type == "node" then
+		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
+	end
+	if not itemstack:is_empty() then
+		local above = minetest.get_pointed_thing_position(pointed_thing, true)
+		if above and nodecore.buildable_to(above) then
+			nodecore.place_stack(above, itemstack:take_item(), placer, pointed_thing)
+		end
+	end
+	return itemstack
+end
+
+if nodecore.loaded_mods().nc_fire then
+	nodecore.register_limited_abm({
+			label = "Flammable ItemStacks Ignite",
+			interval = 5,
+			chance = 1,
+			nodenames = {modname .. ":stack"},
+			neighbors = {"group:igniter"},
+			action = function(pos, node)
+				if nodecore.quenched(pos) then return end
+
+				local def = invdef(pos)
+				local flam = def and def.groups and def.groups.flammable
+				if not flam then return end
+
+				if math_random(1, flam) ~= 1 then return end
+				nodecore.ignite(pos, node)
+			end
+		})
+end
