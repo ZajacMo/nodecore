@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+local math, minetest, nodecore, pairs, type
+    = math, minetest, nodecore, pairs, type
+local math_exp, math_floor, math_log, math_random
+    = math.exp, math.floor, math.log, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -87,6 +89,13 @@ local function timecounter(meta, max, check)
 	meta:set_int("time", t)
 end
 
+local logadj = math_log(2)
+local function exporand()
+	local r = 0
+	while r == 0 do r = math_random() end
+	return math_floor(math_exp(-math_log(r) * logadj))
+end
+
 nodecore.register_limited_abm({
 		label = "Lode Cobble to Prills",
 		interval = 1,
@@ -97,7 +106,7 @@ nodecore.register_limited_abm({
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if timecounter(minetest:get_meta(pos), 30,
 				not nodecore.match(below, {walkable = true}) and heated(pos)) then
-				nodecore.item_eject(below, modname .. ":prill_hot 2")
+				nodecore.item_eject(below, modname .. ":prill_hot " .. exporand())
 				minetest:get_meta(pos):from_table({})
 				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})
 			end

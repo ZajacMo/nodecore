@@ -19,5 +19,10 @@ CONTRIBUTION WISHLIST
 	  preferred.
 		- Indeterminate age, race, gender, etc.
 
+- Sounds for pretty much everything.
+	- Node digging, walking, punching, etc. sounds.
+	- Maybe separate sounds for completing pummels or crafts?
+	- Ambient stuff like fire, maybe lapping water, wind in leaves
+
 ........................................................................
 ========================================================================
