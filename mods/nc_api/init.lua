@@ -1,7 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
--- SKIP: nodecore
-local dofile, include, minetest, rawget, rawset, table
-    = dofile, include, minetest, rawget, rawset, table
+-- SKIP: include nodecore
+local dofile, minetest, rawget, rawset, table
+    = dofile, minetest, rawget, rawset, table
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
