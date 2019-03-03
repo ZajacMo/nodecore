@@ -15,7 +15,6 @@ local include = rawget(_G, "include") or function(...)
 	if parts[#parts]:sub(-4) ~= ".lua" then
 		parts[#parts] = parts[#parts] .. ".lua"
 	end
-	minetest.log(table_concat(parts, "/"))
 	return dofile(table_concat(parts, "/"))
 end
 rawset(_G, "include", include)

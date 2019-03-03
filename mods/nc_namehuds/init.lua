@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, tonumber
-    = math, minetest, nodecore, pairs, string, tonumber
-local math_sqrt, string_format
-    = math.sqrt, string.format
+local math, minetest, pairs, tonumber
+    = math, minetest, pairs, tonumber
+local math_sqrt
+    = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 -- Maximum distance at which custom nametags are visible.
-local distance = tonumber(minetest.setting_get(modname .. "_distance")) or 8
+local distance = tonumber(minetest.setting_get(modname .. "_distance")) or 16
 
 -- Precision (number of steps) for line-of-sight check for displaying nametags
 local precision = tonumber(minetest.setting_get(modname .. "_precision")) or 50
@@ -57,76 +57,48 @@ local function gettext(p2, n2)
 	-- to a line below if available.
 	local w = p2:get_wielded_item()
 	if w then
-		w = w:get_name()
-		local r = minetest.registered_items[w]
-		t = t .. "\n" .. (r and r.description or w)
-	end
-
-	if not nodecore.interact(n2) then
-		t = t .. "\nSPECTATOR"
+		local d = w:get_meta():get_string("description")
+		if d then
+			t = t .. "\n" .. d
+		else
+			w = w:get_name()
+			local r = minetest.registered_items[w]
+			t = t .. "\n" .. (r and r.description or w)
+		end
 	end
 
 	return t
 end
 
--- Determine if two players can see one another, using a
--- shared cache for commutitivity.
-local function cansee(p1, n1, p2, n2, los)
-	-- Sight is communitive: if p1 can see p2, p2 can see p1.
-	-- Compute a single shared cache key for both players that's
-	-- independent of order, and check for a cached result for
-	-- this player pair.
-	local loskey = (n1 < n2)
-	and (string_format("%q", n1) .. "|" .. string_format("%q", n2))
-	or (string_format("%q", n2) .. "|" .. string_format("%q", n1))
-	local l = los[loskey]
-	if l ~= nil then return l end
-
+-- Determine if player 1 can see player 2's face, including
+-- checks for distance, line-of-sight, and facing direction.
+local function canseeface(p1, n1, p2, n2)
 	-- Dead players neither see, nor are recognizable.
-	if p1:get_hp() < 1 or p2:get_hp() < 1 then
-		los[loskey] = false
-		return
-	end
+	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
 
-	-- Players must be within max distance of one another.
+	-- Players must be within max distance of one another,
+	-- determined by light level.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
+	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
+	local ld = (ll / 15 * distance)
 	local dx = o1.x - o2.x
 	local dy = o1.y - o2.y
 	local dz = o1.z - o2.z
-	if (dx * dx + dy * dy + dz * dz) > (distance * distance) then
-		los[loskey] = false
-		return
-	end
+	if (dx * dx + dy * dy + dz * dz) > (ld * ld) then return end
 
 	-- Check for line of sight from approximage eye level
 	-- of one player to the other.
-	o1.y = o1.y + 1.5
-	o2.y = o2.y + 1.5
-	l = minetest.line_of_sight(o1, o2, distance / precision) or false
-
-	-- Cache result (for checking opposite direction).
-	los[loskey] = l
-	return l
-end
-
--- Determine if player 1 can see player 2's face, including
--- checks for distance, line-of-sight, and facing direction.
-local function canseeface(p1, n1, p2, n2, los)
-	-- Checks for reciprocal line-of-sight.
-	if not cansee(p1, n1, p2, n2, los) then return end
+	o1.y = o1.y + 1.65
+	o2.y = o2.y + 1.65
+	local l = minetest.line_of_sight(o1, o2, distance / precision)
+	if not l then return end
 
 	-- Players must be facing each other; cannot identify another
 	-- player's face when their back is turned.  Note that
 	-- minetest models don't show pitch, so ignore the y component.
 
 	-- Compute normalized 2d vector from one player to another.
-	local o1 = p1:getpos()
-	local o2 = p2:getpos()
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
-	if ll < 3 then return end
-	local dx = o1.x - o2.x
-	local dz = o1.z - o2.z
 	local d = dx * dx + dz * dz
 	if d == 0 then return end
 	d = math_sqrt(d)
@@ -150,7 +122,6 @@ end
 -- On each global step, check all player visibility, and create/remove/update
 -- each player's HUDs accordingly.
 minetest.register_globalstep(function()
-		local los = {}
 		local conn = minetest.get_connected_players()
 		for _, p1 in pairs(conn) do
 			local n1 = p1:get_player_name()
@@ -163,7 +134,7 @@ minetest.register_globalstep(function()
 				if p2 ~= p1 then
 					local n2 = p2:get_player_name()
 					local i = h[n2]
-					if canseeface(p1, n1, p2, n2, los) then
+					if canseeface(p1, n1, p2, n2) then
 						local p = p2:getpos()
 						p.y = p.y + 1.25
 						local t = gettext(p2, n2)
