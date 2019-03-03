@@ -144,23 +144,20 @@ minetest.node_dig = function(pos, node, digger, ...)
 		return ...
 	end
 	digpos = pos
-	digplayer = digger
+	digplayer = digger and digger:is_player() and digger
 	return helper(old_node_dig(pos, node, digger, ...))
 end
 local function trydirect(stack)
 	stack = ItemStack(stack)
-	if stack:is_empty() then return end
 
 	local p = digplayer
-	if (not p) or (not p:is_player())
-	or (not p:get_player_control().sneak) then return end
-	minetest.log("playersneak")
+	if (not p) or (not p:get_player_control().sneak) then return end
 
 	local inv = p:get_inventory()
 	for i = 1, inv:get_size("main") do
-		if inv:get_stack("main", i):is_empty() then
-			inv:set_stack("main", i, stack)
-			return true
+		if i ~= p:get_wield_index()
+		and inv:get_stack("main", i):is_empty() then
+			return inv:set_stack("main", i, stack)
 		end
 	end
 end
