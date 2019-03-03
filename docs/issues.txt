@@ -2,13 +2,21 @@
 ISSUES: Bugs, Cleanup and Refinements
 ------------------------------------------------------------------------
 
-- Update README.
-	- Add "gameplay basics"
-		- Crafting in-world
-		- Pummeling
-		- Sensitivity to which node face
-		- Check inventory screen for hints
-	- Installation guide?
+- Update core docs.
+	- README
+		- Convert to markdown?
+		- Elevator pitch
+			- Immersive, no GUIs, original gameplay
+		- Add "gameplay basics"
+			- Crafting in-world
+			- Pummeling
+			- Sensitivity to which node face
+			- Check	inventory screen for hints
+		- Installation guide?
+			- Singleplayer on android
+	- CONTRIBUTING
+		- Coverage for non-repo items
+			- Screenshots, videos/links, for publicity
 
 - API Cleanup
 	- Utils
