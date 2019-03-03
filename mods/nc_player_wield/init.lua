@@ -74,13 +74,7 @@ minetest.register_globalstep(function()
 
 		local obj = minetest.add_entity(v.pos, modname .. ":ent")
 		local ent = obj:get_luaentity()
-		ent.conf = {
-			pname = v.pname,
-			slot = v.slot,
-			bone = v.bone,
-			apos = v.apos,
-			arot = v.arot
-		}
+		ent.conf = v
 	end)
 
 
