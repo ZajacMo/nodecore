@@ -2,6 +2,14 @@
 ISSUES: Bugs, Cleanup and Refinements
 ------------------------------------------------------------------------
 
+- Wield view broken in MP.
+	- Players sometimes see ents as unattached, depending on
+	  who joined when.
+	- Regenerating ents may fix for other players, but then
+	  BREAKS F7 view, because players only see ents in F7 view
+	  that exist at the time of change, not new ones.
+	- Need to review GH and see if there are existing issues.
+
 - Update core docs.
 	- README
 		- Convert to markdown?

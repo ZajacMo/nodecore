@@ -30,11 +30,21 @@ local function entprops(stack, conf)
 	return t
 end
 
+local attq = {}
+
 minetest.register_entity(modname .. ":ent", {
 		initial_properties = entprops(),
 		on_step = function(self, dtime)
 			local conf = self.conf
 			if not conf then return self.object:remove() end
+
+--			if self.ttl then
+--				self.ttl = self.ttl - dtime
+--				if self.ttl <= 0 then
+--					attq[#attq + 1] = conf
+--					return self.object:remove()
+--				end
+--			else self.ttl = math_random() * 5 + 5 end
 
 			local player = minetest.get_player_by_name(conf.pname)
 			if not player then return self.object:remove() end
@@ -58,8 +68,6 @@ minetest.register_entity(modname .. ":ent", {
 			end
 		end
 	})
-
-local attq = {}
 
 minetest.register_globalstep(function()
 		local v = table_remove(attq, 1)
