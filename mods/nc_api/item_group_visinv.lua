@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type
-    = math, minetest, nodecore, pairs, type
+local ItemStack, math, minetest, nodecore, pairs, type
+    = ItemStack, math, minetest, nodecore, pairs, type
 local math_floor, math_pi, math_random, math_sqrt
     = math.floor, math.pi, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -136,14 +136,33 @@ nodecore.register_limited_abm({
 -- DIG INVENTORY
 
 local digpos
+local digplayer
 local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, ...)
+minetest.node_dig = function(pos, node, digger, ...)
 	local function helper(...)
 		digpos = nil
 		return ...
 	end
 	digpos = pos
-	return helper(old_node_dig(pos, ...))
+	digplayer = digger
+	return helper(old_node_dig(pos, node, digger, ...))
+end
+local function trydirect(stack)
+	stack = ItemStack(stack)
+	if stack:is_empty() then return end
+
+	local p = digplayer
+	if (not p) or (not p:is_player())
+	or (not p:get_player_control().sneak) then return end
+	minetest.log("playersneak")
+
+	local inv = p:get_inventory()
+	for i = 1, inv:get_size("main") do
+		if inv:get_stack("main", i):is_empty() then
+			inv:set_stack("main", i, stack)
+			return true
+		end
+	end
 end
 local old_get_node_drops = minetest.get_node_drops
 minetest.get_node_drops = function(...)
@@ -151,7 +170,7 @@ minetest.get_node_drops = function(...)
 	if not digpos then return drops end
 	drops = drops or {}
 	local stack = nodecore.stack_get(digpos)
-	if stack and not stack:is_empty() then
+	if stack and not stack:is_empty() and (not trydirect(stack)) then
 		drops[#drops + 1] = stack
 	end
 	return drops
