@@ -48,28 +48,6 @@ minetest.register_on_leaveplayer(function(player)
 ------------------------------------------------------------------------
 -- GLOBAL TICK HUD MANAGEMENT
 
--- Get custom text for a visible HUD.
-local function gettext(p2, n2)
-	-- First line: distance units, player HP.
-	local t = "m"
-
-	-- Check for a wielded item, and add its description
-	-- to a line below if available.
-	local w = p2:get_wielded_item()
-	if w then
-		local d = w:get_meta():get_string("description")
-		if d then
-			t = t .. "\n" .. d
-		else
-			w = w:get_name()
-			local r = minetest.registered_items[w]
-			t = t .. "\n" .. (r and r.description or w)
-		end
-	end
-
-	return t
-end
-
 -- Determine if player 1 can see player 2's face, including
 -- checks for distance, line-of-sight, and facing direction.
 local function canseeface(p1, n1, p2, n2)
@@ -138,7 +116,6 @@ minetest.register_globalstep(function()
 					if canseeface(p1, n1, p2, n2) then
 						local p = p2:getpos()
 						p.y = p.y + 1.25
-						local t = gettext(p2, n2)
 
 						-- Create a new HUD if not present.
 						if not i then
@@ -147,7 +124,7 @@ minetest.register_globalstep(function()
 									hud_elem_type = "waypoint",
 									world_pos = p,
 									name = n2,
-									text = t,
+									text = "",
 									number = 0xffffff
 								})
 							h[n2] = i
