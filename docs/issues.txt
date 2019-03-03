@@ -44,6 +44,10 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Auto-generate mod.conf / depends.txt
 	- Scripts for automatic metapackage mods?
 	- Git hooks (and git hook setup scripts)?
+	
+- MT 0.4 Support Sunsetting.
+	- Remove references to nodecore.mt_old
+	- remove nc_player_model_old.b3d
 
 - Tree farming.
 	- Make eggcorns non-plantlike (place-as-item)
