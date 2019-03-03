@@ -20,6 +20,7 @@ ISSUES: Bugs, Cleanup and Refinements
 			- Pummeling
 			- Sensitivity to which node face
 			- Check	inventory screen for hints
+			- How to manipulate and split stacks in-world
 		- Installation guide?
 			- Singleplayer on android
 	- CONTRIBUTING

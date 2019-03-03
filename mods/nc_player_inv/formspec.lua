@@ -1,33 +1,28 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, table
+    = minetest, nodecore, table
+local table_concat
+    = table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local version = nodecore.version
 version = version and ("Version " .. version) or "DEVELOPMENT VERSION"
 
-nodecore.inventory_formspec = "size[8,5]"
+local lines = {
+	"NodeCore - " .. version,
+	"",
+	"(C)2018-2019 by Aaron Suen <warr1024@gmail.com>",
+	"MIT License:  http://www.opensource.org/licenses/MIT",
+	"",
+	"GitLab:    https://gitlab.com/sztest/nodecore",
+	"Discord:   https://discord.gg/SHq2tkb"
+}
+
+nodecore.inventory_formspec = "size[8,3.5]"
 .. "bgcolor[#000000C0;true]"
-.. "background[0,0;8,5;nc_player_inv_form.png;true]"
 .. "listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
-.. "list[current_player;main;0,4;8,5;]"
-.. "box[-0.25,-0.25;8.5,3.25;#000000C0]"
-.. "label[0,0;NodeCore - "
-.. minetest.formspec_escape(version)
-.. "\n\n"
-.. "(C)2018-2019 by Aaron Suen <warr1024@gmail.com>\n"
-.. "MIT License:  http://www.opensource.org/licenses/MIT\n\n"
-.. "GitLab:    https://gitlab.com/sztest/nodecore\n"
-.. "Discord:   https://discord.gg/SHq2tkb]"
+.. "label[0,0;" .. minetest.formspec_escape(table_concat(lines, "\n")) .. "]"
 
 minetest.register_on_joinplayer(function(player)
-		player:get_inventory():set_size("main", 8)
-		player:hud_set_hotbar_itemcount(8)
-
-		player:hud_set_hotbar_image("nc_player_inv_bar.png")
-		player:hud_set_hotbar_selected_image("nc_player_inv_sel.png")
-
 		player:set_inventory_formspec(nodecore.inventory_formspec)
-
-		player:set_properties({stepheight = 1.2})
 	end)

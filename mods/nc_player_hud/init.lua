@@ -7,7 +7,7 @@ local health_bar_definition =
 {
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
-	text = "heart_bg.png",
+	text = "nc_player_hud_heart_bg.png",
 	number = 20,
 	direction = 0,
 	size = {x = 24, y = 24},
@@ -18,7 +18,7 @@ local breath_bar_definition =
 {
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
-	text = "bubble_bg.png",
+	text = "nc_player_hud_bubble_bg.png",
 	number = 20,
 	direction = 0,
 	size = {x = 24, y = 24},
@@ -40,6 +40,9 @@ end
 minetest.register_playerevent(checkbubbles)
 
 minetest.register_on_joinplayer(function(player)
+		player:hud_set_hotbar_itemcount(8)
+		player:hud_set_hotbar_image("nc_player_hud_bar.png")
+		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
 		minetest.after(0, function()
 				player:hud_add(health_bar_definition)
 				checkbubbles(player)
