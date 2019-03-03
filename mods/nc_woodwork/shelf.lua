@@ -30,6 +30,7 @@ minetest.register_node(modname .. ":shelf", {
 			flammable = 2,
 			fire_fuel = 3,
 			eject_inv_on_burn = 1,
+			container = 1,
 			totable = 1
 		},
 		paramtype = "light",
@@ -57,6 +58,9 @@ minetest.register_node(modname .. ":shelf", {
 			if nodecore.stack_giveto(pos, digger) then
 				return minetest.node_dig(pos, node, digger, ...)
 			end
+		end,
+		stack_allow = function(pos, node, stack, def)
+			if def and def.groups and def.groups.container then return false end
 		end
 	})
 

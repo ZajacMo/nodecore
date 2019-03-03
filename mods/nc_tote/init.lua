@@ -111,6 +111,7 @@ minetest.register_node(modname .. ":handle", {
 		},
 		groups = {
 			snappy = 1,
+			container = 1,
 			fire_fuel = 5
 		},
 		after_dig_node = totedug,

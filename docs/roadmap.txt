@@ -3,16 +3,9 @@ ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
 - Fix bug allowing totes to be placed into shelves.
-- Update README.
-	- Add "gameplay basics"
-		- Crafting in-world
-		- Pummeling
-		- Sensitivity to which node face
-		- Check inventory screen for hints
-	- Installation guide?
 - Digital logic + lighting via optics.
-	- Mirrors
-		- Change light angle
+	- Mirrors or Lenses
+		- Change light angle?
 		- Focus sunlight?
 	- Prism Node
 		- 1 face (back) is VCC face, must be fed light to do anything.

@@ -56,6 +56,14 @@ NEW CONTENT
 ------------------------------------------------------------------------
 USABILITY
 
+- Update README.
+	- Add "gameplay basics"
+		- Crafting in-world
+		- Pummeling
+		- Sensitivity to which node face
+		- Check inventory screen for hints
+	- Installation guide?
+
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
@@ -66,7 +74,6 @@ USABILITY
 
 - Social features
 	- Randomize player appearance/colors.
-	- Players show damage on texture?
 	- Players show wielditem on texture or floating ent?
 
 ------------------------------------------------------------------------
