@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, string, table
-    = minetest, string, table
+local minetest, nodecore, table
+    = minetest, nodecore, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -103,10 +103,9 @@ minetest.register_on_joinplayer(function(player)
 
 		addslot(0, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
-		local isold = minetest.get_version().string:sub(1, 2) == "0."
 		local function cslot(n, x, z)
 			return addslot(n, nil, x * 1.6,
-				(isold and -4 or 5.5) + x / 2,
+				(nodecore.mt_old and -4 or 5.5) + x / 2,
 				z * 2.1)
 		end
 
