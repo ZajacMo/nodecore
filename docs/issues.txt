@@ -1,0 +1,98 @@
+========================================================================
+ISSUES: Bugs, Cleanup and Refinements
+------------------------------------------------------------------------
+
+- Update README.
+	- Add "gameplay basics"
+		- Crafting in-world
+		- Pummeling
+		- Sensitivity to which node face
+		- Check inventory screen for hints
+	- Installation guide?
+
+- API Cleanup
+	- Utils
+		- Box mueller and exporand
+	- Break up the nc_api monstrosity.
+		- nc_api_base to create _G.nodecore and include for all.
+		- nc_api metamod that just depends on ALL other api's.
+		- nc_all metamod for 3rd party mod authors...?
+	- Soaking API for time-integrated processes.
+		- Tree growth
+		- Lode heating
+	- Heat API
+		- Unified heating/cooling number from env.
+		- Proper API for burning up items
+			- on_burn?  burns_to?
+		- Unify heat transformations into recipe system with
+		  cooking recipes?
+	- Unify nc_items and visinv API.
+		- Stack nodes are "special", get first-class support.
+
+- Code Quality.
+	- Finish setting up LuaCheck, audit code.
+	- Scripts to validate dependency graph.
+	- Scripts for automatic metapackage mods?
+	- Git hooks (and git hook setup scripts)?
+
+- Tree farming.
+	- Make eggcorns non-plantlike (place-as-item)
+	- Show sprout/sapling above eggcorn_planted to show
+	  progress over time.
+	- Switch to soaking API (above)  
+
+- Loose node cleanup.
+	- Leaves settle into grass as podzol?  Composting/decay?
+	- Dirt/sand/etc should self-compact if buried or over time.
+
+- Fire rework.
+	- Make fuel consumed slower by reducing flame exposure.
+		- Encourages designing a better furnace.
+	- Smothering produces charcoal instead of ash.
+		- Can be reburned.  Maybe easier to ignite?
+		  Maybe rejuvenate fuel in exchange for effort?
+	- Make ash whiter, charcoal black.
+
+- Stack Splitting Research
+	- Can we eliminate the inv screen?
+	- How hard is it to split off a specific number of items from
+	  a stack, esp. on mobile?
+	- What else can we do on the inv screen we would need to be
+	  able to do in-world?
+	- Can we make stack splitting easier?  Shovel pummel to split
+	  in half?
+	- What sizes of stacks do we actually need in practice?
+
+- Hint system updates.
+	- Need a "witness" system for spontaneous in-world processes,
+	  such as tree growth or lode cooling.  Credit players within
+	  a certain distance and line-of-sight.  
+	- Use recipes for hint guide instead of just items in hand.
+	- Feedback/issues URL?
+		- Look for new URL buttons in 5.0+
+
+- Social features
+	- Randomize player appearance/colors.
+		- Shirt/pants, possibly w/ stripes/patterns
+		- Skin color, hair color, eye color?
+
+- Make neighbor/distance calcs consistent.
+	- We're using scan_flood in some places, face checks in others,
+	  and find_nodes_in_area (cuboid) in others.
+	- Diamond shape would be most consistent.
+	- Should require face touching, not diagonal.
+
+- Make item updates search farther after they've been settled
+  for longer.  Allow some upwards motion...?
+
+- Tool level differences.
+	- Advanced tools are NOT just the same as regular tools with
+	  certain buffs.
+	- Higher-tier tools skip dig phases.
+		- Fast-forward throug certain steps, e.g. raw -> loose?
+		- Skip later stages, e.g. "silk touch" effect?
+	- Tool API cleanup
+		- Separate durability, speed, effects?
+
+........................................................................
+========================================================================

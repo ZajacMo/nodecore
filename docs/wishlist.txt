@@ -4,16 +4,10 @@ CONTRIBUTION WISHLIST
 
 - Player model enhancements
 	- Hat/hair surfaces.
-	- Texturable square attached to hand for wield item.
-		- Note that, in NC, unlike most MT games, tools are
-		  oriented upright, not diagonally, so wield surface
-		  would also probably be orthogonal.
-	- Small texturable squares jutting out from beltline to display
-	  player inventory visibly.
-	- Make U/V map for corresponding faces exactly match MTG Sam
-	  model, or MC Steve, so users can more easily adapt their
-	  existing skins.
-	- Maybe a swim animation?  
+	- Maybe a swim animation?
+	- Check that UV maps are consistent with existing skins,
+	  e.g. MTG Sam or MC Steve, for TP authors to more easily
+	  adapt existing skins.  
 
 - Better textures for pretty much everything.
 	- For player models, "demographically neutral/ambiguous" is
@@ -23,7 +17,7 @@ CONTRIBUTION WISHLIST
 - Sounds for pretty much everything.
 	- Node digging, walking, punching, etc. sounds.
 	- Maybe separate sounds for completing pummels or crafts?
-	- Ambient stuff like fire, maybe lapping water, wind in leaves
+	- Ambient stuff like fire, maybe lapping water, wind in leaves.
 
 ........................................................................
 ========================================================================

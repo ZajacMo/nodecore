@@ -1,57 +1,70 @@
 ========================================================================
-ROADMAP (SHORT-TERM)
+ROADMAP: Large New Development Projects
 ------------------------------------------------------------------------
 
 - Digital logic + lighting via optics.
-	- Mirrors or Lenses
-		- Change light angle?
-		- Focus sunlight?
+	- Need a way to make glass.
+		- Heat in furnace?
+		- Environment, lightning?
+	- Lenses
+		- 1 input face, 1 output face opposite.
+		- Focus sunlight or max light src into a beam for prism feed.
+		- When fed by prism, diffuse light and act as light source.
+		- Focused light right at output applies heat
+			- Easy fire starting?
+				- From sunlight
+				- From prism beam, 2 lenses in series
+			- Optical heat transforms, create glass?
 	- Prism Node
-		- 1 face (back) is VCC face, must be fed light to do anything.
-		- 3 faces (front, left, right) are output faces, emit collimated light.
+		- 2 faces (back, left) are VCC faces, either must be fed light to do anything.
+		- 2 faces (front, right) are output faces, emit collimated light.
 		- 2 faces (top, bottom) are interference faces, switch off output if fed light.
-		- Create a light source (airlike) wherever prism beams hit, if not another prism.
+		- Create a tiny light source (airlike) wherever prism beams hit, if not another prism.
 		- Beams can pass through one another.
-	- Lamp Crystal Node
-		- Inert when placed, reverts to inert form when dug.
-		- When provided a light source over time, it starts to glow.
-		- Glows perpetually once charged, until dug.
-		- Light can be used as input for prisms.
-	- Buttons/touchplates, no switches (build a latch for state).
+	- Piezo Crystal Node
+		- Emits light briefly when punched or stepped on
+		- Need to interpolate player paths for "stepped on" logic
+	- Perpetual light source
+		- Stable optical loops?
 	- Pistons or rack&pinions for affecting world stuff.
-- Visceral threats.
-	- Need some kind of "oh shit"-factor hazards for e.g. deeper mining.
-	- Flammable gas?  Toxic gas?  Radioactives?
-	- Monsters: stone-lurkers, mimics.
-- Fire tech.
-	- Fire rework.
-		- Migrate to first-class API.
-			- Proper API for burning up items
-				- on_burn?  burns_to?
-			- Move heat and quench calcs all into API.
-			- Cumulative heat helpers?
-				- Maybe generalized time-cumulative helpers that
-				  could be used with plant growth too?
-			- Unify heat transformations into recipe system with
-			  cooking recipes?
-		- Make fuel consumed slower by reducing flame exposure.
-			- Encourages designing a better furnace.
-		- Smothering produces charcoal instead of ash.
-			- Can be reburned.  Maybe easier to ignite?
-			  Maybe rejuvenate fuel in exchange for effort?
-		- Make ash whiter, charcoal black.
-- Plant life stuff
-	- Tree growth catchup.
-		- Set last time calc at place-time and in ABM
-		- Define growth rate as gaussian, compute cumulative
-		  growth as a single box-mueller transform upon ABM
-		- Visually show progress, e.g. display a sprout or
-		  something above, to give feedback.
-		- Require light.  
-	- Leaves settle into grass as podzol?  Composting/decay?
-	- Dirt/sand/etc should self-compact if buried or over time.
-	  OR loose dirt should grow grass.
-	- Make eggcorns just use place-as-item instead of plantlike.  
+
+- Domain Wall Sensor (adapt from sztest)
+
+- Threats
+	- Visceral
+		- Flammable gas?  Toxic gas?  Radioactives?
+		- Monsters: stone-lurkers, mimics.
+		- Lightning, meteor strikes?
+	- Creeping
+		- Cellular automata hazards.
+		- From exploration, deliving too deep, leaving things to rot, etc.
+		- Blights, fungi
+	- Latent
+		- Respawn mechanics?
+
+- Water and lava surface springs.
+	- Access to water for forges.
+	- Access to lava for lighting, firestarting.
+
+- New materials to craft with.
+	- Dungeon materials, stonework?
+	- Decorations for dungeons
+	- Tree sap from stumps? Resin? Rubber? Shellac?
+	- Small plants? Reeds? Mallows?
+	- Sea stars, anenome, coral, other underwater things?
+	- Fungi, esp. tree-destroying ones, blight?
+	- Oil, natural gas?  Fossils and fossil fuels?
+	- Geode, hydra crystals, radioactives?
+	- Shipwrecks or alien tech
+	- Slow-moving animals? Snails? Miniature spice worms?
+	- Non-portable things, like "spawners" or wormholes
+	- Tubers and taproots, cacti, and other "defensive" plantlife
+	- Plant-like CA animals, like bee nests and clouds of bees?
+	  Termine mounds? Ant colonies? Coral?
+
+- System for transporting cargo.
+	- Trains of minecarts?
+	- Conveyors, elevators?
 
 ........................................................................
 ========================================================================
