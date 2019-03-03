@@ -88,5 +88,12 @@ REFACTORS AND REFINEMENTS
 - Make item updates search farther after they've been settled
   for longer.  Allow some upwards motion...?
 
+- Finish setting up LuaCheck.
+
+- Break up the nc_api monstrosity.
+	- nc_api_base to create _G.nodecore and include for all.
+	- nc_api metamod that just depends on ALL other api's.
+	- nc_all metamod for 3rd party mod authors...?
+
 ........................................................................
 ========================================================================

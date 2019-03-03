@@ -2,7 +2,6 @@
 ROADMAP (SHORT-TERM)
 ------------------------------------------------------------------------
 
-- Fix bug allowing totes to be placed into shelves.
 - Digital logic + lighting via optics.
 	- Mirrors or Lenses
 		- Change light angle?
@@ -52,6 +51,7 @@ ROADMAP (SHORT-TERM)
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
 	  OR loose dirt should grow grass.
+	- Make eggcorns just use place-as-item instead of plantlike.  
 
 ........................................................................
 ========================================================================
