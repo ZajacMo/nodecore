@@ -13,6 +13,7 @@ CONTRIBUTION WISHLIST
 	- Make U/V map for corresponding faces exactly match MTG Sam
 	  model, or MC Steve, so users can more easily adapt their
 	  existing skins.
+	- Maybe a swim animation?  
 
 - Better textures for pretty much everything.
 	- For player models, "demographically neutral/ambiguous" is
