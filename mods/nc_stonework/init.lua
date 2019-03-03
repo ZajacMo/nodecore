@@ -1,10 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile, minetest
-    = dofile, minetest
+local include
+    = include
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-local path = minetest.get_modpath(modname)
-
-dofile(path .. "/chip.lua")
-dofile(path .. "/tools.lua")
+include("chip")
+include("tools")

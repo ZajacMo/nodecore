@@ -1,10 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, minetest
-    = include, minetest
+local include
+    = include
 -- LUALOCALS > ---------------------------------------------------------
-
-local modname = minetest.get_current_modname()
-local path = minetest.get_modpath(modname)
 
 include("ore")
 include("metallurgy")

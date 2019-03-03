@@ -1,17 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile, minetest
-    = dofile, minetest
+local include
+    = include
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-local path = minetest.get_modpath(modname)
+include("api")
+include("node")
+include("leafdecay")
 
-dofile(path .. "/api.lua")
-dofile(path .. "/node.lua")
-dofile(path .. "/leafdecay.lua")
+include("stick")
 
-dofile(path .. "/stick.lua")
-
-dofile(path .. "/schematic.lua")
-dofile(path .. "/decor.lua")
-dofile(path .. "/cultivation.lua")
+include("schematic")
+include("decor")
+include("cultivation")
