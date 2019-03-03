@@ -65,6 +65,7 @@ minetest.register_globalstep(function()
 		local v = attq[qpos]
 		local player = minetest.get_player_by_name(v.pname)
 		if not player then return end
+		if not minetest.get_node_or_nil(player:get_pos()) then return end
 		local obj = minetest.add_entity(v.pos, modname .. ":ent")
 		local apos = {x = v.x, y = v.y, z = v.z}
 		local arot = {x = v.rx, y = v.ry, z = v.rz}
