@@ -1,11 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, string
-    = ipairs, minetest, string
+local minetest, string, table
+    = minetest, string, table
+local table_remove
+    = table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function entprops(stack)
+local function entprops(stack, conf)
 	local t = {
 		hp_max = 1,
 		physical = false,
@@ -21,6 +23,9 @@ local function entprops(stack)
 	if stack and (not stack:is_empty()) then
 		t.is_visible = true
 		t.textures[1] = stack:get_name()
+		if conf and conf.slot == 0 then
+			t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
+		end
 	end
 	return t
 end
@@ -28,51 +33,54 @@ end
 minetest.register_entity(modname .. ":ent", {
 		initial_properties = entprops(),
 		on_step = function(self, dtime)
-			if self.pname and self.slot then
-				local player = minetest.get_player_by_name(self.pname)
-				if not player then return self.object:remove() end
+			local conf = self.conf
+			if not conf then return self.object:remove() end
 
-				local inv = player:get_inventory()
-				local sz = inv:get_size("main")
-				local s = self.slot + player:get_wield_index()
-				if s > sz then s = s - sz end
+			local player = minetest.get_player_by_name(conf.pname)
+			if not player then return self.object:remove() end
 
-				local stack = inv:get_stack("main", s)
-				local sn = stack:get_name()
-				if sn ~= self.sn then
-					self.sn = sn
-					local props = entprops(stack)
-					if self.slot == 0 then
-						props.visual_size = {x = 0.2, y = 0.2, z = 0.2}
-					end
-					self.object:set_properties(props)
-				end
+			if not self.att then
+				self.att = true
+				return self.object:set_attach(player, conf.bone, conf.apos, conf.arot)
+			end
+
+			local inv = player:get_inventory()
+			local sz = inv:get_size("main")
+			local s = conf.slot + player:get_wield_index()
+			if s > sz then s = s - sz end
+
+			local stack = inv:get_stack("main", s)
+			local sn = stack:get_name()
+			if sn ~= self.sn then
+				self.sn = sn
+				self.object:set_properties(entprops(stack))
 			end
 		end
 	})
 
 local attq = {}
-local qpos = 0
 
 minetest.register_globalstep(function()
-		if not attq then return end
-		qpos = qpos + 1
-		if qpos > #attq then
-			attq = nil
-			qpos = nil
-			return
-		end
-		local v = attq[qpos]
+		local v = table_remove(attq, 1)
+		if not v then return end
+
 		local player = minetest.get_player_by_name(v.pname)
 		if not player then return end
-		if not minetest.get_node_or_nil(player:get_pos()) then return end
+
+		if not minetest.get_node_or_nil(player:get_pos()) then
+			attq[#attq + 1] = v
+			return 
+		end
+
 		local obj = minetest.add_entity(v.pos, modname .. ":ent")
-		local apos = {x = v.x, y = v.y, z = v.z}
-		local arot = {x = v.rx, y = v.ry, z = v.rz}
-		obj:set_attach(player, v.bone, apos, arot)
 		local ent = obj:get_luaentity()
-		ent.pname = v.pname
-		ent.slot = v.slot
+		ent.conf = {
+			pname = v.pname,
+			slot = v.slot,
+			bone = v.bone,
+			apos = v.apos,
+			arot = v.arot
+		}
 	end)
 
 
@@ -80,28 +88,23 @@ minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		local pos = player:get_pos()
 
-		local myq = {}
-
-		minetest.after(1, function()
-				if not attq then
-					attq = {}
-					qpos = 0
-				end
-				for _, v in ipairs(myq) do attq[#attq + 1] = v end
-			end)
-
 		local function addslot(n, b, x, y, z, rx, ry, rz)
-			myq[#myq + 1] = {
-				slot = n,
+			attq[#attq + 1] = {
 				pname = pname,
+				slot = n,
 				pos = pos,
 				bone = b,
-				x = x,
-				y = y,
-				z = z,
-				rx = rx or 0,
-				ry = ry or 0,
-				rz = rz or 0}
+				apos = {
+					x = x,
+					y = y,
+					z = z
+				},
+				arot = {
+					x = rx or 0,
+					y = ry or 0,
+					z = rz or 0
+				}
+			}
 		end
 
 		addslot(0, "Arm_Right", -2.5, 8, 0, 2, 178, 60)

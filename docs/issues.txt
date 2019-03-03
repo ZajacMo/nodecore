@@ -40,6 +40,8 @@ ISSUES: Bugs, Cleanup and Refinements
 - Code Quality.
 	- Finish setting up LuaCheck, audit code.
 	- Scripts to validate dependency graph.
+		- Tag deps directly in code at place of use.
+		- Auto-generate mod.conf / depends.txt
 	- Scripts for automatic metapackage mods?
 	- Git hooks (and git hook setup scripts)?
 
