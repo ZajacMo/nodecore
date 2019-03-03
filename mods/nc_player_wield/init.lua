@@ -30,7 +30,7 @@ minetest.register_entity(modname .. ":ent", {
 		on_step = function(self, dtime)
 			if self.pname and self.slot then
 				local player = minetest.get_player_by_name(self.pname)
-				if not player then return self.object:destroy() end
+				if not player then return self.object:remove() end
 
 				local inv = player:get_inventory()
 				local sz = inv:get_size("main")

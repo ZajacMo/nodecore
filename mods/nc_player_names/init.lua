@@ -81,6 +81,7 @@ local function canseeface(p1, n1, p2, n2)
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
 	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
+	if not ll then return end
 	local ld = (ll / 15 * distance)
 	local dx = o1.x - o2.x
 	local dy = o1.y - o2.y
