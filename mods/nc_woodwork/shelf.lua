@@ -59,7 +59,8 @@ minetest.register_node(modname .. ":shelf", {
 				return minetest.node_dig(pos, node, digger, ...)
 			end
 		end,
-		stack_allow = function(pos, node, stack, def)
+		stack_allow = function(pos, node, stack)
+			local def = minetest.registered_items[stack:get_name()]
 			if def and def.groups and def.groups.container then return false end
 		end
 	})

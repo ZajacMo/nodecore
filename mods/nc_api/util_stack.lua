@@ -19,7 +19,7 @@ function nodecore.stack_add(pos, stack)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	if def and def.stack_allow then
-		local ret = def.stack_allow(pos, node, stack, def)
+		local ret = def.stack_allow(pos, node, stack)
 		if ret == false then return stack end
 		if ret and ret ~= true then return ret end
 	end
