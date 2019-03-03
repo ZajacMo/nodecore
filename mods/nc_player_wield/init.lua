@@ -41,7 +41,8 @@ minetest.register_entity(modname .. ":ent", {
 
 			if not self.att then
 				self.att = true
-				return self.object:set_attach(player, conf.bone, conf.apos, conf.arot)
+				return self.object:set_attach(player,
+					conf.bone, conf.apos, conf.arot)
 			end
 
 			local inv = player:get_inventory()
@@ -53,7 +54,7 @@ minetest.register_entity(modname .. ":ent", {
 			local sn = stack:get_name()
 			if sn ~= self.sn then
 				self.sn = sn
-				self.object:set_properties(entprops(stack))
+				self.object:set_properties(entprops(stack, conf))
 			end
 		end
 	})
