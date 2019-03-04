@@ -3,8 +3,7 @@ local minetest, pairs
     = minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local health_bar_definition =
-{
+local health_bar_definition = {
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
 	text = "nc_player_hud_heart_bg.png",
@@ -14,8 +13,7 @@ local health_bar_definition =
 	offset = { x = (-10 * 24) - 25, y = -(48 + 24 + 16)},
 }
 
-local breath_bar_definition =
-{
+local breath_bar_definition = {
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
 	text = "nc_player_hud_bubble_bg.png",
@@ -25,17 +23,18 @@ local breath_bar_definition =
 	offset = {x = 25, y = -(48 + 24 + 16)},
 }
 
-local wield_bar_definition =
-{
-	hud_elem_type = "text",
-	position = {x = 0.5, y = 1},
-	text = "",
-	number = 0xFFFFFF,
-	direction = 0,
-	size = {x = 24, y = 24},
-	offset = {x = 25, y = -(48 + 24 + 8)},
-	alignment = {x = 1, y = 0.5}
-}
+local function wield_bar_definition(x, y)
+	return {
+		hud_elem_type = "text",
+		position = {x = 0.5, y = 1},
+		text = "",
+		number = (x == 0 and y == 0) and 0xFFFFFF or 0,
+		direction = 0,
+		size = {x = 24, y = 24},
+		offset = {x = 25 + x, y = -(48 + 24 + 8 - y)},
+		alignment = {x = 1, y = 0.5}
+	}
+end
 
 local huds = {}
 
@@ -46,7 +45,13 @@ local function dohuds(player)
 		huds[pname] = {
 			healthid = player:hud_add(health_bar_definition),
 			breathid = player:hud_add(breath_bar_definition),
-			wieldid = player:hud_add(wield_bar_definition)
+			wieldids = {
+				player:hud_add(wield_bar_definition(-1, -1)),
+				player:hud_add(wield_bar_definition(-1, 1)),
+				player:hud_add(wield_bar_definition(1, -1)),
+				player:hud_add(wield_bar_definition(1, 1)),
+				player:hud_add(wield_bar_definition(0, 0)),
+			}
 		}
 		return
 	end
@@ -55,7 +60,9 @@ local function dohuds(player)
 		if hud.val ~= true then
 			hud.val = true
 			player:hud_change(hud.breathid, "number", 20)
-			player:hud_change(hud.wieldid, "text", "")
+			for _, id in pairs(hud.wieldids) do
+				player:hud_change(id, "text", "")
+			end
 		end
 		return
 	end
@@ -76,7 +83,9 @@ local function dohuds(player)
 	t = t or ""
 	if t ~= hud.val then
 		hud.val = t
-		player:hud_change(hud.wieldid, "text", t)
+		for _, id in pairs(hud.wieldids) do
+			player:hud_change(id, "text", t)
+		end
 	end
 end
 
