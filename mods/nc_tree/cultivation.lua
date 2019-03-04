@@ -8,7 +8,7 @@ local math_random, math_sqrt
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":eggcorn", {
-		description = "EggCorn",
+		description = "Eggcorn",
 		drawtype = "plantlike",
 		paramtype = "light",
 		visual_scale = 0.5,
