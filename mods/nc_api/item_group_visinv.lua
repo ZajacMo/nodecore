@@ -28,7 +28,8 @@ local function stackentprops(stack, func, rot)
 		textures = {""},
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},
-		is_visible = false
+		is_visible = false,
+		static_save = false
 	}
 	if stack then
 		t.is_visible = true

@@ -18,7 +18,7 @@ local lines = {
 	"Discord:   https://discord.gg/SHq2tkb"
 }
 
-nodecore.inventory_formspec = "size[8,3.5]"
+nodecore.inventory_formspec = "size[12,5]"
 .. "bgcolor[#000000C0;true]"
 .. "listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
 .. "label[0,0;" .. minetest.formspec_escape(table_concat(lines, "\n")) .. "]"

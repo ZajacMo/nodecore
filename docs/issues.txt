@@ -2,6 +2,9 @@
 ISSUES: Bugs, Cleanup and Refinements
 ------------------------------------------------------------------------
 
+- Sneak-dig cannot replace wielditem.
+	- Should be able to defer until handle_node_drops.
+
 - Wield view broken in MP.
 	- Players sometimes see ents as unattached, depending on
 	  who joined when.

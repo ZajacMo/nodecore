@@ -18,7 +18,8 @@ local function entprops(stack, conf)
 		textures = {""},
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},
-		is_visible = false
+		is_visible = false,
+		static_save = false
 	}
 	if stack and (not stack:is_empty()) then
 		t.is_visible = true

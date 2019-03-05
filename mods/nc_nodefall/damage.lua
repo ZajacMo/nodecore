@@ -1,22 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, vector
-    = math, minetest, pairs, vector
-local math_floor
-    = math.floor
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 local fallname = "__builtin:falling_node"
 local fallnode = minetest.registered_entities[fallname]
-
-local dmg = {}
-
-local function dmggc()
-	dmg = {}
-	minetest.after(10, dmggc)
-end
-dmggc()
 
 local oldtick = fallnode.on_step
 fallnode.on_step = function(self, dtime, ...)
@@ -30,17 +20,13 @@ fallnode.on_step = function(self, dtime, ...)
 
 	local pos = self.object:getpos()
 	local vel = self.object:getvelocity()
-	local q = dmg[self] or 0
 	local v = vector.length(vel)
-	q = q + v * v * dtime * self.crush_damage
-	if q > 1 then
-		local n = math_floor(q)
-		for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-			v:set_hp(v:get_hp() - n)
+	local q = v * v * dtime * self.crush_damage
+	for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+		if v:is_player() then
+			nodecore.addphealth(v, -q)
 		end
-		q = q - n
 	end
-	dmg[self] = q
 
 	return oldtick(self, dtime, ...)
 end
