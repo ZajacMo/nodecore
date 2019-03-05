@@ -53,9 +53,9 @@ for _, t in ipairs(facedirs) do
 	t[2] = nil
 	t[1] = nil
 	t.l = cross(t.t, t.f)
-	t.r = vector.scale(t.l, -1)
-	t.b = vector.scale(t.t, -1)
-	t.k = vector.scale(t.f, -1)
+	t.r = vector.multiply(t.l, -1)
+	t.b = vector.multiply(t.t, -1)
+	t.k = vector.multiply(t.f, -1)
 end
 
 function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
