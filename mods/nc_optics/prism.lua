@@ -18,7 +18,7 @@ minetest.register_node(modname .. ":prism", {
 			{-0.5, -0.25, -0.25, -3/8, 0.25, 0.25}
 		),
 		tiles = {
-			"nc_optics_glass.png^nc_optics_lens_in.png",
+			"nc_optics_glass.png",
 			"nc_optics_glass.png",
 			"nc_optics_glass.png^nc_optics_prism_in.png",
 			"nc_optics_glass.png^nc_optics_lens_out.png",

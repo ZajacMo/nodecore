@@ -62,7 +62,6 @@ function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
 	node = node or minetest.get_node(pos)
 	node.param2 = node.param2 + 1
 	if node.param2 >= 24 then node.param2 = node.param2 - 24 end
-	minetest.log(node.param2)
 	minetest.swap_node(pos, node)
 	return itemstack
 end
