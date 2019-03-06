@@ -182,11 +182,14 @@ function minetest.handle_node_drops(pos, drops, digger, ...)
 		local inv = digger:get_inventory()
 		for i = 1, inv:get_size("main") do
 			if inv:get_stack("main", i):is_empty() then
-				return inv:set_stack("main", i, deferred_drop)
+				inv:set_stack("main", i, deferred_drop)
+				deferred_drop = nil
+				return
 			end
 		end
 	end
 
 	return old_handle_node_drops(pos,
 		{deferred_drop}, digger, ...)
+	deferred_drop = nil
 end
