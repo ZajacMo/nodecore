@@ -64,10 +64,10 @@ local function dohuds(player)
 			healthid = player:hud_add(health_bar_definition),
 			breathid = player:hud_add(make_breath_bar(val)),
 			wieldids = {
-				player:hud_add(make_wield_bar(-1, -1, val)),
-				player:hud_add(make_wield_bar(-1, 1, val)),
-				player:hud_add(make_wield_bar(1, -1, val)),
-				player:hud_add(make_wield_bar(1, 1, val)),
+				player:hud_add(make_wield_bar(-1, 0, val)),
+				player:hud_add(make_wield_bar(1, 0, val)),
+				player:hud_add(make_wield_bar(0, -1, val)),
+				player:hud_add(make_wield_bar(0, 1, val)),
 				player:hud_add(make_wield_bar(0, 0, val)),
 			},
 			val = val
