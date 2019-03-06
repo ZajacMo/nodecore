@@ -175,18 +175,20 @@ end
 local old_handle_node_drops = minetest.handle_node_drops
 function minetest.handle_node_drops(pos, drops, digger, ...)
 	old_handle_node_drops(pos, drops, digger, ...)
+	
 	if not deferred_drop then return end
-
+	local defer = deferred_drop
+	deferred_drop = nil
+	
 	if digger and digger:is_player()
 	and digger:get_player_control().sneak then
 		local inv = digger:get_inventory()
 		for i = 1, inv:get_size("main") do
 			if inv:get_stack("main", i):is_empty() then
-				return inv:set_stack("main", i, deferred_drop)
+				return inv:set_stack("main", i, defer)
 			end
 		end
 	end
 
-	return old_handle_node_drops(pos,
-		{deferred_drop}, digger, ...)
+	return old_handle_node_drops(pos, {defer}, digger, ...)
 end

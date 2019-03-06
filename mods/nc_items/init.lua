@@ -92,7 +92,7 @@ local item = {
 		local i = ItemStack(self.itemstring)
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
-				if p.y > pos.y then return end
+				if p.y > pos.y + 1 then return end
 				i = nodecore.stack_add(p, i)
 				if i:is_empty() then return p end
 				if nodecore.buildable_to(p) then return p end
