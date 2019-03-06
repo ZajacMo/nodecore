@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, pairs, string
     = ipairs, minetest, pairs, string
-local string_sub, string_upper
-    = string.sub, string.upper
+local string_sub
+    = string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
 local health_bar_definition = {
@@ -28,18 +28,22 @@ local function make_breath_bar(t)
 end
 
 local font_chars = {}
+local font_size
 do
-	local s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=[];',./!@#%&*()+|:\"?"
+	local s = "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
+	.. "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?"
+	font_size = #s
 	for i = 1, #s do
-		font_chars[s:sub(i, i)] = i - 1
+		font_chars[string_sub(s, i, i)] = i - 1
 	end
 end
 
 local function wield_char(s, n)
 	if (not s) or (n > #s) then return "" end
-	n = font_chars[string_upper(string_sub(s, n, n))]
+	n = font_chars[string_sub(s, n, n)]
 	if not n then return "" end
-	return "nc_player_hud_font.png^[verticalframe:58:" .. n
+	return "nc_player_hud_font.png^[verticalframe:"
+	.. font_size .. ":" .. n
 end
 
 local function make_wield_bar(x, t)
@@ -48,7 +52,7 @@ local function make_wield_bar(x, t)
 		position = {x = 0.5, y = 1},
 		scale = {x = 1, y = 1},
 		text = t or "",
-		offset = {x = 25 + x * 12, y = -(48 + 24 + 16)},
+		offset = {x = 25 + x * 11 - 2, y = -(48 + 24 + 16)},
 		alignment = {x = 1, y = 1}
 	}
 end
