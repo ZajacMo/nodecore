@@ -68,8 +68,9 @@ local function wield_breath_data(player)
 	local t = s:get_meta():get_string("description")
 	if t and t ~= "" then return t end
 
-	local d = minetest.registered_items[s:get_name()]
-	return d and d.description or ""
+	local n = s:get_name()
+	local d = minetest.registered_items[n]
+	return d and d.description or n
 end
 
 local function dohuds(player)
