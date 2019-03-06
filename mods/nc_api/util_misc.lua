@@ -203,3 +203,11 @@ function nodecore.quenched(pos)
 		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
 		{"group:coolant"}) > 0
 end
+
+function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
+	node = node or minetest.get_node(pos)
+	node.param2 = node.param2 + 1
+	if node.param2 >= 24 then node.param2 = node.param2 - 24 end
+	minetest.swap_node(pos, node)
+	return itemstack
+end
