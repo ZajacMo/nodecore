@@ -3,6 +3,21 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+--[[
+
+- It's the receiver's responsibility to trace back to transmitters.
+
+- Transmitting node will offer a func to check if it's transmitting
+  in a particular direction.
+  
+- Transmitter can notify receivers of a change, but receivers need
+  to do the checking.
+  
+- Each node will cache the result of its own receive check into
+  metadata in order to answer the transmit inquiry.
+  
+--]]
+
 local optic_queue = {}
 
 local function scan(pos, dir)
@@ -23,8 +38,8 @@ function nodecore.optic_recv(pos)
 	local data = meta:get_string("nc_optic")
 	if (not data) or (data == "") then return {} end
 	data = minetest.deserialize(data)
-	for k, v in pairs(data) do
-		local hit = scan(pos, minetest.
+	for _, dh in pairs(data) do
+		local hit = scan(pos, unhash(dh))
 end
 
 function nodecore.optic_emit(pos, dir, switch)
