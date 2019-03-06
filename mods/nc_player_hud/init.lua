@@ -3,7 +3,7 @@ local minetest, pairs
     = minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local health_bar_definition = {
+local health_bar_definition ={
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
 	text = "nc_player_hud_heart_bg.png",
@@ -13,21 +13,23 @@ local health_bar_definition = {
 	offset = { x = (-10 * 24) - 25, y = -(48 + 24 + 16)},
 }
 
-local breath_bar_definition = {
-	hud_elem_type = "statbar",
-	position = {x = 0.5, y = 1},
-	text = "nc_player_hud_bubble_bg.png",
-	number = 0,
-	direction = 0,
-	size = {x = 24, y = 24},
-	offset = {x = 25, y = -(48 + 24 + 16)},
-}
+local function make_breath_bar(t)
+	return {
+		hud_elem_type = "statbar",
+		position = {x = 0.5, y = 1},
+		text = "nc_player_hud_bubble_bg.png",
+		number = t and 0 or 20,
+		direction = 0,
+		size = {x = 24, y = 24},
+		offset = {x = 25, y = -(48 + 24 + 16)},
+	}
+end
 
-local function wield_bar_definition(x, y)
+local function make_wield_bar(x, y, t)
 	return {
 		hud_elem_type = "text",
 		position = {x = 0.5, y = 1},
-		text = "",
+		text = t or "",
 		number = (x == 0 and y == 0) and 0xFFFFFF or 0,
 		direction = 0,
 		size = {x = 24, y = 24},
@@ -38,55 +40,54 @@ end
 
 local huds = {}
 
+local function wield_breath_data(player)
+	if player:get_breath() < 11 then return end
+
+	local s = player:get_wielded_item()
+	if s:is_empty() then return "" end
+
+	local t = s:get_meta():get_string("description")
+	if t and t ~= "" then return t end
+
+	local d = minetest.registered_items[s:get_name()]
+	return d and d.description or ""
+end
+
 local function dohuds(player)
 	local pname = player:get_player_name()
+
+	local val = wield_breath_data(player)
+
 	local hud = huds[pname]
 	if not hud then
 		huds[pname] = {
 			healthid = player:hud_add(health_bar_definition),
-			breathid = player:hud_add(breath_bar_definition),
+			breathid = player:hud_add(make_breath_bar(val)),
 			wieldids = {
-				player:hud_add(wield_bar_definition(-1, -1)),
-				player:hud_add(wield_bar_definition(-1, 1)),
-				player:hud_add(wield_bar_definition(1, -1)),
-				player:hud_add(wield_bar_definition(1, 1)),
-				player:hud_add(wield_bar_definition(0, 0)),
-			}
+				player:hud_add(make_wield_bar(-1, 0, val)),
+				player:hud_add(make_wield_bar(1, 0, val)),
+				player:hud_add(make_wield_bar(0, -1, val)),
+				player:hud_add(make_wield_bar(0, 1, val)),
+				player:hud_add(make_wield_bar(0, 0, val)),
+			},
+			val = val
 		}
 		return
 	end
 
-	if player:get_breath() < 11 then
-		if hud.val ~= true then
-			hud.val = true
-			player:hud_change(hud.breathid, "number", 20)
-			for _, id in pairs(hud.wieldids) do
-				player:hud_change(id, "text", "")
-			end
-		end
-		return
-	end
-	if hud.val == true then
+	if val == hud.val then return end
+	
+	if not val then
+		player:hud_change(hud.breathid, "number", 20)
+	elseif not hud.val then
 		player:hud_change(hud.breathid, "number", 0)
-		hud.val = nil
 	end
-
-	local t
-	local s = player:get_wielded_item()
-	if s and (not s:is_empty()) then
-		t = s:get_meta():get_string("description")
-		if t == "" then
-			local d = minetest.registered_items[s:get_name()]
-			t = d and d.description
-		end
+	
+	for _, id in pairs(hud.wieldids) do
+		player:hud_change(id, "text", val or "")
 	end
-	t = t or ""
-	if t ~= hud.val then
-		hud.val = t
-		for _, id in pairs(hud.wieldids) do
-			player:hud_change(id, "text", t)
-		end
-	end
+	
+	hud.val = val
 end
 
 minetest.register_globalstep(function()
