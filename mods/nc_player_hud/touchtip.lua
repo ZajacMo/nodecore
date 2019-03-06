@@ -20,11 +20,11 @@ local function show(player, text, ttl)
 	tips[pname] = {
 		id = player:hud_add({
 				hud_elem_type = "text",
-				position = {x = 0.5, y = 0.5},
+				position = {x = 0.5, y = 0.75},
 				text = text,
 				number = 0xFFFFFF,
 				alignment = {x = 0, y = 0},
-				offset = { x = 0, y = 32},
+				offset = { x = 0, y = 0},
 			}),
 		text = text,
 		ttl = ttl
