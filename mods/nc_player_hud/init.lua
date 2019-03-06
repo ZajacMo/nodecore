@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs
-    = minetest, pairs
+local ipairs, minetest, pairs, string
+    = ipairs, minetest, pairs, string
+local string_sub, string_upper
+    = string.sub, string.upper
 -- LUALOCALS > ---------------------------------------------------------
 
 local health_bar_definition = {
@@ -25,16 +27,29 @@ local function make_breath_bar(t)
 	}
 end
 
-local function make_wield_bar(x, y, t)
+local font_chars = {}
+do
+	local s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=[];',./!@#%&*()+|:\"?"
+	for i = 1, #s do
+		font_chars[s:sub(i, i)] = i - 1
+	end
+end
+
+local function wield_char(s, n)
+	if (not s) or (n > #s) then return "" end
+	n = font_chars[string_upper(string_sub(s, n, n))]
+	if not n then return "" end
+	return "nc_player_hud_font.png^[verticalframe:58:" .. n
+end
+
+local function make_wield_bar(x, t)
 	return {
-		hud_elem_type = "text",
+		hud_elem_type = "image",
 		position = {x = 0.5, y = 1},
+		scale = {x = 1, y = 1},
 		text = t or "",
-		number = (x == 0 and y == 0) and 0xFFFFFF or 0,
-		direction = 0,
-		size = {x = 24, y = 24},
-		offset = {x = 25 + x, y = -(48 + 24 + 8 - y)},
-		alignment = {x = 1, y = 0.5}
+		offset = {x = 25 + x * 12, y = -(48 + 24 + 16)},
+		alignment = {x = 1, y = 1}
 	}
 end
 
@@ -60,33 +75,35 @@ local function dohuds(player)
 
 	local hud = huds[pname]
 	if not hud then
+		local w = {}
+		for i = 1, 30 do
+			w[i] = player:hud_add(make_wield_bar(i - 1, wield_char(val, i)))
+		end
 		huds[pname] = {
 			healthid = player:hud_add(health_bar_definition),
 			breathid = player:hud_add(make_breath_bar(val)),
-			wieldids = {
-				player:hud_add(make_wield_bar(-1, 0, val)),
-				player:hud_add(make_wield_bar(1, 0, val)),
-				player:hud_add(make_wield_bar(0, -1, val)),
-				player:hud_add(make_wield_bar(0, 1, val)),
-				player:hud_add(make_wield_bar(0, 0, val)),
-			},
+			wieldids = w,
 			val = val
 		}
 		return
 	end
 
 	if val == hud.val then return end
-	
+
 	if not val then
 		player:hud_change(hud.breathid, "number", 20)
 	elseif not hud.val then
 		player:hud_change(hud.breathid, "number", 0)
 	end
-	
-	for _, id in pairs(hud.wieldids) do
-		player:hud_change(id, "text", val or "")
+
+	for i, id in ipairs(hud.wieldids) do
+		local o = wield_char(hud.val, i)
+		local n = wield_char(val, i)
+		if n ~= o then
+			player:hud_change(id, "text", n)
+		end
 	end
-	
+
 	hud.val = val
 end
 
