@@ -90,11 +90,9 @@ local item = {
 
 		pos = vector.round(pos)
 		local i = ItemStack(self.itemstring)
-		local maxy = pos.y
-		if nodecore.match(pos, {walkable = true}) then maxy = maxy + 1 end
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
-				if p.y > maxy then return end
+				if p.y > pos.y + 1 then return end
 				i = nodecore.stack_add(p, i)
 				if i:is_empty() then return p end
 				if nodecore.buildable_to(p) then return p end
