@@ -2,8 +2,18 @@
 ISSUES: Bugs, Cleanup and Refinements
 ------------------------------------------------------------------------
 
-- Sneak-dig cannot replace wielditem.
-	- Should be able to defer until handle_node_drops.
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- HUD issue (missing text parts) from Lone_Wolf.
+	- Probably hud_change arriving out of order with hud
+	  creation.
+	- Abstract out getting correct HUD text, create HUD with
+	  correct text immediately instead of changing next cycle.
 
 - Wield view broken in MP.
 	- Players sometimes see ents as unattached, depending on
