@@ -9,11 +9,13 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- HUD issue (missing text parts) from Lone_Wolf.
-	- Probably hud_change arriving out of order with hud
-	  creation.
-	- Abstract out getting correct HUD text, create HUD with
-	  correct text immediately instead of changing next cycle.
+- HUD issue on android
+	- It appears that very high DPI displays don't offset text
+	  elements correctly (using unscaled pixels, while image
+	  elements use scaled pixels).
+	- Loosely related:
+	  https://github.com/minetest/minetest/issues/6735  
+	  but it's for the wrong platform.
 
 - Wield view broken in MP.
 	- Players sometimes see ents as unattached, depending on
@@ -28,12 +30,17 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Convert to markdown?
 		- Elevator pitch
 			- Immersive, no GUIs, original gameplay
-		- Add "gameplay basics"
-			- Crafting in-world
-			- Pummeling
-			- Sensitivity to which node face
-			- Check	inventory screen for hints
-			- How to manipulate and split stacks in-world
+		- Major features
+			- No in-game GUIs (including inventory screen)
+			- Items as nodes (no decay)
+			- Multi-stage digging
+			- Craft in-world
+			- Pummel
+			- Eggcorns!
+			- Falling embers
+			- Design your own furnace
+			- Angle of repose
+			- Portable containers
 		- Installation guide?
 			- Singleplayer on android
 	- CONTRIBUTING
