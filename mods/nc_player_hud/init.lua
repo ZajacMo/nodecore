@@ -32,9 +32,9 @@ local function make_wield_bar(x, y, t)
 		text = t or "",
 		number = (x == 0 and y == 0) and 0xFFFFFF or 0,
 		direction = 0,
-		scale = {x = 320, y = 16},
-		offset = {x = 25 + x, y = -(48 + 24 - y)},
-		alignment = {x = 1, y = -0.5}
+		size = {x = 24, y = 24},
+		offset = {x = 25 + x, y = -(48 + 24 + 8 - y)},
+		alignment = {x = 1, y = 0.5}
 	}
 end
 
