@@ -137,7 +137,6 @@ nodecore.register_limited_abm({
 -- DIG INVENTORY
 
 local digpos
-local digplayer
 local old_node_dig = minetest.node_dig
 minetest.node_dig = function(pos, node, digger, ...)
 	local function helper(...)
@@ -145,7 +144,6 @@ minetest.node_dig = function(pos, node, digger, ...)
 		return ...
 	end
 	digpos = pos
-	digplayer = digger and digger:is_player() and digger
 	return helper(old_node_dig(pos, node, digger, ...))
 end
 local function trydirect(stack)
@@ -163,13 +161,32 @@ local function trydirect(stack)
 	end
 end
 local old_get_node_drops = minetest.get_node_drops
+local deferred_drop
 minetest.get_node_drops = function(...)
-	local drops = old_get_node_drops(...)
-	if not digpos then return drops end
-	drops = drops or {}
-	local stack = nodecore.stack_get(digpos)
-	if stack and not stack:is_empty() and (not trydirect(stack)) then
-		drops[#drops + 1] = stack
+	if not digpos then
+		return old_get_node_drops(...)
 	end
-	return drops
+	local stack = nodecore.stack_get(digpos)
+	if stack and not stack:is_empty() then
+		deferred_drop = stack
+	end
+	return old_get_node_drops(...)
+end
+local old_handle_node_drops = minetest.handle_node_drops
+function minetest.handle_node_drops(pos, drops, digger, ...)
+	old_handle_node_drops(pos, drops, digger, ...)
+	if not deferred_drop then return end
+
+	if digger and digger:is_player()
+	and digger:get_player_control().sneak then
+		local inv = digger:get_inventory()
+		for i = 1, inv:get_size("main") do
+			if inv:get_stack("main", i):is_empty() then
+				return inv:set_stack("main", i, deferred_drop)
+			end
+		end
+	end
+
+	return old_handle_node_drops(pos,
+		{deferred_drop}, digger, ...)
 end

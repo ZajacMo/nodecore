@@ -1,0 +1,59 @@
+-- LUALOCALS < ---------------------------------------------------------
+local ipairs, math, minetest, nodecore, pairs, table
+    = ipairs, math, minetest, nodecore, pairs, table
+local math_floor, math_random, table_remove, table_sort
+    = math.floor, math.random, table.remove, table.sort
+-- LUALOCALS > ---------------------------------------------------------
+
+local pcache = {}
+
+local function gethint(player)
+	local pname = player:get_player_name()
+
+	local now = math_floor(minetest.get_us_time() / 1000000 / 5)
+	local cached = pcache[pname]
+	if cached and cached.time == now then return cached.found end
+
+	local rawdb = nodecore.statsdb[pname] or {}
+	local db = {}
+	for _, r in ipairs({"inv", "punch", "dig", "place"}) do
+		for k, v in pairs(rawdb[r] or {}) do
+			db[k] = v
+		end
+	end
+
+	local done = 0
+	local found = {}
+	for _, hint in ipairs(nodecore.hints) do
+		if hint.goal(db) then
+			done = done + 1
+		elseif hint.reqs(db) then
+			found[#found + 1] = "...have you " .. hint.text .. " yet?"
+		end
+	end
+	local prog = #found
+	local left = #(nodecore.hints) - prog - done
+
+	while #found > 5 do
+		table_remove(found, math_random(1, #found))
+	end
+	table_sort(found)
+	if #found == (prog - 1) then
+		found[#found + 1] = "...and 1 more hint..."
+	elseif #found < prog then
+		found[#found + 1] = "...and " .. (prog - #found) .. " more hints..."
+	end
+
+	found[#found + 1] = ""
+	found[#found + 1] = "Progress:  " .. done .. " complete, " .. prog
+	.. " current, " .. left .. " future"
+	found[#found + 1] = "Not all game content is covered by hints.  Explore!"
+
+	pcache[pname] = {time = now, found = found}
+	return found
+end
+
+nodecore.register_inventory_tab({
+		title = "Hints",
+		content = gethint
+	})
