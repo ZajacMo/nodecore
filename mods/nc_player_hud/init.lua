@@ -3,7 +3,7 @@ local minetest, pairs
     = minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local health_bar_definition ={
+local health_bar_definition = {
 	hud_elem_type = "statbar",
 	position = {x = 0.5, y = 1},
 	text = "nc_player_hud_heart_bg.png",
