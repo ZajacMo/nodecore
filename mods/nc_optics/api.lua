@@ -82,7 +82,7 @@ local function optic_process(pos)
 	if def and def.optic_check then
 		local func = function(dir)
 			local hit, node = scan_recv(pos, dir)
-			if hit == false then error("UNLOADED") end
+			if hit == false then error("IgNoReArEa") end
 			return hit, node
 		end
 		local meta = minetest.get_meta(pos)
@@ -104,7 +104,11 @@ local function optic_process(pos)
 
 			return meta:set_string("nc_optics",
 				minetest.serialize(data))
-		elseif res ~= "UNLOADED" then
+		elseif res:match("IgNoReArEa") then
+			minetest.log("optic check for "
+				.. minetest.pos_to_string(pos)
+				.. " hit unloaded area")
+		else
 			error(res)
 		end
 	end
@@ -126,7 +130,7 @@ minetest.register_globalstep(function()
 
 nodecore.register_limited_abm({
 		label = "Optic Check",
-		interval = 5,
+		interval = 1,
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 100,
