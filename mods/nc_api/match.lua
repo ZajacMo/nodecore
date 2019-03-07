@@ -31,7 +31,7 @@ function nodecore.match(thing, crit)
 		thing = nodecore.underride(thing, minetest.get_node(thing))
 	end
 	local def = minetest.registered_items[thing.name]
-	if (not thing.stacked) and def.groups and def.groups.is_stack_only then
+	if (not thing.stacked) and def and def.groups and def.groups.is_stack_only then
 		local stack = nodecore.stack_get(thing)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
@@ -53,7 +53,7 @@ function nodecore.match(thing, crit)
 	end
 
 	if crit.groups then
-		if not def or not def.groups then return end
+		if (not def) or (not def.groups) then return end
 		for k, v in pairs(crit.groups) do
 			if v == true then
 				if not def.groups[k] then return end

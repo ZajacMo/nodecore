@@ -32,7 +32,10 @@ nodecore.register_leaf_drops(function(pos, node, list)
 
 local ldname = "nc_terrain:dirt_loose"
 local epname = modname .. ":eggcorn_planted"
-minetest.register_node(epname, nodecore.underride({drop = ldname},
+minetest.register_node(epname, nodecore.underride({
+			drop = ldname,
+			description = "Loose Dirt...?"
+		},
 		minetest.registered_nodes[ldname]))
 
 nodecore.register_craft({

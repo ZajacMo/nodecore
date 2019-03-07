@@ -21,7 +21,7 @@ minetest.register_node(modname .. ":root", {
 	})
 
 minetest.register_node(modname .. ":tree", {
-		description = "Tree",
+		description = "Tree Trunk",
 		tiles = {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",

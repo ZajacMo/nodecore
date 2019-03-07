@@ -49,7 +49,8 @@ minetest.register_node(modname .. ":shelf", {
 			end
 			return nodecore.stack_add(pos, stack)
 		end,
-		on_punch = function(pos, node, puncher, pointed_thing)
+		on_punch = function(pos, node, puncher, pointed_thing, ...)
+			minetest.node_punch(pos, node, puncher, pointed_thing, ...)
 			if not nodecore.interact(puncher) then return end
 			if pointed_thing.above.y ~= pointed_thing.under.y then return end
 			return nodecore.stack_giveto(pos, puncher)

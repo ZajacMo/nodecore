@@ -23,6 +23,7 @@ end
 local stratstone = {}
 local stratore = {}
 local stone = reg("Stone", {
+		description = "Stone",
 		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
 			.. modname .. "_mask_ore.png^[opacity:48)" },
 		drop_in_place = "nc_terrain:cobble",
@@ -39,6 +40,7 @@ stratore[1] = ore
 for i = 1, nodecore.hard_stone_strata do
 	local hst = nodecore.hard_stone_tile(i)
 	stratstone[i + 1] = reg("Stone_" .. i, {
+			description = "Stone",
 			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
 				.. modname .. "_mask_ore.png^[opacity:48)" },
 			drop_in_place = "nc_terrain:cobble",
