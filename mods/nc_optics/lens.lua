@@ -5,19 +5,11 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function repl(pos, node, newname)
-	if node.name == newname then return end
-	return minetest.set_node(pos, {
-			name = newname,
-			param2 = node.param2
-		})
-end
-
 local function lens_check(pos, node, check)
 	local face = nodecore.facedirs[node.param2]
 
 	if check(face.k) then
-		repl(pos, node, modname .. ":lens_glow")
+		nodecore.node_change(pos, node, modname .. ":lens_glow")
 		return
 	end
 
@@ -30,10 +22,10 @@ local function lens_check(pos, node, check)
 		on = def and def.light_source and def.light_source > 4
 	end
 	if on then
-		repl(pos, node, modname .. ":lens_on")
+		nodecore.node_change(pos, node, modname .. ":lens_on")
 		return {face.k}
 	end
-	repl(pos, node, modname .. ":lens")
+	nodecore.node_change(pos, node, modname .. ":lens")
 end
 
 local basedef = {

@@ -211,3 +211,8 @@ function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
 	minetest.swap_node(pos, node)
 	return itemstack
 end
+
+function nodecore.node_change(pos, node, newname)
+	if node.name == newname then return end
+	return minetest.set_node(pos, underride({name = newname}, node))
+end
