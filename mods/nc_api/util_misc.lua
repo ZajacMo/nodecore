@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type
+local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
+      unpack
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
+      unpack
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -204,14 +206,45 @@ function nodecore.quenched(pos)
 		{"group:coolant"}) > 0
 end
 
-function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
-	node = node or minetest.get_node(pos)
-	node.param2 = node.param2 + 1
-	if node.param2 >= 24 then node.param2 = node.param2 - 24 end
-	minetest.swap_node(pos, node)
-	local def = minetest.registered_items[node.name] or {}
-	if def.on_spin then def.on_spin(pos, node) end
-	return itemstack
+function nodecore.node_spin_custom(...)
+	local arr = {...}
+	arr[0] = false
+	local lut = {}
+	for i = 1, #arr do
+		lut[arr[i - 1]] = arr[i]
+	end
+	lut[arr[#arr]] = arr[1]
+	local qty = #arr
+
+	return function(pos, node, clicker, itemstack, pointed_thing)
+		node = node or minetest.get_node(pos)
+		node.param2 = lut[node.param2] or lut[false]
+		if clicker:is_player() then
+			minetest.log(clicker:get_player_name() .. " spins "
+				.. node.name .. " at " .. minetest.pos_to_string(pos)
+				.. " to param2 " .. node.param2 .. " ("
+				.. qty .. " total)")
+		end
+		minetest.swap_node(pos, node)
+		local def = minetest.registered_items[node.name] or {}
+		if def.on_spin then def.on_spin(pos, node) end
+		return itemstack
+	end
+end
+function nodecore.node_spin_filtered(func)
+	local rots = {}
+	for i = 0, 23 do
+		local f = nodecore.facedirs[i]
+		local hit
+		for j = 1, #rots do
+			if not hit then
+				local o = nodecore.facedirs[rots[j]]
+				hit = hit or func(f, o)
+			end
+		end
+		if not hit then rots[#rots + 1] = f.id end
+	end
+	return nodecore.node_spin_custom(unpack(rots))
 end
 
 function nodecore.node_change(pos, node, newname)

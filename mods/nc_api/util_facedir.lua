@@ -43,7 +43,8 @@ local function cross(a, b)
 	}
 end
 
-for _, t in pairs(facedirs) do
+for k, t in pairs(facedirs) do
+	t.id = k
 	t.t = alldirs[t[1]]
 	t.f = alldirs[t[2]]
 	t[2] = nil

@@ -54,10 +54,12 @@ local basedef = {
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,
 	on_spin = nodecore.optic_check,
+	optic_check = lens_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	on_rightclick = nodecore.node_spin,
-	optic_check = lens_check
+	on_rightclick = nodecore.node_spin_filtered(function(a, b)
+			return vector.equals(a.f, b.f)
+		end)
 }
 
 local function reg(suff, def)
