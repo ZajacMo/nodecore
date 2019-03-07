@@ -64,7 +64,8 @@ regterrain({
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
 	regterrain({
-			description = "Hard Stone " .. i,
+			name = "hard_stone_" .. i,
+			description = "Stone",
 			tiles = { nodecore.hard_stone_tile(i) },
 			groups = {
 				cracky = i + 2
