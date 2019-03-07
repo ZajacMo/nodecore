@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, nodecore, pairs, vector
-    = ipairs, nodecore, pairs, vector
+local nodecore, pairs, vector
+    = nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local alldirs = {}
@@ -43,7 +43,7 @@ local function cross(a, b)
 	}
 end
 
-for _, t in ipairs(facedirs) do
+for _, t in pairs(facedirs) do
 	t.t = alldirs[t[1]]
 	t.f = alldirs[t[2]]
 	t[2] = nil
