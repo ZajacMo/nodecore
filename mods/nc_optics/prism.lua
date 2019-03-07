@@ -45,6 +45,7 @@ local basedef = {
 	drop = modname .. ":prism",
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,
+	on_spin = nodecore.optic_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	on_rightclick = nodecore.node_spin,

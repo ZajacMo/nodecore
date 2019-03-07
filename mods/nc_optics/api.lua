@@ -68,8 +68,9 @@ local function optic_check(pos)
 end
 nodecore.optic_check = optic_check
 
-local function optic_check_auto(pos, node)
-	node = node or minetest.get_node(pos)
+local function optic_trigger(start, dir)
+	local pos, node = scan(start, dir)
+	if not node then return end
 	local def = minetest.registered_items[node.name] or {}
 	if def and def.optic_check then return optic_check(pos) end
 end
@@ -84,24 +85,23 @@ local function optic_process(pos)
 			if hit == false then error("UNLOADED") end
 			return hit, node
 		end
+		local meta = minetest.get_meta(pos)
+		local old = meta:get_string("nc_optics")
 		local ok, res = pcall(def.optic_check, pos, node, func, def)
 		if ok then
 			local data = {}
 			for k, v in pairs(res or {}) do
 				data[dirname(v)] = 1
 			end
-			local meta = minetest.get_meta(pos)
-			local old = meta:get_string("nc_optics")
-			if old ~= "" then
-				old = minetest.deserialize(old)
-				for _, dir in pairs(nodecore.dirs()) do
-					local dn = dirname(dir)
-					if old[dn] and not data[dn] then
-						local p, node = scan(pos, dir)
-						if p then optic_check_auto(p, node) end
-					end	
-				end
+
+			old = old and minetest.deserialize(old) or {}
+			for _, dir in pairs(nodecore.dirs()) do
+				local dn = dirname(dir)
+				if old[dn] ~= data[dn] then
+					optic_trigger(pos, dir)
+				end	
 			end
+
 			return meta:set_string("nc_optics",
 				minetest.serialize(data))
 		elseif res ~= "UNLOADED" then
@@ -110,8 +110,7 @@ local function optic_process(pos)
 	end
 
 	for _, dir in pairs(nodecore.dirs()) do
-		local p, node = scan(pos, dir)
-		if p then optic_check_auto(p, node) end
+		optic_trigger(pos, dir)
 	end		
 end
 
@@ -127,7 +126,7 @@ minetest.register_globalstep(function()
 
 nodecore.register_limited_abm({
 		label = "Optic Check",
-		interval = 2,
+		interval = 5,
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 100,

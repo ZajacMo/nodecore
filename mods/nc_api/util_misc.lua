@@ -209,6 +209,8 @@ function nodecore.node_spin(pos, node, clicker, itemstack, pointed_thing)
 	node.param2 = node.param2 + 1
 	if node.param2 >= 24 then node.param2 = node.param2 - 24 end
 	minetest.swap_node(pos, node)
+	local def = minetest.registered_items[node.name] or {}
+	if def.on_spin then def.on_spin(pos, node) end
 	return itemstack
 end
 
