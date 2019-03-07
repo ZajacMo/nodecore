@@ -114,6 +114,7 @@ minetest.register_node(modname .. ":handle", {
 			container = 1,
 			fire_fuel = 5
 		},
+		stack_max = 1,
 		after_dig_node = totedug,
 		on_place = toteplace,
 		drop = ""
