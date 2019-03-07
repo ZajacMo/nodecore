@@ -23,6 +23,12 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		local rz = recipe.normal.x * xz + recipe.normal.z * zz
 		if rz ~= data.pointed.above.z - data.pointed.under.z then return end
 	end
+	for _, v in pairs(recipe.nodes) do
+		if v ~= recipe.root and v.match then
+			local p = rel(v.x, v.y, v.z)
+			if not nodecore.match(p, v.match) then return end
+		end
+	end
 	local mindur = recipe.duration or 0
 	if recipe.toolgroups then
 		if not data.wield then return end
@@ -40,12 +46,6 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	if mindur > 0 and (not data.duration or data.duration < mindur) then
 		if data.inprogress then return data.inprogress(data, recipe) end
 		return
-	end
-	for _, v in pairs(recipe.nodes) do
-		if v ~= recipe.root and v.match then
-			local p = rel(v.x, v.y, v.z)
-			if not nodecore.match(p, v.match) then return end
-		end
 	end
 	if recipe.before then recipe.before(pos, rel, data) end
 	for _, v in pairs(recipe.nodes) do
