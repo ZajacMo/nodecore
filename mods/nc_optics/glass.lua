@@ -20,7 +20,7 @@ minetest.register_node(modname .. ":glass", {
 	})
 
 minetest.register_node(modname .. ":glass_opaque", {
-		description = "Flint Glass",
+		description = "Chromatic Glass",
 		tiles = { modname .. "_glass_frost.png" },
 		groups = {
 			cracky = 3
