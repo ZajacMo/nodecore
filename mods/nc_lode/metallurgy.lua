@@ -46,8 +46,9 @@ function nodecore.register_lode(shape, rawdef)
 	end
 end
 
-nodecore.register_lode("Cube", {
+nodecore.register_lode("Block", {
 		type = "node",
+		description = "## Lode Cube",
 		tiles = { modname .. "_#.png" },
 		light_source = 8,
 		crush_damage = 4
