@@ -4,5 +4,6 @@ local include
 -- LUALOCALS > ---------------------------------------------------------
 
 include("api")
+include("glass")
 include("lens")
 include("prism")

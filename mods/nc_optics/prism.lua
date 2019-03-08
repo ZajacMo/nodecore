@@ -18,6 +18,8 @@ local function prism_check(pos, node, check)
 	nodecore.node_change(pos, node, modname .. ":prism")
 end
 
+local txr = modname .. "_glass_frost.png"
+
 local basedef = {
 	description = "Prism",
 	drawtype = "nodebox",
@@ -31,16 +33,16 @@ local basedef = {
 		{-0.5, -0.25, -0.25, -3/8, 0.25, 0.25}
 	),
 	tiles = {
-		"nc_optics_glass.png",
-		"nc_optics_glass.png",
-		"nc_optics_glass.png^nc_optics_prism_in.png",
-		"nc_optics_glass.png^nc_optics_lens_out.png",
-		"nc_optics_glass.png^nc_optics_lens_out.png",
-		"nc_optics_glass.png^(nc_optics_prism_in.png^[transformFX)",
+		txr,
+		txr,
+		txr .. "^" .. modname .. "_prism_in.png",
+		txr .. "^" .. modname .. "_lens_out.png",
+		txr .. "^" .. modname .. "_lens_out.png",
+		txr .. "^(" .. modname .. "_prism_in.png^[transformFX)",
 	},
 	groups = {
 		optic_check = 1,
-		cracky = 1
+		cracky = 3
 	},
 	drop = modname .. ":prism",
 	on_construct = nodecore.optic_check,
@@ -60,4 +62,7 @@ local function reg(suff, def)
 		nodecore.underride(def, basedef))
 end
 reg("", {})
-reg("_on", {description = "Prism (On)", light_source = 2})
+reg("_on", {
+		description = "Active Prism",
+		light_source = 2
+	})

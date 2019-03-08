@@ -28,6 +28,8 @@ local function lens_check(pos, node, check)
 	nodecore.node_change(pos, node, modname .. ":lens")
 end
 
+local txr = modname .. "_glass_frost.png"
+
 local basedef = {
 	description = "Lens",
 	drawtype = "nodebox",
@@ -39,16 +41,16 @@ local basedef = {
 		{-0.25, -0.25, -1/8, 0.25, 0.25, 0.25}
 	),
 	tiles = {
-		"nc_optics_glass.png",
-		"nc_optics_glass.png",
-		"nc_optics_glass.png",
-		"nc_optics_glass.png",
-		"nc_optics_glass.png^nc_optics_lens_out.png",
-		"nc_optics_glass.png^nc_optics_lens_in.png",
+		txr,
+		txr,
+		txr,
+		txr,
+		txr .. "^" .. modname .. "_lens_out.png",
+		txr .. "^" .. modname .. "_lens_in.png",
 	},
 	groups = {
 		optic_check = 1,
-		cracky = 1
+		cracky = 3
 	},
 	drop = modname .. ":lens",
 	on_construct = nodecore.optic_check,
@@ -67,5 +69,19 @@ local function reg(suff, def)
 		nodecore.underride(def, basedef))
 end
 reg("", {})
-reg("_on", {description = "Lens (On)", light_source = 2})
-reg("_glow", {description = "Lens (Glowing)", light_source = 12})
+reg("_on", {
+		description = "Active Lens",
+		light_source = 2
+	})
+reg("_glow", {
+		description = "Shining Lens",
+		light_source = 12,
+		tiles = {
+			txr,
+			txr,
+			txr,
+			txr,
+			txr .. "^" .. modname .. "_lens_in.png",
+			txr .. "^" .. modname .. "_lens_out.png",
+		},	
+	})
