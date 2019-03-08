@@ -18,10 +18,12 @@ minetest.register_node(modname .. ":fire", {
 		},
 		damage_per_second = 2,
 		sunlight_propagates = true,
+		floodable = true,
 		walkable = false,
 		pointable = false,
 		diggable = false,
 		buildable_to = true,
+		drop = ""
 	})
 
 local function ember(n, t)
