@@ -83,8 +83,8 @@ nodecore.register_limited_abm({
 				return minetest.set_node(pos, {name = modname .. ":glass_opaque"})
 			end
 
-			if timecounter(minetest:get_meta(pos), 30, not heated(pos)) then
-				minetest:get_meta(pos):from_table({})
+			if timecounter(minetest.get_meta(pos), 30, not heated(pos)) then
+				minetest.get_meta(pos):from_table({})
 				return minetest.set_node(pos, {name = modname .. ":glass"})
 			end
 		end})
