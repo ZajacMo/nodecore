@@ -5,6 +5,7 @@ local include
 
 include("api")
 include("glass")
-include("cooking")
 include("lens")
 include("prism")
+include("cooking")
+include("crafting")

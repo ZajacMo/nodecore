@@ -1,35 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, pcall, table, vector
-    = error, minetest, nodecore, pairs, pcall, table, vector
+local error, minetest, nodecore, pairs, pcall, vector
+    = error, minetest, nodecore, pairs, pcall, vector
 -- LUALOCALS > ---------------------------------------------------------
-
---[[
-
-- in metadata, store which direction we're transmitting; always the
-  same distance.
-  
-- in check cb, call node check code and pass it:
-	pos, node, func(dir)
-  func is a function that checks for power in, returns pos if
-  hit, nil if not.
-	- this callback may change the node.
-	- should return a table containing dirs in which to transmit
-	  power
-	- caller will setup metadata.
-	
-
-- It's the receiver's responsibility to trace back to transmitters.
-
-- Transmitting node will offer a func to check if it's transmitting
-  in a particular direction.
-  
-- Transmitter can notify receivers of a change, but receivers need
-  to do the checking.
-  
-- Each node will cache the result of its own receive check into
-  metadata in order to answer the transmit inquiry.
-  
---]]
 
 local optic_queue = {}
 
