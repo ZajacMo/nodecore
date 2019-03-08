@@ -6,7 +6,7 @@ local minetest, nodecore, type
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":root", {
-		description = "Root",
+		description = "Tree Stump",
 		tiles = {
 			modname .. "_tree_top.png",
 			"nc_terrain_dirt.png",
