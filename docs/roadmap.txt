@@ -9,32 +9,6 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Digital logic + lighting via optics.
-	- Need a way to make glass.
-		- Heat in furnace?
-		- Environment, lightning?
-	- Lenses
-		- 1 input face, 1 output face opposite.
-		- Focus sunlight or max light src into a beam for prism feed.
-		- When fed by prism, diffuse light and act as light source.
-		- Focused light right at output applies heat
-			- Easy fire starting?
-				- From sunlight
-				- From prism beam, 2 lenses in series
-			- Optical heat transforms, create glass?
-	- Prism Node
-		- 2 faces (back, left) are VCC faces, either must be fed light to do anything.
-		- 2 faces (front, right) are output faces, emit collimated light.
-		- 2 faces (top, bottom) are interference faces, switch off output if fed light.
-		- Create a tiny light source (airlike) wherever prism beams hit, if not another prism.
-		- Beams can pass through one another.
-	- Piezo Crystal Node
-		- Emits light briefly when punched or stepped on
-		- Need to interpolate player paths for "stepped on" logic
-	- Perpetual light source
-		- Stable optical loops?
-	- Pistons or rack&pinions for affecting world stuff.
-
 - Domain Wall Sensor (adapt from sztest)
 
 - Threats
@@ -52,6 +26,17 @@ ROADMAP: Large New Development Projects
 - Water and lava surface springs.
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting.
+
+- Digital logic + lighting via optics.
+	- Focused light right at output applies heat
+		- Easy fire starting?
+			- From sunlight
+			- From prism beam, 2 lenses in series
+		- Optical heat transforms, cooking via laser light?
+	- Piezo Crystal Node
+		- Emits light briefly when punched or stepped on
+		- Need to interpolate player paths for "stepped on" logic
+	- Pistons or rack&pinions for affecting world stuff.
 
 - New materials to craft with.
 	- Dungeon materials, stonework?

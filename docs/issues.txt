@@ -9,13 +9,11 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- HUD issue on android
-	- It appears that very high DPI displays don't offset text
-	  elements correctly (using unscaled pixels, while image
-	  elements use scaled pixels).
-	- Loosely related:
-	  https://github.com/minetest/minetest/issues/6735  
-	  but it's for the wrong platform.
+- New content needs hints!
+
+- Separate punch and tool HUDs?
+	- Use waypoints for punches?
+	- Use 2 text lines above/below?
 
 - Wield view broken in MP.
 	- Players sometimes see ents as unattached, depending on
@@ -23,7 +21,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Regenerating ents may fix for other players, but then
 	  BREAKS F7 view, because players only see ents in F7 view
 	  that exist at the time of change, not new ones.
-	- Need to review GH and see if there are existing issues.
+	- Appears to be known engine issue on GitHub.
+	- Lone_Wolf is working on a player model update with texturable
+	  wield surfaces, BUT it would require having a model_image
+	  for every node, some complex.  
 
 - Update core docs.
 	- README
@@ -41,6 +42,7 @@ ISSUES: Bugs, Cleanup and Refinements
 			- Design your own furnace
 			- Angle of repose
 			- Portable containers
+			- Optical digital logic
 		- Installation guide?
 			- Singleplayer on android
 	- CONTRIBUTING
@@ -96,16 +98,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		  Maybe rejuvenate fuel in exchange for effort?
 	- Make ash whiter, charcoal black.
 
-- Stack Splitting Research
-	- Can we eliminate the inv screen?
-	- How hard is it to split off a specific number of items from
-	  a stack, esp. on mobile?
-	- What else can we do on the inv screen we would need to be
-	  able to do in-world?
-	- Can we make stack splitting easier?  Shovel pummel to split
-	  in half?
-	- What sizes of stacks do we actually need in practice?
-
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
@@ -118,6 +110,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
+	- Server player lists...?
+	- Track server lag in metadata?
 
 - Make neighbor/distance calcs consistent.
 	- We're using scan_flood in some places, face checks in others,
@@ -134,6 +128,7 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Higher-tier tools skip dig phases.
 		- Fast-forward throug certain steps, e.g. raw -> loose?
 		- Skip later stages, e.g. "silk touch" effect?
+	- Offer combined high-tier tools, e.g. mattock = cracky + crumbly?
 	- Tool API cleanup
 		- Separate durability, speed, effects?
 
