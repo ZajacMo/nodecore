@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -18,10 +18,12 @@ minetest.register_node(modname .. ":fire", {
 		},
 		damage_per_second = 2,
 		sunlight_propagates = true,
+		floodable = true,
 		walkable = false,
 		pointable = false,
 		diggable = false,
 		buildable_to = true,
+		drop = ""
 	})
 
 local function ember(n, t)
@@ -37,10 +39,7 @@ local function ember(n, t)
 			},
 			drop = "",
 			diggable = false,
-			on_punch = function(pos, node, puncher, ...)
-				puncher:set_hp(puncher:get_hp() - 1)
-				return minetest.node_punch(pos, node, puncher, ...)
-			end,
+			on_punch = nodecore.node_punch_hurt,
 			crush_damage = 1
 		})
 end

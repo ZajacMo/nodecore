@@ -208,12 +208,12 @@ regliquid({
 		liquid_renewable = false,
 		light_source = 13,
 		walkable = false,
-		pointable = false,
 		diggable = false,
 		buildable_to = true,
 		drowning = 1,
 		damage_per_second = 8,
+		on_punch = nodecore.node_punch_hurt,
 		drop = "",
-		groups = { igniter = 1 },
+		groups = { igniter = 1, lava = 2 },
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0}
 	})
