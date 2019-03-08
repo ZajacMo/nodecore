@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, tonumber, tostring
-    = math, nodecore, tonumber, tostring
+local math, minetest, nodecore, tonumber, tostring
+    = math, minetest, nodecore, tonumber, tostring
 local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
@@ -21,6 +21,13 @@ local function setphealth(player, hp)
 end
 nodecore.setphealth = setphealth
 
-function nodecore.addphealth(player, hp)
+
+local function addphealth(player, hp)
 	return setphealth(player, getphealth(player) + hp)
+end
+nodecore.addphealth = addphealth
+
+function nodecore.node_punch_hurt(pos, node, puncher, ...)
+	if puncher and puncher:is_player() then addphealth(puncher, -1) end
+	return minetest.node_punch(pos, node, puncher, ...)
 end

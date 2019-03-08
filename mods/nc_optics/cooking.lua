@@ -46,18 +46,20 @@ nodecore.register_limited_abm({
 			end
 		end})
 
+local src = modname .. ":glass_hot_source"
+local flow = modname .. ":glass_hot_flowing"
 nodecore.register_limited_abm({
-		label = "Molten Glass Flowing",
+		label = "Molten Glass Flowing/Casting",
 		interval = 2,
 		chance = 2,
-		nodenames = {modname .. ":glass_hot_source"},
+		nodenames = {src},
 		action = function(pos, node)
 			local miny = pos.y - 1
 			local found = {}
-			nodecore.scan_flood(pos, 3, function(p)
+			nodecore.scan_flood(pos, 5, function(p)
 					local nn = minetest.get_node(p).name
-					if nn == modname .. ":glass_hot_source" then return end
-					if nn ~= modname .. ":glass_hot_flowing" then return false end
+					if nn == src then return end
+					if nn ~= flow then return false end
 					if p.y > miny then return end
 					if p.y == miny then
 						found[#found + 1] = p
@@ -69,8 +71,20 @@ nodecore.register_limited_abm({
 			if #found > 0 then
 				local np = nodecore.pickrand(found)
 				minetest.set_node(np, node)
-				return minetest.set_node(pos, {
-						name = modname .. ":glass_hot_flowing",
-						param2 = 7})
+				return minetest.set_node(pos, {name = flow, param2 = 7})
+			end
+
+			if #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{flow}) > 0 then return end
+
+			if nodecore.quenched(pos) then
+				return minetest.set_node(pos, {name = modname .. ":glass_opaque"})
+			end
+
+			if timecounter(minetest:get_meta(pos), 30, not heated(pos)) then
+				minetest:get_meta(pos):from_table({})
+				return minetest.set_node(pos, {name = modname .. ":glass"})
 			end
 		end})

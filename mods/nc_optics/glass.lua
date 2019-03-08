@@ -43,6 +43,7 @@ local moltdef = {
 	diggable = false,
 	buildable_to = false,
 	drowning = 1,
+	on_punch = nodecore.node_punch_hurt,
 	damage_per_second = 4,
 	drop = "",
 	groups = { igniter = 1 },
