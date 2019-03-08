@@ -45,4 +45,32 @@ nodecore.register_limited_abm({
 				return minetest.set_node(pos, {name = modname .. ":glass_hot_source"})
 			end
 		end})
---]]
+
+nodecore.register_limited_abm({
+		label = "Molten Glass Flowing",
+		interval = 2,
+		chance = 2,
+		nodenames = {modname .. ":glass_hot_source"},
+		action = function(pos, node)
+			local miny = pos.y - 1
+			local found = {}
+			nodecore.scan_flood(pos, 3, function(p)
+					local nn = minetest.get_node(p).name
+					if nn == modname .. ":glass_hot_source" then return end
+					if nn ~= modname .. ":glass_hot_flowing" then return false end
+					if p.y > miny then return end
+					if p.y == miny then
+						found[#found + 1] = p
+						return
+					end
+					miny = p.y
+					found = {p}
+				end)
+			if #found > 0 then
+				local np = nodecore.pickrand(found)
+				minetest.set_node(np, node)
+				return minetest.set_node(pos, {
+						name = modname .. ":glass_hot_flowing",
+						param2 = 7})
+			end
+		end})
