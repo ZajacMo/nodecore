@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, ipairs, minetest, nodecore
+    = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 function nodecore.node_inv(pos)
@@ -11,8 +11,15 @@ function nodecore.stack_get(pos)
 	return nodecore.node_inv(pos):get_stack("solo", 1)
 end
 
+local function update(pos, ...)
+	for _, v in ipairs(nodecore.visinv_update_ents(pos)) do
+		v:get_luaentity():itemcheck()
+	end
+	return ...
+end
+
 function nodecore.stack_set(pos, stack)
-	return nodecore.node_inv(pos):set_stack("solo", 1, ItemStack(stack))
+	return update(pos, nodecore.node_inv(pos):set_stack("solo", 1, ItemStack(stack)))
 end
 
 function nodecore.stack_add(pos, stack)
@@ -23,7 +30,7 @@ function nodecore.stack_add(pos, stack)
 		if ret == false then return stack end
 		if ret and ret ~= true then return ret end
 	end
-	return nodecore.node_inv(pos):add_item("solo", ItemStack(stack))
+	return update(pos, nodecore.node_inv(pos):add_item("solo", ItemStack(stack)))
 end
 
 function nodecore.stack_giveto(pos, player)

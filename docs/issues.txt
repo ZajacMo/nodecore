@@ -9,6 +9,9 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Replace minetest.registered_items lookups with a call that guards
+  against crashes (returns empty table or ignore or something).
+
 - New content needs hints!
 
 - Separate punch and tool HUDs?

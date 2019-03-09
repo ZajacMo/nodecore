@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type
-    = ItemStack, math, minetest, nodecore, pairs, type
-local math_floor, math_pi, math_random, math_sqrt
-    = math.floor, math.pi, math.random, math.sqrt
+local ItemStack, math, minetest, nodecore, pairs, type, vector
+    = ItemStack, math, minetest, nodecore, pairs, type, vector
+local math_floor, math_pi
+    = math.floor, math.pi
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -16,7 +16,7 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
-local function stackentprops(stack, func, rot)
+local function stackentprops(stack, func)
 	rot = rot or 1
 	local t = {
 		hp_max = 1,
@@ -37,9 +37,6 @@ local function stackentprops(stack, func, rot)
 		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()      
 		t.visual_size = {x = s, y = s}
 		local max = stack:get_stack_max()
-		local ratio = max / stack:get_count()
-		t.automatic_rotate = rot * (ratio == 1 and max > 1
-			and 0.05 or 0.15) * math_sqrt(ratio)
 		if func then func(s) end
 	end
 	return t
@@ -52,16 +49,18 @@ minetest.register_entity(modname .. ":stackent", {
 			local pos = self.object:getpos()
 			local stack = nodecore.stack_get(pos)
 			if not stack or stack:is_empty() then return self.object:remove() end
-			self.rot = self.rot or math_random(1, 2) * 2 - 3
-			self.object:set_properties(stackentprops(stack, function(s)
-						pos.y = math_floor(pos.y + 0.5) - 0.5 + s
+
+			local rp = vector.round(pos)
+			local rot = rp.x * 3 + rp.y * 5 + rp.z * 7
+			local ratio = stack:get_count() / stack:get_stack_max()
+			if ratio ~= 1 then rot = rot + 1/8 + 3/8 * (1 - ratio) end
+			rot = rot - 2 * math_floor(rot / 2)
+			self.object:set_yaw(rot * math_pi / 2)
+
+			return self.object:set_properties(stackentprops(stack, function(s)
+						pos.y = math_floor(pos.y + 0.5) - 0.5 + s + 1/64
 						self.object:setpos(pos)
-					end, self.rot))
-			self.object:set_yaw(math_random() * math_pi * 2)
-			if pos.y - math_floor(pos.y) ~= 1/64 then
-				pos.y = pos.y + 1/64
-				self.object:setpos(pos)
-			end
+					end))
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
@@ -95,6 +94,8 @@ function nodecore.visinv_update_ents(pos, node)
 			found[#found] = nil
 		end
 	end
+	
+	return found
 end
 
 ------------------------------------------------------------------------
@@ -175,11 +176,11 @@ end
 local old_handle_node_drops = minetest.handle_node_drops
 function minetest.handle_node_drops(pos, drops, digger, ...)
 	old_handle_node_drops(pos, drops, digger, ...)
-	
+
 	if not deferred_drop then return end
 	local defer = deferred_drop
 	deferred_drop = nil
-	
+
 	if digger and digger:is_player()
 	and digger:get_player_control().sneak then
 		local inv = digger:get_inventory()
