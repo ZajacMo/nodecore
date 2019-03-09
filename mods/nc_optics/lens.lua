@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -84,4 +86,21 @@ reg("_glow", {
 			txr .. "^" .. modname .. "_lens_in.png",
 			txr .. "^" .. modname .. "_lens_out.png",
 		},	
+	})
+
+nodecore.register_limited_abm({
+		label = "Lens Fire Starting",
+		interval = 2,
+		chance = 2,
+		nodenames = {modname .. ":lens_on"},
+		action = function(pos, node)
+			local face = nodecore.facedirs[node.param2]
+			local out = vector.add(face.k, pos)
+			local tn = minetest.get_node(out)
+			local tdef = minetest.registered_items[tn.name] or {}
+			local flam = tdef and tdef.groups and tdef.groups.flammable
+			if flam and math_random(1, flam) == 1 then
+				nodecore.ignite(out, tn)
+			end
+		end
 	})
