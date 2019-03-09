@@ -12,7 +12,7 @@ local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
 local function invdef(pos)
 	local stack = nodecore.stack_get(pos)
 	if not stack or stack:is_empty() then return end
-	local def = minetest.registered_items[stack:get_name()]
+	local def = minetest.registered_items[stack:get_name()] or {}
 	return stack:get_count() == (def.pummel_stack or 1) and def or nil
 end
 

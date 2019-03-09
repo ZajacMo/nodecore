@@ -5,7 +5,7 @@ local minetest, nodecore, pairs, type
 
 local modname = minetest.get_current_modname()
 
-local function toolhead(name, group)
+local function toolhead(name, group, prills)
 	local n = name:lower()
 
 	nodecore.register_lode("toolhead_" .. n, {
@@ -33,9 +33,8 @@ local function toolhead(name, group)
 						})
 				end
 			end,
-			metal_alt_hot = modname .. ":toolhead_" .. n .. "_hot",
-			tool_wears_to = modname .. ":prill_# 3",
-
+			metal_alt_hot = modname .. ":prill_hot " .. prills,
+			tool_wears_to = modname .. ":prill_# 3"
 		})
 
 	for _, t in pairs({"annealed", "tempered"}) do
@@ -54,10 +53,10 @@ local function toolhead(name, group)
 	end
 end
 
-toolhead("Mallet", "thumpy")
-toolhead("Spade", "crumbly")
-toolhead("Hatchet", "choppy")
-toolhead("Pick", "cracky")
+toolhead("Mallet", "thumpy", 3)
+toolhead("Spade", "crumbly", 2)
+toolhead("Hatchet", "choppy", 2)
+toolhead("Pick", "cracky", 1)
 
 local function forge(from, fromqty, to, prills)
 	return nodecore.register_craft({

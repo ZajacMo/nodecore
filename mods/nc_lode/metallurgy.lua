@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type
-    = math, minetest, nodecore, pairs, type
+local ItemStack, math, minetest, nodecore, pairs, type
+    = ItemStack, math, minetest, nodecore, pairs, type
 local math_exp, math_floor, math_log, math_random
     = math.exp, math.floor, math.log, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -115,7 +115,9 @@ nodecore.register_limited_abm({
 
 local function replacestack(pos, name, stack)
 	nodecore.remove_node(pos)
-	return nodecore.item_eject(pos, name .. " " .. stack:get_count())
+	local repl = ItemStack(name)
+	repl:set_count(repl:get_count() * stack:get_count())
+	return nodecore.item_eject(pos, repl)
 end
 
 nodecore.register_limited_abm({
