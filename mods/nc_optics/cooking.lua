@@ -77,6 +77,7 @@ nodecore.register_limited_abm({
 
 			if nodecore.cooking(minetest.get_meta(pos), "time", 120,
 				not heated(pos), pos) then
+				minetest.get_meta(pos):from_table({})
 				return minetest.set_node(pos, {name = modname .. ":glass"})
 			end
 		end})
