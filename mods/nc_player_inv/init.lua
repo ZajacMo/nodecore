@@ -20,7 +20,7 @@ do
 				"",
 				"(C)2018-2019 by Aaron Suen <warr1024@gmail.com>",
 				"MIT License:  http://www.opensource.org/licenses/MIT",
-				"See include LICENSE file for full details and credits",
+				"See included LICENSE file for full details and credits",
 				"",
 				"https://content.minetest.net/packages/Warr1024/nodecore/",
 				"GitLab:    https://gitlab.com/sztest/nodecore",
