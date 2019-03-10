@@ -34,7 +34,7 @@ local function toolhead(name, group, prills)
 				end
 			end,
 			metal_alt_hot = modname .. ":prill_hot " .. prills,
-			tool_wears_to = modname .. ":prill_# 3"
+			tool_wears_to = modname .. ":prill_# " .. prills
 		})
 
 	for _, t in pairs({"annealed", "tempered"}) do
