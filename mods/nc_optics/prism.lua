@@ -41,6 +41,7 @@ local basedef = {
 		txr .. "^(" .. modname .. "_prism_in.png^[transformFX)",
 	},
 	groups = {
+		silica = 1,
 		optic_check = 1,
 		cracky = 3
 	},

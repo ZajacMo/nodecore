@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, nodecore, pairs, table, type
-    = error, math, nodecore, pairs, table, type
-local math_floor, table_insert
-    = math.floor, table.insert
+local error, ipairs, math, minetest, nodecore, pairs, table, type
+    = error, ipairs, math, minetest, nodecore, pairs, table, type
+local math_floor, table_concat, table_insert
+    = math.floor, table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local craft_recipes = {}
@@ -64,3 +64,12 @@ function nodecore.register_craft(recipe)
 	end
 	table_insert(craft_recipes, min, recipe)
 end
+
+minetest.register_on_joinplayer(function(player)
+		local t = {}
+		for _, v in ipairs(craft_recipes) do
+			t[#t + 1] = v.label
+		end
+		minetest.chat_send_player(player:get_player_name(),
+			table_concat(t, "; "))
+	end)

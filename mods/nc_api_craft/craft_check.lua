@@ -44,8 +44,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		mindur = mindur + t
 	end
 	if mindur > 0 and (not data.duration or data.duration < mindur) then
-		if data.inprogress then return data.inprogress(data, recipe) end
-		return
+		if data.inprogress then data.inprogress(data, recipe) end
+		return 1
 	end
 	if recipe.before then recipe.before(pos, rel, data) end
 	for _, v in pairs(recipe.nodes) do
@@ -82,29 +82,37 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	return true
 end
 
-function nodecore.craft_check(pos, node, data)
-	data = data or {}
+local function tryall(rc, pos, node, data)
 	local function go(rc, xx, xz, zx, zz)
 		return craftcheck(rc, pos, node, data, xx, xz, zx, zz)
 	end
+	local r = go(rc, 1, 0, 0, 1)
+	if r then return r end
+	if not rc.norotate then
+		r = go(rc, 0, -1, 1, 0)
+		or go(rc, -1, 0, 0, -1)
+		or go(rc, 0, 1, -1, 0)
+		if r then return r end
+		if not rc.nomirror then
+			r = go(rc, -1, 0, 0, 1)
+			or go(rc, 0, 1, 1, 0)
+			or go(rc, 1, 0, 0, -1)
+			or go(rc, 0, -1, -1, 0)
+		end
+	end
+	return r
+end
+
+function nodecore.craft_check(pos, node, data)
+	data = data or {}
 	node.x = pos.x
 	node.y = pos.y
 	node.z = pos.z
 	data.node = node
 	for _, rc in ipairs(nodecore.craft_recipes) do
 		if nodecore.match(node, rc.root.match) and data.action == rc.action then
-			if go(rc, 1, 0, 0, 1) then return true end
-			if not rc.norotate then
-				if go(rc, 0, -1, 1, 0) then return true end
-				if go(rc, -1, 0, 0, -1) then return true end
-				if go(rc, 0, 1, -1, 0) then return true end
-				if not rc.nomirror then
-					if go(rc, -1, 0, 0, 1) then return true end
-					if go(rc, 0, 1, 1, 0) then return true end
-					if go(rc, 1, 0, 0, -1) then return true end
-					if go(rc, 0, -1, -1, 0) then return true end
-				end
-			end
+			local r = tryall(rc, pos, node, data)
+			if r then return r == true end
 		end
 	end
 end

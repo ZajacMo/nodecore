@@ -31,3 +31,28 @@ nodecore.register_craft({
 			{name = modname .. ":lens", count = 2, scatter = 5}
 		}
 	})
+
+nodecore.register_craft({
+		label = "hammer glass back to sand",
+		action = "pummel",
+		priority = -1, -- chiseling prisms is higher prio
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = {groups = {silica = true}},
+				replace = "nc_terrain:sand_loose"
+			}
+		}
+	})
+
+nodecore.register_craft({
+		label = "hammer lenses back to sand",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = {groups = {silica_lens = true}, count = 2},
+				replace = "nc_terrain:sand_loose"
+			}
+		}
+	})

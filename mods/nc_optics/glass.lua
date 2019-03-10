@@ -13,6 +13,7 @@ minetest.register_node(modname .. ":glass", {
 			modname .. "_glass_glare.png"
 		},
 		groups = {
+			silica = 1,
 			cracky = 3
 		},
 		sunlight_propagates = true,
@@ -23,6 +24,7 @@ minetest.register_node(modname .. ":glass_opaque", {
 		description = "Chromatic Glass",
 		tiles = { modname .. "_glass_frost.png" },
 		groups = {
+			silica = 1,
 			cracky = 3
 		},
 		paramtype = "light"
