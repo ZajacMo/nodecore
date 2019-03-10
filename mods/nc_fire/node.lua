@@ -61,11 +61,3 @@ minetest.register_node(modname .. ":ash", {
 		},
 		crush_damage = 0.25
 	})
-
-nodecore.register_limited_abm({
-		label = "TEST",
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":ash"},
-		action = function(pos) return nodecore.smoke(pos, 1) end
-		})
