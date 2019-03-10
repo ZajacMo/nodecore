@@ -1,7 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
-local dofile, minetest, rawget, rawset, table
-    = dofile, minetest, rawget, rawset, table
+local dofile, error, minetest, pairs, rawget, rawset, setmetatable,
+      table, type
+    = dofile, error, minetest, pairs, rawget, rawset, setmetatable,
+      table, type
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -20,6 +22,22 @@ end
 rawset(_G, "include", include)
 
 nodecore.version = include("version")
+
+local function callguard(n, t, k, v)
+	if type(v) ~= "function" then return v end
+	return function(first, ...)
+		if first == t then
+			error("called " .. t .. ":" .. k .. "() instead of " .. t .. "." .. k .. "()")
+		end
+		return v(first, ...)
+	end
+end
+for k, v in pairs(minetest) do
+	minetest[k] = callguard("minetest", minetest, k, v)
+end
+setmetatable(nodecore, {__newindex = function(t, k, v)
+			rawset(nodecore, k, callguard("nodecore", t, k, v))
+		end})
 
 include("issue7020")
 
