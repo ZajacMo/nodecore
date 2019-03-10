@@ -57,7 +57,8 @@ minetest.register_node(modname .. ":leaves", {
 		alternate_solid = {
 			after_dig_node = function(...)
 				return nodecore.leaf_decay(...)
-			end
+			end,
+			node_dig_prediction = "air"
 		}
 	})
 nodecore.register_leaf_drops(function(pos, node, list)
