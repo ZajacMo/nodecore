@@ -7,8 +7,8 @@ local math_floor
 
 local breath = {}
 
-local function breathimg(player)
-	local o = 255 * (1 - player:get_breath() / 11)
+local function breathimg(br)
+	local o = 255 * (1 - br / 11)
 	if o == 0 then return "" end
 	return "nc_player_hud_breath.png^[opacity:"
 	.. math_floor(o)
@@ -23,7 +23,7 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_image("nc_player_hud_bar.png")
 		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
 
-		local img = breathimg(player)
+		local img = breathimg(player:get_breath())
 		breath[player:get_player_name()] = {
 			id = player:hud_add({
 					hud_elem_type = "image",
@@ -40,15 +40,13 @@ minetest.register_on_joinplayer(function(player)
 local function breathhud(player)
 	local hud = breath[player:get_player_name()]
 	if not hud then return end
-	local i = breathimg(player)
+	local i = breathimg(player:get_breath())
 	if hud.val == i then return end
 	return player:hud_change(hud.id, "text", i)
 end
 
 minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
-			breathhud(player, function(id, t)
-					return player:hud_change(id, "text", t)
-				end)
+			breathhud(player)
 		end
 	end)
