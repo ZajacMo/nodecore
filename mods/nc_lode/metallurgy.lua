@@ -78,7 +78,7 @@ local function heated(pos)
 	if f >= 3 then return true end
 end
 
-local function timecounter(meta, max, check)
+local function timecounter(meta, max, check, smokepos)
 	if not check then
 		local t = meta:to_table()
 		t.fields.time = nil
@@ -86,8 +86,12 @@ local function timecounter(meta, max, check)
 		return
 	end
 	local t = (meta:get_int("time") or 0) + 1
-	if t >= max then return true end
+	if t >= max then
+		if smokepos then nodecore.smoke(smokepos) end
+		return true
+	end
 	meta:set_int("time", t)
+	if smokepos then nodecore.smoke(smokepos, 1) end
 end
 
 local logadj = math_log(2)
@@ -106,7 +110,8 @@ nodecore.register_limited_abm({
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if timecounter(minetest:get_meta(pos), 30,
-				not nodecore.match(below, {walkable = true}) and heated(pos)) then
+				not nodecore.match(below, {walkable = true}) and heated(pos),
+				pos) then
 				nodecore.item_eject(below, modname .. ":prill_hot " .. exporand())
 				minetest:get_meta(pos):from_table({})
 				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})
@@ -138,7 +143,7 @@ nodecore.register_limited_abm({
 					return replacestack(pos, def.metal_alt_annealed, stack)
 				end
 			elseif (def.metal_temper_annealed or def.metal_temper_tempered)
-			and timecounter(stack:get_meta(), 30, heated(pos)) then
+			and timecounter(stack:get_meta(), 30, heated(pos), pos) then
 				return replacestack(pos, def.metal_alt_hot, stack)
 			end
 			return nodecore.stack_set(pos, stack)

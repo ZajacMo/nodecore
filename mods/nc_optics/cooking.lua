@@ -21,16 +21,20 @@ local function heated(pos)
 	if f >= 3 then return true end
 end
 
-local function timecounter(meta, max, check)
+local function timecounter(meta, max, check, smokepos)
 	if not check then
 		local t = meta:to_table()
-		t.fields.glasscook = nil
+		t.fields.time = nil
 		meta:from_table(t)
 		return
 	end
-	local t = (meta:get_int("glasscook") or 0) + 1
-	if t >= max then return true end
-	meta:set_int("glasscook", t)
+	local t = (meta:get_int("time") or 0) + 1
+	if t >= max then
+		if smokepos then nodecore.smoke(smokepos) end
+		return true
+	end
+	meta:set_int("time", t)
+	if smokepos then nodecore.smoke(smokepos, 1) end
 end
 
 nodecore.register_limited_abm({
@@ -40,7 +44,7 @@ nodecore.register_limited_abm({
 		nodenames = {"nc_terrain:sand_loose"},
 		neighbors = {"group:flame"},
 		action = function(pos, node)
-			if timecounter(minetest:get_meta(pos), 20, heated(pos)) then
+			if timecounter(minetest:get_meta(pos), 20, heated(pos), pos) then
 				minetest:get_meta(pos):from_table({})
 				return minetest.set_node(pos, {name = modname .. ":glass_hot_source"})
 			end

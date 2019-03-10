@@ -11,6 +11,9 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Grass growing ABM needs rethunk.
 
+- Healing mechanic sucks.  Try using euclidian distance, raising base
+  rate, tweaking weightings.	
+
 - API Cleanup
 	- Guard minetest, nodecore, etc. against : calls instead of . calls.
 	- Utils

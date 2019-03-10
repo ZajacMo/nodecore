@@ -34,6 +34,7 @@ include("util_facedir")
 include("match")
 
 include("fx_digparticles")
+include("fx_smoke")
 
 include("register_limited_abm")
 include("mapgen_shared")
