@@ -9,6 +9,11 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- NEW HEALTH SYSTEM:
+	- Prevent healing while moving
+	- Prevent healing while breath < 11
+	- Need a replacement for /suicide
+
 - Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
 	- Clean up metadata somehow...?
 	- "Active" node stacks with cleanup abm?
