@@ -17,7 +17,6 @@ local modname = minetest.get_current_modname()
 -- VISIBLE STACK ENTITY
 
 local function stackentprops(stack, func)
-	rot = rot or 1
 	local t = {
 		hp_max = 1,
 		physical = false,

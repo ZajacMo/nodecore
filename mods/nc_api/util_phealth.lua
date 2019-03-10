@@ -15,12 +15,12 @@ local function setphealth(player, hp)
 	if hp > 20 then hp = 20 end
 	if hp < 0 then hp = 0 end
 	local whole = math_ceil(hp)
+	if whole == 0 then whole = 1 end
 	local dhp = hp - whole
 	player:set_attribute("dhp", tostring(dhp))
 	return player:set_hp(whole)
 end
 nodecore.setphealth = setphealth
-
 
 local function addphealth(player, hp)
 	return setphealth(player, getphealth(player) + hp)

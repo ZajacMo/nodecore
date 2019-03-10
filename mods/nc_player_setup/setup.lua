@@ -6,9 +6,11 @@ local minetest
 minetest.register_on_joinplayer(function(player)
 		player:get_inventory():set_size("main", 8)
 
+		player:set_physics_override({speed = 1.25})
+
 		player:set_properties({
 				makes_footstep_sound = true,
-				
+
 				-- No-jump stair climbing on all platforms, with
 				-- a little extra for climbing up from stack nodes
 				stepheight = 1.4,

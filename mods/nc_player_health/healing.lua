@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local math_exp, math_random, math_sqrt
+    = math.exp, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -50,10 +50,16 @@ local function envcheck(player)
 		agg.dirty = nil
 		player:set_attribute("healthenv",
 			minetest.serialize(agg))
-		nodecore.addphealth(player, 0.005 + (agg.green + 0.02)
-			* (agg.water + 0.1)
-			* (agg.space + 5)
-			* (agg.light + 8) / 500)
+		for k, v in pairs(agg) do
+			agg[k] = 1 - math_exp(-v)
+		end
+		local heal = 0.1
+		+ (agg.green * agg.green) * 4
+		+ (agg.water * agg.water) * 2
+		+ (agg.space * agg.space)
+		+ (agg.light * agg.light)
+		heal = math_sqrt(heal)
+		nodecore.addphealth(player, heal)
 	end
 
 end

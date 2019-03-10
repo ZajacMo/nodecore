@@ -3,5 +3,5 @@ local include
     = include
 -- LUALOCALS > ---------------------------------------------------------
 
-include("statbars")
+include("setup")
 include("touchtip")

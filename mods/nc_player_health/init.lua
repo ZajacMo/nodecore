@@ -4,6 +4,6 @@ local include
 -- LUALOCALS > ---------------------------------------------------------
 
 include("healing")
-include("mobility")
+include("ejectinv")
 include("death")
 include("suicide")
