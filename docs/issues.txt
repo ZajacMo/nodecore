@@ -9,6 +9,11 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
+	- Clean up metadata somehow...?
+	- "Active" node stacks with cleanup abm?
+	- Clean up metadata on dig?  in stack api?
+	
 - Grass growing ABM needs rethunk.
 
 - Healing mechanic sucks.  Try using euclidian distance, raising base

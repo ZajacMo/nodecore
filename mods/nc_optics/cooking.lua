@@ -30,7 +30,7 @@ nodecore.register_limited_abm({
 		nodenames = {"nc_terrain:sand_loose"},
 		neighbors = {"group:flame"},
 		action = function(pos, node)
-			if nodecore.cooking(minetest:get_meta(pos), "time", 20,
+			if nodecore.cooking(minetest.get_meta(pos), "time", 20,
 				heated(pos), pos) then
 				return minetest.set_node(pos, {name = modname .. ":glass_hot_source"})
 			end

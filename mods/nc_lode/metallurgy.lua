@@ -93,11 +93,10 @@ nodecore.register_limited_abm({
 		neighbors = {"group:flame"},
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			if nodecore.cooking(minetest:get_meta(pos), "time", 30,
+			if nodecore.cooking(minetest.get_meta(pos), "time", 30,
 				not nodecore.match(below, {walkable = true}) and heated(pos),
 				pos) then
 				nodecore.item_eject(below, modname .. ":prill_hot " .. exporand())
-				minetest:get_meta(pos):from_table({})
 				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})
 			end
 		end})
