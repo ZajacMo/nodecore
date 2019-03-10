@@ -11,6 +11,22 @@ ROADMAP: Large New Development Projects
 
 - Domain Wall Sensor (adapt from sztest)
 
+- Fire rework.
+	- Make fuel consumed slower by reducing flame exposure.
+		- Encourages designing a better furnace.
+	- Smothering produces charcoal instead of ash.
+		- Can be reburned.  Maybe easier to ignite?
+		  Maybe rejuvenate fuel in exchange for effort?
+	- Make ash whiter, charcoal black.
+	- New writing system based on charcoal
+		- Draw a symbol on surfaces by pummeling w/ charcoal
+		- Punch symbol w/ charcoal to rotate thru alphabet
+		- Use a special/reduced alphabet?
+
+- Water and lava surface springs.
+	- Access to water for forges.
+	- Access to lava for lighting, firestarting.
+
 - Threats
 	- Visceral
 		- Flammable gas?  Toxic gas?  Radioactives?
@@ -22,10 +38,6 @@ ROADMAP: Large New Development Projects
 		- Blights, fungi
 	- Latent
 		- Respawn mechanics?
-
-- Water and lava surface springs.
-	- Access to water for forges.
-	- Access to lava for lighting, firestarting.
 
 - Digital logic + lighting via optics.
 	- Focused light right at output applies heat

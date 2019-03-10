@@ -9,14 +9,56 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Replace minetest.registered_items lookups with a call that guards
-  against crashes (returns empty table or ignore or something).
+- Grass growing ABM needs rethunk.
+
+- API Cleanup
+	- Guard minetest, nodecore, etc. against : calls instead of . calls.
+	- Utils
+		- Box mueller and exporand
+	- Break up the nc_api monstrosity.
+		- nc_api_base to create _G.nodecore and include for all.
+		- nc_api metamod that just depends on ALL other api's.
+		- nc_all metamod for 3rd party mod authors...?
+	- Soaking API for time-integrated processes.
+		- Tree growth
+		- Lode heating
+	- Heat API
+		- Unified heating/cooling number from env.
+		- Proper API for burning up items
+			- on_burn?  burns_to?
+		- Unify heat transformations into recipe system with
+		  cooking recipes?
+	- Unify nc_items and visinv API.
+		- Stack nodes are "special", get first-class support.
 
 - New content needs hints!
 
 - Separate punch and tool HUDs?
 	- Use waypoints for punches?
 	- Use 2 text lines above/below?
+	- Mini API for ttl huds?
+
+- Change falling_node logic esp for leaves?
+	- Register with falling_no_clobber or something?
+	- Instead of knocking out node as item, add to pile.
+
+- Change how items are given to player.
+	- Prefer current selected slot if empty.
+	- Create a new API.
+	- Audit code for add_items (e.g. in stack_giveto)
+	- Builtin handle_node_drops and item_entity:on_punch
+	- Change sneak-dig behavior?  Deprecate?
+		- Clean up Player's Guide.
+
+- Tool level differences.
+	- Advanced tools are NOT just the same as regular tools with
+	  certain buffs.
+	- Higher-tier tools skip dig phases.
+		- Fast-forward throug certain steps, e.g. raw -> loose?
+		- Skip later stages, e.g. "silk touch" effect?
+	- Offer combined high-tier tools, e.g. mattock = cracky + crumbly?
+	- Tool API cleanup
+		- Separate durability, speed, effects?
 
 - Wield view broken in MP.
 	- Players sometimes see ents as unattached, depending on
@@ -52,25 +94,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Coverage for non-repo items
 			- Screenshots, videos/links, for publicity
 
-- API Cleanup
-	- Utils
-		- Box mueller and exporand
-	- Break up the nc_api monstrosity.
-		- nc_api_base to create _G.nodecore and include for all.
-		- nc_api metamod that just depends on ALL other api's.
-		- nc_all metamod for 3rd party mod authors...?
-	- Soaking API for time-integrated processes.
-		- Tree growth
-		- Lode heating
-	- Heat API
-		- Unified heating/cooling number from env.
-		- Proper API for burning up items
-			- on_burn?  burns_to?
-		- Unify heat transformations into recipe system with
-		  cooking recipes?
-	- Unify nc_items and visinv API.
-		- Stack nodes are "special", get first-class support.
-
 - Code Quality.
 	- Finish setting up LuaCheck, audit code.
 	- Scripts to validate dependency graph.
@@ -93,14 +116,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
 
-- Fire rework.
-	- Make fuel consumed slower by reducing flame exposure.
-		- Encourages designing a better furnace.
-	- Smothering produces charcoal instead of ash.
-		- Can be reburned.  Maybe easier to ignite?
-		  Maybe rejuvenate fuel in exchange for effort?
-	- Make ash whiter, charcoal black.
-
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
@@ -121,19 +136,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  and find_nodes_in_area (cuboid) in others.
 	- Diamond shape would be most consistent.
 	- Should require face touching, not diagonal.
-
-- Make item updates search farther after they've been settled
-  for longer.  Allow some upwards motion...?
-
-- Tool level differences.
-	- Advanced tools are NOT just the same as regular tools with
-	  certain buffs.
-	- Higher-tier tools skip dig phases.
-		- Fast-forward throug certain steps, e.g. raw -> loose?
-		- Skip later stages, e.g. "silk touch" effect?
-	- Offer combined high-tier tools, e.g. mattock = cracky + crumbly?
-	- Tool API cleanup
-		- Separate durability, speed, effects?
 
 ........................................................................
 ========================================================================

@@ -14,10 +14,10 @@ nodecore.register_craft({
 		label = "break cobble to chips",
 		action = "pummel",
 		nodes = {
-			{match = "nc_terrain:cobble_loose", replace = "air"}
+			{match = "nc_terrain:cobble_loose", replace = "nc_terrain:gravel"}
 		},
 		items = {
-			{name = modname .. ":chip", count = 8, scatter = 5}
+			{name = modname .. ":chip", count = 4, scatter = 5}
 		},
 		toolgroups = {cracky = 2},
 		itemscatter = 5
