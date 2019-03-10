@@ -15,6 +15,7 @@ minetest.register_node(modname .. ":stick", {
 			modname .. "_tree_side.png"
 		},
 		paramtype = "light",
+		sunlight_propagates = true,
 		groups = {
 			firestick = 1,
 			snappy = 1,

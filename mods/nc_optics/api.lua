@@ -21,7 +21,8 @@ local function scan(pos, dir)
 		p = vector.add(p, dir)
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
-		if node.name ~= "air" then return p, node end
+		local def = minetest.registered_items[node.name] or {}
+		if not def.sunlight_propagates then return p, node end
 	end
 end
 
