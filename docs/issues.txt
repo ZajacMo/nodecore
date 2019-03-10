@@ -24,7 +24,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- nc_all metamod for 3rd party mod authors...?
 	- Soaking API for time-integrated processes.
 		- Tree growth
-		- Lode heating
 	- Heat API
 		- Unified heating/cooling number from env.
 		- Proper API for burning up items

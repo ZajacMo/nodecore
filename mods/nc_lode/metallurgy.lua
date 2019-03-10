@@ -78,22 +78,6 @@ local function heated(pos)
 	if f >= 3 then return true end
 end
 
-local function timecounter(meta, max, check, smokepos)
-	if not check then
-		local t = meta:to_table()
-		t.fields.time = nil
-		meta:from_table(t)
-		return
-	end
-	local t = (meta:get_int("time") or 0) + 1
-	if t >= max then
-		if smokepos then nodecore.smoke(smokepos) end
-		return true
-	end
-	meta:set_int("time", t)
-	if smokepos then nodecore.smoke(smokepos, 1) end
-end
-
 local logadj = math_log(2)
 local function exporand()
 	local r = 0
@@ -109,7 +93,7 @@ nodecore.register_limited_abm({
 		neighbors = {"group:flame"},
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			if timecounter(minetest:get_meta(pos), 30,
+			if nodecore.cooking(minetest:get_meta(pos), "time", 30,
 				not nodecore.match(below, {walkable = true}) and heated(pos),
 				pos) then
 				nodecore.item_eject(below, modname .. ":prill_hot " .. exporand())
@@ -139,11 +123,12 @@ nodecore.register_limited_abm({
 				if nodecore.quenched(pos) then
 					return replacestack(pos, def.metal_alt_tempered, stack)
 				end
-				if timecounter(stack:get_meta(), 120, not heated(pos)) then
+				if nodecore.cooking(stack:get_meta(), "time", 120,
+					not heated(pos), pos) then
 					return replacestack(pos, def.metal_alt_annealed, stack)
 				end
 			elseif (def.metal_temper_annealed or def.metal_temper_tempered)
-			and timecounter(stack:get_meta(), 30, heated(pos), pos) then
+			and nodecore.cooking(stack:get_meta(), "time", 30, heated(pos), pos) then
 				return replacestack(pos, def.metal_alt_hot, stack)
 			end
 			return nodecore.stack_set(pos, stack)
