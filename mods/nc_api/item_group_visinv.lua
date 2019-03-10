@@ -52,7 +52,10 @@ minetest.register_entity(modname .. ":stackent", {
 
 			local rp = vector.round(pos)
 			local rot = rp.x * 3 + rp.y * 5 + rp.z * 7
-			local ratio = stack:get_count() / stack:get_stack_max()
+			local max = stack:get_stack_max()
+			local ratio = (max == 1)
+			and 1 - (stack:get_wear() / 65536)
+			or stack:get_count() / max
 			if ratio ~= 1 then rot = rot + 1/8 + 3/8 * (1 - ratio) end
 			rot = rot - 2 * math_floor(rot / 2)
 			self.object:set_yaw(rot * math_pi / 2)
