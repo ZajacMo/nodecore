@@ -23,7 +23,7 @@
        inkscape:collect="always"
        id="linearGradient4554">
       <stop
-         style="stop-color:#000000;stop-opacity:0.25098041"
+         style="stop-color:#fbfbfb;stop-opacity:0.50196081"
          offset="0"
          id="stop4550" />
       <stop
@@ -35,7 +35,7 @@
        inkscape:collect="always"
        id="linearGradient4546">
       <stop
-         style="stop-color:#000000;stop-opacity:0.0518018"
+         style="stop-color:#808080;stop-opacity:0.1254902"
          offset="0"
          id="stop4542" />
       <stop
@@ -178,17 +178,6 @@
        r="13.701371" />
     <radialGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient4546"
-       id="radialGradient4548"
-       cx="-177.22122"
-       cy="190.00739"
-       fx="-177.22122"
-       fy="190.00739"
-       r="16.530289"
-       gradientTransform="matrix(1,0,0,1.1547005,0,-29.394244)"
-       gradientUnits="userSpaceOnUse" />
-    <radialGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient4554"
        id="radialGradient4556"
        cx="-177.22122"
@@ -196,8 +185,19 @@
        fx="-177.22122"
        fy="190.00739"
        r="17.207113"
-       gradientTransform="matrix(1,0,0,1.1486149,0,-28.237938)"
+       gradientTransform="matrix(1,0,0,1.0506417,1.5633699e-7,-9.6223132)"
        gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4546"
+       id="radialGradient4571"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,1.029944,-2.1958651e-6,-5.6895981)"
+       cx="-177.22122"
+       cy="190.00739"
+       fx="-177.22122"
+       fy="190.00739"
+       r="16.530289" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -206,9 +206,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5877407"
-     inkscape:cx="153.44602"
-     inkscape:cy="51.80646"
+     inkscape:zoom="1.0568745"
+     inkscape:cx="250.47863"
+     inkscape:cy="-44.499122"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -325,12 +325,12 @@
        inkscape:transform-center-x="-3.3205021e-06"
        transform="matrix(-0.83131271,-0.22274957,-0.22274957,0.83131271,-274.12205,39.435236)"
        inkscape:transform-center-y="-2.8249933e-06"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_hud/textures/nc_hud_sel.png"
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_player_hud/textures/nc_player_hud_sel.png"
        inkscape:export-xdpi="24.704863"
        inkscape:export-ydpi="24.704863" />
     <g
        id="g4733"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_hud/textures/nc_hud_bg.png"
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_player_hud/textures/nc_player_hud_bar.png"
        inkscape:export-xdpi="25.611759"
        inkscape:export-ydpi="25.611759">
       <g
@@ -377,7 +377,7 @@
              sodipodi:cx="-177.22122"
              sodipodi:sides="6"
              id="path4601-5-2"
-             style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#radialGradient4548);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.30742687;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
+             style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#radialGradient4571);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.30742687;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;enable-background:accumulate"
              sodipodi:type="star" />
         </g>
       </g>
