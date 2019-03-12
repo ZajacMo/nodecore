@@ -45,7 +45,6 @@ local function checkinv(player)
 	if #reg > slots then
 		shuffle(reg)
 		local pos = player:getpos()
-		pos.y = pos.y + 1.65
 		while #reg > slots do
 			local i = reg[#reg]
 			reg[#reg] = nil

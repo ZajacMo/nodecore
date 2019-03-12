@@ -34,7 +34,7 @@ local setskin = setcached(function(player, x)
 	end)
 
 local function updatevisuals(player)
-	local hp = nodecore.getphealth(player)
+	local hp = player:get_hp()
 	if hp <= 0 then
 		setanim(player, "lay")
 	else

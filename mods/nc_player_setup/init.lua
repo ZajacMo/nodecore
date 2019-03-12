@@ -5,3 +5,4 @@ local include
 
 include("setup")
 include("hotpotato")
+include("stuck")
