@@ -9,6 +9,16 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- buildable_to issues.
+	- Needs to explicitly check for ignores.
+	- Needs to be used in repose logic (check for other places it's
+	  not used).
+
+- Clean up registered_* lookups everywhere.
+	- Be consistent about registered_items vs registered_nodes (or
+	any other builtin registered_*)
+	- Guard against unregistered stuff, e.g. reg[name] or {}  
+  
 - Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
 	- Clean up metadata somehow...?
 	- "Active" node stacks with cleanup abm?
