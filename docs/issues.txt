@@ -94,6 +94,7 @@ ISSUES: Bugs, Cleanup and Refinements
 			- Immersive, no GUIs, original gameplay
 		- Major features
 			- No in-game GUIs (including inventory screen)
+			- Minimal HUDs, unified inventory/health system
 			- Items as nodes (no decay)
 			- Multi-stage digging
 			- Craft in-world
