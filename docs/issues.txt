@@ -16,9 +16,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	
 - Grass growing ABM needs rethunk.
 
-- Healing mechanic sucks.  Try using euclidian distance, raising base
-  rate, tweaking weightings.	
-
 - API Cleanup
 	- Guard minetest, nodecore, etc. against : calls instead of . calls.
 	- Utils
@@ -39,6 +36,8 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Stack nodes are "special", get first-class support.
 
 - New content needs hints!
+	- Go thru github commits to see what.
+	- Definitely includes optics.
 
 - Separate punch and tool HUDs?
 	- Use waypoints for punches?
