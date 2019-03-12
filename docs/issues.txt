@@ -10,8 +10,6 @@ ISSUES: Bugs, Cleanup and Refinements
   ####   #        ####      #    ######  ######  #    #   ####
 
 - NEW HEALTH SYSTEM:
-	- Prevent healing while moving
-	- Prevent healing while breath < 11
 	- Prefer killing later inventory slots over earlier ones
 	  (maybe sequentially scan with random chance to stop on
 	  an eligible slot) to give players some agency on what

@@ -5,13 +5,22 @@ local math_exp, math_random, math_sqrt
     = math.exp, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
+local ppos = {}
 local cache = {}
 
 local function envcheck(player)
-	local stats = {}
+	local pname = player:get_player_name()
+
+	if player:get_breath() < 11 then return end
 
 	local pos = player:getpos()
 	pos.y = pos.y + 1.6
+
+	local old = ppos[pname] or pos
+	ppos[pname] = pos
+	local moving = not vector.equals(pos, old)
+
+	local stats = {}
 
 	stats.light = minetest.get_node_light(pos)
 
@@ -32,7 +41,6 @@ local function envcheck(player)
 	stats.green = groups.green or 0
 	stats.water = groups.water or 0 + stats.green / 5
 
-	local pname = player:get_player_name()
 	local agg = cache[pname]
 	if not agg then
 		agg = {}
@@ -59,6 +67,7 @@ local function envcheck(player)
 		+ (agg.space * agg.space)
 		+ (agg.light * agg.light)
 		heal = math_sqrt(heal)
+		if moving then heal = heal / 2 end
 		nodecore.addphealth(player, heal)
 	end
 
