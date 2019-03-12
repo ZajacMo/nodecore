@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
-local math_floor, math_random
-    = math.floor, math.random
+local math, minetest, nodecore, pairs, table
+    = math, minetest, nodecore, pairs, table
+local math_floor, math_random, table_remove
+    = math.floor, math.random, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -19,11 +19,11 @@ minetest.register_craftitem(injured, {
 		destroy_on_death = true
 	})
 
-local function shuffle(arr)
-	for i = 1, #arr do
-		local j = math_random(1, #arr)
-		arr[i], arr[j] = arr[j], arr[i]
+local function pickend(q)
+	for i = q, 1, -1 do
+		if math_random() < 0.5 then return i end
 	end
+	return pickend(q)
 end
 
 local function checkinv(player)
@@ -43,11 +43,11 @@ local function checkinv(player)
 	local slots = math_floor(nodecore.getphealth(player) / 20 * (size - 2)) + 2
 
 	if #reg > slots then
-		shuffle(reg)
 		local pos = player:getpos()
 		while #reg > slots do
-			local i = reg[#reg]
-			reg[#reg] = nil
+			local n = pickend(#reg)
+			local i = reg[n]
+			table_remove(reg, n)
 			nodecore.item_eject(pos, inv:get_stack("main", i), 5)
 			inv:set_stack("main", i, injured)
 		end
@@ -56,11 +56,14 @@ local function checkinv(player)
 
 	local fill = size - slots
 	if #inj > fill then
-		shuffle(inj)
 		local pos = player:getpos()
+		for i = 1, #inj / 2 do
+			inj[i], inj[#inj + 1 - i] = inj[#inj + 1 - i], inj[i]
+		end
 		while #inj > fill do
-			local i = inj[#inj]
-			inj[#inj] = nil
+			local n = pickend(#inj)
+			local i = inj[n]
+			table_remove(inj, n)
 			inv:set_stack("main", i, "")
 		end
 	end

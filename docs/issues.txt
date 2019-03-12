@@ -9,12 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- NEW HEALTH SYSTEM:
-	- Prefer killing later inventory slots over earlier ones
-	  (maybe sequentially scan with random chance to stop on
-	  an eligible slot) to give players some agency on what
-	  they risk most.  
-
 - Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
 	- Clean up metadata somehow...?
 	- "Active" node stacks with cleanup abm?
