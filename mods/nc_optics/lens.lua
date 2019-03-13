@@ -11,23 +11,23 @@ local function lens_check(pos, node, check)
 	local face = nodecore.facedirs[node.param2]
 
 	if check(face.k) then
-		nodecore.node_change(pos, node, modname .. ":lens_glow")
-		return
+		return modname .. ":lens_glow"
 	end
 
 	local fore = vector.add(pos, face.f)
 	local ll = minetest.get_node_light(fore)
-	local on = ll >= 15 and face.f.y == 1
+	local lt = 15
+	if node and node.name == modname .. ":lens_on" then lt = 14 end
+	local on = ll >= lt and face.f.y == 1
 	if not on then
 		local node = minetest.get_node(fore)
 		local def = minetest.registered_items[node.name]
 		on = def and def.light_source and def.light_source > 4
 	end
 	if on then
-		nodecore.node_change(pos, node, modname .. ":lens_on")
-		return {face.k}
+		return modname .. ":lens_on", {face.k}
 	end
-	nodecore.node_change(pos, node, modname .. ":lens")
+	return modname .. ":lens"
 end
 
 local txr = modname .. "_glass_frost.png"

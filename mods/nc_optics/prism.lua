@@ -12,10 +12,9 @@ local function prism_check(pos, node, check)
 	and (not check(face.t)) and (not check(face.b))
 
 	if power then
-		nodecore.node_change(pos, node, modname .. ":prism_on")
-		return {face.k, face.l}
+		return modname .. ":prism_on", {face.k, face.l}
 	end
-	nodecore.node_change(pos, node, modname .. ":prism")
+	return modname .. ":prism"
 end
 
 local txr = modname .. "_glass_frost.png"

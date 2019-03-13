@@ -48,7 +48,7 @@ local function optic_trigger(start, dir)
 	if def and def.optic_check then return optic_check(pos) end
 end
 
-local function optic_process(pos)
+local function optic_process(trans, pos)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
 
@@ -60,7 +60,7 @@ local function optic_process(pos)
 		end
 		local meta = minetest.get_meta(pos)
 		local old = meta:get_string("nc_optics")
-		local ok, res = pcall(def.optic_check, pos, node, func, def)
+		local ok, nn, res = pcall(def.optic_check, pos, node, func, def)
 		if ok then
 			local data = {}
 			for k, v in pairs(res or {}) do
@@ -75,9 +75,10 @@ local function optic_process(pos)
 				end	
 			end
 
-			return meta:set_string("nc_optics",
-				minetest.serialize(data))
-		elseif res:match("IgNoReArEa") then
+			local key = minetest.hash_node_position(pos)
+			trans.nodes[key] = {pos = pos, nn = nn}
+			trans.meta[key] = {pos = pos, data = data}
+		elseif nn:match("IgNoReArEa") then
 			minetest.log("optic check for "
 				.. minetest.pos_to_string(pos)
 				.. " hit unloaded area")
@@ -96,8 +97,21 @@ minetest.register_globalstep(function()
 		local batch = optic_queue
 		optic_queue = {}
 
+		local trans = {nodes = {}, meta = {}}
 		for _, pos in pairs(batch) do
-			optic_process(pos)
+			optic_process(trans, pos)
+		end
+
+		for _, v in pairs(trans.nodes) do
+			local node = minetest.get_node(v.pos)
+			if node.name ~= v.nn then
+				node.name = v.nn
+				minetest.set_node(v.pos, node)
+			end
+		end
+		for _, v in pairs(trans.meta) do
+			minetest.get_meta(v.pos):set_string("nc_optics",
+				minetest.serialize(v.data))
 		end
 	end)
 
