@@ -43,11 +43,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
 
-- Separate punch and tool HUDs?
-	- Use waypoints for punches?
-	- Use 2 text lines above/below?
-	- Mini API for ttl huds?
-
 - Change falling_node logic esp for leaves?
 	- Register with falling_no_clobber or something?
 	- Instead of knocking out node as item, add to pile.

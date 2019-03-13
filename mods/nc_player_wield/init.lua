@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, table
-    = minetest, nodecore, table
+local minetest, table
+    = minetest, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -115,17 +115,17 @@ minetest.register_on_joinplayer(function(player)
 
 		addslot(0, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
-		local function cslot(n, x, z)
-			return addslot(n, nil, x * 1.6,
-				(nodecore.mt_old and -4 or 5.5) + x / 2,
-				z * 2.1)
-		end
+--		local function cslot(n, x, z)
+--			return addslot(n, nil, x * 1.6,
+--				(nodecore.mt_old and -4 or 5.5) + x / 2,
+--				z * 2.1)
+--		end
 
-		cslot(1, 1, 1)
-		cslot(2, 0, 1.2)
-		cslot(3, -1, 1)
-		cslot(4, -2, 0)
-		cslot(5, -1, -1)
-		cslot(6, 0, -1.2)
-		cslot(7, 1, -1)
+--		cslot(1, 1, 1)
+--		cslot(2, 0, 1.2)
+--		cslot(3, -1, 1)
+--		cslot(4, -2, 0)
+--		cslot(5, -1, -1)
+--		cslot(6, 0, -1.2)
+--		cslot(7, 1, -1)
 	end)
