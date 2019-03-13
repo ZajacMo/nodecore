@@ -10,6 +10,7 @@ local match_skip = {
 	groups = true,
 	stack = true,
 	count = true,
+	excess = true,
 	wear = true
 }
 
@@ -45,7 +46,8 @@ function nodecore.match(thing, crit)
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
-	if crit.count and thing.count ~= crit.count then return end
+	if crit.count and thing.count < crit.count then return end
+	if crit.count and (not crit.excess) and thing.count > crit.count then return end
 	if crit.count == nil and thing.count ~= 1 then return end
 	if crit.wear then
 		if crit.wear < 1 then crit.wear = crit.wear * 65535 end

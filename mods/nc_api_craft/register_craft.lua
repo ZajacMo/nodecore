@@ -18,6 +18,9 @@ function nodecore.register_craft(recipe)
 		v.x = v.x or 0
 		v.y = v.y or 0
 		v.z = v.z or 0
+		if type(v.match) == "table" and v.match.count then
+			v.match.excess = v.match.excess or true
+		end
 		canrot = canrot or v.x ~= 0 or v.z ~= 0
 		if v.x == 0 and v.y == 0 and v.z == 0 then
 			recipe.root = v

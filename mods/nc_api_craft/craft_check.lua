@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, minetest, nodecore, pairs, type
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
+local math_ceil
+    = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
 local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
@@ -57,6 +59,17 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			end
 			if r and type(r) == "string" then
 				r = {name = r}
+			end
+			if v.match.excess then
+				local s = nodecore.stack_get(p)
+				local x = s:get_count() - (v.match.count or 1)
+				local n = math_ceil(x / 4)
+				while x > 0 do
+					if n > x then n = x end
+					x = x - n
+					s:set_count(n)
+					nodecore.item_eject(p, s, 5)
+				end
 			end
 			if r then minetest.set_node(p, r) end
 		end

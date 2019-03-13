@@ -45,8 +45,7 @@ end
 local function check_empty(pos, dx, dy, dz)
 	for ndy = dy, 1 do
 		local p = {x = pos.x + dx, y = pos.y + ndy, z = pos.z + dz}
-		local node = minetest.get_node(p)
-		if not minetest.registered_nodes[node.name].buildable_to then return end
+		if not nodecore.buildable_to(p) then return end
 	end
 	return {x = pos.x + dx, y = pos.y, z = pos.z + dz}
 end

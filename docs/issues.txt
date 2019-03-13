@@ -9,16 +9,15 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- buildable_to issues.
-	- Needs to explicitly check for ignores.
-	- Needs to be used in repose logic (check for other places it's
-	  not used).
-
 - Clean up registered_* lookups everywhere.
 	- Be consistent about registered_items vs registered_nodes (or
 	any other builtin registered_*)
 	- Guard against unregistered stuff, e.g. reg[name] or {}  
   
+- New content needs hints!
+	- Go thru github commits to see what.
+	- Definitely includes optics.
+	
 - Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
 	- Clean up metadata somehow...?
 	- "Active" node stacks with cleanup abm?
@@ -27,7 +26,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Grass growing ABM needs rethunk.
 
 - API Cleanup
-	- Guard minetest, nodecore, etc. against : calls instead of . calls.
 	- Utils
 		- Box mueller and exporand
 	- Break up the nc_api monstrosity.
@@ -44,10 +42,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		  cooking recipes?
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
-
-- New content needs hints!
-	- Go thru github commits to see what.
-	- Definitely includes optics.
 
 - Separate punch and tool HUDs?
 	- Use waypoints for punches?
