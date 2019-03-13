@@ -59,25 +59,13 @@ local function optic_process(trans, pos)
 			return hit, node
 		end
 		local meta = minetest.get_meta(pos)
-		local old = meta:get_string("nc_optics")
 		local ok, nn, res = pcall(def.optic_check, pos, node, func, def)
 		if ok then
-			local data = {}
-			for k, v in pairs(res or {}) do
-				data[dirname(v)] = 1
-			end
-
-			old = old and minetest.deserialize(old) or {}
-			for _, dir in pairs(nodecore.dirs()) do
-				local dn = dirname(dir)
-				if old[dn] ~= data[dn] then
-					optic_trigger(pos, dir)
-				end	
-			end
-
-			local key = minetest.hash_node_position(pos)
-			trans.nodes[key] = {pos = pos, nn = nn}
-			trans.meta[key] = {pos = pos, data = data}
+			trans[minetest.hash_node_position(pos)] = {
+				pos = pos,
+				nn = nn,
+				data = res or {}
+			}
 		elseif nn:match("IgNoReArEa") then
 			minetest.log("optic check for "
 				.. minetest.pos_to_string(pos)
@@ -92,26 +80,43 @@ local function optic_process(trans, pos)
 	end		
 end
 
+local function optic_commit(v)
+	local node = minetest.get_node(v.pos)
+	if node.name ~= v.nn then
+		node.name = v.nn
+		minetest.set_node(v.pos, node)
+	end
+
+	local data = {}
+	for k, v in pairs(v.data or {}) do
+		data[dirname(v)] = 1
+	end
+
+	local meta = minetest.get_meta(v.pos)
+
+	local old = meta:get_string("nc_optics")
+	old = old and minetest.deserialize(old) or {}
+	for _, dir in pairs(nodecore.dirs()) do
+		local dn = dirname(dir)
+		if old[dn] ~= data[dn] then
+			optic_trigger(v.pos, dir)
+		end	
+	end
+	meta:set_string("nc_optics", minetest.serialize(data))
+end
+
 minetest.register_globalstep(function()
 		-- snapshot batch, as processing may write to queue
 		local batch = optic_queue
 		optic_queue = {}
 
-		local trans = {nodes = {}, meta = {}}
+		local trans = {}
 		for _, pos in pairs(batch) do
 			optic_process(trans, pos)
 		end
 
-		for _, v in pairs(trans.nodes) do
-			local node = minetest.get_node(v.pos)
-			if node.name ~= v.nn then
-				node.name = v.nn
-				minetest.set_node(v.pos, node)
-			end
-		end
-		for _, v in pairs(trans.meta) do
-			minetest.get_meta(v.pos):set_string("nc_optics",
-				minetest.serialize(v.data))
+		for _, v in pairs(trans) do
+			optic_commit(v)
 		end
 	end)
 
