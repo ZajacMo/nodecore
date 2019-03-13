@@ -16,7 +16,7 @@ minetest.register_craftitem(injured, {
 		wield_scale = {x = 1, y = 1, z = 2.5},
 		on_drop = function(stack) return stack end,
 		on_place = function(stack) return stack end,
-		destroy_on_death = true
+		virtual_item = true
 	})
 
 local function pickend(q)

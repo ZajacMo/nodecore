@@ -21,12 +21,14 @@ local function entprops(stack, conf)
 		is_visible = false,
 		static_save = false
 	}
-	if stack and (not stack:is_empty()) then
-		t.is_visible = true
-		t.textures[1] = stack:get_name()
-		if conf and conf.slot == 0 then
-			t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
-		end
+	if not stack then return t end
+	if stack:is_empty() then return t end
+	local def = minetest.registered_items[stack:get_name()] or {}
+	if def.virtual_item then return t end
+	t.is_visible = true
+	t.textures[1] = stack:get_name()
+	if conf and conf.slot == 0 then
+		t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
 	end
 	return t
 end

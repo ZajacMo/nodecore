@@ -16,7 +16,7 @@ minetest.register_chatcommand("stuck", {
 			for i = 1, inv:get_size("main") do
 				local stack = inv:get_stack("main", i)
 				local def = minetest.registered_items[stack:get_name()]
-				if def and not def.destroy_on_death then
+				if def and not def.virtual_item then
 					nodecore.item_eject(pos, stack, 5)
 				end
 			end
