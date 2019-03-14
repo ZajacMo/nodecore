@@ -17,7 +17,8 @@ local function toolhead(name, from, group, sticks)
 				groups = {
 					choppy = 1,
 					flammable = 2
-				}
+				},
+				sounds = nodecore.sounds("nc_tree_woody")
 			})
 		local m = modname .. ":tool_" .. name:lower()
 		local u = m:gsub(":", "_") .. ".png"
@@ -29,7 +30,8 @@ local function toolhead(name, from, group, sticks)
 				},
 				tool_capabilities = nodecore.toolcaps({
 						[group] = 2
-					})
+					}),
+				sounds = nodecore.sounds("nc_tree_woody")
 			})
 		nodecore.register_craft({
 				label = "assemble wood " .. name:lower(),

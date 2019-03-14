@@ -16,9 +16,12 @@ CONTRIBUTION WISHLIST
 	- Something in a pixel art style would be nice (the current
 	  ones are more "procedural" style).
 
-- Sounds for pretty much everything.
-	- Node digging, walking, punching, etc. sounds.
-	- Maybe separate sounds for completing pummels or crafts?
+- More sounds:
+	- Need fluid sounds.
+	- Improved versions of anything existing.
+		- Note that low bitrate is preferred.
+		- I'm looking for better clarity/variety, NOT fidelity.
+	- Special sounds for completing pummels or crafts?
 	- Ambient stuff like fire, maybe lapping water, wind in leaves.
 
 - Help maintaining the hint system.

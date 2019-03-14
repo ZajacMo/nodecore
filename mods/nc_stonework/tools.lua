@@ -45,7 +45,8 @@ local function tooltip(name, group)
 			tool_capabilities = nodecore.toolcaps({
 					uses = 0.25,
 					[group] = 3
-				})
+				}),
+			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	nodecore.register_stone_tip_tool({from = wood, to = tool})
 end

@@ -13,7 +13,8 @@ minetest.register_tool(modname .. ":adze", {
 		},
 		tool_capabilities = nodecore.toolcaps({
 				choppy = 1
-			})
+			}),
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
 nodecore.register_craft({

@@ -59,5 +59,6 @@ minetest.register_node(modname .. ":ash", {
 			falling_repose = 1,
 			crumbly = 1
 		},
-		crush_damage = 0.25
+		crush_damage = 0.25,
+		sounds = nodecore.sounds("nc_terrain_swishy")
 	})

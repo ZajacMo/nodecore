@@ -7,7 +7,8 @@ local modname = minetest.get_current_modname()
 
 minetest.register_craftitem(modname .. ":chip", {
 		description = "Stone Chip",
-		inventory_image = modname .. "_stone.png"
+		inventory_image = modname .. "_stone.png",
+		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
 nodecore.register_craft({

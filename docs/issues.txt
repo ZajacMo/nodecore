@@ -9,6 +9,15 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Finish sounds for:
+	- Lode things (blocks, prills, tools)
+	- Tote handles
+	- Various glass things
+	- Sponges?
+
+tote handles
+lode cubes (tempered/annealed?)
+
 - New content needs hints!
 	- Go thru github commits to see what.
 	- Definitely includes optics.
