@@ -117,7 +117,8 @@ minetest.register_node(modname .. ":handle", {
 		stack_max = 1,
 		after_dig_node = totedug,
 		on_place = toteplace,
-		drop = ""
+		drop = "",
+		sounds = nodecore.sounds("nc_lode_annealed")
 	})
 
 nodecore.register_craft({

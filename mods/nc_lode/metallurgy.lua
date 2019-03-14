@@ -18,6 +18,7 @@ function nodecore.register_lode(shape, rawdef)
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				metal_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
+				sounds = nodecore.sounds("nc_lode_" .. temper:lower())
 			})
 		if temper ~= "Hot" then
 			def.light_source = nil
