@@ -59,7 +59,8 @@ regterrain({
 			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",
-		strata = strata
+		strata = strata,
+		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
@@ -70,7 +71,8 @@ for i = 1, nodecore.hard_stone_strata do
 			groups = {
 				cracky = i + 2
 			},
-			drop_in_place = modname .. ":cobble"
+			drop_in_place = modname .. ":cobble",
+			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	strata[i + 1] = modname .. ":hard_stone_" .. i
 end
@@ -96,9 +98,10 @@ regterrain({
 				crumbly = 2,
 				falling_repose = 3
 			},
-			sounds = nodecore.sounds("nc_terrain_crunchy")
+			sounds = nodecore.sounds("nc_terrain_chompy")
 		},
-		crush_damage = 2
+		crush_damage = 2,
+		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
 for _, v in ipairs({

@@ -41,6 +41,16 @@ minetest.register_node(modname .. ":stack", {
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
 			if not nodecore.interact(whom) then return stack end
 			return nodecore.stack_add(pos, stack)
+		end,
+		on_construct = function(pos, ...)
+			minetest.after(0, function()
+					return nodecore.stack_sounds(pos, "place")
+				end)
+			return nodecore.visinv_on_construct(pos, ...)
+		end,
+		on_punch = function(pos, ...)
+			nodecore.stack_sounds(pos, "dig")
+			minetest.node_punch(pos, ...)
 		end
 	})
 

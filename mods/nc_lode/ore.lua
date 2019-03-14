@@ -10,7 +10,8 @@ local function reg(suff, def)
 			description = "Lode " .. suff,
 			name = suff:lower(),
 			is_ground_content = true,
-			groups = { cracky = 2 }
+			groups = { cracky = 2 },
+			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	def.fullname = modname .. ":" .. def.name
 	def.oldnames = {"nc_iron:" .. def.name}
