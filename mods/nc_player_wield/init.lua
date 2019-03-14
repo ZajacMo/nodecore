@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, table
-    = minetest, table
-local table_remove
-    = table.remove
+local math, minetest, nodecore, table
+    = math, minetest, nodecore, table
+local math_random, table_remove
+    = math.random, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -41,13 +41,18 @@ minetest.register_entity(modname .. ":ent", {
 			local conf = self.conf
 			if not conf then return self.object:remove() end
 
---			if self.ttl then
---				self.ttl = self.ttl - dtime
---				if self.ttl <= 0 then
---					attq[#attq + 1] = conf
---					return self.object:remove()
---				end
---			else self.ttl = math_random() * 5 + 5 end
+			-- Destroy wield nodes and regenerate periodically.
+			-- This fixes the view for other players in MP, but
+			-- BREAKS the view for own player in 3rd-person views.
+			--[[
+			if self.ttl then
+				self.ttl = self.ttl - dtime
+				if self.ttl <= 0 then
+					attq[#attq + 1] = conf
+					return self.object:remove()
+				end
+			else self.ttl = math_random() * 5 + 5 end
+			--]]
 
 			local player = minetest.get_player_by_name(conf.pname)
 			if not player then return self.object:remove() end
@@ -115,17 +120,22 @@ minetest.register_on_joinplayer(function(player)
 
 		addslot(0, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
---		local function cslot(n, x, z)
---			return addslot(n, nil, x * 1.6,
---				(nodecore.mt_old and -4 or 5.5) + x / 2,
---				z * 2.1)
---		end
+		-- Show player's entire inventory as a "toolbelt".
+		-- This is very unstable and tends to break badly,
+		
+		--[[
+		local function cslot(n, x, z)
+			return addslot(n, nil, x * 1.6,
+				(nodecore.mt_old and -4 or 5.5) + x / 2,
+				z * 2.1)
+		end
 
---		cslot(1, 1, 1)
---		cslot(2, 0, 1.2)
---		cslot(3, -1, 1)
---		cslot(4, -2, 0)
---		cslot(5, -1, -1)
---		cslot(6, 0, -1.2)
---		cslot(7, 1, -1)
+		cslot(1, 1, 1)
+		cslot(2, 0, 1.2)
+		cslot(3, -1, 1)
+		cslot(4, -2, 0)
+		cslot(5, -1, -1)
+		cslot(6, 0, -1.2)
+		cslot(7, 1, -1)
+		--]]
 	end)

@@ -41,8 +41,8 @@ local function stack_desc(s)
 	if t and t ~= "" then return t end
 
 	local n = s:get_name()
-	local d = minetest.registered_items[n]
-	return d and d.description or n
+	local d = minetest.registered_items[n] or {}
+	return d.description or n
 end
 
 local function wield_name(player)
@@ -73,10 +73,10 @@ minetest.register_globalstep(function(dtime)
 minetest.register_on_punchnode(function(pos, node, puncher)
 		node = node or minetest.get_node(pos)
 		local name = node.name
-		local def = minetest.registered_items[name]
-		if def and def.groups and def.groups.is_stack_only then
+		local def = minetest.registered_items[name] or {}
+		if def.groups and def.groups.is_stack_only then
 			name = stack_desc(nodecore.stack_get(pos))
-		elseif def and def.description then
+		elseif def.description then
 			name = def.description
 		end
 

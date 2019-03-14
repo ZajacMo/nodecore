@@ -52,16 +52,16 @@ end
 function nodecore.falling_repose_check(pos)
 	if minetest.check_single_for_falling(pos) then return end
 	local node = minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
-	local repose = def.groups.falling_repose
+	local def = minetest.registered_items[node.name] or {}
+	local repose = def.groups and def.groups.falling_repose
 	if not repose then return end
 
 	-- Reposing nodes can always sit comfortably atop
 	-- a non-moving node; it's only when stacked on other
 	-- falling nodes that they can slip off.
-	if not (minetest.registered_nodes[minetest.get_node(
-			{x = pos.x, y = pos.y - 1, z = pos.z}).name].groups
-		or {}).falling_node
+	local sitdef = minetest.registered_items[minetest.get_node(
+			{x = pos.x, y = pos.y - 1, z = pos.z}).name]
+	if not (sitdef and sitdef.groups and sitdef.groups.falling_node)
 	then return end
 
 	local open = {}

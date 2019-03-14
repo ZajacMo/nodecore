@@ -9,21 +9,12 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Clean up registered_* lookups everywhere.
-	- Be consistent about registered_items vs registered_nodes (or
-	any other builtin registered_*)
-	- Guard against unregistered stuff, e.g. reg[name] or {}  
-  
 - New content needs hints!
 	- Go thru github commits to see what.
 	- Definitely includes optics.
-	
-- Stuff in mid-soak (esp. metallurgy) doesn't stack due to metadata
-	- Clean up metadata somehow...?
-	- "Active" node stacks with cleanup abm?
-	- Clean up metadata on dig?  in stack api?
-	
-- Grass growing ABM needs rethunk.
+
+- Recipe success particle effect.
+	- Hooks for sounds on success/progress.
 
 - API Cleanup
 	- Utils
@@ -46,6 +37,9 @@ ISSUES: Bugs, Cleanup and Refinements
 - Change falling_node logic esp for leaves?
 	- Register with falling_no_clobber or something?
 	- Instead of knocking out node as item, add to pile.
+	
+- Make separate walkable/non-walkable stack nodes.
+	- Should sticks and eggcorns be non-walkable?
 
 - Change how items are given to player.
 	- Prefer current selected slot if empty.

@@ -34,6 +34,7 @@ minetest.register_node(modname .. ":shelf", {
 			totable = 1
 		},
 		paramtype = "light",
+		sounds = nodecore.sounds("nc_tree_woody"),
 		on_construct = function(pos)
 			local inv = minetest.get_meta(pos):get_inventory()
 			inv:set_size("solo", 1)
@@ -43,8 +44,8 @@ minetest.register_node(modname .. ":shelf", {
 			if not nodecore.interact(clicker) then return end
 			if pointed_thing.above.y ~= pointed_thing.under.y then return end
 			if not stack or stack:is_empty() then return end
-			local def = minetest.registered_items[stack:get_name()]
-			if (not def) or (def.groups and def.groups.visinv) then
+			local def = minetest.registered_items[stack:get_name()] or {}
+			if def.groups and def.groups.visinv then
 				return minetest.item_place_node(stack, clicker, pointed_thing)
 			end
 			return nodecore.stack_add(pos, stack)
@@ -61,8 +62,8 @@ minetest.register_node(modname .. ":shelf", {
 			end
 		end,
 		stack_allow = function(pos, node, stack)
-			local def = minetest.registered_items[stack:get_name()]
-			if def and def.groups and def.groups.container then return false end
+			local def = minetest.registered_items[stack:get_name()] or {}
+			if def.groups and def.groups.container then return false end
 		end
 	})
 

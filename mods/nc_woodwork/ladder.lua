@@ -29,7 +29,9 @@ minetest.register_node(modname .. ":ladder", {
 		crush_damage = 0.25,
 		paramtype = "light",
 		sunlight_propagates = true,
-		climbable = true
+		climbable = true,
+		sounds = nodecore.sounds("nc_tree_sticky")
+
 	})
 
 nodecore.register_craft({
@@ -58,6 +60,7 @@ minetest.register_node(modname .. ":frame", {
 		paramtype = "light",
 		climbable = true,
 		sunlight_propagates = true,
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
 nodecore.register_craft({

@@ -21,7 +21,8 @@ minetest.register_node(modname .. ":stick", {
 			snappy = 1,
 			flammable = 2,
 			falling_repose = 1
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
 nodecore.register_leaf_drops(function(pos, node, list)

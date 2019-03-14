@@ -95,7 +95,8 @@ regterrain({
 				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3
-			}
+			},
+			sounds = nodecore.sounds("nc_terrain_crunchy")
 		},
 		crush_damage = 2
 	})
@@ -131,7 +132,8 @@ regterrain({
 			crumbly = 1,
 			soil = 1
 		},
-		crush_damage = 1
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
 regterrain({
 		description = "Dirt with Grass",
@@ -149,7 +151,8 @@ regterrain({
 			soil = 1,
 			green = 1
 		},
-		drop_in_place = modname .. ":dirt"
+		drop_in_place = modname .. ":dirt",
+		sounds = nodecore.sounds("nc_terrain_grassy")
 	})
 regterrain({
 		description = "Gravel",
@@ -163,7 +166,8 @@ regterrain({
 			crumbly = 1,
 			falling_node = 1
 		},
-		crush_damage = 1
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_chompy")
 	})
 regterrain({
 		description = "Sand",
@@ -181,7 +185,8 @@ regterrain({
 			"clay",
 			"desert_sand" 
 		},
-		crush_damage = 0.5
+		crush_damage = 0.5,
+		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 
 regliquid({

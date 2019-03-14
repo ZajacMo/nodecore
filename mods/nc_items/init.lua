@@ -135,8 +135,9 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	not placer:get_player_control().sneak then
 		local n = minetest.get_node(pointed_thing.under)
 		local nn = n.name
-		if minetest.registered_nodes[nn] and minetest.registered_nodes[nn].on_rightclick then
-			return minetest.registered_nodes[nn].on_rightclick(pointed_thing.under, n,
+		local nd = minetest.registered_items[nn]
+		if nd and nd.on_rightclick then
+			return nd.on_rightclick(pointed_thing.under, n,
 				placer, itemstack, pointed_thing) or itemstack, false
 		end
 	end

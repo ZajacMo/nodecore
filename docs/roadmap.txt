@@ -9,7 +9,11 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Domain Wall Sensor (adapt from sztest)
+- Domain Wall Sensor
+	- Adapt from sztest?
+	- Field Generator?
+		- Power an annealed lode block from 2 opposite faces.
+		- Generates particle effect at mapblock boundary.
 
 - Fire rework.
 	- Make fuel consumed slower by reducing flame exposure.
@@ -34,7 +38,7 @@ ROADMAP: Large New Development Projects
 		- Lightning, meteor strikes?
 	- Creeping
 		- Cellular automata hazards.
-		- From exploration, deliving too deep, leaving things to rot, etc.
+		- From exploration, delving too deep, leaving things to rot, etc.
 		- Blights, fungi
 	- Latent
 		- Respawn mechanics?

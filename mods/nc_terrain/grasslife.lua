@@ -6,6 +6,39 @@ local minetest, nodecore
 local dirt = "nc_terrain:dirt"
 local grass = "nc_terrain:dirt_with_grass"
 
+local breathable = {
+	airlike = true,
+	allfaces = true,
+	allfaces_optional = true,
+	torchlike = true,
+	signlike = true,
+	plantlike = true,
+	firelike = true,
+	raillike = true,
+	nodebox = true,
+	mesh = true,
+	plantlike_rooted = true
+}
+
+-- nil = stay, false = die, true = grow
+local function grassable(above)
+	local node = minetest.get_node(above)
+	if node.name == "ignore" then return end
+
+	local def = minetest.registered_items[node.name] or {}
+
+	if (not def.drawtype) or (not breathable[def.drawtype])
+	or (def.damage_per_second and def.damage_per_second > 0)
+	then return false end
+
+	local ln = minetest.get_node_light(above) or 0
+	if ln >= 10 then return true end
+	local ld = minetest.get_node_light(above, 0.5) or 0
+	if ld >= 10 then return end
+end
+
+local function liquid(def) return def and def.liquidtype and def.liquidtype ~= "none" end
+
 nodecore.register_limited_abm({
 		label = "Grass Spread",
 		nodenames = {dirt, "nc_terrain:dirt_loose"},
@@ -14,10 +47,7 @@ nodecore.register_limited_abm({
 		chance = 50,
 		action = function(pos, node)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if (minetest.get_node_light(above) or 0) < 13 then return end
-			local nodedef = minetest.registered_nodes[node.name]
-			if nodedef and nodedef.liquidtype ~= "none"
-			and nodedef.drawtype ~= "airlike" then return end
+			if not grassable(above) then return end
 			return minetest.set_node(pos, {name = grass})
 		end
 	})
@@ -29,12 +59,7 @@ nodecore.register_limited_abm({
 		chance = 50,
 		action = function(pos, node)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			local name = minetest.get_node(above).name
-			local nodedef = minetest.registered_nodes[name]
-			if name ~= "ignore" and nodedef and not ((nodedef.sunlight_propagates or
-					nodedef.paramtype == "light") and
-				nodedef.liquidtype == "none") then
-				minetest.set_node(pos, {name = dirt})
-			end
+			if grassable(above) ~= false then return end
+			return minetest.set_node(pos, {name = dirt})
 		end
 	})

@@ -77,7 +77,7 @@ function nodecore.pickrand(tbl, weight)
 end
 
 function nodecore.extend_item(name, func)
-	local orig = minetest.registered_items[name]
+	local orig = minetest.registered_items[name] or {}
 	local copy = {}
 	for k, v in pairs(orig) do copy[k] = v end
 	copy = func(copy, orig) or copy
@@ -170,8 +170,8 @@ end
 
 function nodecore.node_group(name, pos, node)
 	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
-	return def and def.groups and def.groups[name]
+	local def = minetest.registered_nodes[node.name] or {}
+	return def.groups and def.groups[name]
 end
 
 function nodecore.item_eject(pos, stack, speed, qty, vel)
@@ -250,4 +250,13 @@ end
 function nodecore.node_change(pos, node, newname)
 	if node.name == newname then return end
 	return minetest.set_node(pos, underride({name = newname}, node))
+end
+
+function nodecore.sounds(name, gfoot, gdug, gplace)
+	return {
+		footstep = {name = name, gain = gfoot or 0.2},
+		dig = {name = name, gain = gdug or 0.5},
+		dug = {name = name, gain = gdug or 1},
+		place = {name = name, gain = gplace or 1}
+	}
 end

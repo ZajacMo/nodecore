@@ -20,7 +20,8 @@ minetest.register_node(modname .. ":eggcorn", {
 			snappy = 1,
 			flammable = 3,
 			attached_node = 1
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
 nodecore.register_leaf_drops(function(pos, node, list)
@@ -36,7 +37,7 @@ minetest.register_node(epname, nodecore.underride({
 			drop = ldname,
 			description = "Loose Dirt...?"
 		},
-		minetest.registered_nodes[ldname]))
+		minetest.registered_items[ldname] or {}))
 
 nodecore.register_craft({
 		label = "eggcorn planting",
@@ -62,8 +63,8 @@ nodecore.register_limited_abm({
 			local w = 1
 			nodecore.scan_flood(pos, 3, function(p)
 					local nn = minetest.get_node(p).name
-					local def = minetest.registered_nodes[nn]
-					if not def or not def.groups then
+					local def = minetest.registered_items[nn] or {}
+					if not def.groups then
 						return false
 					end
 					if def.groups.soil then

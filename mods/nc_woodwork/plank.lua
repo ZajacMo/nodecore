@@ -13,7 +13,8 @@ minetest.register_node(plank, {
 			choppy = 1,
 			flammable = 2,
 			fire_fuel = 5
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
 nodecore.register_craft({

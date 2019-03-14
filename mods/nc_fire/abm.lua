@@ -55,8 +55,8 @@ nodecore.register_limited_abm({
 
 			-- Get flammability level.
 			node = node or minetest.get_node(pos)
-			local def = minetest.registered_nodes[node.name]
-			local flam = def and def.groups and def.groups.flammable
+			local def = minetest.registered_items[node.name] or {}
+			local flam = def.groups and def.groups.flammable
 			if not flam then return end
 
 			-- Ignite randomly.

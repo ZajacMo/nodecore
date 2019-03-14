@@ -17,7 +17,8 @@ minetest.register_node(modname .. ":root", {
 			fire_fuel = 4,
 			choppy = 4
 		},
-		drop_in_place = "nc_terrain:dirt_loose"
+		drop_in_place = "nc_terrain:dirt_loose",
+		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
 minetest.register_node(modname .. ":tree", {
@@ -31,7 +32,8 @@ minetest.register_node(modname .. ":tree", {
 			choppy = 2,
 			flammable = 5,
 			fire_fuel = 6
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
 minetest.register_node(modname .. ":leaves", {
@@ -59,7 +61,8 @@ minetest.register_node(modname .. ":leaves", {
 				return nodecore.leaf_decay(...)
 			end,
 			node_dig_prediction = "air"
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 nodecore.register_leaf_drops(function(pos, node, list)
 		list[#list + 1] = {name = modname .. ":leaves_loose", prob = 0.5}

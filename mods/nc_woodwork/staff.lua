@@ -22,7 +22,8 @@ minetest.register_node(modname .. ":staff", {
 			snappy = 1,
 			flammable = 2,
 			falling_repose = 2
-		}
+		},
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
 nodecore.register_craft({

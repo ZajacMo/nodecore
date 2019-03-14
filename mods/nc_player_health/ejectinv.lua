@@ -40,7 +40,7 @@ local function checkinv(player)
 		end
 	end
 
-	local slots = math_floor(nodecore.getphealth(player) / 20 * (size - 2)) + 2
+	local slots = math_floor(nodecore.getphealth(player) / 20 * (size - 2) + 0.5) + 2
 
 	if #reg > slots then
 		local pos = player:getpos()

@@ -35,7 +35,7 @@ local function envcheck(player)
 	stats.space = vector.distance(pos, hit)
 
 	local node = minetest.get_node(hit)
-	local def = minetest.registered_items[node.name]
+	local def = minetest.registered_items[node.name] or {}
 	local groups = def.groups or {}
 
 	stats.green = groups.green or 0

@@ -77,8 +77,8 @@ minetest.register_entity(modname .. ":stackent", {
 
 function nodecore.visinv_update_ents(pos, node)
 	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
-	local max = def and def.groups and def.groups.visinv and 1 or 0
+	local def = minetest.registered_items[node.name] or {}
+	local max = def.groups and def.groups.visinv and 1 or 0
 
 	local found = {}
 	for k, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
