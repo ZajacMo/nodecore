@@ -64,7 +64,8 @@ local basedef = {
 	paramtype2 = "facedir",
 	on_rightclick = nodecore.node_spin_filtered(function(a, b)
 			return vector.equals(a.f, b.f)
-		end)
+		end),
+	sounds = nodecore.sounds("nc_optics_glassy")
 }
 
 local function reg(suff, def)

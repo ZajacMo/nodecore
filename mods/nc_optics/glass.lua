@@ -17,7 +17,8 @@ minetest.register_node(modname .. ":glass", {
 			cracky = 3
 		},
 		sunlight_propagates = true,
-		paramtype = "light"
+		paramtype = "light",
+		sounds = nodecore.sounds("nc_optics_glassy")
 	})
 
 minetest.register_node(modname .. ":glass_opaque", {
@@ -27,7 +28,8 @@ minetest.register_node(modname .. ":glass_opaque", {
 			silica = 1,
 			cracky = 3
 		},
-		paramtype = "light"
+		paramtype = "light",
+		sounds = nodecore.sounds("nc_optics_glassy")
 	})
 
 local molttxr = "nc_terrain_lava.png^nc_optics_glass_glare.png"
