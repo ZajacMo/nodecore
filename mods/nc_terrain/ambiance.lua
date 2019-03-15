@@ -8,7 +8,7 @@ nodecore.register_ambiance({
 		nodenames = {"nc_terrain:water_source"},
 		neigbors = {"air"},
 		interval = 1,
-		chance = 250,
+		chance = 1000,
 		sound_name = "nc_terrain_watery",
 		sound_gain = 0.05
 	})
