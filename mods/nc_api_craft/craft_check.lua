@@ -5,16 +5,6 @@ local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
-local function nodesound(pos, kind)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
-	if (not def.sounds) or (not def.sounds[kind]) then return end
-	local t = {}
-	for k, v in pairs(def.sounds[kind]) do t[k] = v end
-	t.pos = pos
-	return minetest.sound_play(t.name, t)
-end
-
 local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	local function rel(x, y, z)
 		return {
@@ -83,7 +73,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			end
 			if r then
 				minetest.set_node(p, r)
-				nodesound(p, "place")
+				nodecore.node_sound(p, "place")
 			end
 		end
 	end
