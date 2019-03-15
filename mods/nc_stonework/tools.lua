@@ -9,6 +9,8 @@ nodecore.register_stone_tip_tool,
 nodecore.registered_stone_tip_tools
 = nodecore.mkreg()
 
+local stoned = nodecore.sounds("nc_terrain_stony").place
+
 local chip = modname .. ":chip"
 nodecore.extend_item(chip, function(copy, orig)
 		copy.on_place = function(itemstack, placer, pointed_thing, ...)
@@ -18,10 +20,12 @@ nodecore.extend_item(chip, function(copy, orig)
 				for i, v in ipairs(nodecore.registered_stone_tip_tools) do
 					if nodecore.match(pos, {
 							name = v.from,
-							wear = 0.02
+							wear = 0.05
 							}) then
 						minetest.remove_node(pos)
 						nodecore.item_eject(pos, v.to)
+						stoned.pos = pos
+						minetest.sound_play(stoned.name, stoned)
 						itemstack:set_count(itemstack:get_count() - 1)
 						return itemstack
 					end
