@@ -139,7 +139,7 @@ regterrain({
 		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
 regterrain({
-		description = "Dirt with Grass",
+		description = "Grass",
 		tiles = {
 			modname .. "_grass_top.png",
 			modname .. "_dirt.png",
