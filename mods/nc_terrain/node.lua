@@ -206,7 +206,8 @@ regliquid({
 		drowning = 1,
 		drop = "",
 		groups = { coolant = 1, water = 2 },
-		post_effect_color = {a = 103, r = 30, g = 76, b = 90}
+		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
+		sounds = nodecore.sounds("nc_terrain_watery")
 	})
 regliquid({
 		description = "Lava",
@@ -223,5 +224,6 @@ regliquid({
 		on_punch = nodecore.node_punch_hurt,
 		drop = "",
 		groups = { igniter = 1, lava = 2 },
-		post_effect_color = {a = 191, r = 255, g = 64, b = 0}
+		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
+		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})

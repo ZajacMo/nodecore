@@ -56,6 +56,7 @@ include("fx_digparticles")
 include("fx_smoke")
 
 include("register_limited_abm")
+include("register_ambiance")
 include("mapgen_shared")
 
 include("item_on_register")
