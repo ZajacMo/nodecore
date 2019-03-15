@@ -10,20 +10,11 @@ ISSUES: Bugs, Cleanup and Refinements
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Finish sounds for:
-	- Lode things (blocks, prills, tools)
-	- Tote handles
-	- Various glass things
-	- Sponges?
-
-tote handles
-lode cubes (tempered/annealed?)
+	- Cooking and cooling.
 
 - New content needs hints!
 	- Go thru github commits to see what.
 	- Definitely includes optics.
-
-- Recipe success particle effect.
-	- Hooks for sounds on success/progress.
 
 - API Cleanup
 	- Utils
