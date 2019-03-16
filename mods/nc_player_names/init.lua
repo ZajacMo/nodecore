@@ -51,22 +51,22 @@ minetest.register_on_leaveplayer(function(player)
 -- Determine if player 1 can see player 2's face, including
 -- checks for distance, line-of-sight, and facing direction.
 local function canseeface(p1, n1, p2, n2)
-	-- Dead players neither see, nor are recognizable.
 	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
+	if p1:get_attach() or p2:get_attach() then return end
 
 	-- Players must be within max distance of one another,
 	-- determined by light level, but not too close.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
-	if not ll then return end
-	local ld = (ll / 15 * distance)
 	local dx = o1.x - o2.x
 	local dy = o1.y - o2.y
 	local dz = o1.z - o2.z
 	local dsqr = (dx * dx + dy * dy + dz * dz)
+	if dsqr < 1 then return end
+	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
+	if not ll then return end
+	local ld = (ll / 15 * distance)
 	if dsqr > (ld * ld) then return end
-	if dsqr < 0.5 then return end
 
 	-- Check for line of sight from approximage eye level
 	-- of one player to the other.
