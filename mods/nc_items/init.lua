@@ -47,10 +47,6 @@ minetest.register_node(modname .. ":stack", {
 					return nodecore.stack_sounds(pos, "place")
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
-		end,
-		on_punch = function(pos, ...)
-			nodecore.stack_sounds(pos, "dig")
-			minetest.node_punch(pos, ...)
 		end
 	})
 
