@@ -39,6 +39,6 @@ nodecore.register_craft({
 			{match = plank, replace = "air"}
 		},
 		items = {
-			{name = "nc_tree:stick", count = 8, scatter = 5}
+			{name = "nc_tree:stick 2", count = 4, scatter = 5}
 		}
 	})
