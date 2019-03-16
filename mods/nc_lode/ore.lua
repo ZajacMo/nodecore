@@ -66,7 +66,8 @@ reg("Cobble", {
 				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3
-			}
+			},
+			sounds = nodecore.sounds("nc_terrain_chompy")
 		}
 	})
 
