@@ -22,7 +22,7 @@ local function envcheck(player)
 
 	local stats = {}
 
-	stats.light = minetest.get_node_light(pos)
+	stats.light = minetest.get_node_light(pos) or 0
 
 	local target = vector.add(pos, {
 			x = math_random() * 128 - 64,
