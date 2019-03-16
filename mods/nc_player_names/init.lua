@@ -55,7 +55,7 @@ local function canseeface(p1, n1, p2, n2)
 	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
 
 	-- Players must be within max distance of one another,
-	-- determined by light level.
+	-- determined by light level, but not too close.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
 	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
@@ -64,7 +64,9 @@ local function canseeface(p1, n1, p2, n2)
 	local dx = o1.x - o2.x
 	local dy = o1.y - o2.y
 	local dz = o1.z - o2.z
-	if (dx * dx + dy * dy + dz * dz) > (ld * ld) then return end
+	local dsqr = (dx * dx + dy * dy + dz * dz)
+	if dsqr > (ld * ld) then return end
+	if dsqr < 0.5 then return end
 
 	-- Check for line of sight from approximage eye level
 	-- of one player to the other.
