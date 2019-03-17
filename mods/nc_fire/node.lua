@@ -40,7 +40,8 @@ local function ember(n, t)
 			drop = "",
 			diggable = false,
 			on_punch = nodecore.node_punch_hurt,
-			crush_damage = 1
+			crush_damage = 1,
+			sounds = nodecore.sounds("nc_terrain_crunchy")
 		})
 end
 ember(1, modname .. "_ash.png^(" .. modname .. "_ember1.png^[opacity:128)")
