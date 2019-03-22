@@ -7,8 +7,6 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
-local stackbox = nodecore.fixedbox(-0.4, -0.5, -0.4, 0.4, 0.3, 0.4)
-
 minetest.register_node(modname .. ":stack", {
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(
@@ -20,8 +18,12 @@ minetest.register_node(modname .. ":stack", {
 			"nc_items_blank.png",
 		},
 		walkable = true,
-		selection_box = stackbox,
-		collision_box = stackbox,
+		selection_box = nodecore.fixedbox(
+			{-0.3, -0.5, -0.3, 0.3, 0.1, 0.3}
+		),
+		collision_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
+		),
 		drop = {},
 		groups = {
 			snappy = 1,
