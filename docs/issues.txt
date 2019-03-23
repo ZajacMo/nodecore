@@ -9,9 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Finish sounds for:
-	- Cooking and cooling.
-
 - New content needs hints!
 	- Go thru github commits to see what.
 	- Definitely includes optics.

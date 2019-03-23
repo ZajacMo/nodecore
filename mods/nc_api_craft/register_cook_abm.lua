@@ -35,8 +35,10 @@ local function inprogress(data, recipe)
 		meta:set_string(modname, minetest.serialize(md))
 	end
 
+	data.progressing = true
+
 	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.sizzle then
-		minetest.sound_play("nc_api_craft_sizzle", {gain = 0.1, pos = data.node})
+		minetest.sound_play("nc_api_craft_sizzle", {gain = 1, pos = data.node})
 	end
 	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
 		nodecore.smokefx(data.node, 1)
@@ -65,6 +67,9 @@ function nodecore.register_cook_abm(def)
 			after = cookdone
 		}
 		nodecore.craft_check(pos, node, data)
+		if not data.progressing then
+			minetest.get_meta(pos):set_string(modname, "")
+		end
 	end
 	nodecore.register_limited_abm(def)
 end
