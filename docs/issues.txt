@@ -30,6 +30,11 @@ ISSUES: Bugs, Cleanup and Refinements
 		  cooking recipes?
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
+
+- Tree farming.
+	- Show sprout/sapling above eggcorn_planted to show
+	  progress over time.
+	- Switch to soaking API
 	
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?

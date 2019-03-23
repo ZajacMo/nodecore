@@ -28,10 +28,9 @@ ROADMAP: Large New Development Projects
 		- Use a special/reduced alphabet?
 
 - Tree farming.
-	- Make eggcorns non-plantlike (place-as-item)
 	- Show sprout/sapling above eggcorn_planted to show
 	  progress over time.
-	- Switch to soaking API (above)  
+	- Switch to soaking API
 	
 - Water and lava surface springs.
 	- Access to water for forges.
