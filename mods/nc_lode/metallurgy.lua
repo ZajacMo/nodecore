@@ -168,6 +168,6 @@ nodecore.register_craft({
 			}
 		},
 		items = {
-			{name = modname .. ":prill_annealed", count = 8, scatter = 5}
+			{name = modname .. ":prill_annealed 2", count = 4, scatter = 5}
 		}
 	})

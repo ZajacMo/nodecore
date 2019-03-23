@@ -1,12 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+local ipairs, minetest, nodecore, pairs, type
+    = ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function toolhead(name, group, prills)
+local function toolhead(name, groups, prills)
 	local n = name:lower()
+
+	if type(groups) == "string" then groups = {groups} end
+	local function toolcap(n)
+		local t = {}
+		for _, k in ipairs(groups) do t[k] = n end
+		return nodecore.toolcaps(t)
+	end
 
 	nodecore.register_lode("toolhead_" .. n, {
 			type = "craft",
@@ -23,14 +30,10 @@ local function toolhead(name, group, prills)
 			modname .. "_#.png^[mask:" ..
 			modname .. "_tool_" .. n .. ".png)",
 			stack_max = 1,
-			tool_capabilities = nodecore.toolcaps({
-					[group] = 4
-				}),
+			tool_capabilities = toolcap(4),
 			bytemper = function(t, d)
 				if t == "Tempered" then
-					d.tool_capabilities = nodecore.toolcaps({
-							[group] = 5
-						})
+					d.tool_capabilities = toolcap(5)
 				end
 			end,
 			metal_alt_hot = modname .. ":prill_hot " .. prills,
@@ -66,7 +69,7 @@ local function forge(from, fromqty, to, prills)
 			nodes = {
 				{
 					match = {name = modname .. ":" .. from .. "_annealed",
-							count = fromqty},
+						count = fromqty},
 					replace = "air"
 				},
 				{
@@ -86,3 +89,45 @@ forge("toolhead_mallet", nil, "toolhead_spade", 1)
 forge("toolhead_spade", nil, "toolhead_hatchet")
 forge("toolhead_hatchet", nil, "toolhead_pick", 1)
 forge("toolhead_pick", nil, nil, 1)
+
+toolhead("Mattock", {"cracky", "crumbly"}, 3)
+nodecore.register_craft({
+		label = "assemble lode mattock head",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
+		nodes = {
+			{
+				match = modname .. ":toolhead_pick_hot",
+				replace = "air"
+			},
+			{
+				y = -1,
+				match = modname .. ":toolhead_spade_hot",
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":toolhead_mattock_hot"
+		}
+	})
+nodecore.register_craft({
+		label = "assemble lode mattock head",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
+		nodes = {
+			{
+				match = modname .. ":toolhead_spade_hot",
+				replace = "air"
+			},
+			{
+				y = -1,
+				match = modname .. ":toolhead_pick_hot",
+				replace = "air"
+			}
+		},
+		items = {
+			modname .. ":toolhead_mattock_hot"
+		}
+	})
