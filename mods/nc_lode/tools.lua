@@ -91,43 +91,28 @@ forge("toolhead_hatchet", nil, "toolhead_pick", 1)
 forge("toolhead_pick", nil, nil, 1)
 
 toolhead("Mattock", {"cracky", "crumbly"}, 3)
-nodecore.register_craft({
-		label = "assemble lode mattock head",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = modname .. ":toolhead_pick_hot",
-				replace = "air"
+local function mattock(a, b)
+	return nodecore.register_craft({
+			label = "assemble lode mattock head",
+			action = "pummel",
+			toolgroups = {thumpy = 3},
+			normal = {y = 1},
+			nodes = {
+				{
+					y = a,
+					match = modname .. ":toolhead_pick_hot",
+					replace = "air"
+				},
+				{
+					y = b,
+					match = modname .. ":toolhead_spade_hot",
+					replace = "air"
+				}
 			},
-			{
-				y = -1,
-				match = modname .. ":toolhead_spade_hot",
-				replace = "air"
+			items = {
+				modname .. ":toolhead_mattock_hot"
 			}
-		},
-		items = {
-			modname .. ":toolhead_mattock_hot"
-		}
-	})
-nodecore.register_craft({
-		label = "assemble lode mattock head",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = modname .. ":toolhead_spade_hot",
-				replace = "air"
-			},
-			{
-				y = -1,
-				match = modname .. ":toolhead_pick_hot",
-				replace = "air"
-			}
-		},
-		items = {
-			modname .. ":toolhead_mattock_hot"
-		}
-	})
+		})
+end
+mattock(0, -1)
+mattock(-1, 0)
