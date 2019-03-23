@@ -1,83 +1,98 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_random
-    = math.random
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local flame = {groups = {flame = true}}
-local function heated(pos)
-	if nodecore.quenched(pos) then return end
-	local f = 0
-	if nodecore.match({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if nodecore.match({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if nodecore.match({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-	if nodecore.match({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-end
+nodecore.register_craft({
+		label = "melt sand to glass",
+		action = "cook",
+		touchgroups = {
+			coolant = 0,
+			flame = 3
+		},
+		duration = 20,
+		nodes = {
+			{
+				match = "nc_terrain:sand_loose",
+				replace = modname .. ":glass_hot_source"
+			}
+		}
+	})
 
-nodecore.register_limited_abm({
-		label = "Melt Sand",
-		interval = 1,
-		chance = 1,
+nodecore.register_cook_abm({
 		nodenames = {"nc_terrain:sand_loose"},
-		neighbors = {"group:flame"},
-		action = function(pos, node)
-			if nodecore.cooking(minetest.get_meta(pos), "time", 20,
-				heated(pos), pos) then
-				return minetest.set_node(pos, {name = modname .. ":glass_hot_source"})
-			end
-		end})
+		neighbors = {"group:flame"}
+	})
 
 local src = modname .. ":glass_hot_source"
 local flow = modname .. ":glass_hot_flowing"
-nodecore.register_limited_abm({
-		label = "Molten Glass Flowing/Casting",
-		interval = 1,
-		chance = 1,
-		nodenames = {src},
-		action = function(pos, node)
-			if math_random(1, 4) == 1 then
-				local miny = pos.y - 1
-				local found = {}
-				nodecore.scan_flood(pos, 5, function(p)
-						local nn = minetest.get_node(p).name
-						if nn == src then return end
-						if nn ~= flow then return false end
-						if p.y > miny then return end
-						if p.y == miny then
-							found[#found + 1] = p
-							return
-						end
-						miny = p.y
-						found = {p}
-					end)
-				if #found > 0 then
-					local np = nodecore.pickrand(found)
-					minetest.set_node(np, node)
-					return minetest.set_node(pos, {name = flow, param2 = 7})
-				end
-			end
 
-			if #minetest.find_nodes_in_area(
+nodecore.register_craft({
+		label = "cool clear glass",
+		action = "cook",
+		duration = 120,
+		nosizzle = true,
+		check = function(pos)
+			return #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
 				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-				{flow}) > 0 then return end
+				{flow}) < 1
+		end,
+		nodes = {
+			{
+				match = src,
+				replace = modname .. ":glass"
+			}
+		}
+	})
+nodecore.register_craft({
+		label = "quench opaque glass",
+		action = "cook",
+		nosizzle = true,
+		check = function(pos)
+			return #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{flow}) < 1
+			and #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{"group:coolant"}) > 0
+		end,
+		nodes = {
+			{
+				match = src,
+				replace = modname .. ":glass_opaque"
+			}
+		}
+	})
 
-			if nodecore.quenched(pos) then
-				return minetest.set_node(pos, {name = modname .. ":glass_opaque"})
-			end
+nodecore.register_cook_abm({nodenames = {src}})
 
-			if nodecore.cooking(minetest.get_meta(pos), "time", 120,
-				not heated(pos), pos) then
-				minetest.get_meta(pos):from_table({})
-				return minetest.set_node(pos, {name = modname .. ":glass"})
-			end
+nodecore.register_limited_abm({
+		label = "Molten Glass Flowing",
+		interval = 1,
+		chance = 4,
+		nodenames = {src},
+		action = function(pos, node)
+			local miny = pos.y
+			local found = {}
+			nodecore.scan_flood(pos, 5, function(p)
+					local nn = minetest.get_node(p).name
+					if nn == src then return end
+					if nn ~= flow then return false end
+					if p.y > miny then return end
+					if p.y == miny then
+						found[#found + 1] = p
+						return
+					end
+					miny = p.y
+					found = {p}
+				end)
+			if #found < 1 then return end
+			local np = nodecore.pickrand(found)
+			minetest.set_node(np, node)
+			return minetest.set_node(pos, {name = flow, param2 = 7})
 		end})

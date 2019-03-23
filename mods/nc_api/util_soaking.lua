@@ -22,6 +22,6 @@ nodecore.soaking = soaking
 
 function nodecore.cooking(meta, key, max, rate, pos, smoketime)
 	local done, prog = soaking(meta, key, max, rate)
-	nodecore.smoke(pos, prog and (smoketime or 1))
+	nodecore.smokefx(pos, prog and (smoketime or 1))
 	return done
 end

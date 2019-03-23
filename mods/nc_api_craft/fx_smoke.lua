@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local smoking = {}
 
-function nodecore.smoke(pos, time)
+function nodecore.smokefx(pos, time, qty)
 	local now = minetest.get_us_time() / 1000000
 	local key = minetest.hash_node_position(pos)
 	local old = smoking[key]
@@ -16,10 +16,10 @@ function nodecore.smoke(pos, time)
 	end
 	smoking[key] = {
 		id = minetest.add_particlespawner({
-				texture = "nc_api_smoke.png",
+				texture = "nc_api_craft_smoke.png",
 				collisiondetection = true,
-				amount = 4 * time,
-				time = time,
+				amount = (qty or 2) * time,
+				time = time or 1,
 				minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
 				maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
 				minvel = {x = -0.1, y = 0.3, z = -0.1},

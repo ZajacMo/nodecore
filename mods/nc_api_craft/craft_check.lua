@@ -5,6 +5,15 @@ local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
+local function addgroups(sum, pos)
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_items[node.name] or {}
+	if not def.groups then return end
+	for k, v in pairs(def.groups) do
+		sum[k] = (sum[k] or 0) + v
+	end
+end
+
 local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	local function rel(x, y, z)
 		return {
@@ -31,7 +40,22 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			if not nodecore.match(p, v.match) then return end
 		end
 	end
+	if recipe.touchgroups then
+		local sum = {}
+		addgroups(sum, rel(1, 0, 0))
+		addgroups(sum, rel(-1, 0, 0))
+		addgroups(sum, rel(0, 1, 0))
+		addgroups(sum, rel(0, -1, 0))
+		addgroups(sum, rel(0, 0, 1))
+		addgroups(sum, rel(0, 0, -1))
+		for k, v in pairs(recipe.touchgroups) do
+			local w = sum[k] or 0
+			if v > 0 and w < v then return end
+			if v <= 0 and w > -v then return end
+		end
+	end
 	local mindur = recipe.duration or 0
+	if type(mindur) == "function" then mindur = mindur(recipe, pos, node, data) end
 	if recipe.toolgroups then
 		if not data.wield then return end
 		local dg = data.wield:get_tool_capabilities().groupcaps
@@ -45,10 +69,16 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if not t then return end
 		mindur = mindur + t
 	end
-	if mindur > 0 and (not data.duration or data.duration < mindur) then
-		if data.inprogress then data.inprogress(data, recipe) end
-		return 1
+	if mindur > 0 then
+		if not data.duration then return end
+		local dur = data.duration
+		if type(dur) == "function" then dur = dur(data, recipe) end
+		if not dur or dur < mindur then
+			if data.inprogress then data.inprogress(data, recipe) end
+			return 1
+		end
 	end
+	if data.before then data.before(pos, rel, data) end
 	if recipe.before then recipe.before(pos, rel, data) end
 	for _, v in pairs(recipe.nodes) do
 		if v.replace then
@@ -89,6 +119,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 	end
 	if recipe.after then recipe.after(pos, rel, data) end
+	if data.after then data.after(pos, rel, data) end
 	if nodecore.player_stat_add then
 		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
 	end
@@ -126,7 +157,8 @@ function nodecore.craft_check(pos, node, data)
 	node.z = pos.z
 	data.node = node
 	for _, rc in ipairs(nodecore.craft_recipes) do
-		if nodecore.match(node, rc.root.match) and data.action == rc.action then
+		if data.action == rc.action
+		and nodecore.match(node, rc.root.match) then
 			local r = tryall(rc, pos, node, data)
 			if r then return r == true end
 		end
