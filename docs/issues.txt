@@ -30,10 +30,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		  cooking recipes?
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
-
-- Change falling_node logic esp for leaves?
-	- Register with falling_no_clobber or something?
-	- Instead of knocking out node as item, add to pile.
 	
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
@@ -102,12 +98,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - MT 0.4 Support Sunsetting.
 	- Remove references to nodecore.mt_old
 	- remove nc_player_model_old.b3d
-
-- Tree farming.
-	- Make eggcorns non-plantlike (place-as-item)
-	- Show sprout/sapling above eggcorn_planted to show
-	  progress over time.
-	- Switch to soaking API (above)  
 
 - Loose node cleanup.
 	- Leaves settle into grass as podzol?  Composting/decay?

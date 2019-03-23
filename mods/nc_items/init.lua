@@ -149,7 +149,8 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 				placer, itemstack, pointed_thing) or itemstack, false
 		end
 	end
-	if itemstack:get_definition().type == "node" then
+	local def = itemstack:get_definition()
+	if def.type == "node" and not def.place_as_item then
 		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
 	end
 	if not itemstack:is_empty() then

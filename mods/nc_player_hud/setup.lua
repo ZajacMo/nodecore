@@ -17,7 +17,9 @@ end
 minetest.register_on_joinplayer(function(player)
 		player:hud_set_flags({
 				healthbar = false,
-				breathbar = false
+				breathbar = false,
+				minimap = false,
+				minimap_radar = false
 			})
 		player:hud_set_hotbar_itemcount(8)
 		player:hud_set_hotbar_image("nc_player_hud_bar.png")

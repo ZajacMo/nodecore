@@ -12,6 +12,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		drawtype = "plantlike",
 		paramtype = "light",
 		visual_scale = 0.5,
+		wield_scale = {x = 1, y = 1, z = 2},
 		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		inventory_image = "[combine:24x24:4,4=" .. modname .. "_eggcorn.png",
@@ -19,9 +20,21 @@ minetest.register_node(modname .. ":eggcorn", {
 		groups = {
 			snappy = 1,
 			flammable = 3,
-			attached_node = 1
+			attached_node = 1,
 		},
+		node_placement_prediction = "",
+		place_as_item = true,
 		sounds = nodecore.sounds("nc_tree_sticky")
+	})
+
+nodecore.register_limited_abm({
+		interval = 1,
+		chance = 1,
+		nodenames = {modname .. ":eggcorn"},
+		action = function(pos)
+			minetest.remove_node(pos)
+			return nodecore.place_stack(pos, modname .. ":eggcorn")
+		end
 	})
 
 nodecore.register_leaf_drops(function(pos, node, list)
@@ -41,12 +54,28 @@ minetest.register_node(epname, nodecore.underride({
 
 nodecore.register_craft({
 		label = "eggcorn planting",
-		normal = {y = 1},
 		nodes = {
-			{match = "nc_terrain:dirt_loose", replace = "air"},
+			{
+				match = "nc_terrain:dirt_loose",
+				replace = "air"
+			},
 			{
 				y = -1,
 				match = modname .. ":eggcorn",
+				replace = modname .. ":eggcorn_planted"
+			},
+		}
+	})
+nodecore.register_craft({
+		label = "eggcorn planting",
+		nodes = {
+			{
+				match = modname .. ":eggcorn",
+				replace = "air"
+			},
+			{
+				y = -1,
+				match = "nc_terrain:dirt_loose",
 				replace = modname .. ":eggcorn_planted"
 			},
 		}
