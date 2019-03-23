@@ -26,11 +26,6 @@ ROADMAP: Large New Development Projects
 		- Draw a symbol on surfaces by pummeling w/ charcoal
 		- Punch symbol w/ charcoal to rotate thru alphabet
 		- Use a special/reduced alphabet?
-
-- Tree farming.
-	- Show sprout/sapling above eggcorn_planted to show
-	  progress over time.
-	- Switch to soaking API
 	
 - Water and lava surface springs.
 	- Access to water for forges.
