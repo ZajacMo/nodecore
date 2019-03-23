@@ -13,6 +13,7 @@ nodecore.register_craft({
 			flame = 3
 		},
 		duration = 20,
+		cookfx = true,
 		nodes = {
 			{
 				match = "nc_terrain:sand_loose",
@@ -32,8 +33,9 @@ local flow = modname .. ":glass_hot_flowing"
 nodecore.register_craft({
 		label = "cool clear glass",
 		action = "cook",
+		priority = -1,
 		duration = 120,
-		nosizzle = true,
+		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
 			return #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
@@ -50,7 +52,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "quench opaque glass",
 		action = "cook",
-		nosizzle = true,
+		cookfx = true,
 		check = function(pos)
 			return #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},

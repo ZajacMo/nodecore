@@ -10,6 +10,8 @@ local modname = minetest.get_current_modname()
 function nodecore.register_lode(shape, rawdef)
 	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
 		local def = nodecore.underride({}, rawdef)
+		local snd = temper:lower()
+		if snd == "hot" then snd = "annealed" end
 		def = nodecore.underride(def, {
 				description = temper .. " Lode " .. shape,
 				name = (shape .. "_" .. temper):lower():gsub(" ", "_"),
@@ -18,8 +20,9 @@ function nodecore.register_lode(shape, rawdef)
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				metal_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
-				sounds = nodecore.sounds("nc_lode_" .. temper:lower())
+				sounds = nodecore.sounds("nc_lode_" .. snd)
 			})
+		def.metal_temper_cool = (not def.metal_temper_hot) or nil
 		if temper ~= "Hot" then
 			def.light_source = nil
 		else
@@ -60,25 +63,6 @@ nodecore.register_lode("Prill", {
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
-local flame = {groups = {flame = true}}
-local function heated(pos)
-	if nodecore.quenched(pos) then return end
-	local f = 0
-	if nodecore.match({x = pos.x, y = pos.y - 1, z = pos.z}, flame)
-	then f = f + 1 end
-	if nodecore.match({x = pos.x + 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if nodecore.match({x = pos.x - 1, y = pos.y, z = pos.z}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-	if nodecore.match({x = pos.x, y = pos.y, z = pos.z + 1}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-	if nodecore.match({x = pos.x, y = pos.y, z = pos.z - 1}, flame)
-	then f = f + 1 end
-	if f >= 3 then return true end
-end
-
 local logadj = math_log(2)
 local function exporand()
 	local r = 0
@@ -86,53 +70,75 @@ local function exporand()
 	return math_floor(math_exp(-math_log(r) * logadj))
 end
 
-nodecore.register_limited_abm({
-		label = "Lode Cobble to Prills",
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":cobble"},
-		neighbors = {"group:flame"},
-		action = function(pos, node)
+nodecore.register_craft({
+		label = "lode cobble to prills",
+		action = "cook",
+		touchgroups = {flame = 3},
+		duration = 30,
+		cookfx = true,
+		check = function(pos)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			if nodecore.cooking(minetest.get_meta(pos), "time", 30,
-				not nodecore.match(below, {walkable = true}) and heated(pos),
-				pos) then
-				nodecore.item_eject(below, modname .. ":prill_hot " .. exporand())
-				return nodecore.set_node(pos, {name = "nc_terrain:cobble"})
-			end
-		end})
+			return not nodecore.match(below, {walkable = true})
+		end,
+		nodes = {
+			{
+				match = modname .. ":cobble",
+				replace = "nc_terrain:cobble"
+			}
+		},
+		after = function(pos)
+			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+			return nodecore.item_eject(below, modname
+				.. ":prill_hot " .. exporand())
+		end
+	})
 
-local function replacestack(pos, name, stack)
+nodecore.register_cook_abm({nodenames = {modname .. ":cobble"}, neighbors = {"group:flame"}})
+
+local function replacestack(pos, alt)
+	local stack = nodecore.stack_get(pos)
 	nodecore.remove_node(pos)
-	local repl = ItemStack(name)
-	repl:set_count(repl:get_count() * stack:get_count())
+	local def = minetest.registered_items[stack:get_name()] or {}
+	local repl = ItemStack(def["metal_alt_" .. alt] or "")
+	repl:set_count(stack:get_count())
 	return nodecore.item_eject(pos, repl)
 end
 
-nodecore.register_limited_abm({
-		label = "Lode Stack Heating/Cooling",
-		interval = 1,
-		chance = 1,
-		nodenames = {"group:visinv"},
-		action = function(pos, node)
-			local stack = nodecore.stack_get(pos)
-			if stack:is_empty() then return end
-			local def = minetest.registered_items[stack:get_name()]
-			if not def then return end
-			if def.metal_temper_hot then
-				if nodecore.quenched(pos) then
-					return replacestack(pos, def.metal_alt_tempered, stack)
-				end
-				if nodecore.cooking(stack:get_meta(), "time", 120,
-					not heated(pos), pos) then
-					return replacestack(pos, def.metal_alt_annealed, stack)
-				end
-			elseif (def.metal_temper_annealed or def.metal_temper_tempered)
-			and nodecore.cooking(stack:get_meta(), "time", 30, heated(pos), pos) then
-				return replacestack(pos, def.metal_alt_hot, stack)
-			end
-			return nodecore.stack_set(pos, stack)
-		end})
+nodecore.register_craft({
+		label = "lode stack heating",
+		action = "cook",
+		touchgroups = {flame = 3},
+		duration = 30,
+		cookfx = true,
+		nodes = {{match = {metal_temper_cool = true, stacked = true, count = false}}},
+		after = function(pos) return replacestack(pos, "hot") end
+	})
+
+nodecore.register_craft({
+		label = "lode stack annealing",
+		action = "cook",
+		touchgroups = {flame = 0},
+		duration = 120,
+		priority = -1,
+		cookfx = {smoke = true, hiss = true},
+		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		after = function(pos) return replacestack(pos, "annealed") end
+	})
+
+nodecore.register_craft({
+		label = "lode stack quenching",
+		action = "cook",
+		touchgroups = {flame = 0},
+		check = function(pos)
+			return #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{"group:coolant"}) > 0
+		end,
+		cookfx = true,
+		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		after = function(pos) return replacestack(pos, "tempered") end
+	})
 
 -- Because of how massive they are, forging a block is a hot-working process.
 nodecore.register_craft({

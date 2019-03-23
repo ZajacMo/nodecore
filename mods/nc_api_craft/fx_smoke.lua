@@ -19,7 +19,7 @@ function nodecore.smokefx(pos, time, qty)
 				texture = "nc_api_craft_smoke.png",
 				collisiondetection = true,
 				amount = (qty or 2) * time,
-				time = time or 1,
+				time = time,
 				minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
 				maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
 				minvel = {x = -0.1, y = 0.3, z = -0.1},

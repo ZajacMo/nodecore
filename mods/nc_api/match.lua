@@ -11,7 +11,8 @@ local match_skip = {
 	stack = true,
 	count = true,
 	excess = true,
-	wear = true
+	wear = true,
+	stacked = true
 }
 
 function nodecore.match(thing, crit)
@@ -42,7 +43,9 @@ function nodecore.match(thing, crit)
 		end
 		thing.stacked = true
 	end
-
+	if crit.stacked and not thing.stacked then return end
+	if crit.stacked == false and thing.stacked then return end
+	
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end

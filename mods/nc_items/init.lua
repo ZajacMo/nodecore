@@ -182,3 +182,5 @@ if nodecore.loaded_mods().nc_fire then
 			end
 		})
 end
+
+nodecore.register_cook_abm({nodenames = {modname .. ":stack"}})

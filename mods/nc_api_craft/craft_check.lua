@@ -78,8 +78,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			return 1
 		end
 	end
-	if data.before then data.before(pos, rel, data) end
-	if recipe.before then recipe.before(pos, rel, data) end
+	if data.before then data.before(pos, rel, data, recipe) end
+	if recipe.before then recipe.before(pos, rel, data, recipe) end
 	for _, v in pairs(recipe.nodes) do
 		if v.replace then
 			local p = rel(v.x, v.y, v.z)
@@ -118,8 +118,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	elseif recipe.toolgroups and recipe.toolwear and data.crafter then
 		nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 	end
-	if recipe.after then recipe.after(pos, rel, data) end
-	if data.after then data.after(pos, rel, data) end
+	if recipe.after then recipe.after(pos, rel, data, recipe) end
+	if data.after then data.after(pos, rel, data, recipe) end
 	if nodecore.player_stat_add then
 		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
 	end

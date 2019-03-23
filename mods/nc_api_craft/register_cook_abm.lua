@@ -16,15 +16,23 @@ local function inprogress(data, recipe)
 	if (not t) or t == 0 then
 		meta:set_float(recipe.label, minetest.get_gametime())
 	end
-	if not recipe.nosizzle then
+	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.sizzle then
 		minetest.sound_play("nc_api_craft_sizzle", {gain = 0.1, pos = data.node})
 	end
-	return nodecore.smokefx(data.node, 1)
+	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
+		nodecore.smokefx(data.node, 1)
+	end
 end
 
-local function cookdone(pos, rel, data)
-	minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = data.node})
-	return nodecore.smokefx(data.node, 0.1, 8)
+local function cookdone(pos, rel, data, recipe)
+	local meta = minetest.get_meta(pos)
+	meta:set_float(recipe.label, 0)
+	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.hiss then
+		minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = data.node})
+	end
+	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
+		nodecore.smokefx(data.node, 0.2, 80)
+	end
 end
 
 function nodecore.register_cook_abm(def)
