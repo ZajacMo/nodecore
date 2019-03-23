@@ -7,6 +7,9 @@ local math_random, math_sqrt
 
 local modname = minetest.get_current_modname()
 
+local ldname = "nc_terrain:dirt_loose"
+local epname = modname .. ":eggcorn_planted"
+
 minetest.register_node(modname .. ":eggcorn", {
 		description = "Eggcorn",
 		drawtype = "plantlike",
@@ -24,7 +27,23 @@ minetest.register_node(modname .. ":eggcorn", {
 		},
 		node_placement_prediction = "",
 		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		stack_rightclick = function(pos, node, whom, stack)
+			if nodecore.stack_get(pos):get_count() ~= 1 then return end
+			if stack:get_name() ~= ldname then return end
+
+			minetest.set_node(pos, {name = epname})
+			nodecore.node_sound(pos, "place")
+
+			if nodecore.player_stat_add then
+				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
+			end
+			minetest.log((whom and whom:get_player_name() or "unknown")
+				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
+			
+			stack:set_count(stack:get_count() - 1)
+			return stack
+		end
 	})
 
 nodecore.register_limited_abm({
@@ -44,42 +63,11 @@ nodecore.register_leaf_drops(function(pos, node, list)
 			prob = 0.05 * (node.param2 + 1)}
 	end)
 
-local ldname = "nc_terrain:dirt_loose"
-local epname = modname .. ":eggcorn_planted"
 minetest.register_node(epname, nodecore.underride({
 			drop = ldname,
 			description = "Loose Dirt...?"
 		},
 		minetest.registered_items[ldname] or {}))
-
-nodecore.register_craft({
-		label = "eggcorn planting",
-		nodes = {
-			{
-				match = "nc_terrain:dirt_loose",
-				replace = "air"
-			},
-			{
-				y = -1,
-				match = modname .. ":eggcorn",
-				replace = modname .. ":eggcorn_planted"
-			},
-		}
-	})
-nodecore.register_craft({
-		label = "eggcorn planting",
-		nodes = {
-			{
-				match = modname .. ":eggcorn",
-				replace = "air"
-			},
-			{
-				y = -1,
-				match = "nc_terrain:dirt_loose",
-				replace = modname .. ":eggcorn_planted"
-			},
-		}
-	})
 
 nodecore.register_limited_abm({
 		label = "EggCorn Growing",

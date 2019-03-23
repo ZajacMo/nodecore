@@ -42,6 +42,11 @@ minetest.register_node(modname .. ":stack", {
 		end,
 		on_rightclick = function(pos, node, whom, stack, pointed, ...)
 			if not nodecore.interact(whom) then return stack end
+			local def = nodecore.stack_get(pos):get_definition() or {}
+			if def.stack_rightclick then
+				local rtn = def.stack_rightclick(pos, node, whom, stack, pointed, ...)
+				if rtn then return rtn end
+			end
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_construct = function(pos, ...)
