@@ -100,7 +100,7 @@ local function replacestack(pos, alt)
 	nodecore.remove_node(pos)
 	local def = minetest.registered_items[stack:get_name()] or {}
 	local repl = ItemStack(def["metal_alt_" .. alt] or "")
-	repl:set_count(stack:get_count())
+	repl:set_count(stack:get_count() * repl:get_count())
 	return nodecore.item_eject(pos, repl)
 end
 

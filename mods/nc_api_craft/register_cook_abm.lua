@@ -3,19 +3,38 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
 local function getduration(data, recipe)
 	local meta = minetest.get_meta(data.node)
-	local t = meta:get_float(recipe.label)
-	if t and t ~= 0 then return minetest.get_gametime() - t end
-	return 0
+
+	local md = meta:get_string(modname) or ""
+	md = (md ~= "") and minetest.deserialize(md) or {}
+
+	if md.label ~= recipe.label
+	or md.count ~= nodecore.stack_get(data.node):get_count()
+	or not md.start
+	then return 0 end
+
+	return minetest.get_gametime() - md.start
 end
 
 local function inprogress(data, recipe)
 	local meta = minetest.get_meta(data.node)
-	local t = meta:get_float(recipe.label)
-	if (not t) or t == 0 then
-		meta:set_float(recipe.label, minetest.get_gametime())
+
+	local md = meta:get_string(modname) or ""
+	md = (md ~= "") and minetest.deserialize(md) or {}
+
+	local count = nodecore.stack_get(data.node):get_count()
+	if md.label ~= recipe.label or md.count ~= count or not md.start then
+		md = {
+			label = recipe.label,
+			count = count,
+			start = minetest.get_gametime()
+		}
+		meta:set_string(modname, minetest.serialize(md))
 	end
+
 	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.sizzle then
 		minetest.sound_play("nc_api_craft_sizzle", {gain = 0.1, pos = data.node})
 	end
