@@ -2,6 +2,20 @@
 CONTRIBUTION WISHLIST
 ------------------------------------------------------------------------
 
+- Help (PRs and/or advocacy) with Minetest engine issues:
+	- #7245: This is blocking making navigation challenges and
+	  distinguishing nodes with similar appearance into gameplay
+	  elements.  
+	- #7020: This bug requires NodeCore to maintain a workaround for
+	  the engine in its own code.
+	- #7481: Breaks the wield/toolbelt view mod, and would require
+	  massive rework to work around.
+	- New TBD bug related to #6735: HUD position calculations are
+	  inconsistent between certain types of elements (e.g. statbars
+	  vs. text/images), and don't line up in very high DPI displays.
+	  This is preventing fine-tuning the position of HUD elements
+	  like the touch-tip in NodeCore.
+
 - Player model enhancements
 	- Hat/hair surfaces.
 	- Maybe a swim animation?
