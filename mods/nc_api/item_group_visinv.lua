@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type, vector
-    = ItemStack, math, minetest, nodecore, pairs, type, vector
+local math, minetest, nodecore, pairs, type, vector
+    = math, minetest, nodecore, pairs, type, vector
 local math_floor, math_pi
     = math.floor, math.pi
 -- LUALOCALS > ---------------------------------------------------------
@@ -141,58 +141,22 @@ nodecore.register_limited_abm({
 
 local digpos
 local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, node, digger, ...)
-	nodecore.stack_sounds(pos, "dug")
+minetest.node_dig = function(pos, ...)
 	local function helper(...)
 		digpos = nil
 		return ...
 	end
 	digpos = pos
-	return helper(old_node_dig(pos, node, digger, ...))
-end
-local function trydirect(stack)
-	stack = ItemStack(stack)
-
-	local p = digplayer
-	if (not p) or (not p:get_player_control().sneak) then return end
-
-	local inv = p:get_inventory()
-	for i = 1, inv:get_size("main") do
-		if i ~= p:get_wield_index()
-		and inv:get_stack("main", i):is_empty() then
-			return inv:set_stack("main", i, stack)
-		end
-	end
+	return helper(old_node_dig(pos, ...))
 end
 local old_get_node_drops = minetest.get_node_drops
-local deferred_drop
 minetest.get_node_drops = function(...)
-	if not digpos then
-		return old_get_node_drops(...)
-	end
+	local drops = old_get_node_drops(...)
+	if not digpos then return drops end
+	drops = drops or {}
 	local stack = nodecore.stack_get(digpos)
 	if stack and not stack:is_empty() then
-		deferred_drop = stack
+		drops[#drops + 1] = stack
 	end
-	return old_get_node_drops(...)
-end
-local old_handle_node_drops = minetest.handle_node_drops
-function minetest.handle_node_drops(pos, drops, digger, ...)
-	old_handle_node_drops(pos, drops, digger, ...)
-
-	if not deferred_drop then return end
-	local defer = deferred_drop
-	deferred_drop = nil
-
-	if digger and digger:is_player()
-	and digger:get_player_control().sneak then
-		local inv = digger:get_inventory()
-		for i = 1, inv:get_size("main") do
-			if inv:get_stack("main", i):is_empty() then
-				return inv:set_stack("main", i, defer)
-			end
-		end
-	end
-
-	return old_handle_node_drops(pos, {defer}, digger, ...)
+	return drops
 end

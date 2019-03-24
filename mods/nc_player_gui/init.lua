@@ -37,7 +37,7 @@ nodecore.register_inventory_tab({
 			"- There is NO inventory screen.",
 			"- Drop items onto ground to create stack nodes.  They do not decay.",
 			"- Sneak+drop to count out single items from stack.",
-			"- Sneak+dig stacks to try to keep them separate in hotbar.",
+			"- Items picked up try to fit into the current selected slot first.",
 			"- Crafting is done by building recipes in-world.",
 			"- Order and specific face of placement may matter for crafting."
 		}
