@@ -50,6 +50,7 @@ end
 
 local function optic_process(trans, pos)
 	local node = minetest.get_node(pos)
+	if node.name == "ignore" then return end
 	local def = minetest.registered_items[node.name] or {}
 
 	local ignored
@@ -61,12 +62,7 @@ local function optic_process(trans, pos)
 		end
 		local meta = minetest.get_meta(pos)
 		local nn, res = def.optic_check(pos, node, func, def)
-		if ignored then
-			minetest.log("optic check for "
-				.. minetest.pos_to_string(pos)
-				.. " hit unloaded area")
-
-		else
+		if not ignored then
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,
