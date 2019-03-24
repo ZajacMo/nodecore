@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, pcall, vector
-    = error, minetest, nodecore, pairs, pcall, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local optic_queue = {}
@@ -52,32 +52,34 @@ local function optic_process(trans, pos)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
 
+	local ignored
 	if def and def.optic_check then
 		local func = function(dir)
 			local hit, node = scan_recv(pos, dir)
-			if hit == false then error("IgNoReArEa") end
+			ignored = ignored or hit == false
 			return hit, node
 		end
 		local meta = minetest.get_meta(pos)
-		local ok, nn, res = pcall(def.optic_check, pos, node, func, def)
-		if ok then
+		local nn, res = def.optic_check(pos, node, func, def)
+		if ignored then
+			minetest.log("optic check for "
+				.. minetest.pos_to_string(pos)
+				.. " hit unloaded area")
+
+		else
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,
 				data = res or {}
 			}
-		elseif nn:match("IgNoReArEa") then
-			minetest.log("optic check for "
-				.. minetest.pos_to_string(pos)
-				.. " hit unloaded area")
-		else
-			error(res)
 		end
 	end
 
-	for _, dir in pairs(nodecore.dirs()) do
-		optic_trigger(pos, dir)
-	end		
+	if not ignored then
+		for _, dir in pairs(nodecore.dirs()) do
+			optic_trigger(pos, dir)
+		end
+	end
 end
 
 local function optic_commit(v)
