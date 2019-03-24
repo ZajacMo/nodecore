@@ -26,7 +26,9 @@ ROADMAP: Large New Development Projects
 		- Draw a symbol on surfaces by pummeling w/ charcoal
 		- Punch symbol w/ charcoal to rotate thru alphabet
 		- Use a special/reduced alphabet?
-	
+
+- Advanced Tools
+	- Sickle / kopesh, choppy + snappy, recursive harvesting.
 - Water and lava surface springs.
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting.
