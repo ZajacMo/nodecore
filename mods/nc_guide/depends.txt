@@ -1,2 +1,2 @@
 nc_stats
-nc_player_inv
+nc_player_gui
