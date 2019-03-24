@@ -33,17 +33,20 @@ local function handlepickups(player)
 			local cur = inv:get_stack("main", i)
 			local old = ItemStack(snap[i])
 			if sameitem(cur, old) then
-				local cc = cur:get_count()
-				local oc = old:get_count()
-				if cc > oc then
-					if excess == nil and sameitem(cur, wield) then
-						excess = cur
-						ec = cc - oc + wield:get_count()
-					elseif excess then
-						if sameitem(excess, cur) then
-							ec = ec + cc - oc
-						else
-							excess = false
+				local def = minetest.registered_items[cur:get_name()]
+				if not (def and def.virtual_item) then
+					local cc = cur:get_count()
+					local oc = old:get_count()
+					if cc > oc then
+						if excess == nil and sameitem(cur, wield) then
+							excess = cur
+							ec = cc - oc + wield:get_count()
+						elseif excess then
+							if sameitem(excess, cur) then
+								ec = ec + cc - oc
+							else
+								excess = false
+							end
 						end
 					end
 				end
