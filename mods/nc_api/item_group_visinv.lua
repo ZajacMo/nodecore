@@ -142,6 +142,7 @@ nodecore.register_limited_abm({
 local digpos
 local old_node_dig = minetest.node_dig
 minetest.node_dig = function(pos, ...)
+	nodecore.stack_sounds(pos, "dug")
 	local function helper(...)
 		digpos = nil
 		return ...
