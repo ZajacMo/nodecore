@@ -7,7 +7,7 @@ local math_floor, math_random
 
 local modname = minetest.get_current_modname()
 
-local thickness = 64
+local thickness = 128
 
 nodecore.stratadata = nodecore.memoize(function()
 		local data = {}
