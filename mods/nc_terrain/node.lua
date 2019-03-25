@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs
-    = ipairs, minetest, nodecore, pairs
+local ipairs, minetest, nodecore, pairs, type
+    = ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -28,7 +28,13 @@ local function regterrain(def)
 	end
 end
 
-local function clone(t) return minetest.deserialize(minetest.serialize(t)) end
+local function clone(t)
+	local c = minetest.deserialize(minetest.serialize(t))
+	for k, v in pairs(t) do
+		if type(v) == "function" then c[k] = v end
+	end
+	return c
+end
 
 local function regliquid(def)
 	local t = clone(def)

@@ -27,7 +27,7 @@ local function callguard(n, t, k, v)
 	if type(v) ~= "function" then return v end
 	return function(first, ...)
 		if first == t then
-			error("called " .. t .. ":" .. k .. "() instead of " .. t .. "." .. k .. "()")
+			error("called " .. n .. ":" .. k .. "() instead of " .. n .. "." .. k .. "()")
 		end
 		return v(first, ...)
 	end

@@ -39,6 +39,7 @@ local function ember(n, t)
 			},
 			drop = "",
 			diggable = false,
+			damage_per_second = 2,
 			on_punch = nodecore.node_punch_hurt,
 			crush_damage = 1,
 			sounds = nodecore.sounds("nc_terrain_crunchy")
