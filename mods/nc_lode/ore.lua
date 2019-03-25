@@ -44,7 +44,8 @@ for i = 1, nodecore.hard_stone_strata do
 			description = "Stone",
 			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
 				.. modname .. "_mask_ore.png^[opacity:48)" },
-			drop_in_place = "nc_terrain:cobble",
+			drop_in_place = modname .. ((i > 1)
+				and (":stone_" .. (i - 1)) or ":stone"),
 			strata = stratstone,
 			groups = {cracky = i + 2}
 		})

@@ -77,7 +77,8 @@ for i = 1, nodecore.hard_stone_strata do
 			groups = {
 				cracky = i + 2
 			},
-			drop_in_place = modname .. ":cobble",
+			drop_in_place = modname .. ((i > 1)
+				and (":hard_stone_" .. (i - 1)) or ":stone"),
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	strata[i + 1] = modname .. ":hard_stone_" .. i
