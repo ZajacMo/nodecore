@@ -62,7 +62,7 @@ local function optic_process(trans, pos)
 		end
 		local meta = minetest.get_meta(pos)
 		local nn, res = def.optic_check(pos, node, func, def)
-		if not ignored then
+		if (not ignored) and nn then
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,

@@ -16,6 +16,7 @@ local function lens_check(pos, node, check)
 
 	local fore = vector.add(pos, face.f)
 	local ll = minetest.get_node_light(fore)
+	if not ll then return end
 	local lt = 15
 	if node and node.name == modname .. ":lens_on" then lt = 14 end
 	local on = ll >= lt and face.f.y == 1
