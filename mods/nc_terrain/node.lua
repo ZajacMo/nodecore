@@ -217,7 +217,8 @@ regliquid({
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
 regliquid({
-		description = "Lava",
+		name = "lava",
+		description = "Molten Rock",
 		mapgen = { "lava_source" },
 		paramtype = "light",
 		liquid_viscosity = 7,
