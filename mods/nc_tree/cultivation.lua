@@ -27,7 +27,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		},
 		node_placement_prediction = "",
 		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nodecore.sounds("nc_tree_corny"),
 		stack_rightclick = function(pos, node, whom, stack)
 			if nodecore.stack_get(pos):get_count() ~= 1 then return end
 			if stack:get_name() ~= ldname then return end
