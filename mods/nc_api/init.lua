@@ -43,7 +43,6 @@ include("issue7020")
 
 include("util_misc")
 include("util_scan_flood")
-include("util_logtrace")
 include("util_node_is")
 include("util_toolcaps")
 include("util_stack")
