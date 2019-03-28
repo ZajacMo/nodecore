@@ -55,6 +55,8 @@ local function handlepickups(player)
 						snap[i] = cur
 					end
 				end
+			else
+				snap[i] = cur
 			end
 		end
 
