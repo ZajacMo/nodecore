@@ -39,14 +39,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
 
-- Change how items are given to player.
-	- Prefer current selected slot if empty.
-	- Create a new API.
-	- Audit code for add_items (e.g. in stack_giveto)
-	- Builtin handle_node_drops and item_entity:on_punch
-	- Change sneak-dig behavior?  Deprecate?
-		- Clean up Player's Guide.
-
 - Tool level differences.
 	- Advanced tools are NOT just the same as regular tools with
 	  certain buffs.

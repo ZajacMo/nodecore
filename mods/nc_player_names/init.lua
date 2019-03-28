@@ -8,10 +8,10 @@ local math_sqrt
 local modname = minetest.get_current_modname()
 
 -- Maximum distance at which custom nametags are visible.
-local distance = tonumber(minetest.setting_get(modname .. "_distance")) or 16
+local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
 
 -- Precision (number of steps) for line-of-sight check for displaying nametags
-local precision = tonumber(minetest.setting_get(modname .. "_precision")) or 50
+local precision = tonumber(minetest.settings:get(modname .. "_precision")) or 50
 
 -- Keep track of active player HUDs.
 local huds = {}

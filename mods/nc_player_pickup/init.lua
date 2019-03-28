@@ -3,6 +3,5 @@ local include
     = include
 -- LUALOCALS > ---------------------------------------------------------
 
-include("setup")
-include("hotpotato")
-include("stuck")
+include("intercept")
+include("rearrange")
