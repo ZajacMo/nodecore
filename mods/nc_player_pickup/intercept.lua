@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, setmetatable
-    = ItemStack, minetest, setmetatable
+local ItemStack, ipairs, minetest, setmetatable
+    = ItemStack, ipairs, minetest, setmetatable
 -- LUALOCALS > ---------------------------------------------------------
 
 local function additem(player, inv, list, stack)
@@ -50,3 +50,23 @@ local item = {
 }
 setmetatable(item, bii)
 minetest.register_entity(":__builtin:item", item)
+
+for _, cmd in ipairs({"give", "giveme"}) do
+	local give = minetest.registered_chatcommands[cmd] or {}
+	local oldfunc = give.func or function() end
+	give.func = function(...)
+		local oldgpbn = minetest.get_player_by_name
+		local function helper(...)
+			minetest.get_player_by_name = oldgpbn
+			return ...
+		end
+		minetest.get_player_by_name = function(...)
+			local function helper(p, ...)
+				p = wrapplayer(p)
+				return p, ...
+			end
+			return helper(oldgpbn(...))
+		end
+		return helper(oldfunc(...))
+	end
+end
