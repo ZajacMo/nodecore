@@ -62,6 +62,11 @@ local function handlepickups(player)
 			for i = 1, #excess do
 				local v = excess[i]
 				for j in invidx(player, inv, widx) do
+					if not snap[j]:is_empty() then
+						v = snap[j]:add_item(v)
+					end
+				end
+				for j in invidx(player, inv, widx) do
 					v = snap[j]:add_item(v)
 				end
 				if not v:is_empty() then
