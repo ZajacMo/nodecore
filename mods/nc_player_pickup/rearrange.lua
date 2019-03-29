@@ -48,11 +48,6 @@ local function handlepickups(player)
 			for i = 1, #excess do
 				local v = excess[i]
 				for j in nodecore.inv_walk(player, widx, inv) do
-					if not snap[j]:is_empty() then
-						v = snap[j]:add_item(v)
-					end
-				end
-				for j in nodecore.inv_walk(player, widx, inv) do
 					v = snap[j]:add_item(v)
 				end
 				if not v:is_empty() then
