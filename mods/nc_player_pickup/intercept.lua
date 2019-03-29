@@ -1,23 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, setmetatable
-    = ItemStack, ipairs, minetest, setmetatable
+local ipairs, minetest, nodecore, setmetatable
+    = ipairs, minetest, nodecore, setmetatable
 -- LUALOCALS > ---------------------------------------------------------
-
-local function additem(player, inv, list, stack)
-	stack = ItemStack(stack)
-	if stack:is_empty() then return stack end
-	local wield = player:get_wielded_item()
-	stack = wield:add_item(stack)
-	player:set_wielded_item(wield)
-	return (inv or player:get_inventory()):add_item(list, stack)
-end
 
 local function wrapinv(inv, player)
 	if not inv then return inv end
 	local t = {}
 	setmetatable(t, {__index = inv})
 	function t:add_item(list, stack)
-		return additem(player, inv, list, stack)
+		return nodecore.give_item(player, stack, list, inv)
 	end
 	return t
 end
@@ -30,6 +21,11 @@ local function wrapplayer(player)
 		return wrapinv(player:get_inventory(), player)
 	end
 	return t
+end
+
+local oldstackgive = nodecore.stack_giveto
+nodecore.stack_giveto = function(a, whom, ...)
+	return oldstackgive(a, wrapplayer(whom), ...)
 end
 
 local olddrops = minetest.handle_node_drops

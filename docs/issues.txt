@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Tool breaking sound.
+
 - New content needs hints!
 	- Go thru github commits to see what.
 	- Definitely includes optics.

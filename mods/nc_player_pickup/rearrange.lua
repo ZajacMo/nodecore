@@ -1,25 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest
-    = ItemStack, ipairs, minetest
+local ItemStack, ipairs, minetest, nodecore
+    = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
-
-local function invidx(player, inv, widx)
-	widx = widx or player:get_wield_index()
-	local size = (inv or player:get_inventory()):get_size("main")
-	local idx
-	return function()
-		if not idx then
-			idx = 0
-			return widx
-		end
-		idx = idx + 1
-		if idx == widx then idx = idx + 1 end
-		if idx <= size then return idx end
-	end
-end
-
 
 local function handlepickups(player)
 	local inv = player:get_inventory()
@@ -33,7 +17,7 @@ local function handlepickups(player)
 		local dirty
 
 		local widx = player:get_wield_index()
-		for i in invidx(player, inv. widx) do
+		for i in nodecore.inv_walk(player, widx, inv) do
 			local cur = inv:get_stack("main", i)
 			local old = snap[i]
 			if old:is_empty() or cur:peek_item(1):to_string()
@@ -63,12 +47,12 @@ local function handlepickups(player)
 		if dirty then
 			for i = 1, #excess do
 				local v = excess[i]
-				for j in invidx(player, inv, widx) do
+				for j in nodecore.inv_walk(player, widx, inv) do
 					if not snap[j]:is_empty() then
 						v = snap[j]:add_item(v)
 					end
 				end
-				for j in invidx(player, inv, widx) do
+				for j in nodecore.inv_walk(player, widx, inv) do
 					v = snap[j]:add_item(v)
 				end
 				if not v:is_empty() then
