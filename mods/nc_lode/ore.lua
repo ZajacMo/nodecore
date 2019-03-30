@@ -51,6 +51,7 @@ for i = 1, nodecore.hard_stone_strata do
 		})
 
 	stratore[i + 1] = reg("Ore_" .. i, {
+			description = "Lode Ore",
 			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
 				.. modname .. "_mask_ore.png)" },
 			drop_in_place = modname .. ":cobble",
