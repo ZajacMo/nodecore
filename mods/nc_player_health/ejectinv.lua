@@ -48,7 +48,10 @@ local function checkinv(player)
 			local n = pickend(#reg)
 			local i = reg[n]
 			table_remove(reg, n)
-			nodecore.item_eject(pos, inv:get_stack("main", i), 5)
+			local stack = inv:get_stack("main", i)
+			if not (stack:get_definition() or {}).virtual_item then
+				nodecore.item_eject(pos, stack, 5)
+			end
 			inv:set_stack("main", i, injured)
 		end
 		return
