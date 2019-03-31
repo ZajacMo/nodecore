@@ -125,7 +125,6 @@ local item = {
 		self.object = realobj
 		
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
-		minetest.log(self.rotdir)
 		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
 		p.physical = true
 		p.collisionbox = {-s, -s, -s, s, s, s}
