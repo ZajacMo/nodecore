@@ -41,6 +41,7 @@ minetest.register_node(modname .. ":leaves", {
 		drawtype = "allfaces_optional",
 		paramtype = "light",
 		tiles = { modname .. "_leaves.png" },
+		waving = 1,
 		groups = {
 			snappy = 1,
 			flammable = 3,
