@@ -84,7 +84,12 @@ function nodecore.extend_item(name, func)
 	minetest.register_item(":" .. name, copy)
 end
 
-function nodecore.fixedbox(...) return {type = "fixed", fixed = {...}} end
+function nodecore.fixedbox(x, ...)
+	return {type = "fixed", fixed = {
+			x or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+			...
+		}}
+end
 
 function nodecore.interact(player)
 	if type(player) ~= "string" then

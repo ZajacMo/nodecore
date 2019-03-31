@@ -99,9 +99,7 @@ minetest.register_node(modname .. ":handle", {
 			{3/8, 1/4, -0.5, 0.5, 3/8, 0.5},
 			{-0.5, 3/8, -1/8, 0.5, 0.5, 1/8}
 		),
-		selection_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, 3/8, 0.5}
-		),
+		selection_box = nodecore.fixedbox(),
 		paramtype = "light",
 		tiles = {
 			"nc_lode_annealed.png",

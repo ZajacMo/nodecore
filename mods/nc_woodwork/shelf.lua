@@ -20,12 +20,8 @@ minetest.register_node(modname .. ":shelf", {
 			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
 			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
 		),
-		selection_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
-		),
-		collision_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
-		),
+		selection_box = nodecore.fixedbox(),
+		collision_box = nodecore.fixedbox(),
 		tiles = { top, top, side },
 		groups = {
 			choppy = 1,
