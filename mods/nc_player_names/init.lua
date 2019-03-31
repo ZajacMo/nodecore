@@ -121,7 +121,7 @@ minetest.register_globalstep(function()
 
 						-- Create a new HUD if not present.
 						if not i then
-							i = {o = p1, t = t, p = p}
+							i = {o = p1, p = p}
 							i.i = p1:hud_add({
 									hud_elem_type = "waypoint",
 									world_pos = p,
@@ -136,10 +136,6 @@ minetest.register_globalstep(function()
 						if p.x ~= i.p.x or p.y ~= i.p.y or p.z ~= i.p.z then
 							p1:hud_change(i.i, "world_pos", p)
 							i.p = p
-						end
-						if i.t ~= t then
-							p1:hud_change(i.i, "text", t)
-							i.t = t
 						end
 					elseif i then
 						-- Remove HUD if visibility lost.
