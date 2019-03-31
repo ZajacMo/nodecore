@@ -19,11 +19,9 @@ minetest.register_node(modname .. ":stack", {
 		},
 		walkable = true,
 		selection_box = nodecore.fixedbox(
-			{-0.3, -0.5, -0.3, 0.3, 0.1, 0.3}
+			{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
 		),
-		collision_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
-		),
+		collision_box = nodecore.fixedbox(),
 		drop = {},
 		groups = {
 			snappy = 1,

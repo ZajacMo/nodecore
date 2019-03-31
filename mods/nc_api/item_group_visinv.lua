@@ -1,8 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type, vector
-    = math, minetest, nodecore, pairs, type, vector
-local math_floor, math_pi
-    = math.floor, math.pi
+local ItemStack, math, minetest, nodecore, pairs, setmetatable, type,
+      vector
+    = ItemStack, math, minetest, nodecore, pairs, setmetatable, type,
+      vector
+local math_floor, math_pi, math_random, math_sqrt
+    = math.floor, math.pi, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -16,8 +18,8 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
-local function stackentprops(stack, func)
-	local t = {
+local function stackentprops(stack, yaw, rotate)
+	local props = {
 		hp_max = 1,
 		physical = false,
 		collide_with_objects = false,
@@ -30,15 +32,26 @@ local function stackentprops(stack, func)
 		is_visible = false,
 		static_save = false
 	}
+	local scale = 0
+	yaw = yaw or 0
 	if stack then
-		t.is_visible = true
-		t.textures[1] = stack:get_name()
-		local s = 0.2 + 0.1 * stack:get_count() / stack:get_stack_max()      
-		t.visual_size = {x = s, y = s}
-		local max = stack:get_stack_max()
-		if func then func(s) end
+		if type(stack) == "string" then stack = ItemStack(stack) end
+		props.is_visible = true
+		props.textures[1] = stack:get_name()
+
+		local ratio = stack:get_count() / stack:get_stack_max()
+		scale = math_sqrt(ratio) * 0.15 + 0.25
+		props.visual_size = {x = scale, y = scale}
+
+		props.automatic_rotate = rotate
+		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or nil
+
+		if ratio == 1 then ratio = 1 - (stack:get_wear() / 65536) end
+
+		if ratio ~= 1 then yaw = yaw + 1/8 + 3/8 * (1 - ratio) end
+		yaw = yaw - 2 * math_floor(yaw / 2)
 	end
-	return t
+	return props, scale, yaw * math_pi / 2
 end
 
 minetest.register_entity(modname .. ":stackent", {
@@ -50,19 +63,14 @@ minetest.register_entity(modname .. ":stackent", {
 			if not stack or stack:is_empty() then return self.object:remove() end
 
 			local rp = vector.round(pos)
-			local rot = rp.x * 3 + rp.y * 5 + rp.z * 7
-			local max = stack:get_stack_max()
-			local ratio = (max == 1)
-			and 1 - (stack:get_wear() / 65536)
-			or stack:get_count() / max
-			if ratio ~= 1 then rot = rot + 1/8 + 3/8 * (1 - ratio) end
-			rot = rot - 2 * math_floor(rot / 2)
-			self.object:set_yaw(rot * math_pi / 2)
+			local props, scale, yaw = stackentprops(stack,
+				rp.x * 3 + rp.y * 5 + rp.z * 7)
+			rp.y = rp.y + scale - 31/64
 
-			return self.object:set_properties(stackentprops(stack, function(s)
-						pos.y = math_floor(pos.y + 0.5) - 0.5 + s + 1/64
-						self.object:setpos(pos)
-					end))
+			local obj = self.object
+			obj:set_properties(props)
+			obj:set_yaw(yaw)
+			obj:set_pos(rp)
 		end,
 		on_activate = function(self)
 			self.cktime = 0.00001
@@ -96,9 +104,36 @@ function nodecore.visinv_update_ents(pos, node)
 			found[#found] = nil
 		end
 	end
-	
+
 	return found
 end
+
+------------------------------------------------------------------------
+-- ITEM ENT APPEARANCE
+
+local bii = minetest.registered_entities["__builtin:item"]
+local item = {
+	set_item = function(self, ...)
+		local realobj = self.object
+		self.object = {}
+		setmetatable(self.object, {
+				__index = {
+					set_properties = function() end
+				}
+			})
+		bii.set_item(self, ...)
+		self.object = realobj
+		
+		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
+		minetest.log(self.rotdir)
+		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
+		p.physical = true
+		p.collisionbox = {-s, -s, -s, s, s, s}
+		return realobj:set_properties(p)
+	end
+}
+setmetatable(item, bii)
+minetest.register_entity(":__builtin:item", item)
 
 ------------------------------------------------------------------------
 -- NODE REGISTRATION HELPERS
