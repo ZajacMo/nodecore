@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -26,15 +28,66 @@ minetest.register_node(modname .. ":fire", {
 		drop = ""
 	})
 
-local function ember(n, t)
-	minetest.register_node(modname .. ":ember" .. n, {
+local function txr(name, opaq)
+	local full = modname .. "_" .. name .. ".png"
+	if opaq and opaq < 1 then
+		full = "(" .. full .. "^[opacity:"
+		.. math_floor(256 * opaq) .. ")"
+	end
+	return full
+end
+
+local function txrcoal(num)
+	local name = txr("ash")
+	local base = math_floor(num / 2)
+	if base > 0 then
+		name = name .. "^" .. txr("coal_" .. base)
+	end
+	local rem = (num / 2) - base
+	if rem > 0 then
+		name = name .. "^" .. txr("coal_" .. (base + 1), rem)
+	end
+	return name
+end
+
+for num = 1, 8 do
+	minetest.register_node(modname .. ":coal" .. num, {
+			description = "Charcoal",
+			tiles = {txrcoal(num)},
+			groups = { 
+				crumbly = 1,
+				flammable = 1,
+				falling_node = 1,
+				fire_fuel = num,
+				charcoal = num
+			},
+			crush_damage = 1,
+			sounds = nodecore.sounds("nc_terrain_crunchy")
+		})
+end
+
+local function txrember(num)
+	local name = txrcoal(num)
+	local base = math_floor(num / 2)
+	if base > 0 then
+		name = name .. "^" .. txr("ember_" .. base)
+	end
+	local rem = (num / 2) - base
+	if rem > 0 then
+		name = name .. "^" .. txr("ember_" .. (base + 1), rem)
+	end
+	return name
+end
+
+for num = 1, 8 do
+	minetest.register_node(modname .. ":ember" .. num, {
 			description = "Burning Embers",
-			tiles = {t},
+			tiles = {txrember(num)},
 			paramtype = "light",
 			light_source = 6,
 			groups = { 
 				igniter = 1,
-				ember = n,
+				ember = num,
 				falling_node = 1
 			},
 			drop = "",
@@ -45,12 +98,6 @@ local function ember(n, t)
 			sounds = nodecore.sounds("nc_terrain_crunchy")
 		})
 end
-ember(1, modname .. "_ash.png^(" .. modname .. "_ember1.png^[opacity:128)")
-ember(2, modname .. "_ash.png^" .. modname .. "_ember1.png")
-ember(3, modname .. "_ash.png^" .. modname .. "_ember1.png^(" .. modname .. "_ember2.png^[opacity:128)")
-ember(4, modname .. "_ash.png^" .. modname .. "_ember2.png")
-ember(5, modname .. "_ash.png^" .. modname .. "_ember2.png^(" .. modname .. "_ember3.png^[opacity:128)")
-ember(6, modname .. "_ember3.png")
 minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
 
 minetest.register_node(modname .. ":ash", {
