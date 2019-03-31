@@ -15,6 +15,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Go thru github commits to see what.
 	- Definitely includes optics.
 
+- First-class support for stack "pez dispensers".
+	- Upon digging a stack node, try to shift all inventories from
+	  stack nodes above downward.
+
 - API Cleanup
 	- Utils
 		- Box mueller and exporand

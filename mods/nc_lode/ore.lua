@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_pow
+    = math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -73,9 +75,9 @@ reg("Cobble", {
 		}
 	})
 
-local function regore(name, def)
+local function regore(name, def, num)
 	return minetest.register_ore(nodecore.underride(def, {
-				name = name,
+				name = name .. (num and "_" .. num or ""),
 				ore_type = "scatter",
 				ore = name,
 				wherein = "nc_terrain:stone",
@@ -83,7 +85,7 @@ local function regore(name, def)
 				noise_params = {
 					offset  = 0,
 					scale   = 4,
-					spread  = {x=40, y=5, z=40},
+					spread  = {x = 40, y = 5, z = 40},
 					seed    = 12497,
 					octaves = 3,
 					persist = 0.5,
@@ -92,25 +94,43 @@ local function regore(name, def)
 				noise_threshold = 1.3		
 				}, def))
 end
-regore(ore, {
+for y = 0, 7 do
+	local def = {
+		y_max = 64 - 32 * math_pow(2, y),
+		y_min = 64 - 32 * math_pow(2, y + 1),
 		clust_num_ores = 16,
 		clust_size = 3,
-		clust_scarcity = 8 * 8 * 8,
-	})
+		clust_scarcity = 8 * 8 * 8 / math_pow(1.5, y),
+	}
+	if y == 7 then def.y_min = nil end
+	regore(ore, def, y)
+end
 regore(stone, {
+		y_max = 32,
 		clust_num_ores = 4,
 		clust_size = 3,
 		clust_scarcity = 2 * 2 * 2,
 	})
 
 local c_ore = minetest.get_content_id(ore)
-local c_istone = minetest.get_content_id(stone)
-local c_stone = minetest.get_content_id("nc_terrain:stone")
+local stoneids = {}
+local stratadata = nodecore.stratadata()
+local c_lodestone = minetest.get_content_id(stone)
+for _, id in pairs({
+		c_lodestone,
+		minetest.get_content_id(ore),
+		minetest.get_content_id("nc_terrain:stone")
+		}) do
+	stoneids[id] = true
+	for _, v in pairs(stratadata.altsbyid[id] or {}) do
+		stoneids[v] = true
+	end
+end
 
 nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 		local function bad(x, y, z)
 			local c = data[area:index(x, y, z)]
-			return c ~= c_stone and c ~= c_istone
+			return not stoneids[c]
 		end
 
 		for z = minp.z, maxp.z do
@@ -130,7 +150,7 @@ nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 						or bad(x, y - 1, z)
 						or bad(x, y, z + 1)
 						or bad(x, y, z - 1)
-						then data[i] = c_istone
+						then data[i] = c_lodestone
 						end
 					end
 				end
