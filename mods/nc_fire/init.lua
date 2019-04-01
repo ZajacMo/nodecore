@@ -5,5 +5,6 @@ local include
 
 include('api')
 include('node')
+include('lumps')
 include('abm')
 include('firestarting')
