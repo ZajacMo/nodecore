@@ -6,6 +6,8 @@ CONTRIBUTION WISHLIST
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.  
+	- #8378: This bug may require us to maintain an number of
+	  workarounds throughout NodeCore.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
 	- #7481: Breaks the wield/toolbelt view mod, and would require
