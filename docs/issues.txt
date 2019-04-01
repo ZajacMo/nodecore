@@ -19,6 +19,19 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
 
+- Water/wetness/coolant rework.
+	- Move nodecore.quenched() somewhere more sensible.
+	- Register a "wet" and "absorbant" groups.
+	- Register wetness hooks.
+		- What to dry to when absorbed.
+		- What to do when wetted.
+	- Register wetness exposure abm.
+		- Consume one random wet node nearby.
+	- Use for quenching lode/glass.
+	- Allow sponges to wick water (wetness transfers).
+	- Future applications.
+		- Cement, cure upon wetting?
+
 - API Cleanup
 	- Utils
 		- Box mueller and exporand
