@@ -22,12 +22,17 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		local now = minetest.get_us_time() / 1000000
 		local last = lasthit[pname] or 0
 		if now - last < 0.25 then return end
-		
+
 		local def = minetest.registered_items[node.name] or {}
 		local wield = puncher:get_wielded_item()
 		if (not def.groups) or (not nodecore.toolspeed(wield, def.groups))
-			or not(def.sounds) then
+		or not(def.sounds) then
 			nodecore.node_sound(pos, "dig")
 			lasthit[pname] = now
+		end
+
+		if wield:get_wear() >= (65536 * 0.95) then
+			minetest.sound_play("nc_api_toolwear",
+				{pos = pos, gain = 0.5})
 		end
 	end)
