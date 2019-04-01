@@ -127,6 +127,7 @@ local item = {
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
 		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
 		p.physical = true
+		s = s / 2
 		p.collisionbox = {-s, -s, -s, s, s, s}
 		return realobj:set_properties(p)
 	end
