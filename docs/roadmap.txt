@@ -15,18 +15,6 @@ ROADMAP: Large New Development Projects
 		- Power an annealed lode block from 2 opposite faces.
 		- Generates particle effect at mapblock boundary.
 
-- Fire rework.
-	- Make fuel consumed slower by reducing flame exposure.
-		- Encourages designing a better furnace.
-	- Smothering produces charcoal instead of ash.
-		- Can be reburned.  Maybe easier to ignite?
-		  Maybe rejuvenate fuel in exchange for effort?
-	- Make ash whiter, charcoal black.
-	- New writing system based on charcoal
-		- Draw a symbol on surfaces by pummeling w/ charcoal
-		- Punch symbol w/ charcoal to rotate thru alphabet
-		- Use a special/reduced alphabet?
-
 - Advanced Tools
 	- Sickle / kopesh, choppy + snappy, recursive harvesting.
 
@@ -46,12 +34,13 @@ ROADMAP: Large New Development Projects
 	- Latent
 		- Respawn mechanics?
 
+- New writing system based on charcoal
+	- Draw a symbol on surfaces by pummeling w/ charcoal
+	- Punch symbol w/ charcoal to rotate thru alphabet
+	- Use a special/reduced alphabet?
+
 - Digital logic + lighting via optics.
-	- Focused light right at output applies heat
-		- Easy fire starting?
-			- From sunlight
-			- From prism beam, 2 lenses in series
-		- Optical heat transforms, cooking via laser light?
+	- Optical heat transforms, cooking via laser light?
 	- Piezo Crystal Node
 		- Emits light briefly when punched or stepped on
 		- Need to interpolate player paths for "stepped on" logic
