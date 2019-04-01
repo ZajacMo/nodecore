@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, os, pairs, table, type, vector
-    = math, minetest, nodecore, os, pairs, table, type, vector
+= math, minetest, nodecore, os, pairs, table, type, vector
 local math_random, os_date, table_remove
-    = math.random, os.date, table.remove
+= math.random, os.date, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -14,9 +14,12 @@ local modstore = minetest.get_mod_storage()
 local db = {}
 nodecore.statsdb = db
 
+local function load_check(s)
+	s = s and s ~= "" and minetest.deserialize(s)
+	return type(s) == "table" and s or {}
+end
 do
-	local s = modstore:get_string(modname)
-	s = s and s ~= "" and minetest.deserialize(s) or {}
+	local s = load_check(modstore:get_string(modname))
 	db[false] = s
 	s.firstseen = s.firstseen or os_date("!*t")
 	s.startup = (s.startup or 0) + 1
@@ -47,9 +50,7 @@ local function playeradd(qty, player, ...)
 	if not pname then return end
 	local data = db[pname]
 	if not data then
-		data = player:get_attribute(modname)
-		data = data and minetest.deserialize(data)
-		data = data or { }
+		data = load_check(player:get_attribute(modname))
 		db[pname] = data
 	end
 	dbadd(qty, pname, ...)
@@ -79,17 +80,22 @@ reghook(minetest.register_on_respawnplayer, "spawn", 1)
 reghook(minetest.register_on_joinplayer,    "join",  1)
 reghook(minetest.register_on_leaveplayer,   "leave", 1)
 
+local function unpackreason(reason)
+	if type(reason) ~= "table" then return reason or "?" end
+	if reason.from then return reason.from, reason.type or nil end
+	return reason.type or "?"
+end
+
 minetest.register_on_player_hpchange(function(whom, change, reason)
 		if change < 0 then
-			return playeradd(-change, whom, "hurt", reason or "?")
+			return playeradd(-change, whom, "hurt", unpackreason(reason))
 		else
-			return playeradd(change, whom, "heal", reason or "?")
+			return playeradd(change, whom, "heal", unpackreason(reason))
 		end
 	end)
 
-minetest.register_on_cheat(function(player, name)
-		playeradd(1, player, "cheat", type(name) == "table"
-			and name.type or name or "?")
+minetest.register_on_cheat(function(player, reason)
+		playeradd(1, player, "cheat", unpackreason(reason))
 	end)
 
 minetest.register_on_chat_message(function(name, msg)
@@ -186,6 +192,24 @@ local function flushkey(k)
 	local v = db[k]
 	if not v or not v.dirty then return end
 	v.dirty = nil
+
+	v.datafix = v.datafix or 0
+	if v.datafix < 1 then
+		v.datafix = 1
+		
+		local q = k and v or v.players
+		for _, n in pairs({"hurt", "heal", "cheat"}) do
+			local old = q[n]
+			q[n] = {}
+			for k, v in pairs(old) do
+				if type(v) == "number" then
+					dbadd_nav(v, nil, q[n], unpackreason(k))
+				else
+					q[n][k] = v
+				end
+			end
+		end
+	end
 
 	if k == false then
 		return modstore:set_string(modname, minetest.serialize(v))
