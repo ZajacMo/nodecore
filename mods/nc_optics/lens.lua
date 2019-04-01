@@ -53,7 +53,7 @@ local basedef = {
 		txr .. "^" .. modname .. "_lens_in.png",
 	},
 	groups = {
-		silica_lens = 1,
+		silica = 1,
 		optic_check = 1,
 		cracky = 3
 	},

@@ -221,7 +221,7 @@ function nodecore.node_spin_custom(...)
 	lut[arr[#arr]] = arr[1]
 	local qty = #arr
 
-	return function(pos, node, clicker, itemstack, pointed_thing)
+	return function(pos, node, clicker, itemstack)
 		node = node or minetest.get_node(pos)
 		node.param2 = lut[node.param2] or lut[false]
 		if clicker:is_player() then
