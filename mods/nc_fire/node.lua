@@ -11,9 +11,10 @@ minetest.register_node(modname .. ":fire", {
 		description = "Fire",
 		drawtype = "firelike",
 		visual_scale = 1.5,
-		tiles = {modname .. "_fire.png"},
+		tiles = {modname .. "_fire.png^[opacity:192"},
 		paramtype = "light",
 		light_source = 12,
+		use_texture_alpha = true,
 		groups = {
 			igniter = 1,
 			flame = 1
