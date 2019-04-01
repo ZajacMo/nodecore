@@ -101,7 +101,7 @@ end
 minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
 
 minetest.register_node(modname .. ":ash", {
-		description = "Ash",
+		description = "Ash Cube",
 		tiles = {modname .. "_ash.png"},
 		groups = {
 			falling_node = 1,
