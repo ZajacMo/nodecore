@@ -19,6 +19,15 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
 
+- Verify that issue8378 workaround is actually doing anything and
+  is actually necessary.
+
+- Redesign how falling_nodes pile up.
+	- Make sure nodes are not destroyed.
+	- Allow node displacement sideways?
+	- Maybe force column to coordinate settling in order, to
+	  avoid race conditions?
+
 - Water/wetness/coolant rework.
 	- Move nodecore.quenched() somewhere more sensible.
 	- Register a "wet" and "absorbant" groups.
