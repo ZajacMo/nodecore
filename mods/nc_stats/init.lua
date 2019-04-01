@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, os, pairs, table, type, vector
-= math, minetest, nodecore, os, pairs, table, type, vector
+    = math, minetest, nodecore, os, pairs, table, type, vector
 local math_random, os_date, table_remove
-= math.random, os.date, table.remove
+    = math.random, os.date, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -196,16 +196,18 @@ local function flushkey(k)
 	v.datafix = v.datafix or 0
 	if v.datafix < 1 then
 		v.datafix = 1
-		
+
 		local q = k and v or v.players
 		for _, n in pairs({"hurt", "heal", "cheat"}) do
 			local old = q[n]
-			q[n] = {}
-			for k, v in pairs(old) do
-				if type(v) == "number" then
-					dbadd_nav(v, nil, q[n], unpackreason(k))
-				else
-					q[n][k] = v
+			if old then
+				q[n] = {}
+				for k, v in pairs(old) do
+					if type(v) == "number" then
+						dbadd_nav(v, nil, q[n], unpackreason(k))
+					else
+						q[n][k] = v
+					end
 				end
 			end
 		end
