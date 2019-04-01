@@ -54,7 +54,7 @@ end
 for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":coal" .. num, {
 			description = "Charcoal Cube",
-			tiles = {txrcoal(num)},
+			tiles = {txrcoal(num) .. "^[noalpha"},
 			groups = { 
 				crumbly = 1,
 				flammable = 5 - math_floor(num / nodecore.fire_max * 4),
@@ -83,7 +83,7 @@ end
 for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":ember" .. num, {
 			description = "Burning Embers",
-			tiles = {txrember(num)},
+			tiles = {txrember(num) .. "^[noalpha"},
 			paramtype = "light",
 			light_source = 6,
 			groups = { 
