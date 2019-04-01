@@ -21,7 +21,7 @@ minetest.register_craftitem(modname .. ":lump_coal", {
 
 local function split(items, name, qty)
 	local two = math_floor(qty / 2)
-	if two > 1 then
+	if two > 0 then
 		items[#items + 1] = {name = name .. " 2", count = two, scatter = 5}
 	end
 	qty = qty - (two * 2)
