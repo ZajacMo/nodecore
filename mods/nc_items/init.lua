@@ -173,16 +173,8 @@ if nodecore.loaded_mods().nc_fire then
 			nodenames = {modname .. ":stack"},
 			neighbors = {"group:igniter"},
 			action = function(pos, node)
-				if nodecore.quenched(pos) then return end
-
 				local stack = nodecore.stack_get(pos)
-				if not stack or stack:is_empty() then return end
-				local def = minetest.registered_items[stack:get_name()] or {}
-				local flam = def.groups and def.groups.flammable
-				if not flam then return end
-
-				if math_random(1, flam) ~= 1 then return end
-				nodecore.ignite(pos, node)
+				return nodecore.fire_check_ignite(pos, {name = stack:get_name()})
 			end
 		})
 end

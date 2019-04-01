@@ -50,9 +50,9 @@ local function txrcoal(num)
 	return name
 end
 
-for num = 1, 8 do
+for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":coal" .. num, {
-			description = "Charcoal",
+			description = "Charcoal Cube",
 			tiles = {txrcoal(num)},
 			groups = { 
 				crumbly = 1,
@@ -79,7 +79,7 @@ local function txrember(num)
 	return name
 end
 
-for num = 1, 8 do
+for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":ember" .. num, {
 			description = "Burning Embers",
 			tiles = {txrember(num)},

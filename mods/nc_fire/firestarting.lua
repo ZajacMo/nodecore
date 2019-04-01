@@ -24,18 +24,16 @@ nodecore.register_craft({
 			local nd = minetest.registered_items[data.node.name] or {}
 			local ng = nd.groups or {}
 			fs = fs * (ng.firestick or 1)
+
 			if math_random(1, 4) > fs then return end
 			minetest.set_node(pos, {name = "nc_fire:fire"})
+
 			if math_random(1, 4) > fs then return end
 			local dir = nodecore.pickrand(nodecore.dirs())
-			local below = {
-				x = pos.x + dir.x,
-				y = pos.y + dir.y,
-				z = pos.z + dir.z
-			}
-			if nodecore.match(below,
-				{groups = {flammable = 1}}) then
-				nodecore.ignite(below)
-			end
+			return nodecore.fire_check_ignite({
+					x = pos.x + dir.x,
+					y = pos.y + dir.y,
+					z = pos.z + dir.z
+				})
 		end
 	})

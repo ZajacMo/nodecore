@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, vector
-    = math, minetest, nodecore, vector
-local math_random
-    = math.random
+local minetest, nodecore, vector
+    = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -106,8 +104,8 @@ nodecore.register_limited_abm({
 			local tdef = minetest.registered_items[tn.name] or {}
 			local flam = tdef and (not tdef.sunlight_propagates)
 			and tdef.groups and tdef.groups.flammable
-			if flam and math_random(1, flam) == 1 then
-				nodecore.ignite(out, tn)
+			if flam then
+				return nodecore.fire_check_ignite(out, tn)
 			end
 		end
 	})

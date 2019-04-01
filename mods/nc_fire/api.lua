@@ -1,16 +1,59 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_floor
-    = math.floor
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
+local math_floor, math_pow, math_random
+    = math.floor, math.pow, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-function nodecore.ignite(pos, node)
+nodecore.fire_max = 8
+
+do
+	local flamedirs = nodecore.dirs()
+	local ventitems = {}
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_items) do
+				if v.groups.flammable and not v.groups.fire_fuel
+				or v.groups.flame or v.name == "air" then
+					ventitems[k] = v.groups.flame or 0
+				end
+			end
+		end)
+	local stackonly = {}
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_items) do
+				if v.groups.is_stack_only then
+					stackonly[k] = true
+				end
+			end
+		end)
+	function nodecore.fire_vents(pos)
+		local found = {}
+		for _, dp in ipairs(flamedirs) do
+			local npos = vector.add(pos, dp)
+			local node = minetest.get_node_or_nil(npos)
+			if not node then return end
+
+			local q
+			if stackonly[node.name] then
+				q = ventitems[nodecore.stack_get(npos):get_name()]
+			else
+				q = ventitems[node.name]
+			end
+			if q then
+				npos.q = q
+				found[#found + 1] = npos 
+			end
+		end
+		return found
+	end
+end
+
+function nodecore.fire_ignite(pos, node)
 	local fuel = nodecore.node_group("fire_fuel", pos, node) or 0
 	if fuel < 0 then fuel = 0 end
-	if fuel > 6 then fuel = 6 end
+	if fuel > nodecore.fire_max then fuel = nodecore.fire_max end
 	fuel = math_floor(fuel)
 	local stack
 	if nodecore.node_group("eject_inv_on_burn", pos, node) then
@@ -22,23 +65,70 @@ function nodecore.ignite(pos, node)
 	end
 	if fuel > 0 then
 		minetest.set_node(pos, {name = modname .. ":ember" .. fuel})
-		minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
-		minetest.sound_play("nc_fire_flamy", {gain = 3, pos = pos})
 	else
 		minetest.set_node(pos, {name = modname .. ":fire"})
 	end
+	minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
+	minetest.sound_play("nc_fire_flamy", {gain = 3, pos = pos})
 	minetest.after(0, function() minetest.check_for_falling(pos) end)
+	return true
 end
 
-function nodecore.snuff(pos, node, groups)
+function nodecore.fire_check_ignite(pos, node, force, ...)
+	local vents = nodecore.fire_vents(pos)
+	if (not vents) or #vents < 1 then return end
+
+	if nodecore.quenched(pos) then return end
+
+	if not force then
+		node = node or minetest.get_node(pos)
+		local def = minetest.registered_items[node.name] or {}
+		local flam = def.groups and def.groups.flammable
+		if not flam then return end
+		if math_random(1, flam) ~= 1 then return end
+	end
+
+	return nodecore.fire_ignite(pos, node, ...)
+end
+
+local function snuff(cons, coal, pos, node)
 	local ember = nodecore.node_group("ember", pos, node)
 	if not ember then return end
-	ember = ember - 1
+	ember = ember - cons
 	if ember > 0 then
-		minetest.set_node(pos, {name = modname .. ":ember" .. ember})
+		if coal then
+			minetest.set_node(pos, {name = modname .. ":coal" .. ember})
+			minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
+		else
+			minetest.set_node(pos, {name = modname .. ":ember" .. ember})
+		end
 	else
 		minetest.set_node(pos, {name = modname .. ":ash"})
 		minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 	end
 	minetest.after(0, function() minetest.check_for_falling(pos) end)
+	return true
+end
+
+function nodecore.fire_snuff(...) return snuff(1, true, ...) end
+function nodecore.fire_expend(...) return snuff(1, false, ...) end
+
+function nodecore.fire_check_expend(pos, node)
+	local r = math_random(1, 16 * math_pow(2,
+			nodecore.node_group("ember", pos, node)))
+	if r == 1 then return nodecore.fire_expend(pos, node) end
+end
+
+local function snuffcheck(pos, node)
+	if nodecore.quenched(pos) then return true end
+	local vents = nodecore.fire_vents(pos, node)
+	if not vents then return end
+	if #vents < 1 then return true end
+	return false, vents
+end
+
+function nodecore.fire_check_snuff(pos, node)
+	local res, vents = snuffcheck(pos, node)
+	res = res and nodecore.fire_snuff(pos)
+	return res, vents
 end
