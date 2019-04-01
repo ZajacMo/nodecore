@@ -30,7 +30,7 @@ minetest.register_node(modname .. ":tree", {
 		},
 		groups = {
 			choppy = 2,
-			flammable = 5,
+			flammable = 8,
 			fire_fuel = 6
 		},
 		sounds = nodecore.sounds("nc_tree_woody")
