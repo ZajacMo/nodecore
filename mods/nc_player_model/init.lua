@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
-local math_floor, table_concat
-    = math.floor, table.concat
+local math, minetest, nodecore, os, pairs, table
+    = math, minetest, nodecore, os, pairs, table
+local math_floor, os_date, table_concat
+    = math.floor, os.date, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -33,6 +33,12 @@ local setskin = setcached(function(player, x)
 		player:set_properties({textures = {x}})
 	end)
 
+local dayskins = {
+	day_2_14 = true,
+	day_3_17 = true,
+	day_4_1 = true,
+	day_10_31 = true
+}
 local function updatevisuals(player)
 	local hp = player:get_hp()
 	if hp <= 0 then
@@ -53,6 +59,9 @@ local function updatevisuals(player)
 	end
 
 	local layers = {"base.png"}
+	local date = os_date("!*t")
+	local bare = "day_" .. date.month .. "_" .. date.day
+	if dayskins[bare] then layers[#layers + 1] = bare .. ".png" end
 	local dmg = (1 - hp / 20) * 4
 	local dmgi = math_floor(dmg)
 	local dmgf = dmg - dmgi
