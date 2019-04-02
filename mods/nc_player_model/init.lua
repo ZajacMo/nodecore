@@ -33,6 +33,7 @@ local setskin = setcached(function(player, x)
 		player:set_properties({textures = {x}})
 	end)
 
+local skintimes = {}
 local dayskins = {
 	day_2_14 = true,
 	day_3_17 = true,
@@ -58,6 +59,12 @@ local function updatevisuals(player)
 		end
 	end
 
+	local pname = player:get_player_name()
+	local now = minetest.get_us_time() / 1000000
+	local last = skintimes[pname] or 0
+	if now < last + 2 then return end
+	skintimes[pname] = now
+	
 	local layers = {"base.png"}
 	local date = os_date("!*t")
 	local bare = "day_" .. date.month .. "_" .. date.day
