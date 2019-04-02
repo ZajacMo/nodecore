@@ -53,7 +53,7 @@ end
 
 for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":coal" .. num, {
-			description = "Charcoal Cube",
+			description = "Charcoal",
 			tiles = {txrcoal(num) .. "^[noalpha"},
 			groups = { 
 				crumbly = 1,
@@ -102,7 +102,7 @@ end
 minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
 
 minetest.register_node(modname .. ":ash", {
-		description = "Ash Cube",
+		description = "Ash",
 		tiles = {modname .. "_ash.png"},
 		groups = {
 			falling_node = 1,

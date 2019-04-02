@@ -52,7 +52,7 @@ end
 
 nodecore.register_lode("Block", {
 		type = "node",
-		description = "## Lode Cube",
+		description = "## Lode",
 		tiles = { modname .. "_#.png" },
 		light_source = 8,
 		crush_damage = 4
