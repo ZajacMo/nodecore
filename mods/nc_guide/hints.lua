@@ -158,14 +158,12 @@ addhint("put a stone tip onto a tool",
 ------------------------------------------------------------------------
 -- LODE
 
-local lodestratum = {true, "nc_lode:stone", "nc_lode:ore"}
-
 addhint("found a lode stratum",
-	lodestratum)
+	"group:lodey")
 
 addhint("found lode ore",
 	"nc_lode:ore",
-	lodestratum)
+	"group:lodey")
 
 addhint("dug up lode ore",
 	"nc_lode:cobble_loose",
@@ -209,6 +207,11 @@ addhint("tempered a lode tool head",
 		"nc_lode:toolhead_pick_tempered"
 	},
 	"anvil making lode toolhead_mallet")
+
+addhint("welded a lode pick and spade together",
+	"assemble lode mattock head",
+	"anvil making lode toolhead_pick")
+
 
 ------------------------------------------------------------------------
 -- TOTE

@@ -12,7 +12,7 @@ local function reg(suff, def)
 			description = "Lode " .. suff,
 			name = suff:lower(),
 			is_ground_content = true,
-			groups = { cracky = 2 },
+			groups = { cracky = 2, lodey = 1 },
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	def.fullname = modname .. ":" .. def.name
@@ -50,6 +50,7 @@ for i = 1, nodecore.hard_stone_strata do
 				and (":stone_" .. (i - 1)) or ":stone"),
 			strata = stratstone,
 			groups = {
+				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
 			}
@@ -61,6 +62,7 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ":cobble",
 			strata = stratore,
 			groups = {
+				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
 			}
@@ -72,6 +74,7 @@ reg("Cobble", {
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
+				lodey = 1,
 				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3

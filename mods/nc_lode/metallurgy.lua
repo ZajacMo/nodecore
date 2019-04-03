@@ -61,7 +61,7 @@ function nodecore.register_lode(shape, rawdef)
 			end
 		end
 
-		if def.bytemper then def.bytemper(temper.name, def) end
+		if def.bytemper then def.bytemper(temper, def) end
 
 		minetest.register_item(modname .. ":" .. def.name, def)
 	end

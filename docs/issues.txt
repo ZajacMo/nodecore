@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Allow lode cube cooking/cooling in placed form.
+
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.

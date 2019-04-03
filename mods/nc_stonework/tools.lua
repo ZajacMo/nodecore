@@ -29,7 +29,7 @@ nodecore.extend_item(chip, function(copy, orig)
 						itemstack:set_count(itemstack:get_count() - 1)
 						if placer then
 							nodecore.player_stat_add(1, placer, "craft",
-								"assemble " .. itemstack:get_name())
+								"assemble " .. v.to)
 						end
 						return itemstack
 					end
