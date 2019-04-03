@@ -16,9 +16,24 @@ local function gethint(player)
 
 	local rawdb = nodecore.statsdb[pname] or {}
 	local db = {}
-	for _, r in ipairs({"inv", "punch", "dig", "place"}) do
+	for _, r in ipairs({"inv", "punch", "dig", "place", "craft"}) do
 		for k, v in pairs(rawdb[r] or {}) do
 			db[k] = v
+			db[r .. ":" .. k] = v
+		end
+	end
+	for k, v in pairs(minetest.registered_items) do
+		if db[k] then
+			if v.tool_capabilities and v.tool_capabilities.groupcaps then
+				for gn, gv in pairs(v.tool_capabilities.groupcaps) do
+					for gt in pairs(gv.times or {}) do
+						db["toolcap:" .. gn .. ":" .. gt] = true
+					end
+				end
+			end
+			for gn, gv in pairs(v.groups or {}) do
+				db["group:" .. gn] = gv
+			end
 		end
 	end
 

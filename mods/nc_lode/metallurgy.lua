@@ -7,23 +7,40 @@ local math_exp, math_floor, math_log, math_random
 
 local modname = minetest.get_current_modname()
 
+local tempers = {
+	{
+		name = "hot",
+		desc = "Glowing",
+		sound = "annealed",
+		glow = true
+	},
+	{
+		name = "annealed",
+		desc = "Annealed",
+		sound = "annealed"
+	},
+	{
+		name = "tempered",
+		desc = "Tempered",
+		sound = "tempered"
+	}
+}
+
 function nodecore.register_lode(shape, rawdef)
-	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
+	for _, temper in pairs(tempers) do
 		local def = nodecore.underride({}, rawdef)
-		local snd = temper:lower()
-		if snd == "hot" then snd = "annealed" end
 		def = nodecore.underride(def, {
-				description = temper .. " Lode " .. shape,
-				name = (shape .. "_" .. temper):lower():gsub(" ", "_"),
+				description = temper.desc .. " Lode " .. shape,
+				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
 				groups = { cracky = 3 },
-				["metal_temper_" .. temper:lower()] = true,
+				["metal_temper_" .. temper.name] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				metal_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
-				sounds = nodecore.sounds("nc_lode_" .. snd)
+				sounds = nodecore.sounds("nc_lode_" .. temper.sound)
 			})
 		def.metal_temper_cool = (not def.metal_temper_hot) or nil
-		if temper ~= "Hot" then
+		if not temper.glow then
 			def.light_source = nil
 		else
 			def.groups = def.groups or {}
@@ -34,17 +51,17 @@ function nodecore.register_lode(shape, rawdef)
 		if def.tiles then
 			local t = {}
 			for k, v in pairs(def.tiles) do
-				t[k] = v:gsub("#", temper:lower())
+				t[k] = v:gsub("#", temper.name)
 			end
 			def.tiles = t
 		end
 		for k, v in pairs(def) do
 			if type(v) == "string" then
-				def[k] = v:gsub("##", temper):gsub("#", temper:lower())
+				def[k] = v:gsub("##", temper.desc):gsub("#", temper.name)
 			end
 		end
 
-		if def.bytemper then def.bytemper(temper, def) end
+		if def.bytemper then def.bytemper(temper.name, def) end
 
 		minetest.register_item(modname .. ":" .. def.name, def)
 	end

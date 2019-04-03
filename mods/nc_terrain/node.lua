@@ -75,7 +75,8 @@ for i = 1, nodecore.hard_stone_strata do
 			description = "Stone",
 			tiles = { nodecore.hard_stone_tile(i) },
 			groups = {
-				cracky = i + 2
+				cracky = i + 2,
+				hard_stone = i
 			},
 			drop_in_place = modname .. ((i > 1)
 				and (":hard_stone_" .. (i - 1)) or ":stone"),

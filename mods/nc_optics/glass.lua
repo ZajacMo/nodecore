@@ -50,7 +50,7 @@ local moltdef = {
 	on_punch = nodecore.node_punch_hurt,
 	damage_per_second = 4,
 	drop = "",
-	groups = { igniter = 1 },
+	groups = { igniter = 1, silica = 1 },
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",	
 	liquid_alternative_source = modname .. ":glass_hot_source",
@@ -68,9 +68,8 @@ minetest.register_node(modname .. ":glass_hot_flowing",
 			paramtype2 = "flowingliquid"
 			}, moltdef))
 
-
 nodecore.register_ambiance({
-		label = "Lava Source Ambiance",
+		label = "Glass Source Ambiance",
 		nodenames = {modname .. ":glass_hot_source"},
 		neigbors = {"air"},
 		interval = 1,
@@ -79,7 +78,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.2
 	})
 nodecore.register_ambiance({
-		label = "Lava Flow Ambiance",
+		label = "Glass Flow Ambiance",
 		nodenames = {modname .. ":glass_hot_flowing"},
 		neigbors = {"air"},
 		interval = 1,

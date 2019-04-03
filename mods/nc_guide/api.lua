@@ -20,7 +20,7 @@ local function conv(spec)
 			end
 		end
 		return function(db)
-			for i = 2, #spec do
+			for i = 1, #spec do
 				if not db[spec[i]] then return end
 			end
 			return true

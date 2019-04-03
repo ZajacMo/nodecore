@@ -49,16 +49,21 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			strata = stratstone,
-			groups = {cracky = i + 2}
+			groups = {
+				cracky = i + 2,
+				hard_stone = i
+			}
 		})
-
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
 			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
 				.. modname .. "_mask_ore.png)" },
 			drop_in_place = modname .. ":cobble",
 			strata = stratore,
-			groups = {cracky = i + 2}
+			groups = {
+				cracky = i + 2,
+				hard_stone = i
+			}
 		})
 end
 

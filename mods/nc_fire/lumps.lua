@@ -35,7 +35,7 @@ for num = 0, nodecore.fire_max do
 	split(items, modname .. ":lump_ash", nodecore.fire_max - num)
 	local name = modname .. ((num == 0) and ":ash" or (":coal" .. num))
 	nodecore.register_craft({
-			label = "chop " .. name .. " block",
+			label = "chop " .. name,
 			action = "pummel",
 			toolgroups = {choppy = 1},
 			nodes = {

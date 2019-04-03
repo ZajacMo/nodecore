@@ -44,7 +44,9 @@ nodecore.register_limited_abm({
 		chance = 1,
 		nodenames = {"group:flammable"},
 		neighbors = {"group:igniter"},
-		action = nodecore.fire_check_ignite
+		action = function(pos, node)
+			return nodecore.fire_check_ignite(pos, node)
+		end
 	})
 
 nodecore.register_limited_abm({

@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- New content needs hints!
-	- Go thru github commits to see what.
-	- Definitely includes optics.
-
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
@@ -130,7 +126,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  
-	- Use recipes for hint guide instead of just items in hand.
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
 
