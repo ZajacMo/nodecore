@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_pow
-    = math.pow
+local math_floor, math_pow
+    = math.floor, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -83,9 +83,11 @@ reg("Cobble", {
 		}
 	})
 
-local function regore(name, def, num)
+local oreid = 0
+local function regore(name, def)
+	oreid = oreid + 1
 	return minetest.register_ore(nodecore.underride(def, {
-				name = name .. (num and "_" .. num or ""),
+				name = modname .. oreid,
 				ore_type = "scatter",
 				ore = name,
 				wherein = "nc_terrain:stone",
@@ -106,13 +108,19 @@ for y = 0, 7 do
 	local def = {
 		y_max = 64 - 32 * math_pow(2, y),
 		y_min = 64 - 32 * math_pow(2, y + 1),
-		clust_num_ores = 16,
-		clust_size = 3,
-		clust_scarcity = 8 * 8 * 8 / math_pow(1.5, y),
+		clust_num_ores = math_floor(4 * math_pow(2, y)),
+		clust_size = math_floor(3 * math_pow(1.25, y)),
+		clust_scarcity = math_floor(8 * 8 * 8 * 4 * math_pow(1.25, y)),
 	}
 	if y == 7 then def.y_min = nil end
-	regore(ore, def, y)
+	regore(ore, def)
 end
+regore(ore, {
+		y_max = 48,
+		clust_num_ores = 3,
+		clust_size = 2,
+		clust_scarcity = 8 * 8 * 8,
+	})
 regore(stone, {
 		y_max = 32,
 		clust_num_ores = 4,
