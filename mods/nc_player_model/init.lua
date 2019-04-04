@@ -14,8 +14,22 @@ local anim = {
 	mine      = {x = 43, y = 57},
 	lay       = {x = 58, y = 58},
 	walk_mine = {x = 59, y = 103},
+	swim_up   = {x = 105, y = 162},
+	swim_down = {x = 163, y = 223}
 }
-local animspeed = 57 * 1.25
+
+local speed_default = 57 * 1.25
+
+local animspeed = {
+	stand = speed_default,
+	sit = speed_default,
+	walk = speed_default,
+	mine = speed_default-10,
+	lay = speed_default,
+	walk_mine = speed_default,
+	swim_up = 30,
+	swim_down = 30,
+}
 
 local function setcached(func)
 	local cache = {}
@@ -27,7 +41,7 @@ local function setcached(func)
 	end
 end
 local setanim = setcached(function(player, x)
-		player:set_animation(anim[x] or anim.stand, animspeed)
+		player:set_animation(anim[x], animspeed[x])
 	end)
 local setskin = setcached(function(player, x)
 		player:set_properties({textures = {x}})
@@ -48,14 +62,26 @@ local function updatevisuals(player)
 		local ctl = player:get_player_control()
 		local walk = ctl.up or ctl.down or ctl.right or ctl.left
 		local mine = ctl.LMB or ctl.RMB
-		if walk and mine then
-			setanim(player, "walk_mine")
-		elseif walk then
-			setanim(player, "walk")
-		elseif mine then
-			setanim(player, "mine")
+		local water = minetest.get_node(player:get_pos()).name:find("water")
+
+		if water == nil then
+			if walk and mine then
+				setanim(player, "walk_mine")
+			elseif walk then
+				setanim(player, "walk")
+			elseif mine then
+				setanim(player, "mine")
+			else
+				setanim(player, "stand")
+			end
 		else
-			setanim(player)
+			local v = player:get_player_velocity()
+
+			if v and v.y >= -0.5 then
+				setanim(player, "swim_up")
+			else
+				setanim(player, "swim_down")
+			end
 		end
 	end
 
@@ -94,12 +120,6 @@ minetest.register_on_joinplayer(function(player)
 				visual_size = {x = 0.9, y = 0.9, z = 0.9},
 				mesh = modname .. (nodecore.mt_old and "_old" or "") .. ".b3d"
 			})
-		player:set_local_animation(
-			anim.stand,
-			anim.walk,
-			anim.mine,
-			anim.walk_mine,
-			animspeed)
 		setskin(player, "dummy")
 		setanim(player, "dummy")
 		updatevisuals(player)
