@@ -8,27 +8,14 @@ local math_floor, os_date, table_concat
 local modname = minetest.get_current_modname()
 
 local anim = {
-	stand     = {x = 0,  y = 0},
-	sit       = {x = 1,  y = 1},
-	walk      = {x = 2,  y = 42},
-	mine      = {x = 43, y = 57},
-	lay       = {x = 58, y = 58},
-	walk_mine = {x = 59, y = 103},
-	swim_up   = {x = 105, y = 162},
-	swim_down = {x = 163, y = 223}
-}
-
-local speed_default = 57 * 1.25
-
-local animspeed = {
-	stand = speed_default,
-	sit = speed_default,
-	walk = speed_default,
-	mine = speed_default-10,
-	lay = speed_default,
-	walk_mine = speed_default,
-	swim_up = 30,
-	swim_down = 30,
+	stand     = {x = 0,   y = 0},
+	sit       = {x = 1,   y = 1},
+	walk      = {x = 2,   y = 42},
+	mine      = {x = 43,  y = 57,  speed = 0.85},
+	lay       = {x = 58,  y = 58},
+	walk_mine = {x = 59,  y = 103},
+	swim_up   = {x = 105, y = 162, speed = 0.4},
+	swim_down = {x = 163, y = 223, speed = 0.4}
 }
 
 local function setcached(func)
@@ -41,7 +28,9 @@ local function setcached(func)
 	end
 end
 local setanim = setcached(function(player, x)
-		player:set_animation(anim[x], animspeed[x])
+		local a = anim[x] or anim.stand
+		player:set_animation({x = a.x, y = a.y},
+			72 * (a.speed or 1))
 	end)
 local setskin = setcached(function(player, x)
 		player:set_properties({textures = {x}})
@@ -54,6 +43,37 @@ local dayskins = {
 	day_4_1 = true,
 	day_10_31 = true
 }
+
+local liquids = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v.liquidtype and v.liquidtype ~= "none" then
+				liquids[k] = true
+			end
+		end
+	end)
+local function swimming(player)
+	local found = 0
+	local pos = player:get_pos()
+	for dz = -1, 1 do
+		for dx = -1, 1 do
+			local p = {
+				x = pos.x + dx,
+				y = pos.y - 0.25,
+				z = pos.z + dz
+			}
+			local node = minetest.get_node(p)
+			if node and liquids[node.name] then
+				found = found + 1
+				if found >= 5 then return true end
+			elseif dx == 0 and dz == 0 then
+				return
+			end
+		end
+	end
+	return found >= 5
+end
+
 local function updatevisuals(player)
 	local hp = player:get_hp()
 	if hp <= 0 then
@@ -62,9 +82,8 @@ local function updatevisuals(player)
 		local ctl = player:get_player_control()
 		local walk = ctl.up or ctl.down or ctl.right or ctl.left
 		local mine = ctl.LMB or ctl.RMB
-		local water = minetest.get_node(player:get_pos()).name:find("water")
 
-		if water == nil then
+		if not swimming(player) then
 			if walk and mine then
 				setanim(player, "walk_mine")
 			elseif walk then
@@ -77,7 +96,9 @@ local function updatevisuals(player)
 		else
 			local v = player:get_player_velocity()
 
-			if v and v.y >= -0.5 then
+			if mine then
+				setanim(player, "walk_mine")
+			elseif v and v.y >= -0.5 then
 				setanim(player, "swim_up")
 			else
 				setanim(player, "swim_down")
@@ -90,7 +111,7 @@ local function updatevisuals(player)
 	local last = skintimes[pname] or 0
 	if now < last + 2 then return end
 	skintimes[pname] = now
-	
+
 	local layers = {"base.png"}
 	local date = os_date("!*t")
 	local bare = "day_" .. date.month .. "_" .. date.day
