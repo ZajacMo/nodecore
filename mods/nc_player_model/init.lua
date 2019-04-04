@@ -55,23 +55,23 @@ minetest.after(0, function()
 local function swimming(player)
 	local found = 0
 	local pos = player:get_pos()
-	for dz = -1, 1 do
-		for dx = -1, 1 do
+	local r = 0.6
+	for dz = -r, r, r do
+		for dx = -r, r, r do
 			local p = {
 				x = pos.x + dx,
-				y = pos.y - 0.25,
+				y = pos.y,
 				z = pos.z + dz
 			}
 			local node = minetest.get_node(p)
-			if node and liquids[node.name] then
-				found = found + 1
-				if found >= 5 then return true end
-			elseif dx == 0 and dz == 0 then
-				return
+			if (node.name == "air" or liquids[node.name]) then
+				p.y = p.y - 0.35
+				node = minetest.get_node(p)
 			end
+			if not liquids[node.name] then return end
 		end
 	end
-	return found >= 5
+	return true
 end
 
 local function updatevisuals(player)
