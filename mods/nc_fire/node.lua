@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, type
+    = math, minetest, nodecore, type
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,10 +11,19 @@ minetest.register_node(modname .. ":fire", {
 		description = "Fire",
 		drawtype = "firelike",
 		visual_scale = 1.5,
-		tiles = {modname .. "_fire.png^[opacity:192"},
+		tiles = {
+			{
+				name = "nc_fire_fire.png",
+				animation = {
+					type = "vertical_frames",
+					aspect_w = 24,
+					aspect_h = 24,
+					length = 4
+				}
+			}
+		},
 		paramtype = "light",
 		light_source = 12,
-		use_texture_alpha = true,
 		groups = {
 			igniter = 1,
 			flame = 1
