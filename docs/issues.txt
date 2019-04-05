@@ -18,6 +18,12 @@ ISSUES: Bugs, Cleanup and Refinements
 - Verify that issue8378 workaround is actually doing anything and
   is actually necessary.
 
+- MT 0.4 Support Sunsetting.
+	- Set min in .cdbrelease.lua
+	- Remove references to nodecore.mt_old
+	- remove nc_player_model_old.b3d
+	- Switch line_of_sight to raycast
+
 - Redesign how falling_nodes pile up.
 	- Make sure nodes are not destroyed.
 	- Allow node displacement sideways?
@@ -116,10 +122,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Scripts for automatic metapackage mods?
 	- Git hooks (and git hook setup scripts)?
 	
-- MT 0.4 Support Sunsetting.
-	- Remove references to nodecore.mt_old
-	- remove nc_player_model_old.b3d
-
 - Loose node cleanup.
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
