@@ -58,20 +58,22 @@ local function canseeface(p1, n1, p2, n2)
 	-- determined by light level, but not too close.
 	local o1 = p1:getpos()
 	local o2 = p2:getpos()
+	local e1 = p1:get_properties().eye_height or 1.625
+	local e2 = p2:get_properties().eye_height or 1.625
 	local dx = o1.x - o2.x
 	local dy = o1.y - o2.y
 	local dz = o1.z - o2.z
 	local dsqr = (dx * dx + dy * dy + dz * dz)
 	if dsqr < 1 then return end
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + 1.65, z = o2.z})
+	local ll = minetest.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
 	if not ll then return end
 	local ld = (ll / 15 * distance)
 	if dsqr > (ld * ld) then return end
 
 	-- Check for line of sight from approximage eye level
 	-- of one player to the other.
-	o1.y = o1.y + 1.65
-	o2.y = o2.y + 1.65
+	o1.y = o1.y + e1
+	o2.y = o2.y + e2
 	local l = minetest.line_of_sight(o1, o2, distance / precision)
 	if not l then return end
 
