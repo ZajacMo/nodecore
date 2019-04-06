@@ -19,9 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
   is actually necessary.
 
 - MT 0.4 Support Sunsetting.
-	- Set min in .cdbrelease.lua
-	- Remove references to nodecore.mt_old
-	- remove nc_player_model_old.b3d
 	- Switch line_of_sight to raycast
 
 - Redesign how falling_nodes pile up.

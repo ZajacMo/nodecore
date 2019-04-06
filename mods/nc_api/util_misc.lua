@@ -1,13 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      unpack
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      unpack
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
-
-nodecore.mt_old = minetest.get_version().string:sub(1, 2) == "0."
 
 for k, v in pairs(minetest) do
 	if type(v) == "function" then

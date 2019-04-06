@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, table
-    = math, minetest, nodecore, table
+local math, minetest, table
+    = math, minetest, table
 local math_random, table_remove
     = math.random, table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -126,7 +126,7 @@ minetest.register_on_joinplayer(function(player)
 		--[[
 		local function cslot(n, x, z)
 			return addslot(n, nil, x * 1.6,
-				(nodecore.mt_old and -4 or 5.5) + x / 2,
+				5.5 + x / 2,
 				z * 2.1)
 		end
 

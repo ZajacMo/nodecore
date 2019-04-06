@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, os, pairs, table
-    = math, minetest, nodecore, os, pairs, table
+local math, minetest, os, pairs, table
+    = math, minetest, os, pairs, table
 local math_floor, os_date, table_concat
     = math.floor, os.date, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -139,7 +139,7 @@ minetest.register_on_joinplayer(function(player)
 		player:set_properties({
 				visual = "mesh",
 				visual_size = {x = 0.9, y = 0.9, z = 0.9},
-				mesh = modname .. (nodecore.mt_old and "_old" or "") .. ".b3d"
+				mesh = modname .. ".b3d"
 			})
 		setskin(player, "dummy")
 		setanim(player, "dummy")
