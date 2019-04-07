@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -39,7 +41,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
 				{flow}) < 1
 		end,
 		nodes = {
@@ -56,17 +58,35 @@ nodecore.register_craft({
 		check = function(pos)
 			return #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
 				{flow}) < 1
 			and #minetest.find_nodes_in_area(
 				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
 				{"group:coolant"}) > 0
 		end,
 		nodes = {
 			{
 				match = src,
 				replace = modname .. ":glass_opaque"
+			}
+		}
+	})
+nodecore.register_craft({
+		label = "quench crude glass",
+		action = "cook",
+		cookfx = true,
+		priority = -1,
+		check = function(pos)
+			return #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
+				{"group:coolant"}) > 0
+		end,
+		nodes = {
+			{
+				match = src,
+				replace = modname .. ":glass_crude"
 			}
 		}
 	})
@@ -79,6 +99,13 @@ nodecore.register_limited_abm({
 		chance = 4,
 		nodenames = {src},
 		action = function(pos, node)
+			local meta = minetest.get_meta(pos)
+			local gen = meta:get_int("glassgen")
+			if gen >= 32 and math_random(1, 2) == 1 then
+				minetest.set_node(pos, {name = modname .. ":glass_crude"})
+				minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
+				return nodecore.smokefx(pos, 0.2, 80)
+			end
 			local miny = pos.y
 			local found = {}
 			nodecore.scan_flood(pos, 5, function(p)
@@ -96,5 +123,6 @@ nodecore.register_limited_abm({
 			if #found < 1 then return end
 			local np = nodecore.pickrand(found)
 			minetest.set_node(np, node)
-			return minetest.set_node(pos, {name = flow, param2 = 7})
+			minetest.get_meta(np):set_int("glassgen", gen + 1)
+			minetest.set_node(pos, {name = flow, param2 = 7})
 		end})

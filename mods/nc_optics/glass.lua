@@ -32,6 +32,20 @@ minetest.register_node(modname .. ":glass_opaque", {
 		sounds = nodecore.sounds("nc_optics_glassy")
 	})
 
+minetest.register_node(modname .. ":glass_crude", {
+		description = "Crude Glass",
+		drawtype = "glasslike",
+		tiles = { modname .. "_glass_crude.png^" .. modname .. "_glass_edges.png" },
+		sunlight_propagates = true,
+		paramtype = "light",
+		groups = {
+			silica = 1,
+			falling_node = 1,
+			crumbly = 2
+		},	
+		sounds = nodecore.sounds("nc_terrain_crunchy")
+	})
+
 local molttxr = "nc_terrain_lava.png^nc_optics_glass_glare.png"
 local moltdef = {
 	description = "Molten Glass",
