@@ -5,4 +5,4 @@ local include
 
 include("healing")
 include("ejectinv")
-include("death")
+include("damage")
