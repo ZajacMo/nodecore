@@ -8,6 +8,8 @@ local modname = minetest.get_current_modname()
 minetest.register_craftitem(modname .. ":chip", {
 		description = "Stone Chip",
 		inventory_image = modname .. "_stone.png",
+		wield_image = "[combine:16x16:0,2=" .. modname .. "_stone.png",
+		wield_scale = {x = 1.25, y = 1.25, z = 1.75},
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
