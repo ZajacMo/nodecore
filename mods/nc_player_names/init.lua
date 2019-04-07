@@ -56,8 +56,8 @@ local function canseeface(p1, n1, p2, n2)
 
 	-- Players must be within max distance of one another,
 	-- determined by light level, but not too close.
-	local o1 = p1:getpos()
-	local o2 = p2:getpos()
+	local o1 = p1:get_pos()
+	local o2 = p2:get_pos()
 	local e1 = p1:get_properties().eye_height or 1.625
 	local e2 = p2:get_properties().eye_height or 1.625
 	local dx = o1.x - o2.x
@@ -121,7 +121,7 @@ minetest.register_globalstep(function()
 					local n2 = p2:get_player_name()
 					local i = h[n2]
 					if canseeface(p1, n1, p2, n2) then
-						local p = p2:getpos()
+						local p = p2:get_pos()
 						p.y = p.y + 1.25
 
 						-- Create a new HUD if not present.

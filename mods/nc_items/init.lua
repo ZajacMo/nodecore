@@ -83,7 +83,7 @@ local item = {
 	on_step = function(self, dtime, ...)
 		bii.on_step(self, dtime, ...)
 
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		if not self.oldpos or not vector.equals(pos, self.oldpos) then
 			self.oldpos = pos
 			self.sitting = 0
@@ -129,7 +129,7 @@ local falling = {
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				minetest.add_item(self.object:getpos(), stack)
+				minetest.add_item(self.object:get_pos(), stack)
 				:set_velocity({x = 0, y = 0, z = 0})
 				return self.object:remove()
 			end

@@ -43,7 +43,7 @@ local function checkinv(player)
 	local slots = math_floor(nodecore.getphealth(player) / 20 * (size - 2) + 0.5) + 2
 
 	if #reg > slots then
-		local pos = player:getpos()
+		local pos = player:get_pos()
 		while #reg > slots do
 			local n = pickend(#reg)
 			local i = reg[n]
@@ -59,7 +59,7 @@ local function checkinv(player)
 
 	local fill = size - slots
 	if #inj > fill then
-		local pos = player:getpos()
+		local pos = player:get_pos()
 		for i = 1, #inj / 2 do
 			inj[i], inj[#inj + 1 - i] = inj[#inj + 1 - i], inj[i]
 		end

@@ -13,7 +13,7 @@ local function envcheck(player)
 
 	if player:get_breath() < 11 then return end
 
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local eyeheight = player:get_properties().eye_height or 1.625
 	pos.y = pos.y + eyeheight
 

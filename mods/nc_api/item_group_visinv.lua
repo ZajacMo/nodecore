@@ -58,7 +58,7 @@ minetest.register_entity(modname .. ":stackent", {
 		initial_properties = stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
-			local pos = self.object:getpos()
+			local pos = self.object:get_pos()
 			local stack = nodecore.stack_get(pos)
 			if not stack or stack:is_empty() then return self.object:remove() end
 

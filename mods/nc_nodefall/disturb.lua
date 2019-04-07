@@ -57,7 +57,7 @@ minetest.register_globalstep(function(dtime)
 		for i, v in ipairs(minetest.get_connected_players()) do
 			local name = v:get_player_name()
 
-			local pos = v:getpos()
+			local pos = v:get_pos()
 			local old = oldpos[name] or pos
 			oldpos[name] = pos
 

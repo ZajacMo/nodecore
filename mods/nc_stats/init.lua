@@ -140,7 +140,7 @@ local function movement(dt, player)
 		playdb[pn] = pd
 	end
 
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local dir = player:get_look_dir()
 	local cur = { pos.x, pos.y, pos.z, dir.x, dir.y, dir.z }
 	local moved

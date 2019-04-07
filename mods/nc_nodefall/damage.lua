@@ -18,8 +18,8 @@ fallnode.on_step = function(self, dtime, ...)
 		return oldtick(self, dtime, ...)
 	end
 
-	local pos = self.object:getpos()
-	local vel = self.object:getvelocity()
+	local pos = self.object:get_pos()
+	local vel = self.object:get_velocity()
 	local v = vector.length(vel)
 	local q = v * v * dtime * self.crush_damage
 	for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
