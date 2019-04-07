@@ -56,5 +56,5 @@ function nodecore.node_sound(pos, kind, opts)
 	local t = {}
 	for k, v in pairs(def.sounds[kind]) do t[k] = v end
 	t.pos = pos
-	return nodecore.sound_play_except(pos, kind, opts and opts.except)
+	return nodecore.sound_play_except(t.name, t, opts and opts.except)
 end
