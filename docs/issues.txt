@@ -18,9 +18,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Verify that issue8378 workaround is actually doing anything and
   is actually necessary.
 
-- MT 0.4 Support Sunsetting.
-	- Switch line_of_sight to raycast
-
 - Redesign how falling_nodes pile up.
 	- Make sure nodes are not destroyed.
 	- Allow node displacement sideways?
