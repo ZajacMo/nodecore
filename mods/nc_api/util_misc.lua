@@ -105,12 +105,16 @@ end
 function nodecore.toolspeed(what, groups)
 	if not what then return end
 	local dg = what:get_tool_capabilities().groupcaps
+	minetest.log(dump({dg = dg, groups = groups}))
 	local t
 	for gn, lv in pairs(groups) do
 		local gt = dg[gn]
 		gt = gt and gt.times
 		gt = gt and gt[lv]
 		if gt and (not t or t > gt) then t = gt end
+	end
+	if (not t) and (not what:is_empty()) then
+		return nodecore.toolspeed(ItemStack(""), groups)
 	end
 	return t
 end

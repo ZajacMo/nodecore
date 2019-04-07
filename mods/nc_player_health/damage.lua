@@ -5,9 +5,11 @@ local ipairs, minetest, vector
 
 minetest.register_on_player_hpchange(function(player, hp)
 		if hp < 0 then
+			local pname = player:get_player_name()
 			local pos = player:get_pos()
 			for _, p in ipairs(minetest.get_connected_players()) do
-				if p ~= player and vector.distance(p:get_pos(), pos) <= 32 then
+				if p:get_playe_name() ~= player
+				and vector.distance(p:get_pos(), pos) <= 32 then
 					minetest.sound_play("player_damage", {
 							to_player = p:get_player_name(),
 							pos = pos,
