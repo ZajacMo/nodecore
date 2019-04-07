@@ -40,7 +40,7 @@ minetest.register_node(modname .. ":eggcorn", {
 			end
 			minetest.log((whom and whom:get_player_name() or "unknown")
 				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
-			
+
 			stack:set_count(stack:get_count() - 1)
 			return stack
 		end
@@ -94,8 +94,30 @@ nodecore.register_limited_abm({
 						return false
 					end
 				end)
-			local g = (meta:get_float("growth") or 0)
-			+ math_sqrt(d * w) * math_random()
+			local rate = math_sqrt(d * w)
+			local zero = {x = 0, y = 0, z = 0}
+			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
+				{
+					amount = rate,
+					time = 10,
+					minpos = {
+						x = pos.x - 0.3,
+						y = pos.y + 33/64,
+						z = pos.z - 0.3
+					},
+					maxpos = {
+						x = pos.x + 0.3,
+						y = pos.y + 33/64, 
+						z= pos.z + 0.3
+					},
+					minvel = zero,
+					maxvel = zero,
+					minexptime = 0.1,
+					maxexptime = 0.5,
+					minsize = 1,
+					maxsize = 3,
+				})
+			local g = (meta:get_float("growth") or 0) + rate * math_random()
 			if g >= 5000 then
 				meta:from_table({})
 				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
