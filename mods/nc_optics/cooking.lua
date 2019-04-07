@@ -32,6 +32,13 @@ nodecore.register_cook_abm({
 local src = modname .. ":glass_hot_source"
 local flow = modname .. ":glass_hot_flowing"
 
+local function near(pos, crit)
+	return #minetest.find_nodes_in_area(
+		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		{x = pos.x + 1, y = pos.y, z = pos.z + 1},
+		crit) > 0
+end
+
 nodecore.register_craft({
 		label = "cool clear glass",
 		action = "cook",
@@ -39,10 +46,7 @@ nodecore.register_craft({
 		duration = 120,
 		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{flow}) < 1
+			return not near(pos, {flow})
 		end,
 		nodes = {
 			{
@@ -51,19 +55,33 @@ nodecore.register_craft({
 			}
 		}
 	})
+
+nodecore.register_craft({
+		label = "cool float glass",
+		action = "cook",
+		duration = 120,
+		cookfx = {smoke = true, hiss = true},
+		check = function(pos)
+			local node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
+			local def = minetest.registered_items[node.name]
+			return def and def.groups and def.groups.lava
+			and not near(pos, {flow})
+		end,
+		nodes = {
+			{
+				match = src,
+				replace = modname .. ":glass_float"
+			}
+		}
+	})
+
 nodecore.register_craft({
 		label = "quench opaque glass",
 		action = "cook",
 		cookfx = true,
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{flow}) < 1
-			and #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{"group:coolant"}) > 0
+			return (not near(pos, {flow}))
+			and near(pos, {"group:coolant"})
 		end,
 		nodes = {
 			{
@@ -76,12 +94,9 @@ nodecore.register_craft({
 		label = "quench crude glass",
 		action = "cook",
 		cookfx = true,
-		priority = -1,
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{"group:coolant"}) > 0
+			return near(pos, {flow})
+			and near(pos, {"group:coolant"})
 		end,
 		nodes = {
 			{
