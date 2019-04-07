@@ -1,22 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, vector
-    = ipairs, minetest, vector
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_on_player_hpchange(function(player, hp)
 		if hp < 0 then
-			local pname = player:get_player_name()
-			local pos = player:get_pos()
-			for _, p in ipairs(minetest.get_connected_players()) do
-				if p:get_playe_name() ~= player
-				and vector.distance(p:get_pos(), pos) <= 32 then
-					minetest.sound_play("player_damage", {
-							to_player = p:get_player_name(),
-							pos = pos,
-							gain = 0.5
-						})
-				end
-			end
+			nodecore.sound_play_except("player_damage", {
+					pos = player:get_pos(),
+					gain = 0.5
+					}, player)
 		end
 		local t = player:get_hp()
 		if hp + t <= 0 then

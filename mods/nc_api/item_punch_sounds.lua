@@ -1,26 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, vector
-    = ipairs, minetest, nodecore, pairs, vector
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
-
-function nodecore.node_sound(pos, kind, opts)
-	if nodecore.stack_sounds(pos, kind) then return end
-	local node = opts and opts.node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
-	if (not def.sounds) or (not def.sounds[kind]) then return end
-	local t = {}
-	for k, v in pairs(def.sounds[kind]) do t[k] = v end
-	t.pos = pos
-	local except = opts and opts.except and opts.except:get_player_name()
-	if not except then return minetest.sound_play(t.name, t) end
-	for _, p in ipairs(minetest.get_connected_players()) do
-		if p:get_player_name() ~= except
-		and vector.distance(p:get_pos(), pos) <= 32 then
-			t.to_player = p:get_player_name()
-			minetest.sound_play(t.name, t)
-		end
-	end
-end
 
 local lasthit = {}
 

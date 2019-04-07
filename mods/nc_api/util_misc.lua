@@ -105,7 +105,6 @@ end
 function nodecore.toolspeed(what, groups)
 	if not what then return end
 	local dg = what:get_tool_capabilities().groupcaps
-	minetest.log(dump({dg = dg, groups = groups}))
 	local t
 	for gn, lv in pairs(groups) do
 		local gt = dg[gn]
@@ -255,13 +254,4 @@ end
 function nodecore.node_change(pos, node, newname)
 	if node.name == newname then return end
 	return minetest.set_node(pos, underride({name = newname}, node))
-end
-
-function nodecore.sounds(name, gfoot, gdug, gplace)
-	return {
-		footstep = {name = name, gain = gfoot or 0.2},
-		dig = {name = name, gain = gdug or 0.5},
-		dug = {name = name, gain = gdug or 1},
-		place = {name = name, gain = gplace or 1}
-	}
 end
