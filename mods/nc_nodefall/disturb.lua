@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, tostring, vector
-    = ipairs, math, minetest, nodecore, tostring, vector
+local ipairs, math, minetest, nodecore, vector
+    = ipairs, math, minetest, nodecore, vector
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,7 +38,7 @@ local function fallcheck(name, start)
 	nodecore.falling_repose_check(pos)
 	if minetest.get_node(pos).name ~= prev then
 		minetest.log(modname .. ": " .. name .. " disturbed "
-			.. prev .. " at " .. tostring(pos))
+			.. prev .. " at " .. minetest.pos_to_string(pos))
 	end
 end
 
