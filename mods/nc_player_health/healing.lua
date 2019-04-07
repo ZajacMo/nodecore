@@ -30,8 +30,8 @@ local function envcheck(player)
 			y = math_random() * 128 - 64,
 			z = math_random() * 128 - 64
 		})
-	local _, hit = minetest.line_of_sight(pos, target)
-	hit = hit or target
+	local hit = minetest.raycast(pos, target, false)()
+	hit = hit and hit.under or target
 
 	stats.space = vector.distance(pos, hit)
 

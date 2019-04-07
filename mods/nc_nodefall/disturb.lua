@@ -18,8 +18,9 @@ local function fallcheck(name, start)
 			y = math_random() * 128 - 64,
 			z = math_random() * 128 - 64
 		})
-	local clr, pos = minetest.line_of_sight(start, target)
-	if clr then return end
+	local pointed = minetest.raycast(start, target, false)()
+	if not pointed or not pointed.under then return end
+	local pos = pointed.under
 
 	local found = minetest.find_nodes_in_area(
 		vector.subtract(pos, radius),
@@ -27,6 +28,7 @@ local function fallcheck(name, start)
 		"group:falling_node")
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
+
 
 	local miny = pos.y - 64
 	repeat pos.y = pos.y - 1 until pos.y < miny or not nodecore.match(pos, falling)

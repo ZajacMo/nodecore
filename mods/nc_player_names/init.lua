@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, tonumber
-    = math, minetest, pairs, tonumber
+local math, minetest, pairs, tonumber, type
+    = math, minetest, pairs, tonumber, type
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -70,12 +70,15 @@ local function canseeface(p1, n1, p2, n2)
 	local ld = (ll / 15 * distance)
 	if dsqr > (ld * ld) then return end
 
-	-- Check for line of sight from approximage eye level
+	-- Check for line of sight from approximate eye level
 	-- of one player to the other.
 	o1.y = o1.y + e1
 	o2.y = o2.y + e2
-	local l = minetest.line_of_sight(o1, o2, distance / precision)
-	if not l then return end
+	for pt in minetest.raycast(o1, o2) do
+		if pt.type ~= "object"
+		or (pt.ref ~= p2 and pt.ref ~= p1)
+		then return end
+	end
 
 	-- Players must be facing each other; cannot identify another
 	-- player's face when their back is turned.  Note that
