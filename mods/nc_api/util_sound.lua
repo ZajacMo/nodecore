@@ -42,7 +42,7 @@ function nodecore.sound_play_except(name, def, pname)
 		local pn = p:get_player_name()
 		if pn ~= pname and ((not def.pos)
 			or (vector.distance(p:get_pos(), def.pos) <= 32)) then
-			t.to_player = pn
+			def.to_player = pn
 			minetest.sound_play(name, def)
 		end
 	end
