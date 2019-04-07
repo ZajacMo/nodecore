@@ -45,7 +45,7 @@ local function envcheck(player)
 	local agg = cache[pname]
 	if not agg then
 		agg = {}
-		local raw = player:get_attribute("healthenv")
+		local raw = player:get_meta():get_string("healthenv")
 		if raw and raw ~= "" then
 			agg = minetest.deserialize(raw)
 		end
@@ -57,7 +57,7 @@ local function envcheck(player)
 	agg.dirty = (agg.dirty or 0) + 1
 	if agg.dirty >= 5 then
 		agg.dirty = nil
-		player:set_attribute("healthenv",
+		player:get_meta():set_string("healthenv",
 			minetest.serialize(agg))
 		for k, v in pairs(agg) do
 			agg[k] = 1 - math_exp(-v)
@@ -75,7 +75,7 @@ local function envcheck(player)
 end
 
 minetest.register_on_dieplayer(function(player)		
-		player:set_attribute("healthenv", "")
+		player:get_meta():set_string("healthenv", "")
 		cache[player:get_player_name()] = nil
 	end)
 

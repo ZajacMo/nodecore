@@ -50,7 +50,7 @@ local function playeradd(qty, player, ...)
 	if not pname then return end
 	local data = db[pname]
 	if not data then
-		data = load_check(player:get_attribute(modname))
+		data = load_check(player:get_meta():get_string(modname))
 		db[pname] = data
 	end
 	dbadd(qty, pname, ...)
@@ -219,7 +219,7 @@ local function flushkey(k)
 
 	local player = minetest.get_player_by_name(k)
 	if player then
-		return player:set_attribute(modname, minetest.serialize(v))
+		return player:get_meta():set_string(modname, minetest.serialize(v))
 	end
 end
 
