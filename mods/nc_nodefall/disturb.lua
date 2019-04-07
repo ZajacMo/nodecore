@@ -23,7 +23,7 @@ local function fallcheck(name, start)
 
 	local found = minetest.find_nodes_in_area(
 		vector.subtract(pos, radius),
-		vector.subtract(pos, radius),
+		vector.add(pos, radius),
 		"group:falling_node")
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
