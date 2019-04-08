@@ -45,6 +45,14 @@ minetest.register_on_leaveplayer(function(player)
 ------------------------------------------------------------------------
 -- GLOBAL TICK HUD MANAGEMENT
 
+local function fluidmedium(pos)
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_items[node.name]
+	if not def then return node.name end
+	if def.sunlight_propagates then return "CLEAR" end
+	return def.liquid_alternative_source or node.name
+end
+
 -- Determine if player 1 can see player 2's face, including
 -- checks for distance, line-of-sight, and facing direction.
 local function canseeface(p1, n1, p2, n2)
@@ -70,25 +78,15 @@ local function canseeface(p1, n1, p2, n2)
 	-- Make sure players' eyes are inside the same fluid.
 	o1.y = o1.y + e1
 	o2.y = o2.y + e2
-	local f1 = minetest.get_node(o1).name
-	local d1 = minetest.registered_items[f1]
-	f1 = d1 and d1.liquid_alterantive_source or f1
-	local f2 = minetest.get_node(o2).name
-	local d2 = minetest.registered_items[f2]
-	f2 = d2 and d2.liquid_alterantive_source or f2
-	if f1 ~= f2 then return minetest.log(dump({f1, f2}))end
+	local f1 = fluidmedium(o1)
+	local f2 = fluidmedium(o2)
+	if f1 ~= f2 then return end
 
 	-- Check for line of sight from approximate eye level
 	-- of one player to the other.
 	for pt in minetest.raycast(o1, o2, true, true) do
 		if pt.type == "node" then
-			local nn = minetest.get_node(pt.under).name
-			local nd = minetest.registered_items[nn]
-			if not nd then return end
-			if not (f1 == "air" and nd.sunlight_propagates) then
-				nn = nd.liquid_alternative_source or nn
-				if nn ~= f1 then return end
-			end
+			if fluidmedium(pt.under) ~= f1 then return end
 		elseif pt.type == "object" then
 			if pt.ref ~= p1 and pt.ref ~= p2 then return end
 		else
