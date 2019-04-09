@@ -1,4 +1,5 @@
 version.lua	export-subst
-.*		export-ignore
+.git*		export-ignore
+.lua*		export-ignore
 docs		export-ignore
 src		export-ignore
