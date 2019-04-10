@@ -18,3 +18,7 @@ minetest.register_on_joinplayer(function(player)
 				zoom_fov = 60
 			})
 	end)
+
+minetest.register_allow_player_inventory_action(function(_, action)
+		return action == "move" and 0 or 1000000
+	end)
