@@ -1,13 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest
-    = ipairs, minetest
+local minetest
+    = minetest
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_on_joinplayer(function(player)
 		local inv = player:get_inventory()
-		for _, l in ipairs(inv:get_lists()) do
-			inv:set_size(l, l == "main" and 8 or 0)
-		end
+		inv:set_size("main", 8)
+		inv:set_size("craft", 0)
+		inv:set_size("craftpreview", 0)
+		inv:set_size("craftresult", 0)
 
 		player:set_physics_override({speed = 1.25})
 
