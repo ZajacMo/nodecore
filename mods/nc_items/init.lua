@@ -129,8 +129,8 @@ local falling = {
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				minetest.add_item(self.object:get_pos(), stack)
-				:set_velocity({x = 0, y = 0, z = 0})
+				local ent = minetest.add_item(self.object:get_pos(), stack)
+				if ent then ent:set_velocity({x = 0, y = 0, z = 0}) end
 				return self.object:remove()
 			end
 		end
