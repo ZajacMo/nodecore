@@ -11,6 +11,10 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Wooden doors should remain flammable but should drop hinge pin.
 
+- Stone doors don't necessarily dig right.  Probably leftover junk
+  being inherited in the cloning; need to dig through the properties
+  and remove the ones we don't want inherited.
+
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
 
