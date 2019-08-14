@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type
-    = ItemStack, math, minetest, nodecore, pairs, type
-local math_exp, math_floor, math_log, math_random
-    = math.exp, math.floor, math.log, math.random
+local minetest, nodecore, type
+    = minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
