@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Wooden doors should remain flammable but should drop hinge pin.
+
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
 
