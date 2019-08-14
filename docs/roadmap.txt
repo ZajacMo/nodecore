@@ -10,17 +10,11 @@ ROADMAP: Large New Development Projects
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Doors
-	- Attach a lode "hinge" to an edge of a node.
-	- Node rotates around that edge into nearby node spaces.
-	- Full degree of freedom for choosing edge (combine standing/trap doors).
-	- Separate hinge pin and rotation controls.
-		- Right-click door when no hinge pin to rotate.
-		- Pummel in hinge pin to lock into door mode.
-		- Pummel out hinge pin to unlock again.
-	- Right-click to push on face, can "bounce back" if obstructed.
 	- Automation via laser ablation propulsion.
 		- Some materials cannot be operated by hand?
 	- Operate nearby/attached/colliding doors based on direction of actual movement.
+	- Push fluids, falling_nodes, items, ents as appropriate?
+		- Also move items sitting atop?
 
 - Domain Wall Sensor
 	- Adapt from sztest?
