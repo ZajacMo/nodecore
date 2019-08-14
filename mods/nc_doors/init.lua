@@ -92,6 +92,7 @@ function nodecore.register_door(basemod, basenode, ext)
 
 	local paneldef = nodecore.underride(ext or {}, {
 		name = modname .. ":panel_" .. basenode,
+		description = basedef.description .. " Panel",
 		tiles = tiles,
 		paramtype2 = "facedir",
 		on_rightclick = nodecore.node_spin_filtered(function(a, b)
@@ -111,6 +112,7 @@ function nodecore.register_door(basemod, basenode, ext)
 	local groups = nodecore.underride({door = 1}, basedef.groups)
 	local doordef = nodecore.underride({
 		name = modname .. ":door_" .. basenode,
+		description = basedef.description .. " Door",
 		tiles = tiles,
 		drop = "nc_lode:rod_tempered",
 		drop_in_place = paneldef.name,
