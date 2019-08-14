@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Quenching fire still sometimes destroys neighboring nodes!
+
 - Wooden doors should remain flammable but should drop hinge pin.
 
 - Stone doors don't necessarily dig right.  Probably leftover junk
