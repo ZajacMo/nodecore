@@ -90,6 +90,15 @@ function nodecore.operate_door(pos, node, dir)
 
 	for k, v in pairs(toset) do
 		minetest.set_node(v.pos, v)
+		if v.name ~= "air" then
+			local p = vector.round(vector.multiply(v.pos, 0.25))
+			local k = "sfx" .. minetest.pos_to_string(p)
+			if not squelch[k] then
+				squelch[k] = true
+				minetest.sound_play("nc_doors_operate",
+					{pos = v.pos, gain = 0.5})
+			end
+		end
 	end
 	for k, v in pairs(toop) do
 		nodecore.operate_door(v.pos, nil, v.dir)
