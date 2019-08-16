@@ -1,0 +1,3 @@
+gameid = nodecore
+backend = sqlite3
+load_mod_nc_reative = true

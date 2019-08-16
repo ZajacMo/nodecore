@@ -1,11 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile
-    = dofile
+local include
+    = include
 -- LUALOCALS > ---------------------------------------------------------
 
-return {
-	user = "Warr1024",
-	pkg = "nodecore",
-	min = "5.0",
-	version = dofile("./mods/nc_api/version.lua")
-}
+include('operate')
+include('register')

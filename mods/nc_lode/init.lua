@@ -6,3 +6,4 @@ local include
 include("ore")
 include("metallurgy")
 include("tools")
+include("shafts")

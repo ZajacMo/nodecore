@@ -15,7 +15,8 @@ local anim = {
 	lay       = {x = 58,  y = 58},
 	walk_mine = {x = 59,  y = 103},
 	swim_up   = {x = 105, y = 162, speed = 0.4},
-	swim_down = {x = 163, y = 223, speed = 0.4}
+	swim_down = {x = 163, y = 223, speed = 0.4},
+	swim_mine = {x = 224, y = 281, speed = 0.5}
 }
 
 local function setcached(func)
@@ -97,7 +98,7 @@ local function updatevisuals(player)
 			local v = player:get_player_velocity()
 
 			if mine then
-				setanim(player, "walk_mine")
+				setanim(player, "swim_mine")
 			elseif v and v.y >= -0.5 then
 				setanim(player, "swim_up")
 			else

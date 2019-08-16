@@ -235,6 +235,10 @@ addhint("molded molten glass into clear glass",
 	"nc_optics:glass",
 	"group:silica")
 
+addhint("cooled molten glass into crude glass",
+	"nc_optics:glass_crude",
+	"group:silica")
+
 addhint("chipped chromatic glass into prisms",
 	"nc_optics:prism",
 	"nc_optics:glass_opaque")

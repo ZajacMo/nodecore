@@ -34,8 +34,11 @@ minetest.register_node(modname .. ":glass_opaque", {
 
 minetest.register_node(modname .. ":glass_crude", {
 		description = "Crude Glass",
-		drawtype = "glasslike",
-		tiles = { modname .. "_glass_crude.png" },
+		drawtype = "glasslike_framed_optional",
+		tiles = {
+			modname .. "_glass_crude.png^" .. modname .. "_glass_edges.png",
+			modname .. "_glass_crude.png"
+		},
 		paramtype = "light",
 		groups = {
 			silica = 1,

@@ -71,7 +71,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		and hash(old.pointed.above) == hash(pum.pointed.above)
 		and hash(old.pointed.under) == hash(pum.pointed.under)
 		and pum.wield == old.wield
-		and old.last >= (now - 2)
+		and old.last >= (now - 3)
 		then pum = old end
 
 		pum.count = pum.count + 1

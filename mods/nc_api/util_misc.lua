@@ -230,6 +230,7 @@ function nodecore.node_spin_custom(...)
 				.. qty .. " total)")
 		end
 		minetest.swap_node(pos, node)
+		nodecore.node_sound(pos, "place")
 		local def = minetest.registered_items[node.name] or {}
 		if def.on_spin then def.on_spin(pos, node) end
 		return itemstack

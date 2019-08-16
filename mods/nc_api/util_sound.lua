@@ -1,9 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type, unpack,
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
       vector
-    = ItemStack, ipairs, minetest, nodecore, pairs, type, unpack,
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
       vector
+local math_exp, math_random
+    = math.exp, math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local oldplay = minetest.sound_play
+function minetest.sound_play(name, spec, ...)
+	if spec and type(spec) == "table" and spec.pitch == nil then
+		spec.pitch = math_exp((math_random() - 0.5) * 0.05)
+	end
+	return oldplay(name, spec, ...)
+end
 
 function nodecore.stack_sounds(pos, kind, stack)
 	stack = stack or nodecore.stack_get(pos)

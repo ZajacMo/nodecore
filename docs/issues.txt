@@ -9,6 +9,23 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Quenching fire still sometimes destroys neighboring nodes!
+
+- Wooden doors should remain flammable but should drop hinge pin.
+
+- Stone doors don't necessarily dig right.  Probably leftover junk
+  being inherited in the cloning; need to dig through the properties
+  and remove the ones we don't want inherited.
+
+- Release an official beta pack/edition.
+	- Modpack of experimental features vs. alternate game by branch?
+
+- FAQ / Beginner's Guide:
+	- Why can't I cut trees or grass?
+	- How do I find minerals/ores?
+	- How do I make torches or light indoors?
+	- How do I make a furnace?
+
 - Allow lode cube cooking/cooling in placed form.
 
 - First-class support for stack "pez dispensers".
@@ -128,6 +145,7 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
+	- Add more holiday outfits.
 	- Server player lists...?
 	- Track server lag in metadata?
 

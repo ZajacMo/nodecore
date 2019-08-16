@@ -10,9 +10,6 @@ local modname = minetest.get_current_modname()
 -- Maximum distance at which custom nametags are visible.
 local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
 
--- Precision (number of steps) for line-of-sight check for displaying nametags
-local precision = tonumber(minetest.settings:get(modname .. "_precision")) or 50
-
 -- Keep track of active player HUDs.
 local huds = {}
 
@@ -48,6 +45,14 @@ minetest.register_on_leaveplayer(function(player)
 ------------------------------------------------------------------------
 -- GLOBAL TICK HUD MANAGEMENT
 
+local function fluidmedium(pos)
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_items[node.name]
+	if not def then return node.name end
+	if def.sunlight_propagates then return "CLEAR" end
+	return def.liquid_alternative_source or node.name
+end
+
 -- Determine if player 1 can see player 2's face, including
 -- checks for distance, line-of-sight, and facing direction.
 local function canseeface(p1, n1, p2, n2)
@@ -70,14 +75,23 @@ local function canseeface(p1, n1, p2, n2)
 	local ld = (ll / 15 * distance)
 	if dsqr > (ld * ld) then return end
 
-	-- Check for line of sight from approximate eye level
-	-- of one player to the other.
+	-- Make sure players' eyes are inside the same fluid.
 	o1.y = o1.y + e1
 	o2.y = o2.y + e2
-	for pt in minetest.raycast(o1, o2) do
-		if pt.type ~= "object"
-		or (pt.ref ~= p2 and pt.ref ~= p1)
-		then return end
+	local f1 = fluidmedium(o1)
+	local f2 = fluidmedium(o2)
+	if f1 ~= f2 then return end
+
+	-- Check for line of sight from approximate eye level
+	-- of one player to the other.
+	for pt in minetest.raycast(o1, o2, true, true) do
+		if pt.type == "node" then
+			if fluidmedium(pt.under) ~= f1 then return end
+		elseif pt.type == "object" then
+			if pt.ref ~= p1 and pt.ref ~= p2 then return end
+		else
+			return
+		end
 	end
 
 	-- Players must be facing each other; cannot identify another

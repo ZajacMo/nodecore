@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, type
     = math, minetest, nodecore, type
-local math_floor
-    = math.floor
+local math_floor, math_sqrt
+    = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -42,7 +42,7 @@ local function txr(name, opaq)
 	local full = modname .. "_" .. name .. ".png"
 	if opaq and opaq < 1 then
 		full = "(" .. full .. "^[opacity:"
-		.. math_floor(256 * opaq) .. ")"
+		.. math_floor(256 * math_sqrt(opaq)) .. ")"
 	end
 	return full
 end
@@ -51,7 +51,9 @@ local function txrcoal(num)
 	local name = txr("ash")
 	local base = math_floor(num / 2)
 	if base > 0 then
-		name = name .. "^" .. txr("coal_" .. base)
+		for i = base, 1, -1 do
+			name = name .. "^" .. txr("coal_" .. i)
+		end
 	end
 	local rem = (num / 2) - base
 	if rem > 0 then

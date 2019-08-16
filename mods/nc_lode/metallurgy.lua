@@ -117,7 +117,9 @@ local function replacestack(pos, alt)
 	nodecore.remove_node(pos)
 	local def = minetest.registered_items[stack:get_name()] or {}
 	local repl = ItemStack(def["metal_alt_" .. alt] or "")
-	repl:set_count(stack:get_count() * repl:get_count())
+	local qty = stack:get_count()
+	if qty == 0 then qty = 1 end
+	repl:set_count(qty * repl:get_count())
 	return nodecore.item_eject(pos, repl)
 end
 
@@ -127,7 +129,7 @@ nodecore.register_craft({
 		touchgroups = {flame = 3},
 		duration = 30,
 		cookfx = true,
-		nodes = {{match = {metal_temper_cool = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_cool = true, count = false}}},
 		after = function(pos) return replacestack(pos, "hot") end
 	})
 
@@ -138,7 +140,7 @@ nodecore.register_craft({
 		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
-		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "annealed") end
 	})
 
@@ -153,7 +155,7 @@ nodecore.register_craft({
 				{"group:coolant"}) > 0
 		end,
 		cookfx = true,
-		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "tempered") end
 	})
 

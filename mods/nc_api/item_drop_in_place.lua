@@ -15,7 +15,8 @@ nodecore.register_on_register_item(function(name, def)
 			if type(dip) ~= "table" then dip = {name = dip} end
 			def.drop = def.drop or ""
 			def.node_dig_prediction = def.node_dig_prediction or dip.name
-			def.after_dig_node = def.after_dig_node or function(pos)
+			def.after_dig_node = def.after_dig_node or function(pos, node)
+				dip.param2 = node.param2
 				minetest.set_node(pos, dip)
 			end
 		end
