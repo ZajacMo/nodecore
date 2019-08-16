@@ -13,8 +13,9 @@ local function envcheck(player)
 
 	if player:get_breath() < 11 then return end
 
-	local pos = player:getpos()
-	pos.y = pos.y + 1.6
+	local pos = player:get_pos()
+	local eyeheight = player:get_properties().eye_height or 1.625
+	pos.y = pos.y + eyeheight
 
 	local old = ppos[pname] or pos
 	ppos[pname] = pos
@@ -29,8 +30,8 @@ local function envcheck(player)
 			y = math_random() * 128 - 64,
 			z = math_random() * 128 - 64
 		})
-	local _, hit = minetest.line_of_sight(pos, target)
-	hit = hit or target
+	local hit = minetest.raycast(pos, target, false)()
+	hit = hit and hit.under or target
 
 	stats.space = vector.distance(pos, hit)
 
@@ -44,7 +45,7 @@ local function envcheck(player)
 	local agg = cache[pname]
 	if not agg then
 		agg = {}
-		local raw = player:get_attribute("healthenv")
+		local raw = player:get_meta():get_string("healthenv")
 		if raw and raw ~= "" then
 			agg = minetest.deserialize(raw)
 		end
@@ -56,7 +57,7 @@ local function envcheck(player)
 	agg.dirty = (agg.dirty or 0) + 1
 	if agg.dirty >= 5 then
 		agg.dirty = nil
-		player:set_attribute("healthenv",
+		player:get_meta():set_string("healthenv",
 			minetest.serialize(agg))
 		for k, v in pairs(agg) do
 			agg[k] = 1 - math_exp(-v)
@@ -74,7 +75,7 @@ local function envcheck(player)
 end
 
 minetest.register_on_dieplayer(function(player)		
-		player:set_attribute("healthenv", "")
+		player:get_meta():set_string("healthenv", "")
 		cache[player:get_player_name()] = nil
 	end)
 

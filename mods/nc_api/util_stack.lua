@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, unpack
-    = ItemStack, ipairs, minetest, nodecore, pairs, unpack
+local ItemStack, ipairs, minetest, nodecore
+    = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 function nodecore.node_inv(pos)
@@ -9,24 +9,6 @@ end
 
 function nodecore.stack_get(pos)
 	return nodecore.node_inv(pos):get_stack("solo", 1)
-end
-
-function nodecore.stack_sounds(pos, kind, stack)
-	stack = stack or nodecore.stack_get(pos)
-	stack = ItemStack(stack)
-	if stack:is_empty() then return end
-	local def = minetest.registered_items[stack:get_name()] or {}
-	if (not def.sounds) or (not def.sounds[kind]) then return end
-	local t = {}
-	for k, v in pairs(def.sounds[kind]) do t[k] = v end
-	t.pos = pos
-	return minetest.sound_play(t.name, t)
-end
-function nodecore.stack_sounds_delay(...)
-	local t = {...}
-	minetest.after(0, function()
-			nodecore.stack_sounds(unpack(t))
-		end)
 end
 
 local function update(pos, ...)

@@ -9,16 +9,28 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- New content needs hints!
-	- Go thru github commits to see what.
-	- Definitely includes optics.
+- Quenching fire still sometimes destroys neighboring nodes!
+
+- Wooden doors should remain flammable but should drop hinge pin.
+
+- Stone doors don't necessarily dig right.  Probably leftover junk
+  being inherited in the cloning; need to dig through the properties
+  and remove the ones we don't want inherited.
+
+- Release an official beta pack/edition.
+	- Modpack of experimental features vs. alternate game by branch?
+
+- FAQ / Beginner's Guide:
+	- Why can't I cut trees or grass?
+	- How do I find minerals/ores?
+	- How do I make torches or light indoors?
+	- How do I make a furnace?
+
+- Allow lode cube cooking/cooling in placed form.
 
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
-
-- Verify that issue8378 workaround is actually doing anything and
-  is actually necessary.
 
 - Redesign how falling_nodes pile up.
 	- Make sure nodes are not destroyed.
@@ -118,10 +130,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Scripts for automatic metapackage mods?
 	- Git hooks (and git hook setup scripts)?
 	
-- MT 0.4 Support Sunsetting.
-	- Remove references to nodecore.mt_old
-	- remove nc_player_model_old.b3d
-
 - Loose node cleanup.
 	- Leaves settle into grass as podzol?  Composting/decay?
 	- Dirt/sand/etc should self-compact if buried or over time.
@@ -130,7 +138,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  
-	- Use recipes for hint guide instead of just items in hand.
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
 
@@ -138,6 +145,7 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
+	- Add more holiday outfits.
 	- Server player lists...?
 	- Track server lag in metadata?
 

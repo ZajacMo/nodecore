@@ -7,13 +7,14 @@ local math_floor, math_random, table_remove
 
 local modname = minetest.get_current_modname()
 
+local hand = minetest.registered_items[""]
 local injured = modname .. ":injured"
 minetest.register_craftitem(injured, {
 		description = "Injury",
 		stack_max = 1,
 		inventory_image = modname .. "_injured.png",
-		wield_image = "nc_player_hand.png",
-		wield_scale = {x = 1, y = 1, z = 2.5},
+		wield_image = hand.wield_image,
+		wield_scale = hand.wield_scale,
 		on_drop = function(stack) return stack end,
 		on_place = function(stack) return stack end,
 		virtual_item = true
@@ -43,7 +44,7 @@ local function checkinv(player)
 	local slots = math_floor(nodecore.getphealth(player) / 20 * (size - 2) + 0.5) + 2
 
 	if #reg > slots then
-		local pos = player:getpos()
+		local pos = player:get_pos()
 		while #reg > slots do
 			local n = pickend(#reg)
 			local i = reg[n]
@@ -59,7 +60,7 @@ local function checkinv(player)
 
 	local fill = size - slots
 	if #inj > fill then
-		local pos = player:getpos()
+		local pos = player:get_pos()
 		for i = 1, #inj / 2 do
 			inj[i], inj[#inj + 1 - i] = inj[#inj + 1 - i], inj[i]
 		end

@@ -9,6 +9,13 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Doors
+	- Automation via laser ablation propulsion.
+		- Some materials cannot be operated by hand?
+	- Operate nearby/attached/colliding doors based on direction of actual movement.
+	- Push fluids, falling_nodes, items, ents as appropriate?
+		- Also move items sitting atop?
+
 - Domain Wall Sensor
 	- Adapt from sztest?
 	- Field Generator?
@@ -34,6 +41,10 @@ ROADMAP: Large New Development Projects
 	- Latent
 		- Respawn mechanics?
 
+- Radioactives
+	- Criticality (produce heat/ignition when grouped)
+	- Long-term harm to players (reduce health/breath, randomly drop things)
+
 - New writing system based on charcoal
 	- Draw a symbol on surfaces by pummeling w/ charcoal
 	- Punch symbol w/ charcoal to rotate thru alphabet
@@ -45,6 +56,15 @@ ROADMAP: Large New Development Projects
 		- Emits light briefly when punched or stepped on
 		- Need to interpolate player paths for "stepped on" logic
 	- Pistons or rack&pinions for affecting world stuff.
+		- Laser ablation propulsion
+		- Gray code absolute game time to determine distance (logarithmic by load)
+	- Advanced optics?
+		- Polarization? Phase? Interference and superposition?
+
+- Rotary power?
+	- Stirling engine?
+	- Rotors?
+	- Conveyors?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
@@ -61,6 +81,7 @@ ROADMAP: Large New Development Projects
 	- Tubers and taproots, cacti, and other "defensive" plantlife
 	- Plant-like CA animals, like bee nests and clouds of bees?
 	  Termine mounds? Ant colonies? Coral?
+	- Popeggcorn?
 
 - System for transporting cargo.
 	- Trains of minecarts?

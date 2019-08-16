@@ -7,23 +7,40 @@ local math_exp, math_floor, math_log, math_random
 
 local modname = minetest.get_current_modname()
 
+local tempers = {
+	{
+		name = "hot",
+		desc = "Glowing",
+		sound = "annealed",
+		glow = true
+	},
+	{
+		name = "annealed",
+		desc = "Annealed",
+		sound = "annealed"
+	},
+	{
+		name = "tempered",
+		desc = "Tempered",
+		sound = "tempered"
+	}
+}
+
 function nodecore.register_lode(shape, rawdef)
-	for _, temper in pairs({"Hot", "Annealed", "Tempered"}) do
+	for _, temper in pairs(tempers) do
 		local def = nodecore.underride({}, rawdef)
-		local snd = temper:lower()
-		if snd == "hot" then snd = "annealed" end
 		def = nodecore.underride(def, {
-				description = temper .. " Lode " .. shape,
-				name = (shape .. "_" .. temper):lower():gsub(" ", "_"),
+				description = temper.desc .. " Lode " .. shape,
+				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
 				groups = { cracky = 3 },
-				["metal_temper_" .. temper:lower()] = true,
+				["metal_temper_" .. temper.name] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				metal_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
-				sounds = nodecore.sounds("nc_lode_" .. snd)
+				sounds = nodecore.sounds("nc_lode_" .. temper.sound)
 			})
 		def.metal_temper_cool = (not def.metal_temper_hot) or nil
-		if temper ~= "Hot" then
+		if not temper.glow then
 			def.light_source = nil
 		else
 			def.groups = def.groups or {}
@@ -34,13 +51,13 @@ function nodecore.register_lode(shape, rawdef)
 		if def.tiles then
 			local t = {}
 			for k, v in pairs(def.tiles) do
-				t[k] = v:gsub("#", temper:lower())
+				t[k] = v:gsub("#", temper.name)
 			end
 			def.tiles = t
 		end
 		for k, v in pairs(def) do
 			if type(v) == "string" then
-				def[k] = v:gsub("##", temper):gsub("#", temper:lower())
+				def[k] = v:gsub("##", temper.desc):gsub("#", temper.name)
 			end
 		end
 
@@ -52,7 +69,7 @@ end
 
 nodecore.register_lode("Block", {
 		type = "node",
-		description = "## Lode Cube",
+		description = "## Lode",
 		tiles = { modname .. "_#.png" },
 		light_source = 8,
 		crush_damage = 4
@@ -100,7 +117,9 @@ local function replacestack(pos, alt)
 	nodecore.remove_node(pos)
 	local def = minetest.registered_items[stack:get_name()] or {}
 	local repl = ItemStack(def["metal_alt_" .. alt] or "")
-	repl:set_count(stack:get_count() * repl:get_count())
+	local qty = stack:get_count()
+	if qty == 0 then qty = 1 end
+	repl:set_count(qty * repl:get_count())
 	return nodecore.item_eject(pos, repl)
 end
 
@@ -110,7 +129,7 @@ nodecore.register_craft({
 		touchgroups = {flame = 3},
 		duration = 30,
 		cookfx = true,
-		nodes = {{match = {metal_temper_cool = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_cool = true, count = false}}},
 		after = function(pos) return replacestack(pos, "hot") end
 	})
 
@@ -121,7 +140,7 @@ nodecore.register_craft({
 		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
-		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "annealed") end
 	})
 
@@ -136,7 +155,7 @@ nodecore.register_craft({
 				{"group:coolant"}) > 0
 		end,
 		cookfx = true,
-		nodes = {{match = {metal_temper_hot = true, stacked = true, count = false}}},
+		nodes = {{match = {metal_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "tempered") end
 	})
 

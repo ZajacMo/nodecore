@@ -91,8 +91,8 @@ function nodecore.fire_check_ignite(pos, node, force, ...)
 	return nodecore.fire_ignite(pos, node, ...)
 end
 
-local function snuff(cons, coal, pos, node)
-	local ember = nodecore.node_group("ember", pos, node)
+local function snuff(cons, coal, pos, node, ember)
+	ember = ember or nodecore.node_group("ember", pos, node)
 	if not ember then return end
 	ember = ember - cons
 	if ember > 0 then
@@ -114,9 +114,10 @@ function nodecore.fire_snuff(...) return snuff(1, true, ...) end
 function nodecore.fire_expend(...) return snuff(1, false, ...) end
 
 function nodecore.fire_check_expend(pos, node)
-	local r = math_random(1, 16 * math_pow(2,
-			nodecore.node_group("ember", pos, node)))
-	if r == 1 then return nodecore.fire_expend(pos, node) end
+	local ember = nodecore.node_group("ember", pos, node)
+	if not ember then return end
+	local r = math_random(1, 16 * math_pow(2, ember))
+	if r == 1 then return nodecore.fire_expend(pos, node, ember) end
 end
 
 local function snuffcheck(pos, node)

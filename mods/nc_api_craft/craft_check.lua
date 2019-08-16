@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
-local math_ceil
-    = math.ceil
+local ItemStack, ipairs, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addgroups(sum, pos)
@@ -93,15 +91,15 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			if v.match.excess then
 				local s = nodecore.stack_get(p)
 				local x = s:get_count() - (v.match.count or 1)
-				local n = math_ceil(x / 4)
-				while x > 0 do
-					if n > x then n = x end
-					x = x - n
-					s:set_count(n)
-					nodecore.item_eject(p, s, 5)
+				if x > 0 then
+					s:set_count(x)
+					nodecore.item_eject(p, s, 0.001)
 				end
+				nodecore.stack_set(p, ItemStack(""))
 			end
 			if r then
+				local n = minetest.get_node(p)
+				r.param2 = n.param2
 				minetest.set_node(p, r)
 				nodecore.node_sound(p, "place")
 			end

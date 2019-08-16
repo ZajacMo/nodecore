@@ -1,13 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, tonumber, tostring
-    = math, minetest, nodecore, tonumber, tostring
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
 local function getphealth(player)
-	return player:get_hp()
-	+ tonumber(player:get_attribute("dhp") or "0")
+	return player:get_hp() + player:get_meta():get_float("dhp")
 end
 nodecore.getphealth = getphealth
 
@@ -17,7 +16,7 @@ local function setphealth(player, hp)
 	local whole = math_ceil(hp)
 	if whole == 0 then whole = 1 end
 	local dhp = hp - whole
-	player:set_attribute("dhp", tostring(dhp))
+	player:get_meta():set_float("dhp", dhp)
 	return player:set_hp(whole)
 end
 nodecore.setphealth = setphealth

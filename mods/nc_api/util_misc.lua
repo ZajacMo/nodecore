@@ -1,13 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      unpack
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      unpack
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
-
-nodecore.mt_old = minetest.get_version().string:sub(1, 2) == "0."
 
 for k, v in pairs(minetest) do
 	if type(v) == "function" then
@@ -115,6 +111,9 @@ function nodecore.toolspeed(what, groups)
 		gt = gt and gt.times
 		gt = gt and gt[lv]
 		if gt and (not t or t > gt) then t = gt end
+	end
+	if (not t) and (not what:is_empty()) then
+		return nodecore.toolspeed(ItemStack(""), groups)
 	end
 	return t
 end
@@ -231,6 +230,7 @@ function nodecore.node_spin_custom(...)
 				.. qty .. " total)")
 		end
 		minetest.swap_node(pos, node)
+		nodecore.node_sound(pos, "place")
 		local def = minetest.registered_items[node.name] or {}
 		if def.on_spin then def.on_spin(pos, node) end
 		return itemstack
@@ -255,13 +255,4 @@ end
 function nodecore.node_change(pos, node, newname)
 	if node.name == newname then return end
 	return minetest.set_node(pos, underride({name = newname}, node))
-end
-
-function nodecore.sounds(name, gfoot, gdug, gplace)
-	return {
-		footstep = {name = name, gain = gfoot or 0.2},
-		dig = {name = name, gain = gdug or 0.5},
-		dug = {name = name, gain = gdug or 1},
-		place = {name = name, gain = gplace or 1}
-	}
 end

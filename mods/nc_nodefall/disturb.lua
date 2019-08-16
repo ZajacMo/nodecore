@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, tostring, vector
-    = ipairs, math, minetest, nodecore, tostring, vector
+local ipairs, math, minetest, nodecore, vector
+    = ipairs, math, minetest, nodecore, vector
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -18,15 +18,17 @@ local function fallcheck(name, start)
 			y = math_random() * 128 - 64,
 			z = math_random() * 128 - 64
 		})
-	local clr, pos = minetest.line_of_sight(start, target)
-	if clr then return end
+	local pointed = minetest.raycast(start, target, false)()
+	if not pointed or not pointed.under then return end
+	local pos = pointed.under
 
 	local found = minetest.find_nodes_in_area(
 		vector.subtract(pos, radius),
-		vector.subtract(pos, radius),
+		vector.add(pos, radius),
 		"group:falling_node")
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
+
 
 	local miny = pos.y - 64
 	repeat pos.y = pos.y - 1 until pos.y < miny or not nodecore.match(pos, falling)
@@ -36,7 +38,7 @@ local function fallcheck(name, start)
 	nodecore.falling_repose_check(pos)
 	if minetest.get_node(pos).name ~= prev then
 		minetest.log(modname .. ": " .. name .. " disturbed "
-			.. prev .. " at " .. tostring(pos))
+			.. prev .. " at " .. minetest.pos_to_string(pos))
 	end
 end
 
@@ -55,7 +57,7 @@ minetest.register_globalstep(function(dtime)
 		for i, v in ipairs(minetest.get_connected_players()) do
 			local name = v:get_player_name()
 
-			local pos = v:getpos()
+			local pos = v:get_pos()
 			local old = oldpos[name] or pos
 			oldpos[name] = pos
 

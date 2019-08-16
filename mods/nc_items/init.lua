@@ -75,7 +75,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 			})
 	end
 
-	return minetest.check_for_falling(pos)
+	return minetest.after(0, function() minetest.check_for_falling(pos) end)
 end
 
 local bii = minetest.registered_entities["__builtin:item"]
@@ -83,7 +83,7 @@ local item = {
 	on_step = function(self, dtime, ...)
 		bii.on_step(self, dtime, ...)
 
-		local pos = self.object:getpos()
+		local pos = self.object:get_pos()
 		if not self.oldpos or not vector.equals(pos, self.oldpos) then
 			self.oldpos = pos
 			self.sitting = 0
@@ -129,8 +129,8 @@ local falling = {
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				nodecore.item_eject(self.object:getpos(), stack,
-					nil, nil, {x = 0, y = 0.01, z = 0})
+				local ent = minetest.add_item(self.object:get_pos(), stack)
+				if ent then ent:set_velocity({x = 0, y = 0, z = 0}) end
 				return self.object:remove()
 			end
 		end
@@ -180,3 +180,50 @@ if nodecore.loaded_mods().nc_fire then
 end
 
 nodecore.register_cook_abm({nodenames = {modname .. ":stack"}})
+
+if minetest.raycast then
+	local olddrop = minetest.item_drop
+	function minetest.item_drop(item, player, ...)
+		local oldadd = minetest.add_item
+		function minetest.add_item(pos, stack, ...)
+			if not minetest.raycast then
+				return oldadd(pos, stack, ...)
+			end
+
+			local start = player:get_pos()
+			local eyeheight = player:get_properties().eye_height or 1.625
+			start.y = start.y + eyeheight
+			local target = vector.add(start, vector.multiply(player:get_look_dir(), 4))
+			local pointed = minetest.raycast(start, target, false)()
+			if (not pointed) or pointed.type ~= "node" then
+				return oldadd(pos, stack, ...)
+			end
+
+			local dummyent = {}
+			setmetatable(dummyent, {__index = function(t, k)
+						return function() return {} end
+					end})
+
+			local name = stack:get_name()
+			local function tryplace(p)
+				if nodecore.match(p, {name = name, count = false}) then
+					stack = nodecore.stack_add(p, stack)
+					if stack:is_empty() then return dummyent end
+				end
+				if nodecore.buildable_to(p) then
+					nodecore.place_stack(p, stack, player, pointed)
+					return dummyent
+				end
+			end
+
+			return tryplace(pointed.under)
+			or tryplace(pointed.above)
+			or oldadd(pos, stack, ...)
+		end
+		local function helper(...)
+			minetest.add_item = oldadd
+			return ...
+		end
+		return helper(olddrop(item, player, ...))
+	end
+end

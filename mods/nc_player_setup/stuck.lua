@@ -11,8 +11,18 @@ minetest.register_chatcommand("stuck", {
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 
+			local pos = player:get_pos()
+			local node = minetest.get_node(pos)
+			if node.name == "air" or node.name == "ignore" then
+				pos.y = pos.y - 1
+				local node = minetest.get_node(pos)
+				if node.name == "air" or node.name == "ignore" then
+					return false, "cannot /stuck while airborne"
+				end
+				pos.y = pos.y + 1
+			end
+
 			local inv = player:get_inventory()
-			local pos = player:getpos()
 			for i = 1, inv:get_size("main") do
 				local stack = inv:get_stack("main", i)
 				local def = minetest.registered_items[stack:get_name()]
@@ -27,6 +37,6 @@ minetest.register_chatcommand("stuck", {
 			pos.x = pos.x + math_random() * 64 - 32
 			pos.y = pos.y + math_random() * 64
 			pos.z = pos.z + math_random() * 64 - 32
-			player:setpos(pos)
+			player:set_pos(pos)
 		end
 	})

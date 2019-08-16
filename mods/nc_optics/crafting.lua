@@ -33,9 +33,22 @@ nodecore.register_craft({
 	})
 
 nodecore.register_craft({
+		label = "hammer glass to crude",
+		action = "pummel",
+		priority = -1,
+		toolgroups = {thumpy = 3},
+		nodes = {
+			{
+				match = modname .. ":glass",
+				replace = modname .. ":glass_crude"
+			}
+		}
+	})
+
+nodecore.register_craft({
 		label = "hammer glass back to sand",
 		action = "pummel",
-		priority = -1, -- chiseling prisms is higher prio
+		priority = -2,
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{

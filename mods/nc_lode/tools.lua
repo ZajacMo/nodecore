@@ -32,7 +32,7 @@ local function toolhead(name, groups, prills)
 			stack_max = 1,
 			tool_capabilities = toolcap(4),
 			bytemper = function(t, d)
-				if t == "Tempered" then
+				if t.name == "tempered" then
 					d.tool_capabilities = toolcap(5)
 				end
 			end,
