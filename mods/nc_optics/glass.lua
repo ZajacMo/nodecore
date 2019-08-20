@@ -14,6 +14,7 @@ minetest.register_node(modname .. ":glass", {
 		},
 		groups = {
 			silica = 1,
+			silica_clear = 1,
 			cracky = 3
 		},
 		sunlight_propagates = true,
@@ -59,6 +60,7 @@ minetest.register_node(modname .. ":glass_float", {
 		paramtype = "light",
 		groups = {
 			silica = 1,
+			silica_clear = 1,
 			cracky = 3
 		},	
 		sounds = nodecore.sounds("nc_optics_glassy")

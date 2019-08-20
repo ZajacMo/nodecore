@@ -39,7 +39,7 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = modname .. ":glass",
+				match = {groups = {silica_clear = true}},
 				replace = modname .. ":glass_crude"
 			}
 		}
