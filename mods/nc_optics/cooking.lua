@@ -62,15 +62,16 @@ nodecore.register_craft({
 		duration = 120,
 		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
-			local node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
-			local def = minetest.registered_items[node.name]
-			return def and def.groups and def.groups.lava
-			and not near(pos, {flow})
+			return not near(pos, {flow})
 		end,
 		nodes = {
 			{
 				match = src,
 				replace = modname .. ":glass_float"
+			},
+			{
+				y = -1,
+				match = {groups = {lava = true}}
 			}
 		}
 	})
