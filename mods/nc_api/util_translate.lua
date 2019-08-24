@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table
-    = ipairs, minetest, nodecore, pairs, table
+local ipairs, minetest, nodecore, pairs, table, type
+    = ipairs, minetest, nodecore, pairs, table, type
 local table_sort
     = table.sort
 -- LUALOCALS > ---------------------------------------------------------
