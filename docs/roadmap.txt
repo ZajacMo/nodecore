@@ -9,12 +9,17 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make trees use all wet things (i.e. sponges) for water?
+
+- Stagger-delay some ABM actions per-node?
+
 - Doors
 	- Automation via laser ablation propulsion.
 		- Some materials cannot be operated by hand?
 	- Operate nearby/attached/colliding doors based on direction of actual movement.
 	- Push fluids, falling_nodes, items, ents as appropriate?
 		- Also move items sitting atop?
+	- Use as press for quick packing recipes?
 
 - Domain Wall Sensor
 	- Adapt from sztest?

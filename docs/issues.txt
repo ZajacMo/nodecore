@@ -21,10 +21,13 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Modpack of experimental features vs. alternate game by branch?
 
 - FAQ / Beginner's Guide:
+	- Why is the game so hard? (philosophy on challenge/spoilers)
+		https://discordapp.com/channels/507234450615042048/530756875839340574/614493210349404173
 	- Why can't I cut trees or grass?
 	- How do I find minerals/ores?
 	- How do I make torches or light indoors?
 	- How do I make a furnace?
+	- Why can't I get a fire started or keep it going?
 
 - Allow lode cube cooking/cooling in placed form.
 
