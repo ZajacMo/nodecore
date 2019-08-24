@@ -28,10 +28,12 @@ nodecore.register_limited_abm({
 		neighbors = {"group:water"},
 		action = function(pos)
 			minetest.set_node(pos, {name = modname .. ":sponge_wet"})
+			nodecore.node_sound(pos, "place")
 			for _, pos in pairs(minetest.find_nodes_in_area(
 					{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
 					{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
 					{"group:water"})) do
+				nodecore.node_sound(pos, "dig")
 				minetest.remove_node(pos)
 			end
 		end

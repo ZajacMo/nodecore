@@ -64,6 +64,7 @@ nodecore.register_craft({
 		then return end
 
 		minetest.set_node(p, {name = "nc_terrain:water_source"})
+		nodecore.node_sound(p, "place")
 		minetest.add_entity(p, modname .. ":waterguard")
 	end
 })
