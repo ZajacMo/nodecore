@@ -138,6 +138,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt/sand/etc should self-compact if buried or over time.
 
 - Hint system updates.
+	- Missing:
+		- sponge squeezing
+		- doors
+		- concrete
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  

@@ -30,7 +30,10 @@ minetest.register_entity(modname .. ":waterguard", {
 		end
 		self.data.ttl = self.data.ttl - dtime
 		if (self.data.ttl <= 0) then
-			return minetest.remove_node(pos)
+			return minetest.set_node(pos, {
+				name = "nc_terrain:water_flowing",
+				param2 = 7
+			})
 		end
 	end
 })
