@@ -73,6 +73,6 @@ nodecore.register_craft({
 		minetest.set_node(p, {name = "nc_terrain:water_source"})
 		nodecore.node_sound(p, "place")
 		local obj = minetest.add_entity(p, modname .. ":waterguard",
-			minetest.serialize({ttl = 5}))
+			minetest.serialize({ttl = 3}))
 	end
 })
