@@ -9,8 +9,6 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Make trees use all wet things (i.e. sponges) for water?
-
 - Stagger-delay some ABM actions per-node?
 
 - Doors

@@ -214,7 +214,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 1,
 		drop = "",
-		groups = { coolant = 1, water = 2 },
+		groups = { coolant = 1, water = 2, moist = 2 },
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})

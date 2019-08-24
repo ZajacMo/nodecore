@@ -86,8 +86,8 @@ nodecore.register_limited_abm({
 					if def.groups.soil then
 						d = d + def.groups.soil
 						w = w + 0.2
-					elseif def.groups.water then
-						w = w + def.groups.water
+					elseif def.groups.moist then
+						w = w + def.groups.moist
 						return false
 					else
 						return false
