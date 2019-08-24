@@ -73,3 +73,74 @@ nodecore.register_craft({
 		}
 	}
 })
+
+local flow = modname .. ":wet_flowing"
+local src = modname .. ":wet_source"
+
+nodecore.register_limited_abm({
+	label = "Aggregate Wettening",
+	interval = 1,
+	chance = 2,
+	limited_max = 100,
+	nodenames = {modname .. ":aggregate"},
+	neighbors = {"group:water"},
+	action = function(pos)
+		minetest.set_node(pos, {name = src})
+		nodecore.node_sound(pos, "place")
+	end
+})
+
+nodecore.register_limited_abm({
+	label = "Aggregate Wandering",
+	interval = 4,
+	chance = 2,
+	limited_max = 100,
+	nodenames = {src},
+	neighbors = {flow},
+	action = function(pos, node)
+		local meta = minetest.get_meta(pos)
+		local gen = meta:get_int("agggen")
+		if gen >= 8 and math_random(1, 2) == 1 then
+			minetest.set_node(pos, {name = "nc_terrain:cobble"})
+			return nodecore.node_sound(pos, "place")
+		end
+		local miny = pos.y
+		local found = {}
+		nodecore.scan_flood(pos, 2, function(p)
+				local nn = minetest.get_node(p).name
+				if nn == src then return end
+				if nn ~= flow then return false end
+				if p.y > miny then return end
+				if p.y == miny then
+					found[#found + 1] = p
+					return
+				end
+				miny = p.y
+				found = {p}
+			end)
+			if #found < 1 then return end
+		local np = nodecore.pickrand(found)
+		nodecore.node_sound(pos, "dig")
+		minetest.set_node(np, node)
+		minetest.get_meta(np):set_int("agggen", gen + 1)
+		minetest.set_node(pos, {name = flow, param2 = 7})
+	end
+})
+
+nodecore.register_craft({
+	label = "aggregate curing",
+	action = "cook",
+	duration = 300,
+	cookfx = {smoke = 0.05},
+	check = function(pos)
+		return not minetest.find_node_near(pos, 1, {flow})
+	end,
+	nodes = {
+		{
+			match = src,
+			replace = "nc_terrain:stone"
+		}
+	}
+})
+
+nodecore.register_cook_abm({nodenames = {src}})

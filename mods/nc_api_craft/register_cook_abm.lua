@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, type
+    = minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -41,7 +41,11 @@ local function inprogress(data, recipe)
 		minetest.sound_play("nc_api_craft_sizzle", {gain = 1, pos = data.node})
 	end
 	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
-		nodecore.smokefx(data.node, 1)
+		local qty = 2
+		if type(recipe.cookfx.smoke) == "number" then
+			qty = qty * recipe.cookfx.smoke
+		end
+		nodecore.smokefx(data.node, 1, qty)
 	end
 end
 
