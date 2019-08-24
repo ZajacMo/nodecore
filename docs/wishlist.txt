@@ -19,8 +19,6 @@ CONTRIBUTION WISHLIST
 	  like the touch-tip in NodeCore.
 
 - Player model enhancements
-	- Hat/hair surfaces.
-	- Maybe a swim animation?
 	- Check that UV maps are consistent with existing skins,
 	  e.g. MTG Sam or MC Steve, for TP authors to more easily
 	  adapt existing skins.  
@@ -33,12 +31,11 @@ CONTRIBUTION WISHLIST
 	  ones are more "procedural" style).
 
 - More sounds:
-	- Need fluid sounds.
 	- Improved versions of anything existing.
 		- Note that low bitrate is preferred.
 		- I'm looking for better clarity/variety, NOT fidelity.
 	- Special sounds for completing pummels or crafts?
-	- Ambient stuff like fire, maybe lapping water, wind in leaves.
+	- Ambient stuff like wind in leaves.
 
 - Help maintaining the hint system.
 

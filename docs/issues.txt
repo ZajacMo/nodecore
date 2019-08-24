@@ -29,7 +29,7 @@ ISSUES: Bugs, Cleanup and Refinements
 	- How do I make a furnace?
 	- Why can't I get a fire started or keep it going?
 
-- Allow lode cube cooking/cooling in placed form.
+- Allow lode cube/bar/rod cooking/cooling in placed form.
 
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
@@ -40,19 +40,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Allow node displacement sideways?
 	- Maybe force column to coordinate settling in order, to
 	  avoid race conditions?
-
-- Water/wetness/coolant rework.
-	- Move nodecore.quenched() somewhere more sensible.
-	- Register a "wet" and "absorbant" groups.
-	- Register wetness hooks.
-		- What to dry to when absorbed.
-		- What to do when wetted.
-	- Register wetness exposure abm.
-		- Consume one random wet node nearby.
-	- Use for quenching lode/glass.
-	- Allow sponges to wick water (wetness transfers).
-	- Future applications.
-		- Cement, cure upon wetting?
 
 - API Cleanup
 	- Utils
@@ -72,11 +59,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
 
-- Tree farming.
-	- Show sprout/sapling above eggcorn_planted to show
-	  progress over time.
-	- Switch to soaking API
-	
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
 
@@ -153,7 +135,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
 	- Add more holiday outfits.
-	- Server player lists...?
 	- Track server lag in metadata?
 
 - Make neighbor/distance calcs consistent.
