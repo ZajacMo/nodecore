@@ -64,8 +64,7 @@ nodecore.register_leaf_drops(function(pos, node, list)
 	end)
 
 minetest.register_node(epname, nodecore.underride({
-			drop = ldname,
-			description = "Loose Dirt...?"
+			drop = ldname
 		},
 		minetest.registered_items[ldname] or {}))
 
