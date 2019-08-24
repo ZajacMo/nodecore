@@ -20,8 +20,9 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			z = pos.z + xz * x + zz * z
 		}
 	end
+	data.rel = rel
 	data.wield = ItemStack(data.wield or data.crafter and data.crafter:get_wielded_item())
-	if recipe.check and not recipe.check(pos, data, rel) then return end
+	if recipe.check and not recipe.check(pos, data) then return end
 	if recipe.wield and (not data.wield or not nodecore.match(
 			{stack = data.wield}, recipe.wield)) then return end
 	if recipe.normal then
@@ -70,14 +71,14 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	if mindur > 0 then
 		if not data.duration then return end
 		local dur = data.duration
-		if type(dur) == "function" then dur = dur(data, recipe) end
+		if type(dur) == "function" then dur = dur(pos, data) end
 		if not dur or dur < mindur then
-			if data.inprogress then data.inprogress(data, recipe) end
+			if data.inprogress then data.inprogress(pos, data) end
 			return 1
 		end
 	end
-	if data.before then data.before(pos, rel, data, recipe) end
-	if recipe.before then recipe.before(pos, rel, data, recipe) end
+	if data.before then data.before(pos, data) end
+	if recipe.before then recipe.before(pos, data) end
 	for _, v in pairs(recipe.nodes) do
 		if v.replace then
 			local p = rel(v.x, v.y, v.z)
@@ -116,8 +117,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	elseif recipe.toolgroups and recipe.toolwear and data.crafter then
 		nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 	end
-	if recipe.after then recipe.after(pos, rel, data, recipe) end
-	if data.after then data.after(pos, rel, data, recipe) end
+	if recipe.after then recipe.after(pos, data) end
+	if data.after then data.after(pos, data) end
 	if nodecore.player_stat_add then
 		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
 	end
@@ -153,10 +154,12 @@ function nodecore.craft_check(pos, node, data)
 	node.x = pos.x
 	node.y = pos.y
 	node.z = pos.z
+	data.pos = pos
 	data.node = node
 	for _, rc in ipairs(nodecore.craft_recipes) do
 		if data.action == rc.action
 		and nodecore.match(node, rc.root.match) then
+			data.recipe = rc
 			local r = tryall(rc, pos, node, data)
 			if r then return r == true end
 		end
