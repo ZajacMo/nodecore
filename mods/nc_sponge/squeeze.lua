@@ -29,8 +29,7 @@ minetest.register_entity(modname .. ":waterguard", {
 			return self.object:remove()
 		end
 		self.data.ttl = self.data.ttl - dtime
-		if (self.data.ttl <= 0) or (not self.data.pos)
-		or (minetest.get_node(self.data.pos).name ~= modname .. ":sponge_wet") then
+		if (self.data.ttl <= 0) then
 			return minetest.remove_node(pos)
 		end
 	end
@@ -49,7 +48,8 @@ nodecore.register_craft({
 	toolgroups = {thumpy = 1},
 	nodes = {
 		{
-			match = modname .. ":sponge_wet"
+			match = modname .. ":sponge_wet",
+			replace = modname .. ":sponge"
 		},
 		{
 			x = 1,
@@ -73,9 +73,6 @@ nodecore.register_craft({
 		minetest.set_node(p, {name = "nc_terrain:water_source"})
 		nodecore.node_sound(p, "place")
 		local obj = minetest.add_entity(p, modname .. ":waterguard",
-			minetest.serialize({
-				pos = pos,
-				ttl = 2
-			}))
+			minetest.serialize({ttl = 5}))
 	end
 })
