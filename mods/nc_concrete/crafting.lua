@@ -133,7 +133,7 @@ nodecore.register_craft({
 	duration = 300,
 	cookfx = {smoke = 0.05},
 	check = function(pos)
-		return not minetest.find_node_near(pos, 1, {flow})
+		return not minetest.find_node_near(pos, 1, {flow, "group:water"})
 	end,
 	nodes = {
 		{
