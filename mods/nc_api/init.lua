@@ -50,6 +50,7 @@ include("util_stack")
 include("util_phealth")
 include("util_facedir")
 include("util_sound")
+include("util_translate")
 include("match")
 
 include("fx_digparticles")

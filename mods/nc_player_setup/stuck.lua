@@ -6,7 +6,8 @@ local math_random
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_chatcommand("stuck", {
-		description = "Teleport to get unstuck (but you can't bring your items)",
+		description = nodecore.translate("Teleport to get unstuck (but"
+			.. " you can't bring your items)"),
 		func = function(pname)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end

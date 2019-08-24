@@ -11,6 +11,17 @@ local function meta(pos)
 	return node, meta
 end
 
+local metadescs = {
+	"Tote (1 Slot)",
+	"Tote (2 Slots)",
+	"Tote (3 Slots)",
+	"Tote (4 Slots)",
+	"Tote (5 Slots)",
+	"Tote (6 Slots)",
+	"Tote (7 Slots)",
+	"Tote (8 Slots)",
+}
+
 local function totedug(pos, node, meta, digger)
 	local dump
 	for dx = -1, 1 do
@@ -42,11 +53,7 @@ local function totedug(pos, node, meta, digger)
 	if dump then
 		local meta = drop:get_meta()
 		meta:set_string("carrying", minetest.serialize(dump))
-		if #dump == 1 then
-			meta:set_string("description", "Tote (1 Slot)")
-		else
-			meta:set_string("description", "Tote (" .. #dump .. " Slots)")
-		end
+		meta:set_string("description", metadescs[#dump])
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
@@ -88,6 +95,7 @@ end
 
 minetest.register_node(modname .. ":handle", {
 		description = "Tote Handle",
+		meta_descriptions = metadescs,
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(
 			{-0.5, -0.5, -0.5, 0.5, -3/8, 0.5},

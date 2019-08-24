@@ -42,11 +42,13 @@ local function stack_desc(s)
 
 	local n = s:get_name()
 	local d = minetest.registered_items[n] or {}
-	return d.description or n
+	n = d.description or n
+
+	return n and nodecore.translate(n)
 end
 
 local function wield_name(player)
-	return stack_desc( player:get_wielded_item())
+	return stack_desc(player:get_wielded_item())
 end
 
 minetest.register_globalstep(function(dtime)
