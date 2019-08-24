@@ -13,7 +13,8 @@ minetest.register_node(modname .. ":sponge", {
 		groups = {
 			crumbly = 2,
 			flammable = 3,
-			fire_fuel = 3
+			fire_fuel = 3,
+			sponge = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
@@ -27,7 +28,8 @@ minetest.register_node(modname .. ":sponge_wet", {
 			crumbly = 2,
 			coolant = 1,
 			falling_node = 1,
-			moist = 1
+			moist = 1,
+			sponge = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
@@ -41,7 +43,8 @@ minetest.register_node(modname .. ":sponge_living", {
 			crumbly = 2,
 			coolant = 1,
 			falling_node = 1,
-			moist = 1
+			moist = 1,
+			sponge = 1
 		},
 		drop = modname .. ":sponge_wet",
 		sounds = nodecore.sounds("nc_terrain_swishy")

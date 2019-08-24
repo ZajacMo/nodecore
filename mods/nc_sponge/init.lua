@@ -6,3 +6,4 @@ local include
 include('node')
 include('abm')
 include('gen')
+include('squeeze')
