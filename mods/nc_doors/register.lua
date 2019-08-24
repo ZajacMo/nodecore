@@ -18,7 +18,7 @@ local tilemods = {
 	{idx = 6, part = "side", tran = "R180"}
 }
 
-function nodecore.register_door(basemod, basenode, desc, ext)
+function nodecore.register_door(basemod, basenode, desc, pin)
 	local basefull = basemod .. ":" .. basenode
 	local basedef = minetest.registered_nodes[basefull]
 
@@ -30,7 +30,7 @@ function nodecore.register_door(basemod, basenode, desc, ext)
 		.. "_base.png^[transform" .. v.tran
 	end
 
-	local paneldef = nodecore.underride(ext or {}, {
+	local paneldef = nodecore.underride({}, {
 		name = modname .. ":panel_" .. basenode,
 		description = (desc or basedef.description) .. " Panel",
 		tiles = tiles,
@@ -43,10 +43,13 @@ function nodecore.register_door(basemod, basenode, desc, ext)
 
 	minetest.register_node(paneldef.name, paneldef)
 
+	local t = minetest.registered_items[pin].tiles
+	t = t[3] or t[2] or t[1]
+	t = t.name or t
 	local tiles = nodecore.underride({}, tiles)
 	for _, v in pairs(tilemods) do
-		tiles[v.idx] = tiles[v.idx] .. "^(nc_lode_tempered.png^[mask:(nc_doors_hinge_" .. v.part
-		.. "_mask.png^[transform" .. v.tran .. "))"
+		tiles[v.idx] = tiles[v.idx] .. "^((" .. t .. ")^[mask:nc_doors_hinge_" .. v.part
+		.. "_mask.png^[transform" .. v.tran .. ")"
 	end
 
 	local groups = nodecore.underride({door = 1}, basedef.groups)
@@ -54,7 +57,7 @@ function nodecore.register_door(basemod, basenode, desc, ext)
 		name = modname .. ":door_" .. basenode,
 		description = (desc or basedef.description) .. " Hinged Panel",
 		tiles = tiles,
-		drop = "nc_lode:rod_tempered",
+		drop = pin,
 		drop_in_place = paneldef.name,
 		on_rightclick = doorop,
 		groups = groups
@@ -80,13 +83,51 @@ function nodecore.register_door(basemod, basenode, desc, ext)
 	})
 
 	nodecore.register_craft({
+		label = "lubricate door " .. basenode:lower(),
+		check = function(pos, data)
+			return minetest.get_meta(data.rel(0, -1, 0))
+			:get_float("doorlube") ~= 1
+		end,
+		nodes = {
+			{
+				match = "nc_fire:lump_coal",
+				replace = "air"
+			},
+			{
+				y = -1,
+				match = paneldef.name,
+			}
+		},
+		after = function(pos, data)
+			minetest.get_meta(data.rel(0, -1, 0)):set_float("doorlube", 1)
+			return nodecore.digparticles(
+				minetest.registered_nodes["nc_fire:coal8"],
+				{
+					collisiondetection = true,
+					amount = 10,
+					time = 0.2,
+					minpos = {x = pos.x - 0.4, y = pos.y - 0.5, z = pos.z - 0.4},
+					maxpos = {x = pos.x + 0.4, y = pos.y - 0.45, z = pos.z + 0.4},
+					minexptime = 0.1,
+					maxexptime = 1,
+					minsize = 1,
+					maxsize = 3	
+				}
+			)
+		end
+	})
+	nodecore.register_craft({
 		label = "door pin " .. basenode:lower(),
 		action = "pummel",
 		toolgroups = {thumpy = 1},
 		normal = {y = 1},
+		check = function(pos, data)
+			return minetest.get_meta(data.rel(0, -1, 0))
+			:get_float("doorlube") == 1
+		end,
 		nodes = {
 			{
-				match = "nc_lode:rod_tempered",
+				match = pin,
 				replace = "air"
 			},
 			{
@@ -98,5 +139,5 @@ function nodecore.register_door(basemod, basenode, desc, ext)
 	})
 end
 
-nodecore.register_door("nc_woodwork", "plank", "Wooden")
-nodecore.register_door("nc_terrain", "cobble")
+nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff")
+nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered")
