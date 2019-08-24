@@ -34,7 +34,6 @@ local wetdef = {
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }
 minetest.register_node(modname .. ":wet_source", nodecore.underride({
-	drawtype = "liquid",
 	liquidtype = "source"
 }, wetdef))
 minetest.register_node(modname .. ":wet_flowing", nodecore.underride({
