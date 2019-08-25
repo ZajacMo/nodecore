@@ -6,6 +6,7 @@ local minetest, nodecore, pairs
 local tips = {}
 
 local function show(player, text, ttl)
+	text = nodecore.translate(text)
 	ttl = ttl or 2
 	local pname = player:get_player_name()
 	local tip = tips[pname]
@@ -42,9 +43,7 @@ local function stack_desc(s)
 
 	local n = s:get_name()
 	local d = minetest.registered_items[n] or {}
-	n = d.description or n
-
-	return n and nodecore.translate(n)
+	return d.description or n
 end
 
 local function wield_name(player)
