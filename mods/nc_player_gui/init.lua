@@ -9,14 +9,17 @@ nodecore.register_inventory_tab,
 nodecore.registered_inventory_tabs
 = nodecore.mkreg()
 
+local nct = nodecore.translate
+
 do
 	local version = nodecore.version
-	version = version and ("Version " .. version) or "DEVELOPMENT VERSION"
+	version = version and (nct("Version") .. " " .. version)
+	or nct("DEVELOPMENT VERSION")
 
 	nodecore.register_inventory_tab({
 			title = "About",
 			content = {
-				"NodeCore - " .. version,
+				nct("NodeCore") .. " - " .. version,
 				"",
 				"(C)2018-2019 by Aaron Suen <warr1024@gmail.com>",
 				"MIT License:  http://www.opensource.org/licenses/MIT",
@@ -58,6 +61,11 @@ nodecore.register_inventory_tab({
 		}
 	})
 
+for k, v in pairs(nodecore.registered_inventory_tabs) do
+	nct(v.title)
+	for i = 1, #v.content do nct(v.content[i]) end
+end
+
 local fse = minetest.formspec_escape
 function nodecore.inventory_formspec(player, curtab)
 	local t = {
@@ -70,7 +78,7 @@ function nodecore.inventory_formspec(player, curtab)
 	local f
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		t[#t + 1] = "button[" .. x .. "," .. y
-		.. ";2.2,0.5;tab;" .. fse(v.title) .. "]"
+		.. ";2.2,0.5;tab;" .. fse(nct(v.title)) .. "]"
 		if curtab == v.title or (not curtab and i == 1) then
 			f = v.content
 		end
@@ -86,6 +94,7 @@ function nodecore.inventory_formspec(player, curtab)
 
 	if f then
 		if type(f) == "function" then f = f(player) end
+		for i = 1, #f do f[i] = nct(f[i]) end
 		t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
 		.. fse(table_concat(f, "\n")) .. "]"
 	end

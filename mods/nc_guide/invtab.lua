@@ -43,7 +43,7 @@ local function gethint(player)
 		if hint.goal(db) then
 			done = done + 1
 		elseif hint.reqs(db) then
-			found[#found + 1] = "...have you " .. hint.text .. " yet?"
+			found[#found + 1] = hint.text
 		end
 	end
 	local prog = #found
