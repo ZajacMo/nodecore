@@ -14,15 +14,20 @@ local token = "NodeCore"
 local prefix = minetest.translate(modname, token)
 prefix = prefix:sub(1, prefix:find(token) - 1)
 
-function nodecore.translate(str, ...)
+function nodecore.translate_inform(str)
 	if (not str) or (type(str) ~= "string") or (#str < 1)
-	or (str:sub(1, #prefix) == prefix) then return str end
+	or (str:sub(1, #prefix) == prefix) then return end
 
 	if not strings[str] then
 		strings[str] = true
 		strings_dirty = true
 	end
 
+	return true
+end
+
+function nodecore.translate(str, ...)
+	if not nodecore.translate_inform(str) then return str end
 	return minetest.translate(modname, str, ...)
 end
 
@@ -36,7 +41,6 @@ minetest.register_globalstep(function()
 
 	data = "# textdomain: " .. modname .. "\n"
 	for _, k in ipairs(keys) do
-		k = k:gsub("@", "@@"):gsub("=", "@="):gsub("\n", "@n")
 		data = data .. k .. "=" .. "\n"
 	end
 
