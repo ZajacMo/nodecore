@@ -23,3 +23,5 @@ minetest.register_on_joinplayer(function(player)
 minetest.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
 	end)
+
+minetest.unregister_chatcommand("kill")
