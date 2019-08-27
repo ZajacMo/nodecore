@@ -66,6 +66,9 @@ for k, v in pairs(nodecore.registered_inventory_tabs) do
 	for i = 1, #v.content do nct(v.content[i]) end
 end
 
+local pad = " "
+for i = 1, 4 do pad = pad .. pad end
+
 local fse = minetest.formspec_escape
 function nodecore.inventory_formspec(player, curtab)
 	local t = {
@@ -78,8 +81,8 @@ function nodecore.inventory_formspec(player, curtab)
 	local f
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		t[#t + 1] = "button[" .. x .. "," .. y
-		.. ";2.2,0.5;tab;" .. fse(nct(v.title)) .. "]"
-		if curtab == v.title or (not curtab and i == 1) then
+		.. ";2.2,0.5;tab" .. i .. ";" .. fse(nct(v.title)) .. "]"
+		if curtab == i or (not curtab and i == 1) then
 			f = v.content
 		end
 		x = x + 2
@@ -94,7 +97,7 @@ function nodecore.inventory_formspec(player, curtab)
 
 	if f then
 		if type(f) == "function" then f = f(player) end
-		for i = 1, #f do f[i] = nct(f[i]) end
+		for i = 1, #f do f[i] = nct(f[i]) .. pad end
 		t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
 		.. fse(table_concat(f, "\n")) .. "]"
 	end
@@ -107,8 +110,17 @@ minetest.register_on_joinplayer(function(player)
 	end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-		if formname == "" and fields.tab then
-			minetest.show_formspec(player:get_player_name(), formname,
-				nodecore.inventory_formspec(player, fields.tab))
+		if formname == "" then
+			local tab
+			for i = 1, #nodecore.registered_inventory_tabs do
+				if fields["tab" .. i] then
+					tab = i
+					break
+				end
+			end
+			if tab then
+				minetest.show_formspec(player:get_player_name(), formname,
+					nodecore.inventory_formspec(player, tab))
+			end
 		end
 	end)
