@@ -39,7 +39,7 @@ minetest.register_globalstep(function()
 	for k, v in pairs(strings) do keys[#keys + 1] = k end
 	table_sort(keys)
 
-	data = "# textdomain: " .. modname .. "\n"
+	local data = "# textdomain: " .. modname .. "\n"
 	for _, k in ipairs(keys) do
 		data = data .. k .. "=" .. "\n"
 	end
