@@ -25,7 +25,7 @@ function nodecore.digparticles(nodedef, partdef)
 		partdef.texture = img .. "^[mask:[combine\\:16x16\\:"
 		.. math_floor(math_random() * 12) .. ","
 		.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
-		t[#t + 1] =  minetest.add_particlespawner(partdef)
+		t[#t + 1] = minetest.add_particlespawner(partdef)
 	end
 	return function()
 		for k, v in pairs(t) do

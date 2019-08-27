@@ -6,8 +6,8 @@ local minetest, nodecore, pairs, type
 --[[
 Nodes that have an "alternate_loose = { ... }" definition when
 registered will be registered as a pair, one being the "loose" version
-and the other being the normal "solid" one.  Solid-specific attributes
-can be set via "alternate_solid = { ... }".  The solid version will
+and the other being the normal "solid" one. Solid-specific attributes
+can be set via "alternate_solid = { ... }". The solid version will
 transform to the loose one when dug, and the loose to solid when
 pummeled.
 --]]
@@ -44,7 +44,7 @@ nodecore.register_on_register_item(function(name, def)
 				elseif type(v) == "table" then
 					loose.tiles[k] = underride({
 							name = v.name .. looseimg
-							}, v)
+						}, v)
 				end
 			end
 		end

@@ -13,7 +13,7 @@ local function regterrain(def)
 	def.is_ground_content = true
 
 	if def.liquidtype then
-		def.liquid_alternative_flowing = def.fullname .. "_flowing"		
+		def.liquid_alternative_flowing = def.fullname .. "_flowing"
 		def.liquid_alternative_source = def.fullname .. "_source"
 		def.fullname = def.fullname .. "_" .. def.liquidtype
 		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
@@ -123,7 +123,7 @@ for _, v in ipairs({
 		"apple",
 		"jungleleaves",
 		"pine_needles"
-		}) do
+	}) do
 	minetest.register_alias("mapgen_" .. v, "air")
 end
 
@@ -174,7 +174,7 @@ regterrain({
 				falling_repose = 2
 			}
 		},
-		groups = { 
+		groups = {
 			crumbly = 1,
 			falling_node = 1
 		},
@@ -188,14 +188,14 @@ regterrain({
 				falling_repose = 1
 			}
 		},
-		groups = { 
+		groups = {
 			crumbly = 1,
 			falling_node = 1
 		},
 		mapgen = {
 			"sand",
 			"clay",
-			"desert_sand" 
+			"desert_sand"
 		},
 		crush_damage = 0.5,
 		sounds = nodecore.sounds("nc_terrain_swishy")

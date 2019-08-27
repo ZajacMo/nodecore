@@ -84,7 +84,7 @@ function nodecore.fixedbox(x, ...)
 	return {type = "fixed", fixed = {
 			x or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 			...
-		}}
+	}}
 end
 
 function nodecore.interact(player)

@@ -45,7 +45,7 @@ minetest.register_node(modname .. ":glass_crude", {
 			silica = 1,
 			falling_node = 1,
 			crumbly = 2
-		},	
+		},
 		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
 
@@ -62,7 +62,7 @@ minetest.register_node(modname .. ":glass_float", {
 			silica = 1,
 			silica_clear = 1,
 			cracky = 3
-		},	
+		},
 		sounds = nodecore.sounds("nc_optics_glassy")
 	})
 
@@ -86,7 +86,7 @@ local moltdef = {
 	drop = "",
 	groups = { igniter = 1, silica = 1 },
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
-	liquid_alternative_flowing = modname .. ":glass_hot_flowing",	
+	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",
 	sounds = nodecore.sounds("nc_terrain_bubbly")
 }
@@ -94,13 +94,13 @@ local moltdef = {
 minetest.register_node(modname .. ":glass_hot_source",
 	nodecore.underride({
 			liquidtype = "source"
-			}, moltdef))
+		}, moltdef))
 minetest.register_node(modname .. ":glass_hot_flowing",
 	nodecore.underride({
 			liquidtype = "flowing",
 			drawtype = "flowingliquid",
 			paramtype2 = "flowingliquid"
-			}, moltdef))
+		}, moltdef))
 
 nodecore.register_ambiance({
 		label = "Glass Source Ambiance",

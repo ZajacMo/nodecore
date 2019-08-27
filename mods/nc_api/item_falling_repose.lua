@@ -20,7 +20,7 @@ end
 
 nodecore.register_on_register_item(function(name, def)
 		if def.type ~= "node" then return end
-		
+
 		def.groups = def.groups or {}
 
 		if def.groups.falling_repose then def.groups.falling_node = 1 end
@@ -60,7 +60,7 @@ function nodecore.falling_repose_check(pos)
 	-- a non-moving node; it's only when stacked on other
 	-- falling nodes that they can slip off.
 	local sitdef = minetest.registered_items[minetest.get_node(
-			{x = pos.x, y = pos.y - 1, z = pos.z}).name]
+		{x = pos.x, y = pos.y - 1, z = pos.z}).name]
 	if not (sitdef and sitdef.groups and sitdef.groups.falling_node)
 	then return end
 

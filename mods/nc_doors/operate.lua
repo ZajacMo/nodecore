@@ -35,12 +35,13 @@ function nodecore.operate_door(pos, node, dir)
 	local found = {}
 	local hinge = hingeaxis(pos, node)
 	if nodecore.scan_flood(pos, 128, function(p, d)
-		local n = minetest.get_node_or_nil(p)
-		if not n then return true end
-		if (not nodecore.match(n, is_door))
-		or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
-		found[minetest.pos_to_string(p)] = {pos = p, node = n}
-	end) then return end
+			local n = minetest.get_node_or_nil(p)
+			if not n then return true end
+			if (not nodecore.match(n, is_door))
+			or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
+			found[minetest.pos_to_string(p)] = {pos = p, node = n}
+		end
+	) then return end
 
 	local toop = {}
 	for k, v in pairs(found) do

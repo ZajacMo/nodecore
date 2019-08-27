@@ -89,7 +89,7 @@ reg("_glow", {
 			txr,
 			txr .. "^" .. modname .. "_lens_in.png",
 			txr .. "^" .. modname .. "_lens_out.png",
-		},	
+		},
 	})
 
 nodecore.register_limited_abm({

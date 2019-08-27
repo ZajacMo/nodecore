@@ -6,7 +6,7 @@ local ipairs, minetest, nodecore
 nodecore.register_leaf_drops, nodecore.registered_leaf_drops
 = nodecore.mkreg()
 
-function nodecore.leaf_decay(pos, node) 
+function nodecore.leaf_decay(pos, node)
 	node = node or minetest.get_node(pos)
 	local t = {}
 	for i, v in ipairs(nodecore.registered_leaf_drops) do

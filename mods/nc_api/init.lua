@@ -35,9 +35,11 @@ end
 for k, v in pairs(minetest) do
 	minetest[k] = callguard("minetest", minetest, k, v)
 end
-setmetatable(nodecore, {__newindex = function(t, k, v)
+setmetatable(nodecore, {
+		__newindex = function(t, k, v)
 			rawset(nodecore, k, callguard("nodecore", t, k, v))
-		end})
+		end
+	})
 
 include("issue7020")
 include("issue8378")

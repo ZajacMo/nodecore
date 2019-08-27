@@ -31,15 +31,15 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 	end
 
 	local paneldef = nodecore.underride({}, {
-		name = modname .. ":panel_" .. basenode,
-		description = (desc or basedef.description) .. " Panel",
-		tiles = tiles,
-		paramtype2 = "facedir",
-		on_rightclick = nodecore.node_spin_filtered(function(a, b)
-			return vector.equals(a.f, b.r)
-			and vector.equals(a.r, b.f)
-		end),
-	}, basedef)
+			name = modname .. ":panel_" .. basenode,
+			description = (desc or basedef.description) .. " Panel",
+			tiles = tiles,
+			paramtype2 = "facedir",
+			on_rightclick = nodecore.node_spin_filtered(function(a, b)
+					return vector.equals(a.f, b.r)
+					and vector.equals(a.r, b.f)
+				end),
+		}, basedef)
 
 	minetest.register_node(paneldef.name, paneldef)
 
@@ -54,89 +54,89 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 
 	local groups = nodecore.underride({door = 1}, basedef.groups)
 	local doordef = nodecore.underride({
-		name = modname .. ":door_" .. basenode,
-		description = (desc or basedef.description) .. " Hinged Panel",
-		tiles = tiles,
-		drop = pin,
-		drop_in_place = paneldef.name,
-		on_rightclick = doorop,
-		groups = groups
-	}, paneldef)
+			name = modname .. ":door_" .. basenode,
+			description = (desc or basedef.description) .. " Hinged Panel",
+			tiles = tiles,
+			drop = pin,
+			drop_in_place = paneldef.name,
+			on_rightclick = doorop,
+			groups = groups
+		}, paneldef)
 
 	minetest.register_node(doordef.name, doordef)
 
 	nodecore.register_craft({
-		label = "drill door " .. basenode:lower(),
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = "nc_lode:rod_tempered",
-			},
-			{
-				y = -1,
-				match = basefull,
-				replace = paneldef.name
+			label = "drill door " .. basenode:lower(),
+			action = "pummel",
+			toolgroups = {thumpy = 3},
+			normal = {y = 1},
+			nodes = {
+				{
+					match = "nc_lode:rod_tempered",
+				},
+				{
+					y = -1,
+					match = basefull,
+					replace = paneldef.name
+				}
 			}
-		}
-	})
+		})
 
 	nodecore.register_craft({
-		label = "lubricate door " .. basenode:lower(),
-		check = function(pos, data)
-			return minetest.get_meta(data.rel(0, -1, 0))
-			:get_float("doorlube") ~= 1
-		end,
-		nodes = {
-			{
-				match = "nc_fire:lump_coal",
-				replace = "air"
-			},
-			{
-				y = -1,
-				match = paneldef.name,
-			}
-		},
-		after = function(pos, data)
-			minetest.get_meta(data.rel(0, -1, 0)):set_float("doorlube", 1)
-			return nodecore.digparticles(
-				minetest.registered_nodes["nc_fire:coal8"],
+			label = "lubricate door " .. basenode:lower(),
+			check = function(pos, data)
+				return minetest.get_meta(data.rel(0, -1, 0))
+				:get_float("doorlube") ~= 1
+			end,
+			nodes = {
 				{
-					collisiondetection = true,
-					amount = 10,
-					time = 0.2,
-					minpos = {x = pos.x - 0.4, y = pos.y - 0.5, z = pos.z - 0.4},
-					maxpos = {x = pos.x + 0.4, y = pos.y - 0.45, z = pos.z + 0.4},
-					minexptime = 0.1,
-					maxexptime = 1,
-					minsize = 1,
-					maxsize = 3	
+					match = "nc_fire:lump_coal",
+					replace = "air"
+				},
+				{
+					y = -1,
+					match = paneldef.name,
 				}
-			)
-		end
-	})
-	nodecore.register_craft({
-		label = "door pin " .. basenode:lower(),
-		action = "pummel",
-		toolgroups = {thumpy = 1},
-		normal = {y = 1},
-		check = function(pos, data)
-			return minetest.get_meta(data.rel(0, -1, 0))
-			:get_float("doorlube") == 1
-		end,
-		nodes = {
-			{
-				match = pin,
-				replace = "air"
 			},
-			{
-				y = -1,
-				match = paneldef.name,
-				replace = doordef.name
+			after = function(pos, data)
+				minetest.get_meta(data.rel(0, -1, 0)):set_float("doorlube", 1)
+				return nodecore.digparticles(
+					minetest.registered_nodes["nc_fire:coal8"],
+					{
+						collisiondetection = true,
+						amount = 10,
+						time = 0.2,
+						minpos = {x = pos.x - 0.4, y = pos.y - 0.5, z = pos.z - 0.4},
+						maxpos = {x = pos.x + 0.4, y = pos.y - 0.45, z = pos.z + 0.4},
+						minexptime = 0.1,
+						maxexptime = 1,
+						minsize = 1,
+						maxsize = 3
+					}
+				)
+			end
+		})
+	nodecore.register_craft({
+			label = "door pin " .. basenode:lower(),
+			action = "pummel",
+			toolgroups = {thumpy = 1},
+			normal = {y = 1},
+			check = function(pos, data)
+				return minetest.get_meta(data.rel(0, -1, 0))
+				:get_float("doorlube") == 1
+			end,
+			nodes = {
+				{
+					match = pin,
+					replace = "air"
+				},
+				{
+					y = -1,
+					match = paneldef.name,
+					replace = doordef.name
+				}
 			}
-		}
-	})
+		})
 end
 
 nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff")

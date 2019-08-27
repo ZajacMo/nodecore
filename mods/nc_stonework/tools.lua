@@ -21,7 +21,7 @@ nodecore.extend_item(chip, function(copy, orig)
 					if nodecore.match(pos, {
 							name = v.from,
 							wear = 0.05
-							}) then
+						}) then
 						minetest.remove_node(pos)
 						nodecore.item_eject(pos, v.to)
 						stoned.pos = pos

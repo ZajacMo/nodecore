@@ -200,9 +200,11 @@ if minetest.raycast then
 			end
 
 			local dummyent = {}
-			setmetatable(dummyent, {__index = function(t, k)
+			setmetatable(dummyent, {
+					__index = function(t, k)
 						return function() return {} end
-					end})
+					end
+				})
 
 			local name = stack:get_name()
 			local function tryplace(p)

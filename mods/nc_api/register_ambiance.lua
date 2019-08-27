@@ -8,7 +8,7 @@ local math_random
 function nodecore.register_ambiance(def)
 	local max = def.queue_max or 100
 	local rate = 1 / (def.queue_rate or 20)
-	
+
 	local seen = {}
 	local queue = {}
 	local total = 0
@@ -54,6 +54,6 @@ function nodecore.register_ambiance(def)
 		end
 		total = total + 1
 	end
-	
+
 	return nodecore.register_limited_abm(def)
 end

@@ -11,7 +11,7 @@ local strings = {
 	onemore = "...and 1 more hint...",
 	fewmore = "...and @1 more hints...",
 	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by hints.  Explore!"
+	explore = "Not all game content is covered by hints. Explore!"
 }
 
 for k, v in pairs(strings) do

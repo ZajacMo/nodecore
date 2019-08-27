@@ -141,4 +141,5 @@ nodecore.register_limited_abm({
 			minetest.set_node(np, node)
 			minetest.get_meta(np):set_int("glassgen", gen + 1)
 			minetest.set_node(pos, {name = flow, param2 = 7})
-		end})
+		end
+	})

@@ -11,7 +11,7 @@ function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
 			nodecore.craft_check(pos, node, {
 					action = "place",
 					crafter = placer,
-					pointed = pointed_thing 
+					pointed = pointed_thing
 				})
 			return ...
 		end

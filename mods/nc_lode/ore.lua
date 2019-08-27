@@ -93,16 +93,16 @@ local function regore(name, def)
 				wherein = "nc_terrain:stone",
 				random_factor = 0,
 				noise_params = {
-					offset  = 0,
-					scale   = 4,
-					spread  = {x = 40, y = 5, z = 40},
-					seed    = 12497,
+					offset = 0,
+					scale = 4,
+					spread = {x = 40, y = 5, z = 40},
+					seed = 12497,
 					octaves = 3,
 					persist = 0.5,
 					flags = "eased",
 				},
-				noise_threshold = 1.3		
-				}, def))
+				noise_threshold = 1.3
+			}, def))
 end
 for y = 0, 7 do
 	local def = {
@@ -136,7 +136,7 @@ for _, id in pairs({
 		c_lodestone,
 		minetest.get_content_id(ore),
 		minetest.get_content_id("nc_terrain:stone")
-		}) do
+	}) do
 	stoneids[id] = true
 	for _, v in pairs(stratadata.altsbyid[id] or {}) do
 		stoneids[v] = true
@@ -167,9 +167,9 @@ nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 						or bad(x, y, z + 1)
 						or bad(x, y, z - 1)
 						then data[i] = c_lodestone
-						end
 					end
 				end
 			end
 		end
-	end)
+	end
+end)

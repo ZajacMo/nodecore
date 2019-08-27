@@ -42,10 +42,10 @@ function nodecore.stack_giveto(pos, player)
 	local stack = nodecore.stack_get(pos)
 	local qty = stack:get_count()
 	if qty < 1 then return true end
-	
+
 	stack = player:get_inventory():add_item("main", stack)
 	if stack:get_count() == qty then return stack:is_empty() end
-	
+
 	nodecore.stack_sounds(pos, "dug")
 	nodecore.stack_set(pos, stack)
 	return stack:is_empty()

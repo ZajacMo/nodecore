@@ -95,7 +95,7 @@ local function canseeface(p1, n1, p2, n2)
 	end
 
 	-- Players must be facing each other; cannot identify another
-	-- player's face when their back is turned.  Note that
+	-- player's face when their back is turned. Note that
 	-- minetest models don't show pitch, so ignore the y component.
 
 	-- Compute normalized 2d vector from one player to another.

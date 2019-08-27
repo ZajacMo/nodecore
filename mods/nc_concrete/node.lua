@@ -6,16 +6,16 @@ local minetest, nodecore
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":aggregate", {
-	description = "Aggregate",
-	tiles = {"nc_terrain_gravel.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"},
-	groups = { 
-		crumbly = 2,
-		falling_node = 1,
-		falling_repose = 1
-	},
-	crush_damage = 1,
-	sounds = nodecore.sounds("nc_terrain_chompy")
-})
+		description = "Aggregate",
+		tiles = {"nc_terrain_gravel.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"},
+		groups = {
+			crumbly = 2,
+			falling_node = 1,
+			falling_repose = 1
+		},
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_chompy")
+	})
 
 local wettile = "nc_terrain_stone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"
 local wetdef = {
@@ -34,10 +34,10 @@ local wetdef = {
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }
 minetest.register_node(modname .. ":wet_source", nodecore.underride({
-	liquidtype = "source"
-}, wetdef))
+			liquidtype = "source"
+		}, wetdef))
 minetest.register_node(modname .. ":wet_flowing", nodecore.underride({
-	drawtype = "flowingliquid",
-	liquidtype = "flowing",
-	paramtype2 = "flowingliquid"
-}, wetdef))
+			drawtype = "flowingliquid",
+			liquidtype = "flowing",
+			paramtype2 = "flowingliquid"
+		}, wetdef))

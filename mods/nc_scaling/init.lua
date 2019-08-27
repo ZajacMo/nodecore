@@ -1,38 +1,43 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore, vector
+    = minetest, nodecore, vector
+-- LUALOCALS > ---------------------------------------------------------
+
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":steps", {
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
-	tiles = {
-		"nc_scaling_blank.png",
-		"nc_scaling_blank.png",
-		"nc_scaling_blank.png",
-		"nc_scaling_blank.png",
-		"nc_scaling_blank.png",
-		"nc_scaling_steps.png"
-	},
-	use_texture_alpha = true,
-	drawtype = "nodebox",
-	node_box = nodecore.fixedbox(-0.5, -0.5, 31/64, 0.5, 0.5, 0.5),
-	walkable = false,
-	climbable = true,
-	pointable = false,
-	buildable_to = true,
-	groups = {[modname] = 1}
-})
+		paramtype = "light",
+		paramtype2 = "facedir",
+		sunlight_propagates = true,
+		tiles = {
+			"nc_scaling_blank.png",
+			"nc_scaling_blank.png",
+			"nc_scaling_blank.png",
+			"nc_scaling_blank.png",
+			"nc_scaling_blank.png",
+			"nc_scaling_steps.png"
+		},
+		use_texture_alpha = true,
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(-0.5, -0.5, 31/64, 0.5, 0.5, 0.5),
+		walkable = false,
+		climbable = true,
+		pointable = false,
+		buildable_to = true,
+		groups = {[modname] = 1}
+	})
 
 minetest.register_node(modname .. ":hang", {
-	paramtype = "light",
-	paramtype2 = "facedir",
-	sunlight_propagates = true,
-	drawtype = "airlike",
-	walkable = false,
-	climbable = true,
-	pointable = false,
-	buildable_to = true,
-	groups = {[modname] = 1}
-})
+		paramtype = "light",
+		paramtype2 = "facedir",
+		sunlight_propagates = true,
+		drawtype = "airlike",
+		walkable = false,
+		climbable = true,
+		pointable = false,
+		buildable_to = true,
+		groups = {[modname] = 1}
+	})
 
 local function closenough(pos, player)
 	local pp = player:get_pos()
@@ -41,20 +46,20 @@ local function closenough(pos, player)
 end
 
 nodecore.register_limited_abm({
-	label = "Scaling Decay",
-	interval = 1,
-	chance = 1,
-	limited_max = 100,
-	nodenames = {"group:" .. modname},
-	action = function(pos)
-		local n = minetest.get_meta(pos):get_string("n")
-		if n then
-			local pl = minetest.get_player_by_name(n)
-			if pl and closenough(pos, pl) then return end
+		label = "Scaling Decay",
+		interval = 1,
+		chance = 1,
+		limited_max = 100,
+		nodenames = {"group:" .. modname},
+		action = function(pos)
+			local n = minetest.get_meta(pos):get_string("n")
+			if n then
+				local pl = minetest.get_player_by_name(n)
+				if pl and closenough(pos, pl) then return end
+			end
+			minetest.remove_node(pos)
 		end
-		minetest.remove_node(pos)
-	end
-})
+	})
 
 local function stepcheck(pos, data)
 	if not closenough(pos, data.crafter) then return end
@@ -84,7 +89,7 @@ end
 local function stepafter(dx, dy, dz)
 	return function(pos, data)
 		local p = data.rel(dx, dy, dz)
-		
+
 		local d = vector.subtract(p, pos)
 		local fd = 0
 		for i = 0, #nodecore.facedirs do
@@ -98,7 +103,7 @@ local function stepafter(dx, dy, dz)
 
 		local pname = data.pname
 		setstep(p, "steps", pname, fd)
-		
+
 		-- invisible support below to simulate hanging by fingertips
 		hangcheck(p, 0, -1, 0, pname)
 		if dy ~= 0 then
@@ -114,39 +119,39 @@ local function stepafter(dx, dy, dz)
 end
 
 nodecore.register_craft({
-	label = "scale sheer walls",
-	action = "pummel",
-	duration = 5,
-	normal = {x = 1},
-	check = stepcheck,
-	nodes = {
-		{
-			match = {walkable = true}
+		label = "scale sheer walls",
+		action = "pummel",
+		duration = 5,
+		normal = {x = 1},
+		check = stepcheck,
+		nodes = {
+			{
+				match = {walkable = true}
+			},
+			{
+				x = 1,
+				match = "air",
+				replace = modname .. ":steps"
+			}
 		},
-		{
-			x = 1,
-			match = "air",
-			replace = modname .. ":steps"
-		}
-	},
-	after = stepafter(1, 0, 0)
-})
+		after = stepafter(1, 0, 0)
+	})
 
 nodecore.register_craft({
-	label = "scale sheer ceilings",
-	action = "pummel",
-	duration = 10,
-	normal = {y = -1},
-	check = stepcheck,
-	nodes = {
-		{
-			match = {walkable = true}
+		label = "scale sheer ceilings",
+		action = "pummel",
+		duration = 10,
+		normal = {y = -1},
+		check = stepcheck,
+		nodes = {
+			{
+				match = {walkable = true}
+			},
+			{
+				y = -1,
+				match = "air",
+				replace = modname .. ":steps"
+			}
 		},
-		{
-			y = -1,
-			match = "air",
-			replace = modname .. ":steps"
-		}
-	},
-	after = stepafter(0, -1, 0)
-})
+		after = stepafter(0, -1, 0)
+	})

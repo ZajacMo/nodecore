@@ -43,7 +43,7 @@ do
 			end
 			if q then
 				npos.q = q
-				found[#found + 1] = npos 
+				found[#found + 1] = npos
 			end
 		end
 		return found

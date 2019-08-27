@@ -32,18 +32,18 @@ function nodecore.translate(str, ...)
 end
 
 minetest.register_globalstep(function()
-	if not strings_dirty then return end
-	strings_dirty = nil
+		if not strings_dirty then return end
+		strings_dirty = nil
 
-	local keys = {}
-	for k, v in pairs(strings) do keys[#keys + 1] = k end
-	table_sort(keys)
+		local keys = {}
+		for k, v in pairs(strings) do keys[#keys + 1] = k end
+		table_sort(keys)
 
-	local data = "# textdomain: " .. modname .. "\n"
-	for _, k in ipairs(keys) do
-		data = data .. k .. "=" .. "\n"
-	end
+		local data = "# textdomain: " .. modname .. "\n"
+		for _, k in ipairs(keys) do
+			data = data .. k .. "=" .. "\n"
+		end
 
-	local p = minetest.get_worldpath() .. "/" .. modname .. ".template.tr"
-	return minetest.safe_file_write(p, data)
-end)
+		local p = minetest.get_worldpath() .. "/" .. modname .. ".template.tr"
+		return minetest.safe_file_write(p, data)
+	end)

@@ -33,7 +33,7 @@ function minetest.handle_node_drops(a, b, whom, ...)
 	return olddrops(a, b, wrapplayer(whom), ...)
 end
 
-local oldeat = minetest.do_item_eat 
+local oldeat = minetest.do_item_eat
 function minetest.do_item_eat(a, b, c, whom, ...)
 	return oldeat(a, b, c, wrapplayer(whom), ...)
 end

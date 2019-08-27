@@ -106,7 +106,7 @@ nodecore.register_limited_abm({
 					},
 					maxpos = {
 						x = pos.x + 0.3,
-						y = pos.y + 33/64, 
+						y = pos.y + 33/64,
 						z= pos.z + 0.3
 					},
 					minvel = zero,

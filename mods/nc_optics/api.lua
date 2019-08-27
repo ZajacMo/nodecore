@@ -98,7 +98,7 @@ local function optic_commit(v)
 		local dn = dirname(dir)
 		if old[dn] ~= data[dn] then
 			optic_trigger(v.pos, dir)
-		end	
+		end
 	end
 	meta:set_string("nc_optics", minetest.serialize(data))
 end

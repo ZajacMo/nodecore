@@ -28,51 +28,51 @@ local function ezschem(key, yslices, init)
 end
 
 local root = {
-	"     ",
-	"     ",
-	"  r  ",
-	"     ",
-	"     ",
+	".....",
+	".....",
+	"..r..",
+	".....",
+	".....",
 }
 local trunk = {
-	"     ",
-	"     ",
-	"  t  ",
-	"     ",
-	"     ",
+	".....",
+	".....",
+	"..t..",
+	".....",
+	".....",
 }
 local bot = {
-	"     ",
-	" ebe ",
-	" btb ",
-	" ebe ",
-	"     ",
+	".....",
+	".ebe.",
+	".btb.",
+	".ebe.",
+	".....",
 }
 local low = {
-	" lll ",
+	".lll.",
 	"lebel",
 	"lbtbl",
 	"lebel",
-	" lll ",
+	".lll.",
 }
 local hi = {
-	" lll ",
+	".lll.",
 	"llell",
 	"lebel",
 	"llell",
-	" lll ",
+	".lll.",
 }
 local top = {
-	"     ",
-	" lll ",
-	" lll ",
-	" lll ",
-	"     ",
+	".....",
+	".lll.",
+	".lll.",
+	".lll.",
+	".....",
 }
 
 nodecore.tree_schematic = ezschem(
 	{
-		[" "] = {name = "air", prob = 0},
+		["."] = {name = "air", prob = 0},
 		r = {name = modname .. ":root", prob = 255, force_place = true},
 		t = {name = modname .. ":tree", prob = 255},
 		b = {name = modname .. ":leaves", param2 = 2, prob = 255},

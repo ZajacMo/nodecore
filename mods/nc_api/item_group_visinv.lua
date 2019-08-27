@@ -8,7 +8,7 @@ local math_floor, math_pi, math_random, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
-Helpers for visible inventory.  Use "visinv" node group.
+Helpers for visible inventory. Use "visinv" node group.
 Sets up on_construct, after_destruct and an ABM to manage
 the visual entities.
 --]]
@@ -123,7 +123,7 @@ local item = {
 			})
 		bii.set_item(self, ...)
 		self.object = realobj
-		
+
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
 		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
 		p.physical = true

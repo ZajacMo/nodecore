@@ -26,7 +26,7 @@ function nodecore.match(thing, crit)
 	if thing.stack then
 		thing.name = thing.stack:get_name()
 		thing.count = thing.stack:get_count()
-		thing.wear = thing.stack:get_wear()	
+		thing.wear = thing.stack:get_wear()
 		thing.stacked = true
 	end
 	if not thing.name then
@@ -45,7 +45,7 @@ function nodecore.match(thing, crit)
 	end
 	if crit.stacked and not thing.stacked then return end
 	if crit.stacked == false and thing.stacked then return end
-	
+
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
@@ -64,7 +64,7 @@ function nodecore.match(thing, crit)
 				if not def.groups[k] then return end
 			elseif v == false then
 				if def.groups[k] then return end
-			else				
+			else
 				if def.groups[k] ~= v then return end
 			end
 		end

@@ -14,13 +14,13 @@ minetest.register_ore({
 		clust_scarcity = 8 * 8 * 8,
 		random_factor = 0,
 		noise_params = {
-			offset  = 0,
-			scale   = 3,
-			spread  = {x=10, y=25, z=10},
-			seed    = 34654,
+			offset = 0,
+			scale = 3,
+			spread = {x=10, y=25, z=10},
+			seed = 34654,
 			octaves = 3,
 			persist = 0.5,
 			flags = "eased",
 		},
-		noise_threshold = 1.2	
+		noise_threshold = 1.2
 	})

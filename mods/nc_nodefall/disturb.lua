@@ -12,7 +12,7 @@ local radius = {x = 2, y = 2, z = 2}
 
 local function fallcheck(name, start)
 	if not nodecore.interact(name) then return end
-	
+
 	local target = vector.add(start, {
 			x = math_random() * 128 - 64,
 			y = math_random() * 128 - 64,
@@ -25,13 +25,14 @@ local function fallcheck(name, start)
 	local found = minetest.find_nodes_in_area(
 		vector.subtract(pos, radius),
 		vector.add(pos, radius),
-		"group:falling_node")
+		"group:falling_node"
+	)
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
 
-
 	local miny = pos.y - 64
-	repeat pos.y = pos.y - 1 until pos.y < miny or not nodecore.match(pos, falling)
+	pos.y = pos.y - 1
+	while pos.y >= miny and nodecore.match(pos, falling) do pos.y = pos.y - 1 end
 	if pos.y < miny then return end
 	pos.y = pos.y + 1
 	local prev = minetest.get_node(pos).name

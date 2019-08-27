@@ -33,7 +33,7 @@ function nodecore.smokefx(pos, time, qty)
 				minexptime = 1,
 				maxexptime = 5,
 				minsize = 1,
-				maxsize = 3	
+				maxsize = 3
 			}),
 		exp = now + time
 	}

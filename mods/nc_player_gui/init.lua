@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, table, type
-    = ipairs, minetest, nodecore, table, type
+local ipairs, minetest, nodecore, pairs, table, type
+    = ipairs, minetest, nodecore, pairs, table, type
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -22,12 +22,12 @@ do
 				nct("NodeCore") .. " - " .. version,
 				"",
 				"(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>",
-				"MIT License:  http://www.opensource.org/licenses/MIT",
+				"MIT License: http://www.opensource.org/licenses/MIT",
 				"See included LICENSE file for full details and credits",
 				"",
 				"https://content.minetest.net/packages/Warr1024/nodecore/",
-				"GitLab:    https://gitlab.com/sztest/nodecore",
-				"Discord:   https://discord.gg/SHq2tkb"
+				"GitLab: https://gitlab.com/sztest/nodecore",
+				"Discord: https://discord.gg/SHq2tkb"
 			}
 		})
 end
@@ -38,7 +38,7 @@ nodecore.register_inventory_tab({
 			"Player's Guide: Inventory Management",
 			"",
 			"- There is NO inventory screen.",
-			"- Drop items onto ground to create stack nodes.  They do not decay.",
+			"- Drop items onto ground to create stack nodes. They do not decay.",
 			"- Sneak+drop to count out single items from stack.",
 			"- Items picked up try to fit into the current selected slot first.",
 			"- Crafting is done by building recipes in-world.",
@@ -61,21 +61,20 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-
 nodecore.register_inventory_tab({
-	title = "Tips",
-	content = {
-		"Player's Guide: Tips",
-		"",
-		"- Stuck in a pit?  Pummel surfaces barehanded to find places to climb.",
-		"- Can't dig trees or grass?  Search for sticks in the canopy.",
-		"- Ores may be hidden, but revealed by subtle clues in terrain.",
-		"- \"Torches\" are not a thing; use fire as your first light source.",
-		"- \"Furnaces\" are not a thing; discover smelting with open flames.",
-		"- Trouble lighting a fire?  Try using longer sticks, more tinder.",
-		"- NodeCore is challenging by design, sometimes frustrating.  DON'T GIVE UP!"
-	}
-})
+		title = "Tips",
+		content = {
+			"Player's Guide: Tips",
+			"",
+			"- Stuck in a pit? Pummel surfaces barehanded to find places to climb.",
+			"- Can't dig trees or grass? Search for sticks in the canopy.",
+			"- Ores may be hidden, but revealed by subtle clues in terrain.",
+			"- \"Torches\" are not a thing; use fire as your first light source.",
+			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
+			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
+			"- NodeCore is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+		}
+	})
 
 for k, v in pairs(nodecore.registered_inventory_tabs) do
 	nct(v.title)

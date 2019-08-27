@@ -86,14 +86,13 @@ minetest.register_globalstep(function()
 
 		if not minetest.get_node_or_nil(player:get_pos()) then
 			attq[#attq + 1] = v
-			return 
+			return
 		end
 
 		local obj = minetest.add_entity(v.pos, modname .. ":ent")
 		local ent = obj:get_luaentity()
 		ent.conf = v
 	end)
-
 
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
@@ -122,7 +121,7 @@ minetest.register_on_joinplayer(function(player)
 
 		-- Show player's entire inventory as a "toolbelt".
 		-- This is very unstable and tends to break badly,
-		
+
 		--[[
 		local function cslot(n, x, z)
 			return addslot(n, nil, x * 1.6,

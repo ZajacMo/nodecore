@@ -8,13 +8,13 @@ local math_floor, os_date, table_concat
 local modname = minetest.get_current_modname()
 
 local anim = {
-	stand     = {x = 0,   y = 0},
-	sit       = {x = 1,   y = 1},
-	walk      = {x = 2,   y = 42},
-	mine      = {x = 43,  y = 57,  speed = 0.85},
-	lay       = {x = 58,  y = 58},
-	walk_mine = {x = 59,  y = 103},
-	swim_up   = {x = 105, y = 162, speed = 0.4},
+	stand = {x = 0, y = 0},
+	sit = {x = 1, y = 1},
+	walk = {x = 2, y = 42},
+	mine = {x = 43, y = 57, speed = 0.85},
+	lay = {x = 58, y = 58},
+	walk_mine = {x = 59, y = 103},
+	swim_up = {x = 105, y = 162, speed = 0.4},
 	swim_down = {x = 163, y = 223, speed = 0.4},
 	swim_mine = {x = 224, y = 281, speed = 0.5}
 }

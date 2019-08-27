@@ -35,7 +35,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 3},
 		normal = {y = 1},
-		nodes = { 
+		nodes = {
 			{match = plank, replace = "air"}
 		},
 		items = {
