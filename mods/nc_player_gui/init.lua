@@ -61,6 +61,22 @@ nodecore.register_inventory_tab({
 		}
 	})
 
+
+nodecore.register_inventory_tab({
+	title = "Tips",
+	content = {
+		"Player's Guide: Tips",
+		"",
+		"- Stuck in a pit?  Pummel surfaces barehanded to find places to climb.",
+		"- Can't dig trees or grass?  Search for sticks in the canopy.",
+		"- Ores may be hidden, but revealed by subtle clues in terrain.",
+		"- \"Torches\" are not a thing; use fire as your first light source.",
+		"- \"Furnaces\" are not a thing; discover smelting with open flames.",
+		"- Trouble lighting a fire?  Try using longer sticks, more tinder.",
+		"- NodeCore is challenging by design, sometimes frustrating.  DON'T GIVE UP!"
+	}
+})
+
 for k, v in pairs(nodecore.registered_inventory_tabs) do
 	nct(v.title)
 	for i = 1, #v.content do nct(v.content[i]) end
@@ -99,7 +115,7 @@ function nodecore.inventory_formspec(player, curtab)
 		if type(f) == "function" then f = f(player) end
 		for i = 1, #f do
 			t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
-			.. nct(f[i]) .. pad .. ".]"
+			.. fse(nct(f[i])) .. pad .. ".]"
 			y = y + 0.4
 		end
 	end
