@@ -14,7 +14,8 @@ ROADMAP: Large New Development Projects
 - Doors
 	- Automation via laser ablation propulsion.
 		- Some materials cannot be operated by hand?
-	- Operate nearby/attached/colliding doors based on direction of actual movement.
+		- Stirling engine using light gradient?
+		- Water or steam for rotary power?
 	- Push fluids, falling_nodes, items, ents as appropriate?
 		- Also move items sitting atop?
 	- Use as press for quick packing recipes?
@@ -25,12 +26,20 @@ ROADMAP: Large New Development Projects
 		- Power an annealed lode block from 2 opposite faces.
 		- Generates particle effect at mapblock boundary.
 
+- Thatch
+	- Collect grass and dry in sun, or pummel sticks into wood fiber.
+	- Nodes that reduce fall damage, decorative for building.
+	- Brushes for painting, writing system.
+	- Broom to sweep scattered item stacks together.
+
 - Advanced Tools
 	- Sickle / kopesh, choppy + snappy, recursive harvesting.
 
 - Water and lava surface springs.
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting.
+
+- Lava quenching, new material?
 
 - Threats
 	- Visceral
@@ -47,9 +56,12 @@ ROADMAP: Large New Development Projects
 - Radioactives
 	- Criticality (produce heat/ignition when grouped)
 	- Long-term harm to players (reduce health/breath, randomly drop things)
+	- Cannot be dug directly (release heat when struck).
+		- Dig all around them to loosen.
 
 - New writing system based on charcoal
 	- Draw a symbol on surfaces by pummeling w/ charcoal
+	- ...or maybe make ink from coal+water, use a brush?
 	- Punch symbol w/ charcoal to rotate thru alphabet
 	- Use a special/reduced alphabet?
 
