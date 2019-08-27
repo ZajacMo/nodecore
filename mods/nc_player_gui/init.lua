@@ -67,7 +67,7 @@ for k, v in pairs(nodecore.registered_inventory_tabs) do
 end
 
 local pad = " "
-for i = 1, 4 do pad = pad .. pad end
+for i = 1, 8 do pad = pad .. pad end
 
 local fse = minetest.formspec_escape
 function nodecore.inventory_formspec(player, curtab)
@@ -97,9 +97,11 @@ function nodecore.inventory_formspec(player, curtab)
 
 	if f then
 		if type(f) == "function" then f = f(player) end
-		for i = 1, #f do f[i] = nct(f[i]) .. pad end
-		t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
-		.. fse(table_concat(f, "\n")) .. "]"
+		for i = 1, #f do
+			t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
+			.. nct(f[i]) .. pad .. ".]"
+			y = y + 0.4
+		end
 	end
 
 	return table_concat(t)
