@@ -53,6 +53,7 @@ include("util_phealth")
 include("util_facedir")
 include("util_sound")
 include("util_translate")
+include("util_ezschematic")
 include("match")
 
 include("fx_digparticles")
