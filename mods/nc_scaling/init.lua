@@ -52,12 +52,18 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		nodenames = {"group:" .. modname},
 		action = function(pos)
-			local n = minetest.get_meta(pos):get_string("n")
-			if n then
-				local pl = minetest.get_player_by_name(n)
-				if pl and closenough(pos, pl) then return end
+			local data = minetest.get_meta(pos):get_string("data")
+			if (not data) or (data == "") then
+				return minetest.remove_node(pos)
 			end
-			minetest.remove_node(pos)
+			data = minetest.deserialize(data)
+			if minetest.get_node(data.pos).name ~= data.node then
+				return minetest.remove_node(pos)
+			end
+			local player = minetest.get_player_by_name(data.pname)
+			if (not player) or (not closenough(pos, player)) then 
+				return minetest.remove_node(pos)
+			end
 		end
 	})
 
@@ -69,21 +75,22 @@ local function stepcheck(pos, data)
 	return not nodecore.toolspeed(data.wield, def.groups)
 end
 
-local function setstep(pos, node, pname, param2)
+local function setstep(pos, node, mdata, param2)
 	node = {name = modname .. ":" .. node}
 	if param2 then node.param2 = param2 end
 	minetest.set_node(pos, node)
-	minetest.get_meta(pos):set_string("n", pname)
+	minetest.get_meta(pos):set_string("data",
+		minetest.serialize(mdata))
 end
 
-local function hangcheck(pos, dx, dy, dz, pname)
+local function hangcheck(pos, dx, dy, dz, mdata)
 	pos = {
 		x = pos.x + dx,
 		y = pos.y + dy,
 		z = pos.z + dz
 	}
 	if minetest.get_node(pos).name ~= "air" then return end
-	setstep(pos, "hang", pname)
+	setstep(pos, "hang", mdata)
 end
 
 local function stepafter(dx, dy, dz)
@@ -101,19 +108,23 @@ local function stepafter(dx, dy, dz)
 
 		nodecore.node_sound(pos, "place")
 
-		local pname = data.pname
-		setstep(p, "steps", pname, fd)
+		local mdata = {
+			pos = pos,
+			node = data.node.name,
+			pname = data.pname
+		}
+		setstep(p, "steps", mdata, fd)
 
 		-- invisible support below to simulate hanging by fingertips
-		hangcheck(p, 0, -1, 0, pname)
+		hangcheck(p, 0, -1, 0, mdata)
 		if dy ~= 0 then
 			-- invisible support to the sides to simulate swinging
 			-- outward to grab onto the side of an overhang when
 			-- hanging below it
-			hangcheck(p, 1, -1, 0, pname)
-			hangcheck(p, -1, -1, 0, pname)
-			hangcheck(p, 0, -1, 1, pname)
-			hangcheck(p, 0, -1, -1, pname)
+			hangcheck(p, 1, -1, 0, mdata)
+			hangcheck(p, -1, -1, 0, mdata)
+			hangcheck(p, 0, -1, 1, mdata)
+			hangcheck(p, 0, -1, -1, mdata)
 		end
 	end
 end

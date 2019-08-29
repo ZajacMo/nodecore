@@ -79,7 +79,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	end
 	if data.before then data.before(pos, data) end
 	if recipe.before then recipe.before(pos, data) end
-	for _, v in pairs(recipe.nodes) do
+	for _, v in ipairs(recipe.nodes) do
 		if v.replace then
 			local p = rel(v.x, v.y, v.z)
 			local r = v.replace
