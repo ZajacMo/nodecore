@@ -15,12 +15,8 @@ ISSUES: Bugs, Cleanup and Refinements
   being inherited in the cloning; need to dig through the properties
   and remove the ones we don't want inherited.
 
-- Update core docs.
-	- Update CDB listing to match README
-		- Plus: game is still evolving, remember to check for updates.
-	- CONTRIBUTING
-		- Coverage for non-repo items
-			- Screenshots, videos/links, for publicity
+- Update CONTRIBUTING and wishlist.txt docs for non-repo items,
+  e.g. screenshots, videos/links, documentation and guides, publicity.
 
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
