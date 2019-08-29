@@ -10,32 +10,25 @@ CONTRIBUTION WISHLIST
 	  the engine in its own code.
 	- #8378: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
-	- #7481: Breaks the wield/toolbelt view mod, and would require
-	  massive rework to work around.
 	- New TBD bug related to #6735: HUD position calculations are
 	  inconsistent between certain types of elements (e.g. statbars
 	  vs. text/images), and don't line up in very high DPI displays.
 	  This is preventing fine-tuning the position of HUD elements
 	  like the touch-tip in NodeCore.
 
+- Translations, including:
+	- New languages.
+	- Updates for future content.
+
 - Player model enhancements
 	- Check that UV maps are consistent with existing skins,
 	  e.g. MTG Sam or MC Steve, for TP authors to more easily
-	  adapt existing skins.  
+	  adapt existing skins.
 
-- Better textures for pretty much everything.
-	- For player models, "demographically neutral/ambiguous" is
-	  preferred.
-		- Indeterminate age, race, gender, etc.
-	- Something in a pixel art style would be nice (the current
-	  ones are more "procedural" style).
-
-- More sounds:
-	- Improved versions of anything existing.
-		- Note that low bitrate is preferred.
-		- I'm looking for better clarity/variety, NOT fidelity.
-	- Special sounds for completing pummels or crafts?
-	- Ambient stuff like wind in leaves.
+- Improved versions of any art assets (sounds, textures).
+	- Assuming it's practical to maintain a consisten style for
+	  other assets, including future ones.
+	- Ambiance or other background sounds?
 
 - Help maintaining the hint system.
 

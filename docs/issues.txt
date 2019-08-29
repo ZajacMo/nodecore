@@ -15,8 +15,20 @@ ISSUES: Bugs, Cleanup and Refinements
   being inherited in the cloning; need to dig through the properties
   and remove the ones we don't want inherited.
 
+- Update core docs.
+	- Update CDB listing to match README
+		- Plus: game is still evolving, remember to check for updates.
+	- CONTRIBUTING
+		- Coverage for non-repo items
+			- Screenshots, videos/links, for publicity
+
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
+
+- Reinstate and update toolbelt once engine PR #8701 is released
+	- Alternative item strategy with dedicated slots for each
+	  inventory space, which can be empty if in hand instead.
+	- Consider a "backpack" approach as opposed to toolbelt.
 
 - Allow lode cube/bar/rod cooking/cooling in placed form.
 
@@ -59,38 +71,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Skip later stages, e.g. "silk touch" effect?
 	- Tool API cleanup
 		- Separate durability, speed, effects?
-
-- Wield view broken in MP.
-	- Watch for upcoming improvements in 5.1+ and try adding in full
-	  wieldview again.
-	- Consider a "backpack" approach as opposed to toolbelt.
-	- Alternative item strategy with dedicated slots for each
-	  inventory space, which can be empty if in hand instead.
-
-- Update core docs.
-	- README
-		- Convert to markdown?
-		- Elevator pitch
-			- Immersive, no GUIs, original gameplay
-		- Major features
-			- No in-game GUIs (including inventory screen)
-			- Minimal HUDs, unified inventory/health system
-			- Items as nodes (no decay)
-			- Multi-stage digging
-			- Craft in-world
-			- Pummel
-			- Eggcorns!
-			- Falling embers
-			- Design your own furnace
-			- Angle of repose
-			- Portable containers
-			- Optical digital logic
-			- Doors and mechanical
-		- Installation guide?
-			- Singleplayer on android
-	- CONTRIBUTING
-		- Coverage for non-repo items
-			- Screenshots, videos/links, for publicity
 
 - Code Quality.
 	- Finish setting up LuaCheck, audit code.

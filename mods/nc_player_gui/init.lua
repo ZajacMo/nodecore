@@ -22,7 +22,7 @@ do
 				nct("NodeCore") .. " - " .. version,
 				"",
 				"(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>",
-				"MIT License: http://www.opensource.org/licenses/MIT",
+				"MIT License (http://www.opensource.org/licenses/MIT)",
 				"See included LICENSE file for full details and credits",
 				"",
 				"https://content.minetest.net/packages/Warr1024/nodecore/",
