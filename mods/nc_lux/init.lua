@@ -4,3 +4,4 @@ local include
 -- LUALOCALS > ---------------------------------------------------------
 
 include('ore')
+include('react')

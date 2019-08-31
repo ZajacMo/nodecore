@@ -15,11 +15,15 @@ for i = 1, 8 do
 			.. (i * 32) .. ")^nc_terrain_cobble.png"
 		},
 		groups = {
+			lux_cobble = 1,
+			lux_emit = 1,
 			cracky = 1
 		},
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
+				lux_cobble = 1,
+				lux_emit = 1,
 				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3
@@ -39,6 +43,7 @@ drawtype = "glasslike",
 	tiles = {"nc_terrain_stone.png"},
 	strata = strata,
 	groups = {
+		lux_emit = 1,
 		cracky = 2
 	},
 	light_source = 1,
@@ -56,6 +61,7 @@ drawtype = "glasslike",
 		tiles = {nodecore.hard_stone_tile(i)},
 		strata = strata,
 		groups = {
+			lux_emit = 1,
 			cracky = i + 2,
 			hard_stone = i
 		},
