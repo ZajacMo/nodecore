@@ -10,13 +10,10 @@ ROADMAP: Large New Development Projects
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Lux Ore
-	- Gives off light.  Multiple alternative nodes; gives off more light if more are present.
-	- Search player inventory and nearby visinv nodes for neighbors.
 	- Higher tiers of Lux are igniters.
 	- Highest tier will spontaneously melt down into molten lux stone, with source creep.
-	- Lux in inventory or near players will subtly damage them (remove damage sfx for delta-hp below 1)
 	- Players accumulate radiation.
-		- Lower healing rate?
+		- Lower healing rate?  Lower max health?
 		- Lux Ataxia, randomly drop things.
 		- Increase pummel times.
 		- Radiation fades, washes off faster with water.
