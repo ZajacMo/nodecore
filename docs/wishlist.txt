@@ -5,14 +5,11 @@ CONTRIBUTION WISHLIST
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
-	  elements.  
+	  elements.
+	- #8141: We want cleaner player name labels, and to move
+	  the touchtip from screen-space into node-space.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
-	- New TBD bug related to #6735: HUD position calculations are
-	  inconsistent between certain types of elements (e.g. statbars
-	  vs. text/images), and don't line up in very high DPI displays.
-	  This is preventing fine-tuning the position of HUD elements
-	  like the touch-tip in NodeCore.
 
 - Translations, including:
 	- New languages.
@@ -24,8 +21,12 @@ CONTRIBUTION WISHLIST
 	  adapt existing skins.
 
 - Improved versions of any art assets (sounds, textures).
-	- Assuming it's practical to maintain a consisten style for
+	- All textures for base inclusion should be 16x (keep
+	  high-def textures to texture packs).
+	- Assuming it's practical to maintain a consistent style for
 	  other assets, including future ones.
+	- Animated fluid textures (especially both stationary and
+	  flowing water) would be appreciatd.
 	- Ambiance or other background sounds?
 
 - Help maintaining the hint system.
