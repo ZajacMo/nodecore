@@ -7,12 +7,12 @@ local math_floor, math_pow
 
 local modname = minetest.get_current_modname()
 
-for i = 1, 7 do
+for i = 1, 8 do
 	minetest.register_node(modname .. ":cobble" .. i, {
 		description = "Lux Cobble",
 		tiles = {
 			"nc_terrain_gravel.png^(" .. modname .. "_gravel.png^[opacity:"
-			.. (i * 36) .. ")^nc_terrain_cobble.png"
+			.. (i * 32) .. ")^nc_terrain_cobble.png"
 		},
 		groups = {
 			cracky = 1
