@@ -118,7 +118,8 @@ nodecore.register_limited_abm({
 				})
 			local g = meta:get_float("growth") or 0
 			local now = minetest.get_gametime()
-			local t = meta:get_float("start") or now
+			local t = meta:get_float("start")
+			t = t and t > 0 and t or now
 			while t <= now do
 				g = g + rate * math_random()
 				t = t + 10
