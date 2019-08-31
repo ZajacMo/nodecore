@@ -64,7 +64,7 @@ nodecore.register_inventory_tab({
 nodecore.register_inventory_tab({
 		title = "Tips",
 		content = {
-			"Player's Guide: Tips",
+			"Player's Guide: Tips and Guidance",
 			"",
 			"- Stuck in a pit? Pummel surfaces barehanded to find places to climb.",
 			"- Can't dig trees or grass? Search for sticks in the canopy.",
