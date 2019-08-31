@@ -7,7 +7,7 @@ local function family(stack)
 	if stack:is_empty() then return "" end
 	local name = stack:get_name()
 	local def = minetest.registered_items[name]
-	return def and def.stackfamily or (":" .. name)
+	return def and def.stackfamily or stack:to_string()
 end
 function nodecore.stack_merge(dest, src)
 	if dest:is_empty() then return dest:add_item(src) end
