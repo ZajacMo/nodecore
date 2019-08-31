@@ -46,7 +46,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 	local t = minetest.registered_items[pin].tiles
 	t = t[3] or t[2] or t[1]
 	t = t.name or t
-	local tiles = nodecore.underride({}, tiles)
+	tiles = nodecore.underride({}, tiles)
 	for _, v in pairs(tilemods) do
 		tiles[v.idx] = tiles[v.idx] .. "^((" .. t .. ")^[mask:nc_doors_hinge_" .. v.part
 		.. "_mask.png^[transform" .. v.tran .. ")"
@@ -84,7 +84,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 
 	nodecore.register_craft({
 			label = "lubricate door " .. basenode:lower(),
-			check = function(pos, data)
+			check = function(_, data)
 				return minetest.get_meta(data.rel(0, -1, 0))
 				:get_float("doorlube") ~= 1
 			end,
@@ -121,7 +121,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 			action = "pummel",
 			toolgroups = {thumpy = 1},
 			normal = {y = 1},
-			check = function(pos, data)
+			check = function(_, data)
 				return minetest.get_meta(data.rel(0, -1, 0))
 				:get_float("doorlube") == 1
 			end,

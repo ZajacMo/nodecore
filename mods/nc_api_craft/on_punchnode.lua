@@ -3,7 +3,7 @@ local minetest, nodecore, vector
     = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local function pummelparticles(pos, data)
+local function pummelparticles(_, data)
 	local pointed = data.pointed
 	local nodedef = data.nodedef
 	local pname = data.pname

@@ -23,7 +23,7 @@ local function regterrain(def)
 
 	minetest.register_node(def.fullname, def)
 
-	for k, v in pairs(def.mapgen) do
+	for _, v in pairs(def.mapgen) do
 		minetest.register_alias("mapgen_" .. v, def.fullname)
 	end
 end

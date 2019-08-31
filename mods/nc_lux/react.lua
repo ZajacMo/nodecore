@@ -5,8 +5,6 @@ local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local function stackgroup(stack, grp)
 	stack = ItemStack(stack)
 	if stack:is_empty() then return end

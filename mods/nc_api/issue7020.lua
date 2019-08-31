@@ -8,7 +8,7 @@ local falling = {
 	set_node = function(self, node, meta, ...)
 		meta = meta or {}
 		if type(meta) ~= "table" then meta = meta:to_table() end
-		for k1, v1 in pairs(meta.inventory or {}) do
+		for _, v1 in pairs(meta.inventory or {}) do
 			for k2, v2 in pairs(v1) do
 				if type(v2) == "userdata" then
 					v1[k2] = v2:to_string()

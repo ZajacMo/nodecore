@@ -37,15 +37,13 @@ local function grassable(above)
 	if ld >= 10 then return end
 end
 
-local function liquid(def) return def and def.liquidtype and def.liquidtype ~= "none" end
-
 nodecore.register_limited_abm({
 		label = "Grass Spread",
 		nodenames = {dirt, "nc_terrain:dirt_loose"},
 		neighbors = {grass},
 		interval = 6,
 		chance = 50,
-		action = function(pos, node)
+		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if not grassable(above) then return end
 			return minetest.set_node(pos, {name = grass})
@@ -57,7 +55,7 @@ nodecore.register_limited_abm({
 		nodenames = {grass},
 		interval = 8,
 		chance = 50,
-		action = function(pos, node)
+		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if grassable(above) ~= false then return end
 			return minetest.set_node(pos, {name = dirt})

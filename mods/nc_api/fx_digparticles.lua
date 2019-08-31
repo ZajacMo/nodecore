@@ -21,14 +21,14 @@ function nodecore.digparticles(nodedef, partdef)
 	partdef.amount = partdef.amount and math_ceil(partdef.amount / 4) or 4
 
 	local t = {}
-	for i = 1, 4 do
+	for _ = 1, 4 do
 		partdef.texture = img .. "^[mask:[combine\\:16x16\\:"
 		.. math_floor(math_random() * 12) .. ","
 		.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
 		t[#t + 1] = minetest.add_particlespawner(partdef)
 	end
 	return function()
-		for k, v in pairs(t) do
+		for _, v in pairs(t) do
 			minetest.delete_particlespawner(v)
 		end
 	end

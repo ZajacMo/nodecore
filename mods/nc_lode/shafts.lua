@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 nodecore.register_lode("Bar", {
-		type = "node",
+		["type"] = "node",
 		description = "## Lode Bar",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
@@ -62,7 +62,7 @@ nodecore.register_craft({
 	})
 
 nodecore.register_lode("Rod", {
-		type = "node",
+		["type"] = "node",
 		description = "## Lode Rod",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),

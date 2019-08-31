@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local lasthit = {}
 
-minetest.register_on_punchnode(function(pos, node, puncher, pointed)
+minetest.register_on_punchnode(function(pos, node, puncher)
 		if not puncher then return end
 		local pname = puncher:get_player_name()
 		local now = minetest.get_us_time() / 1000000

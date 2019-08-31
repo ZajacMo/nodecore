@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, tonumber, type
-    = math, minetest, pairs, tonumber, type
+local math, minetest, pairs, tonumber
+    = math, minetest, pairs, tonumber
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -33,7 +33,7 @@ minetest.register_on_leaveplayer(function(player)
 
 		-- Remove HUDs for this player's name
 		-- from other players
-		for k, v in pairs(huds) do
+		for _, v in pairs(huds) do
 			local i = v[pn]
 			if i then
 				i.o:hud_remove(i.i)
@@ -55,7 +55,7 @@ end
 
 -- Determine if player 1 can see player 2's face, including
 -- checks for distance, line-of-sight, and facing direction.
-local function canseeface(p1, n1, p2, n2)
+local function canseeface(p1, p2)
 	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
 	if p1:get_attach() or p2:get_attach() then return end
 
@@ -134,7 +134,7 @@ minetest.register_globalstep(function()
 				if p2 ~= p1 then
 					local n2 = p2:get_player_name()
 					local i = h[n2]
-					if canseeface(p1, n1, p2, n2) then
+					if canseeface(p1, p2) then
 						local p = p2:get_pos()
 						p.y = p.y + 1.25
 

@@ -28,7 +28,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		node_placement_prediction = "",
 		place_as_item = true,
 		sounds = nodecore.sounds("nc_tree_corny"),
-		stack_rightclick = function(pos, node, whom, stack)
+		stack_rightclick = function(pos, _, whom, stack)
 			if nodecore.stack_get(pos):get_count() ~= 1 then return end
 			if stack:get_name() ~= ldname then return end
 
@@ -56,7 +56,7 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_leaf_drops(function(pos, node, list)
+nodecore.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
 			name = "air",
 			item = modname .. ":eggcorn",
@@ -73,7 +73,7 @@ nodecore.register_limited_abm({
 		nodenames = {epname},
 		interval = 10,
 		chance = 1,
-		action = function(pos, node)
+		action = function(pos)
 			local meta = minetest.get_meta(pos)
 			local d = 0
 			local w = 1

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -65,9 +65,7 @@ minetest.register_node(modname .. ":leaves", {
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
-nodecore.register_leaf_drops(function(pos, node, list)
+nodecore.register_leaf_drops(function(_, _, list)
 		list[#list + 1] = {name = modname .. ":leaves_loose", prob = 0.5}
 		list[#list + 1] = {name = "air"}
 	end)
-
-local function fixed(t) return {type = "fixed", fixed = t} end

@@ -129,21 +129,21 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 end
 
 local function tryall(rc, pos, node, data)
-	local function go(rc, xx, xz, zx, zz)
+	local function go(xx, xz, zx, zz)
 		return craftcheck(rc, pos, node, data, xx, xz, zx, zz)
 	end
-	local r = go(rc, 1, 0, 0, 1)
+	local r = go(1, 0, 0, 1)
 	if r then return r end
 	if not rc.norotate then
-		r = go(rc, 0, -1, 1, 0)
-		or go(rc, -1, 0, 0, -1)
-		or go(rc, 0, 1, -1, 0)
+		r = go(0, -1, 1, 0)
+		or go(-1, 0, 0, -1)
+		or go(0, 1, -1, 0)
 		if r then return r end
 		if not rc.nomirror then
-			r = go(rc, -1, 0, 0, 1)
-			or go(rc, 0, 1, 1, 0)
-			or go(rc, 1, 0, 0, -1)
-			or go(rc, 0, -1, -1, 0)
+			r = go(-1, 0, 0, 1)
+			or go(0, 1, 1, 0)
+			or go(1, 0, 0, -1)
+			or go(0, -1, -1, 0)
 		end
 	end
 	return r

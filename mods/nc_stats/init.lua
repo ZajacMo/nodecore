@@ -11,8 +11,8 @@ local modstore = minetest.get_mod_storage()
 ------------------------------------------------------------------------
 -- DATABASE SETUP
 
-local db = {}
-nodecore.statsdb = db
+local statsdb = {}
+nodecore.statsdb = statsdb
 
 local function load_check(s)
 	s = s and s ~= "" and minetest.deserialize(s)
@@ -20,7 +20,7 @@ local function load_check(s)
 end
 do
 	local s = load_check(modstore:get_string(modname))
-	db[false] = s
+	statsdb[false] = s
 	s.firstseen = s.firstseen or os_date("!*t")
 	s.startup = (s.startup or 0) + 1
 end
@@ -41,21 +41,21 @@ local function dbadd_nav(qty, dirty, db, root, key, ...)
 end
 local function dbadd(qty, root, ...)
 	if qty == 0 then return end
-	return dbadd_nav(qty, true, db, root, ...)
+	return dbadd_nav(qty, true, statsdb, root, ...)
 end
 
 local function playeradd(qty, player, ...)
 	if not player then return end
 	local pname = (type(player) == "string") and player or player:get_player_name()
 	if not pname then return end
-	local data = db[pname]
+	local data = statsdb[pname]
 	if not data then
 		data = load_check(player:get_meta():get_string(modname))
-		db[pname] = data
+		statsdb[pname] = data
 	end
 	dbadd(qty, pname, ...)
-	if not db[pname].firstseen then
-		db[pname].firstseen = os_date("!*t")
+	if not statsdb[pname].firstseen then
+		statsdb[pname].firstseen = os_date("!*t")
 	end
 	dbadd(qty, false, "players", ...)
 end
@@ -120,7 +120,7 @@ local function invscan(dt, player)
 			t[stack:get_name()] = true
 		end
 	end
-	for k, v in pairs(t) do
+	for k in pairs(t) do
 		playeradd(dt, player, "inv", k)
 	end
 end
@@ -189,7 +189,7 @@ minetest.register_globalstep(function(dt)
 local opq = {}
 
 local function flushkey(k)
-	local v = db[k]
+	local v = statsdb[k]
 	if not v or not v.dirty then return end
 	v.dirty = nil
 
@@ -202,11 +202,11 @@ local function flushkey(k)
 			local old = q[n]
 			if old then
 				q[n] = {}
-				for k, v in pairs(old) do
-					if type(v) == "number" then
-						dbadd_nav(v, nil, q[n], unpackreason(k))
+				for xk, xv in pairs(old) do
+					if type(xv) == "number" then
+						dbadd_nav(xv, nil, q[n], unpackreason(xk))
 					else
-						q[n][k] = v
+						q[n][xk] = xv
 					end
 				end
 			end
@@ -233,7 +233,7 @@ end
 local function flushenq()
 	minetest.after(20, flushenq)
 	if #opq > 0 then return end
-	for k, v in pairs(db) do
+	for k in pairs(statsdb) do
 		opq[#opq + 1] = k
 	end
 	for i = 1, #opq do

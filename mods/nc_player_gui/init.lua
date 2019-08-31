@@ -76,13 +76,13 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-for k, v in pairs(nodecore.registered_inventory_tabs) do
+for _, v in pairs(nodecore.registered_inventory_tabs) do
 	nct(v.title)
 	for i = 1, #v.content do nct(v.content[i]) end
 end
 
 local pad = " "
-for i = 1, 8 do pad = pad .. pad end
+for _ = 1, 8 do pad = pad .. pad end
 
 local fse = minetest.formspec_escape
 function nodecore.inventory_formspec(player, curtab)

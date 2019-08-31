@@ -5,7 +5,7 @@ local minetest, nodecore, pairs
 
 nodecore.register_on_register_item(function(name, def)
 		if def.oldnames then
-			for k, v in pairs(def.oldnames) do
+			for _, v in pairs(def.oldnames) do
 				if not minetest.registered_items[v] then
 					minetest.register_alias(v, name)
 				end

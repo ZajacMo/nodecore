@@ -5,7 +5,7 @@ local minetest, nodecore, type
 
 local modname = minetest.get_current_modname()
 
-local function getduration(pos, data)
+local function getduration(_, data)
 	local meta = minetest.get_meta(data.node)
 
 	local md = meta:get_string(modname) or ""

@@ -5,12 +5,6 @@ local ItemStack, ipairs, minetest, nodecore, pairs, type
 
 local modname = minetest.get_current_modname()
 
-local function meta(pos)
-	local node = minetest.get_node(pos)
-
-	return node, meta
-end
-
 local metadescs = {
 	"Tote (1 Slot)",
 	"Tote (2 Slots)",
@@ -22,7 +16,7 @@ local metadescs = {
 	"Tote (8 Slots)",
 }
 
-local function totedug(pos, node, meta, digger)
+local function totedug(pos, _, _, digger)
 	local dump
 	for dx = -1, 1 do
 		for dz = -1, 1 do
@@ -31,7 +25,7 @@ local function totedug(pos, node, meta, digger)
 			local d = minetest.registered_items[n.name] or {}
 			if d and d.groups and d.groups.totable then
 				local m = minetest.get_meta(p):to_table()
-				for k1, v1 in pairs(m.inventory or {}) do
+				for _, v1 in pairs(m.inventory or {}) do
 					for k2, v2 in pairs(v1) do
 						if type(v2) == "userdata" then
 							v1[k2] = v2:to_string()
@@ -58,7 +52,7 @@ local function totedug(pos, node, meta, digger)
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
-local function toteplace(stack, placer, pointed)
+local function toteplace(stack, _, pointed)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
 	if not pos then return stack end

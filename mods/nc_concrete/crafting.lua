@@ -43,7 +43,7 @@ nodecore.register_craft({
 					dirs[#dirs + 1] = {pos = p, qty = 0}
 				end
 			end
-			for n = 1, 8 do
+			for _ = 1, 8 do
 				local p = dirs[math_random(1, #dirs)]
 				p.qty = p.qty + 1
 			end

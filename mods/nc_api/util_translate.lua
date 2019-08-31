@@ -36,7 +36,7 @@ minetest.register_globalstep(function()
 		strings_dirty = nil
 
 		local keys = {}
-		for k, v in pairs(strings) do keys[#keys + 1] = k end
+		for k in pairs(strings) do keys[#keys + 1] = k end
 		table_sort(keys)
 
 		local data = "# textdomain: " .. modname .. "\n"

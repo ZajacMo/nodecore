@@ -14,22 +14,6 @@ pummeled.
 
 local looseimg = "^nc_api_loose.png"
 
-local function can_repack(level)
-	return function(pos, node, stats)
-		return nodecore.toolspeed(stats.puncher:get_wielded_item(), {thumpy = level})
-	end
-end
-
-local function repack_node(mult, replace)
-	if type(replace) ~= "table" then replace = {name = replace} end
-	return function (pos, node, stats)
-		if stats.duration < (mult * stats.check) then return end
-		nodecore.wear_current_tool(stats.puncher, {thumpy = 1})
-		minetest.set_node(pos, replace)
-		return true
-	end
-end
-
 nodecore.register_on_register_item(function(name, def)
 		if def.type ~= "node" then return end
 
@@ -42,7 +26,7 @@ nodecore.register_on_register_item(function(name, def)
 				if type(v) == "string" then
 					loose.tiles[k] = v .. looseimg
 				elseif type(v) == "table" then
-					loose.tiles[k] = underride({
+					loose.tiles[k] = nodecore.underride({
 							name = v.name .. looseimg
 						}, v)
 				end

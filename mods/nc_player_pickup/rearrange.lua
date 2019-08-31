@@ -28,8 +28,8 @@ local function handlepickups(player)
 					local oc = old:get_count()
 					if cc > oc then
 						cur:set_count(cc - oc)
-						for i = 1, #excess do
-							cur = nodecore.stack_merge(excess[i], cur)
+						for j = 1, #excess do
+							cur = nodecore.stack_merge(excess[j], cur)
 						end
 						if not cur:is_empty() then
 							excess[#excess + 1] = cur

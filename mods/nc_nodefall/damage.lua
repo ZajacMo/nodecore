@@ -3,8 +3,6 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local fallname = "__builtin:falling_node"
 local fallnode = minetest.registered_entities[fallname]
 
@@ -22,9 +20,9 @@ fallnode.on_step = function(self, dtime, ...)
 	local vel = self.object:get_velocity()
 	local v = vector.length(vel)
 	local q = v * v * dtime * self.crush_damage
-	for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-		if v:is_player() then
-			nodecore.addphealth(v, -q)
+	for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+		if o:is_player() then
+			nodecore.addphealth(o, -q)
 		end
 	end
 

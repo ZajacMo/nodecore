@@ -26,7 +26,7 @@ local function hotpotatoes(player)
 		dir.x = dir.x * 5
 		dir.y = dir.y * 5 + 3
 		dir.z = dir.z * 5
-		for k, v in pairs(throw) do
+		for _, v in pairs(throw) do
 			local obj = minetest.add_item(pos, v)
 			obj:set_velocity(dir)
 			obj:get_luaentity().dropped_by = pname
@@ -36,7 +36,7 @@ local function hotpotatoes(player)
 end
 
 minetest.register_globalstep(function()
-		for k, v in pairs(minetest.get_connected_players()) do
+		for _, v in pairs(minetest.get_connected_players()) do
 			hotpotatoes(v)
 		end
 	end)

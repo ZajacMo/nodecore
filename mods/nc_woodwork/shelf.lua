@@ -39,7 +39,7 @@ minetest.register_node(modname .. ":shelf", {
 			inv:set_size("solo", 1)
 			nodecore.visinv_update_ents(pos)
 		end,
-		on_rightclick = function(pos, node, clicker, stack, pointed_thing)
+		on_rightclick = function(pos, _, clicker, stack, pointed_thing)
 			if not nodecore.interact(clicker) then return end
 			if pointed_thing.above.y ~= pointed_thing.under.y then return end
 			if not stack or stack:is_empty() then return end
@@ -60,7 +60,7 @@ minetest.register_node(modname .. ":shelf", {
 				return minetest.node_dig(pos, node, digger, ...)
 			end
 		end,
-		stack_allow = function(pos, node, stack)
+		stack_allow = function(_, _, stack)
 			local def = minetest.registered_items[stack:get_name()] or {}
 			if def.groups and def.groups.container then return false end
 		end

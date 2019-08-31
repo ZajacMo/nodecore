@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type
-    = math, minetest, nodecore, pairs, type
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -18,7 +18,7 @@ function nodecore.falling_repose_drop(posfrom, posto, node)
 	return minetest.check_for_falling(posfrom)
 end
 
-nodecore.register_on_register_item(function(name, def)
+nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 
 		def.groups = def.groups or {}
@@ -91,7 +91,7 @@ nodecore.register_limited_abm({
 		neighbors = {"air"},
 		interval = 2,
 		chance = 5,
-		action = function(pos, node)
+		action = function(pos)
 			if not reposeq then
 				reposeq = {}
 				qqty = 0

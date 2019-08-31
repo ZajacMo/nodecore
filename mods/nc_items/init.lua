@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, setmetatable, type, vector
-    = ItemStack, math, minetest, nodecore, setmetatable, type, vector
+local ItemStack, math, minetest, nodecore, setmetatable, vector
+    = ItemStack, math, minetest, nodecore, setmetatable, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -31,7 +31,7 @@ minetest.register_node(modname .. ":stack", {
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
-		repose_drop = function(posfrom, posto, node)
+		repose_drop = function(posfrom, posto)
 			local stack = nodecore.stack_get(posfrom)
 			if stack and not stack:is_empty() then
 				nodecore.item_eject(posto, stack)
@@ -57,7 +57,6 @@ minetest.register_node(modname .. ":stack", {
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	stack = ItemStack(stack)
-	local name = stack:get_name()
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	if minetest.get_node(below).name == modname .. ":stack" then
@@ -79,7 +78,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 end
 
 local bii = minetest.registered_entities["__builtin:item"]
-local item = {
+local newbii = {
 	on_step = function(self, dtime, ...)
 		bii.on_step(self, dtime, ...)
 
@@ -109,7 +108,7 @@ local item = {
 	end,
 	on_punch = function(self, whom, ...)
 		if not nodecore.interact(whom) then return end
-		local r = bii.on_punch(self, whom, ...)
+		bii.on_punch(self, whom, ...)
 		if self.itemstring ~= "" then
 			local v = self.object:get_velocity()
 			v.x = v.x + math_random() * 5 - 2.5
@@ -119,8 +118,8 @@ local item = {
 		end
 	end
 }
-setmetatable(item, bii)
-minetest.register_entity(":__builtin:item", item)
+setmetatable(newbii, bii)
+minetest.register_entity(":__builtin:item", newbii)
 
 local bifn = minetest.registered_entities["__builtin:falling_node"]
 local falling = {
@@ -172,7 +171,7 @@ if nodecore.loaded_mods().nc_fire then
 			chance = 1,
 			nodenames = {modname .. ":stack"},
 			neighbors = {"group:igniter"},
-			action = function(pos, node)
+			action = function(pos)
 				local stack = nodecore.stack_get(pos)
 				return nodecore.fire_check_ignite(pos, {name = stack:get_name()})
 			end
@@ -201,7 +200,7 @@ if minetest.raycast then
 
 			local dummyent = {}
 			setmetatable(dummyent, {
-					__index = function(t, k)
+					__index = function()
 						return function() return {} end
 					end
 				})

@@ -17,7 +17,7 @@ end
 
 local function scan(pos, dir)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
-	for i = 1, 16 do
+	for _ = 1, 16 do
 		p = vector.add(p, dir)
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
@@ -56,11 +56,10 @@ local function optic_process(trans, pos)
 	local ignored
 	if def and def.optic_check then
 		local func = function(dir)
-			local hit, node = scan_recv(pos, dir)
+			local hit, hnode = scan_recv(pos, dir)
 			ignored = ignored or hit == false
-			return hit, node
+			return hit, hnode
 		end
-		local meta = minetest.get_meta(pos)
 		local nn, res = def.optic_check(pos, node, func, def)
 		if (not ignored) and nn then
 			trans[minetest.hash_node_position(pos)] = {
@@ -86,8 +85,8 @@ local function optic_commit(v)
 	end
 
 	local data = {}
-	for k, v in pairs(v.data or {}) do
-		data[dirname(v)] = 1
+	for _, vv in pairs(v.data or {}) do
+		data[dirname(vv)] = 1
 	end
 
 	local meta = minetest.get_meta(v.pos)

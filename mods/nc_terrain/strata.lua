@@ -5,8 +5,6 @@ local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local thickness = 128
 
 nodecore.stratadata = nodecore.memoize(function()
@@ -31,7 +29,7 @@ nodecore.stratadata = nodecore.memoize(function()
 		return data
 	end)
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
+nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 		if minp.y > -64 then return end
 
 		local ai = area.index

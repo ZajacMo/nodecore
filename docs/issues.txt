@@ -72,7 +72,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Separate durability, speed, effects?
 
 - Code Quality.
-	- Finish setting up LuaCheck, audit code.
 	- Scripts to validate dependency graph.
 		- Tag deps directly in code at place of use.
 		- Auto-generate mod.conf / depends.txt

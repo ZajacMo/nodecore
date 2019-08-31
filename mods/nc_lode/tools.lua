@@ -9,9 +9,9 @@ local function toolhead(name, groups, prills)
 	local n = name:lower()
 
 	if type(groups) == "string" then groups = {groups} end
-	local function toolcap(n)
+	local function toolcap(nn)
 		local t = {}
-		for _, k in ipairs(groups) do t[k] = n end
+		for _, k in ipairs(groups) do t[k] = nn end
 		return nodecore.toolcaps(t)
 	end
 

@@ -5,7 +5,7 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function prism_check(pos, node, check)
+local function prism_check(_, node, check)
 	local face = nodecore.facedirs[node.param2]
 
 	local power = (check(face.f) or check(face.r))

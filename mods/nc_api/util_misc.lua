@@ -14,8 +14,8 @@ for k, v in pairs(minetest) do
 	end
 end
 
-local function underride(t, u, v, ...)
-	if v then underride(u, v, ...) end
+local function underride(t, u, u2, ...)
+	if u2 then underride(u, u2, ...) end
 	for k, v in pairs(u) do
 		if t[k] == nil then
 			t[k] = v
@@ -66,7 +66,7 @@ function nodecore.pickrand(tbl, weight)
 	end
 	if max <= 0 then return end
 	max = math_random() * max
-	for i, v in ipairs(t) do
+	for _, v in ipairs(t) do
 		max = max - v.w
 		if max <= 0 then return v.v, v.k end
 	end
@@ -187,7 +187,7 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 		stack:set_count(stack:get_count() * (qty or 1))
 		return nodecore.place_stack(pos, stack)
 	end
-	for i = 1, (qty or 1) do
+	for _ = 1, (qty or 1) do
 		local v = {
 			x = vel.x + (math_random() - 0.5) * speed,
 			y = vel.y + math_random() * speed,
@@ -220,7 +220,7 @@ function nodecore.node_spin_custom(...)
 	lut[arr[#arr]] = arr[1]
 	local qty = #arr
 
-	return function(pos, node, clicker, itemstack, pointed_thing)
+	return function(pos, node, clicker, itemstack)
 		node = node or minetest.get_node(pos)
 		node.param2 = lut[node.param2] or lut[false]
 		if clicker:is_player() then

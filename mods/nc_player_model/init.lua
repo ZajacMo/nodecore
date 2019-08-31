@@ -54,7 +54,6 @@ minetest.after(0, function()
 		end
 	end)
 local function swimming(player)
-	local found = 0
 	local pos = player:get_pos()
 	local r = 0.6
 	for dz = -r, r, r do
@@ -147,7 +146,7 @@ minetest.register_on_joinplayer(function(player)
 		updatevisuals(player)
 	end)
 
-minetest.register_globalstep(function(dt)
+minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
 			updatevisuals(player)
 		end

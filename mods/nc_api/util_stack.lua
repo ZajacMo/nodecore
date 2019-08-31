@@ -11,8 +11,6 @@ local function family(stack)
 end
 function nodecore.stack_merge(dest, src)
 	if dest:is_empty() then return dest:add_item(src) end
-	local df = family(dest)
-	local sf = family(src)
 	if family(src) ~= family(dest) then
 		return dest:add_item(src)
 	end

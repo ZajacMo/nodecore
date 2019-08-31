@@ -34,7 +34,7 @@ function nodecore.operate_door(pos, node, dir)
 
 	local found = {}
 	local hinge = hingeaxis(pos, node)
-	if nodecore.scan_flood(pos, 128, function(p, d)
+	if nodecore.scan_flood(pos, 128, function(p)
 			local n = minetest.get_node_or_nil(p)
 			if not n then return true end
 			if (not nodecore.match(n, is_door))
@@ -45,8 +45,8 @@ function nodecore.operate_door(pos, node, dir)
 
 	local toop = {}
 	for k, v in pairs(found) do
-		local fd = nodecore.facedirs[v.node.param2 or 0]
-		local to = vector.add(v.pos, fd[rotdir])
+		local ffd = nodecore.facedirs[v.node.param2 or 0]
+		local to = vector.add(v.pos, ffd[rotdir])
 
 		if (not found[minetest.pos_to_string(to)])
 		and (not nodecore.buildable_to(to))
@@ -57,15 +57,15 @@ function nodecore.operate_door(pos, node, dir)
 
 		v.str = str
 		v.to = to
-		v.fd = fd
+		v.fd = ffd
 
 		toop[k .. "l"] = {
-			pos = vector.add(v.pos, fd.l),
-			dir = rotdir == "r" and fd.k or fd.f
+			pos = vector.add(v.pos, ffd.l),
+			dir = rotdir == "r" and ffd.k or ffd.f
 		}
 		toop[k .. "k"] = {
-			pos = vector.add(v.pos, fd.k),
-			dir = rotdir == "r" and fd.r or fd.l
+			pos = vector.add(v.pos, ffd.k),
+			dir = rotdir == "r" and ffd.r or ffd.l
 		}
 	end
 
@@ -75,10 +75,10 @@ function nodecore.operate_door(pos, node, dir)
 		squelch[k] = true
 		squelch[v.str] = true
 	end
-	for k, v in pairs(found) do
-		for i, fd in pairs(nodecore.facedirs) do
-			if vector.equals(fd.t, v.fd.t)
-			and vector.equals(fd.r, rotdir == "r" and v.fd.f or v.fd.k) then
+	for _, v in pairs(found) do
+		for i, xfd in pairs(nodecore.facedirs) do
+			if vector.equals(xfd.t, v.fd.t)
+			and vector.equals(xfd.r, rotdir == "r" and v.fd.f or v.fd.k) then
 				toset[minetest.pos_to_string(v.to)] = {
 					pos = v.to,
 					name = v.node.name,
@@ -89,7 +89,7 @@ function nodecore.operate_door(pos, node, dir)
 		end
 	end
 
-	for k, v in pairs(toset) do
+	for _, v in pairs(toset) do
 		minetest.set_node(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
@@ -101,7 +101,7 @@ function nodecore.operate_door(pos, node, dir)
 			end
 		end
 	end
-	for k, v in pairs(toop) do
+	for _, v in pairs(toop) do
 		nodecore.operate_door(v.pos, nil, v.dir)
 	end
 end

@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, table
-    = math, minetest, table
-local math_random, table_remove
-    = math.random, table.remove
+local minetest, table
+    = minetest, table
+local table_remove
+    = table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -37,22 +37,9 @@ local attq = {}
 
 minetest.register_entity(modname .. ":ent", {
 		initial_properties = entprops(),
-		on_step = function(self, dtime)
+		on_step = function(self)
 			local conf = self.conf
 			if not conf then return self.object:remove() end
-
-			-- Destroy wield nodes and regenerate periodically.
-			-- This fixes the view for other players in MP, but
-			-- BREAKS the view for own player in 3rd-person views.
-			--[[
-			if self.ttl then
-				self.ttl = self.ttl - dtime
-				if self.ttl <= 0 then
-					attq[#attq + 1] = conf
-					return self.object:remove()
-				end
-			else self.ttl = math_random() * 5 + 5 end
-			--]]
 
 			local player = minetest.get_player_by_name(conf.pname)
 			if not player then return self.object:remove() end

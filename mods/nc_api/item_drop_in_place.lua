@@ -8,7 +8,7 @@ Nodes with a "drop_in_place" spec transform on node drop by dropping
 into place of existing node instead of digger inventory.
 --]]
 
-nodecore.register_on_register_item(function(name, def)
+nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 		local dip = def.drop_in_place
 		if dip then

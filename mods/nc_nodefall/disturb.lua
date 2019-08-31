@@ -46,7 +46,7 @@ end
 local function queuechecks(qty, name, pos)
 	if qty < 1 then return end
 	minetest.after(0, function()
-			for i = 1, qty do
+			for _ = 1, qty do
 				fallcheck(name, pos)
 			end
 		end)
@@ -55,7 +55,7 @@ end
 local oldpos = {}
 local qtys = {}
 minetest.register_globalstep(function(dtime)
-		for i, v in ipairs(minetest.get_connected_players()) do
+		for _, v in ipairs(minetest.get_connected_players()) do
 			local name = v:get_player_name()
 
 			local pos = v:get_pos()
@@ -72,7 +72,7 @@ minetest.register_globalstep(function(dtime)
 		end
 	end)
 
-minetest.register_on_dignode(function(pos, oldnode, digger)
+minetest.register_on_dignode(function(pos, _, digger)
 		local name = "(unknown)"
 		if digger and digger.get_player_name then name = digger:get_player_name() end
 		queuechecks(4, name, pos)

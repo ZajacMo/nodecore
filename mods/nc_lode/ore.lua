@@ -143,7 +143,7 @@ for _, id in pairs({
 	end
 end
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
+nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 		local function bad(x, y, z)
 			local c = data[area:index(x, y, z)]
 			return not stoneids[c]

@@ -40,7 +40,7 @@ for i = 1, 8 do
 end
 
 local strata = {}
-local stone = minetest.register_node(modname .. ":stone", {
+minetest.register_node(modname .. ":stone", {
 		drawtype = "glasslike",
 		description = "Stone",
 		tiles = {"nc_terrain_stone.png"},
@@ -56,7 +56,6 @@ local stone = minetest.register_node(modname .. ":stone", {
 
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
-	local hst = nodecore.hard_stone_tile(i)
 	strata[i + 1] = modname .. ":stone_" .. i
 	minetest.register_node(modname .. ":stone_" .. i, {
 			drawtype = "glasslike",

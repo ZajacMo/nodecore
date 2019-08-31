@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, type
-    = ipairs, minetest, nodecore, type
+local ipairs, minetest, nodecore
+    = ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -17,7 +17,7 @@ nodecore.extend_item(chip, function(copy, orig)
 			if not nodecore.interact(placer) then return end
 			if itemstack:get_name() == chip and pointed_thing.type == "node" then
 				local pos = pointed_thing.under
-				for i, v in ipairs(nodecore.registered_stone_tip_tools) do
+				for _, v in ipairs(nodecore.registered_stone_tip_tools) do
 					if nodecore.match(pos, {
 							name = v.from,
 							wear = 0.05

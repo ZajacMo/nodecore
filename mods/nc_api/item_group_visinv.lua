@@ -89,7 +89,7 @@ function nodecore.visinv_update_ents(pos, node)
 	local max = def.groups and def.groups.visinv and 1 or 0
 
 	local found = {}
-	for k, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+	for _, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		if v and v.get_luaentity and v:get_luaentity()
 		and v:get_luaentity().is_stack then
 			found[#found + 1] = v
@@ -152,7 +152,7 @@ function nodecore.visinv_after_destruct(pos)
 		end)
 end
 
-nodecore.register_on_register_item(function(name, def)
+nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 
 		def.groups = def.groups or {}

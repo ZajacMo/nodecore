@@ -14,7 +14,7 @@ local c_sand = minetest.get_content_id("nc_terrain:sand")
 local c_water = minetest.get_content_id("nc_terrain:water_source")
 local c_sponge = minetest.get_content_id(modname .. ":sponge_living")
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
+nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 		if minp.y > maxy or maxp.y < miny then return end
 
 		local function spawn(x, y, z)
@@ -28,7 +28,7 @@ nodecore.register_mapgen_shared(function(minp, maxp, area, data, vm, emin, emax)
 
 		local qty = math_floor(math_random() * (maxp.x - minp.x)
 			* (maxp.z - minp.z) / (64 * 64))
-		for n = 1, qty do
+		for _ = 1, qty do
 			local x = math_floor(math_random() * (maxp.x - minp.x)) + minp.x
 			local z = math_floor(math_random() * (maxp.z - minp.z)) + minp.z
 			local starty = maxp.y

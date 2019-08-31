@@ -9,7 +9,7 @@ nodecore.register_leaf_drops, nodecore.registered_leaf_drops
 function nodecore.leaf_decay(pos, node)
 	node = node or minetest.get_node(pos)
 	local t = {}
-	for i, v in ipairs(nodecore.registered_leaf_drops) do
+	for _, v in ipairs(nodecore.registered_leaf_drops) do
 		t = v(pos, node, t) or t
 	end
 	local p = nodecore.pickrand(t, function(x) return x.prob end)
