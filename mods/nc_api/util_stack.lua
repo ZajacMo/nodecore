@@ -3,6 +3,28 @@ local ItemStack, ipairs, minetest, nodecore
     = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+local function family(stack)
+	if stack:is_empty() then return "" end
+	local name = stack:get_name()
+	local def = minetest.registered_items[name]
+	return def and def.stackfamily or (":" .. name)
+end
+function nodecore.stack_merge(dest, src)
+	if dest:is_empty() then return dest:add_item(src) end
+	local df = family(dest)
+	local sf = family(src)
+	if family(src) ~= family(dest) then
+		return dest:add_item(src)
+	end
+	local o = src:get_name()
+	src:set_name(dest:get_name())
+	src = dest:add_item(src)
+	if not src:is_empty() then
+		src:set_name(o)
+	end
+	return src
+end
+
 function nodecore.node_inv(pos)
 	return minetest.get_meta(pos):get_inventory()
 end
@@ -31,7 +53,14 @@ function nodecore.stack_add(pos, stack)
 		if ret and ret ~= true then return ret end
 	end
 	stack = ItemStack(stack)
-	local left = nodecore.node_inv(pos):add_item("solo", stack)
+	local item = nodecore.stack_get(pos)
+	local left
+	if item:is_empty() then
+		left = nodecore.node_inv(pos):add_item("solo", stack)
+	else
+		left = nodecore.stack_merge(item, stack)
+		nodecore.stack_set(pos, item)
+	end
 	if left:get_count() ~= stack:get_count() then
 		nodecore.stack_sounds(pos, "place")
 	end

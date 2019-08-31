@@ -14,12 +14,14 @@ for i = 1, 8 do
 			"nc_terrain_gravel.png^(" .. modname .. "_gravel.png^[opacity:"
 			.. (i * 32) .. ")^nc_terrain_cobble.png"
 		},
+		stackfamily = modname .. ":cobble",
 		groups = {
 			lux_cobble = 1,
 			lux_emit = 1,
 			cracky = 1
 		},
 		alternate_loose = {
+			stackfamily = modname .. ":cobble_loose",
 			repack_level = 2,
 			groups = {
 				lux_cobble = 1,
