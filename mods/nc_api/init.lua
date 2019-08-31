@@ -42,7 +42,6 @@ setmetatable(nodecore, {
 	})
 
 include("issue7020")
-include("issue8378")
 
 include("util_misc")
 include("util_scan_flood")

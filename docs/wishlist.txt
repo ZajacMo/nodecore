@@ -8,8 +8,6 @@ CONTRIBUTION WISHLIST
 	  elements.  
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
-	- #8378: This bug requires NodeCore to maintain a workaround for
-	  the engine in its own code.
 	- New TBD bug related to #6735: HUD position calculations are
 	  inconsistent between certain types of elements (e.g. statbars
 	  vs. text/images), and don't line up in very high DPI displays.

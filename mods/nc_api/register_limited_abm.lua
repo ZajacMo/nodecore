@@ -56,7 +56,12 @@ function nodecore.register_limited_abm(def)
 
 		local act = def.limited_action
 		for _, args in pairs(def.limited_queue) do
-			act(unpack(args))
+			local pos = args[1]
+			local node = pos and args[2]
+			local nn = node and minetest.get_node_or_nil(pos)
+			if nn and nn.name == node.name then
+				act(unpack(args))
+			end
 		end
 
 		def.limited_queue = {}
