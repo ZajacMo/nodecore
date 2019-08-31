@@ -63,6 +63,7 @@ nodecore.register_limited_abm({
 		local stack = nodecore.stack_get(pos)
 		if stack:is_empty() then return end
 		local name = stackgroup(stack, "lux_cobble")
+		if not name then return end
 		local qty = luxqty(pos)
 		name = name:gsub("cobble%d", "cobble" .. qty)
 		if name == stack:get_name() then return end
