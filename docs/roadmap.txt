@@ -9,7 +9,27 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Lux Ore
+	- Gives off light.  Multiple alternative nodes; gives off more light if more are present.
+	- Search player inventory and nearby visinv nodes for neighbors.
+	- Higher tiers of Lux are igniters.
+	- Highest tier will spontaneously melt down into molten lux stone, with source creep.
+	- Lux in inventory or near players will subtly damage them (remove damage sfx for delta-hp below 1)
+	- Players accumulate radiation.
+		- Lower healing rate?
+		- Lux Ataxia, randomly drop things.
+		- Increase pummel times.
+		- Radiation fades, washes off faster with water.
+	- Can make lux-tipped lode tools by dipping in molten Lux.
+		- Tools also radioactive, but much less so.
+
+- Standardize creeping fluids.
+	- Add creep range parameter.
+	- Callback for movement (or callbacks for "place new" and "remove old")
+
 - Stagger-delay some ABM actions per-node?
+
+- Use gravity vector to make flowing water push the player?
 
 - Doors
 	- Automation via laser ablation propulsion.
@@ -43,21 +63,16 @@ ROADMAP: Large New Development Projects
 
 - Threats
 	- Visceral
-		- Flammable gas?  Toxic gas?  Radioactives?
+		- Flammable/toxic gas?
 		- Monsters: stone-lurkers, mimics.
 		- Lightning, meteor strikes?
 	- Creeping
 		- Cellular automata hazards.
 		- From exploration, delving too deep, leaving things to rot, etc.
-		- Blights, fungi
-	- Latent
-		- Respawn mechanics?
-
-- Radioactives
-	- Criticality (produce heat/ignition when grouped)
-	- Long-term harm to players (reduce health/breath, randomly drop things)
-	- Cannot be dug directly (release heat when struck).
-		- Dig all around them to loosen.
+		- Blights, Fungi
+	- Dangerous Ores
+		- Lurking/creeping ores that act like monsters
+		- Ores that damage you when struck, need to dig around them
 
 - New writing system based on charcoal
 	- Draw a symbol on surfaces by pummeling w/ charcoal
