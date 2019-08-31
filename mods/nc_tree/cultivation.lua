@@ -116,7 +116,13 @@ nodecore.register_limited_abm({
 					minsize = 1,
 					maxsize = 3,
 				})
-			local g = (meta:get_float("growth") or 0) + rate * math_random()
+			local g = meta:get_float("growth") or 0
+			local now = minetest.get_gametime()
+			local t = meta:get_float("start") or now
+			while t <= now do
+				g = g + rate * math_random()
+				t = t + 10
+			end
 			if g >= 5000 then
 				meta:from_table({})
 				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
@@ -124,5 +130,6 @@ nodecore.register_limited_abm({
 					"random", {}, false)
 			end
 			meta:set_float("growth", g)
+			meta:set_float("start", t)
 		end
 	})
