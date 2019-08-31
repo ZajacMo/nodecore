@@ -9,70 +9,70 @@ local modname = minetest.get_current_modname()
 
 for i = 1, 8 do
 	minetest.register_node(modname .. ":cobble" .. i, {
-		description = "Lux Cobble",
-		tiles = {
-			"nc_terrain_gravel.png^(" .. modname .. "_gravel.png^[opacity:"
-			.. (i * 32) .. ")^nc_terrain_cobble.png"
-		},
-		stackfamily = modname .. ":cobble",
-		groups = {
-			lux_cobble = 1,
-			lux_emit = 1,
-			cracky = 1
-		},
-		alternate_loose = {
-			stackfamily = modname .. ":cobble_loose",
-			repack_level = 2,
+			description = "Lux Cobble",
+			tiles = {
+				"nc_terrain_gravel.png^(" .. modname .. "_gravel.png^[opacity:"
+				.. (i * 32) .. ")^nc_terrain_cobble.png"
+			},
+			stackfamily = modname .. ":cobble",
 			groups = {
 				lux_cobble = 1,
 				lux_emit = 1,
-				cracky = 0,
-				crumbly = 2,
-				falling_repose = 3
+				cracky = 1
 			},
-			drop = modname .. ":cobble1_loose",
-			sounds = nodecore.sounds("nc_terrain_chompy")
-		},
-		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony"),
-		light_source = i + 1
-	})
+			alternate_loose = {
+				stackfamily = modname .. ":cobble_loose",
+				repack_level = 2,
+				groups = {
+					lux_cobble = 1,
+					lux_emit = 1,
+					cracky = 0,
+					crumbly = 2,
+					falling_repose = 3
+				},
+				drop = modname .. ":cobble1_loose",
+				sounds = nodecore.sounds("nc_terrain_chompy")
+			},
+			crush_damage = 2,
+			sounds = nodecore.sounds("nc_terrain_stony"),
+			light_source = i + 1
+		})
 end
 
 local strata = {}
 local stone = minetest.register_node(modname .. ":stone", {
-drawtype = "glasslike",
-	description = "Stone",
-	tiles = {"nc_terrain_stone.png"},
-	strata = strata,
-	groups = {
-		lux_emit = 1,
-		cracky = 2
-	},
-	light_source = 1,
-	drop_in_place = modname .. ":cobble1",
-	sounds = nodecore.sounds("nc_terrain_stony")
-})
+		drawtype = "glasslike",
+		description = "Stone",
+		tiles = {"nc_terrain_stone.png"},
+		strata = strata,
+		groups = {
+			lux_emit = 1,
+			cracky = 2
+		},
+		light_source = 1,
+		drop_in_place = modname .. ":cobble1",
+		sounds = nodecore.sounds("nc_terrain_stony")
+	})
 
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
 	local hst = nodecore.hard_stone_tile(i)
 	strata[i + 1] = modname .. ":stone_" .. i
 	minetest.register_node(modname .. ":stone_" .. i, {
-drawtype = "glasslike",
-		description = "Stone",
-		tiles = {nodecore.hard_stone_tile(i)},
-		strata = strata,
-		groups = {
-			lux_emit = 1,
-			cracky = i + 2,
-			hard_stone = i
-		},
-		light_source = 1,
-		drop_in_place = modname .. ((i > 1)
-			and (":stone_" .. (i - 1)) or ":stone"),
-		sounds = nodecore.sounds("nc_terrain_stony")
-	})
+			drawtype = "glasslike",
+			description = "Stone",
+			tiles = {nodecore.hard_stone_tile(i)},
+			strata = strata,
+			groups = {
+				lux_emit = 1,
+				cracky = i + 2,
+				hard_stone = i
+			},
+			light_source = 1,
+			drop_in_place = modname .. ((i > 1)
+				and (":stone_" .. (i - 1)) or ":stone"),
+			sounds = nodecore.sounds("nc_terrain_stony")
+		})
 end
 
 local oreid = 0

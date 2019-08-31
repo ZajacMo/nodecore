@@ -61,7 +61,7 @@ nodecore.register_limited_abm({
 				return minetest.remove_node(pos)
 			end
 			local player = minetest.get_player_by_name(data.pname)
-			if (not player) or (not closenough(pos, player)) then 
+			if (not player) or (not closenough(pos, player)) then
 				return minetest.remove_node(pos)
 			end
 		end
