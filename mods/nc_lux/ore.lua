@@ -28,6 +28,7 @@ for i = 1, 8 do
 				crumbly = 2,
 				falling_repose = 3
 			},
+			drop = modname .. ":cobble1_loose",
 			sounds = nodecore.sounds("nc_terrain_chompy")
 		},
 		crush_damage = 2,
