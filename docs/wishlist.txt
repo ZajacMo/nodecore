@@ -27,7 +27,9 @@ CONTRIBUTION WISHLIST
 	  other assets, including future ones.
 	- Animated fluid textures (especially both stationary and
 	  flowing water) would be appreciatd.
-	- Ambiance or other background sounds?
+	- Ambiance or other background sounds
+		- Wind on a barren mountaintop or open field
+		- Dark cavern dripping, echoing
 
 - Help maintaining the hint system.
 
