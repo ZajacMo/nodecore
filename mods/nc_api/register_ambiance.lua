@@ -32,7 +32,6 @@ function nodecore.register_ambiance(def)
 
 				opts.name = opts.name or def.sound_name
 				opts.gain = opts.gain or def.sound_gain
-				minetest.chat_send_all(minetest.serialize(opts))
 				minetest.sound_play(opts.name, opts)
 
 				time = time - rate
