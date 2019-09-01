@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -60,10 +60,10 @@ nodecore.register_limited_abm({
 			if minetest.get_node(data.pos).name ~= data.node then
 				return minetest.remove_node(pos)
 			end
-			local player = minetest.get_player_by_name(data.pname)
-			if (not player) or (not closenough(pos, player)) then
-				return minetest.remove_node(pos)
+			for _, p in pairs(minetest.get_connected_players()) do
+				if closenough(pos, p) then return end
 			end
+			return minetest.remove_node(pos)
 		end
 	})
 
@@ -110,8 +110,7 @@ local function stepafter(dx, dy, dz)
 
 		local mdata = {
 			pos = pos,
-			node = data.node.name,
-			pname = data.pname
+			node = data.node.name
 		}
 		setstep(p, "steps", mdata, fd)
 

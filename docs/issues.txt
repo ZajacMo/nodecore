@@ -9,9 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Rock climbing doesn't need to care about owner name; any nearby
-  player is sufficient.
-
 - Quenching fire still sometimes destroys neighboring nodes!
 
 - Stone doors don't necessarily dig right.  Probably leftover junk
