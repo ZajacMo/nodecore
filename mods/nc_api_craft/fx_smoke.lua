@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, type
+    = math, minetest, nodecore, type
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -16,6 +16,7 @@ function nodecore.smokefx(pos, time, qty)
 		smoking[key] = nil
 		return
 	end
+	if type(qty) ~= "number" then qty = 1 end
 	if qty < 1 then
 		if math_random() > qty then return end
 		qty = 1
