@@ -82,7 +82,7 @@ local function regore(name, def)
 				ore_type = "scatter",
 				ore = name,
 				wherein = "nc_terrain:stone",
-				clust_num_ores = 4,
+				clust_num_ores = 3,
 				clust_size = 2,
 				random_factor = 0,
 				noise_params = {
