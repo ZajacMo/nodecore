@@ -1,31 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_exp, math_random, math_sin, math_sqrt
-    = math.exp, math.random, math.sin, math.sqrt
+local math_exp, math_random
+    = math.exp, math.random
 -- LUALOCALS > ---------------------------------------------------------
-
-local function windiness(y)
-	if y < 0 then return 0 end
-	if y > 512 then y = 512 end
-	return math_sqrt(y) * (1 + 0.5 * math_sin(minetest.get_gametime() / 5))
-end
-
-nodecore.register_ambiance({
-		label = "Tree Leaves Ambiance",
-		nodenames = {"nc_tree:leaves"},
-		neigbors = {"air"},
-		interval = 1,
-		chance = 100,
-		sound_name = "nc_envsound_tree",
-		check = function(pos)
-			pos.y = pos.y + 1
-			if pos.y <= 0 then return end
-			return minetest.get_node(pos).name == "air"
-			and minetest.get_node_light(pos, 0.5) == 15
-			and { gain = windiness(pos.y) / 20 }
-		end
-	})
 
 local function check(pos, done)
 	local sp = {
@@ -46,7 +24,7 @@ local function check(pos, done)
 		if sp.y <= 0 then return end
 		minetest.sound_play("nc_envsound_air", {
 				pos = sp,
-				gain = windiness(sp.y) / 100
+				gain = nodecore.windiness(sp.y) / 100
 			})
 	elseif light < 4 then
 		minetest.sound_play("nc_envsound_drip", {

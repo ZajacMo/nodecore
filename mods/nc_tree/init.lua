@@ -12,3 +12,5 @@ include("stick")
 include("schematic")
 include("decor")
 include("cultivation")
+
+include("ambiance")
