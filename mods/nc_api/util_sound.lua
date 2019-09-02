@@ -10,7 +10,7 @@ local math_exp, math_random
 local oldplay = minetest.sound_play
 function minetest.sound_play(name, spec, ...)
 	if spec and type(spec) == "table" and spec.pitch == nil then
-		spec.pitch = math_exp((math_random() - 0.5) * 0.05)
+		spec.pitch = math_exp((math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
 	return oldplay(name, spec, ...)
 end

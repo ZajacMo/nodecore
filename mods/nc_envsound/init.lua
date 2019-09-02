@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_random, math_sin, math_sqrt
-    = math.random, math.sin, math.sqrt
+local math_exp, math_random, math_sin, math_sqrt
+    = math.exp, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local function windiness(y)
@@ -17,7 +17,7 @@ nodecore.register_ambiance({
 		neigbors = {"air"},
 		interval = 1,
 		chance = 100,
-		sound_name = "nc_breeze_tree",
+		sound_name = "nc_envsound_tree",
 		check = function(pos)
 			pos.y = pos.y + 1
 			if pos.y <= 0 then return end
@@ -33,18 +33,29 @@ local function check(pos, done)
 		y = pos.y + math_random() * 64 - 32,
 		z = pos.z + math_random() * 64 - 32,
 	}
-	if sp.y <= 0 then return end
+
 	local dist = vector.distance(sp, pos)
 	if dist > 32 or dist < 4 then return end
-	if minetest.get_node(sp).name ~= "air" then return end
-	if minetest.get_node_light(sp, 0.5) < 15 then return end
 	for p in pairs(done) do
 		if vector.distance(sp, p) < 32 then return end
 	end
-	minetest.sound_play("nc_breeze_air", {
-			pos = sp,
-			gain = windiness(sp.y) / 100
-		})
+	if minetest.get_node(sp).name ~= "air" then return end
+
+	local light = minetest.get_node_light(sp, 0.5)
+	if light == 15 then
+		if sp.y <= 0 then return end
+		minetest.sound_play("nc_envsound_air", {
+				pos = sp,
+				gain = windiness(sp.y) / 100
+			})
+	elseif light < 4 then
+		minetest.sound_play("nc_envsound_drip", {
+				pos = sp,
+				pitchvary = 0.4,
+				gain = math_exp(math_random()) / 5
+			})
+	end
+
 	done[pos] = true
 end
 
