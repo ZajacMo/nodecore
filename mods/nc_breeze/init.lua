@@ -6,9 +6,9 @@ local math_random, math_sin, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local function windiness(y)
-	if y < 0 then y = 0 end
+	if y < 0 then return end
 	if y > 512 then y = 512 end
-	return math_sqrt(y) * 1 + 0.5 * math_sin(minetest.get_gametime() / 5)
+	return math_sqrt(y) * (1 + 0.5 * math_sin(minetest.get_gametime() / 5))
 end
 
 nodecore.register_ambiance({
@@ -20,9 +20,10 @@ nodecore.register_ambiance({
 		sound_name = "nc_breeze_tree",
 		check = function(pos)
 			pos.y = pos.y + 1
+			if pos.y <= 0 then return end
 			return minetest.get_node(pos).name == "air"
 			and minetest.get_node_light(pos, 0.5) == 15
-			and {gain = windiness(pos.y) / 20 }
+			and { gain = windiness(pos.y) / 20 }
 		end
 	})
 
@@ -32,6 +33,7 @@ local function check(pos, done)
 		y = pos.y + math_random() * 64 - 32,
 		z = pos.z + math_random() * 64 - 32,
 	}
+	if sp.y <= 0 then return end
 	local dist = vector.distance(sp, pos)
 	if dist > 32 or dist < 4 then return end
 	if minetest.get_node(sp).name ~= "air" then return end
