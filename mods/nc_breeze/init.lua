@@ -6,7 +6,7 @@ local math_random, math_sin, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local function windiness(y)
-	if y < 0 then return end
+	if y < 0 then return 0 end
 	if y > 512 then y = 512 end
 	return math_sqrt(y) * (1 + 0.5 * math_sin(minetest.get_gametime() / 5))
 end
@@ -43,7 +43,7 @@ local function check(pos, done)
 	end
 	minetest.sound_play("nc_breeze_air", {
 			pos = sp,
-			gain = windiness(pos.y) / 100
+			gain = windiness(sp.y) / 100
 		})
 	done[pos] = true
 end
