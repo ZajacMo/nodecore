@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local ItemStack, minetest, nodecore, pairs, type
+    = ItemStack, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -15,7 +15,22 @@ nodecore.register_on_register_item(function(_, def)
 			if type(dip) ~= "table" then dip = {name = dip} end
 			def.drop = def.drop or ""
 			def.node_dig_prediction = def.node_dig_prediction or dip.name
-			def.after_dig_node = def.after_dig_node or function(pos, node)
+			local st
+			if def.silktouch ~= false then
+				st = {}
+				for k, v in pairs(def.groups or {}) do
+					st[k] = v + 5
+				end
+			end
+			def.after_dig_node = def.after_dig_node or function(pos, node, _, digger)
+				if st and digger and nodecore.toolspeed(
+					digger:get_wielded_item(), st) then
+					local stack = ItemStack(node.name)
+					stack = digger:get_inventory():add_item("main",
+						stack:to_string())
+					if stack:is_empty() then return end
+					do return nodecore.item_eject(pos, stack) end
+				end
 				dip.param2 = node.param2
 				minetest.set_node(pos, dip)
 			end
