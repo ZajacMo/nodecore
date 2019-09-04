@@ -58,7 +58,6 @@ nodecore.register_limited_abm({
 			if qty < 1 then return end
 			if charge[name] then
 				stack:add_wear(-qty * 20)
-				minetest.chat_send_all(stack:to_string())
 				nodecore.stack_set(pos, stack)
 			elseif convert[name] and stack:get_wear() < 3277 then
 				stack = ItemStack(convert[name])
