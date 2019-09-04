@@ -75,6 +75,7 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		node = node or minetest.get_node(pos)
 		local name = node.name
 		local def = minetest.registered_items[name] or {}
+		if def.air_equivalent then return end
 		if def.groups and def.groups.is_stack_only then
 			name = stack_desc(nodecore.stack_get(pos))
 		elseif def.description then
