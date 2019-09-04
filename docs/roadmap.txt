@@ -11,20 +11,12 @@ ROADMAP: Large New Development Projects
 
 - Lux Ore
 	- Higher tiers of Lux are igniters.
-	- Highest tier will spontaneously melt down into molten lux stone, with source creep.
 	- Players accumulate radiation.
 		- Lower healing rate?  Lower max health?
 		- Lux Ataxia, randomly drop things.
 		- Increase pummel times.
 		- Radiation fades, washes off faster with water.
-	- Can make lux-tipped lode tools by dipping in molten Lux.
 		- Tools also radioactive, but much less so.
-
-- Standardize creeping fluids.
-	- Add creep range parameter.
-	- Callback for movement (or callbacks for "place new" and "remove old")
-
-- Stagger-delay some ABM actions per-node?
 
 - Use gravity vector to make flowing water push the player?
 
