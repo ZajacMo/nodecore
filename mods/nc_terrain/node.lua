@@ -61,6 +61,7 @@ regterrain({
 			"sandstone",
 			"mese",
 		},
+		silktouch = false,
 		groups = {
 			cracky = 2
 		},
@@ -74,6 +75,7 @@ for i = 1, nodecore.hard_stone_strata do
 			name = "hard_stone_" .. i,
 			description = "Stone",
 			tiles = { nodecore.hard_stone_tile(i) },
+			silktouch = false,
 			groups = {
 				cracky = i + 2,
 				hard_stone = i

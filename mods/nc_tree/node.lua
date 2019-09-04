@@ -12,6 +12,7 @@ minetest.register_node(modname .. ":root", {
 			"nc_terrain_dirt.png",
 			"nc_terrain_dirt.png^" .. modname .. "_roots.png"
 		},
+		silktouch = false,
 		groups = {
 			flammable = 50,
 			fire_fuel = 4,
