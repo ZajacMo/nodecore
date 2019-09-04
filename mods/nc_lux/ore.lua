@@ -11,14 +11,16 @@ for i = 1, 8 do
 	minetest.register_node(modname .. ":cobble" .. i, {
 			description = "Lux Cobble",
 			tiles = {
-				"nc_terrain_gravel.png^(" .. modname .. "_gravel.png^[opacity:"
+				"nc_terrain_gravel.png^((" .. modname .. "_base.png^[mask:"
+				.. modname .. "_mask.png)^[opacity:"
 				.. (i * 32) .. ")^nc_terrain_cobble.png"
 			},
 			stackfamily = modname .. ":cobble",
 			groups = {
 				lux_cobble = 1,
 				lux_emit = 1,
-				cracky = 1
+				cracky = 1,
+				lux_cobble_max = i == 8 and 1 or nil
 			},
 			alternate_loose = {
 				stackfamily = modname .. ":cobble_loose",
@@ -28,7 +30,8 @@ for i = 1, 8 do
 					lux_emit = 1,
 					cracky = 0,
 					crumbly = 2,
-					falling_repose = 3
+					falling_repose = 3,
+					lux_cobble_max = i == 8 and 1 or nil
 				},
 				drop = modname .. ":cobble1_loose",
 				sounds = nodecore.sounds("nc_terrain_chompy")
