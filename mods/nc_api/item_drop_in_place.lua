@@ -15,8 +15,8 @@ nodecore.register_on_register_item(function(_, def)
 			if type(dip) ~= "table" then dip = {name = dip} end
 			def.drop = def.drop or ""
 			def.node_dig_prediction = def.node_dig_prediction or dip.name
-			local st
-			if def.silktouch ~= false then
+			local st = def.silktouch
+			if st == nil then
 				st = {}
 				for k, v in pairs(def.groups or {}) do
 					st[k] = v + 5
