@@ -9,6 +9,9 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- ABMs against stacks are piling up.  We need an Active Stack
+  Modifier API.
+  
 - Quenching fire still sometimes destroys neighboring nodes!
 
 - Stone doors don't necessarily dig right.  Probably leftover junk

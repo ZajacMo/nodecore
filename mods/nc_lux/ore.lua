@@ -18,7 +18,7 @@ for i = 1, 8 do
 			stackfamily = modname .. ":cobble",
 			groups = {
 				lux_cobble = 1,
-				lux_emit = 1,
+				lux_emit = i,
 				cracky = 1,
 				lux_cobble_max = i == 8 and 1 or nil
 			},
@@ -27,7 +27,7 @@ for i = 1, 8 do
 				repack_level = 2,
 				groups = {
 					lux_cobble = 1,
-					lux_emit = 1,
+					lux_emit = i,
 					cracky = 0,
 					crumbly = 2,
 					falling_repose = 3,

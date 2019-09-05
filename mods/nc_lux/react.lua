@@ -56,6 +56,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
+		limited_alert = 1000,
 		nodenames = {"group:visinv"},
 		action = function(pos)
 			local stack = nodecore.stack_get(pos)
