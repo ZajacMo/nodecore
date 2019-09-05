@@ -199,7 +199,7 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			z = v.z > 0 and pos.z + 0.4 or v.z < 0 and pos.z - 0.4 or pos.z,
 		}
 		local obj = minetest.add_item(p, stack)
-		if obj then obj:setvelocity(v) end
+		if obj then obj:set_velocity(v) end
 	end
 end
 
