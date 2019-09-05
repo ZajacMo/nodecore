@@ -1,8 +1,12 @@
 ========================================================================
-CONTRIBUTION WISHLIST
+           -----===== PUBLIC CONTRIBUTION WISHLIST =====-----
 ------------------------------------------------------------------------
+Remember, check out the CONTRIBUTING file for guidelines on contributing
+to the project!
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- >5.0.1 Release: Improvements already in the development branch
+	  of the engine are expected to benefit NodeCore.
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.
@@ -14,6 +18,10 @@ CONTRIBUTION WISHLIST
 - Translations, including:
 	- New languages.
 	- Updates for future content.
+	- There is some interest in "joke" languages, such as Pirate,
+	  Pig Latin, or xckd Simple.  Translations are welcome for them,
+	  but they don't have official ISO codes so finding a place to
+	  put them could be tricky.
 
 - Player model enhancements
 	- Check that UV maps are consistent with existing skins,
@@ -23,15 +31,15 @@ CONTRIBUTION WISHLIST
 - Improved versions of any art assets (sounds, textures).
 	- All textures for base inclusion should be 16x (keep
 	  high-def textures to texture packs).
-	- Assuming it's practical to maintain a consistent style for
-	  other assets, including future ones.
+	- It must be practical to maintain a consistent style for
+	  other assets, including future related ones.
 	- Animated fluid textures (especially both stationary and
-	  flowing water) would be appreciatd.
-	- Ambiance or other background sounds
-		- Wind on a barren mountaintop or open field
-		- Dark cavern dripping, echoing
+	  flowing water) would be especially appreciated.
 
 - Help maintaining the hint system.
+	- Development of hints often lags behind development of new
+	  features, sometimes significantly.
+	- Hint organization and content is subject to improvement.
 
 ........................................................................
 ========================================================================
