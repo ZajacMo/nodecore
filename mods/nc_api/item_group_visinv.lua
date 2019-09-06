@@ -18,7 +18,7 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
-local function stackentprops(stack, yaw, rotate)
+function nodecore.stackentprops(stack, yaw, rotate)
 	local props = {
 		hp_max = 1,
 		physical = false,
@@ -36,7 +36,7 @@ local function stackentprops(stack, yaw, rotate)
 	yaw = yaw or 0
 	if stack then
 		if type(stack) == "string" then stack = ItemStack(stack) end
-		props.is_visible = true
+		props.is_visible = not stack:is_empty()
 		props.textures[1] = stack:get_name()
 
 		local ratio = stack:get_count() / stack:get_stack_max()
@@ -55,7 +55,7 @@ local function stackentprops(stack, yaw, rotate)
 end
 
 minetest.register_entity(modname .. ":stackent", {
-		initial_properties = stackentprops(),
+		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
 			local pos = self.object:get_pos()
@@ -63,7 +63,7 @@ minetest.register_entity(modname .. ":stackent", {
 			if not stack or stack:is_empty() then return self.object:remove() end
 
 			local rp = vector.round(pos)
-			local props, scale, yaw = stackentprops(stack,
+			local props, scale, yaw = nodecore.stackentprops(stack,
 				rp.x * 3 + rp.y * 5 + rp.z * 7)
 			rp.y = rp.y + scale - 31/64
 
@@ -125,7 +125,7 @@ local item = {
 		self.object = realobj
 
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
-		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
+		local p, s = nodecore.stackentprops(self.itemstring, 0, self.rotdir)
 		p.physical = true
 		s = s / math_sqrt(2)
 		p.collisionbox = {-s, -s, -s, s, s, s}
