@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, vector
-    = ItemStack, minetest, nodecore, pairs, vector
+local ItemStack, math, minetest, nodecore, pairs, vector
+    = ItemStack, math, minetest, nodecore, pairs, vector
+local math_pow
+    = math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -53,14 +55,25 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local stack = nodecore.stack_get(pos)
 			local name = stack:get_name()
+			if (not charge[name]) and (not convert[name]) then return end
+
 			local above = vector.add(pos, {x = 0, y = 1, z = 0})
 			if not isfluid(above) then return end
 			local qty = 1
 			for _, v in pairs(indirs) do
 				if isfluid(vector.add(pos, v)) then qty = qty + 1 end
 			end
+
+			local dist = nodecore.scan_flood(above, 14, function(p, d)
+					if p.dir and p.dir.y < 0 then return false end
+					local nn = minetest.get_node(p).name
+					if nn == modname .. ":flux_source" then return d end
+					if nn ~= modname .. ":flux_flowing" then return false end
+				end)
+			if not dist then return end
+
 			if charge[name] then
-				stack:add_wear(-qty * 20)
+				stack:add_wear(-qty * 20 / math_pow(2, dist / 2))
 				nodecore.stack_set(pos, stack)
 			elseif convert[name] and stack:get_wear() < 3277 then
 				stack = ItemStack(convert[name])

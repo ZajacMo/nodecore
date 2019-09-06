@@ -19,7 +19,6 @@ ROADMAP: Large New Development Projects
 		  for player health loss (injury, radiation)
 		- Radiation fades, washes off faster with water.
 		- Stacks also radioactive.  Tools too but less so.
-	- Weaken infusion based on distance from source node.
 
 - Player knockback coming in 5.1+?
 	- Allow players to push others around by punching?
