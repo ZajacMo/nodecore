@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
     = math, minetest, nodecore
-local math_random, math_sqrt
-    = math.random, math.sqrt
+local math_sqrt
+    = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -68,13 +68,14 @@ minetest.register_node(epname, nodecore.underride({
 		},
 		minetest.registered_items[ldname] or {}))
 
-nodecore.register_limited_abm({
+nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		nodenames = {epname},
 		interval = 10,
 		chance = 1,
-		action = function(pos)
-			local meta = minetest.get_meta(pos)
+		qtyfield = "growth",
+		timefield = "start",
+		soakrate = function(pos)
 			local d = 0
 			local w = 1
 			nodecore.scan_flood(pos, 3, function(p)
@@ -93,11 +94,18 @@ nodecore.register_limited_abm({
 						return false
 					end
 				end)
-			local rate = math_sqrt(d * w)
+			return math_sqrt(d * w)
+		end,
+		soakcheck = function(data, pos)
+			if data.total >= 5000 then
+				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
+				return minetest.place_schematic(place, nodecore.tree_schematic,
+					"random", {}, false)
+			end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
 				{
-					amount = rate,
+					amount = data.rate,
 					time = 10,
 					minpos = {
 						x = pos.x - 0.3,
@@ -116,21 +124,5 @@ nodecore.register_limited_abm({
 					minsize = 1,
 					maxsize = 3,
 				})
-			local g = meta:get_float("growth") or 0
-			local now = minetest.get_gametime()
-			local t = meta:get_float("start")
-			t = t and t > 0 and t or now
-			while t <= now do
-				g = g + rate * math_random()
-				t = t + 10
-			end
-			if g >= 5000 then
-				meta:from_table({})
-				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-				return minetest.place_schematic(place, nodecore.tree_schematic,
-					"random", {}, false)
-			end
-			meta:set_float("growth", g)
-			meta:set_float("start", t)
 		end
 	})

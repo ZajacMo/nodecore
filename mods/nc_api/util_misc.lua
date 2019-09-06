@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
     = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
-local math_random
-    = math.random
+local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt
+    = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -69,6 +69,21 @@ function nodecore.pickrand(tbl, weight)
 	for _, v in ipairs(t) do
 		max = max - v.w
 		if max <= 0 then return v.v, v.k end
+	end
+end
+
+do
+	local saved
+	function nodecore.boxmuller()
+		local old = saved
+		if old then
+			saved = nil
+			return old
+		end
+		local r = math_sqrt(-2 * math_log(math_random()))
+		local t = 2 * math_pi * math_random()
+		saved = r * math_sin(t)
+		return r * math_cos(t)
 	end
 end
 

@@ -21,7 +21,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Do nothing after return; callback responsible
 		  for all transformations.
 	- Uses:
-		- Tree growth.
 		- Lux infusion.
 		- Fallen leaves + grass + sunlight decay to nothing.
 		- Fallen leaves buried in leaves decay to dirt.

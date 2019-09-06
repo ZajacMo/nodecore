@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, nodecore, pairs, vector
     = ItemStack, math, minetest, nodecore, pairs, vector
-local math_pow
-    = math.pow
+local math_floor, math_pow
+    = math.floor, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -46,19 +46,19 @@ for _, v in pairs(nodecore.dirs()) do
 		indirs[#indirs + 1] = v
 	end
 end
-nodecore.register_limited_abm({
+nodecore.register_soaking_abm({
 		label = "Lux Infusion",
-		interval = 1,
-		chance = 2,
+		interval = 2,
+		chance = 1,
 		nodenames = {"nc_items:stack"},
 		neighbors = {"group:lux_fluid"},
-		action = function(pos)
+		soakrate = function(pos)
 			local stack = nodecore.stack_get(pos)
 			local name = stack:get_name()
-			if (not charge[name]) and (not convert[name]) then return end
+			if (not charge[name]) and (not convert[name]) then return false end
 
 			local above = vector.add(pos, {x = 0, y = 1, z = 0})
-			if not isfluid(above) then return end
+			if not isfluid(above) then return false end
 			local qty = 1
 			for _, v in pairs(indirs) do
 				if isfluid(vector.add(pos, v)) then qty = qty + 1 end
@@ -70,15 +70,22 @@ nodecore.register_limited_abm({
 					if nn == modname .. ":flux_source" then return d end
 					if nn ~= modname .. ":flux_flowing" then return false end
 				end)
-			if not dist then return end
+			if not dist then return false end
 
+			return qty * 20 / math_pow(2, dist / 2)
+		end,
+		soakcheck = function(data, pos)
+			local stack = nodecore.stack_get(pos)
+			local name = stack:get_name()
+			local dw = math_floor(data.total)
 			if charge[name] then
-				stack:add_wear(-qty * 20 / math_pow(2, dist / 2))
+				stack:add_wear(-dw)
 				nodecore.stack_set(pos, stack)
 			elseif convert[name] and stack:get_wear() < 3277 then
 				stack = ItemStack(convert[name])
-				stack:set_wear(65535)
+				stack:set_wear(65535 - dw)
 				nodecore.stack_set(pos, stack)
 			end
+			return data.total - dw
 		end
 	})

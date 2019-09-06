@@ -58,6 +58,7 @@ include("match")
 include("fx_digparticles")
 
 include("register_limited_abm")
+include("register_soaking_abm")
 include("register_ambiance")
 include("mapgen_shared")
 
