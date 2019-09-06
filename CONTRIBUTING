@@ -1,8 +1,9 @@
 ========================================================================
 ------------------------------------------------------------------------
 
-To contribute to this project, you must understand and agree to the
-terms in this document at the time of contribution.
+For your contribution to be included in this project, you must
+understand and agree to the terms in this document at the time of
+contribution.
 
 - A "contribution" consists of all files, patches and changes, source
   control commits, comments and other metadata submitted to the project
@@ -27,6 +28,12 @@ terms in this document at the time of contribution.
 ........................................................................
 
 Other Guidelines:
+
+- Non-included contributions to the project, such as hosting or other
+  services, content such as videos/streams, screenshots/galleries,
+  reviews, stories and other publicity do not need to follow the
+  guidelines above unless they are intended to also be eligible for
+  inclusion directly in the project.
 
 - Keep original media source files that are not directly used by the
   game engine (e.g. *.blend, *.xcf, *.svg) in folders named "src" in the

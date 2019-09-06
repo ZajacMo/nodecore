@@ -6,7 +6,7 @@ to the project!
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- >5.0.1 Release: Improvements already in the development branch
-	  of the engine are expected to benefit NodeCore.
+	  of the engine are expected to benefit NodeCore, e.g. #8701.
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.
@@ -14,6 +14,15 @@ to the project!
 	  the touchtip from screen-space into node-space.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
+	- #TBD: Engine should not render ents that are inside a mapblock
+	  for which the mapblock mesh is not yet rendering, to prevent
+	  transient X-ray viewing at view distance edge.
+
+- Publicity and player content:
+	- Help spread NodeCore!  Share your experiences, screenshots,
+	  videos and streams!
+	- Let the developers know if you have shared something about
+	  NodeCore, or would like guidance creating something to share.
 
 - Translations, including:
 	- New languages.

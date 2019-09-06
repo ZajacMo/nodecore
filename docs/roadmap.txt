@@ -9,22 +9,29 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Release an official beta pack/edition.
+	- Modpack of experimental features vs. alternate game by branch?
+
 - Lux Ore
 	- Higher tiers of Lux are igniters.
 	- Players accumulate radiation.
-		- Lower healing rate?  Lower max health?
-		- Lux Ataxia, randomly drop things.
-		- Increase pummel times.
+		- Player health API to allow registering multiple reasons
+		  for player health loss (injury, radiation)
 		- Radiation fades, washes off faster with water.
-		- Tools also radioactive, but much less so.
+		- Stacks also radioactive.  Tools too but less so.
+	- Weaken infusion based on distance from source node.
+	- Make infusion only work if flux on top of tool.
 
-- Use gravity vector to make flowing water push the player?
+- Player knockback coming in 5.1+?
+	- Allow players to push others around by punching?
+	- Use for door conveyors?
 
 - Doors
 	- Automation via laser ablation propulsion.
 		- Some materials cannot be operated by hand?
 		- Stirling engine using light gradient?
 		- Water or steam for rotary power?
+		- Arrangements to auto-return if propulsion removed?
 	- Push fluids, falling_nodes, items, ents as appropriate?
 		- Also move items sitting atop?
 	- Use as press for quick packing recipes?
@@ -105,6 +112,8 @@ ROADMAP: Large New Development Projects
 - System for transporting cargo.
 	- Trains of minecarts?
 	- Conveyors, elevators?
+
+- Use gravity vector to make flowing water push the player?
 
 ........................................................................
 ========================================================================

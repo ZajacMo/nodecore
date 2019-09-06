@@ -9,20 +9,36 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- ABMs against stacks are piling up.  We need an Active Stack
-  Modifier API.
+- Touchtip heuristics.
+	- Make sure scaling nodes are air_equivalent.
+	- Disable touchtip for unpointables.
+
+- Soaking API.
+	- Call getqty(pos, node, catchup) with catch-up qty.
+		- Returns number or nil=0 to add to total.
+		- Returns false to reset total.
+	- Call check(pos, node, total) to check total for completion.
+		- Do nothing after return; callback responsible
+		  for all transformations.
+	- Uses:
+		- Tree growth.
+		- Lux infusion.
+		- Fallen leaves + grass + sunlight decay to nothing.
+		- Fallen leaves buried in leaves decay to dirt.
+
+- Should be able to pummel non-loose cobble to stone chips and non-
+  loose gravel with sufficiently advanced pick (infused at least).
+
+- Wandering fluids API for concrete, glass?
+
+- ASNMs: Active StackNode Modifiers.
+	- Replace all ABMs against nc_item:stack.
   
 - Quenching fire still sometimes destroys neighboring nodes!
 
 - Stone doors don't necessarily dig right.  Probably leftover junk
   being inherited in the cloning; need to dig through the properties
   and remove the ones we don't want inherited.
-
-- Update CONTRIBUTING and wishlist.txt docs for non-repo items,
-  e.g. screenshots, videos/links, documentation and guides, publicity.
-
-- Release an official beta pack/edition.
-	- Modpack of experimental features vs. alternate game by branch?
 
 - Reinstate and update toolbelt once engine PR #8701 is released
 	- Alternative item strategy with dedicated slots for each
@@ -40,16 +56,16 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Allow node displacement sideways?
 	- Maybe force column to coordinate settling in order, to
 	  avoid race conditions?
+	- Check for early settling on node of same type, e.g. for
+	  falling leaves.
 
 - API Cleanup
 	- Utils
-		- Box mueller and exporand
+		- Box mueller (and repeated box mueller sum) and exporand
 	- Break up the nc_api monstrosity.
 		- nc_api_base to create _G.nodecore and include for all.
 		- nc_api metamod that just depends on ALL other api's.
 		- nc_all metamod for 3rd party mod authors...?
-	- Soaking API for time-integrated processes.
-		- Tree growth
 	- Heat API
 		- Unified heating/cooling number from env.
 		- Proper API for burning up items
