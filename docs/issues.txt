@@ -14,16 +14,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Disable touchtip for unpointables.
 
 - Soaking API.
-	- Call getqty(pos, node, catchup) with catch-up qty.
-		- Returns number or nil=0 to add to total.
-		- Returns false to reset total.
-	- Call check(pos, node, total) to check total for completion.
-		- Do nothing after return; callback responsible
-		  for all transformations.
-	- Uses:
-		- Lux infusion.
-		- Fallen leaves + grass + sunlight decay to nothing.
-		- Fallen leaves buried in leaves decay to dirt.
+	- Fallen leaves + grass + sunlight decay to nothing.
+	- Fallen leaves buried in leaves decay to dirt.
 
 - Should be able to pummel non-loose cobble to stone chips and non-
   loose gravel with sufficiently advanced pick (infused at least).
