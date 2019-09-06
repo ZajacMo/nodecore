@@ -39,7 +39,6 @@ function nodecore.register_soaking_abm(def)
 		if start <= now then
 			rate = def.soakrate(pos, ...)
 			if rate == false then
-				minetest.log("soak abm reset at " .. minetest.pos_to_string(pos))
 				meta:set_string(def.qtyfield, "")
 				meta:set_string(def.timefield, "")
 				return
@@ -51,12 +50,6 @@ function nodecore.register_soaking_abm(def)
 			start = start + ticks * def.soakinterval
 		end
 
-		minetest.log("soak check at " .. minetest.pos_to_string(pos)
-			.. ": " .. minetest.serialize({
-					rate = rate,
-					delta = delta,
-					total = total
-				}))
 		local set = def.soakcheck({
 				rate = rate,
 				delta = delta,
