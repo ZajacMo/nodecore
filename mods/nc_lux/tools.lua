@@ -34,9 +34,13 @@ for _, shape in pairs({'mallet', 'spade', 'hatchet', 'pick', 'mattock'}) do
 	end
 end
 
+local function isfluid(pos)
+	local def = minetest.registered_nodes[minetest.get_node(pos).name]
+	return def and def.groups and def.groups.lux_fluid
+end
 local indirs = {}
 for _, v in pairs(nodecore.dirs()) do
-	if v.y >= 0 then
+	if v.y == 0 then
 		indirs[#indirs + 1] = v
 	end
 end
@@ -49,13 +53,12 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local stack = nodecore.stack_get(pos)
 			local name = stack:get_name()
-			local qty = 0
+			local above = vector.add(pos, {x = 0, y = 1, z = 0})
+			if not isfluid(above) then return end
+			local qty = 1
 			for _, v in pairs(indirs) do
-				local p = vector.add(pos, v)
-				local def = minetest.registered_nodes[minetest.get_node(p).name]
-				if def and def.groups and def.groups.lux_fluid then qty = qty + 1 end
+				if isfluid(vector.add(pos, v)) then qty = qty + 1 end
 			end
-			if qty < 1 then return end
 			if charge[name] then
 				stack:add_wear(-qty * 20)
 				nodecore.stack_set(pos, stack)

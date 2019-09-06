@@ -20,7 +20,6 @@ ROADMAP: Large New Development Projects
 		- Radiation fades, washes off faster with water.
 		- Stacks also radioactive.  Tools too but less so.
 	- Weaken infusion based on distance from source node.
-	- Make infusion only work if flux on top of tool.
 
 - Player knockback coming in 5.1+?
 	- Allow players to push others around by punching?
