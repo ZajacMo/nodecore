@@ -98,6 +98,10 @@ nodecore.register_soaking_abm({
 		end,
 		soakcheck = function(data, pos)
 			if data.total >= 5000 then
+				minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
+				for _ = 1, 4 do
+					minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
+				end
 				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
 				return minetest.place_schematic(place, nodecore.tree_schematic,
 					"random", {}, false)
