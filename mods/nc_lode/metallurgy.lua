@@ -136,6 +136,7 @@ local function replacestack(pos, alt)
 		return nodecore.item_eject(pos, repl)
 	else
 		nodecore.set_node(pos, {name = alt})
+		minetest.after(0, function() minetest.check_for_falling(pos) end)
 	end
 end
 
