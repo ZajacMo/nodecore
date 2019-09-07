@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, table
-    = minetest, table
+local minetest, nodecore, table
+    = minetest, nodecore, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 

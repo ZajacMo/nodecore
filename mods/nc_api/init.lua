@@ -21,6 +21,7 @@ local include = rawget(_G, "include") or function(...)
 end
 rawset(_G, "include", include)
 
+nodecore.product = "NodeCore"
 nodecore.version = include("version")
 
 local function callguard(n, t, k, v)
@@ -60,6 +61,7 @@ include("fx_digparticles")
 include("register_limited_abm")
 include("register_soaking_abm")
 include("register_ambiance")
+include("register_mods")
 include("mapgen_shared")
 
 include("item_on_register")

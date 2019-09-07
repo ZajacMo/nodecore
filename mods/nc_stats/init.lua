@@ -5,6 +5,8 @@ local math_random, os_date, table_remove
     = math.random, os.date, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 local modstore = minetest.get_mod_storage()
 

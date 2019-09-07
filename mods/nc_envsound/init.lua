@@ -5,6 +5,8 @@ local math_exp, math_random
     = math.exp, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local function check(pos, done)
 	local sp = {
 		x = pos.x + math_random() * 64 - 32,

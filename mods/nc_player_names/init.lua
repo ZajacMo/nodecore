@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, tonumber
-    = math, minetest, pairs, tonumber
+local math, minetest, nodecore, pairs, tonumber
+    = math, minetest, nodecore, pairs, tonumber
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 

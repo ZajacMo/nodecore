@@ -5,6 +5,8 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":stack", {

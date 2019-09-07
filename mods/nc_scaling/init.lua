@@ -3,6 +3,8 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":steps", {

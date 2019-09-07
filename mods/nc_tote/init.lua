@@ -3,6 +3,8 @@ local ItemStack, ipairs, minetest, nodecore, pairs, type
     = ItemStack, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
 local metadescs = {

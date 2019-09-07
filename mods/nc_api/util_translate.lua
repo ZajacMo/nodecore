@@ -10,7 +10,7 @@ local modname = minetest.get_current_modname()
 local strings = {}
 local strings_dirty
 
-local token = "NodeCore"
+local token = nodecore.product
 local prefix = minetest.translate(modname, token)
 prefix = prefix:sub(1, prefix:find(token) - 1)
 

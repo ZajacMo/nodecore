@@ -5,6 +5,8 @@ local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 nodecore.register_inventory_tab,
 nodecore.registered_inventory_tabs
 = nodecore.mkreg()
@@ -19,7 +21,7 @@ do
 	nodecore.register_inventory_tab({
 			title = "About",
 			content = {
-				nct("NodeCore") .. " - " .. version,
+				nct(nodecore.product) .. " - " .. version,
 				"",
 				"(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>",
 				"MIT License (http://www.opensource.org/licenses/MIT)",
@@ -72,7 +74,7 @@ nodecore.register_inventory_tab({
 			"- \"Torches\" are not a thing; use fire as your first light source.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
 			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
-			"- NodeCore is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 		}
 	})
 

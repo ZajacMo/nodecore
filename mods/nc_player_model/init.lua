@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, os, pairs, table
-    = math, minetest, os, pairs, table
+local math, minetest, nodecore, os, pairs, table
+    = math, minetest, nodecore, os, pairs, table
 local math_floor, os_date, table_concat
     = math.floor, os.date, table.concat
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
