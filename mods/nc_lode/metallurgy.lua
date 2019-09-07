@@ -199,11 +199,11 @@ nodecore.register_craft({
 		toolgroups = {choppy = 5},
 		nodes = {
 			{
-				match = modname .. ":block_annealed",
+				match = modname .. ":block_hot",
 				replace = "air"
 			}
 		},
 		items = {
-			{name = modname .. ":prill_annealed 2", count = 4, scatter = 5}
+			{name = modname .. ":prill_hot 2", count = 4, scatter = 5}
 		}
 	})
