@@ -191,6 +191,7 @@ regterrain({
 			}
 		},
 		groups = {
+			sandy = 1,
 			crumbly = 1,
 			falling_node = 1
 		},

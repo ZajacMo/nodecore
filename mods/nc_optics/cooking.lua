@@ -18,14 +18,14 @@ nodecore.register_craft({
 		cookfx = true,
 		nodes = {
 			{
-				match = "nc_terrain:sand_loose",
+				match = {groups = {sandy = true}},
 				replace = modname .. ":glass_hot_source"
 			}
 		}
 	})
 
 nodecore.register_cook_abm({
-		nodenames = {"nc_terrain:sand_loose"},
+		nodenames = {"group:sandy"},
 		neighbors = {"group:flame"}
 	})
 
