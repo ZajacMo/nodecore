@@ -9,19 +9,10 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Soaking API.
-	- Fallen leaves + grass + sunlight decay to nothing.
-	- Fallen leaves buried in leaves decay to dirt.
-
-- Should be able to pummel non-loose cobble to stone chips and non-
-  loose gravel with sufficiently advanced pick (infused at least).
-
 - Wandering fluids API for concrete, glass?
 
 - ASNMs: Active StackNode Modifiers.
 	- Replace all ABMs against nc_item:stack.
-  
-- Quenching fire still sometimes destroys neighboring nodes!
 
 - Stone doors don't necessarily dig right.  Probably leftover junk
   being inherited in the cloning; need to dig through the properties
@@ -111,6 +102,13 @@ ISSUES: Bugs, Cleanup and Refinements
 	  and find_nodes_in_area (cuboid) in others.
 	- Diamond shape would be most consistent.
 	- Should require face touching, not diagonal.
+
+- Soaking API.
+	- Fallen leaves + grass + sunlight decay to nothing.
+	- Fallen leaves buried in leaves decay to dirt.
+
+- Should be able to pummel non-loose cobble to stone chips and non-
+  loose gravel with sufficiently advanced pick (infused at least).
 
 ........................................................................
 ========================================================================
