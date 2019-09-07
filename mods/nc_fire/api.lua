@@ -67,7 +67,6 @@ end
 
 function nodecore.fire_ignite(pos, node)
 	node = node or minetest.get_node(pos)
-	minetest.chat_send_all(node.name)
 	local def = minetest.registered_items[node.name]
 	if def and def.on_ignite then
 		local ign = def.on_ignite
