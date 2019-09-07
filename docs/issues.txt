@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Touchtip heuristics.
-	- Make sure scaling nodes are air_equivalent.
-	- Disable touchtip for unpointables.
-
 - Soaking API.
 	- Fallen leaves + grass + sunlight decay to nothing.
 	- Fallen leaves buried in leaves decay to dirt.

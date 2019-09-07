@@ -6,6 +6,12 @@ local math_ceil, math_floor, math_random
 -- LUALOCALS > ---------------------------------------------------------
 
 function nodecore.digparticles(nodedef, partdef)
+	if partdef.forcetexture then
+		partdef.texture = partdef.forcetexture
+		local id = minetest.add_particlespawner(partdef)
+		return function() minetest.delete_particlespawner(id) end
+	end
+
 	local img = {}
 	if nodedef.tiles then
 		for i = 1, 6 do

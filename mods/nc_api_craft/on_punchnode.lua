@@ -32,9 +32,10 @@ local function pummelparticles(_, data)
 			maxvel = vel,
 			minexptime = 0.4,
 			maxexptime = 0.9,
-			minsize = 1,
-			maxsize = 5,
-			playername = pname
+			minsize = 1 * (data.recipe.particlescale or 1),
+			maxsize = 5 * (data.recipe.particlescale or 1),
+			playername = pname,
+			forcetexture = data.recipe.pumparticle
 		})
 end
 

@@ -26,6 +26,7 @@ minetest.register_node(modname .. ":steps", {
 		climbable = true,
 		pointable = false,
 		buildable_to = true,
+		air_equivalent = true,
 		groups = {[modname] = 1}
 	})
 
@@ -38,6 +39,7 @@ minetest.register_node(modname .. ":hang", {
 		climbable = true,
 		pointable = false,
 		buildable_to = true,
+		air_equivalent = true,
 		groups = {[modname] = 1}
 	})
 
@@ -133,6 +135,8 @@ end
 nodecore.register_craft({
 		label = "scale sheer walls",
 		action = "pummel",
+		pumparticle = "nc_scaling_particle.png",
+		particlescale = 0.25,
 		duration = 5,
 		normal = {x = 1},
 		check = stepcheck,
