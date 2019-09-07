@@ -28,7 +28,6 @@ minetest.register_node(modname .. ":shelf", {
 			visinv = 1,
 			flammable = 2,
 			fire_fuel = 3,
-			eject_inv_on_burn = 1,
 			container = 1,
 			totable = 1
 		},
@@ -59,6 +58,9 @@ minetest.register_node(modname .. ":shelf", {
 			if nodecore.stack_giveto(pos, digger) then
 				return minetest.node_dig(pos, node, digger, ...)
 			end
+		end,
+		on_ignite = function(pos)
+			return nodecore.stack_get(pos)
 		end,
 		stack_allow = function(_, _, stack)
 			local def = minetest.registered_items[stack:get_name()] or {}

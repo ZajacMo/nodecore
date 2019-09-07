@@ -36,8 +36,10 @@ local function toolhead(name, groups, prills)
 					d.tool_capabilities = toolcap(5)
 				end
 			end,
+			groups = { flammable = 4 },
 			metal_alt_hot = modname .. ":prill_hot " .. prills,
-			tool_wears_to = modname .. ":prill_# " .. prills
+			tool_wears_to = modname .. ":prill_# " .. prills,
+			on_ignite = modname .. ":prill_# " .. prills
 		})
 
 	for _, t in pairs({"annealed", "tempered"}) do

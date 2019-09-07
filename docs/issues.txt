@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Burning consistency.
-	- Add burns_to hook.  Make stone tools burn to stone chip,
-	  make lode/lux tools burn to lode prills.
-
 - Stone doors don't necessarily dig right.  Probably leftover junk
   being inherited in the cloning; need to dig through the properties
   and remove the ones we don't want inherited.

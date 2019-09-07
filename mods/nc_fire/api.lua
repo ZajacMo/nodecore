@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, vector
 local math_floor, math_pow, math_random
     = math.floor, math.pow, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -15,7 +15,7 @@ do
 	minetest.after(0, function()
 			for k, v in pairs(minetest.registered_items) do
 				if v.groups.flammable and not v.groups.fire_fuel
-				or v.groups.flame or v.name == "air" then
+				and not v.on_ignite or v.groups.flame or v.name == "air" then
 					ventitems[k] = v.groups.flame or 0
 				end
 			end
@@ -50,24 +50,41 @@ do
 	end
 end
 
+local function burneject(pos, stack)
+	if type(stack) == "table" then
+		for _, v in pairs(stack) do
+			burneject(pos, v)
+		end
+		return
+	end
+	if type(stack) == "string" then stack = ItemStack(stack) end
+	if not stack.is_empty then return end
+	if stack and (not stack:is_empty()) then
+		local p = nodecore.scan_flood(pos, 2, nodecore.buildable_to)
+		nodecore.item_eject(p or pos, stack, 1)
+	end
+end
+
 function nodecore.fire_ignite(pos, node)
+	node = node or minetest.get_node(pos)
+	minetest.chat_send_all(node.name)
+	local def = minetest.registered_items[node.name]
+	if def and def.on_ignite then
+		local ign = def.on_ignite
+		if type(ign) == "function" then ign = ign(pos, node) end
+		burneject(pos, ign)
+	end
+
 	local fuel = nodecore.node_group("fire_fuel", pos, node) or 0
 	if fuel < 0 then fuel = 0 end
 	if fuel > nodecore.fire_max then fuel = nodecore.fire_max end
 	fuel = math_floor(fuel)
-	local stack
-	if nodecore.node_group("eject_inv_on_burn", pos, node) then
-		stack = nodecore.stack_get(pos)
-		if stack and (not stack:is_empty()) then
-			local p = nodecore.scan_flood(pos, 2, nodecore.buildable_to)
-			nodecore.item_eject(p or pos, stack, 1)
-		end
-	end
 	if fuel > 0 then
 		minetest.set_node(pos, {name = modname .. ":ember" .. fuel})
 	else
 		minetest.set_node(pos, {name = modname .. ":fire"})
 	end
+
 	minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
 	minetest.sound_play("nc_fire_flamy", {gain = 3, pos = pos})
 	minetest.after(0, function() minetest.check_for_falling(pos) end)
