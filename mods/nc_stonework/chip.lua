@@ -27,6 +27,19 @@ nodecore.register_craft({
 	})
 
 nodecore.register_craft({
+		label = "break packed cobble to chips",
+		action = "pummel",
+		nodes = {
+			{match = "nc_terrain:cobble", replace = "nc_terrain:gravel"}
+		},
+		items = {
+			{name = modname .. ":chip", count = 4, scatter = 5}
+		},
+		toolgroups = {cracky = 4},
+		itemscatter = 5
+	})
+
+nodecore.register_craft({
 		label = "repack chips to cobble",
 		action = "pummel",
 		nodes = {

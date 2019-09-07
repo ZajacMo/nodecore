@@ -35,9 +35,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  avoid race conditions?
 	- Check for early settling on node of same type, e.g. for
 	  falling leaves.
-
-- Should be able to pummel non-loose cobble to stone chips and non-
-  loose gravel with sufficiently advanced pick (infused at least).
 	
 - Loose node cleanup.
 	- Fallen leaves + grass + sunlight decay to nothing.
