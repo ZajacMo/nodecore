@@ -9,10 +9,9 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Wandering fluids API for concrete, glass?
-
-- ASNMs: Active StackNode Modifiers.
-	- Replace all ABMs against nc_item:stack.
+- Burning consistency.
+	- Add burns_to hook.  Make stone tools burn to stone chip,
+	  make lode/lux tools burn to lode prills.
 
 - Stone doors don't necessarily dig right.  Probably leftover junk
   being inherited in the cloning; need to dig through the properties
@@ -37,43 +36,12 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Check for early settling on node of same type, e.g. for
 	  falling leaves.
 
-- API Cleanup
-	- Utils
-		- Box mueller (and repeated box mueller sum) and exporand
-	- Break up the nc_api monstrosity.
-		- nc_api_base to create _G.nodecore and include for all.
-		- nc_api metamod that just depends on ALL other api's.
-		- nc_all metamod for 3rd party mod authors...?
-	- Heat API
-		- Unified heating/cooling number from env.
-		- Proper API for burning up items
-			- on_burn?  burns_to?
-		- Unify heat transformations into recipe system with
-		  cooking recipes?
-	- Unify nc_items and visinv API.
-		- Stack nodes are "special", get first-class support.
-
-- Make separate walkable/non-walkable stack nodes.
-	- Should sticks and eggcorns be non-walkable?
-
-- Tool level differences.
-	- Advanced tools are NOT just the same as regular tools with
-	  certain buffs.
-	- Higher-tier tools skip dig phases.
-		- Fast-forward throug certain steps, e.g. raw -> loose?
-		- Skip later stages, e.g. "silk touch" effect?
-	- Tool API cleanup
-		- Separate durability, speed, effects?
-
-- Code Quality.
-	- Scripts to validate dependency graph.
-		- Tag deps directly in code at place of use.
-		- Auto-generate mod.conf / depends.txt
-	- Scripts for automatic metapackage mods?
-	- Git hooks (and git hook setup scripts)?
+- Should be able to pummel non-loose cobble to stone chips and non-
+  loose gravel with sufficiently advanced pick (infused at least).
 	
 - Loose node cleanup.
-	- Leaves settle into grass as podzol?  Composting/decay?
+	- Fallen leaves + grass + sunlight decay to nothing.
+	- Fallen leaves buried in leaves decay to dirt.
 	- Dirt/sand/etc should self-compact if buried or over time.
 
 - Hint system updates.
@@ -84,6 +52,7 @@ ISSUES: Bugs, Cleanup and Refinements
 		- doors
 		- concrete
 		- wall/ceiling scaling
+		- everything lux-related
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  
@@ -96,19 +65,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Skin color, hair color, eye color?
 	- Add more holiday outfits.
 	- Track server lag in metadata?
-
-- Make neighbor/distance calcs consistent.
-	- We're using scan_flood in some places, face checks in others,
-	  and find_nodes_in_area (cuboid) in others.
-	- Diamond shape would be most consistent.
-	- Should require face touching, not diagonal.
-
-- Soaking API.
-	- Fallen leaves + grass + sunlight decay to nothing.
-	- Fallen leaves buried in leaves decay to dirt.
-
-- Should be able to pummel non-loose cobble to stone chips and non-
-  loose gravel with sufficiently advanced pick (infused at least).
 
 ........................................................................
 ========================================================================

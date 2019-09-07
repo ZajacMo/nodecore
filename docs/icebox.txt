@@ -1,0 +1,51 @@
+========================================================================
+ICEBOX: Low-Priority Ideas
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Wandering fluids API for concrete, glass?
+
+- AStMs: Active Stack Modifiers.
+	- Operate on all visinv nodes.
+	- Possibly operate on player inventories?
+
+- Make separate walkable/non-walkable stack nodes.
+  - Should sticks and eggcorns be non-walkable?
+
+- Code Quality.
+	- Scripts to validate dependency graph.
+		- Tag deps directly in code at place of use.
+		- Auto-generate mod.conf / depends.txt
+	- Scripts for automatic metapackage mods?
+	- Git hooks (and git hook setup scripts)?
+
+- API Cleanup
+	- Utils
+		- Box mueller (and repeated box mueller sum) and exporand
+	- Break up the nc_api monstrosity.
+		- nc_api_base to create _G.nodecore and include for all.
+		- nc_api metamod that just depends on ALL other api's.
+		- nc_all metamod for 3rd party mod authors...?
+	- Heat API
+		- Unified heating/cooling number from env.
+		- Proper API for burning up items
+			- on_burn?  burns_to?
+		- Unify heat transformations into recipe system with
+		  cooking recipes?
+	- Unify nc_items and visinv API.
+		- Stack nodes are "special", get first-class support.
+
+- Make neighbor/distance calcs consistent.
+	- We're using scan_flood in some places, face checks in others,
+	  and find_nodes_in_area (cuboid) in others.
+	- Diamond shape would be most consistent.
+	- Should require face touching, not diagonal.
+
+........................................................................
+========================================================================

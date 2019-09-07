@@ -22,7 +22,7 @@ local wetdef = {
 	light_source = 10,
 	damage_per_second = 1,
 	drowning = 0,
-	groups = { lux_emit = 10, lux_fluid = 1 },
+	groups = { lux_emit = 10, lux_fluid = 1, igniter = 1 },
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }

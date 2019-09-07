@@ -51,7 +51,7 @@ nodecore.register_soaking_abm({
 		label = "Lux Infusion",
 		interval = 2,
 		chance = 1,
-		nodenames = {"nc_items:stack"},
+		nodenames = {"group:visinv"},
 		neighbors = {"group:lux_fluid"},
 		soakrate = function(pos)
 			local stack = nodecore.stack_get(pos)

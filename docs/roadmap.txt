@@ -13,7 +13,7 @@ ROADMAP: Large New Development Projects
 	- Modpack of experimental features vs. alternate game by branch?
 
 - Lux Ore
-	- Higher tiers of Lux are igniters.
+	- Reconsider mapgen depth; push downwards?
 	- Players accumulate radiation.
 		- Player health API to allow registering multiple reasons
 		  for player health loss (injury, radiation)
@@ -48,12 +48,31 @@ ROADMAP: Large New Development Projects
 
 - Advanced Tools
 	- Sickle / kopesh, choppy + snappy, recursive harvesting.
+	- Mop/broom for mass stack pickup.
+		- Sponge on a staff for a mop, thatch on a staff for broom.
+		- Broom recipe feels more right, but requires more work...
 
 - Water and lava surface springs.
 	- Access to water for forges.
-	- Access to lava for lighting, firestarting.
+	- Access to lava for lighting, firestarting, glass?
 
 - Lava quenching, new material?
+
+- Lurk Ore
+	- Moves freely among air-exposed stone while no player is looking.
+	- Follows after player, attempting to cause harm.
+		- Weakens nodes above/below player into falling nodes,
+		  e.g. loose cobble, gravel?
+		- Steals items from player, drops onto ground or absorbs them
+		  into body?  Saps tool durability?
+		- Ignites flammables it passes by?
+		- Downgrades or absorbs ores nearby by contact or air floodfill?
+		- Creates illusionary nodes you can fall through?
+	- Cannot be dug or damaged directly.
+		- Digging it yields plain stone, but converts up to 2
+		  surrounding stone nodes into Lurk.
+	- Need to dig all around it so it cannot move, then apply Some
+	  time-integrated process to convert it to useful form.
 
 - Threats
 	- Visceral
@@ -64,9 +83,6 @@ ROADMAP: Large New Development Projects
 		- Cellular automata hazards.
 		- From exploration, delving too deep, leaving things to rot, etc.
 		- Blights, Fungi
-	- Dangerous Ores
-		- Lurking/creeping ores that act like monsters
-		- Ores that damage you when struck, need to dig around them
 
 - New writing system based on charcoal
 	- Draw a symbol on surfaces by pummeling w/ charcoal
@@ -75,10 +91,10 @@ ROADMAP: Large New Development Projects
 	- Use a special/reduced alphabet?
 
 - Digital logic + lighting via optics.
-	- Optical heat transforms, cooking via laser light?
 	- Piezo Crystal Node
 		- Emits light briefly when punched or stepped on
 		- Need to interpolate player paths for "stepped on" logic
+		- Lux-infused chromatic glass?
 	- Pistons or rack&pinions for affecting world stuff.
 		- Laser ablation propulsion
 		- Gray code absolute game time to determine distance (logarithmic by load)
@@ -89,6 +105,7 @@ ROADMAP: Large New Development Projects
 	- Stirling engine?
 	- Rotors?
 	- Conveyors?
+	- Steam as a classic fluid?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
