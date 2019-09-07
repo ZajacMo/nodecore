@@ -32,7 +32,10 @@ function nodecore.register_lode(shape, rawdef)
 		def = nodecore.underride(def, {
 				description = temper.desc .. " Lode " .. shape,
 				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
-				groups = { cracky = 3 },
+				groups = {
+					cracky = 3,
+					falling_node = temper.name == "hot" and 1 or nil
+				},
 				["metal_temper_" .. temper.name] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
@@ -63,7 +66,11 @@ function nodecore.register_lode(shape, rawdef)
 
 		if def.bytemper then def.bytemper(temper, def) end
 
-		minetest.register_item(modname .. ":" .. def.name, def)
+		local fullname = modname .. ":" .. def.name
+		minetest.register_item(fullname, def)
+		if def.type == "node" then
+			nodecore.register_cook_abm({nodenames = {fullname}})
+		end
 	end
 end
 
@@ -114,13 +121,22 @@ nodecore.register_cook_abm({nodenames = {modname .. ":cobble"}, neighbors = {"gr
 
 local function replacestack(pos, alt)
 	local stack = nodecore.stack_get(pos)
-	nodecore.remove_node(pos)
-	local def = minetest.registered_items[stack:get_name()] or {}
-	local repl = ItemStack(def["metal_alt_" .. alt] or "")
-	local qty = stack:get_count()
-	if qty == 0 then qty = 1 end
-	repl:set_count(qty * repl:get_count())
-	return nodecore.item_eject(pos, repl)
+	if stack:is_empty() then stack = nil end
+	local node = minetest.get_node(pos)
+	local name = stack and stack:get_name() or node.name
+	local def = minetest.registered_items[name] or {}
+	alt = def["metal_alt_" .. alt]
+	if not alt then return nodecore.remove_node(pos) end
+	if stack then
+		local repl = ItemStack(alt)
+		local qty = stack:get_count()
+		if qty == 0 then qty = 1 end
+		repl:set_count(qty * repl:get_count())
+		nodecore.remove_node(pos)
+		return nodecore.item_eject(pos, repl)
+	else
+		nodecore.set_node(pos, {name = alt})
+	end
 end
 
 nodecore.register_craft({

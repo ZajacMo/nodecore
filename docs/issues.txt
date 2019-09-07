@@ -18,8 +18,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  inventory space, which can be empty if in hand instead.
 	- Consider a "backpack" approach as opposed to toolbelt.
 
-- Allow lode cube/bar/rod cooking/cooling in placed form.
-
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
