@@ -11,7 +11,8 @@ local strings = {
 	onemore = "...and 1 more hint...",
 	fewmore = "...and @1 more hints...",
 	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by hints. Explore!"
+	explore = "Not all game content is covered by hints. Explore!",
+	yes = "YES!"
 }
 
 for k, v in pairs(strings) do
@@ -49,20 +50,25 @@ local function gethint(player)
 		end
 	end
 
-	local done = 0
+	local done = {}
 	local found = {}
 	for _, hint in ipairs(nodecore.hints) do
 		if hint.goal(db) then
-			done = done + 1
+			done[#done + 1] = hint.text
 		elseif hint.reqs(db) then
 			found[#found + 1] = hint.text
 		end
 	end
 	local prog = #found
-	local left = #(nodecore.hints) - prog - done
+	local left = #(nodecore.hints) - prog - #done
 
 	while #found > 5 do
 		table_remove(found, math_random(1, #found))
+	end
+	while #found < 5 do
+		local j = math_random(1, #done)
+		found[#found + 1] = done[j] .. " " .. strings.yes()
+		table_remove(done, j)
 	end
 	table_sort(found)
 	if #found == (prog - 1) then
@@ -72,7 +78,7 @@ local function gethint(player)
 	end
 
 	found[#found + 1] = ""
-	found[#found + 1] = strings.progress(done, prog, left)
+	found[#found + 1] = strings.progress(#done, prog, left)
 	found[#found + 1] = strings.explore()
 
 	pcache[pname] = {time = now, found = found}

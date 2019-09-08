@@ -36,8 +36,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt/sand/etc should self-compact if buried or over time.
 
 - Hint system updates.
-	- Include completed hints (...have you...? YES!) per player request
-		- Make sure at least 1 incomplete hint in list.
 	- Missing:
 		- sponge squeezing
 		- lode bars/rods
