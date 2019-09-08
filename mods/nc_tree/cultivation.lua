@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -102,9 +102,24 @@ nodecore.register_soaking_abm({
 				for _ = 1, 4 do
 					minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
 				end
+				local leaves = {}
+				for i = 1, 8 do
+					local p = {x = pos.x, y = pos.y + i, z = pos.z}
+					local n = minetest.get_node(p)
+					if n.name == modname .. ":leaves" then
+						leaves[p] = n
+						minetest.remove_node(p)
+					end
+				end
 				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-				return minetest.place_schematic(place, nodecore.tree_schematic,
+				minetest.place_schematic(place, nodecore.tree_schematic,
 					"random", {}, false)
+				for p, n in pairs(leaves) do
+					if minetest.get_node(p).name == "air" then
+						minetest.set_node(p, n)
+					end
+				end
+				return
 			end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
