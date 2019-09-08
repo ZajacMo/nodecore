@@ -6,6 +6,12 @@ local nodecore
 local addhint = nodecore.addhint
 
 ------------------------------------------------------------------------
+-- SCALING
+
+addhint("scaled a sheer wall", "scale sheer walls")
+addhint("scaled a sheer overhang", "scale sheer ceilings")
+
+------------------------------------------------------------------------
 -- TERRAIN
 
 addhint("dug up dirt",
@@ -37,14 +43,42 @@ addhint("found molten rock",
 )
 
 ------------------------------------------------------------------------
--- TREE
+-- SPONGE
 
 addhint("found sponges",
 	{true,
 		"nc_sponge:sponge",
 		"nc_sponge:sponge_wet",
 		"nc_sponge:sponge_living"
-	})
+	}
+)
+
+addhint("harvested a sponge",
+	"nc_sponge:sponge_wet",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
+
+addhint("dried out a sponge",
+	"nc_sponge:sponge",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
+
+addhint("squeezed out a sponge",
+	"squeeze sponge",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
 
 ------------------------------------------------------------------------
 -- TREE
@@ -59,7 +93,8 @@ addhint("found eggcorns",
 
 addhint("planted an eggcorn",
 	"eggcorn planting",
-	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"})
+	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"}
+)
 
 addhint("found sticks",
 	"nc_tree:stick"
@@ -185,6 +220,19 @@ addhint("put a stone tip onto a tool",
 )
 
 ------------------------------------------------------------------------
+-- CONCRETE
+
+addhint("blended gravel into ash to make aggregate",
+	"mix concrete",
+	{"nc_terrain:gravel_loose", "nc_fire:ash"}
+)
+
+addhint("made wet aggregate",
+	{true, "nc_concrete:wet_source", "nc_concrete:wet_flowing"},
+	"mix concrete"
+)
+
+------------------------------------------------------------------------
 -- LODE
 
 addhint("found a lode stratum",
@@ -253,6 +301,33 @@ addhint("welded a lode pick and spade together",
 )
 
 ------------------------------------------------------------------------
+-- LUX
+
+addhint("found lux stone",
+	"group:lux_emit"
+)
+
+addhint("collected lux cobble",
+	"group:lux_cobble",
+	"group:lux_emit"
+)
+
+addhint("observed a lux reaction",
+	"group:lux_hot",
+	"group:lux_cobble"
+)
+
+addhint("observed lux criticality",
+	"group:lux_cobble_max",
+	"group:lux_hot"
+)
+
+addhint("lux-infused a lode tool",
+	"group:lux_tool",
+	"group:lux_cobble_max"
+)
+
+------------------------------------------------------------------------
 -- TOTE
 
 addhint("assembled an annealed lode tote handle",
@@ -276,6 +351,11 @@ addhint("quenched molten glass into chromatic glass",
 addhint("molded molten glass into clear glass",
 	"nc_optics:glass",
 	"group:silica"
+)
+
+addhint("molded molten glass into float glass",
+	"nc_optics:glass_float",
+	"nc_optics:glass"
 )
 
 addhint("cooled molten glass into crude glass",

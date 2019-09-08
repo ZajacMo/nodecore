@@ -22,6 +22,9 @@ for _, shape in pairs({'mallet', 'spade', 'hatchet', 'pick', 'mattock'}) do
 			}, orig)
 		def.after_use = nil
 
+		def.groups = def.groups or {}
+		def.groups.lux_tool = 1
+
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1

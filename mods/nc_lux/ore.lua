@@ -21,19 +21,16 @@ for i = 1, 8 do
 				lux_emit = i,
 				cracky = 1,
 				lux_cobble_max = i == 8 and 1 or nil,
-				igniter = i > 4 and 1 or nil
+				igniter = i > 4 and 1 or nil,
+				lux_hot = i > 4 and 1 or nil
 			},
 			alternate_loose = {
 				stackfamily = modname .. ":cobble_loose",
 				repack_level = 2,
 				groups = {
-					lux_cobble = 1,
-					lux_emit = i,
 					cracky = 0,
 					crumbly = 2,
 					falling_repose = 3,
-					lux_cobble_max = i == 8 and 1 or nil,
-					igniter = i > 4 and 1 or nil
 				},
 				drop = modname .. ":cobble1_loose",
 				sounds = nodecore.sounds("nc_terrain_chompy")
