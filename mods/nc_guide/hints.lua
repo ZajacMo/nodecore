@@ -355,7 +355,7 @@ addhint("molded molten glass into clear glass",
 
 addhint("molded molten glass into float glass",
 	"nc_optics:glass_float",
-	"nc_optics:glass"
+	{"nc_optics:glass", "group:lava"}
 )
 
 addhint("cooled molten glass into crude glass",
