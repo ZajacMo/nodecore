@@ -40,10 +40,13 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Make sure at least 1 incomplete hint in list.
 	- Missing:
 		- sponge squeezing
+		- lode bars/rods
 		- doors
 		- concrete
 		- wall/ceiling scaling
 		- everything lux-related
+		- lode shelves
+		- float glass
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  

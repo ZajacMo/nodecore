@@ -12,6 +12,9 @@ ROADMAP: Large New Development Projects
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
 
+- Tinted glass: can see thru only one way and not others, does not
+  transmit light?  Infuse non-chromatic glass w/ lux?
+
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
 	- Players accumulate radiation.
