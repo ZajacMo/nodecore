@@ -33,6 +33,7 @@ function nodecore.addhint(text, goal, reqs)
 	local hints = nodecore.hints
 	local h = {
 		text = nodecore.translate("...have you " .. text .. " yet?"),
+		done = nodecore.translate("...you have " .. text .. "!"),
 		goal = conv(goal),
 		reqs = conv(reqs)
 	}

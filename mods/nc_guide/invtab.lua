@@ -11,8 +11,7 @@ local strings = {
 	onemore = "...and 1 more hint...",
 	fewmore = "...and @1 more hints...",
 	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by hints. Explore!",
-	yes = "YES!"
+	explore = "Not all game content is covered by hints. Explore!"
 }
 
 for k, v in pairs(strings) do
@@ -54,7 +53,7 @@ local function gethint(player)
 	local found = {}
 	for _, hint in ipairs(nodecore.hints) do
 		if hint.goal(db) then
-			done[#done + 1] = hint.text
+			done[#done + 1] = hint.done
 		elseif hint.reqs(db) then
 			found[#found + 1] = hint.text
 		end
@@ -67,7 +66,7 @@ local function gethint(player)
 	end
 	while #found < 5 do
 		local j = math_random(1, #done)
-		found[#found + 1] = done[j] .. " " .. strings.yes()
+		found[#found + 1] = done[j]
 		table_remove(done, j)
 	end
 	table_sort(found)
