@@ -156,6 +156,8 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "scale sheer ceilings",
 		action = "pummel",
+		pumparticle = "nc_scaling_particle.png",
+		particlescale = 0.25,
 		duration = 10,
 		normal = {y = -1},
 		check = stepcheck,
