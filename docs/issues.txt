@@ -36,22 +36,11 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt/sand/etc should self-compact if buried or over time.
 
 - Hint system updates.
-	- Missing:
-		- lode bars/rods
-		- doors
-		- lode shelves
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
 	  a certain distance and line-of-sight.  
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
-
-- Social features
-	- Randomize player appearance/colors.
-		- Shirt/pants, possibly w/ stripes/patterns
-		- Skin color, hair color, eye color?
-	- Add more holiday outfits.
-	- Track server lag in metadata?
 
 ........................................................................
 ========================================================================

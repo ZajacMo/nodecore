@@ -87,6 +87,13 @@ ROADMAP: Large New Development Projects
 		- From exploration, delving too deep, leaving things to rot, etc.
 		- Blights, Fungi
 
+- Social features
+	- Randomize player appearance/colors.
+		- Shirt/pants, possibly w/ stripes/patterns
+		- Skin color, hair color, eye color?
+	- Add more holiday outfits.
+	- Track server lag in metadata?
+
 - New writing system based on charcoal
 	- Draw a symbol on surfaces by pummeling w/ charcoal
 	- ...or maybe make ink from coal+water, use a brush?

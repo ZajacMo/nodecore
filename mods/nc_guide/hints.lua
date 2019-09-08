@@ -300,6 +300,69 @@ addhint("welded a lode pick and spade together",
 	"anvil making lode toolhead_pick"
 )
 
+addhint("hammered lode into bars",
+	"anvil making lode bar",
+	"nc_lode:block_tempered"
+)
+
+addhint("hammered a lode bar back to prills",
+	"anvil recycle lode bar",
+	"anvil making lode bar"
+)
+
+addhint("hammered lode bars into rods",
+	"anvil making lode rod",
+	"anvil making lode bar"
+)
+
+addhint("chopped lode rods back into bars",
+	"recycle lode rod",
+	"anvil making lode rod"
+)
+
+addhint("soldered lode rods into crates",
+	"assemble lode shelf",
+	"anvil making lode rod"
+)
+
+addhint("chopped a lode crate back apart",
+	"break apart lode shelf",
+	"assemble lode shelf"
+)
+
+------------------------------------------------------------------------
+-- DOORS
+
+addhint("chiseled a hinge groove into a wooden plank",
+	"drill door plank",
+	{"anvil making lode rod", "split tree to planks"}
+)
+
+addhint("lubricated a wooden panel with graphite",
+	"lubricate door plank",
+	"drill door plank"
+)
+
+addhint("hammered wooden hinge pin into a wooden panel",
+	"door pin plank",
+	"lubricate door plank"
+)
+
+addhint("chiseled a hinge groove into cobble",
+	"drill door cobble",
+	{"anvil making lode rod", "nc_terrain:cobble"}
+)
+
+addhint("lubricated a cobble panel with graphite",
+	"lubricate door cobble",
+	"drill door cobble"
+)
+
+addhint("hammered metal hinge pin into a cobble panel",
+	"door pin cobble",
+	"lubricate door cobbleWWW"
+)
+
 ------------------------------------------------------------------------
 -- LUX
 
