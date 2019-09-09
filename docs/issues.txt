@@ -9,18 +9,13 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Stone doors don't necessarily dig right.  Probably leftover junk
-  being inherited in the cloning; need to dig through the properties
-  and remove the ones we don't want inherited.
+- Require a privilege for /pulverize.
 
-- Reinstate and update toolbelt once engine PR #8701 is released
-	- Alternative item strategy with dedicated slots for each
-	  inventory space, which can be empty if in hand instead.
-	- Consider a "backpack" approach as opposed to toolbelt.
+- Aggregate from non-loose gravel.
 
-- First-class support for stack "pez dispensers".
-	- Upon digging a stack node, try to shift all inventories from
-	  stack nodes above downward.
+- Experiment with making handholds glow faintly.
+
+- Disable footstep sounds, soften inventory sounds while player sneaks.
 
 - Redesign how falling_nodes pile up.
 	- Make sure nodes are not destroyed.
@@ -29,6 +24,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	  avoid race conditions?
 	- Check for early settling on node of same type, e.g. for
 	  falling leaves.
+
+- First-class support for stack "pez dispensers".
+	- Upon digging a stack node, try to shift all inventories from
+	  stack nodes above downward.
 	
 - Loose node cleanup.
 	- Fallen leaves + grass + sunlight decay to nothing.
@@ -41,6 +40,15 @@ ISSUES: Bugs, Cleanup and Refinements
 	  a certain distance and line-of-sight.  
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
+
+- Stone doors don't necessarily dig right.  Probably leftover junk
+  being inherited in the cloning; need to dig through the properties
+  and remove the ones we don't want inherited.
+
+- Reinstate and update toolbelt once engine PR #8701 is released
+	- Alternative item strategy with dedicated slots for each
+	  inventory space, which can be empty if in hand instead.
+	- Consider a "backpack" approach as opposed to toolbelt.
 
 ........................................................................
 ========================================================================

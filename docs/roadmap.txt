@@ -12,6 +12,23 @@ ROADMAP: Large New Development Projects
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
 
+- Trees/logs.
+	- Tree trunks as falling nodes, dig as logs.
+	- Logs as non-falling nodes, facedir.
+
+- Torches?
+	- Coal lump atop a staff or stick.
+	- Stackable non-burning kind, non-stackable burning kind.
+	- Place near fire, it catches fire.  Burning torch acts as an
+	  igniter.
+	- Should place as a node (easier to abm) or should place as
+	  a tool (use wear for remaining life)?
+	- Limited lifetime; burns out, cannot be recycled.
+		- Between 20 and 120 seconds average.
+	- Snuff it if player's head enters water.
+	- Can create temporary light; on_use hook or similar, create
+	  short-lived airlike light source?
+
 - Tinted glass: can see thru only one way and not others, does not
   transmit light?  Infuse non-chromatic glass w/ lux?
 
