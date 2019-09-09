@@ -23,20 +23,22 @@ local function pummelparticles(_, data)
 	local s2 = vector.add(vector.add(mid, vector.multiply(p1, -0.5)), vector.multiply(p2, -0.5))
 	vel = vector.multiply(vel, 0.5)
 
-	data.clearfx = nodecore.digparticles(nodedef, {
-			amount = 8,
-			time = 1.5,
-			minpos = s1,
-			maxpos = s2,
-			minvel = vel,
-			maxvel = vel,
-			minexptime = 0.4,
-			maxexptime = 0.9,
-			minsize = 1 * (data.recipe.particlescale or 1),
-			maxsize = 5 * (data.recipe.particlescale or 1),
-			playername = pname,
-			forcetexture = data.recipe.pumparticle
-		})
+	data.clearfx = nodecore.digparticles(nodedef, nodecore.underride(
+			nodecore.underride({}, data.recipe.pumparticles or {}),
+			{
+				amount = 8,
+				time = 1.5,
+				minpos = s1,
+				maxpos = s2,
+				minvel = vel,
+				maxvel = vel,
+				minexptime = 0.4,
+				maxexptime = 0.9,
+				minsize = 1,
+				maxsize = 5,
+				playername = pname
+			})
+	)
 end
 
 local pummeling = {}

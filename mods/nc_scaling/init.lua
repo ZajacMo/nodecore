@@ -27,6 +27,7 @@ minetest.register_node(modname .. ":steps", {
 		pointable = false,
 		buildable_to = true,
 		air_equivalent = true,
+		light_source = 1,
 		groups = {[modname] = 1}
 	})
 
@@ -40,6 +41,24 @@ minetest.register_node(modname .. ":hang", {
 		pointable = false,
 		buildable_to = true,
 		air_equivalent = true,
+		groups = {[modname] = 1}
+	})
+
+minetest.register_node(modname .. ":see", {
+		paramtype = "light",
+		sunlight_propagates = true,
+		tiles = {
+			"nc_scaling_steps.png",
+			"nc_scaling_blank.png"
+		},
+		use_texture_alpha = true,
+		drawtype = "nodebox",
+		node_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, -31/64, 0.5),
+		walkable = false,
+		pointable = false,
+		buildable_to = true,
+		air_equivalent = true,
+		light_source = 1,
 		groups = {[modname] = 1}
 	})
 
@@ -132,11 +151,17 @@ local function stepafter(dx, dy, dz)
 	end
 end
 
+local pumparticles = {
+	minsize = 1,
+	maxsize = 5,
+	forcetexture = "nc_scaling_particle.png",
+	glow = 1
+}
+
 nodecore.register_craft({
 		label = "scale sheer walls",
 		action = "pummel",
-		pumparticle = "nc_scaling_particle.png",
-		particlescale = 0.25,
+		pumparticles = pumparticles,
 		duration = 5,
 		normal = {x = 1},
 		check = stepcheck,
@@ -146,8 +171,7 @@ nodecore.register_craft({
 			},
 			{
 				x = 1,
-				match = "air",
-				replace = modname .. ":steps"
+				match = {any = {"air", modname .. ":hang"}}
 			}
 		},
 		after = stepafter(1, 0, 0)
@@ -156,8 +180,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "scale sheer ceilings",
 		action = "pummel",
-		pumparticle = "nc_scaling_particle.png",
-		particlescale = 0.25,
+		pumparticles = pumparticles,
 		duration = 10,
 		normal = {y = -1},
 		check = stepcheck,
@@ -167,9 +190,34 @@ nodecore.register_craft({
 			},
 			{
 				y = -1,
-				match = "air",
-				replace = modname .. ":steps"
+				match = "air"
 			}
 		},
 		after = stepafter(0, -1, 0)
+	})
+
+nodecore.register_craft({
+		label = "scale sheer floors",
+		action = "pummel",
+		pumparticles = pumparticles,
+		duration = 5,
+		normal = {y = 1},
+		check = stepcheck,
+		nodes = {
+			{
+				match = {walkable = true}
+			},
+			{
+				y = 1,
+				match = {any = {"air", modname .. ":hang"}},
+				replace = modname .. ":see"
+			}
+		},
+		after = function(pos)
+			minetest.get_meta({x = pos.x, y = pos.y + 1, z = pos.z})
+			:set_string("data", minetest.serialize({
+						pos = pos,
+						node = minetest.get_node(pos).name
+					}))
+		end
 	})

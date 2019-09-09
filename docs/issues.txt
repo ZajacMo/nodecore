@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Experiment with making handholds glow faintly.
-
 - Redesign how falling_nodes pile up.
 	- Make sure nodes are not destroyed.
 	- Allow node displacement sideways?

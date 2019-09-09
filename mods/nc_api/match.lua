@@ -12,13 +12,22 @@ local match_skip = {
 	count = true,
 	excess = true,
 	wear = true,
-	stacked = true
+	stacked = true,
+	any = true
 }
 
 function nodecore.match(thing, crit)
 	if not thing then return end
 
 	if type(crit) == "string" then crit = {name = crit} end
+
+	if crit.any then
+		for _, v in pairs(crit.any) do
+			local found = nodecore.match(thing, v)
+			if found then return found end
+		end
+		return
+	end
 
 	thing.count = thing.count or 1
 
