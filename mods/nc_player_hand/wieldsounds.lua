@@ -10,7 +10,8 @@ local function wieldsound(player, idx, gain)
 		local t = {}
 		for k, v in pairs(def.sounds.dig) do t[k] = v end
 		t.pos = player:get_pos()
-		t.gain = gain
+		t.gain = gain or 1
+		if player:get_player_control().sneak then t.gain = t.gain / 4 end
 		return function() minetest.sound_play(t.name, t) end
 	end
 	return function() end
