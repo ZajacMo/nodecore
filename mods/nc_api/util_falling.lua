@@ -12,6 +12,7 @@ function nodecore.fallcheck(pos)
 				for _, p in pairs(queue) do
 					minetest.check_for_falling(p)
 				end
+				queue = nil
 			end)
 	end
 	queue[minetest.pos_to_string(pos)] = pos
