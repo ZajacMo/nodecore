@@ -45,6 +45,7 @@ setmetatable(nodecore, {
 include("issue7020")
 
 include("util_misc")
+include("util_falling")
 include("util_scan_flood")
 include("util_node_is")
 include("util_toolcaps")

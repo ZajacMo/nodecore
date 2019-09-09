@@ -147,9 +147,7 @@ end
 
 function nodecore.visinv_after_destruct(pos)
 	nodecore.visinv_update_ents(pos)
-	minetest.after(0, function()
-			minetest.check_for_falling(pos)
-		end)
+	nodecore.fallcheck(pos)
 end
 
 nodecore.register_on_register_item(function(_, def)

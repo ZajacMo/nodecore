@@ -16,5 +16,5 @@ function nodecore.leaf_decay(pos, node)
 	if not p then return end
 	minetest.set_node(pos, p)
 	if p.item then nodecore.item_eject(pos, p.item) end
-	return minetest.check_for_falling(pos)
+	return nodecore.fallcheck(pos)
 end

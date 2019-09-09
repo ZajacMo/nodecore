@@ -15,7 +15,7 @@ function nodecore.falling_repose_drop(posfrom, posto, node)
 	minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
 	minetest.remove_node(posfrom)
 	posfrom.y = posfrom.y + 1
-	return minetest.check_for_falling(posfrom)
+	return nodecore.fallcheck(posfrom)
 end
 
 nodecore.register_on_register_item(function(_, def)

@@ -72,5 +72,5 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 			})
 	end
 
-	return minetest.after(0, function() minetest.check_for_falling(pos) end)
+	return nodecore.fallcheck(pos)
 end

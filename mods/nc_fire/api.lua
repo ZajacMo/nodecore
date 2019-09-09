@@ -86,7 +86,7 @@ function nodecore.fire_ignite(pos, node)
 
 	minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
 	minetest.sound_play("nc_fire_flamy", {gain = 3, pos = pos})
-	minetest.after(0, function() minetest.check_for_falling(pos) end)
+	nodecore.fallcheck(pos)
 	return true
 end
 
@@ -122,7 +122,7 @@ local function snuff(cons, coal, pos, node, ember)
 		minetest.set_node(pos, {name = modname .. ":ash"})
 		minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 	end
-	minetest.after(0, function() minetest.check_for_falling(pos) end)
+	nodecore.fallcheck(pos)
 	return true
 end
 
