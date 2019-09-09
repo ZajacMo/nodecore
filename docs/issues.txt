@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Require a privilege for /pulverize.
-
 - Aggregate from non-loose gravel.
 
 - Experiment with making handholds glow faintly.
