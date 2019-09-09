@@ -22,7 +22,7 @@ nodecore.register_craft({
 		normal = {y = 1},
 		nodes = {
 			{
-				match = "nc_terrain:gravel_loose"
+				match = {groups = {gravel = true}}
 			},
 			{
 				x = 1,
@@ -63,7 +63,7 @@ nodecore.register_craft({
 		normal = {y = 1},
 		nodes = {
 			{
-				match = "nc_terrain:gravel_loose",
+				match = {groups = {gravel = true}},
 				replace = "air"
 			},
 			{

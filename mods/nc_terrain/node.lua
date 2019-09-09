@@ -63,6 +63,8 @@ regterrain({
 		},
 		silktouch = false,
 		groups = {
+			stone = 1,
+			rock = 1,
 			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",
@@ -77,6 +79,8 @@ for i = 1, nodecore.hard_stone_strata do
 			tiles = { nodecore.hard_stone_tile(i) },
 			silktouch = false,
 			groups = {
+				stone = i,
+				rock = i,
 				cracky = i + 2,
 				hard_stone = i
 			},
@@ -99,6 +103,8 @@ regterrain({
 			"mossycobble"
 		},
 		groups = {
+			cobble = 1,
+			rock = 1,
 			cracky = 1
 		},
 		alternate_loose = {
@@ -142,6 +148,7 @@ regterrain({
 			"ice",
 		},
 		groups = {
+			dirt = 1,
 			crumbly = 1,
 			soil = 1
 		},
@@ -177,6 +184,7 @@ regterrain({
 			}
 		},
 		groups = {
+			gravel = 1,
 			crumbly = 1,
 			falling_node = 1
 		},
@@ -191,7 +199,7 @@ regterrain({
 			}
 		},
 		groups = {
-			sandy = 1,
+			sand = 1,
 			crumbly = 1,
 			falling_node = 1
 		},

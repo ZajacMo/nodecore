@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Aggregate from non-loose gravel.
-
 - Experiment with making handholds glow faintly.
 
 - Disable footstep sounds, soften inventory sounds while player sneaks.
