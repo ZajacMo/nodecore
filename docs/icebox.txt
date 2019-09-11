@@ -9,6 +9,9 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Release an official beta pack/edition.
+	- Modpack of experimental features vs. alternate game by branch?
+
 - Wandering fluids API for concrete, glass?
 
 - AStMs: Active Stack Modifiers.

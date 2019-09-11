@@ -9,8 +9,13 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Release an official beta pack/edition.
-	- Modpack of experimental features vs. alternate game by branch?
+- Lux Ore
+	- Reconsider mapgen depth; push downwards?
+	- Players accumulate radiation.
+		- Player health API to allow registering multiple reasons
+		  for player health loss (injury, radiation)
+		- Radiation fades, washes off faster with water.
+		- Stacks also radioactive.  Tools too but less so.
 
 - Trees/logs.
 	- Tree trunks as falling nodes, dig as logs.
@@ -31,14 +36,6 @@ ROADMAP: Large New Development Projects
 
 - Tinted glass: can see thru only one way and not others, does not
   transmit light?  Infuse non-chromatic glass w/ lux?
-
-- Lux Ore
-	- Reconsider mapgen depth; push downwards?
-	- Players accumulate radiation.
-		- Player health API to allow registering multiple reasons
-		  for player health loss (injury, radiation)
-		- Radiation fades, washes off faster with water.
-		- Stacks also radioactive.  Tools too but less so.
 
 - Player knockback coming in 5.1+?
 	- Allow players to push others around by punching?
