@@ -20,11 +20,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
-	
-- Loose node cleanup.
-	- Fallen leaves + grass + sunlight decay to nothing.
-	- Fallen leaves buried in leaves decay to dirt.
-	- Dirt/sand/etc should self-compact if buried or over time.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
