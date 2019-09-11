@@ -4,6 +4,12 @@
 Remember, check out the CONTRIBUTING file for guidelines on contributing
 to the project!
 
+- Translations:
+	- NodeCore is running Weblate:
+		https://nodecore.mine.nu/trans/projects/nodecore/core/
+	- Contact the NodeCore Developer(s) to get an account if you
+	  want to contribute translations.
+
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- >5.0.1 Release: Improvements already in the development branch
 	  of the engine are expected to benefit NodeCore, e.g. #8701.
