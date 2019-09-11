@@ -15,20 +15,20 @@ addhint("scale a sheer overhang", "scale sheer ceilings")
 -- TERRAIN
 
 addhint("dig up dirt",
-	"nc_terrain:dirt_loose"
+	"dig:nc_terrain:dirt_loose"
 )
 
 addhint("dig up gravel",
-	"nc_terrain:gravel_loose",
+	"dig:nc_terrain:gravel_loose",
 	"toolcap:crumbly:2"
 )
 
 addhint("dig up sand",
-	"nc_terrain:sand_loose"
+	"dig:nc_terrain:sand_loose"
 )
 
 addhint("dig up stone",
-	"nc_terrain:cobble_loose",
+	"dig:nc_terrain:cobble_loose",
 	"toolcap:cracky:2"
 )
 
@@ -54,7 +54,7 @@ addhint("find a sponge",
 )
 
 addhint("harvest a sponge",
-	"nc_sponge:sponge_wet",
+	"inv:nc_sponge:sponge_wet",
 	{true,
 		"nc_sponge:sponge",
 		"nc_sponge:sponge_wet",
@@ -87,7 +87,7 @@ addhint("find dry (loose) leaves",
 	"nc_tree:leaves_loose"
 )
 
-addhint("find eggcorns",
+addhint("find an eggcorn",
 	"nc_tree:eggcorn"
 )
 
@@ -96,7 +96,7 @@ addhint("plant an eggcorn",
 	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"}
 )
 
-addhint("find sticks",
+addhint("find a stick",
 	"nc_tree:stick"
 )
 
@@ -151,12 +151,12 @@ addhint("assemble an adze out of sticks",
 	{true, "nc_tree:stick", "nc_woodwork:staff"}
 )
 
-addhint("assemble a wooden ladder",
+addhint("assemble a wooden ladder from sticks",
 	"assemble wood ladder",
 	{true, "nc_tree:stick", "nc_woodwork:staff"}
 )
 
-addhint("assemble a wooden frame",
+addhint("assemble a wooden frame from staves",
 	"assemble wood frame",
 	{true, "nc_tree:stick", "nc_woodwork:staff"}
 )
@@ -191,7 +191,7 @@ addhint("bash a plank into sticks",
 	{"nc_woodwork:plank", "toolcap:thumpy:3"}
 )
 
-addhint("assemble a wooden shelf",
+addhint("assemble a wooden shelf from frames and planks",
 	"assemble wood shelf",
 	{"nc_woodwork:plank", "nc_woodwork:frame"}
 )
@@ -209,7 +209,7 @@ addhint("pack stone chips back into cobble",
 	"nc_stonework:chip"
 )
 
-addhint("put a stone tip onto a tool",
+addhint("put a stone tip onto a wooden tool",
 	{true,
 		"assemble nc_stonework:tool_mallet",
 		"assemble nc_stonework:tool_spade",
@@ -222,7 +222,7 @@ addhint("put a stone tip onto a tool",
 ------------------------------------------------------------------------
 -- CONCRETE
 
-addhint("blend gravel into ash to make aggregate",
+addhint("mix gravel into ash to make aggregate",
 	"mix concrete",
 	{"nc_terrain:gravel_loose", "nc_fire:ash"}
 )
@@ -245,7 +245,7 @@ addhint("find lode ore",
 )
 
 addhint("dig up lode ore",
-	"nc_lode:cobble_loose",
+	"dig:nc_lode:cobble_loose",
 	"nc_lode:ore"
 )
 
@@ -258,22 +258,22 @@ addhint("melt down lode metal from lode cobble",
 	"nc_lode:cobble_loose"
 )
 
-addhint("sinter glowing lode into a cube",
+addhint("sinter glowing lode prills into a cube",
 	"forge lode block",
 	"nc_lode:prill_hot"
 )
 
-addhint("chop a lode cube into prills",
+addhint("chop a glowing lode cube into prills",
 	"break apart lode block",
 	"forge lode block"
 )
 
-addhint("temper a lode anvil",
+addhint("make an anvil by tempering a lode cube",
 	"nc_lode:block_tempered",
 	"forge lode block"
 )
 
-addhint("cold-forge an annealed lode tool head",
+addhint("cold-forge annealed lode prills into a tool head",
 	"anvil making lode toolhead_mallet",
 	"nc_lode:block_tempered"
 )
@@ -293,27 +293,27 @@ addhint("temper a lode tool head",
 	"anvil making lode toolhead_mallet"
 )
 
-addhint("weld a lode pick and spade together",
+addhint("weld glowing lode pick and spade heads together",
 	"assemble lode mattock head",
 	"anvil making lode toolhead_pick"
 )
 
-addhint("hammer lode into bars",
+addhint("hammer a lode prill into a bar",
 	"anvil making lode bar",
 	"nc_lode:block_tempered"
 )
 
-addhint("hammer a lode bar back to prills",
+addhint("hammer a lode bar back to a prill",
 	"anvil recycle lode bar",
 	"anvil making lode bar"
 )
 
-addhint("hammer lode bars into rods",
+addhint("hammer lode bars into a rod",
 	"anvil making lode rod",
 	"anvil making lode bar"
 )
 
-addhint("chop lode rods back into bars",
+addhint("chop lode a rod back into bars",
 	"recycle lode rod",
 	"anvil making lode rod"
 )
@@ -341,7 +341,7 @@ addhint("lubricate a wooden panel with graphite",
 	"drill door plank"
 )
 
-addhint("hammer a wooden hinge pin into a wooden panel",
+addhint("hammer a staff into a lubricated wooden panel",
 	"door pin plank",
 	"lubricate door plank"
 )
@@ -356,7 +356,7 @@ addhint("lubricate a cobble panel with graphite",
 	"drill door cobble"
 )
 
-addhint("hammer a metal hinge pin into a cobble panel",
+addhint("hammer a metal rod into a cobble panel",
 	"door pin cobble",
 	"lubricate door cobbleWWW"
 )
@@ -364,12 +364,12 @@ addhint("hammer a metal hinge pin into a cobble panel",
 ------------------------------------------------------------------------
 -- LUX
 
-addhint("find lux stone",
+addhint("find lux",
 	"group:lux_emit"
 )
 
-addhint("collect lux cobble",
-	"group:lux_cobble",
+addhint("dig up lux cobble",
+	"dig:group:lux_cobble",
 	"group:lux_emit"
 )
 
