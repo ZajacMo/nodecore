@@ -5,6 +5,9 @@ local minetest, nodecore
 
 minetest.register_on_player_hpchange(function(player, hp)
 		local orig = player:get_hp()
+		if player:get_armor_groups().immortal then
+			return orig
+		end
 		if hp < 0 then
 			minetest.after(0, function()
 					local now = player:get_hp()
