@@ -155,7 +155,7 @@ function nodecore.wear_wield(player, groups, qty)
 				if wielded:get_count() <= 0 and wdef.sound
 				and wdef.sound.breaks then
 					minetest.sound_play(wdef.sound.breaks,
-						{pos = player:get_pos(), gain = 0.5})
+						{object = player, gain = 0.5})
 				end
 			end
 		end

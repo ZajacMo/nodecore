@@ -10,7 +10,7 @@ nodecore.register_on_register_item(function(_, def)
 				if what:get_count() == 0 then
 					if def.sound and def.sound.breaks then
 						minetest.sound_play(def.sound.breaks,
-							{pos = who:get_pos(), gain = 0.5})
+							{object = who, gain = 0.5})
 					end
 					return ItemStack(def.tool_wears_to)
 				end
