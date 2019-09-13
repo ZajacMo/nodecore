@@ -50,6 +50,13 @@ minetest.register_node(modname .. ":stack", {
 					return nodecore.stack_sounds(pos, "place")
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
+		end,
+		after_destruct = function(pos)
+			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+			local node = minetest.get_node(above)
+			if node.name ~= modname .. ":stack" then return end
+			nodecore.place_stack(pos, nodecore.stack_get(above))
+			minetest.remove_node(above)
 		end
 	})
 
