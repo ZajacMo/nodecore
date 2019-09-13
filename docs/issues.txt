@@ -9,17 +9,12 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Redesign how falling_nodes pile up.
-	- Make sure nodes are not destroyed.
-	- Allow node displacement sideways?
-	- Maybe force column to coordinate settling in order, to
-	  avoid race conditions?
-	- Check for early settling on node of same type, e.g. for
-	  falling leaves.
-
 - First-class support for stack "pez dispensers".
 	- Upon digging a stack node, try to shift all inventories from
 	  stack nodes above downward.
+
+- Sponges grow way too much.
+	- Inhibit growth based on total neighbors.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,

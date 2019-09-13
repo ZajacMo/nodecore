@@ -1,9 +1,28 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, setmetatable
-    = ItemStack, minetest, setmetatable
+local ItemStack, math, minetest, nodecore, pairs, setmetatable, unpack
+    = ItemStack, math, minetest, nodecore, pairs, setmetatable, unpack
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+
+local function readd(oldadd, pos, item, ...)
+	local stack = ItemStack(item)
+	item = stack:get_name()
+	if stack:get_count() ~= 1 or (not
+		minetest.registered_nodes[item]) then
+		return oldadd(pos, item, ...)
+	end
+	pos = nodecore.scan_flood(pos, 5,
+		function(p)
+			if p.y > pos.y and math_random() < 0.95 then return end
+			if p.y > pos.y + 1 then return end
+			if nodecore.buildable_to(p) then return p end
+		end)
+	if not pos then return oldadd(pos, item, ...) end
+	minetest.set_node(pos, {name = item})
+end
 
 local bifn = minetest.registered_entities["__builtin:falling_node"]
 local falling = {
@@ -18,6 +37,26 @@ local falling = {
 			end
 		end
 		return bifn.set_node(self, node, meta, ...)
+	end,
+	on_step = function(...)
+		local oldadd = minetest.add_item
+		local drops = {}
+		minetest.add_item = function(pos, item, ...)
+			drops[#drops + 1] = {pos, item, ...}
+		end
+		local oldnode = minetest.add_node
+		minetest.add_node = function(pos, node, ...)
+			oldnode(pos, node, ...)
+			for _, v in pairs(drops) do
+				readd(oldadd, unpack(v))
+			end
+			drops = {}
+		end
+		local function helper(...)
+			minetest.add_item = oldadd
+			return ...
+		end
+		return helper(bifn.on_step(...))
 	end
 }
 setmetatable(falling, bifn)
