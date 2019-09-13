@@ -25,7 +25,7 @@ local function show(player, text, ttl)
 				text = text,
 				number = 0xFFFFFF,
 				alignment = {x = 0, y = 0},
-				offset = { x = 0, y = 0},
+				offset = {x = 0, y = 0},
 			}),
 		text = text,
 		ttl = ttl
