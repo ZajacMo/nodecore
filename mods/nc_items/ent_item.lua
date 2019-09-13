@@ -9,17 +9,8 @@ local bii = minetest.registered_entities["__builtin:item"]
 local newbii = {
 	on_step = function(self, dtime, ...)
 		bii.on_step(self, dtime, ...)
-
-		local pos = self.object:get_pos()
-		if not self.oldpos or not vector.equals(pos, self.oldpos) then
-			self.oldpos = pos
-			self.sitting = 0
-			return
-		end
-		self.sitting = (self.sitting or 0) + dtime
-		if self.sitting < 0.25 then return end
-
-		pos = vector.round(pos)
+		if self.moving_state then return end
+		local pos = vector.round(self.object:get_pos())
 		local i = ItemStack(self.itemstring)
 		pos = nodecore.scan_flood(pos, 5,
 			function(p)
