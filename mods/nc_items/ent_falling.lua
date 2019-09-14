@@ -54,6 +54,7 @@ local falling = {
 		end
 		local function helper(...)
 			minetest.add_item = oldadd
+			minetest.add_node = oldnode
 			return ...
 		end
 		return helper(bifn.on_step(...))
