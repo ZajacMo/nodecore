@@ -6,6 +6,7 @@ local include
 include("api")
 include("node")
 include("leafdecay")
+include("compost")
 
 include("stick")
 
