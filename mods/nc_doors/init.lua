@@ -5,5 +5,5 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('operate')
-include('register')
+include("operate")
+include("register")

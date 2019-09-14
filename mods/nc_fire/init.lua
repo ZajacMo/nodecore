@@ -5,8 +5,8 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('api')
-include('node')
-include('lumps')
-include('abm')
-include('firestarting')
+include("api")
+include("node")
+include("lumps")
+include("abm")
+include("firestarting")

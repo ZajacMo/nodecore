@@ -5,8 +5,8 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('ore')
-include('fluid')
-include('react')
-include('tools')
-include('cherenkov')
+include("ore")
+include("fluid")
+include("react")
+include("tools")
+include("cherenkov")

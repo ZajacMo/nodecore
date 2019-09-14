@@ -5,7 +5,7 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('node')
-include('abm')
-include('gen')
-include('squeeze')
+include("node")
+include("abm")
+include("gen")
+include("squeeze")
