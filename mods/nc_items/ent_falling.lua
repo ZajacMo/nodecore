@@ -14,14 +14,14 @@ local function readd(oldadd, pos, item, ...)
 		minetest.registered_nodes[item]) then
 		return oldadd(pos, item, ...)
 	end
-	pos = nodecore.scan_flood(pos, 5,
+	local npos = nodecore.scan_flood(pos, 5,
 		function(p)
 			if p.y > pos.y and math_random() < 0.95 then return end
 			if p.y > pos.y + 1 then return end
 			if nodecore.buildable_to(p) then return p end
 		end)
-	if not pos then return oldadd(pos, item, ...) end
-	minetest.set_node(pos, {name = item})
+	if not npos then return oldadd(pos, item, ...) end
+	minetest.set_node(npos, {name = item})
 end
 
 local bifn = minetest.registered_entities["__builtin:falling_node"]
