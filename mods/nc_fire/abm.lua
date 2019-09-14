@@ -37,6 +37,7 @@ do
 							maxexptime = 3,
 							minsize = 0.1,
 							maxsize = 0.2,
+							collisiondetection = true,
 							texture = "nc_fire_spark.png",
 							glow = math_random(5, 9)
 						})
