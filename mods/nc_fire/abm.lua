@@ -16,11 +16,30 @@ do
 			end
 		end)
 	nodecore.register_limited_abm({
-			label = "Fire Requires/Consumes Embers",
+			label = "Fire Requires/Consumes Embers and Emits Particles",
 			interval = 1,
 			chance = 1,
 			nodenames = {modname .. ":fire"},
 			action = function(pos)
+				if math.random(1, 5) == 1 then
+					minetest.add_particlespawner({
+						amount = math.random(1, 3),
+						time = 1,
+						minpos = vector.subtract(pos, 0.5),
+						maxpos = vector.add(pos, 0.5),
+						minvel = {x = 0, y = 2, z = 0},
+						maxvel = {x = 2, y = 2.5, z = 2},
+						minacc = {x = -0.1, y = 0, z = -0.1},
+						maxacc = {x = 0.1, y = 0, z = 0.1},
+						minxeptime = 1,
+						maxexptime = 3,
+						minsize = 0.1,
+						maxsize = 0.2,
+						texture = "nc_fire_spark.png",
+						glow = math.random(5, 9)
+					})
+				end
+
 				local found = {}
 				for _, dp in ipairs(flamedirs) do
 					local npos = vector.add(pos, dp)
