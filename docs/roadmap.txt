@@ -9,13 +9,6 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Dirt/tree cycle overhaul
-	- Stumps dig into sticks instead of dirt.
-	- Loose leaves (or possibly other vegetation) involved in
-	  composting to produce dirt.
-	- Loose leaves left exposed to sun and grass will decay over
-	  time (soaking or memoryless stochastic process?)
-
 - Make loose nodes self-compact over time.
 	- Based on repacking toolcaps.
 	- Accelerate if falling_node on top.
