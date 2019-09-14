@@ -47,6 +47,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":sponge_wet"},
 		action = function(pos)
 			if minetest.get_node_light({x = pos.x, y = pos.y + 1, z = pos.z}) >= 15 then
+				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 				return minetest.set_node(pos, {name = modname .. ":sponge"})
 			end
 		end
@@ -60,6 +61,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":sponge_wet"},
 		neighbors = {"group:igniter"},
 		action = function(pos)
+			minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 			return minetest.set_node(pos, {name = modname .. ":sponge"})
 		end
 	})
