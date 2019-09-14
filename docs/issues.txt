@@ -10,7 +10,11 @@ ISSUES: Bugs, Cleanup and Refinements
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Sponges grow way too much.
-	- Inhibit growth based on total neighbors.
+	- Inhibit growth based on total in area.
+	- Allow transplantation of colonies.
+		- When digging, living sponge surrounded by at least
+		  8 other living sponges will dig as living instead
+		  of wet.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
