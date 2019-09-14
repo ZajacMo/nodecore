@@ -161,6 +161,7 @@ local pumparticles = {
 nodecore.register_craft({
 		label = "scale sheer walls",
 		action = "pummel",
+		priority = -100,
 		pumparticles = pumparticles,
 		duration = 5,
 		normal = {x = 1},
@@ -180,6 +181,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "scale sheer ceilings",
 		action = "pummel",
+		priority = -100,
 		pumparticles = pumparticles,
 		duration = 10,
 		normal = {y = -1},
@@ -199,6 +201,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "scale sheer floors",
 		action = "pummel",
+		priority = -100,
 		pumparticles = pumparticles,
 		duration = 5,
 		normal = {y = 1},
