@@ -18,7 +18,7 @@ minetest.register_node(modname .. ":fire", {
 					["type"] = "vertical_frames",
 					aspect_w = 24,
 					aspect_h = 24,
-					length = 4
+					length = 0.6
 				}
 			}
 		},
