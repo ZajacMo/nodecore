@@ -46,8 +46,8 @@ minetest.register_node(modname .. ":torch_lit", {
 			"nc_torch_coal.png^[lowpart:50:nc_tree_tree_side.png",
 			"nc_torch_flame.png"
 		},
-		selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
-		collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
+		selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
+		collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 		paramtype = "light",
 		sunlight_propagates = true,
 		light_source = 12,
