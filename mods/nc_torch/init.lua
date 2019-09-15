@@ -22,7 +22,7 @@ minetest.register_node(modname .. ":torch", {
 		groups = {
 			snappy = 1,
 			falling_repose = 2,
-			flammable = 1,
+			flammable = 3,
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos)
@@ -51,7 +51,6 @@ minetest.register_node(modname .. ":torch_lit", {
 		groups = {
 			snappy = 1,
 			falling_repose = 2,
-			igniter = 1
 		},
 		stack_max = 1,
 		sounds = nodecore.sounds("nc_tree_sticky"),
@@ -104,3 +103,27 @@ minetest.register_globalstep(function(dt)
 		end
 	end
 end)
+
+nodecore.register_limited_abm({
+	label = "Torch igniting",
+	interval = 6,
+	chance = 1,
+	nodenames = {modname .. ":torch_lit"},
+	neighbors = {"group:flammable"},
+	action = function(pos, node)
+		local check = {
+			{x = 1, y = 0, z = 0},
+			{x = -1, y = 0, z = 0},
+			{x = 0, y = 0, z = 1},
+			{x = 0, y = 0, z = -1},
+			{x = 0, y = 1, z = 0}
+		}
+		for _, ofst in pairs(check) do
+			local npos = vector.add(pos, ofst)
+			local nbr = minetest.get_node(npos)
+			if minetest.get_node_group(nbr.name, "flammable") > 0 then
+				nodecore.fire_check_ignite(npos, nbr)
+			end
+		end
+	end
+})
