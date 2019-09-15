@@ -23,7 +23,7 @@ end
 nodecore.register_limited_abm({
 		label = "Fallen Leaf Composting",
 		interval = 10,
-		chance = 2,
+		chance = 10,
 		nodenames = {modname .. ":leaves_loose"},
 		neighbors = {"group:soil"},
 		action = function(pos)
