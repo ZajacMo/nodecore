@@ -1,0 +1,46 @@
+# Blender MTL File: 'nc_torch_torch.blend'
+# Material Count: 4
+
+newmtl bottom
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /home/alex/.minetest/games/nodecore/mods/nc_tree/textures/nc_tree_tree_top.png
+
+newmtl flame
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /home/alex/.minetest/games/nodecore/mods/nc_torch/textures/nc_torch_flame.png
+
+newmtl side
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /home/alex/.minetest/games/nodecore/mods/nc_tree/textures/nc_tree_tree_side.png
+
+newmtl top
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /home/alex/.minetest/games/nodecore/mods/nc_torch/textures/nc_torch_coal.png
