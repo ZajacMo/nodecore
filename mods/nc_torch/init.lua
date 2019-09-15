@@ -26,6 +26,9 @@ minetest.register_node(modname .. ":torch", {
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos)
+			if minetest.get_node(vector.add(pos, {x = 0, y = 1, z = 0})).name ~= "air" then
+				return true
+			end
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
 			local expire = minetest.get_gametime() + math.random(20, 120)
 			minetest.get_meta(pos):set_int("expire", expire)
