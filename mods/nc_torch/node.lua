@@ -36,6 +36,7 @@ minetest.register_node(modname .. ":torch", {
 	end
 })
 
+-- Note: Torch dropped as item is sort of unrealistic, perhaps drop as node in future
 minetest.register_node(modname .. ":torch_lit", {
 	description = "Lit Torch",
 	drawtype = "mesh",
