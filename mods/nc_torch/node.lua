@@ -44,7 +44,15 @@ minetest.register_node(modname .. ":torch_lit", {
 		"nc_torch_coal.png",
 		"nc_tree_tree_top.png",
 		"nc_torch_coal.png^[lowpart:50:nc_tree_tree_side.png",
-		"nc_torch_flame.png"
+		{
+			name = "nc_torch_flame.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 3,
+				aspect_h = 8,
+				length = 0.6
+			}
+		}
 	},
 	selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 	collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
