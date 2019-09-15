@@ -54,14 +54,14 @@ minetest.register_node(modname .. ":stone", {
 		drop_in_place = modname .. ":cobble1",
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
-
 strata[1] = modname .. ":stone"
+
 for i = 1, nodecore.hard_stone_strata do
-	strata[i + 1] = modname .. ":stone_" .. i
-	minetest.register_node(modname .. ":stone_" .. i, {
+	local n = modname .. ":stone_" .. i
+	strata[i + 1] = n
+	minetest.register_node(n, {
 			description = "Stone",
 			tiles = {nodecore.hard_stone_tile(i)},
-			strata = strata,
 			groups = {
 				lux_emit = 1,
 				cracky = i + 2,
@@ -75,12 +75,12 @@ for i = 1, nodecore.hard_stone_strata do
 end
 
 local oreid = 0
-local function regore(name, def)
+local function regore(def)
 	oreid = oreid + 1
 	return minetest.register_ore(nodecore.underride(def, {
 				name = modname .. oreid,
 				ore_type = "scatter",
-				ore = name,
+				ore = modname .. ":stone",
 				wherein = "nc_terrain:stone",
 				clust_num_ores = 3,
 				clust_size = 2,
@@ -104,5 +104,5 @@ for y = 0, 7 do
 		clust_scarcity = math_floor(8 * 8 * 8 * 8 * math_pow(0.67, y)),
 	}
 	if y == 7 then def.y_min = nil end
-	regore(modname .. ":stone", def)
+	regore(def)
 end

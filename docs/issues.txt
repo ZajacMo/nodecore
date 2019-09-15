@@ -9,6 +9,14 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Design principles doc is badly out of date, needs to reflect lessons
+  learned and things observed about where the game is headed.
+
+- Balance/nerf leaf composting rates.
+
+- Flammable/igniter ABM should be reversed, so we scan over few igniters
+  instead of many flammables?
+
 - Sponges grow way too much.
 	- Inhibit growth based on total in area.
 	- Allow transplantation of colonies.

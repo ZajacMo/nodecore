@@ -25,6 +25,9 @@ ROADMAP: Large New Development Projects
 	- Tree trunks as falling nodes, dig as logs.
 	- Logs as non-falling nodes, facedir.
 
+- Sand renewability.
+	- Dirt turning to sand if beneath water?  Sources?  Waterfalls?
+
 - Torches?
 	- Coal lump atop a staff or stick.
 	- Stackable non-burning kind, non-stackable burning kind.
