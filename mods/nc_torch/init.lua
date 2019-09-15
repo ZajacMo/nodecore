@@ -50,7 +50,7 @@ minetest.register_node(modname .. ":torch_lit", {
 		collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 		paramtype = "light",
 		sunlight_propagates = true,
-		light_source = 12,
+		light_source = 8,
 		groups = {
 			snappy = 1,
 			falling_repose = 2,
