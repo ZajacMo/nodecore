@@ -245,7 +245,7 @@ addhint("find lode ore",
 )
 
 addhint("dig up lode ore",
-	"dig:nc_lode:cobble_loose",
+	"nc_lode:cobble_loose",
 	"nc_lode:ore"
 )
 
@@ -260,7 +260,11 @@ addhint("melt down lode metal from lode cobble",
 
 addhint("sinter glowing lode prills into a cube",
 	"forge lode block",
-	"nc_lode:prill_hot"
+	{true,
+		"nc_lode:prill_hot",
+		"nc_lode:prill_annealed",
+		"nc_lode:prill_tempered"
+	}
 )
 
 addhint("chop a glowing lode cube into prills",
