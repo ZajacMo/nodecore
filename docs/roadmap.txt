@@ -9,6 +9,8 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Split this doc into "core gameplay" and "side quest" forks?
+
 - Make loose nodes self-compact over time.
 	- Based on repacking toolcaps.
 	- Accelerate if falling_node on top.
@@ -29,6 +31,7 @@ ROADMAP: Large New Development Projects
 	- Dirt turning to sand if beneath water?  Sources?  Waterfalls?
 
 - Torches?
+	- REVIEW GREEN'S PR!
 	- Coal lump atop a staff or stick.
 	- Stackable non-burning kind, non-stackable burning kind.
 	- Place near fire, it catches fire.  Burning torch acts as an
@@ -40,6 +43,12 @@ ROADMAP: Large New Development Projects
 	- Snuff it if player's head enters water.
 	- Can create temporary light; on_use hook or similar, create
 	  short-lived airlike light source?
+
+- Advanced Tools
+	- Sickle / kopesh, choppy + snappy, recursive harvesting.
+	- Mop/broom for mass stack pickup.
+		- Sponge on a staff for a mop, thatch on a staff for broom.
+		- Broom recipe feels more right, but requires more work...
 
 - Tinted glass: can see thru only one way and not others, does not
   transmit light?  Infuse non-chromatic glass w/ lux?
@@ -69,12 +78,6 @@ ROADMAP: Large New Development Projects
 	- Nodes that reduce fall damage, decorative for building.
 	- Brushes for painting, writing system.
 	- Broom to sweep scattered item stacks together.
-
-- Advanced Tools
-	- Sickle / kopesh, choppy + snappy, recursive harvesting.
-	- Mop/broom for mass stack pickup.
-		- Sponge on a staff for a mop, thatch on a staff for broom.
-		- Broom recipe feels more right, but requires more work...
 
 - Water and lava surface springs.
 	- Access to water for forges.
@@ -158,6 +161,8 @@ ROADMAP: Large New Development Projects
 - System for transporting cargo.
 	- Trains of minecarts?
 	- Conveyors, elevators?
+
+- Vary player walking speed based on nodes under feet?
 
 - Use gravity vector to make flowing water push the player?
 

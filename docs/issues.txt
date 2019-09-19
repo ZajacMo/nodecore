@@ -9,6 +9,11 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Mattock recipes broken by pez logic.  after_destruct is shifting stacks
+  downwards during node replacement in crafting recipes.  Need to look
+  for an after_dig hook or something instead, or suspend the logic while
+  recipes are operating.
+
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 
@@ -17,12 +22,26 @@ ISSUES: Bugs, Cleanup and Refinements
 - Flammable/igniter ABM should be reversed, so we scan over few igniters
   instead of many flammables?
 
+- Fix thrown item damage for non-loose nodes that have loose versions,
+  e.g. cobble hasn't needed a crushing_damage before.  If absent, look
+  for alternative_loose definition and pull from there.
+
 - Sponges grow way too much.
 	- Inhibit growth based on total in area.
 	- Allow transplantation of colonies.
 		- When digging, living sponge surrounded by at least
 		  8 other living sponges will dig as living instead
 		  of wet.
+
+- Lode smelting changes.
+	- Currently lode smelting is too counterintuitive.
+	- Split recipe into 2 stages.
+		- Heat lode to melt the metal inside.  Add a cobble
+		  with molten lode node, and show metal pooling
+		  more at the bottom of the node.
+		- Have air space under molten lode for prills to
+		  come out.
+		- Molten lode cools back to lode cobble.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
