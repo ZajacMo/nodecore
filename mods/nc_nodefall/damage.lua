@@ -3,15 +3,19 @@ local ItemStack, minetest, nodecore, pairs
     = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
+local function getcrushdamage(name, alreadyloose)
+	local def = minetest.registered_items[name]
+	if def and def.crush_damage then return def.crush_damage end
+	if alreadyloose then return 0 end
+	return getcrushdamage(name .. "_loose", true)
+end
+
 local function register(fallname, mult, getname)
 	local fallnode = minetest.registered_entities[fallname]
 
 	local oldtick = fallnode.on_step
 	fallnode.on_step = function(self, dtime, ...)
-		if not self.crush_damage then
-			local def = minetest.registered_items[getname(self)]
-			self.crush_damage = def and def.crush_damage or 0
-		end
+		self.crush_damage = self.crush_damage or getcrushdamage(getname(self))
 		if self.crush_damage <= 0 then
 			return oldtick(self, dtime, ...)
 		end

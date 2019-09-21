@@ -17,10 +17,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Flammable/igniter ABM should be reversed, so we scan over few igniters
   instead of many flammables?
 
-- Fix thrown item damage for non-loose nodes that have loose versions,
-  e.g. cobble hasn't needed a crushing_damage before.  If absent, look
-  for alternative_loose definition and pull from there.
-
 - Sponges grow way too much.
 	- Inhibit growth based on total in area.
 	- Allow transplantation of colonies.
