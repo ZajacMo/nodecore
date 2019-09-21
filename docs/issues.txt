@@ -9,11 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Mattock recipes broken by pez logic.  after_destruct is shifting stacks
-  downwards during node replacement in crafting recipes.  Need to look
-  for an after_dig hook or something instead, or suspend the logic while
-  recipes are operating.
-
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 

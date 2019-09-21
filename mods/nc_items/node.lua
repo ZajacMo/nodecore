@@ -5,6 +5,18 @@ local ItemStack, minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+local function pezdispense(pos)
+	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+	local node = minetest.get_node(above)
+	if node.name ~= modname .. ":stack" then
+		return nodecore.visinv_update_ents(pos)
+	end
+	nodecore.place_stack(pos, nodecore.stack_get(above))
+	minetest.remove_node(above)
+	nodecore.visinv_update_ents(pos)
+	return pezdispense(above)
+end
+
 minetest.register_node(modname .. ":stack", {
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(
@@ -51,16 +63,7 @@ minetest.register_node(modname .. ":stack", {
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
 		end,
-		after_destruct = function(pos)
-			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			local node = minetest.get_node(above)
-			if node.name ~= modname .. ":stack" then
-				return nodecore.visinv_update_ents(pos)
-			end
-			nodecore.place_stack(pos, nodecore.stack_get(above))
-			minetest.remove_node(above)
-			return nodecore.visinv_update_ents(pos)
-		end
+		after_dig_node = pezdispense
 	})
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
