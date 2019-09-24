@@ -52,6 +52,8 @@ local function playeradd(qty, player, ...)
 	if not pname then return end
 	local data = statsdb[pname]
 	if not data then
+		if type(player) == "string" then player = minetest.get_player_by_name(player) end
+		if (not player) or (not player.is_player) or (not player:is_player()) then return end
 		data = load_check(player:get_meta():get_string(modname))
 		statsdb[pname] = data
 	end
