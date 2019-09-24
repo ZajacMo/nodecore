@@ -46,6 +46,5 @@ minetest.register_node(modname .. ":sponge_living", {
 			moist = 1,
 			sponge = 1
 		},
-		drop = modname .. ":sponge_wet",
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})

@@ -17,15 +17,6 @@ local c_sponge = minetest.get_content_id(modname .. ":sponge_living")
 nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 		if minp.y > maxy or maxp.y < miny then return end
 
-		local function spawn(x, y, z)
-			nodecore.scan_flood({x = x, y = y, z = z}, 5, function(p)
-					if math_random() < 0.1 then return true end
-					local idx = area:index(p.x, p.y + 1, p.z)
-					if data[idx] ~= c_water then return false end
-					data[idx] = c_sponge
-				end)
-		end
-
 		local qty = math_floor(math_random() * (maxp.x - minp.x)
 			* (maxp.z - minp.z) / (64 * 64))
 		for _ = 1, qty do
@@ -42,7 +33,8 @@ nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 				if cur == c_water then
 					waterabove = true
 				elseif cur == c_sand and waterabove then
-					spawn(x, y + 1, z)
+					local i = area:index(x, y + 1, z)
+					data[i] = c_sponge
 					break
 				else
 					break

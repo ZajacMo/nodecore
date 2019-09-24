@@ -13,16 +13,8 @@ ISSUES: Bugs, Cleanup and Refinements
   learned and things observed about where the game is headed.
 
 - Balance/nerf leaf composting rates.
-
-- Flammable/igniter ABM should be reversed, so we scan over few igniters
-  instead of many flammables?
-
-- Sponges grow way too much.
-	- Inhibit growth based on total in area.
-	- Allow transplantation of colonies.
-		- When digging, living sponge surrounded by at least
-		  8 other living sponges will dig as living instead
-		  of wet.
+	- Pack leaf nodes into a compost node?
+	- Need nearby moisture to compost?
 
 - Lode smelting changes.
 	- Currently lode smelting is too counterintuitive.
