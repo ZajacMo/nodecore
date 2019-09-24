@@ -42,7 +42,6 @@ minetest.register_node(modname .. ":sponge_living", {
 		groups = {
 			crumbly = 2,
 			coolant = 1,
-			falling_node = 1,
 			moist = 1,
 			sponge = 1
 		},
