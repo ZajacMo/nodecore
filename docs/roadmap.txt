@@ -22,13 +22,22 @@ ROADMAP: Large New Development Projects
 		  for player health loss (injury, radiation)
 		- Radiation fades, washes off faster with water.
 		- Stacks also radioactive.  Tools too but less so.
+	- Infuse other materials
+		- Infuse clear glass to make "smoked" glass.
+			- Does not transmit light.
+			- See-thru only from one side.
+		- Infuse chromatic glass to make piezo glass.
+			- Step on it or punch it to emit light.
+			- Button/touchplate for optics.
 
 - Trees/logs.
 	- Tree trunks as falling nodes, dig as logs.
 	- Logs as non-falling nodes, facedir.
 
 - Sand renewability.
-	- Dirt turning to sand if beneath water?  Sources?  Waterfalls?
+	- Dirt turns to sand if left near water.
+		- Stronger near more water.
+		- Stronger near flowing water.
 
 - Torches?
 	- REVIEW GREEN'S PR!
@@ -43,6 +52,12 @@ ROADMAP: Large New Development Projects
 	- Snuff it if player's head enters water.
 	- Can create temporary light; on_use hook or similar, create
 	  short-lived airlike light source?
+
+- Auto-forward roads.
+	- Detect players using auto-forward (forward-only, no lookdir changes)
+	- On stepping on something, change yaw automatically.
+		- Pattern of terrain?
+		- Special node?
 
 - Advanced Tools
 	- Sickle / kopesh, choppy + snappy, recursive harvesting.
@@ -123,6 +138,12 @@ ROADMAP: Large New Development Projects
 	- ...or maybe make ink from coal+water, use a brush?
 	- Punch symbol w/ charcoal to rotate thru alphabet
 	- Use a special/reduced alphabet?
+
+- Smoked glass
+	- Lux-infuse clear glass.
+	- Does not transmit light.
+	- See thru only in one direction.
+	- Useful for hidden bases.
 
 - Digital logic + lighting via optics.
 	- Piezo Crystal Node
