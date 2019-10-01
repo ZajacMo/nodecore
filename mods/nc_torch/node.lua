@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -27,10 +27,8 @@ minetest.register_node(modname .. ":torch", {
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos)
-			if minetest.get_node(vector.add(pos, {x = 0, y = 1, z = 0})).name ~= "air" then
-				return true
-			end
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
+			minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
 			local expire = minetest.get_gametime() + nodecore.boxmuller() * 5 + 40
 			minetest.get_meta(pos):set_float("expire", expire)
 			return true
@@ -78,10 +76,11 @@ minetest.register_node(modname .. ":torch_lit", {
 		stack_max = 1,
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		preserve_metadata = function(_, _, oldmeta, drops)
-			drops[1]:get_meta():set_int("expire", oldmeta.expire)
+			drops[1]:get_meta():set_float("expire", oldmeta.expire)
 		end,
 		after_place_node = function(pos, _, itemstack)
-			minetest.get_meta(pos):set_int("expire", itemstack:get_meta():get_int("expire"))
+			minetest.get_meta(pos):set_float("expire",
+				itemstack:get_meta():get_float("expire"))
 		end
 	})
 

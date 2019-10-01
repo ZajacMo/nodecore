@@ -43,3 +43,12 @@ nodecore.register_limited_abm({
 			end
 		end
 	})
+
+nodecore.register_ambiance({
+		label = "Flame Ambiance",
+		nodenames = {modname .. ":torch_lit"},
+		interval = 1,
+		chance = 1,
+		sound_name = "nc_fire_flamy",
+		sound_gain = 0.1
+	})

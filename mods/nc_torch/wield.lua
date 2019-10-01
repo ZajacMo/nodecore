@@ -14,9 +14,12 @@ local function snuffinv(player, inv, i)
 	inv:set_stack("main", i, "nc_fire:lump_ash")
 end
 
+local now
 local wltimers = {}
-minetest.register_globalstep(function()
-		local now = minetest.get_gametime()
+local ambtimers = {}
+minetest.register_globalstep(function(dt)
+		now = now or minetest.get_gametime()
+		now = now + dt
 		for _, player in pairs(minetest.get_connected_players()) do
 			local inv = player:get_inventory()
 			local ppos = player:get_pos()
@@ -37,17 +40,26 @@ minetest.register_globalstep(function()
 					:get_float("expire") then snuffinv(player, inv, i) end
 				end
 
-				-- Wield light
 				if islit(player:get_wielded_item()) then
+					-- Wield light
 					local name = player:get_player_name()
 					local t = wltimers[name] or 0
 					if t <= now then
 						wltimers[name] = now + 0.2
 						local cur = minetest.get_node(hpos).name
 						if cur == "air" or cur == modname .. ":wield_light" then
-							minetest.set_node(hpos, {name = modname .. ":wield_light"})
+							minetest.set_node(hpos,
+								{name = modname .. ":wield_light"})
 							minetest.get_node_timer(hpos):start(0.3)
 						end
+					end
+
+					-- Wield ambiance
+					t = ambtimers[name] or 0
+					if t <= now then
+						ambtimers[name] = now + 1
+						minetest.sound_play("nc_fire_flamy",
+							{object = player, gain = 0.1})
 					end
 				end
 			end
