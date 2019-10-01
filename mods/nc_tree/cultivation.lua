@@ -73,6 +73,8 @@ nodecore.register_soaking_abm({
 		nodenames = {epname},
 		interval = 10,
 		chance = 1,
+		limited_max = 100,
+		limited_alert = 1000,
 		qtyfield = "growth",
 		timefield = "start",
 		soakrate = function(pos)
