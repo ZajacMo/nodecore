@@ -6,20 +6,6 @@ local minetest, nodecore, pairs
 local modname = minetest.get_current_modname()
 
 nodecore.register_limited_abm({
-		label = "Sponge Growth",
-		interval = 10,
-		chance = 1000,
-		limited_max = 100,
-		nodenames = {"group:water"},
-		neighbors = {modname .. ":sponge_living"},
-		action = function(pos)
-			if minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z}).name
-			~= "nc_terrain:sand" then return end
-			minetest.set_node(pos, {name = modname .. ":sponge_living"})
-		end
-	})
-
-nodecore.register_limited_abm({
 		label = "Sponge Wettening",
 		interval = 1,
 		chance = 10,
@@ -44,7 +30,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 100,
 		limited_max = 100,
-		nodenames = {modname .. ":sponge_wet"},
+		nodenames = {modname .. ":sponge_wet", modname .. ":sponge_living"},
 		action = function(pos)
 			if minetest.get_node_light({x = pos.x, y = pos.y + 1, z = pos.z}) >= 15 then
 				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
@@ -58,7 +44,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 20,
 		limited_max = 100,
-		nodenames = {modname .. ":sponge_wet"},
+		nodenames = {modname .. ":sponge_wet", modname .. ":sponge_living"},
 		neighbors = {"group:igniter"},
 		action = function(pos)
 			minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})

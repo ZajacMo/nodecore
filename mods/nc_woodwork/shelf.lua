@@ -9,6 +9,14 @@ local side = "nc_tree_tree_side.png"
 local top = side .. "^(" .. modname .. "_plank.png^[mask:"
 .. modname .. "_shelf.png)"
 
+local function doplace(stack, clicker, pointed_thing, ...)
+	local function helper(left, ok, ...)
+		if ok then nodecore.node_sound(pointed_thing.above, "place") end
+		return left, ok, ...
+	end
+	return helper(minetest.item_place_node(stack, clicker, pointed_thing, ...))
+end
+
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
 		drawtype = "nodebox",
@@ -40,11 +48,13 @@ minetest.register_node(modname .. ":shelf", {
 		end,
 		on_rightclick = function(pos, _, clicker, stack, pointed_thing)
 			if not nodecore.interact(clicker) then return end
-			if pointed_thing.above.y ~= pointed_thing.under.y then return end
+			if pointed_thing.above.y ~= pointed_thing.under.y then
+				return doplace(stack, clicker, pointed_thing)
+			end
 			if not stack or stack:is_empty() then return end
 			local def = minetest.registered_items[stack:get_name()] or {}
-			if def.groups and def.groups.visinv then
-				return minetest.item_place_node(stack, clicker, pointed_thing)
+			if def.groups and def.groups.container then
+				return doplace(stack, clicker, pointed_thing)
 			end
 			return nodecore.stack_add(pos, stack)
 		end,

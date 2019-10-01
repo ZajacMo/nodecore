@@ -16,13 +16,12 @@ to the project!
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.
+	- #8952: This causes hidden bases and other items to be visible
+	  through walls and other terrain in our MP server.
 	- #8141: We want cleaner player name labels, and to move
 	  the touchtip from screen-space into node-space.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
-	- #TBD: Engine should not render ents that are inside a mapblock
-	  for which the mapblock mesh is not yet rendering, to prevent
-	  transient X-ray viewing at view distance edge.
 
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,

@@ -48,7 +48,6 @@ for i = 1, nodecore.hard_stone_strata do
 				.. modname .. "_mask_ore.png^[opacity:48)" },
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
-			strata = stratstone,
 			groups = {
 				lodey = 1,
 				cracky = i + 2,
@@ -60,7 +59,6 @@ for i = 1, nodecore.hard_stone_strata do
 			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
 				.. modname .. "_mask_ore.png)" },
 			drop_in_place = modname .. ":cobble",
-			strata = stratore,
 			groups = {
 				lodey = 1,
 				cracky = i + 2,
@@ -129,21 +127,26 @@ regore(stone, {
 	})
 
 local c_ore = minetest.get_content_id(ore)
-local stoneids = {}
-local stratadata = nodecore.stratadata()
 local c_lodestone = minetest.get_content_id(stone)
-for _, id in pairs({
-		c_lodestone,
-		minetest.get_content_id(ore),
-		minetest.get_content_id("nc_terrain:stone")
-	}) do
-	stoneids[id] = true
-	for _, v in pairs(stratadata.altsbyid[id] or {}) do
-		stoneids[v] = true
-	end
-end
+local getstoneids = nodecore.memoize(function()
+		local stoneids = {}
+		local stratadata = nodecore.stratadata()
+		for _, id in pairs({
+				c_lodestone,
+				minetest.get_content_id(ore),
+				minetest.get_content_id("nc_terrain:stone")
+			}) do
+			stoneids[id] = true
+			for _, v in pairs(stratadata.altsbyid[id] or {}) do
+				stoneids[v] = true
+			end
+		end
+		return stoneids
+	end)
 
 nodecore.register_mapgen_shared(function(minp, maxp, area, data)
+		local stoneids = getstoneids()
+
 		local function bad(x, y, z)
 			local c = data[area:index(x, y, z)]
 			return not stoneids[c]

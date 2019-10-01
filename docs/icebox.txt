@@ -12,6 +12,9 @@ ICEBOX: Low-Priority Ideas
 - Release an official beta pack/edition.
 	- Modpack of experimental features vs. alternate game by branch?
 
+- Flammable/igniter ABM should be reversed, so we scan over few igniters
+  instead of many flammables?
+
 - Wandering fluids API for concrete, glass?
 
 - AStMs: Active Stack Modifiers.

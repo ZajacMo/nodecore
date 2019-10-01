@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_sqrt
+    = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -14,37 +16,44 @@ minetest.after(0, function()
 		end
 	end)
 
-local function addto(meta, key, max, func)
-	local qty = (meta:get_float(key) or 0) + 1
-	if qty >= max then return func() end
-	return meta:set_float(key, qty)
-end
-
-nodecore.register_limited_abm({
-		label = "Fallen Leaf Composting",
-		interval = 10,
-		chance = 2,
+nodecore.register_soaking_abm({
+		label = "Composting Growing",
 		nodenames = {modname .. ":leaves_loose"},
 		neighbors = {"group:soil"},
-		action = function(pos)
-			local meta = minetest.get_meta(pos)
+		interval = 10,
+		chance = 10,
+		limited_max = 100,
+		limited_alert = 1000,
+		soakrate = function(pos)
 			local min = {x = pos.x - 1, y = pos.y - 1, z = pos.z - 1}
 			local max = {x = pos.x + 1, y = pos.y + 1, z = pos.z + 1}
-			local any
-			for _, p in pairs(minetest.find_nodes_in_area(min, max, airnames)) do
-				local nl = minetest.get_node_light(p, 0.5) or 0
-				if nl >= 15 then
-					return addto(meta, "air", 5, function()
-							nodecore.node_sound(pos, "dig")
-							return minetest.remove_node(pos)
-						end)
-				end
-				any = true
+			if #minetest.find_nodes_in_area(min, max, airnames) then
+				return false
 			end
-			if any then return end
-			return addto(meta, "compost", 25, function()
-					minetest.set_node(pos, {name = "nc_terrain:dirt_loose"})
-					return nodecore.node_sound(pos, "place")
+			local d = 0
+			local w = 1
+			nodecore.scan_flood(pos, 3, function(p)
+					local nn = minetest.get_node(p).name
+					local def = minetest.registered_items[nn] or {}
+					if not def.groups then
+						return false
+					end
+					if def.groups.soil then
+						d = d + def.groups.soil
+						w = w + 0.2
+					elseif def.groups.moist then
+						w = w + def.groups.moist
+						return false
+					else
+						return false
+					end
 				end)
+			minetest.chat_send_all("" .. math_sqrt(d * w))
+			return math_sqrt(d * w)
+		end,
+		soakcheck = function(data, pos)
+			if data.total < 5000 then return end
+			minetest.set_node(pos, {name = "nc_terrain:dirt_loose"})
+			nodecore.node_sound(pos, "place")
 		end
 	})

@@ -9,12 +9,22 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Sponges grow way too much.
-	- Inhibit growth based on total in area.
-	- Allow transplantation of colonies.
-		- When digging, living sponge surrounded by at least
-		  8 other living sponges will dig as living instead
-		  of wet.
+- Design principles doc is badly out of date, needs to reflect lessons
+  learned and things observed about where the game is headed.
+
+- Balance/nerf leaf composting rates.
+	- Pack leaf nodes into a compost node?
+	- Need nearby moisture to compost?
+
+- Lode smelting changes.
+	- Currently lode smelting is too counterintuitive.
+	- Split recipe into 2 stages.
+		- Heat lode to melt the metal inside.  Add a cobble
+		  with molten lode node, and show metal pooling
+		  more at the bottom of the node.
+		- Have air space under molten lode for prills to
+		  come out.
+		- Molten lode cools back to lode cobble.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
