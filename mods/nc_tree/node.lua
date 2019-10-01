@@ -55,7 +55,8 @@ minetest.register_node(modname .. ":leaves", {
 			groups = {
 				flammable = 1,
 				falling_repose = 1,
-				green = 1
+				green = 1,
+				stack_as_node = 1
 			}
 		},
 		alternate_solid = {

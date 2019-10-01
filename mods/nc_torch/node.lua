@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, vector
-    = math, minetest, nodecore, vector
-local math_random
-    = math.random
+local minetest, nodecore, vector
+    = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -23,8 +21,9 @@ minetest.register_node(modname .. ":torch", {
 		sunlight_propagates = true,
 		groups = {
 			snappy = 1,
-			falling_repose = 2,
-			flammable = 3,
+			falling_repose = 1,
+			flammable = 1,
+			stack_as_node = 1
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos)
@@ -32,8 +31,8 @@ minetest.register_node(modname .. ":torch", {
 				return true
 			end
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
-			local expire = minetest.get_gametime() + math_random(20, 120)
-			minetest.get_meta(pos):set_int("expire", expire)
+			local expire = minetest.get_gametime() + nodecore.boxmuller() * 5 + 40
+			minetest.get_meta(pos):set_float("expire", expire)
 			return true
 		end
 	})
@@ -73,7 +72,8 @@ minetest.register_node(modname .. ":torch_lit", {
 		light_source = 8,
 		groups = {
 			snappy = 1,
-			falling_repose = 2,
+			falling_repose = 1,
+			stack_as_node = 1
 		},
 		stack_max = 1,
 		sounds = nodecore.sounds("nc_tree_sticky"),

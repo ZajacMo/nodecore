@@ -75,6 +75,17 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		if stack:is_empty() then return end
 	end
 
+	if stack:get_count() == 1 then
+		local def = minetest.registered_nodes[stack:get_name()]
+		if def and def.groups and def.groups.stack_as_node then
+			minetest.set_node(pos, {name = stack:get_name()})
+			if def.after_place_node then
+				def.after_place_node(pos, nil, stack)
+			end
+			return nodecore.fallcheck(pos)
+		end
+	end
+
 	minetest.set_node(pos, {name = modname .. ":stack"})
 	nodecore.stack_set(pos, stack)
 	if placer and pointed_thing then
