@@ -6,4 +6,5 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("node")
-include("burning")
+include("abm")
+include("wield")

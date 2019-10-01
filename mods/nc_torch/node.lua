@@ -12,9 +12,9 @@ minetest.register_node(modname .. ":torch", {
 		drawtype = "mesh",
 		mesh = "nc_torch_torch.obj",
 		tiles = {
-			"nc_torch_coal.png",
+			"nc_fire_coal_4.png",
 			"nc_tree_tree_top.png",
-			"nc_torch_coal.png^[lowpart:50:nc_tree_tree_side.png",
+			"nc_fire_coal_4.png^[lowpart:50:nc_tree_tree_side.png",
 			"[combine:1x1"
 		},
 		selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
@@ -38,15 +38,24 @@ minetest.register_node(modname .. ":torch", {
 		end
 	})
 
+nodecore.register_craft({
+		label = "assemble torch",
+		normal = {y = 1},
+		nodes = {
+			{match = "nc_fire:lump_coal", replace = "air"},
+			{y = -1, match = "nc_woodwork:staff", replace = modname .. ":torch"},
+		}
+	})
+
 -- Note: Torch dropped as item is sort of unrealistic, perhaps drop as node in future
 minetest.register_node(modname .. ":torch_lit", {
 		description = "Lit Torch",
 		drawtype = "mesh",
 		mesh = "nc_torch_torch.obj",
 		tiles = {
-			"nc_torch_coal.png",
+			"nc_fire_coal_4.png^nc_fire_ember_4.png",
 			"nc_tree_tree_top.png",
-			"nc_torch_coal.png^[lowpart:50:nc_tree_tree_side.png",
+			"nc_fire_coal_4.png^nc_fire_ember_4.png^[lowpart:50:nc_tree_tree_side.png",
 			{
 				name = "nc_torch_flame.png",
 				animation = {
@@ -74,15 +83,6 @@ minetest.register_node(modname .. ":torch_lit", {
 		after_place_node = function(pos, _, itemstack)
 			minetest.get_meta(pos):set_int("expire", itemstack:get_meta():get_int("expire"))
 		end
-	})
-
-nodecore.register_craft({
-		label = "assemble torch",
-		normal = {y = 1},
-		nodes = {
-			{match = "nc_fire:lump_coal", replace = "air"},
-			{y = -1, match = "nc_woodwork:staff", replace = modname .. ":torch"},
-		}
 	})
 
 minetest.register_node(modname .. ":wield_light", {
