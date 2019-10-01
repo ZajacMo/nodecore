@@ -6,7 +6,7 @@ local minetest, nodecore, pairs, vector
 local modname = minetest.get_current_modname()
 
 nodecore.register_limited_abm({
-		label = "Torch igniting",
+		label = "Torch Igniting",
 		interval = 6,
 		chance = 1,
 		nodenames = {modname .. ":torch_lit"},
@@ -30,26 +30,15 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Torch expiration",
+		label = "Torch Extinguishing",
 		interval = 1,
 		chance = 1,
 		nodenames = {modname .. ":torch_lit"},
 		action = function(pos)
-			if minetest.get_gametime() > minetest.get_meta(pos):get_int("expire") then
-				minetest.set_node(pos, {name = "air"})
+			if nodecore.quenched(pos) or
+			minetest.get_gametime() > minetest.get_meta(pos):get_float("expire") then
+				minetest.remove_node(pos)
 				minetest.add_item(pos, {name = "nc_fire:lump_ash"})
-			end
-		end
-	})
-
-nodecore.register_limited_abm({
-		label = "Torch quenching",
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":torch_lit"},
-		action = function(pos)
-			if nodecore.quenched(pos) then
-				minetest.set_node(pos, {name = "nc_tree:stick"})
 				minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 			end
 		end
