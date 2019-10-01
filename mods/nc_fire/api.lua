@@ -70,7 +70,10 @@ function nodecore.fire_ignite(pos, node)
 	local def = minetest.registered_items[node.name]
 	if def and def.on_ignite then
 		local ign = def.on_ignite
-		if type(ign) == "function" then ign = ign(pos, node) end
+		if type(ign) == "function" then
+			ign = ign(pos, node)
+			if ign == true then return end
+		end
 		burneject(pos, ign)
 	end
 
