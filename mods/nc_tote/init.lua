@@ -3,15 +3,22 @@ local ItemStack, ipairs, minetest, nodecore, pairs, type
     = ItemStack, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
-local function meta(pos)
-	local node = minetest.get_node(pos)
+local metadescs = {
+	"Tote (1 Slot)",
+	"Tote (2 Slots)",
+	"Tote (3 Slots)",
+	"Tote (4 Slots)",
+	"Tote (5 Slots)",
+	"Tote (6 Slots)",
+	"Tote (7 Slots)",
+	"Tote (8 Slots)",
+}
 
-	return node, meta
-end
-
-local function totedug(pos, node, meta, digger)
+local function totedug(pos, _, _, digger)
 	local dump
 	for dx = -1, 1 do
 		for dz = -1, 1 do
@@ -20,7 +27,7 @@ local function totedug(pos, node, meta, digger)
 			local d = minetest.registered_items[n.name] or {}
 			if d and d.groups and d.groups.totable then
 				local m = minetest.get_meta(p):to_table()
-				for k1, v1 in pairs(m.inventory or {}) do
+				for _, v1 in pairs(m.inventory or {}) do
 					for k2, v2 in pairs(v1) do
 						if type(v2) == "userdata" then
 							v1[k2] = v2:to_string()
@@ -42,16 +49,12 @@ local function totedug(pos, node, meta, digger)
 	if dump then
 		local meta = drop:get_meta()
 		meta:set_string("carrying", minetest.serialize(dump))
-		if #dump == 1 then
-			meta:set_string("description", "Tote (1 Slot)")
-		else
-			meta:set_string("description", "Tote (" .. #dump .. " Slots)")
-		end
+		meta:set_string("description", metadescs[#dump])
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
-local function toteplace(stack, placer, pointed)
+local function toteplace(stack, _, pointed)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
 	if not pos then return stack end
@@ -88,6 +91,7 @@ end
 
 minetest.register_node(modname .. ":handle", {
 		description = "Tote Handle",
+		meta_descriptions = metadescs,
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(
 			{-0.5, -0.5, -0.5, 0.5, -3/8, 0.5},

@@ -1,30 +1,35 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, table, type
-    = ipairs, minetest, nodecore, table, type
+local ipairs, minetest, nodecore, pairs, table, type
+    = ipairs, minetest, nodecore, pairs, table, type
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
 
 nodecore.register_inventory_tab,
 nodecore.registered_inventory_tabs
 = nodecore.mkreg()
 
+local nct = nodecore.translate
+
 do
 	local version = nodecore.version
-	version = version and ("Version " .. version) or "DEVELOPMENT VERSION"
+	version = version and (nct("Version") .. " " .. version)
+	or nct("DEVELOPMENT VERSION")
 
 	nodecore.register_inventory_tab({
 			title = "About",
 			content = {
-				"NodeCore - " .. version,
+				nct(nodecore.product) .. " - " .. version,
 				"",
-				"(C)2018-2019 by Aaron Suen <warr1024@gmail.com>",
-				"MIT License:  http://www.opensource.org/licenses/MIT",
+				"(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>",
+				"MIT License (http://www.opensource.org/licenses/MIT)",
 				"See included LICENSE file for full details and credits",
 				"",
 				"https://content.minetest.net/packages/Warr1024/nodecore/",
-				"GitLab:    https://gitlab.com/sztest/nodecore",
-				"Discord:   https://discord.gg/SHq2tkb"
+				"GitLab: https://gitlab.com/sztest/nodecore",
+				"Discord: https://discord.gg/SHq2tkb"
 			}
 		})
 end
@@ -35,7 +40,7 @@ nodecore.register_inventory_tab({
 			"Player's Guide: Inventory Management",
 			"",
 			"- There is NO inventory screen.",
-			"- Drop items onto ground to create stack nodes.  They do not decay.",
+			"- Drop items onto ground to create stack nodes. They do not decay.",
 			"- Sneak+drop to count out single items from stack.",
 			"- Items picked up try to fit into the current selected slot first.",
 			"- Crafting is done by building recipes in-world.",
@@ -58,6 +63,28 @@ nodecore.register_inventory_tab({
 		}
 	})
 
+nodecore.register_inventory_tab({
+		title = "Tips",
+		content = {
+			"Player's Guide: Tips and Guidance",
+			"",
+			"- Stuck in a pit? Pummel surfaces barehanded to find places to climb.",
+			"- Can't dig trees or grass? Search for sticks in the canopy.",
+			"- Ores may be hidden, but revealed by subtle clues in terrain.",
+			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
+			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
+			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+		}
+	})
+
+for _, v in pairs(nodecore.registered_inventory_tabs) do
+	nct(v.title)
+	for i = 1, #v.content do nct(v.content[i]) end
+end
+
+local pad = " "
+for _ = 1, 8 do pad = pad .. pad end
+
 local fse = minetest.formspec_escape
 function nodecore.inventory_formspec(player, curtab)
 	local t = {
@@ -70,8 +97,8 @@ function nodecore.inventory_formspec(player, curtab)
 	local f
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		t[#t + 1] = "button[" .. x .. "," .. y
-		.. ";2.2,0.5;tab;" .. fse(v.title) .. "]"
-		if curtab == v.title or (not curtab and i == 1) then
+		.. ";2.2,0.5;tab" .. i .. ";" .. fse(nct(v.title)) .. "]"
+		if curtab == i or (not curtab and i == 1) then
 			f = v.content
 		end
 		x = x + 2
@@ -86,8 +113,11 @@ function nodecore.inventory_formspec(player, curtab)
 
 	if f then
 		if type(f) == "function" then f = f(player) end
-		t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
-		.. fse(table_concat(f, "\n")) .. "]"
+		for i = 1, #f do
+			t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
+			.. fse(nct(f[i])) .. pad .. ".]"
+			y = y + 0.4
+		end
 	end
 
 	return table_concat(t)
@@ -98,8 +128,17 @@ minetest.register_on_joinplayer(function(player)
 	end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-		if formname == "" and fields.tab then
-			minetest.show_formspec(player:get_player_name(), formname,
-				nodecore.inventory_formspec(player, fields.tab))
+		if formname == "" then
+			local tab
+			for i = 1, #nodecore.registered_inventory_tabs do
+				if fields["tab" .. i] then
+					tab = i
+					break
+				end
+			end
+			if tab then
+				minetest.show_formspec(player:get_player_name(), formname,
+					nodecore.inventory_formspec(player, tab))
+			end
 		end
 	end)

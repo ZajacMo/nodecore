@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore, type
+    = math, minetest, nodecore, type
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local smoking = {}
@@ -13,6 +15,11 @@ function nodecore.smokefx(pos, time, qty)
 	if (not time) or (time <= 0) then
 		smoking[key] = nil
 		return
+	end
+	if type(qty) ~= "number" then qty = 1 end
+	if qty < 1 then
+		if math_random() > qty then return end
+		qty = 1
 	end
 	smoking[key] = {
 		id = minetest.add_particlespawner({
@@ -27,7 +34,7 @@ function nodecore.smokefx(pos, time, qty)
 				minexptime = 1,
 				maxexptime = 5,
 				minsize = 1,
-				maxsize = 3	
+				maxsize = 3
 			}),
 		exp = now + time
 	}

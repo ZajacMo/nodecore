@@ -30,7 +30,7 @@ end
 minetest.register_on_generated(function(minp, maxp)
 		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
-		local area = VoxelArea:new({MinEdge = emin, MaxEdge =  emax})
+		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 
 		for _, v in ipairs(mapgens) do
 			v(minp, maxp, area, data, vm, emin, emax)

@@ -9,9 +9,9 @@ local function toolhead(name, groups, prills)
 	local n = name:lower()
 
 	if type(groups) == "string" then groups = {groups} end
-	local function toolcap(n)
+	local function toolcap(nn)
 		local t = {}
-		for _, k in ipairs(groups) do t[k] = n end
+		for _, k in ipairs(groups) do t[k] = nn end
 		return nodecore.toolcaps(t)
 	end
 
@@ -36,8 +36,10 @@ local function toolhead(name, groups, prills)
 					d.tool_capabilities = toolcap(5)
 				end
 			end,
+			groups = { flammable = 4 },
 			metal_alt_hot = modname .. ":prill_hot " .. prills,
-			tool_wears_to = modname .. ":prill_# " .. prills
+			tool_wears_to = modname .. ":prill_# " .. prills,
+			on_ignite = modname .. ":prill_# " .. prills
 		})
 
 	for _, t in pairs({"annealed", "tempered"}) do

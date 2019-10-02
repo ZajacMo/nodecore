@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
     = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
-local math_random
-    = math.random
+local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt
+    = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -14,8 +14,8 @@ for k, v in pairs(minetest) do
 	end
 end
 
-local function underride(t, u, v, ...)
-	if v then underride(u, v, ...) end
+local function underride(t, u, u2, ...)
+	if u2 then underride(u, u2, ...) end
 	for k, v in pairs(u) do
 		if t[k] == nil then
 			t[k] = v
@@ -66,9 +66,24 @@ function nodecore.pickrand(tbl, weight)
 	end
 	if max <= 0 then return end
 	max = math_random() * max
-	for i, v in ipairs(t) do
+	for _, v in ipairs(t) do
 		max = max - v.w
 		if max <= 0 then return v.v, v.k end
+	end
+end
+
+do
+	local saved
+	function nodecore.boxmuller()
+		local old = saved
+		if old then
+			saved = nil
+			return old
+		end
+		local r = math_sqrt(-2 * math_log(math_random()))
+		local t = 2 * math_pi * math_random()
+		saved = r * math_sin(t)
+		return r * math_cos(t)
 	end
 end
 
@@ -84,7 +99,7 @@ function nodecore.fixedbox(x, ...)
 	return {type = "fixed", fixed = {
 			x or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 			...
-		}}
+	}}
 end
 
 function nodecore.interact(player)
@@ -140,7 +155,7 @@ function nodecore.wear_wield(player, groups, qty)
 				if wielded:get_count() <= 0 and wdef.sound
 				and wdef.sound.breaks then
 					minetest.sound_play(wdef.sound.breaks,
-						{pos = player:get_pos(), gain = 0.5})
+						{object = player, gain = 0.5})
 				end
 			end
 		end
@@ -187,7 +202,7 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 		stack:set_count(stack:get_count() * (qty or 1))
 		return nodecore.place_stack(pos, stack)
 	end
-	for i = 1, (qty or 1) do
+	for _ = 1, (qty or 1) do
 		local v = {
 			x = vel.x + (math_random() - 0.5) * speed,
 			y = vel.y + math_random() * speed,
@@ -199,7 +214,7 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			z = v.z > 0 and pos.z + 0.4 or v.z < 0 and pos.z - 0.4 or pos.z,
 		}
 		local obj = minetest.add_item(p, stack)
-		if obj then obj:setvelocity(v) end
+		if obj then obj:set_velocity(v) end
 	end
 end
 

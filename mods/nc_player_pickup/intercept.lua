@@ -7,7 +7,7 @@ local function wrapinv(inv, player)
 	if not inv then return inv end
 	local t = {}
 	setmetatable(t, {__index = inv})
-	function t:add_item(list, stack)
+	function t.add_item(_, list, stack)
 		return nodecore.give_item(player, stack, list, inv)
 	end
 	return t
@@ -17,7 +17,7 @@ local function wrapplayer(player)
 	if not player then return player end
 	local t = {}
 	setmetatable(t, {__index = player})
-	function t:get_inventory()
+	function t.get_inventory()
 		return wrapinv(player:get_inventory(), player)
 	end
 	return t
@@ -33,7 +33,7 @@ function minetest.handle_node_drops(a, b, whom, ...)
 	return olddrops(a, b, wrapplayer(whom), ...)
 end
 
-local oldeat = minetest.do_item_eat 
+local oldeat = minetest.do_item_eat
 function minetest.do_item_eat(a, b, c, whom, ...)
 	return oldeat(a, b, c, wrapplayer(whom), ...)
 end
@@ -57,11 +57,11 @@ for _, cmd in ipairs({"give", "giveme"}) do
 			return ...
 		end
 		minetest.get_player_by_name = function(...)
-			local function helper(p, ...)
+			local function helpest(p, ...)
 				p = wrapplayer(p)
 				return p, ...
 			end
-			return helper(oldgpbn(...))
+			return helpest(oldgpbn(...))
 		end
 		return helper(oldfunc(...))
 	end

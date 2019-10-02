@@ -4,7 +4,7 @@ local nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local alldirs = {}
-for k, v in pairs(nodecore.dirs()) do
+for _, v in pairs(nodecore.dirs()) do
 	alldirs[v.n] = v
 end
 

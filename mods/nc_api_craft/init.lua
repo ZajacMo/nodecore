@@ -1,11 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include
-    = include
+local include, nodecore
+    = include, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-include('register_craft')
-include('craft_check')
-include('item_place_node')
-include('on_punchnode')
-include('fx_smoke')
-include('register_cook_abm')
+nodecore.amcoremod()
+
+include("register_craft")
+include("craft_check")
+include("item_place_node")
+include("on_punchnode")
+include("fx_smoke")
+include("register_cook_abm")

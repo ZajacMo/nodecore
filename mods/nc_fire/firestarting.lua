@@ -16,7 +16,7 @@ nodecore.register_craft({
 		},
 		consumewield = 1,
 		duration = 5,
-		before = function(pos, rel, data)
+		before = function(pos, data)
 			local w = data.wield and ItemStack(data.wield):get_name() or ""
 			local wd = minetest.registered_items[w] or {}
 			local wg = wd.groups or {}

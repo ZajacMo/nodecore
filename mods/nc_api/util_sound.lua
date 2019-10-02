@@ -3,16 +3,22 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
       vector
     = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
       vector
-local math_exp, math_random
-    = math.exp, math.random
+local math_exp, math_random, math_sin, math_sqrt
+    = math.exp, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local oldplay = minetest.sound_play
 function minetest.sound_play(name, spec, ...)
 	if spec and type(spec) == "table" and spec.pitch == nil then
-		spec.pitch = math_exp((math_random() - 0.5) * 0.05)
+		spec.pitch = math_exp((math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
 	return oldplay(name, spec, ...)
+end
+
+function nodecore.windiness(y)
+	if y < 0 then return 0 end
+	if y > 512 then y = 512 end
+	return math_sqrt(y) * (1 + 0.5 * math_sin(minetest.get_gametime() / 5))
 end
 
 function nodecore.stack_sounds(pos, kind, stack)

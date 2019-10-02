@@ -23,7 +23,8 @@ nodecore.register_limited_abm({
 						return
 					end
 					return false
-				end) then
+				end
+			) then
 				nodecore.leaf_decay(pos)
 			end
 		end

@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, type
+    = minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function getduration(data, recipe)
+local function getduration(_, data)
 	local meta = minetest.get_meta(data.node)
 
 	local md = meta:get_string(modname) or ""
 	md = (md ~= "") and minetest.deserialize(md) or {}
 
-	if md.label ~= recipe.label
+	if md.label ~= data.recipe.label
 	or md.count ~= nodecore.stack_get(data.node):get_count()
 	or not md.start
 	then return 0 end
@@ -19,8 +19,23 @@ local function getduration(data, recipe)
 	return minetest.get_gametime() - md.start
 end
 
-local function inprogress(data, recipe)
+local function playcookfx(pos, cookfx, sound, smokeqty, smoketime)
+	if not cookfx then return end
+	if cookfx == true or cookfx and cookfx[sound] then
+		minetest.sound_play("nc_api_craft_" .. sound,
+			{gain = 1, pos = pos})
+	end
+	if cookfx == true or cookfx and cookfx.smoke then
+		if cookfx ~= true and type(cookfx.smoke) == "number" then
+			smokeqty = smokeqty * cookfx.smoke
+		end
+		nodecore.smokefx(pos, smoketime, smokeqty)
+	end
+end
+
+local function inprogress(pos, data)
 	local meta = minetest.get_meta(data.node)
+	local recipe = data.recipe
 
 	local md = meta:get_string(modname) or ""
 	md = (md ~= "") and minetest.deserialize(md) or {}
@@ -37,23 +52,14 @@ local function inprogress(data, recipe)
 
 	data.progressing = true
 
-	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.sizzle then
-		minetest.sound_play("nc_api_craft_sizzle", {gain = 1, pos = data.node})
-	end
-	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
-		nodecore.smokefx(data.node, 1)
-	end
+	return playcookfx(pos, recipe.cookfx, "sizzle", 2, 1)
 end
 
-local function cookdone(pos, rel, data, recipe)
+local function cookdone(pos, data)
 	local meta = minetest.get_meta(pos)
+	local recipe = data.recipe
 	meta:set_float(recipe.label, 0)
-	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.hiss then
-		minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = data.node})
-	end
-	if recipe.cookfx == true or recipe.cookfx and recipe.cookfx.smoke then
-		nodecore.smokefx(data.node, 0.2, 80)
-	end
+	return playcookfx(pos, recipe.cookfx, "hiss", 80, 0.2)
 end
 
 function nodecore.register_cook_abm(def)

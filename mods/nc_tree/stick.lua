@@ -20,12 +20,13 @@ minetest.register_node(modname .. ":stick", {
 			firestick = 1,
 			snappy = 1,
 			flammable = 2,
-			falling_repose = 1
+			falling_repose = 1,
+			stack_as_node = 1
 		},
 		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
-nodecore.register_leaf_drops(function(pos, node, list)
+nodecore.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
 			name = modname .. ":stick",
 			prob = 0.2 * (node.param2 * node.param2)}

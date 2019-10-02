@@ -8,7 +8,7 @@ local math_floor, math_pi, math_random, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
-Helpers for visible inventory.  Use "visinv" node group.
+Helpers for visible inventory. Use "visinv" node group.
 Sets up on_construct, after_destruct and an ABM to manage
 the visual entities.
 --]]
@@ -18,7 +18,7 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
-local function stackentprops(stack, yaw, rotate)
+function nodecore.stackentprops(stack, yaw, rotate)
 	local props = {
 		hp_max = 1,
 		physical = false,
@@ -36,7 +36,7 @@ local function stackentprops(stack, yaw, rotate)
 	yaw = yaw or 0
 	if stack then
 		if type(stack) == "string" then stack = ItemStack(stack) end
-		props.is_visible = true
+		props.is_visible = not stack:is_empty()
 		props.textures[1] = stack:get_name()
 
 		local ratio = stack:get_count() / stack:get_stack_max()
@@ -55,7 +55,7 @@ local function stackentprops(stack, yaw, rotate)
 end
 
 minetest.register_entity(modname .. ":stackent", {
-		initial_properties = stackentprops(),
+		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
 			local pos = self.object:get_pos()
@@ -63,7 +63,7 @@ minetest.register_entity(modname .. ":stackent", {
 			if not stack or stack:is_empty() then return self.object:remove() end
 
 			local rp = vector.round(pos)
-			local props, scale, yaw = stackentprops(stack,
+			local props, scale, yaw = nodecore.stackentprops(stack,
 				rp.x * 3 + rp.y * 5 + rp.z * 7)
 			rp.y = rp.y + scale - 31/64
 
@@ -89,7 +89,7 @@ function nodecore.visinv_update_ents(pos, node)
 	local max = def.groups and def.groups.visinv and 1 or 0
 
 	local found = {}
-	for k, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
+	for _, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
 		if v and v.get_luaentity and v:get_luaentity()
 		and v:get_luaentity().is_stack then
 			found[#found + 1] = v
@@ -123,9 +123,9 @@ local item = {
 			})
 		bii.set_item(self, ...)
 		self.object = realobj
-		
+
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
-		local p, s = stackentprops(self.itemstring, 0, self.rotdir)
+		local p, s = nodecore.stackentprops(self.itemstring, 0, self.rotdir)
 		p.physical = true
 		s = s / math_sqrt(2)
 		p.collisionbox = {-s, -s, -s, s, s, s}
@@ -147,12 +147,10 @@ end
 
 function nodecore.visinv_after_destruct(pos)
 	nodecore.visinv_update_ents(pos)
-	minetest.after(0, function()
-			minetest.check_for_falling(pos)
-		end)
+	nodecore.fallcheck(pos)
 end
 
-nodecore.register_on_register_item(function(name, def)
+nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 
 		def.groups = def.groups or {}

@@ -1,0 +1,20 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore
+    = minetest, nodecore
+-- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+
+if nodecore.loaded_mods().nc_fire then
+	nodecore.register_limited_abm({
+			label = "Flammable ItemStacks Ignite",
+			interval = 5,
+			chance = 1,
+			nodenames = {modname .. ":stack"},
+			neighbors = {"group:igniter"},
+			action = function(pos)
+				local stack = nodecore.stack_get(pos)
+				return nodecore.fire_check_ignite(pos, {name = stack:get_name()})
+			end
+		})
+end

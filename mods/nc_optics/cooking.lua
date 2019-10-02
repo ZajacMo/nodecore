@@ -18,19 +18,26 @@ nodecore.register_craft({
 		cookfx = true,
 		nodes = {
 			{
-				match = "nc_terrain:sand_loose",
+				match = {groups = {sand = true}},
 				replace = modname .. ":glass_hot_source"
 			}
 		}
 	})
 
 nodecore.register_cook_abm({
-		nodenames = {"nc_terrain:sand_loose"},
+		nodenames = {"group:sand"},
 		neighbors = {"group:flame"}
 	})
 
 local src = modname .. ":glass_hot_source"
 local flow = modname .. ":glass_hot_flowing"
+
+local function near(pos, crit)
+	return #minetest.find_nodes_in_area(
+		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		{x = pos.x + 1, y = pos.y, z = pos.z + 1},
+		crit) > 0
+end
 
 nodecore.register_craft({
 		label = "cool clear glass",
@@ -39,10 +46,7 @@ nodecore.register_craft({
 		duration = 120,
 		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{flow}) < 1
+			return not near(pos, {flow})
 		end,
 		nodes = {
 			{
@@ -51,19 +55,34 @@ nodecore.register_craft({
 			}
 		}
 	})
+
+nodecore.register_craft({
+		label = "cool float glass",
+		action = "cook",
+		duration = 120,
+		cookfx = {smoke = true, hiss = true},
+		check = function(pos)
+			return not near(pos, {flow})
+		end,
+		nodes = {
+			{
+				match = src,
+				replace = modname .. ":glass_float"
+			},
+			{
+				y = -1,
+				match = {groups = {lava = true}}
+			}
+		}
+	})
+
 nodecore.register_craft({
 		label = "quench opaque glass",
 		action = "cook",
 		cookfx = true,
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{flow}) < 1
-			and #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{"group:coolant"}) > 0
+			return (not near(pos, {flow}))
+			and near(pos, {"group:coolant"})
 		end,
 		nodes = {
 			{
@@ -76,12 +95,9 @@ nodecore.register_craft({
 		label = "quench crude glass",
 		action = "cook",
 		cookfx = true,
-		priority = -1,
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-				{"group:coolant"}) > 0
+			return near(pos, {flow})
+			and near(pos, {"group:coolant"})
 		end,
 		nodes = {
 			{
@@ -125,4 +141,5 @@ nodecore.register_limited_abm({
 			minetest.set_node(np, node)
 			minetest.get_meta(np):set_int("glassgen", gen + 1)
 			minetest.set_node(pos, {name = flow, param2 = 7})
-		end})
+		end
+	})

@@ -13,7 +13,7 @@ local function regterrain(def)
 	def.is_ground_content = true
 
 	if def.liquidtype then
-		def.liquid_alternative_flowing = def.fullname .. "_flowing"		
+		def.liquid_alternative_flowing = def.fullname .. "_flowing"
 		def.liquid_alternative_source = def.fullname .. "_source"
 		def.fullname = def.fullname .. "_" .. def.liquidtype
 		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
@@ -23,7 +23,7 @@ local function regterrain(def)
 
 	minetest.register_node(def.fullname, def)
 
-	for k, v in pairs(def.mapgen) do
+	for _, v in pairs(def.mapgen) do
 		minetest.register_alias("mapgen_" .. v, def.fullname)
 	end
 end
@@ -61,7 +61,10 @@ regterrain({
 			"sandstone",
 			"mese",
 		},
+		silktouch = false,
 		groups = {
+			stone = 1,
+			rock = 1,
 			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",
@@ -74,7 +77,10 @@ for i = 1, nodecore.hard_stone_strata do
 			name = "hard_stone_" .. i,
 			description = "Stone",
 			tiles = { nodecore.hard_stone_tile(i) },
+			silktouch = false,
 			groups = {
+				stone = i,
+				rock = i,
 				cracky = i + 2,
 				hard_stone = i
 			},
@@ -97,6 +103,8 @@ regterrain({
 			"mossycobble"
 		},
 		groups = {
+			cobble = 1,
+			rock = 1,
 			cracky = 1
 		},
 		alternate_loose = {
@@ -123,7 +131,7 @@ for _, v in ipairs({
 		"apple",
 		"jungleleaves",
 		"pine_needles"
-		}) do
+	}) do
 	minetest.register_alias("mapgen_" .. v, "air")
 end
 
@@ -140,6 +148,7 @@ regterrain({
 			"ice",
 		},
 		groups = {
+			dirt = 1,
 			crumbly = 1,
 			soil = 1
 		},
@@ -174,7 +183,8 @@ regterrain({
 				falling_repose = 2
 			}
 		},
-		groups = { 
+		groups = {
+			gravel = 1,
 			crumbly = 1,
 			falling_node = 1
 		},
@@ -188,14 +198,15 @@ regterrain({
 				falling_repose = 1
 			}
 		},
-		groups = { 
+		groups = {
+			sand = 1,
 			crumbly = 1,
 			falling_node = 1
 		},
 		mapgen = {
 			"sand",
 			"clay",
-			"desert_sand" 
+			"desert_sand"
 		},
 		crush_damage = 0.5,
 		sounds = nodecore.sounds("nc_terrain_swishy")
@@ -214,7 +225,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 1,
 		drop = "",
-		groups = { coolant = 1, water = 2 },
+		groups = { coolant = 1, water = 2, moist = 2 },
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})

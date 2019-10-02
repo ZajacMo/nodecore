@@ -28,8 +28,8 @@ local function handlepickups(player)
 					local oc = old:get_count()
 					if cc > oc then
 						cur:set_count(cc - oc)
-						for i = 1, #excess do
-							cur = excess[i]:add_item(cur)
+						for j = 1, #excess do
+							cur = nodecore.stack_merge(excess[j], cur)
 						end
 						if not cur:is_empty() then
 							excess[#excess + 1] = cur
@@ -48,7 +48,7 @@ local function handlepickups(player)
 			for i = 1, #excess do
 				local v = excess[i]
 				for j in nodecore.inv_walk(player, widx, inv) do
-					v = snap[j]:add_item(v)
+					v = nodecore.stack_merge(snap[j], v)
 				end
 				if not v:is_empty() then
 					minetest.log("failed to reinsert item "

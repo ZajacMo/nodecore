@@ -1,32 +1,66 @@
 ========================================================================
-CORE DESIGN PRINCIPLES
+
+             \                           /\
+              \                         /  \
+          /\   \     /\    |\      /   /    \    /\    |\     /
+         |  \   |   /  \   | \    /   |         /  \   | \   /
+         |   \  |  |    |  |  |  |__  |        |    |  | /  |__
+          \   \/   |    |  |  |  |     \    /  |    |  |/   |
+           \        \  /   | /    \     \  /    \  /   |\    \
+            \        \/    |/      \     \/      \/    | \    \
+
+========================================================================
+  NodeCore - An original, immersive puzzle/adventure game for Minetest
 ------------------------------------------------------------------------
 
-- Do as much in node-space in the world as possible.
-	- Minimize use of off-grid entities.
-	- Avoid encapsulating things in inventories, machines, GUIs.
-	- Crafting and transforming in-world.
-- Minimal set of primitive composable functions.
-	- Each node should do one job (or one part of a job).
-	- Only include the most primitive, fungible components.
-	- Avoid redundant functionality, include fewest possible
-	  different elements.
-	- Complex emergent gameplay by combining simple nodes.
-- Challenging and constrained gameplay.
-	- Limited inventories, very restricted item storage, e.g. one
-	  stack per node.
-	- Large, complex machines to design and build for resource
-	  transformations.
-	- Subtle environmental hazards, like deadfalls and pestilence.
-- Rich, subtle interactions.
-	- Digging, placing, punching and battering.
-	- Different effects from different tools (including empty hand).
-	- Different faces of node may have different effects.
-- Focus on puzzle-oriented single-player/cooperative gameplay.
-	- Avoid dependence on action, combat, PvP.
-	- Slow-moving hazards, players have a chance to think and plan.
-	- Acessible for slow reflexes, slow networks, mobile devices.
+NodeCore is a major reconstruction of survival gameplay from the ground
+up.  Relearn much of what you thought you knew about Minetest!
 
+Features:
 
-........................................................................
+- Immersive gameplay.  Zero in-game pop-up GUIs.  Minimal HUDs.
+  All interactions take place in continuous first-person perspective.
+  Nothing gets between you and the game world.
+
+- Nearly everything is on the grid. Item stacks settle onto the grid
+  and persist.  Complex machines (e.g. furnaces, storage) are built
+  in-world and can be designed, customized, optimized.
+
+- In-world crafting.  Assemble more complex recipes directly on the grid
+  or in-place.  Learn how to "pummel" nodes to hammer things together
+  or break things apart.
+
+- Built-in player guide and hint system provides low-spoiler guidance.
+
+- Rich and subtle interactions.  Some materials dig and transform in
+  stages. Some materials slump into repose when stacked high.  Some
+  things transform if conditions are met, but transform faster based
+  on environment.  Experiment and see what effects what!
+
+- Build complex in-game systems.  Design your own furnace.  Construct
+  digital logic circuits.  Build gears and rotary machinery.  Assemble
+  portable storage containers.
+
+- Eggcorns!
+
+------------------------------------------------------------------------
+
+NodeCore is (C)2018-2019 by Aaron Suen <warr1024@gmail.com>
+MIT License (http://www.opensource.org/licenses/MIT)
+See included LICENSE file for full details and credits
+
+Minetest ContentDB Listing:
+	https://content.minetest.net/packages/Warr1024/nodecore/
+
+GitLab:
+	https://gitlab.com/sztest/nodecore
+
+Discord:
+	https://discord.gg/SHq2tkb
+
+IRC:
+	#nodecore on chat.freenode.net
+	(bridged to Discord)
+
+------------------------------------------------------------------------
 ========================================================================

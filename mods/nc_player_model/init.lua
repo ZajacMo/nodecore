@@ -1,20 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, os, pairs, table
-    = math, minetest, os, pairs, table
+local math, minetest, nodecore, os, pairs, table
+    = math, minetest, nodecore, os, pairs, table
 local math_floor, os_date, table_concat
     = math.floor, os.date, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
 local anim = {
-	stand     = {x = 0,   y = 0},
-	sit       = {x = 1,   y = 1},
-	walk      = {x = 2,   y = 42},
-	mine      = {x = 43,  y = 57,  speed = 0.85},
-	lay       = {x = 58,  y = 58},
-	walk_mine = {x = 59,  y = 103},
-	swim_up   = {x = 105, y = 162, speed = 0.4},
+	stand = {x = 0, y = 0},
+	sit = {x = 1, y = 1},
+	walk = {x = 2, y = 42},
+	mine = {x = 43, y = 57, speed = 0.85},
+	lay = {x = 58, y = 58},
+	walk_mine = {x = 59, y = 103},
+	swim_up = {x = 105, y = 162, speed = 0.4},
 	swim_down = {x = 163, y = 223, speed = 0.4},
 	swim_mine = {x = 224, y = 281, speed = 0.5}
 }
@@ -54,7 +56,6 @@ minetest.after(0, function()
 		end
 	end)
 local function swimming(player)
-	local found = 0
 	local pos = player:get_pos()
 	local r = 0.6
 	for dz = -r, r, r do
@@ -147,7 +148,7 @@ minetest.register_on_joinplayer(function(player)
 		updatevisuals(player)
 	end)
 
-minetest.register_globalstep(function(dt)
+minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
 			updatevisuals(player)
 		end

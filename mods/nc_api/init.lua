@@ -21,6 +21,7 @@ local include = rawget(_G, "include") or function(...)
 end
 rawset(_G, "include", include)
 
+nodecore.product = "NodeCore"
 nodecore.version = include("version")
 
 local function callguard(n, t, k, v)
@@ -35,14 +36,16 @@ end
 for k, v in pairs(minetest) do
 	minetest[k] = callguard("minetest", minetest, k, v)
 end
-setmetatable(nodecore, {__newindex = function(t, k, v)
+setmetatable(nodecore, {
+		__newindex = function(t, k, v)
 			rawset(nodecore, k, callguard("nodecore", t, k, v))
-		end})
+		end
+	})
 
 include("issue7020")
-include("issue8378")
 
 include("util_misc")
+include("util_falling")
 include("util_scan_flood")
 include("util_node_is")
 include("util_toolcaps")
@@ -50,12 +53,16 @@ include("util_stack")
 include("util_phealth")
 include("util_facedir")
 include("util_sound")
+include("util_translate")
+include("util_ezschematic")
 include("match")
 
 include("fx_digparticles")
 
 include("register_limited_abm")
+include("register_soaking_abm")
 include("register_ambiance")
+include("register_mods")
 include("mapgen_shared")
 
 include("item_on_register")

@@ -1,34 +1,43 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ItemStack, minetest, nodecore, pairs
+    = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local function getcrushdamage(name, alreadyloose)
+	local def = minetest.registered_items[name]
+	if def and def.crush_damage then return def.crush_damage end
+	if alreadyloose then return 0 end
+	return getcrushdamage(name .. "_loose", true)
+end
 
-local fallname = "__builtin:falling_node"
-local fallnode = minetest.registered_entities[fallname]
+local function register(fallname, mult, getname)
+	local fallnode = minetest.registered_entities[fallname]
 
-local oldtick = fallnode.on_step
-fallnode.on_step = function(self, dtime, ...)
-	if not self.crush_damage then
-		local def = minetest.registered_items[self.node.name]
-		self.crush_damage = def and def.crush_damage or 0
-	end
-	if self.crush_damage <= 0 then
+	local oldtick = fallnode.on_step
+	fallnode.on_step = function(self, dtime, ...)
+		self.crush_damage = self.crush_damage or getcrushdamage(getname(self))
+		if self.crush_damage <= 0 then
+			return oldtick(self, dtime, ...)
+		end
+
+		local pos = self.object:get_pos()
+		pos.y = pos.y - 1
+		local v = -self.object:get_velocity().y
+		if v <= 0 then
+			return oldtick(self, dtime, ...)
+		end
+		local q = v * v * dtime * self.crush_damage * mult
+		for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+			if o:is_player() then
+				nodecore.addphealth(o, -q)
+			end
+		end
+
 		return oldtick(self, dtime, ...)
 	end
 
-	local pos = self.object:get_pos()
-	local vel = self.object:get_velocity()
-	local v = vector.length(vel)
-	local q = v * v * dtime * self.crush_damage
-	for k, v in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-		if v:is_player() then
-			nodecore.addphealth(v, -q)
-		end
-	end
-
-	return oldtick(self, dtime, ...)
+	minetest.register_entity(":" .. fallname, fallnode)
 end
 
-minetest.register_entity(":" .. fallname, fallnode)
+register("__builtin:falling_node", 1, function(s) return s.node.name end)
+register("__builtin:item", 0.2, function(s) return ItemStack(s.itemstring):get_name() end)

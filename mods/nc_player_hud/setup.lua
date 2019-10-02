@@ -47,7 +47,7 @@ local function breathhud(player)
 	return player:hud_change(hud.id, "text", i)
 end
 
-minetest.register_globalstep(function(dtime)
+minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
 			breathhud(player)
 		end

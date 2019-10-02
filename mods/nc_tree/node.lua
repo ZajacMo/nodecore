@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -12,12 +12,13 @@ minetest.register_node(modname .. ":root", {
 			"nc_terrain_dirt.png",
 			"nc_terrain_dirt.png^" .. modname .. "_roots.png"
 		},
+		silktouch = false,
 		groups = {
 			flammable = 50,
 			fire_fuel = 4,
 			choppy = 4
 		},
-		drop_in_place = "nc_terrain:dirt_loose",
+		drop = "nc_tree:stick 8",
 		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
@@ -54,7 +55,8 @@ minetest.register_node(modname .. ":leaves", {
 			groups = {
 				flammable = 1,
 				falling_repose = 1,
-				green = 1
+				green = 1,
+				stack_as_node = 1
 			}
 		},
 		alternate_solid = {
@@ -65,9 +67,7 @@ minetest.register_node(modname .. ":leaves", {
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
-nodecore.register_leaf_drops(function(pos, node, list)
+nodecore.register_leaf_drops(function(_, _, list)
 		list[#list + 1] = {name = modname .. ":leaves_loose", prob = 0.5}
 		list[#list + 1] = {name = "air"}
 	end)
-
-local function fixed(t) return {type = "fixed", fixed = t} end

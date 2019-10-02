@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, pairs, print, table
-    = math, pairs, print, table
+local math, pairs, table
+    = math, pairs, table
 local math_ceil, math_floor, table_concat, table_sort
     = math.ceil, math.floor, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------

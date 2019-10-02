@@ -6,6 +6,7 @@ local minetest, nodecore, pairs
 local tips = {}
 
 local function show(player, text, ttl)
+	text = nodecore.translate(text)
 	ttl = ttl or 2
 	local pname = player:get_player_name()
 	local tip = tips[pname]
@@ -24,7 +25,7 @@ local function show(player, text, ttl)
 				text = text,
 				number = 0xFFFFFF,
 				alignment = {x = 0, y = 0},
-				offset = { x = 0, y = 0},
+				offset = {x = 0, y = 0},
 			}),
 		text = text,
 		ttl = ttl
@@ -46,7 +47,7 @@ local function stack_desc(s)
 end
 
 local function wield_name(player)
-	return stack_desc( player:get_wielded_item())
+	return stack_desc(player:get_wielded_item())
 end
 
 minetest.register_globalstep(function(dtime)
@@ -74,6 +75,7 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		node = node or minetest.get_node(pos)
 		local name = node.name
 		local def = minetest.registered_items[name] or {}
+		if def.air_equivalent or def.pointable == false then return end
 		if def.groups and def.groups.is_stack_only then
 			name = stack_desc(nodecore.stack_get(pos))
 		elseif def.description then

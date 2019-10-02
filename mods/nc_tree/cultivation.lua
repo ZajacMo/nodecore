@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_random, math_sqrt
-    = math.random, math.sqrt
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_sqrt
+    = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -28,7 +28,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		node_placement_prediction = "",
 		place_as_item = true,
 		sounds = nodecore.sounds("nc_tree_corny"),
-		stack_rightclick = function(pos, node, whom, stack)
+		stack_rightclick = function(pos, _, whom, stack)
 			if nodecore.stack_get(pos):get_count() ~= 1 then return end
 			if stack:get_name() ~= ldname then return end
 
@@ -56,7 +56,7 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_leaf_drops(function(pos, node, list)
+nodecore.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
 			name = "air",
 			item = modname .. ":eggcorn",
@@ -64,18 +64,20 @@ nodecore.register_leaf_drops(function(pos, node, list)
 	end)
 
 minetest.register_node(epname, nodecore.underride({
-			drop = ldname,
-			description = "Loose Dirt...?"
+			drop = ldname
 		},
 		minetest.registered_items[ldname] or {}))
 
-nodecore.register_limited_abm({
+nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		nodenames = {epname},
 		interval = 10,
 		chance = 1,
-		action = function(pos, node)
-			local meta = minetest.get_meta(pos)
+		limited_max = 100,
+		limited_alert = 1000,
+		qtyfield = "growth",
+		timefield = "start",
+		soakrate = function(pos)
 			local d = 0
 			local w = 1
 			nodecore.scan_flood(pos, 3, function(p)
@@ -87,18 +89,44 @@ nodecore.register_limited_abm({
 					if def.groups.soil then
 						d = d + def.groups.soil
 						w = w + 0.2
-					elseif def.groups.water then
-						w = w + def.groups.water
+					elseif def.groups.moist then
+						w = w + def.groups.moist
 						return false
 					else
 						return false
 					end
 				end)
-			local rate = math_sqrt(d * w)
+			return math_sqrt(d * w)
+		end,
+		soakcheck = function(data, pos)
+			if data.total >= 5000 then
+				minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
+				for _ = 1, 4 do
+					minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
+				end
+				local leaves = {}
+				for i = 1, 8 do
+					local p = {x = pos.x, y = pos.y + i, z = pos.z}
+					local n = minetest.get_node(p)
+					if n.name == modname .. ":leaves" then
+						leaves[p] = n
+						minetest.remove_node(p)
+					end
+				end
+				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
+				minetest.place_schematic(place, nodecore.tree_schematic,
+					"random", {}, false)
+				for p, n in pairs(leaves) do
+					if minetest.get_node(p).name == "air" then
+						minetest.set_node(p, n)
+					end
+				end
+				return
+			end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
 				{
-					amount = rate,
+					amount = data.rate,
 					time = 10,
 					minpos = {
 						x = pos.x - 0.3,
@@ -107,7 +135,7 @@ nodecore.register_limited_abm({
 					},
 					maxpos = {
 						x = pos.x + 0.3,
-						y = pos.y + 33/64, 
+						y = pos.y + 33/64,
 						z= pos.z + 0.3
 					},
 					minvel = zero,
@@ -117,13 +145,5 @@ nodecore.register_limited_abm({
 					minsize = 1,
 					maxsize = 3,
 				})
-			local g = (meta:get_float("growth") or 0) + rate * math_random()
-			if g >= 5000 then
-				meta:from_table({})
-				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-				return minetest.place_schematic(place, nodecore.tree_schematic,
-					"random", {}, false)
-			end
-			meta:set_float("growth", g)
 		end
 	})

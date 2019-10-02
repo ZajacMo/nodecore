@@ -1,7 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include
-    = include
+local include, nodecore
+    = include, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-include('operate')
-include('register')
+nodecore.amcoremod()
+
+include("operate")
+include("register")

@@ -5,6 +5,9 @@ local minetest, nodecore
 
 minetest.register_on_player_hpchange(function(player, hp)
 		local orig = player:get_hp()
+		if player:get_armor_groups().immortal then
+			return orig
+		end
 		if hp < 0 then
 			minetest.after(0, function()
 					local now = player:get_hp()
@@ -12,7 +15,7 @@ minetest.register_on_player_hpchange(function(player, hp)
 					nodecore.sound_play_except("player_damage", {
 							pos = player:get_pos(),
 							gain = 0.5
-							}, player)
+						}, player)
 				end)
 		end
 		if hp + orig <= 0 then
@@ -20,4 +23,6 @@ minetest.register_on_player_hpchange(function(player, hp)
 			player:get_meta():set_float("dhp", -1)
 		end
 		return hp
-	end, true)
+	end,
+	true
+)

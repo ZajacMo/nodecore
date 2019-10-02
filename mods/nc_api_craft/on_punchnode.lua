@@ -3,7 +3,7 @@ local minetest, nodecore, vector
     = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local function pummelparticles(data)
+local function pummelparticles(_, data)
 	local pointed = data.pointed
 	local nodedef = data.nodedef
 	local pname = data.pname
@@ -23,19 +23,22 @@ local function pummelparticles(data)
 	local s2 = vector.add(vector.add(mid, vector.multiply(p1, -0.5)), vector.multiply(p2, -0.5))
 	vel = vector.multiply(vel, 0.5)
 
-	data.clearfx = nodecore.digparticles(nodedef, {
-			amount = 8,
-			time = 1.5,
-			minpos = s1,
-			maxpos = s2,
-			minvel = vel,
-			maxvel = vel,
-			minexptime = 0.4,
-			maxexptime = 0.9,
-			minsize = 1,
-			maxsize = 5,
-			playername = pname
-		})
+	data.clearfx = nodecore.digparticles(nodedef, nodecore.underride(
+			nodecore.underride({}, data.recipe.pumparticles or {}),
+			{
+				amount = 8,
+				time = 1.5,
+				minpos = s1,
+				maxpos = s2,
+				minvel = vel,
+				maxvel = vel,
+				minexptime = 0.4,
+				maxexptime = 0.9,
+				minsize = 1,
+				maxsize = 5,
+				playername = pname
+			})
+	)
 end
 
 local pummeling = {}

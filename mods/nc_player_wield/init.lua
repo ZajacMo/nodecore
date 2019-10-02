@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, table
-    = math, minetest, table
-local math_random, table_remove
-    = math.random, table.remove
+local minetest, nodecore, table
+    = minetest, nodecore, table
+local table_remove
+    = table.remove
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
@@ -37,22 +39,9 @@ local attq = {}
 
 minetest.register_entity(modname .. ":ent", {
 		initial_properties = entprops(),
-		on_step = function(self, dtime)
+		on_step = function(self)
 			local conf = self.conf
 			if not conf then return self.object:remove() end
-
-			-- Destroy wield nodes and regenerate periodically.
-			-- This fixes the view for other players in MP, but
-			-- BREAKS the view for own player in 3rd-person views.
-			--[[
-			if self.ttl then
-				self.ttl = self.ttl - dtime
-				if self.ttl <= 0 then
-					attq[#attq + 1] = conf
-					return self.object:remove()
-				end
-			else self.ttl = math_random() * 5 + 5 end
-			--]]
 
 			local player = minetest.get_player_by_name(conf.pname)
 			if not player then return self.object:remove() end
@@ -86,14 +75,13 @@ minetest.register_globalstep(function()
 
 		if not minetest.get_node_or_nil(player:get_pos()) then
 			attq[#attq + 1] = v
-			return 
+			return
 		end
 
 		local obj = minetest.add_entity(v.pos, modname .. ":ent")
 		local ent = obj:get_luaentity()
 		ent.conf = v
 	end)
-
 
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
@@ -122,7 +110,7 @@ minetest.register_on_joinplayer(function(player)
 
 		-- Show player's entire inventory as a "toolbelt".
 		-- This is very unstable and tends to break badly,
-		
+
 		--[[
 		local function cslot(n, x, z)
 			return addslot(n, nil, x * 1.6,

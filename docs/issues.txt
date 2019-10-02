@@ -9,130 +9,22 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Quenching fire still sometimes destroys neighboring nodes!
+- Design principles doc is badly out of date, needs to reflect lessons
+  learned and things observed about where the game is headed.
 
-- Wooden doors should remain flammable but should drop hinge pin.
+- Balance/nerf leaf composting rates.
+	- Pack leaf nodes into a compost node?
+	- Need nearby moisture to compost?
 
-- Stone doors don't necessarily dig right.  Probably leftover junk
-  being inherited in the cloning; need to dig through the properties
-  and remove the ones we don't want inherited.
-
-- Release an official beta pack/edition.
-	- Modpack of experimental features vs. alternate game by branch?
-
-- FAQ / Beginner's Guide:
-	- Why can't I cut trees or grass?
-	- How do I find minerals/ores?
-	- How do I make torches or light indoors?
-	- How do I make a furnace?
-
-- Allow lode cube cooking/cooling in placed form.
-
-- First-class support for stack "pez dispensers".
-	- Upon digging a stack node, try to shift all inventories from
-	  stack nodes above downward.
-
-- Redesign how falling_nodes pile up.
-	- Make sure nodes are not destroyed.
-	- Allow node displacement sideways?
-	- Maybe force column to coordinate settling in order, to
-	  avoid race conditions?
-
-- Water/wetness/coolant rework.
-	- Move nodecore.quenched() somewhere more sensible.
-	- Register a "wet" and "absorbant" groups.
-	- Register wetness hooks.
-		- What to dry to when absorbed.
-		- What to do when wetted.
-	- Register wetness exposure abm.
-		- Consume one random wet node nearby.
-	- Use for quenching lode/glass.
-	- Allow sponges to wick water (wetness transfers).
-	- Future applications.
-		- Cement, cure upon wetting?
-
-- API Cleanup
-	- Utils
-		- Box mueller and exporand
-	- Break up the nc_api monstrosity.
-		- nc_api_base to create _G.nodecore and include for all.
-		- nc_api metamod that just depends on ALL other api's.
-		- nc_all metamod for 3rd party mod authors...?
-	- Soaking API for time-integrated processes.
-		- Tree growth
-	- Heat API
-		- Unified heating/cooling number from env.
-		- Proper API for burning up items
-			- on_burn?  burns_to?
-		- Unify heat transformations into recipe system with
-		  cooking recipes?
-	- Unify nc_items and visinv API.
-		- Stack nodes are "special", get first-class support.
-
-- Tree farming.
-	- Show sprout/sapling above eggcorn_planted to show
-	  progress over time.
-	- Switch to soaking API
-	
-- Make separate walkable/non-walkable stack nodes.
-	- Should sticks and eggcorns be non-walkable?
-
-- Tool level differences.
-	- Advanced tools are NOT just the same as regular tools with
-	  certain buffs.
-	- Higher-tier tools skip dig phases.
-		- Fast-forward throug certain steps, e.g. raw -> loose?
-		- Skip later stages, e.g. "silk touch" effect?
-	- Offer combined high-tier tools, e.g. mattock = cracky + crumbly?
-	- Tool API cleanup
-		- Separate durability, speed, effects?
-
-- Wield view broken in MP.
-	- Players sometimes see ents as unattached, depending on
-	  who joined when.
-	- Regenerating ents may fix for other players, but then
-	  BREAKS F7 view, because players only see ents in F7 view
-	  that exist at the time of change, not new ones.
-	- Appears to be known engine issue on GitHub.
-	- Lone_Wolf is working on a player model update with texturable
-	  wield surfaces, BUT it would require having a model_image
-	  for every node, some complex.  
-
-- Update core docs.
-	- README
-		- Convert to markdown?
-		- Elevator pitch
-			- Immersive, no GUIs, original gameplay
-		- Major features
-			- No in-game GUIs (including inventory screen)
-			- Minimal HUDs, unified inventory/health system
-			- Items as nodes (no decay)
-			- Multi-stage digging
-			- Craft in-world
-			- Pummel
-			- Eggcorns!
-			- Falling embers
-			- Design your own furnace
-			- Angle of repose
-			- Portable containers
-			- Optical digital logic
-		- Installation guide?
-			- Singleplayer on android
-	- CONTRIBUTING
-		- Coverage for non-repo items
-			- Screenshots, videos/links, for publicity
-
-- Code Quality.
-	- Finish setting up LuaCheck, audit code.
-	- Scripts to validate dependency graph.
-		- Tag deps directly in code at place of use.
-		- Auto-generate mod.conf / depends.txt
-	- Scripts for automatic metapackage mods?
-	- Git hooks (and git hook setup scripts)?
-	
-- Loose node cleanup.
-	- Leaves settle into grass as podzol?  Composting/decay?
-	- Dirt/sand/etc should self-compact if buried or over time.
+- Lode smelting changes.
+	- Currently lode smelting is too counterintuitive.
+	- Split recipe into 2 stages.
+		- Heat lode to melt the metal inside.  Add a cobble
+		  with molten lode node, and show metal pooling
+		  more at the bottom of the node.
+		- Have air space under molten lode for prills to
+		  come out.
+		- Molten lode cools back to lode cobble.
 
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
@@ -141,19 +33,14 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
 
-- Social features
-	- Randomize player appearance/colors.
-		- Shirt/pants, possibly w/ stripes/patterns
-		- Skin color, hair color, eye color?
-	- Add more holiday outfits.
-	- Server player lists...?
-	- Track server lag in metadata?
+- Stone doors don't necessarily dig right.  Probably leftover junk
+  being inherited in the cloning; need to dig through the properties
+  and remove the ones we don't want inherited.
 
-- Make neighbor/distance calcs consistent.
-	- We're using scan_flood in some places, face checks in others,
-	  and find_nodes_in_area (cuboid) in others.
-	- Diamond shape would be most consistent.
-	- Should require face touching, not diagonal.
+- Reinstate and update toolbelt once engine PR #8701 is released
+	- Alternative item strategy with dedicated slots for each
+	  inventory space, which can be empty if in hand instead.
+	- Consider a "backpack" approach as opposed to toolbelt.
 
 ........................................................................
 ========================================================================

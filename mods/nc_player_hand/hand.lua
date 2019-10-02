@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_item(":", {
-		type = "none",
+		["type"] = "none",
 		wield_image = "nc_player_hand.png",
 		wield_scale = {x = 4, y = 8, z = 3},
 		tool_capabilities = nodecore.toolcaps({

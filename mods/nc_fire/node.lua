@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, type
-    = math, minetest, nodecore, type
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -15,10 +15,10 @@ minetest.register_node(modname .. ":fire", {
 			{
 				name = "nc_fire_fire.png",
 				animation = {
-					type = "vertical_frames",
+					["type"] = "vertical_frames",
 					aspect_w = 24,
 					aspect_h = 24,
-					length = 4
+					length = 0.6
 				}
 			}
 		},
@@ -26,7 +26,8 @@ minetest.register_node(modname .. ":fire", {
 		light_source = 12,
 		groups = {
 			igniter = 1,
-			flame = 1
+			flame = 1,
+			flame_sound = 1,
 		},
 		damage_per_second = 2,
 		sunlight_propagates = true,
@@ -66,7 +67,7 @@ for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":coal" .. num, {
 			description = "Charcoal",
 			tiles = {txrcoal(num) .. "^[noalpha"},
-			groups = { 
+			groups = {
 				crumbly = 1,
 				flammable = 5 - math_floor(num / nodecore.fire_max * 4),
 				falling_node = 1,
@@ -97,7 +98,7 @@ for num = 1, nodecore.fire_max do
 			tiles = {txrember(num) .. "^[noalpha"},
 			paramtype = "light",
 			light_source = 6,
-			groups = { 
+			groups = {
 				igniter = 1,
 				ember = num,
 				falling_node = 1

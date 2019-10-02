@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local lasthit = {}
 
-minetest.register_on_punchnode(function(pos, node, puncher, pointed)
+minetest.register_on_punchnode(function(pos, node, puncher)
 		if not puncher then return end
 		local pname = puncher:get_player_name()
 		local now = minetest.get_us_time() / 1000000
@@ -25,7 +25,7 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if wield:get_wear() >= (65536 * 0.95) then
 			minetest.sound_play("nc_api_toolwear",
-				{pos = pos, gain = 0.5})
+				{object = puncher, gain = 0.5})
 		end
 	end)
 

@@ -8,7 +8,7 @@ local math_random
 function nodecore.register_ambiance(def)
 	local max = def.queue_max or 100
 	local rate = 1 / (def.queue_rate or 20)
-	
+
 	local seen = {}
 	local queue = {}
 	local total = 0
@@ -26,15 +26,13 @@ function nodecore.register_ambiance(def)
 					seen = {}
 				end
 
-				local pos = batch[#batch]
+				local opts = batch[#batch]
 				batch[#batch] = nil
 				if #batch < 1 then batch = nil end
 
-				minetest.sound_play({
-						name = def.sound_name,
-						gain = def.sound_gain
-					},
-					{pos = pos})
+				opts.name = opts.name or def.sound_name
+				opts.gain = opts.gain or def.sound_gain
+				minetest.sound_play(opts.name, opts)
 
 				time = time - rate
 			end
@@ -44,16 +42,24 @@ function nodecore.register_ambiance(def)
 		local hash = minetest.hash_node_position(pos)
 		if seen[hash] then return end
 		seen[hash] = true
+		local opts
+		if def.check then
+			opts = def.check(pos)
+			if not opts then return end
+		else
+			opts = {}
+		end
+		opts.pos = pos
 		if #queue < max then
-			queue[#queue + 1] = pos
+			queue[#queue + 1] = opts
 		else
 			local r = math_random(1, total + 1)
 			if r <= #queue then
-				queue[r] = pos
+				queue[r] = opts
 			end
 		end
 		total = total + 1
 	end
-	
+
 	return nodecore.register_limited_abm(def)
 end

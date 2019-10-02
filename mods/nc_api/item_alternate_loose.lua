@@ -6,29 +6,13 @@ local minetest, nodecore, pairs, type
 --[[
 Nodes that have an "alternate_loose = { ... }" definition when
 registered will be registered as a pair, one being the "loose" version
-and the other being the normal "solid" one.  Solid-specific attributes
-can be set via "alternate_solid = { ... }".  The solid version will
+and the other being the normal "solid" one. Solid-specific attributes
+can be set via "alternate_solid = { ... }". The solid version will
 transform to the loose one when dug, and the loose to solid when
 pummeled.
 --]]
 
 local looseimg = "^nc_api_loose.png"
-
-local function can_repack(level)
-	return function(pos, node, stats)
-		return nodecore.toolspeed(stats.puncher:get_wielded_item(), {thumpy = level})
-	end
-end
-
-local function repack_node(mult, replace)
-	if type(replace) ~= "table" then replace = {name = replace} end
-	return function (pos, node, stats)
-		if stats.duration < (mult * stats.check) then return end
-		nodecore.wear_current_tool(stats.puncher, {thumpy = 1})
-		minetest.set_node(pos, replace)
-		return true
-	end
-end
 
 nodecore.register_on_register_item(function(name, def)
 		if def.type ~= "node" then return end
@@ -42,9 +26,9 @@ nodecore.register_on_register_item(function(name, def)
 				if type(v) == "string" then
 					loose.tiles[k] = v .. looseimg
 				elseif type(v) == "table" then
-					loose.tiles[k] = underride({
+					loose.tiles[k] = nodecore.underride({
 							name = v.name .. looseimg
-							}, v)
+						}, v)
 				end
 			end
 		end

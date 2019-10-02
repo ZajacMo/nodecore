@@ -60,7 +60,6 @@ local function checkinv(player)
 
 	local fill = size - slots
 	if #inj > fill then
-		local pos = player:get_pos()
 		for i = 1, #inj / 2 do
 			inj[i], inj[#inj + 1 - i] = inj[#inj + 1 - i], inj[i]
 		end

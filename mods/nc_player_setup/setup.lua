@@ -1,7 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, pairs
+    = minetest, pairs
 -- LUALOCALS > ---------------------------------------------------------
+
+local footsteps = {}
 
 minetest.register_on_joinplayer(function(player)
 		local inv = player:get_inventory()
@@ -18,8 +20,24 @@ minetest.register_on_joinplayer(function(player)
 				-- Allow slight zoom for screenshots
 				zoom_fov = 60
 			})
+		footsteps[player:get_player_name()] = true
 	end)
 
 minetest.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
+	end)
+
+minetest.unregister_chatcommand("kill")
+
+minetest.register_globalstep(function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			local name = player:get_player_name()
+			local value = not player:get_player_control().sneak
+			if footsteps[name] ~= value then
+				player:set_properties({
+						makes_footstep_sound = value
+					})
+				footsteps[name] = value
+			end
+		end
 	end)

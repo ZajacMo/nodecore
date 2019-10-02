@@ -1,8 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include
-    = include
+local include, nodecore
+    = include, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-include('node')
-include('abm')
-include('gen')
+nodecore.amcoremod()
+
+include("node")
+include("abm")
+include("gen")
+include("cultivate")
+include("squeeze")

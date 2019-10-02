@@ -74,7 +74,7 @@ local function envcheck(player)
 
 end
 
-minetest.register_on_dieplayer(function(player)		
+minetest.register_on_dieplayer(function(player)
 		player:get_meta():set_string("healthenv", "")
 		cache[player:get_player_name()] = nil
 	end)

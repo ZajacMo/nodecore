@@ -25,7 +25,7 @@ function nodecore.give_item(player, stack, list, inv)
 	inv = inv or player:get_inventory()
 	for idx in nodecore.inv_walk(player, nil, inv, list) do
 		local s = inv:get_stack(list, idx)
-		stack = s:add_item(stack)
+		stack = nodecore.stack_merge(s, stack)
 		inv:set_stack(list, idx, s)
 		if stack:is_empty() then return stack end
 	end

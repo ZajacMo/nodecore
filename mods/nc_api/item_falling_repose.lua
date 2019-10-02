@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type
-    = math, minetest, nodecore, pairs, type
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -15,12 +15,12 @@ function nodecore.falling_repose_drop(posfrom, posto, node)
 	minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
 	minetest.remove_node(posfrom)
 	posfrom.y = posfrom.y + 1
-	return minetest.check_for_falling(posfrom)
+	return nodecore.fallcheck(posfrom)
 end
 
-nodecore.register_on_register_item(function(name, def)
+nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
-		
+
 		def.groups = def.groups or {}
 
 		if def.groups.falling_repose then def.groups.falling_node = 1 end
@@ -60,7 +60,7 @@ function nodecore.falling_repose_check(pos)
 	-- a non-moving node; it's only when stacked on other
 	-- falling nodes that they can slip off.
 	local sitdef = minetest.registered_items[minetest.get_node(
-			{x = pos.x, y = pos.y - 1, z = pos.z}).name]
+		{x = pos.x, y = pos.y - 1, z = pos.z}).name]
 	if not (sitdef and sitdef.groups and sitdef.groups.falling_node)
 	then return end
 
@@ -91,7 +91,7 @@ nodecore.register_limited_abm({
 		neighbors = {"air"},
 		interval = 2,
 		chance = 5,
-		action = function(pos, node)
+		action = function(pos)
 			if not reposeq then
 				reposeq = {}
 				qqty = 0

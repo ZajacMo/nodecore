@@ -6,253 +6,446 @@ local nodecore
 local addhint = nodecore.addhint
 
 ------------------------------------------------------------------------
--- TERRAIN
+-- SCALING
 
-addhint("dug up dirt",
-	"nc_terrain:dirt_loose")
-
-addhint("dug up gravel",
-	"nc_terrain:gravel_loose",
-	"toolcap:crumbly:2")
-
-addhint("dug up sand",
-	"nc_terrain:sand_loose")
-
-addhint("dug up stone",
-	"nc_terrain:cobble_loose",
-	"toolcap:cracky:2")
-
-addhint("found deep stone strata",
-	"group:hard_stone",
-	"nc_terrain:cobble_loose")
-
-addhint("found molten rock",
-	"group:lava",
-	"nc_terrain:cobble_loose")
+addhint("scale a sheer wall", "scale sheer walls")
+addhint("scale a sheer overhang", "scale sheer ceilings")
 
 ------------------------------------------------------------------------
--- TREE
+-- TERRAIN
 
-addhint("found sponges",
+addhint("dig up dirt",
+	"dig:nc_terrain:dirt_loose"
+)
+
+addhint("dig up gravel",
+	"dig:nc_terrain:gravel_loose",
+	"toolcap:crumbly:2"
+)
+
+addhint("dig up sand",
+	"dig:nc_terrain:sand_loose"
+)
+
+addhint("dig up stone",
+	"dig:nc_terrain:cobble_loose",
+	"toolcap:cracky:2"
+)
+
+addhint("find deep stone strata",
+	"group:hard_stone",
+	"nc_terrain:cobble_loose"
+)
+
+addhint("find molten rock",
+	"group:lava",
+	"nc_terrain:cobble_loose"
+)
+
+------------------------------------------------------------------------
+-- SPONGE
+
+addhint("find a sponge",
 	{true,
 		"nc_sponge:sponge",
 		"nc_sponge:sponge_wet",
 		"nc_sponge:sponge_living"
-	})
+	}
+)
+
+addhint("harvest a sponge",
+	"inv:nc_sponge:sponge_wet",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
+
+addhint("dry out a sponge",
+	"nc_sponge:sponge",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
+
+addhint("squeeze out a sponge",
+	"squeeze sponge",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
 
 ------------------------------------------------------------------------
 -- TREE
 
-addhint("found dry leaves",
-	"nc_tree:leaves_loose")
+addhint("find dry (loose) leaves",
+	"nc_tree:leaves_loose"
+)
 
-addhint("found eggcorns",
-	"nc_tree:eggcorn")
+addhint("find an eggcorn",
+	"nc_tree:eggcorn"
+)
 
-addhint("planted an eggcorn",
+addhint("plant an eggcorn",
 	"eggcorn planting",
-	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"})
+	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"}
+)
 
-addhint("found sticks",
-	"nc_tree:stick")
+addhint("find a stick",
+	"nc_tree:stick"
+)
 
 addhint("cut down a tree",
 	"dig:nc_tree:tree",
-	"toolcap:choppy:2")
+	"toolcap:choppy:2"
+)
 
-addhint("dug up a tree stump",
+addhint("dig up a tree stump",
 	"dig:nc_tree:root",
-	"toolcap:choppy:4")
+	"toolcap:choppy:4"
+)
 
 ------------------------------------------------------------------------
 -- FIRE
 
-addhint("made fire by rubbing sticks together",
+addhint("make fire by rubbing sticks together",
 	"stick fire starting",
-	"nc_tree:stick")
+	"nc_tree:stick"
+)
 
-addhint("found ash",
+addhint("find ash",
 	"nc_fire:ash",
-	"stick fire starting")
+	"stick fire starting"
+)
 
-addhint("found charcoal",
+addhint("find charcoal",
 	"group:charcoal",
-	"stick fire starting")
+	"stick fire starting"
+)
 
-addhint("chopped up charcoal",
+addhint("chop up charcoal",
 	"nc_fire:lump_coal",
-	"group:charcoal")
+	"group:charcoal"
+)
 
-addhint("packed high-quality charcoal",
+addhint("pack high-quality charcoal",
 	"nc_fire:coal" .. nodecore.fire_max,
-	"nc_fire:lump_coal")
+	"nc_fire:lump_coal"
+)
 
 ------------------------------------------------------------------------
 -- WOODWORK
 
-addhint("assembled a staff from sticks",
+addhint("assemble a staff from sticks",
 	"assemble staff",
-	"nc_tree:stick")
+	"nc_tree:stick"
+)
 
-addhint("assembled an adze out of sticks",
+addhint("assemble an adze out of sticks",
 	"assemble wood adze",
-	{true, "nc_tree:stick", "nc_woodwork:staff"})
+	{true, "nc_tree:stick", "nc_woodwork:staff"}
+)
 
-addhint("assembled a wooden ladder",
+addhint("assemble a wooden ladder from sticks",
 	"assemble wood ladder",
-	{true, "nc_tree:stick", "nc_woodwork:staff"})
+	{true, "nc_tree:stick", "nc_woodwork:staff"}
+)
 
-addhint("assembled a wooden frame",
+addhint("assemble a wooden frame from staves",
 	"assemble wood frame",
-	{true, "nc_tree:stick", "nc_woodwork:staff"})
+	{true, "nc_tree:stick", "nc_woodwork:staff"}
+)
 
 addhint("split a tree trunk into planks",
 	"split tree to planks",
-	{true, "nc_woodwork:adze", "nc_woodwork:tool_hatchet"})
+	{true, "nc_woodwork:adze", "nc_woodwork:tool_hatchet"}
+)
 
-addhint("carved wooden tool heads from planks",
+addhint("carve wooden tool heads from planks",
 	"carve nc_woodwork:plank",
-	"split tree to planks")
+	"split tree to planks"
+)
 
-addhint("assembled a wooden tool",
+addhint("assemble a wooden tool",
 	{true,
 		"assemble wood mallet",
 		"assemble wood spade",
 		"assemble wood hatchet",
 		"assemble wood pick",
 	},
-	"carve nc_woodwork:plank")
+	"carve nc_woodwork:plank"
+)
 
-addhint("carved a wooden plank completely",
+addhint("carve a wooden plank completely",
 	"carve nc_woodwork:toolhead_pick",
-	"carve nc_woodwork:plank")
+	"carve nc_woodwork:plank"
+)
 
-addhint("bashed a plank into sticks",
+addhint("bash a plank into sticks",
 	"bash planks to sticks",
-	{"nc_woodwork:plank", "toolcap:thumpy:3"})
+	{"nc_woodwork:plank", "toolcap:thumpy:3"}
+)
 
-addhint("assembled a wooden shelf",
+addhint("assemble a wooden shelf from frames and planks",
 	"assemble wood shelf",
-	{"nc_woodwork:plank", "nc_woodwork:frame"})
+	{"nc_woodwork:plank", "nc_woodwork:frame"}
+)
 
 ------------------------------------------------------------------------
 -- STONEWORK
 
-addhint("broken cobble into chips",
+addhint("break cobble into chips",
 	"break cobble to chips",
-	"nc_terrain:cobble_loose")
+	"nc_terrain:cobble_loose"
+)
 
-addhint("packed stone chips back into cobble",
+addhint("pack stone chips back into cobble",
 	"repack chips to cobble",
-	"nc_stonework:chip")
+	"nc_stonework:chip"
+)
 
-addhint("put a stone tip onto a tool",
+addhint("put a stone tip onto a wooden tool",
 	{true,
 		"assemble nc_stonework:tool_mallet",
 		"assemble nc_stonework:tool_spade",
 		"assemble nc_stonework:tool_hatchet",
 		"assemble nc_stonework:tool_pick"
 	},
-	"nc_stonework:chip")
+	"nc_stonework:chip"
+)
+
+------------------------------------------------------------------------
+-- CONCRETE
+
+addhint("mix gravel into ash to make aggregate",
+	"mix concrete",
+	{"nc_terrain:gravel_loose", "nc_fire:ash"}
+)
+
+addhint("make wet aggregate",
+	{true, "nc_concrete:wet_source", "nc_concrete:wet_flowing"},
+	"mix concrete"
+)
 
 ------------------------------------------------------------------------
 -- LODE
 
-addhint("found a lode stratum",
-	"group:lodey")
+addhint("find a lode stratum",
+	"group:lodey"
+)
 
-addhint("found lode ore",
+addhint("find lode ore",
 	"nc_lode:ore",
-	"group:lodey")
+	"group:lodey"
+)
 
-addhint("dug up lode ore",
+addhint("dig up lode ore",
 	"nc_lode:cobble_loose",
-	"nc_lode:ore")
+	"nc_lode:ore"
+)
 
-local lodeprill = {true,
-	"nc_lode:prill_hot",
-	"nc_lode:prill_annealed",
-	"nc_lode:prill_tempered"
-}
+addhint("melt down lode metal from lode cobble",
+	{true,
+		"nc_lode:prill_hot",
+		"nc_lode:prill_annealed",
+		"nc_lode:prill_tempered"
+	},
+	"nc_lode:cobble_loose"
+)
 
-addhint("melted down lode metal",
-	lodeprill,
-	"nc_lode:cobble_loose")
-
-addhint("sintered glowing lode into a cube",
+addhint("sinter glowing lode prills into a cube",
 	"forge lode block",
-	"nc_lode:prill_hot")
+	{true,
+		"nc_lode:prill_hot",
+		"nc_lode:prill_annealed",
+		"nc_lode:prill_tempered"
+	}
+)
 
-addhint("chopped a lode cube into prills",
+addhint("chop a glowing lode cube into prills",
 	"break apart lode block",
-	"forge lode block")
+	"forge lode block"
+)
 
-addhint("tempered a lode anvil",
+addhint("make an anvil by tempering a lode cube",
 	"nc_lode:block_tempered",
-	"forge lode block")
+	"forge lode block"
+)
 
-addhint("cold-forged an annealed lode tool head",
+addhint("cold-forge annealed lode prills into a tool head",
 	"anvil making lode toolhead_mallet",
-	"nc_lode:block_tempered")
+	"nc_lode:block_tempered"
+)
 
-addhint("cold-forged lode down completely",
+addhint("cold-forge lode down completely",
 	"anvil making lode prills",
-	"nc_lode:block_tempered")
+	"nc_lode:block_tempered"
+)
 
-addhint("tempered a lode tool head",
+addhint("temper a lode tool head",
 	{true,
 		"nc_lode:toolhead_mallet_tempered",
 		"nc_lode:toolhead_spade_tempered",
 		"nc_lode:toolhead_hatchet_tempered",
 		"nc_lode:toolhead_pick_tempered"
 	},
-	"anvil making lode toolhead_mallet")
+	"anvil making lode toolhead_mallet"
+)
 
-addhint("welded a lode pick and spade together",
+addhint("weld glowing lode pick and spade heads together",
 	"assemble lode mattock head",
-	"anvil making lode toolhead_pick")
+	"anvil making lode toolhead_pick"
+)
 
+addhint("hammer a lode prill into a bar",
+	"anvil making lode bar",
+	"nc_lode:block_tempered"
+)
+
+addhint("hammer a lode bar back to a prill",
+	"anvil recycle lode bar",
+	"anvil making lode bar"
+)
+
+addhint("hammer lode bars into a rod",
+	"anvil making lode rod",
+	"anvil making lode bar"
+)
+
+addhint("chop lode a rod back into bars",
+	"recycle lode rod",
+	"anvil making lode rod"
+)
+
+addhint("solder lode rods into crates",
+	"assemble lode shelf",
+	"anvil making lode rod"
+)
+
+addhint("chop a lode crate back apart",
+	"break apart lode shelf",
+	"assemble lode shelf"
+)
+
+------------------------------------------------------------------------
+-- DOORS
+
+addhint("chisel a hinge groove into a wooden plank",
+	"drill door plank",
+	{"anvil making lode rod", "split tree to planks"}
+)
+
+addhint("lubricate a wooden panel with graphite",
+	"lubricate door plank",
+	"drill door plank"
+)
+
+addhint("hammer a staff into a lubricated wooden panel",
+	"door pin plank",
+	"lubricate door plank"
+)
+
+addhint("chisel a hinge groove into cobble",
+	"drill door cobble",
+	{"anvil making lode rod", "nc_terrain:cobble"}
+)
+
+addhint("lubricate a cobble panel with graphite",
+	"lubricate door cobble",
+	"drill door cobble"
+)
+
+addhint("hammer a metal rod into a cobble panel",
+	"door pin cobble",
+	"lubricate door cobbleWWW"
+)
+
+------------------------------------------------------------------------
+-- LUX
+
+addhint("find lux",
+	"group:lux_emit"
+)
+
+addhint("dig up lux cobble",
+	"dig:group:lux_cobble",
+	"group:lux_emit"
+)
+
+addhint("observe a lux reaction",
+	"group:lux_hot",
+	"group:lux_cobble"
+)
+
+addhint("observe lux criticality",
+	"group:lux_cobble_max",
+	"group:lux_hot"
+)
+
+addhint("lux-infuse a lode tool",
+	"group:lux_tool",
+	"group:lux_cobble_max"
+)
 
 ------------------------------------------------------------------------
 -- TOTE
 
-addhint("assembled an annealed lode tote handle",
+addhint("assemble an annealed lode tote handle",
 	"craft tote handle",
-	{"nc_lode:block_annealed", "nc_woodwork:shelf"})
+	{"nc_lode:block_annealed", "nc_woodwork:shelf"}
+)
 
 ------------------------------------------------------------------------
 -- OPTICS
 
-addhint("melted sand into glass",
+addhint("melt sand into glass",
 	"group:silica",
-	"nc_terrain:sand_loose")
+	"nc_terrain:sand_loose"
+)
 
-addhint("quenched molten glass into chromatic glass",
+addhint("quench molten glass into chromatic glass",
 	"nc_optics:glass_opaque",
-	"group:silica")
+	"group:silica"
+)
 
-addhint("molded molten glass into clear glass",
+addhint("mold molten glass into clear glass",
 	"nc_optics:glass",
-	"group:silica")
+	"group:silica"
+)
 
-addhint("cooled molten glass into crude glass",
+addhint("mold molten glass into float glass",
+	"nc_optics:glass_float",
+	{"nc_optics:glass", "group:lava"}
+)
+
+addhint("cool molten glass into crude glass",
 	"nc_optics:glass_crude",
-	"group:silica")
+	"group:silica"
+)
 
-addhint("chipped chromatic glass into prisms",
+addhint("chip chromatic glass into prisms",
 	"nc_optics:prism",
-	"nc_optics:glass_opaque")
+	"nc_optics:glass_opaque"
+)
 
-addhint("chopped chromatic glass into lenses",
+addhint("chop chromatic glass into lenses",
 	"nc_optics:lens",
-	"nc_optics:glass_opaque")
+	"nc_optics:glass_opaque"
+)
 
 local opticactive = {true, "nc_optics:lens_on", "nc_optics:prism_on"}
 
-addhint("activated a lens",
+addhint("activate a lens",
 	opticactive,
-	"nc_optics:lens")
+	"nc_optics:lens"
+)
 
-addhint("produced light from a lens",
+addhint("produce light from a lens",
 	"nc_optics:lens_glow",
-	opticactive)
+	opticactive
+)

@@ -1,7 +1,9 @@
 ========================================================================
+------------------------------------------------------------------------
 
-To contribute to this project, you must understand and agree to the
-terms in this document at the time of contribution.
+For your contribution to be included in this project, you must
+understand and agree to the terms in this document at the time of
+contribution.
 
 - A "contribution" consists of all files, patches and changes, source
   control commits, comments and other metadata submitted to the project
@@ -23,4 +25,26 @@ terms in this document at the time of contribution.
   submission.  Unless otherwise specified, source control metadata
   will be used for attribution.
 
+........................................................................
+
+Other Guidelines:
+
+- Non-included contributions to the project, such as hosting or other
+  services, content such as videos/streams, screenshots/galleries,
+  reviews, stories and other publicity do not need to follow the
+  guidelines above unless they are intended to also be eligible for
+  inclusion directly in the project.
+
+- Keep original media source files that are not directly used by the
+  game engine (e.g. *.blend, *.xcf, *.svg) in folders named "src" in the
+  appropriate mod/area.  These will NOT be distributed with the source
+  repo, but will not be packaged by ContentDB to keep download sizes
+  minimal.
+
+- Lua code indentation style is based on this script:
+  http://notebook.kulchenko.com/programming/lua-beautifier-in-55-lines-of-perl
+  (except with INDENT set to "\t" for tabs instead of spaces)
+  This is very similar to the style used by ZeroBrane Studio.
+
 ------------------------------------------------------------------------
+========================================================================
