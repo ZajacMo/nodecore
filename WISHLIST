@@ -29,14 +29,6 @@ to the project!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
 
-- Translations, including:
-	- New languages.
-	- Updates for future content.
-	- There is some interest in "joke" languages, such as Pirate,
-	  Pig Latin, or xckd Simple.  Translations are welcome for them,
-	  but they don't have official ISO codes so finding a place to
-	  put them could be tricky.
-
 - Player model enhancements
 	- Check that UV maps are consistent with existing skins,
 	  e.g. MTG Sam or MC Steve, for TP authors to more easily
