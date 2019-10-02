@@ -23,6 +23,17 @@ local glyphs = {
 	modname .. "_rex.png",
 	modname .. "_rex.png^[transformFX"
 }
+local glyph_next = {}
+local glyph_alts = {}
+for i = 2, #glyphs do
+	glyph_next[i - 1] = i
+	if #glyphs[i] > #glyphs[1] then
+		glyph_next[i - 1] = (i < #glyphs) and i + 1 or 1
+		glyph_alts[i] = i - 1
+		glyph_alts[i - 1] = i
+	end
+	glyph_next[#glyphs] = 1
+end
 
 local spinmap
 do
@@ -44,7 +55,7 @@ do
 		for i = 1, #t - 1 do
 			spinmap[t[i] ] = t[i + 1]
 		end
-		spinmap[t[#t] ] = t[1]
+		spinmap[t[#t]] = t[1]
 	end
 end
 
@@ -98,23 +109,6 @@ function minetest.check_single_for_falling(pos, ...)
 	return oldcsff(pos, ...)
 end
 
-local function glyphspin(pos, node)
-	node = node or minetest.get_node(pos)
-	if node.name:sub(1, #nodepref) ~= nodepref then return end
-	local np2 = spinmap[node.param2] or 0
-	if np2 < node.param2 then
-		local g = tonumber(node.name:sub(#nodepref + 1))
-		if not g then return end
-		g = g + 1
-		if g > #glyphs then g = 1 end
-		node.name = nodepref .. g
-	end
-	node.param2 = np2
-	minetest.swap_node(pos, node)
-	local def = minetest.registered_items[node.name] or {}
-	if def.on_spin then def.on_spin(pos, node) end
-end
-
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if (not puncher) or (not puncher:is_player()) then return end
 
@@ -128,9 +122,44 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if not anode then return end
 
 		if minetest.get_item_group(anode.name, "alpha_glyph") ~= 0 then
-			return glyphspin(above, anode)
+			if anode.name:sub(1, #nodepref) ~= nodepref then return end
+			local g = tonumber(anode.name:sub(#nodepref + 1))
+			if g and glyph_next[g] then
+				anode.name = nodepref .. glyph_next[g]
+			end
+			minetest.swap_node(above, anode)
+			local def = minetest.registered_items[anode.name] or {}
+			if def.on_spin then def.on_spin(above, anode) end
 		end
 	end)
+
+local old_place = minetest.item_place
+function minetest.item_place(itemstack, placer, pointed_thing, param2, ...)
+	if not nodecore.interact(placer) or (itemstack:get_name() ~= "nc_fire:lump_coal") then
+		return old_place(itemstack, placer, pointed_thing, param2, ...)
+	end
+
+	local above = pointed_thing.above
+	local anode = minetest.get_node_or_nil(above)
+	if (not anode) or (minetest.get_item_group(anode.name, "alpha_glyph") <= 0)
+	or (not vector.equals(nodecore.facedirs[anode.param2].t,
+			vector.subtract(pointed_thing.above, pointed_thing.under))) then
+		return old_place(itemstack, placer, pointed_thing, param2, ...)
+	end
+
+	if anode.name:sub(1, #nodepref) ~= nodepref then return end
+	local np2 = spinmap[anode.param2] or 0
+	if np2 < anode.param2 then
+		local g = tonumber(anode.name:sub(#nodepref + 1))
+		if g and glyph_alts[g] then
+			anode.name = nodepref .. glyph_alts[g]
+		end
+	end
+	anode.param2 = np2
+	minetest.swap_node(above, anode)
+	local def = minetest.registered_items[anode.name] or {}
+	if def.on_spin then def.on_spin(above, anode) end
+end
 
 nodecore.register_craft({
 		label = "charcoal writing",
