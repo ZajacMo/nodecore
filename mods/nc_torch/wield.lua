@@ -1,17 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs, vector
-    = minetest, pairs, vector
+local ItemStack, minetest, pairs, setmetatable, vector
+    = ItemStack, minetest, pairs, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 local function islit(stack)
-	return stack:get_name() == modname .. ":torch_lit"
+	return stack and stack:get_name() == modname .. ":torch_lit"
 end
 
 local function snuffinv(player, inv, i)
 	minetest.sound_play("nc_fire_snuff", {object = player, gain = 0.5})
 	inv:set_stack("main", i, "nc_fire:lump_ash")
+end
+
+local function wieldlight(pos)
+	local cur = minetest.get_node(pos).name
+	if cur ~= "air" and cur ~= modname .. ":wield_light" then return end
+	minetest.set_node(pos, {name = modname .. ":wield_light"})
+	return minetest.get_node_timer(pos):start(0.3)
 end
 
 local now
@@ -46,12 +53,7 @@ minetest.register_globalstep(function(dt)
 					local t = wltimers[name] or 0
 					if t <= now then
 						wltimers[name] = now + 0.2
-						local cur = minetest.get_node(hpos).name
-						if cur == "air" or cur == modname .. ":wield_light" then
-							minetest.set_node(hpos,
-								{name = modname .. ":wield_light"})
-							minetest.get_node_timer(hpos):start(0.3)
-						end
+						wieldlight(hpos)
 					end
 
 					-- Wield ambiance
@@ -65,3 +67,26 @@ minetest.register_globalstep(function(dt)
 			end
 		end
 	end)
+
+-- Apply wield light to entities as well.
+local function entlight(self, dtime, ...)
+	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
+	if not islit(stack) then return ... end
+	local wltime = (self.wltime or 0) - dtime
+	if wltime <= 0 then
+		wltime = 0.2
+		wieldlight(self.object:get_pos())
+	end
+	self.wltime = wltime
+	return ...
+end
+for _, name in pairs({"item", "falling_node"}) do
+	local def = minetest.registered_entities["__builtin:" .. name]
+	local ndef = {
+		on_step = function(self, dtime, ...)
+			return entlight(self, dtime, def.on_step(self, dtime, ...))
+		end
+	}
+	setmetatable(ndef, def)
+	minetest.register_entity(":__builtin:" .. name, ndef)
+end
