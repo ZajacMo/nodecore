@@ -1,8 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table, tonumber, vector
-    = minetest, nodecore, pairs, table, tonumber, vector
-local table_sort
-    = table.sort
+local ItemStack, math, minetest, nodecore, pairs, table, tonumber,
+      vector
+    = ItemStack, math, minetest, nodecore, pairs, table, tonumber,
+      vector
+local math_floor, math_random, table_sort
+    = math.floor, math.random, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -35,7 +37,7 @@ do
 		r[f.f.n] = i
 	end
 	spinmap = {}
-	for k, v in pairs(rots) do
+	for _, v in pairs(rots) do
 		local t = {}
 		for _, x in pairs(v) do t[#t + 1] = x end
 		table_sort(t)
@@ -75,11 +77,11 @@ for i = 1, #glyphs do
 		})
 end
 
-local function sticks(node)
-	if not node then return true end
-	local def = minetest.registered_items[node.name]
-	return def and def.groups and (not def.groups.silica)
-	and (def.groups.cracky or def.groups.choppy)
+local function writable(pos, node)
+	node = node or minetest.get_node_or_nil(pos)
+	if not node then return end
+	local def = minetest.registered_nodes[node.name]
+	return not nodecore.toolspeed(ItemStack(""), def.groups)
 end
 
 local oldcsff = minetest.check_single_for_falling
@@ -88,7 +90,7 @@ function minetest.check_single_for_falling(pos, ...)
 	if not node then return oldcsff(pos, ...) end
 	if minetest.get_item_group(node.name, "alpha_glyph") ~= 0 then
 		local dp = vector.add(pos, nodecore.facedirs[node.param2].b)
-		if not sticks(minetest.get_node_or_nil(dp)) then
+		if not writable(dp) then
 			minetest.remove_node(pos)
 			return true
 		end
@@ -98,11 +100,11 @@ end
 
 local function glyphspin(pos, node)
 	node = node or minetest.get_node(pos)
-	if node.name:sub(1, #nodepref) ~= nodepref then return itemstack end
+	if node.name:sub(1, #nodepref) ~= nodepref then return end
 	local np2 = spinmap[node.param2] or 0
 	if np2 < node.param2 then
 		local g = tonumber(node.name:sub(#nodepref + 1))
-		if not g then return itemstack end
+		if not g then return end
 		g = g + 1
 		if g > #glyphs then g = 1 end
 		node.name = nodepref .. g
@@ -113,15 +115,13 @@ local function glyphspin(pos, node)
 	if def.on_spin then def.on_spin(pos, node) end
 end
 
-local lasthits = {}
-local no = minetest.log
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if (not puncher) or (not puncher:is_player()) then return end
 
 		local wield = puncher:get_wielded_item()
-		if wield:get_name() ~= coallump then return no("lump") end
+		if wield:get_name() ~= coallump then return end
 
-		if not sticks(node) then return no("stick") end
+		if not writable(pos, node) then return end
 
 		local above = pointed.above
 		local anode = minetest.get_node_or_nil(above)
@@ -130,31 +130,34 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if minetest.get_item_group(anode.name, "alpha_glyph") ~= 0 then
 			return glyphspin(above, anode)
 		end
+	end)
 
-		local pname = puncher:get_player_name()
-		local now = minetest.get_us_time() / 1000000
-		local last = lasthits[pname]
-		if (not last) or (last.time < now - 2)
-		or (not vector.equals(last.above, pointed.above))
-		or (not vector.equals(last.under, pointed.under)) then
-			lasthits[pname] = {
-				time = now,
-				above = pointed.above,
-				under = pointed.under
-			}
-			return
-		end
-		lasthits[pname] = nil
-
-		local dir = vector.subtract(pos, above)
-		for i = 1, #nodecore.facedirs do
-			if vector.equals(nodecore.facedirs[i].b, dir) then
-				wield:take_item(1)
-				puncher:set_wielded_item(wield)
-				return minetest.set_node(above, {
-						name = nodepref .. 1,
-						param2 = i
-					})
+nodecore.register_craft({
+		label = "charcoal writing",
+		action = "pummel",
+		pumparticles = {
+			minsize = 1,
+			maxsize = 5,
+			forcetexture = "nc_fire_coal_4.png^[mask:[combine\\:16x16\\:"
+			.. math_floor(math_random() * 12) .. ","
+			.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
+		},
+		duration = 2,
+		wield = {name = "nc_fire:lump_coal", count = false},
+		consumewield = 1,
+		check = function(pos, data)
+			return writable(pos) and minetest.get_node(data.pointed.above).name == "air"
+		end,
+		nodes = { { match = {walkable = true} } },
+		after = function(pos, data)
+			local dir = vector.subtract(pos, data.pointed.above)
+			for i = 1, #nodecore.facedirs do
+				if vector.equals(nodecore.facedirs[i].b, dir) then
+					return minetest.set_node(data.pointed.above, {
+							name = nodepref .. 1,
+							param2 = i
+						})
+				end
 			end
 		end
-	end)
+	})
