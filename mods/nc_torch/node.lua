@@ -29,7 +29,7 @@ minetest.register_node(modname .. ":torch", {
 		on_ignite = function(pos)
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
 			minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
-			local expire = minetest.get_gametime() + nodecore.boxmuller() * 5 + 40
+			local expire = minetest.get_gametime() + nodecore.boxmuller() * 5 + 60
 			minetest.get_meta(pos):set_float("expire", expire)
 			return true
 		end
