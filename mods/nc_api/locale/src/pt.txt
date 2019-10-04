@@ -1,0 +1,633 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-12 14:44+0000\n"
+"PO-Revision-Date: 2019-10-04 22:56+0000\n"
+"Last-Translator: Terifo <none@example.org>\n"
+"Language-Team: Portuguese <http://nodecore.mine.nu/trans/projects/nodecore/"
+"core/pt/>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2019 por Aaron Suen <war1024@@gmail.com>"
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- A Criação de Itens é feita construindo as receitas pelo mundo."
+
+msgid "- Drop items onto ground to create stack nodes.  They do not decay."
+msgstr "- Solte itens no chão para criar um node de itens amontoados. Eles não desaparecem."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Se uma receita existe, você verá um efeito especial de partícula sair do node."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- Os itens pegados são primeiramente armazenados no espaço atualmente selecionado."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- A ordem e a face em que os itens são colocados pode importar no processo de criação."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Receitas são cronometradas, bater mais forte não afetará a velocidade delas."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Use os comandos de agachar e soltar juntos para soltar um só item."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Algumas receitas necessitam que você "esmurre" um node."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- Amontoados de itens podem ser esmurrados, pode ser que precise de uma quantidade exata do item."
+
+msgid "- There is NO inventory screen."
+msgstr "- NÃO EXISTE tela de inventário."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Para esmurrar, bata num node repetidamente, SEM QUEBRÁ-LO."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- O item segurado, a face do objeto alvo e os nodes ao redor podem importar durante a criação de algo."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Você não precisa bater muito rápido(basta 1 batida por segundo)."
+
+msgid "...and 1 more hint..."
+msgstr "...e mais 1 dica..."
+
+msgid "...and @1 more hints..."
+msgstr "...e mais @1 dicas..."
+
+msgid "...have you activated a lens yet?"
+msgstr "...você já ativou uma lente?"
+
+msgid "...have you assembled a staff from sticks yet?"
+msgstr "...você já montou um bastão usando gravetos?"
+
+msgid "...have you assembled a wooden frame yet?"
+msgstr "...você já montou um estrutura de madeira?"
+
+msgid "...have you assembled a wooden ladder yet?"
+msgstr "...você já montou uma escada de madeira?"
+
+msgid "...have you assembled a wooden shelf yet?"
+msgstr "...você já montou uma estante de madeira?"
+
+msgid "...have you assembled a wooden tool yet?"
+msgstr "...você já montou uma ferramenta de madeira?"
+
+msgid "...have you assembled an adze out of sticks yet?"
+msgstr "...você já montou um enxó usando gravetos?"
+
+msgid "...have you assembled an annealed lode tote handle yet?"
+msgstr "...você já montou uma alça de bolsa recozida?"
+
+msgid "...have you bashed a plank into sticks yet?"
+msgstr "...você já quebrou uma tábua em gravetos batendo nela?"
+
+msgid "...have you broken cobble into chips yet?"
+msgstr "...você já quebrou pedregulho em pedaços?"
+
+msgid "...have you carved a wooden plank completely yet?"
+msgstr "...você já entalhou completamente uma tábua de madeira?"
+
+msgid "...have you carved wooden tool heads from planks yet?"
+msgstr "...você já transformou uma tábua em cabeças de ferramentas, entalhando a madeira?"
+
+msgid "...have you chipped chromatic glass into prisms yet?"
+msgstr "...você já quebrou um vidro cromático em prismas, lascando o vidro?"
+
+msgid "...have you chopped a lode cube into prills yet?"
+msgstr "...você já quebrou um veio mineral em lascas, usando um machado?"
+
+msgid "...have you chopped chromatic glass into lenses yet?"
+msgstr "...você já quebrou vidro cromático em lentes, usando um machado?"
+
+msgid "...have you chopped up charcoal yet?"
+msgstr "...você já quebrou carvão usando um machado?"
+
+msgid "...have you cold-forged an annealed lode tool head yet?"
+msgstr "...você já fez uma forja fria de uma cabeça de ferramenta de veio mineral?"
+
+msgid "...have you cold-forged lode down completely yet?"
+msgstr "...você já fez uma forja fria de um veio mineral?"
+
+msgid "...have you cooled molten glass into crude glass yet?"
+msgstr "...você já esfriou vidro derretido para que este virasse vidro cru?"
+
+msgid "...have you cut down a tree yet?"
+msgstr "...você já cortou uma árvore?"
+
+msgid "...have you dug up a tree stump yet?"
+msgstr "...você já desenterrou um toco de árvore?"
+
+msgid "...have you dug up dirt yet?"
+msgstr "...você já cavou terra?"
+
+msgid "...have you dug up gravel yet?"
+msgstr "...você já cavou cascalho?"
+
+msgid "...have you dug up lode ore yet?"
+msgstr "...você já desenterrou um veio mineral?"
+
+msgid "...have you dug up sand yet?"
+msgstr "...você já cavou areia?"
+
+msgid "...have you dug up stone yet?"
+msgstr "...você já cavou pedra?"
+
+msgid "...have you found a lode stratum yet?"
+msgstr "...você já encontrou um estrato de veio mineral?"
+
+msgid "...have you found ash yet?"
+msgstr "...você já encontrou cinzas?"
+
+msgid "...have you found charcoal yet?"
+msgstr "...você já encontrou carvão?"
+
+msgid "...have you found deep stone strata yet?"
+msgstr "...você já encontrou um estrato de pedra profunda?"
+
+msgid "...have you found dry leaves yet?"
+msgstr "...você já encontrou folhas secas?"
+
+msgid "...have you found eggcorns yet?"
+msgstr "...você já encontrou semente de carvalho?"
+
+msgid "...have you found lode ore yet?"
+msgstr "...você já encontrou um veio mineral?"
+
+msgid "...have you found molten rock yet?"
+msgstr "...você já encontrou pedra derretida (lava)?"
+
+msgid "...have you found sponges yet?"
+msgstr "...você já encontrou esponjas?"
+
+msgid "...have you found sticks yet?"
+msgstr "...você já encontrou gravetos?"
+
+msgid "...have you made fire by rubbing sticks together yet?"
+msgstr "...você já fez fogo esfregando gravetos?"
+
+msgid "...have you melted down lode metal yet?"
+msgstr "...você já derreteu um veio mineral?"
+
+msgid "...have you melted sand into glass yet?"
+msgstr "...você já transformou areia em vidro, derretendo a areia?"
+
+msgid "...have you molded molten glass into clear glass yet?"
+msgstr "...você já moldou vidro derretido em vidro transparente?"
+
+msgid "...have you packed high-quality charcoal yet?"
+msgstr "...você já juntou carvão de alta qualidade?"
+
+msgid "...have you packed stone chips back into cobble yet?"
+msgstr "...você já juntou pedaços de pedra para que virassem pedregulho?"
+
+msgid "...have you planted an eggcorn yet?"
+msgstr "...você já plantou uma semente de carvalho?"
+
+msgid "...have you produced light from a lens yet?"
+msgstr "...você já gerou luz a partir de uma lente?"
+
+msgid "...have you put a stone tip onto a tool yet?"
+msgstr "...você já colocou uma ponta de pedra em uma ferramenta?"
+
+msgid "...have you quenched molten glass into chromatic glass yet?"
+msgstr "...você já temperou vidro derretido para que virasse vidro cromático?"
+
+msgid "...have you sintered glowing lode into a cube yet?"
+msgstr "...você já moldou veio mineral incandescente em um cubo?"
+
+msgid "...have you split a tree trunk into planks yet?"
+msgstr "...você já fez tábuas quebrando troncos de madeira?"
+
+msgid "...have you tempered a lode anvil yet?"
+msgstr "...você já fez uma bigorna temperando veio mineral?"
+
+msgid "...have you tempered a lode tool head yet?"
+msgstr "...você já fez uma cabeça de ferramenta temperando veio mineral?"
+
+msgid "...have you welded a lode pick and spade together yet?"
+msgstr "...você já soldou uma picareta de veio mineral com uma pá de veio mineral?"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Active Lens"
+msgstr "Lente Ativa"
+
+msgid "Active Prism"
+msgstr "Prisma Ativo"
+
+msgid "Aggregate"
+msgstr "Agregar"
+
+msgid "Air"
+msgstr "Ar"
+
+msgid "Annealed Lode"
+msgstr "Veio Mineral Recozido"
+
+msgid "Annealed Lode Bar"
+msgstr "Barra de Veio Mineral Recozida"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Machado de Veio Mineral Recozida"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Cabeça de Machado de Veio Mineral Recozida"
+
+msgid "Annealed Lode Mallet"
+msgstr "Marreta de Veio Mineral Recozida"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Cabeça de Marreta de Veio Mineral Recozida"
+
+msgid "Annealed Lode Mattock"
+msgstr "Enxada de Veio Mineral Recozida"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Cabeça de Enxada de Veio Mineral Recozida"
+
+msgid "Annealed Lode Pick"
+msgstr "Picareta de Veio Mineral Recozida"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Cabeça de Picareta de Veio Mineral Recozida"
+
+msgid "Annealed Lode Prill"
+msgstr "Lascas de Veio Mineral Recozida"
+
+msgid "Annealed Lode Rod"
+msgstr "Vara de Veio Mineral Recozida"
+
+msgid "Annealed Lode Spade"
+msgstr "Pá de Veio Mineral Recozida"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Cabeça de Pá de Veio Mineral Recozida"
+
+msgid "Ash"
+msgstr "Cinza"
+
+msgid "Ash Lump"
+msgstr "Nódulo de Cinzas"
+
+msgid "Burning Embers"
+msgstr "Brasa Quente"
+
+msgid "Charcoal"
+msgstr "Carvão Vegetal"
+
+msgid "Charcoal Lump"
+msgstr "Nódulo de Carvão Vegetal"
+
+msgid "Chromatic Glass"
+msgstr "Vidro Cromático"
+
+msgid "Clear Glass"
+msgstr "Vidro Transparente"
+
+msgid "Cobble"
+msgstr "Pedregulho"
+
+msgid "Cobble Hinged Panel"
+msgstr "Painel de Pedregulho Articulado"
+
+msgid "Cobble Panel"
+msgstr "Painel de Pedregulho"
+
+msgid "Crude Glass"
+msgstr "Vidro Bruto"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERSÃO EM DESENVOLVIMENTO"
+
+msgid "Dirt"
+msgstr "Terra"
+
+msgid "Discord:   https://discord.gg/SHq2tkb"
+msgstr "Discord:   https://discord.gg/SHq2tkb"
+
+msgid "Eggcorn"
+msgstr "Semente de Carvalho"
+
+msgid "Fire"
+msgstr "Fogo"
+
+msgid "Float Glass"
+msgstr "Vidro Float"
+
+msgid "GitLab:    https://gitlab.com/sztest/nodecore"
+msgstr "GitLab:    https://gitlab.com/sztest/nodecore"
+
+msgid "Glowing Lode"
+msgstr "Veio Mineral Incandescente"
+
+msgid "Glowing Lode Bar"
+msgstr "Barra de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Hatchet"
+msgstr "Machado de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Cabeça de Machado Veio Mineral Incandescente"
+
+msgid "Glowing Lode Mallet"
+msgstr "Marreta de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Cabeça de Marreta Veio Mineral Incandescente"
+
+msgid "Glowing Lode Mattock"
+msgstr "Enxada de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Cabeça de Enxada Veio Mineral Incandescente"
+
+msgid "Glowing Lode Pick"
+msgstr "Picareta de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Cabeça de Picareta de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Prill"
+msgstr "Lascas de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Rod"
+msgstr "Vara de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Spade"
+msgstr "Pá de Veio Mineral Incandescente"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Cabeça de Pá Veio Mineral Incandescente"
+
+msgid "Grass"
+msgstr "Grama"
+
+msgid "Gravel"
+msgstr "Cascalho"
+
+msgid "Hints"
+msgstr "Dicas"
+
+msgid "Ignore"
+msgstr "Ignorar"
+
+msgid "Injury"
+msgstr "Ferir"
+
+msgid "Inventory"
+msgstr "Inventário"
+
+msgid "Leaves"
+msgstr "Folhas"
+
+msgid "Lens"
+msgstr "Lente"
+
+msgid "Living Sponge"
+msgstr "Esponja Viva"
+
+msgid "Lode Cobble"
+msgstr "Veio de Pedregulho"
+
+msgid "Lode Ore"
+msgstr "Veio Mineral"
+
+msgid "Loose Cobble"
+msgstr "Pedregulho Solta"
+
+msgid "Loose Dirt"
+msgstr "Terra Solta"
+
+msgid "Loose Gravel"
+msgstr "Cascalho Solto"
+
+msgid "Loose Leaves"
+msgstr "Folhas Soltas"
+
+msgid "Loose Lode Cobble"
+msgstr "Veio de Pedregulho Solto"
+
+msgid "Loose Sand"
+msgstr "Areia Solta"
+
+msgid "MIT License:  http://www.opensource.org/licenses/MIT"
+msgstr "Licensa MIT: http://www.opensource.org/licenses/MIT"
+
+msgid "Molten Glass"
+msgstr "Vidro Derretido"
+
+msgid "Molten Rock"
+msgstr "Pedra Derretida"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Not all game content is covered by hints.  Explore!"
+msgstr "As dicas não cobrem todo o conteúdo do jogo. Explore!"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Guia do Jogador: Gerenciamento de Inventário"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Guia do Jogador: Receitas por Esmurrada"
+
+msgid "Prism"
+msgstr "Prisma"
+
+msgid "Progress: @1 complete, @2 current, @3 future"
+msgstr "Progresso: @1 completo(s), @2 atual(is), @3 futuro(s)"
+
+msgid "Pummel"
+msgstr "Esmurrar"
+
+msgid "Sand"
+msgstr "Areia"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "Veja o arquivo de LICENSA incluso para créditos e maiores detalhes"
+
+msgid "Shining Lens"
+msgstr "Lente Brilhante"
+
+msgid "Sponge"
+msgstr "Esponja"
+
+msgid "Staff"
+msgstr "Bastão"
+
+msgid "Stick"
+msgstr "Graveto"
+
+msgid "Stone"
+msgstr "Pedra"
+
+msgid "Stone Chip"
+msgstr "Pedaço de Pedra"
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Machado com Ponta de Pedra"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Marreta com Ponta de Pedra"
+
+msgid "Stone-Tipped Pick"
+msgstr "Picareta com Ponta de Pedra"
+
+msgid "Stone-Tipped Spade"
+msgstr "Pá com Ponta de Pedra"
+
+msgid "Stump"
+msgstr "Toco"
+
+msgid "Teleport to get unstuck (but you can't bring your items)"
+msgstr "Teleporte para desprender-se (mas você perderá seus itens)"
+
+msgid "Tempered Lode"
+msgstr "Veio Mineral Temperado"
+
+msgid "Tempered Lode Bar"
+msgstr "Barra de Veio Mineral Temperado"
+
+msgid "Tempered Lode Hatchet"
+msgstr "Machado de Veio Mineral Temperado"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "Cabeça de Machado de Veio Mineral Temperado"
+
+msgid "Tempered Lode Mallet"
+msgstr "Marreta de Veio Mineral Temperado"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "Cabeça de Marreta de Veio Mineral Temperado"
+
+msgid "Tempered Lode Mattock"
+msgstr "Enxada de Veio Mineral Temperado"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "Cabeça de Enxada de Veio Mineral Temperado"
+
+msgid "Tempered Lode Pick"
+msgstr "Picareta de Veio Mineral Temperado"
+
+msgid "Tempered Lode Pick Head"
+msgstr "Cabeça de Picareta de Veio Mineral Temperado"
+
+msgid "Tempered Lode Prill"
+msgstr "Lascas de Veio Mineral Temperado"
+
+msgid "Tempered Lode Rod"
+msgstr "Vara de Veio Mineral Temperado"
+
+msgid "Tempered Lode Spade"
+msgstr "Pá de Veio Mineral Temperado"
+
+msgid "Tempered Lode Spade Head"
+msgstr "Cabeça de Enxada de Veio Mineral Temperado"
+
+msgid "Tote (1 Slot)"
+msgstr "Bolsa (1 Compartimento)"
+
+msgid "Tote (2 Slots)"
+msgstr "Bolsa (2 Compartimentos)"
+
+msgid "Tote (3 Slots)"
+msgstr "Bolsa (3 Compartimentos)"
+
+msgid "Tote (4 Slots)"
+msgstr "Bolsa (4 Compartimentos)"
+
+msgid "Tote (5 Slots)"
+msgstr "Bolsa (5 Compartimentos)"
+
+msgid "Tote (6 Slots)"
+msgstr "Bolsa (6 Compartimentos)"
+
+msgid "Tote (7 Slots)"
+msgstr "Bolsa (7 Compartimentos)"
+
+msgid "Tote (8 Slots)"
+msgstr "Bolsa (8 Compartimentos)"
+
+msgid "Tote Handle"
+msgstr "Alça de Bolsa"
+
+msgid "Tree Trunk"
+msgstr "Tronco de Árvore"
+
+msgid "Unknown Item"
+msgstr "Item Desconhecido"
+
+msgid "Version"
+msgstr "Versão"
+
+msgid "Water"
+msgstr "Água"
+
+msgid "Wet Aggregate"
+msgstr "Massa Úmida"
+
+msgid "Wet Sponge"
+msgstr "Esponja Molhada"
+
+msgid "Wooden Adze"
+msgstr "Enxó de Madeira"
+
+msgid "Wooden Frame"
+msgstr "Estrutura de Madeira"
+
+msgid "Wooden Hatchet"
+msgstr "Machado de Madeira"
+
+msgid "Wooden Hatchet Head"
+msgstr "Cabeça de Machado de Madeira"
+
+msgid "Wooden Hinged Panel"
+msgstr "Painel Articulado de Madeira"
+
+msgid "Wooden Ladder"
+msgstr "Escada de Madeira"
+
+msgid "Wooden Mallet"
+msgstr "Marreta de Madeira"
+
+msgid "Wooden Mallet Head"
+msgstr "Cabeça de Marreta de Madeira"
+
+msgid "Wooden Panel"
+msgstr "Painel de Madeira"
+
+msgid "Wooden Pick"
+msgstr "Picareta de Madeira"
+
+msgid "Wooden Pick Head"
+msgstr "Cabeça de Picareta de Madeira"
+
+msgid "Wooden Plank"
+msgstr "Tábua de Madeira"
+
+msgid "Wooden Shelf"
+msgstr "Estante de Madeira"
+
+msgid "Wooden Spade"
+msgstr "Pá de Madeira"
+
+msgid "Wooden Spade Head"
+msgstr "Cabeça de Pá de Madeira"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "(and @1 more hints)"
+msgstr "(e mais @1 dicas)"
+
+msgid "(and 1 more hint)"
+msgstr "( e mais 1 dica)"

@@ -1,0 +1,771 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-04 22:56+0000\n"
+"PO-Revision-Date: 2019-10-04 22:56+0000\n"
+"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
+"Language-Team: English <http://nodecore.mine.nu/trans/projects/nodecore/core/"
+"en/>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+
+msgid "(and 1 more hint)"
+msgstr "(and 1 more hint)"
+
+msgid "(and @1 more hints)"
+msgstr "(and @1 more hints)"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
+
+msgid "- "Torches" are not a thing; use fire as your first light source."
+msgstr "[REMOVED]"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- Can't dig trees or grass? Search for sticks in the canopy."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Crafting is done by building recipes in-world."
+
+msgid "- DONE: @1"
+msgstr "- DONE: @1"
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- Drop items onto ground to create stack nodes. They do not decay."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- If a recipe exists, you will see a special particle effect."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- Items picked up try to fit into the current selected slot first."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- Order and specific face of placement may matter for crafting."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "- Ores may be hidden, but revealed by subtle clues in terrain."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Recipes are time-based, punching faster does not speed up."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Sneak+drop to count out single items from stack."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Some recipes require "pummeling" a node."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- Stacks may be pummeled, exact item count may matter."
+
+msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+msgstr "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+
+msgid "- There is NO inventory screen."
+msgstr "- There is NO inventory screen."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- To pummel, punch a node repeatedly, WITHOUT digging."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- Trouble lighting a fire? Try using longer sticks, more tinder."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- Wielded item, target face, and surrounding nodes may matter."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- You do not have to punch very fast (about 1 per second)."
+
+msgid "About"
+msgstr "About"
+
+msgid "Active Lens"
+msgstr "Active Lens"
+
+msgid "Active Prism"
+msgstr "Active Prism"
+
+msgid "Aggregate"
+msgstr "Aggregate"
+
+msgid "Air"
+msgstr "Air"
+
+msgid "Annealed Lode"
+msgstr "Annealed Lode"
+
+msgid "Annealed Lode Bar"
+msgstr "Annealed Lode Bar"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Annealed Lode Hatchet"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Annealed Lode Hatchet Head"
+
+msgid "Annealed Lode Mallet"
+msgstr "Annealed Lode Mallet"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Annealed Lode Mallet Head"
+
+msgid "Annealed Lode Mattock"
+msgstr "Annealed Lode Mattock"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Annealed Lode Mattock Head"
+
+msgid "Annealed Lode Pick"
+msgstr "Annealed Lode Pick"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Annealed Lode Pick Head"
+
+msgid "Annealed Lode Prill"
+msgstr "Annealed Lode Prill"
+
+msgid "Annealed Lode Rod"
+msgstr "Annealed Lode Rod"
+
+msgid "Annealed Lode Spade"
+msgstr "Annealed Lode Spade"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Annealed Lode Spade Head"
+
+msgid "Ash"
+msgstr "Ash"
+
+msgid "Ash Lump"
+msgstr "Ash Lump"
+
+msgid "Burning Embers"
+msgstr "Burning Embers"
+
+msgid "Charcoal"
+msgstr "Charcoal"
+
+msgid "Charcoal Lump"
+msgstr "Charcoal Lump"
+
+msgid "Chromatic Glass"
+msgstr "Chromatic Glass"
+
+msgid "Clear Glass"
+msgstr "Clear Glass"
+
+msgid "Cobble"
+msgstr "Cobble"
+
+msgid "Cobble Hinged Panel"
+msgstr "Cobble Hinged Panel"
+
+msgid "Cobble Panel"
+msgstr "Cobble Panel"
+
+msgid "Crude Glass"
+msgstr "Crude Glass"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "DEVELOPMENT VERSION"
+
+msgid "Dirt"
+msgstr "Dirt"
+
+msgid "Discord: https://discord.gg/SHq2tkb"
+msgstr "Discord: https://discord.gg/SHq2tkb"
+
+msgid "Eggcorn"
+msgstr "Eggcorn"
+
+msgid "Fire"
+msgstr "Fire"
+
+msgid "Float Glass"
+msgstr "Float Glass"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Glowing Lode"
+msgstr "Glowing Lode"
+
+msgid "Glowing Lode Bar"
+msgstr "Glowing Lode Bar"
+
+msgid "Glowing Lode Hatchet"
+msgstr "Glowing Lode Hatchet"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Glowing Lode Hatchet Head"
+
+msgid "Glowing Lode Mallet"
+msgstr "Glowing Lode Mallet"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Glowing Lode Mallet Head"
+
+msgid "Glowing Lode Mattock"
+msgstr "Glowing Lode Mattock"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Glowing Lode Mattock Head"
+
+msgid "Glowing Lode Pick"
+msgstr "Glowing Lode Pick"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Glowing Lode Pick Head"
+
+msgid "Glowing Lode Prill"
+msgstr "Glowing Lode Prill"
+
+msgid "Glowing Lode Rod"
+msgstr "Glowing Lode Rod"
+
+msgid "Glowing Lode Spade"
+msgstr "Glowing Lode Spade"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Glowing Lode Spade Head"
+
+msgid "Grass"
+msgstr "Grass"
+
+msgid "Gravel"
+msgstr "Gravel"
+
+msgid "Hints"
+msgstr "Hints"
+
+msgid "Ignore"
+msgstr "Ignore"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Infused Annealed Lode Hatchet"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Infused Annealed Lode Mallet"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Infused Annealed Lode Mattock"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Infused Annealed Lode Pick"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Infused Annealed Lode Spade"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Infused Tempered Lode Hatchet"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Infused Tempered Lode Mallet"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Infused Tempered Lode Mattock"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Infused Tempered Lode Pick"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Infused Tempered Lode Spade"
+
+msgid "Injury"
+msgstr "Injury"
+
+msgid "Inventory"
+msgstr "Inventory"
+
+msgid "Leaves"
+msgstr "Leaves"
+
+msgid "Lens"
+msgstr "Lens"
+
+msgid "Living Sponge"
+msgstr "Living Sponge"
+
+msgid "Lode Cobble"
+msgstr "Lode Cobble"
+
+msgid "Lode Crate"
+msgstr "Lode Crate"
+
+msgid "Lode Ore"
+msgstr "Lode Ore"
+
+msgid "Loose Cobble"
+msgstr "Loose Cobble"
+
+msgid "Loose Dirt"
+msgstr "Loose Dirt"
+
+msgid "Loose Gravel"
+msgstr "Loose Gravel"
+
+msgid "Loose Leaves"
+msgstr "Loose Leaves"
+
+msgid "Loose Lode Cobble"
+msgstr "Loose Lode Cobble"
+
+msgid "Loose Lux Cobble"
+msgstr "Loose Lux Cobble"
+
+msgid "Loose Sand"
+msgstr "Loose Sand"
+
+msgid "Lux Cobble"
+msgstr "Lux Cobble"
+
+msgid "Lux Flow"
+msgstr "Lux Flow"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
+
+msgid "Molten Glass"
+msgstr "Molten Glass"
+
+msgid "Molten Rock"
+msgstr "Molten Rock"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Not all game content is covered by hints. Explore!"
+msgstr "Not all game content is covered by hints. Explore!"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Player's Guide: Inventory Management"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Player's Guide: Pummeling Recipes"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Player's Guide: Tips and Guidance"
+
+msgid "Prism"
+msgstr "Prism"
+
+msgid "Progress: @1 complete, @2 current, @3 future"
+msgstr "Progress: @1 complete, @2 current, @3 future"
+
+msgid "Pummel"
+msgstr "Pummel"
+
+msgid "Sand"
+msgstr "Sand"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "See included LICENSE file for full details and credits"
+
+msgid "Shining Lens"
+msgstr "Shining Lens"
+
+msgid "Sponge"
+msgstr "Sponge"
+
+msgid "Staff"
+msgstr "Staff"
+
+msgid "Stick"
+msgstr "Stick"
+
+msgid "Stone"
+msgstr "Stone"
+
+msgid "Stone Chip"
+msgstr "Stone Chip"
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Stone-Tipped Hatchet"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Stone-Tipped Mallet"
+
+msgid "Stone-Tipped Pick"
+msgstr "Stone-Tipped Pick"
+
+msgid "Stone-Tipped Spade"
+msgstr "Stone-Tipped Spade"
+
+msgid "Stump"
+msgstr "Stump"
+
+msgid "Tempered Lode"
+msgstr "Tempered Lode"
+
+msgid "Tempered Lode Bar"
+msgstr "Tempered Lode Bar"
+
+msgid "Tempered Lode Hatchet"
+msgstr "Tempered Lode Hatchet"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "Tempered Lode Hatchet Head"
+
+msgid "Tempered Lode Mallet"
+msgstr "Tempered Lode Mallet"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "Tempered Lode Mallet Head"
+
+msgid "Tempered Lode Mattock"
+msgstr "Tempered Lode Mattock"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "Tempered Lode Mattock Head"
+
+msgid "Tempered Lode Pick"
+msgstr "Tempered Lode Pick"
+
+msgid "Tempered Lode Pick Head"
+msgstr "Tempered Lode Pick Head"
+
+msgid "Tempered Lode Prill"
+msgstr "Tempered Lode Prill"
+
+msgid "Tempered Lode Rod"
+msgstr "Tempered Lode Rod"
+
+msgid "Tempered Lode Spade"
+msgstr "Tempered Lode Spade"
+
+msgid "Tempered Lode Spade Head"
+msgstr "Tempered Lode Spade Head"
+
+msgid "Tips"
+msgstr "Tips"
+
+msgid "Tote (1 Slot)"
+msgstr "Tote (1 Slot)"
+
+msgid "Tote (2 Slots)"
+msgstr "Tote (2 Slots)"
+
+msgid "Tote (3 Slots)"
+msgstr "Tote (3 Slots)"
+
+msgid "Tote (4 Slots)"
+msgstr "Tote (4 Slots)"
+
+msgid "Tote (5 Slots)"
+msgstr "Tote (5 Slots)"
+
+msgid "Tote (6 Slots)"
+msgstr "Tote (6 Slots)"
+
+msgid "Tote (7 Slots)"
+msgstr "Tote (7 Slots)"
+
+msgid "Tote (8 Slots)"
+msgstr "Tote (8 Slots)"
+
+msgid "Tote Handle"
+msgstr "Tote Handle"
+
+msgid "Tree Trunk"
+msgstr "Tree Trunk"
+
+msgid "Unknown Item"
+msgstr "Unknown Item"
+
+msgid "Water"
+msgstr "Water"
+
+msgid "Wet Aggregate"
+msgstr "Wet Aggregate"
+
+msgid "Wet Sponge"
+msgstr "Wet Sponge"
+
+msgid "Wooden Adze"
+msgstr "Wooden Adze"
+
+msgid "Wooden Frame"
+msgstr "Wooden Frame"
+
+msgid "Wooden Hatchet"
+msgstr "Wooden Hatchet"
+
+msgid "Wooden Hatchet Head"
+msgstr "Wooden Hatchet Head"
+
+msgid "Wooden Hinged Panel"
+msgstr "Wooden Hinged Panel"
+
+msgid "Wooden Ladder"
+msgstr "Wooden Ladder"
+
+msgid "Wooden Mallet"
+msgstr "Wooden Mallet"
+
+msgid "Wooden Mallet Head"
+msgstr "Wooden Mallet Head"
+
+msgid "Wooden Panel"
+msgstr "Wooden Panel"
+
+msgid "Wooden Pick"
+msgstr "Wooden Pick"
+
+msgid "Wooden Pick Head"
+msgstr "Wooden Pick Head"
+
+msgid "Wooden Plank"
+msgstr "Wooden Plank"
+
+msgid "Wooden Shelf"
+msgstr "Wooden Shelf"
+
+msgid "Wooden Spade"
+msgstr "Wooden Spade"
+
+msgid "Wooden Spade Head"
+msgstr "Wooden Spade Head"
+
+msgid "activate a lens"
+msgstr "activate a lens"
+
+msgid "assemble a staff from sticks"
+msgstr "assemble a staff from sticks"
+
+msgid "assemble a wooden frame from staves"
+msgstr "assemble a wooden frame from staves"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "assemble a wooden ladder from sticks"
+
+msgid "assemble a wooden shelf from frames and planks"
+msgstr "assemble a wooden shelf from frames and planks"
+
+msgid "assemble a wooden tool"
+msgstr "assemble a wooden tool"
+
+msgid "assemble an adze out of sticks"
+msgstr "assemble an adze out of sticks"
+
+msgid "assemble an annealed lode tote handle"
+msgstr "assemble an annealed lode tote handle"
+
+msgid "bash a plank into sticks"
+msgstr "bash a plank into sticks"
+
+msgid "break cobble into chips"
+msgstr "break cobble into chips"
+
+msgid "carve a wooden plank completely"
+msgstr "carve a wooden plank completely"
+
+msgid "carve wooden tool heads from planks"
+msgstr "carve wooden tool heads from planks"
+
+msgid "chip chromatic glass into prisms"
+msgstr "chip chromatic glass into prisms"
+
+msgid "chisel a hinge groove into a wooden plank"
+msgstr "chisel a hinge groove into a wooden plank"
+
+msgid "chisel a hinge groove into cobble"
+msgstr "chisel a hinge groove into cobble"
+
+msgid "chop a glowing lode cube into prills"
+msgstr "chop a glowing lode cube into prills"
+
+msgid "chop a lode crate back apart"
+msgstr "chop a lode crate back apart"
+
+msgid "chop chromatic glass into lenses"
+msgstr "chop chromatic glass into lenses"
+
+msgid "chop lode a rod back into bars"
+msgstr "chop lode a rod back into bars"
+
+msgid "chop up charcoal"
+msgstr "chop up charcoal"
+
+msgid "cold-forge annealed lode prills into a tool head"
+msgstr "cold-forge annealed lode prills into a tool head"
+
+msgid "cold-forge lode down completely"
+msgstr "cold-forge lode down completely"
+
+msgid "cool molten glass into crude glass"
+msgstr "cool molten glass into crude glass"
+
+msgid "cut down a tree"
+msgstr "cut down a tree"
+
+msgid "dig up a tree stump"
+msgstr "dig up a tree stump"
+
+msgid "dig up dirt"
+msgstr "dig up dirt"
+
+msgid "dig up gravel"
+msgstr "dig up gravel"
+
+msgid "dig up lode ore"
+msgstr "dig up lode ore"
+
+msgid "dig up lux cobble"
+msgstr "dig up lux cobble"
+
+msgid "dig up sand"
+msgstr "dig up sand"
+
+msgid "dig up stone"
+msgstr "dig up stone"
+
+msgid "dry out a sponge"
+msgstr "dry out a sponge"
+
+msgid "find a lode stratum"
+msgstr "find a lode stratum"
+
+msgid "find a sponge"
+msgstr "find a sponge"
+
+msgid "find a stick"
+msgstr "find a stick"
+
+msgid "find an eggcorn"
+msgstr "find an eggcorn"
+
+msgid "find ash"
+msgstr "find ash"
+
+msgid "find charcoal"
+msgstr "find charcoal"
+
+msgid "find deep stone strata"
+msgstr "find deep stone strata"
+
+msgid "find dry (loose) leaves"
+msgstr "find dry (loose) leaves"
+
+msgid "find lode ore"
+msgstr "find lode ore"
+
+msgid "find lux"
+msgstr "find lux"
+
+msgid "find molten rock"
+msgstr "find molten rock"
+
+msgid "hammer a lode bar back to a prill"
+msgstr "hammer a lode bar back to a prill"
+
+msgid "hammer a lode prill into a bar"
+msgstr "hammer a lode prill into a bar"
+
+msgid "hammer a metal rod into a cobble panel"
+msgstr "hammer a metal rod into a cobble panel"
+
+msgid "hammer a staff into a lubricated wooden panel"
+msgstr "hammer a staff into a lubricated wooden panel"
+
+msgid "hammer lode bars into a rod"
+msgstr "hammer lode bars into a rod"
+
+msgid "harvest a sponge"
+msgstr "harvest a sponge"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "lubricate a cobble panel with graphite"
+msgstr "lubricate a cobble panel with graphite"
+
+msgid "lubricate a wooden panel with graphite"
+msgstr "lubricate a wooden panel with graphite"
+
+msgid "lux-infuse a lode tool"
+msgstr "lux-infuse a lode tool"
+
+msgid "make an anvil by tempering a lode cube"
+msgstr "make an anvil by tempering a lode cube"
+
+msgid "make fire by rubbing sticks together"
+msgstr "make fire by rubbing sticks together"
+
+msgid "make wet aggregate"
+msgstr "make wet aggregate"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "melt down lode metal from lode cobble"
+
+msgid "melt sand into glass"
+msgstr "melt sand into glass"
+
+msgid "mix gravel into ash to make aggregate"
+msgstr "mix gravel into ash to make aggregate"
+
+msgid "mold molten glass into clear glass"
+msgstr "mold molten glass into clear glass"
+
+msgid "mold molten glass into float glass"
+msgstr "mold molten glass into float glass"
+
+msgid "observe a lux reaction"
+msgstr "observe a lux reaction"
+
+msgid "observe lux criticality"
+msgstr "observe lux criticality"
+
+msgid "pack high-quality charcoal"
+msgstr "pack high-quality charcoal"
+
+msgid "pack stone chips back into cobble"
+msgstr "pack stone chips back into cobble"
+
+msgid "plant an eggcorn"
+msgstr "plant an eggcorn"
+
+msgid "produce light from a lens"
+msgstr "produce light from a lens"
+
+msgid "put a stone tip onto a wooden tool"
+msgstr "put a stone tip onto a wooden tool"
+
+msgid "quench molten glass into chromatic glass"
+msgstr "quench molten glass into chromatic glass"
+
+msgid "scale a sheer overhang"
+msgstr "scale a sheer overhang"
+
+msgid "scale a sheer wall"
+msgstr "scale a sheer wall"
+
+msgid "sinter glowing lode prills into a cube"
+msgstr "sinter glowing lode prills into a cube"
+
+msgid "solder lode rods into crates"
+msgstr "solder lode rods into crates"
+
+msgid "split a tree trunk into planks"
+msgstr "split a tree trunk into planks"
+
+msgid "squeeze out a sponge"
+msgstr "squeeze out a sponge"
+
+msgid "temper a lode tool head"
+msgstr "temper a lode tool head"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "weld glowing lode pick and spade heads together"
