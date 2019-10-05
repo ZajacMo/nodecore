@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -68,6 +68,77 @@ minetest.register_node(epname, nodecore.underride({
 		},
 		minetest.registered_items[ldname] or {}))
 
+local function growthrate(pos)
+	local anode = minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z})
+	if anode.name ~= "air" then return 0 end
+	local d = 0
+	local w = 1
+	nodecore.scan_flood(pos, 3, function(p)
+			local nn = minetest.get_node(p).name
+			local def = minetest.registered_items[nn] or {}
+			if not def.groups then
+				return false
+			end
+			if def.groups.soil then
+				d = d + def.groups.soil
+				w = w + 0.2
+			elseif def.groups.moist then
+				w = w + def.groups.moist
+				return false
+			else
+				return false
+			end
+		end)
+	return math_sqrt(d * w)
+end
+
+local function growtree(pos)
+	minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
+	for _ = 1, 4 do
+		minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
+	end
+	local leaves = {}
+	for i = 1, 8 do
+		local p = {x = pos.x, y = pos.y + i, z = pos.z}
+		local n = minetest.get_node(p)
+		if n.name == modname .. ":leaves" then
+			leaves[p] = n
+			minetest.remove_node(p)
+		else
+			local def = minetest.registered_nodes[n.name]
+			if def and def.buildable_to then
+				leaves[p] = n
+				minetest.remove_node(p)
+			end
+		end
+	end
+	local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
+	minetest.place_schematic(place, nodecore.tree_schematic,
+		"random", {}, false)
+	for p, n in pairs(leaves) do
+		if minetest.get_node(p).name == "air" then
+			minetest.set_node(p, n)
+		end
+	end
+end
+
+minetest.register_chatcommand("growtrees", {
+		description = "Instantly grow nearby trees",
+		privs = { ["debug"] = true },
+		func = function(pname)
+			local player = minetest.get_player_by_name(pname)
+			if not player then return end
+			local pos = player:get_pos()
+			local range = {x = 5, y = 5, z = 5}
+			local min = vector.subtract(pos, range)
+			local max = vector.add(pos, range)
+			for _, p in pairs(minetest.find_nodes_in_area(min, max, {epname})) do
+				local r = growthrate(p)
+				if r and r > 0 then growtree(p) end
+			end
+		end
+	})
+
 nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		nodenames = {epname},
@@ -77,52 +148,9 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		qtyfield = "growth",
 		timefield = "start",
-		soakrate = function(pos)
-			local d = 0
-			local w = 1
-			nodecore.scan_flood(pos, 3, function(p)
-					local nn = minetest.get_node(p).name
-					local def = minetest.registered_items[nn] or {}
-					if not def.groups then
-						return false
-					end
-					if def.groups.soil then
-						d = d + def.groups.soil
-						w = w + 0.2
-					elseif def.groups.moist then
-						w = w + def.groups.moist
-						return false
-					else
-						return false
-					end
-				end)
-			return math_sqrt(d * w)
-		end,
+		soakrate = growthrate,
 		soakcheck = function(data, pos)
-			if data.total >= 5000 then
-				minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
-				for _ = 1, 4 do
-					minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
-				end
-				local leaves = {}
-				for i = 1, 8 do
-					local p = {x = pos.x, y = pos.y + i, z = pos.z}
-					local n = minetest.get_node(p)
-					if n.name == modname .. ":leaves" then
-						leaves[p] = n
-						minetest.remove_node(p)
-					end
-				end
-				local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-				minetest.place_schematic(place, nodecore.tree_schematic,
-					"random", {}, false)
-				for p, n in pairs(leaves) do
-					if minetest.get_node(p).name == "air" then
-						minetest.set_node(p, n)
-					end
-				end
-				return
-			end
+			if data.total >= 5000 then return growtree(pos) end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
 				{
