@@ -35,6 +35,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 			description = (desc or basedef.description) .. " Panel",
 			tiles = tiles,
 			paramtype2 = "facedir",
+			silktouch = false,
 			on_rightclick = nodecore.node_spin_filtered(function(a, b)
 					return vector.equals(a.f, b.r)
 					and vector.equals(a.r, b.f)
