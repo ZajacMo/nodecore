@@ -7,6 +7,8 @@ local math_floor, math_random, table_sort
     = math.floor, math.random, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local modname = minetest.get_current_modname()
 
 local glyphs = {
