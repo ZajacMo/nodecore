@@ -34,7 +34,7 @@ minetest.register_globalstep(function(dt)
 			-- Snuff all torches if doused in water.
 			local hpos = vector.add(ppos, {x = 0, y = 1, z = 0})
 			local head = minetest.get_node(hpos).name
-			if minetest.get_node_group(head, "water") > 0 then
+			if minetest.get_item_group(head, "water") > 0 then
 				for i = 1, inv:get_size("main") do
 					local stack = inv:get_stack("main", i)
 					if islit(stack) then snuffinv(player, inv, i) end

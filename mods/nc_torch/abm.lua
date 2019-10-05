@@ -22,7 +22,7 @@ nodecore.register_limited_abm({
 			for _, ofst in pairs(check) do
 				local npos = vector.add(pos, ofst)
 				local nbr = minetest.get_node(npos)
-				if minetest.get_node_group(nbr.name, "flammable") > 0 and not nodecore.quenched(npos) then
+				if minetest.get_item_group(nbr.name, "flammable") > 0 and not nodecore.quenched(npos) then
 					nodecore.fire_check_ignite(npos, nbr)
 				end
 			end
