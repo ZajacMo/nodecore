@@ -39,19 +39,13 @@ ROADMAP: Large New Development Projects
 		- Stronger near more water.
 		- Stronger near flowing water.
 
-- Torches?
-	- REVIEW GREEN'S PR!
-	- Coal lump atop a staff or stick.
-	- Stackable non-burning kind, non-stackable burning kind.
-	- Place near fire, it catches fire.  Burning torch acts as an
-	  igniter.
-	- Should place as a node (easier to abm) or should place as
-	  a tool (use wear for remaining life)?
-	- Limited lifetime; burns out, cannot be recycled.
-		- Between 20 and 120 seconds average.
-	- Snuff it if player's head enters water.
-	- Can create temporary light; on_use hook or similar, create
-	  short-lived airlike light source?
+- Torches
+	- Allow stick firestarting to light directly for most
+	  reliable firestarting method.
+	- Create a "strike-anywhere match" by adding other
+	  materials (sand, and something to react with like
+	  gravel or lux infusion) to instantly light on
+	  punching a solid enough surface.
 
 - Auto-forward roads.
 	- Detect players using auto-forward (forward-only, no lookdir changes)
@@ -178,6 +172,7 @@ ROADMAP: Large New Development Projects
 	- Plant-like CA animals, like bee nests and clouds of bees?
 	  Termine mounds? Ant colonies? Coral?
 	- Popeggcorn?
+	- Ores that smelt via heating and then rapid quenching?
 
 - System for transporting cargo.
 	- Trains of minecarts?
