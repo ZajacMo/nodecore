@@ -15,8 +15,17 @@ ISSUES: Bugs, Cleanup and Refinements
   learned and things observed about where the game is headed.
 
 - Balance/nerf leaf composting rates.
-	- Pack leaf nodes into a compost node?
-	- Need nearby moisture to compost?
+	- Leaves decay and convert grass underneath into
+	  dirt-with-peat if left in the sun.
+	- Dig dirt-with-peat into dirt to retrieve a peat lump.
+	- Pack 4 or 8 peat lumps into a peat node.
+		- N.B. Average tree yield is 15 dry leaves, so conversion
+		  is just barely sustainable at cost = 8.
+	- Bury peat under dirt and moisture over time to compost to soil.
+	- Maybe composted soil is richer, i.e. loam?
+		- Registered as soil, can grow trees.
+		- Maybe can grow other future cultivatables that won't
+		  grow in plain dirt.
 
 - Lode smelting changes.
 	- Currently lode smelting is too counterintuitive.
