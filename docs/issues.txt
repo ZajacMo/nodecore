@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Switch from deprecated depends.txt to mod.conf or whatever.
-
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 

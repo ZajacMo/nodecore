@@ -1,3 +1,0 @@
-nc_stats
-nc_player_gui
-nc_fire
