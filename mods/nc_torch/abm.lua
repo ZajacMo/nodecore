@@ -5,6 +5,13 @@ local minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
+local checkdirs = {
+	{x = 1, y = 0, z = 0},
+	{x = -1, y = 0, z = 0},
+	{x = 0, y = 0, z = 1},
+	{x = 0, y = 0, z = -1},
+	{x = 0, y = 1, z = 0}
+}
 nodecore.register_limited_abm({
 		label = "Torch Igniting",
 		interval = 6,
@@ -12,14 +19,8 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":torch_lit"},
 		neighbors = {"group:flammable"},
 		action = function(pos)
-			local check = {
-				{x = 1, y = 0, z = 0},
-				{x = -1, y = 0, z = 0},
-				{x = 0, y = 0, z = 1},
-				{x = 0, y = 0, z = -1},
-				{x = 0, y = 1, z = 0}
-			}
-			for _, ofst in pairs(check) do
+
+			for _, ofst in pairs(checkdirs) do
 				local npos = vector.add(pos, ofst)
 				local nbr = minetest.get_node(npos)
 				if minetest.get_item_group(nbr.name, "flammable") > 0 and not nodecore.quenched(npos) then
