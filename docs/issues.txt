@@ -12,16 +12,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 
-- Lode smelting changes.
-	- Currently lode smelting is too counterintuitive.
-	- Split recipe into 2 stages.
-		- Heat lode to melt the metal inside.  Add a cobble
-		  with molten lode node, and show metal pooling
-		  more at the bottom of the node.
-		- Have air space under molten lode for prills to
-		  come out.
-		- Molten lode cools back to lode cobble.
-
 - Less cumbersome scaling controls.
 	- Use loitering or staring, or some other passive input
 	  instead of a pummel recipe.
@@ -37,10 +27,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  a certain distance and line-of-sight.  
 	- Feedback/issues URL?
 		- Look for new URL buttons in 5.0+
-
-- Stone doors don't necessarily dig right.  Probably leftover junk
-  being inherited in the cloning; need to dig through the properties
-  and remove the ones we don't want inherited.
 
 - Reinstate and update toolbelt once engine PR #8701 is released
 	- Alternative item strategy with dedicated slots for each

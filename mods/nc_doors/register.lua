@@ -41,6 +41,10 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 					and vector.equals(a.r, b.f)
 				end),
 		}, basedef)
+	paneldef.drop = nil
+	paneldef.alternate_loose = nil
+	paneldef.drop_in_place = nil
+	paneldef.after_dig_node = nil
 
 	minetest.register_node(paneldef.name, paneldef)
 
