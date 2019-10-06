@@ -42,12 +42,6 @@ ROADMAP: Large New Development Projects
 	  gravel or lux infusion) to instantly light on
 	  punching a solid enough surface.
 
-- Auto-forward roads.
-	- Detect players using auto-forward (forward-only, no lookdir changes)
-	- On stepping on something, change yaw automatically.
-		- Pattern of terrain?
-		- Special node?
-
 - Advanced Tools
 	- Sickle / kopesh, choppy + snappy, recursive harvesting.
 	- Mop/broom for mass stack pickup.
