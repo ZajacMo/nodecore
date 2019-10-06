@@ -69,16 +69,33 @@ end
 
 reg("Cobble", {
 		tiles = { modname .. "_ore.png^nc_terrain_cobble.png" },
+		groups = {
+			lode_cobble = 1,
+			cracky = 2,
+			lodey = 1
+		},
 		alternate_loose = {
 			repack_level = 2,
 			groups = {
-				lodey = 1,
 				cracky = 0,
 				crumbly = 2,
 				falling_repose = 3
 			},
 			sounds = nodecore.sounds("nc_terrain_chompy")
 		}
+	})
+
+reg("cobble_hot", {
+		description = "Glowing Lode Cobble",
+		tiles = {
+			"nc_terrain_gravel.png^nc_terrain_cobble.png",
+			modname .. "_hot.png^nc_terrain_cobble.png",
+			"nc_terrain_gravel.png^(" .. modname .. "_hot.png^[mask:"
+			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
+		},
+		groups = { cracky = 0, lodey = 1 },
+		damage_per_second = 2,
+		on_punch = nodecore.node_punch_hurt
 	})
 
 local oreid = 0

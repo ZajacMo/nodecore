@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type
-    = ItemStack, math, minetest, nodecore, pairs, type
-local math_exp, math_floor, math_log, math_random
-    = math.exp, math.floor, math.log, math.random
+local ItemStack, minetest, nodecore, pairs, type
+    = ItemStack, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -86,38 +84,6 @@ nodecore.register_lode("Prill", {
 		type = "craft",
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
-
-local logadj = math_log(2)
-local function exporand()
-	local r = 0
-	while r == 0 do r = math_random() end
-	return math_floor(math_exp(-math_log(r) * logadj))
-end
-
-nodecore.register_craft({
-		label = "lode cobble to prills",
-		action = "cook",
-		touchgroups = {flame = 3},
-		duration = 30,
-		cookfx = true,
-		check = function(pos)
-			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			return not nodecore.match(below, {walkable = true})
-		end,
-		nodes = {
-			{
-				match = modname .. ":cobble",
-				replace = "nc_terrain:cobble"
-			}
-		},
-		after = function(pos)
-			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			return nodecore.item_eject(below, modname
-				.. ":prill_hot " .. exporand())
-		end
-	})
-
-nodecore.register_cook_abm({nodenames = {modname .. ":cobble"}, neighbors = {"group:flame"}})
 
 local function replacestack(pos, alt)
 	local stack = nodecore.stack_get(pos)
