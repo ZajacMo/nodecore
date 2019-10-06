@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_sqrt
-    = math.sqrt
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -33,6 +31,7 @@ minetest.register_node(modname .. ":peat", {
 			crumbly = 1,
 			flammable = 1,
 			fire_fuel = 3,
+			moist = 1,
 			green = 1
 		},
 		crush_damage = 1,
@@ -56,33 +55,13 @@ nodecore.register_soaking_abm({
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
 		interval = 10,
-		chance = 10,
+		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		soakrate = function(pos)
-			local d = 0
-			local w = 1
-			nodecore.scan_flood(pos, 3, function(p, r)
-					if r < 1 then return end
-					local nn = minetest.get_node(p).name
-					local def = minetest.registered_items[nn] or {}
-					if not def.groups then
-						return false
-					end
-					if def.groups.soil then
-						d = d + def.groups.soil
-						w = w + 0.2
-					elseif def.groups.moist then
-						w = w + def.groups.moist
-						return false
-					else
-						return false
-					end
-				end)
-			return math_sqrt(d * w)
-		end,
+		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
-			if data.total < 5000 then return end
+			if data.total < 2500 then return end
+			minetest.get_meta(pos):from_table({})
 			minetest.set_node(pos, {name = modname .. ":humus"})
 			nodecore.node_sound(pos, "place")
 		end

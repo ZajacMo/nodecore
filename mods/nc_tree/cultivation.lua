@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_sqrt
-    = math.sqrt
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -64,33 +62,14 @@ nodecore.register_leaf_drops(function(_, node, list)
 			prob = 0.05 * (node.param2 + 1)}
 	end)
 
-minetest.register_node(epname, nodecore.underride({
-			drop = ldname
-		},
-		minetest.registered_items[ldname] or {}))
+local epdef = nodecore.underride({drop = ldname}, minetest.registered_items[ldname] or {})
+epdef.groups.soil = nil
+minetest.register_node(epname, epdef)
 
-local function growthrate(pos)
+local function growthcheck(pos)
 	local anode = minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z})
 	if anode.name ~= "air" then return 0 end
-	local d = 0
-	local w = 1
-	nodecore.scan_flood(pos, 3, function(p)
-			local nn = minetest.get_node(p).name
-			local def = minetest.registered_items[nn] or {}
-			if not def.groups then
-				return false
-			end
-			if def.groups.soil then
-				d = d + def.groups.soil
-				w = w + 0.2
-			elseif def.groups.moist then
-				w = w + def.groups.moist
-				return false
-			else
-				return false
-			end
-		end)
-	return math_sqrt(d * w)
+	return nodecore.tree_growth_rate(pos)
 end
 
 local function growtree(pos)
@@ -114,6 +93,7 @@ local function growtree(pos)
 		end
 	end
 	local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
+	minetest.get_meta(pos):from_table({})
 	minetest.place_schematic(place, nodecore.tree_schematic,
 		"random", {}, false)
 	for p, n in pairs(leaves) do
@@ -134,7 +114,7 @@ minetest.register_chatcommand("growtrees", {
 			local min = vector.subtract(pos, range)
 			local max = vector.add(pos, range)
 			for _, p in pairs(minetest.find_nodes_in_area(min, max, {epname})) do
-				local r = growthrate(p)
+				local r = growthcheck(p)
 				if r and r > 0 then growtree(p) end
 			end
 		end
@@ -149,7 +129,7 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		qtyfield = "growth",
 		timefield = "start",
-		soakrate = growthrate,
+		soakrate = growthcheck,
 		soakcheck = function(data, pos)
 			if data.total >= 5000 then return growtree(pos) end
 			local zero = {x = 0, y = 0, z = 0}
