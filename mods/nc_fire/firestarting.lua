@@ -26,7 +26,7 @@ nodecore.register_craft({
 			fs = fs * (ng.firestick or 1)
 
 			if math_random(1, 4) > fs then return end
-			minetest.set_node(pos, {name = "nc_fire:fire"})
+			nodecore.fire_ignite(pos)
 
 			if math_random(1, 4) > fs then return end
 			local dir = nodecore.pickrand(nodecore.dirs())

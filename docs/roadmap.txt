@@ -37,8 +37,6 @@ ROADMAP: Large New Development Projects
 
 - Torches
 	- Burning nodes with ash parts, to display torch lifetime
-	- Allow stick firestarting to light directly for most
-	  reliable firestarting method.
 	- Create a "strike-anywhere match" by adding other
 	  materials (sand, and something to react with like
 	  gravel or lux infusion) to instantly light on

@@ -23,6 +23,7 @@ minetest.register_node(modname .. ":torch", {
 			snappy = 1,
 			falling_repose = 1,
 			flammable = 1,
+			firestick = 1,
 			stack_as_node = 1
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
