@@ -11,10 +11,6 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
-- Make loose nodes self-compact over time.
-	- Based on repacking toolcaps.
-	- Accelerate if falling_node on top.
-
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
 	- Players accumulate radiation.

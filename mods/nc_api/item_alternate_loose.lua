@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+local math, minetest, nodecore, pairs, type
+    = math, minetest, nodecore, pairs, type
+local math_pow
+    = math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -44,6 +46,7 @@ nodecore.register_on_register_item(function(name, def)
 		loose.description = "Loose " .. loose.description
 		loose.groups = nodecore.underride({}, loose.groups or {})
 		loose.groups.falling_node = 1
+		loose.groups.loose_repack = 1
 
 		if loose.groups.crumbly and not loose.no_repack then
 			minetest.after(0, function()
@@ -60,6 +63,7 @@ nodecore.register_on_register_item(function(name, def)
 
 		loose.alternate_loose = nil
 		loose.alternate_solid = nil
+		loose.repack_to = name
 		minetest.register_node(loose.name, loose)
 
 		local solid = nodecore.underride(def.alternate_solid or {}, def)
@@ -71,3 +75,35 @@ nodecore.register_on_register_item(function(name, def)
 
 		return true
 	end)
+
+nodecore.register_soaking_abm({
+		label = "loose self-repacking",
+		nodenames = {"group:loose_repack"},
+		interval = 10,
+		chance = 1,
+		limited_max = 100,
+		limited_alert = 1000,
+		soakrate = function(pos, node)
+			local bnode = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
+			local bdef = minetest.registered_items[bnode.name] or {}
+			if (not bdef.groups) or bdef.groups.falling_node then return false end
+
+			local weight = 1
+			for dy = 1, 8 do
+				local n = minetest.get_node({x = pos.x, y = pos.y + dy, z = pos.z})
+				local def = minetest.registered_items[n.name] or {}
+				if def and def.groups and def.groups.falling_node then
+					local w = def.crush_damage or 1
+					if w < 1 then w = 1 end
+					weight = weight + w
+				end
+			end
+			local def = minetest.registered_items[node.name] or {}
+			return weight * 2 / math_pow(2, def.repack_level or 1)
+		end,
+		soakcheck = function(data, pos, node)
+			if data.total < 100 then return end
+			local def = minetest.registered_items[node.name] or {}
+			return minetest.set_node(pos, {name = def.repack_to})
+		end
+	})
