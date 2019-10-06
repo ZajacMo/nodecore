@@ -30,7 +30,8 @@ minetest.register_node(modname .. ":eggcorn", {
 		sounds = nodecore.sounds("nc_tree_corny"),
 		stack_rightclick = function(pos, _, whom, stack)
 			if nodecore.stack_get(pos):get_count() ~= 1 then return end
-			if stack:get_name() ~= ldname then return end
+			local def = minetest.registered_items[stack:get_name()]
+			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
 
 			minetest.set_node(pos, {name = epname})
 			nodecore.node_sound(pos, "place")

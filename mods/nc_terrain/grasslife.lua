@@ -39,11 +39,12 @@ end
 
 nodecore.register_limited_abm({
 		label = "Grass Spread",
-		nodenames = {dirt, "nc_terrain:dirt_loose"},
+		nodenames = {"group:soil"},
 		neighbors = {grass},
 		interval = 6,
 		chance = 50,
-		action = function(pos)
+		action = function(pos, node)
+			if node.name == grass then return end
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if not grassable(above) then return end
 			return minetest.set_node(pos, {name = grass})

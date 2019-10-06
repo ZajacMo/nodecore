@@ -139,6 +139,7 @@ regterrain({
 		description = "Dirt",
 		alternate_loose = {
 			groups = {
+				dirt_loose = 1,
 				falling_repose = 2,
 				soil = 2
 			}

@@ -1,38 +1,69 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local airnames = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
-			if v.air_equivalent then
-				airnames[#airnames + 1] = k
-			end
-		end
-	end)
+minetest.register_node(modname .. ":humus", {
+		description = "Humus",
+		tiles = {modname .. "_humus.png"},
+		groups = {
+			dirt = 2,
+			crumbly = 1,
+			soil = 4
+		},
+		alternate_loose = {
+			groups = {
+				dirt_loose = 2,
+				soil = 5
+			}
+		},
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_crunchy")
+	})
+
+minetest.register_node(modname .. ":peat", {
+		description = "Peat",
+		tiles = {modname .. "_humus.png^" .. modname .. "_peat.png^nc_api_loose.png"},
+		groups = {
+			falling_repose = 1,
+			crumbly = 1,
+			flammable = 1,
+			fire_fuel = 3,
+			green = 1
+		},
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_swishy")
+	})
+
+nodecore.register_craft({
+		label = "compress peat block",
+		action = "pummel",
+		toolgroups = {crumbly = 1},
+		nodes = {
+			{
+				match = {name = modname .. ":leaves_loose", count = 8},
+				replace = modname .. ":peat"
+			}
+		}
+	})
 
 nodecore.register_soaking_abm({
 		label = "Composting Growing",
-		nodenames = {modname .. ":leaves_loose"},
+		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
 		interval = 10,
 		chance = 10,
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = function(pos)
-			local min = {x = pos.x - 1, y = pos.y - 1, z = pos.z - 1}
-			local max = {x = pos.x + 1, y = pos.y + 1, z = pos.z + 1}
-			if #minetest.find_nodes_in_area(min, max, airnames) then
-				return false
-			end
 			local d = 0
 			local w = 1
-			nodecore.scan_flood(pos, 3, function(p)
+			nodecore.scan_flood(pos, 3, function(p, r)
+					if r < 1 then return end
 					local nn = minetest.get_node(p).name
 					local def = minetest.registered_items[nn] or {}
 					if not def.groups then
@@ -48,12 +79,11 @@ nodecore.register_soaking_abm({
 						return false
 					end
 				end)
-			minetest.chat_send_all("" .. math_sqrt(d * w))
 			return math_sqrt(d * w)
 		end,
 		soakcheck = function(data, pos)
 			if data.total < 5000 then return end
-			minetest.set_node(pos, {name = "nc_terrain:dirt_loose"})
+			minetest.set_node(pos, {name = modname .. ":humus"})
 			nodecore.node_sound(pos, "place")
 		end
 	})
