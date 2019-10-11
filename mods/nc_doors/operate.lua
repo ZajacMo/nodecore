@@ -40,7 +40,12 @@ end
 minetest.register_globalstep(function()
 		local nonheads = {}
 		for _, v in pairs(convey) do
-			nonheads[v.tkey] = true
+			if convey[v.tkey] or nodecore.buildable_to(v.to)
+			or not v.tkey2 then
+				nonheads[v.tkey] = true
+			else
+				nonheads[v.tkey2] = true
+			end
 		end
 		local okay = {}
 		for k, v in pairs(convey) do
