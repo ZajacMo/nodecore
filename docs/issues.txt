@@ -9,6 +9,25 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Tote handles should be recyclable.  Need to detect and make surface
+  they're empty though!
+
+- Hint system updates.
+	- Acquire living sponge from heart of colony.
+	- Dirt cycle, make peat, compost to humus.
+	- Craft and light torches.
+	- Write with charcoal.
+
+- Simplify scaling
+	- Different ways to indicate attention to surfaces.
+		- Hold sneak
+		- Try repeatedly to jump against a wall
+		- Punch once then wait
+		- Just loiter near somewhere
+		- Point at something for a while
+	- Change how scaling handholds are visualized; maybe a
+	  slow particle effect?  Remove directionality.
+
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 

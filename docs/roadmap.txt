@@ -47,6 +47,7 @@ ROADMAP: Large New Development Projects
 	- Mop/broom for mass stack pickup.
 		- Sponge on a staff for a mop, thatch on a staff for broom.
 		- Broom recipe feels more right, but requires more work...
+		- Adzes tied together into a rake?
 
 - Tinted glass: can see thru only one way and not others, does not
   transmit light?  Infuse non-chromatic glass w/ lux?
@@ -56,11 +57,6 @@ ROADMAP: Large New Development Projects
 	- Use for door conveyors?
 
 - Doors
-	- Automation via laser ablation propulsion.
-		- Some materials cannot be operated by hand?
-		- Stirling engine using light gradient?
-		- Water or steam for rotary power?
-		- Arrangements to auto-return if propulsion removed?
 	- Push nodes blocking rotation?
 	- Push players?
 
@@ -115,12 +111,6 @@ ROADMAP: Large New Development Projects
 	- Add more holiday outfits.
 	- Track server lag in metadata?
 
-- New writing system based on charcoal
-	- Draw a symbol on surfaces by pummeling w/ charcoal
-	- ...or maybe make ink from coal+water, use a brush?
-	- Punch symbol w/ charcoal to rotate thru alphabet
-	- Use a special/reduced alphabet?
-
 - Smoked glass
 	- Lux-infuse clear glass.
 	- Does not transmit light.
@@ -132,17 +122,6 @@ ROADMAP: Large New Development Projects
 		- Emits light briefly when punched or stepped on
 		- Need to interpolate player paths for "stepped on" logic
 		- Lux-infused chromatic glass?
-	- Pistons or rack&pinions for affecting world stuff.
-		- Laser ablation propulsion
-		- Gray code absolute game time to determine distance (logarithmic by load)
-	- Advanced optics?
-		- Polarization? Phase? Interference and superposition?
-
-- Rotary power?
-	- Stirling engine?
-	- Rotors?
-	- Conveyors?
-	- Steam as a classic fluid?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
@@ -161,10 +140,8 @@ ROADMAP: Large New Development Projects
 	  Termine mounds? Ant colonies? Coral?
 	- Popeggcorn?
 	- Ores that smelt via heating and then rapid quenching?
-
-- System for transporting cargo.
-	- Trains of minecarts?
-	- Conveyors, elevators?
+	- Things that cannot ever be dug, and must be moved only
+	  by in-world machinery?
 
 - Vary player walking speed based on nodes under feet?
 
