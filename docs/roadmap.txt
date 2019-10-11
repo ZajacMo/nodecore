@@ -61,9 +61,8 @@ ROADMAP: Large New Development Projects
 		- Stirling engine using light gradient?
 		- Water or steam for rotary power?
 		- Arrangements to auto-return if propulsion removed?
-	- Push fluids, falling_nodes, items, ents as appropriate?
-		- Also move items sitting atop?
-	- Use as press for quick packing recipes?
+	- Push nodes blocking rotation?
+	- Push players?
 
 - Domain Wall Sensor
 	- Adapt from sztest?
