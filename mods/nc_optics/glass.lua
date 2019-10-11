@@ -70,7 +70,7 @@ local function anim(name, len)
 	return {
 		name = name,
 		animation = {
-			type = "vertical_frames",
+			["type"] = "vertical_frames",
 			aspect_w = 16,
 			aspect_h = 16,
 			length = len
