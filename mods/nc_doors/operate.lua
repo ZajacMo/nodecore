@@ -3,6 +3,8 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+local modstore = minetest.get_mod_storage()
+
 local function hingeaxis(pos, node)
 	local fd = node and node.param2 or 0
 	fd = nodecore.facedirs[fd]
@@ -34,6 +36,15 @@ local function conveytrace(okay, seg, u)
 		for x in pairs(seg) do
 			okay[x] = true
 		end
+	end
+end
+
+local function set_node(pos, node)
+	local exists = minetest.get_node(pos)
+	if exists.name ~= node.name
+	or exists.param ~= node.param
+	or exists.param2 ~= node.param2 then
+		return minetest.set_node(pos, node)
 	end
 end
 
@@ -79,7 +90,7 @@ minetest.register_globalstep(function()
 			}
 		end
 		for _, v in pairs(toset) do
-			minetest.set_node(v.pos, v.node)
+			set_node(v.pos, v.node)
 			if v.meta then
 				minetest.get_meta(v.pos):from_table(v.meta)
 				nodecore.visinv_update_ents(v.pos)
@@ -108,8 +119,14 @@ local function trypush(pos, dir, dir2)
 	convey[data.fkey] = data
 end
 
-local squelch = {}
-minetest.register_globalstep(function() squelch = {} end)
+local squelch = modstore:get_string("squelch")
+squelch = squelch and squelch ~= "" and minetest.deserialize(squelch) or {}
+minetest.register_globalstep(function(dtime)
+		for k, v in pairs(squelch) do
+			squelch[k] = (v > dtime) and (v - dtime) or nil
+		end
+		modstore:set_string("squelch", squelch)
+	end)
 
 local is_door = {groups = { door = true }}
 
@@ -168,9 +185,9 @@ function nodecore.operate_door(pos, node, dir)
 
 	local toset = {}
 	for k, v in pairs(found) do
-		toset[k] = {pos = v.pos, name = "air"}
-		squelch[k] = true
-		squelch[v.str] = true
+		toset[k] = {pos = v.pos, name = "air", param2 = 0}
+		squelch[k] = 0.5
+		squelch[v.str] = 0.5
 	end
 	for _, v in pairs(found) do
 		for i, xfd in pairs(nodecore.facedirs) do
@@ -187,12 +204,12 @@ function nodecore.operate_door(pos, node, dir)
 	end
 
 	for _, v in pairs(toset) do
-		minetest.set_node(v.pos, v)
+		set_node(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
 			local k = "sfx" .. minetest.pos_to_string(p)
 			if not squelch[k] then
-				squelch[k] = true
+				squelch[k] = 0
 				minetest.sound_play("nc_doors_operate",
 					{pos = v.pos, gain = 0.5})
 			end

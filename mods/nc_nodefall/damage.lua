@@ -7,7 +7,7 @@ local function getcrushdamage(name, alreadyloose)
 	local def = minetest.registered_items[name]
 	if def and def.crush_damage then return def.crush_damage end
 	if alreadyloose then return 0 end
-	return getcrushdamage(name .. "_loose", true)
+	return name and getcrushdamage(name .. "_loose", true) or 0
 end
 
 local function register(fallname, mult, getname)
