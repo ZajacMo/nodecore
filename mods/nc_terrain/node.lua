@@ -213,13 +213,30 @@ regterrain({
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 
+local function anim(name, len)
+	return {
+		name = name,
+		animation = {
+			type = "vertical_frames",
+			aspect_w = 16,
+			aspect_h = 16,
+			length = len
+		}
+	}
+end
+
 regliquid({
 		description = "Water",
 		mapgen = { "river_water_source", "water_source" },
+		tiles = { anim(modname .. "_water.png", 4) },
+		special_tiles = {
+			anim(modname .. "_water_flow.png", 4),
+			anim(modname .. "_water_flow.png", 4)
+		},
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = true,
-		alpha = 160,
+		alpha = 192,
 		walkable = false,
 		pointable = false,
 		diggable = false,
@@ -232,6 +249,11 @@ regliquid({
 	})
 regliquid({
 		name = "lava",
+		tiles = { anim(modname .. "_lava.png", 8) },
+		special_tiles = {
+			anim(modname .. "_lava_flow.png", 8),
+			anim(modname .. "_lava_flow.png", 8)
+		},
 		description = "Molten Rock",
 		mapgen = { "lava_source" },
 		paramtype = "light",

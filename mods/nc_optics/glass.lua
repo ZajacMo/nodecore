@@ -66,12 +66,30 @@ minetest.register_node(modname .. ":glass_float", {
 		sounds = nodecore.sounds("nc_optics_glassy")
 	})
 
-local molttxr = "nc_terrain_lava.png^nc_optics_glass_glare.png"
+local function anim(name, len)
+	return {
+		name = name,
+		animation = {
+			type = "vertical_frames",
+			aspect_w = 16,
+			aspect_h = 16,
+			length = len
+		}
+	}
+end
+
+local animglass = ""
+for i = 0, 31 do
+	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_glare.png"
+end
+local molttxr = anim("[combine:16x512:0,0=nc_terrain_lava.png" .. animglass, 8)
+local flowtxr = anim("[combine:16x512:0,0=nc_terrain_lava_flow.png" .. animglass, 8)
+
 local moltdef = {
 	description = "Molten Glass",
 	drawtype = "liquid",
 	tiles = { molttxr },
-	special_tiles = { molttxr, molttxr },
+	special_tiles = { flowtxr, flowtxr },
 	paramtype = "light",
 	liquid_viscosity = 7,
 	liquid_renewable = false,
