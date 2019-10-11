@@ -15,6 +15,28 @@ local function hingeaxis(pos, node)
 end
 
 local convey = {}
+
+local function conveytrace(okay, seg, u)
+	local w = convey[u.tkey]
+	if w then return w end
+	if nodecore.buildable_to(u.to) then
+		for x in pairs(seg) do
+			okay[x] = true
+		end
+		return
+	end
+	if not u.tkey2 then return end
+	u.to = u.to2
+	u.tkey = u.tkey2
+	w = convey[u.tkey]
+	if w then return w end
+	if nodecore.buildable_to(u.to) then
+		for x in pairs(seg) do
+			okay[x] = true
+		end
+	end
+end
+
 minetest.register_globalstep(function()
 		local nonheads = {}
 		for _, v in pairs(convey) do
@@ -25,16 +47,9 @@ minetest.register_globalstep(function()
 			if not nonheads[k] then
 				local seg = {}
 				local u = v
-				while true do
+				while u do
 					seg[u] = true
-					local w = convey[u.tkey]
-					if not w then break end
-					u = w
-				end
-				if nodecore.buildable_to(u.to) then
-					for x in pairs(seg) do
-						okay[x] = true
-					end
+					u = conveytrace(okay, seg, u)
 				end
 				for x in pairs(seg) do
 					convey[x.fkey] = nil
@@ -70,7 +85,7 @@ minetest.register_globalstep(function()
 
 local is_falling = {groups = { falling_node = true }}
 
-local function trypush(pos, dir)
+local function trypush(pos, dir, dir2)
 	local node = minetest.get_node(pos)
 	if not nodecore.match(node, is_falling) then return end
 
@@ -79,9 +94,12 @@ local function trypush(pos, dir)
 		fkey = minetest.pos_to_string(pos),
 		to = vector.add(pos, dir),
 		node = node,
-		dir = dir
 	}
 	data.tkey = minetest.pos_to_string(data.to)
+	if dir2 then
+		data.to2 = vector.add(pos, dir2)
+		data.tkey2 = minetest.pos_to_string(data.to2)
+	end
 	convey[data.fkey] = data
 end
 
@@ -119,6 +137,7 @@ function nodecore.operate_door(pos, node, dir)
 	for k, v in pairs(found) do
 		local ffd = nodecore.facedirs[v.node.param2 or 0]
 		v.dir = ffd[rotdir]
+		v.dir2 = rotdir == "r" and ffd.k or ffd.l
 		local to = vector.add(v.pos, v.dir)
 
 		if (not found[minetest.pos_to_string(to)])
@@ -175,7 +194,7 @@ function nodecore.operate_door(pos, node, dir)
 		end
 	end
 	for _, v in pairs(found) do
-		trypush({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir)
+		trypush({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir, v.dir2)
 	end
 	for _, v in pairs(toop) do
 		nodecore.operate_door(v.pos, nil, v.dir)
