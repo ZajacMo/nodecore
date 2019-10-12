@@ -11,10 +11,6 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
-- Trees/logs.
-	- Tree trunks as falling nodes, dig as logs.
-	- Logs as non-falling nodes, facedir.
-
 - Sand renewability.
 	- Dirt turns to sand if left near water.
 		- Stronger near more water.

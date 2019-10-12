@@ -22,6 +22,24 @@ minetest.register_node(modname .. ":root", {
 		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
+minetest.register_node(modname .. ":log", {
+		description = "Log",
+		tiles = {
+			modname .. "_tree_top.png",
+			modname .. "_tree_top.png",
+			modname .. "_tree_side.png"
+		},
+		groups = {
+			choppy = 2,
+			flammable = 8,
+			fire_fuel = 6,
+			log = 1
+		},
+		sounds = nodecore.sounds("nc_tree_woody"),
+		paramtype2 = "facedir",
+		on_place = minetest.rotate_node
+	})
+
 minetest.register_node(modname .. ":tree", {
 		description = "Tree Trunk",
 		tiles = {
@@ -32,9 +50,12 @@ minetest.register_node(modname .. ":tree", {
 		groups = {
 			choppy = 2,
 			flammable = 8,
-			fire_fuel = 6
+			fire_fuel = 6,
+			log = 1,
+			falling_node = 1
 		},
-		sounds = nodecore.sounds("nc_tree_woody")
+		sounds = nodecore.sounds("nc_tree_woody"),
+		drop = modname .. ":log"
 	})
 
 minetest.register_node(modname .. ":leaves", {
