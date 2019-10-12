@@ -51,6 +51,8 @@ ROADMAP: Large New Development Projects
 
 - Doors
 	- Push nodes blocking rotation?
+		- Maximum of 3 or 4 nodes allowed in chain, must
+		  reach air or starting node (cannot loop).
 	- Push players?
 
 - Domain Wall Sensor

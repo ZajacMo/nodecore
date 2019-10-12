@@ -12,6 +12,22 @@ ISSUES: Bugs, Cleanup and Refinements
 - Tote handles should be recyclable.  Need to detect and make surface
   they're empty though!
 
+- Recipes that suck:
+	- Tote recipe has not aged well.
+	- Door chiseling is a bit too cumbersome.
+		- Pummel with a pick?
+	- Door hinge pounding is too cumbersome.
+		- Don't require graphite.
+		- Just righ-click, no pounding?
+		- Must access an end surface?
+
+- Doors should prefer centrifugal ejection unless
+  blocked outside.
+  	- This would also be more consistent with
+ 	  the only sane way to do in-path obstacle ejection,
+	  because there's no way to force centrifugal
+	  ejection in that case otherwise.
+
 - Hint system updates.
 	- Acquire living sponge from heart of colony.
 	- Dirt cycle, make peat, compost to humus.
