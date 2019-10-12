@@ -31,15 +31,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Design principles doc is badly out of date, needs to reflect lessons
   learned and things observed about where the game is headed.
 
-- Less cumbersome scaling controls.
-	- Use loitering or staring, or some other passive input
-	  instead of a pummel recipe.
-	- Should hopefully make the process feel more natural.
-	- Need multiple handholds (i.e. ceil+wall version) since
-	  player no longer picks the surface.
-	- With no death/respawn, and no fast-travel, we need to
-	  buff player movement to balance that out.
-
 - Hint system updates.
 	- Need a "witness" system for spontaneous in-world processes,
 	  such as tree growth or lode cooling.  Credit players within
