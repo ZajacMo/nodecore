@@ -84,6 +84,9 @@ nodecore.register_soaking_abm({
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = function(pos, node)
+			local def = minetest.registered_items[node.name] or {}
+			if def.no_self_repack then return end
+
 			local bnode = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
 			local bdef = minetest.registered_items[bnode.name] or {}
 			if (not bdef.groups) or bdef.groups.falling_node then return false end
@@ -91,14 +94,13 @@ nodecore.register_soaking_abm({
 			local weight = 1
 			for dy = 1, 8 do
 				local n = minetest.get_node({x = pos.x, y = pos.y + dy, z = pos.z})
-				local def = minetest.registered_items[n.name] or {}
-				if def and def.groups and def.groups.falling_node then
-					local w = def.crush_damage or 1
+				local ddef = minetest.registered_items[n.name] or {}
+				if ddef and ddef.groups and ddef.groups.falling_node then
+					local w = ddef.crush_damage or 1
 					if w < 1 then w = 1 end
 					weight = weight + w
 				end
 			end
-			local def = minetest.registered_items[node.name] or {}
 			return weight * 2 / math_pow(2, def.repack_level or 1)
 		end,
 		soakcheck = function(data, pos, node)

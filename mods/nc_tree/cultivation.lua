@@ -62,7 +62,10 @@ nodecore.register_leaf_drops(function(_, node, list)
 			prob = 0.05 * (node.param2 + 1)}
 	end)
 
-local epdef = nodecore.underride({drop = ldname}, minetest.registered_items[ldname] or {})
+local epdef = nodecore.underride({
+		drop = ldname,
+		no_self_repack = true
+	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
 
