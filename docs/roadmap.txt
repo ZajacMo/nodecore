@@ -11,6 +11,22 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
+- Trees/logs.
+	- Tree trunks as falling nodes, dig as logs.
+	- Logs as non-falling nodes, facedir.
+
+- Sand renewability.
+	- Dirt turns to sand if left near water.
+		- Stronger near more water.
+		- Stronger near flowing water.
+
+- Advanced Tools
+	- Sickle / kopesh, choppy + snappy, recursive harvesting.
+	- Mop/broom for mass stack pickup.
+		- Sponge on a staff for a mop, thatch on a staff for broom.
+		- Broom recipe feels more right, but requires more work...
+		- Adzes tied together into a rake?
+
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
 	- Players accumulate radiation.
@@ -26,31 +42,12 @@ ROADMAP: Large New Development Projects
 			- Step on it or punch it to emit light.
 			- Button/touchplate for optics.
 
-- Trees/logs.
-	- Tree trunks as falling nodes, dig as logs.
-	- Logs as non-falling nodes, facedir.
-
-- Sand renewability.
-	- Dirt turns to sand if left near water.
-		- Stronger near more water.
-		- Stronger near flowing water.
-
 - Torches
 	- Burning nodes with ash parts, to display torch lifetime
 	- Create a "strike-anywhere match" by adding other
 	  materials (sand, and something to react with like
 	  gravel or lux infusion) to instantly light on
 	  punching a solid enough surface.
-
-- Advanced Tools
-	- Sickle / kopesh, choppy + snappy, recursive harvesting.
-	- Mop/broom for mass stack pickup.
-		- Sponge on a staff for a mop, thatch on a staff for broom.
-		- Broom recipe feels more right, but requires more work...
-		- Adzes tied together into a rake?
-
-- Tinted glass: can see thru only one way and not others, does not
-  transmit light?  Infuse non-chromatic glass w/ lux?
 
 - Player knockback coming in 5.1+?
 	- Allow players to push others around by punching?
@@ -110,18 +107,6 @@ ROADMAP: Large New Development Projects
 		- Skin color, hair color, eye color?
 	- Add more holiday outfits.
 	- Track server lag in metadata?
-
-- Smoked glass
-	- Lux-infuse clear glass.
-	- Does not transmit light.
-	- See thru only in one direction.
-	- Useful for hidden bases.
-
-- Digital logic + lighting via optics.
-	- Piezo Crystal Node
-		- Emits light briefly when punched or stepped on
-		- Need to interpolate player paths for "stepped on" logic
-		- Lux-infused chromatic glass?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
