@@ -5,6 +5,6 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("api")
+include("operate")
 include("register")
 include("ablation")
