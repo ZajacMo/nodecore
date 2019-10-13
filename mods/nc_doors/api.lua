@@ -5,7 +5,7 @@ local minetest, nodecore, pairs, vector
 
 local modstore = minetest.get_mod_storage()
 
-local function hingeaxis(pos, node)
+function nodecore.hingeaxis(pos, node)
 	local fd = node and node.param2 or 0
 	fd = nodecore.facedirs[fd]
 	fd = vector.multiply(vector.add(fd.f, fd.r), 0.5)
@@ -145,12 +145,14 @@ function nodecore.operate_door(pos, node, dir)
 	else return end
 
 	local found = {}
-	local hinge = hingeaxis(pos, node)
+	local hinge = nodecore.hingeaxis(pos, node)
 	if nodecore.scan_flood(pos, 128, function(p)
 			local n = minetest.get_node_or_nil(p)
 			if not n then return true end
 			if (not nodecore.match(n, is_door))
-			or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
+			or (not vector.equals(nodecore.hingeaxis(p, n), hinge)) then
+				return false
+			end
 			found[minetest.pos_to_string(p)] = {pos = p, node = n}
 		end
 	) then return end

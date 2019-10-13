@@ -5,10 +5,29 @@ local minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
-local function doorop(pos, node, _, _, pointed)
+local function doorop(pos, node, clicker, stack, pointed)
 	if (not pointed.above) or (not pointed.under) then return end
 	local force = vector.subtract(pointed.under, pointed.above)
-	return nodecore.operate_door(pos, node, force)
+	local axis = nodecore.hingeaxis(pos, node)
+	if (axis.x * force.x ~= 0) or (axis.y * force.y ~= 0)
+	or (axis.z * force.z ~= 0) then
+		return nodecore.operate_door(pos, node, force)
+	end
+
+	local def = stack:get_definition()
+	if def.type == "node" and not def.place_as_item then
+		local function helper(left, ok, ...)
+			if ok then nodecore.node_sound(pointed.above, "place") end
+			return left, ok, ...
+		end
+		return helper(minetest.item_place_node(stack, clicker, pointed))
+	end
+	if not stack:is_empty() then
+		local above = minetest.get_pointed_thing_position(pointed, true)
+		if above and nodecore.buildable_to(above) then
+			nodecore.place_stack(above, stack:take_item(), clicker, pointed)
+		end
+	end
 end
 
 local tilemods = {
