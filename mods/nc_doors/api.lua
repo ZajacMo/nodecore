@@ -27,7 +27,7 @@ local function conveytrace(okay, seg, u)
 				okay[x] = true
 			end
 			u.to = u.to2
-			u.tkey = u.tkey
+			u.tkey = u.tkey2
 			return
 		end
 	end
