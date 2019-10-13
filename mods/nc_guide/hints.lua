@@ -373,7 +373,7 @@ addhint("find lux",
 )
 
 addhint("dig up lux cobble",
-	"dig:group:lux_cobble",
+	"group:lux_cobble",
 	"group:lux_emit"
 )
 
