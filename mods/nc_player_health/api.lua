@@ -23,6 +23,7 @@ local function rounddist(n)
 end
 
 local function checkinv(player)
+	local dmg = minetest.settings:get_bool("enable_damage")
 	local inv = player:get_inventory()
 	local size = inv:get_size("main")
 	local max = size - 2
@@ -46,7 +47,7 @@ local function checkinv(player)
 	local slots = {}
 	local total = 0
 	for _, def in pairs(nodecore.registered_healthfx) do
-		local q = def.getqty(player) * (max + 1) - 1
+		local q = dmg and (def.getqty(player) * (max + 1) - 1) or 0
 		if q > max then q = max end
 		if q < 0 then q = 0 end
 		slots[#slots + 1] = {item = def.item, qty = size - q}
