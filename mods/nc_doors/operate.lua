@@ -19,18 +19,19 @@ end
 local convey = {}
 
 local function conveytrace(okay, seg, u)
-	local w = convey[u.tkey]
-	if w then return w end
-	if nodecore.buildable_to(u.to) then
-		for x in pairs(seg) do
-			okay[x] = true
+	if u.tkey2 then
+		local w = convey[u.tkey2]
+		if w then return w end
+		if nodecore.buildable_to(u.to2) then
+			for x in pairs(seg) do
+				okay[x] = true
+			end
+			u.to = u.to2
+			u.tkey = u.tkey
+			return
 		end
-		return
 	end
-	if not u.tkey2 then return end
-	u.to = u.to2
-	u.tkey = u.tkey2
-	w = convey[u.tkey]
+	local w = convey[u.tkey]
 	if w then return w end
 	if nodecore.buildable_to(u.to) then
 		for x in pairs(seg) do
@@ -51,11 +52,10 @@ end
 minetest.register_globalstep(function()
 		local nonheads = {}
 		for _, v in pairs(convey) do
-			if convey[v.tkey] or nodecore.buildable_to(v.to)
-			or not v.tkey2 then
-				nonheads[v.tkey] = true
-			else
+			if v.tkey2 and (convey[v.tkey2] or nodecore.buildable_to(v.to2)) then
 				nonheads[v.tkey2] = true
+			else
+				nonheads[v.tkey] = true
 			end
 		end
 		local okay = {}
