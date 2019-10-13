@@ -22,8 +22,11 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {choppy = 1},
 		normal = {y = 1},
+		check = function(_, data)
+			return nodecore.facedirs[data.node.param2].t.y == 1
+		end,
 		nodes = {
-			{match = "nc_tree:tree", replace = "air"}
+			{match = {groups = {log = true}}, replace = "air"}
 		},
 		items = {
 			{name = plank, count = 4, scatter = 5}
