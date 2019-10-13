@@ -12,7 +12,7 @@ for i = 1, 8 do
 			description = "Lux Cobble",
 			tiles = {
 				"nc_terrain_gravel.png^((" .. modname .. "_base.png^[mask:"
-				.. modname .. "_mask.png)^[opacity:"
+				.. modname .. "_dot_mask.png)^[opacity:"
 				.. (i * 32) .. ")^nc_terrain_cobble.png"
 			},
 			stackfamily = modname .. ":cobble",
