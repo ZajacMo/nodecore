@@ -26,7 +26,7 @@ local function check(pos, player)
 			maxpos = p,
 			minvel = vector.multiply(vector.normalize(rel), 4),
 			maxvel = vector.multiply(vector.normalize(rel), 8),
-			texture = modname .. "_base.png^[mask:" .. modname .. "_mask.png^[opacity:32",
+			texture = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32",
 			minexptime = 0.05,
 			maxexptime = 0.25,
 			playername = player:get_player_name(),

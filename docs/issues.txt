@@ -12,6 +12,10 @@ ISSUES: Bugs, Cleanup and Refinements
 - Tote handles should be recyclable.  Need to detect and make sure
   they're empty though!
 
+- Injury and Radiation can stack to bring inventory slots down
+  to zero.  Need to pre-calculate all amounts and reduce
+  proportionally to ensure at least 2 slots stay free.
+
 - Recipes that suck:
 	- Tote recipe has not aged well.
 	- Door chiseling is a bit too cumbersome.
