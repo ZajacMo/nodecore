@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_exp, math_floor
-    = math.exp, math.floor
+local math_exp
+    = math.exp
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -23,9 +23,8 @@ minetest.register_craftitem(irradiated, {
 
 nodecore.register_healthfx({
 		item = irradiated,
-		getqty = function(player, size)
-			return size - math_floor(player:get_meta():get_float("rad")
-				* (size - 1))
+		getqty = function(player)
+			return player:get_meta():get_float("rad")
 		end
 	})
 

@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_floor
-    = math.floor
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -22,8 +20,7 @@ minetest.register_craftitem(injured, {
 
 nodecore.register_healthfx({
 		item = injured,
-		getqty = function(player, size)
-			return math_floor(nodecore.getphealth(player)
-				/ 20 * (size - 2) + 0.5) + 2
+		getqty = function(player)
+			return 1 - nodecore.getphealth(player) / 20
 		end
 	})
