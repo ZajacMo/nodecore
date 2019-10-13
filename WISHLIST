@@ -20,6 +20,8 @@ to the project!
 	  through walls and other terrain in our MP server.
 	- #8141: We want cleaner player name labels, and to move
 	  the touchtip from screen-space into node-space.
+	- #9043: This bug requires NodeCore to maintain a workaround for
+	  the engine in its own code.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
 

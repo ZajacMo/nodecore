@@ -43,7 +43,7 @@ setmetatable(nodecore, {
 	})
 
 include("issue7020")
-include("issue_rotate_node")
+include("issue9043")
 
 include("util_misc")
 include("util_falling")
