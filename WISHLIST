@@ -24,6 +24,8 @@ to the project!
 	  the engine in its own code.
 	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
+	- #9048: Causes player inventory sounds to be played at the wrong
+	  volume.
 
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,
