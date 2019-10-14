@@ -41,9 +41,21 @@ local function rademit(pos)
 		dy = dy * dy
 		local dz = pp.z - pos.z
 		dz = dz * dz
-		local dist = (dx + dy + dz)
-		if dist < 1 then dist = 1 end
-		luxaccum[pname] = (luxaccum[pname] or 0) + 1 / dist
+		local dsqr = (dx + dy + dz)
+		if dsqr > (32 * 32) then return end
+		if dsqr < 1 then
+			dsqr = 1
+		else
+			for pt in minetest.raycast(pos, pp, false, true) do
+				local node = minetest.get_node(pt.under)
+				local def = minetest.registered_items[node.name]
+				if def and def.groups and def.groups.water then
+					dsqr = dsqr * 2
+					if dsqr > (32 * 32) then return end
+				end
+			end
+		end
+		luxaccum[pname] = (luxaccum[pname] or 0) + 1 / dsqr
 	end
 end
 
