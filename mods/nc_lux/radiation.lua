@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_exp
-    = math.exp
+local math_exp, math_log
+    = math.exp, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -30,7 +30,7 @@ nodecore.register_healthfx({
 
 local luxaccum = {}
 
-local function rademit(pos)
+local function rademit(pos, node)
 	for _, player in pairs(minetest.get_connected_players()) do
 		local pname = player:get_player_name()
 		local pp = player:get_pos()
@@ -47,17 +47,22 @@ local function rademit(pos)
 			dsqr = 1
 		else
 			for pt in minetest.raycast(pos, pp, false, true) do
-				local node = minetest.get_node(pt.under)
-				local def = minetest.registered_items[node.name]
-				if def and def.groups and def.groups.water then
-					dsqr = dsqr * 4
-				elseif node.name ~= "air" then
-					dsqr = dsqr * 1.5
+				local pn = minetest.get_node(pt.under)
+				local def = minetest.registered_items[pn.name] or {groups = {}}
+				if def.groups.water then
+					dsqr = dsqr * 8
+				elseif pn.name ~= "air" and not def.groups.lux_emit then
+					dsqr = dsqr * 2
 				end
 				if dsqr > (32 * 32) then return end
 			end
 		end
-		luxaccum[pname] = (luxaccum[pname] or 0) + 1 / dsqr
+		if not node or not node.lux_emit then
+			node = node or minetest.get_node(pos)
+			local def = minetest.registered_items[node.name]
+			node.lux_emit = def and def.groups and def.groups.lux_emit or 1
+		end
+		luxaccum[pname] = (luxaccum[pname] or 0) + (math_log(node.lux_emit) + 1) / dsqr
 	end
 end
 
@@ -76,13 +81,12 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		limited_alert = 1000,
 		nodenames = {"group:visinv"},
-		action = function(pos)
+		action = function(pos, node)
 			local stack = nodecore.stack_get(pos)
 			if stack:is_empty() then return end
 			local def = minetest.registered_items[stack:get_name()]
-			if def and def.groups and def.groups.lux_emit then
-				return rademit(pos)
-			end
+			node.lux_emit = def and def.groups and def.groups.lux_emit
+			return rademit(pos, node)
 		end
 	})
 
@@ -100,27 +104,29 @@ local function luxradpump()
 			local stack = inv:get_stack("main", i)
 			local def = minetest.registered_items[stack:get_name()]
 			if def and def.groups then
-				if def.groups.lux_emit then accum = accum + 1 end
+				if def.groups.lux_emit then
+					accum = accum + (math_log(def.groups.lux_emit) + 1)
+				end
 				if def.groups.lux_tool then accum = accum + 0.1 end
 			end
 		end
-		local prop = math_exp(-accum / 1000)
+		local prop = math_exp(-accum / 10000)
 		rad = rad * prop + (1 - prop)
 
-		local redux = 0.02
+		local redux = 0.1
 		local pos = player:get_pos()
 		local node = minetest.get_node(pos)
 		local def = minetest.registered_items[node.name]
 		if def and def.groups and def.groups.water then
-			redux = redux + 10
+			redux = redux + 50
 		end
 		pos.y = pos.y + 1
 		node = minetest.get_node(pos)
 		def = minetest.registered_items[node.name]
 		if def and def.groups and def.groups.water then
-			redux = redux + 100
+			redux = redux + 500
 		end
-		prop = math_exp(-redux / 1000)
+		prop = math_exp(-redux / 10000)
 		rad = rad * prop
 
 		meta:set_float("rad", rad)
