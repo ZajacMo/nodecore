@@ -99,7 +99,7 @@ local function luxradpump()
 			local def = minetest.registered_items[stack:get_name()]
 			if def and def.groups then
 				if def.groups.lux_emit then accum = accum + 1 end
-				if def.groups.lux_tool then accum = accum + 0.25 end
+				if def.groups.lux_tool then accum = accum + 0.1 end
 			end
 		end
 		local prop = math_exp(-accum / 1000)
