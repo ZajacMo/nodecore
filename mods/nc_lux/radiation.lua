@@ -50,9 +50,11 @@ local function rademit(pos)
 				local node = minetest.get_node(pt.under)
 				local def = minetest.registered_items[node.name]
 				if def and def.groups and def.groups.water then
-					dsqr = dsqr * 2
-					if dsqr > (32 * 32) then return end
+					dsqr = dsqr * 4
+				elseif node.name ~= "air" then
+					dsqr = dsqr * 1.5
 				end
+				if dsqr > (32 * 32) then return end
 			end
 		end
 		luxaccum[pname] = (luxaccum[pname] or 0) + 1 / dsqr
