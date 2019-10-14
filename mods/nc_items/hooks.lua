@@ -32,51 +32,45 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	return itemstack
 end
 
-if minetest.raycast then
-	local olddrop = minetest.item_drop
-	function minetest.item_drop(item, player, ...)
-		local oldadd = minetest.add_item
-		function minetest.add_item(pos, stack, ...)
-			if not minetest.raycast then
-				return oldadd(pos, stack, ...)
-			end
-
-			local start = player:get_pos()
-			local eyeheight = player:get_properties().eye_height or 1.625
-			start.y = start.y + eyeheight
-			local target = vector.add(start, vector.multiply(player:get_look_dir(), 4))
-			local pointed = minetest.raycast(start, target, false)()
-			if (not pointed) or pointed.type ~= "node" then
-				return oldadd(pos, stack, ...)
-			end
-
-			local dummyent = {}
-			setmetatable(dummyent, {
-					__index = function()
-						return function() return {} end
-					end
-				})
-
-			local name = stack:get_name()
-			local function tryplace(p)
-				if nodecore.match(p, {name = name, count = false}) then
-					stack = nodecore.stack_add(p, stack)
-					if stack:is_empty() then return dummyent end
-				end
-				if nodecore.buildable_to(p) then
-					nodecore.place_stack(p, stack, player)
-					return dummyent
-				end
-			end
-
-			return tryplace(pointed.under)
-			or tryplace(pointed.above)
-			or oldadd(pos, stack, ...)
+local olddrop = minetest.item_drop
+function minetest.item_drop(item, player, ...)
+	local oldadd = minetest.add_item
+	function minetest.add_item(pos, stack, ...)
+		local start = player:get_pos()
+		local eyeheight = player:get_properties().eye_height or 1.625
+		start.y = start.y + eyeheight
+		local target = vector.add(start, vector.multiply(player:get_look_dir(), 4))
+		local pointed = minetest.raycast(start, target, false)()
+		if (not pointed) or pointed.type ~= "node" then
+			return oldadd(pos, stack, ...)
 		end
-		local function helper(...)
-			minetest.add_item = oldadd
-			return ...
+
+		local dummyent = {}
+		setmetatable(dummyent, {
+				__index = function()
+					return function() return {} end
+				end
+			})
+
+		local name = stack:get_name()
+		local function tryplace(p)
+			if nodecore.match(p, {name = name, count = false}) then
+				stack = nodecore.stack_add(p, stack)
+				if stack:is_empty() then return dummyent end
+			end
+			if nodecore.buildable_to(p) then
+				nodecore.place_stack(p, stack, player)
+				return dummyent
+			end
 		end
-		return helper(olddrop(item, player, ...))
+
+		return tryplace(pointed.under)
+		or tryplace(pointed.above)
+		or oldadd(pos, stack, ...)
 	end
+	local function helper(...)
+		minetest.add_item = oldadd
+		return ...
+	end
+	return helper(olddrop(item, player, ...))
 end
