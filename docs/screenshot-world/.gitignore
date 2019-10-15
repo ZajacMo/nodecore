@@ -5,4 +5,5 @@ ipban.*
 mod_storage
 players.*
 players
+nc_api.template.tr
 world.mt
