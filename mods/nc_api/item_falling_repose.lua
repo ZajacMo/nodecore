@@ -43,7 +43,7 @@ function minetest.spawn_falling_node(pos, node, meta)
 end
 
 local function check_empty(pos, dx, dy, dz)
-	for ndy = dy, 1 do
+	for ndy = dy, 0 do
 		local p = {x = pos.x + dx, y = pos.y + ndy, z = pos.z + dz}
 		if not nodecore.buildable_to(p) then return end
 	end
