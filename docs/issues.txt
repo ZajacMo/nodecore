@@ -9,9 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Tote handles should be recyclable.  Need to detect and make sure
-  they're empty though!
-
 - Recipes that suck:
 	- Tote recipe has not aged well.
 	- Door chiseling is a bit too cumbersome.
