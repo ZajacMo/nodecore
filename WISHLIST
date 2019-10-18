@@ -11,8 +11,6 @@ to the project!
 	  want to contribute translations.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
-	- >5.0.1 Release: Improvements already in the development branch
-	  of the engine are expected to benefit NodeCore, e.g. #8701.
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.
@@ -21,8 +19,6 @@ to the project!
 	- #8141: We want cleaner player name labels, and to move
 	  the touchtip from screen-space into node-space.
 	- #9043: This bug requires NodeCore to maintain a workaround for
-	  the engine in its own code.
-	- #7020: This bug requires NodeCore to maintain a workaround for
 	  the engine in its own code.
 	- #9048: Causes player inventory sounds to be played at the wrong
 	  volume.
@@ -33,21 +29,29 @@ to the project!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
 
-- Player model enhancements
-	- Check that UV maps are consistent with existing skins,
-	  e.g. MTG Sam or MC Steve, for TP authors to more easily
-	  adapt existing skins.
-
 - Improved versions of any art assets (sounds, textures).
 	- All textures for base inclusion should be 16x (keep
 	  high-def textures to texture packs).
 	- It must be practical to maintain a consistent style for
 	  other assets, including future related ones.
+	- Alternatively, publish your mods, texturepacks, or soundpacks
+	  directly to the community, via ContentDB.
 
 - Help maintaining the hint system.
 	- Development of hints often lags behind development of new
 	  features, sometimes significantly.
 	- Hint organization and content is subject to improvement.
+
+- Door animations.
+	- These need to be relatively efficient, i.e. not involve
+	  a ton of node manipulation or spawning lots of entities.
+	  Of particular concern is network packet load on clients.
+	- Something using animated entities (which could represent
+	  multiple nodes sharing an axis) could work well.
+	- Alternatively, a reasonable particle effect?  Something
+	  abstract is fine too, as long as it conveys a sense of
+	  movement to help players visualize what's moving and in
+	  what direction.
 
 ........................................................................
 ========================================================================

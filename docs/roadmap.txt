@@ -22,6 +22,10 @@ ROADMAP: Large New Development Projects
 		- Sponge on a staff for a mop, thatch on a staff for broom.
 		- Broom recipe feels more right, but requires more work...
 		- Adzes tied together into a rake?
+	- Waterproof de facto emergency lantern?
+		- Deploys itself if dropped, e.g. when falling into a cave.
+		- Not easily disrupted by falling into water.
+		- Maybe something lux-infused?
 
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
@@ -48,6 +52,14 @@ ROADMAP: Large New Development Projects
 	- Push nodes blocking rotation?
 		- Maximum of 3 or 4 nodes allowed in chain, must
 		  reach air or starting node (cannot loop).
+		- Instead, maybe always convert to item and fling
+		  away.
+			- Easier to do in a more difficult context.
+			- Different behavior adds diversity to
+			  player mechanics.
+	- Need a way to deploy stacked nodes.
+		- Maybe by moving stacks upwards, it places one
+		  node from the stack below?
 	- Push players?
 
 - Domain Wall Sensor

@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Tree growth lacks a light check.
+
 - Recipes that suck:
 	- Tote recipe has not aged well.
 	- Door chiseling is a bit too cumbersome.
@@ -48,6 +50,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Alternative item strategy with dedicated slots for each
 	  inventory space, which can be empty if in hand instead.
 	- Consider a "backpack" approach as opposed to toolbelt.
+
+- When can we remove the issue7020 workaround?
 
 ........................................................................
 ========================================================================
