@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Tree growth lacks a light check.
-
 - Recipes that suck:
 	- Tote recipe has not aged well.
 	- Door chiseling is a bit too cumbersome.

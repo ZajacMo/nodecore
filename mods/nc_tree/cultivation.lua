@@ -69,12 +69,6 @@ local epdef = nodecore.underride({
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
 
-local function growthcheck(pos)
-	local anode = minetest.get_node({x = pos.x, y = pos.y + 1, z = pos.z})
-	if anode.name ~= "air" then return 0 end
-	return nodecore.tree_growth_rate(pos)
-end
-
 local function growtree(pos)
 	minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
 	for _ = 1, 4 do
@@ -117,7 +111,7 @@ minetest.register_chatcommand("growtrees", {
 			local min = vector.subtract(pos, range)
 			local max = vector.add(pos, range)
 			for _, p in pairs(minetest.find_nodes_in_area(min, max, {epname})) do
-				local r = growthcheck(p)
+				local r = nodecore.tree_growth_rate(p)
 				if r and r > 0 then growtree(p) end
 			end
 		end
@@ -132,7 +126,7 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		qtyfield = "growth",
 		timefield = "start",
-		soakrate = growthcheck,
+		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
 			if data.total >= 5000 then return growtree(pos) end
 			local zero = {x = 0, y = 0, z = 0}

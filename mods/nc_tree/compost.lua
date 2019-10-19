@@ -58,7 +58,7 @@ nodecore.register_soaking_abm({
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		soakrate = nodecore.tree_growth_rate,
+		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
 			if data.total < 2500 then return end
 			minetest.get_meta(pos):from_table({})

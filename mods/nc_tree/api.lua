@@ -21,7 +21,7 @@ function nodecore.leaf_decay(pos, node)
 	return nodecore.fallcheck(pos)
 end
 
-function nodecore.tree_growth_rate(pos)
+function nodecore.tree_soil_rate(pos)
 	local d = 1
 	local w = 1
 	nodecore.scan_flood(pos, 3, function(p, r)
@@ -42,4 +42,16 @@ function nodecore.tree_growth_rate(pos)
 			end
 		end)
 	return math_sqrt(d * w)
+end
+
+function nodecore.tree_growth_rate(pos)
+	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+	if minetest.get_node(above).name ~= "air" then return end
+	local ll = minetest.get_node_light(above, 0.5)
+	if (not ll) or (ll < 8) then return end
+	for y = 2, 5 do
+		local p ={x = pos.x, y = pos.y + y, z = pos.z}
+		if minetest.get_node(p).name ~= "air" then return end
+	end
+	return nodecore.tree_soil_rate(pos) * math_sqrt((ll - 7) / 8)
 end
