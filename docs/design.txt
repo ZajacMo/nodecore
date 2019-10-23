@@ -2,30 +2,65 @@
 CORE DESIGN PRINCIPLES
 ------------------------------------------------------------------------
 
-- Do as much in node-space in the world as possible.
+1.  No in-game GUIs.
+	- Zero formspecs in gameplay.
+	- Minimize use of HUDs; remove any standard ones feasible.
+	- Player's guide only, must remain relatively isolated.
+2.  Interact in node-space.
+	- Everything possible should be a node.
 	- Minimize use of off-grid entities.
-	- Avoid encapsulating things in inventories, machines, GUIs.
+	- Avoid encapsulating things in inventories or complex machines.
 	- Crafting and transforming in-world.
-- Minimal set of primitive composable functions.
+3.  Focus on gameplay mechanics.
+	- Focus will not be on visuals, mood, theme, storytelling.
+	- Minimize elements that vary only in form, not function.
+4.  Emergence from primitive elements.
 	- Each node should do one job (or one part of a job).
 	- Only include the most primitive, fungible components.
-	- Avoid redundant functionality, include fewest possible
-	  different elements.
-	- Complex emergent gameplay by combining simple nodes.
-- Challenging and constrained gameplay.
-	- Limited inventories, very restricted item storage, e.g. one
-	  stack per node.
-	- Large, complex machines to design and build for resource
-	  transformations.
-	- Subtle environmental hazards, like deadfalls and pestilence.
-- Rich, subtle interactions.
-	- Digging, placing, punching and battering.
-	- Different effects from different tools (including empty hand).
-	- Different faces of node may have different effects.
-- Focus on puzzle-oriented single-player/cooperative gameplay.
-	- Avoid dependence on action, combat, PvP.
-	- Slow-moving hazards, players have a chance to think and plan.
-	- Acessible for slow reflexes, slow networks, mobile devices.
+	- Mechanics of each element should interact with others.
+5.  Puzzle challenge.  No pre-hoc shortcuts.
+	- Limited inventory, complex processes, environmental
+	  and process hazards.
+	- Alternative processes must offer a new challenge compared
+	  to existing ones; requirements cannot be a subset.
+	- Conveniences must be higher on tech tree, require some work
+	  to gain access.
+6.  Transparency of the player character.
+	- Focus is on builds and resources.
+	- Player-centric mechanics like hunger and health are
+	  de-emphasized.
+7.  Depth and subtlety.
+	- Processes easy to basically solve, but leave much room
+	  for optimization.
+	- Modeling using [piecewise] continuous functions instead
+	  of simple boolean expressions.
+	- Wide range of process behaviors and time scales.
+8.  Integrated cohesive experience.
+	- Each element designed to fit with other elements.
+	- Elements designed to take advantage of other existing ones
+	  and build longer, deeper gameplay.
+9.  All core materials sustainable/renewable, focus on processes.
+	- Support skyblock and other mapgen-constrained gameplay.
+	- Material synthesis as an alternative to exploration.
+	- No material other than time should be absolutely lossy.
+10. Mach relativity: everything should be transplantable.
+	- No dependence on world elements that cannot be moved by
+	  the player, such as special coordinates, or mapgen biome
+	  parameters.
+	- Only universal fine-scaled features can vary gameplay,
+	  such as mapblock boundaries.
+	- Players should be able to detect normally-invisible features
+	  like mapblock boundaries.
+11. Rolling releases, early access, development transparency.
+	- Everything is kept in public git repos.
+	- Notes marked with spoilers as needed.  Code assumed always
+	  to contain spoilers.
+	- Frequent releases to ContentDB for players, when stable.
+	- Automatic CI/CD to separate Alpha edition in ContentDB from
+	  latest development stream.
+12. Flexible adaptive direction.
+	- Any/all of these goals are subject to change based on
+	  experiences or other new information.
 
 ........................................................................
 ========================================================================
