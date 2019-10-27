@@ -340,14 +340,9 @@ addhint("chisel a hinge groove into a wooden plank",
 	{"anvil making lode rod", "split tree to planks"}
 )
 
-addhint("lubricate a wooden panel with graphite",
-	"lubricate door plank",
-	"drill door plank"
-)
-
-addhint("hammer a staff into a lubricated wooden panel",
+addhint("insert wooden pin into wooden door panel",
 	"door pin plank",
-	"lubricate door plank"
+	"drill door plank"
 )
 
 addhint("chisel a hinge groove into cobble",
@@ -355,14 +350,9 @@ addhint("chisel a hinge groove into cobble",
 	{"anvil making lode rod", "nc_terrain:cobble"}
 )
 
-addhint("lubricate a cobble panel with graphite",
-	"lubricate door cobble",
-	"drill door cobble"
-)
-
-addhint("hammer a metal rod into a cobble panel",
+addhint("insert metal rod into a cobble panel",
 	"door pin cobble",
-	"lubricate door cobbleWWW"
+	"drill door cobble"
 )
 
 ------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ItemStack, minetest, nodecore, pairs, vector
+    = ItemStack, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -30,16 +30,36 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 		.. "_base.png^[transform" .. v.tran
 	end
 
+	local spin = nodecore.node_spin_filtered(function(a, b)
+			return vector.equals(a.f, b.r)
+			and vector.equals(a.r, b.f)
+		end)
+
+	local doorname = modname .. ":door_" .. basenode
 	local paneldef = nodecore.underride({}, {
 			name = modname .. ":panel_" .. basenode,
 			description = (desc or basedef.description) .. " Panel",
 			tiles = tiles,
 			paramtype2 = "facedir",
 			silktouch = false,
-			on_rightclick = nodecore.node_spin_filtered(function(a, b)
-					return vector.equals(a.f, b.r)
-					and vector.equals(a.r, b.f)
-				end),
+			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
+				stack = stack and ItemStack(stack)
+				if (not stack) or (stack:get_name() ~= pin) then
+					return spin(pos, node, clicker, stack, pointed, ...)
+				end
+				local fd = node and node.param2 or 0
+				fd = nodecore.facedirs[fd]
+				local dir = vector.subtract(pointed.above, pointed.under)
+				if vector.equals(dir, fd.t) or vector.equals(dir, fd.b) then
+					node.name = doorname
+					nodecore.player_stat_add(1, clicker, "craft",
+						"door pin " .. basenode:lower())
+					minetest.set_node(pos, node)
+					nodecore.node_sound(pos, "place")
+					stack:take_item(1)
+					return stack
+				end
+			end
 		}, basedef)
 	paneldef.drop = nil
 	paneldef.alternate_loose = nil
@@ -59,7 +79,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 
 	local groups = nodecore.underride({door = 1}, basedef.groups)
 	local doordef = nodecore.underride({
-			name = modname .. ":door_" .. basenode,
+			name = doorname,
 			description = (desc or basedef.description) .. " Hinged Panel",
 			tiles = tiles,
 			drop = pin,
@@ -83,62 +103,6 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 					y = -1,
 					match = basefull,
 					replace = paneldef.name
-				}
-			}
-		})
-
-	nodecore.register_craft({
-			label = "lubricate door " .. basenode:lower(),
-			check = function(_, data)
-				return minetest.get_meta(data.rel(0, -1, 0))
-				:get_float("doorlube") ~= 1
-			end,
-			nodes = {
-				{
-					match = "nc_fire:lump_coal",
-					replace = "air"
-				},
-				{
-					y = -1,
-					match = paneldef.name,
-				}
-			},
-			after = function(pos, data)
-				minetest.get_meta(data.rel(0, -1, 0)):set_float("doorlube", 1)
-				return nodecore.digparticles(
-					minetest.registered_nodes["nc_fire:coal8"],
-					{
-						collisiondetection = true,
-						amount = 10,
-						time = 0.2,
-						minpos = {x = pos.x - 0.4, y = pos.y - 0.5, z = pos.z - 0.4},
-						maxpos = {x = pos.x + 0.4, y = pos.y - 0.45, z = pos.z + 0.4},
-						minexptime = 0.1,
-						maxexptime = 1,
-						minsize = 1,
-						maxsize = 3
-					}
-				)
-			end
-		})
-	nodecore.register_craft({
-			label = "door pin " .. basenode:lower(),
-			action = "pummel",
-			toolgroups = {thumpy = 1},
-			normal = {y = 1},
-			check = function(_, data)
-				return minetest.get_meta(data.rel(0, -1, 0))
-				:get_float("doorlube") == 1
-			end,
-			nodes = {
-				{
-					match = pin,
-					replace = "air"
-				},
-				{
-					y = -1,
-					match = paneldef.name,
-					replace = doordef.name
 				}
 			}
 		})
