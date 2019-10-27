@@ -62,6 +62,15 @@ addhint("harvest a sponge",
 	}
 )
 
+addhint("extract living sponge from colony center",
+	"inv:nc_sponge:sponge_living",
+	{true,
+		"nc_sponge:sponge",
+		"nc_sponge:sponge_wet",
+		"nc_sponge:sponge_living"
+	}
+)
+
 addhint("dry out a sponge",
 	"nc_sponge:sponge",
 	{true,
@@ -96,6 +105,11 @@ addhint("plant an eggcorn",
 	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"}
 )
 
+addhint("see a tree grow",
+	"tree growth",
+	"eggcorn planting"
+)
+
 addhint("find a stick",
 	"nc_tree:stick"
 )
@@ -108,6 +122,16 @@ addhint("cut down a tree",
 addhint("dig up a tree stump",
 	"dig:nc_tree:root",
 	"toolcap:choppy:4"
+)
+
+addhint("pack leaves into peat",
+	"nc_tree:peat",
+	"nc_tree:leaves_loose"
+)
+
+addhint("ferment peat into humus",
+	"nc_tree:humus",
+	"nc_tree:peat"
 )
 
 ------------------------------------------------------------------------
@@ -135,6 +159,27 @@ addhint("chop up charcoal",
 
 addhint("pack high-quality charcoal",
 	"nc_fire:coal" .. nodecore.fire_max,
+	"nc_fire:lump_coal"
+)
+
+------------------------------------------------------------------------
+-- TORCH
+
+addhint("craft a torch from staff and coal lump",
+	"assemble torch",
+	{"nc_woodwork:staff", "nc_fire:lump_coal"}
+)
+
+addhint("light a torch",
+	"nc_torch:torch_lit",
+	"assemble torch"
+)
+
+------------------------------------------------------------------------
+-- WOODWORK
+
+addhint("write on a surface with a charcoal lump",
+	"group:alpha_glyph",
 	"nc_fire:lump_coal"
 )
 

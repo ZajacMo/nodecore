@@ -9,17 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Hint system updates.
-	- Witness recipes.
-		- Lode heating/cooling?
-		- Composting?
-		- Lux infusion?
-		- Flammable ignition?
-	- Acquire living sponge from heart of colony.
-	- Dirt cycle, make peat, compost to humus.
-	- Craft and light torches.
-	- Write with charcoal.
-
 - Simplify scaling
 	- Different ways to indicate attention to surfaces.
 		- Hold sneak
