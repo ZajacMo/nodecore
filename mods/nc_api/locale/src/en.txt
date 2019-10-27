@@ -1,18 +1,5 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-04 22:56+0000\n"
-"PO-Revision-Date: 2019-10-04 22:56+0000\n"
-"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
-"Language-Team: English <http://nodecore.mine.nu/trans/projects/nodecore/core/"
-"en/>\n"
-"Language: en\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+msgstr "[REMOVED]"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
@@ -26,9 +13,6 @@ msgstr "(and @1 more hints)"
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
 
-msgid "- "Torches" are not a thing; use fire as your first light source."
-msgstr "[REMOVED]"
-
 msgid "- @1"
 msgstr "- @1"
 
@@ -40,6 +24,9 @@ msgstr "- Crafting is done by building recipes in-world."
 
 msgid "- DONE: @1"
 msgstr "- DONE: @1"
+
+msgid "- Drop items onto ground to create stack nodes.  They do not decay."
+msgstr "[REMOVED]"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Drop items onto ground to create stack nodes. They do not decay."
@@ -88,6 +75,165 @@ msgstr "- Wielded item, target face, and surrounding nodes may matter."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- You do not have to punch very fast (about 1 per second)."
+
+msgid "...and 1 more hint..."
+msgstr "[REMOVED]"
+
+msgid "...and @1 more hints..."
+msgstr "[REMOVED]"
+
+msgid "...have you activated a lens yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled a staff from sticks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled a wooden frame yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled a wooden ladder yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled a wooden shelf yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled a wooden tool yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled an adze out of sticks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you assembled an annealed lode tote handle yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you bashed a plank into sticks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you broken cobble into chips yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you carved a wooden plank completely yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you carved wooden tool heads from planks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you chipped chromatic glass into prisms yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you chopped a lode cube into prills yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you chopped chromatic glass into lenses yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you chopped up charcoal yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you cold-forged an annealed lode tool head yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you cold-forged lode down completely yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you cooled molten glass into crude glass yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you cut down a tree yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up a tree stump yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up dirt yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up gravel yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up lode ore yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up sand yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you dug up stone yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found a lode stratum yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found ash yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found charcoal yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found deep stone strata yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found dry leaves yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found eggcorns yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found lode ore yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found molten rock yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found sponges yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you found sticks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you made fire by rubbing sticks together yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you melted down lode metal yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you melted sand into glass yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you molded molten glass into clear glass yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you packed high-quality charcoal yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you packed stone chips back into cobble yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you planted an eggcorn yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you produced light from a lens yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you put a stone tip onto a tool yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you quenched molten glass into chromatic glass yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you sintered glowing lode into a cube yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you split a tree trunk into planks yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you tempered a lode anvil yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you tempered a lode tool head yet?"
+msgstr "[REMOVED]"
+
+msgid "...have you welded a lode pick and spade together yet?"
+msgstr "[REMOVED]"
 
 msgid "About"
 msgstr "About"
@@ -152,11 +298,17 @@ msgstr "Ash"
 msgid "Ash Lump"
 msgstr "Ash Lump"
 
+msgid "Burn"
+msgstr "Burn"
+
 msgid "Burning Embers"
 msgstr "Burning Embers"
 
 msgid "Charcoal"
 msgstr "Charcoal"
+
+msgid "Charcoal Glyph"
+msgstr "Charcoal Glyph"
 
 msgid "Charcoal Lump"
 msgstr "Charcoal Lump"
@@ -185,6 +337,9 @@ msgstr "DEVELOPMENT VERSION"
 msgid "Dirt"
 msgstr "Dirt"
 
+msgid "Discord:   https://discord.gg/SHq2tkb"
+msgstr "[REMOVED]"
+
 msgid "Discord: https://discord.gg/SHq2tkb"
 msgstr "Discord: https://discord.gg/SHq2tkb"
 
@@ -197,6 +352,9 @@ msgstr "Fire"
 msgid "Float Glass"
 msgstr "Float Glass"
 
+msgid "GitLab:    https://gitlab.com/sztest/nodecore"
+msgstr "[REMOVED]"
+
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
@@ -205,6 +363,9 @@ msgstr "Glowing Lode"
 
 msgid "Glowing Lode Bar"
 msgstr "Glowing Lode Bar"
+
+msgid "Glowing Lode Cobble"
+msgstr "Glowing Lode Cobble"
 
 msgid "Glowing Lode Hatchet"
 msgstr "Glowing Lode Hatchet"
@@ -251,6 +412,9 @@ msgstr "Gravel"
 msgid "Hints"
 msgstr "Hints"
 
+msgid "Humus"
+msgstr "Humus"
+
 msgid "Ignore"
 msgstr "Ignore"
 
@@ -296,6 +460,9 @@ msgstr "Leaves"
 msgid "Lens"
 msgstr "Lens"
 
+msgid "Lit Torch"
+msgstr "Lit Torch"
+
 msgid "Living Sponge"
 msgstr "Living Sponge"
 
@@ -308,6 +475,9 @@ msgstr "Lode Crate"
 msgid "Lode Ore"
 msgstr "Lode Ore"
 
+msgid "Log"
+msgstr "Log"
+
 msgid "Loose Cobble"
 msgstr "Loose Cobble"
 
@@ -316,6 +486,9 @@ msgstr "Loose Dirt"
 
 msgid "Loose Gravel"
 msgstr "Loose Gravel"
+
+msgid "Loose Humus"
+msgstr "Loose Humus"
 
 msgid "Loose Leaves"
 msgstr "Loose Leaves"
@@ -338,6 +511,9 @@ msgstr "Lux Flow"
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
 
+msgid "MIT License:  http://www.opensource.org/licenses/MIT"
+msgstr "[REMOVED]"
+
 msgid "Molten Glass"
 msgstr "Molten Glass"
 
@@ -347,8 +523,14 @@ msgstr "Molten Rock"
 msgid "NodeCore"
 msgstr "NodeCore"
 
+msgid "Not all game content is covered by hints.  Explore!"
+msgstr "[REMOVED]"
+
 msgid "Not all game content is covered by hints. Explore!"
 msgstr "Not all game content is covered by hints. Explore!"
+
+msgid "Peat"
+msgstr "Peat"
 
 msgid "Player's Guide: Inventory Management"
 msgstr "Player's Guide: Inventory Management"
@@ -407,6 +589,9 @@ msgstr "Stone-Tipped Spade"
 msgid "Stump"
 msgstr "Stump"
 
+msgid "Teleport to get unstuck (but you can't bring your items)"
+msgstr "[REMOVED]"
+
 msgid "Tempered Lode"
 msgstr "Tempered Lode"
 
@@ -452,6 +637,9 @@ msgstr "Tempered Lode Spade Head"
 msgid "Tips"
 msgstr "Tips"
 
+msgid "Torch"
+msgstr "Torch"
+
 msgid "Tote (1 Slot)"
 msgstr "Tote (1 Slot)"
 
@@ -484,6 +672,9 @@ msgstr "Tree Trunk"
 
 msgid "Unknown Item"
 msgstr "Unknown Item"
+
+msgid "Version"
+msgstr "[REMOVED]"
 
 msgid "Water"
 msgstr "Water"
@@ -608,6 +799,9 @@ msgstr "cold-forge lode down completely"
 msgid "cool molten glass into crude glass"
 msgstr "cool molten glass into crude glass"
 
+msgid "craft a torch from staff and coal lump"
+msgstr "craft a torch from staff and coal lump"
+
 msgid "cut down a tree"
 msgstr "cut down a tree"
 
@@ -634,6 +828,12 @@ msgstr "dig up stone"
 
 msgid "dry out a sponge"
 msgstr "dry out a sponge"
+
+msgid "extract living sponge from colony center"
+msgstr "extract living sponge from colony center"
+
+msgid "ferment peat into humus"
+msgstr "ferment peat into humus"
 
 msgid "find a lode stratum"
 msgstr "find a lode stratum"
@@ -674,12 +874,6 @@ msgstr "hammer a lode bar back to a prill"
 msgid "hammer a lode prill into a bar"
 msgstr "hammer a lode prill into a bar"
 
-msgid "hammer a metal rod into a cobble panel"
-msgstr "hammer a metal rod into a cobble panel"
-
-msgid "hammer a staff into a lubricated wooden panel"
-msgstr "hammer a staff into a lubricated wooden panel"
-
 msgid "hammer lode bars into a rod"
 msgstr "hammer lode bars into a rod"
 
@@ -689,11 +883,14 @@ msgstr "harvest a sponge"
 msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
 
-msgid "lubricate a cobble panel with graphite"
-msgstr "lubricate a cobble panel with graphite"
+msgid "insert metal rod into a cobble panel"
+msgstr "insert metal rod into a cobble panel"
 
-msgid "lubricate a wooden panel with graphite"
-msgstr "lubricate a wooden panel with graphite"
+msgid "insert wooden pin into wooden door panel"
+msgstr "insert wooden pin into wooden door panel"
+
+msgid "light a torch"
+msgstr "light a torch"
 
 msgid "lux-infuse a lode tool"
 msgstr "lux-infuse a lode tool"
@@ -731,6 +928,9 @@ msgstr "observe lux criticality"
 msgid "pack high-quality charcoal"
 msgstr "pack high-quality charcoal"
 
+msgid "pack leaves into peat"
+msgstr "pack leaves into peat"
+
 msgid "pack stone chips back into cobble"
 msgstr "pack stone chips back into cobble"
 
@@ -752,6 +952,9 @@ msgstr "scale a sheer overhang"
 msgid "scale a sheer wall"
 msgstr "scale a sheer wall"
 
+msgid "see a tree grow"
+msgstr "see a tree grow"
+
 msgid "sinter glowing lode prills into a cube"
 msgstr "sinter glowing lode prills into a cube"
 
@@ -769,3 +972,7 @@ msgstr "temper a lode tool head"
 
 msgid "weld glowing lode pick and spade heads together"
 msgstr "weld glowing lode pick and spade heads together"
+
+msgid "write on a surface with a charcoal lump"
+msgstr "write on a surface with a charcoal lump"
+

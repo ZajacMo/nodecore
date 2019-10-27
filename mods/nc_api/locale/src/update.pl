@@ -36,6 +36,10 @@ sub savelang {
 }
 
 my $en = getlang("en");
+for my $k ( keys %$en ) {
+	$en->{$k} eq "[REMOVED]" and delete $en->{$k};
+}
+
 my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
 while($page) {
 	open(my $fh, "-|", "curl", $page) or die($!);
