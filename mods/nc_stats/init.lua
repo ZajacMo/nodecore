@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, os, pairs, table, type, vector
-    = math, minetest, nodecore, os, pairs, table, type, vector
-local math_random, os_date, table_remove
-    = math.random, os.date, table.remove
+local math, minetest, nodecore, os, pairs, string, table, type, vector
+    = math, minetest, nodecore, os, pairs, string, table, type, vector
+local math_random, os_date, string_format, table_concat, table_remove
+    = math.random, os.date, string.format, table.concat, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -36,10 +36,10 @@ local function dbadd_nav(qty, dirty, db, root, key, ...)
 		end
 		if dirty then v.dirty = true end
 		return dbadd_nav(qty, nil, v, key, ...)
-	else
-		v = v and type(v) == "number" and v or 0
-		db[root] = v + qty
 	end
+	v = v and type(v) == "number" and v or 0
+	db[root] = v + qty
+	return v + qty
 end
 local function dbadd(qty, root, ...)
 	if qty == 0 then return end
@@ -57,7 +57,11 @@ local function playeradd(qty, player, ...)
 		data = load_check(player:get_meta():get_string(modname))
 		statsdb[pname] = data
 	end
-	dbadd(qty, pname, ...)
+	if qty ~= 0 and dbadd(qty, pname, ...) <= qty then
+		local t = {...}
+		minetest.log(string_format("player %q discovered %q",
+				pname, table_concat(t, ":")))
+	end
 	if not statsdb[pname].firstseen then
 		statsdb[pname].firstseen = os_date("!*t")
 	end

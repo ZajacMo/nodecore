@@ -42,6 +42,7 @@ setmetatable(nodecore, {
 		end
 	})
 
+include("compat_vector")
 include("issue7020")
 include("issue9043")
 

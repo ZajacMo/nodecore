@@ -28,7 +28,7 @@ local function gethint(player)
 
 	local rawdb = nodecore.statsdb[pname] or {}
 	local db = {}
-	for _, r in ipairs({"inv", "punch", "dig", "place", "craft"}) do
+	for _, r in ipairs({"inv", "punch", "dig", "place", "craft", "witness"}) do
 		for k, v in pairs(rawdb[r] or {}) do
 			db[k] = v
 			db[r .. ":" .. k] = v

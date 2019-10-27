@@ -70,6 +70,7 @@ epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
 
 local function growtree(pos)
+	nodecore.witness(vector.add(pos, {x = 0, y = 0.499, z = 0}), "grow tree")
 	minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
 	for _ = 1, 4 do
 		minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})

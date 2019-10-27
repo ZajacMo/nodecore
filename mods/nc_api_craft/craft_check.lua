@@ -123,6 +123,16 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	if nodecore.player_stat_add then
 		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
 	end
+	if recipe.witness then
+		local lut = {}
+		for _, v in pairs(recipe.nodes) do
+			lut[minetest.pos_to_string(v)] = true
+		end
+		nodecore.witness(pos, recipe.label,
+			type(recipe.witness) == "number" and recipe.witness or nil,
+			function(p) return lut[minetest.pos_to_string(p)] end
+		)
+	end
 	minetest.log((data.crafter and data.crafter:get_player_name() or "unknown")
 		.. " completed recipe \"" .. recipe.label .. "\" at " ..
 		minetest.pos_to_string(pos) .. " upon " .. node.name)

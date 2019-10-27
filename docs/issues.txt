@@ -10,6 +10,11 @@ ISSUES: Bugs, Cleanup and Refinements
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Hint system updates.
+	- Witness recipes.
+		- Lode heating/cooling?
+		- Composting?
+		- Lux infusion?
+		- Flammable ignition?
 	- Acquire living sponge from heart of colony.
 	- Dirt cycle, make peat, compost to humus.
 	- Craft and light torches.
@@ -26,13 +31,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  slow particle effect?  Remove directionality.
 
 - Consider updating tote recipe.
-
-- Hint system updates.
-	- Need a "witness" system for spontaneous in-world processes,
-	  such as tree growth or lode cooling.  Credit players within
-	  a certain distance and line-of-sight.  
-	- Feedback/issues URL?
-		- Look for new URL buttons in 5.0+
 
 - Reinstate and update toolbelt once engine PR #8701 is released
 	- Alternative item strategy with dedicated slots for each
