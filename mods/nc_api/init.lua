@@ -63,6 +63,7 @@ include("fx_digparticles")
 
 include("register_limited_abm")
 include("register_soaking_abm")
+include("register_aism")
 include("register_ambiance")
 include("register_mods")
 include("mapgen_shared")
