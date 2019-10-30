@@ -42,6 +42,12 @@ local function dorake(pname, pos, node, user, ...)
 			{node.name}
 	)) do
 		minetest.node_dig(npos, node, user, ...)
+		for _, obj in pairs(minetest.get_objects_inside_radius(npos, 0.5)) do
+			local lua = obj and obj.get_luaentity and obj:get_luaentity()
+			if lua and lua.name == "__builtin:item" then
+				obj:set_pos(pos)
+			end
+		end
 	end
 end
 
