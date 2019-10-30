@@ -17,11 +17,6 @@ ROADMAP: Large New Development Projects
 		- Stronger near flowing water.
 
 - Advanced Tools
-	- Sickle / kopesh, choppy + snappy, recursive harvesting.
-	- Mop/broom for mass stack pickup.
-		- Sponge on a staff for a mop, thatch on a staff for broom.
-		- Broom recipe feels more right, but requires more work...
-		- Adzes tied together into a rake?
 	- Waterproof de facto emergency lantern?
 		- Deploys itself if dropped, e.g. when falling into a cave.
 		- Not easily disrupted by falling into water.
@@ -67,12 +62,6 @@ ROADMAP: Large New Development Projects
 	- Field Generator?
 		- Power an annealed lode block from 2 opposite faces.
 		- Generates particle effect at mapblock boundary.
-
-- Thatch
-	- Collect grass and dry in sun, or pummel sticks into wood fiber.
-	- Nodes that reduce fall damage, decorative for building.
-	- Brushes for painting, writing system.
-	- Broom to sweep scattered item stacks together.
 
 - Water and lava surface springs.
 	- Access to water for forges.
