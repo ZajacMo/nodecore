@@ -90,6 +90,26 @@ nodecore.register_limited_abm({
 		end
 	})
 
+nodecore.register_aism({
+		label = "Aggregate Stack Wettening",
+		interval = 1,
+		chance = 2,
+		itemnames = {modname .. ":aggregate"},
+		action = function(stack, data)
+			local found = minetest.find_node_near(data.pos, 1, {"group:water"})
+			if not found then return end
+			if stack:get_count() == 1 then
+				minetest.set_node(data.pos, {name = src})
+				nodecore.node_sound(data.pos, "place")
+			else
+				minetest.set_node(found, {name = src})
+				nodecore.node_sound(found, "place")
+				stack:take_item(1)
+				return stack
+			end
+		end
+	})
+
 nodecore.register_limited_abm({
 		label = "Aggregate Wandering",
 		interval = 4,
@@ -101,6 +121,8 @@ nodecore.register_limited_abm({
 			local meta = minetest.get_meta(pos)
 			local gen = meta:get_int("agggen")
 			if gen >= 8 and math_random(1, 2) == 1 then
+				nodecore.witness({x = pos.x, y = pos.y + 0.5, z = pos.z},
+				"aggregate to cobble")
 				minetest.set_node(pos, {name = "nc_terrain:cobble"})
 				return nodecore.node_sound(pos, "place")
 			end

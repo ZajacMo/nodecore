@@ -51,23 +51,19 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_limited_abm({
+nodecore.register_aism({
 		label = "Lux Stack Reaction",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
-		limited_alert = 1000,
-		nodenames = {"group:visinv"},
-		action = function(pos)
-			local stack = nodecore.stack_get(pos)
-			if stack:is_empty() then return end
+		itemnames = {"group:lux_cobble"},
+		action = function(stack, data)
 			local name = stackgroup(stack, "lux_cobble")
 			if not name then return end
-			local qty = luxqty(pos)
+			local qty = luxqty(data.pos)
 			name = name:gsub("cobble%d", "cobble" .. qty)
 			if name == stack:get_name() then return end
 			stack:set_name(name)
-			nodecore.stack_set(pos, stack)
+			return stack
 		end
 	})
 

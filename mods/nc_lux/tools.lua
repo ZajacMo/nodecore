@@ -50,16 +50,25 @@ for _, v in pairs(nodecore.dirs()) do
 		indirs[#indirs + 1] = v
 	end
 end
-nodecore.register_soaking_abm({
+
+local alltools = {}
+for k in pairs(convert) do alltools[#alltools + 1] = k end
+for k in pairs(charge) do
+	if not convert[k] then
+		alltools[#alltools + 1] = k
+	end
+end
+
+nodecore.register_soaking_aism({
 		label = "Lux Infusion",
 		interval = 2,
 		chance = 1,
-		nodenames = {"group:visinv"},
-		neighbors = {"group:lux_fluid"},
-		soakrate = function(pos)
-			local stack = nodecore.stack_get(pos)
+		itemnames = alltools,
+		soakrate = function(stack, aismdata)
 			local name = stack:get_name()
 			if (not charge[name]) and (not convert[name]) then return false end
+
+			local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
 
 			local above = vector.add(pos, {x = 0, y = 1, z = 0})
 			if not isfluid(above) then return false end
@@ -78,18 +87,15 @@ nodecore.register_soaking_abm({
 
 			return qty * 20 / math_pow(2, dist / 2)
 		end,
-		soakcheck = function(data, pos)
-			local stack = nodecore.stack_get(pos)
+		soakcheck = function(data, stack)
 			local name = stack:get_name()
 			local dw = math_floor(data.total)
 			if charge[name] then
 				stack:add_wear(-dw)
-				nodecore.stack_set(pos, stack)
 			elseif convert[name] and stack:get_wear() < 3277 then
 				stack = ItemStack(convert[name])
 				stack:set_wear(65535 - dw)
-				nodecore.stack_set(pos, stack)
 			end
-			return data.total - dw
+			return data.total - dw, stack
 		end
 	})

@@ -30,7 +30,7 @@ nodecore.register_healthfx({
 
 local luxaccum = {}
 
-local function rademit(pos, node)
+local function rademit(pos, emit)
 	for _, player in pairs(minetest.get_connected_players()) do
 		local pname = player:get_player_name()
 		local pp = player:get_pos()
@@ -57,12 +57,7 @@ local function rademit(pos, node)
 				if dsqr > (32 * 32) then return end
 			end
 		end
-		if not node or not node.lux_emit then
-			node = node or minetest.get_node(pos)
-			local def = minetest.registered_items[node.name]
-			node.lux_emit = def and def.groups and def.groups.lux_emit or 1
-		end
-		luxaccum[pname] = (luxaccum[pname] or 0) + (math_log(node.lux_emit) + 1) / dsqr
+		luxaccum[pname] = (luxaccum[pname] or 0) + (math_log(emit) + 1) / dsqr
 	end
 end
 
@@ -71,22 +66,24 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_emit"},
-		action = rademit
+		action = function(pos, node)
+			local def = minetest.registered_items[node.name]
+			local emit = def and def.groups and def.groups.lux_emit or 1
+			if emit then return rademit(pos, emit) end
+		end
 	})
 
-nodecore.register_limited_abm({
+nodecore.register_aism({
 		label = "Lux Stack Irradiate",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
-		limited_alert = 1000,
-		nodenames = {"group:visinv"},
-		action = function(pos, node)
-			local stack = nodecore.stack_get(pos)
-			if stack:is_empty() then return end
+		itemnames = {"group:lux_emit"},
+		action = function(stack, data)
 			local def = minetest.registered_items[stack:get_name()]
-			node.lux_emit = def and def.groups and def.groups.lux_emit
-			return rademit(pos, node)
+			local emit = def and def.groups and def.groups.lux_emit
+			or def and def.groups and def.groups.lux_tool
+			and def.groups.lux_tool * 0.1
+			if emit then return rademit(data.pos, emit) end
 		end
 	})
 
@@ -99,17 +96,7 @@ local function luxradpump()
 		local pname = player:get_player_name()
 		local accum = luxaccum[pname] or 0
 		luxaccum[pname] = 0
-		local inv = player:get_inventory()
-		for i = 1, inv:get_size("main") do
-			local stack = inv:get_stack("main", i)
-			local def = minetest.registered_items[stack:get_name()]
-			if def and def.groups then
-				if def.groups.lux_emit then
-					accum = accum + (math_log(def.groups.lux_emit) + 1)
-				end
-				if def.groups.lux_tool then accum = accum + 0.1 end
-			end
-		end
+
 		local prop = math_exp(-accum / 10000)
 		rad = rad * prop + (1 - prop)
 

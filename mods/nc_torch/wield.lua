@@ -39,30 +39,21 @@ minetest.register_globalstep(function(dt)
 					local stack = inv:get_stack("main", i)
 					if islit(stack) then snuffinv(player, inv, i) end
 				end
-			else
-				-- Snuff torches that have expired.
-				for i = 1, inv:get_size("main") do
-					local stack = inv:get_stack("main", i)
-					if islit(stack) and now > stack:get_meta()
-					:get_float("expire") then snuffinv(player, inv, i) end
+			elseif islit(player:get_wielded_item()) then
+				-- Wield light
+				local name = player:get_player_name()
+				local t = wltimers[name] or 0
+				if t <= now then
+					wltimers[name] = now + 0.2
+					wieldlight(hpos)
 				end
 
-				if islit(player:get_wielded_item()) then
-					-- Wield light
-					local name = player:get_player_name()
-					local t = wltimers[name] or 0
-					if t <= now then
-						wltimers[name] = now + 0.2
-						wieldlight(hpos)
-					end
-
-					-- Wield ambiance
-					t = ambtimers[name] or 0
-					if t <= now then
-						ambtimers[name] = now + 1
-						minetest.sound_play("nc_fire_flamy",
-							{object = player, gain = 0.1})
-					end
+				-- Wield ambiance
+				t = ambtimers[name] or 0
+				if t <= now then
+					ambtimers[name] = now + 1
+					minetest.sound_play("nc_fire_flamy",
+						{object = player, gain = 0.1})
 				end
 			end
 		end

@@ -14,10 +14,6 @@ ICEBOX: Low-Priority Ideas
 
 - Wandering fluids API for concrete, glass?
 
-- AStMs: Active Stack Modifiers.
-	- Operate on all visinv nodes.
-	- Possibly operate on player inventories?
-
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
 
