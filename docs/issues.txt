@@ -16,10 +16,19 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Punch once then wait
 		- Just loiter near somewhere
 		- Point at something for a while
+		- Empty-handed right-click, then stare?
 	- Change how scaling handholds are visualized; maybe a
 	  slow particle effect?  Remove directionality.
 
+- Wet Agg in water:
+	- Should sink in water (exchange w/ water below).
+	- Should disperse if surrounded by lots of water.
+
 - Consider updating tote recipe.
+
+- Player APIs:
+	- Texturing, for clothing mods.
+	- Physics/acceleration, for waterflow, conveyors, etc.
 
 - Reinstate and update toolbelt once engine PR #8701 is released
 	- Alternative item strategy with dedicated slots for each

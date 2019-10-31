@@ -16,11 +16,24 @@ ROADMAP: Large New Development Projects
 		- Stronger near more water.
 		- Stronger near flowing water.
 
-- Advanced Tools
-	- Waterproof de facto emergency lantern?
-		- Deploys itself if dropped, e.g. when falling into a cave.
-		- Not easily disrupted by falling into water.
-		- Maybe something lux-infused?
+- Door Automation
+	- Will need a "grate" node objects pass thru but
+		players/nodes cannot.
+	- Node blocking path: "press"
+		- Search for "press" recipes first.
+			- Extend most pummel/packing recipes for press.
+			- Maybe imply press recipes from thumpy pummels?
+		- Fallback: fling one object away from stacks.
+	- Node outside upward roll: "unroll"
+		- Place one node from stack below, eject item upwards.
+		- Check for room for both.
+	- Node outside downward roll: "sawmill"
+		- If node cannot move, dig it.
+		- Attempt to eject item out either side, or down grate.
+	- Push players?
+
+- Lava quenching, new material?
+	- Seepstone?
 
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
@@ -39,23 +52,11 @@ ROADMAP: Large New Development Projects
 	  gravel or lux infusion) to instantly light on
 	  punching a solid enough surface.
 
-- Player knockback coming in 5.1+?
-	- Allow players to push others around by punching?
-	- Use for door conveyors?
-
-- Doors
-	- Push nodes blocking rotation?
-		- Maximum of 3 or 4 nodes allowed in chain, must
-		  reach air or starting node (cannot loop).
-		- Instead, maybe always convert to item and fling
-		  away.
-			- Easier to do in a more difficult context.
-			- Different behavior adds diversity to
-			  player mechanics.
-	- Need a way to deploy stacked nodes.
-		- Maybe by moving stacks upwards, it places one
-		  node from the stack below?
-	- Push players?
+- Special glass handling?
+	- If glass is connected to other glass, it doesn't dig
+	  trivially.
+	- Break into crude glass instead, and break surrounding
+	  nodes too.
 
 - Domain Wall Sensor
 	- Adapt from sztest?
@@ -66,8 +67,6 @@ ROADMAP: Large New Development Projects
 - Water and lava surface springs.
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting, glass?
-
-- Lava quenching, new material?
 
 - Lurk Ore
 	- Moves freely among air-exposed stone while no player is looking.
@@ -101,6 +100,9 @@ ROADMAP: Large New Development Projects
 		- Skin color, hair color, eye color?
 	- Add more holiday outfits.
 	- Track server lag in metadata?
+
+- Make stone bricks or other building materials?
+	- Pummel stone w/ lux+ pick?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
