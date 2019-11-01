@@ -17,7 +17,9 @@ minetest.register_tool(modname .. ":rake", {
 				snappy = 1,
 			}),
 		sounds = nodecore.sounds("nc_tree_sticky"),
-		after_use = function(stack, user, _, digparams)
+		after_use = function(stack, user, node, digparams)
+			local def = node and node.name and minetest.registered_nodes[node.name]
+			if not (def and def.groups and def.groups.snappy) then return end
 			local pname = user and user:is_player() and user:get_player_name()
 			if pname then raked[pname] = digparams end
 			stack:add_wear(wearrate)
