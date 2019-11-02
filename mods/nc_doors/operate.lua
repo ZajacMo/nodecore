@@ -193,21 +193,18 @@ function nodecore.operate_door(pos, node, dir)
 		}
 	end
 	if press then
-		local backstop = vector.add(press.pos, press.dir)
-		if not (nodecore.buildable_to(backstop) or nodecore.node_group(
-				"falling_node", backstop)) then
-			local data = {
-				action = "press",
-				pointed = {
-					["type"] = "node",
-					above = vector.subtract(press.pos, press.dir),
-					under = press.pos
-				}
-			}
-			if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
-				minetest.sound_play("nc_doors_operate",
-					{pos = press.pos, gain = 0.5})
-			end
+		local data = {
+			action = "press",
+			pointed = {
+				["type"] = "node",
+				above = vector.subtract(press.pos, press.dir),
+				under = press.pos
+			},
+			axis = hinge
+		}
+		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
+			minetest.sound_play("nc_doors_operate",
+				{pos = press.pos, gain = 0.5})
 		end
 		return
 	end
