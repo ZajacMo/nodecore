@@ -194,7 +194,8 @@ function nodecore.operate_door(pos, node, dir)
 	if #blocked > 0 then
 		for _, v in pairs(blocked) do
 			local backstop = vector.add(v.pos, v.dir)
-			if not nodecore.buildable_to(backstop) then
+			if not (nodecore.buildable_to(backstop) or nodecore.node_group(
+					"falling_node", backstop)) then
 				local data = {
 					action = "press",
 					pointed = {
