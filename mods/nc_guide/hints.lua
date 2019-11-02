@@ -179,7 +179,7 @@ addhint("light a torch",
 -- WOODWORK
 
 addhint("write on a surface with a charcoal lump",
-	"group:alpha_glyph",
+	"charcoal writing",
 	"nc_fire:lump_coal"
 )
 
