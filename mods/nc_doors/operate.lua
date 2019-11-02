@@ -155,7 +155,7 @@ function nodecore.operate_door(pos, node, dir)
 		end
 	) then return end
 
-	local blocked = {}
+	local press
 	local toop = {}
 	for k, v in pairs(found) do
 		local ffd = nodecore.facedirs[v.node.param2 or 0]
@@ -166,7 +166,8 @@ function nodecore.operate_door(pos, node, dir)
 		if (not found[minetest.pos_to_string(to)])
 		and (not nodecore.buildable_to(to))
 		then
-			blocked[#blocked + 1] = {
+			if press then return end
+			press = {
 				pos = to,
 				dir = v.dir,
 				from = v
@@ -191,23 +192,21 @@ function nodecore.operate_door(pos, node, dir)
 			from = v
 		}
 	end
-	if #blocked > 0 then
-		for _, v in pairs(blocked) do
-			local backstop = vector.add(v.pos, v.dir)
-			if not (nodecore.buildable_to(backstop) or nodecore.node_group(
-					"falling_node", backstop)) then
-				local data = {
-					action = "press",
-					pointed = {
-						["type"] = "node",
-						above = vector.subtract(v.pos, v.dir),
-						under = v.pos
-					}
+	if press then
+		local backstop = vector.add(press.pos, press.dir)
+		if not (nodecore.buildable_to(backstop) or nodecore.node_group(
+				"falling_node", backstop)) then
+			local data = {
+				action = "press",
+				pointed = {
+					["type"] = "node",
+					above = vector.subtract(press.pos, press.dir),
+					under = press.pos
 				}
-				if nodecore.craft_check(v.pos, minetest.get_node(v.pos), data) then
-					minetest.sound_play("nc_doors_operate",
-						{pos = v.pos, gain = 0.5})
-				end
+			}
+			if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
+				minetest.sound_play("nc_doors_operate",
+					{pos = press.pos, gain = 0.5})
 			end
 		end
 		return
