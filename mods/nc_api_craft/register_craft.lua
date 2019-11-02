@@ -10,10 +10,15 @@ nodecore.craft_recipes = craft_recipes
 
 local id = 0
 
+local witnessable = {
+	cook = true,
+	press = true
+}
+
 function nodecore.register_craft(recipe)
 	recipe.action = recipe.action or "place"
 	if recipe.witness == nil then
-		recipe.witness = recipe.action == "cook" or nil
+		recipe.witness = witnessable[recipe.action]
 	end
 	local canrot
 	recipe.nodes = recipe.nodes or {}

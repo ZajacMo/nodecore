@@ -18,7 +18,7 @@ local tilemods = {
 	{idx = 6, part = "side", tran = "R180"}
 }
 
-function nodecore.register_door(basemod, basenode, desc, pin)
+function nodecore.register_door(basemod, basenode, desc, pin, lv)
 	local basefull = basemod .. ":" .. basenode
 	local basedef = minetest.registered_nodes[basefull]
 
@@ -77,7 +77,7 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 		.. "_mask.png^[transform" .. v.tran .. ")"
 	end
 
-	local groups = nodecore.underride({door = 1}, basedef.groups)
+	local groups = nodecore.underride({door = lv}, basedef.groups)
 	local doordef = nodecore.underride({
 			name = doorname,
 			description = (desc or basedef.description) .. " Hinged Panel",
@@ -108,5 +108,5 @@ function nodecore.register_door(basemod, basenode, desc, pin)
 		})
 end
 
-nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff")
-nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered")
+nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff", 2)
+nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered", 3)
