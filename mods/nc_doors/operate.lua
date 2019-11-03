@@ -174,6 +174,15 @@ function nodecore.operate_door(pos, node, dir)
 			}
 		end
 
+		for _, obj in pairs(minetest.get_objects_inside_radius(to, 2.5)) do
+			local op = obj:get_pos()
+			local cb = obj:get_properties().collisionbox
+			if to.x + 0.5 > op.x + cb[1] and to.x - 0.5 < op.x + cb[4]
+			and to.y + 0.5 > op.y + cb[2] and to.y - 0.5 < op.y + cb[5]
+			and to.z + 0.5 > op.z + cb[3] and to.z - 0.5 < op.z + cb[6]
+			then return end
+		end
+
 		local str = minetest.pos_to_string(to)
 		if squelch[str] then return end
 
