@@ -239,6 +239,8 @@ function nodecore.operate_door(pos, node, dir)
 				minetest.sound_play("nc_doors_operate",
 					{pos = v.pos, gain = 0.5})
 			end
+		else
+			nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 		end
 	end
 	for _, v in pairs(found) do
