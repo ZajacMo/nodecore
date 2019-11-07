@@ -51,11 +51,18 @@ end
 
 minetest.register_globalstep(function()
 		local nonheads = {}
-		for _, v in pairs(convey) do
-			if v.tkey2 and (convey[v.tkey2] or nodecore.buildable_to(v.to2)) then
-				nonheads[v.tkey2] = true
+		for k, v in pairs(convey) do
+			local node = minetest.get_node(v.from)
+			if node.name ~= v.node.name
+			or node.param ~= v.node.param
+			or node.param2 ~= v.node.param2 then
+				convey[k] = nil
 			else
-				nonheads[v.tkey] = true
+				if v.tkey2 and (convey[v.tkey2] or nodecore.buildable_to(v.to2)) then
+					nonheads[v.tkey2] = true
+				else
+					nonheads[v.tkey] = true
+				end
 			end
 		end
 		local okay = {}
@@ -180,7 +187,10 @@ function nodecore.operate_door(pos, node, dir)
 			if to.x + 0.5 > op.x + cb[1] and to.x - 0.5 < op.x + cb[4]
 			and to.y + 0.5 > op.y + cb[2] and to.y - 0.5 < op.y + cb[5]
 			and to.z + 0.5 > op.z + cb[3] and to.z - 0.5 < op.z + cb[6]
-			then return end
+			then
+				local lua = obj.get_luaentity and obj:get_luaentity()
+				if not (lua and lua.is_stack) then return end
+			end
 		end
 
 		local str = minetest.pos_to_string(to)
