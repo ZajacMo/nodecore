@@ -69,7 +69,7 @@ for i = 1, #glyphs do
 			description = "Charcoal Glyph",
 			tiles = {
 				glyphs[i],
-				modname .. "_blank.png"
+				"[combine:1x1"
 			},
 			drawtype = "nodebox",
 			node_box = nodecore.fixedbox(

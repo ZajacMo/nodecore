@@ -25,7 +25,7 @@ minetest.register_node(modname .. ":stack", {
 		use_texture_alpha = true,
 		tiles = {
 			"nc_items_shadow.png",
-			"nc_items_blank.png",
+			"[combine:1x1",
 		},
 		walkable = true,
 		selection_box = nodecore.fixedbox(
