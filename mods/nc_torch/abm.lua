@@ -39,7 +39,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":torch_lit"},
 		action = function(pos)
 			if nodecore.quenched(pos) or
-			minetest.get_gametime() > minetest.get_meta(pos):get_float("expire") then
+			nodecore.gametime > minetest.get_meta(pos):get_float("expire") then
 				minetest.remove_node(pos)
 				minetest.add_item(pos, {name = "nc_fire:lump_ash"})
 				minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
@@ -52,7 +52,7 @@ nodecore.register_aism({
 		itemnames = {modname .. ":torch_lit"},
 		action = function(stack, data)
 			local expire = stack:get_meta():get_float("expire") or 0
-			if expire < minetest.get_gametime() then
+			if expire < nodecore.gametime then
 				minetest.sound_play("nc_fire_snuff", {gain = 1, pos = data.pos})
 				return "nc_fire:lump_ash"
 			end

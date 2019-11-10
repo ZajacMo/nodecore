@@ -27,7 +27,7 @@ local function soaking_core(def, reg, getmeta)
 	end
 
 	def.action = function(...)
-		local now = minetest.get_gametime()
+		local now = nodecore.gametime
 
 		local meta = getmeta(...)
 		local total = meta:get_float(def.qtyfield) or 0

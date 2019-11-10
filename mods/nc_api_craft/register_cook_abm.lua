@@ -16,7 +16,7 @@ local function getduration(_, data)
 	or not md.start
 	then return 0 end
 
-	return minetest.get_gametime() - md.start
+	return nodecore.gametime - md.start
 end
 
 local function playcookfx(pos, cookfx, sound, smokeqty, smoketime)
@@ -45,7 +45,7 @@ local function inprogress(pos, data)
 		md = {
 			label = recipe.label,
 			count = count,
-			start = minetest.get_gametime()
+			start = nodecore.gametime
 		}
 		meta:set_string(modname, minetest.serialize(md))
 	end

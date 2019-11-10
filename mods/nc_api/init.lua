@@ -57,6 +57,7 @@ include("util_facedir")
 include("util_sound")
 include("util_translate")
 include("util_ezschematic")
+include("util_gametime")
 include("match")
 
 include("fx_digparticles")

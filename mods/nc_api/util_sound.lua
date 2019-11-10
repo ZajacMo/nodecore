@@ -18,7 +18,7 @@ end
 function nodecore.windiness(y)
 	if y < 0 then return 0 end
 	if y > 512 then y = 512 end
-	return math_sqrt(y) * (1 + 0.5 * math_sin(minetest.get_gametime() / 5))
+	return math_sqrt(y) * (1 + 0.5 * math_sin(nodecore.gametime / 5))
 end
 
 function nodecore.stack_sounds(pos, kind, stack)

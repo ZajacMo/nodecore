@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, pairs, setmetatable, vector
-    = ItemStack, minetest, pairs, setmetatable, vector
+local ItemStack, minetest, nodecore, pairs, setmetatable, vector
+    = ItemStack, minetest, nodecore, pairs, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -21,12 +21,10 @@ local function wieldlight(pos)
 	return minetest.get_node_timer(pos):start(0.3)
 end
 
-local now
 local wltimers = {}
 local ambtimers = {}
-minetest.register_globalstep(function(dt)
-		now = now or minetest.get_gametime()
-		now = now + dt
+minetest.register_globalstep(function()
+		local now = nodecore.gametime
 		for _, player in pairs(minetest.get_connected_players()) do
 			local inv = player:get_inventory()
 			local ppos = player:get_pos()
