@@ -1,25 +1,35 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 function nodecore.scaling_particles(pos, def)
-	minetest.add_particlespawner(nodecore.underride(def or {}, {
-				texture = "[combine:1x1^[noalpha",
-				collisiondetection = false,
-				amount = 5,
-				time = 1,
-				minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
-				maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
-				minvel = {x = -0.02, y = -0.02, z = -0.02},
-				maxvel = {x = 0.02, y = 0.02, z = 0.02},
-				minexptime = 1,
-				maxexptime = 1,
-				minsize = 0.2,
-				maxsize = 0.25
-			}))
+	def = nodecore.underride(def or {}, {
+			texture = "[combine:1x1^[noalpha",
+			collisiondetection = false,
+			amount = 5,
+			time = 1,
+			minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
+			maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
+			minvel = {x = -0.02, y = -0.02, z = -0.02},
+			maxvel = {x = 0.02, y = 0.02, z = 0.02},
+			minexptime = 1,
+			maxexptime = 1,
+			minsize = 0.2,
+			maxsize = 0.25
+		})
+	for _, player in pairs(minetest.get_connected_players()) do
+		local pp = player:get_pos()
+		pp.y = pp.y + 1
+		if vector.distance(pos, pp) then
+			local t = {}
+			for k, v in pairs(def) do t[k] = v end
+			t.playername = player:get_player_name()
+			minetest.add_particlespawner(t)
+		end
+	end
 end
 
 local function issolid(pos, node)
