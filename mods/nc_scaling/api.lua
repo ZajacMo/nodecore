@@ -5,6 +5,23 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+function nodecore.scaling_particles(pos, def)
+	minetest.add_particlespawner(nodecore.underride(def or {}, {
+				texture = "[combine:1x1^[noalpha",
+				collisiondetection = false,
+				amount = 5,
+				time = 1,
+				minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
+				maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
+				minvel = {x = -0.02, y = -0.02, z = -0.02},
+				maxvel = {x = 0.02, y = 0.02, z = 0.02},
+				minexptime = 1,
+				maxexptime = 1,
+				minsize = 0.2,
+				maxsize = 0.25
+			}))
+end
+
 local function issolid(pos, node)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
@@ -30,6 +47,7 @@ local function tryreplace(pos, newname, rootpos)
 				pos = rootpos,
 				node = minetest.get_node(rootpos).name
 			}))
+	nodecore.scaling_particles(pos)
 
 	return true
 end
@@ -52,23 +70,8 @@ function nodecore.scaling_apply(pointed)
 		if ok then tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) end
 		return ok
 	elseif pointed.under.y < pointed.above.y and issolid(pointed.under) then
-		return tryreplace(pos, "floor", pointed.under)
+		if (minetest.get_node_light(pointed.above) or 1) < 1 then
+			return tryreplace(pos, "floor", pointed.under)
+		end
 	end
-end
-
-function nodecore.scaling_particles(pos, def)
-	minetest.add_particlespawner(nodecore.underride(def or {}, {
-				texture = "[combine:1x1^[noalpha",
-				collisiondetection = false,
-				amount = 5,
-				time = 1,
-				minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
-				maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
-				minvel = {x = -0.02, y = -0.02, z = -0.02},
-				maxvel = {x = 0.02, y = 0.02, z = 0.02},
-				minexptime = 1,
-				maxexptime = 1,
-				minsize = 0.2,
-				maxsize = 0.25
-			}))
 end

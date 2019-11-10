@@ -52,7 +52,6 @@ hand.on_place = function(stack, player, pointed, ...)
 
 	cache[pname] = nil
 	if nodecore.scaling_apply(pointed) then
-		nodecore.scaling_particles(pointed.above)
 		return nodecore.scaling_particles(pointed.above, {
 				time = 0.1,
 				amount = 40,
