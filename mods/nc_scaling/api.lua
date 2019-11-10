@@ -17,10 +17,15 @@ local function tryreplace(pos, newname, rootpos)
 	local def = minetest.registered_nodes[node.name]
 	if not (def and def.buildable_to and def.air_equivalent) then return end
 
-	if newname == "hang" and def.groups and def.groups[modname .. "_fx"] then return end
+	newname = modname .. ":" .. newname
 
-	minetest.set_node(pos, {name = modname .. ":" .. newname})
+	local lv = def.groups and def.groups[modname]
+	if lv then
+		local ndef = minetest.registered_nodes[newname]
+		if ndef.groups[modname] < lv then return true end
+	end
 
+	minetest.set_node(pos, {name = newname})
 	minetest.get_meta(pos):set_string("data", minetest.serialize({
 				pos = rootpos,
 				node = minetest.get_node(rootpos).name

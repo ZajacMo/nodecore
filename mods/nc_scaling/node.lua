@@ -5,7 +5,7 @@ local minetest
 
 local modname = minetest.get_current_modname()
 
-local function reg(name, vis, climb)
+local function reg(name, vis, climb, lv)
 	local def = {
 		drawtype = "airlike",
 		paramtype = "light",
@@ -14,7 +14,7 @@ local function reg(name, vis, climb)
 		pointable = false,
 		buildable_to = true,
 		air_equivalent = true,
-		groups = {[modname] = 1}
+		groups = {[modname] = lv}
 	}
 	if vis then
 		def.light_source = 1
@@ -24,7 +24,7 @@ local function reg(name, vis, climb)
 	return minetest.register_node(modname .. ":" .. name, def)
 end
 
-reg("ceil", true, true)
-reg("wall", true, true)
-reg("floor", true, false)
-reg("hang", false, true)
+reg("ceil", true, true, 4)
+reg("wall", true, true, 3)
+reg("floor", true, false, 2)
+reg("hang", false, true, 1)
