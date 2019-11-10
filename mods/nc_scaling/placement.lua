@@ -52,6 +52,10 @@ hand.on_place = function(stack, player, pointed, ...)
 
 	cache[pname] = nil
 	if nodecore.scaling_apply(pointed) then
+		if nodecore.player_stat_add then
+			nodecore.player_stat_add(1, player, "craft",
+				"scaling dy=" .. (pointed.under.y - pointed.above.y))
+		end
 		return nodecore.scaling_particles(pointed.above, {
 				time = 0.1,
 				amount = 40,
