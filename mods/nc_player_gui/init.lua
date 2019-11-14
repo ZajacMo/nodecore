@@ -68,7 +68,7 @@ nodecore.register_inventory_tab({
 		content = {
 			"Player's Guide: Tips and Guidance",
 			"",
-			"- Stuck in a pit? Pummel surfaces barehanded to find places to climb.",
+			"- Stuck in a pit? Hold right-click on surfaces barehanded to climb.",
 			"- Can't dig trees or grass? Search for sticks in the canopy.",
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
