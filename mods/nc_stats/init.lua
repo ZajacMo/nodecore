@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, os, pairs, string, table, type, vector
-    = math, minetest, nodecore, os, pairs, string, table, type, vector
+local math, minetest, nodecore, os, pairs, string, table, tonumber,
+      type, vector
+    = math, minetest, nodecore, os, pairs, string, table, tonumber,
+      type, vector
 local math_random, os_date, string_format, table_concat, table_remove
     = math.random, os.date, string.format, table.concat, table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -21,10 +23,20 @@ local function load_check(s)
 	return type(s) == "table" and s or {}
 end
 do
-	local s = load_check(modstore:get_string(modname))
+	local n = tonumber(modstore:get_int("index")) or 0
+	local s = load_check(modstore:get_string("" .. n))
+	local curver = nodecore.version or "dev"
+	if s.version ~= curver then
+		s = {
+			version = curver,
+			firstseen = os_date("!*t"),
+			index = n + 1,
+			dirty = true
+		}
+	else
+		s.index = n
+	end
 	statsdb[false] = s
-	s.firstseen = s.firstseen or os_date("!*t")
-	s.startup = (s.startup or 0) + 1
 end
 
 local function dbadd_nav(qty, dirty, db, root, key, ...)
@@ -41,9 +53,9 @@ local function dbadd_nav(qty, dirty, db, root, key, ...)
 	db[root] = v + qty
 	return v + qty
 end
-local function dbadd(qty, root, ...)
+local function dbadd(qty, ...)
 	if qty == 0 then return end
-	return dbadd_nav(qty, true, statsdb, root, ...)
+	return dbadd_nav(qty, true, statsdb, ...)
 end
 
 local function playeradd(qty, player, ...)
@@ -86,7 +98,6 @@ reghook(minetest.register_on_placenode, "place", 3, 2)
 reghook(minetest.register_on_dieplayer, "die", 1)
 reghook(minetest.register_on_respawnplayer, "spawn", 1)
 reghook(minetest.register_on_joinplayer, "join", 1)
-reghook(minetest.register_on_leaveplayer, "leave", 1)
 
 local function unpackreason(reason)
 	if type(reason) ~= "table" then return reason or "?" end
@@ -108,12 +119,6 @@ minetest.register_on_cheat(function(player, reason)
 
 minetest.register_on_chat_message(function(name, msg)
 		dbadd(1, name, "chat", (msg:sub(1, 1) == "/") and "command" or "message")
-	end)
-
-minetest.register_on_shutdown(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			playeradd(1, player, "shutdown")
-		end
 	end)
 
 ------------------------------------------------------------------------
@@ -196,36 +201,17 @@ minetest.register_globalstep(function(dt)
 
 local opq = {}
 
-local function flushkey(k)
+local function flushkey(k, player)
 	local v = statsdb[k]
 	if not v or not v.dirty then return end
 	v.dirty = nil
 
-	v.datafix = v.datafix or 0
-	if v.datafix < 1 then
-		v.datafix = 1
-
-		local q = k and v or v.players
-		for _, n in pairs({"hurt", "heal", "cheat"}) do
-			local old = q[n]
-			if old then
-				q[n] = {}
-				for xk, xv in pairs(old) do
-					if type(xv) == "number" then
-						dbadd_nav(xv, nil, q[n], unpackreason(xk))
-					else
-						q[n][xk] = xv
-					end
-				end
-			end
-		end
-	end
-
 	if k == false then
-		return modstore:set_string(modname, minetest.serialize(v))
+		modstore:set_string("" .. v.index, minetest.serialize(v))
+		return modstore:set_int("index", v.index)
 	end
 
-	local player = minetest.get_player_by_name(k)
+	player = player or minetest.get_player_by_name(k)
 	if player then
 		return player:get_meta():set_string(modname, minetest.serialize(v))
 	end
@@ -258,12 +244,15 @@ minetest.register_globalstep(function(dt)
 	end)
 
 minetest.register_on_leaveplayer(function(player)
-		return flushkey(player:get_player_name())
+		playeradd(1, player, "leave")
+		return flushkey(player:get_player_name(), player)
 	end)
 minetest.register_on_shutdown(function()
+		opq = {}
 		dbadd(1, false, "shutdown")
 		flushkey(false)
 		for _, player in pairs(minetest.get_connected_players()) do
-			flushkey(player:get_player_name())
+			playeradd(1, player, "shutdown")
+			flushkey(player:get_player_name(), player)
 		end
 	end)
