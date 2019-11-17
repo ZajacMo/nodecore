@@ -37,11 +37,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.
 
-- Reinstate and update toolbelt once engine PR #8701 is released
-	- Alternative item strategy with dedicated slots for each
-	  inventory space, which can be empty if in hand instead.
-	- Consider a "backpack" approach as opposed to toolbelt.
-
 - When can we remove the issue7020 workaround?
 
 ........................................................................
