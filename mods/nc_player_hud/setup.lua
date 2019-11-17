@@ -25,6 +25,9 @@ minetest.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_image("nc_player_hud_bar.png")
 		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
 
+		if not minetest.settings:get_bool("enable_damage") then
+			player:set_breath(11)
+		end
 		local img = breathimg(player:get_breath())
 		breath[player:get_player_name()] = {
 			id = player:hud_add({
@@ -44,6 +47,7 @@ local function breathhud(player)
 	if not hud then return end
 	local i = breathimg(player:get_breath())
 	if hud.val == i then return end
+	hud.val = i
 	return player:hud_change(hud.id, "text", i)
 end
 

@@ -21,11 +21,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  settling commitment, etc so downstream mods can tweak.
 	- Arguably item_entity needs similar care.
 
-- Drowning HUD issue when logging out underwater, disabling damage, logging back in.
-	- HUD apparently stays stuck on screen.
-	- Do we need to force breath to full when damage is off?
-	- How does MTG handle this?  Is this supposed to be builtin?
-
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
