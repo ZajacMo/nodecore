@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, table
-    = minetest, nodecore, table
+local ItemStack, minetest, nodecore, table
+    = ItemStack, minetest, nodecore, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -29,7 +29,7 @@ local function entprops(stack, conf)
 	if def.virtual_item then return t end
 	t.is_visible = true
 	t.textures[1] = stack:get_name()
-	if conf and conf.slot == 0 then
+	if conf and not conf.slot then
 		t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
 	end
 	return t
@@ -53,11 +53,11 @@ minetest.register_entity(modname .. ":ent", {
 			end
 
 			local inv = player:get_inventory()
-			local sz = inv:get_size("main")
-			local s = conf.slot + player:get_wield_index()
-			if s > sz then s = s - sz end
+			local w = player:get_wield_index()
+			local s = conf.slot
+			if s == w then s = nil else s = s or w end
 
-			local stack = inv:get_stack("main", s)
+			local stack = s and inv:get_stack("main", s) or ItemStack("")
 			local sn = stack:get_name()
 			if sn ~= self.sn then
 				self.sn = sn
@@ -106,24 +106,20 @@ minetest.register_on_joinplayer(function(player)
 			}
 		end
 
-		addslot(0, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
+		addslot(nil, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
-		-- Show player's entire inventory as a "toolbelt".
-		-- This is very unstable and tends to break badly,
-
-		--[[
-		local function cslot(n, x, z)
-			return addslot(n, nil, x * 1.6,
-				5.5 + x / 2,
-				z * 2.1)
+		local function cslot(n, x, y, z)
+			return addslot(n, nil, x * 0.8,
+				8.5 + y * 1.6,
+				2.25 + z)
 		end
 
-		cslot(1, 1, 1)
-		cslot(2, 0, 1.2)
-		cslot(3, -1, 1)
-		cslot(4, -2, 0)
-		cslot(5, -1, -1)
-		cslot(6, 0, -1.2)
-		cslot(7, 1, -1)
-		--]]
+		cslot(1, -1.75, 0, 0)
+		cslot(2, 1, 1, 0.05)
+		cslot(3, -1, 2, 0.1)
+		cslot(4, 1.75, 3, 0.02)
+		cslot(5, -1.75, 3, 0.02)
+		cslot(6, 1, 2, 0.1)
+		cslot(7, -1, 1, 0.05)
+		cslot(8, 1.75, 0, 0)
 	end)
