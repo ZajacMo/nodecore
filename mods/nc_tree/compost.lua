@@ -41,7 +41,7 @@ minetest.register_node(modname .. ":peat", {
 nodecore.register_craft({
 		label = "compress peat block",
 		action = "pummel",
-		toolgroups = {crumbly = 1},
+		toolgroups = {crumbly = 2},
 		nodes = {
 			{
 				match = {name = modname .. ":leaves_loose", count = 8},
