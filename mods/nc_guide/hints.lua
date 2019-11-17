@@ -125,7 +125,7 @@ addhint("dig up a tree stump",
 	"toolcap:choppy:4"
 )
 
-addhint("pack leaves into peat",
+addhint("grind leaves into peat",
 	"nc_tree:peat",
 	"nc_tree:leaves_loose"
 )
