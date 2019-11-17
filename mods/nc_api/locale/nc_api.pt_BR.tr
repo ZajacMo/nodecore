@@ -1,6 +1,9 @@
 # textdomain: nc_api
 (C)2018-2019 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2019 por Aaron Suen <war1024@@gmail.com>
+(and 1 more hint)=(e mais 1 dica)
+(and @1 more hints)=(e mais @1 dica)
 - Crafting is done by building recipes in-world.=- A Criação de Itens é feita construindo as receitas pelo mundo.
+- Drop items onto ground to create stack nodes. They do not decay.=- Derrube itens no chão para criar pilhas de nodes. Eles não somem.
 - If a recipe exists, you will see a special particle effect.=- Se uma receita existe, você verá um efeito especial de partícula sair do node.
 - Items picked up try to fit into the current selected slot first.=- Os itens pegados são primeiramente armazenados no espaço atualmente selecionado.
 - Order and specific face of placement may matter for crafting.=- A ordem e a face em que os itens são colocados pode importar no processo de criação.
@@ -49,17 +52,12 @@ Fire=Fogo
 Float Glass=Vidro Float
 Glowing Lode=Veio Mineral Incandescente
 Glowing Lode Bar=Barra de Veio Mineral Incandescente
-Glowing Lode Hatchet=Machado de Veio Mineral Incandescente
 Glowing Lode Hatchet Head=Cabeça de Machado Veio Mineral Incandescente
-Glowing Lode Mallet=Marreta de Veio Mineral Incandescente
 Glowing Lode Mallet Head=Cabeça de Marreta Veio Mineral Incandescente
-Glowing Lode Mattock=Enxada de Veio Mineral Incandescente
 Glowing Lode Mattock Head=Cabeça de Enxada Veio Mineral Incandescente
-Glowing Lode Pick=Picareta de Veio Mineral Incandescente
 Glowing Lode Pick Head=Cabeça de Picareta de Veio Mineral Incandescente
 Glowing Lode Prill=Lascas de Veio Mineral Incandescente
 Glowing Lode Rod=Vara de Veio Mineral Incandescente
-Glowing Lode Spade=Pá de Veio Mineral Incandescente
 Glowing Lode Spade Head=Cabeça de Pá Veio Mineral Incandescente
 Grass=Grama
 Gravel=Cascalho

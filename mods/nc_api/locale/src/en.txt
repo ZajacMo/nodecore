@@ -55,8 +55,11 @@ msgstr "- Some recipes require "pummeling" a node."
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
 
+msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+msgstr "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+msgstr "[REMOVED]"
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 msgstr "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
@@ -368,25 +371,25 @@ msgid "Glowing Lode Cobble"
 msgstr "Glowing Lode Cobble"
 
 msgid "Glowing Lode Hatchet"
-msgstr "Glowing Lode Hatchet"
+msgstr "[REMOVED]"
 
 msgid "Glowing Lode Hatchet Head"
 msgstr "Glowing Lode Hatchet Head"
 
 msgid "Glowing Lode Mallet"
-msgstr "Glowing Lode Mallet"
+msgstr "[REMOVED]"
 
 msgid "Glowing Lode Mallet Head"
 msgstr "Glowing Lode Mallet Head"
 
 msgid "Glowing Lode Mattock"
-msgstr "Glowing Lode Mattock"
+msgstr "[REMOVED]"
 
 msgid "Glowing Lode Mattock Head"
 msgstr "Glowing Lode Mattock Head"
 
 msgid "Glowing Lode Pick"
-msgstr "Glowing Lode Pick"
+msgstr "[REMOVED]"
 
 msgid "Glowing Lode Pick Head"
 msgstr "Glowing Lode Pick Head"
@@ -398,7 +401,7 @@ msgid "Glowing Lode Rod"
 msgstr "Glowing Lode Rod"
 
 msgid "Glowing Lode Spade"
-msgstr "Glowing Lode Spade"
+msgstr "[REMOVED]"
 
 msgid "Glowing Lode Spade Head"
 msgstr "Glowing Lode Spade Head"
@@ -549,6 +552,9 @@ msgstr "Progress: @1 complete, @2 current, @3 future"
 
 msgid "Pummel"
 msgstr "Pummel"
+
+msgid "Rake"
+msgstr "Rake"
 
 msgid "Sand"
 msgstr "Sand"
@@ -868,6 +874,9 @@ msgstr "find lux"
 msgid "find molten rock"
 msgstr "find molten rock"
 
+msgid "grind leaves into peat"
+msgstr "grind leaves into peat"
+
 msgid "hammer a lode bar back to a prill"
 msgstr "hammer a lode bar back to a prill"
 
@@ -929,7 +938,7 @@ msgid "pack high-quality charcoal"
 msgstr "pack high-quality charcoal"
 
 msgid "pack leaves into peat"
-msgstr "pack leaves into peat"
+msgstr "[REMOVED]"
 
 msgid "pack stone chips back into cobble"
 msgstr "pack stone chips back into cobble"
@@ -969,6 +978,9 @@ msgstr "squeeze out a sponge"
 
 msgid "temper a lode tool head"
 msgstr "temper a lode tool head"
+
+msgid "traverse a dark floor by feel"
+msgstr "traverse a dark floor by feel"
 
 msgid "weld glowing lode pick and spade heads together"
 msgstr "weld glowing lode pick and spade heads together"

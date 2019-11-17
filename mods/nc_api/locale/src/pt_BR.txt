@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2019-09-12 14:44+0000\n"
-"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2019-11-17 15:07+0000\n"
+"Last-Translator: Terifo <none@example.org>\n"
 "Language-Team: Portuguese (Brazil) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -625,3 +625,40 @@ msgstr "Cabeça de Pá de Madeira"
 
 msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- O jogo é feito para ser desafiante, algumas fezes frustrante. NÃO DESISTA!"
+
+msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+msgstr ""
+"- Preso em um buraco? Bata nas superfícies com as mãos nuas para encontrar "
+"locais para escalar."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Minérios talvez estejam escondidos, mas podem ser revelados por dicas "
+"sutis pelo terreno."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- Derrube itens no chão para criar pilhas de nodes. Eles não somem."
+
+msgid "- DONE: @1"
+msgstr "- DONE: @1"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr ""
+"- Não consegue quebrar árvores ou cavar? Procure por gravetos na cobertura."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr ""
+"-\"Fornalhas\" não existem; descubra como cozinhar com chamas à céu aberto."
+
+msgid "(and @1 more hints)"
+msgstr "(e mais @1 dica)"
+
+msgid "(and 1 more hint)"
+msgstr "(e mais 1 dica)"
