@@ -35,6 +35,7 @@ local function toolhead(name, groups, prills)
 				if t.name == "tempered" then
 					d.tool_capabilities = toolcap(5)
 				end
+				d.skip_register = (t.name == "hot") or nil
 			end,
 			groups = { flammable = 4 },
 			metal_alt_hot = modname .. ":prill_hot " .. prills,

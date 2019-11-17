@@ -21,8 +21,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  settling commitment, etc so downstream mods can tweak.
 	- Arguably item_entity needs similar care.
 
-- Useless glowing lode tool registrations (i.e. including handles); remove.
-
 - Drowning HUD issue when logging out underwater, disabling damage, logging back in.
 	- HUD apparently stays stuck on screen.
 	- Do we need to force breath to full when damage is off?

@@ -64,10 +64,12 @@ function nodecore.register_lode(shape, rawdef)
 
 		if def.bytemper then def.bytemper(temper, def) end
 
-		local fullname = modname .. ":" .. def.name
-		minetest.register_item(fullname, def)
-		if def.type == "node" then
-			nodecore.register_cook_abm({nodenames = {fullname}})
+		if not def.skip_register then
+			local fullname = modname .. ":" .. def.name
+			minetest.register_item(fullname, def)
+			if def.type == "node" then
+				nodecore.register_cook_abm({nodenames = {fullname}})
+			end
 		end
 	end
 end
