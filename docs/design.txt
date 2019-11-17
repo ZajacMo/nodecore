@@ -2,6 +2,9 @@
 CORE DESIGN PRINCIPLES
 ------------------------------------------------------------------------
 
+0.  Challenge assumptions from other games.
+	- Do not blindly accept "intuition" which is actually learned.
+	- Offer a unique experience, push the engine boundaries.
 1.  No in-game GUIs.
 	- Zero formspecs in gameplay.
 	- Minimize use of HUDs; remove any standard ones feasible.
@@ -30,6 +33,9 @@ CORE DESIGN PRINCIPLES
 	- Player-centric mechanics like hunger and health are
 	  de-emphasized.
 7.  Depth and subtlety.
+	- Focus on quality over quantity.
+	- Distinct, unique materials and mechanics instead of e.g.
+	  ores that mostly just vary by color.
 	- Processes easy to basically solve, but leave much room
 	  for optimization.
 	- Modeling using [piecewise] continuous functions instead

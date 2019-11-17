@@ -19,8 +19,6 @@ ROADMAP: Large New Development Projects
 - Door Automation
 	- Will need a "grate" node objects pass thru but
 		players/nodes cannot.
-	- Node blocking path: "press"
-		- Fallback: fling one object away from stacks.
 	- Node outside upward roll: "unroll"
 		- Place one node from stack below, eject item upwards.
 		- Check for room for both.
@@ -31,6 +29,7 @@ ROADMAP: Large New Development Projects
 		- If node cannot move, dig it.
 		- Attempt to eject item out either side, or down grate.
 	- Push players?
+	- Need more door materials: lode, glasses
 
 - Lava quenching, new material?
 	- Seepstone?

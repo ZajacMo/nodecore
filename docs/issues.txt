@@ -9,16 +9,30 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Simplify scaling
-	- Different ways to indicate attention to surfaces.
-		- Hold sneak
-		- Try repeatedly to jump against a wall
-		- Punch once then wait
-		- Just loiter near somewhere
-		- Point at something for a while
-		- Empty-handed right-click, then stare?
-	- Change how scaling handholds are visualized; maybe a
-	  slow particle effect?  Remove directionality.
+- Document code formatting tools and standards.
+
+- Falling_node is a train-wreck and needs to be rebuilt.
+	- Attempts to monkey-patch it have still left fundamental problems.
+	- Falling nodes can sometimes end up occupying the same space and
+	  clobbering each other.
+	- Search upward (up to starting height) for place to settle?
+	- If settling fails, convert to item and bounce/eject?
+	- Need to refactor out separate hooks for things like settling detection,
+	  settling commitment, etc so downstream mods can tweak.
+	- Arguably item_entity needs similar care.
+
+- Useless glowing lode tool registrations (i.e. including handles); remove.
+
+- Drowning HUD issue when logging out underwater, disabling damage, logging back in.
+	- HUD apparently stays stuck on screen.
+	- Do we need to force breath to full when damage is off?
+	- How does MTG handle this?  Is this supposed to be builtin?
+
+- Hint updates:
+	- Press recipe witnessing?
+	- Rake.
+
+- Design doc needs another shakedown.
 
 - Wet Agg in water:
 	- Should sink in water (exchange w/ water below).
