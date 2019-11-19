@@ -35,10 +35,13 @@ local function entprops(stack, conf, widx)
 	if not stack then return t end
 	if stack:is_empty() then return t end
 	local def = minetest.registered_items[stack:get_name()] or {}
-	if def.virtual_item then return t end
-	t.visual = "wielditem"
-	t.textures = {stack:get_name()}
-	t.visual_size = {x = 0.1, y = 0.1, z = 0.1}
+	if def.virtual_item then
+		t.textures[1] = def.inventory_image
+	else
+		t.visual = "wielditem"
+		t.textures = {stack:get_name()}
+		t.visual_size = {x = 0.1, y = 0.1, z = 0.1}
+	end
 	if not conf.slot then
 		t.is_visible = true
 		t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
