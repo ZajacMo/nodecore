@@ -26,9 +26,9 @@ local function entprops(stack, conf, widx)
 	if not conf then return t end
 	if conf.slot then
 		t.is_visible = true
-		t.textures = {modname .. "_slot.png^[opacity:160", "[combine:1x1"}
+		t.textures = {modname .. "_slot.png^[transformFX^[opacity:160", "[combine:1x1"}
 		if conf.slot == widx then
-			t.textures[1] = "nc_player_hud_sel.png^[opacity:160"
+			t.textures[1] = "nc_player_hud_sel.png^[transformFX^[opacity:160"
 			return t
 		end
 	end
