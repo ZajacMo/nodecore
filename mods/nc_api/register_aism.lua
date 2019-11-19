@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string
-    = math, minetest, nodecore, pairs, string
+local ItemStack, math, minetest, nodecore, pairs, setmetatable, string
+    = ItemStack, math, minetest, nodecore, pairs, setmetatable, string
 local math_random, string_format
     = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -56,13 +56,7 @@ local function checkrun(def, stack, data)
 	if def.chance and def.chance > 1 and math_random(1, def.chance) ~= 1 then return end
 	if def.interval and def.interval > 1 and (minetest.get_gametime() % def.interval) ~= 0 then return end
 	stack = def.action(stack, data)
-	if stack then
-		if data.node then
-			nodecore.stack_set(data.pos, stack)
-		elseif data.inv and data.list and data.slot then
-			data.inv:set_stack(data.list, data.slot, stack)
-		end
-	end
+	if stack and data.set then data.set(ItemStack(stack)) end
 end
 
 local function checkstack(stack, data)
@@ -83,7 +77,10 @@ nodecore.register_limited_abm({
 		action = function(pos, node)
 			return checkstack(nodecore.stack_get(pos), {
 					pos = pos,
-					node = node
+					node = node,
+					set = function(s)
+						return nodecore.stack_set(pos, s)
+					end
 				})
 		end
 	})
@@ -101,10 +98,36 @@ local function invtick()
 						player = player,
 						inv = inv,
 						list = lname,
-						slot = slot
+						slot = slot,
+						set = function(s)
+							return inv:set_stack(lname, slot, s)
+						end
 					})
 			end
 		end
 	end
 end
 invtick()
+
+local bii = minetest.registered_entities["__builtin:item"]
+local newbii = {
+	on_step = function(self, dtime, ...)
+		local t = (self.aismtimer or 0) + dtime
+		while t >= 1 do
+			t = t - 1
+			checkstack(ItemStack(self.itemstring), {
+					pos = self.object:get_pos(),
+					obj = self.object,
+					ent = self,
+					set = function(s)
+						if s:is_empty() then return self.object:remove() end
+						self.itemstring = s:to_string()
+					end
+				})
+		end
+		self.aismtimer = t
+		return bii.on_step(self, dtime, ...)
+	end
+}
+setmetatable(newbii, bii)
+minetest.register_entity(":__builtin:item", newbii)
