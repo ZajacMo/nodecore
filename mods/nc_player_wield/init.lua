@@ -9,27 +9,38 @@ nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
-local function entprops(stack, conf)
+local function entprops(stack, conf, widx)
 	local t = {
 		hp_max = 1,
 		physical = false,
 		collide_with_objects = false,
 		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "wielditem",
-		visual_size = {x = 0.1, y = 0.1, z = 0.1},
-		textures = {""},
+		visual = "upright_sprite",
+		visual_size = {x = 0.15, y = 0.15, z = 0.15},
+		textures = {},
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},
 		is_visible = false,
 		static_save = false
 	}
+	if not conf then return t end
+	if conf.slot then
+		t.is_visible = true
+		t.textures = {modname .. "_slot.png^[opacity:160", "[combine:1x1"}
+		if conf.slot == widx then
+			t.textures[1] = "nc_player_hud_sel.png^[opacity:160"
+			return t
+		end
+	end
 	if not stack then return t end
 	if stack:is_empty() then return t end
 	local def = minetest.registered_items[stack:get_name()] or {}
 	if def.virtual_item then return t end
-	t.is_visible = true
-	t.textures[1] = stack:get_name()
-	if conf and not conf.slot then
+	t.visual = "wielditem"
+	t.textures = {stack:get_name()}
+	t.visual_size = {x = 0.1, y = 0.1, z = 0.1}
+	if not conf.slot then
+		t.is_visible = true
 		t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
 	end
 	return t
@@ -53,15 +64,12 @@ minetest.register_entity(modname .. ":ent", {
 			end
 
 			local inv = player:get_inventory()
-			local w = player:get_wield_index()
-			local s = conf.slot
-			if s == w then s = nil else s = s or w end
-
-			local stack = s and inv:get_stack("main", s) or ItemStack("")
-			local sn = stack:get_name()
-			if sn ~= self.sn then
-				self.sn = sn
-				self.object:set_properties(entprops(stack, conf))
+			local widx = player:get_wield_index()
+			local stack = inv:get_stack("main", conf.slot or widx) or ItemStack("")
+			local props = entprops(stack, conf, widx)
+			if self.txr ~= props.textures[1] then
+				self.txr = props.textures[1]
+				self.object:set_properties(props)
 			end
 		end
 	})
@@ -110,16 +118,16 @@ minetest.register_on_joinplayer(function(player)
 
 		local function cslot(n, x, y, z)
 			return addslot(n, nil, x * 0.8,
-				8.5 + y * 1.6,
+				8.75 + y * 1.6,
 				2.25 + z)
 		end
 
-		cslot(1, -1.75, 0, 0)
-		cslot(2, 1, 1, 0.05)
-		cslot(3, -1, 2, 0.1)
-		cslot(4, 1.75, 3, 0.02)
-		cslot(5, -1.75, 3, 0.02)
-		cslot(6, 1, 2, 0.1)
-		cslot(7, -1, 1, 0.05)
-		cslot(8, 1.75, 0, 0)
+		cslot(1, 1.75, 0, 0)
+		cslot(2, -1, 1, 0.05)
+		cslot(3, 1, 2, 0.1)
+		cslot(4, -1.75, 3, 0.02)
+		cslot(5, 1.75, 3, 0.02)
+		cslot(6, -1, 2, 0.1)
+		cslot(7, 1, 1, 0.05)
+		cslot(8, -1.75, 0, 0)
 	end)
