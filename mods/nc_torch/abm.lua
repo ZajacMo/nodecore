@@ -65,7 +65,7 @@ nodecore.register_aism({
 				pos = vector.add(pos, vector.multiply(player:get_look_dir(), 0.5))
 			end
 
-			if nodecore.quenched(pos, data.node and 1 or 0) then
+			if nodecore.quenched(pos, data.node and 1 or 0.3) then
 				minetest.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 				return "nc_fire:lump_ash"
 			end
