@@ -120,8 +120,8 @@ minetest.register_on_joinplayer(function(player)
 		addslot(nil, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
 		local function cslot(n, x, y, z)
-			return addslot(n, nil, x * 0.8,
-				8.75 + y * 1.6,
+			return addslot(n, "Chest", x * 0.8,
+				0.75 + y * 1.6,
 				2.25 + z)
 		end
 
