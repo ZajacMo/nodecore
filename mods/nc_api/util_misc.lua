@@ -218,10 +218,11 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 	end
 end
 
-function nodecore.quenched(pos)
+function nodecore.quenched(pos, r)
+	r = r or 1
 	return #minetest.find_nodes_in_area(
-		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+		{x = pos.x - r, y = pos.y - r, z = pos.z - r},
+		{x = pos.x + r, y = pos.y + r, z = pos.z + r},
 		{"group:coolant"}) > 0
 end
 
