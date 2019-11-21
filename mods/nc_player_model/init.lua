@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, os, pairs, table
-    = math, minetest, nodecore, os, pairs, table
-local math_floor, os_date, table_concat
-    = math.floor, os.date, table.concat
+local minetest, nodecore, os, pairs, table
+    = minetest, nodecore, os, pairs, table
+local os_date, table_concat
+    = os.date, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -115,22 +115,15 @@ local function updatevisuals(player)
 	skintimes[pname] = now
 
 	local layers = {"base.png"}
+
 	local date = os_date("!*t")
 	local bare = "day_" .. date.month .. "_" .. date.day
 	if dayskins[bare] then layers[#layers + 1] = bare .. ".png" end
-	local dmg = (1 - hp / 20) * 4
-	local dmgi = math_floor(dmg)
-	local dmgf = dmg - dmgi
-	for i = 1, dmgi do
-		layers[#layers + 1] = "damage" .. i .. ".png"
-	end
-	if dmgf > 0 then
-		layers[#layers + 1] = "damage" .. (dmgi + 1)
-		.. ".png^[opacity:" .. math_floor(256 * dmgf)
-	end
+
 	local privs = minetest.get_player_privs(player:get_player_name())
 	if not privs.interact then layers[#layers + 1] = "no_interact.png" end
 	if not privs.shout then layers[#layers + 1] = "no_shout.png" end
+
 	for k, v in pairs(layers) do
 		layers[k] = "(" .. modname .. "_" .. v .. ")"
 	end

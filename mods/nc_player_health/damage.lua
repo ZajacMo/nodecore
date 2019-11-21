@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_on_player_hpchange(function(player, hp)
@@ -26,3 +26,14 @@ minetest.register_on_player_hpchange(function(player, hp)
 	end,
 	true
 )
+
+minetest.register_on_dieplayer(function(player)
+		player:set_hp(1)
+		player:get_meta():set_float("dhp", -1)
+	end)
+
+minetest.register_globalstep(function(dtime)
+		for _, p in pairs(minetest.get_connected_players()) do
+			if p:get_hp() > 0 then nodecore.addphealth(p, dtime) end
+		end
+	end)

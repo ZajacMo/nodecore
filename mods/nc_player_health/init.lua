@@ -6,6 +6,5 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("api")
-include("healing")
 include("injury")
 include("damage")
