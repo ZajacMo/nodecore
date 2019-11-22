@@ -787,11 +787,14 @@ msgstr "chop a glowing lode cube into prills"
 msgid "chop a lode crate back apart"
 msgstr "chop a lode crate back apart"
 
+msgid "chop a lode rod back into bars"
+msgstr "chop a lode rod back into bars"
+
 msgid "chop chromatic glass into lenses"
 msgstr "chop chromatic glass into lenses"
 
 msgid "chop lode a rod back into bars"
-msgstr "chop lode a rod back into bars"
+msgstr "[REMOVED]"
 
 msgid "chop up charcoal"
 msgstr "chop up charcoal"

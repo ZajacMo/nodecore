@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2019-11-17 15:07+0000\n"
-"Last-Translator: Terifo <none@example.org>\n"
+"PO-Revision-Date: 2019-11-21 18:29+0000\n"
+"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -631,9 +631,7 @@ msgstr ""
 "- O jogo é feito para ser desafiante, algumas fezes frustrante. NÃO DESISTA!"
 
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr ""
-"- Preso em um buraco? Bata nas superfícies com as mãos nuas para encontrar "
-"locais para escalar."
+msgstr "[REMOVED]"
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr ""
@@ -662,3 +660,290 @@ msgstr "(e mais @1 dica)"
 
 msgid "(and 1 more hint)"
 msgstr "(e mais 1 dica)"
+
+msgid "chop up charcoal"
+msgstr "martele carvão mineral"
+
+msgid "chop chromatic glass into lenses"
+msgstr "martele vidro cromático tornando-o lentes"
+
+msgid "chop a lode crate back apart"
+msgstr "quebre uma caixa de veio mineral"
+
+msgid "chop a glowing lode cube into prills"
+msgstr "martele um cubo de veio mineral incandescente até torná-lo granulado"
+
+msgid "chisel a hinge groove into cobble"
+msgstr "talhe um espaço para dobradiça em um pedregulho"
+
+msgid "chisel a hinge groove into a wooden plank"
+msgstr "talhe um espaço para dobradiça em uma tábua de madeira"
+
+msgid "chip chromatic glass into prisms"
+msgstr "lasque vidro cromado em prismas"
+
+msgid "carve wooden tool heads from planks"
+msgstr "entalhe cabeças de ferramentas de madeira a partir de tábuas"
+
+msgid "carve a wooden plank completely"
+msgstr "entalhe uma tábua de madeira completamente"
+
+msgid "break cobble into chips"
+msgstr "quebre pedregulho em lascas"
+
+msgid "bash a plank into sticks"
+msgstr "quebre uma tábua em gravetos"
+
+msgid "assemble an annealed lode tote handle"
+msgstr "monte uma alça de bolsa de veio mineral recozido"
+
+msgid "assemble an adze out of sticks"
+msgstr "monte um enxó a partir de gravetos"
+
+msgid "assemble a wooden tool"
+msgstr "monte uma ferramenta de madeira"
+
+msgid "assemble a wooden shelf from frames and planks"
+msgstr "monde uma estante de madeira a partir de suportes e tábuas"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "monte uma escada de madeira a partir de gravetos"
+
+msgid "assemble a wooden frame from staves"
+msgstr "monte um suporte de madeira a partir de bastões"
+
+msgid "assemble a staff from sticks"
+msgstr "monte um bastão a partir de gravetos"
+
+msgid "activate a lens"
+msgstr "ative uma lente"
+
+msgid "Torch"
+msgstr "Tocha"
+
+msgid "Tips"
+msgstr "Dicas"
+
+msgid "Rake"
+msgstr "Ancinho"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Guia do Jogador: Dicas e Orientações"
+
+msgid "Peat"
+msgstr "Turfa"
+
+msgid "Not all game content is covered by hints. Explore!"
+msgstr "Nem todo o conteúdo do jogo é coberto pelas dicas. Explore!"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "Licença MIT (http://www.opensource.org/licenses/MIT)"
+
+msgid "Lux Flow"
+msgstr "Fluxo de Lux"
+
+msgid "Lux Cobble"
+msgstr "Pedregulho de Lux"
+
+msgid "Loose Lux Cobble"
+msgstr "Pedregulho de Lux Solto"
+
+msgid "Loose Humus"
+msgstr "Húmus Solto"
+
+msgid "Log"
+msgstr "Tora"
+
+msgid "Lode Crate"
+msgstr "Caixa de Veio Mineral"
+
+msgid "Lit Torch"
+msgstr "Acender Tocha"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Pá Infundida de Veio Mineral Temperado"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Picareta Infundida de Veio Mineral Temperado"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Alvião Infundida de Veio Mineral Temperado"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Marreta Infundida de Veio Mineral Temperado"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Machado Infundido de Veio Mineral Temperado"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Pá Infundida de Veio Mineral Recozido"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Picareta Infundida de Veio Mineral Recozido"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Enxada Infundida de Veio Mineral Recozido"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Marreta Infundida de Veio Mineral Recozido"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Machado Infundido de Veio Mineral Recozido"
+
+msgid "Humus"
+msgstr "Húmus"
+
+msgid "Glowing Lode Cobble"
+msgstr "Lasca de Veio Mineral Incandescente"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Discord: https://discord.gg/SHq2tkb"
+msgstr "Discord: https://discord.gg/SHq2tkb"
+
+msgid "Charcoal Glyph"
+msgstr "Glifo de Carvão Vegetal"
+
+msgid "Burn"
+msgstr "Queimadura"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Problemas ao acender uma chama? Tente usar gravetos mais longos, mais "
+"inflamáveis."
+
+msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+msgstr ""
+"- Preso em um buraco? Segure o botão direito do mouse em superfícies com as "
+"mãos nuas para escalar."
+
+msgid "melt sand into glass"
+msgstr "derreta areia em vidro"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "derreta filão metálico a partir de pedregulho de filão"
+
+msgid "make wet aggregate"
+msgstr "faça agregado úmido"
+
+msgid "make fire by rubbing sticks together"
+msgstr "faça fogo esfregando gravetos"
+
+msgid "make an anvil by tempering a lode cube"
+msgstr "faça uma forja temperando um cubo de filão"
+
+msgid "lux-infuse a lode tool"
+msgstr "infusa uma ferramenta de filão com lux"
+
+msgid "light a torch"
+msgstr "acenda uma tocha"
+
+msgid "insert wooden pin into wooden door panel"
+msgstr "insira um pino de madeira em um painel de porta de madeira"
+
+msgid "insert metal rod into a cobble panel"
+msgstr "insira uma haste de metal em um painel de pedregulho"
+
+msgid "harvest a sponge"
+msgstr "colha uma esponja"
+
+msgid "hammer lode bars into a rod"
+msgstr "marrete barra de filão em uma haste"
+
+msgid "hammer a lode prill into a bar"
+msgstr "marrete granulado de filão em uma barra"
+
+msgid "hammer a lode bar back to a prill"
+msgstr "marrete uma barra de filão de volta em granulado"
+
+msgid "grind leaves into peat"
+msgstr "triture folhas em turfa"
+
+msgid "find molten rock"
+msgstr "encontre pedra derretida"
+
+msgid "find lux"
+msgstr "encontre lux"
+
+msgid "find lode ore"
+msgstr "encontre minério de filão"
+
+msgid "find dry (loose) leaves"
+msgstr "encontre folhas (soltas) secas"
+
+msgid "find deep stone strata"
+msgstr "encontre estrato de pedra profunda"
+
+msgid "find charcoal"
+msgstr "encontre carvão mineral"
+
+msgid "find ash"
+msgstr "encontre cinzas"
+
+msgid "find an eggcorn"
+msgstr "encontre uma pinha"
+
+msgid "find a stick"
+msgstr "encontre um graveto"
+
+msgid "find a sponge"
+msgstr "encontre esponja"
+
+msgid "find a lode stratum"
+msgstr "encontre um estrato de filão"
+
+msgid "ferment peat into humus"
+msgstr "fermente turga em húmus"
+
+msgid "extract living sponge from colony center"
+msgstr "extraia uma esponja viva do centro de uma colônia"
+
+msgid "dry out a sponge"
+msgstr "drene uma esponja"
+
+msgid "dig up stone"
+msgstr "escave pedra"
+
+msgid "dig up sand"
+msgstr "cave areia"
+
+msgid "dig up lux cobble"
+msgstr "cave pedregulho de lux"
+
+msgid "dig up lode ore"
+msgstr "cave minério de filão"
+
+msgid "dig up gravel"
+msgstr "cave cascalho"
+
+msgid "dig up dirt"
+msgstr "cave terra"
+
+msgid "dig up a tree stump"
+msgstr "desenterre um cepo de madeira"
+
+msgid "cut down a tree"
+msgstr "corte uma árvore"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "construa uma tocha a partir de um bastão e um nódulo de carvão"
+
+msgid "cool molten glass into crude glass"
+msgstr "esfrie vidro derretido em vidro bruto"
+
+msgid "cold-forge lode down completely"
+msgstr "forge filão completamente, de forma fria"
+
+msgid "cold-forge annealed lode prills into a tool head"
+msgstr ""
+"faça uma cabeça de ferramenta forjando friamente granulado de filão recozido"
+
+msgid "chop a lode rod back into bars"
+msgstr "martele uma haste de veio mineral de volta em barras"
+
+msgid "pack leaves into peat"
+msgstr "[REMOVED]"
+
+msgid "chop lode a rod back into bars"
+msgstr "[REMOVED]"

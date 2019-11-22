@@ -363,7 +363,7 @@ addhint("hammer lode bars into a rod",
 	"anvil making lode bar"
 )
 
-addhint("chop lode a rod back into bars",
+addhint("chop a lode rod back into bars",
 	"recycle lode rod",
 	"anvil making lode rod"
 )
