@@ -5,8 +5,6 @@ local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local falling = {groups = {falling_node = true}}
 local radius = {x = 2, y = 2, z = 2}
 
@@ -35,12 +33,7 @@ local function fallcheck(name, start)
 	while pos.y >= miny and nodecore.match(pos, falling) do pos.y = pos.y - 1 end
 	if pos.y < miny then return end
 	pos.y = pos.y + 1
-	local prev = minetest.get_node(pos).name
-	nodecore.falling_repose_check(pos)
-	if minetest.get_node(pos).name ~= prev then
-		minetest.log(modname .. ": " .. name .. " disturbed "
-			.. prev .. " at " .. minetest.pos_to_string(pos))
-	end
+	return minetest.check_for_falling(pos)
 end
 
 local function queuechecks(qty, name, pos)

@@ -12,9 +12,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Rename Wooden Adze to make it clearly not on the same level as the
   wooden (i.e. tier-2) tools.  "Primitive Adze" or just "Adze"?
 
-- Nodefall Disturb is not working on groups like it should; only
-  individual nodes are falling.
-
 - Document code formatting tools and standards.
 
 - Falling_node is a train-wreck and needs to be rebuilt.
