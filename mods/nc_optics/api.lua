@@ -23,6 +23,13 @@ local function scan(pos, dir)
 		if node.name == "ignore" then return false, node end
 		local def = minetest.registered_items[node.name] or {}
 		if not def.sunlight_propagates then return p, node end
+		if def.groups and def.groups.visinv then
+			local stack = nodecore.stack_get(p)
+			def = minetest.registered_items[stack:get_name()]
+			if def and def.type == "node" and not def.sunlight_propagates then
+				return p, node
+			end
+		end
 	end
 end
 
