@@ -6,7 +6,7 @@ local minetest, nodecore
 local modname = minetest.get_current_modname()
 
 minetest.register_tool(modname .. ":adze", {
-		description = "Wooden Adze",
+		description = "Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
 			flammable = 2

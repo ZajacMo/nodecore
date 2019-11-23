@@ -247,6 +247,9 @@ msgstr "Active Lens"
 msgid "Active Prism"
 msgstr "Active Prism"
 
+msgid "Adze"
+msgstr "Adze"
+
 msgid "Aggregate"
 msgstr "Aggregate"
 
@@ -692,7 +695,7 @@ msgid "Wet Sponge"
 msgstr "Wet Sponge"
 
 msgid "Wooden Adze"
-msgstr "Wooden Adze"
+msgstr "[REMOVED]"
 
 msgid "Wooden Frame"
 msgstr "Wooden Frame"
