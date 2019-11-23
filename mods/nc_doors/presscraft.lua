@@ -46,6 +46,16 @@ nodecore.register_craft({
 	})
 local done = {}
 
+local function backstop(pos, dir, depth)
+	if depth <= 0 then return end
+	pos = vector.add(pos, dir)
+	if nodecore.buildable_to(pos) then return end
+	if nodecore.node_group("falling_node", pos) then
+		return backstop(pos, dir, depth - 1)
+	end
+	return true
+end
+
 local function pressify(rc)
 	if rc.action ~= "pummel" then return end
 
@@ -64,10 +74,8 @@ local function pressify(rc)
 
 	local oldcheck = nr.check
 	nr.check = function(pos, data)
-		local backstop = vector.subtract(vector.multiply(
-				data.pointed.under, 2), data.pointed.above)
-		if nodecore.buildable_to(backstop) or nodecore.node_group(
-			"falling_node", backstop) then return end
+		if not backstop(pos, vector.subtract(data.pointed.under,
+				data.pointed.above), 4) then return end
 
 		local g = nodecore.node_group("door", data.pointed.above) or 0
 		if g < thumpy then return end

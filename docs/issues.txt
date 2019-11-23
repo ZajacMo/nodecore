@@ -9,12 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Press backstop system is too limited.
-	- Cannot press aggregate.
-	- Look up to N nodes away for the first non-falling non-buildable_to
-	  node, so loose materials can act as a backstop if supported by
-	  more solid materials.
-
 - Rename Wooden Adze to make it clearly not on the same level as the
   wooden (i.e. tier-2) tools.  "Primitive Adze" or just "Adze"?
 
