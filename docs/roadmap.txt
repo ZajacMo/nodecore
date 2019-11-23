@@ -57,6 +57,12 @@ ROADMAP: Large New Development Projects
 	- Break into crude glass instead, and break surrounding
 	  nodes too.
 
+- "Smart" optics placement?
+	- Pick initial rotation automatically to have the most utility
+	  according to some heuristics.
+	- May involve expanding or redesigning the optics API
+	  significantly...?
+
 - Domain Wall Sensor
 	- Adapt from sztest?
 	- Field Generator?

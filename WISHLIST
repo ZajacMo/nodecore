@@ -11,6 +11,9 @@ to the project!
 	  want to contribute translations.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- TBD: Bone attachment axes invert if there is any animation on
+	  that bone/axis.  This is blocking the visible inventory
+	  feature.
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.

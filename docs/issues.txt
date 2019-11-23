@@ -9,6 +9,26 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Active lenses facing each other go apeshit.
+	- They also totally bog the game down with lighting recalcs.
+
+- Optics should be blockable by things in item form.
+	- If sunlight_propagates on the node, and it's groups.visinv,
+	  then also check sunlight_propagates of the item def if the
+	  item is a node (craftitem/tools assume transparent).
+
+- Press backstop system is too limited.
+	- Cannot press aggregate.
+	- Look up to N nodes away for the first non-falling non-buildable_to
+	  node, so loose materials can act as a backstop if supported by
+	  more solid materials.
+
+- Rename Wooden Adze to make it clearly not on the same level as the
+  wooden (i.e. tier-2) tools.  "Primitive Adze" or just "Adze"?
+
+- Nodefall Disturb is not working on groups like it should; only
+  individual nodes are falling.
+
 - Document code formatting tools and standards.
 
 - Falling_node is a train-wreck and needs to be rebuilt.
@@ -26,6 +46,14 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Rake.
 
 - Design doc needs another shakedown.
+
+- Publish a monochrome texture pack.
+	- Calculate automatically from game assets.
+	- Similar to Ambiguity on CDB.
+	- Use to test accessibility for color blindness.
+		- Are gravel and sand different enough?
+		- Are water and lava different enough?
+		- Can use nc_reative for some testing.
 
 - Wet Agg in water:
 	- Should sink in water (exchange w/ water below).
