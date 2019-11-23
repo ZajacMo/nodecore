@@ -9,9 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Active lenses facing each other go apeshit.
-	- They also totally bog the game down with lighting recalcs.
-
 - Optics should be blockable by things in item form.
 	- If sunlight_propagates on the node, and it's groups.visinv,
 	  then also check sunlight_propagates of the item def if the
