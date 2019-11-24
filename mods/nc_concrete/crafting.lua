@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local ItemStack, math, minetest, nodecore, pairs, vector
+    = ItemStack, math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -101,6 +101,7 @@ nodecore.register_aism({
 			if stack:get_count() == 1 then
 				minetest.set_node(data.pos, {name = src})
 				nodecore.node_sound(data.pos, "place")
+				return ItemStack("")
 			else
 				minetest.set_node(found, {name = src})
 				nodecore.node_sound(found, "place")
