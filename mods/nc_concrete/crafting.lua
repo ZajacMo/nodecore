@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -98,16 +98,16 @@ nodecore.register_aism({
 		action = function(stack, data)
 			local found = minetest.find_node_near(data.pos, 1, {"group:water"})
 			if not found then return end
-			if stack:get_count() == 1 then
-				minetest.set_node(data.pos, {name = src})
-				nodecore.node_sound(data.pos, "place")
-				return ItemStack("")
-			else
-				minetest.set_node(found, {name = src})
-				nodecore.node_sound(found, "place")
-				stack:take_item(1)
-				return stack
+			if stack:get_count() == 1 and data.node then
+				local def = minetest.registered_nodes[data.node.name]
+				if def and def.groups and def.groups.is_stack_only then
+					found = data.pos
+				end
 			end
+			minetest.set_node(found, {name = src})
+			nodecore.node_sound(found, "place")
+			stack:take_item(1)
+			return stack
 		end
 	})
 
