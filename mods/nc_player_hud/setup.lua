@@ -14,13 +14,30 @@ local function breathimg(br)
 	.. math_floor(o)
 end
 
+local function sethudflags(player, pname)
+	pname = pname or player:get_player_name()
+	local privs = minetest.get_player_privs(pname)
+	player:hud_set_flags({
+			wielditem = privs.interact or false,
+			healthbar = false,
+			breathbar = false,
+			minimap = false,
+			minimap_radar = false
+		})
+end
+
+local function grantrevoke(pname)
+	minetest.after(0, function()
+			local player = minetest.get_player_by_name(pname)
+			if player then return sethudflags(player, pname) end
+		end)
+end
+
+minetest.register_on_priv_grant(grantrevoke)
+minetest.register_on_priv_revoke(grantrevoke)
+
 minetest.register_on_joinplayer(function(player)
-		player:hud_set_flags({
-				healthbar = false,
-				breathbar = false,
-				minimap = false,
-				minimap_radar = false
-			})
+		sethudflags(player)
 		player:hud_set_hotbar_itemcount(8)
 		player:hud_set_hotbar_image("nc_player_hud_bar.png")
 		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
