@@ -17,6 +17,8 @@ ROADMAP: Large New Development Projects
 		- Stronger near flowing water.
 
 - Door Automation
+	- Press tools (or tool heads) into nodes to activate other
+	  pummel recipes like chopping.
 	- Will need a "grate" node objects pass thru but
 		players/nodes cannot.
 	- Node outside upward roll: "unroll"
@@ -44,12 +46,11 @@ ROADMAP: Large New Development Projects
 			- Step on it or punch it to emit light.
 			- Button/touchplate for optics.
 
-- Torches
-	- Burning nodes with ash parts, to display torch lifetime
-	- Create a "strike-anywhere match" by adding other
-	  materials (sand, and something to react with like
-	  gravel or lux infusion) to instantly light on
-	  punching a solid enough surface.
+- Offline tick logic for spreading nodes
+	- Use soaking API, calculate time to spread.
+	- If actual time exceeds time to spread, pass soak depth on to
+	  new node that's been created, and trigger respread check.
+	- Will have to do a lot of performance testing.
 
 - Special glass handling?
 	- If glass is connected to other glass, it doesn't dig

@@ -9,6 +9,28 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make sure non-interact players don't interact with the env.
+	- Do they block doors?
+	- Look for other player scans, e.g. globalsteps and such.
+	- Look for other ent scans that aren't specific to players.
+	- Players can be affected but cannot affect.
+		- Things like drowning and node damage are hard to block.
+
+- Fire API Issues:
+	- Cannot light torches, item stacks with lenses.
+	- Maybe add ignite directions, flammable directions.
+	- Make torch lighting use standard API features.
+	- Make stack nodes use standard API features.
+	- When a stack ignites, consider ejecting excess items,
+	  so we can get a full-volume blaze?
+
+- Consider using a separate kind of water node for artificial water.
+	- For sponge squeezing and future pumping features.
+	- Make it a little grayer, or clearer than natural fresh water?
+	- Non-renewable, so we don't have to worry about placement.
+	- Can sanely attach ABMs to check for a supporting node, or
+	  periodic signalling to remain.
+
 - Document code formatting tools and standards.
 
 - Falling_node is a train-wreck and needs to be rebuilt.
@@ -44,6 +66,15 @@ ISSUES: Bugs, Cleanup and Refinements
 - Player APIs:
 	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.
+
+- Lens strobing rate limiting of some kind?
+	- Require cool-downs after a lot of toggling?
+	- Could this be an accessibility issue?
+
+- Should we allow players to scale falling/loose nodes?
+	- Falling into a cave can be really problematic with sand.
+	- On the other hand, Dogfooding streams prove that it'same
+	  possible to get out reasonably, twice so far.
 
 - When can we remove the issue7020 workaround?
 
