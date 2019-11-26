@@ -19,6 +19,7 @@ local function sethudflags(player, pname)
 	local privs = minetest.get_player_privs(pname)
 	player:hud_set_flags({
 			wielditem = privs.interact or false,
+			hotbar = privs.interact or false,
 			healthbar = false,
 			breathbar = false,
 			minimap = false,

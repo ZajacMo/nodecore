@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs
-    = minetest, pairs
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local footsteps = {}
+
+minetest.unregister_chatcommand("kill")
 
 minetest.register_on_joinplayer(function(player)
 		local inv = player:get_inventory()
@@ -27,17 +29,33 @@ minetest.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
 	end)
 
-minetest.unregister_chatcommand("kill")
+local function privdropinv(player)
+	if minetest.check_player_privs(player, "interact") then return end
+	local pos = player:get_pos()
+	pos.y = pos.y + player:get_properties().eye_height
+	local inv = player:get_inventory()
+	for i, stack in pairs(inv:get_list("main")) do
+		if not stack:is_empty() then
+			nodecore.item_eject(pos, stack, 0.001)
+			inv:set_stack("main", i, "")
+		end
+	end
+end
+
+local function setfootsteps(player)
+	local value = not player:get_player_control().sneak
+	local pname = player:get_player_name()
+	if footsteps[pname] ~= value then
+		player:set_properties({
+				makes_footstep_sound = value
+			})
+		footsteps[pname] = value
+	end
+end
 
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
-			local name = player:get_player_name()
-			local value = not player:get_player_control().sneak
-			if footsteps[name] ~= value then
-				player:set_properties({
-						makes_footstep_sound = value
-					})
-				footsteps[name] = value
-			end
+			privdropinv(player)
+			setfootsteps(player)
 		end
 	end)
