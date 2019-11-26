@@ -189,7 +189,10 @@ function nodecore.operate_door(pos, node, dir)
 			and to.z + 0.5 > op.z + cb[3] and to.z - 0.5 < op.z + cb[6]
 			then
 				local lua = obj.get_luaentity and obj:get_luaentity()
-				if not (lua and lua.is_stack) then return end
+				if not ((lua and lua.is_stack) or (obj:is_player()
+						and not minetest.check_player_privs(obj, "interact"))) then
+					return
+				end
 			end
 		end
 

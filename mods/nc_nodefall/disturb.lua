@@ -47,21 +47,26 @@ end
 
 local oldpos = {}
 local qtys = {}
+local function playercheck(dtime, player)
+	if not minetest.check_player_privs(player, "interact") then return end
+
+	local name = player:get_player_name()
+
+	local pos = player:get_pos()
+	local old = oldpos[name] or pos
+	oldpos[name] = pos
+
+	if player:get_player_control().sneak then return end
+
+	local q = (qtys[name] or 0)
+	+ vector.distance(pos, old) * 0.25
+	+ dtime * 0.05
+	queuechecks(math_floor(q), name, pos)
+	qtys[name] = q - math_floor(q)
+end
 minetest.register_globalstep(function(dtime)
-		for _, v in ipairs(minetest.get_connected_players()) do
-			local name = v:get_player_name()
-
-			local pos = v:get_pos()
-			local old = oldpos[name] or pos
-			oldpos[name] = pos
-
-			if v:get_player_control().sneak then return end
-
-			local q = (qtys[name] or 0)
-			+ vector.distance(pos, old) * 0.25
-			+ dtime * 0.05
-			queuechecks(math_floor(q), name, pos)
-			qtys[name] = q - math_floor(q)
+		for _, player in ipairs(minetest.get_connected_players()) do
+			playercheck(dtime, player)
 		end
 	end)
 

@@ -9,13 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Make sure non-interact players don't interact with the env.
-	- Do they block doors?
-	- Look for other player scans, e.g. globalsteps and such.
-	- Look for other ent scans that aren't specific to players.
-	- Players can be affected but cannot affect.
-		- Things like drowning and node damage are hard to block.
-
 - Fire API Issues:
 	- Cannot light torches, item stacks with lenses.
 	- Maybe add ignite directions, flammable directions.
