@@ -111,7 +111,7 @@ minetest.register_on_joinplayer(function(player)
 				},
 				arot = {
 					x = rx or 0,
-					y = ry or 0,
+					y = ry or 180,
 					z = rz or 0
 				}
 			}
@@ -119,11 +119,10 @@ minetest.register_on_joinplayer(function(player)
 
 		addslot(nil, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
 
-		--[[
 		local function cslot(n, x, y, z)
-			return addslot(n, "Chest", x * 0.8,
+			return addslot(n, "Bandolier", x * 0.8,
 				0.75 + y * 1.6,
-				2.25 + z)
+				-0.25 + z)
 		end
 
 		cslot(1, 1.75, 0, 0)
@@ -134,5 +133,4 @@ minetest.register_on_joinplayer(function(player)
 		cslot(6, -1, 2, 0.1)
 		cslot(7, 1, 1, 0.05)
 		cslot(8, -1.75, 0, 0)
-		--]]
 	end)
