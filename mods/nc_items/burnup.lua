@@ -14,7 +14,10 @@ if nodecore.loaded_mods().nc_fire then
 			neighbors = {"group:igniter"},
 			action = function(pos)
 				local stack = nodecore.stack_get(pos)
-				return nodecore.fire_check_ignite(pos, {name = stack:get_name()})
+				return nodecore.fire_check_ignite(pos, {
+						name = stack:get_name(),
+						count = stack:get_count()
+					})
 			end
 		})
 end

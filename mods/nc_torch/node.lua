@@ -27,11 +27,15 @@ minetest.register_node(modname .. ":torch", {
 			stack_as_node = 1
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
-		on_ignite = function(pos)
+		on_ignite = function(pos, node)
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
 			minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
 			local expire = nodecore.gametime + nodecore.boxmuller() * 5 + 60
 			minetest.get_meta(pos):set_float("expire", expire)
+			if node and node.count and node.count > 1 then
+				local s = node.name .. " " .. (node.count - 1)
+				nodecore.item_eject(pos, s, 0.001)
+			end
 			return true
 		end
 	})

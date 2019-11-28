@@ -119,5 +119,12 @@ nodecore.register_limited_abm({
 			if flam then
 				return nodecore.fire_check_ignite(out, tn)
 			end
+			if tdef.groups and tdef.groups.is_stack_only then
+				local stack = nodecore.stack_get(out)
+				return nodecore.fire_check_ignite(out, {
+						name = stack:get_name(),
+						count = stack:get_count()
+					})
+			end
 		end
 	})
