@@ -24,8 +24,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Can sanely attach ABMs to check for a supporting node, or
 	  periodic signalling to remain.
 
-- Document code formatting tools and standards.
-
 - Falling_node is a train-wreck and needs to be rebuilt.
 	- Attempts to monkey-patch it have still left fundamental problems.
 	- Falling nodes can sometimes end up occupying the same space and

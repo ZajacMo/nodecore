@@ -41,10 +41,14 @@ Other Guidelines:
   repo, but will not be packaged by ContentDB to keep download sizes
   minimal.
 
-- Lua code indentation style is based on this script:
-  http://notebook.kulchenko.com/programming/lua-beautifier-in-55-lines-of-perl
-  (except with INDENT set to "\t" for tabs instead of spaces)
-  This is very similar to the style used by ZeroBrane Studio.
+- Lua code formatting/style is using:
+        https://gitlab.com/Warr1024/luatools
+  Install the commands in your $PATH, and then in the root of the
+  project, run this command to format the code:
+        lualocals -f pkluaformat
+  You can add a -c option to lualocals to make it check only but not
+  modify your code; the check-only version is very useful in a git
+  pre-commit hook script.
 
 ------------------------------------------------------------------------
 ========================================================================
