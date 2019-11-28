@@ -115,8 +115,7 @@ nodecore.register_limited_abm({
 			local out = vector.add(face.k, pos)
 			local tn = minetest.get_node(out)
 			local tdef = minetest.registered_items[tn.name] or {}
-			local flam = tdef and (not tdef.sunlight_propagates)
-			and tdef.groups and tdef.groups.flammable
+			local flam = tdef and tdef.groups and tdef.groups.flammable
 			if flam then
 				return nodecore.fire_check_ignite(out, tn)
 			end
