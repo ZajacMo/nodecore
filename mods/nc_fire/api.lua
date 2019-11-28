@@ -97,11 +97,6 @@ function nodecore.fire_ignite(pos, node)
 end
 
 function nodecore.fire_check_ignite(pos, node, force, ...)
-	local vents = nodecore.fire_vents(pos)
-	if (not vents) or #vents < 1 then return end
-
-	if nodecore.quenched(pos) then return end
-
 	if not force then
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}
@@ -109,6 +104,11 @@ function nodecore.fire_check_ignite(pos, node, force, ...)
 		if not flam then return end
 		if math_random(1, flam) ~= 1 then return end
 	end
+
+	local vents = nodecore.fire_vents(pos)
+	if (not vents) or #vents < 1 then return end
+
+	if nodecore.quenched(pos) then return end
 
 	return nodecore.fire_ignite(pos, node, ...)
 end

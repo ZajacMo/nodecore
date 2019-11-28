@@ -61,14 +61,44 @@ do
 		})
 end
 
-nodecore.register_limited_abm({
+local igniteseen = {}
+local ignitequeue = {}
+local igniteqty = 0
+minetest.register_globalstep(function()
+		if #ignitequeue < 1 then return end
+		for _, pos in ipairs(ignitequeue) do
+			nodecore.fire_check_ignite(pos)
+		end
+		igniteseen = {}
+		ignitequeue = {}
+		igniteqty = 0
+	end)
+minetest.register_abm({
 		label = "Flammables Ignite",
 		interval = 5,
 		chance = 1,
-		nodenames = {"group:flammable"},
-		neighbors = {"group:igniter"},
-		action = function(pos, node)
-			return nodecore.fire_check_ignite(pos, node)
+		nodenames = {"group:igniter"},
+		neighbors = {"group:flammable"},
+		action = function(pos)
+			for _, p in pairs(minetest.find_nodes_in_area(
+					{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+					{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+					{"group:flammable"}
+			)) do
+				local key = minetest.pos_to_string(pos)
+				if not igniteseen[key] then
+					igniteseen[key] = true
+					igniteqty = igniteqty + 1
+					if igniteqty > 100 then
+						local i = math_random(1, igniteqty + 1)
+						if i < 100 then
+							ignitequeue[i] = p
+						end
+					else
+						ignitequeue[igniteqty] = p
+					end
+				end
+			end
 		end
 	})
 

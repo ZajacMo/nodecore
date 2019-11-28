@@ -230,6 +230,7 @@ do
 		if v.y <= 0 then stddirs[#stddirs + 1] = v end
 	end
 	function nodecore.item_disperse(pos, name, qty, outdirs)
+		if qty < 1 then return end
 		local dirs = {}
 		for _, d in pairs(outdirs or stddirs) do
 			local p = vector.add(pos, d)
