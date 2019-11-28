@@ -150,6 +150,38 @@ nodecore.register_limited_abm({
 		end
 	})
 
+nodecore.register_limited_abm({
+		label = "Aggregate Sink/Disperse",
+		interval = 4,
+		chance = 2,
+		limited_max = 100,
+		nodenames = {src},
+		neighbors = {"group:water"},
+		action = function(pos, node)
+			local waters = #minetest.find_nodes_in_area(
+				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
+				{"group:water"}
+			)
+			local rnd = math_random() * 20
+			if rnd * rnd < waters then
+				minetest.set_node(pos, {name = "nc_terrain:gravel"})
+				return nodecore.fallcheck(pos)
+			end
+
+			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+			local bnode = minetest.get_node(below)
+			if bnode.name == "ignore" then return end
+			local bdef = minetest.registered_nodes[bnode.name] or {}
+			if bdef.groups and bdef.groups.water then
+				nodecore.node_sound(pos, "dig")
+				minetest.set_node(below, node)
+				minetest.set_node(pos, bnode)
+				return
+			end
+		end
+	})
+
 nodecore.register_craft({
 		label = "aggregate curing",
 		action = "cook",
