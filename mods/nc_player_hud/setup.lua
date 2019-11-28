@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs
-    = math, minetest, pairs
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -15,11 +15,10 @@ local function breathimg(br)
 end
 
 local function sethudflags(player, pname)
-	pname = pname or player:get_player_name()
-	local privs = minetest.get_player_privs(pname)
+	local interact = nodecore.interact(pname or player)
 	player:hud_set_flags({
-			wielditem = privs.interact or false,
-			hotbar = privs.interact or false,
+			wielditem = interact or false,
+			hotbar = interact or false,
 			healthbar = false,
 			breathbar = false,
 			minimap = false,

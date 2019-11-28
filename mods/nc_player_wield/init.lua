@@ -23,7 +23,7 @@ local function entprops(stack, conf, widx)
 		is_visible = false,
 		static_save = false
 	}
-	if not conf then return t end
+	if not (conf and conf.pname and nodecore.interact(conf.pname)) then return t end
 	if conf.slot then
 		t.is_visible = true
 		t.textures = {modname .. "_slot.png^[transformFX^[opacity:160", "[combine:1x1"}

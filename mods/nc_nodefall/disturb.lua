@@ -48,7 +48,7 @@ end
 local oldpos = {}
 local qtys = {}
 local function playercheck(dtime, player)
-	if not minetest.check_player_privs(player, "interact") then return end
+	if not nodecore.interact(player) then return end
 
 	local name = player:get_player_name()
 

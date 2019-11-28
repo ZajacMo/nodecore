@@ -103,7 +103,11 @@ function nodecore.fixedbox(x, ...)
 end
 
 function nodecore.interact(player)
+	if not player then return end
 	if type(player) ~= "string" then
+		if not (player.is_player and player:is_player()) then
+			return true
+		end
 		player = player:get_player_name()
 	end
 	return minetest.get_player_privs(player).interact

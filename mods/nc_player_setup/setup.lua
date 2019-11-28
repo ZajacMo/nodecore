@@ -30,7 +30,7 @@ minetest.register_allow_player_inventory_action(function(_, action)
 	end)
 
 local function privdropinv(player)
-	if minetest.check_player_privs(player, "interact") then return end
+	if nodecore.interact(player) then return end
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
 	local inv = player:get_inventory()
