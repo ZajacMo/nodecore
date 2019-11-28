@@ -9,9 +9,6 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Flammable/igniter ABM should be reversed, so we scan over few igniters
-  instead of many flammables?
-
 - Wandering fluids API for concrete, glass?
 
 - Make separate walkable/non-walkable stack nodes.
