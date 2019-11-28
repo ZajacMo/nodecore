@@ -48,10 +48,6 @@ ISSUES: Bugs, Cleanup and Refinements
 		- Are water and lava different enough?
 		- Can use nc_reative for some testing.
 
-- Wet Agg in water:
-	- Should sink in water (exchange w/ water below).
-	- Should disperse if surrounded by lots of water.
-
 - Consider updating tote recipe.
 
 - Player APIs:
