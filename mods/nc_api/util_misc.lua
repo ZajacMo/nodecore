@@ -224,21 +224,30 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 	end
 end
 
-function nodecore.item_disperse(pos, name, qty, outdirs)
-	local dirs = {}
-	for _, d in pairs(outdirs) do
-		local p = vector.add(pos, d)
-		if nodecore.buildable_to(p) then
-			dirs[#dirs + 1] = {pos = p, qty = 0}
+do
+	local stddirs = {}
+	for _, v in pairs(nodecore.dirs()) do
+		if v.y <= 0 then stddirs[#stddirs + 1] = v end
+	end
+	function nodecore.item_disperse(pos, name, qty, outdirs)
+		local dirs = {}
+		for _, d in pairs(outdirs or stddirs) do
+			local p = vector.add(pos, d)
+			if nodecore.buildable_to(p) then
+				dirs[#dirs + 1] = {pos = p, qty = 0}
+			end
 		end
-	end
-	for _ = 1, qty do
-		local p = dirs[math_random(1, #dirs)]
-		p.qty = p.qty + 1
-	end
-	for _, v in pairs(dirs) do
-		if v.qty > 0 then
-			nodecore.item_eject(v.pos, name .. " " .. v.qty)
+		if #dirs < 1 then
+			return nodecore.item_eject(pos, name .. " " .. qty)
+		end
+		for _ = 1, qty do
+			local p = dirs[math_random(1, #dirs)]
+			p.qty = p.qty + 1
+		end
+		for _, v in pairs(dirs) do
+			if v.qty > 0 then
+				nodecore.item_eject(v.pos, name .. " " .. v.qty)
+			end
 		end
 	end
 end

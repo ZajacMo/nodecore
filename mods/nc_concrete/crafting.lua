@@ -7,13 +7,6 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
-local ashdirs = {
-	{x = 1, y = -1, z = 0},
-	{x = -1, y = -1, z = 0},
-	{x = 0, y = -1, z = 1},
-	{x = 0, y = -1, z = -1}
-}
-
 nodecore.register_craft({
 		label = "mix concrete (fail)",
 		action = "pummel",
@@ -36,7 +29,7 @@ nodecore.register_craft({
 			}
 		},
 		after = function(pos)
-			nodecore.item_disperse(pos, "nc_fire:lump_ash", 8, ashdirs)
+			nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
 		end
 	})
 
