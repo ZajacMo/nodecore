@@ -33,8 +33,8 @@ minetest.register_node(modname .. ":torch", {
 			local expire = nodecore.gametime + nodecore.boxmuller() * 5 + 60
 			minetest.get_meta(pos):set_float("expire", expire)
 			if node and node.count and node.count > 1 then
-				local s = node.name .. " " .. (node.count - 1)
-				nodecore.item_eject(pos, s, 0.001)
+				nodecore.item_disperse(pos, node.name,
+					node.count - 1, nodecore.dirs())
 			end
 			return true
 		end

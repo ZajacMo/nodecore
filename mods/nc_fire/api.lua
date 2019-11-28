@@ -77,8 +77,8 @@ function nodecore.fire_ignite(pos, node)
 		burneject(pos, ign)
 	end
 	if node and node.count and node.count > 1 then
-		local s = node.name .. " " .. (node.count - 1)
-		nodecore.item_eject(pos, s, 0.001)
+		nodecore.item_disperse(pos, node.name,
+			node.count - 1, nodecore.dirs())
 	end
 
 	local fuel = nodecore.node_group("fire_fuel", pos, node) or 0

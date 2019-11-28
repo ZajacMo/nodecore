@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
+      vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
+      vector
 local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt
     = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -219,6 +221,25 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 		}
 		local obj = minetest.add_item(p, stack)
 		if obj then obj:set_velocity(v) end
+	end
+end
+
+function nodecore.item_disperse(pos, name, qty, outdirs)
+	local dirs = {}
+	for _, d in pairs(outdirs) do
+		local p = vector.add(pos, d)
+		if nodecore.buildable_to(p) then
+			dirs[#dirs + 1] = {pos = p, qty = 0}
+		end
+	end
+	for _ = 1, qty do
+		local p = dirs[math_random(1, #dirs)]
+		p.qty = p.qty + 1
+	end
+	for _, v in pairs(dirs) do
+		if v.qty > 0 then
+			nodecore.item_eject(v.pos, name .. " " .. v.qty)
+		end
 	end
 end
 

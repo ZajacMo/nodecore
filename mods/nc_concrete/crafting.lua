@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -36,22 +36,7 @@ nodecore.register_craft({
 			}
 		},
 		after = function(pos)
-			local dirs = {}
-			for _, d in pairs(ashdirs) do
-				local p = vector.add(pos, d)
-				if nodecore.buildable_to(p) then
-					dirs[#dirs + 1] = {pos = p, qty = 0}
-				end
-			end
-			for _ = 1, 8 do
-				local p = dirs[math_random(1, #dirs)]
-				p.qty = p.qty + 1
-			end
-			for _, v in pairs(dirs) do
-				if v.qty > 0 then
-					nodecore.item_eject(v.pos, "nc_fire:lump_ash " .. v.qty)
-				end
-			end
+			nodecore.item_disperse(pos, "nc_fire:lump_ash", 8, ashdirs)
 		end
 	})
 
