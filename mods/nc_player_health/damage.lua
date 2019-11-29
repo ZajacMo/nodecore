@@ -34,6 +34,8 @@ minetest.register_on_dieplayer(function(player)
 
 minetest.register_globalstep(function(dtime)
 		for _, p in pairs(minetest.get_connected_players()) do
-			if p:get_hp() > 0 then nodecore.addphealth(p, dtime) end
+			if p:get_hp() > 0 and p:get_breath() > 10 then
+				nodecore.addphealth(p, dtime)
+			end
 		end
 	end)
