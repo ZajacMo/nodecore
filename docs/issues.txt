@@ -9,23 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Consider using a separate kind of water node for artificial water.
-	- For sponge squeezing and future pumping features.
-	- Make it a little grayer, or clearer than natural fresh water?
-	- Non-renewable, so we don't have to worry about placement.
-	- Can sanely attach ABMs to check for a supporting node, or
-	  periodic signalling to remain.
-
-- Falling_node is a train-wreck and needs to be rebuilt.
-	- Attempts to monkey-patch it have still left fundamental problems.
-	- Falling nodes can sometimes end up occupying the same space and
-	  clobbering each other.
-	- Search upward (up to starting height) for place to settle?
-	- If settling fails, convert to item and bounce/eject?
-	- Need to refactor out separate hooks for things like settling detection,
-	  settling commitment, etc so downstream mods can tweak.
-	- Arguably item_entity needs similar care.
-
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
@@ -42,13 +25,19 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Consider updating tote recipe.
 
+- Falling_node is a train-wreck and needs to be rebuilt.
+	- Attempts to monkey-patch it have still left fundamental problems.
+	- Falling nodes can sometimes end up occupying the same space and
+	  clobbering each other.
+	- Search upward (up to starting height) for place to settle?
+	- If settling fails, convert to item and bounce/eject?
+	- Need to refactor out separate hooks for things like settling detection,
+	  settling commitment, etc so downstream mods can tweak.
+	- Arguably item_entity needs similar care.
+
 - Player APIs:
 	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.
-
-- Lens strobing rate limiting of some kind?
-	- Require cool-downs after a lot of toggling?
-	- Could this be an accessibility issue?
 
 - Should we allow players to scale falling/loose nodes?
 	- Falling into a cave can be really problematic with sand.

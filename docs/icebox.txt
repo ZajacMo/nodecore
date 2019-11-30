@@ -11,6 +11,10 @@ ICEBOX: Low-Priority Ideas
 
 - Wandering fluids API for concrete, glass?
 
+- Lens strobing rate limiting of some kind?
+	- Require cool-downs after a lot of toggling?
+	- Could this be an accessibility issue?
+
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
 

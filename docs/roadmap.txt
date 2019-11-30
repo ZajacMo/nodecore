@@ -16,6 +16,13 @@ ROADMAP: Large New Development Projects
 		- Stronger near more water.
 		- Stronger near flowing water.
 
+- Consider using a separate kind of water node for artificial water.
+	- For sponge squeezing and future pumping features.
+	- Make it a little grayer, or clearer than natural fresh water?
+	- Non-renewable, so we don't have to worry about placement.
+	- Can sanely attach ABMs to check for a supporting node, or
+	  periodic signalling to remain.
+
 - Door Automation
 	- Press tools (or tool heads) into nodes to activate other
 	  pummel recipes like chopping.
