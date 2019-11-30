@@ -9,7 +9,6 @@ local modname = minetest.get_current_modname()
 
 local dirt = modname .. ":dirt"
 local grass = modname .. ":dirt_with_grass"
-local sand = modname .. ":sand"
 
 local breathable = {
 	airlike = true,
@@ -88,7 +87,8 @@ nodecore.register_limited_abm({
 			if waterat(pos, 0, 0, -1) then qty = qty * 1.5 end
 			if waterat(pos, 0, -1, 0) then qty = qty * 1.5 end
 			if math_random() * 100 >= qty then return end
-			minetest.set_node(pos, {name = sand})
+			minetest.set_node(pos, {name = modname .. ":sand_loose"})
 			nodecore.node_sound(pos, "place")
+			nodecore.fallcheck(pos)
 		end
 	})
