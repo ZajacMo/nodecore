@@ -39,11 +39,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.
 
-- Should we allow players to scale falling/loose nodes?
-	- Falling into a cave can be really problematic with sand.
-	- On the other hand, Dogfooding streams prove that it'same
-	  possible to get out reasonably, twice so far.
-
 - When can we remove the issue7020 workaround?
 
 ........................................................................

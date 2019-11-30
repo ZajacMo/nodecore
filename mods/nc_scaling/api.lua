@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ItemStack, minetest, nodecore, pairs, vector
+    = ItemStack, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -35,8 +35,12 @@ end
 local function issolid(pos, node)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
-	return def and def.walkable and not (def.groups and def.groups.falling_node)
-	and {pos = pos, node = node}
+	if not def or not def.walkable then return end
+	if def.groups and (not def.groups.falling_node) then
+		return {pos = pos, node = node}
+	end
+	if nodecore.toolspeed(ItemStack(""), def.groups) then return end
+	return {pos = pos, node = node}
 end
 
 local function tryreplace(pos, newname, rootpos)
