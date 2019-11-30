@@ -9,6 +9,7 @@ minetest.register_on_player_hpchange(function(player, hp)
 			return orig
 		end
 		if hp < 0 then
+			player:get_meta():set_float("hurttime", nodecore.gametime)
 			minetest.after(0, function()
 					local now = player:get_hp()
 					if now >= orig then return end
@@ -32,10 +33,15 @@ minetest.register_on_dieplayer(function(player)
 		player:get_meta():set_float("dhp", -1)
 	end)
 
+local function heal(player, dtime)
+	if player:get_hp() <= 0 then return end
+	if player:get_breath() <= 0 then return end
+	local hurt = player:get_meta():get_float("hurttime")
+	if hurt >= nodecore.gametime - 4 then return end
+	nodecore.addphealth(player, dtime * 2)
+end
 minetest.register_globalstep(function(dtime)
-		for _, p in pairs(minetest.get_connected_players()) do
-			if p:get_hp() > 0 and p:get_breath() > 10 then
-				nodecore.addphealth(p, dtime)
-			end
+		for _, player in pairs(minetest.get_connected_players()) do
+			heal(player, dtime)
 		end
 	end)
