@@ -134,10 +134,7 @@ nodecore.register_craft({
 		action = "cook",
 		touchgroups = {flame = 0},
 		check = function(pos)
-			return #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-				{"group:coolant"}) > 0
+			return nodecore.quenched(pos)
 		end,
 		cookfx = true,
 		nodes = {{match = {metal_temper_hot = true, count = false}}},

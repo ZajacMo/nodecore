@@ -136,11 +136,7 @@ nodecore.register_limited_abm({
 		nodenames = {src},
 		neighbors = {"group:water"},
 		action = function(pos, node)
-			local waters = #minetest.find_nodes_in_area(
-				{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-				{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-				{"group:water"}
-			)
+			local waters = #nodecore.find_nodes_around(pos, "group:water")
 			local rnd = math_random() * 20
 			if rnd * rnd < waters then
 				minetest.set_node(pos, {name = "nc_terrain:gravel"})

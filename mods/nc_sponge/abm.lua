@@ -6,10 +6,7 @@ local minetest, nodecore, pairs
 local modname = minetest.get_current_modname()
 
 local function findwater(pos)
-	return minetest.find_nodes_in_area(
-		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
-		{"group:water"})
+	return nodecore.find_nodes_around(pos, "group:water")
 end
 
 local function soakup(pos)

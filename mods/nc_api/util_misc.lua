@@ -253,12 +253,23 @@ do
 	end
 end
 
-function nodecore.quenched(pos, r)
+function nodecore.find_nodes_around(pos, spec, r, s)
 	r = r or 1
-	return #minetest.find_nodes_in_area(
-		{x = pos.x - r, y = pos.y - r, z = pos.z - r},
-		{x = pos.x + r, y = pos.y + r, z = pos.z + r},
-		{"group:coolant"}) > 0
+	if type(r) == "number" then
+		return minetest.find_nodes_in_area(
+			{x = pos.x - r, y = pos.y - r, z = pos.z - r},
+			{x = pos.x + r, y = pos.y + r, z = pos.z + r},
+			spec)
+	end
+	s = s or r
+	return minetest.find_nodes_in_area(
+		{x = pos.x - (r.x or r[1]), y = pos.y - (r.y or r[2]), z = pos.z - (r.z or r[3])},
+		{x = pos.x + (s.x or s[1]), y = pos.y + (s.y or s[2]), z = pos.z + (s.z or s[3])},
+		spec)
+end
+function nodecore.quenched(pos, r)
+	local qty = #nodecore.find_nodes_around(pos, "group:coolant", r)
+	return (qty > 0) and qty or nil
 end
 
 function nodecore.node_spin_custom(...)

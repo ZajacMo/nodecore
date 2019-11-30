@@ -38,11 +38,7 @@ local function dorake(pname, pos, node, user, ...)
 	local digparams = raked[pname]
 	if not digparams then return end
 
-	for _, npos in pairs(minetest.find_nodes_in_area(
-			{x = pos.x - 2, y = pos.y - 1, z = pos.z - 2},
-			{x = pos.x + 2, y = pos.y + 1, z = pos.z + 2},
-			{node.name}
-	)) do
+	for _, npos in pairs(nodecore.find_nodes_around(pos, node.name, {2, 1, 2})) do
 		minetest.node_dig(npos, node, user, ...)
 		for _, obj in pairs(minetest.get_objects_inside_radius(npos, 0.5)) do
 			local lua = obj and obj.get_luaentity and obj:get_luaentity()

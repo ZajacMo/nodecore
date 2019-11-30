@@ -33,10 +33,7 @@ local src = modname .. ":glass_hot_source"
 local flow = modname .. ":glass_hot_flowing"
 
 local function near(pos, crit)
-	return #minetest.find_nodes_in_area(
-		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
-		{x = pos.x + 1, y = pos.y, z = pos.z + 1},
-		crit) > 0
+	return #nodecore.find_nodes_around(pos, crit, {1, 1, 1}, {1, 0, 1}) > 0
 end
 
 nodecore.register_craft({

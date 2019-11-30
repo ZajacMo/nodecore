@@ -108,10 +108,7 @@ minetest.register_chatcommand("growtrees", {
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			local range = {x = 5, y = 5, z = 5}
-			local min = vector.subtract(pos, range)
-			local max = vector.add(pos, range)
-			for _, p in pairs(minetest.find_nodes_in_area(min, max, {epname})) do
+			for _, p in pairs(nodecore.find_nodes_around(pos, epname, 5)) do
 				local r = nodecore.tree_growth_rate(p)
 				if r and r > 0 then growtree(p) end
 			end

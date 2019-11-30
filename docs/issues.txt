@@ -9,6 +9,14 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Add forking instructions.
+	- Forking is meant as a "last resort".  Try to either submit
+	  PR's upstream, or create mods/modpacks.
+	- Correct project copyright and attributions.
+	- Must substantively modify the name of the project.
+		- Search entire source tree.
+	- Reset some docs.
+
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.

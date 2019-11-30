@@ -6,7 +6,6 @@ local math_floor, math_random
 -- LUALOCALS > ---------------------------------------------------------
 
 local falling = {groups = {falling_node = true}}
-local radius = {x = 2, y = 2, z = 2}
 
 local function fallcheck(name, start)
 	if not nodecore.interact(name) then return end
@@ -20,11 +19,7 @@ local function fallcheck(name, start)
 	if not pointed or not pointed.under then return end
 	local pos = pointed.under
 
-	local found = minetest.find_nodes_in_area(
-		vector.subtract(pos, radius),
-		vector.add(pos, radius),
-		"group:falling_node"
-	)
+	local found = nodecore.find_nodes_around(pos, "group:falling_node", 2)
 	if #found < 1 then return end
 	pos = nodecore.pickrand(found)
 

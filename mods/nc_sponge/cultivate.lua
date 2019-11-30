@@ -67,10 +67,7 @@ local old_get_node_drops = minetest.get_node_drops
 minetest.get_node_drops = function(...)
 	local drops = old_get_node_drops(...)
 	if not digpos then return drops end
-	local neighbors = #minetest.find_nodes_in_area(
-		{x = digpos.x - 1, y = digpos.y - 1, z = digpos.z - 1},
-		{x = digpos.x + 1, y = digpos.y + 1, z = digpos.z + 1},
-		{living})
+	local neighbors = #nodecore.find_nodes_around(digpos, living)
 	if neighbors >= 5 then
 		local prob = math_pow(2, neighbors - 5) * 0.005
 		if math_random() <= prob then return drops end
