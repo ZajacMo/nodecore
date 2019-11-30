@@ -37,8 +37,8 @@ Other Guidelines:
 
 - Keep original media source files that are not directly used by the
   game engine (e.g. *.blend, *.xcf, *.svg) in folders named "src" in the
-  appropriate mod/area.  These will NOT be distributed with the source
-  repo, but will not be packaged by ContentDB to keep download sizes
+  appropriate mod/area.  These will be distributed with the source
+  repo, but will NOT be packaged by ContentDB to keep download sizes
   minimal.
 
 - Lua code formatting/style is using:
