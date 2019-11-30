@@ -40,6 +40,9 @@ local function lens_check(pos, node, check)
 end
 
 local txr = modname .. "_glass_frost.png"
+local pact = modname .. "_port_active.png"
+local pout = modname .. "_port_output.png"
+local pinp = modname .. "_port_input.png"
 
 local basedef = {
 	description = "Lens",
@@ -53,8 +56,8 @@ local basedef = {
 	),
 	tiles = {
 		txr,
-		txr .. "^" .. modname .. "_lens_out.png",
-		txr .. "^" .. modname .. "_lens_in.png"
+		txr .. "^" .. pout,
+		txr .. "^" .. pinp
 	},
 	groups = {
 		silica = 1,
@@ -81,15 +84,20 @@ end
 reg("", {})
 reg("_on", {
 		description = "Active Lens",
+		tiles = {
+			txr,
+			txr .. "^" .. pact .. "^" .. pout,
+			txr .. "^" .. pinp .. "^" .. pout
+		},
 		light_source = 2
 	})
 reg("_glow", {
 		description = "Shining Lens",
 		light_source = 12,
 		tiles = {
-			txr,
-			txr .. "^" .. modname .. "_lens_in.png",
-			txr .. "^" .. modname .. "_lens_out.png"
+			txr .. "^(" .. pact .. "^[opacity:128)",
+			txr .. "^" .. pinp .. "^" .. pout,
+			txr .. "^" .. pact
 		},
 	})
 

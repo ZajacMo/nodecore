@@ -18,6 +18,10 @@ local function prism_check(_, node, check)
 end
 
 local txr = modname .. "_glass_frost.png"
+local pact = modname .. "_port_active.png"
+local pout = modname .. "_port_output.png"
+local pinp = modname .. "_port_wide.png"
+local pina = modname .. "_port_wide_act.png"
 
 local basedef = {
 	description = "Prism",
@@ -28,8 +32,8 @@ local basedef = {
 	),
 	tiles = {
 		txr,
-		txr .. "^" .. modname .. "_lens_out.png",
-		txr .. "^" .. modname .. "_prism_in.png"
+		txr .. "^" .. pout,
+		txr .. "^" .. pinp
 	},
 	groups = {
 		silica = 1,
@@ -57,5 +61,10 @@ end
 reg("", {})
 reg("_on", {
 		description = "Active Prism",
+		tiles = {
+			txr,
+			txr .. "^" .. pact .. "^" .. pout,
+			txr .. "^" .. pinp .. "^" .. pina
+		},
 		light_source = 2
 	})
