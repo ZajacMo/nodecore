@@ -17,6 +17,7 @@ minetest.register_on_joinplayer(function(player)
 		player:set_physics_override({speed = 1.25})
 
 		player:set_properties({
+				pointable = false,
 				makes_footstep_sound = true,
 
 				-- Allow slight zoom for screenshots
