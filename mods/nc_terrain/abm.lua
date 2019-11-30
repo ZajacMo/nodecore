@@ -1,10 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local dirt = "nc_terrain:dirt"
-local grass = "nc_terrain:dirt_with_grass"
+local modname = minetest.get_current_modname()
+
+local dirt = modname .. ":dirt"
+local grass = modname .. ":dirt_with_grass"
+local sand = modname .. ":sand"
 
 local breathable = {
 	airlike = true,
@@ -60,5 +65,30 @@ nodecore.register_limited_abm({
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if grassable(above) ~= false then return end
 			return minetest.set_node(pos, {name = dirt})
+		end
+	})
+
+local function waterat(pos, dx, dy, dz)
+	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+	local node = minetest.get_node(pos)
+	return minetest.get_item_group(node.name, "water") ~= 0
+end
+nodecore.register_limited_abm({
+		label = "Dirt Leeching to Sand",
+		nodenames = {dirt},
+		neighbors = {"group:water"},
+		interval = 5,
+		chance = 50,
+		action = function(pos)
+			if not waterat(pos, 0, 1, 0) then return end
+			local qty = 1
+			if waterat(pos, 1, 0, 0) then qty = qty * 1.5 end
+			if waterat(pos, -1, 0, 0) then qty = qty * 1.5 end
+			if waterat(pos, 0, 0, 1) then qty = qty * 1.5 end
+			if waterat(pos, 0, 0, -1) then qty = qty * 1.5 end
+			if waterat(pos, 0, -1, 0) then qty = qty * 1.5 end
+			if math_random() * 100 >= qty then return end
+			minetest.set_node(pos, {name = sand})
+			nodecore.node_sound(pos, "place")
 		end
 	})

@@ -11,11 +11,6 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
-- Sand renewability.
-	- Dirt turns to sand if left near water.
-		- Stronger near more water.
-		- Stronger near flowing water.
-
 - Consider using a separate kind of water node for artificial water.
 	- For sponge squeezing and future pumping features.
 	- Make it a little grayer, or clearer than natural fresh water?
