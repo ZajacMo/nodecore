@@ -43,28 +43,15 @@ local txr = modname .. "_glass_frost.png"
 
 local basedef = {
 	description = "Lens",
-	drawtype = "nodebox",
-	node_box = nodecore.fixedbox(
-		{-0.5, -0.5, -3/8, 0.25, -0.25, 1/8},
-		{-0.25, 0.25, -3/8, 0.5, 0.5, 1/8},
-		{-0.5, -0.25, -3/8, -0.25, 0.5, 1/8},
-		{0.25, -0.5, -3/8, 0.5, 0.25, 1/8},
-		{-0.25, -0.25, -1/8, 0.25, 0.25, 0.25}
-	),
+	drawtype = "mesh",
+	mesh = "nc_optics_lens.obj",
 	selection_box = nodecore.fixedbox(
 		{-0.5, -0.5, -3/8, 0.5, 0.5, 1/8}
 	),
 	collision_box = nodecore.fixedbox(
 		{-0.5, -0.5, -3/8, 0.5, 0.5, 3/8}
 	),
-	tiles = {
-		txr,
-		txr,
-		txr,
-		txr,
-		txr .. "^" .. modname .. "_lens_out.png",
-		txr .. "^" .. modname .. "_lens_in.png",
-	},
+	tiles = {"nc_optics_lens_uv.png"},
 	groups = {
 		silica = 1,
 		optic_check = 1,
