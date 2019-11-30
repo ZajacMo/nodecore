@@ -51,7 +51,11 @@ local basedef = {
 	collision_box = nodecore.fixedbox(
 		{-0.5, -0.5, -3/8, 0.5, 0.5, 3/8}
 	),
-	tiles = {"nc_optics_lens_uv.png"},
+	tiles = {
+		txr,
+		txr .. "^" .. modname .. "_lens_out.png",
+		txr .. "^" .. modname .. "_lens_in.png"
+	},
 	groups = {
 		silica = 1,
 		optic_check = 1,
@@ -84,11 +88,8 @@ reg("_glow", {
 		light_source = 12,
 		tiles = {
 			txr,
-			txr,
-			txr,
-			txr,
 			txr .. "^" .. modname .. "_lens_in.png",
-			txr .. "^" .. modname .. "_lens_out.png",
+			txr .. "^" .. modname .. "_lens_out.png"
 		},
 	})
 
