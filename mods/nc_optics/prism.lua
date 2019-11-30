@@ -21,26 +21,15 @@ local txr = modname .. "_glass_frost.png"
 
 local basedef = {
 	description = "Prism",
-	drawtype = "nodebox",
-	node_box = nodecore.fixedbox(
-		{-3/8, -3/8, -0.5, -0.25, 3/8, -3/8},
-		{3/8, -3/8, 0.25, 0.5, 3/8, 3/8},
-		{-3/8, -0.5, -0.5, 0.5, -3/8, 3/8},
-		{-3/8, 3/8, -0.5, 0.5, 0.5, 3/8},
-		{-3/8, -3/8, -3/8, 3/8, 3/8, 3/8},
-		{-0.25, -0.25, 3/8, 0.25, 0.25, 0.5},
-		{-0.5, -0.25, -0.25, -3/8, 0.25, 0.25}
-	),
+	drawtype = "mesh",
+	mesh = "nc_optics_prism.obj",
 	selection_box = nodecore.fixedbox(
-		{-3/8, -0.5, -0.5, 0.5, 0.5, 3/8}
+		{-5/16, -0.5, -0.5, 0.5, 0.5, 5/16}
 	),
 	tiles = {
 		txr,
-		txr,
-		txr .. "^" .. modname .. "_prism_in.png",
 		txr .. "^" .. modname .. "_lens_out.png",
-		txr .. "^" .. modname .. "_lens_out.png",
-		txr .. "^(" .. modname .. "_prism_in.png^[transformFX)",
+		txr .. "^" .. modname .. "_prism_in.png"
 	},
 	groups = {
 		silica = 1,
