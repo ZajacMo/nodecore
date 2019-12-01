@@ -9,23 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Conservation of Fuel compromise for performance issues.
-	- Burning shelves full of coal should NOT lead game to crash.
-	- Maybe make logarithmic (e.g. materials have a half-life on
-	  spread).
-	- Maybe make sensitive to number of surrounding loose items,
-	  e.g. don't disperse if area already densely populated.
-
-- Chromatic glass needs visuals work.
-	- Make material less "busy" so geometry is less obscured.
-	- Add a way to differentiate faces and edges.
-	- Maybe simplify geometry with mesh nodes, e.g. use pyramid
-	  instead of cubic nib; would have significant effect on
-	  concave surface geometry.
-	- More significantly different textures for active and
-	  shining variants to more easily read a circuit esp. in
-	  daylight.
-
 - Add forking instructions.
 	- Forking is meant as a "last resort".  Try to either submit
 	  PR's upstream, or create mods/modpacks.
