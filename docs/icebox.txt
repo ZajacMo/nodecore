@@ -15,6 +15,12 @@ ICEBOX: Low-Priority Ideas
 	- Require cool-downs after a lot of toggling?
 	- Could this be an accessibility issue?
 
+- "Smart" optics placement?
+	- Pick initial rotation automatically to have the most utility
+	  according to some heuristics.
+	- May involve expanding or redesigning the optics API
+	  significantly...?
+
 - Make separate walkable/non-walkable stack nodes.
 	- Should sticks and eggcorns be non-walkable?
 

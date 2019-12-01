@@ -44,9 +44,6 @@ ROADMAP: Large New Development Projects
 		- Infuse clear glass to make "smoked" glass.
 			- Does not transmit light.
 			- See-thru only from one side.
-		- Infuse chromatic glass to make piezo glass.
-			- Step on it or punch it to emit light.
-			- Button/touchplate for optics.
 
 - Offline tick logic for spreading nodes
 	- Use soaking API, calculate time to spread.
@@ -59,12 +56,6 @@ ROADMAP: Large New Development Projects
 	  trivially.
 	- Break into crude glass instead, and break surrounding
 	  nodes too.
-
-- "Smart" optics placement?
-	- Pick initial rotation automatically to have the most utility
-	  according to some heuristics.
-	- May involve expanding or redesigning the optics API
-	  significantly...?
 
 - Domain Wall Sensor
 	- Adapt from sztest?
