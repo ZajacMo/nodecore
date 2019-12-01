@@ -85,7 +85,7 @@ reg("", {})
 reg("_on", {
 		description = "Active Lens",
 		tiles = {
-			txr .. "^(" .. pact .. "^[opacity:128)",
+			txr .. "^(" .. pact .. "^[opacity:96)",
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
