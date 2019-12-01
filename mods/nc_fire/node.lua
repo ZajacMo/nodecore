@@ -28,6 +28,7 @@ minetest.register_node(modname .. ":fire", {
 			igniter = 1,
 			flame = 1,
 			flame_sound = 1,
+			stack_as_node = 1,
 		},
 		damage_per_second = 2,
 		sunlight_propagates = true,
@@ -101,7 +102,8 @@ for num = 1, nodecore.fire_max do
 			groups = {
 				igniter = 1,
 				ember = num,
-				falling_node = 1
+				falling_node = 1,
+				stack_as_node = 1,
 			},
 			drop = "",
 			diggable = false,

@@ -267,7 +267,7 @@ regliquid({
 		damage_per_second = 8,
 		on_punch = nodecore.node_punch_hurt,
 		drop = "",
-		groups = {igniter = 1, lava = 2},
+		groups = {igniter = 1, lava = 2, stack_as_node = 1},
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})

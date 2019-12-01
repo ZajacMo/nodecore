@@ -102,7 +102,7 @@ local moltdef = {
 	on_punch = nodecore.node_punch_hurt,
 	damage_per_second = 4,
 	drop = "",
-	groups = {igniter = 1, silica = 1},
+	groups = {igniter = 1, silica = 1, stack_as_node = 1},
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",
