@@ -21,5 +21,5 @@ minetest.register_decoration({
 		schematic = nodecore.tree_schematic,
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
-		replacements = { }
+		replacements = {}
 	})

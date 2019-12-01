@@ -54,7 +54,7 @@ nodecore.tree_schematic = nodecore.ezschematic(
 		r = {name = modname .. ":root", prob = 255, force_place = true},
 		t = {name = modname .. ":tree", prob = 255},
 		b = {name = modname .. ":leaves", param2 = 2, prob = 255},
-		e = {name = modname .. ":leaves", param2 = 1,prob = 255},
+		e = {name = modname .. ":leaves", param2 = 1, prob = 255},
 		l = {name = modname .. ":leaves", prob = 240},
 	},
 	{

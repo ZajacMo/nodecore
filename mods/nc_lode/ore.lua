@@ -12,7 +12,7 @@ local function reg(suff, def)
 			description = "Lode " .. suff,
 			name = suff:lower(),
 			is_ground_content = true,
-			groups = { cracky = 2, lodey = 1 },
+			groups = {cracky = 2, lodey = 1},
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 	def.fullname = modname .. ":" .. def.name
@@ -27,15 +27,15 @@ local stratstone = {}
 local stratore = {}
 local stone = reg("Stone", {
 		description = "Stone",
-		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png^[opacity:48)" },
+		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
+			.. modname .. "_mask_ore.png^[opacity:48)"},
 		drop_in_place = "nc_terrain:cobble",
 		strata = stratstone
 	})
 stratstone[1] = stone
 local ore = reg("Ore", {
-		tiles = { "nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png)" },
+		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
+			.. modname .. "_mask_ore.png)"},
 		drop_in_place = modname .. ":cobble",
 		strata = stratore
 	})
@@ -44,8 +44,8 @@ for i = 1, nodecore.hard_stone_strata do
 	local hst = nodecore.hard_stone_tile(i)
 	stratstone[i + 1] = reg("Stone_" .. i, {
 			description = "Stone",
-			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png^[opacity:48)" },
+			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
+				.. modname .. "_mask_ore.png^[opacity:48)"},
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			groups = {
@@ -56,8 +56,8 @@ for i = 1, nodecore.hard_stone_strata do
 		})
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
-			tiles = { hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png)" },
+			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
+				.. modname .. "_mask_ore.png)"},
 			drop_in_place = modname .. ":cobble",
 			groups = {
 				lodey = 1,
@@ -68,7 +68,7 @@ for i = 1, nodecore.hard_stone_strata do
 end
 
 reg("Cobble", {
-		tiles = { modname .. "_ore.png^nc_terrain_cobble.png" },
+		tiles = {modname .. "_ore.png^nc_terrain_cobble.png"},
 		groups = {
 			lode_cobble = 1,
 			cracky = 2,
@@ -93,7 +93,7 @@ reg("cobble_hot", {
 			"nc_terrain_gravel.png^(" .. modname .. "_hot.png^[mask:"
 			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
 		},
-		groups = { cracky = 0, lodey = 1 },
+		groups = {cracky = 0, lodey = 1},
 		damage_per_second = 2,
 		on_punch = nodecore.node_punch_hurt
 	})

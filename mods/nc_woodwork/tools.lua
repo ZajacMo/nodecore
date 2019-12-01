@@ -69,5 +69,5 @@ toolhead("Hatchet", modname .. ":toolhead_spade",
 	"choppy", 1)
 toolhead("Pick", modname .. ":toolhead_hatchet",
 	"cracky", 2)
-toolhead(nil, modname.. ":toolhead_pick",
+toolhead(nil, modname .. ":toolhead_pick",
 	nil, 2)

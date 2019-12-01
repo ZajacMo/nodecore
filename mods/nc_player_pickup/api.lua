@@ -9,8 +9,8 @@ function nodecore.inv_walk(player, widx, inv, list)
 	inv = inv or player:get_inventory()
 	local size = inv:get_size(list)
 	local slots = {}
-	for i = widx, size do slots[#slots +1] = i end
-	for i = widx - 1, 1, -1 do slots[#slots +1] = i end
+	for i = widx, size do slots[#slots + 1] = i end
+	for i = widx - 1, 1, -1 do slots[#slots + 1] = i end
 	local idx = 0
 	return function()
 		idx = idx + 1

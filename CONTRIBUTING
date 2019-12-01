@@ -45,7 +45,7 @@ Other Guidelines:
         https://gitlab.com/Warr1024/luatools
   Install the commands in your $PATH, and then in the root of the
   project, run this command to format the code:
-        lualocals -f pkluaformat
+        lualocals -f luaintraspace -f pkluaformat
   You can add a -c option to lualocals to make it check only but not
   modify your code; the check-only version is very useful in a git
   pre-commit hook script.

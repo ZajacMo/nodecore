@@ -17,7 +17,7 @@ minetest.register_node(modname .. ":eggcorn", {
 		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		inventory_image = "[combine:24x24:4,4=" .. modname .. "_eggcorn.png",
-		tiles = { modname .. "_eggcorn.png" },
+		tiles = {modname .. "_eggcorn.png"},
 		groups = {
 			snappy = 1,
 			flammable = 3,
@@ -103,7 +103,7 @@ end
 
 minetest.register_chatcommand("growtrees", {
 		description = "Instantly grow nearby trees",
-		privs = { ["debug"] = true },
+		privs = {["debug"] = true},
 		func = function(pname)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end

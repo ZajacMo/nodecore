@@ -15,6 +15,6 @@ nodecore.register_ambiance({
 			if pos.y <= 0 then return end
 			return minetest.get_node(pos).name == "air"
 			and minetest.get_node_light(pos, 0.5) == 15
-			and { gain = nodecore.windiness(pos.y) / 20 }
+			and {gain = nodecore.windiness(pos.y) / 20}
 		end
 	})

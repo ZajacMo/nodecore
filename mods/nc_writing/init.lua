@@ -55,7 +55,7 @@ do
 		for _, x in pairs(v) do t[#t + 1] = x end
 		table_sort(t)
 		for i = 1, #t - 1 do
-			spinmap[t[i] ] = t[i + 1]
+			spinmap[t[i]] = t[i + 1]
 		end
 		spinmap[t[#t]] = t[1]
 	end
@@ -179,7 +179,7 @@ nodecore.register_craft({
 		check = function(pos, data)
 			return writable(pos) and minetest.get_node(data.pointed.above).name == "air"
 		end,
-		nodes = { { match = {walkable = true} } },
+		nodes = {{match = {walkable = true}}},
 		after = function(pos, data)
 			local dir = vector.subtract(pos, data.pointed.above)
 			for i = 1, #nodecore.facedirs do

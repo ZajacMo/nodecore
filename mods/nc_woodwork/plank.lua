@@ -8,7 +8,7 @@ local modname = minetest.get_current_modname()
 local plank = modname .. ":plank"
 minetest.register_node(plank, {
 		description = "Wooden Plank",
-		tiles = { modname .. "_plank.png" },
+		tiles = {modname .. "_plank.png"},
 		groups = {
 			choppy = 1,
 			flammable = 2,

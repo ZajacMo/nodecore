@@ -106,7 +106,7 @@ minetest.register_globalstep(function()
 		end
 	end)
 
-local is_falling = {groups = { falling_node = true }}
+local is_falling = {groups = {falling_node = true}}
 
 local function trypush(pos, dir, dir2)
 	local node = minetest.get_node(pos)
@@ -135,7 +135,7 @@ minetest.register_globalstep(function(dtime)
 		modstore:set_string("squelch", squelch)
 	end)
 
-local is_door = {groups = { door = true }}
+local is_door = {groups = {door = true}}
 
 function nodecore.operate_door(pos, node, dir)
 	local key = minetest.pos_to_string(pos)

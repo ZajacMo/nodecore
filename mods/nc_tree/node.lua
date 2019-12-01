@@ -62,7 +62,7 @@ minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
-		tiles = { modname .. "_leaves.png" },
+		tiles = {modname .. "_leaves.png"},
 		waving = 1,
 		groups = {
 			snappy = 1,
@@ -71,7 +71,7 @@ minetest.register_node(modname .. ":leaves", {
 			green = 3
 		},
 		alternate_loose = {
-			tiles = { modname .. "_leaves_dry.png" },
+			tiles = {modname .. "_leaves_dry.png"},
 			walkable = false,
 			groups = {
 				flammable = 1,

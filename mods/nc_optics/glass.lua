@@ -24,7 +24,7 @@ minetest.register_node(modname .. ":glass", {
 
 minetest.register_node(modname .. ":glass_opaque", {
 		description = "Chromatic Glass",
-		tiles = { modname .. "_glass_frost.png" },
+		tiles = {modname .. "_glass_frost.png"},
 		groups = {
 			silica = 1,
 			cracky = 3
@@ -88,8 +88,8 @@ local flowtxr = anim("[combine:16x512:0,0=nc_terrain_lava_flow.png" .. animglass
 local moltdef = {
 	description = "Molten Glass",
 	drawtype = "liquid",
-	tiles = { molttxr },
-	special_tiles = { flowtxr, flowtxr },
+	tiles = {molttxr},
+	special_tiles = {flowtxr, flowtxr},
 	paramtype = "light",
 	liquid_viscosity = 7,
 	liquid_renewable = false,
@@ -102,7 +102,7 @@ local moltdef = {
 	on_punch = nodecore.node_punch_hurt,
 	damage_per_second = 4,
 	drop = "",
-	groups = { igniter = 1, silica = 1 },
+	groups = {igniter = 1, silica = 1},
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",

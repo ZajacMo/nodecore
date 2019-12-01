@@ -9,7 +9,7 @@ local dirs = nodecore.dirs()
 
 function nodecore.scan_flood(pos, range, func)
 	local q = {pos}
-	local seen = { }
+	local seen = {}
 	for d = 0, range do
 		local nxt = {}
 		for _, p in ipairs(q) do

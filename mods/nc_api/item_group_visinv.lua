@@ -25,7 +25,7 @@ function nodecore.stackentprops(stack, yaw, rotate)
 		collide_with_objects = false,
 		collisionbox = {0, 0, 0, 0, 0, 0},
 		visual = "wielditem",
-		visual_size = {x = 0.4, y = 0.4 },
+		visual_size = {x = 0.4, y = 0.4},
 		textures = {""},
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},

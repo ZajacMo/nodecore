@@ -30,7 +30,7 @@ minetest.register_node(modname .. ":shelf", {
 		),
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
-		tiles = { top, top, side },
+		tiles = {top, top, side},
 		groups = {
 			choppy = 1,
 			visinv = 1,

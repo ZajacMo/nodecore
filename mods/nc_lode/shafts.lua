@@ -10,7 +10,7 @@ nodecore.register_lode("Bar", {
 		description = "## Lode Bar",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
-		tiles = { modname .. "_#.png" },
+		tiles = {modname .. "_#.png"},
 		light_source = 1,
 		crush_damage = 1,
 		paramtype = "light",
@@ -66,7 +66,7 @@ nodecore.register_lode("Rod", {
 		description = "## Lode Rod",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
-		tiles = { modname .. "_#.png" },
+		tiles = {modname .. "_#.png"},
 		light_source = 2,
 		crush_damage = 2,
 		paramtype = "light",
@@ -82,7 +82,7 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = { name = modname .. ":bar_annealed", count = 2 },
+				match = {name = modname .. ":bar_annealed", count = 2},
 				replace = "air"
 			},
 			{
@@ -106,6 +106,6 @@ nodecore.register_craft({
 			}
 		},
 		items = {
-			{ name = modname .. ":bar_annealed", count = 2 }
+			{name = modname .. ":bar_annealed", count = 2}
 		}
 	})

@@ -141,7 +141,7 @@ end
 ------------------------------------------------------------------------
 -- PLAYER MOVEMENT/IDLE HOOKS
 
-local playdb = { }
+local playdb = {}
 local idlemin = 5
 local function movement(dt, player)
 	if not player or not player:is_player() then return end
@@ -155,7 +155,7 @@ local function movement(dt, player)
 
 	local pos = player:get_pos()
 	local dir = player:get_look_dir()
-	local cur = { pos.x, pos.y, pos.z, dir.x, dir.y, dir.z }
+	local cur = {pos.x, pos.y, pos.z, dir.x, dir.y, dir.z}
 	local moved
 	if pd.last then
 		for i = 1, 6 do

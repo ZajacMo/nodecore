@@ -49,7 +49,7 @@ nodecore.register_mapgen_shared(function(minp, maxp, area, data)
 				elseif dither > (4 / thickness) then
 					dither = nil
 				else
-					dither = (dither * thickness + 1)/5
+					dither = (dither * thickness + 1) / 5
 				end
 				for x = minp.x, maxp.x do
 					local i = ai(area, x, y, z)

@@ -9,17 +9,17 @@ local function regterrain(def)
 	def.name = def.name or def.description:gsub("%W", "_"):lower()
 	def.fullname = modname .. ":" .. def.name
 
-	def.tiles = def.tiles or { def.fullname:gsub("%W", "_") .. ".png" }
+	def.tiles = def.tiles or {def.fullname:gsub("%W", "_") .. ".png"}
 	def.is_ground_content = true
 
 	if def.liquidtype then
 		def.liquid_alternative_flowing = def.fullname .. "_flowing"
 		def.liquid_alternative_source = def.fullname .. "_source"
 		def.fullname = def.fullname .. "_" .. def.liquidtype
-		def.special_tiles = def.special_tiles or { def.tiles[1], def.tiles[1] }
+		def.special_tiles = def.special_tiles or {def.tiles[1], def.tiles[1]}
 	end
 
-	def.mapgen = def.mapgen or { def.name }
+	def.mapgen = def.mapgen or {def.name}
 
 	minetest.register_node(def.fullname, def)
 
@@ -43,7 +43,7 @@ local function regliquid(def)
 	regterrain(t)
 
 	t = clone(def)
-	t.mapgen = { }
+	t.mapgen = {}
 	t.drawtype = "flowingliquid"
 	t.liquidtype = "flowing"
 	t.paramtype2 = "flowingliquid"
@@ -76,7 +76,7 @@ for i = 1, nodecore.hard_stone_strata do
 	regterrain({
 			name = "hard_stone_" .. i,
 			description = "Stone",
-			tiles = { nodecore.hard_stone_tile(i) },
+			tiles = {nodecore.hard_stone_tile(i)},
 			silktouch = false,
 			groups = {
 				stone = i,
@@ -93,7 +93,7 @@ end
 
 regterrain({
 		description = "Cobble",
-		tiles = { modname .. "_gravel.png^" .. modname .. "_cobble.png" },
+		tiles = {modname .. "_gravel.png^" .. modname .. "_cobble.png"},
 		mapgen = {
 			"sandstonebrick",
 			"stair_sandstone_block",
@@ -227,8 +227,8 @@ end
 
 regliquid({
 		description = "Water",
-		mapgen = { "river_water_source", "water_source" },
-		tiles = { anim(modname .. "_water.png", 4) },
+		mapgen = {"river_water_source", "water_source"},
+		tiles = {anim(modname .. "_water.png", 4)},
 		special_tiles = {
 			anim(modname .. "_water_flow.png", 4),
 			anim(modname .. "_water_flow.png", 4)
@@ -243,19 +243,19 @@ regliquid({
 		buildable_to = true,
 		drowning = 1,
 		drop = "",
-		groups = { coolant = 1, water = 2, moist = 2 },
+		groups = {coolant = 1, water = 2, moist = 2},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
 regliquid({
 		name = "lava",
-		tiles = { anim(modname .. "_lava.png", 8) },
+		tiles = {anim(modname .. "_lava.png", 8)},
 		special_tiles = {
 			anim(modname .. "_lava_flow.png", 8),
 			anim(modname .. "_lava_flow.png", 8)
 		},
 		description = "Molten Rock",
-		mapgen = { "lava_source" },
+		mapgen = {"lava_source"},
 		paramtype = "light",
 		liquid_viscosity = 7,
 		liquid_renewable = false,
@@ -267,7 +267,7 @@ regliquid({
 		damage_per_second = 8,
 		on_punch = nodecore.node_punch_hurt,
 		drop = "",
-		groups = { igniter = 1, lava = 2 },
+		groups = {igniter = 1, lava = 2},
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})
