@@ -85,7 +85,7 @@ reg("", {})
 reg("_on", {
 		description = "Active Lens",
 		tiles = {
-			txr,
+			txr .. "^(" .. pact .. "^[opacity:128)",
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
@@ -95,9 +95,9 @@ reg("_glow", {
 		description = "Shining Lens",
 		light_source = 12,
 		tiles = {
-			txr .. "^(" .. pact .. "^[opacity:128)",
-			txr .. "^" .. pinp .. "^" .. pout,
-			txr .. "^" .. pact
+			txr .. "^" .. modname .. "_shine_side.png",
+			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
+			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
 		},
 	})
 

@@ -62,7 +62,7 @@ reg("", {})
 reg("_on", {
 		description = "Active Prism",
 		tiles = {
-			txr,
+			txr .. "^(" .. pact .. "^[opacity:128)",
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
 		},
