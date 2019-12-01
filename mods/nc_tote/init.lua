@@ -89,6 +89,42 @@ local function toteplace(stack, _, pointed)
 	return stack
 end
 
+local function tote_ignite(pos)
+	local stack = nodecore.stack_get(pos)
+	if stack:get_name() ~= modname .. ":handle" then return true end
+
+	local stackmeta = stack:get_meta()
+	local raw = stackmeta:get_string("carrying")
+	local inv = raw and (raw ~= "") and minetest.deserialize(raw)
+	if not inv then return true end
+
+	local newinv = {}
+	for _, slot in pairs(inv) do
+		local nn = slot and slot.n and slot.n.name
+		local flam = minetest.get_item_group(nn, "flammable")
+		if flam > 0 then
+			nodecore.item_eject(pos, nn)
+			for _, list in pairs(slot and slot.m and slot.m.inventory or {}) do
+				for _, item in pairs(list) do
+					local istack = ItemStack(item)
+					if not istack:is_empty() then
+						nodecore.item_eject(pos, istack)
+					end
+				end
+			end
+		else
+			newinv[#newinv + 1] = slot
+		end
+	end
+	local newraw = minetest.serialize(newinv)
+	if newraw == raw then return true end
+
+	stackmeta:set_string("carrying", newraw)
+	stackmeta:set_string("description", metadescs[#newinv])
+	nodecore.stack_set(pos, stack)
+	return true
+end
+
 minetest.register_node(modname .. ":handle", {
 		description = "Tote Handle",
 		meta_descriptions = metadescs,
@@ -114,8 +150,9 @@ minetest.register_node(modname .. ":handle", {
 		groups = {
 			snappy = 1,
 			container = 1,
-			fire_fuel = 5
+			flammable = 5
 		},
+		on_ignite = tote_ignite,
 		stack_max = 1,
 		after_dig_node = totedug,
 		on_place = toteplace,
