@@ -70,7 +70,9 @@ minetest.register_node(modname .. ":shelf", {
 			end
 		end,
 		on_ignite = function(pos)
-			return nodecore.stack_get(pos)
+			if minetest.get_node(pos).name == modname .. ":shelf" then
+				return nodecore.stack_get(pos)
+			end
 		end,
 		stack_allow = function(_, _, stack)
 			local def = minetest.registered_items[stack:get_name()] or {}

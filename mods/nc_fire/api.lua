@@ -51,6 +51,7 @@ do
 end
 
 local function burneject(pos, stack)
+	if not stack then return end
 	if type(stack) == "table" then
 		for _, v in pairs(stack) do
 			burneject(pos, v)
@@ -78,7 +79,7 @@ function nodecore.fire_ignite(pos, node)
 	end
 	if node and node.count and node.count > 1 then
 		local qty = node.count - 1
-		if qty > 4 then qty = math_floor((qty + 1) / 2) end
+		if qty > 4 then qty = math_floor(qty / 2) end
 		nodecore.item_disperse(pos, node.name, qty)
 	end
 
