@@ -9,6 +9,21 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- AISMs are not running inside totes!
+
+- Reverse lens active/shining bias, favor shining.
+	- Solar activation issues are too surprising.
+
+- Living Sponge Overhaul Gen3
+	- Easily harvest living sponges as living
+	- Living sponges die quickly over time if taken out of water
+	- ABM/AISM evaluate surrounding water/air.
+		- Consider climbables, non-walkables, and nodeboxes air.
+
+- More optics visual fine-tuning?
+	- Separate solar lens state (also addresses hysterisis)
+	- Inhibited/gated prism
+
 - Add forking instructions.
 	- Forking is meant as a "last resort".  Try to either submit
 	  PR's upstream, or create mods/modpacks.
@@ -23,13 +38,17 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Design doc needs another shakedown.
 
-- Publish a monochrome texture pack.
-	- Calculate automatically from game assets.
-	- Similar to Ambiguity on CDB.
-	- Use to test accessibility for color blindness.
-		- Are gravel and sand different enough?
-		- Are water and lava different enough?
-		- Can use nc_reative for some testing.
+- Relax tree-trunk-chopping recipes.
+	- Climbing a tree to adze it from the top may be to much of a
+	  logical leap.
+	- Offer a slower recipe from the side?
+	- Offer a recipe to dislodge a segment from the trunk?
+
+- Consider making some hard-coded built-in values config settings.
+	- Pummel/dig time thresholds.
+	- Base group dig rates.
+	- Soaking ABM thresholds.
+	- (Make setting a multiplier from base?)
 
 - Consider updating tote recipe.
 
