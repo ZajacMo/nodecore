@@ -14,6 +14,9 @@ ISSUES: Bugs, Cleanup and Refinements
 - Reverse lens active/shining bias, favor shining.
 	- Solar activation issues are too surprising.
 
+- Probably should be using hash_node_position insted of pos_to_string
+  in many places where we don't support non-integer positions anyway
+
 - Living Sponge Overhaul Gen3
 	- Easily harvest living sponges as living
 	- Living sponges die quickly over time if taken out of water

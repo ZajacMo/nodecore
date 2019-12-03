@@ -15,9 +15,10 @@ local function dirname(pos)
 	return ""
 end
 
-local function scan(pos, dir)
+local function scan(pos, dir, max)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
-	for _ = 1, 16 do
+	if (not max) or (max > 16) then max = 16 end
+	for _ = 1, max do
 		p = vector.add(p, dir)
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
@@ -48,8 +49,8 @@ local function optic_check(pos)
 end
 nodecore.optic_check = optic_check
 
-local function optic_trigger(start, dir)
-	local pos, node = scan(start, dir)
+local function optic_trigger(start, dir, max)
+	local pos, node = scan(start, dir, max)
 	if not node then return end
 	local def = minetest.registered_items[node.name] or {}
 	if def and def.optic_check then return optic_check(pos) end
@@ -72,23 +73,23 @@ local function optic_process(trans, pos)
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,
-				data = res or {}
+				data = res
 			}
-		end
-	end
-
-	if not ignored then
-		for _, dir in pairs(nodecore.dirs()) do
-			optic_trigger(pos, dir)
 		end
 	end
 end
 
 local function optic_commit(v)
+	local meta = minetest.get_meta(v.pos)
+	local old = meta:get_string("nc_optics")
+	old = old and (old ~= "") and minetest.deserialize(old) or {}
+
+	local updated
 	local node = minetest.get_node(v.pos)
 	if node.name ~= v.nn then
 		node.name = v.nn
 		minetest.set_node(v.pos, node)
+		updated = true
 	end
 
 	local data = {}
@@ -96,17 +97,19 @@ local function optic_commit(v)
 		data[dirname(vv)] = 1
 	end
 
-	local meta = minetest.get_meta(v.pos)
-
-	local old = meta:get_string("nc_optics")
-	old = old and minetest.deserialize(old) or {}
+	local dirty
 	for _, dir in pairs(nodecore.dirs()) do
 		local dn = dirname(dir)
 		if old[dn] ~= data[dn] then
 			optic_trigger(v.pos, dir)
+			dirty = true
+		elseif updated then
+			optic_trigger(v.pos, dir, 1)
 		end
 	end
-	meta:set_string("nc_optics", minetest.serialize(data))
+	if dirty then
+		meta:set_string("nc_optics", minetest.serialize(data))
+	end
 end
 
 minetest.register_globalstep(function()
