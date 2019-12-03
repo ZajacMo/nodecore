@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local optic_queue = {}
@@ -112,10 +114,40 @@ local function optic_commit(v)
 	end
 end
 
+local passive_queue = {}
+minetest.register_abm({
+		label = "Optic Check",
+		interval = 1,
+		chance = 1,
+		nodenames = {"group:optic_check"},
+		action = function(pos)
+			passive_queue[#passive_queue + 1] = pos
+		end
+	})
+
+local passive_batch = {}
 minetest.register_globalstep(function()
-		-- snapshot batch, as processing may write to queue
 		local batch = optic_queue
 		optic_queue = {}
+
+		if #passive_queue > 0 then
+			passive_batch = passive_queue
+			passive_queue = {}
+			for i = 1, #passive_batch do
+				local j = math_random(1, #passive_batch)
+				local t = passive_batch[i]
+				passive_batch[i] = passive_batch[j]
+				passive_batch[j] = t
+			end
+		end
+		local max = 25 - #batch
+		if max < 5 then max = 5 end
+		if max > #passive_batch then max = #passive_batch end
+		for _ = 1, max do
+			local pos = passive_batch[#passive_batch]
+			passive_batch[#passive_batch] = nil
+			batch[minetest.hash_node_position(pos)] = pos
+		end
 
 		local trans = {}
 		for _, pos in pairs(batch) do
@@ -126,13 +158,3 @@ minetest.register_globalstep(function()
 			optic_commit(v)
 		end
 	end)
-
-nodecore.register_limited_abm({
-		label = "Optic Check",
-		interval = 1,
-		chance = 1,
-		limited_max = 100,
-		limited_alert = 100,
-		nodenames = {"group:optic_check"},
-		action = nodecore.optic_check
-	})
