@@ -49,9 +49,6 @@ local basedef = {
 	drawtype = "mesh",
 	mesh = "nc_optics_lens.obj",
 	selection_box = nodecore.fixedbox(
-		{-0.5, -0.5, -3/8, 0.5, 0.5, 1/8}
-	),
-	collision_box = nodecore.fixedbox(
 		{-0.5, -0.5, -3/8, 0.5, 0.5, 3/8}
 	),
 	tiles = {
