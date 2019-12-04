@@ -8,10 +8,10 @@ local modname = minetest.get_current_modname()
 local function prism_check(_, node, check)
 	local face = nodecore.facedirs[node.param2]
 
-	local power = (check(face.f) or check(face.r))
-	and (not check(face.t)) and (not check(face.b))
-
-	if power then
+	if check(face.t) or check(face.b) then
+		return modname .. ":prism_gated"
+	end
+	if check(face.f) or check(face.r) then
 		return modname .. ":prism_on", {face.k, face.l}
 	end
 	return modname .. ":prism"
@@ -22,6 +22,8 @@ local pact = modname .. "_port_active.png"
 local pout = modname .. "_port_output.png"
 local pinp = modname .. "_port_wide.png"
 local pina = modname .. "_port_wide_act.png"
+local shin = modname .. "_shine_end.png"
+local dark = modname .. "_port_input.png"
 
 local basedef = {
 	description = "Prism",
@@ -65,6 +67,15 @@ reg("_on", {
 			txr .. "^(" .. pact .. "^[opacity:96)",
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
+		},
+		light_source = 2
+	})
+reg("_gated", {
+		description = "Gated Prism",
+		tiles = {
+			txr .. "^" .. shin .. "^" .. pout,
+			txr .. "^" .. shin .. "^" .. dark,
+			txr .. "^" .. shin .. "^" .. dark
 		},
 		light_source = 2
 	})
