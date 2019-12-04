@@ -11,12 +11,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - AISMs are not running inside totes!
 
-- Reverse lens active/shining bias, favor shining.
-	- Solar activation issues are too surprising.
-
-- Make optics hitboxes consistent and unchanging to prevent accidental
-  misclicks when repeatedly rotating them.
-
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 
