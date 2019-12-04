@@ -8,8 +8,7 @@ local modname = minetest.get_current_modname()
 local function lens_check(pos, node, check)
 	local face = nodecore.facedirs[node.param2]
 
-	local backfed = check(face.k)
-	if backfed and node.name == modname .. ":lens" then
+	if check(face.k) then
 		return modname .. ":lens_glow"
 	end
 
@@ -30,10 +29,6 @@ local function lens_check(pos, node, check)
 	end
 	if on then
 		return modname .. ":lens_on", {face.k}
-	end
-
-	if backfed then
-		return modname .. ":lens_glow"
 	end
 
 	return modname .. ":lens"
