@@ -28,7 +28,7 @@ local basedef = {
 	drawtype = "mesh",
 	mesh = "nc_optics_prism.obj",
 	selection_box = nodecore.fixedbox(
-		{-5/16, -0.5, -0.5, 0.5, 0.5, 5/16}
+		{-7/16, -7/16, -7/16, 7/16, 7/16, 7/16}
 	),
 	tiles = {
 		txr,
