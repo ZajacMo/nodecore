@@ -9,8 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- AISMs are not running inside totes!
-
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 

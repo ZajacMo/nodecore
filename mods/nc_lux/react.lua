@@ -34,6 +34,7 @@ local function luxqty(pos)
 	end
 	qty = math_ceil(qty / 2)
 	if qty > 8 then qty = 8 end
+	if qty < 1 then qty = 1 end
 	return qty
 end
 

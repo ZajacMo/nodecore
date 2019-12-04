@@ -29,7 +29,6 @@ nodecore.register_craft({
 				vector.subtract(pos, ctr),
 				vector.subtract(data.pointed.under, data.pointed.above)
 			)
-			minetest.log(minetest.pos_to_string(vel))
 			nodecore.item_eject(
 				vector.add(pos, vector.multiply(vel, 0.25)),
 				stack:get_name(),

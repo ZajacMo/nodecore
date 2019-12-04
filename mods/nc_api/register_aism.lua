@@ -68,6 +68,7 @@ local function checkstack(stack, data)
 		checkrun(def, stack, data)
 	end
 end
+nodecore.aism_check_stack = checkstack
 
 nodecore.register_limited_abm({
 		label = "AISM Scheduler",
