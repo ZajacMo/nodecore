@@ -62,6 +62,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	  settling commitment, etc so downstream mods can tweak.
 	- Arguably item_entity needs similar care.
 
+- Lux reaction cannot sense other lux inside totes.
+
+- API for recursing through embedded inventories, e.g. in totes.
+
 - Player APIs:
 	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.

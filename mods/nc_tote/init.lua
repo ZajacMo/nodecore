@@ -210,18 +210,19 @@ nodecore.register_aism({
 				for lname, list in pairs(slot and slot.m and slot.m.inventory or {}) do
 					for sub, item in pairs(list) do
 						local istack = ItemStack(item)
+						local sdata = {
+							pos = data.pos,
+							toteslot = slot,
+							totelistname = lname,
+							totelist = list,
+							totesubslot = sub,
+							set = function(s)
+								list[sub] = s:to_string()
+								dirty = true
+							end
+						}
 						if not istack:is_empty() then
-							nodecore.aism_check_stack(istack, {
-									pos = data.pos,
-									toteslot = slot,
-									totelistname = lname,
-									totelist = list,
-									totesubslot = sub,
-									set = function(s)
-										list[sub] = s:to_string()
-										dirty = true
-									end
-								})
+							nodecore.aism_check_stack(istack, sdata)
 						end
 					end
 				end
