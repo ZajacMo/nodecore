@@ -123,6 +123,14 @@ ROADMAP: Large New Development Projects
 	- Things that cannot ever be dug, and must be moved only
 	  by in-world machinery?
 
+- Fancy hotbar.
+	- Build hotbar texture dynamically from pieces and texturemods.
+	- Inventory items can have a hotbar_texture associated with them to
+	  override the default for that slot.
+	- Make virtual items invisible on their own, use hotbar texture for them.
+		- Injuries show torn/cracked slot.
+		- Lux burns show partially melted slot.
+
 - Vary player walking speed based on nodes under feet?
 
 - Use gravity vector to make flowing water push the player?
