@@ -6,7 +6,8 @@ local math_random
 -- LUALOCALS > ---------------------------------------------------------
 
 local function settle(self)
-	local pos = vector.round(self.object:get_pos())
+	local rawpos = self.object:get_pos()
+	local pos = vector.round(rawpos)
 	local i = ItemStack(self.itemstring)
 	pos = nodecore.scan_flood(pos, 5,
 		function(p)
@@ -17,7 +18,9 @@ local function settle(self)
 			if nodecore.buildable_to(p) then return p end
 		end)
 	if not pos then return end
-	if not i:is_empty() then nodecore.place_stack(pos, i) end
+	if not i:is_empty() then
+		nodecore.place_stack(pos, i, nil, nil, rawpos)
+	end
 	self.itemstring = ""
 	self.object:remove()
 	return true

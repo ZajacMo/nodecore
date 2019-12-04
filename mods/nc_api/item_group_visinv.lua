@@ -54,15 +54,22 @@ function nodecore.stackentprops(stack, yaw, rotate)
 	return props, scale, yaw * math_pi / 2
 end
 
+local function gettween(pos)
+	local meta = minetest.get_meta(pos)
+	local tween = meta:get_string("tween")
+	tween = tween and tween ~= "" and minetest.deserialize(tween)
+	return tween and tween.time < nodecore.gametime + 2 and tween or nil
+end
+
 minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
-		itemcheck = function(self)
-			local pos = self.object:get_pos()
+		itemcheck = function(self, initial)
+			local pos = self.pos
 			local stack = nodecore.stack_get(pos)
 			if not stack or stack:is_empty() then return self.object:remove() end
 
-			local rp = vector.round(pos)
+			local rp = {x = pos.x, y = pos.y, z = pos.z}
 			local props, scale, yaw = nodecore.stackentprops(stack,
 				rp.x * 3 + rp.y * 5 + rp.z * 7)
 			rp.y = rp.y + scale - 31/64
@@ -70,10 +77,19 @@ minetest.register_entity(modname .. ":stackent", {
 			local obj = self.object
 			obj:set_properties(props)
 			obj:set_yaw(yaw)
-			obj:set_pos(rp)
+			if initial then
+				local tween = gettween(pos)
+				if tween then rp = tween.pos end
+				minetest.log("initial: " .. minetest.serialize(rp))
+				obj:set_pos(rp)
+			else
+				obj:move_to(rp, true)
+			end
 		end,
-		on_activate = function(self)
-			self.cktime = 0.00001
+		on_activate = function(self, pos)
+			self.pos = minetest.deserialize(pos)
+			self.cktime = 0
+			return self:itemcheck(true)
 		end,
 		on_step = function(self, dtime)
 			self.cktime = (self.cktime or 0) - dtime
@@ -89,15 +105,18 @@ function nodecore.visinv_update_ents(pos, node)
 	local max = def.groups and def.groups.visinv and 1 or 0
 
 	local found = {}
-	for _, v in pairs(minetest.get_objects_inside_radius(pos, 0.5)) do
-		if v and v.get_luaentity and v:get_luaentity()
-		and v:get_luaentity().is_stack then
+	for _, v in pairs(minetest.get_objects_inside_radius(pos, 16)) do
+		local lua = v and v.get_luaentity and v:get_luaentity()
+		if lua and lua.is_stack and vector.equals(lua.pos, pos) then
 			found[#found + 1] = v
 		end
 	end
 
 	if #found < max then
-		minetest.add_entity(pos, modname .. ":stackent")
+		local tween = gettween(pos)
+		minetest.add_entity(tween and tween.pos or pos,
+			modname .. ":stackent",
+			minetest.serialize(pos))
 	else
 		while #found > max do
 			found[#found]:remove()
@@ -142,7 +161,6 @@ function nodecore.visinv_on_construct(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	inv:set_size("solo", 1)
-	nodecore.visinv_update_ents(pos)
 end
 
 function nodecore.visinv_after_destruct(pos)

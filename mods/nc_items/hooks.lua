@@ -59,7 +59,7 @@ function minetest.item_drop(item, player, ...)
 				if stack:is_empty() then return dummyent end
 			end
 			if nodecore.buildable_to(p) then
-				nodecore.place_stack(p, stack, player)
+				nodecore.place_stack(p, stack, player, nil, start)
 				return dummyent
 			end
 		end

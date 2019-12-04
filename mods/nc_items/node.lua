@@ -66,7 +66,7 @@ minetest.register_node(modname .. ":stack", {
 		after_dig_node = pezdispense
 	})
 
-function nodecore.place_stack(pos, stack, placer, pointed_thing)
+function nodecore.place_stack(pos, stack, placer, pointed_thing, tweenfrom)
 	stack = ItemStack(stack)
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
@@ -87,6 +87,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	end
 
 	minetest.set_node(pos, {name = modname .. ":stack"})
+	minetest.get_meta(pos):set_string("tween", minetest.serialize({
+				pos = tweenfrom or pos,
+				time = nodecore.gametime
+			}))
+	minetest.log("tweenfrom: " .. minetest.serialize(tweenfrom or pos))
 	nodecore.stack_set(pos, stack)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {
