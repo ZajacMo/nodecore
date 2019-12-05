@@ -20,10 +20,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Maybe allow encasing them in glass for long-term storage?
 		- Glass on all sides keeps them from drying out?
 
-- More optics visual fine-tuning?
-	- Separate solar lens state (also addresses hysterisis)
-	- Inhibited/gated prism
-
 - Add forking instructions.
 	- Forking is meant as a "last resort".  Try to either submit
 	  PR's upstream, or create mods/modpacks.
