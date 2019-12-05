@@ -77,5 +77,5 @@ reg("_gated", {
 			txr .. "^" .. shin .. "^" .. dark,
 			txr .. "^" .. shin .. "^" .. dark
 		},
-		light_source = 2
+		light_source = 3
 	})
