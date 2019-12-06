@@ -9,49 +9,13 @@ local tips = {}
 
 local function show(player, text, ttl)
 	local pname = player:get_player_name()
-	local lines = {}
-	for str in string_gmatch(text, "[^\r\n]+") do
-		lines[#lines + 1] = nodecore.translate(str)
-	end
-	for i = 1, #lines do
-		lines[i] = string_rep(" \n", i - 1) .. lines[i]
-		.. string_rep("\n ", #lines - i)
-	end
-
 	local tip = tips[pname]
 	if not tip then
-		tip = {lines = {}}
-		tips[pname] = tip
+		tips[pname] = {text = text, ttl = ttl or 2}
+		return
 	end
-
+	tip.text = text
 	tip.ttl = ttl or 2
-
-	for i = 1, #lines do
-		local old = tip.lines[i]
-		if not old then
-			tip.lines[i] = {
-				id = player:hud_add({
-						hud_elem_type = "text",
-						position = {x = 0.5, y = 0.75},
-						text = lines[i],
-						number = 0xFFFFFF,
-						alignment = {x = 0, y = 0},
-						offset = {x = 0, y = 0},
-					}),
-				text = lines[i]
-			}
-		elseif old.text ~= lines[i] then
-			player:hud_change(old.id, "text", lines[i])
-			old.text = lines[i]
-		end
-	end
-
-	for i = #tip.lines, #lines + 1, -1 do
-		local id = tip.lines[i].id
-		player:hud_change(id, "text", "")
-		minetest.after(0, function() player:hud_remove(id) end)
-		tip.lines[i] = nil
-	end
 end
 nodecore.show_touchtip = show
 
@@ -101,6 +65,61 @@ nodecore.touchtip_node = node_desc
 
 local wields = {}
 
+local function commit(player, pname, dtime)
+	local tip = tips[pname]
+	if not tip then return end
+
+	tip.ttl = tip.ttl - dtime
+	if tip.ttl <= 0 then
+		for _, l in pairs(tip.lines) do
+			player:hud_remove(l.id)
+		end
+		tips[pname] = nil
+		return
+	end
+
+	if tip.shown == tip.text then return end
+	tip.lines = tip.lines or {}
+
+	local lines = {}
+	for str in string_gmatch(tip.text, "[^\r\n]+") do
+		lines[#lines + 1] = nodecore.translate(str)
+	end
+	for i = 1, #lines do
+		lines[i] = string_rep(" \n", i - 1) .. lines[i]
+		.. string_rep("\n ", #lines - i)
+	end
+
+	for i = 1, #lines do
+		local old = tip.lines[i]
+		if not old then
+			tip.lines[i] = {
+				id = player:hud_add({
+						hud_elem_type = "text",
+						position = {x = 0.5, y = 0.75},
+						text = lines[i],
+						number = 0xFFFFFF,
+						alignment = {x = 0, y = 0},
+						offset = {x = 0, y = 0},
+					}),
+				text = lines[i]
+			}
+		elseif old.text ~= lines[i] then
+			player:hud_change(old.id, "text", lines[i])
+			old.text = lines[i]
+		end
+	end
+
+	for i = #tip.lines, #lines + 1, -1 do
+		local id = tip.lines[i].id
+		player:hud_change(id, "text", "")
+		minetest.after(0, function() player:hud_remove(id) end)
+		tip.lines[i] = nil
+	end
+
+	tip.shown = tip.text
+end
+
 minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
@@ -111,16 +130,7 @@ minetest.register_globalstep(function(dtime)
 				show(player, wn)
 			end
 
-			local tip = tips[pname]
-			if tip then
-				tip.ttl = tip.ttl - dtime
-				if tip.ttl <= 0 then
-					for _, l in pairs(tip.lines) do
-						player:hud_remove(l.id)
-					end
-					tips[pname] = nil
-				end
-			end
+			commit(player, pname, dtime)
 		end
 	end)
 

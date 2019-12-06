@@ -9,11 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- TouchTip issues with shelves.
-	- Does not behave well when pulling items from shelves.
-	- Maybe redesign to save text until next tick to coalesce
-	  multiple changes within one tick.
-
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 
