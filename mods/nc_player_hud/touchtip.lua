@@ -11,10 +11,10 @@ local function show(player, text, ttl)
 	local pname = player:get_player_name()
 	local tip = tips[pname]
 	if not tip then
-		tips[pname] = {text = text, ttl = ttl or 2}
+		tips[pname] = {text = text or "", ttl = ttl or 2}
 		return
 	end
-	tip.text = text
+	tip.text = text or ""
 	tip.ttl = ttl or 2
 end
 nodecore.show_touchtip = show
@@ -70,19 +70,12 @@ local function commit(player, pname, dtime)
 	if not tip then return end
 
 	tip.ttl = tip.ttl - dtime
-	if tip.ttl <= 0 then
-		for _, l in pairs(tip.lines) do
-			player:hud_remove(l.id)
-		end
-		tips[pname] = nil
-		return
-	end
+	if tip.ttl <= 0 then tip.text = "" end
 
 	if tip.shown == tip.text then return end
-	tip.lines = tip.lines or {}
 
 	local lines = {}
-	for str in string_gmatch(tip.text or "", "[^ \r\n] + ") do
+	for str in string_gmatch(tip.text, "[^\r\n]+") do
 		lines[#lines + 1] = nodecore.translate(str)
 	end
 	for i = 1, #lines do
@@ -90,6 +83,7 @@ local function commit(player, pname, dtime)
 		.. string_rep("\n ", #lines - i)
 	end
 
+	tip.lines = tip.lines or {}
 	for i = 1, #lines do
 		local old = tip.lines[i]
 		if not old then
@@ -135,7 +129,7 @@ minetest.register_globalstep(function(dtime)
 	end)
 
 minetest.register_on_punchnode(function(pos, node, puncher)
-		return show(puncher, nodecore.touchtip_node(pos, node))
+		return show(puncher, node_desc(pos, node))
 	end)
 
 minetest.register_on_joinplayer(function(player)
