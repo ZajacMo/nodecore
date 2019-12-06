@@ -13,6 +13,10 @@ local basetimes = {
 	snappy = 0.4,
 }
 
+for k, v in pairs(basetimes) do
+	basetimes[k] = v / nodecore.rate_adjustment("speed", "tool", k)
+end
+
 function nodecore.toolcaps(opts)
 	if opts.uses == nil then opts.uses = 1 end
 	local gcaps = {}

@@ -26,6 +26,7 @@ local function soaking_core(def, reg, getmeta)
 		end
 	end
 
+	local rateadj = nodecore.rate_adjustment("speed", "soaking", def.label)
 	def.action = function(...)
 		local now = nodecore.gametime
 
@@ -46,7 +47,7 @@ local function soaking_core(def, reg, getmeta)
 			rate = rate or 0
 			local ticks = 1 + math_floor((now - start) / def.soakinterval)
 			delta = def.soakrand(rate, ticks)
-			total = total + delta
+			total = total + delta * rateadj
 			start = start + ticks * def.soakinterval
 		end
 

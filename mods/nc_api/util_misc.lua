@@ -1,10 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, unpack,
-      vector
-local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt
-    = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt
+local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, tostring, type, unpack, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, tostring, type, unpack, vector
+local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt,
+      string_gsub, string_lower
+    = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt,
+      string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -317,4 +319,20 @@ end
 function nodecore.node_change(pos, node, newname)
 	if node.name == newname then return end
 	return minetest.set_node(pos, underride({name = newname}, node))
+end
+
+local function scrubkey(s)
+	return string_lower(string_gsub(tostring(s), "%W+", "_"))
+end
+
+function nodecore.rate_adjustment(...)
+	local rate = 1
+	local key = scrubkey(nodecore.product)
+	for _, k in ipairs({...}) do
+		if not k then break end
+		key = key .. "_" .. scrubkey(k)
+		local adj = tonumber(minetest.settings:get(key))
+		if adj then rate = rate * adj end
+	end
+	return rate
 end

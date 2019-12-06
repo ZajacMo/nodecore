@@ -68,6 +68,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if not t then return end
 		mindur = mindur + t
 	end
+	mindur = mindur / recipe.rate_adjust
 	if mindur > 0 then
 		if not data.duration then return end
 		local dur = data.duration

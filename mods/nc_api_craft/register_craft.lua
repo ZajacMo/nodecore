@@ -15,6 +15,11 @@ local witnessable = {
 	press = true
 }
 
+local rate_adj_actions = {
+	cook = true,
+	pummel = true
+}
+
 function nodecore.register_craft(recipe)
 	recipe.action = recipe.action or "place"
 	if recipe.witness == nil then
@@ -60,6 +65,9 @@ function nodecore.register_craft(recipe)
 	if recipe.wield and type(recipe.wield) == "table" then
 		recipe.wield.count = recipe.wield.count or false
 	end
+	recipe.rate_adjust = (recipe.duration or rate_adj_actions[recipe.action])
+	and nodecore.rate_adjustment("speed", recipe.action, recipe.label)
+	or 1
 	local newp = recipe.priority or 0
 
 	local min = 1
