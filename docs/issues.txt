@@ -12,22 +12,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 
-- Living Sponge Overhaul Gen3
-	- Easily harvest living sponges as living
-	- Living sponges die quickly over time if taken out of water
-	- ABM/AISM evaluate surrounding water/air.
-		- Consider climbables, non-walkables, and nodeboxes air.
-	- Maybe allow encasing them in glass for long-term storage?
-		- Glass on all sides keeps them from drying out?
-
-- Add forking instructions.
-	- Forking is meant as a "last resort".  Try to either submit
-	  PR's upstream, or create mods/modpacks.
-	- Correct project copyright and attributions.
-	- Must substantively modify the name of the project.
-		- Search entire source tree.
-	- Reset some docs.
-
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
@@ -40,23 +24,7 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Offer a slower recipe from the side?
 	- Offer a recipe to dislodge a segment from the trunk?
 
-- Consider making some hard-coded built-in values config settings.
-	- Pummel/dig time thresholds.
-	- Base group dig rates.
-	- Soaking ABM thresholds.
-	- (Make setting a multiplier from base?)
-
 - Consider updating tote recipe.
-
-- Falling_node is a train-wreck and needs to be rebuilt.
-	- Attempts to monkey-patch it have still left fundamental problems.
-	- Falling nodes can sometimes end up occupying the same space and
-	  clobbering each other.
-	- Search upward (up to starting height) for place to settle?
-	- If settling fails, convert to item and bounce/eject?
-	- Need to refactor out separate hooks for things like settling detection,
-	  settling commitment, etc so downstream mods can tweak.
-	- Arguably item_entity needs similar care.
 
 - Lux reaction cannot sense other lux inside totes.
 
