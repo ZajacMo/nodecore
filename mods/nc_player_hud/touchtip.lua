@@ -82,7 +82,7 @@ local function commit(player, pname, dtime)
 	tip.lines = tip.lines or {}
 
 	local lines = {}
-	for str in string_gmatch(tip.text, "[^\r\n]+") do
+	for str in string_gmatch(tip.text or "", "[^ \r\n] + ") do
 		lines[#lines + 1] = nodecore.translate(str)
 	end
 	for i = 1, #lines do
