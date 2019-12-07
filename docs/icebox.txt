@@ -9,15 +9,20 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Falling_node is a train-wreck and needs to be rebuilt.
-	- Attempts to monkey-patch it have still left fundamental problems.
-	- Falling nodes can sometimes end up occupying the same space and
-	  clobbering each other.
-	- Search upward (up to starting height) for place to settle?
-	- If settling fails, convert to item and bounce/eject?
-	- Need to refactor out separate hooks for things like settling detection,
-	  settling commitment, etc so downstream mods can tweak.
-	- Arguably item_entity needs similar care.
+- Rebuild falling_node and item entity from the ground up.
+	- Refactor item_entity's scan method into scan_tunnel API for
+	  use by both item_entity and falling_node.
+	- Add methods to settle as node or settle as stacks.
+	- Add flags to force stack/item settlement.
+	- Add method to try to settle item/node first, create ent only
+	  if settling fails.
+	- On anything settling and a node being created, check space above
+	  for entities to early-settle.
+	- Make falling_node try to find somewhere to place itself instead
+	  of displacing the node it landed on, convert to an item as a
+	  fallback.
+	- Standardize collision detection, i.e. ignore node collision boxes
+	  and settle early based on full-node size.
 
 - Wandering fluids API for concrete, glass?
 	- Configurable setting for generation count multiplier.
