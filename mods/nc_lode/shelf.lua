@@ -12,14 +12,6 @@ local function tile(n)
 	}
 end
 
-local function doplace(stack, clicker, pointed_thing, ...)
-	local function helper(left, ok, ...)
-		if ok then nodecore.node_sound(pointed_thing.above, "place") end
-		return left, ok, ...
-	end
-	return helper(minetest.item_place_node(stack, clicker, pointed_thing, ...))
-end
-
 local function cbox(s) return nodecore.fixedbox(-s, -s, -s, s, s, s) end
 minetest.register_node(modname .. ":shelf", {
 		description = "Lode Crate",
@@ -31,44 +23,13 @@ minetest.register_node(modname .. ":shelf", {
 		groups = {
 			cracky = 3,
 			visinv = 1,
-			container = 1,
+			shelf = 2,
 			totable = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_lode_annealed"),
-		on_construct = function(pos)
-			local inv = minetest.get_meta(pos):get_inventory()
-			inv:set_size("solo", 1)
-			nodecore.visinv_update_ents(pos)
-		end,
-		on_rightclick = function(pos, _, clicker, stack, pointed_thing)
-			if not nodecore.interact(clicker) then return end
-			if pointed_thing.above.y < pointed_thing.under.y then
-				return doplace(stack, clicker, pointed_thing)
-			end
-			if not stack or stack:is_empty() then return end
-			local def = minetest.registered_items[stack:get_name()] or {}
-			if def.groups and def.groups.visinv then
-				return doplace(stack, clicker, pointed_thing)
-			end
-			return nodecore.stack_add(pos, stack)
-		end,
-		on_punch = function(pos, node, puncher, pointed_thing, ...)
-			minetest.node_punch(pos, node, puncher, pointed_thing, ...)
-			if not nodecore.interact(puncher) then return end
-			if pointed_thing.above.y < pointed_thing.under.y then return end
-			return nodecore.stack_giveto(pos, puncher)
-		end,
-		on_dig = function(pos, node, digger, ...)
-			if nodecore.stack_giveto(pos, digger) then
-				return minetest.node_dig(pos, node, digger, ...)
-			end
-		end,
-		stack_allow = function(_, _, stack)
-			local def = minetest.registered_items[stack:get_name()] or {}
-			if def.groups and def.groups.container then return false end
-		end
+		shelf_access = function(pt) return pt.above.y >= pt.under.y end
 	})
 
 nodecore.register_craft({

@@ -9,14 +9,6 @@ local side = "nc_tree_tree_side.png"
 local top = side .. "^(" .. modname .. "_plank.png^[mask:"
 .. modname .. "_shelf.png)"
 
-local function doplace(stack, clicker, pointed_thing, ...)
-	local function helper(left, ok, ...)
-		if ok then nodecore.node_sound(pointed_thing.above, "place") end
-		return left, ok, ...
-	end
-	return helper(minetest.item_place_node(stack, clicker, pointed_thing, ...))
-end
-
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
 		drawtype = "nodebox",
@@ -36,47 +28,16 @@ minetest.register_node(modname .. ":shelf", {
 			visinv = 1,
 			flammable = 2,
 			fire_fuel = 3,
-			container = 1,
+			shelf = 1,
 			totable = 1
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_tree_woody"),
-		on_construct = function(pos)
-			local inv = minetest.get_meta(pos):get_inventory()
-			inv:set_size("solo", 1)
-			nodecore.visinv_update_ents(pos)
-		end,
-		on_rightclick = function(pos, _, clicker, stack, pointed_thing)
-			if not nodecore.interact(clicker) then return end
-			if pointed_thing.above.y ~= pointed_thing.under.y then
-				return doplace(stack, clicker, pointed_thing)
-			end
-			if not stack or stack:is_empty() then return end
-			local def = minetest.registered_items[stack:get_name()] or {}
-			if def.groups and def.groups.container then
-				return doplace(stack, clicker, pointed_thing)
-			end
-			return nodecore.stack_add(pos, stack)
-		end,
-		on_punch = function(pos, node, puncher, pointed_thing, ...)
-			minetest.node_punch(pos, node, puncher, pointed_thing, ...)
-			if not nodecore.interact(puncher) then return end
-			if pointed_thing.above.y ~= pointed_thing.under.y then return end
-			return nodecore.stack_giveto(pos, puncher)
-		end,
-		on_dig = function(pos, node, digger, ...)
-			if nodecore.stack_giveto(pos, digger) then
-				return minetest.node_dig(pos, node, digger, ...)
-			end
-		end,
+		shelf_access = function(pt) return pt.above.y == pt.under.y end,
 		on_ignite = function(pos)
 			if minetest.get_node(pos).name == modname .. ":shelf" then
 				return nodecore.stack_get(pos)
 			end
-		end,
-		stack_allow = function(_, _, stack)
-			local def = minetest.registered_items[stack:get_name()] or {}
-			if def.groups and def.groups.container then return false end
 		end
 	})
 

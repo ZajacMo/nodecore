@@ -149,7 +149,7 @@ minetest.register_node(modname .. ":handle", {
 		},
 		groups = {
 			snappy = 1,
-			container = 1,
+			container = 100,
 			flammable = 5
 		},
 		on_ignite = tote_ignite,
