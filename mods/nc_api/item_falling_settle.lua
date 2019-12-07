@@ -21,14 +21,23 @@ end
 local bifn = minetest.registered_entities["__builtin:falling_node"]
 local falling = {
 	on_force_settle = function(self, pos)
-		local def = minetest.registered_nodes[self.node.name]
-		if def then
-			minetest.add_node(pos, self.node)
-			if self.meta then
-				minetest.get_meta(pos):from_table(self.meta)
-			end
-			nodecore.node_sound(pos, "place")
+		local oldnode = minetest.get_node(pos)
+		if oldnode.name == "ignore" then
+			return self.object:remove()
 		end
+		if oldnode.name ~= "air" then
+			local olddef = minetest.registered_nodes[oldnode.name]
+			if olddef and (not olddef.buildable_to)
+			and (olddef.liquidtype ~= "none") then
+				for _, item in pairs(minetest.get_node_drops(oldnode, "")) do
+					minetest.add_item(pos, item)
+				end
+			end
+		end
+		local def = minetest.registered_nodes[self.node.name]
+		minetest.set_node(pos, def and self.node or {name = "air"})
+		if self.meta then minetest.get_meta(pos):from_table(self.meta) end
+		nodecore.node_sound(pos, "place")
 		self.object:remove()
 		minetest.check_for_falling(pos)
 	end,
