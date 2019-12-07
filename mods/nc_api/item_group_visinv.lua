@@ -18,7 +18,7 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
-function nodecore.stackentprops(stack, yaw, rotate)
+function nodecore.stackentprops(stack, yaw, rotate, ss)
 	local props = {
 		hp_max = 1,
 		physical = false,
@@ -30,7 +30,7 @@ function nodecore.stackentprops(stack, yaw, rotate)
 		spritediv = {x = 1, y = 1},
 		initial_sprite_basepos = {x = 0, y = 0},
 		is_visible = false,
-		static_save = false
+		static_save = ss and true or false
 	}
 	local scale = 0
 	yaw = yaw or 0
@@ -125,7 +125,7 @@ local item = {
 		self.object = realobj
 
 		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
-		local p, s = nodecore.stackentprops(self.itemstring, 0, self.rotdir)
+		local p, s = nodecore.stackentprops(self.itemstring, 0, self.rotdir, true)
 		p.physical = true
 		s = s / math_sqrt(2)
 		p.collisionbox = {-s, -s, -s, s, s, s}
