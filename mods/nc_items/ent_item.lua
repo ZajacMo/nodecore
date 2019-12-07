@@ -7,7 +7,6 @@ local math_random, table_sort
     = math.random, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local settleused
 local settleorder = {}
 do
 	local groups = {}
@@ -36,30 +35,29 @@ do
 	end
 	table_sort(keys)
 	for _, k in pairs(keys) do
-		settleorder[#settleorder + 1] = groups[k]
-	end
-end
-
-minetest.register_globalstep(function()
-		if not settleused then return end
-		settleused = nil
-		for _, t in pairs(settleorder) do
+		local stamp = 0
+		local t = groups[k]
+		settleorder[#settleorder + 1] = function()
+			if stamp == nodecore.gametime then return t end
 			local n = #t
+			if n < 2 then return t end
 			for i = 1, n do
 				local j = math_random(1, n)
 				local x = t[i]
 				t[i] = t[j]
 				t[j] = x
 			end
+			stamp = nodecore.gametime
+			return t
 		end
-	end)
+	end
+end
 
 local function settle(self)
 	local pos = vector.round(self.object:get_pos())
 	local item = ItemStack(self.itemstring)
-	settleused = true
 	for i = 1, #settleorder do
-		local grp = settleorder[i]
+		local grp = (settleorder[i])()
 		for j = 1, #grp do
 			local p = vector.add(pos, grp[j])
 			item = nodecore.stack_add(p, item)
