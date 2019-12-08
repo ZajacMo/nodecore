@@ -32,13 +32,16 @@ to the project!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
 
-- Improved versions of any art assets (sounds, textures).
+- Improved versions of any art assets (sounds, textures, models).
 	- All textures for base inclusion should be 16x (keep
 	  high-def textures to texture packs).
 	- It must be practical to maintain a consistent style for
 	  other assets, including future related ones.
 	- Alternatively, publish your mods, texturepacks, or soundpacks
 	  directly to the community, via ContentDB.
+	- Nodebox replacements with significantly lower poly count
+	  are wanted.  Pull in outer faces by 1/256 to avoid z-fighting
+	  under water.
 
 - Help maintaining the hint system.
 	- Development of hints often lags behind development of new

@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Totes should not deploy if ents or interact-players are in the way.
+
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 
@@ -35,6 +37,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Physics/acceleration, for waterflow, conveyors, etc.
 
 - When can we remove the issue7020 workaround?
+
+- Node mesh improvements.
+	- Generic container/box model for shelves/tanks using 12 quads.
+	- Optimized/ retextured tote handle.
 
 ........................................................................
 ========================================================================
