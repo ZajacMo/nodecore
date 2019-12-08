@@ -6,17 +6,12 @@ local minetest, nodecore
 local modname = minetest.get_current_modname()
 
 local function tile(n)
-	return {
-		name = modname .. "_annealed.png^[mask:" .. modname .. "_shelf_" .. n .. ".png",
-		backface_culling = false
-	}
+	return modname .. "_annealed.png^[mask:" .. modname .. "_shelf_" .. n .. ".png"
 end
 
 local function cbox(s) return nodecore.fixedbox(-s, -s, -s, s, s, s) end
 minetest.register_node(modname .. ":shelf", {
 		description = "Lode Crate",
-		drawtype = "nodebox",
-		node_box = cbox(0.5),
 		collision_box = cbox(0.5),
 		selection_box = cbox(0.5),
 		tiles = {tile("side"), tile("base"), tile("side")},
