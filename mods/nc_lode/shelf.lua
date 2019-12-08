@@ -16,7 +16,7 @@ local function cbox(s) return nodecore.fixedbox(-s, -s, -s, s, s, s) end
 minetest.register_node(modname .. ":shelf", {
 		description = "Lode Crate",
 		drawtype = "nodebox",
-		node_box = cbox(127/256),
+		node_box = cbox(0.5),
 		collision_box = cbox(0.5),
 		selection_box = cbox(0.5),
 		tiles = {tile("side"), tile("base"), tile("side")},
