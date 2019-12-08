@@ -11,6 +11,13 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
+- Glass shelves (tanks)
+	- Sunlight propagates?
+		- Optics propagate depending on item inside?
+	- Top access only
+	- Preserves living sponges
+		- AISM checks node or toteslot
+
 - Living Sponge Overhaul Gen3
 	- Easily harvest living sponges as living
 	- Living sponges die quickly over time if taken out of water

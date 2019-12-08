@@ -85,7 +85,7 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		soakrate = function(pos, node)
 			local def = minetest.registered_items[node.name] or {}
-			if def.no_self_repack then return end
+			if def.no_repack or def.no_self_repack then return end
 
 			local bnode = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
 			local bdef = minetest.registered_items[bnode.name] or {}
