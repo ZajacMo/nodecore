@@ -5,23 +5,18 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local po = 0.5
-local no = -0.5
-local pi = 7/16
-local ni = -7/16
+local txr_frame = modname .. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
+.. modname .. "_tank_mask.png)"
+local txr_pane = modname .. "_glass_glare.png"
+
+local txr_main = {name = txr_pane .. "^" .. txr_frame, backface_culling = true}
+local txr_top = {name = txr_frame, backface_culling = true}
+
 minetest.register_node(modname .. ":shelf", {
 		description = "Glass Tank",
-		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
-			{no, no, no, po, ni, po},
-			{no, no, no, po, po, ni},
-			{no, no, pi, po, po, po},
-			{no, no, no, ni, po, po},
-			{pi, no, no, po, po, po}
-		),
-		tiles = {modname .. "_glass_glare.png^" .. modname
-			.. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
-			.. modname .. "_tank_mask.png)"},
+		drawtype = "mesh",
+		mesh = "nc_api_shelf.obj",
+		tiles = {txr_main, txr_main, txr_top},
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {

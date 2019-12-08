@@ -5,24 +5,18 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local side = "nc_tree_tree_side.png"
-local top = side .. "^(" .. modname .. "_plank.png^[mask:"
-.. modname .. "_shelf.png)"
+local bark = "nc_tree_tree_side.png^[mask:" .. modname .. "_shelf.png"
+local plank = modname .. "_plank.png^(" .. bark .. ")"
+bark = {name = bark, backface_culling = true}
+plank = {name = plank, backface_culling = true}
 
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
-		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5},
-			{-0.5, 7/16, -0.5, 0.5, 0.5, 0.5},
-			{-0.5, -7/16, -0.5, -7/16, 7/16, -7/16},
-			{-0.5, -7/16, 7/16, -7/16, 7/16, 0.5},
-			{7/16, -7/16, -0.5, 0.5, 7/16, -7/16},
-			{7/16, -7/16, 7/16, 0.5, 7/16, 0.5}
-		),
+		drawtype = "mesh",
+		mesh = "nc_api_shelf.obj",
+		tiles = {bark, plank, plank},
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
-		tiles = {top, top, side},
 		groups = {
 			choppy = 1,
 			visinv = 1,
