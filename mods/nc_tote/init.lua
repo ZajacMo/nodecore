@@ -19,37 +19,39 @@ local metadescs = {
 }
 
 local function totedug(pos, _, _, digger)
-	local dump
-	for dx = -1, 1 do
-		for dz = -1, 1 do
-			local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
-			local n = minetest.get_node(p)
-			local d = minetest.registered_items[n.name] or {}
-			if d and d.groups and d.groups.totable then
-				local m = minetest.get_meta(p):to_table()
-				for _, v1 in pairs(m.inventory or {}) do
-					for k2, v2 in pairs(v1) do
-						if type(v2) == "userdata" then
-							v1[k2] = v2:to_string()
+	local drop = ItemStack(modname .. ":handle")
+	if not digger:get_player_control().sneak then
+		local dump
+		for dx = -1, 1 do
+			for dz = -1, 1 do
+				local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
+				local n = minetest.get_node(p)
+				local d = minetest.registered_items[n.name] or {}
+				if d and d.groups and d.groups.totable then
+					local m = minetest.get_meta(p):to_table()
+					for _, v1 in pairs(m.inventory or {}) do
+						for k2, v2 in pairs(v1) do
+							if type(v2) == "userdata" then
+								v1[k2] = v2:to_string()
+							end
 						end
 					end
+					dump = dump or {}
+					dump[#dump + 1] = {
+						x = dx,
+						z = dz,
+						n = n,
+						m = m
+					}
+					minetest.remove_node(p)
 				end
-				dump = dump or {}
-				dump[#dump + 1] = {
-					x = dx,
-					z = dz,
-					n = n,
-					m = m
-				}
-				minetest.remove_node(p)
 			end
 		end
-	end
-	local drop = ItemStack(modname .. ":handle")
-	if dump then
-		local meta = drop:get_meta()
-		meta:set_string("carrying", minetest.serialize(dump))
-		meta:set_string("description", metadescs[#dump])
+		if dump then
+			local meta = drop:get_meta()
+			meta:set_string("carrying", minetest.serialize(dump))
+			meta:set_string("description", metadescs[#dump])
+		end
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end

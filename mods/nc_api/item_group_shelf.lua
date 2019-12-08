@@ -30,6 +30,7 @@ end
 function nodecore.shelf_on_punch(pos, node, puncher, pointed_thing, ...)
 	minetest.node_punch(pos, node, puncher, pointed_thing, ...)
 	if not nodecore.interact(puncher) then return end
+	if puncher:get_player_control().sneak then return end
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	if def.shelf_access and (not def.shelf_access(
