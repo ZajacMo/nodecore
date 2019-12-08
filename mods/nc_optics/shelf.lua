@@ -22,6 +22,7 @@ minetest.register_node(modname .. ":shelf", {
 			silica = 1,
 			silica_clear = 1,
 			cracky = 3,
+			flammable = 20,
 			visinv = 1,
 			storebox = 1,
 			totable = 1
@@ -29,7 +30,12 @@ minetest.register_node(modname .. ":shelf", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_optics_glassy"),
-		storebox_access = function(pt) return pt.above.y > pt.under.y end
+		storebox_access = function(pt) return pt.above.y > pt.under.y end,
+		on_ignite = function(pos)
+			if minetest.get_node(pos).name == modname .. ":shelf" then
+				return {modname .. ":glass", nodecore.stack_get(pos)}
+			end
+		end
 	})
 
 nodecore.register_craft({
