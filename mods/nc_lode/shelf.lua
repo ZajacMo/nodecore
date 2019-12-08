@@ -23,13 +23,13 @@ minetest.register_node(modname .. ":shelf", {
 		groups = {
 			cracky = 3,
 			visinv = 1,
-			shelf = 2,
+			storebox = 2,
 			totable = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_lode_annealed"),
-		shelf_access = function(pt) return pt.above.y >= pt.under.y end
+		storebox_access = function(pt) return pt.above.y >= pt.under.y end
 	})
 
 nodecore.register_craft({

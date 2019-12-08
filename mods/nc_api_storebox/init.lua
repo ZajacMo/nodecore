@@ -1,7 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
+
+nodecore.amcoremod()
+
+local modname = minetest.get_current_modname()
 
 local function doplace(stack, clicker, pointed_thing, ...)
 	local function helper(left, ok, ...)
@@ -11,13 +15,13 @@ local function doplace(stack, clicker, pointed_thing, ...)
 	return helper(minetest.item_place_node(stack, clicker, pointed_thing, ...))
 end
 
-function nodecore.shelf_on_rightclick(pos, node, clicker, stack, pointed_thing)
+function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thing)
 	if not nodecore.interact(clicker) then return end
 	if (not stack) or stack:is_empty() then return end
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	if not def then return end
-	if def.shelf_access and (not def.shelf_access(
+	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, clicker, pos, node)) then
 		return doplace(stack, clicker, pointed_thing)
 	end
@@ -27,40 +31,47 @@ function nodecore.shelf_on_rightclick(pos, node, clicker, stack, pointed_thing)
 	return nodecore.stack_add(pos, stack)
 end
 
-function nodecore.shelf_on_punch(pos, node, puncher, pointed_thing, ...)
+function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
 	minetest.node_punch(pos, node, puncher, pointed_thing, ...)
 	if not nodecore.interact(puncher) then return end
 	if puncher:get_player_control().sneak then return end
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
-	if def.shelf_access and (not def.shelf_access(
+	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, puncher, pos, node)) then return end
 	if pointed_thing.above.y < pointed_thing.under.y then return end
 	return nodecore.stack_giveto(pos, puncher)
 end
 
-function nodecore.shelf_stack_allow(pos, node, stack)
+function nodecore.storebox_stack_allow(pos, node, stack)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	local idef = minetest.registered_items[stack:get_name()] or {}
 	if idef.groups and idef.groups.container
-	and idef.groups.container >= def.groups.shelf then return false end
+	and idef.groups.container >= def.groups.storebox then return false end
 end
 
 nodecore.register_on_register_item(function(_, def)
-		if def.type ~= "node" then return end
+		if def.type ~= "node" or (not def.groups) or (not def.groups.storebox) then return end
 
-		def.groups = def.groups or {}
-
-		if def.groups.shelf then
-			def.groups.visinv = def.groups.visinv + 1
-			def.groups.container = def.groups.container or def.groups.shelf
-
-			def.on_construct = def.on_construct or nodecore.visinv_on_construct
-			def.after_destruct = def.after_destruct or nodecore.visinv_after_destruct
-
-			def.on_rightclick = def.on_rightclick or nodecore.shelf_on_rightclick
-			def.on_punch = def.on_punch or nodecore.shelf_on_punch
-			def.stack_allow = def.stack_allow or nodecore.shelf_stack_allow
+		if not def.drawtype then
+			def.drawtype = "mesh"
+			def.mesh = def.mesh or modname .. "_box.obj"
+			local t = def.tiles or {}
+			for k, v in pairs(t) do
+				if type(v) == "string" then
+					t[k] = {name = v, backface_culling = true}
+				end
+			end
 		end
+
+		def.groups.visinv = def.groups.visinv + 1
+		def.groups.container = def.groups.container or def.groups.storebox
+
+		def.on_construct = def.on_construct or nodecore.visinv_on_construct
+		def.after_destruct = def.after_destruct or nodecore.visinv_after_destruct
+
+		def.on_rightclick = def.on_rightclick or nodecore.storebox_on_rightclick
+		def.on_punch = def.on_punch or nodecore.storebox_on_punch
+		def.stack_allow = def.stack_allow or nodecore.storebox_stack_allow
 	end)

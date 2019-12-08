@@ -9,14 +9,13 @@ local txr_frame = modname .. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
 .. modname .. "_tank_mask.png)"
 local txr_pane = modname .. "_glass_glare.png"
 
-local txr_main = {name = txr_pane .. "^" .. txr_frame, backface_culling = true}
-local txr_top = {name = txr_frame, backface_culling = true}
-
 minetest.register_node(modname .. ":shelf", {
 		description = "Glass Tank",
-		drawtype = "mesh",
-		mesh = "nc_api_shelf.obj",
-		tiles = {txr_main, txr_main, txr_top},
+		tiles = {
+			txr_pane .. "^" .. txr_frame,
+			txr_pane .. "^" .. txr_frame,
+			txr_frame
+		},
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {
@@ -24,13 +23,13 @@ minetest.register_node(modname .. ":shelf", {
 			silica_clear = 1,
 			cracky = 3,
 			visinv = 1,
-			shelf = 1,
+			storebox = 1,
 			totable = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_optics_glassy"),
-		shelf_access = function(pt) return pt.above.y > pt.under.y end
+		storebox_access = function(pt) return pt.above.y > pt.under.y end
 	})
 
 nodecore.register_craft({
