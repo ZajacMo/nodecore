@@ -65,6 +65,7 @@ nodecore.register_lode("Rod", {
 		["type"] = "node",
 		description = "## Lode Rod",
 		drawtype = "nodebox",
+		z_fight_win = true,
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
 		tiles = {modname .. "_#.png"},
 		light_source = 2,
