@@ -20,7 +20,7 @@ minetest.register_node(modname .. ":shelf", {
 			{pi, no, no, po, po, po}
 		),
 		tiles = {modname .. "_glass_glare.png^" .. modname
-			.. "_glass_edges.png^(nc_lode_annealed.png^[mask:"
+			.. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
 			.. modname .. "_tank_mask.png)"},
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
@@ -36,4 +36,36 @@ minetest.register_node(modname .. ":shelf", {
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_optics_glassy"),
 		shelf_access = function(pt) return pt.above.y > pt.under.y end
+	})
+
+nodecore.register_craft({
+		label = "assemble glass tank",
+		norotate = true,
+		nodes = {
+			{match = "nc_woodwork:frame", replace = "air"},
+			{x = -1, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = 1, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = -1, z = 1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = 1, z = 1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = 0, z = -1, match = "nc_woodwork:staff", replace = "air"},
+			{x = 0, z = 1, match = "nc_woodwork:staff", replace = "air"},
+			{x = -1, z = 0, match = "nc_woodwork:staff", replace = "air"},
+			{x = 1, z = 0, match = "nc_woodwork:staff", replace = "air"},
+		}
+	})
+
+nodecore.register_craft({
+		label = "assemble glass tank",
+		norotate = true,
+		nodes = {
+			{match = "nc_woodwork:frame", replace = "air"},
+			{x = 0, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = 0, z = 1, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = -1, z = 0, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = 1, z = 0, match = modname .. ":glass", replace = modname .. ":shelf"},
+			{x = -1, z = -1, match = "nc_woodwork:staff", replace = "air"},
+			{x = 1, z = 1, match = "nc_woodwork:staff", replace = "air"},
+			{x = -1, z = 1, match = "nc_woodwork:staff", replace = "air"},
+			{x = 1, z = -1, match = "nc_woodwork:staff", replace = "air"},
+		}
 	})
