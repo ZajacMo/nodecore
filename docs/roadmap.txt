@@ -11,12 +11,20 @@ ROADMAP: Large New Development Projects
 
 - Split this doc into "core gameplay" and "side quest" forks?
 
+- Standardize visinv access API
+	- stack_access(pos, node, dirfrom) - return booly
+	  whether access to inside stack is allowed.
+	- Use for shelf API.
+	- Use for touchtips inv access.
+	- Use for node punch sounds.
+
 - Glass shelves (tanks)
 	- Sunlight propagates?
 		- Optics propagate depending on item inside?
 	- Top access only
 	- Preserves living sponges
 		- AISM checks node or toteslot
+		- Wet version if water above?
 
 - Living Sponge Overhaul Gen3
 	- Easily harvest living sponges as living
@@ -25,6 +33,10 @@ ROADMAP: Large New Development Projects
 		- Consider climbables, non-walkables, and nodeboxes air.
 	- Maybe allow encasing them in glass for long-term storage?
 		- Glass on all sides keeps them from drying out?
+		- Craft them into "encased living sponge" node that can
+		  be dug, or pummeled to break glass and release sponge?
+		- Node or toteslot is a glass tank, and in tote or
+		  covered/water above?
 
 - Consider using a separate kind of water node for artificial water.
 	- For sponge squeezing and future pumping features.
@@ -32,6 +44,9 @@ ROADMAP: Large New Development Projects
 	- Non-renewable, so we don't have to worry about placement.
 	- Can sanely attach ABMs to check for a supporting node, or
 	  periodic signalling to remain.
+	- Change sponge squeezing recipe to act as a long-term water source.
+		- Don't reabsorb if squeezed recently (< ~4sec)
+		- Don't time out the water; keep it until sponge removed.
 
 - Door Automation
 	- Press tools (or tool heads) into nodes to activate other
