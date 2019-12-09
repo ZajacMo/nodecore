@@ -81,7 +81,7 @@ local function checkinv(player)
 				local i = reg[n]
 				table_remove(reg, n)
 				local stack = inv:get_stack("main", i)
-				if not (stack:get_definition() or {}).virtual_item then
+				if not nodecore.item_is_virtual(stack) then
 					nodecore.item_eject(pos, stack, 5)
 				end
 				inv:set_stack("main", i, def.item)

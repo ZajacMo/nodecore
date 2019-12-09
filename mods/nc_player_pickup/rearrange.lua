@@ -22,8 +22,7 @@ local function handlepickups(player)
 			local old = snap[i]
 			if old:is_empty() or cur:peek_item(1):to_string()
 			== old:peek_item(1):to_string() then
-				local def = minetest.registered_items[cur:get_name()]
-				if not (def and def.virtual_item) then
+				if not nodecore.item_is_virtual(cur) then
 					local cc = cur:get_count()
 					local oc = old:get_count()
 					if cc > oc then
