@@ -72,7 +72,6 @@ for i = 1, #glyphs do
 				"[combine:1x1"
 			},
 			drawtype = "nodebox",
-			z_fight_win = true,
 			node_box = nodecore.fixedbox(
 				{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5}
 			),

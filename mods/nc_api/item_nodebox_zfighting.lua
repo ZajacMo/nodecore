@@ -3,15 +3,18 @@ local nodecore, pairs, type
     = nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local function scantbl(t, adjto)
+local ratio = 127/128
+nodecore.z_fight_ratio = ratio
+
+local function scantbl(t)
 	local u = {}
 	for k, v in pairs(t) do
 		if v == 0.5 then
-			u[k] = adjto
+			u[k] = ratio / 2
 		elseif v == -0.5 then
-			u[k] = -adjto
+			u[k] = -ratio / 2
 		elseif type(v) == "table" then
-			u[k] = scantbl(v, adjto)
+			u[k] = scantbl(v)
 		else
 			u[k] = v
 		end
@@ -24,6 +27,6 @@ nodecore.register_on_register_item(function(_, def)
 		if def.node_box and def.node_box.fixed then
 			def.collision_box = def.collision_box or def.node_box
 			def.selection_box = def.selection_box or def.node_box
-			def.node_box = scantbl(def.node_box, def.z_fight_win and 129/256 or 127/256)
+			def.node_box = scantbl(def.node_box)
 		end
 	end)

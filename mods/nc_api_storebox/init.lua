@@ -56,6 +56,7 @@ nodecore.register_on_register_item(function(_, def)
 
 		if not def.drawtype then
 			def.drawtype = "mesh"
+			def.visual_scale = nodecore.z_fight_ratio
 			def.mesh = def.mesh or modname .. "_box.obj"
 			local t = def.tiles or {}
 			for k, v in pairs(t) do

@@ -14,7 +14,6 @@ local tt = "nc_tree_tree_side.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder
 minetest.register_node(modname .. ":ladder", {
 		description = "Wooden Ladder",
 		drawtype = "nodebox",
-		z_fight_win = true,
 		node_box = nodecore.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-lw, -lt, -lt, lw, lt, lt},
@@ -48,7 +47,6 @@ nodecore.register_craft({
 minetest.register_node(modname .. ":frame", {
 		description = "Wooden Frame",
 		drawtype = "nodebox",
-		z_fight_win = true,
 		node_box = nodecore.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-ll, -lt, -lt, ll, lt, lt},

@@ -139,6 +139,7 @@ local function reg(suff, inner)
 			description = "Tote Handle",
 			meta_descriptions = metadescs,
 			drawtype = "mesh",
+			visual_scale = nodecore.z_fight_ratio,
 			mesh = "nc_tote_handle.obj",
 			selection_box = nodecore.fixedbox(),
 			paramtype = "light",
