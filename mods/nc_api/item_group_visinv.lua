@@ -40,6 +40,7 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		props.textures[1] = stack:get_name()
 
 		local ratio = stack:get_count() / stack:get_stack_max()
+		if ratio > 1 then ratio = 1 end
 		scale = math_sqrt(ratio) * 0.15 + 0.25
 		props.visual_size = {x = scale, y = scale}
 
