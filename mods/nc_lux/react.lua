@@ -16,9 +16,9 @@ end
 local function luxqty(pos)
 	local minp = vector.subtract(pos, {x = 1, y = 1, z = 1})
 	local maxp = vector.add(pos, {x = 1, y = 1, z = 1})
-	local qty = #minetest.find_nodes_in_area(minp, maxp, {"group:lux_emit"})
+	local qty = #minetest.find_nodes_in_area(minp, maxp, {"group:lux_cobble"})
 	for _, p in pairs(minetest.find_nodes_with_meta(minp, maxp)) do
-		if stackgroup(nodecore.stack_get(p), "lux_emit") then
+		if stackgroup(nodecore.stack_get(p), "lux_cobble") then
 			qty = qty + 1
 		end
 	end
@@ -26,7 +26,7 @@ local function luxqty(pos)
 		if vector.distance(pos, vector.add(p:get_pos(), {x = 0, y = 1, z = 0})) < 2 then
 			local inv = p:get_inventory()
 			for i = 1, inv:get_size("main") do
-				if stackgroup(inv:get_stack("main", i), "lux_emit") then
+				if stackgroup(inv:get_stack("main", i), "lux_cobble") then
 					qty = qty + 1
 				end
 			end
