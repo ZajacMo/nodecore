@@ -51,6 +51,7 @@ local function totedug(pos, _, _, digger)
 			local meta = drop:get_meta()
 			meta:set_string("carrying", minetest.serialize(dump))
 			meta:set_string("description", metadescs[#dump])
+			drop:set_name(modname .. ":handle_full")
 		end
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
@@ -70,7 +71,7 @@ local function toteplace(stack, _, pointed)
 		return stack
 	end
 
-	local commit = {{pos, {name = stack:get_name()}, {}}}
+	local commit = {{pos, {name = modname .. ":handle"}, {}}}
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
@@ -93,7 +94,7 @@ end
 
 local function tote_ignite(pos)
 	local stack = nodecore.stack_get(pos)
-	if stack:get_name() ~= modname .. ":handle" then return true end
+	if minetest.get_item_group(stack:get_name(), "tote") < 1 then return true end
 
 	local stackmeta = stack:get_meta()
 	local raw = stackmeta:get_string("carrying")
@@ -123,44 +124,47 @@ local function tote_ignite(pos)
 
 	stackmeta:set_string("carrying", newraw)
 	stackmeta:set_string("description", metadescs[#newinv])
+	stack:set_name(modname .. ":handle" .. ((#newinv > 0) and "_full" or ""))
 	nodecore.stack_set(pos, stack)
 	return true
 end
 
-minetest.register_node(modname .. ":handle", {
-		description = "Tote Handle",
-		meta_descriptions = metadescs,
-		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
-			{-0.5, -0.5, -0.5, 0.5, -3/8, 0.5},
-			{-0.5, -3/8, -0.5, -3/8, 3/8, -3/8},
-			{-0.5, -3/8, 3/8, -3/8, 3/8, 0.5},
-			{3/8, -3/8, -0.5, 0.5, 3/8, -3/8},
-			{3/8, -3/8, 3/8, 0.5, 3/8, 0.5},
-			{-0.5, 1/4, -0.5, -3/8, 3/8, 0.5},
-			{3/8, 1/4, -0.5, 0.5, 3/8, 0.5},
-			{-0.5, 3/8, -1/8, 0.5, 0.5, 1/8}
-		),
-		selection_box = nodecore.fixedbox(),
-		paramtype = "light",
-		tiles = {
-			"nc_lode_annealed.png",
-			"nc_lode_annealed.png",
-			"nc_lode_annealed.png^[lowpart:75:nc_tree_tree_side.png"
-			.. "^[lowpart:12.5:nc_lode_annealed.png"
-		},
-		groups = {
-			snappy = 1,
-			container = 100,
-			flammable = 5
-		},
-		on_ignite = tote_ignite,
-		stack_max = 1,
-		after_dig_node = totedug,
-		on_place = toteplace,
-		drop = "",
-		sounds = nodecore.sounds("nc_lode_annealed")
-	})
+local txr_bot = "nc_lode_annealed.png"
+local txr_sides = "(" .. txr_bot .. "^[mask:nc_tote_sides.png)"
+local txr_top = "nc_tree_tree_side.png^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
+local txr_handle = "nc_tree_tree_side.png^[transformR90"
+
+local function reg(suff, inner)
+	return minetest.register_node(modname .. ":handle" .. suff, {
+			description = "Tote Handle",
+			meta_descriptions = metadescs,
+			drawtype = "mesh",
+			mesh = "nc_tote_handle.obj",
+			selection_box = nodecore.fixedbox(),
+			paramtype = "light",
+			tiles = {
+				{name = txr_sides, backface_culling = true},
+				{name = txr_bot, backface_culling = true},
+				{name = txr_top, backface_culling = true},
+				{name = txr_handle, backface_culling = true},
+				{name = inner, backface_culling = true}
+			},
+			groups = {
+				snappy = 1,
+				container = 100,
+				flammable = 5,
+				tote = 1
+			},
+			on_ignite = tote_ignite,
+			stack_max = 1,
+			after_dig_node = totedug,
+			on_place = toteplace,
+			drop = "",
+			sounds = nodecore.sounds("nc_lode_annealed")
+		})
+end
+reg("", "[combine:1x1")
+reg("_full", modname .. "_fill.png")
 
 nodecore.register_craft({
 		label = "craft tote handle",
