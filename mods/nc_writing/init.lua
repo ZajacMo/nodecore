@@ -73,7 +73,7 @@ for i = 1, #glyphs do
 			},
 			drawtype = "nodebox",
 			node_box = nodecore.fixedbox(
-				{-0.5, -0.5, -0.5, 0.5, -7/16, 0.5}
+				{-0.5, -15/32, -0.5, 0.5, -14/32, 0.5}
 			),
 			paramtype = "light",
 			paramtype2 = "facedir",
