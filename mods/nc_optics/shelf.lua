@@ -34,9 +34,9 @@ minetest.register_node(modname .. ":shelf", {
 		storebox_access = function(pt) return pt.above.y > pt.under.y end,
 		on_ignite = function(pos)
 			if minetest.get_node(pos).name == modname .. ":shelf" then
-				return {modname .. ":glass", nodecore.stack_get(pos)}
+				return {modname .. ":glass_crude", nodecore.stack_get(pos)}
 			end
-			return modname .. ":glass"
+			return modname .. ":glass_crude"
 		end
 	})
 
