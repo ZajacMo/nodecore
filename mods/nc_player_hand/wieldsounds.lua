@@ -1,18 +1,20 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs
-    = minetest, pairs
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local function wieldsound(player, idx, gain)
-	local n = player:get_inventory():get_stack("main", idx):get_name()
-	local def = minetest.registered_items[n]
-	if def and def.sounds then
-		local t = {}
-		for k, v in pairs(def.sounds.dig) do t[k] = v end
-		t.object = player
-		t.gain = gain or 1
-		if player:get_player_control().sneak then t.gain = t.gain / 4 end
-		return function() minetest.sound_play(t.name, t) end
+	if nodecore.player_visible(player) then
+		local n = player:get_inventory():get_stack("main", idx):get_name()
+		local def = minetest.registered_items[n]
+		if def and def.sounds then
+			local t = {}
+			for k, v in pairs(def.sounds.dig) do t[k] = v end
+			t.object = player
+			t.gain = gain or 1
+			if player:get_player_control().sneak then t.gain = t.gain / 4 end
+			return function() minetest.sound_play(t.name, t) end
+		end
 	end
 	return function() end
 end

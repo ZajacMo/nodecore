@@ -10,14 +10,16 @@ minetest.register_on_player_hpchange(function(player, hp)
 		end
 		if hp < 0 then
 			player:get_meta():set_float("hurttime", nodecore.gametime)
-			minetest.after(0, function()
-					local now = player:get_hp()
-					if now >= orig then return end
-					nodecore.sound_play_except("player_damage", {
-							pos = player:get_pos(),
-							gain = 0.5
-						}, player)
-				end)
+			if nodecore.player_visible(player) then
+				minetest.after(0, function()
+						local now = player:get_hp()
+						if now >= orig then return end
+						nodecore.sound_play_except("player_damage", {
+								pos = player:get_pos(),
+								gain = 0.5
+							}, player)
+					end)
+			end
 		end
 		if hp + orig <= 0 then
 			hp = 1 - orig

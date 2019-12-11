@@ -46,7 +46,8 @@ local function privdropinv(player)
 end
 
 local function setfootsteps(player)
-	local value = not player:get_player_control().sneak
+	local value = nodecore.player_visible(player)
+	and (not player:get_player_control().sneak)
 	local pname = player:get_player_name()
 	if footsteps[pname] ~= value then
 		player:set_properties({

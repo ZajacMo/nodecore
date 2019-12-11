@@ -143,6 +143,8 @@ minetest.register_on_joinplayer(function(player)
 
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
-			updatevisuals(player)
+			if nodecore.player_visible(player) then
+				updatevisuals(player)
+			end
 		end
 	end)

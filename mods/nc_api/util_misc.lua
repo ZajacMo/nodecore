@@ -117,6 +117,13 @@ function nodecore.interact(player)
 	return minetest.get_player_privs(player).interact
 end
 
+function nodecore.player_visible(player)
+	if type(player) == "string" then player = minetest.get_player_by_name(player) end
+	if not player then return end
+	local vs = player:get_properties().visual_size
+	return vs.x > 0 and vs.y > 0
+end
+
 function nodecore.wieldgroup(who, group)
 	local wielded = who and who:get_wielded_item()
 	local nodedef = minetest.registered_nodes[wielded:get_name()]

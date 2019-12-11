@@ -6,7 +6,8 @@ local minetest, nodecore
 local lasthit = {}
 
 minetest.register_on_punchnode(function(pos, node, puncher)
-		if not puncher then return end
+		if not nodecore.player_visible(puncher) then return end
+
 		local pname = puncher:get_player_name()
 		local now = minetest.get_us_time() / 1000000
 		local last = lasthit[pname] or 0
@@ -30,11 +31,13 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 	end)
 
 minetest.register_on_dignode(function(pos, node, digger)
+		if not nodecore.player_visible(digger) then return end
 		return nodecore.node_sound(pos, "dug",
 			{node = node, except = digger})
 	end)
 
 minetest.register_on_placenode(function(pos, node, placer)
+		if not nodecore.player_visible(placer) then return end
 		return nodecore.node_sound(pos, "place",
 			{node = node, except = placer})
 	end)

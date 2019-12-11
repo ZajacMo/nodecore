@@ -60,6 +60,7 @@ end
 local function canseeface(p1, p2)
 	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
 	if p1:get_attach() or p2:get_attach() then return end
+	if not nodecore.player_visible(p2) then return end
 
 	-- Players must be within max distance of one another,
 	-- determined by light level, but not too close.
