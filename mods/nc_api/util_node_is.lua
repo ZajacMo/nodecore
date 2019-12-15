@@ -1,13 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, type
+    = minetest, nodecore, type
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.buildable_to(thing)
-	if not thing.name then
-		thing = nodecore.underride(thing, minetest.get_node(thing))
+local function defprop(prop)
+	return function(thing)
+		local name = type(thing) == "string" and thing or thing.name
+		or minetest.get_node(thing).name
+		if name == "ignore" then return end
+		local def = minetest.registered_items[name] or {}
+		return def[prop]
 	end
-	if thing.name == "ignore" then return end
-	local def = minetest.registered_items[thing.name] or {}
-	return def.buildable_to
 end
+
+nodecore.buildable_to = defprop("buildable_to")
+nodecore.walkable = defprop("walkable")
+nodecore.climbable = defprop("climbable")
+nodecore.sunlight_propagates = defprop("sunlight_propagates")

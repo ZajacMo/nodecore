@@ -59,14 +59,16 @@ local function settle(self)
 	for i = 1, #settleorder do
 		local grp = (settleorder[i])()
 		for j = 1, #grp do
-			local p = vector.add(pos, grp[j])
+			local rel = grp[j]
+			local p = vector.add(pos, rel)
 			item = nodecore.stack_add(p, item)
 			if item:is_empty() then
 				self.itemstring = ""
 				self.object:remove()
 				return true
 			end
-			if nodecore.buildable_to(p) then
+			if nodecore.buildable_to(p) and (rel.y <= 0
+				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
 				nodecore.place_stack(p, item)
 				self.itemstring = ""
 				self.object:remove()

@@ -9,12 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Jumping eggcorn bug.
-	- Place an eggcorn above a 3x3 bed of loose leaves and it will
-	  continuously jump.
-	- Stack placement should not place above a non-walkable, IF
-	  also placing above original position.
-
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
