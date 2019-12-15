@@ -49,19 +49,18 @@ ROADMAP: Large New Development Projects
 		- Don't time out the water; keep it until sponge removed.
 
 - Door Automation
+	- Should have press recipes for stickcraft, i.e. staves,
+	  frames, ladders.
 	- Press tools (or tool heads) into nodes to activate other
 	  pummel recipes like chopping.
-	- Will need a "grate" node objects pass thru but
-		players/nodes cannot.
-	- Node outside upward roll: "unroll"
-		- Place one node from stack below, eject item upwards.
-		- Check for room for both.
-	- Node outside downward roll: "sawmill"
-		- Sawmill recipes for node chopping.
-			- Require harder materials for chopping, so softer
-			  materials can be kept for just itemizing nodes.
-		- If node cannot move, dig it.
-		- Attempt to eject item out either side, or down grate.
+	- Press recipes for digging.
+		- If pushing a node (or toolhead backed by node) and there
+		  is a climbable walkable behind it, or a storebox, dig the
+		  node and push it through climable as catapult, or into
+		  storebox if it fits.
+	- Pressing stack of 1 node places it, instead of pummeling it.
+	  Can pummel on the second push.
+	- Should doors trigger place recipes when blocked?
 	- Push players?
 	- Need more door materials: lode, glasses
 
@@ -74,6 +73,19 @@ ROADMAP: Large New Development Projects
 		- Infuse clear glass to make "smoked" glass.
 			- Does not transmit light.
 			- See-thru only from one side.
+
+- Should there be pockets of softer stone at depth, like there is gravel?
+
+- Consider upstreaming nc_stucco, maybe into nc_concrete?
+	- Credit Avicennia G
+	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
+	- Add materials for mud+ash, sand+ash, add coal lump to agg.
+	- All materials work like concrete, falling, liquefy with water.
+	- All of them cure to a tacky state first, then to dry.
+		- Become tacky if molded, cure to lower material otherwise.
+		- Use soaking.  Etching allowed to reset timer?
+	- Include a few etched patterns.  Separate mask and noise layers.
+	- Not relocatable; dig to cobble, dirt, sand, etc.
 
 - Offline tick logic for spreading nodes
 	- Use soaking API, calculate time to spread.

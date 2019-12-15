@@ -9,14 +9,33 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Totes should not deploy if ents or interact-players are in the way.
-
-- Probably should be using hash_node_position insted of pos_to_string
-  in many places where we don't support non-integer positions anyway
+- Jumping eggcorn bug.
+	- Place an eggcorn above a 3x3 bed of loose leaves and it will
+	  continuously jump.
+	- Stack placement should not place above a non-walkable, IF
+	  also placing above original position.
 
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
+	- Glass tank.
+	- Optics states, e.g. active, shining, gated.
+	- Injury/burns?
+	- Full tote?
+	- Dirt->sand leeching
+	- Time for an audit again...
+
+- Glass not cooling when water flows above (should).
+
+- Totes should not deploy if ents or interact-players are in the way.
+
+- Retest conservation of fuel at full strength, consider reinstating?
+	- Original nerf was actually due to shelf bug.
+
+- Probably should be using hash_node_position insted of pos_to_string
+  in many places where we don't support non-integer positions anyway
+
+- CDB screenshot out of date.
 
 - Design doc needs another shakedown.
 
@@ -29,6 +48,12 @@ ISSUES: Bugs, Cleanup and Refinements
 - Consider updating tote recipe.
 
 - Lux reaction cannot sense other lux inside totes.
+
+- Consider making a unified API for HUDs
+	- Automatically track existing HUDs for players.
+	- Identify HUDs by name/ID.
+	- Upsert operation.
+	- TTL management.
 
 - API for recursing through embedded inventories, e.g. in totes.
 

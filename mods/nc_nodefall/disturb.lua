@@ -51,7 +51,8 @@ local function playercheck(dtime, player)
 	local old = oldpos[name] or pos
 	oldpos[name] = pos
 
-	if player:get_player_control().sneak then return end
+	if player:get_player_control().sneak or
+	not nodecore.player_visible(player) then return end
 
 	local q = (qtys[name] or 0)
 	+ vector.distance(pos, old) * 0.25
