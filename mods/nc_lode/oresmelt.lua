@@ -1,18 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_exp, math_floor, math_log, math_random
-    = math.exp, math.floor, math.log, math.random
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
-
-local logadj = math_log(2)
-local function exporand()
-	local r = 0
-	while r == 0 do r = math_random() end
-	return math_floor(math_exp(-math_log(r) * logadj))
-end
 
 nodecore.register_craft({
 		label = "heat lode cobble",
@@ -39,7 +30,7 @@ nodecore.register_limited_abm({
 			minetest.set_node(pos, {name = "nc_terrain:cobble"})
 			nodecore.node_sound(pos, "place")
 			return nodecore.item_eject(below, modname
-				.. ":prill_hot " .. exporand())
+				.. ":prill_hot " .. nodecore.exporand(2))
 		end
 	})
 

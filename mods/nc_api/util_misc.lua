@@ -3,10 +3,10 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
     = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
-local math_cos, math_log, math_pi, math_random, math_sin, math_sqrt,
-      string_gsub, string_lower
-    = math.cos, math.log, math.pi, math.random, math.sin, math.sqrt,
-      string.gsub, string.lower
+local math_cos, math_floor, math_log, math_pi, math_random, math_sin,
+      math_sqrt, string_gsub, string_lower
+    = math.cos, math.floor, math.log, math.pi, math.random, math.sin,
+      math.sqrt, string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -89,6 +89,12 @@ do
 		saved = r * math_sin(t)
 		return r * math_cos(t)
 	end
+end
+
+function nodecore.exporand(mean)
+	local r = 0
+	while r == 0 do r = math_random() end
+	return math_floor(-math_log(r) * (mean + 0.5))
 end
 
 function nodecore.extend_item(name, func)
