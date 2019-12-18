@@ -63,17 +63,18 @@ end
 
 nodecore.register_limited_abm({
 		label = "Sponge Growth",
-		interval = 1,
+		interval = 5,
 		chance = 1,
 		limited_max = 1000,
 		nodenames = {living},
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
 				minetest.set_node(pos, {name = wet})
-				return nodecore.node_sound(pos, "place")
+				nodecore.node_sound(pos, "place")
+				return nodecore.fallcheck(pos)
 			end
 
-			if math_random(1, 2500) ~= 1 then return end
+			if math_random(1, 500) ~= 1 then return end
 
 			local total = 0
 			if nodecore.scan_flood(pos, 6,
@@ -104,8 +105,8 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Sponge Stack Surivial",
-		interval = 2,
+		label = "Sponge Stack Survival",
+		interval = 5,
 		chance = 1,
 		itemnames = {living},
 		action = function(stack, data)
