@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_floor, math_random
-    = math.floor, math.random
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -110,21 +110,8 @@ nodecore.register_aism({
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
-
-			local total = stack:get_count()
-			local died = math_floor(nodecore.exporand((total + 1) / 2))
-			if died < 1 then return end
-
 			minetest.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
-
-			if died >= total then
-				stack:set_name(wet)
-				return stack
-			end
-			local taken = stack:take_item(died)
-			taken:set_name(wet)
-			if data.inv then taken = data.inv:add_item("main", taken) end
-			if not taken:is_empty() then nodecore.item_eject(data.pos, taken) end
+			stack:set_name(wet)
 			return stack
 		end
 	})
