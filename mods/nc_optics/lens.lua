@@ -53,6 +53,7 @@ local basedef = {
 	},
 	groups = {
 		silica = 1,
+		silica_lens = 1,
 		optic_check = 1,
 		cracky = 3
 	},

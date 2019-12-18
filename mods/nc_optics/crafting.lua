@@ -52,7 +52,7 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = {groups = {silica = true}},
+				match = {groups = {silica = true, silica_lens = false}},
 				replace = "nc_terrain:sand_loose"
 			}
 		}
