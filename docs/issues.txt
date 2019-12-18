@@ -26,6 +26,20 @@ ISSUES: Bugs, Cleanup and Refinements
 - Retest conservation of fuel at full strength, consider reinstating?
 	- Original nerf was actually due to shelf bug.
 
+- API for allowing mods to customize player texture.
+	- Maybe nodecore.register_on_player_textures(layers) where
+	  layers is an array of entries, each having {name = "",
+	  tile = ""} and returning a replacement array (or nil to use
+	  existing).
+	- Maybe nodecore.update_player_texture(layers) and allow the
+	  method to be intercepted.
+
+- Consider checking for a nearby active player before running
+  "fast-evolving" ABMs that don't normally work offline, like fire
+  extinguishing/spreading?
+	- This would make gameplay more fair for those who tend to
+	  go AFK suddenly and can't return for a long time.
+
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
 
@@ -48,6 +62,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Identify HUDs by name/ID.
 	- Upsert operation.
 	- TTL management.
+	- API for modifying/overriding nametag HUDs?
+		- Allow amending text/color attributes, blocking display, etc.
 
 - API for recursing through embedded inventories, e.g. in totes.
 
