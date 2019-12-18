@@ -30,7 +30,7 @@ nodecore.register_limited_abm({
 			minetest.set_node(pos, {name = "nc_terrain:cobble"})
 			nodecore.node_sound(pos, "place")
 			return nodecore.item_eject(below, modname
-				.. ":prill_hot " .. nodecore.exporand(2))
+				.. ":prill_hot " .. (nodecore.exporand(1) + 1))
 		end
 	})
 
