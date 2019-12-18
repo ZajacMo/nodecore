@@ -44,6 +44,12 @@ ISSUES: Bugs, Cleanup and Refinements
   in many places where we don't support non-integer positions anyway
 
 - CDB screenshot out of date.
+	- Update nc_reative dependencies!
+	- New optics
+	- Full tote
+	- Glass tank, lode crates
+	- Lux
+	- Torches
 
 - Design doc needs another shakedown.
 
