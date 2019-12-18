@@ -1,24 +1,80 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
-local math_pow, math_random
-    = math.pow, math.random
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_floor, math_random
+    = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local growdirs = nodecore.dirs()
+local alldirs = nodecore.dirs()
 
 local living = modname .. ":sponge_living"
+local wet = modname .. ":sponge_wet"
+
+local dryitems = {}
+local drydrawtypes = {
+	nodebox = true,
+	signlike = true,
+	mesh = true,
+	allfaces_optional = true
+}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v["type"] ~= "node" or v.damage_per_second > 0
+			or v.liquidtype == "none" and not v.groups.moist
+			and not v.groups.silica and (drydrawtypes[v.drawtype]
+				or v.climbable or not v.walkable) then
+				dryitems[k] = true
+			end
+		end
+	end)
+
+local function notdry(pos)
+	local node = minetest.get_node_or_nil(pos)
+	if not node then return end
+	if not dryitems[node.name] then return true end
+	local def = minetest.registered_items[node.name]
+	if def and def.groups.is_stack_only then
+		local stack = nodecore.stack_get(pos)
+		return minetest.get_item_group(stack:get_name(), "moist") > 0
+	end
+end
+
+local function sealed_or_notdry(nodename, pos)
+	if nodename == "nc_optics:shelf" then
+		return (not pos) or notdry({x = pos.x, y = pos.y + 1, z = pos.z})
+	end
+	for _, d in pairs(alldirs) do
+		if not notdry(vector.add(pos, d)) then return end
+	end
+	return true
+end
+
+local function spongesurvive(data)
+	if data.toteslot then
+		return sealed_or_notdry(data.toleslot.n.name)
+	elseif data.node then
+		return sealed_or_notdry(data.node.name, data.pos)
+	elseif data.inv then
+		return notdry(data.pos)
+	end
+end
 
 nodecore.register_limited_abm({
 		label = "Sponge Growth",
-		interval = 10,
-		chance = 1000,
-		limited_max = 100,
+		interval = 1,
+		chance = 1,
+		limited_max = 1000,
 		nodenames = {living},
-		neighbors = {"group:water"},
-		action = function(pos)
+		action = function(pos, node)
+			if not spongesurvive({pos = pos, node = node}) then
+				minetest.set_node(pos, {name = wet})
+				return nodecore.node_sound(pos, "place")
+			end
+
+			if math_random(1, 10000) ~= 1 then return end
+
 			local total = 0
 			if nodecore.scan_flood(pos, 6,
 				function(p, d)
@@ -29,9 +85,9 @@ nodecore.register_limited_abm({
 				end
 			) then return end
 
-			pos = vector.add(pos, growdirs[math_random(1, #growdirs)])
+			pos = vector.add(pos, alldirs[math_random(1, #alldirs)])
+			node = minetest.get_node_or_nil(pos)
 
-			local node = minetest.get_node_or_nil(pos)
 			local def = node and minetest.registered_nodes[node.name]
 			local grp = def and def.groups and def.groups.water
 			if (not grp) or (grp < 1) then return end
@@ -47,38 +103,28 @@ nodecore.register_limited_abm({
 		end
 	})
 
--- A living sponge can be dug intact, RARELY, and ONLY if surrounded
--- on all sides and edges (X/Z plane) by other living sponges.
+nodecore.register_aism({
+		label = "Sponge Stack Surivial",
+		interval = 2,
+		chance = 1,
+		itemnames = {living},
+		action = function(stack, data)
+			if spongesurvive(data) then return end
 
-local digpos
-local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, node, ...)
-	if (node and node.name) ~= living then
-		return old_node_dig(pos, node, ...)
-	end
-	local function helper(...)
-		digpos = nil
-		return ...
-	end
-	digpos = pos
-	return helper(old_node_dig(pos, node, ...))
-end
-local old_get_node_drops = minetest.get_node_drops
-minetest.get_node_drops = function(...)
-	local drops = old_get_node_drops(...)
-	if not digpos then return drops end
-	local neighbors = #nodecore.find_nodes_around(digpos, living)
-	if neighbors >= 5 then
-		local prob = math_pow(2, neighbors - 5) * 0.005
-		if math_random() <= prob then return drops end
-	end
-	drops = drops or {}
-	for k, v in pairs(drops) do
-		v = ItemStack(v)
-		if v:get_name() == living then
-			v:set_name(modname .. ":sponge_wet")
+			local total = stack:get_count()
+			local died = math_floor(nodecore.exporand((total + 1) / 2))
+			if died < 1 then return end
+
+			minetest.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
+
+			if died >= total then
+				stack:set_name(wet)
+				return stack
+			end
+			local taken = stack:take_item(died)
+			taken:set_name(wet)
+			if data.inv then taken = data.inv:add_item("main", taken) end
+			if not taken:is_empty() then nodecore.item_eject(data.pos, taken) end
+			return stack
 		end
-		drops[k] = v
-	end
-	return drops
-end
+	})
