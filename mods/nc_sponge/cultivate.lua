@@ -73,7 +73,7 @@ nodecore.register_limited_abm({
 				return nodecore.node_sound(pos, "place")
 			end
 
-			if math_random(1, 10000) ~= 1 then return end
+			if math_random(1, 2500) ~= 1 then return end
 
 			local total = 0
 			if nodecore.scan_flood(pos, 6,
