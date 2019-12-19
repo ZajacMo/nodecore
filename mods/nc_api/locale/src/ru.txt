@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-19 03:46+0000\n"
+"PO-Revision-Date: 2019-12-19 04:08+0000\n"
 "Last-Translator: Kimapr <none2@example.org>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -34,7 +34,7 @@ msgid "Hints"
 msgstr "Подсказки"
 
 msgid "Gravel"
-msgstr "Трава"
+msgstr "Гравий"
 
 msgid "Glowing Lode Spade Head"
 msgstr "Раскалённый Металлический Обух Заступа"
