@@ -37,7 +37,8 @@ minetest.register_node(modname .. ":sponge_wet", {
 minetest.register_node(modname .. ":sponge_living", {
 		description = "Living Sponge",
 		drawtype = "allfaces_optional",
-		tiles = {modname .. ".png^(nc_terrain_water.png^[opacity:96)"},
+		tiles = {modname .. ".png^" .. modname
+			.. "_living.png^(nc_terrain_water.png^[opacity:96)"},
 		paramtype = "light",
 		groups = {
 			crumbly = 2,
