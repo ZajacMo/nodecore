@@ -19,9 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
-- Retest conservation of fuel at full strength, consider reinstating?
-	- Original nerf was actually due to shelf bug.
-
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
 
