@@ -19,8 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
-- Totes should not deploy if ents or interact-players are in the way.
-
 - Retest conservation of fuel at full strength, consider reinstating?
 	- Original nerf was actually due to shelf bug.
 
