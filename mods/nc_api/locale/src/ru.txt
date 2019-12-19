@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-19 00:30+0000\n"
+"PO-Revision-Date: 2019-12-19 03:46+0000\n"
 "Last-Translator: Kimapr <none2@example.org>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -657,7 +657,7 @@ msgid "Progress: @1 complete, @2 current, @3 future"
 msgstr "Прогресс: @1 готовы, @2 сейчас, @3 в будущем"
 
 msgid "Pummel"
-msgstr "Избить"
+msgstr "Избиение"
 
 msgid "Rake"
 msgstr "Грабли"

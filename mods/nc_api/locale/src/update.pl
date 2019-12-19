@@ -12,7 +12,7 @@ sub getlang {
 	while(<$fh>) {
 		print $raw $_;
 		m#^\s*msgid\s+"(.*)"\s*$# and $id = $1;
-		m#^\s*msgstr\s+"(.*)"\s*$# or next;
+		m#^\s*(?:msgstr\s+)?"(.*)"\s*$# or next;
 		my $str = $1;
 		$str =~ m#\S# or next;
 		$db{$id} = $str;
