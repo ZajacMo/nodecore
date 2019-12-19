@@ -15,6 +15,7 @@ sub getlang {
 		m#^\s*(?:msgstr\s+)?"(.*)"\s*$# or next;
 		my $str = $1;
 		$str =~ m#\S# or next;
+		$str =~ s#\\"#"#g;
 		$db{$id} = $str;
 	}
 	close($fh);
