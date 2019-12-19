@@ -26,6 +26,12 @@ ISSUES: Bugs, Cleanup and Refinements
 - Retest conservation of fuel at full strength, consider reinstating?
 	- Original nerf was actually due to shelf bug.
 
+- Flammables should respond via AISM when bathed in fire or igniting
+  liquids like molten glass or rock.
+
+- Nodes pushed by doors shouldn't move to collide with players/ents
+  either, just like doors themselves.
+
 - API for allowing mods to customize player texture.
 	- Maybe nodecore.register_on_player_textures(layers) where
 	  layers is an array of entries, each having {name = "",
