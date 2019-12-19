@@ -358,11 +358,17 @@ msgstr "Fire"
 msgid "Float Glass"
 msgstr "Float Glass"
 
+msgid "Gated Prism"
+msgstr "Gated Prism"
+
 msgid "GitLab:    https://gitlab.com/sztest/nodecore"
 msgstr "[REMOVED]"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Glass Tank"
+msgstr "Glass Tank"
 
 msgid "Glowing Lode"
 msgstr "Glowing Lode"
