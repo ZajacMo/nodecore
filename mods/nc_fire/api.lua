@@ -79,7 +79,7 @@ function nodecore.fire_ignite(pos, node)
 	end
 	if node and node.count and node.count > 1 then
 		local qty = node.count - 1
-		if qty > 4 then qty = math_floor(qty / 2) end
+		if qty > 4 then qty = math_floor(qty * 3/4) end
 		nodecore.item_disperse(pos, node.name, qty)
 	end
 

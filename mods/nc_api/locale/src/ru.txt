@@ -1,0 +1,1017 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-12-19 00:30+0000\n"
+"Last-Translator: Kimapr <none2@example.org>\n"
+"Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
+"ru/>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.8\n"
+
+msgid "Grass"
+msgstr "Трава"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Заряженная Обожжёная"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Заряженная Обожжёная Металическая Колотушка"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Заряженный Обожжёный Металлический Топорик"
+
+msgid "Ignore"
+msgstr "Не обращайте внимания"
+
+msgid "Humus"
+msgstr "Гумус"
+
+msgid "Hints"
+msgstr "Подсказки"
+
+msgid "Gravel"
+msgstr "Трава"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Раскалённый Металлический Обух Заступа"
+
+msgid "Glowing Lode Rod"
+msgstr "Раскалённый Металлический Стержень"
+
+msgid "Glowing Lode Prill"
+msgstr "Раскалённый Металлический Самородок"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Раскалённый Металлический Обух Кирки"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Раскалённый Металлический Обух Мотыги"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Раскалённый Металлический Обух Колотилки"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Раскалённый Металлический Обух Топорика"
+
+msgid "Glowing Lode Cobble"
+msgstr "Булыжник с Раскалённым Металлом"
+
+msgid "Glowing Lode Bar"
+msgstr "Раскалённый Металлический Брусок"
+
+msgid "Glowing Lode"
+msgstr "Раскалённый Металл"
+
+msgid "Float Glass"
+msgstr "Термополированное Стекло"
+
+msgid "Fire"
+msgstr "Огонь"
+
+msgid "Discord: https://discord.gg/SHq2tkb"
+msgstr "Discord: https://discord.gg/SHq2tkb"
+
+msgid "Dirt"
+msgstr "Грязь"
+
+msgid "Crude Glass"
+msgstr "Сырое стекло"
+
+msgid "Cobble Panel"
+msgstr "Булыжниковая Панель"
+
+msgid "Cobble Hinged Panel"
+msgstr "Прикрепленная Булыжниковая Панель"
+
+msgid "Cobble"
+msgstr "Булыжник"
+
+msgid "Clear Glass"
+msgstr "Прозрачное Стекло"
+
+msgid "Chromatic Glass"
+msgstr "Хроматическое Стекло"
+
+msgid "Charcoal Lump"
+msgstr "Комок Угля"
+
+msgid "Charcoal Glyph"
+msgstr "Угольный Символ"
+
+msgid "Charcoal"
+msgstr "Уголь"
+
+msgid "Burning Embers"
+msgstr "Горящие Угли"
+
+msgid "Ash Lump"
+msgstr "Комок Пепла"
+
+msgid "Ash"
+msgstr "Пепел"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Обожжёный Металлический Обух Заступа"
+
+msgid "Annealed Lode Spade"
+msgstr "Обожжёный Металлический Заступ"
+
+msgid "Annealed Lode Rod"
+msgstr "Обожжёный Металлический Стержень"
+
+msgid "Annealed Lode Prill"
+msgstr "Обожжёный Металлический Самородок"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Обожжёный Металлический Обух Кирки"
+
+msgid "Annealed Lode Pick"
+msgstr "Обожжёная Металлическая Кирка"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Обожжёный Металлический Обух Мотыги"
+
+msgid "Annealed Lode Mattock"
+msgstr "Обожжёная Металлическая Мотыга"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Обожжёный Металлический Обух Топорика"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Обожжёный Металлический Обух Колотушки"
+
+msgid "Annealed Lode Mallet"
+msgstr "Обожжёная Металлическая Колотушка"
+
+msgid "Annealed Lode Bar"
+msgstr "Обожжёный Металлический Брусок"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Обожжёный Металлический Топорик"
+
+msgid "Annealed Lode"
+msgstr "Обожжёный Металл"
+
+msgid "Air"
+msgstr "Воздух"
+
+msgid "Aggregate"
+msgstr "Цемент"
+
+msgid "Adze"
+msgstr "Тесло"
+
+msgid "Active Prism"
+msgstr "Активная Призма"
+
+msgid "Active Lens"
+msgstr "Активная Линза"
+
+msgid "About"
+msgstr "Об игре"
+
+msgid "...have you broken cobble into chips yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you bashed a plank into sticks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled an annealed lode tote handle yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled an adze out of sticks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled a wooden tool yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled a wooden shelf yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled a wooden ladder yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled a wooden frame yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you assembled a staff from sticks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you activated a lens yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...and @1 more hints..."
+msgstr "[УДАЛЕНО]"
+
+msgid "...and 1 more hint..."
+msgstr "[УДАЛЕНО]"
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Ударять нужно не так часто (около 1 удара в секунду)."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- Предмет в руках, целевая грань и окружающие ноды могут иметь значение."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- Проблемы с разведением огня? Попробуйте использовать палки подлиннее."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Чтобы избивать, повторно ударяйте ноду, НЕ КОПАЯ ЕЁ."
+
+msgid "- There is NO inventory screen."
+msgstr "- Экрана инвентаря НЕТ."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- Игра сложная по задумке, иногда разочаровывает. НЕ СДАВАЙТЕСЬ!"
+
+msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+msgstr "[УДАЛЕНО]"
+
+msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+msgstr ""
+"- Застряли? Удерживайте ПКМ на поверхностях с голыми руками чтобы лазать."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr ""
+"- Стаки тоже могут быть избиты, количество предметов может иметь значение."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Некоторые рецепты требуют \"избивать\" ноду."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Присесть+бросок чтобы отсчитывать отдельные предметы из стака."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Рецепты зависят от времени, учащенные удары ничего не ускоряют."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Может руды и спрятаны, но их раскрывают тонкие подсказки на местности."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- Порядок и грань размещения может может иметь значение."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- Подобранные предметы пытаются поместиться в выделенный слот."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Если рецепт существует, вы увидите спец-эффект."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают."
+
+msgid "- Drop items onto ground to create stack nodes.  They do not decay."
+msgstr "[УДАЛЕНО]"
+
+msgid "- DONE: @1"
+msgstr "- ЗАВЕРШЕНО: @1"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- Не можете копать деревья или траву? Ищите палки в сени."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Крафтинг совершается постройкой рецептов в мире."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- \"Печек\" тут нет; откройте для себя плавку открытым огнём."
+
+msgid "(and @1 more hints)"
+msgstr "(и еще @1 подсказок)"
+
+msgid "(and 1 more hint)"
+msgstr "(и еще 1 подсказка)"
+
+msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2019 Аарон Суэн <warr1024@@gmail.com>"
+
+msgid "...have you carved a wooden plank completely yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you carved wooden tool heads from planks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you chipped chromatic glass into prisms yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you chopped a lode cube into prills yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you chopped chromatic glass into lenses yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you made fire by rubbing sticks together yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you chopped up charcoal yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you put a stone tip onto a tool yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you cold-forged an annealed lode tool head yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you cold-forged lode down completely yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "Loose Humus"
+msgstr "Рыхлый Гумус"
+
+msgid "...have you cooled molten glass into crude glass yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "Loose Lode Cobble"
+msgstr "Рыхлый Булыжник с Металлом"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "Лицензия MIT (http://www.opensource.org/licenses/MIT)"
+
+msgid "...have you cut down a tree yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "Not all game content is covered by hints. Explore!"
+msgstr "Не вся игра покрыта подсказками. Исследуйте!"
+
+msgid "...have you dug up a tree stump yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you dug up dirt yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you dug up gravel yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you dug up lode ore yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you dug up sand yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you dug up stone yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found a lode stratum yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found ash yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found charcoal yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found deep stone strata yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found dry leaves yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found eggcorns yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found lode ore yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found molten rock yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found sponges yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you found sticks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you melted down lode metal yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you melted sand into glass yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you molded molten glass into clear glass yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you packed high-quality charcoal yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you packed stone chips back into cobble yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you planted an eggcorn yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you produced light from a lens yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you quenched molten glass into chromatic glass yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you sintered glowing lode into a cube yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you split a tree trunk into planks yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you tempered a lode anvil yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you tempered a lode tool head yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "...have you welded a lode pick and spade together yet?"
+msgstr "[УДАЛЕНО]"
+
+msgid "Discord:   https://discord.gg/SHq2tkb"
+msgstr "[УДАЛЕНО]"
+
+msgid "GitLab:    https://gitlab.com/sztest/nodecore"
+msgstr "[УДАЛЕНО]"
+
+msgid "Glowing Lode Hatchet"
+msgstr "[УДАЛЕНО]"
+
+msgid "Glowing Lode Mallet"
+msgstr "[УДАЛЕНО]"
+
+msgid "Gated Prism"
+msgstr "Призма-Вентиль"
+
+msgid "Eggcorn"
+msgstr "Яйцезерно"
+
+msgid "Glowing Lode Mattock"
+msgstr "[УДАЛЕНО]"
+
+msgid "Glowing Lode Pick"
+msgstr "[УДАЛЕНО]"
+
+msgid "Burn"
+msgstr "Ожог"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Руководство Игрока: Рецепты Избиения"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "ВЕРСИЯ ДЛЯ РАЗРАБОТКИ"
+
+msgid "Glowing Lode Spade"
+msgstr "[УДАЛЕНО]"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Заряженная Обожжённая Металлическая Кирка"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Заряженный Обожжённый Металлический Заступ"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Заряженный Закалённый Металлический Топорик"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Заряжённая Закалённая Металлическая Колотилка"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "См. детали и кредиты в файле LICENSE"
+
+msgid "Teleport to get unstuck (but you can't bring your items)"
+msgstr "[УДАЛЕНО]"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "Закалённый Металлический Обух Топорика"
+
+msgid "Tempered Lode Mallet"
+msgstr "Закалённая Металлическая Колотилка"
+
+msgid "Tempered Lode Pick Head"
+msgstr "Закаленный Металлический Обух Кирки"
+
+msgid "Tempered Lode Rod"
+msgstr "Закаленный Металлический Стержень"
+
+msgid "Tote (1 Slot)"
+msgstr "Сумка (1 Слот)"
+
+msgid "Tote (6 Slots)"
+msgstr "Сумка (6 Слотов)"
+
+msgid "Unknown Item"
+msgstr "Неизвестный Предмет"
+
+msgid "chop a lode crate back apart"
+msgstr "разрубите металлический ящик на куски"
+
+msgid "chop a lode rod back into bars"
+msgstr "разрубите металлический стержень обратно на бруски"
+
+msgid "cold-forge annealed lode prills into a tool head"
+msgstr ""
+"выкуйте обух инструмента из холодных обожжённых металлический самородков"
+
+msgid "chop chromatic glass into lenses"
+msgstr "разрубите хроматическое стекло на линзы"
+
+msgid "dig up lode ore"
+msgstr "выкопайте металлическую руду"
+
+msgid "dry out a sponge"
+msgstr "высушите губку"
+
+msgid "extract living sponge from colony center"
+msgstr "извлеките живую губку из середины колонии"
+
+msgid "find deep stone strata"
+msgstr "найдите глубокий слой камня"
+
+msgid "find molten rock"
+msgstr "найдите расплавленный камень"
+
+msgid "chisel a hinge groove into cobble"
+msgstr "высеките выемку для петли в булыжнике"
+
+msgid "hammer a lode bar back to a prill"
+msgstr "выкуйте металлический брусок обратно в самородок"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "insert wooden pin into wooden door panel"
+msgstr "вставьте деревянную булаву в деревянную дверную панель"
+
+msgid "make fire by rubbing sticks together"
+msgstr "разведите огонь потерев палки друг о друга"
+
+msgid "mix gravel into ash to make aggregate"
+msgstr "смешайте пепел с гравием чтобы сделать цемент"
+
+msgid "mold molten glass into float glass"
+msgstr "превравите расплавленное стекло в термополированное стекло"
+
+msgid "pack stone chips back into cobble"
+msgstr "соберите камень из кусочков"
+
+msgid "put a stone tip onto a wooden tool"
+msgstr "наденьте каменный наконечник на деревянный инструмент"
+
+msgid "chop a glowing lode cube into prills"
+msgstr "разрубите раскаленный металлический куб в самородки"
+
+msgid "Glass Tank"
+msgstr "Стеклянный Танк"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Заряженная Закалённая Металлическая Мотыга"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Заряженная Закалённая Металлическая Кирка"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Заряженный Закалённый Металлический Заступ"
+
+msgid "Injury"
+msgstr "Рана"
+
+msgid "Inventory"
+msgstr "Инвентарь"
+
+msgid "Leaves"
+msgstr "Листья"
+
+msgid "Lens"
+msgstr "Линза"
+
+msgid "Lit Torch"
+msgstr "Горящий Факел"
+
+msgid "Living Sponge"
+msgstr "Живая Губка"
+
+msgid "Lode Cobble"
+msgstr "Булыжник с Металлом"
+
+msgid "Lode Crate"
+msgstr "Металлический Ящик"
+
+msgid "Lode Ore"
+msgstr "Металлическая Руда"
+
+msgid "Log"
+msgstr "Бревно"
+
+msgid "Loose Cobble"
+msgstr "Рыхлый Булыжник"
+
+msgid "Loose Dirt"
+msgstr "Рыхлая Грязь"
+
+msgid "Loose Gravel"
+msgstr "Насыпной Гравий"
+
+msgid "Loose Leaves"
+msgstr "Опавшие Листья"
+
+msgid "Loose Lux Cobble"
+msgstr "Рыхлый Булыжник с Люксом"
+
+msgid "Loose Sand"
+msgstr "Сыпучий Песок"
+
+msgid "Lux Cobble"
+msgstr "Булыжник с Люксом"
+
+msgid "Lux Flow"
+msgstr "Поток Люкса"
+
+msgid "MIT License:  http://www.opensource.org/licenses/MIT"
+msgstr "[УДАЛЕНО]"
+
+msgid "Molten Glass"
+msgstr "Расплавленное Стекло"
+
+msgid "Molten Rock"
+msgstr "Расплавленный Камень"
+
+msgid "Not all game content is covered by hints.  Explore!"
+msgstr "[УДАЛЕНО]"
+
+msgid "Peat"
+msgstr "Торф"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Руководсво Игрока: Управление Инвентарём"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Руководство Игрока: Советы и Направление"
+
+msgid "Prism"
+msgstr "Призма"
+
+msgid "Progress: @1 complete, @2 current, @3 future"
+msgstr "Прогресс: @1 готовы, @2 сейчас, @3 в будущем"
+
+msgid "Pummel"
+msgstr "Избить"
+
+msgid "Rake"
+msgstr "Грабли"
+
+msgid "Sand"
+msgstr "Песок"
+
+msgid "Shining Lens"
+msgstr "Сияющая Линза"
+
+msgid "Sponge"
+msgstr "Губка"
+
+msgid "Staff"
+msgstr "Жезл"
+
+msgid "Stick"
+msgstr "Палка"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Stone"
+msgstr "Камень"
+
+msgid "Stone Chip"
+msgstr "Кусочек Камня"
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Топорик с Каменным Наконечником"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Колотилка с Каменным Наконечником"
+
+msgid "Stone-Tipped Pick"
+msgstr "Кирка с Каменным Наконечником"
+
+msgid "Stone-Tipped Spade"
+msgstr "Заступ с Каменным Наконечником"
+
+msgid "Stump"
+msgstr "Пень"
+
+msgid "Tempered Lode"
+msgstr "Закалённый Металл"
+
+msgid "Tempered Lode Bar"
+msgstr "Закалённый Металлический Брусок"
+
+msgid "Tempered Lode Hatchet"
+msgstr "Закалённый Металлический Топорик"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "Закалённый Металлический Обух Колотилки"
+
+msgid "Tempered Lode Mattock"
+msgstr "Закалённая Металлическая Мотыга"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "Закалённый Металлический Обух Мотыги"
+
+msgid "Tempered Lode Pick"
+msgstr "Закалённая Металлическая Кирка"
+
+msgid "Tempered Lode Prill"
+msgstr "Закаленный Металлический Самородок"
+
+msgid "Tempered Lode Spade"
+msgstr "Закаленный Металлический Заступ"
+
+msgid "Tempered Lode Spade Head"
+msgstr "Закаленный Металлический Обух Заступа"
+
+msgid "Tips"
+msgstr "Советы"
+
+msgid "Torch"
+msgstr "Факел"
+
+msgid "Tote (2 Slots)"
+msgstr "Сумка (2 Слота)"
+
+msgid "Tote (3 Slots)"
+msgstr "Сумка (3 Слота)"
+
+msgid "Tote (4 Slots)"
+msgstr "Сумка (4 Слота)"
+
+msgid "Tote (5 Slots)"
+msgstr "Сумка (5 Слотов)"
+
+msgid "Tote (7 Slots)"
+msgstr "Сумка (7 Слотов)"
+
+msgid "Tote (8 Slots)"
+msgstr "Сумка (8 Слотов)"
+
+msgid "Tote Handle"
+msgstr "Рукоять Сумки"
+
+msgid "Tree Trunk"
+msgstr "Ствол Дерева"
+
+msgid "Version"
+msgstr "[УДАЛЕНО]"
+
+msgid "Water"
+msgstr "Вода"
+
+msgid "Wet Aggregate"
+msgstr "Влажный Цемент"
+
+msgid "Wet Sponge"
+msgstr "Влажная Губка"
+
+msgid "Wooden Adze"
+msgstr "[УДАЛЕНО]"
+
+msgid "Wooden Frame"
+msgstr "Деревянный Каркас"
+
+msgid "Wooden Hatchet"
+msgstr "Деревянный Топорик"
+
+msgid "Wooden Hatchet Head"
+msgstr "Деревянный Обух Топорика"
+
+msgid "Wooden Hinged Panel"
+msgstr "Прикрепленная Деревянная Панель"
+
+msgid "Wooden Ladder"
+msgstr "Деревянная Лестница"
+
+msgid "Wooden Mallet"
+msgstr "Деревянная Колотилка"
+
+msgid "Wooden Mallet Head"
+msgstr "Деревянный Обух Колотилки"
+
+msgid "Wooden Panel"
+msgstr "Деревянная Панель"
+
+msgid "Wooden Pick"
+msgstr "Деревянная Кирка"
+
+msgid "Wooden Pick Head"
+msgstr "Деревянный Обух Кирки"
+
+msgid "Wooden Plank"
+msgstr "Доска"
+
+msgid "Wooden Shelf"
+msgstr "Деревянная Полка"
+
+msgid "Wooden Spade"
+msgstr "Деревянный Заступ"
+
+msgid "Wooden Spade Head"
+msgstr "Деревянный Обух Заступа"
+
+msgid "activate a lens"
+msgstr "активируйте линзу"
+
+msgid "assemble a staff from sticks"
+msgstr "соберите жезл из палок"
+
+msgid "assemble a wooden frame from staves"
+msgstr "соберите деревянный каркас из жезлов"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "соберите деревянную лестницу из палок"
+
+msgid "assemble a wooden shelf from frames and planks"
+msgstr "соберите деревянную полку из каркасов и досок"
+
+msgid "assemble a wooden tool"
+msgstr "соберите деревянный инструмент"
+
+msgid "assemble an adze out of sticks"
+msgstr "соберите тесло из палок"
+
+msgid "assemble an annealed lode tote handle"
+msgstr "соберите обожженную металлическую рукоять сумки"
+
+msgid "bash a plank into sticks"
+msgstr "разбейте доску на палки"
+
+msgid "break cobble into chips"
+msgstr "разбейте булыжник на кусочки"
+
+msgid "carve a wooden plank completely"
+msgstr "вырежте доску до конца"
+
+msgid "carve wooden tool heads from planks"
+msgstr "вырежте обухи из досок"
+
+msgid "chip chromatic glass into prisms"
+msgstr "выстрогайте призмы из хроматического стекла"
+
+msgid "chisel a hinge groove into a wooden plank"
+msgstr "высеките выемку для петли в доске"
+
+msgid "chop up charcoal"
+msgstr "нарежте уголь"
+
+msgid "cold-forge lode down completely"
+msgstr "выкуйте холодный металл до конца"
+
+msgid "cool molten glass into crude glass"
+msgstr "остудите расплавленное стекло в рыхлое стекло"
+
+msgid "chop lode a rod back into bars"
+msgstr "[УДАЛЕНО]"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "скрафтите факел из жезла и кусочка угля"
+
+msgid "cut down a tree"
+msgstr "срубите дерево"
+
+msgid "dig up a tree stump"
+msgstr "выкопайте пень"
+
+msgid "dig up dirt"
+msgstr "выкопайте грязь"
+
+msgid "dig up gravel"
+msgstr "выкопайте гравий"
+
+msgid "dig up lux cobble"
+msgstr "выкопайте булыжник с люксом"
+
+msgid "dig up sand"
+msgstr "выкопайте песок"
+
+msgid "dig up stone"
+msgstr "выкопайте камень"
+
+msgid "ferment peat into humus"
+msgstr "ферментируйте торф в гумус"
+
+msgid "find a lode stratum"
+msgstr "найдите слой металла"
+
+msgid "find a sponge"
+msgstr "найдите губку"
+
+msgid "find a stick"
+msgstr "найдите палку"
+
+msgid "find an eggcorn"
+msgstr "найдите яйцезерно"
+
+msgid "find ash"
+msgstr "найдите пепел"
+
+msgid "find charcoal"
+msgstr "найдите уголь"
+
+msgid "find dry (loose) leaves"
+msgstr "найдите сухие (опавшие) листья"
+
+msgid "find lode ore"
+msgstr "найдите железную руду"
+
+msgid "find lux"
+msgstr "найдите люкс"
+
+msgid "grind leaves into peat"
+msgstr "измельчите листья в торф"
+
+msgid "hammer a lode prill into a bar"
+msgstr "выкуйте металлический брусок из самородка"
+
+msgid "hammer lode bars into a rod"
+msgstr "выкуйте металлический стержень из брусков"
+
+msgid "harvest a sponge"
+msgstr "соберите губку"
+
+msgid "insert metal rod into a cobble panel"
+msgstr "вставьте металлический стержень в булыжниковую панель"
+
+msgid "light a torch"
+msgstr "зажгите факел"
+
+msgid "lux-infuse a lode tool"
+msgstr "зарядите металлический инструмент люксом"
+
+msgid "make an anvil by tempering a lode cube"
+msgstr "сделайте наковальню закалив металлический куб"
+
+msgid "make wet aggregate"
+msgstr "сделайте влажный цемент"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "выплавьте металл из булыжника с металлом"
+
+msgid "melt sand into glass"
+msgstr "выплавьте стекло из песка"
+
+msgid "mold molten glass into clear glass"
+msgstr "превратите расплавленное стекло в прозрачное стекло"
+
+msgid "observe a lux reaction"
+msgstr "наблюдайте за люкс-реакцией"
+
+msgid "observe lux criticality"
+msgstr "наблюдайте критичность люкса"
+
+msgid "pack high-quality charcoal"
+msgstr "соберите высококачественный уголь"
+
+msgid "pack leaves into peat"
+msgstr "[УДАЛЕНО]"
+
+msgid "plant an eggcorn"
+msgstr "посадите яйцезерно"
+
+msgid "produce light from a lens"
+msgstr "выработайте свет с помощью линз"
+
+msgid "quench molten glass into chromatic glass"
+msgstr "затушите расплавленное стекло в хроматическое стекло"
+
+msgid "scale a sheer overhang"
+msgstr "ощупайте потолок"
+
+msgid "scale a sheer wall"
+msgstr "ощупайте стену"
+
+msgid "see a tree grow"
+msgstr "лицезрите рост дерева"
+
+msgid "sinter glowing lode prills into a cube"
+msgstr "упакуйте раскаленные самородки металла в куб"
+
+msgid "solder lode rods into crates"
+msgstr "спаяйте металлические стержни в ящики"
+
+msgid "split a tree trunk into planks"
+msgstr "разрубите ствол дерева на доски"
+
+msgid "squeeze out a sponge"
+msgstr "выжмите губку"
+
+msgid "temper a lode tool head"
+msgstr "закалите обух металлического инструмента"
+
+msgid "traverse a dark floor by feel"
+msgstr "перейдите темный пол наощупь"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "сварите раскаленные обухи кирки и заступа вместе"
+
+msgid "write on a surface with a charcoal lump"
+msgstr "напишите углем на поверхности"

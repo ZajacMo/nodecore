@@ -79,7 +79,7 @@ nodecore.register_craft({
 		cookfx = true,
 		check = function(pos)
 			return (not near(pos, {flow}))
-			and near(pos, {"group:coolant"})
+			and nodecore.quenched(pos)
 		end,
 		nodes = {
 			{
@@ -94,7 +94,7 @@ nodecore.register_craft({
 		cookfx = true,
 		check = function(pos)
 			return near(pos, {flow})
-			and near(pos, {"group:coolant"})
+			and nodecore.quenched(pos)
 		end,
 		nodes = {
 			{
