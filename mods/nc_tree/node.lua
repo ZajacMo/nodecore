@@ -86,6 +86,7 @@ minetest.register_node(modname .. ":leaves", {
 			end,
 			node_dig_prediction = "air"
 		},
+		no_repack = true,
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 nodecore.register_leaf_drops(function(_, _, list)
