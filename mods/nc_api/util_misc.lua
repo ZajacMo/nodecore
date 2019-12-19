@@ -349,3 +349,26 @@ function nodecore.rate_adjustment(...)
 	end
 	return rate
 end
+
+function nodecore.obstructed(minpos, maxpos)
+	if not maxpos then
+		maxpos = {x = minpos.x + 0.5, y = minpos.y + 0.5, z = minpos.z + 0.5}
+		minpos = {x = minpos.x - 0.5, y = minpos.y - 0.5, z = minpos.z - 0.5}
+	end
+	local avgpos = vector.multiply(vector.add(minpos, maxpos), 0.5)
+	local radius = 4 + vector.distance(minpos, maxpos) / 2
+	for _, obj in pairs(minetest.get_objects_inside_radius(avgpos, radius)) do
+		local op = obj:get_pos()
+		local cb = obj:get_properties().collisionbox
+		if maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
+		and maxpos.y > op.y + cb[2] and minpos.y < op.y + cb[5]
+		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
+		then
+			local lua = obj.get_luaentity and obj:get_luaentity()
+			if not ((lua and lua.is_stack) or (not nodecore.interact(obj))
+				or (not nodecore.player_visible(obj))) then
+				return obj
+			end
+		end
+	end
+end

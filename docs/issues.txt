@@ -19,8 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
-- Glass not cooling when water flows above (should).
-
 - Totes should not deploy if ents or interact-players are in the way.
 
 - Retest conservation of fuel at full strength, consider reinstating?
@@ -28,9 +26,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
-
-- Nodes pushed by doors shouldn't move to collide with players/ents
-  either, just like doors themselves.
 
 - API for allowing mods to customize player texture.
 	- Maybe nodecore.register_on_player_textures(layers) where

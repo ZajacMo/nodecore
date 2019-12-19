@@ -23,8 +23,9 @@ local function conveytrace(okay, seg, u)
 		local w = convey[u.tkey2]
 		if w then return w end
 		if nodecore.buildable_to(u.to2) then
+			local ok = (not nodecore.obstructed(u.to2)) or nil
 			for x in pairs(seg) do
-				okay[x] = true
+				okay[x] = ok
 			end
 			u.to = u.to2
 			u.tkey = u.tkey2
@@ -34,8 +35,9 @@ local function conveytrace(okay, seg, u)
 	local w = convey[u.tkey]
 	if w then return w end
 	if nodecore.buildable_to(u.to) then
+		local ok = (not nodecore.obstructed(u.to)) or nil
 		for x in pairs(seg) do
-			okay[x] = true
+			okay[x] = ok
 		end
 	end
 end
@@ -181,19 +183,7 @@ function nodecore.operate_door(pos, node, dir)
 			}
 		end
 
-		for _, obj in pairs(minetest.get_objects_inside_radius(to, 2.5)) do
-			local op = obj:get_pos()
-			local cb = obj:get_properties().collisionbox
-			if to.x + 0.5 > op.x + cb[1] and to.x - 0.5 < op.x + cb[4]
-			and to.y + 0.5 > op.y + cb[2] and to.y - 0.5 < op.y + cb[5]
-			and to.z + 0.5 > op.z + cb[3] and to.z - 0.5 < op.z + cb[6]
-			then
-				local lua = obj.get_luaentity and obj:get_luaentity()
-				if not ((lua and lua.is_stack) or (not nodecore.interact(obj))) then
-					return
-				end
-			end
-		end
+		if nodecore.obstructed(to) then return end
 
 		local str = minetest.pos_to_string(to)
 		if squelch[str] then return end
