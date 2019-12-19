@@ -55,15 +55,6 @@ addhint("find a sponge",
 )
 
 addhint("harvest a sponge",
-	"inv:nc_sponge:sponge_wet",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
-)
-
-addhint("extract living sponge from colony center",
 	"inv:nc_sponge:sponge_living",
 	{true,
 		"nc_sponge:sponge",

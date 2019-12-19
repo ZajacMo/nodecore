@@ -55,7 +55,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 100,
 		limited_max = 100,
-		nodenames = {modname .. ":sponge_wet", modname .. ":sponge_living"},
+		nodenames = {modname .. ":sponge_wet"},
 		action = function(pos)
 			if minetest.get_node_light(pos) >= 15 and #findwater(pos) < 1 then
 				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
@@ -68,7 +68,7 @@ nodecore.register_aism({
 		label = "Sponge Stack Drying in Sunlight",
 		interval = 1,
 		chance = 100,
-		itemnames = {modname .. ":sponge_wet", modname .. ":sponge_living"},
+		itemnames = {modname .. ":sponge_wet"},
 		action = function(stack, data)
 			if data.player and (data.list ~= "main"
 				or data.slot ~= data.player:get_wield_index()) then return end
@@ -89,7 +89,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 20,
 		limited_max = 100,
-		nodenames = {modname .. ":sponge_wet", modname .. ":sponge_living"},
+		nodenames = {modname .. ":sponge_wet"},
 		neighbors = {"group:igniter"},
 		action = function(pos)
 			minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
