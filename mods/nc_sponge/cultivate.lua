@@ -63,8 +63,8 @@ end
 
 nodecore.register_limited_abm({
 		label = "Sponge Growth",
-		interval = 5,
-		chance = 1,
+		interval = 1,
+		chance = 10,
 		limited_max = 1000,
 		nodenames = {living},
 		action = function(pos, node)
@@ -74,7 +74,7 @@ nodecore.register_limited_abm({
 				return nodecore.fallcheck(pos)
 			end
 
-			if math_random(1, 500) ~= 1 then return end
+			if math_random(1, 250) ~= 1 then return end
 
 			local total = 0
 			if nodecore.scan_flood(pos, 6,
@@ -106,7 +106,7 @@ nodecore.register_limited_abm({
 
 nodecore.register_aism({
 		label = "Sponge Stack Survival",
-		interval = 5,
+		interval = 2,
 		chance = 1,
 		itemnames = {living},
 		action = function(stack, data)
