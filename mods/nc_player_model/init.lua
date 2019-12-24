@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, os, pairs, table
-    = minetest, nodecore, os, pairs, table
-local os_date, table_concat
-    = os.date, table.concat
+local minetest, nodecore, pairs, table
+    = minetest, nodecore, pairs, table
+local table_concat
+    = table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -40,12 +40,6 @@ local setskin = setcached(function(player, x)
 	end)
 
 local skintimes = {}
-local dayskins = {
-	day_2_14 = true,
-	day_3_17 = true,
-	day_4_1 = true,
-	day_10_31 = true
-}
 
 local liquids = {}
 minetest.after(0, function()
@@ -74,6 +68,23 @@ local function swimming(player)
 		end
 	end
 	return true
+end
+
+nodecore.player_skin = nodecore.player_skin or function(player)
+	local skin = player:get_meta():get_string("custom_skin") or ""
+	if skin ~= "" then return skin end
+
+	local layers = {"base.png"}
+
+	local privs = minetest.get_player_privs(player:get_player_name())
+	if not privs.interact then layers[#layers + 1] = "no_interact.png" end
+	if not privs.shout then layers[#layers + 1] = "no_shout.png" end
+
+	for k, v in pairs(layers) do
+		layers[k] = "(" .. modname .. "_" .. v .. ")"
+	end
+
+	return table_concat(layers, "^") .. "^[makealpha:254,0,253"
 end
 
 local function updatevisuals(player)
@@ -111,23 +122,10 @@ local function updatevisuals(player)
 	local pname = player:get_player_name()
 	local now = minetest.get_us_time() / 1000000
 	local last = skintimes[pname] or 0
-	if now < last + 2 then return end
-	skintimes[pname] = now
-
-	local layers = {"base.png"}
-
-	local date = os_date("!*t")
-	local bare = "day_" .. date.month .. "_" .. date.day
-	if dayskins[bare] then layers[#layers + 1] = bare .. ".png" end
-
-	local privs = minetest.get_player_privs(player:get_player_name())
-	if not privs.interact then layers[#layers + 1] = "no_interact.png" end
-	if not privs.shout then layers[#layers + 1] = "no_shout.png" end
-
-	for k, v in pairs(layers) do
-		layers[k] = "(" .. modname .. "_" .. v .. ")"
+	if now >= last + 2 then
+		skintimes[pname] = now
+		setskin(player, nodecore.player_skin(player))
 	end
-	setskin(player, table_concat(layers, "^") .. "^[makealpha:254,0,253")
 end
 
 minetest.register_on_joinplayer(function(player)

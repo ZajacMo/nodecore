@@ -22,14 +22,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
 
-- API for allowing mods to customize player texture.
-	- Maybe nodecore.register_on_player_textures(layers) where
-	  layers is an array of entries, each having {name = "",
-	  tile = ""} and returning a replacement array (or nil to use
-	  existing).
-	- Maybe nodecore.update_player_texture(layers) and allow the
-	  method to be intercepted.
-
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire
   extinguishing/spreading?
