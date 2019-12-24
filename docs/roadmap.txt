@@ -16,9 +16,6 @@ ROADMAP: Large New Development Projects
 	  whether access to inside stack is allowed.
 	- Use for shelf API.
 	- Use for touchtips inv access.
-	- Use for node punch sounds.
-		- Play both node sounds and stack sounds,
-		  independent of access?
 	- Genericize sponge logic using stack_access API
 
 - Consider upstreaming nc_stucco, maybe into nc_concrete?
