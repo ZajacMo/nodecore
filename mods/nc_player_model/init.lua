@@ -74,17 +74,18 @@ nodecore.player_skin = nodecore.player_skin or function(player)
 	local skin = player:get_meta():get_string("custom_skin") or ""
 	if skin ~= "" then return skin end
 
-	local layers = {"base.png"}
+	local layers = {modname .. "_base.png"}
 
 	local privs = minetest.get_player_privs(player:get_player_name())
-	if not privs.interact then layers[#layers + 1] = "no_interact.png" end
-	if not privs.shout then layers[#layers + 1] = "no_shout.png" end
-
-	for k, v in pairs(layers) do
-		layers[k] = "(" .. modname .. "_" .. v .. ")"
+	if not privs.interact then
+		layers[#layers + 1] = modname .. "_no_interact.png"
+		layers[#layers + 1] = "[makealpha:254,0,253"
+	end
+	if not privs.shout then
+		layers[#layers + 1] = modname .. "_no_shout.png"
 	end
 
-	return table_concat(layers, "^") .. "^[makealpha:254,0,253"
+	return table_concat(layers, "^"), layers
 end
 
 local function updatevisuals(player)
