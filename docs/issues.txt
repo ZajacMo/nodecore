@@ -19,8 +19,20 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
+- Can we preserve non-buildable_to liquid sources when squashed,
+  e.g. lava or glass clobbered by falling_node or item?
+
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
+
+- Prevent players from ever getting completely trapped.
+	- Make all materials diggable by hand.
+		- Drop nothing, take a LONG time.
+		- Register a special group for this?  Inject in all
+		  nodes otherwise diggable?
+		- Should under-level tools also be able to dig
+		  these faster than by-hand?
+		- Include a drop_by_hand override hook.
 
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire

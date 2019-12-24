@@ -17,6 +17,30 @@ ROADMAP: Large New Development Projects
 	- Use for shelf API.
 	- Use for touchtips inv access.
 	- Use for node punch sounds.
+		- Play both node sounds and stack sounds,
+		  independent of access?
+	- Genericize sponge logic using stack_access API
+
+- Consider upstreaming nc_stucco, maybe into nc_concrete?
+	- Credit Avicennia G a.k.a. Tereno Johnson
+	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
+	- Add materials for mud+ash, sand+ash, add coal lump to agg.
+	- All materials work like concrete, falling, liquefy with water.
+	- All of them cure to a tacky state first, then to dry.
+		- Become tacky if molded, cure to lower material otherwise.
+		- Use soaking.  Etching allowed to reset timer?
+	- Include a few etched patterns.  Separate mask and noise layers.
+		- bricky, meshy, barry, icebox, enol, bordythin, gkey, bindy
+	- Not relocatable
+		- dry digs to cobble, dirt, sand, etc.
+		- tacky undiggable until it cures (like a liquid)
+	- Cheaper materials have shorter liquid, longer tacky phase
+	- Standardize wandering liquid API?
+		- Wander frequency, dist limit
+		- Generation limit params
+		- Curing time
+		- Curing check (e.g. for quenching)
+		- Time and gen cure methods
 
 - Consider using a separate kind of water node for artificial water.
 	- For sponge squeezing and future pumping features.
@@ -33,6 +57,7 @@ ROADMAP: Large New Development Projects
 	  frames, ladders.
 	- Press tools (or tool heads) into nodes to activate other
 	  pummel recipes like chopping.
+		- Mount tool heads on frames to make machine tools?
 	- Press recipes for digging.
 		- If pushing a node (or toolhead backed by node) and there
 		  is a climbable walkable behind it, or a storebox, dig the
@@ -46,6 +71,10 @@ ROADMAP: Large New Development Projects
 
 - Lava quenching, new material?
 	- Seepstone?
+	- Lava wandering.
+		- Concentrations of lava should melt nearyby stone
+			- Dependent on hardness of stone
+		- Lava near fringes should spontaneously quench.
 
 - Lux Ore
 	- Reconsider mapgen depth; push downwards?
@@ -55,17 +84,6 @@ ROADMAP: Large New Development Projects
 			- See-thru only from one side.
 
 - Should there be pockets of softer stone at depth, like there is gravel?
-
-- Consider upstreaming nc_stucco, maybe into nc_concrete?
-	- Credit Avicennia G
-	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
-	- Add materials for mud+ash, sand+ash, add coal lump to agg.
-	- All materials work like concrete, falling, liquefy with water.
-	- All of them cure to a tacky state first, then to dry.
-		- Become tacky if molded, cure to lower material otherwise.
-		- Use soaking.  Etching allowed to reset timer?
-	- Include a few etched patterns.  Separate mask and noise layers.
-	- Not relocatable; dig to cobble, dirt, sand, etc.
 
 - Offline tick logic for spreading nodes
 	- Use soaking API, calculate time to spread.
@@ -105,6 +123,17 @@ ROADMAP: Large New Development Projects
 		  surrounding stone nodes into Lurk.
 	- Need to dig all around it so it cannot move, then apply Some
 	  time-integrated process to convert it to useful form.
+
+- Renewability Gap
+	- Renewable but not generatable
+		- Sponges: Sprout under water from peat+sand?
+		- Water sources.
+	- Sustainable but not renewable
+		- Lode: Infuse lode into eggcorns -> lodecorns -> tree-farming for lode?
+		- Lux: Infuse lode cobble to make lux cobble?
+		- Lava sources.
+	- Completely lossy
+		- Hard stone: harden using nearby heat sources?
 
 - Threats
 	- Visceral
