@@ -227,7 +227,7 @@ end
 local function gray(suff)
 	local t = modname .. "_water" .. suff .. ".png"
 	local g = modname .. "_water_gray" .. suff .. ".png"
-	return t .. "^(" .. g .. "^[opacity:128)"
+	return t .. "^(" .. g .. "^[opacity:64)"
 end
 
 regliquid({
@@ -263,7 +263,7 @@ regliquid({
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = false,
-		alpha = 192,
+		alpha = 160,
 		walkable = false,
 		pointable = false,
 		diggable = false,
