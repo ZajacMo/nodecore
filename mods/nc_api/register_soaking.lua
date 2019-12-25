@@ -42,7 +42,7 @@ local function soaking_core(def, reg, getmeta)
 			if rate == false then
 				meta:set_string(def.qtyfield, "")
 				meta:set_string(def.timefield, "")
-				return
+				return ...
 			end
 			rate = rate or 0
 			local ticks = 1 + math_floor((now - start) / def.soakinterval)
@@ -55,7 +55,7 @@ local function soaking_core(def, reg, getmeta)
 			if set == false then
 				meta:set_string(def.qtyfield, "")
 				meta:set_string(def.timefield, "")
-				return
+				return ...
 			end
 			meta:set_float(def.qtyfield, set and type(set) == "number" and set or total)
 			meta:set_float(def.timefield, start)
