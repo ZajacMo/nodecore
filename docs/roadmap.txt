@@ -39,16 +39,6 @@ ROADMAP: Large New Development Projects
 		- Curing check (e.g. for quenching)
 		- Time and gen cure methods
 
-- Consider using a separate kind of water node for artificial water.
-	- For sponge squeezing and future pumping features.
-	- Make it a little grayer, or clearer than natural fresh water?
-	- Non-renewable, so we don't have to worry about placement.
-	- Can sanely attach ABMs to check for a supporting node, or
-	  periodic signalling to remain.
-	- Change sponge squeezing recipe to act as a long-term water source.
-		- Don't reabsorb if squeezed recently (< ~4sec)
-		- Don't time out the water; keep it until sponge removed.
-
 - Door Automation
 	- Should have press recipes for stickcraft, i.e. staves,
 	  frames, ladders.

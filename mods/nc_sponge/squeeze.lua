@@ -1,42 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
-
-minetest.register_entity(modname .. ":waterguard", {
-		initial_properties = {
-			physical = false,
-			collide_with_objects = false,
-			collisionbox = {0, 0, 0, 0, 0, 0},
-			textures = {""},
-			is_visible = false,
-			static_save = true
-		},
-		on_activate = function(self, data)
-			self.data = minetest.deserialize(data)
-		end,
-		get_staticdata = function(self)
-			return minetest.serialize(self.data)
-		end,
-		on_step = function(self, dtime)
-			local pos = self.object:get_pos()
-			local node = minetest.get_node(pos)
-			if node.name ~= "nc_terrain:water_source" then
-				return self.object:remove()
-			end
-			self.data.ttl = self.data.ttl - dtime
-			if (self.data.ttl <= 0) then
-				return minetest.set_node(pos, {
-						name = "nc_terrain:water_flowing",
-						param2 = 7
-					})
-			end
-		end
-	})
 
 local spongedirs = {
 	{x = 1, y = 0, z = 0},
@@ -45,37 +12,59 @@ local spongedirs = {
 	{x = 0, y = 0, z = -1}
 }
 
+local watersrc = "nc_terrain:water_gray_source"
+local spongewet = modname .. ":sponge_wet"
+
+local function mkwater(pos, srcpos, new)
+	if new then
+		minetest.set_node(pos, {name = watersrc})
+		nodecore.node_sound(pos, "place")
+	end
+	local meta = minetest.get_meta(pos)
+	meta:set_string("spongepos", minetest.pos_to_string(srcpos))
+	meta:set_float("expire", nodecore.gametime + 10)
+end
+
 nodecore.register_craft({
 		label = "squeeze sponge",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
 		nodes = {
 			{
-				match = modname .. ":sponge_wet",
-				replace = modname .. ":sponge"
-			},
-			{
-				x = 1,
-				match = "air"
+				match = spongewet
 			}
 		},
 		after = function(pos)
-			local dirs = {}
+			local found
 			for _, d in pairs(spongedirs) do
 				local p = vector.add(pos, d)
-				if minetest.get_node(p).name == "air" then
-					dirs[#dirs + 1] = p
+				local nn = minetest.get_node(p).name
+				if nn == "air" or nn == watersrc then
+					mkwater(p, pos, nn ~= watersrc)
+					found = true
 				end
 			end
-			local p = dirs[math_random(1, #dirs)]
+			if found then nodecore.node_sound(pos, "dig") end
+		end
+	})
 
-			if minetest.get_node(p).name ~= "air"
-			or minetest.find_node_near(p, 2, {"nc_terrain:water_source"})
-			then return end
+local function rmwater(pos)
+	return minetest.set_node(pos, {name = "nc_terrain:water_gray_flowing", param2 = 7})
+end
 
-			minetest.set_node(p, {name = "nc_terrain:water_source"})
-			nodecore.node_sound(p, "place")
-			minetest.add_entity(p, modname .. ":waterguard",
-				minetest.serialize({ttl = 3}))
+nodecore.register_limited_abm({
+		interval = 1,
+		chance = 1,
+		nodenames = {watersrc},
+		action = function(pos)
+			local meta = minetest.get_meta(pos)
+			local srcpos = meta:get_string("spongepos") or ""
+			if srcpos == "" then return end
+			srcpos = minetest.string_to_pos(srcpos)
+			local snode = minetest.get_node(srcpos)
+			if snode.name == "ignore" then return end
+			if snode.name ~= spongewet then return rmwater(pos) end
+			local expire = meta:get_float("expire") or 0
+			if nodecore.gametime > expire then return rmwater(pos) end
 		end
 	})
