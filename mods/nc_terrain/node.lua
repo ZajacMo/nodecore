@@ -224,6 +224,11 @@ local function anim(name, len)
 		}
 	}
 end
+local function gray(suff)
+	local t = modname .. "_water" .. suff .. ".png"
+	local g = modname .. "_water_gray" .. suff .. ".png"
+	return t .. "^(" .. g .. "^[opacity:128)"
+end
 
 regliquid({
 		description = "Water",
@@ -247,6 +252,29 @@ regliquid({
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
+regliquid({
+		name = "water_gray",
+		description = "Artificial Water",
+		tiles = {anim(gray(""), 4)},
+		special_tiles = {
+			anim(gray("_flow"), 4),
+			anim(gray("_flow"), 4)
+		},
+		paramtype = "light",
+		liquid_viscosity = 1,
+		liquid_renewable = false,
+		alpha = 192,
+		walkable = false,
+		pointable = false,
+		diggable = false,
+		buildable_to = true,
+		drowning = 1,
+		drop = "",
+		groups = {coolant = 1, water = 2, moist = 2},
+		post_effect_color = {a = 103, r = 91, g = 97, b = 103},
+		sounds = nodecore.sounds("nc_terrain_watery")
+	})
+
 regliquid({
 		name = "lava",
 		tiles = {anim(modname .. "_lava.png", 8)},
