@@ -33,10 +33,10 @@ local plus = nodecore.translate("+")
 local weardescs = {"@1"}
 for i = 1, 65535 do
 	local q = math_floor(i * 5 / 65536 + 0.5)
-	local t = "@1 ["
+	local t = "@1 "
 	for _ = 1, (5 - q) do t = t .. "|" end
 	for _ = 1, q do t = t .. "." end
-	weardescs[i] = t .. "]"
+	weardescs[i] = t
 	nodecore.translate_inform(weardescs[i])
 end
 
