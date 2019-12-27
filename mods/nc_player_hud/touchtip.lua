@@ -19,6 +19,17 @@ local function show(player, text, ttl)
 end
 nodecore.show_touchtip = show
 
+local countdescs = {"@1"}
+for i = 2, 9 do countdescs[i] = "@1 (" .. i .. ")" end
+for j = 10, 90, 10 do
+	for i = 0, 9 do
+		countdescs[j + i] = "@1 (" .. j .. "@2)"
+	end
+end
+countdescs[100] = "@1 (100@2)"
+for i = 2, #countdescs do nodecore.translate_inform(countdescs[i]) end
+local plus = nodecore.translate("+")
+
 local function stack_desc(s)
 	if s:is_empty() then return "" end
 
@@ -27,6 +38,16 @@ local function stack_desc(s)
 
 	local t = s:get_meta():get_string("description")
 	t = t ~= "" and t or d.description or n
+
+	local c = s:get_count()
+	if c > 1 then
+		local cd = countdescs[c > 100 and 100 or c]
+		if c >= 10 then
+			t = nodecore.translate(cd, t, c >= s:get_stack_max() and "" or plus)
+		else
+			t = nodecore.translate(cd, t)
+		end
+	end
 
 	if d.on_stack_touchtip then
 		return d.on_stack_touchtip(s, t) or t
