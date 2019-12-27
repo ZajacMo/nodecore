@@ -9,6 +9,10 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Lux infusion asymptotic nerf.
+	- Right now infusion runs linearly at ~20 per cycle.
+	- Make it so lux tools are NEVER fully charged (min wear = 1)
+
 - Split this doc into "core gameplay" and "side quest" forks?
 
 - Standardize visinv access API
