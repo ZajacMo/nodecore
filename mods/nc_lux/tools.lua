@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, nodecore, pairs, vector
     = ItemStack, math, minetest, nodecore, pairs, vector
-local math_floor, math_pow
-    = math.floor, math.pow
+local math_ceil, math_exp, math_log, math_pow
+    = math.ceil, math.exp, math.log, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -59,6 +59,7 @@ for k in pairs(charge) do
 	end
 end
 
+local ratefactor = 40000
 nodecore.register_soaking_aism({
 		label = "Lux Infusion",
 		interval = 2,
@@ -89,13 +90,17 @@ nodecore.register_soaking_aism({
 		end,
 		soakcheck = function(data, stack)
 			local name = stack:get_name()
-			local dw = math_floor(data.total)
-			if charge[name] then
-				stack:add_wear(-dw)
-			elseif convert[name] and stack:get_wear() < 3277 then
+			if convert[name] and stack:get_wear() < 3277 then
 				stack = ItemStack(convert[name])
-				stack:set_wear(65535 - dw)
+				stack:set_wear(65535)
+				return data.total, stack
 			end
-			return data.total - dw, stack
+			if not charge[name] then return data.total, stack end
+			local wear = stack:get_wear()
+			local newear = math_ceil(wear * math_exp(-data.total / ratefactor))
+			if newear == wear then return data.total, stack end
+			local used = math_log(wear / newear) * ratefactor
+			stack:set_wear(newear)
+			return data.total - used, stack
 		end
 	})
