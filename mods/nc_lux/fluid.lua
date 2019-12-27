@@ -77,6 +77,6 @@ nodecore.register_limited_abm({
 				local def = minetest.registered_nodes[minetest.get_node(p).name]
 				if def and def.groups and def.groups.lux_cobble_max then return end
 			end
-			minetest.remove_node(pos)
+			return minetest.set_node(pos, {name = modname .. ":flux_flowing", param2 = 7})
 		end
 	})
