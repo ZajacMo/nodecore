@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string
-    = minetest, nodecore, pairs, string
-local string_gmatch, string_rep
-    = string.gmatch, string.rep
+local math, minetest, nodecore, pairs, string
+    = math, minetest, nodecore, pairs, string
+local math_floor, string_gmatch, string_rep
+    = math.floor, string.gmatch, string.rep
 -- LUALOCALS > ---------------------------------------------------------
 
 local tips = {}
@@ -30,6 +30,16 @@ countdescs[100] = "@1 (100@2)"
 for i = 2, #countdescs do nodecore.translate_inform(countdescs[i]) end
 local plus = nodecore.translate("+")
 
+local weardescs = {"@1"}
+for i = 1, 65535 do
+	local q = math_floor(i * 5 / 65536 + 0.5)
+	local t = "@1 ["
+	for _ = 1, (5 - q) do t = t .. "|" end
+	for _ = 1, q do t = t .. "." end
+	weardescs[i] = t .. "]"
+	nodecore.translate_inform(weardescs[i])
+end
+
 local function stack_desc(s, noqty)
 	if s:is_empty() then return "" end
 
@@ -48,6 +58,9 @@ local function stack_desc(s, noqty)
 			else
 				t = nodecore.translate(cd, t)
 			end
+		else
+			local w = s:get_wear()
+			if w > 1 then t = nodecore.translate(weardescs[w], t) end
 		end
 	end
 
