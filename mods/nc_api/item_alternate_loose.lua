@@ -99,6 +99,8 @@ nodecore.register_soaking_abm({
 					local w = ddef.crush_damage or 1
 					if w < 1 then w = 1 end
 					weight = weight + w
+				elseif ddef and ddef.liquidtype and ddef.liquidtype ~= "none" then
+					weight = weight + 1
 				end
 			end
 			return weight * 2 / math_pow(2, def.repack_level or 1)
