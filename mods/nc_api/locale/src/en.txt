@@ -10,6 +10,9 @@ msgstr "(and 1 more hint)"
 msgid "(and @1 more hints)"
 msgstr "(and @1 more hints)"
 
+msgid "+"
+msgstr "+"
+
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
 
@@ -238,6 +241,60 @@ msgstr "[REMOVED]"
 msgid "...have you welded a lode pick and spade together yet?"
 msgstr "[REMOVED]"
 
+msgid "@1 (100@2)"
+msgstr "@1 (100@2)"
+
+msgid "@1 (10@2)"
+msgstr "@1 (10@2)"
+
+msgid "@1 (2)"
+msgstr "@1 (2)"
+
+msgid "@1 (20@2)"
+msgstr "@1 (20@2)"
+
+msgid "@1 (3)"
+msgstr "@1 (3)"
+
+msgid "@1 (30@2)"
+msgstr "@1 (30@2)"
+
+msgid "@1 (4)"
+msgstr "@1 (4)"
+
+msgid "@1 (40@2)"
+msgstr "@1 (40@2)"
+
+msgid "@1 (5)"
+msgstr "@1 (5)"
+
+msgid "@1 (50@2)"
+msgstr "@1 (50@2)"
+
+msgid "@1 (6)"
+msgstr "@1 (6)"
+
+msgid "@1 (60@2)"
+msgstr "@1 (60@2)"
+
+msgid "@1 (7)"
+msgstr "@1 (7)"
+
+msgid "@1 (70@2)"
+msgstr "@1 (70@2)"
+
+msgid "@1 (8)"
+msgstr "@1 (8)"
+
+msgid "@1 (80@2)"
+msgstr "@1 (80@2)"
+
+msgid "@1 (9)"
+msgstr "@1 (9)"
+
+msgid "@1 (90@2)"
+msgstr "@1 (90@2)"
+
 msgid "About"
 msgstr "About"
 
@@ -297,6 +354,9 @@ msgstr "Annealed Lode Spade"
 
 msgid "Annealed Lode Spade Head"
 msgstr "Annealed Lode Spade Head"
+
+msgid "Artificial Water"
+msgstr "Artificial Water"
 
 msgid "Ash"
 msgstr "Ash"
@@ -848,7 +908,7 @@ msgid "dry out a sponge"
 msgstr "dry out a sponge"
 
 msgid "extract living sponge from colony center"
-msgstr "extract living sponge from colony center"
+msgstr "[REMOVED]"
 
 msgid "ferment peat into humus"
 msgstr "ferment peat into humus"
