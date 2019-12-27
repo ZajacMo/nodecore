@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
-local math_random
-    = math.random
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -67,28 +65,4 @@ nodecore.register_limited_abm({
 		end
 	})
 
-local function waterat(pos, dx, dy, dz)
-	pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	local node = minetest.get_node(pos)
-	return minetest.get_item_group(node.name, "water") ~= 0
-end
-nodecore.register_limited_abm({
-		label = "Dirt Leeching to Sand",
-		nodenames = {dirt},
-		neighbors = {"group:water"},
-		interval = 5,
-		chance = 50,
-		action = function(pos)
-			if not waterat(pos, 0, 1, 0) then return end
-			local qty = 1
-			if waterat(pos, 1, 0, 0) then qty = qty * 1.5 end
-			if waterat(pos, -1, 0, 0) then qty = qty * 1.5 end
-			if waterat(pos, 0, 0, 1) then qty = qty * 1.5 end
-			if waterat(pos, 0, 0, -1) then qty = qty * 1.5 end
-			if waterat(pos, 0, -1, 0) then qty = qty * 1.5 end
-			if math_random() * 100 >= qty then return end
-			minetest.set_node(pos, {name = modname .. ":sand_loose"})
-			nodecore.node_sound(pos, "place")
-			nodecore.fallcheck(pos)
-		end
-	})
+nodecore.register_dirt_leeching(dirt, modname .. ":sand_loose")

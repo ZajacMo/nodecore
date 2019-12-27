@@ -66,3 +66,5 @@ nodecore.register_soaking_abm({
 			nodecore.node_sound(pos, "place")
 		end
 	})
+
+nodecore.register_dirt_leeching(modname .. ":humus", "nc_terrain:dirt_loose", 3)

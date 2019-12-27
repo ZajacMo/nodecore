@@ -5,6 +5,14 @@ local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
+local function metaclear(meta, def)
+	local tbl = meta:to_table()
+	if not (tbl.fields[def.qtyfield] or tbl.fields[def.timefield]) then return end
+	tbl.fields[def.qtyfield] = nil
+	tbl.fields[def.timefield] = nil
+	meta:from_table(tbl)
+end
+
 local function soaking_core(def, reg, getmeta)
 	def.qtyfield = def.qtyfield or "soakqty"
 	def.timefield = def.timefield or "soaktime"
@@ -40,8 +48,7 @@ local function soaking_core(def, reg, getmeta)
 		if start <= now then
 			rate = def.soakrate(...)
 			if rate == false then
-				meta:set_string(def.qtyfield, "")
-				meta:set_string(def.timefield, "")
+				metaclear(meta, def)
 				return ...
 			end
 			rate = rate or 0
@@ -53,8 +60,7 @@ local function soaking_core(def, reg, getmeta)
 
 		local function helper(set, ...)
 			if set == false then
-				meta:set_string(def.qtyfield, "")
-				meta:set_string(def.timefield, "")
+				metaclear(meta, def)
 				return ...
 			end
 			meta:set_float(def.qtyfield, set and type(set) == "number" and set or total)
