@@ -30,7 +30,7 @@ countdescs[100] = "@1 (100@2)"
 for i = 2, #countdescs do nodecore.translate_inform(countdescs[i]) end
 local plus = nodecore.translate("+")
 
-local function stack_desc(s)
+local function stack_desc(s, noqty)
 	if s:is_empty() then return "" end
 
 	local n = s:get_name()
@@ -39,13 +39,15 @@ local function stack_desc(s)
 	local t = s:get_meta():get_string("description")
 	t = t ~= "" and t or d.description or n
 
-	local c = s:get_count()
-	if c > 1 then
-		local cd = countdescs[c > 100 and 100 or c]
-		if c >= 10 then
-			t = nodecore.translate(cd, t, c >= s:get_stack_max() and "" or plus)
-		else
-			t = nodecore.translate(cd, t)
+	if not noqty then
+		local c = s:get_count()
+		if c > 1 then
+			local cd = countdescs[c > 100 and 100 or c]
+			if c >= 10 then
+				t = nodecore.translate(cd, t, c >= s:get_stack_max() and "" or plus)
+			else
+				t = nodecore.translate(cd, t)
+			end
 		end
 	end
 
@@ -139,7 +141,7 @@ minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
 
-			local wn = stack_desc(player:get_wielded_item())
+			local wn = stack_desc(player:get_wielded_item(), true)
 			if wn ~= wields[pname] then
 				wields[pname] = wn
 				show(player, wn)
