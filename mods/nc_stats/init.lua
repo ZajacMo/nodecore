@@ -205,6 +205,7 @@ local function flushkey(k, player)
 	local v = statsdb[k]
 	if not v or not v.dirty then return end
 	v.dirty = nil
+	v.lastmod = os_date("!*t")
 
 	if k == false then
 		modstore:set_string("" .. v.index, minetest.serialize(v))
