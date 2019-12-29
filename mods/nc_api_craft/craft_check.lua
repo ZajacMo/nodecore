@@ -63,7 +63,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			local gt = dg[gn]
 			gt = gt and gt.times
 			gt = gt and gt[lv]
-			if gt and (not t or t > gt) then t = gt end
+			if gt and (gt <= 4) and (not t or t > gt) then t = gt end
 		end
 		if not t then return end
 		mindur = mindur + t
