@@ -5,6 +5,8 @@ local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
 nodecore.register_leaf_drops, nodecore.registered_leaf_drops
 = nodecore.mkreg()
 
@@ -51,7 +53,8 @@ function nodecore.tree_growth_rate(pos)
 	if (not ll) or (ll < 8) then return end
 	for y = 2, 5 do
 		local p ={x = pos.x, y = pos.y + y, z = pos.z}
-		if minetest.get_node(p).name ~= "air" then return end
+		local nn = minetest.get_node(p).name
+		if nn ~= "air" and nn ~= modname .. ":leaves" then return end
 	end
 	return nodecore.tree_soil_rate(pos) * math_sqrt((ll - 7) / 8)
 end
