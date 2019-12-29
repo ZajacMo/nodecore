@@ -17,7 +17,9 @@ local function setphealth(player, hp)
 	if whole == 0 then whole = 1 end
 	local dhp = hp - whole
 	player:get_meta():set_float("dhp", dhp)
-	return player:set_hp(whole)
+	local old = player:get_hp()
+	player:set_hp(whole)
+	return old ~= whole
 end
 nodecore.setphealth = setphealth
 
