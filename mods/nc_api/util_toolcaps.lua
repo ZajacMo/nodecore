@@ -12,6 +12,7 @@ local basetimes = {
 	crumbly = 0.5,
 	snappy = 0.4,
 }
+nodecore.tool_basetimes = basetimes
 
 for k, v in pairs(basetimes) do
 	basetimes[k] = v / nodecore.rate_adjustment("speed", "tool", k)
