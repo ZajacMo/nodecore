@@ -23,8 +23,8 @@ nodecore.register_on_register_item(function(_, def)
 				end
 			end
 			def.after_dig_node = def.after_dig_node or function(pos, node, _, digger)
-				if st and digger and nodecore.toolspeed(
-					digger:get_wielded_item(), st) <= 4 then
+				if st and digger and nodecore.tool_digs(
+					digger:get_wielded_item(), st) then
 					local stack = ItemStack(node.name)
 					stack = digger:get_inventory():add_item("main",
 						stack:to_string())

@@ -94,7 +94,7 @@ local function writable(pos, node)
 	if not node then return end
 	local def = minetest.registered_nodes[node.name]
 	return def.walkable and def.paramtype ~= "light"
-	and not nodecore.toolspeed(ItemStack(""), def.groups)
+	and not nodecore.tool_digs(ItemStack(""), def.groups)
 end
 
 local oldcsff = minetest.check_single_for_falling

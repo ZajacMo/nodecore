@@ -153,6 +153,10 @@ function nodecore.toolspeed(what, groups)
 	end
 	return t
 end
+function nodecore.tool_digs(what, groups)
+	local s = nodecore.toolspeed(what, groups)
+	return s and s <= 4
+end
 
 function nodecore.interval(after, func)
 	local function go()

@@ -39,7 +39,7 @@ local function issolid(pos, node)
 	if def.groups and (not def.groups.falling_node) then
 		return {pos = pos, node = node}
 	end
-	if nodecore.toolspeed(ItemStack(""), def.groups) then return end
+	if nodecore.tool_digs(ItemStack(""), def.groups) then return end
 	return {pos = pos, node = node}
 end
 
