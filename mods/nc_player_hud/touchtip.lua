@@ -52,6 +52,7 @@ local function stack_desc(s, noqty)
 	if not noqty then
 		local c = s:get_count()
 		if c > 1 then
+			t = nodecore.translate(t)
 			local cd = countdescs[c > 100 and 100 or c]
 			if c >= 10 then
 				t = nodecore.translate(cd, t, c >= s:get_stack_max() and "" or plus)
@@ -60,7 +61,10 @@ local function stack_desc(s, noqty)
 			end
 		else
 			local w = s:get_wear()
-			if w > 1 then t = nodecore.translate(weardescs[w], t) end
+			if w > 1 then
+				t = nodecore.translate(t)
+				t = nodecore.translate(weardescs[w], t)
+			end
 		end
 	end
 
