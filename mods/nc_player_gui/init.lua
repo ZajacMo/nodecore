@@ -29,7 +29,8 @@ do
 				"",
 				"https://content.minetest.net/packages/Warr1024/nodecore/",
 				"GitLab: https://gitlab.com/sztest/nodecore",
-				"Discord: https://discord.gg/SHq2tkb"
+				"Discord: https://discord.gg/SHq2tkb",
+				"IRC: #nodecore @@ chat.freenode.net"
 			}
 		})
 end
