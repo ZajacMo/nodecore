@@ -12,8 +12,8 @@ local irradiated = modname .. ":irradiated"
 minetest.register_craftitem(irradiated, {
 		description = "Burn",
 		stack_max = 1,
-		inventory_image = modname .. "_base.png^[mask:"
-		.. modname .. "_icon_mask.png",
+		inventory_image = "[combine:1x1",
+		hotbar_type = "burn",
 		wield_image = hand.wield_image,
 		wield_scale = hand.wield_scale,
 		on_drop = function(stack) return stack end,
