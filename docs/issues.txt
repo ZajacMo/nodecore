@@ -44,35 +44,16 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Design doc needs another shakedown.
 
-- Relax tree-trunk-chopping recipes.
-	- Climbing a tree to adze it from the top may be to much of a
-	  logical leap.
-	- Offer a slower recipe from the side?
-	- Offer a recipe to dislodge a segment from the trunk?
-
 - Consider updating tote recipe.
 
 - Lux reaction cannot sense other lux inside totes.
 
-- Consider making a unified API for HUDs
-	- Automatically track existing HUDs for players.
-	- Identify HUDs by name/ID.
-	- Upsert operation.
-	- TTL management.
-	- API for modifying/overriding nametag HUDs?
-		- Allow amending text/color attributes, blocking display, etc.
-
 - API for recursing through embedded inventories, e.g. in totes.
 
 - Player APIs:
-	- Texturing, for clothing mods.
 	- Physics/acceleration, for waterflow, conveyors, etc.
 
 - When can we remove the issue7020 workaround?
-
-- Node mesh improvements.
-	- Generic container/box model for shelves/tanks using 12 quads.
-	- Optimized/ retextured tote handle.
 
 ........................................................................
 ========================================================================
