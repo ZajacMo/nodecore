@@ -9,15 +9,6 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Split this doc into "core gameplay" and "side quest" forks?
-
-- Standardize visinv access API
-	- stack_access(pos, node, dirfrom) - return booly
-	  whether access to inside stack is allowed.
-	- Use for shelf API.
-	- Use for touchtips inv access.
-	- Genericize sponge logic using stack_access API
-
 - Consider upstreaming nc_stucco, maybe into nc_concrete?
 	- Credit Avicennia G a.k.a. Tereno Johnson
 	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
@@ -39,6 +30,9 @@ ROADMAP: Large New Development Projects
 		- Curing check (e.g. for quenching)
 		- Time and gen cure methods
 
+- Make stone bricks or other building materials?
+	- Pummel stone w/ lux+ pick?
+
 - Door Automation
 	- Should have press recipes for stickcraft, i.e. staves,
 	  frames, ladders.
@@ -56,6 +50,16 @@ ROADMAP: Large New Development Projects
 	- Push players?
 	- Need more door materials: lode, glasses
 
+- Standardize visinv access API
+	- stack_access(pos, node, dirfrom) - return booly
+	  whether access to inside stack is allowed.
+	- Use for shelf API.
+	- Use for touchtips inv access.
+	- Genericize sponge logic using stack_access API
+
+- Wandering fluids API for concrete, glass, lava?
+	- Configurable setting for generation count multiplier.
+
 - Lava quenching, new material?
 	- Seepstone?
 	- Lava wandering.
@@ -63,53 +67,18 @@ ROADMAP: Large New Development Projects
 			- Dependent on hardness of stone
 		- Lava near fringes should spontaneously quench.
 
-- Lux Ore
-	- Reconsider mapgen depth; push downwards?
-	- Infuse other materials
-		- Infuse clear glass to make "smoked" glass.
-			- Does not transmit light.
-			- See-thru only from one side.
-
 - Should there be pockets of softer stone at depth, like there is gravel?
-
-- Offline tick logic for spreading nodes
-	- Use soaking API, calculate time to spread.
-	- If actual time exceeds time to spread, pass soak depth on to
-	  new node that's been created, and trigger respread check.
-	- Will have to do a lot of performance testing.
-
-- Special glass handling?
-	- If glass is connected to other glass, it doesn't dig
-	  trivially.
-	- Break into crude glass instead, and break surrounding
-	  nodes too.
 
 - Domain Wall Sensor
 	- Adapt from sztest?
 	- Field Generator?
 		- Power an annealed lode block from 2 opposite faces.
 		- Generates particle effect at mapblock boundary.
-	- Particle effect with lux fluid?
+	- Particle effect with lux fluid and/or cobble?
 
 - Water and lava surface springs.
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting, glass?
-
-- Lurk Ore
-	- Moves freely among air-exposed stone while no player is looking.
-	- Follows after player, attempting to cause harm.
-		- Weakens nodes above/below player into falling nodes,
-		  e.g. loose cobble, gravel?
-		- Steals items from player, drops onto ground or absorbs them
-		  into body?  Saps tool durability?
-		- Ignites flammables it passes by?
-		- Downgrades or absorbs ores nearby by contact or air floodfill?
-		- Creates illusionary nodes you can fall through?
-	- Cannot be dug or damaged directly.
-		- Digging it yields plain stone, but converts up to 2
-		  surrounding stone nodes into Lurk.
-	- Need to dig all around it so it cannot move, then apply Some
-	  time-integrated process to convert it to useful form.
 
 - Renewability Gap
 	- Renewable but not generatable
@@ -132,15 +101,26 @@ ROADMAP: Large New Development Projects
 		- From exploration, delving too deep, leaving things to rot, etc.
 		- Blights, Fungi
 
+- Lurk Ore
+	- Moves freely among air-exposed stone while no player is looking.
+	- Follows after player, attempting to cause harm.
+		- Weakens nodes above/below player into falling nodes,
+		  e.g. loose cobble, gravel?
+		- Steals items from player, drops onto ground or absorbs them
+		  into body?  Saps tool durability?
+		- Ignites flammables it passes by?
+		- Downgrades or absorbs ores nearby by contact or air floodfill?
+		- Creates illusionary nodes you can fall through?
+	- Cannot be dug or damaged directly.
+		- Digging it yields plain stone, but converts up to 2
+		  surrounding stone nodes into Lurk.
+	- Need to dig all around it so it cannot move, then apply Some
+	  time-integrated process to convert it to useful form.
+
 - Social features
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
-	- Add more holiday outfits.
-	- Track server lag in metadata?
-
-- Make stone bricks or other building materials?
-	- Pummel stone w/ lux+ pick?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?
@@ -169,6 +149,8 @@ ROADMAP: Large New Development Projects
 	- Make virtual items invisible on their own, use hotbar texture for them.
 		- Injuries show torn/cracked slot.
 		- Lux burns show partially melted slot.
+	- Need to also alter the selection texture based on wield index.
+		- Tick delay...
 
 - Vary player walking speed based on nodes under feet?
 

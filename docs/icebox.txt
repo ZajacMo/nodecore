@@ -24,8 +24,13 @@ ICEBOX: Low-Priority Ideas
 	- Standardize collision detection, i.e. ignore node collision boxes
 	  and settle early based on full-node size.
 
-- Wandering fluids API for concrete, glass?
-	- Configurable setting for generation count multiplier.
+- API for recursing through embedded inventories, e.g. in totes.
+	- Lux reaction cannot sense other lux inside totes.
+
+- Player APIs:
+	- Physics/acceleration, for waterflow, conveyors, etc.
+
+- When can we remove the issue7020 workaround?
 
 - Lens strobing rate limiting of some kind?
 	- Require cool-downs after a lot of toggling?
