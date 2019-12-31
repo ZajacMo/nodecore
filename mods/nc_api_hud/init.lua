@@ -15,8 +15,21 @@ local myprops = {
 
 local function copytbl(t)
 	local u = {}
-	for k, v in pairs(t) do u[k] = v end
+	for k, v in pairs(t) do u[k] = type(v) == "table" and copytbl(v) or v end
 	return u
+end
+
+local function differ(a, b)
+	if type(a) == "table" and type(b) == "table" then
+		for k, v in pairs(a) do
+			if differ(b[k], v) then return true end
+		end
+		for k, v in pairs(b) do
+			if differ(a[k], v) then return true end
+		end
+		return
+	end
+	return a ~= b
 end
 
 local function updatehud(player, entry, phuds, dtime)
@@ -30,7 +43,7 @@ local function updatehud(player, entry, phuds, dtime)
 	end
 	if entry.id then
 		for k, v in pairs(entry.new) do
-			if (not myprops[k]) and (v ~= entry.old[k]) then
+			if (not myprops[k]) and differ(v, entry.old[k]) then
 				player:hud_change(entry.id, k, v)
 				entry.old[k] = v
 			end
