@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,25 +38,33 @@ minetest.register_on_priv_revoke(grantrevoke)
 
 local hotbars = {}
 
+local function setbar(player, def)
+	def.hud_elem_type = "image"
+	def.position = {x = 0.5, y =1}
+	def.alignment = {x = 0, y = -1}
+	def.direction = 0
+	def.scale = {x = 1.75, y = 1.75}
+	def.offset = {x = 0, y = -4}
+	return nodecore.hud_set(player, def)
+end
+
 local bar_scale = 32
 local function sethotbar(player)
 	local bar = "[combine:" .. (hotbar_slots * bar_scale) .. "x" .. bar_scale
-	local sel = "nc_player_hud_sel"
+	local sel = "[combine:" .. (hotbar_slots * bar_scale) .. "x" .. bar_scale
 	local inv = player:get_inventory()
 	for i = 1, hotbar_slots do
-		local img = "nc_player_hud_bar"
 		local stack = inv:get_stack("main", i)
 		local def = stack and (not stack:is_empty()) and stack:get_definition()
-		if def and def.hotbar_type then
-			img = img .. "_" .. def.hotbar_type
-			if i == player:get_wield_index() then
-				sel = sel .. "_" .. def.hotbar_type
-			end
+		local suff = ""
+		if def and def.hotbar_type then suff = "_" .. def.hotbar_type end
+		if i == player:get_wield_index() then
+			sel = sel .. ":" .. (i * bar_scale - bar_scale) .. ",0=nc_player_hud_sel"
+			.. suff .. ".png\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
 		end
-		bar = bar .. ":" .. (i * bar_scale - bar_scale) .. ",0=" .. img
-		.. ".png"--\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
+		bar = bar .. ":" .. (i * bar_scale - bar_scale) .. ",0=nc_player_hud_bar"
+		.. suff .. ".png\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
 	end
-	sel = sel .. ".png^[resize:" .. bar_scale .. "x" .. bar_scale
 
 	local pname = player:get_player_name()
 	local old = hotbars[pname]
@@ -65,11 +73,13 @@ local function sethotbar(player)
 		hotbars[pname] = old
 	end
 	if old.bar ~= bar then
-		player:hud_set_hotbar_image(bar)
+		setbar(player, {label = "hotbar_bar", text = bar, z_index = -100})
+		minetest.chat_send_player(pname, bar)
 		old.bar = bar
 	end
 	if old.sel ~= sel then
-		player:hud_set_hotbar_selected_image(sel)
+		setbar(player, {label = "hotbar_sel", text = sel, z_index = -101})
+		minetest.chat_send_player(pname, sel)
 		old.sel = sel
 	end
 end
@@ -79,7 +89,9 @@ minetest.register_on_leaveplayer(function(player)
 	end)
 
 minetest.register_on_joinplayer(function(player)
-		sethudflags(player)
+		sethudflags(player, nil)
+		player:hud_set_hotbar_image("blank.png")
+		player:hud_set_hotbar_selected_image("blank.png")
 		sethotbar(player)
 
 		if not minetest.settings:get_bool("enable_damage") then
@@ -93,7 +105,8 @@ minetest.register_on_joinplayer(function(player)
 				text = img,
 				direction = 0,
 				scale = {x = -100, y = -100},
-				offset = {x = 0, y = 0}
+				offset = {x = 0, y = 0},
+				z_index = -1000
 			})
 	end)
 
