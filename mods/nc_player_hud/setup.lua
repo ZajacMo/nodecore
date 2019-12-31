@@ -51,7 +51,8 @@ minetest.register_on_joinplayer(function(player)
 				text = img,
 				direction = 0,
 				scale = {x = -100, y = -100},
-				offset = {x = 0, y = 0}
+				offset = {x = 0, y = 0},
+				quick = true
 			})
 	end)
 
