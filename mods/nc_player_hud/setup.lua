@@ -5,8 +5,6 @@ local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local breath = {}
-
 local function breathimg(br)
 	local o = 255 * (1 - br / 11)
 	if o == 0 then return "" end
@@ -46,30 +44,22 @@ minetest.register_on_joinplayer(function(player)
 			player:set_breath(11)
 		end
 		local img = breathimg(player:get_breath())
-		breath[player:get_player_name()] = {
-			id = player:hud_add({
-					hud_elem_type = "image",
-					position = {x = 0.5, y = 0.5},
-					text = img,
-					direction = 0,
-					scale = {x = -100, y = -100},
-					offset = {x = 0, y = 0}
-				}),
-			val = img
-		}
+		nodecore.hud_set(player, {
+				label = "breath",
+				hud_elem_type = "image",
+				position = {x = 0.5, y = 0.5},
+				text = img,
+				direction = 0,
+				scale = {x = -100, y = -100},
+				offset = {x = 0, y = 0}
+			})
 	end)
-
-local function breathhud(player)
-	local hud = breath[player:get_player_name()]
-	if not hud then return end
-	local i = breathimg(player:get_breath())
-	if hud.val == i then return end
-	hud.val = i
-	return player:hud_change(hud.id, "text", i)
-end
 
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
-			breathhud(player)
+			nodecore.hud_set(player, {
+					label = "breath",
+					text = breathimg(player:get_breath())
+				})
 		end
 	end)

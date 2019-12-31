@@ -12,9 +12,6 @@ local modname = minetest.get_current_modname()
 -- Maximum distance at which custom nametags are visible.
 local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
 
--- Keep track of active player HUDs.
-local huds = {}
-
 ------------------------------------------------------------------------
 -- PLAYER JOIN/LEAVE
 
@@ -25,23 +22,6 @@ minetest.register_on_joinplayer(function(player)
 				text = " ",
 				color = {a = 0, r = 0, g = 0, b = 0}
 			})
-	end)
-
--- On player leaving, clean up any associated HUDs.
-minetest.register_on_leaveplayer(function(player)
-		-- Garbage-collect player's own HUDs.
-		local pn = player:get_player_name()
-		huds[pn] = nil
-
-		-- Remove HUDs for this player's name
-		-- from other players
-		for _, v in pairs(huds) do
-			local i = v[pn]
-			if i then
-				i.o:hud_remove(i.i)
-				v[pn] = nil
-			end
-		end
 	end)
 
 ------------------------------------------------------------------------
@@ -127,42 +107,27 @@ end
 minetest.register_globalstep(function()
 		local conn = minetest.get_connected_players()
 		for _, p1 in pairs(conn) do
-			local n1 = p1:get_player_name()
-			local h = huds[n1]
-			if not h then
-				h = {}
-				huds[n1] = h
-			end
 			for _, p2 in pairs(conn) do
 				if p2 ~= p1 then
 					local n2 = p2:get_player_name()
-					local i = h[n2]
 					if canseeface(p1, p2) then
 						local p = p2:get_pos()
 						p.y = p.y + 1.25
-
-						-- Create a new HUD if not present.
-						if not i then
-							i = {o = p1, p = p}
-							i.i = p1:hud_add({
-									hud_elem_type = "waypoint",
-									world_pos = p,
-									name = n2,
-									text = "",
-									number = 0xffffff
-								})
-							h[n2] = i
-						end
-
-						-- Update HUD if outdated.
-						if p.x ~= i.p.x or p.y ~= i.p.y or p.z ~= i.p.z then
-							p1:hud_change(i.i, "world_pos", p)
-							i.p = p
-						end
-					elseif i then
-						-- Remove HUD if visibility lost.
-						p1:hud_remove(i.i)
-						h[n2] = nil
+						nodecore.hud_set(p1, {
+								label = "pname:" .. n2,
+								hud_elem_type = "waypoint",
+								world_pos = p,
+								name = n2,
+								text = "",
+								number = 0xffffff,
+								quick = true
+							})
+					else
+						nodecore.hud_set(p1, {
+								label = "pname:" .. n2,
+								ttl = 0,
+								quick = true
+							})
 					end
 				end
 			end
