@@ -1,21 +1,21 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string
-    = math, minetest, nodecore, pairs, string
-local math_floor, string_gmatch, string_rep
-    = math.floor, string.gmatch, string.rep
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local tips = {}
-
 local function show(player, text, ttl)
-	local pname = player:get_player_name()
-	local tip = tips[pname]
-	if not tip then
-		tips[pname] = {text = text or "", ttl = ttl or 2}
-		return
-	end
-	tip.text = text or ""
-	tip.ttl = ttl or 2
+	nodecore.hud_set_multiline(player, {
+			label = "touchtip",
+			hud_elem_type = "text",
+			position = {x = 0.5, y = 0.75},
+			text = text,
+			number = 0xFFFFFF,
+			alignment = {x = 0, y = 0},
+			offset = {x = 0, y = 0},
+			ttl = ttl or 2
+		}, nodecore.translate)
 end
 nodecore.show_touchtip = show
 
@@ -105,56 +105,7 @@ nodecore.touchtip_node = node_desc
 
 local wields = {}
 
-local function commit(player, pname, dtime)
-	local tip = tips[pname]
-	if not tip then return end
-
-	tip.ttl = tip.ttl - dtime
-	if tip.ttl <= 0 then tip.text = "" end
-
-	if tip.shown == tip.text then return end
-
-	local lines = {}
-	for str in string_gmatch(tip.text, "[^\r\n]+") do
-		lines[#lines + 1] = nodecore.translate(str)
-	end
-	for i = 1, #lines do
-		lines[i] = string_rep(" \n", i - 1) .. lines[i]
-		.. string_rep("\n ", #lines - i)
-	end
-
-	tip.lines = tip.lines or {}
-	for i = 1, #lines do
-		local old = tip.lines[i]
-		if not old then
-			tip.lines[i] = {
-				id = player:hud_add({
-						hud_elem_type = "text",
-						position = {x = 0.5, y = 0.75},
-						text = lines[i],
-						number = 0xFFFFFF,
-						alignment = {x = 0, y = 0},
-						offset = {x = 0, y = 0},
-					}),
-				text = lines[i]
-			}
-		elseif old.text ~= lines[i] then
-			player:hud_change(old.id, "text", lines[i])
-			old.text = lines[i]
-		end
-	end
-
-	for i = #tip.lines, #lines + 1, -1 do
-		local id = tip.lines[i].id
-		player:hud_change(id, "text", "")
-		minetest.after(0, function() player:hud_remove(id) end)
-		tip.lines[i] = nil
-	end
-
-	tip.shown = tip.text
-end
-
-minetest.register_globalstep(function(dtime)
+minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
 
@@ -163,8 +114,6 @@ minetest.register_globalstep(function(dtime)
 				wields[pname] = wn
 				show(player, wn)
 			end
-
-			commit(player, pname, dtime)
 		end
 	end)
 
@@ -174,6 +123,5 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
-		tips[pname] = nil
 		wields[pname] = nil
 	end)

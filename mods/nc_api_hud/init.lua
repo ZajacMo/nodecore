@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, type
-    = error, minetest, nodecore, pairs, type
+local error, minetest, nodecore, pairs, string, type
+    = error, minetest, nodecore, pairs, string, type
+local string_gmatch, string_rep
+    = string.gmatch, string.rep
 -- LUALOCALS > ---------------------------------------------------------
 
 local huds = {}
@@ -10,6 +12,12 @@ local myprops = {
 	ttl = true,
 	quick = true
 }
+
+local function copytbl(t)
+	local u = {}
+	for k, v in pairs(t) do u[k] = v end
+	return u
+end
 
 local function updatehud(player, entry, phuds, dtime)
 	if entry.ttl then
@@ -29,12 +37,11 @@ local function updatehud(player, entry, phuds, dtime)
 		end
 	else
 		entry.id = player:hud_add(entry.new)
-		entry.old = {}
-		for k, v in pairs(entry.new) do entry.old[k] = v end
+		entry.old = copytbl(entry.new)
 	end
 end
 
-function nodecore.hud_set(player, def)
+local function hud_params(player, def)
 	if not (def and def.label) then return error("missing HUD label") end
 
 	local pname
@@ -45,6 +52,12 @@ function nodecore.hud_set(player, def)
 		pname = player:get_player_name()
 	end
 	if not player then return error("missing player") end
+
+	return player, pname, def
+end
+local function hud_set(player, def)
+	local pname
+	player, pname, def = hud_params(player, def)
 
 	local phuds = huds[pname]
 	if not phuds then
@@ -60,17 +73,56 @@ function nodecore.hud_set(player, def)
 	entry.ttl = def.ttl or entry.ttl
 	if def.quick then return updatehud(player, entry, phuds, 0) end
 end
+nodecore.hud_set = hud_set
 
-minetest.register_globalstep(function(dtime)
-		for _, player in pairs(minetest.get_connected_players()) do
-			local pname = player:get_player_name()
-			local phuds = huds[pname]
-			if phuds then
-				for _, entry in pairs(phuds) do
-					updatehud(player, entry, phuds, dtime)
+function nodecore.hud_set_multiline(player, def, trans)
+	local pname
+	player, pname, def = hud_params(player, def)
+
+	local lines = {}
+	for str in string_gmatch(def.text, "[^\r\n]+") do
+		lines[#lines + 1] = trans and trans(str) or str
+	end
+	for i = 1, #lines do
+		lines[i] = string_rep(" \n", i - 1) .. lines[i]
+		.. string_rep("\n ", #lines - i)
+	end
+
+	for i = 1, #lines do
+		local t = copytbl(def)
+		t.text = lines[i]
+		t.label = def.label .. ":" .. i
+		hud_set(player, t)
+	end
+
+	local phuds = huds[pname]
+	if not phuds then
+		phuds = {}
+		huds[pname] = phuds
+	end
+	local i = #lines + 1
+	while phuds[def.label .. ":" .. i] do
+		hud_set(player, {
+				label = def.label .. ":" .. i,
+				ttl = 0,
+				quick = def.quick
+			})
+		i = i + 1
+	end
+end
+
+minetest.after(0, function()
+		minetest.register_globalstep(function(dtime)
+				for _, player in pairs(minetest.get_connected_players()) do
+					local pname = player:get_player_name()
+					local phuds = huds[pname]
+					if phuds then
+						for _, entry in pairs(phuds) do
+							updatehud(player, entry, phuds, dtime)
+						end
+					end
 				end
-			end
-		end
+			end)
 	end)
 
 minetest.register_on_leaveplayer(function(player)
