@@ -93,6 +93,7 @@ function nodecore.hud_set_multiline(player, def, trans)
 	player, pname, def = hud_params(player, def)
 
 	local lines = {}
+	def.text = def.text or ""
 	for str in string_gmatch(def.text, "[^\r\n]+") do
 		lines[#lines + 1] = trans and trans(str) or str
 	end
