@@ -55,6 +55,10 @@ end
 
 local function settle(self)
 	local pos = vector.round(self.object:get_pos())
+	local node = minetest.get_node(pos)
+	if node.name == "ignore" then return end
+	node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
+	if node.name == "ignore" then return end
 	local item = ItemStack(self.itemstring)
 	for i = 1, #settleorder do
 		local grp = (settleorder[i])()
@@ -82,6 +86,7 @@ end
 local bii = minetest.registered_entities["__builtin:item"]
 local newbii = {
 	on_step = function(self, dtime, ...)
+		self.object:set_acceleration(nodecore.grav_air_accel(self.object:get_velocity()))
 		bii.on_step(self, dtime, ...)
 		if not self.moving_state then
 			return settle(self)

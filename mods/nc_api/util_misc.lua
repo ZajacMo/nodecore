@@ -3,10 +3,10 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
     = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
-local math_cos, math_floor, math_log, math_pi, math_random, math_sin,
-      math_sqrt, string_gsub, string_lower
-    = math.cos, math.floor, math.log, math.pi, math.random, math.sin,
-      math.sqrt, string.gsub, string.lower
+local math_abs, math_cos, math_floor, math_log, math_pi, math_random,
+      math_sin, math_sqrt, string_gsub, string_lower
+    = math.abs, math.cos, math.floor, math.log, math.pi, math.random,
+      math.sin, math.sqrt, string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -375,4 +375,25 @@ function nodecore.obstructed(minpos, maxpos)
 			end
 		end
 	end
+end
+
+local gravity = tonumber(minetest.settings:get("movement_gravity")) or 9.81
+local friction = tonumber(minetest.settings:get("nodecore_air_friction")) or 0.0004
+
+local function air_accel_factor(v)
+	local q = (friction * v * v) * 2 - 1
+	return q > 0 and q or 0
+end
+function nodecore.grav_air_physics_player(v)
+	return 1 - air_accel_factor(v.y)
+end
+local function air_accel_net(v)
+	return v == 0 and 0 or v / -math_abs(v) * gravity * air_accel_factor(v)
+end
+function nodecore.grav_air_accel(v)
+	return {
+		x = air_accel_net(v.x),
+		y = air_accel_net(v.y) - gravity,
+		z = air_accel_net(v.z)
+	}
 end

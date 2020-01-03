@@ -38,7 +38,8 @@ local falling = {
 		end
 		return bifn.set_node(self, node, meta, ...)
 	end,
-	on_step = function(...)
+	on_step = function(self, ...)
+		self.object:set_acceleration(nodecore.grav_air_accel(self.object:get_velocity()))
 		local oldadd = minetest.add_item
 		local drops = {}
 		minetest.add_item = function(pos, item, ...)
@@ -57,7 +58,7 @@ local falling = {
 			minetest.add_node = oldnode
 			return ...
 		end
-		return helper(bifn.on_step(...))
+		return helper(bifn.on_step(self, ...))
 	end
 }
 setmetatable(falling, bifn)
