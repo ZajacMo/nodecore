@@ -43,7 +43,6 @@ setmetatable(nodecore, {
 	})
 
 include("compat_vector")
-include("issue7020")
 include("issue9043")
 
 include("util_misc")
@@ -58,6 +57,7 @@ include("util_sound")
 include("util_translate")
 include("util_ezschematic")
 include("util_gametime")
+include("util_settlescan")
 include("match")
 
 include("fx_digparticles")
@@ -72,7 +72,6 @@ include("mapgen_shared")
 include("item_on_register")
 include("item_drop_in_place")
 include("item_falling_repose")
-include("item_falling_settle")
 include("item_alternate_loose")
 include("item_group_visinv")
 include("item_oldnames")

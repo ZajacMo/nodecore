@@ -397,3 +397,9 @@ function nodecore.grav_air_accel(v)
 		z = air_accel_net(v.z)
 	}
 end
+function nodecore.grav_air_accel_ent(obj)
+	local cur = obj:get_acceleration()
+	local new = nodecore.grav_air_accel(obj:get_velocity())
+	if vector.equals(cur, new) then return end
+	return obj:set_acceleration(new)
+end

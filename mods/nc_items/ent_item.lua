@@ -1,57 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, setmetatable, table,
-      vector
-    = ItemStack, math, minetest, nodecore, pairs, setmetatable, table,
-      vector
-local math_random, table_sort
-    = math.random, table.sort
+local ItemStack, math, minetest, nodecore, setmetatable, vector
+    = ItemStack, math, minetest, nodecore, setmetatable, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
-
-local settleorder = {}
-do
-	local groups = {}
-	local keys = {}
-	for x = -5, 5 do
-		for y = -5, 5 do
-			for z = -5, 5 do
-				local p = {
-					x = x,
-					y = y,
-					z = z,
-				}
-				local d = vector.length(p)
-				if d <= 5 then
-					p.v = d + p.y / 100
-					local g = groups[p.v]
-					if not g then
-						g = {}
-						groups[p.v] = g
-						keys[#keys + 1] = p.v
-					end
-					g[#g + 1] = p
-				end
-			end
-		end
-	end
-	table_sort(keys)
-	for _, k in pairs(keys) do
-		local stamp = 0
-		local t = groups[k]
-		settleorder[#settleorder + 1] = function()
-			if stamp == nodecore.gametime then return t end
-			local n = #t
-			if n < 2 then return t end
-			for i = 1, n do
-				local j = math_random(1, n)
-				local x = t[i]
-				t[i] = t[j]
-				t[j] = x
-			end
-			stamp = nodecore.gametime
-			return t
-		end
-	end
-end
 
 local function settle(self)
 	local pos = vector.round(self.object:get_pos())
@@ -60,24 +12,20 @@ local function settle(self)
 	node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
 	if node.name == "ignore" then return end
 	local item = ItemStack(self.itemstring)
-	for i = 1, #settleorder do
-		local grp = (settleorder[i])()
-		for j = 1, #grp do
-			local rel = grp[j]
-			local p = vector.add(pos, rel)
-			item = nodecore.stack_add(p, item)
-			if item:is_empty() then
-				self.itemstring = ""
-				self.object:remove()
-				return true
-			end
-			if nodecore.buildable_to(p) and (rel.y <= 0
-				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
-				nodecore.place_stack(p, item)
-				self.itemstring = ""
-				self.object:remove()
-				return true
-			end
+	for rel in nodecore.settlescan() do
+		local p = vector.add(pos, rel)
+		item = nodecore.stack_add(p, item)
+		if item:is_empty() then
+			self.itemstring = ""
+			self.object:remove()
+			return true
+		end
+		if nodecore.buildable_to(p) and (rel.y <= 0
+			or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
+			nodecore.place_stack(p, item)
+			self.itemstring = ""
+			self.object:remove()
+			return true
 		end
 	end
 	self.itemstring = item:to_string()

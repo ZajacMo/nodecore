@@ -37,7 +37,7 @@ function minetest.spawn_falling_node(pos, node, meta)
 	if obj then
 		obj:get_luaentity():set_node(node, meta or minetest.get_meta(pos):to_table())
 		minetest.remove_node(pos)
-		return true
+		return obj
 	end
 	return false
 end

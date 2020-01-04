@@ -10,11 +10,9 @@ local function getcrushdamage(name, alreadyloose)
 	return name and getcrushdamage(name .. "_loose", true) or 0
 end
 
-local function register(fallname, mult, getname)
-	local fallnode = minetest.registered_entities[fallname]
-
-	local oldtick = fallnode.on_step
-	fallnode.on_step = function(self, dtime, ...)
+local function maketick(mult, getname, oldtick)
+	oldtick = oldtick or function() end
+	return function(self, dtime, ...)
 		self.crush_damage = self.crush_damage or getcrushdamage(getname(self))
 		if self.crush_damage <= 0 then
 			return oldtick(self, dtime, ...)
@@ -44,9 +42,12 @@ local function register(fallname, mult, getname)
 
 		return oldtick(self, dtime, ...)
 	end
-
-	minetest.register_entity(":" .. fallname, fallnode)
 end
 
-register("__builtin:falling_node", 1, function(s) return s.node.name end)
-register("__builtin:item", 0.2, function(s) return ItemStack(s.itemstring):get_name() end)
+local item = minetest.registered_entities["__builtin:item"]
+item.on_step = maketick(0.2,
+	function(s) return ItemStack(s.itemstring):get_name() end,
+	item.on_step)
+minetest.register_entity(":__builtin:item", item)
+
+nodecore.register_falling_node_step(maketick(1, function(s) return s.node.name end))
