@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, vector
-    = ItemStack, minetest, nodecore, vector
+local ItemStack, math, minetest, nodecore, vector
+    = ItemStack, math, minetest, nodecore, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_item_entity_on_settle(function(self, pos)
@@ -8,6 +10,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		if node.name == "ignore" then return end
 		node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
 		if node.name == "ignore" then return end
+		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		local item = ItemStack(self.itemstring)
 		for rel in nodecore.settlescan() do
 			local p = vector.add(pos, rel)
@@ -26,4 +29,5 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			end
 		end
 		self.itemstring = item:to_string()
+		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 	end)
