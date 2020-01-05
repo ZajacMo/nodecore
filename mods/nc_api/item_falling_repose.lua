@@ -28,6 +28,7 @@ nodecore.register_on_register_item(function(_, def)
 		def.repose_drop = def.repose_drop or nodecore.falling_repose_drop
 	end)
 
+-- XXX: Needs to be moved elsewhere.
 function minetest.spawn_falling_node(pos, node, meta)
 	node = node or minetest.get_node(pos)
 	if node.name == "air" or node.name == "ignore" then
