@@ -3,6 +3,8 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 --[[
 Helpers for visible inventory. Use "visinv" node group.
 Sets up on_construct, after_destruct and an ABM to manage

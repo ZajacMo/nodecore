@@ -5,6 +5,8 @@ local string_gmatch, string_rep
     = string.gmatch, string.rep
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local huds = {}
 
 local myprops = {
