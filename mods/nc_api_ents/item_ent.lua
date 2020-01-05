@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, vector
-    = ItemStack, ipairs, math, minetest, nodecore, vector
+local ItemStack, ipairs, math, minetest, nodecore, pairs, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, vector
 local math_cos, math_pi, math_random, math_sin, math_sqrt
     = math.cos, math.pi, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -21,6 +21,49 @@ local data_load, data_save = nodecore.entity_staticdata_helpers({
 		vel = true,
 		setvel = true
 	})
+
+local function trymerge(self, peerobj)
+	if self.object == peerobj then return end
+	local peer = peerobj.get_luaentity and peerobj:get_luaentity()
+	if (not peer) or (peer.name ~= self.name) then return end
+
+	local mystack = ItemStack(self.itemstring)
+	local myqty = mystack:get_count()
+	local peerstack = ItemStack(peer.itemstring)
+	local peerqty = peerstack:get_count()
+	if mystack:get_free_space() < peerqty then return end
+
+	mystack:set_count(1)
+	peerstack:set_count(1)
+	if mystack:to_string() ~= peerstack:to_string() then return end
+
+	mystack:set_count(myqty + peerqty)
+	self:set_item(mystack)
+	peer.itemstring = ""
+	local selfobj = self.object
+	selfobj:set_pos(vector.multiply(vector.add(
+				vector.multiply(selfobj:get_pos(), myqty),
+				vector.multiply(peerobj:get_pos(), peerqty)),
+			1 / (myqty + peerqty)))
+	peerobj:remove()
+	return true
+end
+
+local function trymergeall(self)
+	local pos = self.object:get_pos()
+	if not (self.oldpos and vector.equals(pos, self.oldpos)) then
+		self.oldpos = pos
+		return
+	end
+
+	if self.nextmerge and nodecore.gametime < self.nextmerge then return end
+	self.nextmerge = (self.nextmerge or nodecore.gametime) + 0.75 + 0.5 * math_random()
+
+	for _, obj in pairs(minetest.get_objects_inside_radius(
+			self.object:get_pos(), 1)) do
+		if trymerge(self, obj) then return end
+	end
+end
 
 minetest.register_entity(":__builtin:item", {
 		initial_properties = {
@@ -79,6 +122,7 @@ minetest.register_entity(":__builtin:item", {
 				for _, func in ipairs(nodecore.registered_item_entity_on_settles) do
 					if func(self, ...) == true then return true end
 				end
+				return trymergeall(self)
 			end),
 
 		on_step = function(self, dtime, ...)
