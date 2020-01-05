@@ -54,6 +54,7 @@ minetest.register_node(modname .. ":tree", {
 			log = 1,
 			falling_node = 1
 		},
+		crush_damage = 1,
 		sounds = nodecore.sounds("nc_tree_woody"),
 		drop = modname .. ":log"
 	})
