@@ -1,10 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, nodecore
-    = include, nodecore
+local include
+    = include
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
-include("api")
-include("falling_ent")
-include("item_ent")
+include("limited_abm")
+include("aism")
+include("soaking")
+include("ambiance")

@@ -44,10 +44,5 @@ local function maketick(mult, getname, oldtick)
 	end
 end
 
-local item = minetest.registered_entities["__builtin:item"]
-item.on_step = maketick(0.2,
-	function(s) return ItemStack(s.itemstring):get_name() end,
-	item.on_step)
-minetest.register_entity(":__builtin:item", item)
-
 nodecore.register_falling_node_step(maketick(1, function(s) return s.node.name end))
+nodecore.register_item_entity_step(maketick(0.2, function(s) return ItemStack(s.itemstring):get_name() end))

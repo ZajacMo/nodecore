@@ -11,25 +11,12 @@ nodecore.register_falling_node_on_setnode,
 nodecore.registered_falling_node_on_setnodes
 = nodecore.mkreg()
 
-local area_unloaded = {}
-
-local function collides(self, pos)
-	local node = minetest.get_node_or_nil(pos)
-	if not node then return area_unloaded end
-	local def = minetest.registered_nodes[node.name]
-	if not def then return node end
-	if def.walkable then return node end
-	if def.liquidtype ~= "none"
-	and minetest.get_item_group(self.node.name, "float") ~= 0
-	then return node end
-end
-
-local savedprops = {
-	node = true,
-	meta = true,
-	vel = true,
-	setvel = true
-}
+local data_load, data_save = nodecore.entity_staticdata_helpers({
+		node = true,
+		meta = true,
+		vel = true,
+		setvel = true
+	})
 
 local function displace_check(pos)
 	local node = minetest.get_node(pos)
@@ -63,16 +50,11 @@ minetest.register_entity(":__builtin:falling_node", {
 			collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
 		},
 
-		get_staticdata = function(self)
-			local data = {}
-			for k in pairs(savedprops) do data[k] = self[k] end
-			return minetest.serialize(data)
-		end,
+		get_staticdata = data_save,
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
-			data = minetest.deserialize(data) or {}
-			for k in pairs(savedprops) do self[k] = data[k] end
+			return data_load(self, data)
 		end,
 
 		set_node = function(self, node, meta)
@@ -102,53 +84,16 @@ minetest.register_entity(":__builtin:falling_node", {
 			end
 		end,
 
-		settle_check = function(self)
-			local pos = self.object:get_pos()
-			pos.y = pos.y - 0.75
-			local coll = collides(self, pos)
-			if not coll then
-				if self.setvel then
-					self.object:set_velocity(self.vel)
-					self.setvel = nil
+		settle_check = nodecore.entity_settle_check(function(self, pos)
+				displace_check(pos)
+
+				minetest.set_node(pos, self.node)
+				nodecore.node_sound(pos, "place")
+				if self.meta then
+					minetest.get_meta(pos):from_table(self.meta)
 				end
-				self.vel = self.object:get_velocity()
-				return nodecore.grav_air_accel_ent(self.object)
-			end
-			if coll == area_unloaded then
-				self.object:set_pos(vector.round(self.object.pos))
-				self.object:set_velocity({x = 0, y = 0, z = 0})
-				self.object:set_acceleration({x = 0, y = 0, z = 0})
-				self.setvel = true
-				return
-			end
-			pos = vector.round(pos)
-			pos.y = pos.y + 1
-			if collides(self, pos) then
-				pos.y = pos.y + 1
-				return self.object:set_pos(pos)
-			end
-
-			displace_check(pos)
-
-			minetest.set_node(pos, self.node)
-			nodecore.node_sound(pos, "place")
-			if self.meta then
-				minetest.get_meta(pos):from_table(self.meta)
-			end
-			self.object:remove()
-
-			pos.y = pos.y + 1
-			for _, obj in pairs(minetest.get_objects_inside_radius(pos, 2)) do
-				if vector.equals(vector.round(obj:get_pos()), pos) then
-					obj = obj.get_luaentity and obj:get_luaentity()
-					if obj and obj.settle_check then
-						obj:settle_check()
-					end
-				end
-			end
-
-			return nodecore.fallcheck(pos)
-		end,
+				self.object:remove()
+			end),
 
 		on_step = function(self, ...)
 			if not self.node then return self.object:remove() end

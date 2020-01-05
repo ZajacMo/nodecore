@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, setmetatable, string
-    = ItemStack, math, minetest, nodecore, pairs, setmetatable, string
+local ItemStack, math, minetest, nodecore, pairs, string
+    = ItemStack, math, minetest, nodecore, pairs, string
 local math_random, string_format
     = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -110,9 +110,7 @@ local function invtick()
 end
 invtick()
 
-local bii = minetest.registered_entities["__builtin:item"]
-local newbii = {
-	on_step = function(self, dtime, ...)
+nodecore.register_item_entity_step(function(self, dtime)
 		local t = (self.aismtimer or 0) + dtime
 		while t >= 1 do
 			t = t - 1
@@ -127,8 +125,4 @@ local newbii = {
 				})
 		end
 		self.aismtimer = t
-		return bii.on_step(self, dtime, ...)
-	end
-}
-setmetatable(newbii, bii)
-minetest.register_entity(":__builtin:item", newbii)
+	end)

@@ -29,19 +29,6 @@ nodecore.register_on_register_item(function(_, def)
 	end)
 
 -- XXX: Needs to be moved elsewhere.
-function minetest.spawn_falling_node(pos, node, meta)
-	node = node or minetest.get_node(pos)
-	if node.name == "air" or node.name == "ignore" then
-		return false
-	end
-	local obj = minetest.add_entity(pos, "__builtin:falling_node")
-	if obj then
-		obj:get_luaentity():set_node(node, meta or minetest.get_meta(pos):to_table())
-		minetest.remove_node(pos)
-		return obj
-	end
-	return false
-end
 
 local function check_empty(pos, dx, dy, dz)
 	for ndy = dy, 0 do

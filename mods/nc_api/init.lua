@@ -62,18 +62,11 @@ include("match")
 
 include("fx_digparticles")
 
-include("register_limited_abm")
-include("register_aism")
-include("register_soaking")
-include("register_ambiance")
 include("register_mods")
 include("mapgen_shared")
 
 include("item_on_register")
 include("item_drop_in_place")
-include("item_falling_repose")
-include("item_alternate_loose")
-include("item_group_visinv")
 include("item_oldnames")
 include("item_tool_wears_to")
 include("item_tool_sounds")

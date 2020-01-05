@@ -1,10 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, setmetatable, type,
-      vector
-    = ItemStack, math, minetest, nodecore, pairs, setmetatable, type,
-      vector
-local math_floor, math_pi, math_random, math_sqrt
-    = math.floor, math.pi, math.random, math.sqrt
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -17,43 +13,6 @@ local modname = minetest.get_current_modname()
 
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
-
-function nodecore.stackentprops(stack, yaw, rotate, ss)
-	local props = {
-		hp_max = 1,
-		physical = false,
-		collide_with_objects = false,
-		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "wielditem",
-		visual_size = {x = 0.4, y = 0.4},
-		textures = {""},
-		spritediv = {x = 1, y = 1},
-		initial_sprite_basepos = {x = 0, y = 0},
-		is_visible = false,
-		static_save = ss and true or false
-	}
-	local scale = 0
-	yaw = yaw or 0
-	if stack then
-		if type(stack) == "string" then stack = ItemStack(stack) end
-		props.is_visible = not stack:is_empty()
-		props.textures[1] = stack:get_name()
-
-		local ratio = stack:get_count() / stack:get_stack_max()
-		if ratio > 1 then ratio = 1 end
-		scale = math_sqrt(ratio) * 0.15 + 0.25
-		props.visual_size = {x = scale, y = scale}
-
-		props.automatic_rotate = rotate
-		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or nil
-
-		if ratio == 1 then ratio = 1 - (stack:get_wear() / 65536) end
-
-		if ratio ~= 1 then yaw = yaw + 1/8 + 3/8 * (1 - ratio) end
-		yaw = yaw - 2 * math_floor(yaw / 2)
-	end
-	return props, scale, yaw * math_pi / 2
-end
 
 minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
@@ -108,33 +67,6 @@ function nodecore.visinv_update_ents(pos, node)
 
 	return found
 end
-
-------------------------------------------------------------------------
--- ITEM ENT APPEARANCE
-
-local bii = minetest.registered_entities["__builtin:item"]
-local item = {
-	set_item = function(self, ...)
-		local realobj = self.object
-		self.object = {}
-		setmetatable(self.object, {
-				__index = {
-					set_properties = function() end
-				}
-			})
-		bii.set_item(self, ...)
-		self.object = realobj
-
-		self.rotdir = self.rotdir or math_random(1, 2) * 2 - 3
-		local p, s = nodecore.stackentprops(self.itemstring, 0, self.rotdir, true)
-		p.physical = true
-		s = s / math_sqrt(2)
-		p.collisionbox = {-s, -s, -s, s, s, s}
-		return realobj:set_properties(p)
-	end
-}
-setmetatable(item, bii)
-minetest.register_entity(":__builtin:item", item)
 
 ------------------------------------------------------------------------
 -- NODE REGISTRATION HELPERS
