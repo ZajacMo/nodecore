@@ -47,6 +47,7 @@ local function regliquid(def)
 	t.drawtype = "flowingliquid"
 	t.liquidtype = "flowing"
 	t.paramtype2 = "flowingliquid"
+	t.buildable_to = true
 	regterrain(t)
 end
 
@@ -290,7 +291,6 @@ regliquid({
 		light_source = 13,
 		walkable = false,
 		diggable = false,
-		buildable_to = true,
 		drowning = 1,
 		damage_per_second = 8,
 		on_punch = nodecore.node_punch_hurt,

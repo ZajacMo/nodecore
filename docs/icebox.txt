@@ -9,21 +9,6 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Rebuild falling_node and item entity from the ground up.
-	- Refactor item_entity's scan method into scan_tunnel API for
-	  use by both item_entity and falling_node.
-	- Add methods to settle as node or settle as stacks.
-	- Add flags to force stack/item settlement.
-	- Add method to try to settle item/node first, create ent only
-	  if settling fails.
-	- On anything settling and a node being created, check space above
-	  for entities to early-settle.
-	- Make falling_node try to find somewhere to place itself instead
-	  of displacing the node it landed on, convert to an item as a
-	  fallback.
-	- Standardize collision detection, i.e. ignore node collision boxes
-	  and settle early based on full-node size.
-
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.
 

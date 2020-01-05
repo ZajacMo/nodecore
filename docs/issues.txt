@@ -19,9 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
-- Can we preserve non-buildable_to liquid sources when squashed,
-  e.g. lava or glass clobbered by falling_node or item?
-
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
 

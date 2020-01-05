@@ -70,15 +70,12 @@ end
 
 local area_unloaded = {}
 
-local function collides(self, pos)
+local function collides(_, pos)
 	local node = minetest.get_node_or_nil(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
 	if not def then return node end
 	if def.walkable then return node end
-	if def.liquidtype ~= "none"
-	and minetest.get_item_group(self.node.name, "float") ~= 0
-	then return node end
 end
 
 function nodecore.entity_settle_check(on_settle)
