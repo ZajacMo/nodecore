@@ -9,6 +9,11 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Add a "freeze" config setting to disable almost all automatic in-game
+  mechanics, for testing, creative, etc purposes.
+	- All active modifiers, node timers
+	- Hot potato and other globalstep hooks
+
 - Consider upstreaming nc_stucco, maybe into nc_concrete?
 	- Credit Avicennia G a.k.a. Tereno Johnson
 	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
@@ -57,15 +62,17 @@ ROADMAP: Large New Development Projects
 	- Use for touchtips inv access.
 	- Genericize sponge logic using stack_access API
 
-- Wandering fluids API for concrete, glass, lava?
-	- Configurable setting for generation count multiplier.
-
-- Lava quenching, new material?
-	- Seepstone?
+- Lava rework:
+	- Wandering fluids API for concrete, glass, lava?
+		- Configurable setting for generation count multiplier.
+	- Lava quenching, new material?
+		- Seepstone?
 	- Lava wandering.
 		- Concentrations of lava should melt nearyby stone
 			- Dependent on hardness of stone
 		- Lava near fringes should spontaneously quench.
+	- Damage at distance via radiant heat (raycast)?
+		- Generic radiant_damage system to replace damage_per_second?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
 
@@ -121,6 +128,8 @@ ROADMAP: Large New Development Projects
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
+	- Support 64x64 dual-layer MC skins?
+	- Add a cloak/hood or other clothing/acc surfaces?
 
 - New materials to craft with.
 	- Dungeon materials, stonework?

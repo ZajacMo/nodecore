@@ -9,6 +9,10 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Nerf lux tool durability?
+
+- Increase variability/jitter of soaking ABMs, esp. tree growth?
+
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
@@ -18,6 +22,13 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Full tote?
 	- Dirt->sand leeching
 	- Time for an audit again...
+
+- Can we automatically dump a TP overrides.txt file?
+	- Move this, and translate hook, to a chat command?
+
+- Quicker optic path updates.
+	- Record which nodes are blocking optic paths, and which are
+	  used by optic paths, in-memory, for quicker recalcs?
 
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
@@ -33,6 +44,9 @@ ISSUES: Bugs, Cleanup and Refinements
 	- If actual time exceeds time to spread, pass soak depth on to
 	  new node that's been created, and trigger respread check.
 	- Will have to do a lot of performance testing.
+
+- Should ash and derivatives have a fertilizing effect?
+	- Maybe wet/tacky stuccos?
 
 - Probably should be using hash_node_position insted of pos_to_string
   in many places where we don't support non-integer positions anyway
