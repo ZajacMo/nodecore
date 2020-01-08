@@ -44,6 +44,7 @@ minetest.register_entity(":__builtin:falling_node", {
 			visual = "wielditem",
 			visual_size = {x = 2/3, y = 2/3},
 			textures = {},
+			pointable = false,
 			physical = true,
 			is_visible = false,
 			collide_with_objects = false,
