@@ -70,7 +70,7 @@ end
 
 local area_unloaded = {}
 
-local function collides(_, pos)
+local function collides(pos)
 	local node = minetest.get_node_or_nil(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
@@ -81,8 +81,8 @@ end
 function nodecore.entity_settle_check(on_settle)
 	return function(self)
 		local pos = self.object:get_pos()
-		local bpos = {x = pos.x, y = pos.y - 0.75, z = pos.z}
-		local coll = collides(self, bpos)
+		local coll = self.object:get_velocity().y == 0
+		and collides({x = pos.x, y = pos.y - 0.75, z = pos.z})
 		if not coll then
 			if self.setvel then
 				self.object:set_velocity(self.vel)
@@ -92,19 +92,14 @@ function nodecore.entity_settle_check(on_settle)
 			return nodecore.grav_air_accel_ent(self.object)
 		end
 		if coll == area_unloaded then
-			self.object:set_pos(vector.round(self.object.bpos))
 			self.object:set_velocity({x = 0, y = 0, z = 0})
 			self.object:set_acceleration({x = 0, y = 0, z = 0})
 			self.setvel = true
 			return
 		end
 		pos = vector.round(pos)
-		if collides(self, pos) then
-			pos.y = pos.y + 1
-			return self.object:set_pos(pos)
-		end
 
-		if not on_settle(self, pos) then return end
+		if not on_settle(self, pos, collides) then return end
 
 		pos.y = pos.y + 1
 		for _, obj in pairs(minetest.get_objects_inside_radius(pos, 2)) do
