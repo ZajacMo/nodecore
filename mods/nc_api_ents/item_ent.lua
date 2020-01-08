@@ -77,11 +77,9 @@ minetest.register_entity(":__builtin:item", {
 
 		settle_check = nodecore.entity_settle_check(function(self, ...)
 				for _, func in ipairs(nodecore.registered_item_entity_on_settles) do
-					if func(self, ...) == true then
-						nodecore.item_ent_merge(self.object:get_pos())
-						return true
-					end
+					if func(self, ...) == true then return true end
 				end
+				nodecore.item_ent_merge(self.object:get_pos())
 			end),
 
 		on_step = function(self, dtime, ...)
