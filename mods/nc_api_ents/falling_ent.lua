@@ -39,14 +39,6 @@ local function displace_check(pos)
 	end
 end
 
-local function findalt(pos, collides)
-	for p in nodecore.settlescan(pos) do
-		p = vector.add(pos, p)
-		if not collides(p) then return p end
-	end
-	return pos
-end
-
 minetest.register_entity(":__builtin:falling_node", {
 		initial_properties = {
 			visual = "wielditem",
@@ -93,7 +85,11 @@ minetest.register_entity(":__builtin:falling_node", {
 		end,
 
 		settle_check = nodecore.entity_settle_check(function(self, pos, collides)
-				if collides(pos) then pos = findalt(pos, collides) end
+				if collides(pos) then
+					pos.y = pos.y + 1
+					self.object:set_pos(pos)
+					return
+				end
 
 				displace_check(pos)
 
@@ -103,6 +99,8 @@ minetest.register_entity(":__builtin:falling_node", {
 					minetest.get_meta(pos):from_table(self.meta)
 				end
 				self.object:remove()
+
+				return true
 			end),
 
 		on_step = function(self, ...)
