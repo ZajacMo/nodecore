@@ -95,7 +95,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 				local x = s:get_count() - (v.match.count or 1)
 				if x > 0 then
 					s:set_count(x)
-					nodecore.item_eject(p, s, 0.001)
+					nodecore.item_eject(p, s)
 				end
 				nodecore.stack_set(p, ItemStack(""))
 			end
