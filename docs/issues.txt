@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Nerf lux tool durability?
-
-- Increase variability/jitter of soaking ABMs, esp. tree growth?
-
 - Hint updates:
 	- Press recipe witnessing?
 	- Rake.
@@ -23,15 +19,29 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
+- Allow mods to disable nodecore builtin mapgen_shared hooks.
+	- Expand hooks to use a def table instead of func, prio
+	- Add labels.
+	- Add a remove_mapgen_shared hook...?
+
+- Replacement for mkreg, a.k.a. register_generic():
+	- Allow lazy registration, i.e. a register method that can
+	  register for things not yet defined, and allow later registration
+	  of the registration definition that will pick up those missed.
+	- Allow unregistering things...?
+
+- Item ent merge should use logic consistent with nodecore.stack_merge,
+  which handles item families.
+
+- Flammables should respond via AISM when bathed in fire or igniting
+  liquids like molten glass or rock.
+
 - Can we automatically dump a TP overrides.txt file?
 	- Move this, and translate hook, to a chat command?
 
 - Quicker optic path updates.
 	- Record which nodes are blocking optic paths, and which are
 	  used by optic paths, in-memory, for quicker recalcs?
-
-- Flammables should respond via AISM when bathed in fire or igniting
-  liquids like molten glass or rock.
 
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire

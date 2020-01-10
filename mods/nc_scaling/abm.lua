@@ -17,6 +17,7 @@ nodecore.register_limited_abm({
 		chance = 1,
 		limited_max = 100,
 		nodenames = {"group:" .. modname},
+		ignore_stasis = true,
 		action = function(pos)
 			local data = minetest.get_meta(pos):get_string("data")
 			if (not data) or (data == "") then

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs
-    = minetest, pairs
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local function hotpotatoes(player)
@@ -36,6 +36,7 @@ local function hotpotatoes(player)
 end
 
 minetest.register_globalstep(function()
+		if nodecore.stasis then return end
 		for _, v in pairs(minetest.get_connected_players()) do
 			hotpotatoes(v)
 		end

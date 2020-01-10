@@ -61,6 +61,7 @@ local function playercheck(dtime, player)
 	qtys[name] = q - math_floor(q)
 end
 minetest.register_globalstep(function(dtime)
+		if nodecore.stasis then return end
 		for _, player in ipairs(minetest.get_connected_players()) do
 			playercheck(dtime, player)
 		end

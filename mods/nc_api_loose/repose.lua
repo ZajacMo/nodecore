@@ -28,8 +28,6 @@ nodecore.register_on_register_item(function(_, def)
 		def.repose_drop = def.repose_drop or nodecore.falling_repose_drop
 	end)
 
--- XXX: Needs to be moved elsewhere.
-
 local function check_empty(pos, dx, dy, dz)
 	for ndy = dy, 0 do
 		local p = {x = pos.x + dx, y = pos.y + ndy, z = pos.z + dz}

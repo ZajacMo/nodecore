@@ -101,6 +101,7 @@ nodecore.register_limited_abm({
 		nodenames = {"group:visinv"},
 		interval = 1,
 		chance = 1,
+		ignore_stasis = true,
 		action = function(...) return nodecore.visinv_update_ents(...) end
 	})
 
