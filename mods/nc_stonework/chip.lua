@@ -13,6 +13,8 @@ minetest.register_craftitem(modname .. ":chip", {
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
+local up = {x = 0, y = 5, z = 0}
+
 nodecore.register_craft({
 		label = "break cobble to chips",
 		action = "pummel",
@@ -20,7 +22,7 @@ nodecore.register_craft({
 			{match = "nc_terrain:cobble_loose", replace = "nc_terrain:gravel"}
 		},
 		items = {
-			{name = modname .. ":chip", count = 4, scatter = 5}
+			{name = modname .. ":chip", count = 4, scatter = 5, velocity = up}
 		},
 		toolgroups = {cracky = 2},
 		itemscatter = 5

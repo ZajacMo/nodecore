@@ -81,8 +81,10 @@ end
 function nodecore.entity_settle_check(on_settle)
 	return function(self)
 		local pos = self.object:get_pos()
-		local coll = self.object:get_velocity().y == 0
+		local yvel = self.object:get_velocity().y
+		local coll = self.not_rising and yvel == 0
 		and collides({x = pos.x, y = pos.y - 0.75, z = pos.z})
+		self.not_rising = yvel <= 0
 		if not coll then
 			if self.setvel then
 				self.object:set_velocity(self.vel)
