@@ -59,6 +59,17 @@ minetest.register_node(modname .. ":tree", {
 		drop = modname .. ":log"
 	})
 
+nodecore.register_aism({
+		label = "Tree Trunk Conversion",
+		interval = 1,
+		chance = 1,
+		itemnames = {modname .. ":tree"},
+		action = function(stack)
+			stack:set_name(modname .. ":log")
+			return stack
+		end
+	})
+
 minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
