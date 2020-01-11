@@ -14,13 +14,15 @@ local function metaclear(meta, def)
 end
 
 local function soaking_core(def, reg, getmeta)
-	def.qtyfield = def.qtyfield or "soakqty"
-	def.timefield = def.timefield or "soaktime"
+	def.qtyfield = def.qtyfield or def.fieldname and (def.fieldname .. "qty")
+	if not def.qtyfield then error("soaking missing qtyfield or fieldname") end
+	def.timefield = def.timefield or def.fieldname and (def.fieldname .. "time")
+	if not def.qtyfield then error("soaking missing qtyfield or fieldname") end
 
 	def.soakinterval = def.soakinterval or ((def.interval or 1) * (def.chance or 1))
 
-	if not def.soakrate then error("soaking abm missing soakrate callback") end
-	if not def.soakcheck then error("soaking abm missing soakcheck callback") end
+	if not def.soakrate then error("soaking missing soakrate callback") end
+	if not def.soakcheck then error("soaking missing soakcheck callback") end
 
 	def.soakvary = def.soakvary or 0.25
 	if not def.soakrand then

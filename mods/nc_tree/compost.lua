@@ -52,6 +52,7 @@ nodecore.register_craft({
 
 nodecore.register_soaking_abm({
 		label = "Composting Growing",
+		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
 		interval = 10,

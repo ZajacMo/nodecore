@@ -117,6 +117,7 @@ minetest.register_chatcommand("growtrees", {
 
 nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
+		fieldname = "eggcorn",
 		nodenames = {epname},
 		interval = 10,
 		chance = 1,

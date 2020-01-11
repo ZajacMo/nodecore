@@ -78,6 +78,7 @@ nodecore.register_on_register_item(function(name, def)
 
 nodecore.register_soaking_abm({
 		label = "loose self-repacking",
+		fieldname = "repack",
 		nodenames = {"group:loose_repack"},
 		interval = 10,
 		chance = 1,

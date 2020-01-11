@@ -31,6 +31,7 @@ function nodecore.register_dirt_leeching(fromnode, tonode, rate)
 	end
 	nodecore.register_soaking_abm({
 			label = fromnode .. " leeching to " .. tonode,
+			fieldname = "leech",
 			nodenames = {fromnode},
 			neighbors = {"group:water"},
 			interval = 5,

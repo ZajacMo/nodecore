@@ -62,6 +62,7 @@ end
 local ratefactor = 40000
 nodecore.register_soaking_aism({
 		label = "Lux Infusion",
+		fieldname = "infuse",
 		interval = 2,
 		chance = 1,
 		itemnames = alltools,
