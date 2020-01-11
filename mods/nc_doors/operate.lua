@@ -116,14 +116,14 @@ local function trypush(pos, dir, dir2)
 
 	local data = {
 		from = pos,
-		fkey = minetest.pos_to_string(pos),
+		fkey = minetest.hash_node_position(pos),
 		to = vector.add(pos, dir),
 		node = node,
 	}
-	data.tkey = minetest.pos_to_string(data.to)
+	data.tkey = minetest.hash_node_position(data.to)
 	if dir2 then
 		data.to2 = vector.add(pos, dir2)
-		data.tkey2 = minetest.pos_to_string(data.to2)
+		data.tkey2 = minetest.hash_node_position(data.to2)
 	end
 	convey[data.fkey] = data
 end
@@ -140,7 +140,7 @@ minetest.register_globalstep(function(dtime)
 local is_door = {groups = {door = true}}
 
 function nodecore.operate_door(pos, node, dir)
-	local key = minetest.pos_to_string(pos)
+	local key = minetest.hash_node_position(pos)
 	if squelch[key] then return end
 	node = node or minetest.get_node_or_nil(pos)
 	if (not node) or (not nodecore.match(node, is_door)) then return end
@@ -160,7 +160,7 @@ function nodecore.operate_door(pos, node, dir)
 			if not n then return true end
 			if (not nodecore.match(n, is_door))
 			or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
-			found[minetest.pos_to_string(p)] = {pos = p, node = n}
+			found[minetest.hash_node_position(p)] = {pos = p, node = n}
 		end
 	) then return end
 
@@ -172,7 +172,7 @@ function nodecore.operate_door(pos, node, dir)
 		v.dir2 = rotdir == "r" and ffd.k or ffd.l
 		local to = vector.add(v.pos, v.dir)
 
-		if (not found[minetest.pos_to_string(to)])
+		if (not found[minetest.hash_node_position(to)])
 		and (not nodecore.buildable_to(to))
 		then
 			if press then return end
@@ -185,7 +185,7 @@ function nodecore.operate_door(pos, node, dir)
 
 		if nodecore.obstructed(to) then return end
 
-		local str = minetest.pos_to_string(to)
+		local str = minetest.hash_node_position(to)
 		if squelch[str] then return end
 
 		v.str = str
@@ -230,7 +230,7 @@ function nodecore.operate_door(pos, node, dir)
 		for i, xfd in pairs(nodecore.facedirs) do
 			if vector.equals(xfd.t, v.fd.t)
 			and vector.equals(xfd.r, rotdir == "r" and v.fd.f or v.fd.k) then
-				toset[minetest.pos_to_string(v.to)] = {
+				toset[minetest.hash_node_position(v.to)] = {
 					pos = v.to,
 					name = v.node.name,
 					param2 = i
@@ -244,7 +244,7 @@ function nodecore.operate_door(pos, node, dir)
 		set_node(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
-			local k = "sfx" .. minetest.pos_to_string(p)
+			local k = "sfx" .. minetest.hash_node_position(p)
 			if not squelch[k] then
 				squelch[k] = 0
 				minetest.sound_play("nc_doors_operate",

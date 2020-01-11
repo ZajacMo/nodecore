@@ -24,12 +24,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Add labels.
 	- Add a remove_mapgen_shared hook...?
 
-- Replacement for mkreg, a.k.a. register_generic():
-	- Allow lazy registration, i.e. a register method that can
-	  register for things not yet defined, and allow later registration
-	  of the registration definition that will pick up those missed.
-	- Allow unregistering things...?
-
 - Item ent merge should use logic consistent with nodecore.stack_merge,
   which handles item families.
 
@@ -55,11 +49,14 @@ ISSUES: Bugs, Cleanup and Refinements
 	  new node that's been created, and trigger respread check.
 	- Will have to do a lot of performance testing.
 
+- Replacement for mkreg, a.k.a. register_generic():
+	- Allow lazy registration, i.e. a register method that can
+	  register for things not yet defined, and allow later registration
+	  of the registration definition that will pick up those missed.
+	- Allow unregistering things...?
+
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
-
-- Probably should be using hash_node_position insted of pos_to_string
-  in many places where we don't support non-integer positions anyway
 
 - CDB screenshot out of date.
 	- Update nc_reative dependencies!

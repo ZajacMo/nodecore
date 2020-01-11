@@ -81,7 +81,7 @@ minetest.register_abm({
 		neighbors = {"group:flammable"},
 		action = function(pos)
 			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable")) do
-				local key = minetest.pos_to_string(pos)
+				local key = minetest.hash_node_position(pos)
 				if not igniteseen[key] then
 					igniteseen[key] = true
 					igniteqty = igniteqty + 1
