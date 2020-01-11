@@ -102,7 +102,8 @@ minetest.register_entity(":__builtin:falling_node", {
 				self.object:remove()
 
 				return true
-			end),
+			end,
+			true),
 
 		on_step = function(self, ...)
 			if not self.node then return self.object:remove() end

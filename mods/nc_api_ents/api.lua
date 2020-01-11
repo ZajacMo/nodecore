@@ -78,11 +78,11 @@ local function collides(pos)
 	if def.walkable then return node end
 end
 
-function nodecore.entity_settle_check(on_settle)
+function nodecore.entity_settle_check(on_settle, isnode)
 	return function(self)
 		local pos = self.object:get_pos()
 		local yvel = self.object:get_velocity().y
-		local coll = self.not_rising and yvel == 0
+		local coll = (isnode or self.not_rising and yvel == 0)
 		and collides({x = pos.x, y = pos.y - 0.75, z = pos.z})
 		self.not_rising = yvel <= 0
 		if not coll then
