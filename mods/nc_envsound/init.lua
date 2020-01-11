@@ -7,17 +7,24 @@ local math_exp, math_random
 
 nodecore.amcoremod()
 
-local function check(pos, done)
+local function dsqr(a, b)
+	local v = vector.subtract(a, b)
+	return vector.dot(v, v)
+end
+
+local function check(pos, done, srcs)
 	local sp = {
 		x = pos.x + math_random() * 64 - 32,
 		y = pos.y + math_random() * 64 - 32,
 		z = pos.z + math_random() * 64 - 32,
 	}
 
-	local dist = vector.distance(sp, pos)
-	if dist > 32 or dist < 4 then return end
+	if dsqr(sp, pos) > (32 * 32) then return end
 	for p in pairs(done) do
-		if vector.distance(sp, p) < 32 then return end
+		if dsqr(sp, p) < (32 * 32) then return end
+	end
+	for p in pairs(srcs) do
+		if dsqr(sp, p) < (4 * 4) then return end
 	end
 	if minetest.get_node(sp).name ~= "air" then return end
 
@@ -42,14 +49,21 @@ end
 local oldpos = {}
 local function run()
 	minetest.after(math_random(), run)
-	local done = {}
+	local srcs = {}
 	for _, pl in pairs(minetest.get_connected_players()) do
-		local pname = pl:get_player_name()
-		local pos = pl:get_pos()
-		local op = oldpos[pname] or pos
-		oldpos[pname] = pos
-		pos = vector.add(pos, vector.multiply(vector.subtract(pos, op), 3))
-		check(pos, done)
+		if nodecore.player_visible(pl) then
+			local pname = pl:get_player_name()
+			local pos = pl:get_pos()
+			local op = oldpos[pname] or pos
+			oldpos[pname] = pos
+			pos = vector.add(pos, vector.multiply(vector.subtract(pos, op), 3))
+			srcs[#srcs + 1] = pos
+		end
 	end
+	local done = {}
+	for _, pos in pairs(srcs) do
+		check(pos, done, srcs)
+	end
+
 end
 run()
