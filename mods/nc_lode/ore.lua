@@ -161,35 +161,38 @@ local getstoneids = nodecore.memoize(function()
 		return stoneids
 	end)
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data)
-		local stoneids = getstoneids()
+nodecore.register_mapgen_shared({
+		label = "lode exposure",
+		func = function(minp, maxp, area, data)
+			local stoneids = getstoneids()
 
-		local function bad(x, y, z)
-			local c = data[area:index(x, y, z)]
-			return not stoneids[c]
-		end
+			local function bad(x, y, z)
+				local c = data[area:index(x, y, z)]
+				return not stoneids[c]
+			end
 
-		for z = minp.z, maxp.z do
-			for y = minp.y, maxp.y do
-				for x = minp.x, maxp.x do
-					local i = area:index(x, y, z)
-					if data[i] == c_ore then
-						if x == minp.x
-						or x == maxp.x
-						or y == minp.y
-						or y == maxp.y
-						or z == minp.z
-						or z == maxp.z
-						or bad(x + 1, y, z)
-						or bad(x - 1, y, z)
-						or bad(x, y + 1, z)
-						or bad(x, y - 1, z)
-						or bad(x, y, z + 1)
-						or bad(x, y, z - 1)
-						then data[i] = c_lodestone
+			for z = minp.z, maxp.z do
+				for y = minp.y, maxp.y do
+					for x = minp.x, maxp.x do
+						local i = area:index(x, y, z)
+						if data[i] == c_ore then
+							if x == minp.x
+							or x == maxp.x
+							or y == minp.y
+							or y == maxp.y
+							or z == minp.z
+							or z == maxp.z
+							or bad(x + 1, y, z)
+							or bad(x - 1, y, z)
+							or bad(x, y + 1, z)
+							or bad(x, y - 1, z)
+							or bad(x, y, z + 1)
+							or bad(x, y, z - 1)
+							then data[i] = c_lodestone
+						end
 					end
 				end
 			end
 		end
 	end
-end)
+})

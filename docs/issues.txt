@@ -19,11 +19,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Dirt->sand leeching
 	- Time for an audit again...
 
-- Allow mods to disable nodecore builtin mapgen_shared hooks.
-	- Expand hooks to use a def table instead of func, prio
-	- Add labels.
-	- Add a remove_mapgen_shared hook...?
-
 - Item ent merge should use logic consistent with nodecore.stack_merge,
   which handles item families.
 

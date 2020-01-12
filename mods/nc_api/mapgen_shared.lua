@@ -8,23 +8,24 @@ local math_floor, table_insert
 local mapgens = {}
 nodecore.registered_mapgen_shared = mapgens
 
-local prios = {}
+function nodecore.register_mapgen_shared(def)
+	if minetest.get_mapgen_setting("mg_name") == "singlenode"
+	and not def.allow_singlenode then return end
 
-function nodecore.register_mapgen_shared(func, prio)
-	prio = prio or 0
+	local prio = def.priority or 0
+	def.priority = prio
 	local min = 1
 	local max = #mapgens + 1
 	while max > min do
 		local try = math_floor((min + max) / 2)
-		local oldp = prios[try]
+		local oldp = mapgens[try].priority
 		if prio < oldp then
 			min = try + 1
 		else
 			max = try
 		end
 	end
-	table_insert(mapgens, min, func)
-	table_insert(prios, min, prio)
+	table_insert(mapgens, min, def)
 end
 
 minetest.register_on_generated(function(minp, maxp)
@@ -33,7 +34,7 @@ minetest.register_on_generated(function(minp, maxp)
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 
 		for _, v in ipairs(mapgens) do
-			v(minp, maxp, area, data, vm, emin, emax)
+			v.func(minp, maxp, area, data, vm, emin, emax)
 		end
 
 		vm:set_data(data)

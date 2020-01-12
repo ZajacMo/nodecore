@@ -29,39 +29,42 @@ nodecore.stratadata = nodecore.memoize(function()
 		return data
 	end)
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data)
-		if minp.y > -64 then return end
+nodecore.register_mapgen_shared({
+		label = "stone strata",
+		func = function(minp, maxp, area, data)
+			if minp.y > -64 then return end
 
-		local ai = area.index
-		local t = nodecore.hard_stone_strata
-		local sd = nodecore.stratadata()
-		local byid = sd.stratbyid
-		local alts = sd.altsbyid
+			local ai = area.index
+			local t = nodecore.hard_stone_strata
+			local sd = nodecore.stratadata()
+			local byid = sd.stratbyid
+			local alts = sd.altsbyid
 
-		for z = minp.z, maxp.z do
-			for y = minp.y, maxp.y do
-				local raw = y / -thickness
-				local strat = math_floor(raw)
-				local dither = raw - strat
-				if strat > t then
-					strat = t
-					dither = nil
-				elseif dither > (4 / thickness) then
-					dither = nil
-				else
-					dither = (dither * thickness + 1) / 5
-				end
-				for x = minp.x, maxp.x do
-					local i = ai(area, x, y, z)
-					if byid[data[i]] then
-						if dither and math_random() >= dither then
-							data[i] = alts[data[i]][strat]
-						else
-							data[i] = alts[data[i]][strat + 1]
+			for z = minp.z, maxp.z do
+				for y = minp.y, maxp.y do
+					local raw = y / -thickness
+					local strat = math_floor(raw)
+					local dither = raw - strat
+					if strat > t then
+						strat = t
+						dither = nil
+					elseif dither > (4 / thickness) then
+						dither = nil
+					else
+						dither = (dither * thickness + 1) / 5
+					end
+					for x = minp.x, maxp.x do
+						local i = ai(area, x, y, z)
+						if byid[data[i]] then
+							if dither and math_random() >= dither then
+								data[i] = alts[data[i]][strat]
+							else
+								data[i] = alts[data[i]][strat + 1]
+							end
 						end
 					end
 				end
 			end
-		end
-	end,
-	-100)
+		end,
+		priority = -100
+	})
