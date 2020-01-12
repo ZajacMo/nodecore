@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-30 09:36+0000\n"
-"Last-Translator: Kimapr <none2@example.org>\n"
+"PO-Revision-Date: 2020-01-12 16:26+0000\n"
+"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
@@ -1075,3 +1075,6 @@ msgstr "@1 (100@2)"
 
 msgid "+"
 msgstr "+"
+
+msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2020 Аарон Суэн <warr1024@@gmail.com>"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-04 22:59+0000\n"
-"Last-Translator: Terifo <none@example.org>\n"
+"PO-Revision-Date: 2020-01-12 16:26+0000\n"
+"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
 "Language-Team: Japanese <http://nodecore.mine.nu/trans/projects/nodecore/"
 "core/ja/>\n"
 "Language: ja\n"
@@ -19,3 +19,6 @@ msgstr "(さらに1つのヒント)"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 から Aaron Suen <warr1024@@gmail.com>"
+
+msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2020 から Aaron Suen <warr1024@@gmail.com>"

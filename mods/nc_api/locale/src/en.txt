@@ -2,7 +2,10 @@ msgid ""
 msgstr "[REMOVED]"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
-msgstr "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "[REMOVED]"
+
+msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
 
 msgid "(and 1 more hint)"
 msgstr "(and 1 more hint)"
@@ -295,6 +298,24 @@ msgstr "@1 (9)"
 msgid "@1 (90@2)"
 msgstr "@1 (90@2)"
 
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
 msgid "About"
 msgstr "About"
 
@@ -487,6 +508,9 @@ msgstr "Hints"
 msgid "Humus"
 msgstr "Humus"
 
+msgid "IRC: #nodecore @@ chat.freenode.net"
+msgstr "IRC: #nodecore @@ chat.freenode.net"
+
 msgid "Ignore"
 msgstr "Ignore"
 
@@ -528,6 +552,9 @@ msgstr "Inventory"
 
 msgid "Leaves"
 msgstr "Leaves"
+
+msgid "Left-click to set 1st position, right-click to set 2nd"
+msgstr "Left-click to set 1st position, right-click to set 2nd"
 
 msgid "Lens"
 msgstr "Lens"
