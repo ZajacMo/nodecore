@@ -10,7 +10,9 @@ nodecore.registered_mapgen_shared = mapgens
 
 function nodecore.register_mapgen_shared(def)
 	if minetest.get_mapgen_setting("mg_name") == "singlenode"
-	and not def.allow_singlenode then return end
+	and not def.allow_singlenode then
+		def.disable = "singlenode"
+	end
 
 	local prio = def.priority or 0
 	def.priority = prio
@@ -28,13 +30,19 @@ function nodecore.register_mapgen_shared(def)
 	table_insert(mapgens, min, def)
 end
 
+local singlenode = minetest.get_mapgen_setting("mg_name") == "singlenode"
+
 minetest.register_on_generated(function(minp, maxp)
 		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 
-		for _, v in ipairs(mapgens) do
-			v.func(minp, maxp, area, data, vm, emin, emax)
+		for _, def in ipairs(mapgens) do
+			local en = def.enabled
+			if en == nil then en = not singlenode end
+			if en then
+				def.func(minp, maxp, area, data, vm, emin, emax)
+			end
 		end
 
 		vm:set_data(data)
