@@ -5,15 +5,19 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+local adzecaps = nodecore.toolcaps({
+		choppy = 1,
+		crumbly = 2
+	})
+adzecaps.groupcaps.crumbly.uses = adzecaps.groupcaps.choppy.uses
+
 minetest.register_tool(modname .. ":adze", {
 		description = "Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
 			flammable = 2
 		},
-		tool_capabilities = nodecore.toolcaps({
-				choppy = 1
-			}),
+		tool_capabilities = adzecaps,
 		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
