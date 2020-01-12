@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-19 04:08+0000\n"
+"PO-Revision-Date: 2019-12-30 09:36+0000\n"
 "Last-Translator: Kimapr <none2@example.org>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -1015,3 +1015,63 @@ msgstr "сварите раскаленные обухи кирки и заст�
 
 msgid "write on a surface with a charcoal lump"
 msgstr "напишите углем на поверхности"
+
+msgid "Artificial Water"
+msgstr "Искуственная вода"
+
+msgid "@1 (90@2)"
+msgstr "@1 (90@2)"
+
+msgid "@1 (9)"
+msgstr "@1 (9)"
+
+msgid "@1 (80@2)"
+msgstr "@1 (80@2)"
+
+msgid "@1 (8)"
+msgstr "@1 (8)"
+
+msgid "@1 (70@2)"
+msgstr "@1 (70@2)"
+
+msgid "@1 (7)"
+msgstr "@1 (7)"
+
+msgid "@1 (60@2)"
+msgstr "@1 (60@2)"
+
+msgid "@1 (6)"
+msgstr "@1 (6)"
+
+msgid "@1 (50@2)"
+msgstr "@1 (50@2)"
+
+msgid "@1 (5)"
+msgstr "@1 (5)"
+
+msgid "@1 (40@2)"
+msgstr "@1 (40@2)"
+
+msgid "@1 (4)"
+msgstr "@1 (4)"
+
+msgid "@1 (30@2)"
+msgstr "@1 (30@2)"
+
+msgid "@1 (3)"
+msgstr "@1 (3)"
+
+msgid "@1 (20@2)"
+msgstr "@1 (20@2)"
+
+msgid "@1 (2)"
+msgstr "@1 (2)"
+
+msgid "@1 (10@2)"
+msgstr "@1 (10@2)"
+
+msgid "@1 (100@2)"
+msgstr "@1 (100@2)"
+
+msgid "+"
+msgstr "+"
