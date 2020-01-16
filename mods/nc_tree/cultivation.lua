@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -69,52 +71,6 @@ local epdef = nodecore.underride({
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
 
-local function growtree(pos)
-	nodecore.witness(vector.add(pos, {x = 0, y = 0.499, z = 0}), "grow tree")
-	minetest.sound_play("nc_tree_woody", {pos = pos, gain = 5})
-	for _ = 1, 4 do
-		minetest.sound_play("nc_terrain_swishy", {pos = pos, gain = 3})
-	end
-	local leaves = {}
-	for i = 1, 8 do
-		local p = {x = pos.x, y = pos.y + i, z = pos.z}
-		local n = minetest.get_node(p)
-		if n.name == modname .. ":leaves" then
-			leaves[p] = n
-			minetest.remove_node(p)
-		else
-			local def = minetest.registered_nodes[n.name]
-			if def and def.buildable_to then
-				leaves[p] = n
-				minetest.remove_node(p)
-			end
-		end
-	end
-	local place = {x = pos.x - 2, y = pos.y, z = pos.z - 2}
-	minetest.get_meta(pos):from_table({})
-	minetest.place_schematic(place, nodecore.tree_schematic,
-		"random", {}, false)
-	for p, n in pairs(leaves) do
-		if minetest.get_node(p).name == "air" then
-			minetest.set_node(p, n)
-		end
-	end
-end
-
-minetest.register_chatcommand("growtrees", {
-		description = "Instantly grow nearby trees",
-		privs = {["debug"] = true},
-		func = function(pname)
-			local player = minetest.get_player_by_name(pname)
-			if not player then return end
-			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos, epname, 5)) do
-				local r = nodecore.tree_growth_rate(p)
-				if r and r > 0 then growtree(p) end
-			end
-		end
-	})
-
 nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		fieldname = "eggcorn",
@@ -123,11 +79,14 @@ nodecore.register_soaking_abm({
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		qtyfield = "growth",
-		timefield = "start",
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
-			if data.total >= 5000 then return growtree(pos) end
+			if data.total >= 2000 then
+				minetest.set_node(pos, {name = modname .. ":root"})
+				minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},
+					{name = modname .. ":tree_bud", param2 = 1})
+				return
+			end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
 				{
@@ -152,3 +111,118 @@ nodecore.register_soaking_abm({
 				})
 		end
 	})
+
+local function leafbud(pos, dx, dy, dz, param2)
+	if param2 <= 1 and 240 < math_random(0, 255) then return end
+	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+	if nodecore.buildable_to(npos) then
+		return minetest.set_node(npos, {name = modname .. ":leaves_bud", param2 = param2})
+	end
+end
+
+nodecore.register_soaking_abm({
+		label = "Tree Trunk Growth",
+		fieldname = "treegrow",
+		nodenames = {modname .. ":tree_bud"},
+		interval = 10,
+		chance = 1,
+		limited_max = 100,
+		limited_alert = 1000,
+		soakrate = function(pos, node)
+			if node and node.name == modname .. ":root" then
+				return nodecore.tree_soil_rate(pos)
+			end
+			local bpos = {x = pos.x, y = pos.y, z = pos.z}
+			for _ = 1, #nodecore.tree_params do
+				bpos.y = bpos.y - 1
+				node = minetest.get_node(bpos)
+				if node.name == "ignore" then
+					return
+				elseif node.name == modname .. ":root" then
+					return nodecore.tree_soil_rate(bpos)
+				elseif node.name ~= modname .. ":tree" then
+					return false
+				end
+			end
+		end,
+		soakcheck = function(data, pos, node)
+			if data.total < 500 then return end
+
+			local tp = nodecore.tree_params[node.param2]
+			if not tp then return minetest.remove_node(pos) end
+
+			minetest.set_node(pos, {name = modname .. ":tree"})
+
+			local param2 = node.param2 + 1
+			tp = nodecore.tree_params[param2]
+			if not tp then return minetest.remove_node(pos) end
+			while tp.prob and (tp.prob < math_random(0, 255)) do
+				param2 = param2 + 1
+				tp = nodecore.tree_params[param2]
+				if not tp then return minetest.remove_node(pos) end
+			end
+
+			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
+			if tp.notrunk then
+				minetest.set_node(apos, {
+						name = modname .. ":leaves_bud",
+						param2 = tp.leaves
+					})
+			else
+				minetest.set_node(apos, {
+						name = modname .. ":tree_bud",
+						param2 = param2
+					})
+			end
+
+			if tp.leaves then
+				leafbud(apos, 1, 0, 0, tp.leaves + 1)
+				leafbud(apos, -1, 0, 0, tp.leaves + 1)
+				leafbud(apos, 0, 0, 1, tp.leaves)
+				leafbud(apos, 0, 0, -1, tp.leaves)
+			end
+		end
+	})
+
+nodecore.register_limited_abm({
+		label = "Tree Leaves Growth",
+		nodenames = {modname .. ":leaves_bud"},
+		interval = 10,
+		chance = 1,
+		limited_max = 100,
+		limited_alert = 1000,
+		action = function(pos, node)
+			local leaflv = nodecore.scan_flood(pos, 2, function(p, d)
+					if minetest.get_node(p).name == modname .. ":tree" then
+						return 3 - d
+					end
+				end)
+			minetest.set_node(pos, {
+					name = modname .. ":leaves",
+					param2 = leaflv or 0
+				})
+
+			if node.param2 <= 1 then
+				return
+			elseif node.param2 == 2 then
+				leafbud(pos, 1, 0, 0, 1)
+				leafbud(pos, -1, 0, 0, 1)
+			elseif node.param2 == 3 then
+				leafbud(pos, 0, 0, 1, 1)
+				leafbud(pos, 0, 0, -1, 1)
+			else
+				leafbud(pos, 1, 0, 0, 3)
+				leafbud(pos, -1, 0, 0, 3)
+				leafbud(pos, 0, 0, 1, 2)
+				leafbud(pos, 0, 0, -1, 2)
+				if node.param2 >= 6 then
+					leafbud(pos, 0, 1, 0, 1)
+				end
+			end
+		end
+	})
+
+local XXX = nodecore.tree_soil_rate
+function nodecore.tree_soil_rate(...)
+	return XXX(...) * 1000
+end
