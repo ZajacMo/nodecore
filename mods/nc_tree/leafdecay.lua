@@ -16,6 +16,7 @@ nodecore.register_limited_abm({
 			if not nodecore.scan_flood(pos, 5, function(p)
 					local n = minetest.get_node(p).name
 					if n == modname .. ":tree"
+					or n == modname .. ":tree_bud"
 					or n == "ignore" then
 						return true
 					end
