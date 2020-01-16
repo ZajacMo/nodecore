@@ -126,12 +126,13 @@ local function leafbud(pos, dx, dy, dz, param2)
 	end
 end
 
+local trunkcost = 500
 nodecore.register_soaking_abm({
 		label = "Tree Trunk Growth",
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
-		chance = 1,
+		chance = 10,
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = function(pos, node)
@@ -152,7 +153,7 @@ nodecore.register_soaking_abm({
 			end
 		end,
 		soakcheck = function(data, pos, node)
-			if data.total < 500 then return end
+			if data.total < trunkcost then return end
 
 			local tp = nodecore.tree_params[node.param2]
 			if not tp then return minetest.remove_node(pos) end
@@ -169,6 +170,13 @@ nodecore.register_soaking_abm({
 			end
 
 			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
+			if tp.leaves then
+				leafbud(apos, 1, 0, 0, tp.leaves + 1)
+				leafbud(apos, -1, 0, 0, tp.leaves + 1)
+				leafbud(apos, 0, 0, 1, tp.leaves)
+				leafbud(apos, 0, 0, -1, tp.leaves)
+			end
+
 			if tp.notrunk then
 				minetest.set_node(apos, {
 						name = modname .. ":leaves_bud",
@@ -179,13 +187,10 @@ nodecore.register_soaking_abm({
 						name = modname .. ":tree_bud",
 						param2 = param2
 					})
-			end
-
-			if tp.leaves then
-				leafbud(apos, 1, 0, 0, tp.leaves + 1)
-				leafbud(apos, -1, 0, 0, tp.leaves + 1)
-				leafbud(apos, 0, 0, 1, tp.leaves)
-				leafbud(apos, 0, 0, -1, tp.leaves)
+				local sub = minetest.get_meta(apos)
+				sub:set_float("treegrowqty", data.total - trunkcost)
+				sub:set_float("treegorwtime", nodecore.gametime)
+				return false
 			end
 		end
 	})
@@ -218,8 +223,3 @@ nodecore.register_limited_abm({
 			end
 		end
 	})
-
-local XXX = nodecore.tree_soil_rate
-function nodecore.tree_soil_rate(...)
-	return XXX(...) * 1000
-end
