@@ -58,3 +58,15 @@ function nodecore.tree_growth_rate(pos)
 	end
 	return nodecore.tree_soil_rate(pos) * math_sqrt((ll - 7) / 8)
 end
+
+function nodecore.calc_leaves(pos)
+	local leaflv = nodecore.scan_flood(pos, 2, function(p, d)
+			if minetest.get_node(p).name == modname .. ":tree" then
+				return 3 - d
+			end
+		end)
+	return {
+		name = modname .. ":leaves",
+		param2 = leaflv or 0
+	}
+end

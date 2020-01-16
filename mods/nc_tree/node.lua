@@ -137,8 +137,8 @@ minetest.register_node(modname .. ":leaves_bud", {
 			green = 4
 		},
 		drop = "",
-		after_dig_node = function(...)
-			return nodecore.leaf_decay(...)
+		after_dig_node = function(pos)
+			return nodecore.leaf_decay(pos, nodecore.calc_leaves(pos))
 		end,
 		node_dig_prediction = "air",
 		sounds = nodecore.sounds("nc_terrain_swishy")

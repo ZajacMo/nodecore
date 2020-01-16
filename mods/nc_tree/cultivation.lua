@@ -113,7 +113,13 @@ nodecore.register_soaking_abm({
 	})
 
 local function leafbud(pos, dx, dy, dz, param2)
-	if param2 <= 1 and 240 < math_random(0, 255) then return end
+	if param2 <= 1 then
+		if 240 < math_random(0, 255) then return end
+		local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+		if nodecore.buildable_to(npos) then
+			return minetest.set_node(npos, nodecore.calc_leaves(npos))
+		end
+	end
 	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 	if nodecore.buildable_to(npos) then
 		return minetest.set_node(npos, {name = modname .. ":leaves_bud", param2 = param2})
@@ -192,16 +198,7 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		limited_alert = 1000,
 		action = function(pos, node)
-			local leaflv = nodecore.scan_flood(pos, 2, function(p, d)
-					if minetest.get_node(p).name == modname .. ":tree" then
-						return 3 - d
-					end
-				end)
-			minetest.set_node(pos, {
-					name = modname .. ":leaves",
-					param2 = leaflv or 0
-				})
-
+			minetest.set_node(pos, nodecore.calc_leaves(pos))
 			if node.param2 <= 1 then
 				return
 			elseif node.param2 == 2 then
@@ -216,7 +213,7 @@ nodecore.register_limited_abm({
 				leafbud(pos, 0, 0, 1, 2)
 				leafbud(pos, 0, 0, -1, 2)
 				if node.param2 >= 6 then
-					leafbud(pos, 0, 1, 0, 1)
+					leafbud(pos, 0, 1, 0, node.param2 - 4)
 				end
 			end
 		end
