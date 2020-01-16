@@ -132,7 +132,7 @@ nodecore.register_soaking_abm({
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
-		chance = 10,
+		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = function(pos, node)
@@ -199,7 +199,7 @@ nodecore.register_limited_abm({
 		label = "Tree Leaves Growth",
 		nodenames = {modname .. ":leaves_bud"},
 		interval = 10,
-		chance = 1,
+		chance = 10,
 		limited_max = 100,
 		limited_alert = 1000,
 		action = function(pos, node)
