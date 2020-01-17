@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -71,6 +71,7 @@ local epdef = nodecore.underride({
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
 
+local sproutcost = 2000
 nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		fieldname = "eggcorn",
@@ -81,10 +82,13 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
-			if data.total >= 2000 then
+			if data.total >= sproutcost then
 				minetest.set_node(pos, {name = modname .. ":root"})
 				minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},
 					{name = modname .. ":tree_bud", param2 = 1})
+				local sub = minetest.get_meta(pos)
+				sub:set_float("treegrowqty", data.total - sproutcost)
+				sub:set_float("treegrowtime", nodecore.gametime)
 				return
 			end
 			local zero = {x = 0, y = 0, z = 0}
@@ -148,6 +152,7 @@ nodecore.register_soaking_abm({
 				elseif node.name == modname .. ":root" then
 					return nodecore.tree_soil_rate(bpos)
 				elseif node.name ~= modname .. ":tree" then
+					minetest.set_node(pos, {name = modname .. ":tree"})
 					return false
 				end
 			end
@@ -189,7 +194,7 @@ nodecore.register_soaking_abm({
 					})
 				local sub = minetest.get_meta(apos)
 				sub:set_float("treegrowqty", data.total - trunkcost)
-				sub:set_float("treegorwtime", nodecore.gametime)
+				sub:set_float("treegrowtime", nodecore.gametime)
 				return false
 			end
 		end
@@ -219,6 +224,28 @@ nodecore.register_limited_abm({
 				leafbud(pos, 0, 0, -1, 2)
 				if node.param2 >= 6 then
 					leafbud(pos, 0, 1, 0, node.param2 - 4)
+				end
+			end
+		end
+	})
+
+minetest.register_chatcommand("growtrees", {
+		description = "Accelerate growth of nearby trees",
+		privs = {["debug"] = true},
+		func = function(pname)
+			local player = minetest.get_player_by_name(pname)
+			if not player then return end
+			local pos = player:get_pos()
+			for _, p in pairs(nodecore.find_nodes_around(pos,
+					{epname, modname .. ":tree_bud"}, 5)) do
+				local r = nodecore.tree_growth_rate(p)
+				if r and r > 0 then
+					local meta = minetest.get_meta(p)
+					meta:set_float("eggcornqty", 10000)
+					meta:set_float("treegrowqty", 10000)
+					minetest.chat_send_player(pname, "boosted "
+						.. minetest.get_node(p).name
+						.. " at " .. minetest.pos_to_string(p))
 				end
 			end
 		end
