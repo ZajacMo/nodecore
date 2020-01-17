@@ -139,24 +139,7 @@ nodecore.register_soaking_abm({
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		soakrate = function(pos, node)
-			if node and node.name == modname .. ":root" then
-				return nodecore.tree_soil_rate(pos)
-			end
-			local bpos = {x = pos.x, y = pos.y, z = pos.z}
-			for _ = 1, #nodecore.tree_params do
-				bpos.y = bpos.y - 1
-				node = minetest.get_node(bpos)
-				if node.name == "ignore" then
-					return
-				elseif node.name == modname .. ":root" then
-					return nodecore.tree_soil_rate(bpos)
-				elseif node.name ~= modname .. ":tree" then
-					minetest.set_node(pos, {name = modname .. ":tree"})
-					return false
-				end
-			end
-		end,
+		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
 			if data.total < trunkcost then return end
 
@@ -164,6 +147,9 @@ nodecore.register_soaking_abm({
 			if not tp then return minetest.remove_node(pos) end
 
 			minetest.set_node(pos, {name = modname .. ":tree"})
+
+			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
+			if not nodecore.buildable_to(apos) then return end
 
 			local param2 = node.param2 + 1
 			tp = nodecore.tree_params[param2]
@@ -174,7 +160,6 @@ nodecore.register_soaking_abm({
 				if not tp then return minetest.remove_node(pos) end
 			end
 
-			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if tp.leaves then
 				leafbud(apos, 1, 0, 0, tp.leaves + 1)
 				leafbud(apos, -1, 0, 0, tp.leaves + 1)
@@ -229,6 +214,16 @@ nodecore.register_limited_abm({
 		end
 	})
 
+local growtreedata = {
+	[epname] = {
+		r = nodecore.tree_growth_rate,
+		f = "eggcornqty"
+	},
+	[modname .. ":tree_bud"] = {
+		r = nodecore.tree_trunk_growth_rate,
+		f = "treegrowqty"
+	}
+}
 minetest.register_chatcommand("growtrees", {
 		description = "Accelerate growth of nearby trees",
 		privs = {["debug"] = true},
@@ -236,16 +231,17 @@ minetest.register_chatcommand("growtrees", {
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos,
-					{epname, modname .. ":tree_bud"}, 5)) do
-				local r = nodecore.tree_growth_rate(p)
+			local spec = {}
+			for k in pairs(growtreedata) do spec[#spec + 1] = k end
+			for _, p in pairs(nodecore.find_nodes_around(pos, spec, 5)) do
+				local nn = minetest.get_node(p).name
+				local data = growtreedata[nn]
+				local r = data.r(p)
 				if r and r > 0 then
 					local meta = minetest.get_meta(p)
-					meta:set_float("eggcornqty", 10000)
-					meta:set_float("treegrowqty", 10000)
+					meta:set_float(data.f, 10000)
 					minetest.chat_send_player(pname, "boosted "
-						.. minetest.get_node(p).name
-						.. " at " .. minetest.pos_to_string(p))
+						.. nn .. " at " .. minetest.pos_to_string(p))
 				end
 			end
 		end
