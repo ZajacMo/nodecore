@@ -15,7 +15,7 @@ local amalgam = modname .. ":amalgam"
 local lavasrc = modname .. ":lava_source"
 
 minetest.register_node(amalgam, {
-		description = "Amalgam",
+		description = "Amalgamation",
 		tiles = {{
 				name = "[combine:16x512:0,0=nc_terrain_lava.png" .. overlay,
 				animation = {
