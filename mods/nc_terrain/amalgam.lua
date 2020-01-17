@@ -5,10 +5,22 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local overlay = ""
+local cob = ""
+local loose = ""
 for i = 0, 31 do
-	overlay = overlay .. ":0," .. (i * 16) .. "=nc_terrain_cobble.png"
-	.. ":0," .. (i * 16) .. "=nc_api_loose.png"
+	cob = cob .. ":0," .. (i * 16) .. "=nc_terrain_cobble.png"
+	loose = loose .. ":0," .. (i * 16) .. "=nc_api_loose.png"
+end
+local function tile(suff)
+	return {
+		name = "[combine:16x512:0,0=nc_terrain_lava.png" .. cob .. suff,
+		animation = {
+			["type"] = "vertical_frames",
+			aspect_w = 16,
+			aspect_h = 16,
+			length = 8
+		}
+	}
 end
 
 local amalgam = modname .. ":amalgam"
@@ -16,26 +28,28 @@ local lavasrc = modname .. ":lava_source"
 
 minetest.register_node(amalgam, {
 		description = "Amalgamation",
-		tiles = {{
-				name = "[combine:16x512:0,0=nc_terrain_lava.png" .. overlay,
-				animation = {
-					["type"] = "vertical_frames",
-					aspect_w = 16,
-					aspect_h = 16,
-					length = 8
-				}
-		}},
+		tiles = {tile("")},
 		paramtype = "light",
 		light_source = 3,
+		stack_max = 1,
 		groups = {
-			crumbly = 2,
-			falling_repose = 3,
+			cracky = 1,
 			igniter = 1,
-			stack_as_node = 1
+			stack_as_node = 1,
+			amalgam = 1
+		},
+		alternate_loose = {
+			tiles = {tile(loose)},
+			repack_level = 2,
+			groups = {
+				cracky = 0,
+				crumbly = 2,
+				falling_repose = 3
+			},
+			sounds = nodecore.sounds("nc_terrain_chompy")
 		},
 		crush_damage = 2,
-		stack_max = 1,
-		sounds = nodecore.sounds("nc_terrain_chompy")
+		sounds = nodecore.sounds("nc_terrain_stony"),
 	})
 
 nodecore.register_limited_abm({
@@ -53,7 +67,7 @@ nodecore.register_limited_abm({
 		label = "Melt Amalgam to Lava",
 		interval = 1,
 		chance = 2,
-		nodenames = {amalgam},
+		nodenames = {"group:amalgam"},
 		action = function(pos)
 			if nodecore.quenched(pos) then return end
 			return nodecore.set_loud(pos, {name = lavasrc})
@@ -64,7 +78,7 @@ nodecore.register_aism({
 		label = "Amalgam Stack Melting",
 		interval = 1,
 		chance = 2,
-		itemnames = {amalgam},
+		itemnames = {"group:amalgam"},
 		action = function(stack, data)
 			if nodecore.quenched(data.pos) then return end
 			if stack:get_count() == 1 and data.node then
