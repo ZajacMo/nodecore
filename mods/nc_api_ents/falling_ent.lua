@@ -25,7 +25,7 @@ local function displace_check(pos)
 	for rel in nodecore.settlescan() do
 		local p = vector.add(pos, rel)
 		if nodecore.buildable_to(p) then
-			minetest.set_node(p, node)
+			nodecore.set_loud(p, node)
 			minetest.get_meta(p):from_table(
 				minetest.get_meta(pos):to_table()
 			)
@@ -94,8 +94,7 @@ minetest.register_entity(":__builtin:falling_node", {
 
 				displace_check(pos)
 
-				minetest.set_node(pos, self.node)
-				nodecore.node_sound(pos, "place")
+				nodecore.set_loud(pos, self.node)
 				if self.meta then
 					minetest.get_meta(pos):from_table(self.meta)
 				end

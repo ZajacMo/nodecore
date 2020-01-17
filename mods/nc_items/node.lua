@@ -76,7 +76,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	if stack:get_count() == 1 then
 		local def = minetest.registered_nodes[stack:get_name()]
 		if def and def.groups and def.groups.stack_as_node then
-			minetest.set_node(pos, {name = stack:get_name()})
+			nodecore.set_loud(pos, {name = stack:get_name()})
 			if def.after_place_node then
 				def.after_place_node(pos, nil, stack)
 			end

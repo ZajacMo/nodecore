@@ -63,8 +63,7 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos)
 			if data.total < 2500 then return end
 			minetest.get_meta(pos):from_table({})
-			minetest.set_node(pos, {name = modname .. ":humus"})
-			nodecore.node_sound(pos, "place")
+			nodecore.set_loud(pos, {name = modname .. ":humus"})
 		end
 	})
 

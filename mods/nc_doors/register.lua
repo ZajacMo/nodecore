@@ -54,8 +54,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 					node.name = doorname
 					nodecore.player_stat_add(1, clicker, "craft",
 						"door pin " .. basenode:lower())
-					minetest.set_node(pos, node)
-					nodecore.node_sound(pos, "place")
+					nodecore.set_loud(pos, node)
 					stack:take_item(1)
 					return stack
 				end

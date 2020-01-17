@@ -102,8 +102,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			if r then
 				local n = minetest.get_node(p)
 				r.param2 = n.param2
-				minetest.set_node(p, r)
-				nodecore.node_sound(p, "place")
+				nodecore.set_loud(p, r)
 				nodecore.fallcheck(p)
 			end
 		end

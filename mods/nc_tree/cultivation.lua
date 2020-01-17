@@ -33,8 +33,7 @@ minetest.register_node(modname .. ":eggcorn", {
 			local def = minetest.registered_items[stack:get_name()]
 			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
 
-			minetest.set_node(pos, {name = epname})
-			nodecore.node_sound(pos, "place")
+			nodecore.set_loud(pos, {name = epname})
 
 			if nodecore.player_stat_add then
 				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
@@ -83,8 +82,9 @@ nodecore.register_soaking_abm({
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
 			if data.total >= sproutcost then
-				minetest.set_node(pos, {name = modname .. ":root"})
-				minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},
+				nodecore.node_sound(pos, "dig")
+				nodecore.set_loud(pos, {name = modname .. ":root"})
+				nodecore.set_loud({x = pos.x, y = pos.y + 1, z = pos.z},
 					{name = modname .. ":tree_bud", param2 = 1})
 				local sub = minetest.get_meta(pos)
 				sub:set_float("treegrowqty", data.total - sproutcost)
@@ -121,12 +121,12 @@ local function leafbud(pos, dx, dy, dz, param2)
 		if 240 < math_random(0, 255) then return end
 		local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 		if nodecore.buildable_to(npos) then
-			return minetest.set_node(npos, nodecore.calc_leaves(npos))
+			return nodecore.set_loud(npos, nodecore.calc_leaves(npos))
 		end
 	end
 	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 	if nodecore.buildable_to(npos) then
-		return minetest.set_node(npos, {name = modname .. ":leaves_bud", param2 = param2})
+		return nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
 	end
 end
 
@@ -183,12 +183,12 @@ nodecore.register_soaking_abm({
 			end
 
 			if tp.notrunk then
-				minetest.set_node(apos, {
+				nodecore.set_loud(apos, {
 						name = modname .. ":leaves_bud",
 						param2 = tp.leaves
 					})
 			else
-				minetest.set_node(apos, {
+				nodecore.set_loud(apos, {
 						name = modname .. ":tree_bud",
 						param2 = param2
 					})
@@ -208,7 +208,7 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		limited_alert = 1000,
 		action = function(pos, node)
-			minetest.set_node(pos, nodecore.calc_leaves(pos))
+			nodecore.set_loud(pos, nodecore.calc_leaves(pos))
 			if node.param2 <= 1 then
 				return
 			elseif node.param2 == 2 then

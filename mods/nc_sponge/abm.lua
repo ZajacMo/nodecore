@@ -28,8 +28,7 @@ nodecore.register_limited_abm({
 		neighbors = {"group:water"},
 		action = function(pos)
 			if soakup(pos) then
-				minetest.set_node(pos, {name = modname .. ":sponge_wet"})
-				nodecore.node_sound(pos, "place")
+				nodecore.set_loud(pos, {name = modname .. ":sponge_wet"})
 			end
 		end
 	})

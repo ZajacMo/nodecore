@@ -109,6 +109,6 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos, node)
 			if data.total < 100 then return end
 			local def = minetest.registered_items[node.name] or {}
-			return minetest.set_node(pos, {name = def.repack_to})
+			return nodecore.set_loud(pos, {name = def.repack_to})
 		end
 	})

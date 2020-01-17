@@ -16,10 +16,7 @@ local watersrc = "nc_terrain:water_gray_source"
 local spongewet = modname .. ":sponge_wet"
 
 local function mkwater(pos, srcpos, new)
-	if new then
-		minetest.set_node(pos, {name = watersrc})
-		nodecore.node_sound(pos, "place")
-	end
+	if new then nodecore.set_loud(pos, {name = watersrc}) end
 	local meta = minetest.get_meta(pos)
 	meta:set_string("spongepos", minetest.pos_to_string(srcpos))
 	meta:set_float("expire", nodecore.gametime + 10)

@@ -48,8 +48,7 @@ function nodecore.register_dirt_leeching(fromnode, tonode, rate)
 			end,
 			soakcheck = function(data, pos)
 				if data.total < 5000 then return end
-				minetest.set_node(pos, {name = tonode})
-				nodecore.node_sound(pos, "place")
+				nodecore.set_loud(pos, {name = tonode})
 				return nodecore.fallcheck(pos)
 			end
 		})

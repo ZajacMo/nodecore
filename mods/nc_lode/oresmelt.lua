@@ -27,8 +27,7 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if nodecore.match(below, {walkable = true}) then return end
-			minetest.set_node(pos, {name = "nc_terrain:cobble"})
-			nodecore.node_sound(pos, "place")
+			nodecore.set_loud(pos, {name = "nc_terrain:cobble"})
 			return nodecore.item_eject(below, modname
 				.. ":prill_hot " .. (nodecore.exporand(1) + 1))
 		end

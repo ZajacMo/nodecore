@@ -63,8 +63,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":aggregate"},
 		neighbors = {"group:water"},
 		action = function(pos)
-			minetest.set_node(pos, {name = src})
-			nodecore.node_sound(pos, "place")
+			nodecore.set_loud(pos, {name = src})
 		end
 	})
 
@@ -82,8 +81,7 @@ nodecore.register_aism({
 					found = data.pos
 				end
 			end
-			minetest.set_node(found, {name = src})
-			nodecore.node_sound(found, "place")
+			nodecore.set_loud(found, {name = src})
 			stack:take_item(1)
 			return stack
 		end
@@ -102,8 +100,7 @@ nodecore.register_limited_abm({
 			if gen >= 8 and math_random(1, 2) == 1 then
 				nodecore.witness({x = pos.x, y = pos.y + 0.5, z = pos.z},
 				"aggregate to cobble")
-				minetest.set_node(pos, {name = "nc_terrain:cobble"})
-				return nodecore.node_sound(pos, "place")
+				return nodecore.set_loud(pos, {name = "nc_terrain:cobble"})
 			end
 			local miny = pos.y
 			local found = {}
@@ -121,8 +118,7 @@ nodecore.register_limited_abm({
 				end)
 			if #found < 1 then return end
 			local np = nodecore.pickrand(found)
-			nodecore.node_sound(pos, "dig")
-			minetest.set_node(np, node)
+			nodecore.set_loud(np, node)
 			minetest.get_meta(np):set_int("agggen", gen + 1)
 			minetest.set_node(pos, {name = flow, param2 = 7})
 		end
@@ -139,7 +135,7 @@ nodecore.register_limited_abm({
 			local waters = #nodecore.find_nodes_around(pos, "group:water")
 			local rnd = math_random() * 20
 			if rnd * rnd < waters then
-				minetest.set_node(pos, {name = "nc_terrain:gravel"})
+				nodecore.set_loud(pos, {name = "nc_terrain:gravel"})
 				return nodecore.fallcheck(pos)
 			end
 
@@ -148,9 +144,8 @@ nodecore.register_limited_abm({
 			if bnode.name == "ignore" then return end
 			local bdef = minetest.registered_nodes[bnode.name] or {}
 			if bdef.groups and bdef.groups.water then
-				nodecore.node_sound(pos, "dig")
-				minetest.set_node(below, node)
-				minetest.set_node(pos, bnode)
+				nodecore.set_loud(below, node)
+				nodecore.set_loud(pos, bnode)
 				return
 			end
 		end

@@ -69,8 +69,7 @@ nodecore.register_limited_abm({
 		nodenames = {living},
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
-				minetest.set_node(pos, {name = wet})
-				nodecore.node_sound(pos, "place")
+				nodecore.set_loud(pos, {name = wet})
 				return nodecore.fallcheck(pos)
 			end
 
@@ -100,7 +99,7 @@ nodecore.register_limited_abm({
 				grp = def and def.groups and def.groups.sand
 				if (not grp) or (grp < 1) then return end
 			end
-			minetest.set_node(pos, {name = living})
+			nodecore.set_loud(pos, {name = living})
 		end
 	})
 
