@@ -77,6 +77,7 @@ minetest.register_node(modname .. ":leaves", {
 		tiles = {modname .. "_leaves.png"},
 		waving = 1,
 		groups = {
+			canopy = 1,
 			snappy = 1,
 			flammable = 3,
 			fire_fuel = 2,
@@ -86,6 +87,8 @@ minetest.register_node(modname .. ":leaves", {
 			tiles = {modname .. "_leaves_dry.png"},
 			walkable = false,
 			groups = {
+				canopy = 0,
+				leafy = 1,
 				flammable = 1,
 				falling_repose = 1,
 				green = 1,
@@ -131,11 +134,13 @@ minetest.register_node(modname .. ":leaves_bud", {
 		tiles = {modname .. "_leaves.png"},
 		waving = 1,
 		groups = {
+			canopy = 1,
 			snappy = 1,
 			flammable = 5,
 			fire_fuel = 2,
 			green = 4
 		},
+		treeable_to = true,
 		drop = "",
 		after_dig_node = function(pos)
 			return nodecore.leaf_decay(pos, nodecore.calc_leaves(pos))

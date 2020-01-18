@@ -84,9 +84,10 @@ nodecore.register_soaking_abm({
 			if data.total >= sproutcost then
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
-				nodecore.set_loud({x = pos.x, y = pos.y + 1, z = pos.z},
+				local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
+				nodecore.set_loud(apos,
 					{name = modname .. ":tree_bud", param2 = 1})
-				local sub = minetest.get_meta(pos)
+				local sub = minetest.get_meta(apos)
 				sub:set_float("treegrowqty", data.total - sproutcost)
 				sub:set_float("treegrowtime", nodecore.gametime)
 				return
@@ -128,6 +129,10 @@ local function leafbud(pos, dx, dy, dz, param2)
 	if nodecore.buildable_to(npos) then
 		return nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
 	end
+	local node = minetest.get_node(npos)
+	if minetest.get_item_group(node.name, "canopy") ~= 0 and param2 >= node.param2 then
+		return nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
+	end
 end
 
 local trunkcost = 500
@@ -149,7 +154,9 @@ nodecore.register_soaking_abm({
 			minetest.set_node(pos, {name = modname .. ":tree"})
 
 			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if not nodecore.buildable_to(apos) then return end
+			if not nodecore.buildable_to(apos)
+			and minetest.get_item_group(minetest.get_node(apos).name, "canopy") == 0
+			then return end
 
 			local param2 = node.param2 + 1
 			tp = nodecore.tree_params[param2]
