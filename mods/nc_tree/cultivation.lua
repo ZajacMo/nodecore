@@ -85,6 +85,7 @@ nodecore.register_soaking_abm({
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
 				local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
+				nodecore.witness(apos, "grow tree")
 				nodecore.set_loud(apos,
 					{name = modname .. ":tree_bud", param2 = 1})
 				local sub = minetest.get_meta(apos)
@@ -180,6 +181,7 @@ nodecore.register_soaking_abm({
 						param2 = tp.leaves
 					})
 			else
+				nodecore.witness(apos, "grow tree")
 				nodecore.set_loud(apos, {
 						name = modname .. ":tree_bud",
 						param2 = param2
