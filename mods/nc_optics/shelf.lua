@@ -20,7 +20,6 @@ minetest.register_node(modname .. ":shelf", {
 		collision_box = nodecore.fixedbox(),
 		groups = {
 			silica = 1,
-			silica_clear = 1,
 			cracky = 3,
 			flammable = 20,
 			fire_fuel = 2,
