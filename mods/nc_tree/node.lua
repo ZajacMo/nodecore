@@ -76,6 +76,7 @@ minetest.register_node(modname .. ":leaves", {
 		paramtype = "light",
 		tiles = {modname .. "_leaves.png"},
 		waving = 1,
+		air_pass = true,
 		groups = {
 			canopy = 1,
 			snappy = 1,
@@ -133,6 +134,7 @@ minetest.register_node(modname .. ":leaves_bud", {
 		paramtype = "light",
 		tiles = {modname .. "_leaves.png"},
 		waving = 1,
+		air_pass = true,
 		groups = {
 			canopy = 1,
 			snappy = 1,

@@ -16,6 +16,7 @@ minetest.register_node(modname .. ":sponge", {
 			fire_fuel = 3,
 			sponge = 1
 		},
+		air_pass = true,
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 

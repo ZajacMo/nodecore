@@ -30,6 +30,7 @@ minetest.register_node(modname .. ":shelf", {
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
+		air_pass = false,
 		sounds = nodecore.sounds("nc_optics_glassy"),
 		storebox_access = function(pt) return pt.above.y > pt.under.y end,
 		on_ignite = function(pos)

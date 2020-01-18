@@ -9,6 +9,7 @@ local wetdef = {
 	description = "Lux Flow",
 	tiles = {modname .. "_base.png"},
 	special_tiles = {modname .. "_base.png", modname .. "_base.png"},
+	paramtype = "light",
 	alpha = 64,
 	liquid_viscosity = 0,
 	liquid_renewable = false,
@@ -20,9 +21,14 @@ local wetdef = {
 	diggable = false,
 	buildable_to = true,
 	light_source = 10,
+	sunlight_propagates = true,
+	air_pass = true,
 	damage_per_second = 1,
 	drowning = 0,
-	groups = {lux_emit = 10, lux_fluid = 1, stack_as_node = 1},
+	groups = {
+		lux_emit = 10,
+		lux_fluid = 1,
+		stack_as_node = 1},
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }
