@@ -60,14 +60,10 @@ ROADMAP: Large New Development Projects
 - Lava rework:
 	- Wandering fluids API for concrete, glass, lava?
 		- Configurable setting for generation count multiplier.
-	- Lava quenching, new material?
-		- Seepstone?
 	- Lava wandering.
 		- Concentrations of lava should melt nearyby stone
 			- Dependent on hardness of stone
 		- Lava near fringes should spontaneously quench.
-	- Damage at distance via radiant heat (raycast)?
-		- Generic radiant_damage system to replace damage_per_second?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
 

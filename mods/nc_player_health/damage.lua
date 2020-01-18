@@ -35,12 +35,17 @@ minetest.register_on_dieplayer(function(player)
 		player:get_meta():set_float("dhp", -1)
 	end)
 
+local full = {}
 local function heal(player, dtime)
 	if player:get_hp() <= 0 then return end
 	if player:get_breath() <= 0 then return end
+	local pname = player:get_player_name()
+	if full[pname] and player:get_hp() >= 20 then return end
+	full[pname] = nil
 	local hurt = player:get_meta():get_float("hurttime")
 	if hurt >= nodecore.gametime - 4 then return end
 	nodecore.addphealth(player, dtime * 2)
+	if nodecore.getphealth(player) >= 20 then full[pname] = true end
 end
 minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
