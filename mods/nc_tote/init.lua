@@ -205,7 +205,7 @@ nodecore.register_aism({
 		label = "Packed Tote AISMs",
 		interval = 1,
 		chance = 1,
-		itemnames = {modname .. ":handle"},
+		itemnames = {"group:tote"},
 		action = function(stack, data)
 			local stackmeta = stack:get_meta()
 			local raw = stackmeta:get_string("carrying")
