@@ -88,10 +88,8 @@ nodecore.register_soaking_abm({
 				nodecore.witness(apos, "grow tree")
 				nodecore.set_loud(apos,
 					{name = modname .. ":tree_bud", param2 = 1})
-				local sub = minetest.get_meta(apos)
-				sub:set_float("treegrowqty", data.total - sproutcost)
-				sub:set_float("treegrowtime", nodecore.gametime)
-				return
+				return nodecore.soaking_abm_push(apos,
+					"treegrow", data.total - sproutcost)
 			end
 			local zero = {x = 0, y = 0, z = 0}
 			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
@@ -186,9 +184,8 @@ nodecore.register_soaking_abm({
 						name = modname .. ":tree_bud",
 						param2 = param2
 					})
-				local sub = minetest.get_meta(apos)
-				sub:set_float("treegrowqty", data.total - trunkcost)
-				sub:set_float("treegrowtime", nodecore.gametime)
+				nodecore.soaking_abm_push(apos,
+					"treegrow", data.total - trunkcost)
 				return false
 			end
 		end
@@ -226,11 +223,11 @@ nodecore.register_limited_abm({
 local growtreedata = {
 	[epname] = {
 		r = nodecore.tree_growth_rate,
-		f = "eggcornqty"
+		f = "eggcorn"
 	},
 	[modname .. ":tree_bud"] = {
 		r = nodecore.tree_trunk_growth_rate,
-		f = "treegrowqty"
+		f = "treegrow"
 	}
 }
 minetest.register_chatcommand("growtrees", {
@@ -247,11 +244,9 @@ minetest.register_chatcommand("growtrees", {
 				local data = growtreedata[nn]
 				local r = data.r(p)
 				if r and r > 0 then
-					local meta = minetest.get_meta(p)
-					meta:set_float(data.f, 10000)
+					nodecore.soaking_abm_push(p, data.f, 10000)
 					minetest.chat_send_player(pname, "boosted "
-						.. nn .. " at " .. minetest.pos_to_string(p))
+						.. nn .. " at " .. minetest.pos_to_string(p)) end
 				end
 			end
-		end
-	})
+		})
