@@ -116,22 +116,19 @@ nodecore.register_soaking_abm({
 		end
 	})
 
-local function leafbud(pos, dx, dy, dz, param2)
+local function leafbud(pos, dx, dy, dz, param2, surplus)
+	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+	if not nodecore.buildable_to(npos) then
+		local node = minetest.get_node(npos)
+		if minetest.get_item_group(node.name, "canopy") == 0 or param2 < node.param2
+		then return end
+	end
 	if param2 <= 1 then
 		if 240 < math_random(0, 255) then return end
-		local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-		if nodecore.buildable_to(npos) then
-			return nodecore.set_loud(npos, nodecore.calc_leaves(npos))
-		end
+		return nodecore.set_loud(npos, nodecore.calc_leaves(npos))
 	end
-	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	if nodecore.buildable_to(npos) then
-		return nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
-	end
-	local node = minetest.get_node(npos)
-	if minetest.get_item_group(node.name, "canopy") ~= 0 and param2 >= node.param2 then
-		return nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
-	end
+	nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
+	return nodecore.soaking_abm_push(npos, "leafgrow", surplus)
 end
 
 local trunkcost = 500
@@ -166,11 +163,12 @@ nodecore.register_soaking_abm({
 				if not tp then return minetest.remove_node(pos) end
 			end
 
+			local surplus = data.total - trunkcost
 			if tp.leaves then
-				leafbud(apos, 1, 0, 0, tp.leaves + 1)
-				leafbud(apos, -1, 0, 0, tp.leaves + 1)
-				leafbud(apos, 0, 0, 1, tp.leaves)
-				leafbud(apos, 0, 0, -1, tp.leaves)
+				leafbud(apos, 1, 0, 0, tp.leaves + 1, surplus)
+				leafbud(apos, -1, 0, 0, tp.leaves + 1, surplus)
+				leafbud(apos, 0, 0, 1, tp.leaves, surplus)
+				leafbud(apos, 0, 0, -1, tp.leaves, surplus)
 			end
 
 			if tp.notrunk then
@@ -185,36 +183,43 @@ nodecore.register_soaking_abm({
 						param2 = param2
 					})
 				nodecore.soaking_abm_push(apos,
-					"treegrow", data.total - trunkcost)
+					"treegrow", surplus)
 				return false
 			end
 		end
 	})
 
-nodecore.register_limited_abm({
+local leafcost = trunkcost
+nodecore.register_soaking_abm({
 		label = "Tree Leaves Growth",
 		nodenames = {modname .. ":leaves_bud"},
+		fieldname = "leafgrow",
 		interval = 10,
-		chance = 10,
+		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		action = function(pos, node)
+		soakrate = function() return 10 end,
+		soakcheck = function(data, pos, node)
+			if data.total < leafcost then return end
+
 			nodecore.set_loud(pos, nodecore.calc_leaves(pos))
+
+			local surplus = data.total - leafcost
 			if node.param2 <= 1 then
 				return
 			elseif node.param2 == 2 then
-				leafbud(pos, 1, 0, 0, 1)
-				leafbud(pos, -1, 0, 0, 1)
+				leafbud(pos, 1, 0, 0, 1, surplus)
+				leafbud(pos, -1, 0, 0, 1, surplus)
 			elseif node.param2 == 3 then
-				leafbud(pos, 0, 0, 1, 1)
-				leafbud(pos, 0, 0, -1, 1)
+				leafbud(pos, 0, 0, 1, 1, surplus)
+				leafbud(pos, 0, 0, -1, 1, surplus)
 			else
-				leafbud(pos, 1, 0, 0, 3)
-				leafbud(pos, -1, 0, 0, 3)
-				leafbud(pos, 0, 0, 1, 2)
-				leafbud(pos, 0, 0, -1, 2)
+				leafbud(pos, 1, 0, 0, 3, surplus)
+				leafbud(pos, -1, 0, 0, 3, surplus)
+				leafbud(pos, 0, 0, 1, 2, surplus)
+				leafbud(pos, 0, 0, -1, 2, surplus)
 				if node.param2 >= 6 then
-					leafbud(pos, 0, 1, 0, node.param2 - 4)
+					leafbud(pos, 0, 1, 0, node.param2 - 4, surplus)
 				end
 			end
 		end
@@ -244,7 +249,7 @@ minetest.register_chatcommand("growtrees", {
 				local data = growtreedata[nn]
 				local r = data.r(p)
 				if r and r > 0 then
-					nodecore.soaking_abm_push(p, data.f, 10000)
+					nodecore.soaking_abm_push(p, data.f, 100000)
 					minetest.chat_send_player(pname, "boosted "
 						.. nn .. " at " .. minetest.pos_to_string(p)) end
 				end

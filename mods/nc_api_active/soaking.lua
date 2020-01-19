@@ -111,6 +111,8 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local meta = minetest.get_meta(pos)
 	local qf = fieldname .. "qty"
 	meta:set_float(qf, (meta:get_float(qf) or 0) + qty)
+	local tf = fieldname .. "time"
+	if (meta:get_float(tf) or 0) == 0 then meta:set_float(tf, nodecore.gametime) end
 
 	return minetest.after(0, function()
 			return abm.action(pos, node)
