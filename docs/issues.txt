@@ -25,6 +25,13 @@ ISSUES: Bugs, Cleanup and Refinements
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
 
+- Need to find a way to make AISMs work with falling_node.
+	- Create ItemStack, run hooks, try to convert back to node
+	  (assume node and item meta map 1:1) and if it fails then
+	  spawn an item_ent.
+	- Need this for amalgamation remelting.
+	- Would it make sense to unify the item and falling_node ents?
+
 - Can we automatically dump a TP overrides.txt file?
 	- Move this, and translate hook, to a chat command?
 
@@ -38,10 +45,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- This would make gameplay more fair for those who tend to
 	  go AFK suddenly and can't return for a long time.
 
-- Offline tick logic for spreading nodes
-	- Use soaking API, calculate time to spread.
-	- If actual time exceeds time to spread, pass soak depth on to
-	  new node that's been created, and trigger respread check.
+- Offline grass spreading.
+	- Use new nodecore.soaking_abm_push API.
 	- Will have to do a lot of performance testing.
 
 - Replacement for mkreg, a.k.a. register_generic():
@@ -60,6 +65,9 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Glass tank, lode crates
 	- Lux
 	- Torches
+
+- Unify sponge growth logic so it can be used for mapgen, to ensure
+  that spawned sponges match naturally-grown ones?
 
 - Design doc needs another shakedown.
 

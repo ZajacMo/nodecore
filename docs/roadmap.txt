@@ -73,6 +73,9 @@ ROADMAP: Large New Development Projects
 		- Power an annealed lode block from 2 opposite faces.
 		- Generates particle effect at mapblock boundary.
 	- Particle effect with lux fluid and/or cobble?
+	- Create particle effect around player while carrying lux in
+	  inventory?
+		- Maybe only if the lux is higher activation tier?
 
 - Water and lava surface springs.
 	- Access to water for forges.
@@ -83,7 +86,10 @@ ROADMAP: Large New Development Projects
 		- Sponges: Sprout under water from peat+sand?
 		- Water sources.
 	- Sustainable but not renewable
-		- Lode: Infuse lode into eggcorns -> lodecorns -> tree-farming for lode?
+		- Lode:
+			- Infuse lode into eggcorns -> lodecorns -> tree-farming for lode?
+			- Put 1 lode prill into cobble to make an ore (yields >= 1)?
+				- Hammer in?  Bury like an eggcorn?
 		- Lux: Infuse lode cobble to make lux cobble?
 		- Lava sources.
 	- Completely lossy
