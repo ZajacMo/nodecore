@@ -129,10 +129,10 @@ minetest.register_node(modname .. ":tree_bud", {
 	})
 
 minetest.register_node(modname .. ":leaves_bud", {
-		description = "Leaves",
+		description = "Growing Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
-		tiles = {modname .. "_leaves.png"},
+		tiles = {modname .. "_leaves.png^(" .. modname .. "_leaves_bud.png^[opacity:128)"},
 		waving = 1,
 		air_pass = true,
 		groups = {
