@@ -176,6 +176,10 @@ local growtreedata = {
 	[modname .. ":tree_bud"] = {
 		r = nodecore.tree_trunk_growth_rate,
 		f = "treegrow"
+	},
+	[modname .. ":leaves_bud"] = {
+		r = function() return 1 end,
+		f = "leafgrow"
 	}
 }
 minetest.register_chatcommand("growtrees", {
