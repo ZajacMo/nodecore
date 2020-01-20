@@ -7,74 +7,36 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
-local ldname = "nc_terrain:dirt_loose"
-local epname = modname .. ":eggcorn_planted"
-
-minetest.register_node(modname .. ":eggcorn", {
-		description = "Eggcorn",
-		drawtype = "plantlike",
-		paramtype = "light",
-		visual_scale = 0.5,
-		wield_scale = {x = 0.75, y = 0.75, z = 1.5},
-		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		inventory_image = "[combine:24x24:4,4=" .. modname .. "_eggcorn.png",
-		tiles = {modname .. "_eggcorn.png"},
-		groups = {
-			snappy = 1,
-			flammable = 3,
-			attached_node = 1,
-		},
-		node_placement_prediction = "",
-		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_corny"),
-		stack_rightclick = function(pos, _, whom, stack)
-			if nodecore.stack_get(pos):get_count() ~= 1 then return end
-			local def = minetest.registered_items[stack:get_name()]
-			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
-
-			nodecore.set_loud(pos, {name = epname})
-
-			if nodecore.player_stat_add then
-				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
-			end
-			minetest.log((whom and whom:get_player_name() or "unknown")
-				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
-
-			stack:set_count(stack:get_count() - 1)
-			return stack
-		end
-	})
-
-nodecore.register_limited_abm({
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":eggcorn"},
-		action = function(pos)
-			minetest.remove_node(pos)
-			return nodecore.place_stack(pos, modname .. ":eggcorn")
-		end
-	})
-
-nodecore.register_leaf_drops(function(_, node, list)
-		list[#list + 1] = {
-			name = "air",
-			item = modname .. ":eggcorn",
-			prob = 0.05 * (node.param2 + 1)}
-	end)
-
-local epdef = nodecore.underride({
-		drop = ldname,
-		no_self_repack = true
-	}, minetest.registered_items[ldname] or {})
-epdef.groups.soil = nil
-minetest.register_node(epname, epdef)
+local function growparticles(pos, rate, width)
+	local zero = {x = 0, y = 0, z = 0}
+	nodecore.digparticles(minetest.registered_items[modname .. ":leaves_bud"],
+		{
+			amount = rate,
+			time = 10,
+			minpos = {
+				x = pos.x - width,
+				y = pos.y + 33/64,
+				z = pos.z - width
+			},
+			maxpos = {
+				x = pos.x + width,
+				y = pos.y + 33/64,
+				z= pos.z + width
+			},
+			minvel = zero,
+			maxvel = zero,
+			minexptime = 0.25,
+			maxexptime = 1,
+			minsize = 3 * width,
+			maxsize = 9 * width,
+		})
+end
 
 local sproutcost = 2000
 nodecore.register_soaking_abm({
 		label = "EggCorn Growing",
 		fieldname = "eggcorn",
-		nodenames = {epname},
+		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
 		chance = 1,
 		limited_max = 100,
@@ -91,32 +53,11 @@ nodecore.register_soaking_abm({
 				return nodecore.soaking_abm_push(apos,
 					"treegrow", data.total - sproutcost)
 			end
-			local zero = {x = 0, y = 0, z = 0}
-			nodecore.digparticles(minetest.registered_items[modname .. ":leaves"],
-				{
-					amount = data.rate,
-					time = 10,
-					minpos = {
-						x = pos.x - 0.3,
-						y = pos.y + 33/64,
-						z = pos.z - 0.3
-					},
-					maxpos = {
-						x = pos.x + 0.3,
-						y = pos.y + 33/64,
-						z= pos.z + 0.3
-					},
-					minvel = zero,
-					maxvel = zero,
-					minexptime = 0.1,
-					maxexptime = 0.5,
-					minsize = 1,
-					maxsize = 3,
-				})
+			return growparticles(pos, data.rate, 0.2)
 		end
 	})
 
-local function leafbud(pos, dx, dy, dz, param2, surplus)
+local function leafbud(pos, dx, dy, dz, param2, surplus, rate)
 	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 	if not nodecore.buildable_to(npos) then
 		local node = minetest.get_node(npos)
@@ -128,6 +69,7 @@ local function leafbud(pos, dx, dy, dz, param2, surplus)
 		return nodecore.set_loud(npos, nodecore.calc_leaves(npos))
 	end
 	nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
+	minetest.get_meta(npos):set_float("growrate", rate)
 	return nodecore.soaking_abm_push(npos, "leafgrow", surplus)
 end
 
@@ -142,7 +84,9 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
-			if data.total < trunkcost then return end
+			if data.total < trunkcost then
+				return growparticles(pos, data.rate, 0.45)
+			end
 
 			local tp = nodecore.tree_params[node.param2]
 			if not tp then return minetest.remove_node(pos) end
@@ -165,17 +109,14 @@ nodecore.register_soaking_abm({
 
 			local surplus = data.total - trunkcost
 			if tp.leaves then
-				leafbud(apos, 1, 0, 0, tp.leaves + 1, surplus)
-				leafbud(apos, -1, 0, 0, tp.leaves + 1, surplus)
-				leafbud(apos, 0, 0, 1, tp.leaves, surplus)
-				leafbud(apos, 0, 0, -1, tp.leaves, surplus)
+				leafbud(apos, 1, 0, 0, tp.leaves + 1, surplus, data.rate)
+				leafbud(apos, -1, 0, 0, tp.leaves + 1, surplus, data.rate)
+				leafbud(apos, 0, 0, 1, tp.leaves, surplus, data.rate)
+				leafbud(apos, 0, 0, -1, tp.leaves, surplus, data.rate)
 			end
 
 			if tp.notrunk then
-				nodecore.set_loud(apos, {
-						name = modname .. ":leaves_bud",
-						param2 = tp.leaves
-					})
+				leafbud(apos, 0, 0, 0, tp.leaves, surplus, data.rate)
 			else
 				nodecore.witness(apos, "grow tree")
 				nodecore.set_loud(apos, {
@@ -184,7 +125,6 @@ nodecore.register_soaking_abm({
 					})
 				nodecore.soaking_abm_push(apos,
 					"treegrow", surplus)
-				return false
 			end
 		end
 	})
@@ -198,7 +138,10 @@ nodecore.register_soaking_abm({
 		chance = 1,
 		limited_max = 100,
 		limited_alert = 1000,
-		soakrate = function() return 10 end,
+		soakrate = function(pos)
+			local rate = minetest.get_meta(pos):get_float("growrate") or 0
+			return rate and rate ~= 0 and rate or 10
+		end,
 		soakcheck = function(data, pos, node)
 			if data.total < leafcost then return end
 
@@ -208,25 +151,25 @@ nodecore.register_soaking_abm({
 			if node.param2 <= 1 then
 				return
 			elseif node.param2 == 2 then
-				leafbud(pos, 1, 0, 0, 1, surplus)
-				leafbud(pos, -1, 0, 0, 1, surplus)
+				leafbud(pos, 1, 0, 0, 1, surplus, data.rate)
+				leafbud(pos, -1, 0, 0, 1, surplus, data.rate)
 			elseif node.param2 == 3 then
-				leafbud(pos, 0, 0, 1, 1, surplus)
-				leafbud(pos, 0, 0, -1, 1, surplus)
+				leafbud(pos, 0, 0, 1, 1, surplus, data.rate)
+				leafbud(pos, 0, 0, -1, 1, surplus, data.rate)
 			else
-				leafbud(pos, 1, 0, 0, 3, surplus)
-				leafbud(pos, -1, 0, 0, 3, surplus)
-				leafbud(pos, 0, 0, 1, 2, surplus)
-				leafbud(pos, 0, 0, -1, 2, surplus)
+				leafbud(pos, 1, 0, 0, 3, surplus, data.rate)
+				leafbud(pos, -1, 0, 0, 3, surplus, data.rate)
+				leafbud(pos, 0, 0, 1, 2, surplus, data.rate)
+				leafbud(pos, 0, 0, -1, 2, surplus, data.rate)
 				if node.param2 >= 6 then
-					leafbud(pos, 0, 1, 0, node.param2 - 4, surplus)
+					leafbud(pos, 0, 1, 0, node.param2 - 4, surplus, data.rate)
 				end
 			end
 		end
 	})
 
 local growtreedata = {
-	[epname] = {
+	[modname .. ":eggcorn_planted"] = {
 		r = nodecore.tree_growth_rate,
 		f = "eggcorn"
 	},
