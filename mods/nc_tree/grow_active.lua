@@ -198,7 +198,8 @@ minetest.register_chatcommand("growtrees", {
 				if r and r > 0 then
 					nodecore.soaking_abm_push(p, data.f, 100000)
 					minetest.chat_send_player(pname, "boosted "
-						.. nn .. " at " .. minetest.pos_to_string(p)) end
+						.. nn .. " at " .. minetest.pos_to_string(p))
 				end
 			end
-		})
+		end
+	})
