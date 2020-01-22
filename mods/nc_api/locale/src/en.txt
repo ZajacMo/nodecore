@@ -334,6 +334,9 @@ msgstr "Aggregate"
 msgid "Air"
 msgstr "Air"
 
+msgid "Amalgamation"
+msgstr "Amalgamation"
+
 msgid "Annealed Lode"
 msgstr "Annealed Lode"
 
@@ -502,6 +505,12 @@ msgstr "Grass"
 msgid "Gravel"
 msgstr "Gravel"
 
+msgid "Growing Leaves"
+msgstr "Growing Leaves"
+
+msgid "Growing Tree Trunk"
+msgstr "Growing Tree Trunk"
+
 msgid "Hints"
 msgstr "Hints"
 
@@ -576,6 +585,9 @@ msgstr "Lode Ore"
 
 msgid "Log"
 msgstr "Log"
+
+msgid "Loose Amalgamation"
+msgstr "Loose Amalgamation"
 
 msgid "Loose Cobble"
 msgstr "Loose Cobble"
@@ -663,6 +675,9 @@ msgstr "Shining Lens"
 
 msgid "Sponge"
 msgstr "Sponge"
+
+msgid "Sprout"
+msgstr "Sprout"
 
 msgid "Staff"
 msgstr "Staff"
@@ -835,6 +850,12 @@ msgstr "Wooden Spade Head"
 msgid "activate a lens"
 msgstr "activate a lens"
 
+msgid "assemble a glass tank"
+msgstr "assemble a glass tank"
+
+msgid "assemble a rake from adzes and a stick"
+msgstr "assemble a rake from adzes and a stick"
+
 msgid "assemble a staff from sticks"
 msgstr "assemble a staff from sticks"
 
@@ -868,6 +889,9 @@ msgstr "carve a wooden plank completely"
 msgid "carve wooden tool heads from planks"
 msgstr "carve wooden tool heads from planks"
 
+msgid "catapult an item with a hinged panel"
+msgstr "catapult an item with a hinged panel"
+
 msgid "chip chromatic glass into prisms"
 msgstr "chip chromatic glass into prisms"
 
@@ -900,6 +924,9 @@ msgstr "cold-forge annealed lode prills into a tool head"
 
 msgid "cold-forge lode down completely"
 msgstr "cold-forge lode down completely"
+
+msgid "compress something with a hinged panel"
+msgstr "compress something with a hinged panel"
 
 msgid "cool molten glass into crude glass"
 msgstr "cool molten glass into crude glass"
@@ -973,6 +1000,9 @@ msgstr "find lux"
 msgid "find molten rock"
 msgstr "find molten rock"
 
+msgid "gate a prism"
+msgstr "gate a prism"
+
 msgid "grind leaves into peat"
 msgstr "grind leaves into peat"
 
@@ -988,6 +1018,9 @@ msgstr "hammer lode bars into a rod"
 msgid "harvest a sponge"
 msgstr "harvest a sponge"
 
+msgid "hint complete - @1"
+msgstr "hint complete - @1"
+
 msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
 
@@ -996,6 +1029,12 @@ msgstr "insert metal rod into a cobble panel"
 
 msgid "insert wooden pin into wooden door panel"
 msgstr "insert wooden pin into wooden door panel"
+
+msgid "leech dirt to sand"
+msgstr "leech dirt to sand"
+
+msgid "leech humus to dirt"
+msgstr "leech humus to dirt"
 
 msgid "light a torch"
 msgstr "light a torch"
@@ -1042,17 +1081,26 @@ msgstr "[REMOVED]"
 msgid "pack stone chips back into cobble"
 msgstr "pack stone chips back into cobble"
 
+msgid "pack up a complete tote"
+msgstr "pack up a complete tote"
+
 msgid "plant an eggcorn"
 msgstr "plant an eggcorn"
 
 msgid "produce light from a lens"
 msgstr "produce light from a lens"
 
+msgid "propel hinged panel with focused light"
+msgstr "propel hinged panel with focused light"
+
 msgid "put a stone tip onto a wooden tool"
 msgstr "put a stone tip onto a wooden tool"
 
 msgid "quench molten glass into chromatic glass"
 msgstr "quench molten glass into chromatic glass"
+
+msgid "quench molten rock to amalgamation"
+msgstr "quench molten rock to amalgamation"
 
 msgid "scale a sheer overhang"
 msgstr "scale a sheer overhang"
