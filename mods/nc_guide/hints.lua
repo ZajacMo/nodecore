@@ -43,33 +43,31 @@ addhint("find molten rock",
 	"nc_terrain:cobble_loose"
 )
 
+addhint("quench molten rock to amalgamation",
+	"group:amalgam",
+	{"group:lava", "group:sponge"}
+)
+
+addhint("leech dirt to sand",
+	"leech nc_terrain:dirt",
+	"dig:nc_terrain:dirt_loose"
+)
+
 ------------------------------------------------------------------------
 -- SPONGE
 
 addhint("find a sponge",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("harvest a sponge",
 	"inv:nc_sponge:sponge_living",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("dry out a sponge",
 	"nc_sponge:sponge",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("squeeze out a sponge",
@@ -98,7 +96,10 @@ addhint("plant an eggcorn",
 )
 
 addhint("see a tree grow",
-	"tree growth",
+	{true,
+		"tree growth",
+		"nc_tree:tree_bud"
+	},
 	"eggcorn planting"
 )
 
@@ -124,6 +125,11 @@ addhint("grind leaves into peat",
 addhint("ferment peat into humus",
 	"nc_tree:humus",
 	"nc_tree:peat"
+)
+
+addhint("leech humus to dirt",
+	"leech nc_tree:humus",
+	"nc_tree:humus"
 )
 
 ------------------------------------------------------------------------
@@ -231,6 +237,11 @@ addhint("bash a plank into sticks",
 addhint("assemble a wooden shelf from frames and planks",
 	"assemble wood shelf",
 	{"nc_woodwork:plank", "nc_woodwork:frame"}
+)
+
+addhint("assemble a rake from adzes and a stick",
+	"assemble rake",
+	"assemble wood adze"
 )
 
 ------------------------------------------------------------------------
@@ -392,6 +403,21 @@ addhint("insert metal rod into a cobble panel",
 	"drill door cobble"
 )
 
+addhint("compress something with a hinged panel",
+	"door press",
+	"group:door"
+)
+
+addhint("catapult an item with a hinged panel",
+	"door catapult",
+	"group:door"
+)
+
+addhint("propel hinged panel with focused light",
+	"door ablation",
+	{"nc_optics:lens_on", "group:door"}
+)
+
 ------------------------------------------------------------------------
 -- LUX
 
@@ -425,6 +451,11 @@ addhint("lux-infuse a lode tool",
 addhint("assemble an annealed lode tote handle",
 	"craft tote handle",
 	{"nc_lode:block_annealed", "nc_woodwork:shelf"}
+)
+
+addhint("pack up a complete tote",
+	"inv:nc_tote:handle_full",
+	"craft tote handle"
 )
 
 ------------------------------------------------------------------------
@@ -475,4 +506,14 @@ addhint("activate a lens",
 addhint("produce light from a lens",
 	"nc_optics:lens_glow",
 	opticactive
+)
+
+addhint("gate a prism",
+	"nc_optics:prism_gated",
+	opticactive
+)
+
+addhint("assemble a glass tank",
+	"assemble glass tank",
+	{"nc_optics:glass", "nc_woodwork:frame"}
 )

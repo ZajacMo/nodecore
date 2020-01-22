@@ -13,6 +13,8 @@ nodecore.register_limited_abm({
 			local face = nodecore.facedirs[node.param2]
 			local out = vector.add(face.k, pos)
 			local tn = minetest.get_node(out)
-			nodecore.operate_door(out, tn, face.k)
+			if nodecore.operate_door(out, tn, face.k) then
+				nodecore.witness(pos, "door ablation")
+			end
 		end
 	})

@@ -39,6 +39,7 @@ nodecore.register_craft({
 			if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
 				return minetest.remove_node(pos)
 			end
+			nodecore.witness(pos, "door catapult")
 			return nodecore.stack_set(pos, stack)
 		end
 	})
@@ -80,6 +81,12 @@ local function pressify(rc)
 
 		if oldcheck then return oldcheck(pos, data) end
 		return true
+	end
+
+	local oldafter = nr.after
+	nr.after = function(pos, ...)
+		nodecore.witness(pos, "door press")
+		return oldafter and oldafter(pos, ...)
 	end
 
 	nodecore.register_craft(nr)

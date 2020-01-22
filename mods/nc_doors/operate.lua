@@ -217,7 +217,7 @@ function nodecore.operate_door(pos, node, dir)
 			minetest.sound_play("nc_doors_operate",
 				{pos = press.pos, gain = 0.5})
 		end
-		return
+		return true
 	end
 
 	local toset = {}
@@ -261,4 +261,5 @@ function nodecore.operate_door(pos, node, dir)
 		nodecore.operate_door(v.pos, nil, v.dir)
 		trypush(v.pos, v.dir)
 	end
+	return true
 end
