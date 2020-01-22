@@ -8,7 +8,7 @@ local modname = minetest.get_current_modname()
 local function doorop(pos, node, _, _, pointed)
 	if (not pointed.above) or (not pointed.under) then return end
 	local force = vector.subtract(pointed.under, pointed.above)
-	return nodecore.operate_door(pos, node, force)
+	nodecore.operate_door(pos, node, force)
 end
 
 local tilemods = {

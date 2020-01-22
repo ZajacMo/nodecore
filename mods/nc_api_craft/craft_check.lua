@@ -128,7 +128,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		for _, v in pairs(recipe.nodes) do
 			lut[minetest.hash_node_position(v)] = true
 		end
-		nodecore.witness(pos, recipe.label,
+		nodecore.witness(pos, {recipe.action, recipe.label},
 			type(recipe.witness) == "number" and recipe.witness or nil,
 			function(p) return lut[minetest.hash_node_position(p)] end
 		)

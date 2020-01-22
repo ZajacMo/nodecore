@@ -67,7 +67,6 @@ local function pressify(rc)
 	local nr = {}
 	for k, v in pairs(rc) do nr[k] = v end
 
-	nr.label = "press " .. nr.label
 	nr.action = "press"
 	nr.toolgroups = nil
 
@@ -81,12 +80,6 @@ local function pressify(rc)
 
 		if oldcheck then return oldcheck(pos, data) end
 		return true
-	end
-
-	local oldafter = nr.after
-	nr.after = function(pos, ...)
-		nodecore.witness(pos, "door press")
-		return oldafter and oldafter(pos, ...)
 	end
 
 	nodecore.register_craft(nr)

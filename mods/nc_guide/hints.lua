@@ -404,7 +404,7 @@ addhint("insert metal rod into a cobble panel",
 )
 
 addhint("compress something with a hinged panel",
-	"door press",
+	"witness:press",
 	"group:door"
 )
 

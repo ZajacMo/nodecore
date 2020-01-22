@@ -216,8 +216,9 @@ function nodecore.operate_door(pos, node, dir)
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
 			minetest.sound_play("nc_doors_operate",
 				{pos = press.pos, gain = 0.5})
+			return true
 		end
-		return true
+		return
 	end
 
 	local toset = {}
