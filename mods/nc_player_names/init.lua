@@ -133,3 +133,14 @@ minetest.register_globalstep(function()
 			end
 		end
 	end)
+
+minetest.register_on_leaveplayer(function(player)
+		local pname = player:get_player_name()
+		for _, peer in pairs(minetest.get_connected_players()) do
+			nodecore.hud_set(peer, {
+					label = "pname:" .. pname,
+					ttl = 0,
+					quick = true
+				})
+		end
+	end)
