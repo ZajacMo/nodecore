@@ -12,6 +12,10 @@ nodecore.amcoremod()
 local modname = minetest.get_current_modname()
 local modstore = minetest.get_mod_storage()
 
+nodecore.register_on_player_discover,
+nodecore.registered_on_player_discovers
+= nodecore.mkreg()
+
 ------------------------------------------------------------------------
 -- DATABASE SETUP
 
@@ -73,6 +77,9 @@ local function playeradd(qty, player, ...)
 		local t = {...}
 		minetest.log(string_format("player %q discovered %q",
 				pname, table_concat(t, ":")))
+		for _, v in pairs(nodecore.registered_on_player_discovers) do
+			v(player, t)
+		end
 	end
 	if not statsdb[pname].firstseen then
 		statsdb[pname].firstseen = os_date("!*t")
