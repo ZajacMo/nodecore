@@ -24,7 +24,7 @@ end
 local function gethint(player)
 	local pname = player:get_player_name()
 
-	local now = math_floor(minetest.get_us_time() / 1000000 / 5)
+	local now = math_floor(minetest.get_us_time() / 1000000)
 	local cached = pcache[pname]
 	if cached and cached.time == now then return cached.found end
 
