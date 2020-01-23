@@ -169,7 +169,7 @@ nodecore.register_craft({
 		pumparticles = {
 			minsize = 1,
 			maxsize = 5,
-			forcetexture = "nc_fire_coal_4.png^[mask:[combine\\:16x16\\:"
+			forcetexture = "nc_fire_coal_4.png^[resize:16x16^[mask:[combine\\:16x16\\:"
 			.. math_floor(math_random() * 12) .. ","
 			.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
 		},

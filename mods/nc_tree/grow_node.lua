@@ -15,7 +15,8 @@ minetest.register_node(modname .. ":eggcorn", {
 		wield_scale = {x = 0.75, y = 0.75, z = 1.5},
 		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		inventory_image = "[combine:24x24:4,4=" .. modname .. "_eggcorn.png",
+		inventory_image = "[combine:24x24:4,4=" .. modname
+		.. "_eggcorn.png\\^[resize\\:16x16",
 		tiles = {modname .. "_eggcorn.png"},
 		groups = {
 			snappy = 1,
