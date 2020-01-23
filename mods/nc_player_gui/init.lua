@@ -113,12 +113,10 @@ function nodecore.inventory_formspec(player, curtab)
 	table_insert(t, 1, "size[12," .. 5.5 + y .. "]")
 
 	if f then
+		t[#t + 1] = "textarea[0.5," .. (y + 0.25) .. ";11,5.5;;;"
 		if type(f) == "function" then f = f(player) end
-		for i = 1, #f do
-			t[#t + 1] = "label[0," .. (y + 0.25) .. ";"
-			.. fse(nct(f[i])) .. pad .. ".]"
-			y = y + 0.4
-		end
+		for i = 1, #f do t[#t + 1] = fse(nct(f[i]) .. "\n") end
+		t[#t + 1] = "]"
 	end
 
 	return table_concat(t)
