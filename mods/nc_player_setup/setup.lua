@@ -30,6 +30,22 @@ minetest.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
 	end)
 
+local function focustime(player)
+	local focusing = player:get_player_control_bits() == 64
+	local meta = player:get_meta()
+	local zoom = 60
+	if focusing then
+		local time = nodecore.gametime - meta:get_float("focustime")
+		zoom = 15 + 45 * (1 / (time / 2 + 1))
+	else
+		meta:set_float("focustime", nodecore.gametime)
+	end
+	local props = player:get_properties()
+	if props.zoom_fov > (zoom * 1.02) or props.zoom_fov < zoom then
+		player:set_properties({zoom_fov = zoom})
+	end
+end
+
 local function privdropinv(player)
 	if nodecore.interact(player) then return end
 	local pos = player:get_pos()
@@ -59,6 +75,7 @@ end
 
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
+			focustime(player)
 			privdropinv(player)
 			setfootsteps(player)
 		end
