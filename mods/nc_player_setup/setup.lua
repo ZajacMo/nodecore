@@ -30,15 +30,22 @@ minetest.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
 	end)
 
+local focuscache = {}
 local function focustime(player)
+	local pname = player:get_player_name()
 	local focusing = player:get_player_control_bits() == 64
 	local meta = player:get_meta()
 	local zoom = 60
 	if focusing then
-		local time = nodecore.gametime - meta:get_float("focustime")
-		zoom = 15 + 45 * (1 / (time / 2 + 1))
+		local fc = focuscache[pname]
+		if not fc then
+			fc = meta:get_float("focustime")
+			focuscache[pname] = fc
+		end
+		zoom = 15 + 45 / ((nodecore.gametime - fc) / 2 + 1)
 	else
 		meta:set_float("focustime", nodecore.gametime)
+		focuscache[pname] = nodecore.gametime
 	end
 	local props = player:get_properties()
 	if props.zoom_fov > (zoom * 1.02) or props.zoom_fov < zoom then
