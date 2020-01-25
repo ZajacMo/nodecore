@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 		inv:set_size("craftpreview", 0)
 		inv:set_size("craftresult", 0)
 
-		player:set_physics_override({speed = 1.25})
+		player:set_physics_override({speed = 1.4})
 
 		player:set_properties({
 				pointable = false,
