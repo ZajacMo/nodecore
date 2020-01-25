@@ -57,7 +57,12 @@ end
 
 local function walkspeed(player, cached, set)
 	local ctl = player:get_player_control()
-	local walking = ctl.up and not ctl.sneak
+	local walking = ctl.up
+	if walking and ctl.sneak then
+		local node = minetest.get_node(player:get_pos())
+		local def = minetest.registered_items[node.name]
+		walking = def and def.liquidtype ~= "none"
+	end
 	local speed = 1.25
 	if walking and cached.walktime then
 		local t = nodecore.gametime - cached.walktime - 2
