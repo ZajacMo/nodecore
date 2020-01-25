@@ -320,18 +320,32 @@ addhint("chop a glowing lode cube into prills",
 	"forge lode block"
 )
 
-addhint("make an anvil by tempering a lode cube",
-	"nc_lode:block_tempered",
-	"forge lode block"
+addhint("forge lode prills into a tool head on an anvil",
+	{true,
+		"annealed anvil making hot lode toolhead_mallet",
+		"tempered anvil making hot lode toolhead_mallet",
+		"tempered anvil making annealed lode toolhead_mallet"
+	},
+	{true,
+		"nc_lode:block_annealed",
+		"nc_lode:block_tempered"
+	}
 )
 
-addhint("cold-forge annealed lode prills into a tool head",
-	"anvil making lode toolhead_mallet",
-	"nc_lode:block_tempered"
+addhint("forge lode down completely on an anvil",
+	{true,
+		"annealed anvil making hot lode prills",
+		"tempered anvil making hot lode prills",
+		"tempered anvil making annealed lode prills"
+	},
+	{true,
+		"nc_lode:block_annealed",
+		"nc_lode:block_tempered"
+	}
 )
 
-addhint("cold-forge lode down completely",
-	"anvil making lode prills",
+addhint("cold-forge annealed lode on a tempered anvil",
+	"tempered anvil making annealed lode toolhead_mallet",
 	"nc_lode:block_tempered"
 )
 

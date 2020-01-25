@@ -64,29 +64,36 @@ toolhead("Spade", "crumbly", 2)
 toolhead("Hatchet", "choppy", 2)
 toolhead("Pick", "cracky", 1)
 
-local function forge(from, fromqty, to, prills)
+local function forgecore(from, fromqty, to, prills, fromtemper, anviltemper)
 	return nodecore.register_craft({
-			label = "anvil making lode " .. (to or "prills"),
+			label = anviltemper .. " anvil making " .. fromtemper .. " lode " .. (to or "prills"),
 			action = "pummel",
 			toolgroups = {thumpy = 3},
 			nodes = {
 				{
-					match = {name = modname .. ":" .. from .. "_annealed",
+					match = {name = modname .. ":" .. from .. "_" .. fromtemper,
 						count = fromqty},
 					replace = "air"
 				},
 				{
 					y = -1,
-					match = modname .. ":block_tempered"
+					match = modname .. ":block_" .. anviltemper
 				}
 			},
 			items = {
-				to and (modname .. ":" .. to .. "_annealed") or nil,
-				prills and {name = modname .. ":prill_annealed", count = prills,
+				to and (modname .. ":" .. to .. "_" .. fromtemper) or nil,
+				prills and {name = modname .. ":prill_" .. fromtemper, count = prills,
 					scatter = 5} or nil
 			}
 		})
 end
+
+local function forge(from, fromqty, to, prills)
+	forgecore(from, fromqty, to, prills, "hot", "annealed")
+	forgecore(from, fromqty, to, prills, "hot", "tempered")
+	return forgecore(from, fromqty, to, prills, "annealed", "tempered")
+end
+
 forge("prill", 3, "toolhead_mallet")
 forge("toolhead_mallet", nil, "toolhead_spade", 1)
 forge("toolhead_spade", nil, "toolhead_hatchet")
