@@ -55,13 +55,22 @@ local function fallspeed(player, cached, set)
 	end
 end
 
+local function solid(pos)
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_items[node.name]
+	if not def then return true end
+	return def.liquidtype == "none" and def.walkable
+end
+
 local function walkspeed(player, cached, set)
 	local ctl = player:get_player_control()
-	local walking = ctl.up
+	local walking = ctl.up and not ctl.down
 	if walking and ctl.sneak then
-		local node = minetest.get_node(player:get_pos())
-		local def = minetest.registered_items[node.name]
-		walking = def and def.liquidtype ~= "none"
+		local pos = player:get_pos()
+		if not solid(pos) then
+			pos.y = pos.y - 1
+			walking = not solid(pos)
+		end
 	end
 	local speed = 1.25
 	if walking and cached.walktime then
