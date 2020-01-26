@@ -18,13 +18,7 @@ local function pezdispense(pos)
 end
 
 minetest.register_node(modname .. ":stack", {
-		drawtype = "signlike",
-		paramtype2 = "wallmounted",
-		use_texture_alpha = true,
-		tiles = {
-			"nc_items_shadow.png",
-			"[combine:1x1",
-		},
+		drawtype = "airlike",
 		walkable = true,
 		selection_box = nodecore.fixedbox(
 			{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
@@ -84,7 +78,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		end
 	end
 
-	minetest.set_node(pos, {name = modname .. ":stack", param2 = 1})
+	minetest.set_node(pos, {name = modname .. ":stack"})
 	nodecore.stack_set(pos, stack)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {
@@ -96,16 +90,3 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 
 	return nodecore.fallcheck(pos)
 end
-
-minetest.register_lbm({
-		label = "Update Stack Node Wallmounted",
-		name = modname .. ":wallmounted",
-		nodenames = {modname .. ":stack"},
-		run_at_every_load = false,
-		action = function(pos, node)
-			if node.param2 ~= 1 then
-				node.param2 = 1
-				return minetest.swap_node(pos, node)
-			end
-		end
-	})
