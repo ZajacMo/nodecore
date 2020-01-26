@@ -48,14 +48,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
-- CDB screenshot out of date.
-	- Update nc_reative dependencies!
-	- New optics
-	- Full tote
-	- Glass tank, lode crates
-	- Lux
-	- Torches
-
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?
 
