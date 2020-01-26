@@ -5,11 +5,15 @@ local math_pi, math_sin
     = math.pi, math.sin
 -- LUALOCALS > ---------------------------------------------------------
 
+local zoom_base = 60 * nodecore.rate_adjustment("zoom", "base")
+local zoom_ratio = 1 - 1 / (4 * nodecore.rate_adjustment("zoom", "ratio"))
+local zoom_time = 2 * nodecore.rate_adjustment("zoom", "time")
 local function focustime(player, cached, set)
 	local focusing = player:get_player_control_bits() == 64
-	local zoom = 60
+	local zoom = zoom_base
 	if focusing and cached.focus then
-		zoom = 15 + 45 / ((nodecore.gametime - cached.focus) / 2 + 1)
+		zoom = zoom_base - zoom_base * zoom_ratio * (1 - 1 /
+			((nodecore.gametime - cached.focus) / zoom_time + 1))
 	else
 		cached.focus = nodecore.gametime
 	end
@@ -62,6 +66,10 @@ local function solid(pos)
 	return def.liquidtype == "none" and def.walkable
 end
 
+local autorun_walkspeed = 1.25 * nodecore.rate_adjustment("autorun", "walkspeed")
+local autorun_walktime = 2 * nodecore.rate_adjustment("waautorunlk", "walktime")
+local autorun_acceltime = 4 * nodecore.rate_adjustment("autorun", "acceltime")
+local autorun_ratio = 2 * nodecore.rate_adjustment("autorun", "ratio")
 local function walkspeed(player, cached, set)
 	local ctl = player:get_player_control()
 	local walking = ctl.up and not ctl.down
@@ -72,20 +80,23 @@ local function walkspeed(player, cached, set)
 			walking = not solid(pos)
 		end
 	end
-	local speed = 1.25
+	local speed = autorun_walkspeed
+	local max = autorun_walkspeed * autorun_ratio
 	if walking and cached.walktime then
-		local t = nodecore.gametime - cached.walktime - 2
-		if t > math_pi * 2 then
-			speed = 2.5
+		local t = nodecore.gametime - cached.walktime - autorun_walktime
+		if t > math_pi * autorun_acceltime then
+			speed = max
 		elseif t > 0 then
-			speed = 1.875 + 0.625 * math_sin(t / 2 - math_pi / 2)
+			local hr = autorun_ratio / 2
+			speed = autorun_walkspeed * (1 + hr + hr * math_sin(t
+					/ autorun_acceltime - math_pi / 2))
 		end
 	else
 		cached.walktime = nodecore.gametime
 	end
 	local phys = player:get_physics_override()
 	if phys.speed > speed or phys.speed < (speed - 0.05)
-	or (speed == 2.5 and phys.speed ~= 2.5) then
+	or (speed == max and phys.speed ~= max) then
 		set.physics = set.physics or {}
 		set.physics.speed = speed
 	end
