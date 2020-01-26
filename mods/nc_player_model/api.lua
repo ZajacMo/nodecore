@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table
-    = minetest, nodecore, pairs, table
-local table_concat
-    = table.concat
+local math, minetest, nodecore, pairs, table
+    = math, minetest, nodecore, pairs, table
+local math_floor, table_concat
+    = math.floor, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -67,7 +67,19 @@ nodecore.player_anim_data = nodecore.player_anim_data or {
 }
 for k, v in pairs(nodecore.player_anim_data) do
 	v.name = k
-	v.speed = 72 * (v.speed or 1)
+	v.speed = 60 * (v.speed or 1)
+end
+
+local function walkspeed(player, anim)
+	if not anim.speed then return anim end
+	local phys = player:get_physics_override()
+	local speed = math_floor(phys.speed * 10) / 10
+	if speed == 1 then return anim end
+	local t = {}
+	for k, v in pairs(anim) do
+		t[k] = (k == "speed") and (speed * v) or v
+	end
+	return t
 end
 
 nodecore.player_anim = nodecore.player_anim or function(player)
@@ -77,20 +89,21 @@ nodecore.player_anim = nodecore.player_anim or function(player)
 	end
 
 	local ctl = player:get_player_control()
-	local walk = ctl.up or ctl.down or ctl.right or ctl.left
+	local walk = (ctl.up or ctl.down) and not (ctl.up and ctl.down)
+	or (ctl.right or ctl.left) and not (ctl.right and ctl.left)
 	local mine = ctl.LMB or ctl.RMB
 
 	if not nodecore.player_swimming(player) then
-		if walk and mine then return nodecore.player_anim_data.walk_mine end
-		if walk then return nodecore.player_anim_data.walk end
+		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
+		if walk then return walkspeed(player, nodecore.player_anim_data.walk) end
 		if mine then return nodecore.player_anim_data.mine end
 		return nodecore.player_anim_data.stand
 	end
 
-	if mine then return nodecore.player_anim_data.swim_mine end
+	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine) end
 	local v = player:get_player_velocity()
-	if v and v.y >= -0.5 then return nodecore.player_anim_data.swim_up end
-	return nodecore.player_anim_data.swim_down
+	if v and v.y >= -0.5 then return walkspeed(player, nodecore.player_anim_data.swim_up) end
+	return walkspeed(player, nodecore.player_anim_data.swim_down)
 end
 
 nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
