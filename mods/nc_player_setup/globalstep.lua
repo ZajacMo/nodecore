@@ -87,7 +87,7 @@ local function walkspeed(player, cached, set)
 		if t > math_pi * autorun_acceltime then
 			speed = max
 		elseif t > 0 then
-			local hr = autorun_ratio / 2
+			local hr = (autorun_ratio - 1) / 2
 			speed = autorun_walkspeed * (1 + hr + hr * math_sin(t
 					/ autorun_acceltime - math_pi / 2))
 		end
