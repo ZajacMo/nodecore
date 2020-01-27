@@ -320,16 +320,19 @@ addhint("chop a glowing lode cube into prills",
 	"forge lode block"
 )
 
+local any_lode_toolhead = {true,
+	"annealed anvil making hot lode toolhead_mallet",
+	"tempered anvil making hot lode toolhead_mallet",
+	"tempered anvil making annealed lode toolhead_mallet"
+}
+local any_lode_anvil = {true,
+	"nc_lode:block_annealed",
+	"nc_lode:block_tempered"
+}
+
 addhint("forge lode prills into a tool head on an anvil",
-	{true,
-		"annealed anvil making hot lode toolhead_mallet",
-		"tempered anvil making hot lode toolhead_mallet",
-		"tempered anvil making annealed lode toolhead_mallet"
-	},
-	{true,
-		"nc_lode:block_annealed",
-		"nc_lode:block_tempered"
-	}
+	any_lode_toolhead,
+	any_lode_anvil
 )
 
 addhint("forge lode down completely on an anvil",
@@ -338,10 +341,7 @@ addhint("forge lode down completely on an anvil",
 		"tempered anvil making hot lode prills",
 		"tempered anvil making annealed lode prills"
 	},
-	{true,
-		"nc_lode:block_annealed",
-		"nc_lode:block_tempered"
-	}
+	any_lode_toolhead
 )
 
 addhint("cold-forge annealed lode on a tempered anvil",
@@ -356,12 +356,16 @@ addhint("temper a lode tool head",
 		"nc_lode:toolhead_hatchet_tempered",
 		"nc_lode:toolhead_pick_tempered"
 	},
-	"anvil making lode toolhead_mallet"
+	any_lode_toolhead
 )
 
 addhint("weld glowing lode pick and spade heads together",
 	"assemble lode mattock head",
-	"anvil making lode toolhead_pick"
+	{true,
+		"annealed anvil making hot lode toolhead_pick",
+		"tempered anvil making hot lode toolhead_pick",
+		"tempered anvil making annealed lode toolhead_pick"
+	}
 )
 
 addhint("hammer a lode prill into a bar",
