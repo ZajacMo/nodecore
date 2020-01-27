@@ -354,7 +354,8 @@ addhint("temper a lode tool head",
 		"nc_lode:toolhead_mallet_tempered",
 		"nc_lode:toolhead_spade_tempered",
 		"nc_lode:toolhead_hatchet_tempered",
-		"nc_lode:toolhead_pick_tempered"
+		"nc_lode:toolhead_pick_tempered",
+		"nc_lode:toolhead_mattock_tempered"
 	},
 	any_lode_toolhead
 )
