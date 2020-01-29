@@ -9,6 +9,49 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- falling_node pillars settle out of order!
+
+- Make sure sponges can soak up artificial water too (test empirically).
+
+- Prism-making hint only works on off prism, needs to work with on+gated.
+
+- Add hint for recycling glass(es) to sand?
+
+- Delayed hint witnessing?
+	- Store credit for soaking recipe in node metadata, give it to
+	  the first person to punch it later.
+	- Use for witnessing fermentation recipes like peat/humus,
+	  humus/dirt, dirt/sand.
+
+- Wooden frames and other non-falling nodes should not place themselves
+  as nodes upon dropping stack.
+
+- Sprinting up a ladder is possible.  Should it be?
+
+- Tote recycling is possible but has no hint.
+	- Should recipe be changed?  Heat it back into a cube if empty?
+
+- Coal chopping recipe should give credit upon chopping any
+  non-fully-ash charcoal, not just on picking up lump.
+
+- Tree soil rate should bias closer nodes to have higher impact...?
+
+- Should tree growth rate start out faster but slow down?
+	- This could make the decision to harvest trees early vs
+	  wait for them to mature more nuanced.
+
+- Radiant heat should travel through sunlight_propagates nodes.
+	- Maybe even paramtype=light ones?
+
+- Should we create "recipe groups" to make it easier to specify
+  equivalent recipes for hint purposes?
+
+- Totes should do face-connected search for totables; don't pick up
+  shelves only touching via a corner.
+
+- Switch door ablation propulsion to run on a node timer instead of
+  an abm, so it responds faster and more consistently?
+
 - Item ent merge should use logic consistent with nodecore.stack_merge,
   which handles item families.
 

@@ -90,6 +90,9 @@ ROADMAP: Large New Development Projects
 			- Infuse lode into eggcorns -> lodecorns -> tree-farming for lode?
 			- Put 1 lode prill into cobble to make an ore (yields >= 1)?
 				- Hammer in?  Bury like an eggcorn?
+			- Hammer glowing prill into lux cobble.  Lux is valuable, but doesn't
+			  have the same marginal value as lode at quantity, so if lux cobble is
+			  renewable, trading it up to lode ore makes sense.
 		- Lux: Infuse lode cobble to make lux cobble?
 		- Lava sources.
 	- Completely lossy
@@ -151,6 +154,15 @@ ROADMAP: Large New Development Projects
 - Vary player walking speed based on nodes under feet?
 
 - Use gravity vector to make flowing water push the player?
+
+- Visual "craft guide" system?
+	- Build a 3x3 work space out of wood/logs, place center node
+	  last and it will convert to a workbench node.
+	- Workbench node will scan for potential recipe matches
+	  centered on the space above based on what's present
+	  and matches at least 1 non-air node, picks one.
+	- Create display "ghost" entities representing items that
+	  can be placed to complete the recipe.
 
 ........................................................................
 ========================================================================
