@@ -25,7 +25,6 @@ minetest.register_node(modname .. ":ladder", {
 			flammable = 2,
 			fire_fuel = 1,
 			falling_node = 1,
-			stack_as_node = 1
 		},
 		crush_damage = 0.25,
 		paramtype = "light",
