@@ -57,7 +57,6 @@ minetest.register_node(modname .. ":frame", {
 			snappy = 1,
 			flammable = 2,
 			fire_fuel = 1,
-			stack_as_node = 1
 		},
 		paramtype = "light",
 		climbable = true,

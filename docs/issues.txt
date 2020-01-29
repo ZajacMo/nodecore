@@ -23,9 +23,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Use for witnessing fermentation recipes like peat/humus,
 	  humus/dirt, dirt/sand.
 
-- Wooden frames and other non-falling nodes should not place themselves
-  as nodes upon dropping stack.
-
 - Sprinting up a ladder is possible.  Should it be?
 
 - Tote recycling is possible but has no hint.
