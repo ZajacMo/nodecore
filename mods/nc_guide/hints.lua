@@ -320,6 +320,11 @@ addhint("chop a glowing lode cube into prills",
 	{"forge lode block", "nc_lode:tool_hatchet_tempered"}
 )
 
+addhint("temper a lode cube to use as an anvil",
+	"nc_lode:block_tempered",
+	"forge lode block"
+)
+
 local any_lode_toolhead = {true,
 	"annealed anvil making hot lode toolhead_mallet",
 	"tempered anvil making hot lode toolhead_mallet",
