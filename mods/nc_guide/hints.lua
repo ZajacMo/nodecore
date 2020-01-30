@@ -317,7 +317,7 @@ addhint("sinter glowing lode prills into a cube",
 
 addhint("chop a glowing lode cube into prills",
 	"break apart lode block",
-	"forge lode block"
+	{"forge lode block", "nc_lode:tool_hatchet_tempered"}
 )
 
 local any_lode_toolhead = {true,
