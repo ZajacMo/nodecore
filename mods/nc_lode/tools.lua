@@ -39,7 +39,7 @@ local function toolhead(name, groups, prills)
 			end,
 			groups = {flammable = 4},
 			metal_alt_hot = modname .. ":prill_hot " .. prills,
-			tool_wears_to = modname .. ":prill_# " .. prills,
+			tool_wears_to = prills > 1 and (modname .. ":prill_# " .. (prills - 1)) or nil,
 			on_ignite = modname .. ":prill_# " .. prills
 		})
 
