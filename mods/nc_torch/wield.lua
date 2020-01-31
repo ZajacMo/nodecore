@@ -18,6 +18,7 @@ local function wieldlight(pos)
 	local cur = minetest.get_node(pos).name
 	if cur ~= "air" and cur ~= modname .. ":wield_light" then return end
 	minetest.set_node(pos, {name = modname .. ":wield_light"})
+	minetest.get_meta(pos):set_float("time", nodecore.gametime)
 	return minetest.get_node_timer(pos):start(0.3)
 end
 
@@ -79,3 +80,15 @@ for _, name in pairs({"item", "falling_node"}) do
 	setmetatable(ndef, def)
 	minetest.register_entity(":__builtin:" .. name, ndef)
 end
+
+nodecore.register_limited_abm({
+		label = "wieldlight cleanup",
+		interval = 1,
+		chance = 1,
+		nodenames = {modname .. ":wield_light"},
+		action = function(pos)
+			local time = minetest.get_meta(pos):get_float("time") or 0
+			if time >= nodecore.gametime - 2 then return end
+			return minetest.remove_node(pos)
+		end
+	})
