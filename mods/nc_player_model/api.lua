@@ -61,9 +61,9 @@ nodecore.player_anim_data = nodecore.player_anim_data or {
 	mine = {x = 43, y = 57, speed = 0.85},
 	lay = {x = 58, y = 58},
 	walk_mine = {x = 59, y = 103},
-	swim_up = {x = 105, y = 162, speed = 0.4},
-	swim_down = {x = 163, y = 223, speed = 0.4},
-	swim_mine = {x = 224, y = 281, speed = 0.5}
+	swim_up = {x = 105, y = 161, speed = 0.4},
+	swim_down = {x = 162, y = 223, speed = 0.4},
+	swim_mine = {x = 224, y = 280, speed = 0.4}
 }
 for k, v in pairs(nodecore.player_anim_data) do
 	v.name = k
