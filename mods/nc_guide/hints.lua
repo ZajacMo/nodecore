@@ -284,8 +284,7 @@ addhint("make wet aggregate",
 -- LODE
 
 addhint("find lode ore",
-	"nc_lode:ore",
-	"group:lodey"
+	"nc_lode:ore"
 )
 
 addhint("dig up lode ore",
