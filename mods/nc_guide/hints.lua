@@ -283,10 +283,6 @@ addhint("make wet aggregate",
 ------------------------------------------------------------------------
 -- LODE
 
-addhint("find a lode stratum",
-	"group:lodey"
-)
-
 addhint("find lode ore",
 	"nc_lode:ore",
 	"group:lodey"
