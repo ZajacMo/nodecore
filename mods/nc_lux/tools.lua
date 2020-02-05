@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
-local math_ceil, math_exp, math_log, math_pow
-    = math.ceil, math.exp, math.log, math.pow
+local ItemStack, math, minetest, nodecore, pairs
+    = ItemStack, math, minetest, nodecore, pairs
+local math_ceil, math_exp, math_log
+    = math.ceil, math.exp, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -39,17 +39,6 @@ for _, shape in pairs({'mallet', 'spade', 'hatchet', 'pick', 'mattock'}) do
 	end
 end
 
-local function isfluid(pos)
-	local def = minetest.registered_nodes[minetest.get_node(pos).name]
-	return def and def.groups and def.groups.lux_fluid
-end
-local indirs = {}
-for _, v in pairs(nodecore.dirs()) do
-	if v.y == 0 then
-		indirs[#indirs + 1] = v
-	end
-end
-
 local alltools = {}
 for k in pairs(convert) do alltools[#alltools + 1] = k end
 for k in pairs(charge) do
@@ -70,23 +59,7 @@ nodecore.register_soaking_aism({
 			if (not charge[name]) and (not convert[name]) then return false end
 
 			local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
-
-			local above = vector.add(pos, {x = 0, y = 1, z = 0})
-			if not isfluid(above) then return false end
-			local qty = 1
-			for _, v in pairs(indirs) do
-				if isfluid(vector.add(pos, v)) then qty = qty + 1 end
-			end
-
-			local dist = nodecore.scan_flood(above, 14, function(p, d)
-					if p.dir and p.dir.y < 0 then return false end
-					local nn = minetest.get_node(p).name
-					if nn == modname .. ":flux_source" then return d end
-					if nn ~= modname .. ":flux_flowing" then return false end
-				end)
-			if not dist then return false end
-
-			return qty * 20 / math_pow(2, dist / 2)
+			return nodecore.lux_soak_rate(pos)
 		end,
 		soakcheck = function(data, stack)
 			local name = stack:get_name()
