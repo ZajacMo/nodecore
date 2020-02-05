@@ -84,19 +84,13 @@ ROADMAP: Large New Development Projects
 - Renewability Gap
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
+		- Lode
+		- Lux
 		- Water sources.
 	- Sustainable but not renewable
-		- Lode:
-			- Infuse lode into eggcorns -> lodecorns -> tree-farming for lode?
-			- Put 1 lode prill into cobble to make an ore (yields >= 1)?
-				- Hammer in?  Bury like an eggcorn?
-			- Hammer glowing prill into lux cobble.  Lux is valuable, but doesn't
-			  have the same marginal value as lode at quantity, so if lux cobble is
-			  renewable, trading it up to lode ore makes sense.
-		- Lux: Infuse lode cobble to make lux cobble?
-		- Lava sources.
-	- Completely lossy
+	- Not sustainable
 		- Hard stone: harden using nearby heat sources?
+		- Lava sources.
 
 - Threats
 	- Visceral
