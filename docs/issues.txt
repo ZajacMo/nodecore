@@ -11,10 +11,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - falling_node pillars settle out of order!
 
-- Make sure sponges can soak up artificial water too (test empirically).
-
-- Prism-making hint only works on off prism, needs to work with on+gated.
-
 - Add hint for recycling glass(es) to sand?
 
 - Delayed hint witnessing?
@@ -23,13 +19,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Use for witnessing fermentation recipes like peat/humus,
 	  humus/dirt, dirt/sand.
 
-- Sprinting up a ladder is possible.  Should it be?
-
 - Tote recycling is possible but has no hint.
 	- Should recipe be changed?  Heat it back into a cube if empty?
-
-- Coal chopping recipe should give credit upon chopping any
-  non-fully-ash charcoal, not just on picking up lump.
 
 - Tree soil rate should bias closer nodes to have higher impact...?
 

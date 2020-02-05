@@ -151,7 +151,17 @@ addhint("find charcoal",
 )
 
 addhint("chop up charcoal",
-	"nc_fire:lump_coal",
+	{true,
+		"nc_fire:lump_coal",
+		"chop nc_fire:coal1",
+		"chop nc_fire:coal2",
+		"chop nc_fire:coal3",
+		"chop nc_fire:coal4",
+		"chop nc_fire:coal5",
+		"chop nc_fire:coal6",
+		"chop nc_fire:coal7",
+		"chop nc_fire:coal8"
+	},
 	"group:charcoal"
 )
 
@@ -506,30 +516,33 @@ addhint("cool molten glass into crude glass",
 )
 
 addhint("chip chromatic glass into prisms",
-	"nc_optics:prism",
+	"group:silica_prism",
 	"nc_optics:glass_opaque"
 )
 
 addhint("chop chromatic glass into lenses",
-	"nc_optics:lens",
+	"group:silica_lens",
 	"nc_optics:glass_opaque"
 )
 
-local opticactive = {true, "nc_optics:lens_on", "nc_optics:prism_on"}
-
 addhint("activate a lens",
-	opticactive,
-	"nc_optics:lens"
+	"nc_optics:lens_on",
+	"group:silica_lens"
 )
 
 addhint("produce light from a lens",
 	"nc_optics:lens_glow",
-	opticactive
+	"group:silica_lens"
+)
+
+addhint("activate a prism",
+	"nc_optics:prism_on",
+	"nc_optics:lens_on"
 )
 
 addhint("gate a prism",
 	"nc_optics:prism_gated",
-	opticactive
+	"nc_optics:lens_on"
 )
 
 addhint("assemble a glass tank",

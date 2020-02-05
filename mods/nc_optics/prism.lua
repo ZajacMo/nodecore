@@ -40,7 +40,8 @@ local basedef = {
 	groups = {
 		silica = 1,
 		optic_check = 1,
-		cracky = 3
+		cracky = 3,
+		silica_prism = 1
 	},
 	drop = modname .. ":prism",
 	on_construct = nodecore.optic_check,
