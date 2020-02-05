@@ -20,3 +20,21 @@ nodecore.register_soaking_abm({
 			nodecore.witness(pos, "lux renewal")
 		end
 	})
+
+nodecore.register_craft({
+		label = "lode renewal",
+		action = "pummel",
+		toolgroups = {thumpy = 2},
+		normal = {y = 1},
+		nodes = {
+			{
+				match = "nc_lode:prill_hot",
+				replace = "air"
+			},
+			{
+				y = -1,
+				match = modname .. ":cobble8",
+				replace = "nc_lode:cobble_hot"
+			}
+		}
+	})
