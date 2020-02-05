@@ -132,7 +132,7 @@ nodecore.register_limited_abm({
 		nodenames = {src},
 		neighbors = {"group:water"},
 		action = function(pos, node)
-			local waters = #nodecore.find_nodes_around(pos, "group:water")
+			local waters = #nodecore.find_nodes_around(pos, "group:water") - 3
 			local rnd = math_random() * 20
 			if rnd * rnd < waters then
 				nodecore.set_loud(pos, {name = "nc_terrain:gravel"})
