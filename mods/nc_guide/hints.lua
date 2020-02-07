@@ -517,12 +517,12 @@ addhint("cool molten glass into crude glass",
 
 addhint("chip chromatic glass into prisms",
 	"group:silica_prism",
-	"nc_optics:glass_opaque"
+	{"nc_optics:glass_opaque", "nc_lode:tool_mallet_tempered"}
 )
 
 addhint("chop chromatic glass into lenses",
 	"group:silica_lens",
-	"nc_optics:glass_opaque"
+	{"nc_optics:glass_opaque", "nc_lode:tool_hatchet_tempered"}
 )
 
 addhint("activate a lens",
