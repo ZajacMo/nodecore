@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -63,6 +65,11 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos)
 			if data.total < 2500 then return end
 			minetest.get_meta(pos):from_table({})
+			if math_random(1, 100) == 1 and minetest.get_node_light(
+				{x = pos.x, y = pos.y + 1, z = pos.z}) == 15 then
+				nodecore.set_loud(pos, {name = "nc_terrain:dirt_with_grass"})
+				return
+			end
 			nodecore.set_loud(pos, {name = modname .. ":humus"})
 		end
 	})
