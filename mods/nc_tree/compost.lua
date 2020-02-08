@@ -54,18 +54,20 @@ nodecore.register_craft({
 		}
 	})
 
+local compostcost = 2500
+
 nodecore.register_soaking_abm({
 		label = "Composting Growing",
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
-		interval = 10,
-		chance = 1,
+		interval = 1,
+		chance = 10,
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
-			if data.total < 2500 then return end
+			if data.total < compostcost then return end
 			minetest.get_meta(pos):from_table({})
 			if math_random(1, 100) == 1 and minetest.get_node_light(
 				{x = pos.x, y = pos.y + 1, z = pos.z}) == 15 then
@@ -73,6 +75,11 @@ nodecore.register_soaking_abm({
 				return
 			end
 			nodecore.set_loud(pos, {name = modname .. ":humus"})
+			local found = nodecore.find_nodes_around(pos, {modname .. ":peat"})
+			if #found < 1 then return false end
+			nodecore.soaking_abm_push(nodecore.pickrand(found),
+				"compost", data.total - compostcost)
+			return false
 		end
 	})
 
