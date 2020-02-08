@@ -399,3 +399,7 @@ function nodecore.grav_air_accel_ent(obj)
 	if vector.equals(cur, new) then return end
 	return obj:set_acceleration(new)
 end
+
+function nodecore.near_unloaded(pos, radius)
+	return minetest.find_node_near(pos, radius or 1, {"ignore"}, true)
+end

@@ -43,6 +43,7 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
+			if nodecore.near_unloaded(pos) then return end
 			if data.total >= sproutcost then
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
@@ -84,6 +85,7 @@ nodecore.register_soaking_abm({
 		limited_alert = 1000,
 		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
+			if nodecore.near_unloaded(pos) then return end
 			if data.total < trunkcost then
 				return growparticles(pos, data.rate, 0.45)
 			end
@@ -143,6 +145,7 @@ nodecore.register_soaking_abm({
 			return rate and rate ~= 0 and rate or 10
 		end,
 		soakcheck = function(data, pos, node)
+			if nodecore.near_unloaded(pos) then return end
 			if data.total < leafcost then return end
 
 			nodecore.set_loud(pos, nodecore.calc_leaves(pos))

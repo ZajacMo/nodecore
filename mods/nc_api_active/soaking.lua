@@ -92,6 +92,7 @@ function nodecore.register_soaking_aism(def)
 	)
 end
 
+local pending
 function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local abm = soaking_abm_by_fieldname[fieldname]
 	if not abm then return end
@@ -114,7 +115,17 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local tf = fieldname .. "time"
 	if (meta:get_float(tf) or 0) == 0 then meta:set_float(tf, nodecore.gametime) end
 
-	return minetest.after(0, function()
-			return abm.action(pos, node)
-		end)
+	local func = abm.limited_action or abm.action
+	if pending then
+		pending[#pending + 1] = function() return func(pos, node) end
+	else
+		pending = {}
+		func(pos, node)
+		while #pending > 0 do
+			local batch = pending
+			pending = {}
+			for _, f in pairs(batch) do f() end
+		end
+		pending = nil
+	end
 end
