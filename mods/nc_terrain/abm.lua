@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -39,17 +41,40 @@ local function grassable(above)
 	if ld >= 10 then return end
 end
 
-nodecore.register_limited_abm({
+local grasscost = 1000
+
+nodecore.register_soaking_abm({
 		label = "Grass Spread",
-		nodenames = {"group:soil"},
+		nodenames = {"group:soil_not_grass"},
 		neighbors = {grass},
-		interval = 6,
-		chance = 50,
-		action = function(pos, node)
-			if node.name == grass then return end
+		fieldname = "grassify",
+		interval = 10,
+		chance = 1,
+		soakrate = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if not grassable(above) then return end
-			return minetest.set_node(pos, {name = grass})
+			return 10
+		end,
+		soakcheck = function(data, pos)
+			if nodecore.near_unloaded(pos) then return end
+			if data.total < grasscost then return end
+			minetest.set_node(pos, {name = grass})
+			local found = nodecore.find_nodes_around(pos, {"group:soil_not_grass"})
+			if #found < 1 then return false end
+			for i = 1, #found do
+				local j = math_random(1, #found)
+				found[i], found[j] = found[j], found[i]
+			end
+			for _, p in pairs(found) do
+				p.y = p.y + 1
+				if grassable(p) then
+					p.y = p.y - 1
+					nodecore.soaking_abm_push(p,
+						"grassify", data.total - grasscost)
+					return false
+				end
+			end
+			return false
 		end
 	})
 

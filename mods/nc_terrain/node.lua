@@ -142,7 +142,8 @@ regterrain({
 			groups = {
 				dirt_loose = 1,
 				falling_repose = 2,
-				soil = 2
+				soil = 2,
+				soil_not_grass = 1
 			}
 		},
 		mapgen = {
@@ -152,7 +153,8 @@ regterrain({
 		groups = {
 			dirt = 1,
 			crumbly = 1,
-			soil = 1
+			soil = 1,
+			soil_not_grass = 1
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_terrain_crunchy")

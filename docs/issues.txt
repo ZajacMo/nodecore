@@ -63,9 +63,8 @@ ISSUES: Bugs, Cleanup and Refinements
 	- This would make gameplay more fair for those who tend to
 	  go AFK suddenly and can't return for a long time.
 
-- Offline grass spreading.
-	- Use new nodecore.soaking_abm_push API.
-	- Will have to do a lot of performance testing.
+- Offline sponge spreading.
+	- Similar to grass spreading.
 
 - Replacement for mkreg, a.k.a. register_generic():
 	- Allow lazy registration, i.e. a register method that can
