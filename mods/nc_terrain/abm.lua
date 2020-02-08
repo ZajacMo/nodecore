@@ -48,8 +48,8 @@ nodecore.register_soaking_abm({
 		nodenames = {"group:soil_not_grass"},
 		neighbors = {grass},
 		fieldname = "grassify",
-		interval = 10,
-		chance = 1,
+		interval = 1,
+		chance = 10,
 		soakrate = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if not grassable(above) then return end
