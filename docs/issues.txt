@@ -28,9 +28,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- This could make the decision to harvest trees early vs
 	  wait for them to mature more nuanced.
 
-- Radiant heat should travel through sunlight_propagates nodes.
-	- Maybe even paramtype=light ones?
-
 - Should we create "recipe groups" to make it easier to specify
   equivalent recipes for hint purposes?
 
