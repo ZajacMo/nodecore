@@ -16,26 +16,24 @@ function nodecore.item_ent_merge(pos)
 	cache[hash] = (t or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
 	local db = {}
-	for _, obj in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-		if vector.equals(vector.round(obj:get_pos()), pos) then
-			local lua = obj.get_luaentity and obj:get_luaentity()
-			if lua and lua.name == "__builtin:item" then
-				local stack = ItemStack(lua.itemstring or "")
-				if not stack:is_empty() then
-					local qty = stack:get_count()
-					stack:set_count(1)
-					local key = stack:to_string()
-					local entry = db[key]
-					if entry then
-						entry.qty = entry.qty + qty
-						entry.objs[#entry.objs + 1] = {obj = obj, lua = lua}
-					else
-						db[key] = {
-							stack = stack,
-							qty = qty,
-							objs = {{obj = obj, lua = lua}}
-						}
-					end
+	for _, obj in pairs(nodecore.get_objects_at_pos(pos, 1)) do
+		local lua = obj.get_luaentity and obj:get_luaentity()
+		if lua and lua.name == "__builtin:item" then
+			local stack = ItemStack(lua.itemstring or "")
+			if not stack:is_empty() then
+				local qty = stack:get_count()
+				stack:set_count(1)
+				local key = stack:to_string()
+				local entry = db[key]
+				if entry then
+					entry.qty = entry.qty + qty
+					entry.objs[#entry.objs + 1] = {obj = obj, lua = lua}
+				else
+					db[key] = {
+						stack = stack,
+						qty = qty,
+						objs = {{obj = obj, lua = lua}}
+					}
 				end
 			end
 		end

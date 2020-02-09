@@ -104,12 +104,10 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		if not on_settle(self, pos, collides) then return end
 
 		pos.y = pos.y + 1
-		for _, obj in pairs(minetest.get_objects_inside_radius(pos, 2)) do
-			if vector.equals(vector.round(obj:get_pos()), pos) then
-				obj = obj.get_luaentity and obj:get_luaentity()
-				if obj and obj.settle_check then
-					obj:settle_check()
-				end
+		for _, obj in pairs(nodecore.get_objects_at_pos(pos)) do
+			obj = obj.get_luaentity and obj:get_luaentity()
+			if obj and obj.settle_check then
+				obj:settle_check()
 			end
 		end
 

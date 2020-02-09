@@ -403,3 +403,14 @@ end
 function nodecore.near_unloaded(pos, radius)
 	return minetest.find_node_near(pos, radius or 1, {"ignore"}, true)
 end
+
+function nodecore.get_objects_at_pos(pos)
+	pos = vector.round(pos)
+	local t = {}
+	for _, obj in pairs(minetest.get_objects_inside_radius(pos, 0.866025403784)) do
+		if vector.equals(vector.round(obj:get_pos()), pos) then
+			t[#t + 1] = obj
+		end
+	end
+	return t
+end
