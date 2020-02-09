@@ -1,46 +1,69 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local ipairs, minetest, nodecore, pairs, table, vector
+    = ipairs, minetest, nodecore, pairs, table, vector
+local table_sort
+    = table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
-
-local raked = {}
-local rakelock = {}
-
-local wearrate = 65536 / 150
 
 minetest.register_tool(modname .. ":rake", {
 		description = "Rake",
 		inventory_image = modname .. "_rake.png",
 		tool_capabilities = nodecore.toolcaps({
 				snappy = 1,
+				uses = 10
 			}),
-		sounds = nodecore.sounds("nc_tree_sticky"),
-		after_use = function(stack, user, node, digparams)
-			local def = node and node.name and minetest.registered_nodes[node.name]
-			if not (def and def.groups and def.groups.snappy) then return end
-			local pname = user and user:is_player() and user:get_player_name()
-			if pname then raked[pname] = digparams end
-			stack:add_wear(wearrate)
-			if stack:get_count() < 1 then
-				minetest.sound_play("nc_api_toolbreak",
-					{object = user, gain = 0.5})
-			end
-			return stack
-		end
+		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
-local function dorake(pname, pos, node, user, ...)
-	local stack = user:get_wielded_item()
-	if stack:get_name() ~= modname .. ":rake" then return end
+local rakable = {}
+local stackonly = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			if v.groups and v.groups.falling_node and v.groups.snappy == 1 then
+				rakable[k] = true
+				if v.groups.is_stack_only then stackonly[k] = true end
+			end
+		end
+	end)
 
-	local digparams = raked[pname]
-	if not digparams then return end
+local rakepos = {}
+for dy = -1, 1 do
+	for dx = -2, 2 do
+		for dz = -2, 2 do
+			rakepos[#rakepos + 1] = {x = dx, y = dy, z = dz}
+		end
+	end
+end
+table_sort(rakepos, function(a, b) return vector.length(a) < vector.length(b) end)
 
-	for _, npos in pairs(nodecore.find_nodes_around(pos, node.name, {2, 1, 2})) do
-		minetest.node_dig(npos, node, user, ...)
-		for _, obj in pairs(minetest.get_objects_inside_radius(npos, 0.5)) do
+local laststack
+local old_node_dig = minetest.node_dig
+minetest.node_dig = function(pos, ...)
+	laststack = nodecore.stack_get(pos)
+	return old_node_dig(pos, ...)
+end
+
+local function matching(pa, na, pb, nb)
+	if stackonly[na.name] then
+		if not stackonly[nb.name] then return end
+		minetest.log(nodecore.stack_get(pa):get_name() .. " ?= "
+			.. nodecore.stack_get(pb):get_name())
+		return (laststack and laststack:get_name()) == nodecore.stack_get(pb):get_name()
+	end
+	return na.name == nb.name
+end
+
+local function dorake(pos, node, user, ...)
+	local sneak = user:get_player_control().sneak
+	for _, rel in ipairs(rakepos) do
+		local p = vector.add(pos, rel)
+		local n = minetest.get_node(p)
+		if rakable[n.name] and ((not sneak) or matching(pos, node, p, n)) then
+			minetest.node_dig(p, node, user, ...)
+		end
+		for _, obj in pairs(nodecore.get_objects_at_pos(p)) do
 			local lua = obj and obj.get_luaentity and obj:get_luaentity()
 			if lua and lua.name == "__builtin:item" then
 				obj:set_pos(pos)
@@ -49,19 +72,20 @@ local function dorake(pname, pos, node, user, ...)
 	end
 end
 
+local rakelock = {}
+
 minetest.register_on_dignode(function(pos, node, user, ...)
-		local def = minetest.registered_items[node.name]
-		if not (def and def.groups and def.groups.falling_node) then return end
+		if not (node and node.name and rakable[node.name]) then return end
+		if not user:is_player() then return end
 
-		local pname = user and user:is_player() and user:get_player_name()
-		if not pname then return end
+		local stack = user:get_wielded_item()
+		if stack:get_name() ~= modname .. ":rake" then return end
 
+		local pname = user:get_player_name()
 		if rakelock[pname] then return end
 		rakelock[pname] = true
-		dorake(pname, pos, node, user, ...)
+		dorake(pos, node, user, ...)
 		rakelock[pname] = nil
-
-		raked[pname] = nil
 	end)
 
 local adze = {name = modname .. ":adze", wear = 0.05}
