@@ -16,18 +16,17 @@ to the project!
 	  feature. (MTG #2547, but it's probably an engine bug)
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
-	  elements.
+	  elements.  Current open PR is #9315.
 	- #8952: This causes hidden bases and other items to be visible
 	  through walls and other terrain in our MP server.
 	- #8141: We want cleaner player name labels, and to move
 	  the touchtip from screen-space into node-space.
-	- #9043: This bug requires NodeCore to maintain a workaround for
-	  the engine in its own code.
-	- #9048: Causes player inventory sounds to be played at the wrong
-	  volume.
 	- TBD: Engine should provide a standard way to make digparticles
 	  that doesn't depend on using [combine and knowing exact source
 	  texture size (breaks texturepacks).
+	- #6963: If this is implemented, we may have a more efficient
+	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
+	  and other container nodes.
 
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,
