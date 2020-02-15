@@ -43,7 +43,7 @@ nodecore.register_craft({
 		nodes = {
 			{
 				match = modname .. ":cobble_hot",
-				replace = modname .. ":cobble"
+				replace = modname .. ":ore"
 			}
 		}
 	})
