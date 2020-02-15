@@ -19,6 +19,7 @@ ICEBOX: Low-Priority Ideas
 
 - Lens strobing rate limiting of some kind?
 	- Require cool-downs after a lot of toggling?
+	- Add histerisis or switch-on/charge-up delay?
 	- Could this be an accessibility issue?
 
 - "Smart" optics placement?

@@ -9,6 +9,14 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make player lose auto-run speed if X/Z coords don't change for a
+  couple seconds while not in water, like climbing a ladder or
+  stuck in a corner.
+
+- Make torches emit some light even when not wielded?
+	- More consistent with bandolier.
+	- Standardize temporary light system?
+
 - falling_node pillars settle out of order!
 
 - Add hint for recycling glass(es) to sand?
