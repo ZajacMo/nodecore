@@ -1030,11 +1030,11 @@ msgstr "insert metal rod into a cobble panel"
 msgid "insert wooden pin into wooden door panel"
 msgstr "insert wooden pin into wooden door panel"
 
-msgid "leech dirt to sand"
-msgstr "leech dirt to sand"
+msgid "leach dirt to sand"
+msgstr "leach dirt to sand"
 
-msgid "leech humus to dirt"
-msgstr "leech humus to dirt"
+msgid "leach humus to dirt"
+msgstr "leach humus to dirt"
 
 msgid "light a torch"
 msgstr "light a torch"

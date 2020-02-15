@@ -48,8 +48,8 @@ addhint("quench molten rock to amalgamation",
 	{"group:lava", "group:sponge"}
 )
 
-addhint("leech dirt to sand",
-	"leech nc_terrain:dirt",
+addhint("leach dirt to sand",
+	"leach nc_terrain:dirt",
 	"dig:nc_terrain:dirt_loose"
 )
 
@@ -127,8 +127,8 @@ addhint("ferment peat into humus",
 	"nc_tree:peat"
 )
 
-addhint("leech humus to dirt",
-	"leech nc_tree:humus",
+addhint("leach humus to dirt",
+	"leach nc_tree:humus",
 	"nc_tree:humus"
 )
 

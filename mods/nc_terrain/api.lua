@@ -23,15 +23,15 @@ function nodecore.hard_stone_tile(n)
 	.. o .. ")"
 end
 
-function nodecore.register_dirt_leeching(fromnode, tonode, rate)
+function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 	local function waterat(pos, dx, dy, dz)
 		pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 		local node = minetest.get_node(pos)
 		return minetest.get_item_group(node.name, "water") ~= 0
 	end
 	nodecore.register_soaking_abm({
-			label = fromnode .. " leeching to " .. tonode,
-			fieldname = "leech",
+			label = fromnode .. " leaching to " .. tonode,
+			fieldname = "leach",
 			nodenames = {fromnode},
 			neighbors = {"group:water"},
 			interval = 5,
@@ -48,7 +48,7 @@ function nodecore.register_dirt_leeching(fromnode, tonode, rate)
 			end,
 			soakcheck = function(data, pos)
 				if data.total < 5000 then return end
-				nodecore.witness(pos, "leech " .. fromnode)
+				nodecore.witness(pos, "leach " .. fromnode)
 				nodecore.set_loud(pos, {name = tonode})
 				return nodecore.fallcheck(pos)
 			end

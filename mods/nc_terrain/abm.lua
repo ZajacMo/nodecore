@@ -90,4 +90,4 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_dirt_leeching(dirt, modname .. ":sand_loose")
+nodecore.register_dirt_leaching(dirt, modname .. ":sand_loose")
