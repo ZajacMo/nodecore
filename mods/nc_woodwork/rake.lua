@@ -39,10 +39,13 @@ end
 table_sort(rakepos, function(a, b) return vector.length(a) < vector.length(b) end)
 
 local laststack
+local lastraking
 local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, ...)
+minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
-	return old_node_dig(pos, ...)
+	local wield = user and user:is_player() and user:get_wielded_item()
+	lastraking = wield and wield:get_name() == modname .. ":rake"
+	return old_node_dig(pos, node, user, ...)
 end
 
 local function matching(pa, na, pb, nb)
@@ -75,17 +78,18 @@ end
 local rakelock = {}
 
 minetest.register_on_dignode(function(pos, node, user, ...)
+		if not lastraking then return end
+
 		if not (node and node.name and rakable[node.name]) then return end
 		if not user:is_player() then return end
-
-		local stack = user:get_wielded_item()
-		if stack:get_name() ~= modname .. ":rake" then return end
 
 		local pname = user:get_player_name()
 		if rakelock[pname] then return end
 		rakelock[pname] = true
 		dorake(pos, node, user, ...)
 		rakelock[pname] = nil
+
+		lastraking = nil
 	end)
 
 local adze = {name = modname .. ":adze", wear = 0.05}
