@@ -61,7 +61,7 @@ local function dorake(pos, node, user, ...)
 		local p = vector.add(pos, rel)
 		local n = minetest.get_node(p)
 		if rakable[n.name] and ((not sneak) or matching(pos, node, p, n)) then
-			minetest.node_dig(p, node, user, ...)
+			minetest.node_dig(p, n, user, ...)
 		end
 		for _, obj in pairs(nodecore.get_objects_at_pos(p)) do
 			local lua = obj and obj.get_luaentity and obj:get_luaentity()
