@@ -65,9 +65,11 @@ function nodecore.sound_play_except(name, def, pname)
 end
 
 function nodecore.node_sound(pos, kind, opts)
-	nodecore.stack_sounds(pos, kind)
 	local node = opts and opts.node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
+	if def.groups and def.groups.visinv then
+		nodecore.stack_sounds(pos, kind)
+	end
 	if (not def.sounds) or (not def.sounds[kind]) then return end
 	local t = {}
 	for k, v in pairs(def.sounds[kind]) do t[k] = v end
