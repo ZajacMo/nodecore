@@ -14,13 +14,13 @@ minetest.register_node(modname .. ":humus", {
 			dirt = 2,
 			crumbly = 1,
 			soil = 4,
-			soil_not_grass = 1
+			grassable = 1
 		},
 		alternate_loose = {
 			groups = {
 				dirt_loose = 2,
 				soil = 5,
-				soil_not_grass = 1
+				grassable = 1
 			}
 		},
 		crush_damage = 1,

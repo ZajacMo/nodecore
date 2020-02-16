@@ -45,7 +45,7 @@ local grasscost = 1000
 
 nodecore.register_soaking_abm({
 		label = "Grass Spread",
-		nodenames = {"group:soil_not_grass"},
+		nodenames = {"group:grassable"},
 		neighbors = {grass},
 		fieldname = "grassify",
 		interval = 1,
@@ -59,7 +59,7 @@ nodecore.register_soaking_abm({
 			if nodecore.near_unloaded(pos) then return end
 			if data.total < grasscost then return end
 			minetest.set_node(pos, {name = grass})
-			local found = nodecore.find_nodes_around(pos, {"group:soil_not_grass"})
+			local found = nodecore.find_nodes_around(pos, {"group:grassable"})
 			if #found < 1 then return false end
 			for i = 1, #found do
 				local j = math_random(1, #found)

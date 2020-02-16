@@ -67,7 +67,8 @@ local epdef = nodecore.underride({
 		drawtype = "plantlike_rooted",
 		special_tiles = {modname .. "_eggcorn_planted.png"},
 		drop = ldname,
-		no_self_repack = true
+		no_self_repack = true,
+		groups = {grassable = 0}
 	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
