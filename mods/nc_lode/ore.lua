@@ -28,7 +28,7 @@ local stratore = {}
 local stone = reg("Stone", {
 		description = "Stone",
 		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png^[opacity:48)"},
+			.. modname .. "_mask_ore.png^[opacity:96)"},
 		drop_in_place = "nc_terrain:cobble",
 		strata = stratstone
 	})
