@@ -53,8 +53,8 @@ minetest.register_node(modname .. ":glass_float", {
 		description = "Float Glass",
 		drawtype = "glasslike_framed_optional",
 		tiles = {
-			modname .. "_glass_float.png^" .. modname .. "_glass_edges.png",
-			modname .. "_glass_float.png"
+			modname .. "_glass_edges.png",
+			"[combine:16x16"
 		},
 		propagates_sunlight = true,
 		paramtype = "light",
