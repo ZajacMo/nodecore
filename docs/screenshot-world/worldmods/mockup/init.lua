@@ -56,6 +56,8 @@ local function setup(p)
 	p:set_look_horizontal(163.8 * math_pi / 180)
 	p:set_look_vertical(9 * math_pi / 180)
 
+	p:set_hud_flags({crosshair = false})
+
 	local inv = p:get_inventory()
 	for i, v in pairs(setinv) do
 		if v then

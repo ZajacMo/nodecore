@@ -166,7 +166,7 @@ regterrain({
 			modname .. "_grass_top.png",
 			modname .. "_dirt.png",
 			modname .. "_dirt.png^(" .. modname .. "_grass_top.png^[mask:"
-			.. modname .. "_grass_side.png)"
+			.. modname .. "_grass_sidemask.png)"
 		},
 		mapgen = {
 			"dirt_with_grass",
