@@ -17,7 +17,8 @@ minetest.register_node(modname .. ":aggregate", {
 		sounds = nodecore.sounds("nc_terrain_chompy")
 	})
 
-local wettile = "nc_terrain_stone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"
+local wettile = "nc_terrain_stone.png^(nc_fire_ash.png^("
+.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)"
 local wetdef = {
 	description = "Wet Aggregate",
 	tiles = {wettile},

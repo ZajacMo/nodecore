@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
     = math, minetest, nodecore
-local math_floor, math_sqrt
-    = math.floor, math.sqrt
+local math_floor, math_pow
+    = math.floor, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -10,7 +10,7 @@ local modname = minetest.get_current_modname()
 nodecore.hard_stone_strata = 7
 
 function nodecore.hard_stone_tile(n)
-	local o = math_floor(math_sqrt(n or 0) * 96)
+	local o = math_floor(math_pow(n, 0.75) * 59)
 	if o <= 0 then
 		return modname .. "_stone.png"
 	end

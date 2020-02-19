@@ -53,8 +53,8 @@ minetest.register_node(modname .. ":glass_float", {
 		description = "Float Glass",
 		drawtype = "glasslike_framed_optional",
 		tiles = {
-			modname .. "_glass_float.png^" .. modname .. "_glass_edges.png",
-			modname .. "_glass_float.png"
+			modname .. "_glass_edges.png",
+			"[combine:16x16"
 		},
 		propagates_sunlight = true,
 		paramtype = "light",
@@ -80,7 +80,7 @@ end
 
 local animglass = ""
 for i = 0, 31 do
-	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_glare.png"
+	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_sparkle.png"
 end
 local molttxr = anim("[combine:16x512:0,0=nc_terrain_lava.png" .. animglass, 8)
 local flowtxr = anim("[combine:16x512:0,0=nc_terrain_lava_flow.png" .. animglass, 8)
