@@ -3,13 +3,18 @@ local minetest, nodecore, pairs
     = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
+local hurtcache = {}
+
 minetest.register_on_player_hpchange(function(player, hp, reason)
 		local orig = player:get_hp()
 		if reason and reason.type == "drown" then hp = hp * 2 end
 		if player:get_armor_groups().immortal then
 			return orig
 		end
+		local pname
 		if hp < 0 then
+			pname = player:get_player_name()
+			hurtcache[pname] = nodecore.gametime
 			player:get_meta():set_float("hurttime", nodecore.gametime)
 			if nodecore.player_visible(player) then
 				minetest.after(0, function()
@@ -25,7 +30,7 @@ minetest.register_on_player_hpchange(function(player, hp, reason)
 		if hp + orig <= 0 then
 			hp = 2 - orig
 			player:get_meta():set_float("dhp", -2)
-			local pname = player:get_player_name()
+			pname = pname or player:get_player_name()
 			minetest.after(0, function()
 					player = minetest.get_player_by_name(pname)
 					if player then return nodecore.addphealth(player, 0) end
@@ -49,7 +54,7 @@ local function heal(player, dtime)
 	local pname = player:get_player_name()
 	if full[pname] and player:get_hp() >= hpmax then return end
 	full[pname] = nil
-	local hurt = player:get_meta():get_float("hurttime")
+	local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")
 	if hurt >= nodecore.gametime - 4 then return end
 	nodecore.addphealth(player, dtime * 2)
 	if nodecore.getphealth(player) >= hpmax then full[pname] = true end
