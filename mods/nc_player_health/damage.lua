@@ -27,13 +27,8 @@ minetest.register_on_player_hpchange(function(player, hp)
 			end
 		end
 		if hp + orig <= 0 then
-			hp = 2 - orig
-			player:get_meta():set_float("dhp", -2)
-			pname = pname or player:get_player_name()
-			minetest.after(0, function()
-					player = minetest.get_player_by_name(pname)
-					if player then return nodecore.addphealth(player, 0) end
-				end)
+			hp = 1 - orig
+			player:get_meta():set_float("dhp", -1)
 		end
 		return hp
 	end,
@@ -41,16 +36,25 @@ minetest.register_on_player_hpchange(function(player, hp)
 )
 
 minetest.register_on_dieplayer(function(player)
-		player:set_hp(1)
-		player:get_meta():set_float("dhp", -1)
+		nodecore.setphealth(player, 0)
 	end)
 
 local full = {}
 local function heal(player, dtime)
-	local hpmax = player:get_properties().hp_max
-	if player:get_hp() <= 0 then return end
+	local hp = player:get_hp()
+	if hp <= 0 then return end
+	if hp == 1 then
+		local meta = player:get_meta()
+		if meta:get_float("dhp") == -1 then
+			local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
+			if hurt + 0.5 < nodecore.gametime then
+				nodecore.setphealth(player, 0, 2)
+			end
+		end
+	end
 	if player:get_breath() <= 0 then return end
 	local pname = player:get_player_name()
+	local hpmax = player:get_properties().hp_max
 	if full[pname] and player:get_hp() >= hpmax then return end
 	full[pname] = nil
 	local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")

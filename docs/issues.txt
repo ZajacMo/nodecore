@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Need to work on the damage system.  After getting hurt to 0hp, the
-  player needs to force waiting at least 250ms before recharging and
-  allowing more hurt FX.
-
 - Consider quantizing/palletizing textures.
 
 - Switch door ablation propulsion to run on a node timer instead of

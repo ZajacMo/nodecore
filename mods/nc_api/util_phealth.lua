@@ -10,12 +10,13 @@ local function getphealth(player)
 end
 nodecore.getphealth = getphealth
 
-local function setphealth(player, hp)
+local function setphealth(player, hp, minwhole)
 	local hpmax = player:get_properties().hp_max
 	if hp > hpmax then hp = hpmax end
 	if hp < 0 then hp = 0 end
 	local whole = math_ceil(hp)
 	if whole == 0 then whole = 1 end
+	if minwhole and whole < minwhole then whole = minwhole end
 	local dhp = hp - whole
 	player:get_meta():set_float("dhp", dhp)
 	local old = player:get_hp()
@@ -25,9 +26,9 @@ end
 nodecore.setphealth = setphealth
 
 local function addphealth(player, hp)
-	local old = getphealth(player)
-	if hp < 0 and old <= 1 then player:set_hp(2) end
-	return setphealth(player, old + hp)
+	return setphealth(player,
+		getphealth(player) + hp,
+		hp >= 0 and player:get_hp())
 end
 nodecore.addphealth = addphealth
 
