@@ -52,7 +52,6 @@ local function heal(player, dtime)
 			end
 		end
 	end
-	if player:get_breath() <= 0 then return end
 	local pname = player:get_player_name()
 	local hpmax = player:get_properties().hp_max
 	if full[pname] and player:get_hp() >= hpmax then return end
