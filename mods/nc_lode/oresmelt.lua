@@ -37,7 +37,7 @@ nodecore.register_craft({
 		label = "lode ore cooling",
 		action = "cook",
 		touchgroups = {flame = 0},
-		duration = 30,
+		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
 		nodes = {
