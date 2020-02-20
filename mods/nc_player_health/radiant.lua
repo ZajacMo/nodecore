@@ -63,7 +63,7 @@ local function applyheat()
 			local pname = p:get_player_name()
 			local ow = heat[pname]
 			if ow and ow > 0.1 then
-				nodecore.addphealth(p, -ow)
+				nodecore.addphealth(p, -ow, "radiant")
 			end
 		end
 	end

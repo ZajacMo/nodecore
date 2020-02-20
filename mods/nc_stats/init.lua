@@ -108,6 +108,7 @@ reghook(minetest.register_on_joinplayer, "join", 1)
 
 local function unpackreason(reason)
 	if type(reason) ~= "table" then return reason or "?" end
+	if reason.nc_type then return "nc", reason.nc_type end
 	if reason.from then return reason.from, reason.type or nil end
 	return reason.type or "?"
 end

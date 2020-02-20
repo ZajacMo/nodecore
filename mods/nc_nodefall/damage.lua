@@ -29,7 +29,10 @@ local function maketick(mult, getname, oldtick)
 		local hit
 		for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if o:is_player() then
-				hit = hit or nodecore.addphealth(o, -q)
+				hit = hit or nodecore.addphealth(o, -q, {
+						nc_type = "crushing",
+						entity = self
+					})
 			end
 		end
 		if hit then

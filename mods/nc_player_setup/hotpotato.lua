@@ -32,7 +32,7 @@ local function hotpotatoes(player)
 			obj:get_luaentity().dropped_by = pname
 		end
 	end
-	if hurt > 0 then player:set_hp(player:get_hp() - hurt) end
+	if hurt > 0 then nodecore.addphealth(player, -hurt, "hotpotato") end
 end
 
 minetest.register_globalstep(function()

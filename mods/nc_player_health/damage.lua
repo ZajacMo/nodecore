@@ -36,7 +36,7 @@ minetest.register_on_player_hpchange(function(player, hp)
 )
 
 minetest.register_on_dieplayer(function(player)
-		nodecore.setphealth(player, 0)
+		nodecore.setphealth(player, 0, "on_dieplayer")
 	end)
 
 local full = {}
@@ -48,7 +48,7 @@ local function heal(player, dtime)
 		if meta:get_float("dhp") == -1 then
 			local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
 			if hurt + 0.5 < nodecore.gametime then
-				nodecore.setphealth(player, 0, 2)
+				nodecore.setphealth(player, 0, "heal_rehurtfx", 2)
 			end
 		end
 	end
@@ -58,7 +58,7 @@ local function heal(player, dtime)
 	full[pname] = nil
 	local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")
 	if hurt >= nodecore.gametime - 4 then return end
-	nodecore.addphealth(player, dtime * 2)
+	nodecore.addphealth(player, dtime * 2, "heal")
 	if nodecore.getphealth(player) >= hpmax then full[pname] = true end
 end
 minetest.register_globalstep(function(dtime)
