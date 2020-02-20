@@ -3,8 +3,9 @@ local minetest, nodecore, pairs
     = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.register_on_player_hpchange(function(player, hp)
+minetest.register_on_player_hpchange(function(player, hp, reason)
 		local orig = player:get_hp()
+		if reason and reason.type == "drown" then hp = hp * 2 end
 		if player:get_armor_groups().immortal then
 			return orig
 		end

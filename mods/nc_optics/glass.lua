@@ -100,7 +100,7 @@ local moltdef = {
 	buildable_to = false,
 	drowning = 1,
 	on_punch = nodecore.node_punch_hurt,
-	damage_per_second = 4,
+	damage_per_second = 3,
 	drop = "",
 	groups = {igniter = 1, silica = 1, stack_as_node = 1},
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
