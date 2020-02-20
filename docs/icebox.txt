@@ -9,6 +9,22 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make player lose auto-run speed if X/Z coords don't change for a
+  couple seconds while not in water, like climbing a ladder or
+  stuck in a corner.
+
+- Tree soil rate should bias closer nodes to have higher impact...?
+
+- Should tree growth rate start out faster but slow down?
+	- This could make the decision to harvest trees early vs
+	  wait for them to mature more nuanced.
+
+- Consider checking for a nearby active player before running
+  "fast-evolving" ABMs that don't normally work offline, like fire
+  extinguishing/spreading?
+	- This would make gameplay more fair for those who tend to
+	  go AFK suddenly and can't return for a long time.
+
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.
 
@@ -39,18 +55,9 @@ ICEBOX: Low-Priority Ideas
 	- Git hooks (and git hook setup scripts)?
 
 - API Cleanup
-	- Utils
-		- Box mueller (and repeated box mueller sum) and exporand
-	- Break up the nc_api monstrosity.
-		- nc_api_base to create _G.nodecore and include for all.
-		- nc_api metamod that just depends on ALL other api's.
-		- nc_all metamod for 3rd party mod authors...?
+	- Further nc_api break-up, clean up util functions.
 	- Heat API
-		- Unified heating/cooling number from env.
-		- Proper API for burning up items
-			- on_burn?  burns_to?
-		- Unify heat transformations into recipe system with
-		  cooking recipes?
+		- Quenched, Flames as numbers or nil?
 	- Unify nc_items and visinv API.
 		- Stack nodes are "special", get first-class support.
 
@@ -59,6 +66,13 @@ ICEBOX: Low-Priority Ideas
 	  and find_nodes_in_area (cuboid) in others.
 	- Diamond shape would be most consistent.
 	- Should require face touching, not diagonal.
+
+- Social features
+	- Randomize player appearance/colors.
+		- Shirt/pants, possibly w/ stripes/patterns
+		- Skin color, hair color, eye color?
+	- Support 64x64 dual-layer MC skins?
+	- Add a cloak/hood or other clothing/acc surfaces?
 
 ........................................................................
 ========================================================================

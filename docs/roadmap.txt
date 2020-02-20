@@ -118,13 +118,6 @@ ROADMAP: Large New Development Projects
 	- Need to dig all around it so it cannot move, then apply Some
 	  time-integrated process to convert it to useful form.
 
-- Social features
-	- Randomize player appearance/colors.
-		- Shirt/pants, possibly w/ stripes/patterns
-		- Skin color, hair color, eye color?
-	- Support 64x64 dual-layer MC skins?
-	- Add a cloak/hood or other clothing/acc surfaces?
-
 - New materials to craft with.
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
