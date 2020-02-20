@@ -67,6 +67,8 @@ minetest.register_globalstep(function(dtime)
 		end
 	end)
 
-minetest.register_on_joinplayer(function(player)
-		player:set_properties({hp_max = 8})
-	end)
+local function setmax(player)
+	player:set_properties({hp_max = 8})
+end
+minetest.register_on_joinplayer(setmax)
+minetest.register_on_newplayer(setmax)
