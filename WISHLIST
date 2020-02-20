@@ -17,6 +17,8 @@ to the project!
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.  Current open PR is #9315.
+	- #7876: Causes a damage flash when a new player joins, or a
+	  player from before 2020-02-19 when max HP was changed.
 	- #8952: This causes hidden bases and other items to be visible
 	  through walls and other terrain in our MP server.
 	- #8141: We want cleaner player name labels, and to move
