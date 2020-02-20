@@ -38,13 +38,24 @@ function nodecore.stack_sounds_delay(...)
 			nodecore.stack_sounds(unpack(t))
 		end)
 end
-function nodecore.sounds(name, gfoot, gdug, gplace)
-	return {
-		footstep = {name = name, gain = gfoot or 0.2},
-		dig = {name = name, gain = gdug or 0.5},
-		dug = {name = name, gain = gdug or 1},
-		place = {name = name, gain = gplace or 1}
-	}
+
+local gains_base = {
+	footstep = 0.2,
+	dig = 0.5,
+	dug = 1,
+	place = 1,
+	place_failed = 0.2,
+	fall = 0.1
+}
+function nodecore.sounds(name, gains)
+	local t = {}
+	for k, v in pairs(gains_base) do
+		t[k] = {
+			name = name,
+			gain = (gains and gains[k] or 1) * v
+		}
+	end
+	return t
 end
 
 function nodecore.sound_play_except(name, def, pname)
