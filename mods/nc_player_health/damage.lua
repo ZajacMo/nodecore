@@ -22,8 +22,13 @@ minetest.register_on_player_hpchange(function(player, hp)
 			end
 		end
 		if hp + orig <= 0 then
-			hp = 1 - orig
-			player:get_meta():set_float("dhp", -1)
+			hp = 2 - orig
+			player:get_meta():set_float("dhp", -2)
+			local pname = player:get_player_name()
+			minetest.after(0, function()
+					player = minetest.get_player_by_name(pname)
+					if player then return nodecore.addphealth(player, 0) end
+				end)
 		end
 		return hp
 	end,
@@ -37,18 +42,23 @@ minetest.register_on_dieplayer(function(player)
 
 local full = {}
 local function heal(player, dtime)
+	local hpmax = player:get_properties().hp_max
 	if player:get_hp() <= 0 then return end
 	if player:get_breath() <= 0 then return end
 	local pname = player:get_player_name()
-	if full[pname] and player:get_hp() >= 20 then return end
+	if full[pname] and player:get_hp() >= hpmax then return end
 	full[pname] = nil
 	local hurt = player:get_meta():get_float("hurttime")
 	if hurt >= nodecore.gametime - 4 then return end
 	nodecore.addphealth(player, dtime * 2)
-	if nodecore.getphealth(player) >= 20 then full[pname] = true end
+	if nodecore.getphealth(player) >= hpmax then full[pname] = true end
 end
 minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
 			heal(player, dtime)
 		end
+	end)
+
+minetest.register_on_joinplayer(function(player)
+		player:set_properties({hp_max = 8})
 	end)

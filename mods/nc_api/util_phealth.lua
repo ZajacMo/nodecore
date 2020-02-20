@@ -11,7 +11,8 @@ end
 nodecore.getphealth = getphealth
 
 local function setphealth(player, hp)
-	if hp > 20 then hp = 20 end
+	local hpmax = player:get_properties().hp_max
+	if hp > hpmax then hp = hpmax end
 	if hp < 0 then hp = 0 end
 	local whole = math_ceil(hp)
 	if whole == 0 then whole = 1 end
@@ -24,7 +25,9 @@ end
 nodecore.setphealth = setphealth
 
 local function addphealth(player, hp)
-	return setphealth(player, getphealth(player) + hp)
+	local old = getphealth(player)
+	if hp < 0 and old <= 1 then player:set_hp(2) end
+	return setphealth(player, old + hp)
 end
 nodecore.addphealth = addphealth
 

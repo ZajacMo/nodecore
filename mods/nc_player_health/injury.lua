@@ -21,6 +21,6 @@ minetest.register_craftitem(injured, {
 nodecore.register_healthfx({
 		item = injured,
 		getqty = function(player)
-			return 1 - nodecore.getphealth(player) / 20
+			return 1 - nodecore.getphealth(player) / 8
 		end
 	})

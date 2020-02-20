@@ -26,7 +26,7 @@ local function checkinv(player)
 	local dmg = minetest.settings:get_bool("enable_damage")
 	local inv = player:get_inventory()
 	local size = inv:get_size("main")
-	local max = size - 2
+	local max = size - 1
 
 	local items = {}
 	for _, def in pairs(nodecore.registered_healthfx) do
