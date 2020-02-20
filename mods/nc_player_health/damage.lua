@@ -5,9 +5,8 @@ local minetest, nodecore, pairs
 
 local hurtcache = {}
 
-minetest.register_on_player_hpchange(function(player, hp, reason)
+minetest.register_on_player_hpchange(function(player, hp)
 		local orig = player:get_hp()
-		if reason and reason.type == "drown" then hp = hp * 2 end
 		if player:get_armor_groups().immortal then
 			return orig
 		end

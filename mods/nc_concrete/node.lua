@@ -30,7 +30,7 @@ local wetdef = {
 	liquid_alternative_source = modname .. ":wet_source",
 	walkable = false,
 	diggable = false,
-	drowning = 1,
+	drowning = 2,
 	post_effect_color = {a = 240, r = 32, g = 32, b = 32},
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }
