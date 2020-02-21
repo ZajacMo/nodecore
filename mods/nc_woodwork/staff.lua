@@ -13,7 +13,7 @@ minetest.register_node(modname .. ":staff", {
 		tiles = {
 			"nc_tree_tree_top.png",
 			"nc_tree_tree_top.png",
-			"nc_tree_tree_side.png"
+			"nc_woodwork_frame.png"
 		},
 		paramtype = "light",
 		sunlight_propagates = true,

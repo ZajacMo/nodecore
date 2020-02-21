@@ -9,7 +9,7 @@ local lt = 1/16
 local lw = 3/16
 local ll = 1/2
 
-local tt = "nc_tree_tree_side.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
+local tt = "nc_woodwork_frame.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
 
 minetest.register_node(modname .. ":ladder", {
 		description = "Wooden Ladder",
