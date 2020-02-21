@@ -10,14 +10,16 @@ local modname = minetest.get_current_modname()
 local convert = {}
 local charge = {}
 
-for _, shape in pairs({'mallet', 'spade', 'hatchet', 'pick', 'mattock'}) do
-	for _, temper in pairs({'tempered', 'annealed'}) do
+for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
+	for _, temper in pairs({"tempered", "annealed"}) do
 		local orig = minetest.registered_items["nc_lode:tool_" .. shape .. "_" .. temper]
 
 		local def = nodecore.underride({
 				description = "Infused " .. orig.description,
 				inventory_image = orig.inventory_image .. "^(" .. modname
-				.. "_base.png^[mask:nc_lode_tool_" .. shape .. ".png^[opacity:64])",
+				.. "_base.png^[mask:" .. modname
+				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
+				.. ".png^[opacity:80])",
 				tool_wears_to = orig.name
 			}, orig)
 		def.after_use = nil
