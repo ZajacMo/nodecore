@@ -4,6 +4,8 @@
 Remember, check out the CONTRIBUTING file for guidelines on contributing
 to the project!
 
+- Testing and bug reports!
+
 - Translations:
 	- NodeCore is running Weblate:
 		https://nodecore.mine.nu/trans/projects/nodecore/core/
@@ -30,27 +32,32 @@ to the project!
 	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
 	  and other container nodes.
 
+- Help maintaining the hint system.
+	- Development of hints often lags behind development of new
+	  features, sometimes significantly.
+	- Hint organization and content is subject to improvement.
+
+- Improved versions of any art assets (sounds, textures, models).
+	- All textures for base inclusion should be 16x (keep
+	  high-def textures to texture packs).  Note that textures
+	  larger than 16x are allowed (and already used) in the game
+	  for textures that "spill over" into neighoring spaces, but
+	  the spatial resolution of 16 pixels per node is maintained.
+	- It must be practical to maintain a consistent style for
+	  other assets, including future related ones, or the content
+	  being reworked should be mature and stable, independent of
+	  other content areas, and the new textures should mesh
+	  reasonably well with the existing style.
+	- Alternatively, publish your mods, texturepacks, or soundpacks
+	  directly to the community, via ContentDB.
+	- Nodebox replacements with significantly lower poly count
+	  are wanted.
+
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,
 	  videos and streams!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
-
-- Improved versions of any art assets (sounds, textures, models).
-	- All textures for base inclusion should be 16x (keep
-	  high-def textures to texture packs).
-	- It must be practical to maintain a consistent style for
-	  other assets, including future related ones.
-	- Alternatively, publish your mods, texturepacks, or soundpacks
-	  directly to the community, via ContentDB.
-	- Nodebox replacements with significantly lower poly count
-	  are wanted.  Pull in outer faces by 1/256 to avoid z-fighting
-	  under water.
-
-- Help maintaining the hint system.
-	- Development of hints often lags behind development of new
-	  features, sometimes significantly.
-	- Hint organization and content is subject to improvement.
 
 - Door animations.
 	- These need to be relatively efficient, i.e. not involve
