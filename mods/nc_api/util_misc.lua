@@ -424,9 +424,10 @@ function nodecore.get_objects_at_pos(pos)
 	return t
 end
 
-function nodecore.get_depth_light(y)
-	if y >= 0 then return 1 end
-	return math_pow(2, y / 64)
+function nodecore.get_depth_light(y, qty)
+	qty = qty or 4/5
+	if y < 0 then qty = qty * math_pow(2, y / 64) end
+	return qty
 end
 
 function nodecore.get_node_light(pos)
