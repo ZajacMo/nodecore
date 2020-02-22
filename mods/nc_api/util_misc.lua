@@ -426,7 +426,7 @@ end
 
 function nodecore.get_depth_light(y)
 	if y >= 0 then return 1 end
-	return math_pow(2, y / 128)
+	return math_pow(2, y / 64)
 end
 
 function nodecore.get_node_light(pos)
