@@ -56,7 +56,8 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		nodenames = {modname .. ":sponge_wet"},
 		action = function(pos)
-			if minetest.get_node_light(pos) >= 15 and #findwater(pos) < 1 then
+			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+			if minetest.get_node_light(above) >= 15 and #findwater(pos) < 1 then
 				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 				return minetest.set_node(pos, {name = modname .. ":sponge"})
 			end
