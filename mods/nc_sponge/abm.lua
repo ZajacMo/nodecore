@@ -57,7 +57,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":sponge_wet"},
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if minetest.get_node_light(above) >= 15 and #findwater(pos) < 1 then
+			if nodecore.get_node_light(above) >= 15 and #findwater(pos) < 1 then
 				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 				return minetest.set_node(pos, {name = modname .. ":sponge"})
 			end
@@ -72,7 +72,7 @@ nodecore.register_aism({
 		action = function(stack, data)
 			if data.player and (data.list ~= "main"
 				or data.slot ~= data.player:get_wield_index()) then return end
-			local ll = data.pos and minetest.get_node_light(data.pos)
+			local ll = data.pos and nodecore.get_node_light(data.pos)
 			if ll and ll >= 15 and #findwater(data.pos) < 1 then
 				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = data.pos})
 				local taken = stack:take_item(1)

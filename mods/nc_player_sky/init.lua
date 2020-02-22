@@ -1,0 +1,45 @@
+-- LUALOCALS < ---------------------------------------------------------
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
+local math_ceil, math_floor
+    = math.ceil, math.floor
+-- LUALOCALS > ---------------------------------------------------------
+
+local cache = {}
+
+local function setsky(player)
+	local pname = player:get_player_name()
+	local stats = cache[pname]
+	if not stats then
+		stats = {}
+		cache[pname] = stats
+	end
+
+	local depth = math_floor(player:get_pos().y + 0.5)
+	local dll = nodecore.get_depth_light(depth)
+	local dark = 255 - math_ceil(255 * dll)
+	if dark ~= stats.dark then
+		stats.dark = dark
+		local txr = {}
+		for i = 1, 6 do
+			txr[#txr + 1] = "nc_player_sky_box" .. i
+			.. ".png^[colorize:#000000:" .. dark
+		end
+		player:set_sky("#ffffff", "skybox", txr, false)
+		player:override_day_night_ratio(dll)
+	end
+end
+
+minetest.register_on_joinplayer(setsky)
+
+minetest.register_on_leaveplayer(function(player)
+		cache[player:get_player_name()] = nil
+	end)
+
+local function update()
+	for _, player in pairs(minetest.get_connected_players()) do
+		setsky(player)
+	end
+	minetest.after(0.25, update)
+end
+update()

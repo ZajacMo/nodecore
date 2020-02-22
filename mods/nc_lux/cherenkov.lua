@@ -14,7 +14,7 @@ local function check(pos, player)
 		y = p.y + math_random() * 8 - 4,
 		z = p.z + math_random() * 8 - 4,
 	}
-	local light = minetest.get_node_light(p)
+	local light = nodecore.get_node_light(p)
 	if (not light) or (light >= 4) then return end
 	local rel = vector.subtract(p, pos)
 	local dsqr = rel.x * rel.x + rel.y * rel.y + rel.z * rel.z

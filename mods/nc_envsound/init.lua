@@ -28,7 +28,7 @@ local function check(pos, done, srcs)
 	end
 	if minetest.get_node(sp).name ~= "air" then return end
 
-	local light = minetest.get_node_light(sp, 0.5)
+	local light = nodecore.get_node_light(sp, 0.5)
 	if light == 15 then
 		if sp.y <= 0 then return end
 		minetest.sound_play("nc_envsound_air", {

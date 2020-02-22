@@ -53,7 +53,7 @@ local function canseeface(p1, p2)
 	local dz = o1.z - o2.z
 	local dsqr = (dx * dx + dy * dy + dz * dz)
 	if dsqr < 1 then return end
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
+	local ll = nodecore.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
 	if not ll then return end
 	local ld = (ll / 15 * distance)
 	if dsqr > (ld * ld) then return end
