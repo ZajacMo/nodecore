@@ -423,3 +423,20 @@ function nodecore.get_objects_at_pos(pos)
 	end
 	return t
 end
+
+function nodecore.inventory_dump(player)
+	local pos = player:get_pos()
+	pos.y = pos.y + player:get_properties().eye_height
+	local inv = player:get_inventory()
+	for lname, list in pairs(inv:get_lists()) do
+		if lname ~= "hand" then
+			for slot, stack in pairs(list) do
+				if not (stack:is_empty() or nodecore
+					and nodecore.item_is_virtual(stack)) then
+					nodecore.item_eject(pos, stack, 0.001)
+					inv:set_stack(lname, slot, "")
+				end
+			end
+		end
+	end
+end
