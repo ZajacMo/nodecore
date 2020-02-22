@@ -69,8 +69,8 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end
 			minetest.get_meta(pos):from_table({})
-			if math_random(1, 100) == 1 and nodecore.get_node_light(
-				{x = pos.x, y = pos.y + 1, z = pos.z}) == 15 then
+			if math_random(1, 100) == 1 and nodecore.is_full_sun(
+				{x = pos.x, y = pos.y + 1, z = pos.z}) then
 				nodecore.set_loud(pos, {name = "nc_terrain:dirt_with_grass"})
 				return
 			end

@@ -55,7 +55,7 @@ local function canseeface(p1, p2)
 	if dsqr < 1 then return end
 	local ll = nodecore.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
 	if not ll then return end
-	local ld = (ll / 15 * distance)
+	local ld = (ll / nodecore.light_max * distance)
 	if dsqr > (ld * ld) then return end
 
 	-- Make sure players' eyes are inside the same fluid.

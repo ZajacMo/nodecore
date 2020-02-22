@@ -430,6 +430,13 @@ function nodecore.get_depth_light(y, qty)
 	return qty
 end
 
+nodecore.light_sun = 15
+nodecore.light_sky = math_floor(0.5 + nodecore.light_sun * nodecore.get_depth_light(0))
+
+function nodecore.is_full_sun(pos)
+	return minetest.get_node_light(pos) == nodecore.light_sun
+end
+
 function nodecore.get_node_light(pos)
 	local artificial = minetest.get_node_light(pos, 0)
 	local natural = math_floor(0.5 + minetest.get_node_light(pos, 0.5)

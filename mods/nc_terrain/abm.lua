@@ -35,10 +35,9 @@ local function grassable(above)
 	or (def.damage_per_second and def.damage_per_second > 0)
 	then return false end
 
-	local ln = nodecore.get_node_light(above) or 0
-	if ln >= 10 then return true end
-	local ld = nodecore.get_node_light(above, 0.5) or 0
-	if ld >= 10 then return end
+	local ln = nodecore.get_node_light(above)
+	if not ln then return end
+	return ln >= 10
 end
 
 local grasscost = 1000
