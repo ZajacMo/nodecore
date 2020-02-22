@@ -20,7 +20,6 @@ local function setsky(player)
 	local rawdll = nodecore.get_depth_light(depth, 1)
 	local dark = 255 - math_ceil(255 * rawdll)
 	if dark ~= stats.dark then
-		minetest.log(dark)
 		stats.dark = dark
 		local txr = {}
 		for i = 1, 6 do
@@ -32,7 +31,6 @@ local function setsky(player)
 
 	local ratio = nodecore.get_depth_light(depth)
 	if ratio ~= stats.ratio then
-		minetest.log(ratio)
 		stats.ratio = ratio
 		player:override_day_night_ratio(ratio)
 	end
