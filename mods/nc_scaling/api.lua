@@ -84,7 +84,7 @@ function nodecore.scaling_apply(pointed)
 		if ok then tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) end
 		return ok
 	elseif pointed.under.y < pointed.above.y and issolid(pointed.under) then
-		if (minetest.get_node_light(pointed.above) or 1) < 1 then
+		if (nodecore.get_node_light(pointed.above) or 1) < 1 then
 			return tryreplace(pos, "floor", pointed.under)
 		end
 	end

@@ -49,7 +49,7 @@ end
 function nodecore.tree_growth_rate(pos)
 	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 	if minetest.get_node(above).name ~= "air" then return end
-	local ll = minetest.get_node_light(above, 0.5)
+	local ll = nodecore.get_node_light(above)
 	if (not ll) or (ll < 8) then return end
 	for y = 2, 5 do
 		local p ={x = pos.x, y = pos.y + y, z = pos.z}

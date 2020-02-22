@@ -3,10 +3,10 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
     = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
-local math_abs, math_cos, math_floor, math_log, math_pi, math_random,
-      math_sin, math_sqrt, string_gsub, string_lower
-    = math.abs, math.cos, math.floor, math.log, math.pi, math.random,
-      math.sin, math.sqrt, string.gsub, string.lower
+local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
+      math_random, math_sin, math_sqrt, string_gsub, string_lower
+    = math.abs, math.cos, math.floor, math.log, math.pi, math.pow,
+      math.random, math.sin, math.sqrt, string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -439,4 +439,24 @@ function nodecore.inventory_dump(player)
 			end
 		end
 	end
+end
+
+function nodecore.get_depth_light(y, qty)
+	qty = qty or 4/5
+	if y < 0 then qty = qty * math_pow(2, y / 64) end
+	return qty
+end
+
+nodecore.light_sun = 15
+nodecore.light_sky = math_floor(0.5 + nodecore.light_sun * nodecore.get_depth_light(0))
+
+function nodecore.is_full_sun(pos)
+	return minetest.get_node_light(pos) == nodecore.light_sun
+end
+
+function nodecore.get_node_light(pos)
+	local artificial = minetest.get_node_light(pos, 0)
+	local natural = math_floor(0.5 + minetest.get_node_light(pos, 0.5)
+		* nodecore.get_depth_light(pos.y))
+	return artificial > natural and artificial or natural
 end
