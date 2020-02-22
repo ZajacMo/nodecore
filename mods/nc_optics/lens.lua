@@ -16,11 +16,7 @@ local function lens_check(pos, node, check)
 	local on
 	if face.f.y == 1 then
 		local ll = nodecore.get_node_light(fore)
-		if ll then
-			local lt = 15
-			if node and node.name == modname .. ":lens_on" then lt = 14 end
-			on = ll >= lt and face.f.y == 1
-		end
+		on = ll and ll >= 14
 	end
 	if not on then
 		local nnode = minetest.get_node(fore)
