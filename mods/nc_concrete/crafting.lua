@@ -28,7 +28,7 @@ nodecore.register_craft({
 				replace = "air"
 			}
 		},
-		after = function(pos)
+		before = function(pos)
 			nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
 		end
 	})
