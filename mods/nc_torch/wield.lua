@@ -14,13 +14,8 @@ local function snuffinv(player, inv, i)
 	inv:set_stack("main", i, "nc_fire:lump_ash")
 end
 
-local function wieldlight(pos)
-	local cur = minetest.get_node(pos).name
-	if cur ~= "air" and cur ~= modname .. ":wield_light" then return end
-	minetest.set_node(pos, {name = modname .. ":wield_light"})
-	minetest.get_meta(pos):set_float("time", nodecore.gametime)
-	return minetest.get_node_timer(pos):start(0.3)
-end
+local bright = nodecore.dynamic_light_node(8)
+local dim = nodecore.dynamic_light_node(4)
 
 local wltimers = {}
 local ambtimers = {}
@@ -44,7 +39,7 @@ minetest.register_globalstep(function()
 				local t = wltimers[name] or 0
 				if t <= now then
 					wltimers[name] = now + 0.2
-					wieldlight(hpos)
+					nodecore.dynamic_light_add(hpos, bright, 0.3)
 				end
 
 				-- Wield ambiance
@@ -53,6 +48,12 @@ minetest.register_globalstep(function()
 					ambtimers[name] = now + 1
 					minetest.sound_play("nc_fire_flamy",
 						{object = player, gain = 0.1})
+				end
+			else
+				for i = 1, inv:get_size("main") do
+					if islit(inv:get_stack("main", i)) then
+						nodecore.dynamic_light_add(hpos, dim, 0.3)
+					end
 				end
 			end
 		end
@@ -65,7 +66,7 @@ local function entlight(self, dtime, ...)
 	local wltime = (self.wltime or 0) - dtime
 	if wltime <= 0 then
 		wltime = 0.2
-		wieldlight(self.object:get_pos())
+		nodecore.dynamic_light_add(self.object:get_pos(), bright, 0.3)
 	end
 	self.wltime = wltime
 	return ...
@@ -80,15 +81,3 @@ for _, name in pairs({"item", "falling_node"}) do
 	setmetatable(ndef, def)
 	minetest.register_entity(":__builtin:" .. name, ndef)
 end
-
-nodecore.register_limited_abm({
-		label = "wieldlight cleanup",
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":wield_light"},
-		action = function(pos)
-			local time = minetest.get_meta(pos):get_float("time") or 0
-			if time >= nodecore.gametime - 2 then return end
-			return minetest.remove_node(pos)
-		end
-	})

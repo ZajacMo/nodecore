@@ -13,12 +13,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Switch door ablation propulsion to run on a node timer instead of
   an abm, so it responds faster and more consistently?
-
-- Unify nodecore.player_teleport API.
-	- Handle inventory dumping.
-	- Define default params for particles and sound, if mods
-	  provide their own sound/texture resources.
-	- Unify mods that offer teleportation, like szutilpack.
 	
 - Make torches emit some light even when not wielded?
 	- More consistent with bandolier.
