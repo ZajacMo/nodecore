@@ -456,6 +456,7 @@ end
 
 function nodecore.get_node_light(pos)
 	local artificial = minetest.get_node_light(pos, 0)
+	if not artificial then return end
 	local natural = math_floor(0.5 + minetest.get_node_light(pos, 0.5)
 		* nodecore.get_depth_light(pos.y))
 	return artificial > natural and artificial or natural
