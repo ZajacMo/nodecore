@@ -26,7 +26,7 @@ local function setsky(player)
 			txr[#txr + 1] = "nc_player_sky_box" .. i
 			.. ".png^[colorize:#000000:" .. dark
 		end
-		local color = {r = 0x81, g = 0x83, b = 0xc2}
+		local color = {r = 0x50, g = 0x50, b = 0x76}
 		for k, v in pairs(color) do
 			color[k] = math_floor(0.5 + v * (255 - dark) / 255)
 		end
