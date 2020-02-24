@@ -32,7 +32,8 @@ minetest.register_node(modname .. ":hand", {
 		mesh = modname .. ".obj",
 		tiles = {"nc_player_model_base.png"},
 		wield_scale = {x = scale, y = scale, z = scale},
-		virtual_item = true
+		virtual_item = true,
+		on_punch = minetest.remove_node
 	})
 
 minetest.register_on_joinplayer(function(player)
