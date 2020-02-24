@@ -29,7 +29,7 @@ local function getdps(pos)
 			local dsqr = vector.dot(r, r) / 2 + 1
 			return dps / dsqr
 		end
-		if not (nodecore.air_pass(n) or def.sunlight_propagates)
+		if not (nodecore.air_pass(n) or def and def.sunlight_propagates)
 		then return 0 end
 	end
 	return 0
