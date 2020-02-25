@@ -13,7 +13,8 @@ local handnode = minetest.registered_items["nc_player_hand:hand"]
 function nodecore.register_virtual_item(name, def)
 	return minetest.register_node(name, nodecore.underride(def, {
 				on_drop = function(stack) return stack end,
-				on_place = function(stack) return stack end
+				on_place = function(stack) return stack end,
+				node_placement_prediction = ""
 			}, handnode))
 end
 
