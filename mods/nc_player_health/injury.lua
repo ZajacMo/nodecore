@@ -5,17 +5,10 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local hand = minetest.registered_items[""]
 local injured = modname .. ":injured"
-minetest.register_craftitem(injured, {
+nodecore.register_virtual_item(injured, {
 		description = "Injury",
-		stack_max = 1,
-		inventory_image = modname .. "_injured.png",
-		wield_image = hand.wield_image,
-		wield_scale = hand.wield_scale,
-		on_drop = function(stack) return stack end,
-		on_place = function(stack) return stack end,
-		virtual_item = true
+		inventory_image = modname .. "_injured.png"
 	})
 
 nodecore.register_healthfx({

@@ -7,18 +7,11 @@ local math_exp, math_log
 
 local modname = minetest.get_current_modname()
 
-local hand = minetest.registered_items[""]
 local irradiated = modname .. ":irradiated"
-minetest.register_craftitem(irradiated, {
+nodecore.register_virtual_item(irradiated, {
 		description = "Burn",
-		stack_max = 1,
 		inventory_image = modname .. "_base.png^[mask:"
 		.. modname .. "_icon_mask.png",
-		wield_image = hand.wield_image,
-		wield_scale = hand.wield_scale,
-		on_drop = function(stack) return stack end,
-		on_place = function(stack) return stack end,
-		virtual_item = true
 	})
 
 nodecore.register_healthfx({

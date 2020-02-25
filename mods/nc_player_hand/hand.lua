@@ -33,6 +33,7 @@ minetest.register_node(modname .. ":hand", {
 		tiles = {"nc_player_model_base.png"},
 		wield_scale = {x = scale, y = scale, z = scale},
 		virtual_item = true,
+		stack_max = 1,
 		on_punch = minetest.remove_node
 	})
 

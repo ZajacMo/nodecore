@@ -9,6 +9,14 @@ nodecore.register_healthfx,
 nodecore.registered_healthfx
 = nodecore.mkreg()
 
+local handnode = minetest.registered_items["nc_player_hand:hand"]
+function nodecore.register_virtual_item(name, def)
+	return minetest.register_node(name, nodecore.underride(def, {
+				on_drop = function(stack) return stack end,
+				on_place = function(stack) return stack end
+			}, handnode))
+end
+
 local function pickend(q)
 	for i = q, 1, -1 do
 		if math_random() < 0.5 then return i end
