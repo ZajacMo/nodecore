@@ -7,6 +7,8 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
+local particle = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32"
+
 local function check(pos, player)
 	local p = player:get_pos();
 	p = {
@@ -24,7 +26,7 @@ local function check(pos, player)
 			minetest.add_particle({
 					pos = p,
 					vel = vector.multiply(vector.normalize(rel), 4),
-					texture = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32",
+					texture = particle,
 					exptime = 0.25,
 					playername = pname,
 					glow = 8
