@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, vector
     = math, minetest, nodecore, pairs, vector
-local math_floor, math_random
-    = math.floor, math.random
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -10,28 +10,27 @@ local modname = minetest.get_current_modname()
 local function check(pos, player)
 	local p = player:get_pos();
 	p = {
-		x = p.x + math_random() * 8 - 4,
-		y = p.y + math_random() * 8 - 4,
-		z = p.z + math_random() * 8 - 4,
+		x = p.x + nodecore.boxmuller() * 2,
+		y = p.y + nodecore.boxmuller() * 2,
+		z = p.z + nodecore.boxmuller() * 2,
 	}
 	local light = nodecore.get_node_light(p)
-	if (not light) or (light >= 4) then return end
+	if (not light) or (light >= math_random(4, 8)) then return end
 	local rel = vector.subtract(p, pos)
-	local dsqr = rel.x * rel.x + rel.y * rel.y + rel.z * rel.z
-	if math_random() * 512 < dsqr then return end
-	minetest.add_particlespawner({
-			amount = math_floor(math_random() * 5) + 1,
-			time = 0.1,
-			minpos = p,
-			maxpos = p,
-			minvel = vector.multiply(vector.normalize(rel), 4),
-			maxvel = vector.multiply(vector.normalize(rel), 8),
-			texture = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32",
-			minexptime = 0.05,
-			maxexptime = 0.25,
-			playername = player:get_player_name(),
-			glow = 1
-		})
+	local dsqr = vector.dot(rel, rel)
+	if math_random() * 128 < dsqr then return end
+	local pname = player:get_player_name()
+	minetest.after(math_random(), function()
+			minetest.add_particle({
+					pos = p,
+					vel = vector.multiply(vector.normalize(rel), 4),
+					texture = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32",
+					exptime = 0.25,
+					playername = pname,
+					glow = 8
+				})
+		end)
+	return check(pos, player)
 end
 
 nodecore.register_limited_abm({
