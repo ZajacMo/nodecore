@@ -23,6 +23,7 @@ end
 
 minetest.register_item(":", {
 		["type"] = "none",
+		inventory_image = "[combine:1x1",
 		tool_capabilities = toolcaps
 	})
 
