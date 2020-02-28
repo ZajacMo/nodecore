@@ -21,7 +21,7 @@ local function growparticles(pos, rate, width)
 			maxpos = {
 				x = pos.x + width,
 				y = pos.y + 33/64,
-				z= pos.z + width
+				z = pos.z + width
 			},
 			minvel = zero,
 			maxvel = zero,

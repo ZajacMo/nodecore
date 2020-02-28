@@ -52,7 +52,7 @@ function nodecore.tree_growth_rate(pos)
 	local ll = nodecore.get_node_light(above)
 	if (not ll) or (ll < 8) then return end
 	for y = 2, 5 do
-		local p ={x = pos.x, y = pos.y + y, z = pos.z}
+		local p = {x = pos.x, y = pos.y + y, z = pos.z}
 		local nn = minetest.get_node(p).name
 		if nn ~= "air" and nn ~= modname .. ":leaves" then return end
 	end
