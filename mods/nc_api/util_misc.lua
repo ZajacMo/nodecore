@@ -451,7 +451,7 @@ nodecore.light_sun = 15
 nodecore.light_sky = math_floor(0.5 + nodecore.light_sun * nodecore.get_depth_light(0))
 
 function nodecore.is_full_sun(pos)
-	return minetest.get_node_light(pos) == nodecore.light_sun
+	return pos.y >= 0 and minetest.get_node_light(pos) == nodecore.light_sun
 end
 
 function nodecore.get_node_light(pos)
