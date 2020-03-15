@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-nodecore.torch_life_base = 60
+nodecore.torch_life_base = 120
 minetest.register_node(modname .. ":torch", {
 		description = "Torch",
 		drawtype = "mesh",
