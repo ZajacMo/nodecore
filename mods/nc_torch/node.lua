@@ -32,7 +32,7 @@ minetest.register_node(modname .. ":torch", {
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
 			minetest.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
 			local expire = nodecore.gametime + nodecore.torch_life_base
-			+ nodecore.boxmuller() * 5
+			* (nodecore.boxmuller() * 0.1 + 1)
 			minetest.get_meta(pos):set_float("expire", expire)
 			if node and node.count and node.count > 1 then
 				nodecore.item_disperse(pos, node.name, node.count - 1)
