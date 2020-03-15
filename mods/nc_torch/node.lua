@@ -79,10 +79,9 @@ minetest.register_node(modname .. ":torch_lit", {
 		stack_max = 1,
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		preserve_metadata = function(_, _, oldmeta, drops)
-			drops[1]:get_meta():set_float("expire", oldmeta.expire)
+			drops[1]:get_meta():from_table({fields = oldmeta})
 		end,
 		after_place_node = function(pos, _, itemstack)
-			minetest.get_meta(pos):set_float("expire",
-				itemstack:get_meta():get_float("expire"))
+			minetest.get_meta(pos):from_table(itemstack:get_meta():to_table())
 		end
 	})
