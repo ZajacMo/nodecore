@@ -45,7 +45,9 @@ nodecore.register_inventory_tab({
 			"- Sneak+drop to count out single items from stack.",
 			"- Items picked up try to fit into the current selected slot first.",
 			"- Crafting is done by building recipes in-world.",
-			"- Order and specific face of placement may matter for crafting."
+			"- Order and specific face of placement may matter for crafting.",
+			"- Some recipes use a 3x3 \"grid\", laid out flat on the ground.",
+			"- More complex recipes are usually more symmetrical."
 		}
 	})
 
@@ -69,7 +71,7 @@ nodecore.register_inventory_tab({
 		content = {
 			"Player's Guide: Tips and Guidance",
 			"",
-			"- Stuck in a pit? Hold right-click on surfaces barehanded to climb.",
+			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
 			"- Can't dig trees or grass? Search for sticks in the canopy.",
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
