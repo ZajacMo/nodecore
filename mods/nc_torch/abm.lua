@@ -39,7 +39,6 @@ local function torchlife(expire)
 	local life = (expire - nodecore.gametime) / nodecore.torch_life_base
 	if life > 1 then return 1 end
 	local stage = 1 - math_ceil(math_log(life) / log2)
-	minetest.chat_send_all("life:" .. life .. " stage: " .. stage)
 	if stage < 1 then return 1 end
 	if stage > max then return max end
 	return stage
