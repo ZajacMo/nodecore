@@ -39,13 +39,13 @@ addhint("find deep stone strata",
 )
 
 addhint("find molten rock",
-	"group:lava",
+	{true, "group:amalgam", "group:lava"},
 	"nc_terrain:cobble_loose"
 )
 
 addhint("quench molten rock to amalgamation",
 	"group:amalgam",
-	{"group:lava", "group:sponge"}
+	{true, "group:amalgam", "group:lava"}
 )
 
 addhint("leach dirt to sand",
