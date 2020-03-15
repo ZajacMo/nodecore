@@ -3,10 +3,16 @@ local ItemStack, minetest, nodecore, pairs, setmetatable, vector
     = ItemStack, minetest, nodecore, pairs, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
+local litgroup = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v.groups.torch_lit then
+				litgroup[k] = true
+			end
+		end
+	end)
 local function islit(stack)
-	return stack and stack:get_name() == modname .. ":torch_lit"
+	return stack and litgroup[stack:get_name()]
 end
 
 local function snuffinv(player, inv, i)
