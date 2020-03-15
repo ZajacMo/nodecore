@@ -56,22 +56,17 @@ minetest.register_globalstep(function()
 	end)
 
 -- Apply wield light to entities as well.
-local function entlight(self, dtime, ...)
+local function entlight(self, ...)
 	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
 	if not islit(stack) then return ... end
-	local wltime = (self.wltime or 0) - dtime
-	if wltime <= 0 then
-		wltime = 0.2
-		nodecore.dynamic_light_add(self.object:get_pos(), bright, 0.3)
-	end
-	self.wltime = wltime
+	nodecore.dynamic_light_add(self.object:get_pos(), bright, 0.5)
 	return ...
 end
 for _, name in pairs({"item", "falling_node"}) do
 	local def = minetest.registered_entities["__builtin:" .. name]
 	local ndef = {
-		on_step = function(self, dtime, ...)
-			return entlight(self, dtime, def.on_step(self, dtime, ...))
+		on_step = function(self, ...)
+			return entlight(self, def.on_step(self, ...))
 		end
 	}
 	setmetatable(ndef, def)

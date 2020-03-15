@@ -22,6 +22,7 @@ function nodecore.dynamic_light_node(level)
 			light_source = level,
 			pointable = false,
 			walkable = false,
+			buildable_to = true,
 			on_timer = minetest.remove_node,
 			groups = {dynamic_light = level}
 		})

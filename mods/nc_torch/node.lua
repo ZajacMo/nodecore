@@ -48,6 +48,7 @@ nodecore.register_craft({
 		}
 	})
 
+local bright = nodecore.dynamic_light_node(8)
 minetest.register_node(modname .. ":torch_lit", {
 		description = "Lit Torch",
 		drawtype = "mesh",
@@ -83,5 +84,9 @@ minetest.register_node(modname .. ":torch_lit", {
 		end,
 		after_place_node = function(pos, _, itemstack)
 			minetest.get_meta(pos):from_table(itemstack:get_meta():to_table())
+		end,
+		node_dig_prediction = bright,
+		after_destruct = function(pos)
+			nodecore.dynamic_light_add(pos, bright, 0.5)
 		end
 	})
