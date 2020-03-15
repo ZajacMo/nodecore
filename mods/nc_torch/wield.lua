@@ -17,7 +17,6 @@ end
 local bright = nodecore.dynamic_light_node(8)
 local dim = nodecore.dynamic_light_node(4)
 
-local wltimers = {}
 local ambtimers = {}
 minetest.register_globalstep(function()
 		local now = nodecore.gametime
@@ -36,23 +35,20 @@ minetest.register_globalstep(function()
 			elseif islit(player:get_wielded_item()) then
 				-- Wield light
 				local name = player:get_player_name()
-				local t = wltimers[name] or 0
-				if t <= now then
-					wltimers[name] = now + 0.2
-					nodecore.dynamic_light_add(hpos, bright, 0.3)
-				end
+				nodecore.dynamic_light_add(hpos, bright, 0.5)
 
 				-- Wield ambiance
-				t = ambtimers[name] or 0
+				local t = ambtimers[name] or 0
 				if t <= now then
 					ambtimers[name] = now + 1
 					minetest.sound_play("nc_fire_flamy",
 						{object = player, gain = 0.1})
 				end
 			else
+				-- Dimmer non-wielded carry light
 				for i = 1, inv:get_size("main") do
 					if islit(inv:get_stack("main", i)) then
-						nodecore.dynamic_light_add(hpos, dim, 0.3)
+						nodecore.dynamic_light_add(hpos, dim, 0.5)
 					end
 				end
 			end

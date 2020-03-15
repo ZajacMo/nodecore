@@ -9,14 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Consider quantizing/palletizing textures.
-
 - Switch door ablation propulsion to run on a node timer instead of
   an abm, so it responds faster and more consistently?
-	
-- Make torches emit some light even when not wielded?
-	- More consistent with bandolier.
-	- Standardize temporary light system?
 
 - falling_node pillars settle out of order!
 

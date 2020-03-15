@@ -48,7 +48,6 @@ nodecore.register_craft({
 		}
 	})
 
--- Note: Torch dropped as item is sort of unrealistic, perhaps drop as node in future
 minetest.register_node(modname .. ":torch_lit", {
 		description = "Lit Torch",
 		drawtype = "mesh",
@@ -86,15 +85,4 @@ minetest.register_node(modname .. ":torch_lit", {
 			minetest.get_meta(pos):set_float("expire",
 				itemstack:get_meta():get_float("expire"))
 		end
-	})
-
-minetest.register_node(modname .. ":wield_light", {
-		drawtype = "airlike",
-		paramtype = "light",
-		light_source = 8,
-		pointable = false,
-		walkable = false,
-		on_timer = function(pos)
-			minetest.set_node(pos, {name = "air"})
-		end,
 	})

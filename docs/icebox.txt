@@ -9,6 +9,8 @@ ICEBOX: Low-Priority Ideas
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Consider quantizing/palletizing textures.
+
 - Make player lose auto-run speed if X/Z coords don't change for a
   couple seconds while not in water, like climbing a ladder or
   stuck in a corner.
