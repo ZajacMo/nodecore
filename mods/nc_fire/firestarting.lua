@@ -25,7 +25,13 @@ nodecore.register_craft({
 			local ng = nd.groups or {}
 			fs = fs * (ng.firestick or 1)
 
-			if math_random(1, 4) > fs then return end
+			local r = math_random(1, 4)
+			if r > fs then
+				nodecore.smokefx(pos, 1, 5 + fs - r)
+				minetest.sound_play("nc_api_toolbreak", {pos = pos, gain = 1})
+				return
+			end
+
 			nodecore.fire_ignite(pos)
 			minetest.add_particlespawner({
 					amount = 50,
