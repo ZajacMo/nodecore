@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, nodecore, pairs, type, vector
     = ItemStack, math, minetest, nodecore, pairs, type, vector
-local math_floor, math_pi, math_sqrt
-    = math.floor, math.pi, math.sqrt
+local math_floor, math_pi, math_random, math_sqrt
+    = math.floor, math.pi, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 function minetest.spawn_falling_node(pos, node, meta)
@@ -81,6 +81,11 @@ end
 function nodecore.entity_settle_check(on_settle, isnode)
 	return function(self)
 		local pos = self.object:get_pos()
+
+		local csize = self.collidesize or 0.5
+		pos.x = pos.x + (math_random() * 2 - 1) * csize
+		pos.z = pos.z + (math_random() * 2 - 1) * csize
+
 		local yvel = self.object:get_velocity().y
 		local coll = (isnode or self.not_rising and yvel == 0)
 		and collides({x = pos.x, y = pos.y - 0.75, z = pos.z})

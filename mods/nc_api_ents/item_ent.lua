@@ -40,6 +40,7 @@ minetest.register_entity(":__builtin:item", {
 			self.spin = self.spin or math_random(1, 2) * 2 - 3
 			local p, s = nodecore.stackentprops(self.itemstring, 0, self.spin, true)
 			s = s / math_sqrt(2)
+			self.collidesize = s
 			p.collisionbox = {-s, -s, -s, s, s, s}
 			p.physical = true
 			return self.object:set_properties(p)
