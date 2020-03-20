@@ -9,6 +9,22 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Water and lava surface springs.
+	- Access to water for forges.
+	- Access to lava for lighting, firestarting, glass?
+
+- Tree sap
+	- Stumps with air above exude, become dry stumps.
+	- Use as a glue/resin in recipes.
+	- Make longer-life torches?
+	- Stick optics in place to prevent rotating?
+
+- Straw/thatch?
+
+- Lode tongs?
+	- Craft from bars/rods.
+	- Pick up any item and embed in tongs itemstack.
+
 - Consider upstreaming nc_stucco, maybe into nc_concrete?
 	- Credit Avicennia G a.k.a. Tereno Johnson
 	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
@@ -29,6 +45,14 @@ ROADMAP: Large New Development Projects
 		- Curing time
 		- Curing check (e.g. for quenching)
 		- Time and gen cure methods
+
+- Optic locking
+	- Prevent accidental rotation.
+	- Use tree sap / glue?
+		- Make "glued" optic node?
+		- Detect adjacent glue node?
+	- Apply frame, make framed optics?
+	- Hammer into place with certain tool?
 
 - Make stone bricks or other building materials?
 	- Pummel stone w/ lux+ pick?
@@ -77,10 +101,6 @@ ROADMAP: Large New Development Projects
 	  inventory?
 		- Maybe only if the lux is higher activation tier?
 
-- Water and lava surface springs.
-	- Access to water for forges.
-	- Access to lava for lighting, firestarting, glass?
-
 - Renewability Gap
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
@@ -121,7 +141,6 @@ ROADMAP: Large New Development Projects
 - New materials to craft with.
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
-	- Tree sap from stumps? Resin? Rubber? Shellac?
 	- Small plants? Reeds? Mallows?
 	- Sea stars, anenome, coral, other underwater things?
 	- Fungi, esp. tree-destroying ones, blight?

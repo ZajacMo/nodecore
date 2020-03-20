@@ -9,6 +9,15 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Easier recipe API:
+	- Use ascii art like ezschematic?
+	- Aliases like "sides"/"corners"?
+	- Make 3x3 recipes easier to define.
+
+- Add recipe hints (prearranged nodes) to dungeons as decorations?
+
+- Chop frames, ladders, staves back down into sticks?
+
 - Switch door ablation propulsion to run on a node timer instead of
   an abm, so it responds faster and more consistently?
 
@@ -51,6 +60,12 @@ ISSUES: Bugs, Cleanup and Refinements
 - Quicker optic path updates.
 	- Record which nodes are blocking optic paths, and which are
 	  used by optic paths, in-memory, for quicker recalcs?
+
+- NodeCore Spreading ABM API
+	- Eligibility check
+	- Time cumulative process like soaking
+	- Push excess to adjacent nodes if eligible
+	- Don't trigger immediately; wait for next cycle
 
 - Offline sponge spreading.
 	- Similar to grass spreading.
