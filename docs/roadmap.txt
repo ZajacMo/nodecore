@@ -13,6 +13,10 @@ ROADMAP: Large New Development Projects
 	- Access to water for forges.
 	- Access to lava for lighting, firestarting, glass?
 
+- Should there be pockets of softer stone at depth, like there is gravel?
+
+- Add recipe hints (prearranged nodes) to dungeons as decorations?
+
 - Tree sap
 	- Stumps with air above exude, become dry stumps.
 	- Use as a glue/resin in recipes.
@@ -24,6 +28,21 @@ ROADMAP: Large New Development Projects
 - Lode tongs?
 	- Craft from bars/rods.
 	- Pick up any item and embed in tongs itemstack.
+
+- Domain Wall Sensor
+	- Adapt from sztest?
+	- Field Generator?
+		- Power an annealed lode block from 2 opposite faces.
+		- Generates particle effect at mapblock boundary.
+	- Particle effect with lux fluid and/or cobble?
+	- Create particle effect around player while carrying lux in
+	  inventory?
+		- Maybe only if the lux is higher activation tier?
+
+- Easier recipe API:
+	- Use ascii art like ezschematic?
+	- Aliases like "sides"/"corners"?
+	- Make 3x3 recipes easier to define.
 
 - Consider upstreaming nc_stucco, maybe into nc_concrete?
 	- Credit Avicennia G a.k.a. Tereno Johnson
@@ -45,6 +64,9 @@ ROADMAP: Large New Development Projects
 		- Curing time
 		- Curing check (e.g. for quenching)
 		- Time and gen cure methods
+
+- Should ash and derivatives have a fertilizing effect?
+	- Maybe wet/tacky stuccos?
 
 - Optic locking
 	- Prevent accidental rotation.
@@ -88,18 +110,6 @@ ROADMAP: Large New Development Projects
 		- Concentrations of lava should melt nearyby stone
 			- Dependent on hardness of stone
 		- Lava near fringes should spontaneously quench.
-
-- Should there be pockets of softer stone at depth, like there is gravel?
-
-- Domain Wall Sensor
-	- Adapt from sztest?
-	- Field Generator?
-		- Power an annealed lode block from 2 opposite faces.
-		- Generates particle effect at mapblock boundary.
-	- Particle effect with lux fluid and/or cobble?
-	- Create particle effect around player while carrying lux in
-	  inventory?
-		- Maybe only if the lux is higher activation tier?
 
 - Renewability Gap
 	- Renewable but not generatable
@@ -158,8 +168,6 @@ ROADMAP: Large New Development Projects
 	  by in-world machinery?
 
 - Vary player walking speed based on nodes under feet?
-
-- Use gravity vector to make flowing water push the player?
 
 - Visual "craft guide" system?
 	- Build a 3x3 work space out of wood/logs, place center node

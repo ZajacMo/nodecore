@@ -9,21 +9,24 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Easier recipe API:
-	- Use ascii art like ezschematic?
-	- Aliases like "sides"/"corners"?
-	- Make 3x3 recipes easier to define.
-
-- Add recipe hints (prearranged nodes) to dungeons as decorations?
+- Ent settling check is too heavy-handed.
+	- Should probably just check center, only apply X/Z offset
+	  if position is unchanged since last check.
 
 - Chop frames, ladders, staves back down into sticks?
 
-- Switch door ablation propulsion to run on a node timer instead of
-  an abm, so it responds faster and more consistently?
+- Automation reliability issues
+	- Switch door ablation propulsion to run on a node timer instead of
+	  an abm, so it responds faster and more consistently?
+	- Quicker optic path updates.
+		- Record which nodes are blocking optic paths, and which are
+		  used by optic paths, in-memory, for quicker recalcs?
 
 - falling_node pillars settle out of order!
-
-- Add hint for recycling glass(es) to sand?
+	- Also anectodal issues with falling nodes sometimes
+	  tunneling WAY upwards now, as observed with BXS's
+	  mine on NCC where gravel tunneled all the way up
+	  the ladder
 
 - Delayed hint witnessing?
 	- Store credit for soaking recipe in node metadata, give it to
@@ -31,15 +34,15 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Use for witnessing fermentation recipes like peat/humus,
 	  humus/dirt, dirt/sand.
 
-- Tote recycling is possible but has no hint.
-	- Should recipe be changed?  Heat it back into a cube if empty?
-	- Consider updating tote recipe.
-
 - Should we create "recipe groups" to make it easier to specify
   equivalent recipes for hint purposes?
 
-- Totes should do face-connected search for totables; don't pick up
-  shelves only touching via a corner.
+- Tote issues:
+	- Tote recycling is possible but has no hint.
+		- Should recipe be changed?  Heat it back into a cube if empty?
+		- Consider updating tote recipe.
+	- Totes should do face-connected search for totables; don't pick up
+	  shelves only touching via a corner.
 
 - Item ent merge should use logic consistent with nodecore.stack_merge,
   which handles item families.
@@ -57,10 +60,6 @@ ISSUES: Bugs, Cleanup and Refinements
 - Can we automatically dump a TP overrides.txt file?
 	- Move this, and translate hook, to a chat command?
 
-- Quicker optic path updates.
-	- Record which nodes are blocking optic paths, and which are
-	  used by optic paths, in-memory, for quicker recalcs?
-
 - NodeCore Spreading ABM API
 	- Eligibility check
 	- Time cumulative process like soaking
@@ -75,9 +74,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  register for things not yet defined, and allow later registration
 	  of the registration definition that will pick up those missed.
 	- Allow unregistering things...?
-
-- Should ash and derivatives have a fertilizing effect?
-	- Maybe wet/tacky stuccos?
 
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?

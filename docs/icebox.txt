@@ -21,6 +21,8 @@ ICEBOX: Low-Priority Ideas
 	- This could make the decision to harvest trees early vs
 	  wait for them to mature more nuanced.
 
+- Add hint for recycling glass(es) to sand?
+
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire
   extinguishing/spreading?
