@@ -9,10 +9,6 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Water and lava surface springs.
-	- Access to water for forges.
-	- Access to lava for lighting, firestarting, glass?
-
 - Should there be pockets of softer stone at depth, like there is gravel?
 
 - Add recipe hints (prearranged nodes) to dungeons as decorations?

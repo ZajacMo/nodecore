@@ -62,6 +62,10 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Push excess to adjacent nodes if eligible
 	- Don't trigger immediately; wait for next cycle
 
+- API for map-seed-deterministic scatter.
+	- Given minp, maxp, seed and density, find all positions.
+	- Use for sponges, lava/water springs, etc.
+
 - Offline sponge spreading.
 	- Similar to grass spreading.
 

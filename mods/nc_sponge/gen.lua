@@ -34,11 +34,14 @@ nodecore.register_mapgen_shared({
 		func = function(minp, maxp, area, data)
 			if minp.y > maxy or maxp.y < miny then return end
 
-			local qty = math_floor(math_random() * (maxp.x - minp.x)
-				* (maxp.z - minp.z) / (64 * 64))
+			local rawqty = math_random() * (maxp.x - minp.x + 1)
+			* (maxp.z - minp.z + 1) / (64 * 64)
+			local qty = math_floor(rawqty)
+			if math_random() < (rawqty - qty) then qty = qty + 1 end
+
 			for _ = 1, qty do
-				local x = math_floor(math_random() * (maxp.x - minp.x)) + minp.x
-				local z = math_floor(math_random() * (maxp.z - minp.z)) + minp.z
+				local x = math_floor(math_random() * (maxp.x - minp.x + 1)) + minp.x
+				local z = math_floor(math_random() * (maxp.z - minp.z + 1)) + minp.z
 				local starty = maxp.y
 				if starty > (maxy + 1) then starty = (maxy + 1) end
 				local endy = minp.y
