@@ -9,10 +9,6 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Ent settling check is too heavy-handed.
-	- Should probably just check center, only apply X/Z offset
-	  if position is unchanged since last check.
-
 - Chop frames, ladders, staves back down into sticks?
 
 - Automation reliability issues

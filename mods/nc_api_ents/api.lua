@@ -82,9 +82,13 @@ function nodecore.entity_settle_check(on_settle, isnode)
 	return function(self)
 		local pos = self.object:get_pos()
 
-		local csize = self.collidesize or 0.5
-		pos.x = pos.x + (math_random() * 2 - 1) * csize
-		pos.z = pos.z + (math_random() * 2 - 1) * csize
+		if self.settle_oldpos and vector.distance(self.settle_oldpos, pos) < 1/16 then
+			local csize = self.collidesize or 0.5
+			pos.x = pos.x + (math_random() * 2 - 1) * csize
+			pos.z = pos.z + (math_random() * 2 - 1) * csize
+		else
+			self.settle_oldpos = pos
+		end
 
 		local yvel = self.object:get_velocity().y
 		local coll = (isnode or self.not_rising and yvel == 0)
