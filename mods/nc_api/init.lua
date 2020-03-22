@@ -63,6 +63,7 @@ include("match")
 include("fx_digparticles")
 
 include("register_mods")
+include("mapgen_limits")
 include("mapgen_shared")
 
 include("item_on_register")
