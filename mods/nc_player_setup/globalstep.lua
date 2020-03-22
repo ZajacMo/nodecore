@@ -102,6 +102,12 @@ local function walkspeed(player, cached, set)
 	end
 end
 
+local function nodmgbreath(player)
+	if (not nodecore.player_can_take_damage(player)) and player:get_breath() < 11 then
+		player:set_breath(11)
+	end
+end
+
 local cache = {}
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
@@ -118,6 +124,7 @@ minetest.register_globalstep(function()
 			setfootsteps(player, cached, set)
 			fallspeed(player, cached, set)
 			walkspeed(player, cached, set)
+			nodmgbreath(player)
 
 			if set.props then player:set_properties(set.props) end
 			if set.physics then player:set_physics_override(set.physics) end

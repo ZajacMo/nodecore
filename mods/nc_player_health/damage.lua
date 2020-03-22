@@ -7,7 +7,7 @@ local hurtcache = {}
 
 minetest.register_on_player_hpchange(function(player, hp)
 		local orig = player:get_hp()
-		if player:get_armor_groups().immortal then
+		if not nodecore.player_can_take_damage(player) then
 			return orig
 		end
 		local pname

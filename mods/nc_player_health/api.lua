@@ -9,6 +9,18 @@ nodecore.register_healthfx,
 nodecore.registered_healthfx
 = nodecore.mkreg()
 
+minetest.register_privilege("ncdqd", {
+		description = "Invulnerable to all kinds of damage",
+		give_to_singleplayer = false,
+		give_to_admin = false
+	})
+
+function nodecore.player_can_take_damage(player)
+	return minetest.settings:get_bool("enable_damage")
+	and not player:get_armor_groups().immortal
+	and not minetest.check_player_privs(player, "ncdqd")
+end
+
 local handnode = minetest.registered_items["nc_player_hand:hand"]
 function nodecore.register_virtual_item(name, def)
 	return minetest.register_node(name, nodecore.underride(def, {
@@ -32,7 +44,7 @@ local function rounddist(n)
 end
 
 local function checkinv(player)
-	local dmg = minetest.settings:get_bool("enable_damage")
+	local dmg = nodecore.player_can_take_damage(player)
 	local inv = player:get_inventory()
 	local size = inv:get_size("main")
 	local max = size - 1
