@@ -21,7 +21,7 @@ local function maketick(mult, getname, oldtick)
 		local pos = self.object:get_pos()
 		pos.y = pos.y - 1
 		local vel = self.object:get_velocity()
-		local v = -vel.y
+		local v = vel and -vel.y or 0
 		if v <= 0 then
 			return oldtick(self, dtime, ...)
 		end
@@ -35,7 +35,7 @@ local function maketick(mult, getname, oldtick)
 					})
 			end
 		end
-		if hit then
+		if hit and vel then
 			self.object:set_velocity({
 					x = vel.x / 2,
 					y = -vel.y / 4,
