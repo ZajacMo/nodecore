@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type, vector
-    = ItemStack, math, minetest, nodecore, pairs, type, vector
+local ItemStack, math, minetest, nodecore, pairs, tonumber, type,
+      vector
+    = ItemStack, math, minetest, nodecore, pairs, tonumber, type,
+      vector
 local math_floor, math_pi, math_random, math_sqrt
     = math.floor, math.pi, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -70,12 +72,32 @@ end
 
 local area_unloaded = {}
 
+local maplimit = tonumber(minetest.get_mapgen_setting("mapgen_limit")) or 31000
+local chunksize = tonumber(minetest.get_mapgen_setting("chunksize")) or 5
+chunksize = chunksize * 16
+maplimit = (-math_floor(maplimit / chunksize) + 0.5) * chunksize + 7.5
+
 local function collides(pos)
+	if pos.y < maplimit then return {name = "ignore"} end
 	local node = minetest.get_node_or_nil(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
 	if not def then return node end
 	if def.walkable then return node end
+end
+
+local oldcheck = minetest.check_single_for_falling
+function minetest.check_single_for_falling(...)
+	local oldget = minetest.get_node_or_nil
+	function minetest.get_node_or_nil(pos, ...)
+		if pos.y < maplimit then return end
+		return oldget(pos, ...)
+	end
+	local function helper(...)
+		minetest.get_node_or_nil = oldget
+		return ...
+	end
+	return helper(oldcheck(...))
 end
 
 function nodecore.entity_settle_check(on_settle, isnode)
