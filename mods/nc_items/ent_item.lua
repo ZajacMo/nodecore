@@ -8,8 +8,10 @@ local math_random
 nodecore.register_item_entity_on_settle(function(self, pos)
 		local node = minetest.get_node(pos)
 		if node.name == "ignore" then return end
-		node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
-		if node.name == "ignore" then return end
+		if pos.y - 1 >= nodecore.map_limit_min then
+			node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
+			if node.name == "ignore" then return end
+		end
 
 		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
@@ -23,7 +25,8 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 				self.object:remove()
 				return true
 			end
-			if nodecore.buildable_to(p) and (rel.y <= 0
+			if nodecore.buildable_to(p) and (p.y >= nodecore.map_limit_min)
+			and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
 				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
 				nodecore.place_stack(p, item)
 				self.itemstring = ""
