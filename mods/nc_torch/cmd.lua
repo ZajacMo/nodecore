@@ -6,10 +6,10 @@ local ItemStack, minetest, nodecore
 local modname = minetest.get_current_modname()
 
 local cheatdesc = "Cheat Torch"
-nodecore.translate_inform(cheatdesc)
+local cheattrans = nodecore.translate(cheatdesc)
 
 minetest.register_chatcommand("torchlite", {
-		description = "Create long-lasting torch",
+		description = "Create long-lasting " .. cheattrans,
 		privs = {["give"] = true},
 		func = function(pname)
 			local player = minetest.get_player_by_name(pname)
