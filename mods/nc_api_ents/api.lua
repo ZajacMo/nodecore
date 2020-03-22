@@ -96,6 +96,13 @@ end
 function nodecore.entity_settle_check(on_settle, isnode)
 	return function(self)
 		local pos = self.object:get_pos()
+		if pos.y < nodecore.map_limit_min then
+			pos.y = nodecore.map_limit_min
+			self.object:set_pos(pos)
+			local vel = self.object:get_velocity()
+			vel.y = 0
+			self.object:set_velocity(vel)
+		end
 
 		if self.settle_oldpos and vector.distance(self.settle_oldpos, pos) < 1/16 then
 			local csize = self.collidesize or 0.5
