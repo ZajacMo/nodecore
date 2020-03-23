@@ -27,9 +27,9 @@ local function entprops(stack, conf, widx)
 		and nodecore.player_visible(conf.pname)) then return t end
 	if conf.slot then
 		t.is_visible = true
-		t.textures = {modname .. "_slot.png^[transformFX^[opacity:160", "[combine:1x1"}
+		t.textures = {modname .. "_slot.png", "[combine:1x1"}
 		if conf.slot == widx then
-			t.textures[1] = "[combine:1x1"
+			t.textures[1] = modname .. "_sel.png"
 			return t
 		end
 	end
