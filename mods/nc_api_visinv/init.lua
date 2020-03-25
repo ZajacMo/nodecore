@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, type, vector
-    = minetest, nodecore, pairs, type, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -16,17 +16,6 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
--- N.B. keys in b but not in a do NOT count against match.
-local function deepmatch(a, b)
-	if type(a) == "table" and type(b) == "table" then
-		for k, v in pairs(a) do
-			if not deepmatch(v, b[k]) then return end
-		end
-		return true
-	end
-	return a == b
-end
-
 minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
@@ -41,9 +30,7 @@ minetest.register_entity(modname .. ":stackent", {
 			rp.y = rp.y + scale - 31/64
 
 			local obj = self.object
-			if not deepmatch(props, obj:get_properties()) then
-				obj:set_properties(props)
-			end
+			nodecore.ent_prop_set(obj, props)
 			if obj:get_yaw() ~= yaw then
 				obj:set_yaw(yaw)
 			end

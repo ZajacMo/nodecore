@@ -70,11 +70,7 @@ minetest.register_entity(modname .. ":ent", {
 			local inv = player:get_inventory()
 			local widx = player:get_wield_index()
 			local stack = inv:get_stack("main", conf.slot or widx) or ItemStack("")
-			local props = entprops(stack, conf, widx)
-			if self.txr ~= props.textures[1] then
-				self.txr = props.textures[1]
-				self.object:set_properties(props)
-			end
+			nodecore.ent_prop_set(self.object, entprops(stack, conf, widx))
 		end
 	})
 

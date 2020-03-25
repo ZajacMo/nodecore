@@ -126,7 +126,7 @@ minetest.register_globalstep(function()
 			walkspeed(player, cached, set)
 			nodmgbreath(player)
 
-			if set.props then player:set_properties(set.props) end
+			if set.props then nodecore.ent_prop_set(player, set.props) end
 			if set.physics then player:set_physics_override(set.physics) end
 		end
 	end)

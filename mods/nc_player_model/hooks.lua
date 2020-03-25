@@ -39,7 +39,7 @@ local function updatevisuals(player, joining)
 	end
 
 	if not eq(props, cached.props) then
-		player:set_properties(props)
+		nodecore.ent_prop_set(player, props)
 		cached.props = props
 	end
 
