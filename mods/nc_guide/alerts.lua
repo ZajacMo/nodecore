@@ -1,9 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore, pairs, table
+    = minetest, nodecore, pairs, table
+local table_concat, table_sort
+    = table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local donecache = {}
+local msgcache = {}
 
 local msg = "hint complete - @1"
 nodecore.translate_inform(msg)
@@ -14,18 +17,46 @@ minetest.register_on_joinplayer(function(player)
 		local t = {}
 		for _, v in pairs(done) do t[v.text] = true end
 		donecache[pname] = t
+		msgcache[pname] = {}
 	end)
 
 nodecore.register_on_player_discover(function(player)
 		local pname = player:get_player_name()
-		local t = donecache[pname]
-		if not t then return end
+		local dc = donecache[pname]
+		if not dc then return end
+		local mc = msgcache[pname]
+		if not mc then return end
+
 		local _, done = nodecore.hint_state(pname)
 		for _, v in pairs(done) do
-			if not t[v.text] then
-				t[v.text] = true
-				minetest.chat_send_player(pname, minetest.colorize("#e0ff80",
-						nodecore.translate(msg, v.text)))
+			if not dc[v.text] then
+				dc[v.text] = true
+				mc[v.text] = nodecore.gametime + 10
 			end
+		end
+	end)
+
+minetest.register_globalstep(function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			local pname = player:get_player_name()
+			local mc = msgcache[pname] or {}
+			local t = {}
+			for k, v in pairs(mc) do
+				if v < nodecore.gametime then
+					mc[k] = nil
+				else
+					t[#t + 1] = nodecore.translate(msg, k)
+				end
+			end
+			table_sort(t)
+			nodecore.hud_set_multiline(player, {
+					label = "hintcomplete",
+					hud_elem_type = "text",
+					position = {x = 0.5, y = 0.25},
+					text = table_concat(t, "\n"),
+					number = 0xE0FF80,
+					alignment = {x = 0, y = 0},
+					offset = {x = 0, y = 0}
+				}, nodecore.translate)
 		end
 	end)
