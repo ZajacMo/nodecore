@@ -9,7 +9,7 @@ local modname = minetest.get_current_modname()
 
 local irradiated = modname .. ":irradiated"
 nodecore.register_virtual_item(irradiated, {
-		description = "",
+		description = "Burn",
 		inventory_image = modname .. "_base.png^[mask:"
 		.. modname .. "_icon_mask.png",
 	})

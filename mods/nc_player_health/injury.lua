@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local injured = modname .. ":injured"
 nodecore.register_virtual_item(injured, {
-		description = "",
+		description = "Injury",
 		inventory_image = modname .. "_injured.png"
 	})
 
