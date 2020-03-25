@@ -81,11 +81,11 @@ local function hud_set(player, def)
 	end
 	local entry = phuds[def.label]
 	if not entry then
-		entry = {label = def.label}
+		entry = {}
 		phuds[def.label] = entry
 	end
-	entry.new = def
-	entry.ttl = def.ttl or entry.ttl
+	entry.new = {}
+	for k, v in pairs(def) do (myprops[k] and entry or entry.new)[k] = v end
 	if def.quick then return updatehud(player, entry, phuds, 0) end
 end
 nodecore.hud_set = hud_set

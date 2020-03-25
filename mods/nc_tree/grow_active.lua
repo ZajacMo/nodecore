@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
-local math_random
-    = math.random
+local math, minetest, nodecore, pairs, table
+    = math, minetest, nodecore, pairs, table
+local math_random, table_concat
+    = math.random, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -194,15 +194,16 @@ minetest.register_chatcommand("growtrees", {
 			local pos = player:get_pos()
 			local spec = {}
 			for k in pairs(growtreedata) do spec[#spec + 1] = k end
+			local grew = {}
 			for _, p in pairs(nodecore.find_nodes_around(pos, spec, 5)) do
 				local nn = minetest.get_node(p).name
 				local data = growtreedata[nn]
 				local r = data.r(p)
 				if r and r > 0 then
 					nodecore.soaking_abm_push(p, data.f, 100000)
-					minetest.chat_send_player(pname, "boosted "
-						.. nn .. " at " .. minetest.pos_to_string(p))
+					grew[#grew + 1] = nn .. " at " .. minetest.pos_to_string(p)
 				end
 			end
+			return true, table_concat(grew, "\n")
 		end
 	})
