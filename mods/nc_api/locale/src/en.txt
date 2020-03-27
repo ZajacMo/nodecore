@@ -31,17 +31,26 @@ msgstr "- Crafting is done by building recipes in-world."
 msgid "- DONE: @1"
 msgstr "- DONE: @1"
 
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Do not use F5 debug info; it will mislead you!"
+
 msgid "- Drop items onto ground to create stack nodes.  They do not decay."
 msgstr "[REMOVED]"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Drop items onto ground to create stack nodes. They do not decay."
 
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- If a recipe exists, you will see a special particle effect."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- Items picked up try to fit into the current selected slot first."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Larger recipes are usually more symmetrical."
 
 msgid "- Order and specific face of placement may matter for crafting."
 msgstr "- Order and specific face of placement may matter for crafting."
@@ -58,11 +67,14 @@ msgstr "- Sneak+drop to count out single items from stack."
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- Some recipes require "pummeling" a node."
 
+msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
 
 msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
-msgstr "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+msgstr "[REMOVED]"
 
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
 msgstr "[REMOVED]"
@@ -403,6 +415,9 @@ msgstr "Charcoal Glyph"
 msgid "Charcoal Lump"
 msgstr "Charcoal Lump"
 
+msgid "Cheat Torch"
+msgstr "Cheat Torch"
+
 msgid "Chromatic Glass"
 msgstr "Chromatic Glass"
 
@@ -563,7 +578,7 @@ msgid "Leaves"
 msgstr "Leaves"
 
 msgid "Left-click to set 1st position, right-click to set 2nd"
-msgstr "Left-click to set 1st position, right-click to set 2nd"
+msgstr "[REMOVED]"
 
 msgid "Lens"
 msgstr "Lens"
@@ -850,6 +865,9 @@ msgstr "Wooden Spade Head"
 msgid "activate a lens"
 msgstr "activate a lens"
 
+msgid "activate a prism"
+msgstr "activate a prism"
+
 msgid "assemble a glass tank"
 msgstr "assemble a glass tank"
 
@@ -919,11 +937,14 @@ msgstr "[REMOVED]"
 msgid "chop up charcoal"
 msgstr "chop up charcoal"
 
+msgid "cold-forge annealed lode on a tempered anvil"
+msgstr "cold-forge annealed lode on a tempered anvil"
+
 msgid "cold-forge annealed lode prills into a tool head"
-msgstr "cold-forge annealed lode prills into a tool head"
+msgstr "[REMOVED]"
 
 msgid "cold-forge lode down completely"
-msgstr "cold-forge lode down completely"
+msgstr "[REMOVED]"
 
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
@@ -968,7 +989,7 @@ msgid "ferment peat into humus"
 msgstr "ferment peat into humus"
 
 msgid "find a lode stratum"
-msgstr "find a lode stratum"
+msgstr "[REMOVED]"
 
 msgid "find a sponge"
 msgstr "find a sponge"
@@ -999,6 +1020,12 @@ msgstr "find lux"
 
 msgid "find molten rock"
 msgstr "find molten rock"
+
+msgid "forge lode down completely on an anvil"
+msgstr "forge lode down completely on an anvil"
+
+msgid "forge lode prills into a tool head on an anvil"
+msgstr "forge lode prills into a tool head on an anvil"
 
 msgid "gate a prism"
 msgstr "gate a prism"
@@ -1036,6 +1063,12 @@ msgstr "leach dirt to sand"
 msgid "leach humus to dirt"
 msgstr "leach humus to dirt"
 
+msgid "leech dirt to sand"
+msgstr "[REMOVED]"
+
+msgid "leech humus to dirt"
+msgstr "[REMOVED]"
+
 msgid "light a torch"
 msgstr "light a torch"
 
@@ -1043,7 +1076,7 @@ msgid "lux-infuse a lode tool"
 msgstr "lux-infuse a lode tool"
 
 msgid "make an anvil by tempering a lode cube"
-msgstr "make an anvil by tempering a lode cube"
+msgstr "[REMOVED]"
 
 msgid "make fire by rubbing sticks together"
 msgstr "make fire by rubbing sticks together"
@@ -1122,6 +1155,9 @@ msgstr "split a tree trunk into planks"
 
 msgid "squeeze out a sponge"
 msgstr "squeeze out a sponge"
+
+msgid "temper a lode cube to use as an anvil"
+msgstr "temper a lode cube to use as an anvil"
 
 msgid "temper a lode tool head"
 msgstr "temper a lode tool head"
