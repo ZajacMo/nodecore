@@ -47,7 +47,7 @@ nodecore.register_inventory_tab({
 			"- Crafting is done by building recipes in-world.",
 			"- Order and specific face of placement may matter for crafting.",
 			"- Some recipes use a 3x3 \"grid\", laid out flat on the ground.",
-			"- More complex recipes are usually more symmetrical."
+			"- Larger recipes are usually more symmetrical."
 		}
 	})
 
@@ -71,6 +71,7 @@ nodecore.register_inventory_tab({
 		content = {
 			"Player's Guide: Tips and Guidance",
 			"",
+			"- Do not use F5 debug info; it will mislead you!",
 			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
 			"- Can't dig trees or grass? Search for sticks in the canopy.",
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
