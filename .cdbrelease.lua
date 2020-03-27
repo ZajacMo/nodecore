@@ -7,5 +7,6 @@ return {
 	user = "Warr1024",
 	pkg = "nodecore",
 	min = "5.0",
-	version = dofile("./mods/nc_api/version.lua")
+	version = dofile("./mods/nc_api/version.lua"),
+	path = "."
 }

@@ -1,7 +1,6 @@
 {
 	"type": "game",
 	"title": "NodeCore",
-	"name": "nodecore",
 	"short_desc": "An original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs.",
 	"tags": "building,crafting,environment,inventory,machines,puzzle",
 	"license": "mit",

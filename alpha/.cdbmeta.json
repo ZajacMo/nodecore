@@ -1,7 +1,6 @@
 {
 	"type": "game",
 	"title": "NodeCore ALPHA",
-	"name": "nodecore_alpha",
 	"short_desc": "Experimental early-access releases of NodeCore.",
 	"tags": "building,crafting,environment,inventory,machines,puzzle",
 	"license": "mit",
