@@ -21,7 +21,7 @@ return {
 	short_desc = (alpha
 		and "Experimental early-access releases of NodeCore."
 		or "An original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
-	tags = "building, crafting, environment, inventory, machines, puzzle",
+	tags = "building, crafting, environment, inventory, machines, player vs env, puzzle",
 	license = "mit",
 	desc = alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'),
 	repo = "https://gitlab.com/sztest/nodecore",
