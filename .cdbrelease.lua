@@ -7,6 +7,7 @@ local dofile
 -- luacheck: globals config slurp
 
 local alpha = config and config.branch == "dev"
+slurp = slurp or function() end
 
 return {
 	user = "Warr1024",
