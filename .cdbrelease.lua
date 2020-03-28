@@ -16,7 +16,7 @@ return {
 	version = dofile("./mods/nc_api/version.lua"),
 	path = ".",
 	type = "game",
-	title = "NodeCore",
+	title = "NodeCore" .. (alpha and " ALPHA" or ""),
 	short_desc = (alpha
 		and "Experimental early-access releases of NodeCore."
 		or "An original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
