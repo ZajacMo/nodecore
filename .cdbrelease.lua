@@ -4,10 +4,11 @@ local dofile
 -- LUALOCALS > ---------------------------------------------------------
 
 -- luacheck: push
--- luacheck: globals config slurp
+-- luacheck: globals config readtext readbinary
 
 local alpha = config and config.branch == "dev"
-slurp = slurp or function() end
+readtext = readtext or function() end
+readbinary = readbinary or function() end
 
 return {
 	user = "Warr1024",
@@ -22,7 +23,7 @@ return {
 		or "An original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
 	tags = "building, crafting, environment, inventory, machines, puzzle",
 	license = "mit",
-	desc = alpha and slurp('.cdb-alpha.md') or slurp('.cdb-release.md'),
+	desc = alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'),
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issueTracker = "https://discord.gg/NNYeF6f",
