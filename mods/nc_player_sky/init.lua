@@ -5,6 +5,8 @@ local math_ceil, math_floor
     = math.ceil, math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local cache = {}
 
 local function setsky(player)
