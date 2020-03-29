@@ -36,7 +36,8 @@ minetest.register_node(amalgam, {
 			cracky = 1,
 			igniter = 1,
 			stack_as_node = 1,
-			amalgam = 1
+			amalgam = 1,
+			cobbley = 1
 		},
 		alternate_loose = {
 			tiles = {tile(loose)},

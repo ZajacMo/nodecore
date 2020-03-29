@@ -106,7 +106,8 @@ regterrain({
 		groups = {
 			cobble = 1,
 			rock = 1,
-			cracky = 1
+			cracky = 1,
+			cobbley = 1
 		},
 		alternate_loose = {
 			repack_level = 2,

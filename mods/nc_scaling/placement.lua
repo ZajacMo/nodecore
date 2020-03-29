@@ -27,8 +27,9 @@ hand.on_place = function(stack, player, pointed, ...)
 
 	local node = minetest.get_node(pointed.under)
 	local def = minetest.registered_nodes[node.name]
+	local groups = def and def.groups or {}
 	if not player:get_player_control().sneak and def and def.on_rightclick
-	and not (def.groups and def.groups.always_scalable) then
+	and not groups.always_scalable then
 		return minetest.item_place(stack, player, pointed, ...)
 	end
 
@@ -46,7 +47,9 @@ hand.on_place = function(stack, player, pointed, ...)
 	cache[pname] = stats
 
 	local timecost = (pointed.under.y > pointed.above.y) and 5 or 3
-	timecost = timecost * ((def and def.groups and def.groups.scaling_time or 100) / 100)
+	timecost = timecost * ((groups.scaling_time or 100) / 100)
+	if groups.cobbley then timecost = timecost * 0.75 end
+	if groups.falling_node then timecost = timecost * 1.2 end
 	if now < stats.start + timecost then return end
 
 	cache[pname] = nil

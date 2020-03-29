@@ -72,7 +72,8 @@ reg("Cobble", {
 		groups = {
 			lode_cobble = 1,
 			cracky = 2,
-			lodey = 1
+			lodey = 1,
+			cobbley = 1
 		},
 		alternate_loose = {
 			repack_level = 2,
@@ -93,7 +94,7 @@ reg("cobble_hot", {
 			"nc_terrain_gravel.png^(" .. modname .. "_hot.png^[mask:"
 			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
 		},
-		groups = {cracky = 0, lodey = 1},
+		groups = {cracky = 0, lodey = 1, cobbley = 1},
 		damage_per_second = 1
 	})
 

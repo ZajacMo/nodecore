@@ -20,6 +20,7 @@ for i = 1, 8 do
 				lux_cobble = 1,
 				lux_emit = i,
 				cracky = 1,
+				cobbley = 1,
 				lux_cobble_max = i == 8 and 1 or nil,
 				igniter = i > 4 and 1 or nil,
 				lux_hot = i > 4 and 1 or nil
