@@ -154,7 +154,8 @@ local function reg(suff, inner)
 				snappy = 1,
 				container = 100,
 				flammable = 5,
-				tote = 1
+				tote = 1,
+				scaling_time = 50
 			},
 			on_ignite = tote_ignite,
 			stack_max = 1,

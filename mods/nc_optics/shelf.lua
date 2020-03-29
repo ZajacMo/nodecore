@@ -26,7 +26,8 @@ minetest.register_node(modname .. ":shelf", {
 			fire_fuel = 2,
 			visinv = 1,
 			storebox = 1,
-			totable = 1
+			totable = 1,
+			scaling_time = 200
 		},
 		paramtype = "light",
 		sunlight_propagates = true,

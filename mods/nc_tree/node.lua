@@ -16,7 +16,8 @@ minetest.register_node(modname .. ":root", {
 		groups = {
 			flammable = 50,
 			fire_fuel = 4,
-			choppy = 4
+			choppy = 4,
+			scaling_time = 80
 		},
 		drop = "nc_tree:stick 8",
 		sounds = nodecore.sounds("nc_tree_woody")
@@ -33,7 +34,8 @@ minetest.register_node(modname .. ":log", {
 			choppy = 2,
 			flammable = 8,
 			fire_fuel = 6,
-			log = 1
+			log = 1,
+			scaling_time = 75
 		},
 		sounds = nodecore.sounds("nc_tree_woody"),
 		paramtype2 = "facedir",
@@ -52,7 +54,8 @@ minetest.register_node(modname .. ":tree", {
 			flammable = 8,
 			fire_fuel = 6,
 			log = 1,
-			falling_node = 1
+			falling_node = 1,
+			scaling_time = 80
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_tree_woody"),
@@ -82,7 +85,8 @@ minetest.register_node(modname .. ":leaves", {
 			snappy = 1,
 			flammable = 3,
 			fire_fuel = 2,
-			green = 3
+			green = 3,
+			scaling_time = 90
 		},
 		alternate_loose = {
 			tiles = {modname .. "_leaves_dry.png"},

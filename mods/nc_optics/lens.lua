@@ -43,7 +43,8 @@ local basedef = {
 		silica = 1,
 		silica_lens = 1,
 		optic_check = 1,
-		cracky = 3
+		cracky = 3,
+		scaling_time = 125
 	},
 	drop = modname .. ":lens",
 	on_construct = nodecore.optic_check,

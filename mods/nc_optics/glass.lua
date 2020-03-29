@@ -15,7 +15,8 @@ minetest.register_node(modname .. ":glass", {
 		groups = {
 			silica = 1,
 			silica_clear = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
@@ -27,7 +28,8 @@ minetest.register_node(modname .. ":glass_opaque", {
 		tiles = {modname .. "_glass_frost.png"},
 		groups = {
 			silica = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_optics_glassy")
@@ -44,7 +46,8 @@ minetest.register_node(modname .. ":glass_crude", {
 		groups = {
 			silica = 1,
 			falling_node = 1,
-			crumbly = 2
+			crumbly = 2,
+			scaling_time = 150
 		},
 		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
@@ -61,7 +64,8 @@ minetest.register_node(modname .. ":glass_float", {
 		groups = {
 			silica = 1,
 			silica_clear = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		sounds = nodecore.sounds("nc_optics_glassy")
 	})

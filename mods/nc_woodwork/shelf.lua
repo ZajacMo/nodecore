@@ -19,7 +19,8 @@ minetest.register_node(modname .. ":shelf", {
 			flammable = 2,
 			fire_fuel = 3,
 			storebox = 1,
-			totable = 1
+			totable = 1,
+			scaling_time = 50
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_tree_woody"),

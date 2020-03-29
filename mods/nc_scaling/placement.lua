@@ -47,9 +47,13 @@ hand.on_place = function(stack, player, pointed, ...)
 	cache[pname] = stats
 
 	local timecost = (pointed.under.y > pointed.above.y) and 5 or 3
-	timecost = timecost * ((groups.scaling_time or 100) / 100)
-	if groups.cobbley then timecost = timecost * 0.75 end
-	if groups.falling_node then timecost = timecost * 1.2 end
+	if groups.scaling_time then
+		timecost = timecost * groups.scaling_time / 100
+	else
+		if def.climbable then timecost = timecost * 0.25 end
+		if groups.cobbley then timecost = timecost * 0.75 end
+		if groups.falling_node then timecost = timecost * 1.2 end
+	end
 	if now < stats.start + timecost then return end
 
 	cache[pname] = nil

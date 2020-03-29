@@ -19,7 +19,8 @@ minetest.register_node(modname .. ":shelf", {
 			cracky = 3,
 			visinv = 1,
 			storebox = 2,
-			totable = 1
+			totable = 1,
+			scaling_time = 50
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
