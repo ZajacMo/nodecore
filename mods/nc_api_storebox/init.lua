@@ -66,7 +66,8 @@ nodecore.register_on_register_item(function(_, def)
 			end
 		end
 
-		def.groups.visinv = def.groups.visinv + 1
+		def.groups.visinv = def.groups.visinv or 1
+		def.groups.always_scalable = def.groups.always_scalable or 1
 		def.groups.container = def.groups.container or def.groups.storebox
 
 		def.on_construct = def.on_construct or nodecore.visinv_on_construct

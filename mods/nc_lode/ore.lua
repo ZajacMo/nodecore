@@ -94,8 +94,7 @@ reg("cobble_hot", {
 			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
 		},
 		groups = {cracky = 0, lodey = 1},
-		damage_per_second = 1,
-		on_punch = nodecore.node_punch_hurt
+		damage_per_second = 1
 	})
 
 local oreid = 0

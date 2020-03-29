@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, type
-    = math, minetest, nodecore, type
+local math, nodecore, type
+    = math, nodecore, type
 local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
@@ -36,13 +36,3 @@ local function addphealth(player, hp, reason)
 		hp >= 0 and player:get_hp())
 end
 nodecore.addphealth = addphealth
-
-function nodecore.node_punch_hurt(pos, node, puncher, ...)
-	if puncher and puncher:is_player() then
-		addphealth(puncher, -1, {
-				nc_type = "node_punch_hurt",
-				node = node
-			})
-	end
-	return minetest.node_punch(pos, node, puncher, ...)
-end
