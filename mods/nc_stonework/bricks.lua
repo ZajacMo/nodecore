@@ -21,9 +21,18 @@ minetest.register_node(modname .. ":bricks", {
 nodecore.register_craft({
 		label = "chisel stone into bricks",
 		action = "pummel",
-		toolgroups = {cracky = 4},
+		toolgroups = {thumpy = 3},
+		normal = {y = 1},
 		nodes = {
 			{
+				match = {
+					metal_temper_cool = true,
+					groups = {chisel = true}
+				},
+				dig = true
+			},
+			{
+				y = -1,
 				match = {groups = {smoothstone = true}},
 				replace = modname .. ":bricks"
 			}
