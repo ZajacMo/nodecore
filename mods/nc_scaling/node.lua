@@ -13,6 +13,7 @@ local function reg(name, climb, light, fx, lv)
 		walkable = false,
 		pointable = false,
 		buildable_to = true,
+		floodable = true,
 		air_equivalent = true,
 		climbable = climb and true or nil,
 		light_source = light or nil,

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, vector
-    = math, minetest, nodecore, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -10,22 +10,32 @@ local modname = minetest.get_current_modname()
 local nodes = {}
 local canreplace = {air = true}
 
+local true_airlike = {
+	drawtype = "airlike",
+	pointable = false,
+	walkable = false,
+	climbable = false,
+	buildable_to = true,
+	floodable = true,
+	air_equivalent = true,
+	paramtype = "light",
+	light_source = 0,
+	sunlight_propagates = true,
+}
+
 function nodecore.dynamic_light_node(level)
 	level = math_floor(level)
 	if level < 1 then level = 1 end
 	if level > nodecore.light_sun - 1 then level = nodecore.light_sun - 1 end
 	if nodes[level] then return nodes[level] end
 	local name = modname .. ":light" .. level
-	minetest.register_node(":" .. name, {
-			drawtype = "airlike",
-			paramtype = "light",
-			light_source = level,
-			pointable = false,
-			walkable = false,
-			buildable_to = true,
-			on_timer = minetest.remove_node,
-			groups = {dynamic_light = level}
-		})
+	local def = {
+		light_source = level,
+		on_timer = minetest.remove_node,
+		groups = {dynamic_light = level}
+	}
+	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
+	minetest.register_node(":" .. name, def)
 	nodes[level] = name
 	canreplace[name] = true
 	return name
@@ -34,6 +44,16 @@ end
 minetest.register_alias("nc_torch:wield_light", nodecore.dynamic_light_node(8))
 
 local active_lights = {}
+
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			local ok = not canreplace[k]
+			for dk, dv in pairs(true_airlike) do
+				ok = ok and v[dk] == dv
+			end
+			if ok then canreplace[k] = true end
+		end
+	end)
 
 nodecore.register_limited_abm({
 		label = "dynamic light cleanup",
