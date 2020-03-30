@@ -97,13 +97,16 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			nodes = {
 				{
 					match = "nc_lode:rod_tempered",
-					dig = true
+					replace = "air"
 				},
 				{
 					y = -1,
 					match = basefull,
 					replace = paneldef.name
 				}
+			},
+			items = {
+				"nc_lode:rod_tempered"
 			}
 		})
 end
