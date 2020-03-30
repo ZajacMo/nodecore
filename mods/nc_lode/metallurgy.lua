@@ -32,7 +32,9 @@ function nodecore.register_lode(shape, rawdef)
 				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
 				groups = {
 					cracky = 3,
-					falling_node = temper.name == "hot" and 1 or nil
+					metallic = 1,
+					falling_node = temper.name == "hot" and 1 or nil,
+					["metal_temper_" .. temper.name] = 1
 				},
 				["metal_temper_" .. temper.name] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
@@ -78,12 +80,14 @@ nodecore.register_lode("Block", {
 		type = "node",
 		description = "## Lode",
 		tiles = {modname .. "_#.png"},
+		groups = {metal_block = 1},
 		light_source = 8,
 		crush_damage = 4
 	})
 
 nodecore.register_lode("Prill", {
 		type = "craft",
+		groups = {metal_prill = 1},
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
