@@ -106,6 +106,10 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 				nodecore.fallcheck(p)
 			end
 		end
+		if v.dig and data.crafter then
+			local p = rel(v.x, v.y, v.z)
+			minetest.node_dig(p, minetest.get_node(p), data.crafter)
+		end
 	end
 	if recipe.items then
 		for _, v in pairs(recipe.items) do

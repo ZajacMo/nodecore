@@ -97,6 +97,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			nodes = {
 				{
 					match = "nc_lode:rod_tempered",
+					dig = true
 				},
 				{
 					y = -1,
