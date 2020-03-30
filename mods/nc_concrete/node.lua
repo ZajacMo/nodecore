@@ -32,6 +32,7 @@ local wetdef = {
 	diggable = false,
 	drowning = 2,
 	post_effect_color = {a = 240, r = 32, g = 32, b = 32},
+	groups = {concrete_wet = 1},
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }
 minetest.register_node(modname .. ":wet_source", nodecore.underride({

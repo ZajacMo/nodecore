@@ -66,6 +66,7 @@ regterrain({
 		groups = {
 			stone = 1,
 			rock = 1,
+			smoothstone = 1,
 			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",

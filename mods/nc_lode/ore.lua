@@ -30,6 +30,7 @@ local stone = reg("Stone", {
 		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
 			.. modname .. "_mask_sign.png^[opacity:96)"},
 		drop_in_place = "nc_terrain:cobble",
+		groups = {smoothstone = 1},
 		strata = stratstone
 	})
 stratstone[1] = stone
