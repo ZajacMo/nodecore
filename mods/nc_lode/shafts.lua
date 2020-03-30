@@ -16,7 +16,8 @@ nodecore.register_lode("Bar", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		groups = {
-			falling_repose = 1
+			falling_repose = 1,
+			chisel = 1
 		}
 	})
 
@@ -72,7 +73,8 @@ nodecore.register_lode("Rod", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		groups = {
-			falling_repose = 2
+			falling_repose = 2,
+			chisel = 2
 		}
 	})
 
