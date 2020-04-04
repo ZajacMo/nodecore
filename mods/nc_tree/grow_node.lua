@@ -7,57 +7,54 @@ local modname = minetest.get_current_modname()
 
 local epname = modname .. ":eggcorn_planted"
 
+local function eggcorn_plant(pos, whom, stack)
+	local def = minetest.registered_items[stack:get_name()]
+	if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
+
+	nodecore.set_loud(pos, {name = epname, param2 = 16})
+
+	if nodecore.player_stat_add then
+		nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
+	end
+	minetest.log((whom and whom:get_player_name() or "unknown")
+		.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
+
+	stack:set_count(stack:get_count() - 1)
+	return stack
+end
+
 minetest.register_node(modname .. ":eggcorn", {
 		description = "Eggcorn",
-		drawtype = "plantlike",
+		drawtype = "mesh",
+		mesh = "nc_tree_eggcorn.obj",
 		paramtype = "light",
-		visual_scale = 0.5,
-		wield_scale = {x = 0.75, y = 0.75, z = 1.5},
-		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		inventory_image = "[combine:24x24:4,4=" .. modname
-		.. "_eggcorn.png\\^[resize\\:16x16",
-		tiles = {modname .. "_eggcorn.png"},
+		collision_box = nodecore.fixedbox(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5),
+		selection_box = nodecore.fixedbox(-5/16, -0.5, -5/16, 5/16, 1/16, 5/16),
+		tiles = {
+			modname .. "_eggcorn_top.png",
+			modname .. "_eggcorn_bottom.png",
+			modname .. "_eggcorn_side.png"
+		},
 		groups = {
 			snappy = 1,
 			flammable = 3,
-			attached_node = 1,
+			falling_node = 1,
+			falling_repose = 1
 		},
 		node_placement_prediction = "",
-		place_as_item = true,
 		sounds = nodecore.sounds("nc_tree_corny"),
 		stack_rightclick = function(pos, _, whom, stack)
 			if nodecore.stack_get(pos):get_count() ~= 1 then return end
-			local def = minetest.registered_items[stack:get_name()]
-			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
-
-			nodecore.set_loud(pos, {name = epname, param2 = 16})
-
-			if nodecore.player_stat_add then
-				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
-			end
-			minetest.log((whom and whom:get_player_name() or "unknown")
-				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
-
-			stack:set_count(stack:get_count() - 1)
-			return stack
-		end
-	})
-
-nodecore.register_limited_abm({
-		interval = 1,
-		chance = 1,
-		nodenames = {modname .. ":eggcorn"},
-		action = function(pos)
-			minetest.remove_node(pos)
-			return nodecore.place_stack(pos, modname .. ":eggcorn")
+			return eggcorn_plant(pos, whom, stack)
+		end,
+		on_rightclick = function(pos, _, whom, stack)
+			return eggcorn_plant(pos, whom, stack)
 		end
 	})
 
 nodecore.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
-			name = "air",
-			item = modname .. ":eggcorn",
+			name = modname .. ":eggcorn",
 			prob = 0.05 * (node.param2 + 1)}
 	end)
 
