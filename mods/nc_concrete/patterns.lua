@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, rawset, string, type
-    = error, minetest, nodecore, pairs, rawset, string, type
+local error, ipairs, minetest, nodecore, pairs, rawset, string, type
+    = error, ipairs, minetest, nodecore, pairs, rawset, string, type
 local string_gsub, string_lower
     = string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
@@ -54,6 +54,8 @@ local function regetched(basenode, etch, patt)
 		def.name = nil
 		def.description = (patt.blank and "" or (patt.description .. " "))
 		.. "Pliant " .. basenode.description
+		def.pattern_def = patt
+		def.etch_def = etch
 		minetest.register_node(plyname, def)
 	end
 	if not patt.blank then
@@ -68,6 +70,8 @@ local function regetched(basenode, etch, patt)
 			def.name = nil
 			def.description = (patt.blank and "" or (patt.description .. " "))
 			.. basenode.description
+			def.pattern_def = patt
+			def.etch_def = etch
 			minetest.register_node(pattname, def)
 		end
 	end
@@ -95,6 +99,7 @@ local function buildpatterns()
 		.. "_pliant.png^[opacity:" .. (etch.pliant_opacity or 64) .. ")"
 		etch.pliant = etch.pliant or {}
 		etch.pliant.groups = etch.pliant.groups or mudgroups
+		etch.pliant.groups.concrete_etchable = 1
 		etch.solid = etch.solid or {}
 		etch.drop_in_place = etch.drop_in_place or etch.basenode
 	end
@@ -107,6 +112,13 @@ local function buildpatterns()
 		end
 	end
 end
+
+minetest.after(0, function()
+		local patts = nodecore.registered_concrete_patterns
+		for i, patt in ipairs(patts) do
+			patt.next = patts[(i < #patts) and (i + 1) or 1]
+		end
+	end)
 
 for k in pairs({
 		register_concrete_pattern = true,

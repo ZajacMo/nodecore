@@ -6,7 +6,8 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("api")
-include("crafting")
+include("wet")
 include("patterns")
 include("node")
 include("register")
+include("stylus")

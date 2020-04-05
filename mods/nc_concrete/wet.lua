@@ -136,11 +136,11 @@ nodecore.register_soaking_abm({
 				return false
 			end
 			local found = nodecore.find_nodes_around(pos, "group:igniter", 1)
-			return 10 * (#found + 1)
+			return #found + 1
 		end,
 		soakcheck = function(data, pos, node)
-			if data.total < 300 then
-				nodecore.smokefx(pos, 1, 1)
+			if data.total < 20 then
+				nodecore.smokefx(pos, 5, data.rate)
 				return
 			end
 			local def = concdef(node.name)

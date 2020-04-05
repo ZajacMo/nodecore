@@ -34,7 +34,7 @@ nodecore.register_concrete_etchable({
 		pliant_opacity = 40,
 		pattern_opacity = 80,
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_swishy"),
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
 			drop_in_place = modname .. ":render_wet_source",
 			silktouch = false
 		}

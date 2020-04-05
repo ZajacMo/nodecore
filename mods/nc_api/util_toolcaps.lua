@@ -11,6 +11,7 @@ local basetimes = {
 	choppy = 2,
 	crumbly = 0.5,
 	snappy = 0.4,
+	scratchy = 2
 }
 nodecore.tool_basetimes = basetimes
 
