@@ -28,7 +28,7 @@ minetest.register_node(modname .. ":adobe", {
 	})
 
 minetest.register_node(modname .. ":coalstone", {
-		description = "Tar Stone",
+		description = "Tarstone",
 		tiles = {"nc_terrain_stone.png^[colorize:#000000:160"},
 		groups = {
 			cracky = 2
