@@ -5,6 +5,10 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+nodecore.register_concrete_etchable({
+		basename = "nc_terrain:stone",
+		sounds = nodecore.sounds("nc_terrain_chompy")
+	})
 nodecore.register_concrete({
 		description = "Aggregate",
 		tile_powder = "nc_terrain_gravel.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
@@ -20,6 +24,9 @@ nodecore.register_concrete({
 minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
 minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
 
+nodecore.register_concrete_etchable({
+		basename = modname .. ":sandstone"
+	})
 nodecore.register_concrete({
 		description = "Render",
 		tile_powder = "nc_terrain_sand.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
@@ -34,6 +41,9 @@ nodecore.register_concrete({
 		to_molded = modname .. ":sandstone"
 	})
 
+nodecore.register_concrete_etchable({
+		basename = modname .. ":adobe"
+	})
 nodecore.register_concrete({
 		name = "mud",
 		description = "Tackmud",
@@ -49,6 +59,9 @@ nodecore.register_concrete({
 		to_molded = modname .. ":adobe"
 	})
 
+nodecore.register_concrete_etchable({
+		basename = modname .. ":coalstone"
+	})
 nodecore.register_concrete({
 		name = "coalaggregate",
 		description = "Bituminous Aggregate",
