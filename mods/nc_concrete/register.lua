@@ -31,11 +31,12 @@ nodecore.register_concrete({
 		craft_from = {groups = {sand = true}},
 		to_crude = "nc_terrain:sand",
 		to_washed = "nc_terrain:sand",
-		to_molded = "nc_terrain:sand"
+		to_molded = modname .. ":sandstone"
 	})
 
 nodecore.register_concrete({
-		description = "Adobe",
+		name = "mud",
+		description = "Tackmud",
 		tile_powder = "nc_terrain_dirt.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
 		tile_wet = "nc_terrain_dirt.png^(nc_fire_ash.png^("
 		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)",
@@ -45,5 +46,35 @@ nodecore.register_concrete({
 		craft_from = {groups = {dirt = true}},
 		to_crude = "nc_terrain:dirt",
 		to_washed = "nc_terrain:dirt",
-		to_molded = "nc_terrain:dirt"
+		to_molded = modname .. ":adobe"
 	})
+
+nodecore.register_concrete({
+		name = "coalaggregate",
+		description = "Bituminous Aggregate",
+		register_dry = false,
+		craft_mix = false,
+		tile_wet = "nc_terrain_stone.png^(nc_fire_ash.png^("
+		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)"
+		.. "^[colorize:#000000:128",
+		sound = "nc_terrain_chompy",
+		swim_color = {r = 16, g = 16, b = 16},
+		to_crude = "nc_terrain:cobble",
+		to_washed = "nc_terrain:gravel",
+		to_molded = modname .. ":coalstone"
+	})
+do
+	local aggwet = modname .. ":aggregate_wet_source"
+	local oldrc = nodecore.registered_nodes[aggwet].on_rightclick
+	minetest.override_item(aggwet, {
+			on_rightclick = function(pos, node, clicker, stack, ...)
+				if stack:get_name() ~= "nc_fire:lump_coal" then
+					return oldrc(pos, node, clicker, stack, ...)
+				end
+				nodecore.set_loud(pos,
+					{name = modname .. ":coalaggregate_wet_source"})
+				stack:take_item(1)
+				return stack
+			end
+		})
+end

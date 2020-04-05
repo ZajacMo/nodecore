@@ -7,4 +7,5 @@ nodecore.amcoremod()
 
 include("api_node")
 include("api_craft")
-include("defs")
+include("node")
+include("register")
