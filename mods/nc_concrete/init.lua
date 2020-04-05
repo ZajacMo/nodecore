@@ -5,5 +5,6 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("node")
-include("crafting")
+include("api_node")
+include("api_craft")
+include("defs")
