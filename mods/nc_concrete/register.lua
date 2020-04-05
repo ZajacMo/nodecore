@@ -56,7 +56,7 @@ nodecore.register_concrete({
 		craft_mix = false,
 		tile_wet = "nc_terrain_stone.png^(nc_fire_ash.png^("
 		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)"
-		.. "^[colorize:#000000:128",
+		.. "^[colorize:#000000:160",
 		sound = "nc_terrain_chompy",
 		swim_color = {r = 16, g = 16, b = 16},
 		to_crude = "nc_terrain:cobble",
