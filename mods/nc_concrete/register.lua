@@ -4,6 +4,7 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+local localpref = modname .. ":" .. modname:gsub("^nc", "")
 
 nodecore.register_concrete_etchable({
 		basename = "nc_terrain:stone",
@@ -22,13 +23,14 @@ nodecore.register_concrete({
 		craft_from = {groups = {gravel = true}},
 		to_crude = "nc_terrain:cobble",
 		to_washed = "nc_terrain:gravel",
-		to_molded = "nc_terrain:stone"
+		to_molded = modname .. ":terrain_stone_blank_ply"
 	})
 minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
 minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
 
 nodecore.register_concrete_etchable({
 		basename = modname .. ":sandstone",
+		pattern_opacity = 80,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_swishy"),
 			drop_in_place = modname .. ":render_wet_source"
@@ -45,11 +47,12 @@ nodecore.register_concrete({
 		craft_from = {groups = {sand = true}},
 		to_crude = "nc_terrain:sand",
 		to_washed = "nc_terrain:sand",
-		to_molded = modname .. ":sandstone"
+		to_molded = localpref .. "sandstone_blank_ply"
 	})
 
 nodecore.register_concrete_etchable({
 		basename = modname .. ":adobe",
+		pattern_opacity = 56,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_crunchy"),
 			drop_in_place = modname .. ":adobe_wet_source"
@@ -67,11 +70,12 @@ nodecore.register_concrete({
 		craft_from = {groups = {dirt = true}},
 		to_crude = "nc_terrain:dirt",
 		to_washed = "nc_terrain:dirt",
-		to_molded = modname .. ":adobe"
+		to_molded = localpref .. "adobe_blank_ply"
 	})
 
 nodecore.register_concrete_etchable({
 		basename = modname .. ":coalstone",
+		pattern_opacity = 40,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_chompy"),
 			drop_in_place = modname .. ":coalstone_wet_source"
@@ -89,7 +93,7 @@ nodecore.register_concrete({
 		swim_color = {r = 16, g = 16, b = 16},
 		to_crude = "nc_terrain:cobble",
 		to_washed = "nc_terrain:gravel",
-		to_molded = modname .. ":coalstone"
+		to_molded = localpref .. "coalstone_blank_ply"
 	})
 do
 	local aggwet = modname .. ":aggregate_wet_source"

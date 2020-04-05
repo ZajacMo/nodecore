@@ -28,12 +28,21 @@ local function applytile(tiles, spec)
 	return newt
 end
 
+local function patttile(etch, patt)
+	if patt.blank then return function(...) return ... end end
+	return function(t)
+		return t .. "^(" .. patt.pattern_tile .. "^[opacity:"
+		.. (etch.pattern_opacity or 64) .. ")"
+	end
+end
+
 local function regetched(basenode, etch, patt)
 	basenode = nodecore.underride({}, basenode)
 	basenode.drop = nil
 	basenode.alternate_loose = nil
 	basenode.drop_in_place = nil
 	basenode.after_dig_node = nil
+	basenode.node_dig_prediction = nil
 	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name .. "_ply"
 	if not minetest.registered_nodes[plyname] then
 		local def = {}
@@ -41,8 +50,8 @@ local function regetched(basenode, etch, patt)
 		nodecore.underride(def, etch)
 		nodecore.underride(def, patt)
 		nodecore.underride(def, basenode)
+		def.tiles = applytile(def.tiles, patttile(etch, patt))
 		def.tiles = applytile(def.tiles, etch.pliant_tile)
-		def.tiles = applytile(def.tiles, patt.pattern_tile)
 		def.name = nil
 		def.description = (patt.blank and "" or (patt.description .. " "))
 		.. "Pliant " .. basenode.description
@@ -56,7 +65,7 @@ local function regetched(basenode, etch, patt)
 			nodecore.underride(def, etch)
 			nodecore.underride(def, patt)
 			nodecore.underride(def, basenode)
-			def.tiles = applytile(def.tiles, patt.pattern_tile)
+			def.tiles = applytile(def.tiles, patttile(etch, patt))
 			def.name = nil
 			def.description = (patt.blank and "" or (patt.description .. " "))
 			.. basenode.description
@@ -76,14 +85,15 @@ local function buildpatterns()
 		patt.name = patt.name or string_gsub(string_lower(patt.description),
 			"%W", "_")
 		patt.pattern_tile = patt.pattern_tile or string_gsub(
-			"^(#_etched.png^[mask:#_pattern_" .. patt.name
-			.. ".png^[opacity:128)", "#", modname)
+			"#_etched.png^[mask:#_pattern_" .. patt.name
+			.. ".png", "#", modname)
 	end
 	for _, etch in pairs(nodecore.registered_concrete_etchables) do
 		if not etch.basename then return error("etchable basename required") end
 		etch.name = etch.name or string_gsub(string_lower(string_gsub(
 					etch.basename, "^nc_", "")), "%W", "_")
-		etch.pliant_tile = etch.pliant_tile or "^" .. modname .. "_pliant.png"
+		etch.pliant_tile = etch.pliant_tile or "^(" .. modname
+		.. "_pliant.png^[opacity:192)"
 		etch.pliant = etch.pliant or {}
 		etch.pliant.groups = etch.pliant.groups or mudgroups
 		etch.solid = etch.solid or {}
