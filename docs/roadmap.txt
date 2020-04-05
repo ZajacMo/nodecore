@@ -40,27 +40,6 @@ ROADMAP: Large New Development Projects
 	- Aliases like "sides"/"corners"?
 	- Make 3x3 recipes easier to define.
 
-- Consider upstreaming nc_stucco, maybe into nc_concrete?
-	- Credit Avicennia G a.k.a. Tereno Johnson
-	- Stylus from stick+chip, stick+prill, etc. using "scratchy" group.
-	- Add materials for mud+ash, sand+ash, add coal lump to agg.
-	- All materials work like concrete, falling, liquefy with water.
-	- All of them cure to a tacky state first, then to dry.
-		- Become tacky if molded, cure to lower material otherwise.
-		- Use soaking.  Etching allowed to reset timer?
-	- Include a few etched patterns.  Separate mask and noise layers.
-		- bricky, meshy, barry, icebox, enol, bordythin, gkey, bindy
-	- Not relocatable
-		- dry digs to cobble, dirt, sand, etc.
-		- tacky undiggable until it cures (like a liquid)
-	- Cheaper materials have shorter liquid, longer tacky phase
-	- Standardize wandering liquid API?
-		- Wander frequency, dist limit
-		- Generation limit params
-		- Curing time
-		- Curing check (e.g. for quenching)
-		- Time and gen cure methods
-
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
