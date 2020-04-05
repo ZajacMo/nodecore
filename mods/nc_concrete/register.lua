@@ -7,7 +7,10 @@ local modname = minetest.get_current_modname()
 
 nodecore.register_concrete_etchable({
 		basename = "nc_terrain:stone",
-		sounds = nodecore.sounds("nc_terrain_chompy")
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_chompy"),
+			drop_in_place = modname .. ":aggregate_wet_source"
+		}
 	})
 nodecore.register_concrete({
 		description = "Aggregate",
@@ -25,7 +28,11 @@ minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_sou
 minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
 
 nodecore.register_concrete_etchable({
-		basename = modname .. ":sandstone"
+		basename = modname .. ":sandstone",
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_swishy"),
+			drop_in_place = modname .. ":render_wet_source"
+		}
 	})
 nodecore.register_concrete({
 		description = "Render",
@@ -42,7 +49,11 @@ nodecore.register_concrete({
 	})
 
 nodecore.register_concrete_etchable({
-		basename = modname .. ":adobe"
+		basename = modname .. ":adobe",
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			drop_in_place = modname .. ":adobe_wet_source"
+		}
 	})
 nodecore.register_concrete({
 		name = "mud",
@@ -60,7 +71,11 @@ nodecore.register_concrete({
 	})
 
 nodecore.register_concrete_etchable({
-		basename = modname .. ":coalstone"
+		basename = modname .. ":coalstone",
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_chompy"),
+			drop_in_place = modname .. ":coalstone_wet_source"
+		}
 	})
 nodecore.register_concrete({
 		name = "coalaggregate",

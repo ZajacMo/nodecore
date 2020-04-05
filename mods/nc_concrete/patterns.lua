@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, rawset, string
-    = error, minetest, nodecore, pairs, rawset, string
+local error, minetest, nodecore, pairs, rawset, string, type
+    = error, minetest, nodecore, pairs, rawset, string, type
 local string_gsub, string_lower
     = string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
@@ -15,23 +15,62 @@ nodecore.register_concrete_etchable,
 nodecore.registered_concrete_etchables
 = nodecore.mkreg()
 
-local function regetched(basenode, etch, patt)
-	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name
-	if not minetest.registered_nodes[plyname] then
-		local def = nodecore.underride(etch, {
+local function applytile(tiles, spec)
+	if not spec then return tiles end
+	local newt = {}
+	for k, v in pairs(tiles) do
+		if type(spec) == "function" then
+			newt[k] = spec(v)
+		else
+			newt[k] = v .. spec
+		end
+	end
+	return newt
+end
 
-			}, basenode)
+local function regetched(basenode, etch, patt)
+	basenode = nodecore.underride({}, basenode)
+	basenode.drop = nil
+	basenode.alternate_loose = nil
+	basenode.drop_in_place = nil
+	basenode.after_dig_node = nil
+	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name .. "_ply"
+	if not minetest.registered_nodes[plyname] then
+		local def = {}
+		nodecore.underride(def, etch.pliant)
+		nodecore.underride(def, etch)
+		nodecore.underride(def, patt)
+		nodecore.underride(def, basenode)
+		def.tiles = applytile(def.tiles, etch.pliant_tile)
+		def.tiles = applytile(def.tiles, patt.pattern_tile)
+		def.name = nil
+		def.description = (patt.blank and "" or (patt.description .. " "))
+		.. "Pliant " .. basenode.description
 		minetest.register_node(plyname, def)
 	end
-	local pattname = modname .. ":" .. etch.name .. "_" .. patt.name
-	if not minetest.registered_nodes[pattname] then
-		local def = nodecore.underride(etch, {
-
-			}, basenode)
-		minetest.register_node(pattname, def)
+	if not patt.blank then
+		local pattname = modname .. ":" .. etch.name .. "_" .. patt.name
+		if not minetest.registered_nodes[pattname] then
+			local def = {}
+			nodecore.underride(def, etch.solid)
+			nodecore.underride(def, etch)
+			nodecore.underride(def, patt)
+			nodecore.underride(def, basenode)
+			def.tiles = applytile(def.tiles, patt.pattern_tile)
+			def.name = nil
+			def.description = (patt.blank and "" or (patt.description .. " "))
+			.. basenode.description
+			minetest.register_node(pattname, def)
+		end
 	end
 end
 
+local mudgroups = {
+	cracky = 0,
+	crumbly = 1,
+	snappy = 0,
+	choppy = 0
+}
 local function buildpatterns()
 	for _, patt in pairs(nodecore.registered_concrete_patterns) do
 		patt.name = patt.name or string_gsub(string_lower(patt.description),
@@ -45,6 +84,10 @@ local function buildpatterns()
 		etch.name = etch.name or string_gsub(string_lower(string_gsub(
 					etch.basename, "^nc_", "")), "%W", "_")
 		etch.pliant_tile = etch.pliant_tile or "^" .. modname .. "_pliant.png"
+		etch.pliant = etch.pliant or {}
+		etch.pliant.groups = etch.pliant.groups or mudgroups
+		etch.solid = etch.solid or {}
+		etch.drop_in_place = etch.drop_in_place or etch.basenode
 	end
 	for _, etch in pairs(nodecore.registered_concrete_etchables) do
 		local basenode = minetest.registered_nodes[etch.basename]
@@ -71,7 +114,7 @@ for k in pairs({
 		end)
 end
 
-nodecore.register_concrete_pattern({name = "blank", tile = ""})
+nodecore.register_concrete_pattern({name = "blank", blank = true})
 nodecore.register_concrete_pattern({description = "Bricky"})
 nodecore.register_concrete_pattern({description = "Vermi"})
 nodecore.register_concrete_pattern({description = "Hashy"})
