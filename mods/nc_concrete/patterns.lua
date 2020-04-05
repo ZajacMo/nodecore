@@ -38,11 +38,10 @@ end
 
 local function regetched(basenode, etch, patt)
 	basenode = nodecore.underride({}, basenode)
-	basenode.drop = nil
 	basenode.alternate_loose = nil
-	basenode.drop_in_place = nil
 	basenode.after_dig_node = nil
 	basenode.node_dig_prediction = nil
+	basenode.silktouch = nil
 	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name .. "_ply"
 	if not minetest.registered_nodes[plyname] then
 		local def = {}
@@ -93,7 +92,7 @@ local function buildpatterns()
 		etch.name = etch.name or string_gsub(string_lower(string_gsub(
 					etch.basename, "^nc_", "")), "%W", "_")
 		etch.pliant_tile = etch.pliant_tile or "^(" .. modname
-		.. "_pliant.png^[opacity:192)"
+		.. "_pliant.png^[opacity:" .. (etch.pliant_opacity or 64) .. ")"
 		etch.pliant = etch.pliant or {}
 		etch.pliant.groups = etch.pliant.groups or mudgroups
 		etch.solid = etch.solid or {}
@@ -126,10 +125,10 @@ end
 
 nodecore.register_concrete_pattern({name = "blank", blank = true})
 nodecore.register_concrete_pattern({description = "Bricky"})
-nodecore.register_concrete_pattern({description = "Vermi"})
+nodecore.register_concrete_pattern({description = "Vermy"})
 nodecore.register_concrete_pattern({description = "Hashy"})
 nodecore.register_concrete_pattern({description = "Bindy"})
-nodecore.register_concrete_pattern({description = "Verti"})
-nodecore.register_concrete_pattern({description = "Horzi"})
-nodecore.register_concrete_pattern({description = "Icebox"})
-nodecore.register_concrete_pattern({description = "Enol"})
+nodecore.register_concrete_pattern({description = "Verty"})
+nodecore.register_concrete_pattern({description = "Horzy"})
+nodecore.register_concrete_pattern({description = "Boxy"})
+nodecore.register_concrete_pattern({description = "Iceboxy"})

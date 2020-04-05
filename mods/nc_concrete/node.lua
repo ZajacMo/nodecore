@@ -28,10 +28,10 @@ minetest.register_node(modname .. ":adobe", {
 	})
 
 minetest.register_node(modname .. ":coalstone", {
-		description = "Bituminous Stone",
+		description = "Tar Stone",
 		tiles = {"nc_terrain_stone.png^[colorize:#000000:160"},
 		groups = {
-			cracky = 1
+			cracky = 2
 		},
 		drop_in_place = "nc_terrain:cobble",
 		drop = "nc_fire:lump_coal",

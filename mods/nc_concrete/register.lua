@@ -4,13 +4,14 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
-local localpref = modname .. ":" .. modname:gsub("^nc", "")
+local localpref = modname .. ":" .. modname:gsub("^nc_", "") .. "_"
 
 nodecore.register_concrete_etchable({
 		basename = "nc_terrain:stone",
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_chompy"),
-			drop_in_place = modname .. ":aggregate_wet_source"
+			drop_in_place = modname .. ":aggregate_wet_source",
+			silktouch = false
 		}
 	})
 nodecore.register_concrete({
@@ -30,10 +31,12 @@ minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_fl
 
 nodecore.register_concrete_etchable({
 		basename = modname .. ":sandstone",
+		pliant_opacity = 40,
 		pattern_opacity = 80,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_swishy"),
-			drop_in_place = modname .. ":render_wet_source"
+			drop_in_place = modname .. ":render_wet_source",
+			silktouch = false
 		}
 	})
 nodecore.register_concrete({
@@ -55,7 +58,8 @@ nodecore.register_concrete_etchable({
 		pattern_opacity = 56,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_crunchy"),
-			drop_in_place = modname .. ":adobe_wet_source"
+			drop_in_place = modname .. ":adobe_wet_source",
+			silktouch = false
 		}
 	})
 nodecore.register_concrete({
@@ -76,14 +80,17 @@ nodecore.register_concrete({
 nodecore.register_concrete_etchable({
 		basename = modname .. ":coalstone",
 		pattern_opacity = 40,
+		pliant_opacity = 128,
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_chompy"),
-			drop_in_place = modname .. ":coalstone_wet_source"
+			drop_in_place = modname .. ":coalaggregate_wet_source",
+			silktouch = false,
+			drop = ""
 		}
 	})
 nodecore.register_concrete({
 		name = "coalaggregate",
-		description = "Bituminous Aggregate",
+		description = "Tarry Aggregate",
 		register_dry = false,
 		craft_mix = false,
 		tile_wet = "nc_terrain_stone.png^(nc_fire_ash.png^("
