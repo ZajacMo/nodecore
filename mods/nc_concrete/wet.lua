@@ -5,109 +5,79 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
-nodecore.register_craft({
-		label = "mix concrete (fail)",
-		action = "pummel",
-		priority = 2,
-		toolgroups = {thumpy = 1},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = {groups = {gravel = true}}
-			},
-			{
-				x = 1,
-				y = -1,
-				match = {buildable_to = true}
-			},
-			{
-				y = -1,
-				match = "nc_fire:ash",
-				replace = "air"
-			}
-		},
-		before = function(pos)
-			nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
-		end
-	})
-
-nodecore.register_craft({
-		label = "mix concrete",
-		action = "pummel",
-		priority = 1,
-		toolgroups = {thumpy = 1},
-		normal = {y = 1},
-		nodes = {
-			{
-				match = {groups = {gravel = true}},
-				replace = "air"
-			},
-			{
-				y = -1,
-				match = "nc_fire:ash",
-				replace = modname .. ":aggregate"
-			}
-		}
-	})
-
-local flow = modname .. ":wet_flowing"
-local src = modname .. ":wet_source"
+local function concdef(name)
+	local def = minetest.registered_items[name]
+	return def and def.concrete_def
+end
+local function wetname(name)
+	local def = concdef(name)
+	def = def and def.basename
+	return def and (def .. "_wet_source")
+end
 
 nodecore.register_limited_abm({
-		label = "Aggregate Wettening",
+		label = "Concrete Wettening",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
-		nodenames = {modname .. ":aggregate"},
+		nodenames = {"group:concrete_powder"},
 		neighbors = {"group:water"},
-		action = function(pos)
-			nodecore.set_loud(pos, {name = src})
+		action = function(pos, node)
+			local wet = wetname(node.name)
+			if wet then return nodecore.set_loud(pos, {name = wet}) end
 		end
 	})
 
 nodecore.register_aism({
-		label = "Aggregate Stack Wettening",
+		label = "Concrete Stack Wettening",
 		interval = 1,
 		chance = 2,
-		itemnames = {modname .. ":aggregate"},
+		itemnames = {"group:concrete_powder"},
 		action = function(stack, data)
+			local wet = wetname(stack:get_name())
+			if not wet then return end
 			local found = minetest.find_node_near(data.pos, 1, {"group:water"})
 			if not found then return end
 			if stack:get_count() == 1 and data.node then
-				local def = minetest.registered_nodes[data.node.name]
-				if def and def.groups and def.groups.is_stack_only then
+				local ndef = minetest.registered_nodes[
+				data.node.name]
+				if ndef and ndef.groups and ndef.groups.is_stack_only then
 					found = data.pos
 				end
 			end
-			nodecore.set_loud(found, {name = src})
+			nodecore.set_loud(found, {name = wet})
 			stack:take_item(1)
 			return stack
 		end
 	})
 
 nodecore.register_limited_abm({
-		label = "Aggregate Wandering",
+		label = "Concrete Wandering",
 		interval = 4,
 		chance = 2,
 		limited_max = 100,
-		nodenames = {src},
-		neighbors = {flow},
+		nodenames = {"group:concrete_source"},
+		neighbors = {"group:concrete_flow"},
 		action = function(pos, node)
+			local def = concdef(node.name)
 			local meta = minetest.get_meta(pos)
 			local gen = meta:get_int("agggen")
 			if gen >= 8 and math_random(1, 2) == 1 then
-				nodecore.witness({x = pos.x, y = pos.y + 0.5, z = pos.z},
-				"aggregate to cobble")
-				return nodecore.set_loud(pos, {name = "nc_terrain:cobble"})
+				nodecore.witness({
+						x = pos.x,
+						y = pos.y + 0.5,
+						z = pos.z
+					},
+					def.name .. " to " .. def.to_crude)
+				return nodecore.set_loud(pos, {name = def.to_crude})
 			end
 			local miny = pos.y
 			local found = {}
 			nodecore.scan_flood(pos, 2, function(p)
 					local nn = minetest.get_node(p).name
-					if nn == src then return end
-					if nn ~= flow then return false end
+					if nn == node.name then return end
+					if minetest.get_item_group(nn, "concrete_flow") < 1
+					then return false end
 					if p.y > miny then return end
 					if p.y == miny then
 						found[#found + 1] = p
@@ -120,22 +90,24 @@ nodecore.register_limited_abm({
 			local np = nodecore.pickrand(found)
 			nodecore.set_loud(np, node)
 			minetest.get_meta(np):set_int("agggen", gen + 1)
+			local flow = minetest.registered_items[node.name].liquid_alternative_flowing
 			minetest.set_node(pos, {name = flow, param2 = 7})
 		end
 	})
 
 nodecore.register_limited_abm({
-		label = "Aggregate Sink/Disperse",
+		label = "Concrete Sink/Disperse",
 		interval = 4,
 		chance = 2,
 		limited_max = 100,
-		nodenames = {src},
+		nodenames = {"group:concrete_source"},
 		neighbors = {"group:water"},
 		action = function(pos, node)
+			local def = concdef(node.name)
 			local waters = #nodecore.find_nodes_around(pos, "group:water") - 3
 			local rnd = math_random() * 20
 			if rnd * rnd < waters then
-				nodecore.set_loud(pos, {name = "nc_terrain:gravel"})
+				nodecore.set_loud(pos, {name = def.to_washed})
 				return nodecore.fallcheck(pos)
 			end
 
@@ -151,20 +123,27 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_craft({
-		label = "aggregate curing",
-		action = "cook",
-		duration = 300,
-		cookfx = {smoke = 0.05},
-		check = function(pos)
-			return not minetest.find_node_near(pos, 1, {flow, "group:water"})
+nodecore.register_soaking_abm({
+		label = "Concrete Curing",
+		interval = 5,
+		chance = 2,
+		limited_max = 100,
+		nodenames = {"group:concrete_source"},
+		fieldname = "curing",
+		soakrate = function(pos)
+			if minetest.find_node_near(pos,
+				1, {"group:concrete_flow", "group:water"}) then
+				return false
+			end
+			local found = nodecore.find_nodes_around(pos, "group:igniter", 1)
+			return #found + 1
 		end,
-		nodes = {
-			{
-				match = src,
-				replace = "nc_terrain:stone"
-			}
-		}
+		soakcheck = function(data, pos, node)
+			if data.total < 20 then
+				nodecore.smokefx(pos, 5, data.rate)
+				return
+			end
+			local def = concdef(node.name)
+			nodecore.set_loud(pos, {name = def.to_molded})
+		end
 	})
-
-nodecore.register_cook_abm({nodenames = {src}})
