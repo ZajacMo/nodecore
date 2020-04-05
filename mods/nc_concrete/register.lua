@@ -64,7 +64,7 @@ nodecore.register_concrete_etchable({
 	})
 nodecore.register_concrete({
 		name = "mud",
-		description = "Tackmud",
+		description = "Adobe Mix",
 		tile_powder = "nc_terrain_dirt.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
 		tile_wet = "nc_terrain_dirt.png^(nc_fire_ash.png^("
 		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)",
