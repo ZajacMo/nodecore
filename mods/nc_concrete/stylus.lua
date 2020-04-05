@@ -19,6 +19,18 @@ minetest.register_tool(modname .. ":stylus", {
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
+nodecore.register_craft({
+		label = "assemble stylus",
+		normal = {y = 1},
+		nodes = {
+			{match = "nc_stonework:chip", replace = "air"},
+			{y = -1, match = "nc_tree:stick", replace = "air"},
+		},
+		items = {
+			{y = -1, name = modname .. ":stylus"}
+		}
+	})
+
 local function getdefs(node)
 	local def = minetest.registered_items[node.name] or {}
 	return def.pattern_def, def.etch_def
