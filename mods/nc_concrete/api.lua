@@ -8,11 +8,16 @@ local modname = minetest.get_current_modname()
 function nodecore.register_concrete(def)
 	def = nodecore.underride(def, {
 			name = def.description:lower():gsub("%W", "_"),
-			groups_powder = {falling_node = 1, falling_repose = 1},
+			groups_powder = {
+				falling_node = 1,
+				falling_repose = 1,
+				concrete_powder = 1
+			},
 			groups_wet = {concrete_wet = 1},
 			swim_color = {a = 240, r = 32, g = 32, b = 32}
 		})
 	local basename = modname .. ":" .. def.name
+	def.basename = basename
 
 	if def.register_dry ~= false then
 		minetest.register_node(basename, {
@@ -20,7 +25,8 @@ function nodecore.register_concrete(def)
 				tiles = {def.tile_powder},
 				groups = def.groups_powder,
 				crush_damage = 1,
-				sounds = nodecore.sounds(def.sound)
+				sounds = nodecore.sounds(def.sound),
+				concrete_def = def
 			})
 	end
 
@@ -39,15 +45,64 @@ function nodecore.register_concrete(def)
 			drowning = 2,
 			post_effect_color = def.swim_color,
 			groups = def.groups_wet,
-			sounds = nodecore.sounds(def.sound)
+			sounds = nodecore.sounds(def.sound),
+			concrete_def = def
 		}
 		minetest.register_node(basename .. "_wet_source", nodecore.underride({
-					liquidtype = "source"
+					liquidtype = "source",
+					groups = {concrete_source = 1}
 				}, wetdef))
 		minetest.register_node(basename .. "_wet_flowing", nodecore.underride({
 					drawtype = "flowingliquid",
 					liquidtype = "flowing",
-					paramtype2 = "flowingliquid"
+					paramtype2 = "flowingliquid",
+					groups = {concrete_flow = 1}
 				}, wetdef))
+	end
+
+	if def.craft_mix ~= false then
+		nodecore.register_craft({
+				label = "mix " .. def.name .. " (fail)",
+				action = "pummel",
+				priority = 2,
+				toolgroups = {thumpy = 1},
+				normal = {y = 1},
+				nodes = {
+					{
+						match = def.craft_from
+					},
+					{
+						x = 1,
+						y = -1,
+						match = {buildable_to = true}
+					},
+					{
+						y = -1,
+						match = "nc_fire:ash",
+						replace = "air"
+					}
+				},
+				before = function(pos)
+					nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
+				end
+			})
+		nodecore.register_craft({
+				label = "mix " .. def.name,
+				action = "pummel",
+				priority = 1,
+				toolgroups = {thumpy = 1},
+				normal = {y = 1},
+				nodes = {
+					{
+						match = def.craft_from,
+						replace = "air"
+					},
+					{
+						y = -1,
+						match = "nc_fire:ash",
+						replace = basename
+					}
+				}
+			})
 	end
 end
