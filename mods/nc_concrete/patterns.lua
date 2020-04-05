@@ -42,6 +42,7 @@ local function regetched(basenode, etch, patt)
 	basenode.after_dig_node = nil
 	basenode.node_dig_prediction = nil
 	basenode.silktouch = nil
+	basenode.strata = nil
 	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name .. "_ply"
 	if not minetest.registered_nodes[plyname] then
 		local def = {}
