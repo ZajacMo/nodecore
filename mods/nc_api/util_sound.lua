@@ -8,11 +8,12 @@ local math_exp, math_random, math_sin, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local oldplay = minetest.sound_play
-function minetest.sound_play(name, spec, ...)
+function minetest.sound_play(name, spec, ephem, ...)
 	if spec and type(spec) == "table" and spec.pitch == nil then
 		spec.pitch = math_exp((math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
-	return oldplay(name, spec, ...)
+	if ephem == nil then ephem = not spec.not_ephemeral end
+	return oldplay(name, spec, ephem, ...)
 end
 
 function nodecore.windiness(y)
