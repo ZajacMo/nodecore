@@ -37,5 +37,5 @@ function nodecore.toolcaps(opts)
 			}
 		end
 	end
-	return {groupcaps = gcaps, opts = opts}
+	return {groupcaps = gcaps, opts = opts, punch_attack_uses = 0}
 end
