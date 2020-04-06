@@ -41,3 +41,22 @@ minetest.register_on_placenode(function(pos, node, placer)
 		return nodecore.node_sound(pos, "place",
 			{node = node, except = placer})
 	end)
+
+-- Work around 5.2 making dig/place sounds redundant,
+-- but not backporting support to 5.0.
+local function block_builtin_sounds(func)
+	return function(...)
+		local old_sound = minetest.sound_play
+		function minetest.sound_play(spec, param, ephem, ...)
+			if ephem and param.exclude_player then return end
+			return old_sound(spec, param, ephem, ...)
+		end
+		local function helper(...)
+			minetest.sound_play = old_sound
+			return ...
+		end
+		return helper(func(...))
+	end
+end
+minetest.item_place_node = block_builtin_sounds(minetest.item_place_node)
+minetest.node_dig = block_builtin_sounds(minetest.node_dig)
