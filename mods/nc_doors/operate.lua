@@ -214,7 +214,7 @@ function nodecore.operate_door(pos, node, dir)
 			axis = hinge
 		}
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
-			minetest.sound_play("nc_doors_operate",
+			nodecore.sound_play("nc_doors_operate",
 				{pos = press.pos, gain = 0.5})
 			return true
 		end
@@ -248,7 +248,7 @@ function nodecore.operate_door(pos, node, dir)
 			local k = "sfx" .. minetest.hash_node_position(p)
 			if not squelch[k] then
 				squelch[k] = 0
-				minetest.sound_play("nc_doors_operate",
+				nodecore.sound_play("nc_doors_operate",
 					{pos = v.pos, gain = 0.5})
 			end
 		else

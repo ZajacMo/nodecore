@@ -30,12 +30,12 @@ local function check(pos, done, srcs)
 
 	if nodecore.is_full_sun(sp) then
 		if sp.y <= 0 then return end
-		minetest.sound_play("nc_envsound_air", {
+		nodecore.sound_play("nc_envsound_air", {
 				pos = sp,
 				gain = nodecore.windiness(sp.y) / 100
 			})
 	elseif nodecore.get_node_light(sp) < 4 then
-		minetest.sound_play("nc_envsound_drip", {
+		nodecore.sound_play("nc_envsound_drip", {
 				pos = sp,
 				pitchvary = 0.4,
 				gain = math_exp(math_random()) / 5

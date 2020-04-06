@@ -16,7 +16,7 @@ local function islit(stack)
 end
 
 local function snuffinv(player, inv, i)
-	minetest.sound_play("nc_fire_snuff", {object = player, gain = 0.5})
+	nodecore.sound_play("nc_fire_snuff", {object = player, gain = 0.5})
 	inv:set_stack("main", i, "nc_fire:lump_ash")
 end
 
@@ -47,7 +47,7 @@ minetest.register_globalstep(function()
 				local t = ambtimers[name] or 0
 				if t <= now then
 					ambtimers[name] = now + 1
-					minetest.sound_play("nc_fire_flamy",
+					nodecore.sound_play("nc_fire_flamy",
 						{object = player, gain = 0.1})
 				end
 			else

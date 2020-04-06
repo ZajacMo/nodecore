@@ -25,7 +25,7 @@ nodecore.extend_item(chip, function(copy, orig)
 						minetest.remove_node(pos)
 						nodecore.item_eject(pos, v.to)
 						stoned.pos = pos
-						minetest.sound_play(stoned.name, stoned)
+						nodecore.sound_play(stoned.name, stoned)
 						itemstack:set_count(itemstack:get_count() - 1)
 						if placer then
 							nodecore.player_stat_add(1, placer, "craft",

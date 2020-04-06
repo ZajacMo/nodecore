@@ -22,7 +22,7 @@ end
 local function playcookfx(pos, cookfx, sound, smokeqty, smoketime)
 	if not cookfx then return end
 	if cookfx == true or cookfx and cookfx[sound] then
-		minetest.sound_play("nc_api_craft_" .. sound,
+		nodecore.sound_play("nc_api_craft_" .. sound,
 			{gain = 1, pos = pos})
 	end
 	if cookfx == true or cookfx and cookfx.smoke then

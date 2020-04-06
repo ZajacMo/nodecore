@@ -58,7 +58,7 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if nodecore.is_full_sun(above) and #findwater(pos) < 1 then
-				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
+				nodecore.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 				return minetest.set_node(pos, {name = modname .. ":sponge"})
 			end
 		end
@@ -74,7 +74,7 @@ nodecore.register_aism({
 				or data.slot ~= data.player:get_wield_index()) then return end
 			if data.pos and nodecore.is_full_sun(data.pos)
 			and #findwater(data.pos) < 1 then
-				minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = data.pos})
+				nodecore.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = data.pos})
 				local taken = stack:take_item(1)
 				taken:set_name(modname .. ":sponge")
 				if data.inv then taken = data.inv:add_item("main", taken) end
@@ -92,7 +92,7 @@ nodecore.register_limited_abm({
 		nodenames = {modname .. ":sponge_wet"},
 		neighbors = {"group:igniter"},
 		action = function(pos)
-			minetest.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
+			nodecore.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 			return minetest.set_node(pos, {name = modname .. ":sponge"})
 		end
 	})

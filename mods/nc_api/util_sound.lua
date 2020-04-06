@@ -8,7 +8,7 @@ local math_exp, math_random, math_sin, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local oldplay = minetest.sound_play
-function minetest.sound_play(name, spec, ephem, ...)
+function nodecore.sound_play(name, spec, ephem, ...)
 	if spec and type(spec) == "table" and spec.pitch == nil then
 		spec.pitch = math_exp((math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
@@ -31,7 +31,7 @@ function nodecore.stack_sounds(pos, kind, stack)
 	local t = {}
 	for k, v in pairs(def.sounds[kind]) do t[k] = v end
 	t.pos = pos
-	return minetest.sound_play(t.name, t)
+	return nodecore.sound_play(t.name, t)
 end
 function nodecore.stack_sounds_delay(...)
 	local t = {...}
@@ -61,7 +61,7 @@ end
 
 function nodecore.sound_play_except(name, def, pname)
 	if not pname then
-		return minetest.sound_play(name, def)
+		return nodecore.sound_play(name, def)
 	end
 	if type(pname) ~= "string" then
 		pname = pname:get_player_name()
@@ -71,7 +71,7 @@ function nodecore.sound_play_except(name, def, pname)
 		if pn ~= pname and ((not def.pos)
 			or (vector.distance(p:get_pos(), def.pos) <= 32)) then
 			def.to_player = pn
-			minetest.sound_play(name, def)
+			nodecore.sound_play(name, def)
 		end
 	end
 end

@@ -110,7 +110,7 @@ nodecore.register_aism({
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
-			minetest.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
+			nodecore.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
 			stack:set_name(wet)
 			return stack
 		end

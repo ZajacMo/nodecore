@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, nodecore
+    = ItemStack, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_on_register_item(function(_, def)
@@ -9,7 +9,7 @@ nodecore.register_on_register_item(function(_, def)
 				what:add_wear(dp.wear)
 				if what:get_count() == 0 then
 					if def.sound and def.sound.breaks then
-						minetest.sound_play(def.sound.breaks,
+						nodecore.sound_play(def.sound.breaks,
 							{object = who, gain = 0.5})
 					end
 					return ItemStack(def.tool_wears_to)

@@ -116,7 +116,7 @@ nodecore.register_limited_abm({
 			local gen = meta:get_int("glassgen")
 			if gen >= 32 and math_random(1, 2) == 1 then
 				minetest.set_node(pos, {name = modname .. ":glass_crude"})
-				minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
+				nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
 				return nodecore.smokefx(pos, 0.2, 80)
 			end
 			local miny = pos.y

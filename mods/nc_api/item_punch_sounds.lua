@@ -25,7 +25,7 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		end
 
 		if wield:get_wear() >= (65536 * 0.95) then
-			minetest.sound_play("nc_api_toolwear",
+			nodecore.sound_play("nc_api_toolwear",
 				{object = puncher, gain = 0.5})
 		end
 	end)
