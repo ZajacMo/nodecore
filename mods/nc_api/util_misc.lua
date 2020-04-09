@@ -390,6 +390,7 @@ local function air_accel_factor(v)
 	return q > 0 and q or 0
 end
 function nodecore.grav_air_physics_player(v)
+	if v.y > 0 then return 1 end
 	return 1 - air_accel_factor(v.y)
 end
 local function air_accel_net(v)
