@@ -28,7 +28,9 @@ local wetdef = {
 	groups = {
 		lux_emit = 10,
 		lux_fluid = 1,
-		stack_as_node = 1},
+		stack_as_node = 1,
+		damage_radiant = 1
+	},
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
 	sounds = nodecore.sounds("nc_terrain_chompy")
 }

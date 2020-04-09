@@ -95,8 +95,13 @@ reg("cobble_hot", {
 			"nc_terrain_gravel.png^(" .. modname .. "_hot.png^[mask:"
 			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
 		},
-		groups = {cracky = 0, lodey = 1, cobbley = 1},
-		damage_per_second = 1
+		groups = {
+			cracky = 0,
+			lodey = 1,
+			cobbley = 1,
+			damage_touch = 1,
+			damage_radiant = 1
+		}
 	})
 
 local oreid = 0

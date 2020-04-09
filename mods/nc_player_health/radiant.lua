@@ -23,7 +23,7 @@ local function getdps(pos)
 		local p = pt.under
 		local n = minetest.get_node(p)
 		local def = minetest.registered_items[n.name]
-		local dps = def and def.damage_per_second
+		local dps = def and def.groups and def.groups.damage_radiant
 		if dps and dps > 0 then
 			local r = vector.subtract(pos, p)
 			local dsqr = vector.dot(r, r) / 2 + 1

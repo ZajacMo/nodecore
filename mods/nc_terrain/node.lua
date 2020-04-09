@@ -299,7 +299,13 @@ regliquid({
 		drowning = 2,
 		damage_per_second = 8,
 		drop = "",
-		groups = {igniter = 1, lava = 2, stack_as_node = 1},
+		groups = {
+			igniter = 1,
+			lava = 2,
+			stack_as_node = 1,
+			damage_touch = 1,
+			damage_radiant = 8
+		},
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})

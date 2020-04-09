@@ -11,7 +11,7 @@ local function hotpotatoes(player)
 		local s = inv:get_stack("main", i)
 		local n = not s:is_empty() and s:get_name()
 		n = n and minetest.registered_items[n]
-		n = n and n.damage_per_second
+		n = n and n.groups and n.groups.damage_touch
 		if n and n > 0 then
 			hurt = hurt + n
 			inv:set_stack("main", i, "")

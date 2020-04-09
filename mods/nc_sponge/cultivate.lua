@@ -21,7 +21,7 @@ local drydrawtypes = {
 }
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_items) do
-			if v["type"] ~= "node" or v.damage_per_second > 0
+			if v["type"] ~= "node" or (v.groups.damage_radiant or 0) > 0
 			or v.liquidtype == "none" and not v.groups.moist
 			and not v.groups.silica and (drydrawtypes[v.drawtype]
 				or v.climbable or not v.walkable) then

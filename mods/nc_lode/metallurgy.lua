@@ -48,7 +48,8 @@ function nodecore.register_lode(shape, rawdef)
 		else
 			def.groups = def.groups or {}
 			def.groups.falling_node = 1
-			def.damage_per_second = 1
+			def.groups.damage_touch = 1
+			def.groups.damage_radiant = 1
 		end
 
 		if def.tiles then
