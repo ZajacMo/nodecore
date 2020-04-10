@@ -46,7 +46,7 @@ function nodecore.register_lode(shape, rawdef)
 		if not temper.glow then
 			def.light_source = nil
 		else
-			def.groups = def.groups or {}
+			def.groups = def.groups and nodecore.underride({}, def.groups) or {}
 			def.groups.falling_node = 1
 			def.groups.damage_touch = 1
 			def.groups.damage_radiant = 1
