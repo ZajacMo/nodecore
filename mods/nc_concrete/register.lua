@@ -106,9 +106,13 @@ do
 	local aggwet = modname .. ":aggregate_wet_source"
 	local oldrc = nodecore.registered_nodes[aggwet].on_rightclick
 	minetest.override_item(aggwet, {
-			on_rightclick = function(pos, node, clicker, stack, ...)
+			on_rightclick = function(pos, node, clicker, stack, pt, ...)
 				if stack:get_name() ~= "nc_fire:lump_coal" then
-					return oldrc(pos, node, clicker, stack, ...)
+					if oldrc then return oldrc(pos, node, clicker, stack, pt, ...) end
+					if stack:get_definition().type == "node" then
+						return minetest.item_place_node(stack, clicker, pt)
+					end
+					return stack
 				end
 				nodecore.set_loud(pos,
 					{name = modname .. ":coalaggregate_wet_source"})
