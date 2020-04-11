@@ -124,7 +124,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_soaking_abm({
-		label = "Concrete Curing",
+		label = "Wet Concrete Curing",
 		interval = 5,
 		chance = 2,
 		limited_max = 100,

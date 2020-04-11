@@ -55,12 +55,12 @@ nodecore.register_craft({
 	})
 
 nodecore.register_soaking_abm({
-		label = "Concrete Curing",
+		label = "Pliable Concrete Curing",
 		interval = 1,
 		chance = 1,
 		limited_max = 100,
 		nodenames = {"group:concrete_etchable"},
-		fieldname = "curing",
+		fieldname = "plycuring",
 		soakrate = function(pos)
 			if minetest.find_node_near(pos,
 				1, {"group:concrete_flow", "group:water"}) then
