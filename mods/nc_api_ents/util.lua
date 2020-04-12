@@ -9,6 +9,12 @@ local function mismatch(a, b)
 		for k, v in pairs(a) do
 			if mismatch(v, b[k]) then return true end
 		end
+		return
+	end
+	if type(a) == "number" and type(b) == "number" then
+		local ratio = a / b
+		-- Floating point rounding...
+		if ratio > 0.99999 and ratio < 1.00001 then return end
 	end
 	return a ~= b
 end
