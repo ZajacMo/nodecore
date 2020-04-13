@@ -27,11 +27,24 @@ end
 minetest.register_on_priv_grant(grantrevoke)
 minetest.register_on_priv_revoke(grantrevoke)
 
+local w = 640
+local h = 360
+local breath_txr = "[combine:" .. w .. "x" .. h
+for y = 0, h - 1, 80 do
+	for x = 0, w - 1, 80 do
+		breath_txr = breath_txr .. ":" .. x .. "," .. y .. "=nc_player_hud_breath_texture.png"
+	end
+end
+local breath_mask = "^[mask:nc_player_hud_breath_mask.png\\^[resize\\:" .. w .. "x" .. h
+
 local function breath_hud(player)
 	local br = player:get_breath()
 	local img = ""
 	local o = 255 * (1 - br / 11)
-	if o > 0 then img = "nc_player_hud_breath.png^[opacity:" .. math_floor(o) end
+	if o > 0 then
+		img = breath_txr .. "^[colorize:#000000:" .. math_floor(255 - o)
+		.. breath_mask .. "^[opacity:" .. math_floor(o)
+	end
 	nodecore.hud_set(player, {
 			label = "breath",
 			hud_elem_type = "image",
