@@ -139,11 +139,12 @@ nodecore.register_soaking_abm({
 			return #found + 1
 		end,
 		soakcheck = function(data, pos, node)
-			if data.total < 20 then
+			if data.total < 40 then
 				nodecore.smokefx(pos, 5, data.rate)
 				return
 			end
 			local def = concdef(node.name)
 			nodecore.set_loud(pos, {name = def.to_molded})
+			return false
 		end
 	})

@@ -79,5 +79,6 @@ nodecore.register_soaking_abm({
 			local curename = modname .. ":" .. etchdef.name .. "_" .. pattdef.name
 			if pattdef.blank then curename = etchdef.basename end
 			nodecore.set_loud(pos, {name = curename})
+			return false
 		end
 	})
