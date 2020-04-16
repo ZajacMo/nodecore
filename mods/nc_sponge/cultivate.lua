@@ -45,6 +45,7 @@ local function sealed_or_notdry(nodename, pos)
 	if nodename == "nc_optics:shelf" then
 		return (not pos) or notdry({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
+	if not pos then return end
 	for _, d in pairs(alldirs) do
 		if not notdry(vector.add(pos, d)) then return end
 	end
@@ -53,7 +54,7 @@ end
 
 local function spongesurvive(data)
 	if data.toteslot then
-		return sealed_or_notdry(data.toleslot.n.name)
+		return sealed_or_notdry(data.toteslot.n.name)
 	elseif data.node then
 		return sealed_or_notdry(data.node.name, data.pos)
 	elseif data.inv then
