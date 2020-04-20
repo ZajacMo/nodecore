@@ -359,6 +359,11 @@ function nodecore.rate_adjustment(...)
 	return rate
 end
 
+local infodump_key = scrubkey(nodecore.product) .. "_infodump"
+function nodecore.infodump()
+	return minetest.settings:get_bool(infodump_key)
+end
+
 function nodecore.obstructed(minpos, maxpos)
 	if not maxpos then
 		maxpos = {x = minpos.x + 0.5, y = minpos.y + 0.5, z = minpos.z + 0.5}
