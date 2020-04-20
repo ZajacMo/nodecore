@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-12 16:26+0000\n"
-"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2020-03-29 09:54+0000\n"
+"Last-Translator: Kimapr <none2@example.org>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
@@ -1078,3 +1078,56 @@ msgstr "+"
 
 msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2020 Аарон Суэн <warr1024@@gmail.com>"
+
+msgid "forge lode down completely on an anvil"
+msgstr "выкуйте металл до конца"
+
+msgid "compress something with a hinged panel"
+msgstr "сожмите что-нибудь прикрепленной панелью"
+
+msgid "cold-forge annealed lode on a tempered anvil"
+msgstr "выкуйте отожженный металл холодной ковкой на закаленной наковальне"
+
+msgid "catapult an item with a hinged panel"
+msgstr "катапультируйте предмет с помощью приклепленной панели"
+
+msgid "assemble a rake from adzes and a stick"
+msgstr "соберите грабли из тесел и палки"
+
+msgid "assemble a glass tank"
+msgstr "соберите стеклянный танк"
+
+msgid "activate a prism"
+msgstr "активируйте призму"
+
+msgid "Sprout"
+msgstr "Росток"
+
+msgid "Loose Amalgamation"
+msgstr "Рыхлая Амальгамация"
+
+msgid "Growing Tree Trunk"
+msgstr "Растущий Ствол Дерева"
+
+msgid "Growing Leaves"
+msgstr "Растущие Листья"
+
+msgid "Cheat Torch"
+msgstr "Читерский Факел"
+
+msgid "Amalgamation"
+msgstr "Амальгамация"
+
+msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr ""
+"- Некоторые рецепты используют  \"сетку\" 3x3, разложенную плоско на земле."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Большие рецепты обычно более симметричны."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr ""
+"- Не используйте отладочную информацию F5; Она введет вас в заблуждение!"
