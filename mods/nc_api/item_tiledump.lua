@@ -70,7 +70,7 @@ minetest.after(0, function()
 					writeln(tn .. " wield " .. t.wield_image)
 				end
 			end
-			if #curent then
+			if #curent > 0 then
 				if mesh then
 					table_insert(curent, 1, "# <!> MESH DRAWTYPE; FACES MAY"
 						.. " MISMATCH NAMES")
