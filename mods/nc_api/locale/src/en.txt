@@ -337,6 +337,12 @@ msgstr "Active Lens"
 msgid "Active Prism"
 msgstr "Active Prism"
 
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "Adobe Mix"
+msgstr "Adobe Mix"
+
 msgid "Adze"
 msgstr "Adze"
 
@@ -400,6 +406,81 @@ msgstr "Ash"
 msgid "Ash Lump"
 msgstr "Ash Lump"
 
+msgid "Bindy Adobe"
+msgstr "Bindy Adobe"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Bindy Pliant Adobe"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Bindy Pliant Sandstone"
+
+msgid "Bindy Pliant Stone"
+msgstr "Bindy Pliant Stone"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Bindy Pliant Tarstone"
+
+msgid "Bindy Sandstone"
+msgstr "Bindy Sandstone"
+
+msgid "Bindy Stone"
+msgstr "Bindy Stone"
+
+msgid "Bindy Tarstone"
+msgstr "Bindy Tarstone"
+
+msgid "Bonded Stone Bricks"
+msgstr "Bonded Stone Bricks"
+
+msgid "Boxy Adobe"
+msgstr "Boxy Adobe"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Boxy Pliant Adobe"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Boxy Pliant Sandstone"
+
+msgid "Boxy Pliant Stone"
+msgstr "Boxy Pliant Stone"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Boxy Pliant Tarstone"
+
+msgid "Boxy Sandstone"
+msgstr "Boxy Sandstone"
+
+msgid "Boxy Stone"
+msgstr "Boxy Stone"
+
+msgid "Boxy Tarstone"
+msgstr "Boxy Tarstone"
+
+msgid "Bricky Adobe"
+msgstr "Bricky Adobe"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Bricky Pliant Adobe"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Bricky Pliant Sandstone"
+
+msgid "Bricky Pliant Stone"
+msgstr "Bricky Pliant Stone"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Bricky Pliant Tarstone"
+
+msgid "Bricky Sandstone"
+msgstr "Bricky Sandstone"
+
+msgid "Bricky Stone"
+msgstr "Bricky Stone"
+
+msgid "Bricky Tarstone"
+msgstr "Bricky Tarstone"
+
 msgid "Burn"
 msgstr "Burn"
 
@@ -445,8 +526,11 @@ msgstr "Dirt"
 msgid "Discord:   https://discord.gg/SHq2tkb"
 msgstr "[REMOVED]"
 
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Discord: https://discord.gg/NNYeF6f"
+
 msgid "Discord: https://discord.gg/SHq2tkb"
-msgstr "Discord: https://discord.gg/SHq2tkb"
+msgstr "[REMOVED]"
 
 msgid "Eggcorn"
 msgstr "Eggcorn"
@@ -526,14 +610,86 @@ msgstr "Growing Leaves"
 msgid "Growing Tree Trunk"
 msgstr "Growing Tree Trunk"
 
+msgid "Hashy Adobe"
+msgstr "Hashy Adobe"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Hashy Pliant Adobe"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Hashy Pliant Sandstone"
+
+msgid "Hashy Pliant Stone"
+msgstr "Hashy Pliant Stone"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Hashy Pliant Tarstone"
+
+msgid "Hashy Sandstone"
+msgstr "Hashy Sandstone"
+
+msgid "Hashy Stone"
+msgstr "Hashy Stone"
+
+msgid "Hashy Tarstone"
+msgstr "Hashy Tarstone"
+
 msgid "Hints"
 msgstr "Hints"
+
+msgid "Horzy Adobe"
+msgstr "Horzy Adobe"
+
+msgid "Horzy Pliant Adobe"
+msgstr "Horzy Pliant Adobe"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Horzy Pliant Sandstone"
+
+msgid "Horzy Pliant Stone"
+msgstr "Horzy Pliant Stone"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Horzy Pliant Tarstone"
+
+msgid "Horzy Sandstone"
+msgstr "Horzy Sandstone"
+
+msgid "Horzy Stone"
+msgstr "Horzy Stone"
+
+msgid "Horzy Tarstone"
+msgstr "Horzy Tarstone"
 
 msgid "Humus"
 msgstr "Humus"
 
 msgid "IRC: #nodecore @@ chat.freenode.net"
 msgstr "IRC: #nodecore @@ chat.freenode.net"
+
+msgid "Iceboxy Adobe"
+msgstr "Iceboxy Adobe"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Iceboxy Pliant Adobe"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Iceboxy Pliant Sandstone"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Iceboxy Pliant Stone"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Iceboxy Pliant Tarstone"
+
+msgid "Iceboxy Sandstone"
+msgstr "Iceboxy Sandstone"
+
+msgid "Iceboxy Stone"
+msgstr "Iceboxy Stone"
+
+msgid "Iceboxy Tarstone"
+msgstr "Iceboxy Tarstone"
 
 msgid "Ignore"
 msgstr "Ignore"
@@ -576,9 +732,6 @@ msgstr "Inventory"
 
 msgid "Leaves"
 msgstr "Leaves"
-
-msgid "Left-click to set 1st position, right-click to set 2nd"
-msgstr "[REMOVED]"
 
 msgid "Lens"
 msgstr "Lens"
@@ -667,6 +820,18 @@ msgstr "Player's Guide: Pummeling Recipes"
 msgid "Player's Guide: Tips and Guidance"
 msgstr "Player's Guide: Tips and Guidance"
 
+msgid "Pliant Adobe"
+msgstr "Pliant Adobe"
+
+msgid "Pliant Sandstone"
+msgstr "Pliant Sandstone"
+
+msgid "Pliant Stone"
+msgstr "Pliant Stone"
+
+msgid "Pliant Tarstone"
+msgstr "Pliant Tarstone"
+
 msgid "Prism"
 msgstr "Prism"
 
@@ -679,8 +844,14 @@ msgstr "Pummel"
 msgid "Rake"
 msgstr "Rake"
 
+msgid "Render"
+msgstr "Render"
+
 msgid "Sand"
 msgstr "Sand"
+
+msgid "Sandstone"
+msgstr "Sandstone"
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "See included LICENSE file for full details and credits"
@@ -703,6 +874,9 @@ msgstr "Stick"
 msgid "Stone"
 msgstr "Stone"
 
+msgid "Stone Bricks"
+msgstr "Stone Bricks"
+
 msgid "Stone Chip"
 msgstr "Stone Chip"
 
@@ -718,8 +892,14 @@ msgstr "Stone-Tipped Pick"
 msgid "Stone-Tipped Spade"
 msgstr "Stone-Tipped Spade"
 
+msgid "Stone-Tipped Stylus"
+msgstr "Stone-Tipped Stylus"
+
 msgid "Stump"
 msgstr "Stump"
+
+msgid "Tarstone"
+msgstr "Tarstone"
 
 msgid "Teleport to get unstuck (but you can't bring your items)"
 msgstr "[REMOVED]"
@@ -805,17 +985,74 @@ msgstr "Tree Trunk"
 msgid "Unknown Item"
 msgstr "Unknown Item"
 
+msgid "Vermy Adobe"
+msgstr "Vermy Adobe"
+
+msgid "Vermy Pliant Adobe"
+msgstr "Vermy Pliant Adobe"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "Vermy Pliant Sandstone"
+
+msgid "Vermy Pliant Stone"
+msgstr "Vermy Pliant Stone"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Vermy Pliant Tarstone"
+
+msgid "Vermy Sandstone"
+msgstr "Vermy Sandstone"
+
+msgid "Vermy Stone"
+msgstr "Vermy Stone"
+
+msgid "Vermy Tarstone"
+msgstr "Vermy Tarstone"
+
 msgid "Version"
 msgstr "[REMOVED]"
+
+msgid "Verty Adobe"
+msgstr "Verty Adobe"
+
+msgid "Verty Pliant Adobe"
+msgstr "Verty Pliant Adobe"
+
+msgid "Verty Pliant Sandstone"
+msgstr "Verty Pliant Sandstone"
+
+msgid "Verty Pliant Stone"
+msgstr "Verty Pliant Stone"
+
+msgid "Verty Pliant Tarstone"
+msgstr "Verty Pliant Tarstone"
+
+msgid "Verty Sandstone"
+msgstr "Verty Sandstone"
+
+msgid "Verty Stone"
+msgstr "Verty Stone"
+
+msgid "Verty Tarstone"
+msgstr "Verty Tarstone"
 
 msgid "Water"
 msgstr "Water"
 
+msgid "Wet Adobe Mix"
+msgstr "Wet Adobe Mix"
+
 msgid "Wet Aggregate"
 msgstr "Wet Aggregate"
 
+msgid "Wet Render"
+msgstr "Wet Render"
+
 msgid "Wet Sponge"
 msgstr "Wet Sponge"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Wet Tarry Aggregate"
 
 msgid "Wooden Adze"
 msgstr "[REMOVED]"
