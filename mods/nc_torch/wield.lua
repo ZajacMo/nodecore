@@ -20,9 +20,6 @@ local function snuffinv(player, inv, i)
 	inv:set_stack("main", i, "nc_fire:lump_ash")
 end
 
-local bright = nodecore.dynamic_light_node(8)
-local dim = nodecore.dynamic_light_node(4)
-
 local ambtimers = {}
 minetest.register_globalstep(function()
 		local now = nodecore.gametime
@@ -41,7 +38,7 @@ minetest.register_globalstep(function()
 			elseif islit(player:get_wielded_item()) then
 				-- Wield light
 				local name = player:get_player_name()
-				nodecore.dynamic_light_add(hpos, bright, 0.5)
+				nodecore.dynamic_light_add(hpos, 8, 0.5)
 
 				-- Wield ambiance
 				local t = ambtimers[name] or 0
@@ -54,7 +51,7 @@ minetest.register_globalstep(function()
 				-- Dimmer non-wielded carry light
 				for i = 1, inv:get_size("main") do
 					if islit(inv:get_stack("main", i)) then
-						nodecore.dynamic_light_add(hpos, dim, 0.5)
+						nodecore.dynamic_light_add(hpos, 4, 0.5)
 					end
 				end
 			end
@@ -65,7 +62,7 @@ minetest.register_globalstep(function()
 local function entlight(self, ...)
 	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
 	if not islit(stack) then return ... end
-	nodecore.dynamic_light_add(self.object:get_pos(), bright, 0.5)
+	nodecore.dynamic_light_add(self.object:get_pos(), 8, 0.5)
 	return ...
 end
 for _, name in pairs({"item", "falling_node"}) do

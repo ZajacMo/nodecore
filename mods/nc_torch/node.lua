@@ -50,7 +50,6 @@ nodecore.register_craft({
 		}
 	})
 
-local bright = nodecore.dynamic_light_node(8)
 nodecore.torch_life_stages = 4
 for i = 1, nodecore.torch_life_stages do
 	local alpha = (i - 1) * (256 / nodecore.torch_life_stages)
@@ -79,7 +78,7 @@ for i = 1, nodecore.torch_life_stages do
 			collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 			paramtype = "light",
 			sunlight_propagates = true,
-			light_source = 8,
+			light_source = 8 - i,
 			groups = {
 				snappy = 1,
 				falling_repose = 1,
@@ -94,9 +93,9 @@ for i = 1, nodecore.torch_life_stages do
 			after_place_node = function(pos, _, itemstack)
 				minetest.get_meta(pos):from_table(itemstack:get_meta():to_table())
 			end,
-			node_dig_prediction = bright,
+			node_dig_prediction = nodecore.dynamic_light_node(8),
 			after_destruct = function(pos)
-				nodecore.dynamic_light_add(pos, bright, 0.5)
+				nodecore.dynamic_light_add(pos, 8, 0.5)
 			end
 		})
 end

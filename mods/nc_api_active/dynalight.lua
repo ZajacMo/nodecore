@@ -1,13 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_floor
-    = math.floor
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local nodes = {}
 local canreplace = {air = true}
 
 local true_airlike = {
@@ -23,28 +20,6 @@ local true_airlike = {
 	sunlight_propagates = true,
 }
 
-function nodecore.dynamic_light_node(level)
-	level = math_floor(level)
-	if level < 1 then level = 1 end
-	if level > nodecore.light_sun - 1 then level = nodecore.light_sun - 1 end
-	if nodes[level] then return nodes[level] end
-	local name = modname .. ":light" .. level
-	local def = {
-		light_source = level,
-		on_timer = minetest.remove_node,
-		groups = {dynamic_light = level}
-	}
-	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
-	minetest.register_node(":" .. name, def)
-	nodes[level] = name
-	canreplace[name] = true
-	return name
-end
-
-minetest.register_alias("nc_torch:wield_light", nodecore.dynamic_light_node(8))
-
-local active_lights = {}
-
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			local ok = not canreplace[k]
@@ -54,6 +29,29 @@ minetest.after(0, function()
 			if ok then canreplace[k] = true end
 		end
 	end)
+
+local nodes = {}
+
+local function nodename(level) return modname .. ":light" .. level end
+nodecore.dynamic_light_node = nodename
+
+for level = 1, nodecore.light_sun - 1 do
+	if nodes[level] then return nodes[level] end
+	local name = nodename(level)
+	local def = {
+		light_source = level,
+		on_timer = minetest.remove_node,
+		groups = {dynamic_light = level}
+	}
+	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
+	minetest.register_node(":" .. name, def)
+	nodes[level] = name
+	canreplace[name] = true
+end
+
+minetest.register_alias("nc_torch:wield_light", nodename(8))
+
+local active_lights = {}
 
 nodecore.register_limited_abm({
 		label = "dynamic light cleanup",
@@ -68,11 +66,12 @@ nodecore.register_limited_abm({
 		end
 	})
 
-function nodecore.dynamic_light_add(pos, nodename, ttl)
+function nodecore.dynamic_light_add(pos, level, ttl)
 	local name = minetest.get_node(pos).name
 	if not canreplace[name] then return end
-	if name ~= nodename then minetest.set_node(pos, {name = nodename}) end
+	local setname = nodename(level)
 	pos = vector.round(pos)
+	if name ~= setname then minetest.set_node(pos, {name = setname}) end
 	active_lights[minetest.hash_node_position(pos)] = nodecore.gametime
 	return minetest.get_node_timer(pos):start(ttl)
 end
