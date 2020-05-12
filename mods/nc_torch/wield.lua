@@ -36,23 +36,13 @@ minetest.register_globalstep(function()
 					if islit(stack) then snuffinv(player, inv, i) end
 				end
 			elseif islit(player:get_wielded_item()) then
-				-- Wield light
-				local name = player:get_player_name()
-				nodecore.dynamic_light_add(hpos, 8, 0.5)
-
 				-- Wield ambiance
+				local name = player:get_player_name()
 				local t = ambtimers[name] or 0
 				if t <= now then
 					ambtimers[name] = now + 1
 					nodecore.sound_play("nc_fire_flamy",
 						{object = player, gain = 0.1})
-				end
-			else
-				-- Dimmer non-wielded carry light
-				for i = 1, inv:get_size("main") do
-					if islit(inv:get_stack("main", i)) then
-						nodecore.dynamic_light_add(hpos, 4, 0.5)
-					end
 				end
 			end
 		end

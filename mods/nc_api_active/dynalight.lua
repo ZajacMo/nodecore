@@ -32,12 +32,12 @@ minetest.after(0, function()
 
 local nodes = {}
 
-local function nodename(level) return modname .. ":light" .. level end
-nodecore.dynamic_light_node = nodename
+local function dynamic_light_node(level) return modname .. ":light" .. level end
+nodecore.dynamic_light_node = dynamic_light_node
 
 for level = 1, nodecore.light_sun - 1 do
 	if nodes[level] then return nodes[level] end
-	local name = nodename(level)
+	local name = dynamic_light_node(level)
 	local def = {
 		light_source = level,
 		on_timer = minetest.remove_node,
@@ -49,7 +49,7 @@ for level = 1, nodecore.light_sun - 1 do
 	canreplace[name] = true
 end
 
-minetest.register_alias("nc_torch:wield_light", nodename(8))
+minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 local active_lights = {}
 
@@ -66,12 +66,36 @@ nodecore.register_limited_abm({
 		end
 	})
 
-function nodecore.dynamic_light_add(pos, level, ttl)
+local function dynamic_light_add(pos, level, ttl)
 	local name = minetest.get_node(pos).name
 	if not canreplace[name] then return end
-	local setname = nodename(level)
+	local setname = dynamic_light_node(level)
 	pos = vector.round(pos)
 	if name ~= setname then minetest.set_node(pos, {name = setname}) end
 	active_lights[minetest.hash_node_position(pos)] = nodecore.gametime
 	return minetest.get_node_timer(pos):start(ttl)
 end
+nodecore.dynamic_light_add = dynamic_light_add
+
+local function player_wield_light(player)
+	local glow = nodecore.scaling_light_level or 0
+	for _, stack in pairs(player:get_inventory():get_list("main")) do
+		local def = minetest.registered_items[stack:get_name()] or {}
+		if def.light_source and (def.light_source > glow) then
+			glow = def.light_source
+		end
+	end
+	if glow < 1 then return end
+	local pos = player:get_pos()
+	pos.y = pos.y + player:get_properties().eye_height
+	local ll = nodecore.get_node_light(pos)
+	if ll and ll < glow then
+		return dynamic_light_add(pos, glow, 0.5)
+	end
+end
+
+minetest.register_globalstep(function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			player_wield_light(player)
+		end
+	end)
