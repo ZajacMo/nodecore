@@ -75,8 +75,12 @@ nodecore.register_limited_abm({
 local function dynamic_light_add(pos, level, ttl)
 	local name = minetest.get_node(pos).name
 	if not canreplace[name] then return end
+	if level < 1 then return end
+	if level > nodecore.light_sun - 1 then level = nodecore.light_sun - 1 end
 	local setname = dynamic_light_node(level)
 	pos = vector.round(pos)
+	local ll = nodecore.get_node_light(pos)
+	if ll and ll > level then return end
 	if name ~= setname then minetest.set_node(pos, {name = setname}) end
 	active_lights[minetest.hash_node_position(pos)] = nodecore.gametime
 	return minetest.get_node_timer(pos):start(ttl)
@@ -99,10 +103,7 @@ local function player_wield_light(player)
 	if glow < 1 then return end
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
-	local ll = nodecore.get_node_light(pos)
-	if ll and ll < glow then
-		return dynamic_light_add(pos, glow, 0.5)
-	end
+	return dynamic_light_add(pos, glow, 0.5)
 end
 
 minetest.register_globalstep(function()
