@@ -5,7 +5,7 @@ local ItemStack, minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
-nodecore.scaling_light_level = 2
+nodecore.scaling_light_level = 3
 
 function nodecore.scaling_particles(pos, def)
 	def = nodecore.underride(def or {}, {
