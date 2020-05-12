@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, setmetatable, vector
-    = ItemStack, minetest, nodecore, pairs, setmetatable, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local litgroup = {}
@@ -47,21 +47,3 @@ minetest.register_globalstep(function()
 			end
 		end
 	end)
-
--- Apply wield light to entities as well.
-local function entlight(self, ...)
-	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
-	if not islit(stack) then return ... end
-	nodecore.dynamic_light_add(self.object:get_pos(), 8, 0.5)
-	return ...
-end
-for _, name in pairs({"item", "falling_node"}) do
-	local def = minetest.registered_entities["__builtin:" .. name]
-	local ndef = {
-		on_step = function(self, ...)
-			return entlight(self, def.on_step(self, ...))
-		end
-	}
-	setmetatable(ndef, def)
-	minetest.register_entity(":__builtin:" .. name, ndef)
-end

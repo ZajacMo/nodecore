@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ItemStack, minetest, nodecore, pairs, setmetatable, vector
+    = ItemStack, minetest, nodecore, pairs, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+
+-- Register nodes that can be replaced by dynamic lights
 
 local canreplace = {air = true}
 
@@ -30,6 +32,8 @@ minetest.after(0, function()
 		end
 	end)
 
+-- Register dynamic light nodes
+
 local nodes = {}
 
 local function dynamic_light_node(level) return modname .. ":light" .. level end
@@ -50,6 +54,8 @@ for level = 1, nodecore.light_sun - 1 do
 end
 
 minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
+
+-- API for adding dynamic lights to world
 
 local active_lights = {}
 
@@ -77,13 +83,18 @@ local function dynamic_light_add(pos, level, ttl)
 end
 nodecore.dynamic_light_add = dynamic_light_add
 
+-- Automatic player wield lights
+
+local function lightsrc(stack)
+	local def = minetest.registered_items[stack:get_name()] or {}
+	return def.light_source or 0
+end
+
 local function player_wield_light(player)
 	local glow = nodecore.scaling_light_level or 0
 	for _, stack in pairs(player:get_inventory():get_list("main")) do
-		local def = minetest.registered_items[stack:get_name()] or {}
-		if def.light_source and (def.light_source > glow) then
-			glow = def.light_source
-		end
+		local src = lightsrc(stack)
+		if src > glow then glow = src end
 	end
 	if glow < 1 then return end
 	local pos = player:get_pos()
@@ -99,3 +110,22 @@ minetest.register_globalstep(function()
 			player_wield_light(player)
 		end
 	end)
+
+-- Automatic entity light sources
+
+local function entlight(self, ...)
+	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
+	local src = lightsrc(stack)
+	if src > 0 then nodecore.dynamic_light_add(self.object:get_pos(), src, 0.5) end
+	return ...
+end
+for _, name in pairs({"item", "falling_node"}) do
+	local def = minetest.registered_entities["__builtin:" .. name]
+	local ndef = {
+		on_step = function(self, ...)
+			return entlight(self, def.on_step(self, ...))
+		end
+	}
+	setmetatable(ndef, def)
+	minetest.register_entity(":__builtin:" .. name, ndef)
+end
