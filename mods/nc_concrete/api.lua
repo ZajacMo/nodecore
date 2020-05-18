@@ -20,7 +20,7 @@ function nodecore.register_concrete(def)
 	def.basename = basename
 
 	if def.register_dry ~= false then
-		minetest.register_node(basename, {
+		minetest.register_node(":" .. basename, {
 				description = def.description,
 				tiles = {def.tile_powder},
 				groups = def.groups_powder,
@@ -48,7 +48,7 @@ function nodecore.register_concrete(def)
 			sounds = nodecore.sounds(def.sound),
 			concrete_def = def
 		}
-		minetest.register_node(basename .. "_wet_source", nodecore.underride({
+		minetest.register_node(":" .. basename .. "_wet_source", nodecore.underride({
 					liquidtype = "source",
 					groups = {concrete_source = 1}
 				}, wetdef))

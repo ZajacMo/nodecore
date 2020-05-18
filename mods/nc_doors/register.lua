@@ -65,7 +65,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 	paneldef.drop_in_place = nil
 	paneldef.after_dig_node = nil
 
-	minetest.register_node(paneldef.name, paneldef)
+	minetest.register_node(":" .. paneldef.name, paneldef)
 
 	local t = minetest.registered_items[pin].tiles
 	t = t[3] or t[2] or t[1]
@@ -87,7 +87,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			groups = groups
 		}, paneldef)
 
-	minetest.register_node(doordef.name, doordef)
+	minetest.register_node(":" .. doordef.name, doordef)
 
 	nodecore.register_craft({
 			label = "drill door " .. basenode:lower(),

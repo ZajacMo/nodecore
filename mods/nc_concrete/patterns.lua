@@ -57,7 +57,7 @@ local function regetched(basenode, etch, patt)
 		.. "Pliant " .. basenode.description
 		def.pattern_def = patt
 		def.etch_def = etch
-		minetest.register_node(plyname, def)
+		minetest.register_node(":" .. plyname, def)
 	end
 	if not patt.blank then
 		local pattname = modname .. ":" .. etch.name .. "_" .. patt.name
@@ -73,7 +73,7 @@ local function regetched(basenode, etch, patt)
 			.. basenode.description
 			def.pattern_def = patt
 			def.etch_def = etch
-			minetest.register_node(pattname, def)
+			minetest.register_node(":" .. pattname, def)
 		end
 	end
 end
