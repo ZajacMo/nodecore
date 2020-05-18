@@ -20,16 +20,17 @@ minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
-			local pos = self.object:get_pos()
+			local obj = self.object
+			local pos = obj:get_pos()
+			if not pos then return end
 			local stack = nodecore.stack_get(pos)
-			if not stack or stack:is_empty() then return self.object:remove() end
+			if not stack or stack:is_empty() then return obj:remove() end
 
 			local rp = vector.round(pos)
 			local props, scale, yaw = nodecore.stackentprops(stack,
 				rp.x * 3 + rp.y * 5 + rp.z * 7)
 			rp.y = rp.y + scale - 31/64
 
-			local obj = self.object
 			nodecore.ent_prop_set(obj, props)
 			if obj:get_yaw() ~= yaw then
 				obj:set_yaw(yaw)

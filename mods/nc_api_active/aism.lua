@@ -116,15 +116,21 @@ nodecore.register_item_entity_step(function(self, dtime)
 		local t = (self.aismtimer or 0) + dtime
 		while t >= 1 do
 			t = t - 1
+			local pos = self.object:get_pos()
+			if not pos then return end
+			local setstack
 			checkstack(ItemStack(self.itemstring), {
-					pos = self.object:get_pos(),
+					pos = pos,
 					obj = self.object,
 					ent = self,
-					set = function(s)
-						if s:is_empty() then return self.object:remove() end
-						self.itemstring = s:to_string()
-					end
+					set = function(s) setstack = s end
 				})
+			if setstack then
+				if setstack:is_empty() then
+					return self.object:remove()
+				end
+				self.itemstring = setstack:to_string()
+			end
 		end
 		self.aismtimer = t
 	end)

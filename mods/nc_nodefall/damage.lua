@@ -19,6 +19,7 @@ local function maketick(mult, getname, oldtick)
 		end
 
 		local pos = self.object:get_pos()
+		if not pos then return end
 		pos.y = pos.y - 1
 		local vel = self.object:get_velocity()
 		local v = vel and -vel.y or 0

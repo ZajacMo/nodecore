@@ -73,6 +73,7 @@ nodecore.register_limited_abm({
 	})
 
 local function dynamic_light_add(pos, level, ttl)
+	if not pos then return end
 	local name = minetest.get_node(pos).name
 	if not canreplace[name] then return end
 	if level < 1 then return end

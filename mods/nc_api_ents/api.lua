@@ -96,6 +96,7 @@ end
 function nodecore.entity_settle_check(on_settle, isnode)
 	return function(self)
 		local pos = self.object:get_pos()
+		if not pos then return end
 		if pos.y < nodecore.map_limit_min then
 			pos.y = nodecore.map_limit_min
 			self.object:set_pos(pos)

@@ -10,7 +10,9 @@ nodecore.register_falling_node_on_setnode(function(self, node, meta)
 		and meta and meta.inventory and meta.inventory.solo then
 			local stack = ItemStack(meta.inventory.solo[1] or "")
 			if not stack:is_empty() then
-				local ent = minetest.add_item(self.object:get_pos(), stack)
+				local pos = self.object:get_pos()
+				if not pos then return end
+				local ent = minetest.add_item(pos, stack)
 				if ent then ent:set_velocity(self.object:get_velocity()) end
 				self.object:remove()
 				return true

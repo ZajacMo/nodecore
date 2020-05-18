@@ -21,6 +21,7 @@ end
 
 function nodecore.ent_prop_set(obj, def)
 	local old = obj:get_properties()
+	if not old then return end
 	if type(def) == "function" then
 		def = def(old, obj)
 	end

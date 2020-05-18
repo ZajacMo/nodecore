@@ -8,6 +8,7 @@ local math_floor, math_random
 local cache = {}
 
 function nodecore.item_ent_merge(pos)
+	if not pos then return end
 	pos = vector.round(pos)
 	local hash = minetest.hash_node_position(pos)
 
