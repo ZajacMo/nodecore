@@ -19,8 +19,8 @@ return {
 	type = "game",
 	title = "NodeCore" .. (alpha and " ALPHA" or ""),
 	short_desc = (alpha
-		and "Experimental early-access releases of NodeCore."
-		or "An original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
+		and "Experimental early-access release of NodeCore."
+		or "Original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
 	tags = "building, crafting, environment, inventory, machines, player vs env, puzzle",
 	license = "mit",
 	desc = alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'),
