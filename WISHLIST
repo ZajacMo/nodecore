@@ -16,8 +16,6 @@ to the project!
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.  Current open PR is #9315.
-	- #8141: We want cleaner player name labels, and to move
-	  the touchtip from screen-space into node-space.
 	- #7876: Causes a damage flash when a new player joins, or a
 	  player from before 2020-02-19 when max HP was changed.
 	- TBD: Bone attachment axes invert if there is any animation on

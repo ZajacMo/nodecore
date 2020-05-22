@@ -9,6 +9,9 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Consider using waypoint HUDs for punchtips instead, now that
+  https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
+
 - Chop frames, ladders, staves back down into sticks?
 
 - Automation reliability issues

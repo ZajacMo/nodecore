@@ -119,6 +119,7 @@ minetest.register_globalstep(function()
 								world_pos = p,
 								name = n2,
 								text = "",
+								precision = 0,
 								number = 0xffffff,
 								quick = true
 							})
