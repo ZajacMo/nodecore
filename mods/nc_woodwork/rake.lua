@@ -14,6 +14,7 @@ minetest.register_tool(modname .. ":rake", {
 				snappy = 1,
 				uses = 10
 			}),
+		groups = {flammable = 1},
 		sounds = nodecore.sounds("nc_tree_sticky")
 	})
 
