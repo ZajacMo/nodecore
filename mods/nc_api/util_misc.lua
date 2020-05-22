@@ -467,3 +467,33 @@ function nodecore.get_node_light(pos)
 		* nodecore.get_depth_light(pos.y))
 	return artificial > natural and artificial or natural
 end
+
+local liquids = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v.liquidtype and v.liquidtype ~= "none" then
+				liquids[k] = v
+			end
+		end
+	end)
+nodecore.registered_liquids = liquids
+function nodecore.player_swimming(player)
+	local pos = player:get_pos()
+	local r = 0.6
+	for dz = -r, r, r do
+		for dx = -r, r, r do
+			local p = {
+				x = pos.x + dx,
+				y = pos.y,
+				z = pos.z + dz
+			}
+			local node = minetest.get_node(p)
+			if (node.name == "air" or liquids[node.name]) then
+				p.y = p.y - 0.35
+				node = minetest.get_node(p)
+			end
+			if not liquids[node.name] then return end
+		end
+	end
+	return true
+end

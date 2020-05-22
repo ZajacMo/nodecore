@@ -7,35 +7,6 @@ local math_floor, table_concat
 
 local modname = minetest.get_current_modname()
 
-local liquids = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
-			if v.liquidtype and v.liquidtype ~= "none" then
-				liquids[k] = true
-			end
-		end
-	end)
-function nodecore.player_swimming(player)
-	local pos = player:get_pos()
-	local r = 0.6
-	for dz = -r, r, r do
-		for dx = -r, r, r do
-			local p = {
-				x = pos.x + dx,
-				y = pos.y,
-				z = pos.z + dz
-			}
-			local node = minetest.get_node(p)
-			if (node.name == "air" or liquids[node.name]) then
-				p.y = p.y - 0.35
-				node = minetest.get_node(p)
-			end
-			if not liquids[node.name] then return end
-		end
-	end
-	return true
-end
-
 nodecore.player_skin = nodecore.player_skin or function(player)
 	local skin = player:get_meta():get_string("custom_skin") or ""
 	if skin ~= "" then return skin end
