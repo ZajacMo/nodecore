@@ -13,6 +13,8 @@ to the project!
 	  want to contribute translations.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- #9916: This bug is causing us to maintain a workaround that
+	  uses a much higher poly count visual for bandolier empty slots.
 	- #7245: This is blocking making navigation challenges and
 	  distinguishing nodes with similar appearance into gameplay
 	  elements.  Current open PR is #9315.
