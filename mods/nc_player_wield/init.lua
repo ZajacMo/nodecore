@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, table
-    = ItemStack, minetest, nodecore, table
+local ItemStack, minetest, nodecore, pairs, table
+    = ItemStack, minetest, nodecore, pairs, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,17 +9,25 @@ nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
+local xyz = function(n) return {x = n, y = n, z = n} end
+
+for _, n in pairs({"slot", "sel"}) do
+	minetest.register_craftitem(modname .. ":" .. n, {
+			inventory_image = "nc_player_wield_" .. n .. ".png",
+			virtual_item = true
+		})
+end
+
 local function entprops(stack, conf, widx)
 	local t = {
 		hp_max = 1,
 		physical = false,
 		collide_with_objects = false,
 		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "upright_sprite",
-		visual_size = {x = 0.15, y = 0.15, z = 0.15},
+		visual = "wielditem",
 		textures = {},
-		spritediv = {x = 1, y = 1},
-		initial_sprite_basepos = {x = 0, y = 0},
+		spritediv = xyz(1),
+		initial_sprite_basepos = xyz(0),
 		is_visible = false,
 		static_save = false
 	}
@@ -27,25 +35,23 @@ local function entprops(stack, conf, widx)
 		and nodecore.player_visible(conf.pname)) then return t end
 	if conf.slot then
 		t.is_visible = true
-		t.textures = {modname .. "_slot.png", "[combine:1x1"}
-		if conf.slot == widx then
-			t.textures[1] = modname .. "_sel.png"
-			return t
-		end
+		t.visual_size = xyz(0.075)
+		t.textures = {modname .. (conf.slot == widx and ":sel" or ":slot")}
 	end
 	if not stack then return t end
 	if stack:is_empty() then return t end
 	local def = minetest.registered_items[stack:get_name()] or {}
 	if def.virtual_item then
-		t.textures[1] = def.inventory_image
+		t.is_visible = false
+		return t
 	else
-		t.visual = "wielditem"
+		if conf.slot == widx then return t end
 		t.textures = {stack:get_name()}
-		t.visual_size = {x = 0.1, y = 0.1, z = 0.1}
+		t.visual_size = xyz(0.1)
 	end
 	if not conf.slot then
 		t.is_visible = true
-		t.visual_size = {x = 0.2, y = 0.2, z = 0.2}
+		t.visual_size = xyz(0.2)
 	end
 	return t
 end
