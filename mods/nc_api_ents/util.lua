@@ -19,15 +19,19 @@ local function mismatch(a, b)
 	return a ~= b
 end
 
+local sprite_vis = {sprite = true, upright_sprite = true}
+local sprite_props = {initial_sprite_basepos = true, spritediv = true}
+
 function nodecore.ent_prop_set(obj, def)
 	local old = obj:get_properties()
 	if not old then return end
 	if type(def) == "function" then
 		def = def(old, obj)
 	end
+	local issprite = sprite_vis[def.visual or old and old.visual or ""]
 	local toset
 	for k, v in pairs(def) do
-		if mismatch(v, old[k]) then
+		if (issprite or not sprite_props[k]) and mismatch(v, old[k]) then
 			toset = toset or {}
 			toset[k] = v
 		end
