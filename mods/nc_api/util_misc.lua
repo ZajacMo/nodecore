@@ -422,8 +422,11 @@ end
 function nodecore.get_objects_at_pos(pos)
 	pos = vector.round(pos)
 	local t = {}
-	for _, obj in pairs(minetest.get_objects_inside_radius(pos, 0.866025403784)) do
-		if vector.equals(vector.round(obj:get_pos()), pos) then
+	-- get_objects_inside_radius just loops over these and does a euclidian
+	-- distance check anyway, which we can skip
+	for _, obj in pairs(minetest.object_refs) do
+		local p = obj:get_pos()
+		if p and vector.equals(vector.round(p), pos) then
 			t[#t + 1] = obj
 		end
 	end
