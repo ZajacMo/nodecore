@@ -28,8 +28,6 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		visual = "wielditem",
 		visual_size = {x = 0.4, y = 0.4},
 		textures = {""},
-		spritediv = {x = 1, y = 1},
-		initial_sprite_basepos = {x = 0, y = 0},
 		is_visible = false,
 		static_save = ss and true or false
 	}

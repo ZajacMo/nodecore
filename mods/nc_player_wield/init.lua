@@ -26,8 +26,6 @@ local function entprops(stack, conf, widx)
 		collisionbox = {0, 0, 0, 0, 0, 0},
 		visual = "wielditem",
 		textures = {},
-		spritediv = xyz(1),
-		initial_sprite_basepos = xyz(0),
 		is_visible = false,
 		static_save = false
 	}
