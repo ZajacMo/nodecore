@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, type
-    = nodecore, pairs, type
+local getmetatable, minetest, nodecore, pairs, type
+    = getmetatable, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function mismatch(a, b)
@@ -19,22 +19,38 @@ local function mismatch(a, b)
 	return a ~= b
 end
 
-local sprite_vis = {sprite = true, upright_sprite = true}
-local sprite_props = {initial_sprite_basepos = true, spritediv = true}
+local old_set_props
 
-function nodecore.ent_prop_set(obj, def)
+local function set_properties_compare(obj, def)
+	if type(def) ~= "table" then return old_set_props(obj, def) end
 	local old = obj:get_properties()
 	if not old then return end
 	if type(def) == "function" then
 		def = def(old, obj)
 	end
-	local issprite = sprite_vis[def.visual or old and old.visual or ""]
 	local toset
 	for k, v in pairs(def) do
-		if (issprite or not sprite_props[k]) and mismatch(v, old[k]) then
+		if mismatch(v, old[k]) then
 			toset = toset or {}
 			toset[k] = v
 		end
 	end
-	return toset and obj:set_properties(toset)
+	return toset and old_set_props(obj, toset)
+end
+
+local function tryhook()
+	for _, v in pairs(minetest.object_refs) do
+		local mt = v and getmetatable(v)
+		if mt and mt.set_properties then
+			old_set_props = mt.set_properties
+			mt.set_properties = set_properties_compare
+			return
+		end
+	end
+	return minetest.after(0, tryhook)
+end
+tryhook()
+
+function nodecore.ent_prop_set(obj, def)
+	return obj:set_properties(def)
 end
