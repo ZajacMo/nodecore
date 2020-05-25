@@ -55,6 +55,8 @@ function nodecore.visinv_update_ents(pos, node)
 	local def = minetest.registered_items[node.name] or {}
 	local max = def.groups and def.groups.visinv and 1 or 0
 
+	if nodecore.stack_get(pos):is_empty() then max = 0 end
+
 	local found = {}
 	for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
 		if v and v.get_luaentity and v:get_luaentity()
@@ -64,7 +66,7 @@ function nodecore.visinv_update_ents(pos, node)
 	end
 
 	if #found < max then
-		minetest.add_entity(pos, modname .. ":stackent")
+		found[#found + 1] = minetest.add_entity(pos, modname .. ":stackent")
 	else
 		while #found > max do
 			found[#found]:remove()

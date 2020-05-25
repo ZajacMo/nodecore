@@ -17,7 +17,7 @@ function nodecore.item_ent_merge(pos)
 	cache[hash] = (t or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
 	local db = {}
-	for _, obj in pairs(nodecore.get_objects_at_pos(pos, 1)) do
+	for _, obj in pairs(nodecore.get_objects_at_pos(pos)) do
 		local lua = obj.get_luaentity and obj:get_luaentity()
 		if lua and lua.name == "__builtin:item" then
 			local stack = ItemStack(lua.itemstring or "")
