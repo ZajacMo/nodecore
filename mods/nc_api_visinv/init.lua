@@ -31,7 +31,7 @@ minetest.register_entity(modname .. ":stackent", {
 				rp.x * 3 + rp.y * 5 + rp.z * 7)
 			rp.y = rp.y + scale - 31/64
 
-			nodecore.ent_prop_set(obj, props)
+			obj:set_properties(props)
 			if obj:get_yaw() ~= yaw then
 				obj:set_yaw(yaw)
 			end

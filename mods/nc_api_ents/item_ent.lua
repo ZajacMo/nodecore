@@ -43,7 +43,7 @@ minetest.register_entity(":__builtin:item", {
 			self.collidesize = s
 			p.collisionbox = {-s, -s, -s, s, s, s}
 			p.physical = true
-			return nodecore.ent_prop_set(self.object, p)
+			return self.object:set_properties(p)
 		end,
 
 		get_staticdata = data_save,

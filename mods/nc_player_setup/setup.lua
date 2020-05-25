@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest
+    = minetest
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.unregister_chatcommand("kill")
@@ -14,7 +14,7 @@ minetest.register_on_joinplayer(function(player)
 
 		player:set_physics_override({speed = 1.25})
 
-		nodecore.ent_prop_set(player, {
+		player:set_properties({
 				pointable = false,
 				makes_footstep_sound = true,
 

@@ -62,7 +62,7 @@ minetest.register_entity(":__builtin:falling_node", {
 			if not node then return self.object:remove() end
 
 			self.node = node
-			nodecore.ent_prop_set(self.object, {
+			self.object:set_properties({
 					is_visible = true,
 					textures = {node.name},
 				})

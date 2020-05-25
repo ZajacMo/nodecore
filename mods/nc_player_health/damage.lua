@@ -68,7 +68,7 @@ minetest.register_globalstep(function(dtime)
 	end)
 
 local function setmax(player)
-	nodecore.ent_prop_set(player, {hp_max = 8})
+	player:set_properties({hp_max = 8})
 end
 minetest.register_on_joinplayer(setmax)
 minetest.register_on_newplayer(setmax)
