@@ -30,7 +30,8 @@ minetest.register_node(modname .. ":fire", {
 			flame_sound = 1,
 			stack_as_node = 1,
 			damage_touch = 1,
-			damage_radiant = 1
+			damage_radiant = 1,
+			flame_ambiance = 1
 		},
 		damage_per_second = 1,
 		sunlight_propagates = true,

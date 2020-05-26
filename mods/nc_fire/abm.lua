@@ -116,9 +116,18 @@ nodecore.register_limited_abm({
 
 nodecore.register_ambiance({
 		label = "Flame Ambiance",
-		nodenames = {modname .. ":fire"},
+		nodenames = {"group:flame_ambiance"},
 		interval = 1,
 		chance = 1,
 		sound_name = "nc_fire_flamy",
-		sound_gain = 0.3
+		sound_gain = 0.1
+	})
+
+nodecore.register_item_ambiance({
+		label = "Flame Ambiance",
+		itemnames = {"group:flame_ambiance"},
+		interval = 1,
+		chance = 1,
+		sound_name = "nc_fire_flamy",
+		sound_gain = 0.1
 	})

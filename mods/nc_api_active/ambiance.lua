@@ -5,7 +5,7 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.register_ambiance(def)
+local function ambiance_core(def, getpos)
 	local max = def.queue_max or 100
 	local rate = 1 / (def.queue_rate or 20)
 
@@ -38,7 +38,8 @@ function nodecore.register_ambiance(def)
 			end
 		end)
 
-	def.action = function(pos)
+	def.action = function(...)
+		local pos = getpos(...)
 		local hash = minetest.hash_node_position(pos)
 		if seen[hash] then return end
 		seen[hash] = true
@@ -60,6 +61,16 @@ function nodecore.register_ambiance(def)
 		end
 		total = total + 1
 	end
+end
 
+local function abm_pos(pos) return pos end
+function nodecore.register_ambiance(def)
+	ambiance_core(def, abm_pos)
 	return nodecore.register_limited_abm(def)
+end
+
+local function aism_pos(_, data) return data.pos end
+function nodecore.register_item_ambiance(def)
+	ambiance_core(def, aism_pos)
+	return nodecore.register_aism(def)
 end
