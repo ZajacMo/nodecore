@@ -32,6 +32,33 @@ minetest.after(0, function()
 		end
 	end)
 
+-- API for checking if dynamic lights are valid
+
+local ttl = 0.25
+
+local active_lights = {}
+
+local function setup_light(pos, check)
+	active_lights[minetest.hash_node_position(pos)] = {
+		exp = nodecore.gametime + ttl,
+		check = check
+	}
+	minetest.get_node_timer(pos):start(ttl)
+end
+
+local function check_light(pos)
+	local data = active_lights[minetest.hash_node_position(pos)]
+	if not data then return minetest.remove_node(pos) end
+	if nodecore.gametime < data.exp then return end
+	if data.check and data.check(pos) then
+		data.exp = nodecore.gametime + ttl
+		minetest.get_node_timer(pos):start(ttl)
+		return
+	end
+	minetest.remove_node(pos)
+	return true
+end
+
 -- Register dynamic light nodes
 
 local nodes = {}
@@ -44,7 +71,7 @@ for level = 1, nodecore.light_sun - 1 do
 	local name = dynamic_light_node(level)
 	local def = {
 		light_source = level,
-		on_timer = minetest.remove_node,
+		on_timer = check_light,
 		groups = {dynamic_light = level}
 	}
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
@@ -57,22 +84,15 @@ minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 -- API for adding dynamic lights to world
 
-local active_lights = {}
-
 nodecore.register_limited_abm({
 		label = "dynamic light cleanup",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:dynamic_light"},
-		action = function(pos)
-			local time = active_lights[minetest.hash_node_position(pos)] or 0
-			if time >= nodecore.gametime - 2 then return end
-			minetest.log("dynalight cleaned up at " .. minetest.pos_to_string(pos))
-			return minetest.remove_node(pos)
-		end
+		action = check_light
 	})
 
-local function dynamic_light_add(pos, level, ttl)
+local function dynamic_light_add(pos, level, check)
 	if not pos then return end
 	local name = minetest.get_node(pos).name
 	if not canreplace[name] then return end
@@ -83,8 +103,7 @@ local function dynamic_light_add(pos, level, ttl)
 	local ll = nodecore.get_node_light(pos)
 	if ll and ll > level then return end
 	if name ~= setname then minetest.set_node(pos, {name = setname}) end
-	active_lights[minetest.hash_node_position(pos)] = nodecore.gametime
-	return minetest.get_node_timer(pos):start(ttl)
+	setup_light(pos, check)
 end
 nodecore.dynamic_light_add = dynamic_light_add
 
@@ -104,7 +123,14 @@ local function player_wield_light(player)
 	if glow < 1 then return end
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
-	return dynamic_light_add(pos, glow, 0.5)
+	local pname = player:get_player_name()
+	return dynamic_light_add(pos, glow, function(np)
+			local pl = minetest.get_player_by_name(pname)
+			if not pl then return end
+			local pp = pl:get_pos()
+			pp.y = pp.y + pl:get_properties().eye_height
+			return vector.equals(vector.round(np), vector.round(pp))
+		end)
 end
 
 minetest.register_globalstep(function()
@@ -118,7 +144,13 @@ minetest.register_globalstep(function()
 local function entlight(self, ...)
 	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
 	local src = lightsrc(stack)
-	if src > 0 then nodecore.dynamic_light_add(self.object:get_pos(), src, 0.5) end
+	if src > 0 then
+		nodecore.dynamic_light_add(self.object:get_pos(), src, function(pos)
+				for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
+					if v == self.object then return true end
+				end
+			end)
+	end
 	return ...
 end
 for _, name in pairs({"item", "falling_node"}) do

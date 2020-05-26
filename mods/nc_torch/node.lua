@@ -93,9 +93,9 @@ for i = 1, nodecore.torch_life_stages do
 			after_place_node = function(pos, _, itemstack)
 				minetest.get_meta(pos):from_table(itemstack:get_meta():to_table())
 			end,
-			node_dig_prediction = nodecore.dynamic_light_node(8),
+			node_dig_prediction = nodecore.dynamic_light_node(8 - i),
 			after_destruct = function(pos)
-				nodecore.dynamic_light_add(pos, 8, 0.5)
+				nodecore.dynamic_light_add(pos, 8 - i)
 			end
 		})
 end
