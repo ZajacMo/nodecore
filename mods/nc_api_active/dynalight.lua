@@ -50,7 +50,7 @@ local function check_light(pos)
 	local data = active_lights[minetest.hash_node_position(pos)]
 	if not data then return minetest.remove_node(pos) end
 	if nodecore.gametime < data.exp then return end
-	if data.check and data.check(pos) then
+	if data.check and data.check() then
 		data.exp = nodecore.gametime + ttl
 		minetest.get_node_timer(pos):start(ttl)
 		return
@@ -92,10 +92,18 @@ nodecore.register_limited_abm({
 		action = check_light
 	})
 
-local function dynamic_light_add(pos, level, check)
+local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end
 	local name = minetest.get_node(pos).name
-	if not canreplace[name] then return end
+	if not canreplace[name] then
+		if exact then return end
+		return dynamic_light_add({x = pos.x, y = pos.y - 1, z = pos.z}, level, check, true)
+		or dynamic_light_add({x = pos.x, y = pos.y + 1, z = pos.z}, level, check, true)
+		or dynamic_light_add({x = pos.x + 1, y = pos.y, z = pos.z}, level, check, true)
+		or dynamic_light_add({x = pos.x - 1, y = pos.y, z = pos.z}, level, check, true)
+		or dynamic_light_add({x = pos.x, y = pos.y, z = pos.z + 1}, level, check, true)
+		or dynamic_light_add({x = pos.x, y = pos.y, z = pos.z - 1}, level, check, true)
+	end
 	if level < 1 then return end
 	if level > nodecore.light_sun - 1 then level = nodecore.light_sun - 1 end
 	local setname = dynamic_light_node(level)
@@ -104,6 +112,7 @@ local function dynamic_light_add(pos, level, check)
 	if ll and ll > level then return end
 	if name ~= setname then minetest.set_node(pos, {name = setname}) end
 	setup_light(pos, check)
+	return true
 end
 nodecore.dynamic_light_add = dynamic_light_add
 
@@ -123,13 +132,14 @@ local function player_wield_light(player)
 	if glow < 1 then return end
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
+	pos = vector.round(pos)
 	local pname = player:get_player_name()
-	return dynamic_light_add(pos, glow, function(np)
+	return dynamic_light_add(pos, glow, function()
 			local pl = minetest.get_player_by_name(pname)
 			if not pl then return end
 			local pp = pl:get_pos()
 			pp.y = pp.y + pl:get_properties().eye_height
-			return vector.equals(vector.round(np), vector.round(pp))
+			return vector.equals(pos, vector.round(pp))
 		end)
 end
 
@@ -145,7 +155,10 @@ local function entlight(self, ...)
 	local stack = ItemStack(self.node and self.node.name or self.itemstring or "")
 	local src = lightsrc(stack)
 	if src > 0 then
-		nodecore.dynamic_light_add(self.object:get_pos(), src, function(pos)
+		local pos = self.object:get_pos()
+		if not pos then return ... end
+		pos = vector.round(pos)
+		nodecore.dynamic_light_add(pos, src, function()
 				for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
 					if v == self.object then return true end
 				end
