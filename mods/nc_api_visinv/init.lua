@@ -16,6 +16,20 @@ local modname = minetest.get_current_modname()
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
+local function getlightcheck(rp, obj, src)
+	return function()
+		local stack = nodecore.stack_get(rp)
+		if not stack or stack:is_empty() then return end
+
+		local def = minetest.registered_items[stack:get_name()] or {}
+		if (def.light_source or 0) ~= src then return end
+
+		for _, v in pairs(nodecore.get_objects_at_pos(rp)) do
+			if v == obj then return true end
+		end
+	end
+end
+
 minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
@@ -31,11 +45,8 @@ minetest.register_entity(modname .. ":stackent", {
 			local def = minetest.registered_items[stack:get_name()] or {}
 			local src = def.light_source or 0
 			if src > 0 then
-				nodecore.dynamic_light_add(rp, src, function()
-						for _, v in pairs(nodecore.get_objects_at_pos(rp)) do
-							if v == obj then return true end
-						end
-					end)
+				self.light_source = src
+				nodecore.dynamic_light_add(rp, src, getlightcheck(rp, obj, src))
 			end
 
 			local props, scale, yaw = nodecore.stackentprops(stack,

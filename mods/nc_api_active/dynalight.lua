@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 -- Register nodes that can be replaced by dynamic lights
 
-local canreplace = {air = true}
+local canreplace = {air = 0}
 
 local true_airlike = {
 	drawtype = "airlike",
@@ -28,7 +28,7 @@ minetest.after(0, function()
 			for dk, dv in pairs(true_airlike) do
 				ok = ok and v[dk] == dv
 			end
-			if ok then canreplace[k] = true end
+			if ok then canreplace[k] = 0 end
 		end
 	end)
 
@@ -77,7 +77,7 @@ for level = 1, nodecore.light_sun - 1 do
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
 	minetest.register_node(":" .. name, def)
 	nodes[level] = name
-	canreplace[name] = true
+	canreplace[name] = level
 end
 
 minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
@@ -95,7 +95,8 @@ nodecore.register_limited_abm({
 local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end
 	local name = minetest.get_node(pos).name
-	if not canreplace[name] then
+	local curlight = canreplace[name]
+	if not curlight then
 		if exact then return end
 		return dynamic_light_add({x = pos.x, y = pos.y - 1, z = pos.z}, level, check, true)
 		or dynamic_light_add({x = pos.x, y = pos.y + 1, z = pos.z}, level, check, true)
@@ -108,8 +109,11 @@ local function dynamic_light_add(pos, level, check, exact)
 	if level > nodecore.light_sun - 1 then level = nodecore.light_sun - 1 end
 	local setname = dynamic_light_node(level)
 	pos = vector.round(pos)
-	local ll = nodecore.get_node_light(pos)
-	if ll and ll > level then return end
+	if curlight <= level then
+		local ll = nodecore.get_node_light(pos)
+		if ll and ll > level then return end
+	end
+	if curlight > level and not check_light(pos) then return end
 	if name ~= setname then minetest.set_node(pos, {name = setname}) end
 	setup_light(pos, check)
 	return true
