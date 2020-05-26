@@ -23,11 +23,11 @@ minetest.register_entity(modname .. ":stackent", {
 			local obj = self.object
 			local pos = obj:get_pos()
 			if not pos then return end
-			local rp = vector.round(pos)
 
 			local stack = nodecore.stack_get(pos)
 			if not stack or stack:is_empty() then return obj:remove() end
 
+			local rp = vector.round(pos)
 			local def = minetest.registered_items[stack:get_name()] or {}
 			local src = def.light_source or 0
 			if src > 0 then
