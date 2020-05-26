@@ -46,6 +46,9 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		props.automatic_rotate = rotate
 		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or nil
 
+		local def = minetest.registered_items[stack:get_name()]
+		if def and def.light_source then props.glow = def.light_source end
+
 		if ratio == 1 then ratio = 1 - (stack:get_wear() / 65536) end
 
 		if ratio ~= 1 then yaw = yaw + 1/8 + 3/8 * (1 - ratio) end
