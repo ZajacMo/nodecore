@@ -7,5 +7,4 @@ nodecore.amcoremod()
 
 include("node")
 include("abm")
-include("wield")
 include("cmd")
