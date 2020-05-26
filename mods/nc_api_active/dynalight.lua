@@ -149,7 +149,9 @@ end
 
 minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
-			player_wield_light(player)
+			if nodecore.player_visible(player) then
+				player_wield_light(player)
+			end
 		end
 	end)
 
