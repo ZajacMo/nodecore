@@ -27,7 +27,7 @@ minetest.after(0, function()
 			local tiles = minetest.deserialize(minetest.serialize(v.tiles))
 			if tiles then
 				for k2, v2 in pairs(tiles) do
-					tiles[k2] = type(v2) == "table" and v2.name or v2
+					tiles[k2] = type(v2) == "table" and v2.name or v2.image or v2
 				end
 				while #tiles > #faces do tiles[#tiles] = nil end
 				while (#tiles > 1) and (tiles[#tiles] == tiles[#tiles - 1]) do

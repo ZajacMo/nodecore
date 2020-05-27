@@ -42,6 +42,16 @@ setmetatable(nodecore, {
 		end
 	})
 
+minetest.register_on_mods_loaded(function()
+		for _, n in pairs(minetest.get_modnames()) do
+			if n == "default" then
+				error(nodecore.product
+					.. " cannot be loaded on top of another game!")
+				error()
+			end
+		end
+	end)
+
 include("compat_vector")
 include("issue9043")
 
