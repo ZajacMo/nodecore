@@ -50,7 +50,7 @@ function nodecore.register_limited_abm(def)
 			pumpq)
 
 		if def.limited_qty >= def.limited_alert then
-			minetest.log("limited abm \"" .. def.label .. "\" filled ("
+			minetest.log("info", "limited abm \"" .. def.label .. "\" filled ("
 				.. def.limited_qty .. "/" .. def.limited_max .. ")")
 		end
 

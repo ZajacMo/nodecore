@@ -75,7 +75,7 @@ local function playeradd(qty, player, ...)
 	end
 	if qty ~= 0 and dbadd(qty, pname, ...) <= qty then
 		local t = {...}
-		minetest.log(string_format("player %q discovered %q",
+		minetest.log("action", string_format("player %q discovered %q",
 				pname, table_concat(t, ":")))
 		for _, v in pairs(nodecore.registered_on_player_discovers) do
 			v(player, t)

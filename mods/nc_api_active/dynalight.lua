@@ -67,7 +67,7 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local time = active_lights[minetest.hash_node_position(pos)] or 0
 			if time >= nodecore.gametime - 2 then return end
-			minetest.log("dynalight cleaned up at " .. minetest.pos_to_string(pos))
+			minetest.log("info", "dynalight cleaned up at " .. minetest.pos_to_string(pos))
 			return minetest.remove_node(pos)
 		end
 	})
