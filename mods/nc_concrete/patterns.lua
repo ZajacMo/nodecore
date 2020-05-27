@@ -125,7 +125,6 @@ for k in pairs({
 		register_concrete_pattern = true,
 		register_concrete_etchable = true
 	}) do
-	minetest.log(k)
 	local old = nodecore[k];
 	rawset(nodecore, k, function(...)
 			local function helper(...)
