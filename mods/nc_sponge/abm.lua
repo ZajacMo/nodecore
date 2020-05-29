@@ -29,6 +29,7 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			if soakup(pos) then
 				nodecore.set_loud(pos, {name = modname .. ":sponge_wet"})
+				return nodecore.fallcheck(pos)
 			end
 		end
 	})

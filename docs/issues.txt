@@ -9,6 +9,72 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Add a code of conduct to project
+
+- Add guidelines about namespacing to contribution guide, i.e. don't
+  use nc_* names as those are reserved for NodeCore itself.
+
+- Add a credits file with more extensive/specific credits, including
+  non-copyrightable contributions to core project...?
+
+- Add a README to the official screenshot world explaining how to use
+
+- Sneak+punch should not trigger pummels.
+
+- Add more admin powers, like a "breaks everything" hand priv
+
+- Player light casting is too distruptive
+	- Makes darkness now way too easy at high gamma
+	- Breaks possibility of "stealth" gameplay
+	- Alternative: place dynamic lights with empty hand right-click,
+	  e.g. in-progress scaling placement.
+
+- Take advantage of the fact that players/inventories use a single shared
+  metatable for player inventory arrangement hooks in nc_player_pickup,
+  like we did for entity:set_properties.
+
+- Deprecation warnings for get_connected_players() at mod load time:
+  (at /config/.minetest/games/nodecore/mods/nc_envsound/init.lua:52)
+  (at /config/.minetest/games/nodecore/mods/nc_lux/radiation.lua:85)
+  (at /config/.minetest/games/nodecore/mods/nc_lux/react.lua:60)
+  (at ...fig/.minetest/games/nodecore/mods/nc_api_active/aism.lua:93)
+  (at ...fig/.minetest/games/nodecore/mods/nc_player_sky/init.lua:52)
+  (at ...inetest/games/nodecore/mods/nc_player_health/radiant.lua:61)
+
+- Deprecation checks:
+	- get_connected_players() at loadtime
+	- old version of set_sky()
+
+- Make leaf decay group-driven for mod applicability.
+
+- Switch some extended attributes to first-class support instead of modifying
+  definition at registration time.
+	- e.g. drop_in_place should hook the engine's dig event instead of
+	  registering an on_dig on the node, so inheritance works.
+
+- Add a nodecore.inherit_node() helper that registers a node as a
+  modified copy of another definition, e.g. for planted eggcorns copying
+  dirt, door panels copying original materials, etc.
+
+- Add an on_falling_check handler to replace check_single_for_falling custom
+  hook in writing, and possibly other places.
+
+- Mapgen should be deterministic if possible; use perlin noise as random
+  seed for placement of all things.
+
+- Hint system
+	- Updates for everything since renewable ores (read changelog)
+		- Agg may have been broken by concrete overhaul
+	- Consider removing redundant or reverse paths, i.e. recycling
+	  or artificial resource recipes.
+		- They complicate maintenance.
+		- They are distracting for players (e.g. Emerald feeling
+		  COMPELLED to chop up a lode crate unnecessarily for the
+		  hint completion)
+		- Hints could be re-expanded by 3rd party mods
+	- Restructure: move API into nc_api_* layer, distribute hints
+	  into mods that their content is for.
+
 - Consider using waypoint HUDs for punchtips instead, now that
   https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
 
@@ -37,9 +103,7 @@ ISSUES: Bugs, Cleanup and Refinements
   equivalent recipes for hint purposes?
 
 - Tote issues:
-	- Tote recycling is possible but has no hint.
-		- Should recipe be changed?  Heat it back into a cube if empty?
-		- Consider updating tote recipe.
+	- Consider updating tote recipe.
 	- Totes should do face-connected search for totables; don't pick up
 	  shelves only touching via a corner.
 

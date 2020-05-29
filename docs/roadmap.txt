@@ -9,6 +9,21 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Import YCTIWY as part of the base game.
+	- Setting to disable entirely
+	- Setting to disable compact mode
+	- Setting for fresh/stale like bones; items become accessible
+	  only after time has passed since last login
+	- Make the priv just to override any protections
+
+- Shelf recipe reform
+	- Add a "shelf frame" node made from wooden frames
+	- Add appropriate material to shelf frame to make shelf
+	- 2-stage construction should make it easier to discover
+	- Shelf frame can gain its own distinct uses
+		- e.g. some things can fall through it but not others.
+		  Items?  Players?  Fluids?
+
 - Should there be pockets of softer stone at depth, like there is gravel?
 
 - Add recipe hints (prearranged nodes) to dungeons as decorations?
@@ -101,11 +116,14 @@ ROADMAP: Large New Development Projects
 	- Visceral
 		- Flammable/toxic gas?
 		- Monsters: stone-lurkers, mimics.
+			- Complex multi-node mimic that eats tools you try to dig it with,
+			  stores them in core node(s) inside somewhere to be recovered.
 		- Lightning, meteor strikes?
 	- Creeping
 		- Cellular automata hazards.
 		- From exploration, delving too deep, leaving things to rot, etc.
 		- Blights, Fungi
+		- Termites, carpenter ants, other wood-eating inflictions?
 
 - Lurk Ore
 	- Moves freely among air-exposed stone while no player is looking.
