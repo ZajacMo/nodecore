@@ -128,7 +128,7 @@ local function lightsrc(stack)
 end
 
 local function player_wield_light(player)
-	local glow = nodecore.scaling_light_level or 0
+	local glow = 0
 	for _, stack in pairs(player:get_inventory():get_list("main")) do
 		local src = lightsrc(stack)
 		if src > glow then glow = src end

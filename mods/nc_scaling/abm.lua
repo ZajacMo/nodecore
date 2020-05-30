@@ -1,15 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
-
-local function closenough(pos, player)
-	local pp = player:get_pos()
-	pp.y = pp.y + 1
-	return vector.distance(pos, pp) <= 5
-end
 
 nodecore.register_limited_abm({
 		label = "Scaling Decay",
@@ -28,7 +22,7 @@ nodecore.register_limited_abm({
 				return minetest.remove_node(pos)
 			end
 			for _, p in pairs(minetest.get_connected_players()) do
-				if closenough(pos, p) then return end
+				if nodecore.scaling_closenough(pos, p) then return end
 			end
 			return minetest.remove_node(pos)
 		end

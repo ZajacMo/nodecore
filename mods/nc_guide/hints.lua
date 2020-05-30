@@ -10,7 +10,6 @@ local addhint = nodecore.addhint
 
 addhint("scale a sheer wall", "scaling dy=0")
 addhint("scale a sheer overhang", "scaling dy=1")
-addhint("traverse a dark floor by feel", "scaling dy=-1")
 
 ------------------------------------------------------------------------
 -- TERRAIN

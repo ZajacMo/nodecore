@@ -54,7 +54,18 @@ hand.on_place = function(stack, player, pointed, ...)
 		if groups.cobbley then timecost = timecost * 0.75 end
 		if groups.falling_node then timecost = timecost * 1.2 end
 	end
-	if now < stats.start + timecost then return end
+	if now < stats.start + timecost then
+		if now >= stats.start + 1 then
+			nodecore.dynamic_light_add(pointed.above,
+				nodecore.scaling_light_level,
+				function()
+					player = minetest.get_player_by_name(pname)
+					return player and nodecore.scaling_closenough(
+						pointed.above, player)
+				end)
+		end
+		return
+	end
 
 	cache[pname] = nil
 
