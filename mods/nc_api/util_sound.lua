@@ -9,8 +9,9 @@ local math_exp, math_random, math_sin, math_sqrt
 
 local oldplay = minetest.sound_play
 function nodecore.sound_play(name, spec, ephem, ...)
-	if spec and type(spec) == "table" and spec.pitch == nil then
-		spec.pitch = math_exp((math_random() - 0.5) * (spec.pitchvary or 0.05))
+	if spec and type(spec) == "table" then
+		spec.pitch = (spec.pitch or 1) * math_exp(
+			(math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
 	if ephem == nil then ephem = not spec.not_ephemeral end
 	return oldplay(name, spec, ephem, ...)
