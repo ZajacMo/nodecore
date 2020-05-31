@@ -23,12 +23,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Add more admin powers, like a "breaks everything" hand priv
 
-- Player light casting is too distruptive
-	- Makes darkness now way too easy at high gamma
-	- Breaks possibility of "stealth" gameplay
-	- Alternative: place dynamic lights with empty hand right-click,
-	  e.g. in-progress scaling placement.
-
 - Take advantage of the fact that players/inventories use a single shared
   metatable for player inventory arrangement hooks in nc_player_pickup,
   like we did for entity:set_properties.
