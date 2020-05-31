@@ -72,31 +72,41 @@ minetest.register_entity(modname .. ":stackent", {
 		end
 	})
 
+local visenv_ent_check = {}
+
+minetest.register_globalstep(function()
+		for _, e in pairs(minetest.luaentities) do
+			if e.is_stack then
+				local pos = e.object:get_pos()
+				if pos then
+					local key = minetest.hash_node_position(vector.round(pos))
+					local max = visenv_ent_check[key]
+					if max then
+						if max < 1 then
+							e.object:remove()
+						else
+							visenv_ent_check[key] = max - 1
+						end
+					end
+				end
+			end
+		end
+		for k, v in pairs(visenv_ent_check) do
+			if v > 0 then
+				local pos = minetest.get_position_from_hash(k)
+				minetest.add_entity(pos, modname .. ":stackent")
+			end
+		end
+		visenv_ent_check = {}
+	end)
+
 function nodecore.visinv_update_ents(pos, node)
+	pos = vector.round(pos)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
 	local max = def.groups and def.groups.visinv and 1 or 0
-
 	if nodecore.stack_get(pos):is_empty() then max = 0 end
-
-	local found = {}
-	for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
-		if v and v.get_luaentity and v:get_luaentity()
-		and v:get_luaentity().is_stack then
-			found[#found + 1] = v
-		end
-	end
-
-	if #found < max then
-		found[#found + 1] = minetest.add_entity(pos, modname .. ":stackent")
-	else
-		while #found > max do
-			found[#found]:remove()
-			found[#found] = nil
-		end
-	end
-
-	return found
+	visenv_ent_check[minetest.hash_node_position(pos)] = max
 end
 
 ------------------------------------------------------------------------

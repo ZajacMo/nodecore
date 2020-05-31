@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+local ItemStack, minetest, nodecore, pairs
+    = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local function family(stack)
@@ -32,9 +32,13 @@ function nodecore.stack_get(pos)
 end
 
 local function update(pos, ...)
-	for _, v in ipairs(nodecore.visinv_update_ents(pos)) do
-		v:get_luaentity():itemcheck()
-	end
+	minetest.after(0, function()
+			nodecore.visinv_update_ents(pos)
+			for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
+				local l = v.get_luaentity and v:get_luaentity()
+				if l and l.is_stack and l.itemcheck then l:itemcheck() end
+			end
+		end)
 	return ...
 end
 
