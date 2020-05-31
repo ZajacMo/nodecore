@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -34,6 +36,8 @@ minetest.register_entity(modname .. ":stackent", {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
+			self.cktime = math_random() + 0.5
+
 			local obj = self.object
 			local pos = obj:get_pos()
 			if not pos then return end
@@ -62,12 +66,11 @@ minetest.register_entity(modname .. ":stackent", {
 			end
 		end,
 		on_activate = function(self)
-			self.cktime = 0.00001
+			return self:itemcheck()
 		end,
 		on_step = function(self, dtime)
 			self.cktime = (self.cktime or 0) - dtime
 			if self.cktime > 0 then return end
-			self.cktime = 1
 			return self:itemcheck()
 		end
 	})
