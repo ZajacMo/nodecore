@@ -9,6 +9,8 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- AFTER 5.2 EOS: change bandolier slot items back to upright_sprite
+
 - Add a code of conduct to project
 
 - Add guidelines about namespacing to contribution guide, i.e. don't
