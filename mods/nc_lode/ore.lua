@@ -31,6 +31,7 @@ local stone = reg("Stone", {
 			.. modname .. "_mask_sign.png^[opacity:96)"},
 		drop_in_place = "nc_terrain:cobble",
 		groups = {smoothstone = 1},
+		silktouch = false,
 		strata = stratstone
 	})
 stratstone[1] = stone
@@ -53,7 +54,8 @@ for i = 1, nodecore.hard_stone_strata do
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
-			}
+			},
+			silktouch = false
 		})
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
