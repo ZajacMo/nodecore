@@ -1,11 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, setmetatable, vector
-    = minetest, nodecore, setmetatable, vector
+local minetest, nodecore, pairs, setmetatable, vector
+    = minetest, nodecore, pairs, setmetatable, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 nodecore.register_cook_abm({nodenames = {modname .. ":stack"}})
+
+for name, def in pairs(minetest.registered_items) do
+	if name ~= "" and def.type ~= "node" and def.node_placement_prediction == nil then
+		minetest.override_item(name, {node_placement_prediction = modname .. ":stack"})
+	end
+end
+nodecore.register_on_register_item(function(_, def)
+		if def.type ~= "node" and def.node_placement_prediction == nil then
+			def.node_placement_prediction = modname .. ":stack"
+		end
+	end)
 
 function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	if not nodecore.interact(placer) then return end
