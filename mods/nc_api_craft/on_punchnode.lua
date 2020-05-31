@@ -43,6 +43,11 @@ end
 
 local pummeling = {}
 
+minetest.register_on_dignode(function(_, _, digger)
+		if not digger:is_player() then return end
+		pummeling[digger:get_player_name()] = nil
+	end)
+
 minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		if not puncher:is_player() then return end
 		local pname = puncher:get_player_name()
