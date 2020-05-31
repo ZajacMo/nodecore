@@ -10,6 +10,8 @@ local modname = minetest.get_current_modname()
 local convert = {}
 local charge = {}
 
+local boost_suff = "_boost"
+
 for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 	for _, temper in pairs({"tempered", "annealed"}) do
 		local orig = minetest.registered_items["nc_lode:tool_" .. shape .. "_" .. temper]
@@ -33,11 +35,26 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 		tc.uses = 0.5
 		def.tool_capabilities = nodecore.toolcaps(tc)
 
+		for k, v in pairs(orig.tool_capabilities.opts) do
+			tc[k] = v + 2
+		end
+		local boost = nodecore.underride({
+				inventory_image = orig.inventory_image .. "^(" .. modname
+				.. "_base.png^[mask:" .. modname
+				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
+				.. ".png^[opacity:120])",
+				tool_capabilities = nodecore.toolcaps(tc)
+			}, def)
+
 		def.name = modname .. ":tool_" .. shape .. "_" .. temper
 		minetest.register_tool(def.name, def)
 
+		boost.name = modname .. ":tool_" .. shape .. "_" .. temper .. boost_suff
+		minetest.register_tool(boost.name, boost)
+
 		convert[orig.name] = def.name
 		charge[def.name] = true
+		charge[boost.name] = true
 	end
 end
 
@@ -77,5 +94,26 @@ nodecore.register_soaking_aism({
 			local used = math_log(wear / newear) * ratefactor
 			stack:set_wear(newear)
 			return data.total - used, stack
+		end
+	})
+
+nodecore.register_aism({
+		label = "Lux Boost",
+		interval = 2,
+		chance = 1,
+		itemnames = {"group:lux_tool"},
+		action = function(stack, data)
+			local name = stack:get_name()
+			local boosted = name:sub(-#boost_suff) == boost_suff
+			local boost = #nodecore.find_nodes_around(data.pos, "group:lux_fluid", 2) > 0
+			if boost == boosted then return end
+
+			if boost and not boosted then
+				name = name .. boost_suff
+			else
+				name = name:sub(1, -1 - #boost_suff)
+			end
+			stack:set_name(name)
+			return stack
 		end
 	})
