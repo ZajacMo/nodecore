@@ -13,7 +13,9 @@ nodecore.register_on_register_item(function(_, def)
 		local dip = def.drop_in_place
 		if dip then
 			if type(dip) ~= "table" then dip = {name = dip} end
-			def.drop = def.drop or ""
+			def.drop_non_silktouch = def.drop_non_silktouch
+			or def.drop ~= "" and def.drop
+			def.drop = ""
 			def.node_dig_prediction = def.node_dig_prediction or dip.name
 			local st = def.silktouch
 			if st == nil then
@@ -29,10 +31,16 @@ nodecore.register_on_register_item(function(_, def)
 					stack = digger:get_inventory():add_item("main",
 						stack:to_string())
 					if stack:is_empty() then return end
-					do return nodecore.item_eject(pos, stack) end
+					return nodecore.item_eject(pos, stack)
 				end
 				dip.param2 = node.param2
 				minetest.set_node(pos, dip)
+				if def.drop_non_silktouch then
+					local stack = digger:get_inventory():add_item("main",
+						def.drop_non_silktouch)
+					if stack:is_empty() then return end
+					nodecore.item_eject(pos, stack)
+				end
 			end
 		end
 	end)
