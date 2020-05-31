@@ -44,6 +44,7 @@ local basedef = {
 		silica_prism = 1,
 		scaling_time = 125
 	},
+	silktouch = false,
 	drop = modname .. ":prism",
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,

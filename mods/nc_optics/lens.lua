@@ -46,6 +46,7 @@ local basedef = {
 		cracky = 3,
 		scaling_time = 125
 	},
+	silktouch = false,
 	drop = modname .. ":lens",
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,
