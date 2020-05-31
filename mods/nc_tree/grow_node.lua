@@ -23,7 +23,7 @@ minetest.register_node(modname .. ":eggcorn", {
 			flammable = 3,
 			attached_node = 1,
 		},
-		node_placement_prediction = "",
+		node_placement_prediction = "nc_items:stack",
 		place_as_item = true,
 		sounds = nodecore.sounds("nc_tree_corny"),
 		stack_rightclick = function(pos, _, whom, stack)
