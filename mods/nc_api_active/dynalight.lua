@@ -72,6 +72,7 @@ for level = 1, nodecore.light_sun - 1 do
 	local def = {
 		light_source = level,
 		on_timer = check_light,
+		air_equivalent = true,
 		groups = {dynamic_light = level}
 	}
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
