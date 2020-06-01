@@ -24,7 +24,8 @@ end
 minetest.register_item(":", {
 		["type"] = "none",
 		inventory_image = "[combine:1x1",
-		tool_capabilities = toolcaps
+		tool_capabilities = toolcaps,
+		node_placement_prediction = ""
 	})
 
 local scale = 2
@@ -35,6 +36,7 @@ minetest.register_node(modname .. ":hand", {
 		wield_scale = {x = scale, y = scale, z = scale},
 		virtual_item = true,
 		stack_max = 1,
+		node_placement_prediction = "",
 		on_punch = minetest.remove_node
 	})
 
