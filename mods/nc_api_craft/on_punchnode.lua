@@ -44,7 +44,7 @@ end
 local pummeling = {}
 
 minetest.register_on_dignode(function(_, _, digger)
-		if not digger:is_player() then return end
+		if not (digger and digger:is_player()) then return end
 		pummeling[digger:get_player_name()] = nil
 	end)
 
