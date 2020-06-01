@@ -17,6 +17,8 @@ local function pezdispense(pos)
 	return pezdispense(above)
 end
 
+nodecore.stack_node_sounds_except = {}
+
 minetest.register_node(modname .. ":stack", {
 		drawtype = "airlike",
 		walkable = true,
@@ -50,8 +52,11 @@ minetest.register_node(modname .. ":stack", {
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_construct = function(pos, ...)
+			local key = minetest.hash_node_position(pos)
 			minetest.after(0, function()
-					return nodecore.stack_sounds(pos, "place")
+					local except = nodecore.stack_node_sounds_except[key]
+					nodecore.stack_node_sounds_except[key] = nil
+					return nodecore.stack_sounds(pos, "place", nil, except)
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
 		end,

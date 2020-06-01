@@ -37,6 +37,7 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	if not itemstack:is_empty() then
 		local above = minetest.get_pointed_thing_position(pointed_thing, true)
 		if above and nodecore.buildable_to(above) then
+			nodecore.stack_node_sounds_except[minetest.hash_node_position(above)] = placer:get_player_name()
 			nodecore.place_stack(above, itemstack:take_item(), placer, pointed_thing)
 		end
 	end

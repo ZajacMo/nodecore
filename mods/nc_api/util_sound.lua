@@ -17,13 +17,30 @@ function nodecore.sound_play(name, spec, ephem, ...)
 	return oldplay(name, spec, ephem, ...)
 end
 
+function nodecore.sound_play_except(name, def, pname)
+	if not pname then
+		return nodecore.sound_play(name, def)
+	end
+	if type(pname) ~= "string" then
+		pname = pname:get_player_name()
+	end
+	for _, p in ipairs(minetest.get_connected_players()) do
+		local pn = p:get_player_name()
+		if pn ~= pname and ((not def.pos)
+			or (vector.distance(p:get_pos(), def.pos) <= 32)) then
+			def.to_player = pn
+			nodecore.sound_play(name, def)
+		end
+	end
+end
+
 function nodecore.windiness(y)
 	if y < 0 then return 0 end
 	if y > 512 then y = 512 end
 	return math_sqrt(y) * (1 + 0.5 * math_sin(nodecore.gametime / 5))
 end
 
-function nodecore.stack_sounds(pos, kind, stack)
+function nodecore.stack_sounds(pos, kind, stack, except)
 	stack = stack or nodecore.stack_get(pos)
 	stack = ItemStack(stack)
 	if stack:is_empty() then return end
@@ -32,6 +49,7 @@ function nodecore.stack_sounds(pos, kind, stack)
 	local t = {}
 	for k, v in pairs(def.sounds[kind]) do t[k] = v end
 	t.pos = pos
+	if except then return nodecore.sound_play_except(t.name, t, except) end
 	return nodecore.sound_play(t.name, t)
 end
 function nodecore.stack_sounds_delay(...)
@@ -58,23 +76,6 @@ function nodecore.sounds(name, gains)
 		}
 	end
 	return t
-end
-
-function nodecore.sound_play_except(name, def, pname)
-	if not pname then
-		return nodecore.sound_play(name, def)
-	end
-	if type(pname) ~= "string" then
-		pname = pname:get_player_name()
-	end
-	for _, p in ipairs(minetest.get_connected_players()) do
-		local pn = p:get_player_name()
-		if pn ~= pname and ((not def.pos)
-			or (vector.distance(p:get_pos(), def.pos) <= 32)) then
-			def.to_player = pn
-			nodecore.sound_play(name, def)
-		end
-	end
 end
 
 function nodecore.node_sound(pos, kind, opts)
