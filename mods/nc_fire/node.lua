@@ -108,7 +108,7 @@ for num = 1, nodecore.fire_max do
 				falling_node = 1,
 				stack_as_node = 1,
 				damage_touch = 1,
-				damage_radiant = 1
+				damage_radiant = 3
 			},
 			drop = "",
 			diggable = false,
