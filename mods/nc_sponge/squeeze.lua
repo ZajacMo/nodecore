@@ -54,6 +54,7 @@ nodecore.register_craft({
 	})
 
 local function rmwater(pos)
+	nodecore.node_sound(pos, "dig")
 	return minetest.set_node(pos, {name = waterflow, param2 = 7})
 end
 
@@ -67,10 +68,10 @@ nodecore.register_limited_abm({
 				data = minetest.get_meta(pos):get_string(modname)
 				data = data and data ~= "" and minetest.deserialize(data)
 			end
-			if not data then minetest.log("1") return rmwater(pos) end
+			if not data then return rmwater(pos) end
 			local snode = minetest.get_node(data.srcpos)
 			if snode.name == "ignore" then return end
-			if snode.name ~= spongewet then minetest.log("3") return rmwater(pos) end
-			if nodecore.gametime > data.expire then minetest.log("2") return rmwater(pos) end
+			if snode.name ~= spongewet then return rmwater(pos) end
+			if nodecore.gametime > data.expire then return rmwater(pos) end
 		end
 	})
