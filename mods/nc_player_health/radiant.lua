@@ -65,7 +65,7 @@ local function applyheat()
 			local img = ""
 			if ow and ow > 0.1 then
 				nodecore.addphealth(p, -ow, "radiant")
-				ow = math_sqrt(ow) * 255
+				ow = math_sqrt(ow - 0.1) * 255
 				if ow > 255 then ow = 255 end
 				img = "nc_player_health_radiant.png^[opacity:" .. math_floor(ow)
 			end
