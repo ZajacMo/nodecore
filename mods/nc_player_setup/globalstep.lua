@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_pi, math_sin
     = math.pi, math.sin
 -- LUALOCALS > ---------------------------------------------------------
@@ -70,26 +70,18 @@ local autorun_walkspeed = 1.25 * nodecore.rate_adjustment("autorun", "walkspeed"
 local autorun_walktime = 2 * nodecore.rate_adjustment("waautorunlk", "walktime")
 local autorun_acceltime = 4 * nodecore.rate_adjustment("autorun", "acceltime")
 local autorun_ratio = 2 * nodecore.rate_adjustment("autorun", "ratio")
-local function walkspeed(player, cached, set, dtime)
+local function walkspeed(player, cached, set)
 	local ctl = player:get_player_control()
 	local walking = ctl.up and not ctl.down
+	if (not walking) and ctl.jump and (not ctl.sneak) then
+		local def = minetest.registered_nodes[minetest.get_node(player:get_pos()).name]
+		walking = def and (def.climbable or def.liquidtype ~= "none")
+	end
 	if walking and ctl.sneak then
 		local pos = player:get_pos()
 		if not solid(pos) then
 			pos.y = pos.y - 1
 			walking = not solid(pos)
-		end
-	end
-	if walking then
-		local pos = player:get_pos()
-		pos.y = 0
-		local cpos = cached.walkpos
-		if cpos and vector.equals(pos, cpos) then
-			cached.walkstuck = (cached.walkstuck or 0) + dtime
-			if cached.walkstuck >= 2 then walking = nil end
-		else
-			cached.walkstuck = 0
-			cached.walkpos = pos
 		end
 	end
 	local speed = autorun_walkspeed
@@ -121,7 +113,7 @@ local function nodmgbreath(player)
 end
 
 local cache = {}
-local function playerstep(player, dtime)
+local function playerstep(player)
 	local pname = player:get_player_name()
 	local cached = cache[pname]
 	if not cached then
@@ -134,15 +126,15 @@ local function playerstep(player, dtime)
 	privdropinv(player)
 	setfootsteps(player, cached, set)
 	fallspeed(player, cached, set)
-	walkspeed(player, cached, set, dtime)
+	walkspeed(player, cached, set)
 	nodmgbreath(player)
 
 	if set.props then player:set_properties(set.props) end
 	if set.physics then player:set_physics_override(set.physics) end
 end
-minetest.register_globalstep(function(dtime)
+minetest.register_globalstep(function()
 		for _, player in pairs(minetest.get_connected_players()) do
-			playerstep(player, dtime)
+			playerstep(player)
 		end
 	end)
 minetest.register_on_leaveplayer(function(player)
