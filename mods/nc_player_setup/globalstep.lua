@@ -121,27 +121,33 @@ local function nodmgbreath(player)
 end
 
 local cache = {}
+local function playerstep(player, dtime)
+	local pname = player:get_player_name()
+	local cached = cache[pname]
+	if not cached then
+		cached = {}
+		cache[pname] = cached
+	end
+	local set = {}
+
+	focustime(player, cached, set)
+	privdropinv(player)
+	setfootsteps(player, cached, set)
+	fallspeed(player, cached, set)
+	walkspeed(player, cached, set, dtime)
+	nodmgbreath(player)
+
+	if set.props then player:set_properties(set.props) end
+	if set.physics then player:set_physics_override(set.physics) end
+end
 minetest.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
-			local pname = player:get_player_name()
-			local cached = cache[pname]
-			if not cached then
-				cached = {}
-				cache[pname] = cached
-			end
-			local set = {}
-
-			focustime(player, cached, set)
-			privdropinv(player)
-			setfootsteps(player, cached, set)
-			fallspeed(player, cached, set)
-			walkspeed(player, cached, set, dtime)
-			nodmgbreath(player)
-
-			if set.props then player:set_properties(set.props) end
-			if set.physics then player:set_physics_override(set.physics) end
+			playerstep(player, dtime)
 		end
 	end)
 minetest.register_on_leaveplayer(function(player)
 		cache[player:get_player_name()] = nil
+	end)
+minetest.register_on_joinplayer(function(player)
+		playerstep(player, 0)
 	end)

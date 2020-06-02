@@ -12,14 +12,9 @@ minetest.register_on_joinplayer(function(player)
 		inv:set_size("craftpreview", 0)
 		inv:set_size("craftresult", 0)
 
-		player:set_physics_override({speed = 1.25})
-
 		player:set_properties({
 				pointable = false,
-				makes_footstep_sound = true,
-
-				-- Allow slight zoom for screenshots
-				zoom_fov = 60
+				stepheight = 1.05
 			})
 	end)
 
