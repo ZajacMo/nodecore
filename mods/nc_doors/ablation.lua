@@ -6,7 +6,6 @@ local minetest, nodecore, vector
 nodecore.register_limited_abm({
 		label = "Door Laser Ablation",
 		interval = 2,
-		interval_jitter = 0,
 		chance = 1,
 		nodenames = {"nc_optics:lens_on"},
 		action = function(pos, node)

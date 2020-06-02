@@ -5,6 +5,13 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+local pumpbatch = {}
+
+minetest.register_globalstep(function()
+		for _, v in pairs(pumpbatch) do v() end
+		pumpbatch = {}
+	end)
+
 local genlabels = 0
 
 function nodecore.register_limited_abm(def)
@@ -14,7 +21,6 @@ function nodecore.register_limited_abm(def)
 			limited_qty = 0,
 			limited_max = 1000,
 			limited_interval = 1,
-			limited_jitter = 0.05,
 			limited_action = def.action or function() end,
 			catch_up = false
 		})
@@ -25,30 +31,7 @@ function nodecore.register_limited_abm(def)
 	end
 	def.limited_alert = def.limited_alert or def.limited_max
 
-	def.action = function(pos, ...)
-		local hash = minetest.hash_node_position(pos)
-		local seen = def.limited_seen
-		if seen[hash] then return end
-		seen[hash] = true
-
-		local q = def.limited_queue
-		local max = def.limited_max
-		local nqty = def.limited_qty + 1
-		if #q < max then
-			q[#q + 1] = {pos, ...}
-		else
-			local r = math_random(1, nqty)
-			if r <= #q then q[r] = {pos, ...} end
-		end
-		def.limited_qty = nqty
-	end
-
 	local function pumpq()
-		minetest.after(def.limited_interval
-			- def.limited_jitter
-			+ def.limited_jitter * math_random() * 2,
-			pumpq)
-
 		if def.limited_qty >= def.limited_alert then
 			minetest.log("limited abm \"" .. def.label .. "\" filled ("
 				.. def.limited_qty .. "/" .. def.limited_max .. ")")
@@ -68,7 +51,29 @@ function nodecore.register_limited_abm(def)
 		def.limited_seen = {}
 		def.limited_qty = 0
 	end
-	pumpq()
+	local pumpkey = {}
+
+	def.action = function(pos, ...)
+		local hash = minetest.hash_node_position(pos)
+		local seen = def.limited_seen
+		if seen[hash] then return end
+		seen[hash] = true
+
+		local q = def.limited_queue
+		local max = def.limited_max
+		local nqty = def.limited_qty + 1
+		if #q < max then
+			q[#q + 1] = {pos, ...}
+			pumpbatch[pumpkey] = pumpq
+		else
+			local r = math_random(1, nqty)
+			if r <= #q then
+				q[r] = {pos, ...}
+				pumpbatch[pumpkey] = pumpq
+			end
+		end
+		def.limited_qty = nqty
+	end
 
 	return minetest.register_abm(def)
 end
