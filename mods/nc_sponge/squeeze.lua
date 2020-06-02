@@ -13,13 +13,20 @@ local spongedirs = {
 }
 
 local watersrc = "nc_terrain:water_gray_source"
+local waterflow = "nc_terrain:water_gray_flowing"
 local spongewet = modname .. ":sponge_wet"
+
+local spongecache = {}
 
 local function mkwater(pos, srcpos, new)
 	if new then nodecore.set_loud(pos, {name = watersrc}) end
 	local meta = minetest.get_meta(pos)
-	meta:set_string("spongepos", minetest.pos_to_string(srcpos))
-	meta:set_float("expire", nodecore.gametime + 10)
+	local data = {
+		srcpos = srcpos,
+		expire = nodecore.gametime + 10
+	}
+	meta:set_string(modname, minetest.serialize(data))
+	spongecache[minetest.hash_node_position(pos)] = data
 end
 
 nodecore.register_craft({
@@ -36,7 +43,8 @@ nodecore.register_craft({
 			for _, d in pairs(spongedirs) do
 				local p = vector.add(pos, d)
 				local nn = minetest.get_node(p).name
-				if nn == "air" or nn == watersrc then
+				if nn == "air" or nn == watersrc
+				or nn == waterflow then
 					mkwater(p, pos, nn ~= watersrc)
 					found = true
 				end
@@ -46,7 +54,7 @@ nodecore.register_craft({
 	})
 
 local function rmwater(pos)
-	return minetest.set_node(pos, {name = "nc_terrain:water_gray_flowing", param2 = 7})
+	return minetest.set_node(pos, {name = waterflow, param2 = 7})
 end
 
 nodecore.register_limited_abm({
@@ -54,14 +62,15 @@ nodecore.register_limited_abm({
 		chance = 1,
 		nodenames = {watersrc},
 		action = function(pos)
-			local meta = minetest.get_meta(pos)
-			local srcpos = meta:get_string("spongepos") or ""
-			if srcpos == "" then return end
-			srcpos = minetest.string_to_pos(srcpos)
-			local snode = minetest.get_node(srcpos)
+			local data = spongecache[minetest.hash_node_position(pos)]
+			if not data then
+				data = minetest.get_meta(pos):get_string(modname)
+				data = data and data ~= "" and minetest.deserialize(data)
+			end
+			if not data then minetest.log("1") return rmwater(pos) end
+			local snode = minetest.get_node(data.srcpos)
 			if snode.name == "ignore" then return end
-			if snode.name ~= spongewet then return rmwater(pos) end
-			local expire = meta:get_float("expire") or 0
-			if nodecore.gametime > expire then return rmwater(pos) end
+			if snode.name ~= spongewet then minetest.log("3") return rmwater(pos) end
+			if nodecore.gametime > data.expire then minetest.log("2") return rmwater(pos) end
 		end
 	})
