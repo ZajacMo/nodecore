@@ -106,6 +106,15 @@ local function walkspeed(player, cached, set)
 	end
 end
 
+local function stepheight(player, cached, set)
+	local step = player:get_player_control().sneak and 0.001 or 1.05
+	if step ~= cached.step then
+		set.props = set.props or {}
+		set.props.stepheight = step
+		cached.step = step
+	end
+end
+
 local function nodmgbreath(player)
 	if (not nodecore.player_can_take_damage(player)) and player:get_breath() < 11 then
 		player:set_breath(11)
@@ -127,6 +136,7 @@ local function playerstep(player)
 	setfootsteps(player, cached, set)
 	fallspeed(player, cached, set)
 	walkspeed(player, cached, set)
+	stepheight(player, cached, set)
 	nodmgbreath(player)
 
 	if set.props then player:set_properties(set.props) end
