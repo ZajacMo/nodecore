@@ -31,7 +31,7 @@ nodecore.register_on_register_item(function(_, def)
 		if level <= 0 then return end
 		for _, v in pairs(snd) do
 			local a = v.name and soundadj[v.name] or 0
-			v.pitch = (v.pitch or 1) * (1 + 0.1 * level + a)
+			v.pitch = (v.pitch or 1) * (1 + 0.1 * (level + a))
 		end
 		snd.no_level_pitch = true
 	end)
