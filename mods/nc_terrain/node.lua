@@ -51,6 +51,14 @@ local function regliquid(def)
 	regterrain(t)
 end
 
+--[[
+STONE GROUPS:
+rock: all rocky/stony things, including stone, cobble, brick, etc.
+stone: variants of smooth stone, including ones with inclusions (ore).
+hard_stone: deeper strata that trigger the hint.
+smoothstone: smooth stone that can be chiseled to bricks.
+--]]
+
 local strata = {}
 regterrain({
 		description = "Stone",

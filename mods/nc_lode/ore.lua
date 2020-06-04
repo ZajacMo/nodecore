@@ -30,7 +30,10 @@ local stone = reg("Stone", {
 		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
 			.. modname .. "_mask_sign.png^[opacity:96)"},
 		drop_in_place = "nc_terrain:cobble",
-		groups = {smoothstone = 1},
+		groups = {
+			stone = 1,
+			smoothstone = 1
+		},
 		silktouch = false,
 		strata = stratstone
 	})
@@ -39,6 +42,7 @@ local ore = reg("Ore", {
 		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
 			.. modname .. "_mask_ore.png)"},
 		drop_in_place = modname .. ":cobble",
+		groups = {stone = 1},
 		strata = stratore
 	})
 stratore[1] = ore
@@ -51,6 +55,7 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			groups = {
+				stone = i,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
@@ -63,6 +68,7 @@ for i = 1, nodecore.hard_stone_strata do
 				.. modname .. "_mask_ore.png)"},
 			drop_in_place = modname .. ":cobble",
 			groups = {
+				stone = i,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
@@ -73,6 +79,7 @@ end
 reg("Cobble", {
 		tiles = {modname .. "_ore.png^nc_terrain_cobble.png"},
 		groups = {
+			rock = 1,
 			lode_cobble = 1,
 			cracky = 2,
 			lodey = 1,

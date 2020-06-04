@@ -17,6 +17,7 @@ for i = 1, 8 do
 			},
 			stackfamily = modname .. ":cobble",
 			groups = {
+				rock = 1,
 				lux_cobble = 1,
 				lux_emit = i,
 				cracky = 1,
@@ -48,6 +49,8 @@ minetest.register_node(modname .. ":stone", {
 		tiles = {"nc_terrain_stone.png"},
 		strata = strata,
 		groups = {
+			rock = 1,
+			stone = 1,
 			lux_emit = 1,
 			cracky = 2
 		},
@@ -64,8 +67,10 @@ for i = 1, nodecore.hard_stone_strata do
 			description = "Stone",
 			tiles = {nodecore.hard_stone_tile(i)},
 			groups = {
+				rock = i,
 				lux_emit = 1,
 				cracky = i + 2,
+				stone = i,
 				hard_stone = i
 			},
 			light_source = 1,
