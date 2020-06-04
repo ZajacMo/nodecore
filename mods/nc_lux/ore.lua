@@ -70,7 +70,7 @@ for i = 1, nodecore.hard_stone_strata do
 				rock = i,
 				lux_emit = 1,
 				cracky = i + 2,
-				stone = i,
+				stone = i + 1,
 				hard_stone = i
 			},
 			light_source = 1,

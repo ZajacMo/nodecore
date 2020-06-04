@@ -55,7 +55,7 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			groups = {
-				stone = i,
+				stone = i + 1,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
@@ -68,7 +68,7 @@ for i = 1, nodecore.hard_stone_strata do
 				.. modname .. "_mask_ore.png)"},
 			drop_in_place = modname .. ":cobble",
 			groups = {
-				stone = i,
+				stone = i + 1,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
