@@ -66,8 +66,8 @@ ROADMAP: Large New Development Projects
 	- Apply frame, make framed optics?
 	- Hammer into place with certain tool?
 
-- Make stone bricks or other building materials?
-	- Pummel stone w/ lux+ pick?
+- Make stone brick more easily crafted by chiseling with a high-tier
+  pick, e.g. tier 7+
 
 - Door Automation
 	- Should have press recipes for stickcraft, i.e. staves,
@@ -109,7 +109,6 @@ ROADMAP: Large New Development Projects
 		- Water sources.
 	- Sustainable but not renewable
 	- Not sustainable
-		- Hard stone: harden using nearby heat sources?
 		- Lava sources.
 
 - Threats
