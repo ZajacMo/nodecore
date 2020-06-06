@@ -22,7 +22,8 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 				.. "_base.png^[mask:" .. modname
 				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
 				.. ".png^[opacity:80])",
-				tool_wears_to = orig.name
+				tool_wears_to = orig.name,
+				glow = 1
 			}, orig)
 		def.after_use = nil
 
@@ -43,8 +44,12 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 				.. "_base.png^[mask:" .. modname
 				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
 				.. ".png^[opacity:120])",
-				tool_capabilities = nodecore.toolcaps(tc)
+				tool_capabilities = nodecore.toolcaps(tc),
+				glow = 2,
+				light_source = 1
 			}, def)
+
+		boost.groups = nodecore.underride({lux_tool = 2}, def.groups)
 
 		def.name = modname .. ":tool_" .. shape .. "_" .. temper
 		minetest.register_tool(def.name, def)

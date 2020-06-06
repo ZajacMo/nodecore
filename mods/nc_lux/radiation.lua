@@ -75,7 +75,7 @@ nodecore.register_aism({
 			local def = minetest.registered_items[stack:get_name()]
 			local emit = def and def.groups and def.groups.lux_emit
 			or def and def.groups and def.groups.lux_tool
-			and def.groups.lux_tool * 0.1
+			and def.groups.lux_tool * 0.25
 			if emit then return rademit(data.pos, emit) end
 		end
 	})
