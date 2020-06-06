@@ -27,12 +27,14 @@ pumdef = {
 				maxpos = {x = pos.x + 0.5, y = pos.y + 0.5, z = pos.z + 0.5},
 				minvel = {x = -2, y = -2, z = -2},
 				maxvel = {x = 2, y = 2, z = 2},
-				minacc = {x = 0, y = -4, z = 0},
-				maxacc = {x = 0, y = -4, z = 0},
+				minacc = {x = 0, y = -8, z = 0},
+				maxacc = {x = 0, y = -8, z = 0},
 				minexptime = 0.25,
 				maxexptime = 0.5,
+				collisiondetection = true,
+				collision_removal = true,
 				minsize = 1,
-				maxsize = 8
+				maxsize = 6
 			})
 	end,
 	sounds = nodecore.sounds("nc_optics_glassy", nil, 0.8),
