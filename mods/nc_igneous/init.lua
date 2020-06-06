@@ -5,10 +5,4 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('api')
-include('node')
-include('biome')
-include('strata')
-include('ore')
-include('abm')
-include('ambiance')
+include('amalgam')

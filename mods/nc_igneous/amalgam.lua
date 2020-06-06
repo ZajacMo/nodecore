@@ -24,10 +24,11 @@ local function tile(suff)
 end
 
 local amalgam = modname .. ":amalgam"
-local lavasrc = modname .. ":lava_source"
+local lavasrc = "nc_terrain:lava_source"
 
 minetest.register_node(amalgam, {
 		description = "Amalgamation",
+		old_names = {"nc_terrain:amalgam"},
 		tiles = {tile("")},
 		paramtype = "light",
 		light_source = 3,
@@ -57,7 +58,7 @@ nodecore.register_limited_abm({
 		label = "Quench Lava to Amalgam",
 		interval = 1,
 		chance = 2,
-		nodenames = {modname .. ":lava_source"},
+		nodenames = {lavasrc},
 		neighbors = {"group:coolant"},
 		action = function(pos)
 			return nodecore.set_loud(pos, {name = amalgam})

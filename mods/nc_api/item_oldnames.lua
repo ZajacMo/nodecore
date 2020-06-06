@@ -10,5 +10,6 @@ nodecore.register_on_register_item(function(name, def)
 					minetest.register_alias(v, name)
 				end
 			end
+			def.oldnames = nil
 		end
 	end)
