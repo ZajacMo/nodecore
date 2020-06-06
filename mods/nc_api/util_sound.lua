@@ -67,12 +67,13 @@ local gains_base = {
 	place_failed = 0.2,
 	fall = 0.1
 }
-function nodecore.sounds(name, gains)
+function nodecore.sounds(name, gains, pitch)
 	local t = {}
 	for k, v in pairs(gains_base) do
 		t[k] = {
 			name = name,
-			gain = (gains and gains[k] or 1) * v
+			gain = (gains and gains[k] or 1) * v,
+			pitch = pitch
 		}
 	end
 	return t
