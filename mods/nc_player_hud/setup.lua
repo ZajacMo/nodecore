@@ -5,6 +5,8 @@ local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
+local breath_max = 20
+
 local function sethudflags(player, pname)
 	local interact = nodecore.interact(pname or player)
 	player:hud_set_flags({
@@ -15,6 +17,7 @@ local function sethudflags(player, pname)
 			minimap = false,
 			minimap_radar = false
 		})
+	player:set_properties({breath_max = breath_max})
 end
 
 local function grantrevoke(pname)
@@ -40,7 +43,7 @@ local breath_mask = "^[mask:nc_player_hud_breath_mask.png\\^[resize\\:" .. w .. 
 local function breath_hud(player)
 	local br = player:get_breath()
 	local img = ""
-	local o = 255 * (1 - br / 11)
+	local o = 255 * (1 - br / (breath_max + 1))
 	if o > 0 then
 		img = breath_txr .. "^[colorize:#000000:" .. math_floor(255 - o)
 		.. breath_mask .. "^[opacity:" .. math_floor(o)
