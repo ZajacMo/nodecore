@@ -59,7 +59,7 @@ minetest.register_node(modname .. ":glass_float", {
 			modname .. "_glass_edges.png",
 			"[combine:16x16"
 		},
-		propagates_sunlight = true,
+		sunlight_propagates = true,
 		paramtype = "light",
 		groups = {
 			silica = 1,
