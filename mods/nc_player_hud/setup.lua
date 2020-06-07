@@ -39,10 +39,8 @@ local breath_mask = "^[mask:nc_player_hud_breath_mask.png\\^[resize\\:" .. w .. 
 
 local function breath_hud(player)
 	local br = player:get_breath()
-	local brmax = player:get_properties().breath_max
-	brmax = brmax ~= 0 and brmax or 10
 	local img = ""
-	local o = 255 * (1 - br / (brmax + 1))
+	local o = 255 * (1 - br / 11)
 	if o > 0 then
 		img = breath_txr .. "^[colorize:#000000:" .. math_floor(255 - o)
 		.. breath_mask .. "^[opacity:" .. math_floor(o)
