@@ -33,7 +33,7 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1
 		end
-		tc.uses = 0.5
+		tc.uses = 0.25
 		def.tool_capabilities = nodecore.toolcaps(tc)
 
 		for k, v in pairs(orig.tool_capabilities.opts) do
