@@ -52,7 +52,7 @@ end
 tryhook()
 
 function nodecore.ent_prop_set(obj, def)
-	minetest.log("WARNING: nodecore.ent_prop_set() is now deprecated;"
+	minetest.log("warning", "WARNING: nodecore.ent_prop_set() is now deprecated;"
 		.. " just use object:set_properties(), which has been patched")
 	return obj:set_properties(def)
 end

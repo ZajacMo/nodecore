@@ -36,7 +36,7 @@ minetest.register_node(modname .. ":eggcorn", {
 			if nodecore.player_stat_add then
 				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
 			end
-			minetest.log((whom and whom:get_player_name() or "unknown")
+			minetest.log("action", (whom and whom:get_player_name() or "unknown")
 				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
 
 			stack:set_count(stack:get_count() - 1)

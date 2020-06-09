@@ -10,7 +10,7 @@ local pumpbatch = {}
 minetest.register_globalstep(function()
 		for def in pairs(pumpbatch) do
 			if def.limited_qty >= def.limited_alert then
-				minetest.log("limited abm \"" .. def.label .. "\" filled ("
+				minetest.log("warning", "limited abm \"" .. def.label .. "\" filled ("
 					.. def.limited_qty .. "/" .. def.limited_max .. ")")
 			end
 

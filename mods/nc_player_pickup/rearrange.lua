@@ -50,7 +50,7 @@ local function handlepickups(player)
 					v = nodecore.stack_merge(snap[j], v)
 				end
 				if not v:is_empty() then
-					minetest.log("failed to reinsert item "
+					minetest.log("error", "failed to reinsert item "
 						.. v:get_name() .. " " .. v:get_count()
 						.. " for " .. pname)
 					dirty = nil
@@ -67,7 +67,7 @@ local function handlepickups(player)
 		end
 
 		if dirty then
-			minetest.log("inventory rearranged for " .. pname)
+			minetest.log("info", "inventory rearranged for " .. pname)
 			inv:set_list("main", snap)
 		end
 	end

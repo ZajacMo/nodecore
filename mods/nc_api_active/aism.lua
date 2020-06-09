@@ -49,7 +49,7 @@ minetest.after(0, function()
 			defs = defs + n
 			if n > peak then peak = n end
 		end
-		minetest.log(string_format("register_aism: %d keys, %d defs, %d peak", keys, defs, peak))
+		minetest.log("info", string_format("register_aism: %d keys, %d defs, %d peak", keys, defs, peak))
 	end)
 
 local function checkrun(def, stack, data)
