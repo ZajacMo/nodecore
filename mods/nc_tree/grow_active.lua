@@ -74,7 +74,7 @@ local function leafbud(pos, dx, dy, dz, param2, surplus, rate)
 	return nodecore.soaking_abm_push(npos, "leafgrow", surplus)
 end
 
-local trunkcost = 500
+local trunkcost = 1000
 nodecore.register_soaking_abm({
 		label = "Tree Trunk Growth",
 		fieldname = "treegrow",
