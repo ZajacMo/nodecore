@@ -20,7 +20,7 @@ function nodecore.digparticles(nodedef, partdef)
 	elseif nodedef.inventory_image then
 		img[1] = nodedef.inventory_image
 	end
-	if #img < 1 then return nodecore.log("error", "no pummel tile images found!") end
+	if #img < 1 then return nodecore.log("warning", "no pummel tile images found!") end
 	img = nodecore.pickrand(img)
 	if img.name then img = img.name end
 

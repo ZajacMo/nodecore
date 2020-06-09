@@ -12,7 +12,7 @@ minetest.after(0, function()
 		for k in pairs(missing) do t[#t + 1] = k end
 		if #t < 1 then return end
 		table_sort(t)
-		nodecore.log("warning", "WARNING: missing txp override images:\n\t"
+		nodecore.log("warning", "missing txp override images:\n\t"
 			.. table_concat(t, "\n\t"))
 	end)
 

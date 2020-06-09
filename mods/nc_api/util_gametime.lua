@@ -14,7 +14,7 @@ minetest.register_globalstep(function(dtime)
 		end
 		nct = nct + dtime
 		if math_abs(nct - mtt) >= 2 then
-			nodecore.log("info", "nodecore.gametime: excess drift; nct="
+			nodecore.log("warning", "nodecore.gametime: excess drift; nct="
 				.. nct .. ", mtt=" .. mtt)
 			nct = mtt
 		end

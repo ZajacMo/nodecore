@@ -49,11 +49,9 @@ minetest.node_dig = function(pos, node, user, ...)
 	return old_node_dig(pos, node, user, ...)
 end
 
-local function matching(pa, na, pb, nb)
+local function matching(_, na, pb, nb)
 	if stackonly[na.name] then
 		if not stackonly[nb.name] then return end
-		nodecore.log("info", nodecore.stack_get(pa):get_name() .. " ?= "
-			.. nodecore.stack_get(pb):get_name())
 		return (laststack and laststack:get_name()) == nodecore.stack_get(pb):get_name()
 	end
 	return na.name == nb.name
