@@ -33,7 +33,7 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1
 		end
-		tc.uses = 0.25
+		tc.uses = 0.125
 		def.tool_capabilities = nodecore.toolcaps(tc)
 
 		for k, v in pairs(orig.tool_capabilities.opts) do
@@ -71,7 +71,7 @@ for k in pairs(charge) do
 	end
 end
 
-local ratefactor = 40000
+local ratefactor = 20000
 nodecore.register_soaking_aism({
 		label = "Lux Infusion",
 		fieldname = "infuse",
@@ -96,6 +96,7 @@ nodecore.register_soaking_aism({
 			local wear = stack:get_wear()
 			local newear = math_ceil(wear * math_exp(-data.total / ratefactor))
 			if newear == wear then return data.total, stack end
+			if newear < 1 then return 1 end
 			local used = math_log(wear / newear) * ratefactor
 			stack:set_wear(newear)
 			return data.total - used, stack
