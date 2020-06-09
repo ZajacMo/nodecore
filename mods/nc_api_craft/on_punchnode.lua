@@ -89,6 +89,11 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if pum.count < 2 then return end
 
+		if minetest.is_protected(pos, pname) then
+			minetest.record_protection_violation(pos, pname)
+			pummeling[pname] = nil
+		end
+
 		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then
 			pummeling[pname] = nil
 			return
