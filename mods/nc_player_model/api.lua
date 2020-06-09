@@ -34,7 +34,8 @@ nodecore.player_anim_data = nodecore.player_anim_data or {
 	walk_mine = {x = 59, y = 103},
 	swim_up = {x = 105, y = 161, speed = 0.4},
 	swim_down = {x = 162, y = 223, speed = 0.4},
-	swim_mine = {x = 224, y = 280, speed = 0.4}
+	swim_mine = {x = 224, y = 280, speed = 0.4},
+	wave = {x = 281, y = 295, speed = 0.4}
 }
 for k, v in pairs(nodecore.player_anim_data) do
 	v.name = k
@@ -63,11 +64,13 @@ nodecore.player_anim = nodecore.player_anim or function(player)
 	local walk = (ctl.up or ctl.down) and not (ctl.up and ctl.down)
 	or (ctl.right or ctl.left) and not (ctl.right and ctl.left)
 	local mine = ctl.LMB or ctl.RMB
+	local aux = ctl.aux1
 
 	if not nodecore.player_swimming(player) then
 		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
 		if walk then return walkspeed(player, nodecore.player_anim_data.walk) end
 		if mine then return nodecore.player_anim_data.mine end
+		if aux then return nodecore.player_anim_data.wave end
 		return nodecore.player_anim_data.stand
 	end
 
