@@ -82,7 +82,7 @@ nodecore.register_lode("Block", {
 		type = "node",
 		description = "## Lode",
 		tiles = {modname .. "_#.png"},
-		groups = {metal_block = 1},
+		groups = {metal_cube = 1},
 		light_source = 8,
 		crush_damage = 4
 	})

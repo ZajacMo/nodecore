@@ -20,6 +20,7 @@ minetest.register_node(modname .. ":shelf", {
 			visinv = 1,
 			storebox = 2,
 			totable = 1,
+			metal_cube = 1,
 			scaling_time = 50
 		},
 		paramtype = "light",
