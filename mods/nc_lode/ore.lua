@@ -25,10 +25,12 @@ end
 
 local stratstone = {}
 local stratore = {}
+local oretile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png)"
+--local stonetile = "^(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_sign.png^[opacity:192)"
+local stonetile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_sign.png^[opacity:128)"
 local stone = reg("Stone", {
 		description = "Stone",
-		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_sign.png^[opacity:96)"},
+		tiles = {"nc_terrain_stone.png^" .. stonetile},
 		drop_in_place = "nc_terrain:cobble",
 		groups = {
 			stone = 1,
@@ -39,8 +41,7 @@ local stone = reg("Stone", {
 	})
 stratstone[1] = stone
 local ore = reg("Ore", {
-		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png)"},
+		tiles = {"nc_terrain_stone.png^" .. oretile},
 		drop_in_place = modname .. ":cobble",
 		groups = {stone = 1},
 		strata = stratore
@@ -50,8 +51,7 @@ for i = 1, nodecore.hard_stone_strata do
 	local hst = nodecore.hard_stone_tile(i)
 	stratstone[i + 1] = reg("Stone_" .. i, {
 			description = "Stone",
-			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png^[opacity:48)"},
+			tiles = {hst .. "^" .. stonetile},
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			groups = {
@@ -64,8 +64,7 @@ for i = 1, nodecore.hard_stone_strata do
 		})
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
-			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png)"},
+			tiles = {hst .. "^" .. oretile},
 			drop_in_place = modname .. ":cobble",
 			groups = {
 				stone = i + 1,
