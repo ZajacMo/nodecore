@@ -137,7 +137,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			function(p) return lut[minetest.hash_node_position(p)] end
 		)
 	end
-	minetest.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
+	nodecore.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
 		.. " completed recipe \"" .. recipe.label .. "\" at " ..
 		minetest.pos_to_string(pos) .. " upon " .. node.name)
 	return true

@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
 local dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, type
+      table, tostring, type
     = dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, type
+      table, tostring, type
 local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -51,6 +51,12 @@ minetest.register_on_mods_loaded(function()
 			end
 		end
 	end)
+
+local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
+function nodecore.log(level, ...)
+	if not level or not levels[level] then error("invalid log level " .. tostring(level)) end
+	return minetest.log(level, ...)
+end
 
 include("compat_vector")
 include("issue9043")

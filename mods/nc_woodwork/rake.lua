@@ -52,7 +52,7 @@ end
 local function matching(pa, na, pb, nb)
 	if stackonly[na.name] then
 		if not stackonly[nb.name] then return end
-		minetest.log("info", nodecore.stack_get(pa):get_name() .. " ?= "
+		nodecore.log("info", nodecore.stack_get(pa):get_name() .. " ?= "
 			.. nodecore.stack_get(pb):get_name())
 		return (laststack and laststack:get_name()) == nodecore.stack_get(pb):get_name()
 	end
