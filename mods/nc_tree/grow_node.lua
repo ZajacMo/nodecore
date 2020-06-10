@@ -65,6 +65,7 @@ local ldname = "nc_terrain:dirt_loose"
 local epdef = nodecore.underride({
 		description = "Sprout",
 		drawtype = "plantlike_rooted",
+		falling_visual = "nc_terrain:dirt_loose",
 		special_tiles = {modname .. "_eggcorn_planted.png"},
 		drop = ldname,
 		no_self_repack = true,

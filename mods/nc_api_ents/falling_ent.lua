@@ -62,9 +62,10 @@ minetest.register_entity(":__builtin:falling_node", {
 			if not node then return self.object:remove() end
 
 			self.node = node
+			local def = minetest.registered_items[node.name]
 			self.object:set_properties({
 					is_visible = true,
-					textures = {node.name},
+					textures = {def and def.falling_visual or node.name},
 				})
 
 			meta = meta or {}
