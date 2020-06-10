@@ -18,6 +18,11 @@ local metadescs = {
 	"Tote (8 Slots)",
 }
 
+local function protected(pos, whom)
+	return whom and whom:is_player()
+	and minetest.is_protected(pos, whom:get_player_name())
+end
+
 local function totedug(pos, _, _, digger)
 	local drop = ItemStack(modname .. ":handle")
 	if not digger:get_player_control().sneak then
@@ -27,7 +32,8 @@ local function totedug(pos, _, _, digger)
 				local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
 				local n = minetest.get_node(p)
 				local d = minetest.registered_items[n.name] or {}
-				if d and d.groups and d.groups.totable then
+				if d and d.groups and d.groups.totable
+				and not protected(p, digger) then
 					local m = minetest.get_meta(p):to_table()
 					for _, v1 in pairs(m.inventory or {}) do
 						for k2, v2 in pairs(v1) do
@@ -57,10 +63,11 @@ local function totedug(pos, _, _, digger)
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
-local function toteplace(stack, _, pointed)
+local function toteplace(stack, placer, pointed)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
-	if not pos then return stack end
+
+	if protected(pos, placer) then return end
 
 	stack = ItemStack(stack)
 	local inv = stack:get_meta():get_string("carrying")
@@ -75,7 +82,8 @@ local function toteplace(stack, _, pointed)
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
-			if (not nodecore.buildable_to(p)) or nodecore.obstructed(p) then
+			if (not nodecore.buildable_to(p)) or nodecore.obstructed(p)
+			or protected(p, placer) then
 				commit = nil
 			else
 				commit[#commit + 1] = {p, v.n, v.m}
