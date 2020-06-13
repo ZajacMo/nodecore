@@ -27,7 +27,8 @@ local function entprops(stack, conf, widx)
 		visual = "wielditem",
 		textures = {},
 		is_visible = false,
-		static_save = false
+		static_save = false,
+		glow = 0
 	}
 	if not (conf and conf.pname and nodecore.interact(conf.pname)
 		and nodecore.player_visible(conf.pname)) then return t end
@@ -45,11 +46,16 @@ local function entprops(stack, conf, widx)
 	else
 		if conf.slot == widx then return t end
 		t.textures = {stack:get_name()}
+		t.glow = def and (def.glow or def.light_source)
 		t.visual_size = xyz(0.1)
 	end
 	if not conf.slot then
 		t.is_visible = true
-		t.visual_size = xyz(0.2)
+		if def.type == "tool" then
+			t.visual_size = xyz(0.3)
+		else
+			t.visual_size = xyz(0.2)
+		end
 	end
 	return t
 end
@@ -118,7 +124,7 @@ minetest.register_on_joinplayer(function(player)
 			}
 		end
 
-		addslot(nil, "Arm_Right", -2.5, 8, 0, 2, 178, 60)
+		addslot(nil, "Arm_Right", -2.5, 8, -0.5, 2, 178, 60)
 
 		local function cslot(n, x, y, z)
 			return addslot(n, "Bandolier", x * 0.8,
