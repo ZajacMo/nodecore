@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include("hand")
 include("wieldsounds")
+include("admintool")
