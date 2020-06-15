@@ -80,6 +80,8 @@ include("match")
 include("fx_digparticles")
 
 include("register_mods")
+include("register_entlabels")
+
 include("mapgen_limits")
 include("mapgen_shared")
 
