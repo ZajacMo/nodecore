@@ -126,7 +126,7 @@ minetest.register_abm({
 	})
 
 local passive_batch = {}
-minetest.register_globalstep(function()
+nodecore.register_globalstep("optic check", function()
 		local batch = optic_queue
 		optic_queue = {}
 

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+local ItemStack, nodecore
+    = ItemStack, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -74,8 +74,4 @@ local function handlepickups(player)
 	cache[pname] = inv:get_list("main")
 end
 
-minetest.register_globalstep(function()
-		for _, p in ipairs(minetest.get_connected_players()) do
-			handlepickups(p)
-		end
-	end)
+nodecore.register_globalstep_perplayer("pickup rearrange", handlepickups)

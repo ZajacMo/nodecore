@@ -77,7 +77,7 @@ minetest.register_entity(modname .. ":stackent", {
 
 local visenv_ent_check = {}
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("visinv check", function()
 		for _, e in pairs(minetest.luaentities) do
 			if e.is_stack then
 				local pos = e.object:get_pos()

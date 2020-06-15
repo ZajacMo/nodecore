@@ -40,7 +40,7 @@ minetest.register_node(modname .. ":hand", {
 		on_punch = minetest.remove_node
 	})
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join set hand", function(player)
 		local inv = player:get_inventory()
 		inv:set_size("hand", 1)
 		inv:set_stack("hand", 1, modname .. ":hand")

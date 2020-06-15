@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -105,23 +105,21 @@ nodecore.touchtip_node = node_desc
 
 local wields = {}
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			local pname = player:get_player_name()
+nodecore.register_globalstep_perplayer("wield touchtips", function(player)
+		local pname = player:get_player_name()
 
-			local wn = stack_desc(player:get_wielded_item(), true)
-			if wn ~= wields[pname] then
-				wields[pname] = wn
-				show(player, wn)
-			end
+		local wn = stack_desc(player:get_wielded_item(), true)
+		if wn ~= wields[pname] then
+			wields[pname] = wn
+			show(player, wn)
 		end
 	end)
 
-minetest.register_on_punchnode(function(pos, node, puncher)
+nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher)
 		return show(puncher, node_desc(pos, node))
 	end)
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("touchtip wield reset", function(player)
 		local pname = player:get_player_name()
 		wields[pname] = nil
 	end)

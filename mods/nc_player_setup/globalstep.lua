@@ -142,14 +142,10 @@ local function playerstep(player)
 	if set.props then player:set_properties(set.props) end
 	if set.physics then player:set_physics_override(set.physics) end
 end
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			playerstep(player)
-		end
-	end)
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_globalstep_perplayer("player physics", playerstep)
+nodecore.register_on_leaveplayer("leave clear physics cache", function(player)
 		cache[player:get_player_name()] = nil
 	end)
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join player physics", function(player)
 		playerstep(player, 0)
 	end)

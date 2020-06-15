@@ -84,7 +84,7 @@ minetest.register_entity(modname .. ":ent", {
 		end
 	})
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("player wieldview", function()
 		local v = table_remove(attq, 1)
 		if not v then return end
 
@@ -101,7 +101,7 @@ minetest.register_globalstep(function()
 		ent.conf = v
 	end)
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		local pname = player:get_player_name()
 		local pos = player:get_pos()
 

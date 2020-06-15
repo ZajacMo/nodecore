@@ -42,9 +42,9 @@ local function setsky(player)
 	end
 end
 
-minetest.register_on_joinplayer(setsky)
+nodecore.register_on_joinplayer("join setsky", setsky)
 
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_on_leaveplayer("leave clear sky cache", function(player)
 		cache[player:get_player_name()] = nil
 	end)
 

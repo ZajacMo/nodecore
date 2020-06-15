@@ -64,7 +64,7 @@ end
 local igniteseen = {}
 local ignitequeue = {}
 local igniteqty = 0
-minetest.register_globalstep(function()
+nodecore.register_globalstep("fire ignition", function()
 		if #ignitequeue < 1 then return end
 		for _, pos in ipairs(ignitequeue) do
 			nodecore.fire_check_ignite(pos)

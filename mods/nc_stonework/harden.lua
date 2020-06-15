@@ -35,7 +35,7 @@ local function process(pos)
 	return nodecore.set_loud(pos, node)
 end
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("stone hardening", function()
 		for _, p in pairs(queue) do process(p) end
 		queue = {}
 	end)

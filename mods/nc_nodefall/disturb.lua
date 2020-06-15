@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, vector
-    = ipairs, math, minetest, nodecore, vector
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -60,14 +60,11 @@ local function playercheck(dtime, player)
 	queuechecks(math_floor(q), name, pos)
 	qtys[name] = q - math_floor(q)
 end
-minetest.register_globalstep(function(dtime)
-		if nodecore.stasis then return end
-		for _, player in ipairs(minetest.get_connected_players()) do
-			playercheck(dtime, player)
-		end
+nodecore.register_globalstep_perplayer("fallingnode disturbance", function(player, dtime)
+		if not nodecore.stasis then return playercheck(dtime, player) end
 	end)
 
-minetest.register_on_dignode(function(pos, _, digger)
+nodecore.register_on_dignode("nodefall disturb on dig", function(pos, _, digger)
 		local name = "(unknown)"
 		if digger and digger.get_player_name then name = digger:get_player_name() end
 		queuechecks(4, name, pos)

@@ -51,7 +51,7 @@ local function set_node(pos, node)
 	end
 end
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("door conveyance", function()
 		local nonheads = {}
 		for k, v in pairs(convey) do
 			local node = minetest.get_node(v.from)
@@ -130,7 +130,7 @@ end
 
 local squelch = modstore:get_string("squelch")
 squelch = squelch and squelch ~= "" and minetest.deserialize(squelch) or {}
-minetest.register_globalstep(function(dtime)
+nodecore.register_globalstep("door squelch", function(dtime)
 		for k, v in pairs(squelch) do
 			squelch[k] = (v > dtime) and (v - dtime) or nil
 		end

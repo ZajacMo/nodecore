@@ -17,7 +17,7 @@ local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
 
 -- On player joining, disable the built-in nametag by setting its
 -- text to whitespace and color to transparent.
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join hide nametag", function(player)
 		player:set_nametag_attributes({
 				text = " ",
 				color = {a = 0, r = 0, g = 0, b = 0}
@@ -104,7 +104,7 @@ end
 
 -- On each global step, check all player visibility, and create/remove/update
 -- each player's HUDs accordingly.
-minetest.register_globalstep(function()
+nodecore.register_globalstep("player names", function()
 		local conn = minetest.get_connected_players()
 		for _, p1 in pairs(conn) do
 			for _, p2 in pairs(conn) do
@@ -135,7 +135,7 @@ minetest.register_globalstep(function()
 		end
 	end)
 
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_on_leaveplayer("leave clear names", function(player)
 		local pname = player:get_player_name()
 		for _, peer in pairs(minetest.get_connected_players()) do
 			nodecore.hud_set(peer, {

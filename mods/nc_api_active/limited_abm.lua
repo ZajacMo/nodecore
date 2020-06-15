@@ -7,7 +7,7 @@ local math_random
 
 local pumpbatch = {}
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("limited abm pump", function()
 		for def in pairs(pumpbatch) do
 			if def.limited_qty >= def.limited_alert then
 				nodecore.log("warning", "limited abm \"" .. def.label .. "\" filled ("

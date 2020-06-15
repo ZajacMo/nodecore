@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -57,7 +57,7 @@ local function breath_hud(player)
 		})
 end
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join set hud/hotbar", function(player)
 		sethudflags(player)
 		player:hud_set_hotbar_itemcount(8)
 		player:hud_set_hotbar_image("nc_player_hud_bar.png")
@@ -65,8 +65,4 @@ minetest.register_on_joinplayer(function(player)
 		breath_hud(player)
 	end)
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			breath_hud(player)
-		end
-	end)
+nodecore.register_globalstep_perplayer("breath hud", breath_hud)

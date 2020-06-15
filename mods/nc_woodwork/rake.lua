@@ -76,7 +76,7 @@ end
 
 local rakelock = {}
 
-minetest.register_on_dignode(function(pos, node, user, ...)
+nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
 		if not lastraking then return end
 
 		if not (node and node.name and rakable[node.name]) then return end

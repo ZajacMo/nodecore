@@ -126,8 +126,6 @@ local function checkinv(player)
 	end
 end
 
-minetest.register_globalstep(function()
-		for _, p in pairs(minetest.get_connected_players()) do
-			if p:get_hp() > 0 then checkinv(p) end
-		end
+nodecore.register_globalstep_perplayer("health virtual items", function(p)
+		if p:get_hp() > 0 then checkinv(p) end
 	end)

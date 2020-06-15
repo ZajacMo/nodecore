@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local lasthit = {}
 
-minetest.register_on_punchnode(function(pos, node, puncher)
+nodecore.register_on_punchnode("node punch sounds", function(pos, node, puncher)
 		if not nodecore.player_visible(puncher) then return end
 
 		local pname = puncher:get_player_name()
@@ -30,13 +30,13 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		end
 	end)
 
-minetest.register_on_dignode(function(pos, node, digger)
+nodecore.register_on_dignode("other player dig sounds", function(pos, node, digger)
 		if not nodecore.player_visible(digger) then return end
 		return nodecore.node_sound(pos, "dug",
 			{node = node, except = digger})
 	end)
 
-minetest.register_on_placenode(function(pos, node, placer)
+nodecore.register_on_placenode("other player place sounds", function(pos, node, placer)
 		if not nodecore.player_visible(placer) then return end
 		return nodecore.node_sound(pos, "place",
 			{node = node, except = placer})

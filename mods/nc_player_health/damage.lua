@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local hurtcache = {}
 
-minetest.register_on_player_hpchange(function(player, hp)
+nodecore.register_on_player_hpchange("damage modifier", function(player, hp)
 		local orig = player:get_hp()
 		if not nodecore.player_can_take_damage(player) then
 			return orig
@@ -35,7 +35,7 @@ minetest.register_on_player_hpchange(function(player, hp)
 	true
 )
 
-minetest.register_on_dieplayer(function(player)
+nodecore.register_on_dieplayer("player virtual 0 health", function(player)
 		nodecore.setphealth(player, 0, "on_dieplayer")
 	end)
 
@@ -61,14 +61,10 @@ local function heal(player, dtime)
 	nodecore.addphealth(player, dtime * 2, "heal")
 	if nodecore.getphealth(player) >= hpmax then full[pname] = true end
 end
-minetest.register_globalstep(function(dtime)
-		for _, player in pairs(minetest.get_connected_players()) do
-			heal(player, dtime)
-		end
-	end)
+nodecore.register_globalstep_perplayer("healing", heal)
 
 local function setmax(player)
 	player:set_properties({hp_max = 8})
 end
-minetest.register_on_joinplayer(setmax)
-minetest.register_on_newplayer(setmax)
+nodecore.register_on_joinplayer("set max health on join", setmax)
+nodecore.register_on_newplayer("set max health on new", setmax)

@@ -47,15 +47,13 @@ local function updatevisuals(player, joining)
 	end
 end
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join setup player model", function(player)
 		cache[player:get_player_name()] = nil
 		updatevisuals(player, true)
 	end)
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			if nodecore.player_visible(player) then
-				updatevisuals(player)
-			end
+nodecore.register_globalstep_perplayer("player model updates", function(player)
+		if nodecore.player_visible(player) then
+			updatevisuals(player)
 		end
 	end)

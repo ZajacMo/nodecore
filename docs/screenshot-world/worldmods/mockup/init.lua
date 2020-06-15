@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, pairs
-    = ItemStack, math, minetest, pairs
+local ItemStack, math, minetest, nodecore, pairs
+    = ItemStack, math, minetest, nodecore, pairs
 local math_pi
     = math.pi
 -- LUALOCALS > ---------------------------------------------------------
@@ -68,5 +68,5 @@ local function setup(p)
 		end
 	end
 end
-minetest.register_on_joinplayer(setup)
-minetest.register_on_respawnplayer(setup)
+nodecore.register_on_joinplayer("mock setup on join", setup)
+nodecore.register_on_respawnplayer("mock setup on respawn", setup)

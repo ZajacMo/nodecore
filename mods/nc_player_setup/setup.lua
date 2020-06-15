@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.unregister_chatcommand("kill")
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join setup inv", function(player)
 		local inv = player:get_inventory()
 		inv:set_size("main", 8)
 		inv:set_size("craft", 0)

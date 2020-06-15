@@ -32,7 +32,7 @@ end
 
 local singlenode = minetest.get_mapgen_setting("mg_name") == "singlenode"
 
-minetest.register_on_generated(function(minp, maxp)
+nodecore.register_on_generated("mapgen shared", function(minp, maxp)
 		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})

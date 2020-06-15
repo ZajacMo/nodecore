@@ -48,11 +48,8 @@ local function check(player, dtime)
 	heat[pname] = (heat[pname] or 0) * w + dps * (1 - w)
 end
 
-minetest.register_globalstep(function(dtime)
-		if nodecore.stasis then return end
-		for _, p in pairs(minetest.get_connected_players()) do
-			if nodecore.player_visible(p) then check(p, dtime) end
-		end
+nodecore.register_globalstep_perplayer("radiant heat damage", function(p, dtime)
+		if not nodecore.stasis and nodecore.player_visible(p) then check(p, dtime) end
 	end)
 
 local function applyheat()

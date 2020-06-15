@@ -111,7 +111,7 @@ function minetest.check_single_for_falling(pos, ...)
 	return oldcsff(pos, ...)
 end
 
-minetest.register_on_punchnode(function(pos, node, puncher, pointed)
+nodecore.register_on_punchnode("charcoal writing check", function(pos, node, puncher, pointed)
 		if (not puncher) or (not puncher:is_player()) then return end
 
 		local wield = puncher:get_wielded_item()

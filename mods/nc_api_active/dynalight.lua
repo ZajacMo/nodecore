@@ -148,11 +148,9 @@ local function player_wield_light(player)
 		end)
 end
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			if nodecore.player_visible(player) then
-				player_wield_light(player)
-			end
+nodecore.register_globalstep_perplayer("player wield light", function(player)
+		if nodecore.player_visible(player) then
+			return player_wield_light(player)
 		end
 	end)
 

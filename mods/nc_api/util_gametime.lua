@@ -5,7 +5,7 @@ local math_abs
     = math.abs
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.register_globalstep(function(dtime)
+nodecore.register_globalstep("gametime", function(dtime)
 		local mtt = minetest.get_gametime()
 		local nct = nodecore.gametime
 		if not nct then

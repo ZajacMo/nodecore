@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table
-    = minetest, nodecore, pairs, table
+local nodecore, pairs, table
+    = nodecore, pairs, table
 local table_concat, table_sort
     = table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,7 +11,7 @@ local msgcache = {}
 local msg = "hint complete - @1"
 nodecore.translate_inform(msg)
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join hint setup", function(player)
 		local pname = player:get_player_name()
 		local _, done = nodecore.hint_state(pname)
 		local t = {}
@@ -36,27 +36,25 @@ nodecore.register_on_player_discover(function(player)
 		end
 	end)
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			local pname = player:get_player_name()
-			local mc = msgcache[pname] or {}
-			local t = {}
-			for k, v in pairs(mc) do
-				if v < nodecore.gametime then
-					mc[k] = nil
-				else
-					t[#t + 1] = nodecore.translate(msg, k)
-				end
+nodecore.register_globalstep_perplayer("hint alerts", function(player)
+		local pname = player:get_player_name()
+		local mc = msgcache[pname] or {}
+		local t = {}
+		for k, v in pairs(mc) do
+			if v < nodecore.gametime then
+				mc[k] = nil
+			else
+				t[#t + 1] = nodecore.translate(msg, k)
 			end
-			table_sort(t)
-			nodecore.hud_set_multiline(player, {
-					label = "hintcomplete",
-					hud_elem_type = "text",
-					position = {x = 0.5, y = 0.25},
-					text = table_concat(t, "\n"),
-					number = 0xE0FF80,
-					alignment = {x = 0, y = 0},
-					offset = {x = 0, y = 0}
-				}, nodecore.translate)
 		end
+		table_sort(t)
+		nodecore.hud_set_multiline(player, {
+				label = "hintcomplete",
+				hud_elem_type = "text",
+				position = {x = 0.5, y = 0.25},
+				text = table_concat(t, "\n"),
+				number = 0xE0FF80,
+				alignment = {x = 0, y = 0},
+				offset = {x = 0, y = 0}
+			}, nodecore.translate)
 	end)

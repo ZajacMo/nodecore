@@ -35,9 +35,6 @@ local function hotpotatoes(player)
 	if hurt > 0 then nodecore.addphealth(player, -hurt, "hotpotato") end
 end
 
-minetest.register_globalstep(function()
-		if nodecore.stasis then return end
-		for _, v in pairs(minetest.get_connected_players()) do
-			hotpotatoes(v)
-		end
+nodecore.register_globalstep_perplayer("hot potatoes", function(player)
+		if not nodecore.stasis then return hotpotatoes(player) end
 	end)

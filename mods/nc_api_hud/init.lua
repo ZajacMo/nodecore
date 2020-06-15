@@ -128,19 +128,17 @@ function nodecore.hud_set_multiline(player, def, trans)
 end
 
 minetest.after(0, function()
-		minetest.register_globalstep(function(dtime)
-				for _, player in pairs(minetest.get_connected_players()) do
-					local pname = player:get_player_name()
-					local phuds = huds[pname]
-					if phuds then
-						for _, entry in pairs(phuds) do
-							updatehud(player, entry, phuds, dtime)
-						end
+		nodecore.register_globalstep_perplayer("hud update", function(player, dtime)
+				local pname = player:get_player_name()
+				local phuds = huds[pname]
+				if phuds then
+					for _, entry in pairs(phuds) do
+						updatehud(player, entry, phuds, dtime)
 					end
 				end
 			end)
 	end)
 
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_on_leaveplayer("leave clear huds", function(player)
 		huds[player:get_player_name()] = nil
 	end)

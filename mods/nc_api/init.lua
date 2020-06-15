@@ -62,6 +62,7 @@ include("compat_vector")
 include("issue9043")
 
 include("util_misc")
+include("util_hookmeta")
 include("util_falling")
 include("util_scan_flood")
 include("util_node_is")

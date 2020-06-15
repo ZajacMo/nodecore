@@ -15,7 +15,7 @@ local function ambiance_core(def, getpos)
 
 	local batch
 	local time = 0
-	minetest.register_globalstep(function(dtime)
+	nodecore.register_globalstep("ambiance_core " .. (def.label or "unlabeled"), function(dtime)
 			time = time + dtime
 			while time > rate do
 				if not batch then

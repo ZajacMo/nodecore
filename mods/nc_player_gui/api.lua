@@ -49,11 +49,12 @@ function nodecore.inventory_formspec(player, curtab)
 	return table_concat(t)
 end
 
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join set inv formspec", function(player)
 		player:set_inventory_formspec(nodecore.inventory_formspec(player))
 	end)
 
-minetest.register_on_player_receive_fields(function(player, formname, fields)
+nodecore.register_on_player_receive_fields("player inv formspec returned",
+	function(player, formname, fields)
 		if formname == "" then
 			local tab
 			for i = 1, #nodecore.registered_inventory_tabs do
