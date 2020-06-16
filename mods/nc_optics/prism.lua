@@ -71,7 +71,7 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
 		},
-		light_source = 2
+		light_source = 1
 	})
 reg("_gated", {
 		description = "Gated Prism",
@@ -80,5 +80,5 @@ reg("_gated", {
 			txr .. "^" .. shin .. "^" .. dark,
 			txr .. "^" .. shin .. "^" .. dark
 		},
-		light_source = 3
+		light_source = 1
 	})

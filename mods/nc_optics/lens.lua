@@ -72,7 +72,7 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
-		light_source = 2
+		light_source = 1
 	})
 reg("_glow", {
 		description = "Shining Lens",
