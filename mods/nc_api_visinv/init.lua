@@ -32,57 +32,62 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
+local function itemcheck(self)
+	self.cktime = math_random() + 0.5
+
+	local obj = self.object
+	local pos = obj:get_pos()
+	if not pos then return end
+
+	local stack = nodecore.stack_get(pos)
+	if not stack then return obj:remove() end
+
+	local sstr = stack:to_string()
+	if self.stackstring == sstr then return end
+	self.stackstring = sstr
+
+	self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
+
+	if stack:is_empty() then return obj:remove() end
+
+	local rp = vector.round(pos)
+	local def = minetest.registered_items[stack:get_name()] or {}
+	local src = def.light_source or 0
+	if src > 0 then
+		self.light_source = src
+		nodecore.dynamic_light_add(rp, src, getlightcheck(rp, obj, src))
+	end
+
+	local props, scale, yaw = nodecore.stackentprops(stack,
+		rp.x * 3 + rp.y * 5 + rp.z * 7)
+	rp.y = rp.y + scale - 31/64
+
+	if obj:get_yaw() ~= yaw then
+		obj:set_yaw(yaw)
+	end
+	if not vector.equals(obj:get_pos(), rp) then
+		obj:set_pos(rp)
+	end
+	return obj:set_properties(props)
+end
+
 local entname = modname .. ":stackent"
-minetest.register_entity(entname, {
-		initial_properties = nodecore.stackentprops(),
-		is_stack = true,
-		itemcheck = function(self)
-			self.cktime = math_random() + 0.5
-
-			local obj = self.object
-			local pos = obj:get_pos()
-			if not pos then return end
-
-			local stack = nodecore.stack_get(pos)
-			if not stack then return obj:remove() end
-
-			local sstr = stack:to_string()
-			if self.stackstring == sstr then return end
-			self.stackstring = sstr
-
-			self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
-
-			if stack:is_empty() then return obj:remove() end
-
-			local rp = vector.round(pos)
-			local def = minetest.registered_items[stack:get_name()] or {}
-			local src = def.light_source or 0
-			if src > 0 then
-				self.light_source = src
-				nodecore.dynamic_light_add(rp, src, getlightcheck(rp, obj, src))
-			end
-
-			local props, scale, yaw = nodecore.stackentprops(stack,
-				rp.x * 3 + rp.y * 5 + rp.z * 7)
-			rp.y = rp.y + scale - 31/64
-
-			obj:set_properties(props)
-			if obj:get_yaw() ~= yaw then
-				obj:set_yaw(yaw)
-			end
-			if not vector.equals(obj:get_pos(), rp) then
-				obj:set_pos(rp)
-			end
-		end,
-		on_activate = function(self)
-			return self:itemcheck()
-		end,
-		on_step = function(self, dtime)
-			self.cktime = (self.cktime or 0) - dtime
-			if self.cktime > 0 then return end
-			return self:itemcheck()
-		end
-	})
+local entdef
+entdef = {
+	initial_properties = nodecore.stackentprops(),
+	is_stack = true,
+	on_activate = function(self)
+		self.is_stack = true
+		self.on_step = entdef.on_step
+		return itemcheck(self)
+	end,
+	on_step = function(self, dtime)
+		self.cktime = (self.cktime or 0) - dtime
+		if self.cktime > 0 then return end
+		return itemcheck(self)
+	end
+}
+minetest.register_entity(entname, entdef)
 
 local visenv_ent_check = {}
 

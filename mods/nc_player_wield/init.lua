@@ -50,57 +50,64 @@ local function itemprops(itemname, iswield)
 	return found
 end
 
-local invshow = {}
+local playerdata = {}
 nodecore.register_globalstep("player wield show check", function()
-		invshow = {}
+		playerdata = {}
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
 			if nodecore.interact(pname) and nodecore.player_visible(pname) then
-				invshow[pname] = player:get_inventory():get_list("main")
+				playerdata[pname] = {
+					player = player,
+					inv = player:get_inventory():get_list("main"),
+					widx = player:get_wield_index()
+				}
+			else
+				playerdata[pname] = false
 			end
 		end
 	end)
 
-minetest.register_entity(modname .. ":ent", {
-		initial_properties = {
-			hp_max = 1,
-			physical = false,
-			collide_with_objects = false,
-			collisionbox = {0, 0, 0, 0, 0, 0},
-			visual = "wielditem",
-			textures = {""},
-			is_visible = false,
-			static_save = false,
-			glow = 0
-		},
-		on_step = function(self)
-			local conf = self.conf
-			if not conf then return self.object:remove() end
+local entdef
+entdef = {
+	initial_properties = {
+		hp_max = 1,
+		physical = false,
+		collide_with_objects = false,
+		collisionbox = {0, 0, 0, 0, 0, 0},
+		visual = "wielditem",
+		textures = {""},
+		is_visible = false,
+		static_save = false,
+		glow = 0
+	},
+	on_activate = function(self)
+		self.on_step = entdef.on_step
+	end,
+	on_step = function(self)
+		local conf = self.conf
+		if not conf then return self.object:remove() end
 
-			local player = minetest.get_player_by_name(conf.pname)
-			if not player then return self.object:remove() end
+		local pdata = playerdata[conf.pname]
+		if pdata == nil then return self.object:remove() end
+		if not pdata then return self.object:set_properties(hidden) end
 
-			if not self.att then
-				self.att = true
-				return self.object:set_attach(player,
-					conf.bone, conf.apos, conf.arot)
-			end
-
-			local invdata = invshow[conf.pname]
-			if not invdata then
-				return self.object:set_properties(hidden)
-			end
-
-			local widx = player:get_wield_index()
-			if conf.slot == widx then
-				return self.object:set_properties(selslot)
-			end
-
-			return self.object:set_properties(itemprops(
-					invdata[conf.slot or widx]:get_name(),
-					not conf.slot))
+		if not self.att then
+			self.att = true
+			return self.object:set_attach(pdata.player,
+				conf.bone, conf.apos, conf.arot)
 		end
-	})
+
+		local widx = pdata.widx
+		if conf.slot == widx then
+			return self.object:set_properties(selslot)
+		end
+
+		return self.object:set_properties(itemprops(
+				pdata.inv[conf.slot or widx]:get_name(),
+				not conf.slot))
+	end
+}
+minetest.register_entity(modname .. ":ent", entdef)
 
 local attq = {}
 local running
