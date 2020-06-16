@@ -43,7 +43,13 @@ minetest.register_entity(modname .. ":stackent", {
 			if not pos then return end
 
 			local stack = nodecore.stack_get(pos)
-			if not stack or stack:is_empty() then return obj:remove() end
+			if not stack then return obj:remove() end
+
+			local sstr = stack:to_string()
+			if self.stackstring == sstr then return end
+			self.stackstring = sstr
+
+			if stack:is_empty() then return obj:remove() end
 
 			local rp = vector.round(pos)
 			local def = minetest.registered_items[stack:get_name()] or {}
