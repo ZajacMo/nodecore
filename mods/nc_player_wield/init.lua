@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, table
-    = ItemStack, minetest, nodecore, pairs, table
+local minetest, nodecore, pairs, table
+    = minetest, nodecore, pairs, table
 local table_remove
     = table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,8 +9,6 @@ nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
-local xyz = function(n) return {x = n, y = n, z = n} end
-
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
 			inventory_image = "nc_player_wield_" .. n .. ".png",
@@ -18,52 +16,63 @@ for _, n in pairs({"slot", "sel"}) do
 		})
 end
 
-local function entprops(stack, conf, widx)
-	local t = {
-		hp_max = 1,
-		physical = false,
-		collide_with_objects = false,
-		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "wielditem",
-		textures = {},
-		is_visible = false,
-		static_save = false,
-		glow = 0
+local xyz = function(n) return {x = n, y = n, z = n} end
+local size_w_item = xyz(0.2)
+local size_w_tool = xyz(0.3)
+local size_slot = xyz(0.075)
+local size_item = xyz(0.1)
+
+local hidden = {is_visible = false}
+local selslot = {is_visible = true, visual_size = size_slot, textures = {modname .. ":sel"}}
+local emptyslot = {is_visible = true, visual_size = size_slot, textures = {modname .. ":slot"}}
+
+local function calcprops(itemname, iswield)
+	local def = minetest.registered_items[itemname]
+	if def and def.virtual_item then return hidden end
+	if itemname == "" then return iswield and hidden or emptyslot end
+	return {
+		is_visible = true,
+		visual_size = iswield and (def and def.type == "tool" and size_w_tool
+			or size_w_item) or (itemname == "" and size_slot) or size_item,
+		textures = {itemname},
+		glow = def and def.light_source or def.glow or 0
 	}
-	if not (conf and conf.pname and nodecore.interact(conf.pname)
-		and nodecore.player_visible(conf.pname)) then return t end
-	if conf.slot then
-		t.is_visible = true
-		t.visual_size = xyz(0.075)
-		t.textures = {modname .. (conf.slot == widx and ":sel" or ":slot")}
-	end
-	if not stack then return t end
-	if stack:is_empty() then return t end
-	local def = minetest.registered_items[stack:get_name()] or {}
-	if def.virtual_item then
-		t.is_visible = false
-		return t
-	else
-		if conf.slot == widx then return t end
-		t.textures = {stack:get_name()}
-		t.glow = def and (def.glow or def.light_source)
-		t.visual_size = xyz(0.1)
-	end
-	if not conf.slot then
-		t.is_visible = true
-		if def.type == "tool" then
-			t.visual_size = xyz(0.3)
-		else
-			t.visual_size = xyz(0.2)
-		end
-	end
-	return t
 end
 
-local attq = {}
+local propcache_item = {}
+local propcache_wield = {}
+local function itemprops(itemname, iswield)
+	local cache = iswield and propcache_wield or propcache_item
+	local found = cache[itemname]
+	if found then return found end
+	found = calcprops(itemname, iswield)
+	cache[itemname] = found
+	return found
+end
+
+local invshow = {}
+nodecore.register_globalstep("player wield show check", function()
+		invshow = {}
+		for _, player in pairs(minetest.get_connected_players()) do
+			local pname = player:get_player_name()
+			if nodecore.interact(pname) and nodecore.player_visible(pname) then
+				invshow[pname] = player:get_inventory():get_list("main")
+			end
+		end
+	end)
 
 minetest.register_entity(modname .. ":ent", {
-		initial_properties = entprops(),
+		initial_properties = {
+			hp_max = 1,
+			physical = false,
+			collide_with_objects = false,
+			collisionbox = {0, 0, 0, 0, 0, 0},
+			visual = "wielditem",
+			textures = {""},
+			is_visible = false,
+			static_save = false,
+			glow = 0
+		},
 		on_step = function(self)
 			local conf = self.conf
 			if not conf then return self.object:remove() end
@@ -77,29 +86,41 @@ minetest.register_entity(modname .. ":ent", {
 					conf.bone, conf.apos, conf.arot)
 			end
 
-			local inv = player:get_inventory()
+			local invdata = invshow[conf.pname]
+			if not invdata then
+				return self.object:set_properties(hidden)
+			end
+
 			local widx = player:get_wield_index()
-			local stack = inv:get_stack("main", conf.slot or widx) or ItemStack("")
-			self.object:set_properties(entprops(stack, conf, widx))
+			if conf.slot == widx then
+				return self.object:set_properties(selslot)
+			end
+
+			return self.object:set_properties(itemprops(
+					invdata[conf.slot or widx]:get_name(),
+					not conf.slot))
 		end
 	})
 
-nodecore.register_globalstep("player wieldview", function()
-		local v = table_remove(attq, 1)
-		if not v then return end
+local attq = {}
+local running
+local function pumpqueue()
+	local v = table_remove(attq, 1)
+	if not v then running = nil return end
+	minetest.after(0, pumpqueue)
 
-		local player = minetest.get_player_by_name(v.pname)
-		if not player then return end
+	local player = minetest.get_player_by_name(v.pname)
+	if not player then return end
 
-		if not minetest.get_node_or_nil(player:get_pos()) then
-			attq[#attq + 1] = v
-			return
-		end
+	if not minetest.get_node_or_nil(player:get_pos()) then
+		attq[#attq + 1] = v
+		return
+	end
 
-		local obj = minetest.add_entity(v.pos, modname .. ":ent")
-		local ent = obj:get_luaentity()
-		ent.conf = v
-	end)
+	local obj = minetest.add_entity(v.pos, modname .. ":ent")
+	local ent = obj:get_luaentity()
+	ent.conf = v
+end
 
 nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		local pname = player:get_player_name()
@@ -140,4 +161,9 @@ nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		cslot(6, -1, 2, 0.1)
 		cslot(7, 1, 1, 0.05)
 		cslot(8, -1.75, 0, 0)
+
+		if not running then
+			running = true
+			minetest.after(0, pumpqueue)
+		end
 	end)
