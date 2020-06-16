@@ -32,7 +32,8 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
-minetest.register_entity(modname .. ":stackent", {
+local entname = modname .. ":stackent"
+minetest.register_entity(entname, {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
 		itemcheck = function(self)
@@ -48,6 +49,8 @@ minetest.register_entity(modname .. ":stackent", {
 			local sstr = stack:to_string()
 			if self.stackstring == sstr then return end
 			self.stackstring = sstr
+
+			self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
 
 			if stack:is_empty() then return obj:remove() end
 
@@ -85,10 +88,9 @@ local visenv_ent_check = {}
 
 nodecore.register_globalstep("visinv check", function()
 		for _, e in pairs(minetest.luaentities) do
-			if e.is_stack then
-				local pos = e.object:get_pos()
-				if pos then
-					local key = minetest.hash_node_position(vector.round(pos))
+			if e.name == entname then
+				local key = e.poskey
+				if key then
 					local max = visenv_ent_check[key]
 					if max then
 						if max < 1 then
@@ -103,7 +105,7 @@ nodecore.register_globalstep("visinv check", function()
 		for k, v in pairs(visenv_ent_check) do
 			if v > 0 then
 				local pos = minetest.get_position_from_hash(k)
-				minetest.add_entity(pos, modname .. ":stackent")
+				minetest.add_entity(pos, entname)
 			end
 		end
 		visenv_ent_check = {}
