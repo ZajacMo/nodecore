@@ -28,18 +28,18 @@ end
 nodecore.player_anim_data = nodecore.player_anim_data or {
 	stand = {x = 0, y = 0},
 	sit = {x = 1, y = 1},
-	walk = {x = 2, y = 42},
-	mine = {x = 43, y = 57, speed = 0.85},
-	lay = {x = 58, y = 58},
-	walk_mine = {x = 59, y = 103},
-	swim_up = {x = 105, y = 161, speed = 0.4},
-	swim_down = {x = 162, y = 223, speed = 0.4},
-	swim_mine = {x = 224, y = 280, speed = 0.4},
-	wave = {x = 281, y = 295, speed = 0.4}
+	lay = {x = 2, y = 2},
+	walk = {x = 3, y = 27},
+	walk_mine = {x = 28, y = 52},
+	mine = {x = 53, y = 77},
+	swim_mine = {x = 78, y = 108, speed = 0.6},
+	swim_up = {x = 109, y = 133, speed = 0.6},
+	swim_down = {x = 134, y = 158, speed = 0.6},
+	wave = {x = 159, y = 171, speed = 0.8}
 }
 for k, v in pairs(nodecore.player_anim_data) do
 	v.name = k
-	v.speed = 60 * (v.speed or 1)
+	v.speed = 30 * (v.speed or 1)
 end
 
 local function walkspeed(player, anim)
@@ -55,7 +55,7 @@ local function walkspeed(player, anim)
 end
 
 local eye_stand = 1.625
-local eye_swim = 0.5
+local eye_swim = 0.85
 local eye_lay = 0.5
 
 nodecore.player_anim = nodecore.player_anim or function(player)
