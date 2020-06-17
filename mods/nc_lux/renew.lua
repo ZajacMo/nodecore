@@ -6,7 +6,7 @@ local minetest, nodecore
 local modname = minetest.get_current_modname()
 
 nodecore.register_soaking_abm({
-		label = "lux renewal",
+		label = "lux renew",
 		fieldname = "lavalux",
 		interval = 10,
 		chance = 1,
@@ -22,7 +22,7 @@ nodecore.register_soaking_abm({
 	})
 
 nodecore.register_craft({
-		label = "lode renewal",
+		label = "lode renew",
 		action = "pummel",
 		toolgroups = {thumpy = 2},
 		normal = {y = 1},

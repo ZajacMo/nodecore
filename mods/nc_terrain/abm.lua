@@ -39,7 +39,7 @@ local function grassable(above)
 end
 
 nodecore.register_limited_abm({
-		label = "Grass Spread",
+		label = "grass spread",
 		nodenames = {"group:soil"},
 		neighbors = {grass},
 		interval = 6,
@@ -53,7 +53,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Grass Decay",
+		label = "grass decay",
 		nodenames = {grass},
 		interval = 8,
 		chance = 50,

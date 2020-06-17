@@ -72,7 +72,7 @@ local function reposeall()
 	qqty = nil
 end
 nodecore.register_limited_abm({
-		label = "Falling Repose",
+		label = "falling repose",
 		nodenames = {"group:falling_repose"},
 		neighbors = {"air"},
 		interval = 2,

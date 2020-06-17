@@ -45,6 +45,7 @@ minetest.register_node(modname .. ":eggcorn", {
 	})
 
 nodecore.register_limited_abm({
+		label = "legacy eggcorn node conversion",
 		interval = 1,
 		chance = 1,
 		nodenames = {modname .. ":eggcorn"},

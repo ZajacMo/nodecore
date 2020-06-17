@@ -72,7 +72,7 @@ end
 nodecore.aism_check_stack = checkstack
 
 nodecore.register_limited_abm({
-		label = "AISM Scheduler",
+		label = "aism schedule",
 		nodenames = {"group:visinv"},
 		interval = 1,
 		chance = 1,

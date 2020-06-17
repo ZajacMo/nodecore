@@ -51,7 +51,7 @@ for _, v in pairs(nodecore.dirs()) do
 	end
 end
 nodecore.register_limited_abm({
-		label = "Lux Flow Leakage",
+		label = "lux flow leak",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
@@ -74,7 +74,7 @@ for _, v in pairs(nodecore.dirs()) do
 	end
 end
 nodecore.register_limited_abm({
-		label = "Lux Flow Ebb",
+		label = "lux flow ebb",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,

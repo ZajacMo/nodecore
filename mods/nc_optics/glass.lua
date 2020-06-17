@@ -130,7 +130,7 @@ minetest.register_node(modname .. ":glass_hot_flowing",
 		}, moltdef))
 
 nodecore.register_ambiance({
-		label = "Glass Source Ambiance",
+		label = "glass source ambiance",
 		nodenames = {modname .. ":glass_hot_source"},
 		neigbors = {"air"},
 		interval = 1,
@@ -139,7 +139,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.2
 	})
 nodecore.register_ambiance({
-		label = "Glass Flow Ambiance",
+		label = "glass flow ambiance",
 		nodenames = {modname .. ":glass_hot_flowing"},
 		neigbors = {"air"},
 		interval = 1,

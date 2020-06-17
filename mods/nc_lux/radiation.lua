@@ -55,7 +55,7 @@ local function rademit(pos, emit)
 end
 
 nodecore.register_limited_abm({
-		label = "Lux Irradiate",
+		label = "lux irradiate",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_emit"},
@@ -67,7 +67,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Lux Stack Irradiate",
+		label = "lux stack irradiate",
 		interval = 1,
 		chance = 2,
 		itemnames = {"group:lux_emit"},

@@ -6,7 +6,7 @@ local minetest, nodecore, pairs
 local modname = minetest.get_current_modname()
 
 nodecore.register_limited_abm({
-		label = "Scaling Decay",
+		label = "scaling decay",
 		interval = 1,
 		chance = 1,
 		limited_max = 100,
@@ -29,7 +29,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Scaling FX",
+		label = "scaling particles",
 		interval = 1,
 		chance = 1,
 		limited_max = 100,

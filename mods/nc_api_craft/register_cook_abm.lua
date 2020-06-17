@@ -73,7 +73,7 @@ end
 nodecore.craft_cooking_data = mkdata
 
 function nodecore.register_cook_abm(def)
-	def.label = def.label or "cooking " .. minetest.write_json(def.nodenames)
+	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
 	def.action = function(pos, node)

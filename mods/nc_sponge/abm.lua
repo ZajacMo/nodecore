@@ -20,7 +20,7 @@ local function soakup(pos)
 end
 
 nodecore.register_limited_abm({
-		label = "Sponge Wettening",
+		label = "sponge wet",
 		interval = 1,
 		chance = 10,
 		limited_max = 100,
@@ -35,7 +35,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Sponge Stack Wettening",
+		label = "sponge stack wet",
 		interval = 1,
 		chance = 10,
 		itemnames = {modname .. ":sponge"},
@@ -51,7 +51,7 @@ nodecore.register_aism({
 	})
 
 nodecore.register_limited_abm({
-		label = "Sponge Drying in Sunlight",
+		label = "sponge sun dry",
 		interval = 1,
 		chance = 100,
 		limited_max = 100,
@@ -66,7 +66,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Sponge Stack Drying in Sunlight",
+		label = "sponge stack sun dry",
 		interval = 1,
 		chance = 100,
 		itemnames = {modname .. ":sponge_wet"},
@@ -86,7 +86,7 @@ nodecore.register_aism({
 	})
 
 nodecore.register_limited_abm({
-		label = "Sponge Drying near Fire",
+		label = "sponge fire dry",
 		interval = 1,
 		chance = 20,
 		limited_max = 100,

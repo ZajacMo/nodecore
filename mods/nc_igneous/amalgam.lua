@@ -55,7 +55,7 @@ minetest.register_node(amalgam, {
 	})
 
 nodecore.register_limited_abm({
-		label = "Quench Lava to Amalgam",
+		label = "lava quench",
 		interval = 1,
 		chance = 2,
 		nodenames = {lavasrc},
@@ -66,7 +66,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Melt Amalgam to Lava",
+		label = "amalgam melt",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:amalgam"},
@@ -77,7 +77,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Amalgam Stack Melting",
+		label = "amalgam stack melt",
 		interval = 1,
 		chance = 2,
 		itemnames = {"group:amalgam"},

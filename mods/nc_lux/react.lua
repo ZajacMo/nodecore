@@ -4,7 +4,7 @@ local minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_limited_abm({
-		label = "Lux Reaction",
+		label = "lux reaction",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
@@ -18,7 +18,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Lux Stack Reaction",
+		label = "lux stack reaction",
 		interval = 1,
 		chance = 2,
 		itemnames = {"group:lux_cobble"},

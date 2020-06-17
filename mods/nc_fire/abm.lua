@@ -18,7 +18,7 @@ do
 			end
 		end)
 	nodecore.register_limited_abm({
-			label = "Fire Requires/Consumes Embers and Emits Particles",
+			label = "fire consume",
 			interval = 1,
 			chance = 1,
 			nodenames = {modname .. ":fire"},
@@ -74,7 +74,7 @@ nodecore.register_globalstep("fire ignition", function()
 		igniteqty = 0
 	end)
 minetest.register_abm({
-		label = "Flammables Ignite",
+		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
 		nodenames = {"group:igniter"},
@@ -99,7 +99,7 @@ minetest.register_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Fuel Burning/Snuffing",
+		label = "ember consume",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
@@ -115,7 +115,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_ambiance({
-		label = "Flame Ambiance",
+		label = "flame ambiance",
 		nodenames = {"group:flame_ambiance"},
 		interval = 1,
 		chance = 1,
@@ -124,7 +124,7 @@ nodecore.register_ambiance({
 	})
 
 nodecore.register_item_ambiance({
-		label = "Flame Ambiance",
+		label = "flame ambiance",
 		itemnames = {"group:flame_ambiance"},
 		interval = 1,
 		chance = 1,

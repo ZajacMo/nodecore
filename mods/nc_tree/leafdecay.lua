@@ -33,7 +33,7 @@ local function leafcheck(pos)
 end
 
 nodecore.register_limited_abm({
-		label = "Leaf Decay",
+		label = "leaves decay",
 		interval = 2,
 		chance = 5,
 		limited_max = 100,
@@ -47,7 +47,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Growing Leaf Decay",
+		label = "growing leaves decay",
 		interval = 1,
 		chance = 10,
 		limited_max = 100,

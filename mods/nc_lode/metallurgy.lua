@@ -72,7 +72,10 @@ function nodecore.register_lode(shape, rawdef)
 			local fullname = modname .. ":" .. def.name
 			minetest.register_item(fullname, def)
 			if def.type == "node" then
-				nodecore.register_cook_abm({nodenames = {fullname}})
+				nodecore.register_cook_abm({
+						nodenames = {fullname},
+						neighbors = (not temper.glow) and {"group:flame"} or nil
+					})
 			end
 		end
 	end

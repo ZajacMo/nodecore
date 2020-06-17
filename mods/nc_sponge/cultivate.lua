@@ -63,7 +63,7 @@ local function spongesurvive(data)
 end
 
 nodecore.register_limited_abm({
-		label = "Sponge Growth",
+		label = "sponge grow",
 		interval = 1,
 		chance = 10,
 		limited_max = 1000,
@@ -105,7 +105,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Sponge Stack Survival",
+		label = "sponge stack death",
 		interval = 2,
 		chance = 1,
 		itemnames = {living},

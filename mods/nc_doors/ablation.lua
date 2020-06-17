@@ -4,7 +4,7 @@ local minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_limited_abm({
-		label = "Door Laser Ablation",
+		label = "door ablation",
 		interval = 2,
 		chance = 1,
 		nodenames = {"nc_optics:lens_on"},

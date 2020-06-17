@@ -63,7 +63,7 @@ minetest.register_node(modname .. ":tree", {
 	})
 
 nodecore.register_aism({
-		label = "Tree Trunk Conversion",
+		label = "tree trunk convert",
 		interval = 1,
 		chance = 1,
 		itemnames = {modname .. ":tree"},

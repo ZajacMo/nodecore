@@ -42,7 +42,7 @@ pumdef = {
 minetest.register_node(pumname, pumdef)
 
 nodecore.register_limited_abm({
-		label = "Quench Lava to Pumice",
+		label = "lava pumice",
 		interval = 1,
 		chance = 2,
 		nodenames = {"nc_terrain:lava_flowing"},
@@ -53,7 +53,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Melt Pumice",
+		label = "pumice melt",
 		interval = 1,
 		chance = 2,
 		nodenames = {pumname},

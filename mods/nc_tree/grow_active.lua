@@ -34,7 +34,7 @@ end
 
 local sproutcost = 2000
 nodecore.register_soaking_abm({
-		label = "EggCorn Growing",
+		label = "eggcorn sprout",
 		fieldname = "eggcorn",
 		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
@@ -76,7 +76,7 @@ end
 
 local trunkcost = 1000
 nodecore.register_soaking_abm({
-		label = "Tree Trunk Growth",
+		label = "tree trunk grow",
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
@@ -133,7 +133,7 @@ nodecore.register_soaking_abm({
 
 local leafcost = trunkcost
 nodecore.register_soaking_abm({
-		label = "Tree Leaves Growth",
+		label = "tree leaves grow",
 		nodenames = {modname .. ":leaves_bud"},
 		fieldname = "leafgrow",
 		interval = 10,

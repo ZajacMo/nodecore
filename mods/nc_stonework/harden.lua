@@ -41,6 +41,7 @@ nodecore.register_globalstep("stone hardening", function()
 	end)
 
 nodecore.register_limited_abm({
+		label = "stone hardening",
 		nodenames = {"group:lava"},
 		neighbors = {"group:stone"},
 		interval = 10,

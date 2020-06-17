@@ -37,7 +37,7 @@ local function getdefs(node)
 end
 
 nodecore.register_craft({
-		label = "stylus etching",
+		label = "stylus etch",
 		action = "pummel",
 		toolgroups = {scratchy = 1},
 		nodes = {
@@ -55,7 +55,7 @@ nodecore.register_craft({
 	})
 
 nodecore.register_soaking_abm({
-		label = "Pliable Concrete Curing",
+		label = "pliable concrete cure",
 		interval = 1,
 		chance = 1,
 		limited_max = 100,

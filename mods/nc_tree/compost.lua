@@ -57,7 +57,7 @@ nodecore.register_craft({
 local compostcost = 2500
 
 nodecore.register_soaking_abm({
-		label = "Composting Growing",
+		label = "peat compost",
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},

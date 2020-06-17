@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 if nodecore.loaded_mods().nc_fire then
 	nodecore.register_limited_abm({
-			label = "Flammable ItemStacks Ignite",
+			label = "flammable stack ignite",
 			interval = 5,
 			chance = 1,
 			nodenames = {modname .. ":stack"},

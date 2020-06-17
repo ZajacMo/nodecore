@@ -15,7 +15,7 @@ local checkdirs = {
 	{x = 0, y = 1, z = 0}
 }
 nodecore.register_limited_abm({
-		label = "Torch Igniting",
+		label = "torch ignite",
 		interval = 6,
 		chance = 1,
 		nodenames = {"group:torch_lit"},
@@ -45,7 +45,7 @@ local function torchlife(expire)
 end
 
 nodecore.register_limited_abm({
-		label = "Torch Extinguishing",
+		label = "torch snuff",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:torch_lit"},
@@ -66,7 +66,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Torch Stack Interactions",
+		label = "torch stack interact",
 		itemnames = {"group:torch_lit"},
 		action = function(stack, data)
 			local expire = stack:get_meta():get_float("expire") or 0

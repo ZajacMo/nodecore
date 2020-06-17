@@ -16,7 +16,7 @@ local function wetname(name)
 end
 
 nodecore.register_limited_abm({
-		label = "Concrete Wettening",
+		label = "concrete wet",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
@@ -29,7 +29,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Concrete Stack Wettening",
+		label = "concrete stack wet",
 		interval = 1,
 		chance = 2,
 		itemnames = {"group:concrete_powder"},
@@ -52,7 +52,7 @@ nodecore.register_aism({
 	})
 
 nodecore.register_limited_abm({
-		label = "Concrete Wandering",
+		label = "concrete wander",
 		interval = 4,
 		chance = 2,
 		limited_max = 100,
@@ -96,7 +96,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Concrete Sink/Disperse",
+		label = "concrete sink/disperse",
 		interval = 4,
 		chance = 2,
 		limited_max = 100,
@@ -124,7 +124,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_soaking_abm({
-		label = "Wet Concrete Curing",
+		label = "wet concrete cure",
 		interval = 5,
 		chance = 2,
 		limited_max = 100,

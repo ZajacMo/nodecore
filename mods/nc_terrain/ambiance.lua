@@ -4,7 +4,7 @@ local nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_ambiance({
-		label = "Water Source Ambiance",
+		label = "water source ambiance",
 		nodenames = {"nc_terrain:water_source"},
 		neigbors = {"air"},
 		interval = 1,
@@ -13,7 +13,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.05
 	})
 nodecore.register_ambiance({
-		label = "Water Flow Ambiance",
+		label = "water flow ambiance",
 		nodenames = {"nc_terrain:water_flowing"},
 		neigbors = {"air"},
 		interval = 1,
@@ -23,7 +23,7 @@ nodecore.register_ambiance({
 	})
 
 nodecore.register_ambiance({
-		label = "Lava Source Ambiance",
+		label = "lava source ambiance",
 		nodenames = {"nc_terrain:lava_source"},
 		neigbors = {"air"},
 		interval = 1,
@@ -32,7 +32,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.2
 	})
 nodecore.register_ambiance({
-		label = "Lava Flow Ambiance",
+		label = "lava flow ambiance",
 		nodenames = {"nc_terrain:lava_flowing"},
 		neigbors = {"air"},
 		interval = 1,

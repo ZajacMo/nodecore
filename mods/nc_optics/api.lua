@@ -116,7 +116,7 @@ end
 
 local passive_queue = {}
 minetest.register_abm({
-		label = "Optic Check",
+		label = "optic check",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:optic_check"},

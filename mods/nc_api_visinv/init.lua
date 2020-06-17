@@ -152,7 +152,7 @@ nodecore.register_on_register_item(function(_, def)
 	end)
 
 nodecore.register_limited_abm({
-		label = "VisInv Check",
+		label = "visinv check",
 		nodenames = {"group:visinv"},
 		interval = 1,
 		chance = 1,

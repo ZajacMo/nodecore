@@ -85,7 +85,7 @@ reg("_glow", {
 	})
 
 nodecore.register_limited_abm({
-		label = "Lens Fire Starting",
+		label = "lens fire start",
 		interval = 2,
 		chance = 2,
 		nodenames = {modname .. ":lens_on"},

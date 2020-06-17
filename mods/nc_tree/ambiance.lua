@@ -4,7 +4,7 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_ambiance({
-		label = "Tree Leaves Ambiance",
+		label = "tree leaves ambiance",
 		nodenames = {"nc_tree:leaves"},
 		neigbors = {"air"},
 		interval = 1,

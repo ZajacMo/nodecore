@@ -36,7 +36,7 @@ local function check(pos, player)
 end
 
 nodecore.register_limited_abm({
-		label = "Lux Reaction",
+		label = "lux react",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_emit"},

@@ -59,6 +59,7 @@ local function rmwater(pos)
 end
 
 nodecore.register_limited_abm({
+		label = "sponge water check",
 		interval = 1,
 		chance = 1,
 		nodenames = {watersrc},

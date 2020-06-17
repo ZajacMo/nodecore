@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local nevermatch = {}
 nodecore.register_limited_abm({
-		label = "Item Stack Cooking/Cooling",
+		label = "item stack cook",
 		nodenames = {modname .. ":stack"},
 		interval = 1,
 		chance = 1,
