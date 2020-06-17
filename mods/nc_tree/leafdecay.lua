@@ -24,8 +24,8 @@ end
 
 nodecore.register_limited_abm({
 		label = "Leaf Decay",
-		interval = 1,
-		chance = 10,
+		interval = 2,
+		chance = 25,
 		limited_max = 100,
 		limited_alert = 1000,
 		nodenames = {modname .. ":leaves"},
