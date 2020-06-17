@@ -23,6 +23,7 @@ local function updatevisuals(player, joining)
 	end
 
 	local props = nodecore.player_visuals_base(player, joining)
+	local anim, eye = nodecore.player_anim(player)
 
 	-- Skin can be set preemptively by visuals_base; if so, then will
 	-- not be modified here.
@@ -37,14 +38,16 @@ local function updatevisuals(player, joining)
 			props.textures = {t}
 		end
 	end
+	if cached.eye ~= eye then
+		props.eye_height = eye
+		cached.eye = eye
+	end
 
-	player:set_properties(props)
-
-	local anim = nodecore.player_anim(player)
 	if not eq(anim, cached.anim) then
 		player:set_animation(anim, anim.speed)
 		cached.anim = anim
 	end
+	return player:set_properties(props)
 end
 
 nodecore.register_on_joinplayer("join setup player model", function(player)
