@@ -5,7 +5,28 @@ local minetest, nodecore, pairs, setmetatable, vector
 
 local modname = minetest.get_current_modname()
 
-nodecore.register_cook_abm({nodenames = {modname .. ":stack"}})
+local nevermatch = {}
+nodecore.register_limited_abm({
+		label = "Item Stack Cooking/Cooling",
+		nodenames = {modname .. ":stack"},
+		interval = 1,
+		chance = 1,
+		action = function(pos, node)
+			local str = nodecore.stack_get(pos):get_name()
+			if nevermatch[str] then return end
+			local matched
+			local data = nodecore.craft_cooking_data()
+			data.rootmatch = function() matched = true end
+			nodecore.craft_check(pos, node, data)
+			if not matched then
+				nevermatch[str] = true
+				return
+			end
+			if not data.progressing then
+				minetest.get_meta(pos):set_string(modname, "")
+			end
+		end
+	})
 
 for name, def in pairs(minetest.registered_items) do
 	if name ~= "" and def.type ~= "node" and def.node_placement_prediction == nil then

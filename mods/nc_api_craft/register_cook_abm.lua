@@ -62,16 +62,22 @@ local function cookdone(pos, data)
 	return playcookfx(pos, recipe.cookfx, "hiss", 80, 0.2)
 end
 
+local function mkdata()
+	return {
+		action = "cook",
+		duration = getduration,
+		inprogress = inprogress,
+		after = cookdone
+	}
+end
+nodecore.craft_cooking_data = mkdata
+
 function nodecore.register_cook_abm(def)
+	def.label = def.label or "cooking " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
 	def.action = function(pos, node)
-		local data = {
-			action = "cook",
-			duration = getduration,
-			inprogress = inprogress,
-			after = cookdone
-		}
+		local data = mkdata()
 		nodecore.craft_check(pos, node, data)
 		if not data.progressing then
 			minetest.get_meta(pos):set_string(modname, "")

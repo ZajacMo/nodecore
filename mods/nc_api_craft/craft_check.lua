@@ -175,6 +175,7 @@ function nodecore.craft_check(pos, node, data)
 		if data.action == rc.action
 		and nodecore.match(node, rc.root.match) then
 			data.recipe = rc
+			if data.rootmatch then data.rootmatch(data) end
 			local r = tryall(rc, pos, node, data)
 			if r then return r == true end
 		end
