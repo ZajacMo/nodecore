@@ -79,6 +79,14 @@ nodecore.player_anim = nodecore.player_anim or function(player)
 	end
 
 	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine), eye_swim end
+	if not (walk or ctl.jump or ctl.sneak or (ctl.left or ctl.right)
+		and not (ctl.left and ctl.right)) then
+		local t = {}
+		for k, v in pairs(nodecore.player_anim_data.swim_up) do
+			t[k] = (k == "speed") and (0.1 * v) or v
+		end
+		return t, eye_swim
+	end
 	local v = player:get_player_velocity()
 	if v and v.y >= -0.5 then return walkspeed(player, nodecore.player_anim_data.swim_up), eye_swim end
 	return walkspeed(player, nodecore.player_anim_data.swim_down), eye_swim

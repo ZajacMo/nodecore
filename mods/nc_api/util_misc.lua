@@ -480,9 +480,12 @@ minetest.after(0, function()
 		end
 	end)
 nodecore.registered_liquids = liquids
+local player_was_swimming = {}
 function nodecore.player_swimming(player)
+	local pname = player:get_player_name()
 	local pos = player:get_pos()
 	local r = 0.6
+	local swimming = true
 	for dz = -r, r, r do
 		for dx = -r, r, r do
 			local p = {
@@ -495,8 +498,16 @@ function nodecore.player_swimming(player)
 				p.y = p.y - 0.35
 				node = minetest.get_node(p)
 			end
-			if not liquids[node.name] then return end
+			if node.name == "air" then swimming = nil
+			elseif not liquids[node.name] then
+				player_was_swimming[pname] = nil
+				return
+			end
 		end
 	end
-	return true
+	if swimming then
+		player_was_swimming[pname] = true
+		return true
+	end
+	return player_was_swimming[pname]
 end
