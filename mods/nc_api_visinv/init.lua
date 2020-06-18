@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -33,8 +31,6 @@ local function getlightcheck(rp, obj, src)
 end
 
 local function itemcheck(self)
-	self.cktime = math_random() + 0.5
-
 	local obj = self.object
 	local pos = obj:get_pos()
 	if not pos then return end
@@ -45,8 +41,6 @@ local function itemcheck(self)
 	local sstr = stack:to_string()
 	if self.stackstring == sstr then return end
 	self.stackstring = sstr
-
-	self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
 
 	if stack:is_empty() then return obj:remove() end
 
@@ -72,22 +66,18 @@ local function itemcheck(self)
 end
 
 local entname = modname .. ":stackent"
-local entdef
-entdef = {
-	initial_properties = nodecore.stackentprops(),
-	is_stack = true,
-	on_activate = function(self)
-		self.is_stack = true
-		self.on_step = entdef.on_step
-		return itemcheck(self)
-	end,
-	on_step = function(self, dtime)
-		self.cktime = (self.cktime or 0) - dtime
-		if self.cktime > 0 then return end
-		return itemcheck(self)
-	end
-}
-minetest.register_entity(entname, entdef)
+minetest.register_entity(entname, {
+		initial_properties = nodecore.stackentprops(),
+		is_stack = true,
+		itemcheck = itemcheck,
+		on_activate = function(self)
+			local pos = self.object:get_pos()
+			if not pos then return self.object:remove() end
+			self.is_stack = true
+			self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
+			return itemcheck(self)
+		end
+	})
 
 local visenv_ent_check = {}
 
@@ -96,21 +86,20 @@ nodecore.register_globalstep("visinv check", function()
 			if e.name == entname then
 				local key = e.poskey
 				if key then
-					local max = visenv_ent_check[key]
-					if max then
-						if max < 1 then
+					local data = visenv_ent_check[key]
+					if data then
+						if data.n < 1 then
 							e.object:remove()
 						else
-							visenv_ent_check[key] = max - 1
+							data.n = data.n - 1
 						end
 					end
 				end
 			end
 		end
-		for k, v in pairs(visenv_ent_check) do
-			if v > 0 then
-				local pos = minetest.get_position_from_hash(k)
-				minetest.add_entity(pos, entname)
+		for _, v in pairs(visenv_ent_check) do
+			if v.n > 0 then
+				minetest.add_entity(v, entname)
 			end
 		end
 		visenv_ent_check = {}
@@ -122,7 +111,9 @@ function nodecore.visinv_update_ents(pos, node)
 	local def = minetest.registered_items[node.name] or {}
 	local max = def.groups and def.groups.visinv and 1 or 0
 	if nodecore.stack_get(pos):is_empty() then max = 0 end
-	visenv_ent_check[minetest.hash_node_position(pos)] = max
+	visenv_ent_check[minetest.hash_node_position(pos)] = {
+		x = pos.x, y = pos.y, z = pos.z, n = max
+	}
 end
 
 ------------------------------------------------------------------------
