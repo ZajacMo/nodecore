@@ -32,7 +32,7 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 	if def.stack_allow and def.stack_allow(pos, node, stack) == false then
 		return doplace(stack, clicker, pointed_thing)
 	end
-	return nodecore.stack_add(pos, stack)
+	return nodecore.stack_add(pos, stack, clicker)
 end
 
 function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)

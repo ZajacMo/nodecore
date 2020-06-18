@@ -1,7 +1,20 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs
-    = ItemStack, minetest, nodecore, pairs
+local ItemStack, minetest, nodecore, pairs, string
+    = ItemStack, minetest, nodecore, pairs, string
+local string_format
+    = string.format
 -- LUALOCALS > ---------------------------------------------------------
+
+local function shortdesc(stack, noqty)
+	stack = ItemStack(stack)
+	if noqty and stack:get_count() > 1 then stack:set_count(1) end
+	local pre = stack:to_string()
+	stack:get_meta():from_table({})
+	local desc = stack:to_string()
+	if pre == desc then return desc end
+	return string_format("%s @%d", desc, #pre - #desc)
+end
+nodecore.stack_shortdesc = shortdesc
 
 local function family(stack)
 	if stack:is_empty() then return "" end
@@ -42,11 +55,15 @@ local function update(pos, ...)
 	return ...
 end
 
-function nodecore.stack_set(pos, stack)
+function nodecore.stack_set(pos, stack, player)
+	if player then
+		nodecore.log("action", string_format("%s sets stack %q at %s",
+				player:get_player_name(), shortdesc(stack), minetest.pos_to_string(pos)))
+	end
 	return update(pos, nodecore.node_inv(pos):set_stack("solo", 1, ItemStack(stack)))
 end
 
-function nodecore.stack_add(pos, stack)
+function nodecore.stack_add(pos, stack, player)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
 	if def.stack_allow then
@@ -55,7 +72,9 @@ function nodecore.stack_add(pos, stack)
 		if ret and ret ~= true then return ret end
 	end
 	stack = ItemStack(stack)
+	local donate = stack:get_count()
 	local item = nodecore.stack_get(pos)
+	local exist = item:get_count()
 	local left
 	if item:is_empty() then
 		left = nodecore.node_inv(pos):add_item("solo", stack)
@@ -63,7 +82,15 @@ function nodecore.stack_add(pos, stack)
 		left = nodecore.stack_merge(item, stack)
 		nodecore.stack_set(pos, item)
 	end
-	if left:get_count() ~= stack:get_count() then
+	local remain = left:get_count()
+	if donate ~= remain then
+		if player then
+			nodecore.log("action", string_format(
+					"%s adds stack %q %d + %d = %d + %d at %s",
+					player:get_player_name(), shortdesc(stack, true),
+					exist, donate, exist + donate - remain, remain,
+					minetest.pos_to_string(pos)))
+		end
 		nodecore.stack_sounds(pos, "place")
 	end
 	return update(pos, left)
@@ -74,10 +101,16 @@ function nodecore.stack_giveto(pos, player)
 	local qty = stack:get_count()
 	if qty < 1 then return true end
 
-	stack = player:get_inventory():add_item("main", stack)
-	if stack:get_count() == qty then return stack:is_empty() end
+	local left = player:get_inventory():add_item("main", stack)
+	local remain = left:get_count()
+	if remain == qty then return stack:is_empty() end
+
+	nodecore.log("action", string_format(
+			"%s takes stack %q %d - %d = %d at %s",
+			player:get_player_name(), shortdesc(stack, true),
+			qty, qty - remain, remain, minetest.pos_to_string(pos)))
 
 	nodecore.stack_sounds(pos, "dug")
-	nodecore.stack_set(pos, stack)
+	nodecore.stack_set(pos, left)
 	return stack:is_empty()
 end

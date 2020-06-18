@@ -68,7 +68,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	if minetest.get_node(below).name == modname .. ":stack" then
-		stack = nodecore.stack_add(below, stack)
+		stack = nodecore.stack_add(below, stack, placer)
 		if stack:is_empty() then return end
 	end
 
@@ -84,7 +84,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	end
 
 	minetest.set_node(pos, {name = modname .. ":stack"})
-	nodecore.stack_set(pos, stack)
+	nodecore.stack_set(pos, stack, placer)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {
 				action = "place",

@@ -1,6 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, setmetatable, vector
-    = minetest, nodecore, pairs, setmetatable, vector
+local minetest, nodecore, pairs, setmetatable, string, type, unpack,
+      vector
+    = minetest, nodecore, pairs, setmetatable, string, type, unpack,
+      vector
+local string_format, string_gsub
+    = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -68,6 +72,12 @@ end
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)
 	local oldadd = minetest.add_item
+	local function additem(pos, stack, ...)
+		nodecore.log("action", string_format("%s throws item %q at %s",
+				player:get_player_name(), nodecore.stack_shortdesc(stack),
+				minetest.pos_to_string(pos, 0)))
+		return oldadd(pos, stack, ...)
+	end
 	function minetest.add_item(pos, stack, ...)
 		local start = player:get_pos()
 		local eyeheight = player:get_properties().eye_height or 1.625
@@ -75,7 +85,7 @@ function minetest.item_drop(item, player, ...)
 		local target = vector.add(start, vector.multiply(player:get_look_dir(), 4))
 		local pointed = minetest.raycast(start, target, false)()
 		if (not pointed) or pointed.type ~= "node" then
-			return oldadd(pos, stack, ...)
+			return additem(pos, stack, ...)
 		end
 
 		local dummyent = {}
@@ -88,7 +98,7 @@ function minetest.item_drop(item, player, ...)
 		local name = stack:get_name()
 		local function tryplace(p)
 			if nodecore.match(p, {name = name, count = false}) then
-				stack = nodecore.stack_add(p, stack)
+				stack = nodecore.stack_add(p, stack, player)
 				if stack:is_empty() then return dummyent end
 			end
 			if nodecore.buildable_to(p) then
@@ -99,11 +109,31 @@ function minetest.item_drop(item, player, ...)
 
 		return tryplace(pointed.under)
 		or tryplace(pointed.above)
-		or oldadd(pos, stack, ...)
+		or additem(pos, stack, ...)
 	end
 	local function helper(...)
 		minetest.add_item = oldadd
 		return ...
 	end
 	return helper(olddrop(item, player, ...))
+end
+
+local oldlog = minetest.log
+function minetest.log(...)
+	local args = {...}
+	if args[1] == "action" then
+		args[2] = args[2] and type(args[2]) == "string"
+		and string_gsub(args[2], "(( digs " .. modname .. ":stack)( at (%(.-%))))",
+			function(full, pre, post, pos)
+				pos = pos and minetest.string_to_pos(pos)
+				local stack = pos and nodecore.stack_get(pos)
+				if stack then
+					return string_format("%s %q%s", pre,
+						nodecore.stack_shortdesc(stack), post)
+				end
+				return full
+			end
+		) or args[2]
+	end
+	return oldlog(unpack(args))
 end
