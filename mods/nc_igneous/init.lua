@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include('amalgam')
 include('pumice')
+include("harden")

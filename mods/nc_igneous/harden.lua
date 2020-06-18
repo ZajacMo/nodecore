@@ -45,7 +45,7 @@ nodecore.register_limited_abm({
 		nodenames = {"group:lava"},
 		neighbors = {"group:stone"},
 		interval = 10,
-		chance = 10,
+		chance = 50,
 		action = function(pos)
 			if not minetest.find_node_near(pos, 2, "group:water") then return end
 			for _, p in pairs(nodecore.find_nodes_around(pos, "group:stone")) do
