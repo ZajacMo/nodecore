@@ -25,7 +25,7 @@ local function check(pos, player)
 	minetest.after(math_random(), function()
 			minetest.add_particle({
 					pos = p,
-					vel = vector.multiply(vector.normalize(rel), 4),
+					velocity = vector.multiply(vector.normalize(rel), 4),
 					texture = particle,
 					exptime = 0.25,
 					playername = pname,
