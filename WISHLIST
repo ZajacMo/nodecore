@@ -13,6 +13,9 @@ to the project!
 	  want to contribute translations.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- #10068: This bug makes everything in the game start to run
+	  crappily, and we can't use the available CPU resources to
+	  make it run smoothly.
 	- #9934: This bug is causing us to maintain a workaround in
 	  NodeCore which is fragile and keeps breaking, leading to
 	  significant network load for some clients.
