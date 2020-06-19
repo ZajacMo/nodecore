@@ -15,11 +15,12 @@ local nevermatch = {}
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
-		action = function(pos)
+		nodenames = {modname .. ":stack"},
+		action = function(pos, node)
 			local matched
 			local data = nodecore.craft_cooking_data()
 			data.rootmatch = function() matched = true end
-			nodecore.craft_check(pos, minetest.get_node(pos), data)
+			nodecore.craft_check(pos, node, data)
 			if not matched then
 				nevermatch[nodecore.stack_get(pos):get_name()] = true
 				return
