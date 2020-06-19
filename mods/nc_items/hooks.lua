@@ -14,6 +14,7 @@ local nevermatch = {}
 
 nodecore.register_dnt({
 		name = dntname,
+		time = 1,
 		action = function(pos)
 			local matched
 			local data = nodecore.craft_cooking_data()
@@ -24,9 +25,9 @@ nodecore.register_dnt({
 				return
 			end
 			if not data.progressing then
-				minetest.get_meta(pos):set_string(modname, "")
+				return minetest.get_meta(pos):set_string(modname, "")
 			else
-				nodecore.dnt_set(pos, dntname, 1)
+				return nodecore.dnt_set(pos, dntname)
 			end
 		end
 	})
@@ -39,7 +40,7 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			local str = nodecore.stack_get(pos):get_name()
 			if nevermatch[str] then return end
-			nodecore.dnt_set(pos, dntname, 1)
+			return nodecore.dnt_set(pos, dntname)
 		end
 	})
 
