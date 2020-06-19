@@ -8,27 +8,38 @@ local string_format, string_gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+local dntname = modname .. ":cookcheck"
 
 local nevermatch = {}
+
+nodecore.register_dnt({
+		name = dntname,
+		action = function(pos)
+			local matched
+			local data = nodecore.craft_cooking_data()
+			data.rootmatch = function() matched = true end
+			nodecore.craft_check(pos, minetest.get_node(pos), data)
+			if not matched then
+				nevermatch[nodecore.stack_get(pos):get_name()] = true
+				return
+			end
+			if not data.progressing then
+				minetest.get_meta(pos):set_string(modname, "")
+			else
+				nodecore.dnt_set(pos, dntname, 1)
+			end
+		end
+	})
+
 nodecore.register_limited_abm({
 		label = "item stack cook",
 		nodenames = {modname .. ":stack"},
 		interval = 1,
 		chance = 1,
-		action = function(pos, node)
+		action = function(pos)
 			local str = nodecore.stack_get(pos):get_name()
 			if nevermatch[str] then return end
-			local matched
-			local data = nodecore.craft_cooking_data()
-			data.rootmatch = function() matched = true end
-			nodecore.craft_check(pos, node, data)
-			if not matched then
-				nevermatch[str] = true
-				return
-			end
-			if not data.progressing then
-				minetest.get_meta(pos):set_string(modname, "")
-			end
+			nodecore.dnt_set(pos, dntname, 1)
 		end
 	})
 

@@ -72,16 +72,28 @@ local function mkdata()
 end
 nodecore.craft_cooking_data = mkdata
 
+local dntname = modname .. ":cookcheck"
+
+local function cookcheck(pos, node)
+	node = node or minetest.get_node(pos)
+	local data = mkdata()
+	nodecore.craft_check(pos, node, data)
+	if not data.progressing then
+		minetest.get_meta(pos):set_string(modname, "")
+	else
+		nodecore.dnt_set(pos, dntname, 1)
+	end
+end
+
+nodecore.register_dnt({
+		name = dntname,
+		action = cookcheck
+	})
+
 function nodecore.register_cook_abm(def)
 	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
-	def.action = function(pos, node)
-		local data = mkdata()
-		nodecore.craft_check(pos, node, data)
-		if not data.progressing then
-			minetest.get_meta(pos):set_string(modname, "")
-		end
-	end
+	def.action = cookcheck
 	nodecore.register_limited_abm(def)
 end
