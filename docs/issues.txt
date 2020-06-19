@@ -23,8 +23,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Sneak+punch should not trigger pummels.
 
-- Add more admin powers, like a "breaks everything" hand priv
-
 - Take advantage of the fact that players/inventories use a single shared
   metatable for player inventory arrangement hooks in nc_player_pickup,
   like we did for entity:set_properties.
@@ -76,13 +74,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Chop frames, ladders, staves back down into sticks?
 
-- Automation reliability issues
-	- Switch door ablation propulsion to run on a node timer instead of
-	  an abm, so it responds faster and more consistently?
-	- Quicker optic path updates.
-		- Record which nodes are blocking optic paths, and which are
-		  used by optic paths, in-memory, for quicker recalcs?
-
 - falling_node pillars settle out of order!
 	- Also anectodal issues with falling nodes sometimes
 	  tunneling WAY upwards now, as observed with BXS's
@@ -115,9 +106,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	  spawn an item_ent.
 	- Need this for amalgamation remelting.
 	- Would it make sense to unify the item and falling_node ents?
-
-- Can we automatically dump a TP overrides.txt file?
-	- Move this, and translate hook, to a chat command?
 
 - NodeCore Spreading ABM API
 	- Eligibility check
