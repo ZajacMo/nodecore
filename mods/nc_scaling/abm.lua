@@ -28,6 +28,18 @@ nodecore.register_limited_abm({
 		end
 	})
 
+local dntname = modname .. ":particles"
+nodecore.register_dnt({
+	name = dntname,
+	time = 1,
+	loop = true,
+	nodenames = {"group:" .. modname .. "_fx"},
+	action = function(pos)
+		nodecore.scaling_particles(pos)
+		return nodecore.dnt_set(pos, dntname, 1)
+	end
+})
+
 nodecore.register_limited_abm({
 		label = "scaling particles",
 		interval = 1,
@@ -35,6 +47,6 @@ nodecore.register_limited_abm({
 		limited_max = 100,
 		nodenames = {"group:" .. modname .. "_fx"},
 		action = function(pos)
-			return nodecore.scaling_particles(pos)
+			return nodecore.dnt_set(pos, dntname)
 		end
 	})

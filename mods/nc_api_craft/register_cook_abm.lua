@@ -79,14 +79,15 @@ local function cookcheck(pos, node)
 	local data = mkdata()
 	nodecore.craft_check(pos, node, data)
 	if not data.progressing then
-		minetest.get_meta(pos):set_string(modname, "")
+		return minetest.get_meta(pos):set_string(modname, "")
 	else
-		nodecore.dnt_set(pos, dntname, 1)
+		return nodecore.dnt_set(pos, dntname)
 	end
 end
 
 nodecore.register_dnt({
 		name = dntname,
+		time = 1,
 		action = cookcheck
 	})
 
