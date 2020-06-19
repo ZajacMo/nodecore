@@ -54,14 +54,10 @@ local function walkspeed(player, anim)
 	return t
 end
 
-local eye_stand = 1.625
-local eye_swim = 0.85
-local eye_lay = 0.5
-
 nodecore.player_anim = nodecore.player_anim or function(player)
 	local hp = player:get_hp()
 	if hp <= 0 then
-		return nodecore.player_anim_data.lay, eye_lay
+		return nodecore.player_anim_data.lay
 	end
 
 	local ctl = player:get_player_control()
@@ -71,25 +67,25 @@ nodecore.player_anim = nodecore.player_anim or function(player)
 	local aux = ctl.aux1
 
 	if not nodecore.player_swimming(player) then
-		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine), eye_stand end
-		if walk then return walkspeed(player, nodecore.player_anim_data.walk), eye_stand end
-		if mine then return nodecore.player_anim_data.mine, eye_stand end
-		if aux then return nodecore.player_anim_data.wave, eye_stand end
-		return nodecore.player_anim_data.stand, eye_stand
+		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
+		if walk then return walkspeed(player, nodecore.player_anim_data.walk) end
+		if mine then return nodecore.player_anim_data.mine end
+		if aux then return nodecore.player_anim_data.wave end
+		return nodecore.player_anim_data.stand
 	end
 
-	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine), eye_swim end
+	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine) end
 	if not (walk or ctl.jump or ctl.sneak or (ctl.left or ctl.right)
 		and not (ctl.left and ctl.right)) then
 		local t = {}
 		for k, v in pairs(nodecore.player_anim_data.swim_up) do
 			t[k] = (k == "speed") and (0.1 * v) or v
 		end
-		return t, eye_swim
+		return t
 	end
 	local v = player:get_player_velocity()
-	if v and v.y >= -0.5 then return walkspeed(player, nodecore.player_anim_data.swim_up), eye_swim end
-	return walkspeed(player, nodecore.player_anim_data.swim_down), eye_swim
+	if v and v.y >= -0.5 then return walkspeed(player, nodecore.player_anim_data.swim_up) end
+	return walkspeed(player, nodecore.player_anim_data.swim_down)
 end
 
 nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
