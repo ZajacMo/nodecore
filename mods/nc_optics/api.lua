@@ -17,11 +17,12 @@ local function dirname(pos)
 	return ""
 end
 
-local function scan(pos, dir, max)
+local function scan(pos, dir, max, deps)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
 	if (not max) or (max > 16) then max = 16 end
 	for _ = 1, max do
 		p = vector.add(p, dir)
+		if deps then deps[minetest.hash_node_position(p)] = true end
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
 		local def = minetest.registered_items[node.name] or {}
@@ -36,8 +37,8 @@ local function scan(pos, dir, max)
 	end
 end
 
-local function scan_recv(pos, dir)
-	local hit, node = scan(pos, dir)
+local function scan_recv(pos, dir, deps)
+	local hit, node = scan(pos, dir, nil, deps)
 	if not hit then return hit, node end
 	local data = minetest.get_meta(hit):get_string("nc_optics")
 	if data == "" then return end
@@ -65,8 +66,9 @@ local function optic_process(trans, pos)
 
 	local ignored
 	if def and def.optic_check then
+		local deps = {}
 		local func = function(dir)
-			local hit, hnode = scan_recv(pos, dir)
+			local hit, hnode = scan_recv(pos, dir, deps)
 			ignored = ignored or hit == false
 			return hit, hnode
 		end
@@ -75,11 +77,15 @@ local function optic_process(trans, pos)
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,
-				data = res
+				data = res,
+				deps = deps
 			}
 		end
 	end
 end
+
+local depidx = {}
+local deprev = {}
 
 local function optic_commit(v)
 	local meta = minetest.get_meta(v.pos)
@@ -112,12 +118,29 @@ local function optic_commit(v)
 	if dirty then
 		meta:set_string("nc_optics", minetest.serialize(data))
 	end
+
+	local hash = minetest.hash_node_position(v.pos)
+	local olddep = deprev[hash]
+	if olddep then
+		for k in pairs(olddep) do
+			local t = depidx[k]
+			if t then t[hash] = nil end
+		end
+	end
+	for k in pairs(v.deps) do
+		local t = depidx[k]
+		if not t then
+			t = {}
+			depidx[k] = t
+		end
+		t[hash] = true
+	end
 end
 
 local passive_queue = {}
 minetest.register_abm({
 		label = "optic check",
-		interval = 1,
+		interval = 5,
 		chance = 1,
 		nodenames = {"group:optic_check"},
 		action = function(pos)
@@ -158,3 +181,24 @@ nodecore.register_globalstep("optic check", function()
 			optic_commit(v)
 		end
 	end)
+
+for fn in pairs({
+		set_node = true,
+		add_node = true,
+		remove_node = true,
+		swap_node = true,
+		dig_node = true,
+		place_node = true,
+		add_node_level = true
+	}) do
+	local func = minetest[fn]
+	minetest[fn] = function(pos, ...)
+		local t = depidx[minetest.hash_node_position(pos)]
+		if t then
+			for k in pairs(t) do
+				optic_check(minetest.get_position_from_hash(k))
+			end
+		end
+		return func(pos, ...)
+	end
+end
