@@ -49,7 +49,7 @@ nodecore.register_on_dignode("dig pummel reset", function(_, _, digger)
 	end)
 
 nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, pointed)
-		if not puncher:is_player() then return end
+		if (not puncher:is_player()) or puncher:get_player_control().sneak then return end
 		local pname = puncher:get_player_name()
 		if not nodecore.interact(pname) then return end
 

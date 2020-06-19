@@ -21,8 +21,6 @@ ISSUES: Bugs, Cleanup and Refinements
 
 - Add a README to the official screenshot world explaining how to use
 
-- Sneak+punch should not trigger pummels.
-
 - Take advantage of the fact that players/inventories use a single shared
   metatable for player inventory arrangement hooks in nc_player_pickup,
   like we did for entity:set_properties.
