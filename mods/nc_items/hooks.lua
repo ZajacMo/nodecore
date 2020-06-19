@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, setmetatable, string, type, unpack,
-      vector
-    = minetest, nodecore, pairs, setmetatable, string, type, unpack,
-      vector
+local ItemStack, ipairs, minetest, nodecore, pairs, setmetatable,
+      string, type, unpack, vector
+    = ItemStack, ipairs, minetest, nodecore, pairs, setmetatable,
+      string, type, unpack, vector
 local string_format, string_gsub
     = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,20 +11,31 @@ local modname = minetest.get_current_modname()
 local dntname = modname .. ":cookcheck"
 
 local nevermatch = {}
+local function nomatches(k, v)
+	local stack = ItemStack(k)
+	for i = 1, v.stack_max do
+		stack:set_count(i)
+		for _, rc in ipairs(nodecore.craft_recipes) do
+			if rc.action == "cook" then
+				if nodecore.match({stack = stack}, rc.root.match) then return end
+			end
+		end
+	end
+	return true
+end
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if nomatches(k, v) then nevermatch[k] = true end
+		end
+	end)
 
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
 		nodenames = {modname .. ":stack"},
 		action = function(pos, node)
-			local matched
 			local data = nodecore.craft_cooking_data()
-			data.rootmatch = function() matched = true end
 			nodecore.craft_check(pos, node, data)
-			if not matched then
-				nevermatch[nodecore.stack_get(pos):get_name()] = true
-				return
-			end
 			if not data.progressing then
 				return minetest.get_meta(pos):set_string(modname, "")
 			else
@@ -39,8 +50,7 @@ nodecore.register_limited_abm({
 		interval = 1,
 		chance = 1,
 		action = function(pos)
-			local str = nodecore.stack_get(pos):get_name()
-			if nevermatch[str] then return end
+			if nevermatch[nodecore.stack_get(pos):get_name()] then return end
 			return nodecore.dnt_set(pos, dntname)
 		end
 	})
