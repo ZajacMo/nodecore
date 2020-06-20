@@ -13,6 +13,17 @@ ISSUES-CODE: Issues related to code quality and APIs
     - Simplify or optimize existing ABMs
     - Convert things to DNTs.
 
+- Replace some absolute/offline countdowns with ABM/AISM countdown
+	- Sponge squeeze expiration, torches
+	- Be more consistent with some non-offline mechanics like
+	  fire fuel consumption
+	- "Fairness" issues, e.g. when sponge expiration happens before
+	  squeezer DNTs have had a chance to fire.
+
+- Some time-integral processes are not resetting when prereqs removed
+	- Cooking resumes instead of resetting when fire removed.
+	- Leaching resumes instead of resetting when water removed.
+
 - Deprecation warnings for get_connected_players() at mod load time:
   (at /config/.minetest/games/nodecore/mods/nc_envsound/init.lua:52)
   (at /config/.minetest/games/nodecore/mods/nc_lux/radiation.lua:85)
@@ -24,10 +35,14 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Deprecation checks:
 	- get_connected_players() at loadtime
 	- old version of set_sky()
+		- Look for set_sun() to determine if new set_sky available?
+		- ...or wait for pre-5.2 deprecation
 
 - Take advantage of the fact that players/inventories use a single shared
   metatable for player inventory arrangement hooks in nc_player_pickup,
   like we did for entity:set_properties.
+	- Currently inv pickup logic isn't working and we're relying on
+	  rearrangement; need to resolve this one way or another.
 
 - Make leaf decay group-driven for mod applicability.
 
@@ -101,6 +116,8 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Player APIs:
     - Things we override like physics.
+	- Skybox, sunlight.
+		- Could be used by skyrealm for separate skybox.
 
 - Scripts to validate dependency graph.
 	- Tag deps directly in code at place of use.
@@ -114,6 +131,13 @@ ISSUES-CODE: Issues related to code quality and APIs
 		- Stack nodes are "special", get first-class support.
 	- APIs for different kinds of "neighbor" scans
 		- Face, edge, corner touching
+
+- Need better handling of stuck item ents, e.g. items dropped into a
+  pit full of leaves.
+	- Detect, merge all in area, save as a single combined ent?
+	- Try placing items as a queue, so it only does 1 check per tick
+	  and doesn't attempt other checks that would also fail.
+	- Maybe just cache item placement failures per tick.
 
 ........................................................................
 ========================================================================

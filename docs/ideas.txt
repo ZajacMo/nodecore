@@ -9,8 +9,41 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- New Darkness feature:
+	- Keep track of queue of recent "safe spots" for player: in sunlight, on solid ground or climbable etc.
+	- Track player darkness, search for nearby light.  Keep track of recent hit/miss (ring/queue).
+	- If player is in TOTAL darkness for long enough to be certain, then do "fugue" teleportation.
+	- Fade screen to black slowly via HUD (maybe have an API for this for skyrealms).
+	- Drop all items.
+	- Apply a temporary debuff...?
+	- Teleport player back to recent safe spots until we find one, or run out.
+	- Fade screen back from black.
+
+- Make lava easier to find at a distance visually
+	- Particles, like cherenkov?
+
+- Frame improvements
+	- Allow loose ends to be chopped off when placed next to other
+	  frames, so custom shapes can be made.
+	- Add lode frames.
+
+- Lode rakes?  Lode adzes?
+
+- A lode "mace" tool with all dig groups?
+	- Would require reevaluatng recipe priority, or tool modality.
+
+- Should tool appearance vary based on wear?
+	- Make "fresh" vs. "worn" tools (for purposes of their usability
+	  in crafts) have a distinct look?
+
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
+	- Rows of shelves against walls.  Very rarely lode crates.
+	- Loot items in shelves, weighted pickrand().  Add a "margin" pick
+	  result with value of proportion of where in range the picked value
+	  was, and vary tool durability or stack count non-linearly by it.
+	- Scattered items on floor.  Most are from loot tables, some are
+	  crates or storeboxes.
 
 - Tree sap
 	- Stumps with air above exude, become dry stumps.
@@ -141,6 +174,21 @@ IDEAS: Possible future additions/improvements to the game
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
 	- Add a "cloak" layer for cloaks, capes, over entire body
+
+- Drop-in recipes, triggered on thrown or falling items settling?
+	- Good for dangerous stuff, maybe?
+
+- Compact signage via concrete/writing/stylus
+	- Draw glyphs on a wall.
+	- Place a lens focusing light from the wall onto a spot.
+	- Put pliant concrete in that spot.
+	- Make sure wall is adequately lit.
+	- Etch the lens-facing side of the pliant concrete with stylus.
+- Create a "custom patterned" concrete sign block with letters etched
+  onto it.  Store in metadata, use ents to render, etc.
+
+- Allow metalworking with wood tools?
+	- Eat a lot of extra durability?
 
 ........................................................................
 ========================================================================

@@ -15,6 +15,7 @@ minetest.register_tool(modname .. ":adze", {
 		description = "Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
+			firestick = 2,
 			flammable = 2
 		},
 		tool_capabilities = adzecaps,

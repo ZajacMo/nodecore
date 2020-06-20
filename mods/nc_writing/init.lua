@@ -82,6 +82,7 @@ for i = 1, #glyphs do
 			buildable_to = true,
 			pointable = false,
 			groups = {
+				flammable = 1,
 				alpha_glyph = 1
 			},
 			drop = coallump,

@@ -9,8 +9,25 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Stop sponges dying when adjacent to ignores.
+
+- Buff lux burns significantly when touching lux.
+	- Maybe replace all normal damage with lux burns?
+	- May need a hack to play damage effects when not altering hp.
+		- Set hp lower and use 1+ delta, then let damage normalizer
+		  reset it?
+
 - Mapgen should be deterministic if possible; use perlin noise as random
   seed for placement of all things.
+	- Look at PcgRandom, fall back to PseudoRandom, then math.random.
+
+- Setting to disable entire hint system (tab, alerts) esp. for MP.
+
+- Repose changes
+	- Staves/rods should repose a lot less or not at all.
+	- Rework repose to be based on amount of loose material below, not
+	  amount of distance available to fall?  repose only needs to have a
+	  particular angle as measured on flat land?
 
 - Hint system
 	- Updates for everything since renewable ores (read changelog)
@@ -25,6 +42,9 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Consider using waypoint HUDs for punchtips instead, now that
   https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
+
+- Need to add directional features to the skybox.
+	- Make cardinal navigation using the sky possible.
 
 - Chop frames, ladders, staves back down into sticks?
 
