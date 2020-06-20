@@ -45,11 +45,6 @@ to the project!
 	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
 	  and other container nodes.
 
-- Help maintaining the hint system.
-	- Development of hints often lags behind development of new
-	  features, sometimes significantly.
-	- Hint organization and content is subject to improvement.
-
 - Improved versions of any art assets (sounds, textures, models).
 	- A custom skybox, preferably that looks good at limited
 	  resolution.
@@ -74,17 +69,6 @@ to the project!
 	  videos and streams!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
-
-- Door animations.
-	- These need to be relatively efficient, i.e. not involve
-	  a ton of node manipulation or spawning lots of entities.
-	  Of particular concern is network packet load on clients.
-	- Something using animated entities (which could represent
-	  multiple nodes sharing an axis) could work well.
-	- Alternatively, a reasonable particle effect?  Something
-	  abstract is fine too, as long as it conveys a sense of
-	  movement to help players visualize what's moving and in
-	  what direction.
 
 ........................................................................
 ========================================================================

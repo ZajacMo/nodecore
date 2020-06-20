@@ -190,5 +190,16 @@ IDEAS: Possible future additions/improvements to the game
 - Allow metalworking with wood tools?
 	- Eat a lot of extra durability?
 
+- Door animations.
+	- These need to be relatively efficient, i.e. not involve
+	  a ton of node manipulation or spawning lots of entities.
+	  Of particular concern is network packet load on clients.
+	- Something using animated entities (which could represent
+	  multiple nodes sharing an axis) could work well.
+	- Alternatively, a reasonable particle effect?  Something
+	  abstract is fine too, as long as it conveys a sense of
+	  movement to help players visualize what's moving and in
+	  what direction.
+
 ........................................................................
 ========================================================================

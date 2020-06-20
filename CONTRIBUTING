@@ -29,6 +29,11 @@ contribution.
 
 Other Guidelines:
 
+- Please do not use the nc_* namespace for projects you will be
+  releasing directly to the public, e.g. via ContentDB, Forums, etc.
+  This namespace should only be for things that will be included in
+  the base game.
+
 - Non-included contributions to the project, such as hosting or other
   services, content such as videos/streams, screenshots/galleries,
   reviews, stories and other publicity do not need to follow the

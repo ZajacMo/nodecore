@@ -10,10 +10,7 @@ ISSUES-DOCS: Issues related to documentation
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Add a code of conduct to project
-    - Cover chat rules from discord, servers?
-
-- Add guidelines about namespacing to contribution guide, i.e. don't
-  use nc_* names as those are reserved for NodeCore itself.
+	- Cover chat rules from discord, servers?
 
 - Add a credits file with more extensive/specific credits, including
   non-copyrightable contributions to core project...?
@@ -21,6 +18,10 @@ ISSUES-DOCS: Issues related to documentation
 - Add a README to the official screenshot world explaining how to use
 
 - Design doc needs another shakedown.
+	- Expecially: what has "nodecorian" come to mean?
+
+- Need to clean out issues in wishlist.
+	- Put some issues unlikely to be resolved on ice.
 
 ........................................................................
 ========================================================================
