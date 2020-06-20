@@ -1,0 +1,45 @@
+========================================================================
+RELENG: Release engineering and version support
+------------------------------------------------------------------------
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+GENERAL POLICY:
+
+Version support should go as far back as:
+- One official minor release (e.g. #.#) prior to the latest across all
+  platforms.
+- The latest officially supported release for each platform.
+This means that during the 5.2 release, we support 5.2, 5.1, and 5.0
+(because android is stuck on 5.0).  When 5.3 is released and brings
+back current android support, we will drop 5.0 and 5.1, since all
+platforms will be at 5.3, and thus 5.2 will be the earliest.
+
+Version support should go as far forward as:
+Support the current latest release at all times.  Test the game out on
+dev versions so we can be prepared to support the next release as soon
+as it happens.
+
+NEW MT RELEASE PROCESS:
+	- Reevaluate the policy and decide which version(s) need EOS
+    - Check CDB for version strings and update .cdbrelease.lua
+    - Check this doc for special TODO items related to release
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+- After 5.0 EOS:
+	- Add an on_prejoin check to disallow clients with proto version
+	  too low.
+	- Remove issue7020 workaround, reevaluate other workarounds.
+
+- After 5.2 EOS:
+	- Change bandolier slot items back to upright_sprite
+
+........................................................................
+========================================================================

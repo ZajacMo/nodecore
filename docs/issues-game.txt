@@ -1,0 +1,77 @@
+========================================================================
+ISSUES-GAME: Gameplay-affecting issues
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Mapgen should be deterministic if possible; use perlin noise as random
+  seed for placement of all things.
+
+- Hint system
+	- Updates for everything since renewable ores (read changelog)
+		- Agg may have been broken by concrete overhaul
+	- Consider removing redundant or reverse paths, i.e. recycling
+	  or artificial resource recipes.
+		- They complicate maintenance.
+		- They are distracting for players (e.g. Emerald feeling
+		  COMPELLED to chop up a lode crate unnecessarily for the
+		  hint completion)
+		- Hints could be re-expanded by 3rd party mods
+
+- Consider using waypoint HUDs for punchtips instead, now that
+  https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
+
+- Chop frames, ladders, staves back down into sticks?
+
+- falling_node pillars settle out of order!
+	- Also anectodal issues with falling nodes sometimes
+	  tunneling WAY upwards now, as observed with BXS's
+	  mine on NCC where gravel tunneled all the way up
+	  the ladder
+
+- Tote issues:
+	- Consider updating tote recipe.
+	- Totes should do face-connected search for totables; don't pick up
+	  shelves only touching via a corner.
+
+- Flammables should respond via AISM when bathed in fire or igniting
+  liquids like molten glass or rock.
+
+- Import YCTIWY as part of the base game.
+	- Setting to disable entirely
+	- Setting to disable compact mode
+	- Setting for fresh/stale like bones; items become accessible
+	  only after time has passed since last login
+	- Make the priv just to override any protections
+
+- Shelf recipe reform
+	- Add a "shelf frame" node made from wooden frames
+	- Add appropriate material to shelf frame to make shelf
+	- 2-stage construction should make it easier to discover
+	- Shelf frame can gain its own distinct uses
+		- e.g. some things can fall through it but not others.
+		  Items?  Players?  Fluids?
+
+- Should there be pockets of softer stone at depth, like there is gravel?
+
+- Make stone brick more easily crafted by chiseling with a high-tier
+  pick, e.g. tier 7+
+
+- Consider checking for a nearby active player before running
+  "fast-evolving" ABMs that don't normally work offline, like fire
+  extinguishing/spreading?
+	- This would make gameplay more fair for those who tend to
+	  go AFK suddenly and can't return for a long time.
+	- This would reduce the gap between things that support the offline
+	  mechanic and those that don't between MP and SP.
+
+- Make separate walkable/non-walkable stack nodes.
+	- Should sticks and eggcorns be non-walkable?
+
+........................................................................
+========================================================================

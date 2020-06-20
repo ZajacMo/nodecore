@@ -1,5 +1,5 @@
 ========================================================================
-ROADMAP: Large New Development Projects
+IDEAS: Possible future additions/improvements to the game
 ------------------------------------------------------------------------
 
   ####   #####    ####      #    #       ######  #####    ####
@@ -9,24 +9,8 @@ ROADMAP: Large New Development Projects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Import YCTIWY as part of the base game.
-	- Setting to disable entirely
-	- Setting to disable compact mode
-	- Setting for fresh/stale like bones; items become accessible
-	  only after time has passed since last login
-	- Make the priv just to override any protections
-
-- Shelf recipe reform
-	- Add a "shelf frame" node made from wooden frames
-	- Add appropriate material to shelf frame to make shelf
-	- 2-stage construction should make it easier to discover
-	- Shelf frame can gain its own distinct uses
-		- e.g. some things can fall through it but not others.
-		  Items?  Players?  Fluids?
-
-- Should there be pockets of softer stone at depth, like there is gravel?
-
-- Add recipe hints (prearranged nodes) to dungeons as decorations?
+- Dungeon loot
+	- Add recipe hints (prearranged nodes) as decorations?
 
 - Tree sap
 	- Stumps with air above exude, become dry stumps.
@@ -50,11 +34,6 @@ ROADMAP: Large New Development Projects
 	  inventory?
 		- Maybe only if the lux is higher activation tier?
 
-- Easier recipe API:
-	- Use ascii art like ezschematic?
-	- Aliases like "sides"/"corners"?
-	- Make 3x3 recipes easier to define.
-
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
@@ -65,9 +44,6 @@ ROADMAP: Large New Development Projects
 		- Detect adjacent glue node?
 	- Apply frame, make framed optics?
 	- Hammer into place with certain tool?
-
-- Make stone brick more easily crafted by chiseling with a high-tier
-  pick, e.g. tier 7+
 
 - Door Automation
 	- Should have press recipes for stickcraft, i.e. staves,
@@ -86,21 +62,6 @@ ROADMAP: Large New Development Projects
 	- Push players?
 	- Need more door materials: lode, glasses
 
-- Standardize visinv access API
-	- stack_access(pos, node, dirfrom) - return booly
-	  whether access to inside stack is allowed.
-	- Use for shelf API.
-	- Use for touchtips inv access.
-	- Genericize sponge logic using stack_access API
-
-- Lava rework:
-	- Wandering fluids API for concrete, glass, lava?
-		- Configurable setting for generation count multiplier.
-	- Lava wandering.
-		- Concentrations of lava should melt nearyby stone
-			- Dependent on hardness of stone
-		- Lava near fringes should spontaneously quench.
-
 - Renewability Gap
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
@@ -110,6 +71,7 @@ ROADMAP: Large New Development Projects
 	- Sustainable but not renewable
 	- Not sustainable
 		- Lava sources.
+			- Surround stone with lava to melt?
 
 - Threats
 	- Visceral
@@ -169,6 +131,16 @@ ROADMAP: Large New Development Projects
 	  and matches at least 1 non-air node, picks one.
 	- Create display "ghost" entities representing items that
 	  can be placed to complete the recipe.
+
+- Should tree growth rate start out faster but slow down?
+	- This could make the decision to harvest trees early vs
+	  wait for them to mature more nuanced.
+
+- Social features
+	- Randomize player appearance/colors.
+		- Shirt/pants, possibly w/ stripes/patterns
+		- Skin color, hair color, eye color?
+	- Add a "cloak" layer for cloaks, capes, over entire body
 
 ........................................................................
 ========================================================================

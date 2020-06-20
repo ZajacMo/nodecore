@@ -1,0 +1,26 @@
+========================================================================
+ISSUES-DOCS: Issues related to documentation
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Add a code of conduct to project
+    - Cover chat rules from discord, servers?
+
+- Add guidelines about namespacing to contribution guide, i.e. don't
+  use nc_* names as those are reserved for NodeCore itself.
+
+- Add a credits file with more extensive/specific credits, including
+  non-copyrightable contributions to core project...?
+
+- Add a README to the official screenshot world explaining how to use
+
+- Design doc needs another shakedown.
+
+........................................................................
+========================================================================

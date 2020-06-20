@@ -1,5 +1,5 @@
 ========================================================================
-ISSUES: Bugs, Cleanup and Refinements
+ISSUES-CODE: Issues related to code quality and APIs
 ------------------------------------------------------------------------
 
   ####   #####    ####      #    #       ######  #####    ####
@@ -9,21 +9,9 @@ ISSUES: Bugs, Cleanup and Refinements
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- AFTER 5.2 EOS: change bandolier slot items back to upright_sprite
-
-- Add a code of conduct to project
-
-- Add guidelines about namespacing to contribution guide, i.e. don't
-  use nc_* names as those are reserved for NodeCore itself.
-
-- Add a credits file with more extensive/specific credits, including
-  non-copyrightable contributions to core project...?
-
-- Add a README to the official screenshot world explaining how to use
-
-- Take advantage of the fact that players/inventories use a single shared
-  metatable for player inventory arrangement hooks in nc_player_pickup,
-  like we did for entity:set_properties.
+- Continue to chisel away at ABM perf issues.
+    - Simplify or optimize existing ABMs
+    - Convert things to DNTs.
 
 - Deprecation warnings for get_connected_players() at mod load time:
   (at /config/.minetest/games/nodecore/mods/nc_envsound/init.lua:52)
@@ -36,6 +24,10 @@ ISSUES: Bugs, Cleanup and Refinements
 - Deprecation checks:
 	- get_connected_players() at loadtime
 	- old version of set_sky()
+
+- Take advantage of the fact that players/inventories use a single shared
+  metatable for player inventory arrangement hooks in nc_player_pickup,
+  like we did for entity:set_properties.
 
 - Make leaf decay group-driven for mod applicability.
 
@@ -51,52 +43,17 @@ ISSUES: Bugs, Cleanup and Refinements
 - Add an on_falling_check handler to replace check_single_for_falling custom
   hook in writing, and possibly other places.
 
-- Mapgen should be deterministic if possible; use perlin noise as random
-  seed for placement of all things.
-
-- Hint system
-	- Updates for everything since renewable ores (read changelog)
-		- Agg may have been broken by concrete overhaul
-	- Consider removing redundant or reverse paths, i.e. recycling
-	  or artificial resource recipes.
-		- They complicate maintenance.
-		- They are distracting for players (e.g. Emerald feeling
-		  COMPELLED to chop up a lode crate unnecessarily for the
-		  hint completion)
-		- Hints could be re-expanded by 3rd party mods
-	- Restructure: move API into nc_api_* layer, distribute hints
-	  into mods that their content is for.
-
-- Consider using waypoint HUDs for punchtips instead, now that
-  https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
-
-- Chop frames, ladders, staves back down into sticks?
-
-- falling_node pillars settle out of order!
-	- Also anectodal issues with falling nodes sometimes
-	  tunneling WAY upwards now, as observed with BXS's
-	  mine on NCC where gravel tunneled all the way up
-	  the ladder
-
-- Delayed hint witnessing?
-	- Store credit for soaking recipe in node metadata, give it to
-	  the first person to punch it later.
-	- Use for witnessing fermentation recipes like peat/humus,
-	  humus/dirt, dirt/sand.
+- Hint System Refactor
+    - Move stats into an api layer to ensure availability.
+    - Simplify stats, track less detail, limit data growth.
+    - Break up hints into each individual mod.
+    - Add shortcuts for hint registrations, e.g. integrated with recipes.
 
 - Should we create "recipe groups" to make it easier to specify
   equivalent recipes for hint purposes?
 
-- Tote issues:
-	- Consider updating tote recipe.
-	- Totes should do face-connected search for totables; don't pick up
-	  shelves only touching via a corner.
-
 - Item ent merge should use logic consistent with nodecore.stack_merge,
   which handles item families.
-
-- Flammables should respond via AISM when bathed in fire or igniting
-  liquids like molten glass or rock.
 
 - Need to find a way to make AISMs work with falling_node.
 	- Create ItemStack, run hooks, try to convert back to node
@@ -115,9 +72,6 @@ ISSUES: Bugs, Cleanup and Refinements
 	- Given minp, maxp, seed and density, find all positions.
 	- Use for sponges, lava/water springs, etc.
 
-- Offline sponge spreading.
-	- Similar to grass spreading.
-
 - Replacement for mkreg, a.k.a. register_generic():
 	- Allow lazy registration, i.e. a register method that can
 	  register for things not yet defined, and allow later registration
@@ -127,7 +81,39 @@ ISSUES: Bugs, Cleanup and Refinements
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?
 
-- Design doc needs another shakedown.
+- Easier recipe API:
+	- Use ascii art like ezschematic?
+	- Aliases like "sides"/"corners"?
+	- Make 3x3 recipes easier to define.
+
+- Standardize visinv access API
+	- stack_access(pos, node, dirfrom) - return booly
+	  whether access to inside stack is allowed.
+	- Use for shelf API.
+	- Use for touchtips inv access.
+	- Genericize sponge logic using stack_access API
+
+- Wandering fluids API for concrete, glass?
+    - Configurable setting for generation count multiplier.
+
+- API for recursing through embedded inventories, e.g. in totes.
+	- Lux reaction cannot sense other lux inside totes.
+
+- Player APIs:
+    - Things we override like physics.
+
+- Scripts to validate dependency graph.
+	- Tag deps directly in code at place of use.
+	- Auto-generate mod.conf / depends.txt
+
+- API Cleanup
+	- Further nc_api break-up, clean up util functions.
+	- Heat API
+		- Quenched, Flames as numbers or nil?
+	- Unify nc_items and visinv API.
+		- Stack nodes are "special", get first-class support.
+	- APIs for different kinds of "neighbor" scans
+		- Face, edge, corner touching
 
 ........................................................................
 ========================================================================
