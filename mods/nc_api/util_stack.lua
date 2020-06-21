@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, string
-    = ItemStack, minetest, nodecore, pairs, string
+local ItemStack, minetest, nodecore, string
+    = ItemStack, minetest, nodecore, string
 local string_format
     = string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -46,10 +46,6 @@ end
 
 local function update(pos, ...)
 	minetest.after(0, function()
-			for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
-				local l = v.get_luaentity and v:get_luaentity()
-				if l and l.is_stack and l.itemcheck then l:itemcheck() end
-			end
 			nodecore.visinv_update_ents(pos)
 		end)
 	return ...

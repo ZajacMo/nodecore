@@ -88,32 +88,30 @@ nodecore.register_globalstep("visinv check", function()
 				if key then
 					local data = visenv_ent_check[key]
 					if data then
-						if data.n < 1 then
+						if data.e == nil then
+							data.e = nodecore.stack_get(data):is_empty()
+						end
+						if data.e then
 							e.object:remove()
 						else
-							data.n = data.n - 1
+							itemcheck(e)
+							data.e = true
 						end
 					end
 				end
 			end
 		end
-		for _, v in pairs(visenv_ent_check) do
-			if v.n > 0 then
-				minetest.add_entity(v, entname)
+		for _, data in pairs(visenv_ent_check) do
+			if (data.e == false) or (not nodecore.stack_get(data):is_empty()) then
+				minetest.add_entity(data, entname)
 			end
 		end
 		visenv_ent_check = {}
 	end)
 
-function nodecore.visinv_update_ents(pos, node)
+function nodecore.visinv_update_ents(pos)
 	pos = vector.round(pos)
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
-	local max = def.groups and def.groups.visinv and 1 or 0
-	if nodecore.stack_get(pos):is_empty() then max = 0 end
-	visenv_ent_check[minetest.hash_node_position(pos)] = {
-		x = pos.x, y = pos.y, z = pos.z, n = max
-	}
+	visenv_ent_check[minetest.hash_node_position(pos)] = pos
 end
 
 ------------------------------------------------------------------------
@@ -142,12 +140,10 @@ nodecore.register_on_register_item(function(_, def)
 		end
 	end)
 
-nodecore.register_limited_abm({
-		label = "visinv check",
+nodecore.register_lbm({
+		name = modname .. ":init",
+		run_at_every_load = true,
 		nodenames = {"group:visinv"},
-		interval = 1,
-		chance = 1,
-		ignore_stasis = true,
 		action = function(...) return nodecore.visinv_update_ents(...) end
 	})
 
