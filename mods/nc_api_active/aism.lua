@@ -61,9 +61,7 @@ local function checkrun(def, stack, data)
 end
 
 local function checkstack(stack, data)
-	if (not stack) or stack:is_empty() then return end
-	local name = stack:get_name()
-	local defs = aismidx[name]
+	local defs = aismidx[stack:get_name()]
 	if not defs then return end
 	for def in pairs(defs) do
 		checkrun(def, stack, data)
