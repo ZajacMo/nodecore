@@ -138,7 +138,7 @@ local function optic_commit(v)
 end
 
 local passive_queue = {}
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "optic check",
 		interval = 5,
 		chance = 1,

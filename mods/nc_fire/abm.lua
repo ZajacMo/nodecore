@@ -73,7 +73,7 @@ nodecore.register_globalstep("fire ignition", function()
 		ignitequeue = {}
 		igniteqty = 0
 	end)
-minetest.register_abm({
+nodecore.register_limited_abm({
 		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
