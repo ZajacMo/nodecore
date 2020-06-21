@@ -30,23 +30,25 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
-local visenv_ent_check = {}
-
+local check_queue = {}
+local check_queue_dirty
 local function visinv_update_ents(pos)
 	pos = vector.round(pos)
-	visenv_ent_check[minetest.hash_node_position(pos)] = pos
+	check_queue[minetest.hash_node_position(pos)] = pos
+	check_queue_dirty = true
 end
 nodecore.visinv_update_ents = visinv_update_ents
 
+local visinv_ents = {}
 local function objremove(ent, obj)
-	ent.gone = true
+	visinv_ents[ent] = nil
 	return (obj or ent.object):remove()
 end
 
 local function itemcheck(self)
 	local obj = self.object
 	local pos = obj:get_pos()
-	if not pos then self.gone = true return end
+	if not pos then visinv_ents[self] = nil return end
 
 	local stack = nodecore.stack_get(pos)
 
@@ -85,9 +87,12 @@ minetest.register_entity(entname, {
 	})
 
 nodecore.register_globalstep("visinv check", function()
-		local batch = visenv_ent_check
-		visenv_ent_check = {}
-		for _, ent in pairs(minetest.luaentities) do
+		if not check_queue_dirty then return end
+		local batch = check_queue
+		check_queue = {}
+		check_queue_dirty = nil
+
+		for ent in pairs(visinv_ents) do
 			if (ent.name == entname) and (not ent.gone) then
 				local key = ent.poskey
 				if key then
@@ -108,6 +113,7 @@ nodecore.register_globalstep("visinv check", function()
 				local obj = minetest.add_entity(data, entname)
 				local ent = obj and obj:get_luaentity()
 				if ent then
+					visinv_ents[ent] = true
 					ent.is_stack = true
 					ent.poskey = poskey
 					itemcheck(ent)
