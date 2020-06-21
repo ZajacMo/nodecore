@@ -5,8 +5,8 @@ local nodecore
 
 nodecore.register_ambiance({
 		label = "water source ambiance",
-		nodenames = {"nc_terrain:water_source"},
-		neigbors = {"air"},
+		nodenames = {"nc_terrain:water_source", "nc_terrain:water_gray_source"},
+		neighbors = {"air"},
 		interval = 1,
 		chance = 1000,
 		sound_name = "nc_terrain_watery",
@@ -14,8 +14,8 @@ nodecore.register_ambiance({
 	})
 nodecore.register_ambiance({
 		label = "water flow ambiance",
-		nodenames = {"nc_terrain:water_flowing"},
-		neigbors = {"air"},
+		nodenames = {"nc_terrain:water_flowing", "nc_terrain:water_gray_flowing"},
+		neighbors = {"air"},
 		interval = 1,
 		chance = 50,
 		sound_name = "nc_terrain_watery",
@@ -25,7 +25,7 @@ nodecore.register_ambiance({
 nodecore.register_ambiance({
 		label = "lava source ambiance",
 		nodenames = {"nc_terrain:lava_source"},
-		neigbors = {"air"},
+		neighbors = {"air"},
 		interval = 1,
 		chance = 250,
 		sound_name = "nc_terrain_bubbly",
@@ -34,7 +34,7 @@ nodecore.register_ambiance({
 nodecore.register_ambiance({
 		label = "lava flow ambiance",
 		nodenames = {"nc_terrain:lava_flowing"},
-		neigbors = {"air"},
+		neighbors = {"air"},
 		interval = 1,
 		chance = 10,
 		sound_name = "nc_terrain_bubbly",
