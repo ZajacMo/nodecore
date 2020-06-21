@@ -21,6 +21,13 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Setting to disable entire hint system (tab, alerts) esp. for MP.
 
+- Replace some absolute/offline countdowns with ABM/AISM countdown
+	- Sponge squeeze expiration, torches
+	- Be more consistent with some non-offline mechanics like
+	  fire fuel consumption
+	- "Fairness" issues, e.g. when sponge expiration happens before
+	  squeezer DNTs have had a chance to fire.
+
 - Repose changes
 	- Staves/rods should repose a lot less or not at all.
 	- Rework repose to be based on amount of loose material below, not

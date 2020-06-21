@@ -25,13 +25,6 @@ ISSUES-CODE: Issues related to code quality and APIs
     - Simplify or optimize existing ABMs
     - Convert things to DNTs.
 
-- Replace some absolute/offline countdowns with ABM/AISM countdown
-	- Sponge squeeze expiration, torches
-	- Be more consistent with some non-offline mechanics like
-	  fire fuel consumption
-	- "Fairness" issues, e.g. when sponge expiration happens before
-	  squeezer DNTs have had a chance to fire.
-
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
 	- Leaching resumes instead of resetting when water removed.
