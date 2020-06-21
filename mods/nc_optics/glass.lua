@@ -108,6 +108,7 @@ local moltdef = {
 	groups = {
 		igniter = 1,
 		silica = 1,
+		silica_molten = 1,
 		stack_as_node = 1,
 		damage_touch = 1,
 		damage_radiant = 3
