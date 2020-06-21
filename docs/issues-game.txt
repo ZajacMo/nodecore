@@ -9,8 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Stop sponges dying when adjacent to ignores.
-
 - Buff lux burns significantly when touching lux.
 	- Maybe replace all normal damage with lux burns?
 	- May need a hack to play damage effects when not altering hp.

@@ -32,7 +32,7 @@ minetest.after(0, function()
 
 local function notdry(pos)
 	local node = minetest.get_node_or_nil(pos)
-	if not node then return end
+	if not node then return true end
 	if not dryitems[node.name] then return true end
 	local def = minetest.registered_items[node.name]
 	if def and def.groups.is_stack_only then
