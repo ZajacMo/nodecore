@@ -9,6 +9,8 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- ABM/DNT reforms have probably broken stasis!
+
 - Buff lux burns significantly when touching lux.
 	- Change lux burn model to operate like radiant heat instead?
 		- Genericize radiant damage check to check a hook for damage
