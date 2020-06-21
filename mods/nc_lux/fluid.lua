@@ -31,8 +31,7 @@ local wetdef = {
 		stack_as_node = 1,
 		damage_radiant = 1
 	},
-	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
-	sounds = nodecore.sounds("nc_terrain_chompy")
+	post_effect_color = {a = 64, r = 251, g = 241, b = 143}
 }
 minetest.register_node(modname .. ":flux_source", nodecore.underride({
 			drawtype = "liquid",
