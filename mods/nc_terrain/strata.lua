@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local error, ipairs, math, minetest, nodecore, pairs
     = error, ipairs, math, minetest, nodecore, pairs
-local math_floor, math_random
-    = math.floor, math.random
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local thickness = 128
@@ -31,7 +31,7 @@ nodecore.stratadata = nodecore.memoize(function()
 
 nodecore.register_mapgen_shared({
 		label = "stone strata",
-		func = function(minp, maxp, area, data)
+		func = function(minp, maxp, area, data, _, _, _, rng)
 			if minp.y > -64 then return end
 
 			local ai = area.index
@@ -56,7 +56,7 @@ nodecore.register_mapgen_shared({
 					for x = minp.x, maxp.x do
 						local i = ai(area, x, y, z)
 						if byid[data[i]] then
-							if dither and math_random() >= dither then
+							if dither and rng() >= dither then
 								data[i] = alts[data[i]][strat]
 							else
 								data[i] = alts[data[i]][strat + 1]

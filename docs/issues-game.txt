@@ -10,14 +10,14 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Buff lux burns significantly when touching lux.
+	- Change lux burn model to operate like radiant heat instead?
+		- Genericize radiant damage check to check a hook for damage
+		  applicability from nodes found
+		- Maybe retire classic damage per second entirely
 	- Maybe replace all normal damage with lux burns?
 	- May need a hack to play damage effects when not altering hp.
 		- Set hp lower and use 1+ delta, then let damage normalizer
 		  reset it?
-
-- Mapgen should be deterministic if possible; use perlin noise as random
-  seed for placement of all things.
-	- Look at PcgRandom, fall back to PseudoRandom, then math.random.
 
 - Setting to disable entire hint system (tab, alerts) esp. for MP.
 

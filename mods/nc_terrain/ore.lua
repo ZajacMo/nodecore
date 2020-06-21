@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_floor, math_random
-    = math.floor, math.random
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -36,16 +36,16 @@ local function regspring(label, node, rarity)
 	local c_node = minetest.get_content_id(node)
 	nodecore.register_mapgen_shared({
 			label = label,
-			func = function(minp, maxp, area, data)
-				local rawqty = math_random() * (maxp.x - minp.x + 1)
+			func = function(minp, maxp, area, data, _, _, _, rng)
+				local rawqty = rng() * (maxp.x - minp.x + 1)
 				* (maxp.z - minp.z + 1) * (maxp.y - minp.y + 1) / rarity
 				local qty = math_floor(rawqty)
-				if math_random() < (rawqty - qty) then qty = qty + 1 end
+				if rng() < (rawqty - qty) then qty = qty + 1 end
 
 				for _ = 1, qty do
-					local x = math_floor(math_random() * (maxp.x - minp.x + 1)) + minp.x
-					local y = math_floor(math_random() * (maxp.y - minp.y + 1)) + minp.y
-					local z = math_floor(math_random() * (maxp.z - minp.z + 1)) + minp.z
+					local x = math_floor(rng() * (maxp.x - minp.x + 1)) + minp.x
+					local y = math_floor(rng() * (maxp.y - minp.y + 1)) + minp.y
+					local z = math_floor(rng() * (maxp.z - minp.z + 1)) + minp.z
 					if c_stones[data[area:index(x, y, z)]]
 					and (x < maxp.x and data[area:index(x + 1, y, z)] == c_air
 						or x > minp.x and data[area:index(x - 1, y, z)] == c_air
