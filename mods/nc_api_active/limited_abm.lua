@@ -6,7 +6,10 @@ local minetest, nodecore, pairs, tonumber
 local defer = {}
 
 minetest.register_globalstep(function()
-		for _, v in pairs(defer) do v() end
+		for _, v in pairs(defer) do
+			local node = minetest.get_node(v[1])
+			if node.name == v[2] then v[3](v[1], node) end
+		end
 		defer = {}
 	end)
 
@@ -19,11 +22,7 @@ function nodecore.register_limited_abm(def)
 		if count % ratio == 1 then
 			return oldact(pos, node)
 		else
-			local nn = node.name
-			defer[#defer + 1] = function()
-				node = minetest.get_node(pos)
-				if node.name == nn then return oldact(pos, node) end
-			end
+			defer[#defer + 1] = {pos, node.name, oldact}
 		end
 	end
 	return minetest.register_abm(def)
