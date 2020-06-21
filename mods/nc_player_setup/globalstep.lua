@@ -9,7 +9,9 @@ local zoom_base = 60 * nodecore.rate_adjustment("zoom", "base")
 local zoom_ratio = 1 - 1 / (4 * nodecore.rate_adjustment("zoom", "ratio"))
 local zoom_time = 2 * nodecore.rate_adjustment("zoom", "time")
 local function focustime(player, cached, set)
-	local focusing = player:get_player_control_bits() == 64
+	local ctl = player:get_player_control()
+	local focusing = ctl.sneak and (not ctl.jump) and (not ctl.up)
+	and (not ctl.down) and (not ctl.left) and (not ctl.right)
 	local zoom = zoom_base
 	if focusing and cached.focus then
 		zoom = zoom_base - zoom_base * zoom_ratio * (1 - 1 /
