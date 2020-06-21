@@ -17,7 +17,7 @@ minetest.register_globalstep(function()
 local ratio = tonumber(minetest.settings:get(nodecore.product .. "_abm_launder_ratio")) or 4
 
 local oldreg = minetest.register_abm
-function minetest.register_abm(def)
+function minetest.register_abm(def, ...)
 	local count = 0
 	local oldact = def.action
 	def.action = function(pos, node)
@@ -28,7 +28,7 @@ function minetest.register_abm(def)
 			defer[#defer + 1] = {pos, node.name, oldact}
 		end
 	end
-	return oldreg(def)
+	return oldreg(def, ...)
 end
 
-nodecore.register_limited_abm = minetest.register_abm
+nodecore.register_limited_abm = function(...) return minetest.register_abm(...) end

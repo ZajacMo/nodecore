@@ -61,8 +61,16 @@ local function dntsave(pos, meta, data)
 			v = v - el
 			if v < 0 then
 				local def = reg[k]
-				run[def] = true
-				data[k] = def.loop and def.time or nil
+				if def then
+					if def.ignore_stasis or not nodecore.stasis then
+						run[def] = true
+						v = def.loop and def.time or nil
+					else
+						v = def.time and (def.time < 1) and def.time or 1
+					end
+					data[k] = v
+					if (not min) or (min < v) then min = v end
+				end
 			else
 				data[k] = v
 				if (not min) or (min < v) then min = v end

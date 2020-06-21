@@ -153,6 +153,11 @@ nodecore.register_globalstep("optic check", function()
 		local batch = optic_queue
 		optic_queue = {}
 
+		if nodecore.stasis then
+			passive_queue = {}
+			return
+		end
+
 		if #passive_queue > 0 then
 			passive_batch = passive_queue
 			passive_queue = {}
