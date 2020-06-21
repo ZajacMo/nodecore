@@ -11,21 +11,18 @@ local modname = minetest.get_current_modname()
 local dntname = modname .. ":cookcheck"
 
 local nevermatch = {}
-local function nomatches(k, v)
+local function nomatches(k)
 	local stack = ItemStack(k)
-	for i = 1, v.stack_max do
-		stack:set_count(i)
-		for _, rc in ipairs(nodecore.craft_recipes) do
-			if rc.action == "cook" then
-				if nodecore.match({stack = stack}, rc.root.match) then return end
-			end
+	for _, rc in ipairs(nodecore.craft_recipes) do
+		if rc.action == "cook" then
+			if nodecore.match({stack = stack}, rc.root.match) then return end
 		end
 	end
 	return true
 end
 minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
-			if nomatches(k, v) then nevermatch[k] = true end
+		for k in pairs(minetest.registered_items) do
+			if nomatches(k) then nevermatch[k] = true end
 		end
 	end)
 
