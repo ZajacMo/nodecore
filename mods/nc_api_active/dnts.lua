@@ -98,22 +98,14 @@ function nodecore.dnt_set(pos, name, time)
 	return save()
 end
 
--- function nodecore.dnt_reset(pos, name, time)
--- local data, save = dntload(pos)
--- local prev = data[name]
--- if prev and prev == time then return end
--- data[name] = time
--- return save()
--- end
-
--- function nodecore.dnt_clear(pos, name)
--- local data, save = dntload(pos)
--- if not data[name] then return end
--- data[name] = nil
--- return save()
--- end
-
 minetest.nodedef_default.on_timer = function(pos)
 	local _, save = dntload(pos)
 	return save()
 end
+
+nodecore.register_on_register_item(function(def)
+		if def.on_timer then
+			return error("on_timer hook is disallowed in "
+				.. nodecore.product .. "; use DNT instead")
+		end
+	end)

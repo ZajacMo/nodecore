@@ -9,6 +9,18 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Unify Player API
+	- Because nc_player_setup is currently expensive.
+	- Combine existing globalsteps, wrap with metadata to do one
+	  set of set_properties, physics, anim, etc calls at the end.
+		- All perplayer globalsteps maybe?
+		- Skybox, sunlight
+		- Physics, zoom, run speed
+		- Visuals, anims
+	- Move step hook into API layer
+	- Use prio system like recipes/mapgen_shared for moddability
+	- Reorg nc_player_* mods, simplify?
+
 - Continue to chisel away at ABM perf issues.
     - Simplify or optimize existing ABMs
     - Convert things to DNTs.
@@ -113,11 +125,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.
-
-- Player APIs:
-    - Things we override like physics.
-	- Skybox, sunlight.
-		- Could be used by skyrealm for separate skybox.
 
 - Scripts to validate dependency graph.
 	- Tag deps directly in code at place of use.
