@@ -30,19 +30,31 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
+local visenv_ent_check = {}
+
+local function visinv_update_ents(pos)
+	pos = vector.round(pos)
+	visenv_ent_check[minetest.hash_node_position(pos)] = pos
+end
+nodecore.visinv_update_ents = visinv_update_ents
+
+local function objremove(ent, obj)
+	ent.gone = true
+	return (obj or ent.object):remove()
+end
+
 local function itemcheck(self)
 	local obj = self.object
 	local pos = obj:get_pos()
-	if not pos then return end
+	if not pos then self.gone = true return end
 
 	local stack = nodecore.stack_get(pos)
-	if not stack then return obj:remove() end
 
 	local sstr = stack:to_string()
 	if self.stackstring == sstr then return end
 	self.stackstring = sstr
 
-	if stack:is_empty() then return obj:remove() end
+	if stack:is_empty() then return objremove(self, obj) end
 
 	local rp = vector.round(pos)
 	local def = minetest.registered_items[stack:get_name()] or {}
@@ -69,50 +81,40 @@ local entname = modname .. ":stackent"
 minetest.register_entity(entname, {
 		initial_properties = nodecore.stackentprops(),
 		is_stack = true,
-		itemcheck = itemcheck,
-		on_activate = function(self)
-			local pos = self.object:get_pos()
-			if not pos then return self.object:remove() end
-			self.is_stack = true
-			self.poskey = self.poskey or minetest.hash_node_position(vector.round(pos))
-			return itemcheck(self)
-		end
+		itemcheck = itemcheck
 	})
 
-local visenv_ent_check = {}
-
 nodecore.register_globalstep("visinv check", function()
-		for _, e in pairs(minetest.luaentities) do
-			if e.name == entname then
-				local key = e.poskey
+		local batch = visenv_ent_check
+		visenv_ent_check = {}
+		for _, ent in pairs(minetest.luaentities) do
+			if (ent.name == entname) and (not ent.gone) then
+				local key = ent.poskey
 				if key then
-					local data = visenv_ent_check[key]
+					local data = batch[key]
 					if data then
-						if data.e == nil then
-							data.e = nodecore.stack_get(data):is_empty()
-						end
-						if data.e then
-							e.object:remove()
+						if data.n then
+							objremove(ent)
 						else
-							itemcheck(e)
-							data.e = true
+							itemcheck(ent)
+							data.n = true
 						end
 					end
 				end
 			end
 		end
-		for _, data in pairs(visenv_ent_check) do
-			if (data.e == false) or (not nodecore.stack_get(data):is_empty()) then
-				minetest.add_entity(data, entname)
+		for poskey, data in pairs(batch) do
+			if (not data.n) and (not nodecore.stack_get(data):is_empty()) then
+				local obj = minetest.add_entity(data, entname)
+				local ent = obj and obj:get_luaentity()
+				if ent then
+					ent.is_stack = true
+					ent.poskey = poskey
+					itemcheck(ent)
+				end
 			end
 		end
-		visenv_ent_check = {}
 	end)
-
-function nodecore.visinv_update_ents(pos)
-	pos = vector.round(pos)
-	visenv_ent_check[minetest.hash_node_position(pos)] = pos
-end
 
 ------------------------------------------------------------------------
 -- NODE REGISTRATION HELPERS

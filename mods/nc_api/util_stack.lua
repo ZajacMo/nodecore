@@ -45,9 +45,7 @@ function nodecore.stack_get(pos)
 end
 
 local function update(pos, ...)
-	minetest.after(0, function()
-			nodecore.visinv_update_ents(pos)
-		end)
+	nodecore.visinv_update_ents(pos)
 	return ...
 end
 
