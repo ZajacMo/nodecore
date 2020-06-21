@@ -25,7 +25,6 @@ for _, v in pairs(setinv) do
 	if v then
 		local n = modname .. ":" .. v[1]:gsub(":", "_")
 		if not minetest.registered_items[n] then
-			print(v[1])
 			local def = minetest.registered_items[v[1]]
 			minetest.register_item(n, {
 					["type"] = def["type"],

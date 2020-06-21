@@ -12,11 +12,15 @@ if ratio < 2 then return end
 local defer = {}
 for i = 1, (ratio - 1) do defer[i] = {} end
 
+local skip
 local proc = 0
 minetest.register_globalstep(function()
+		if skip then
+			skip = nil
+			return
+		end
 		proc = (proc % (ratio - 1)) + 1
 		local batch = defer[proc]
-		print(proc)
 		if #batch > 0 then
 			local getnode = minetest.get_node
 			for _, v in pairs(batch) do
@@ -32,6 +36,7 @@ local oldreg = minetest.register_abm
 function minetest.register_abm(def, ...)
 	local oldact = def.action
 	def.action = function(pos, node)
+		skip = true
 		bucket = (bucket + 1) % ratio
 		if bucket == 0 then
 			return oldact(pos, node)
