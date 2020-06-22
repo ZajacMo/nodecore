@@ -11,6 +11,7 @@ IDEAS: Possible future additions/improvements to the game
 
 - New Darkness feature:
 	- Keep track of queue of recent "safe spots" for player: in sunlight, on solid ground or climbable etc.
+	- Also check for being completely entombed in solid non-climbables.
 	- Track player darkness, search for nearby light.  Keep track of recent hit/miss (ring/queue).
 	- If player is in TOTAL darkness for long enough to be certain, then do "fugue" teleportation.
 	- Fade screen to black slowly via HUD (maybe have an API for this for skyrealms).
