@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, profiler, table, type, unpack
-    = math, minetest, nodecore, pairs, profiler, table, type, unpack
+local math, minetest, nodecore, pairs, table, type, unpack
+    = math, minetest, nodecore, pairs, table, type, unpack
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -31,12 +31,6 @@ function nodecore.register_playerstep(def)
 			max = try
 		end
 	end
-
-	def.func = profiler and profiler.instrument and profiler.instrument({
-			label = def.label,
-			class = "playerstep",
-			func = def.func
-		}) or def.func
 
 	table_insert(steps, min, def)
 end
