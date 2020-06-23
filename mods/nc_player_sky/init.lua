@@ -41,6 +41,8 @@ nodecore.register_playerstep({
 
 nodecore.register_on_joinplayer("sky setup", function(player)
 		for k in pairs({set_sun = true, set_moon = true, set_stars = true}) do
-			if player[k] then player[k](player, {visible = false}) end
+			if player[k] then
+				player[k](player, {visible = false, sunrise_visible = false})
+			end
 		end
 	end)
