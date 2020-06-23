@@ -54,6 +54,7 @@ local mismatch = nodecore.prop_mismatch
 
 local function setdelta(cur, old)
 	if not cur then return end
+	if not old then return cur end
 	local set
 	for k, v in pairs(cur) do
 		if mismatch(v, old[k]) then
@@ -101,30 +102,36 @@ minetest.after(0, checksky)
 local cache = {}
 local function step_player(player, dtime)
 	local pname = player:get_player_name()
-	local orig = cache[pname] or {}
-	orig.physics = player:get_physics_override()
-	orig.properties = player:get_properties()
-	orig.sky = getsky(player)
-	orig.daynight = player:get_day_night_ratio()
-	orig.animation = {player:get_animation()}
-	orig.hud_flags = player:hud_get_flags()
-	local data = clone(orig)
+	local data = cache[pname] or {}
+	data.physics = player:get_physics_override()
+	local orig_phys = clone(data.physics)
+	data.properties = player:get_properties()
+	local orig_props = clone(data.properties)
+	data.sky = getsky(player)
+	local orig_sky = clone(data.sky)
+	data.daynight = player:get_day_night_ratio()
+	local orig_daynight = clone(data.daynight)
+	data.animation = {player:get_animation()}
+	local orig_anim = clone(data.animation)
+	data.hud_flags = player:hud_get_flags()
+	local orig_hud = clone(data.hud_flags)
 	data.control = player:get_player_control()
 	for _, def in pairs(steps) do
 		def.action(player, data, dtime)
 	end
-	local phys = setdelta(data.physics, orig.physics)
+	local phys = setdelta(data.physics, orig_phys)
 	if phys then player:set_physics_override(phys) end
-	local props = setdelta(data.properties, orig.properties)
+	local props = setdelta(data.properties, orig_props)
 	if props then player:set_properties(props) end
-	local anim = setdelta(data.animation, orig.animation)
-	if anim then player:set_animation(unpack(anim)) end
-	local sky = setdelta(data.sky, orig.sky)
+	if mismatch(data.animation, orig_anim) then
+		player:set_animation(unpack(data.animation))
+	end
+	local sky = setdelta(data.sky, orig_sky)
 	if sky then setsky(player, sky) end
-	if mismatch(data.daynight, orig.daynight) then
+	if mismatch(data.daynight, orig_daynight) then
 		player:override_day_night_ratio(data.daynight)
 	end
-	local hud = setdelta(data.hud_flags, orig.hud_flags)
+	local hud = setdelta(data.hud_flags, orig_hud)
 	if hud then player:hud_set_flags(hud) end
 	cache[pname] = data
 end

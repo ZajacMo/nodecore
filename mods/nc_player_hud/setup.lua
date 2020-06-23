@@ -19,8 +19,8 @@ nodecore.register_playerstep({
 			data.hud_flags.hotbar = interact or false
 			data.hud_flags.healthbar = false
 			data.hud_flags.breathbar = false
-			data.hud_flags.inimap = false
-			data.hud_flags.inimap_radar = false
+			data.hud_flags.minimap = false
+			data.hud_flags.minimap_radar = false
 		end
 	})
 

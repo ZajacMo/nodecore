@@ -25,6 +25,6 @@ nodecore.register_playerstep({
 			for k, v in pairs(props) do data.properties[k] = v end
 
 			local anim = nodecore.player_anim(player)
-			data.animation = {anim, anim.speed}
+			data.animation = {{x = anim.x, y = anim.y}, anim.speed}
 		end
 	})
