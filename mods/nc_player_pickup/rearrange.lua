@@ -74,4 +74,4 @@ local function handlepickups(player)
 	cache[pname] = inv:get_list("main")
 end
 
-nodecore.register_globalstep_perplayer("pickup rearrange", handlepickups)
+nodecore.register_playerstep({label = "pickup rearrange", action = handlepickups})

@@ -105,15 +105,17 @@ nodecore.touchtip_node = node_desc
 
 local wields = {}
 
-nodecore.register_globalstep_perplayer("wield touchtips", function(player)
-		local pname = player:get_player_name()
-
-		local wn = stack_desc(player:get_wielded_item(), true)
-		if wn ~= wields[pname] then
-			wields[pname] = wn
-			show(player, wn)
+nodecore.register_playerstep({
+		label = "wield touchtips",
+		action = function(player)
+			local pname = player:get_player_name()
+			local wn = stack_desc(player:get_wielded_item(), true)
+			if wn ~= wields[pname] then
+				wields[pname] = wn
+				show(player, wn)
+			end
 		end
-	end)
+	})
 
 nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher)
 		return show(puncher, node_desc(pos, node))

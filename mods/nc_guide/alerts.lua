@@ -36,25 +36,28 @@ nodecore.register_on_player_discover(function(player)
 		end
 	end)
 
-nodecore.register_globalstep_perplayer("hint alerts", function(player)
-		local pname = player:get_player_name()
-		local mc = msgcache[pname] or {}
-		local t = {}
-		for k, v in pairs(mc) do
-			if v < nodecore.gametime then
-				mc[k] = nil
-			else
-				t[#t + 1] = nodecore.translate(msg, k)
+nodecore.register_playerstep({
+		label = "hint alerts",
+		action = function(player)
+			local pname = player:get_player_name()
+			local mc = msgcache[pname] or {}
+			local t = {}
+			for k, v in pairs(mc) do
+				if v < nodecore.gametime then
+					mc[k] = nil
+				else
+					t[#t + 1] = nodecore.translate(msg, k)
+				end
 			end
+			table_sort(t)
+			nodecore.hud_set_multiline(player, {
+					label = "hintcomplete",
+					hud_elem_type = "text",
+					position = {x = 0.5, y = 0.25},
+					text = table_concat(t, "\n"),
+					number = 0xE0FF80,
+					alignment = {x = 0, y = 0},
+					offset = {x = 0, y = 0}
+				}, nodecore.translate)
 		end
-		table_sort(t)
-		nodecore.hud_set_multiline(player, {
-				label = "hintcomplete",
-				hud_elem_type = "text",
-				position = {x = 0.5, y = 0.25},
-				text = table_concat(t, "\n"),
-				number = 0xE0FF80,
-				alignment = {x = 0, y = 0},
-				offset = {x = 0, y = 0}
-			}, nodecore.translate)
-	end)
+	})

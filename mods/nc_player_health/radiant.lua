@@ -37,20 +37,21 @@ end
 
 local heat = {}
 
-local function check(player, dtime)
-	local pos = player:get_pos()
-	pos.y = pos.y + 1
-	local dps = getdps(pos)
-	if not dps then return end
+nodecore.register_playerstep({
+		label = "radiant heat damage",
+		action = function(player, _, dtime)
+			if nodecore.stasis or not nodecore.player_visible(player) then return end
 
-	local w = math_exp(-dtime)
-	local pname = player:get_player_name()
-	heat[pname] = (heat[pname] or 0) * w + dps * (1 - w)
-end
+			local pos = player:get_pos()
+			pos.y = pos.y + 1
+			local dps = getdps(pos)
+			if not dps then return end
 
-nodecore.register_globalstep_perplayer("radiant heat damage", function(p, dtime)
-		if not nodecore.stasis and nodecore.player_visible(p) then check(p, dtime) end
-	end)
+			local w = math_exp(-dtime)
+			local pname = player:get_player_name()
+			heat[pname] = (heat[pname] or 0) * w + dps * (1 - w)
+		end
+	})
 
 local function applyheat()
 	minetest.after(1, applyheat)

@@ -1,31 +1,28 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, nodecore
+    = math, nodecore
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local function sethudflags(player, pname)
-	local interact = nodecore.interact(pname or player)
-	player:hud_set_flags({
-			wielditem = interact or false,
-			hotbar = interact or false,
-			healthbar = false,
-			breathbar = false,
-			minimap = false,
-			minimap_radar = false
-		})
-end
+nodecore.register_on_joinplayer("setup hotbar", function(player)
+		player:hud_set_hotbar_itemcount(8)
+		player:hud_set_hotbar_image("nc_player_hud_bar.png")
+		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
+	end)
 
-local function grantrevoke(pname)
-	minetest.after(0, function()
-			local player = minetest.get_player_by_name(pname)
-			if player then return sethudflags(player, pname) end
-		end)
-end
-
-minetest.register_on_priv_grant(grantrevoke)
-minetest.register_on_priv_revoke(grantrevoke)
+nodecore.register_playerstep({
+		label = "hud flags",
+		action = function(player, data)
+			local interact = nodecore.interact(player)
+			data.hud_flags.wielditem = interact or false
+			data.hud_flags.hotbar = interact or false
+			data.hud_flags.healthbar = false
+			data.hud_flags.breathbar = false
+			data.hud_flags.inimap = false
+			data.hud_flags.inimap_radar = false
+		end
+	})
 
 local w = 640
 local h = 360
@@ -37,32 +34,25 @@ for y = 0, h - 1, 80 do
 end
 local breath_mask = "^[mask:nc_player_hud_breath_mask.png\\^[resize\\:" .. w .. "x" .. h
 
-local function breath_hud(player)
-	local br = player:get_breath()
-	local img = ""
-	local o = 255 * (1 - br / 11)
-	if o > 0 then
-		img = breath_txr .. "^[colorize:#000000:" .. math_floor(255 - o)
-		.. breath_mask .. "^[opacity:" .. math_floor(o)
-	end
-	nodecore.hud_set(player, {
-			label = "breath",
-			hud_elem_type = "image",
-			position = {x = 0.5, y = 0.5},
-			text = img,
-			direction = 0,
-			scale = {x = -100, y = -100},
-			offset = {x = 0, y = 0},
-			quick = true
-		})
-end
-
-nodecore.register_on_joinplayer("join set hud/hotbar", function(player)
-		sethudflags(player)
-		player:hud_set_hotbar_itemcount(8)
-		player:hud_set_hotbar_image("nc_player_hud_bar.png")
-		player:hud_set_hotbar_selected_image("nc_player_hud_sel.png")
-		breath_hud(player)
-	end)
-
-nodecore.register_globalstep_perplayer("breath hud", breath_hud)
+nodecore.register_playerstep({
+		label = "breath hud",
+		action = function(player)
+			local br = player:get_breath()
+			local img = ""
+			local o = 255 * (1 - br / 11)
+			if o > 0 then
+				img = breath_txr .. "^[colorize:#000000:" .. math_floor(255 - o)
+				.. breath_mask .. "^[opacity:" .. math_floor(o)
+			end
+			nodecore.hud_set(player, {
+					label = "breath",
+					hud_elem_type = "image",
+					position = {x = 0.5, y = 0.5},
+					text = img,
+					direction = 0,
+					scale = {x = -100, y = -100},
+					offset = {x = 0, y = 0},
+					quick = true
+				})
+		end
+	})

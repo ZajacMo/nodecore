@@ -50,14 +50,3 @@ for k in pairs({
 	local base = minetest[k]
 	nodecore[k] = function(...) return base(mkdef(...)) end
 end
-
-function nodecore.register_globalstep_perplayer(...)
-	local def = mkdef(...)
-	local oldfunc = def.func
-	def.func = function(...)
-		for _, player in pairs(minetest.get_connected_players()) do
-			oldfunc(player, ...)
-		end
-	end
-	return minetest.register_globalstep(def)
-end

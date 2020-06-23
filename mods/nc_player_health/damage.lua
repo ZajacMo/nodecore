@@ -40,28 +40,30 @@ nodecore.register_on_dieplayer("player virtual 0 health", function(player)
 	end)
 
 local full = {}
-local function heal(player, dtime)
-	local hp = player:get_hp()
-	if hp <= 0 then return end
-	if hp == 1 then
-		local meta = player:get_meta()
-		if meta:get_float("dhp") == -1 then
-			local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
-			if hurt + 0.5 < nodecore.gametime then
-				nodecore.setphealth(player, 0, "heal_rehurtfx", 2)
+nodecore.register_playerstep({
+		label = "healing",
+		action = function(player, _, dtime)
+			local hp = player:get_hp()
+			if hp <= 0 then return end
+			if hp == 1 then
+				local meta = player:get_meta()
+				if meta:get_float("dhp") == -1 then
+					local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
+					if hurt + 0.5 < nodecore.gametime then
+						nodecore.setphealth(player, 0, "heal_rehurtfx", 2)
+					end
+				end
 			end
+			local pname = player:get_player_name()
+			local hpmax = player:get_properties().hp_max
+			if full[pname] and player:get_hp() >= hpmax then return end
+			full[pname] = nil
+			local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")
+			if hurt >= nodecore.gametime - 4 then return end
+			nodecore.addphealth(player, dtime * 2, "heal")
+			if nodecore.getphealth(player) >= hpmax then full[pname] = true end
 		end
-	end
-	local pname = player:get_player_name()
-	local hpmax = player:get_properties().hp_max
-	if full[pname] and player:get_hp() >= hpmax then return end
-	full[pname] = nil
-	local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")
-	if hurt >= nodecore.gametime - 4 then return end
-	nodecore.addphealth(player, dtime * 2, "heal")
-	if nodecore.getphealth(player) >= hpmax then full[pname] = true end
-end
-nodecore.register_globalstep_perplayer("healing", heal)
+	})
 
 local function setmax(player)
 	player:set_properties({hp_max = 8})

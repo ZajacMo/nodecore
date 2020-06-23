@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, type, unpack
-    = math, minetest, nodecore, pairs, table, type, unpack
+local math, minetest, nodecore, pairs, profiler, table, type, unpack
+    = math, minetest, nodecore, pairs, profiler, table, type, unpack
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -31,6 +31,13 @@ function nodecore.register_playerstep(def)
 			max = try
 		end
 	end
+
+	def.func = profiler and profiler.instrument and profiler.instrument({
+			label = def.label,
+			class = "playerstep",
+			func = def.func
+		}) or def.func
+
 	table_insert(steps, min, def)
 end
 
@@ -92,30 +99,44 @@ end
 minetest.after(0, checksky)
 
 local cache = {}
+local function step_player(player, dtime)
+	local pname = player:get_player_name()
+	local orig = cache[pname] or {}
+	orig.physics = player:get_physics_override()
+	orig.properties = player:get_properties()
+	orig.sky = getsky(player)
+	orig.daynight = player:get_day_night_ratio()
+	orig.animation = {player:get_animation()}
+	orig.hud_flags = player:hud_get_flags()
+	local data = clone(orig)
+	data.control = player:get_player_control()
+	for _, def in pairs(steps) do
+		def.action(player, data, dtime)
+	end
+	local phys = setdelta(data.physics, orig.physics)
+	if phys then player:set_physics_override(phys) end
+	local props = setdelta(data.properties, orig.properties)
+	if props then player:set_properties(props) end
+	local anim = setdelta(data.animation, orig.animation)
+	if anim then player:set_animation(unpack(anim)) end
+	local sky = setdelta(data.sky, orig.sky)
+	if sky then setsky(player, sky) end
+	if mismatch(data.daynight, orig.daynight) then
+		player:override_day_night_ratio(data.daynight)
+	end
+	local hud = setdelta(data.hud_flags, orig.hud_flags)
+	if hud then player:hud_set_flags(hud) end
+	cache[pname] = data
+end
+
 nodecore.register_globalstep("player steps", function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
-			local pname = player:get_player_name()
-			local orig = cache[pname] or {}
-			orig.physics = player:get_physics_override()
-			orig.properties = player:get_properties()
-			orig.sky = getsky(player)
-			orig.daynight = player:get_day_night_ratio()
-			orig.animation = {player:get_animation()}
-			local data = clone(cache)
-			for _, def in pairs(steps) do
-				def.action(player, data, dtime)
-			end
-			local phys = setdelta(data.physics, orig.physics)
-			if phys then player:set_physics_override(phys) end
-			local props = setdelta(data.properties, orig.properties)
-			if props then player:set_properties(props) end
-			local anim = setdelta(data.animation, orig.animation)
-			if anim then player:set_animation(unpack(anim)) end
-			local sky = setdelta(data.sky, orig.sky)
-			if sky then setsky(player, sky) end
-			if mismatch(data.daynight, orig.daynight) then
-				player:override_day_night_ratio(data.daynight)
-			end
-			cache[pname] = orig
+			step_player(player, dtime)
 		end
+	end)
+minetest.register_on_joinplayer(function(player)
+		step_player(player, 0)
+	end)
+minetest.register_on_leaveplayer(function(player)
+		cache[player:get_player_name()] = nil
 	end)
