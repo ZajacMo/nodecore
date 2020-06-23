@@ -60,9 +60,12 @@ local function playercheck(dtime, player)
 	queuechecks(math_floor(q), name, pos)
 	qtys[name] = q - math_floor(q)
 end
-nodecore.register_globalstep_perplayer("fallingnode disturbance", function(player, dtime)
-		if not nodecore.stasis then return playercheck(dtime, player) end
-	end)
+nodecore.register_playerstep({
+		label = "fallingnode disturbance",
+		action = function(player, _, dtime)
+			if not nodecore.stasis then return playercheck(dtime, player) end
+		end
+	})
 
 nodecore.register_on_dignode("nodefall disturb on dig", function(pos, _, digger)
 		local name = "(unknown)"

@@ -148,11 +148,14 @@ local function player_wield_light(player)
 		end)
 end
 
-nodecore.register_globalstep_perplayer("player wield light", function(player)
-		if nodecore.player_visible(player) then
-			return player_wield_light(player)
+nodecore.register_playerstep({
+		label = "player wield light",
+		action = function(player)
+			if nodecore.player_visible(player) then
+				return player_wield_light(player)
+			end
 		end
-	end)
+	})
 
 -- Automatic entity light sources
 

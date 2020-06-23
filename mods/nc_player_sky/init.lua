@@ -1,57 +1,48 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, nodecore, pairs
+    = math, nodecore, pairs
 local math_ceil, math_floor
     = math.ceil, math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
-local cache = {}
-
-local function setsky(player)
-	local pname = player:get_player_name()
-	local stats = cache[pname]
-	if not stats then
-		stats = {}
-		cache[pname] = stats
+local skyboxes = {}
+for dark = 0, 255 do
+	local txr = {}
+	for i = 1, 6 do
+		txr[#txr + 1] = "nc_player_sky_box" .. i
+		.. ".png^[colorize:#000000:" .. dark
 	end
-
-	local depth = math_floor(player:get_pos().y + 0.5)
-
-	local rawdll = nodecore.get_depth_light(depth, 1)
-	local dark = 255 - math_ceil(255 * rawdll)
-	if dark ~= stats.dark then
-		stats.dark = dark
-		local txr = {}
-		for i = 1, 6 do
-			txr[#txr + 1] = "nc_player_sky_box" .. i
-			.. ".png^[colorize:#000000:" .. dark
-		end
-		local color = {r = 0x50, g = 0x50, b = 0x76}
-		for k, v in pairs(color) do
-			color[k] = math_floor(0.5 + v * (255 - dark) / 255)
-		end
-		player:set_sky(color, "skybox", txr, false)
+	local color = {r = 0x50, g = 0x50, b = 0x76}
+	for k, v in pairs(color) do
+		color[k] = math_floor(0.5 + v * (255 - dark) / 255)
 	end
-
-	local ratio = nodecore.get_depth_light(depth)
-	if ratio ~= stats.ratio then
-		stats.ratio = ratio
-		player:override_day_night_ratio(ratio)
-	end
+	skyboxes[dark] = {
+		base_color = color,
+		type = "skybox",
+		textures = txr,
+		clouds = false
+	}
 end
 
-nodecore.register_on_joinplayer("join setsky", setsky)
+nodecore.register_playerstep({
+		label = "skybox/sunlight",
+		action = function(player, data)
+			local depth = math_floor(player:get_pos().y + 0.5)
 
-nodecore.register_on_leaveplayer("leave clear sky cache", function(player)
-		cache[player:get_player_name()] = nil
+			local rawdll = nodecore.get_depth_light(depth, 1)
+			local dark = 255 - math_ceil(255 * rawdll)
+			data.sky = skyboxes[dark]
+
+			data.daynight = nodecore.get_depth_light(depth)
+		end
+	})
+
+nodecore.register_on_joinplayer("sky setup", function(player)
+		for k in pairs({set_sun = true, set_moon = true, set_stars = true}) do
+			if player[k] then
+				player[k](player, {visible = false, sunrise_visible = false})
+			end
+		end
 	end)
-
-local function update()
-	for _, player in pairs(minetest.get_connected_players()) do
-		setsky(player)
-	end
-	minetest.after(0.25, update)
-end
-update()

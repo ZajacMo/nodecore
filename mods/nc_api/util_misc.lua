@@ -511,3 +511,20 @@ function nodecore.player_swimming(player)
 	end
 	return player_was_swimming[pname]
 end
+
+local function mismatch(a, b)
+	if type(a) == "table" then
+		if type(b) ~= "table" then return true end
+		for k, v in pairs(a) do
+			if mismatch(v, b[k]) then return true end
+		end
+		return
+	end
+	if type(a) == "number" and type(b) == "number" then
+		local ratio = a / b
+		-- Floating point rounding...
+		if ratio > 0.99999 and ratio < 1.00001 then return end
+	end
+	return a ~= b
+end
+nodecore.prop_mismatch = mismatch

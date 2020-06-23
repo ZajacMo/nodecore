@@ -197,9 +197,11 @@ local function movement(dt, player)
 		end
 	end
 end
-nodecore.register_globalstep_perplayer("stats player scan", function(player, dt)
-		invscan(dt, player)
-		return movement(dt, player)
+nodecore.register_globalstep("stats player scan", function(dt)
+		for _, player in pairs(minetest.get_connected_players()) do
+			invscan(dt, player)
+			movement(dt, player)
+		end
 	end)
 
 ------------------------------------------------------------------------
