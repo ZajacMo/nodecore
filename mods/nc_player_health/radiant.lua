@@ -53,31 +53,29 @@ nodecore.register_playerstep({
 		end
 	})
 
-local function applyheat()
-	minetest.after(1, applyheat)
-	if nodecore.stasis then return end
-	for _, p in pairs(minetest.get_connected_players()) do
-		if nodecore.player_visible(p) then
-			local pname = p:get_player_name()
-			local ow = heat[pname]
-			local img = ""
-			if ow and ow > 0.1 then
-				nodecore.addphealth(p, -ow, "radiant")
-				ow = math_sqrt(ow - 0.1) * 255
-				if ow > 255 then ow = 255 end
-				img = "nc_player_health_radiant.png^[opacity:" .. math_floor(ow)
+nodecore.interval(1, function()
+		if nodecore.stasis then return end
+		for _, p in pairs(minetest.get_connected_players()) do
+			if nodecore.player_visible(p) then
+				local pname = p:get_player_name()
+				local ow = heat[pname]
+				local img = ""
+				if ow and ow > 0.1 then
+					nodecore.addphealth(p, -ow, "radiant")
+					ow = math_sqrt(ow - 0.1) * 255
+					if ow > 255 then ow = 255 end
+					img = "nc_player_health_radiant.png^[opacity:" .. math_floor(ow)
+				end
+				nodecore.hud_set(p, {
+						label = "radiant",
+						hud_elem_type = "image",
+						position = {x = 0.5, y = 0.5},
+						text = img,
+						direction = 0,
+						scale = {x = -100, y = -100},
+						offset = {x = 0, y = 0},
+						quick = true
+					})
 			end
-			nodecore.hud_set(p, {
-					label = "radiant",
-					hud_elem_type = "image",
-					position = {x = 0.5, y = 0.5},
-					text = img,
-					direction = 0,
-					scale = {x = -100, y = -100},
-					offset = {x = 0, y = 0},
-					quick = true
-				})
 		end
-	end
-end
-applyheat()
+	end)

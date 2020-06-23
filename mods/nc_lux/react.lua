@@ -55,10 +55,9 @@ local function playercheck(player)
 		end
 	end
 end
-local function playercheckall()
-	minetest.after(1, playercheckall)
-	for _, p in pairs(minetest.get_connected_players()) do
-		playercheck(p)
-	end
-end
-playercheckall()
+
+nodecore.interval(1, function()
+		for _, p in pairs(minetest.get_connected_players()) do
+			playercheck(p)
+		end
+	end)

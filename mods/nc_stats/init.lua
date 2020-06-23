@@ -233,19 +233,17 @@ local function flushop()
 	return flushkey(k)
 end
 
-local function flushenq()
-	minetest.after(20, flushenq)
-	if #opq > 0 then return end
-	for k in pairs(statsdb) do
-		opq[#opq + 1] = k
-	end
-	for i = 1, #opq do
-		local j = math_random(1, #opq)
-		opq[i], opq[j] = opq[j], opq[i]
-	end
-	minetest.after(0, flushop)
-end
-flushenq()
+nodecore.interval(20, function()
+		if #opq > 0 then return end
+		for k in pairs(statsdb) do
+			opq[#opq + 1] = k
+		end
+		for i = 1, #opq do
+			local j = math_random(1, #opq)
+			opq[i], opq[j] = opq[j], opq[i]
+		end
+		minetest.after(0, flushop)
+	end)
 
 nodecore.register_globalstep("stats timers", function(dt)
 		dbadd(dt, false, "elapsed")

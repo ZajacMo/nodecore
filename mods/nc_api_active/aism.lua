@@ -86,29 +86,27 @@ nodecore.register_limited_abm({
 		end
 	})
 
-local function invtick()
-	minetest.after(1, invtick)
-	for _, player in pairs(minetest.get_connected_players()) do
-		local pos = player:get_pos()
-		pos.y = pos.y + player:get_properties().eye_height
-		local inv = player:get_inventory()
-		for lname, list in pairs(inv:get_lists()) do
-			for slot, stack in pairs(list) do
-				checkstack(stack, {
-						pos = pos,
-						player = player,
-						inv = inv,
-						list = lname,
-						slot = slot,
-						set = function(s)
-							return inv:set_stack(lname, slot, s)
-						end
-					})
+nodecore.interval(1, function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			local pos = player:get_pos()
+			pos.y = pos.y + player:get_properties().eye_height
+			local inv = player:get_inventory()
+			for lname, list in pairs(inv:get_lists()) do
+				for slot, stack in pairs(list) do
+					checkstack(stack, {
+							pos = pos,
+							player = player,
+							inv = inv,
+							list = lname,
+							slot = slot,
+							set = function(s)
+								return inv:set_stack(lname, slot, s)
+							end
+						})
+				end
 			end
 		end
-	end
-end
-invtick()
+	end)
 
 nodecore.register_item_entity_step(function(self, dtime)
 		local t = (self.aismtimer or 0) + dtime

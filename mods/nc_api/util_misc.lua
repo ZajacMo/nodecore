@@ -159,11 +159,12 @@ function nodecore.tool_digs(what, groups)
 end
 
 function nodecore.interval(after, func)
-	local function go()
-		minetest.after(after, go)
-		return func()
-	end
-	minetest.after(after, go)
+	local go
+	local setnext = (type(after) == "function")
+	and function() return minetest.after(after(), go) end
+	or function() return minetest.after(after, go) end
+	go = function() setnext() return func() end
+	minetest.after(0, go)
 end
 
 function nodecore.wear_wield(player, groups, qty)

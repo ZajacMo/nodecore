@@ -46,23 +46,21 @@ local function check(pos, done, srcs)
 end
 
 local oldpos = {}
-local function run()
-	minetest.after(math_random(), run)
-	local srcs = {}
-	for _, pl in pairs(minetest.get_connected_players()) do
-		if nodecore.player_visible(pl) then
-			local pname = pl:get_player_name()
-			local pos = pl:get_pos()
-			local op = oldpos[pname] or pos
-			oldpos[pname] = pos
-			pos = vector.add(pos, vector.multiply(vector.subtract(pos, op), 3))
-			srcs[#srcs + 1] = pos
+nodecore.interval(math_random, function()
+		local srcs = {}
+		for _, pl in pairs(minetest.get_connected_players()) do
+			if nodecore.player_visible(pl) then
+				local pname = pl:get_player_name()
+				local pos = pl:get_pos()
+				local op = oldpos[pname] or pos
+				oldpos[pname] = pos
+				pos = vector.add(pos, vector.multiply(vector.subtract(pos, op), 3))
+				srcs[#srcs + 1] = pos
+			end
 		end
-	end
-	local done = {}
-	for _, pos in pairs(srcs) do
-		check(pos, done, srcs)
-	end
+		local done = {}
+		for _, pos in pairs(srcs) do
+			check(pos, done, srcs)
+		end
 
-end
-run()
+	end)
