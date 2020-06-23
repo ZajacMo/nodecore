@@ -5,7 +5,9 @@ local nodecore
 
 nodecore.register_playerstep({
 		label = "footsteps",
-		action = function(_, data)
-			data.properties.makes_footstep_sound = not data.control.sneak
+		action = function(player, data)
+			data.properties.makes_footstep_sound
+			= nodecore.player_visible(player)
+			and not data.control.sneak
 		end
 	})

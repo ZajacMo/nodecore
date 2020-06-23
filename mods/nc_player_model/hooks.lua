@@ -6,6 +6,8 @@ local minetest, nodecore, pairs
 nodecore.register_playerstep({
 		label = "player model visuals",
 		action = function(player, data)
+			if data.properties.visual_size.x <= 0 then return end
+
 			local props = nodecore.player_visuals_base(player)
 
 			-- Skin can be set preemptively by visuals_base; if so, then will
