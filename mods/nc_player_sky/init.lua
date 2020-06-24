@@ -14,7 +14,7 @@ for dark = 0, 255 do
 		txr[#txr + 1] = "nc_player_sky_box" .. i
 		.. ".png^[colorize:#000000:" .. dark
 	end
-	local color = {r = 0x50, g = 0x50, b = 0x76}
+	local color = {r = 0x1d, g = 0x21, b = 0x36}
 	for k, v in pairs(color) do
 		color[k] = math_floor(0.5 + v * (255 - dark) / 255)
 	end
