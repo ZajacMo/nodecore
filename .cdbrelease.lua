@@ -27,7 +27,9 @@ return {
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issueTracker = "https://discord.gg/NNYeF6f",
-	screenshots = {alpha and readbinary('.cdb-alpha.jpg') or readbinary('.cdb-release.jpg')}
+	screenshots = alpha
+	and {readbinary('.cdb-alpha.jpg'), readbinary('.cdb-release.jpg')}
+	or {readbinary('.cdb-release.jpg')}
 }
 
 -- luacheck: pop
