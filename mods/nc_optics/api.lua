@@ -5,6 +5,8 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
 local optic_queue = {}
 
 local function dirname(pos)
@@ -146,6 +148,12 @@ nodecore.register_limited_abm({
 		action = function(pos)
 			passive_queue[#passive_queue + 1] = pos
 		end
+	})
+nodecore.register_lbm({
+		name = modname .. ":check",
+		run_at_every_load = true,
+		nodenames = {"group:optic_check"},
+		action = optic_check
 	})
 
 local passive_batch = {}
