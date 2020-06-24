@@ -149,43 +149,55 @@ nodecore.register_limited_abm({
 	})
 
 local passive_batch = {}
-nodecore.register_globalstep("optic check", function()
-		local batch = optic_queue
-		optic_queue = {}
+local function optic_check_pump()
+	local batch = optic_queue
+	optic_queue = {}
 
-		if nodecore.stasis then
-			passive_queue = {}
-			return
+	if nodecore.stasis then
+		passive_queue = {}
+		return
+	end
+
+	if #passive_queue > 0 then
+		passive_batch = passive_queue
+		passive_queue = {}
+		for i = 1, #passive_batch do
+			local j = math_random(1, #passive_batch)
+			local t = passive_batch[i]
+			passive_batch[i] = passive_batch[j]
+			passive_batch[j] = t
 		end
+	end
+	local max = 25 - #batch
+	if max < 5 then max = 5 end
+	if max > #passive_batch then max = #passive_batch end
+	for _ = 1, max do
+		local pos = passive_batch[#passive_batch]
+		passive_batch[#passive_batch] = nil
+		batch[minetest.hash_node_position(pos)] = pos
+	end
 
-		if #passive_queue > 0 then
-			passive_batch = passive_queue
-			passive_queue = {}
-			for i = 1, #passive_batch do
-				local j = math_random(1, #passive_batch)
-				local t = passive_batch[i]
-				passive_batch[i] = passive_batch[j]
-				passive_batch[j] = t
+	local trans = {}
+	for _, pos in pairs(batch) do
+		optic_process(trans, pos)
+	end
+
+	for _, v in pairs(trans) do
+		optic_commit(v)
+	end
+end
+
+do
+	local tick = 0.05
+	local total = 0
+	nodecore.register_globalstep("optic check", function(dtime)
+			total = total + dtime
+			while total > tick do
+				optic_check_pump()
+				total = total - tick
 			end
-		end
-		local max = 25 - #batch
-		if max < 5 then max = 5 end
-		if max > #passive_batch then max = #passive_batch end
-		for _ = 1, max do
-			local pos = passive_batch[#passive_batch]
-			passive_batch[#passive_batch] = nil
-			batch[minetest.hash_node_position(pos)] = pos
-		end
-
-		local trans = {}
-		for _, pos in pairs(batch) do
-			optic_process(trans, pos)
-		end
-
-		for _, v in pairs(trans) do
-			optic_commit(v)
-		end
-	end)
+		end)
+end
 
 for fn in pairs({
 		set_node = true,
