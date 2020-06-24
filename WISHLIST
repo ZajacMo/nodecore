@@ -43,8 +43,6 @@ to the project!
 	  and other container nodes.
 
 - Improved versions of any art assets (sounds, textures, models).
-	- A custom skybox, preferably that looks good at limited
-	  resolution.
 	- All textures for base inclusion should be 16x (keep
 	  high-def textures to texture packs).  Note that textures
 	  larger than 16x are allowed (and already used) in the game
