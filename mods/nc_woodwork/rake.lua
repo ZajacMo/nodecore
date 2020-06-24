@@ -59,16 +59,21 @@ end
 
 local function dorake(pos, node, user, ...)
 	local sneak = user:get_player_control().sneak
+	local objpos = {}
 	for _, rel in ipairs(rakepos) do
 		local p = vector.add(pos, rel)
 		local n = minetest.get_node(p)
 		if rakable[n.name] and ((not sneak) or matching(pos, node, p, n)) then
 			minetest.node_dig(p, n, user, ...)
 		end
-		for _, obj in pairs(nodecore.get_objects_at_pos(p)) do
-			local lua = obj and obj.get_luaentity and obj:get_luaentity()
-			if lua and lua.name == "__builtin:item" then
-				obj:set_pos(pos)
+		objpos[minetest.hash_node_position(p)] = true
+	end
+	for _, lua in pairs(minetest.luaentities) do
+		if lua.name == "__builtin:item" then
+			local p = lua.object and lua.object:get_pos()
+			if p and objpos[minetest.hash_node_position(
+				vector.round(p))] then
+				lua.object:set_pos(pos)
 			end
 		end
 	end
