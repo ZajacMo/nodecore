@@ -191,10 +191,11 @@ do
 	local tick = 0.05
 	local total = 0
 	nodecore.register_globalstep("optic check", function(dtime)
-			total = total + dtime
-			while total > tick do
+			total = total + dtime / tick
+			if total > 10 then total = 10 end
+			while total > 1 do
 				optic_check_pump()
-				total = total - tick
+				total = total - 1
 			end
 		end)
 end
