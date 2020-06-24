@@ -54,9 +54,9 @@ local function playercheck(dtime, player)
 	if player:get_player_control().sneak or
 	not nodecore.player_visible(player) then return end
 
-	local q = (qtys[name] or 0)
-	+ vector.distance(pos, old) * 0.25
-	+ dtime * 0.05
+	local dist = vector.distance(pos, old)
+	if dist > 20 then dist = 20 end
+	local q = (qtys[name] or 0) + dist * 0.25 + dtime * 0.05
 	queuechecks(math_floor(q), name, pos)
 	qtys[name] = q - math_floor(q)
 end
