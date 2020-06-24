@@ -16,28 +16,26 @@ local setinv = {
 	{"nc_stonework:tool_hatchet", 1, 0.4},
 	{"nc_stonework:tool_mallet", 1, 0.2},
 	{"nc_stonework:chip", 54},
-	false,
+	{"air", 1, nil, "[combine:1x1"},
 	{"nc_terrain:sand_loose", 14},
 	{"nc_terrain:dirt_loose", 47}
 }
 
 for _, v in pairs(setinv) do
-	if v then
-		local n = modname .. ":" .. v[1]:gsub(":", "_")
-		if not minetest.registered_items[n] then
-			local def = minetest.registered_items[v[1]]
-			minetest.register_item(n, {
-					["type"] = def["type"],
-					tiles = def.tiles,
-					inventory_image = def.inventory_image,
-					wield_image = def.wield_image,
-					on_drop = function() return ItemStack("") end,
-					on_place = function() end,
-					on_use = function() end
-				})
-		end
-		v[1] = n
+	local n = modname .. ":" .. v[1]:gsub(":", "_")
+	if not minetest.registered_items[n] then
+		local def = minetest.registered_items[v[1]]
+		minetest.register_item(n, {
+				["type"] = def["type"],
+				tiles = def.tiles,
+				inventory_image = v[4] or def.inventory_image,
+				wield_image = v[4] or def.wield_image,
+				on_drop = function() return ItemStack("") end,
+				on_place = function() end,
+				on_use = function() end
+			})
 	end
+	v[1] = n
 end
 
 local function setup(p)

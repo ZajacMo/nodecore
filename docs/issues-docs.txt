@@ -9,8 +9,6 @@ ISSUES-DOCS: Issues related to documentation
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Need another CDB screenshot update.
-
 - Add a code of conduct to project
 	- Cover chat rules from discord, servers?
 
