@@ -17,11 +17,19 @@ end
 nodecore.stack_shortdesc = shortdesc
 
 local function family(stack)
+	stack = ItemStack(stack)
 	if stack:is_empty() then return "" end
 	local name = stack:get_name()
 	local def = minetest.registered_items[name]
-	return def and def.stackfamily or stack:to_string()
+	if def and def.stackfamily then
+		stack:set_name(def.stackfamily)
+	end
+	if stack:get_count() > 1 then
+		stack:set_count(1)
+	end
+	return stack:to_string()
 end
+nodecore.stack_family = family
 function nodecore.stack_merge(dest, src)
 	if dest:is_empty() then return dest:add_item(src) end
 	if family(src) ~= family(dest) then

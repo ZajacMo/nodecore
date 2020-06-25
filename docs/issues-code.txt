@@ -9,19 +9,6 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Item ent merge needs to be redone from scratch
-	- Suspected of causing a major lag issue on Community
-	- Single loop through filtered luaentities
-	- Find collisions by hashed rounded pos
-	- Compare, compute average
-	- Attempt to use nodecore.stack_merge
-	- For extreme cases, create a secondary ent to contain
-	  additional item entities and release them when the
-	  original item ent is gone.
-		- Add itself to a queue on_step
-		- Have merge func call its "release one stack"
-		  cb if no ents found there next tick
-
 - Unify mkreg
 	- Add validation/modifying and order comparison funcs
 	- Use for recipes, mapgen_shared, playerstep, etc.
