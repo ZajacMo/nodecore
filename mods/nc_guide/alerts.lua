@@ -39,6 +39,8 @@ nodecore.register_on_player_discover(function(player)
 nodecore.register_playerstep({
 		label = "hint alerts",
 		action = function(player)
+			if nodecore.hints_disabled() then return end
+
 			local pname = player:get_player_name()
 			local mc = msgcache[pname] or {}
 			local t = {}

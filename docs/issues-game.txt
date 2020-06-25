@@ -19,14 +19,26 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Set hp lower and use 1+ delta, then let damage normalizer
 		  reset it?
 
-- Setting to disable entire hint system (tab, alerts) esp. for MP.
-
-- Replace some absolute/offline countdowns with ABM/AISM countdown
-	- Sponge squeeze expiration, torches
+- Consider largely retiring offline time-integral mechanics
+	- Keepers:
+		- Tree growth
+		- Compost
+	- Losers:
+		- Sponge expiration
+		- Torch expiration
+		- Leaching
+		- Repacking
+		- Concrete
+		- Lux renew
+	- Logic: Action by a living thing (i.e. presence of player or
+	  microorganisms) is what keeps time ticking...?
 	- Be more consistent with some non-offline mechanics like
 	  fire fuel consumption
 	- "Fairness" issues, e.g. when sponge expiration happens before
 	  squeezer DNTs have had a chance to fire.
+	- When we did torches via expiration metadata, the reason at the
+	  time was that there was no way to get them to tick reliably like
+	  we can with nodes; with AISMs this is no longer the case.
 
 - Repose changes
 	- Staves/rods should repose a lot less or not at all.
@@ -45,13 +57,14 @@ ISSUES-GAME: Gameplay-affecting issues
 		  hint completion)
 		- Hints could be re-expanded by 3rd party mods
 
-- Consider using waypoint HUDs for punchtips instead, now that
-  https://github.com/minetest/minetest/pull/9480 is merged in 5.3+
-
-- Need to add directional features to the skybox.
-	- Make cardinal navigation using the sky possible.
-
-- Chop frames, ladders, staves back down into sticks?
+- Consider doing looktips and using a custom HUD to force crosshair
+  for mobile as well.
+	- Looktips can re-show any time lookdir changes, not just on
+	  change of target node name, so rejiggling the view can
+	  give more time to read tip.
+	- Don't allow looktip if the "above" node is below a certain
+	  light level
+	- Consider separating wieldtips and punch/looktips again.
 
 - falling_node pillars settle out of order!
 	- Also anectodal issues with falling nodes sometimes
@@ -83,7 +96,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		  Items?  Players?  Fluids?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
-
+	- Register ores for softer stone of each level
+	- Maybe some ores for cobble and/or loose cobble?
+	
 - Make stone brick more easily crafted by chiseling with a high-tier
   pick, e.g. tier 7+
 

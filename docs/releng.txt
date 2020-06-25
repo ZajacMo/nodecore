@@ -28,8 +28,8 @@ as it happens.
 
 NEW MT RELEASE PROCESS:
 	- Reevaluate the policy and decide which version(s) need EOS
-    - Check CDB for version strings and update .cdbrelease.lua
-    - Check this doc for special TODO items related to release
+	  - Check CDB for version strings and update .cdbrelease.lua
+	  - Check this doc for special TODO items related to release
 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
@@ -37,10 +37,12 @@ NEW MT RELEASE PROCESS:
 	- Add an on_prejoin check to disallow clients with proto version
 	  too low.
 	- Remove issue7020 workaround, reevaluate other workarounds.
-  - Remove set_sky compat workaround in register_playerstep()
+	- Remove set_sky compat workaround in register_playerstep()
 
 - After 5.2 EOS:
 	- Change bandolier slot items back to upright_sprite
+	- Consider switching touchtips to waypoint HUDs now that
+	  hiding distance is an options.
 
 ........................................................................
 ========================================================================

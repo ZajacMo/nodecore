@@ -9,39 +9,41 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Unify Player API
-	- Because nc_player_setup is currently expensive.
-	- Combine existing globalsteps, wrap with metadata to do one
-	  set of set_properties, physics, anim, etc calls at the end.
-		- All perplayer globalsteps maybe?
-		- Skybox, sunlight
-		- Physics, zoom, run speed
-		- Visuals, anims
-	- Move step hook into API layer
-	- Use prio system like recipes/mapgen_shared for moddability
-	- Reorg nc_player_* mods, simplify?
+- Item ent merge needs to be redone from scratch
+	- Suspected of causing a major lag issue on Community
+	- Single loop through filtered luaentities
+	- Find collisions by hashed rounded pos
+	- Compare, compute average
+	- Attempt to use nodecore.stack_merge
+	- For extreme cases, create a secondary ent to contain
+	  additional item entities and release them when the
+	  original item ent is gone.
+		- Add itself to a queue on_step
+		- Have merge func call its "release one stack"
+		  cb if no ents found there next tick
+
+- Unify mkreg
+	- Add validation/modifying and order comparison funcs
+	- Use for recipes, mapgen_shared, playerstep, etc.
+	- Consider replacing with register_generic():
+		- Allow lazy registration, i.e. a register method that can
+		  register for things not yet defined, and allow later registration
+		  of the registration definition that will pick up those missed.
+	- Define order for inv tabs
+
+- Hint System Refactor
+	- Move stats into an api layer to ensure availability
+	- Simplify stats, track less detail, limit data growth.
+	- Break up hints into each individual mod.
+	- Add shortcuts for hint registrations, e.g. integrated with recipes.
 
 - Continue to chisel away at ABM perf issues.
-    - Simplify or optimize existing ABMs
-    - Convert things to DNTs.
+	- Simplify or optimize existing ABMs
+	- Convert things to DNTs.
 
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
 	- Leaching resumes instead of resetting when water removed.
-
-- Deprecation warnings for get_connected_players() at mod load time:
-  (at /config/.minetest/games/nodecore/mods/nc_envsound/init.lua:52)
-  (at /config/.minetest/games/nodecore/mods/nc_lux/radiation.lua:85)
-  (at /config/.minetest/games/nodecore/mods/nc_lux/react.lua:60)
-  (at ...fig/.minetest/games/nodecore/mods/nc_api_active/aism.lua:93)
-  (at ...fig/.minetest/games/nodecore/mods/nc_player_sky/init.lua:52)
-  (at ...inetest/games/nodecore/mods/nc_player_health/radiant.lua:61)
-
-- Deprecation checks:
-	- get_connected_players() at loadtime
-	- old version of set_sky()
-		- Look for set_sun() to determine if new set_sky available?
-		- ...or wait for pre-5.2 deprecation
 
 - Take advantage of the fact that players/inventories use a single shared
   metatable for player inventory arrangement hooks in nc_player_pickup,
@@ -63,17 +65,8 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Add an on_falling_check handler to replace check_single_for_falling custom
   hook in writing, and possibly other places.
 
-- Hint System Refactor
-    - Move stats into an api layer to ensure availability.
-    - Simplify stats, track less detail, limit data growth.
-    - Break up hints into each individual mod.
-    - Add shortcuts for hint registrations, e.g. integrated with recipes.
-
 - Should we create "recipe groups" to make it easier to specify
-  equivalent recipes for hint purposes?
-
-- Item ent merge should use logic consistent with nodecore.stack_merge,
-  which handles item families.
+  equivalent recipes for hint purposes?	
 
 - Need to find a way to make AISMs work with falling_node.
 	- Create ItemStack, run hooks, try to convert back to node
@@ -82,21 +75,9 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Need this for amalgamation remelting.
 	- Would it make sense to unify the item and falling_node ents?
 
-- NodeCore Spreading ABM API
-	- Eligibility check
-	- Time cumulative process like soaking
-	- Push excess to adjacent nodes if eligible
-	- Don't trigger immediately; wait for next cycle
-
 - API for map-seed-deterministic scatter.
 	- Given minp, maxp, seed and density, find all positions.
 	- Use for sponges, lava/water springs, etc.
-
-- Replacement for mkreg, a.k.a. register_generic():
-	- Allow lazy registration, i.e. a register method that can
-	  register for things not yet defined, and allow later registration
-	  of the registration definition that will pick up those missed.
-	- Allow unregistering things...?
 
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?
@@ -114,7 +95,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Genericize sponge logic using stack_access API
 
 - Wandering fluids API for concrete, glass?
-    - Configurable setting for generation count multiplier.
+	- Configurable setting for generation count multiplier.
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.
@@ -131,13 +112,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		- Stack nodes are "special", get first-class support.
 	- APIs for different kinds of "neighbor" scans
 		- Face, edge, corner touching
-
-- Need better handling of stuck item ents, e.g. items dropped into a
-  pit full of leaves.
-	- Detect, merge all in area, save as a single combined ent?
-	- Try placing items as a queue, so it only does 1 check per tick
-	  and doesn't attempt other checks that would also fail.
-	- Maybe just cache item placement failures per tick.
 
 ........................................................................
 ========================================================================

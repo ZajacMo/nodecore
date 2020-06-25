@@ -1,9 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, type
-    = ipairs, minetest, nodecore, pairs, type
+local ipairs, minetest, nodecore, pairs, string, type
+    = ipairs, minetest, nodecore, pairs, string, type
+local string_lower
+    = string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.hints = {}
+
+function nodecore.hints_disabled()
+	return minetest.settings:get_bool(
+		string_lower(nodecore.product) .. "_disable_hints")
+end
 
 local function conv(spec)
 	if not spec then

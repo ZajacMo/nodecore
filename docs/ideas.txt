@@ -9,33 +9,37 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- New Darkness feature:
-	- Keep track of queue of recent "safe spots" for player: in sunlight, on solid ground or climbable etc.
-	- Also check for being completely entombed in solid non-climbables.
-	- Track player darkness, search for nearby light.  Keep track of recent hit/miss (ring/queue).
-	- If player is in TOTAL darkness for long enough to be certain, then do "fugue" teleportation.
-	- Fade screen to black slowly via HUD (maybe have an API for this for skyrealms).
-	- Drop all items.
-	- Apply a temporary debuff...?
-	- Teleport player back to recent safe spots until we find one, or run out.
-	- Fade screen back from black.
+- Chop frames, ladders, staves back down into sticks?
 
-- Make lava easier to find at a distance visually
-	- Particles, like cherenkov?
+- More lode bar crafts:
+	- Frames
+	- Ladders?
+	- Adzes?
+		- chop+crumb -1 relative tier
+		- cracky -2 relative tier
+		- full durability
+		- Should these be full lode or wood handle?
+	- Rakes?
+		- Return some prills after construction?
+	- Make wear carry across heating/cooling recipes
+		- Allow full-lode tools to be tempered
+	- All these need to be recyclable.
 
-- Frame improvements
-	- Allow loose ends to be chopped off when placed next to other
-	  frames, so custom shapes can be made.
-	- Add lode frames.
+- Lode tongs?
+	- Craft from bars/rods (or lode adzes?).
+	- Add an API to hot potato
+		- Scan for all hot potato items and produce a list of slot->bool
+		- If any items found with an on_hot_potato callback, pass them
+		  that list (and player, inv, etc) to be modified.
+	- If slot is marked "safe" then no hot potato if items are in
+	  a slot adjacent to tongs.
+	- If slot is not marked safe, mark it safe if tongs or any tool
+	  are wielded item.
+	- Unmark safe any slots that don't contain hot things after
+	  hot potato check.
 
-- Lode rakes?  Lode adzes?
-
-- A lode "mace" tool with all dig groups?
-	- Would require reevaluatng recipe priority, or tool modality.
-
-- Should tool appearance vary based on wear?
-	- Make "fresh" vs. "worn" tools (for purposes of their usability
-	  in crafts) have a distinct look?
+- Allow frame loose ends to be chopped off when placed next to other
+  frames, so custom shapes can be made.
 
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
@@ -46,6 +50,28 @@ IDEAS: Possible future additions/improvements to the game
 	- Scattered items on floor.  Most are from loot tables, some are
 	  crates or storeboxes.
 
+- A lode "mace" tool with all dig groups?
+	- Would require reevaluatng recipe priority, or tool modality.
+
+- Make lava easier to find at a distance visually
+	- Particles, like cherenkov?
+
+- New Darkness feature:
+	- Keep track of queue of recent "safe spots" for player:
+	  in sunlight, on solid ground or climbable etc.
+	- Also check for being completely entombed in solid non-climbables.
+	- Track player darkness, search for nearby light.  Keep track of recent hit/miss (ring/queue).
+	- If player is in TOTAL darkness for long enough to be certain, then do "fugue" teleportation.
+	- Fade screen to black slowly via HUD (maybe have an API for this for skyrealms).
+	- Drop all items.
+	- Apply a temporary debuff...?
+	- Teleport player back to recent safe spots until we find one, or run out.
+	- Fade screen back from black.
+
+- Should tool appearance vary based on wear?
+	- Make "fresh" vs. "worn" tools (for purposes of their usability
+	  in crafts) have a distinct look?
+
 - Tree sap
 	- Stumps with air above exude, become dry stumps.
 	- Use as a glue/resin in recipes.
@@ -53,10 +79,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Stick optics in place to prevent rotating?
 
 - Straw/thatch?
-
-- Lode tongs?
-	- Craft from bars/rods.
-	- Pick up any item and embed in tongs itemstack.
 
 - Domain Wall Sensor
 	- Adapt from sztest?

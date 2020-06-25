@@ -60,5 +60,6 @@ end
 
 nodecore.register_inventory_tab({
 		title = "Hints",
+		visible = function() return not nodecore.hints_disabled() end,
 		content = gethint
 	})
