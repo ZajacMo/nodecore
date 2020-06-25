@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_limited_abm({
@@ -32,32 +32,3 @@ nodecore.register_aism({
 			return stack
 		end
 	})
-
-local function playercheck(player)
-	local found
-	local stacks = {}
-	local inv = player:get_inventory()
-	for i = 1, inv:get_size("main") do
-		local stack = inv:get_stack("main", i)
-		if minetest.get_item_group(stack:get_name(), "lux_cobble") > 0 then
-			stacks[i] = stack
-			found = true
-		end
-	end
-	if not found then return end
-	local qty = nodecore.lux_react_qty(vector.add(player:get_pos(), {x = 0, y = 1, z = 0}))
-	for k, v in pairs(stacks) do
-		local name = v:get_name()
-		local nn = name:gsub("cobble%d", "cobble" .. qty)
-		if name ~= nn then
-			v:set_name(nn)
-			inv:set_stack("main", k, v)
-		end
-	end
-end
-
-nodecore.interval(1, function()
-		for _, p in pairs(minetest.get_connected_players()) do
-			playercheck(p)
-		end
-	end)
