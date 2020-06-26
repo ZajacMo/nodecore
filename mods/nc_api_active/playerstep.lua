@@ -120,8 +120,9 @@ local function step_player(player, dtime)
 	if mismatch(data.animation, orig_anim) then
 		player:set_animation(unpack(data.animation))
 	end
-	local sky = setdelta(data.sky, orig_sky)
-	if sky then setsky(player, sky) end
+	if mismatch(data.sky, orig_sky) then
+		setsky(player, data.sky)
+	end
 	if mismatch(data.daynight, orig_daynight) then
 		player:override_day_night_ratio(data.daynight)
 	end

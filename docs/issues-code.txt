@@ -24,6 +24,13 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Break up hints into each individual mod.
 	- Add shortcuts for hint registrations, e.g. integrated with recipes.
 
+- Transactional api ref localization
+	- For certain large computations, like an optic processing, it may be
+	  worthwhile to capture some often-repeated functions like minetest.get_node
+	  as locals.
+	- May need to test performance on a non-JIT build, where this is expected
+	  to have a larger impact, since JIT probably optimizes the difference away.
+
 - Continue to chisel away at ABM perf issues.
 	- Simplify or optimize existing ABMs
 	- Convert things to DNTs.
