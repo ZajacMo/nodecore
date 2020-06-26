@@ -49,24 +49,26 @@ minetest.register_globalstep(function()
 						partial = ItemStack(ent.itemstring)
 						pqty = partial:get_count()
 						partial:set_count(max)
+						partial = partial:to_string()
 					else
 						pqty = pqty + ItemStack(ent.itemstring):get_count()
-						if pqty >= max then
+						while pqty >= max do
 							stacks[#stacks + 1] = partial
-							partial = ItemStack(partial)
 							pqty = pqty - max
 						end
 					end
 				end
 				if pqty > 0 then
+					partial = ItemStack(partial)
 					partial:set_count(pqty)
-					stacks[#stacks + 1] = partial
+					stacks[#stacks + 1] = partial:to_string()
 				end
 				for i = 1, #grp do
 					local stack = stacks[i]
 					if stack then
-						grp[i].itemstring = stack:to_string()
+						grp[i].itemstring = stack
 					else
+						grp[i].itemstring = ""
 						grp[i].object:remove()
 					end
 				end
