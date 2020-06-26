@@ -24,11 +24,19 @@ minetest.register_globalstep(function()
 		local gethash = minetest.hash_node_position
 		local round = vector.round
 
+		local entpos = {}
+		local entvel = {}
+
 		local dict = {}
 		for _, ent in pairs(minetest.luaentities) do
 			if ent.name == "__builtin:item" then
 				local pos = ent.object:get_pos()
-				if pos then addtodict(dict, gethash(round(pos)), ent) end
+				local vel = ent.object:get_velocity()
+				if pos and vel and vector.dot(vel, vel) < 4 then
+					entpos[ent] = pos
+					entvel[ent] = vel
+					addtodict(dict, gethash(round(pos)), ent)
+				end
 			end
 		end
 		dict = removesingles(dict)
@@ -51,9 +59,9 @@ minetest.register_globalstep(function()
 					local stack = ItemStack(ent.itemstring)
 					local iqty = stack:get_count()
 					newpos = vector.add(newpos, vector.multiply(
-							ent.object:get_pos(), iqty))
+							entpos[ent], iqty))
 					newvel = vector.add(newvel, vector.multiply(
-							ent.object:get_velocity(), iqty))
+							entvel[ent], iqty))
 					samples = samples + iqty
 					if not partial then
 						pqty = stack:get_count()
