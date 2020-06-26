@@ -95,7 +95,7 @@ local function toteplace(stack, placer, pointed)
 	end
 	if commit then
 		for _, v in ipairs(commit) do
-			minetest.set_node(v[1], v[2])
+			nodecore.set_loud(v[1], v[2])
 			minetest.get_meta(v[1]):from_table(v[3])
 		end
 		stack:set_count(stack:get_count() - 1)
@@ -145,7 +145,7 @@ local txr_sides = "(" .. txr_bot .. "^[mask:nc_tote_sides.png)"
 local txr_top = "nc_tree_tree_side.png^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
 local txr_handle = "nc_tree_tree_side.png^[transformR90"
 
-local function reg(suff, inner)
+local function reg(suff, inner, pred)
 	return minetest.register_node(modname .. ":handle" .. suff, {
 			description = "Tote Handle",
 			meta_descriptions = metadescs,
@@ -173,11 +173,12 @@ local function reg(suff, inner)
 			after_dig_node = totedug,
 			on_place = toteplace,
 			drop = "",
+			node_placement_prediction = pred,
 			sounds = nodecore.sounds("nc_lode_annealed")
 		})
 end
 reg("", "[combine:1x1")
-reg("_full", modname .. "_fill.png")
+reg("_full", modname .. "_fill.png", "")
 
 nodecore.register_craft({
 		label = "craft tote handle",
