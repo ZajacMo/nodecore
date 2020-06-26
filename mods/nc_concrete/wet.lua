@@ -112,12 +112,11 @@ nodecore.register_limited_abm({
 			end
 
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			local bnode = minetest.get_node(below)
-			if bnode.name == "ignore" then return end
-			local bdef = minetest.registered_nodes[bnode.name] or {}
-			if bdef.groups and bdef.groups.water then
+			local bname = minetest.get_node(below).name
+			if bname == "ignore" then return end
+			if minetest.get_item_group(bname, "water") > 0 then
 				nodecore.set_loud(below, node)
-				nodecore.set_loud(pos, bnode)
+				nodecore.remove_node(pos)
 				return
 			end
 		end
