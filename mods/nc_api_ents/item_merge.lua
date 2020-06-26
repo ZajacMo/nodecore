@@ -40,18 +40,27 @@ minetest.register_globalstep(function()
 			end
 			groups = removesingles(groups)
 			for _, grp in pairs(groups) do
+				local newpos = {x = 0, y = 0, z = 0}
+				local newvel = {x = 0, y = 0, z = 0}
+				local samples = 0
 				local max = ItemStack(grp[1].itemstring):get_stack_max()
 				local stacks = {}
 				local partial
 				local pqty = 0
 				for _, ent in pairs(grp) do
+					local stack = ItemStack(ent.itemstring)
+					local iqty = stack:get_count()
+					newpos = vector.add(newpos, vector.multiply(
+							ent.object:get_pos(), iqty))
+					newvel = vector.add(newvel, vector.multiply(
+							ent.object:get_velocity(), iqty))
+					samples = samples + iqty
 					if not partial then
-						partial = ItemStack(ent.itemstring)
-						pqty = partial:get_count()
-						partial:set_count(max)
-						partial = partial:to_string()
+						pqty = stack:get_count()
+						stack:set_count(max)
+						partial = stack:to_string()
 					else
-						pqty = pqty + ItemStack(ent.itemstring):get_count()
+						pqty = pqty + iqty
 						while pqty >= max do
 							stacks[#stacks + 1] = partial
 							pqty = pqty - max
@@ -63,13 +72,18 @@ minetest.register_globalstep(function()
 					partial:set_count(pqty)
 					stacks[#stacks + 1] = partial:to_string()
 				end
+				newpos = vector.multiply(newpos, 1 / samples)
+				newvel = vector.multiply(newvel, 1 / samples)
 				for i = 1, #grp do
 					local stack = stacks[i]
+					local ent = grp[i]
 					if stack then
-						grp[i].itemstring = stack
+						ent.itemstring = stack
+						ent.object:set_pos(newpos)
+						ent.object:set_velocity(newvel)
 					else
-						grp[i].itemstring = ""
-						grp[i].object:remove()
+						ent.itemstring = ""
+						ent.object:remove()
 					end
 				end
 			end
