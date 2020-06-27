@@ -199,8 +199,10 @@ function nodecore.craft_check(pos, node, data)
 	if node and node.name then
 		local key = data.action .. "|" .. node.name
 		local set = craftidx[key]
-		if set and checkall(pos, node, data, set) then return true end
-		for _, i in pairs(set) do seen[i] = true end
+		if set then
+			if checkall(pos, node, data, set) then return true end
+			for _, i in pairs(set) do seen[i] = true end
+		end
 	end
 
 	local stack = pos and nodecore.stack_get(pos)
