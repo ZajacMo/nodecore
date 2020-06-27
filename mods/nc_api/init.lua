@@ -58,7 +58,14 @@ function nodecore.log(level, ...)
 	return minetest.log(level, ...)
 end
 
-minetest.after(0, function()
+nodecore.log("info", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
+		or " DEVELOPMENT VERSION"))
+
+do
+	local ticked = 0
+	local function regreport()
+		ticked = ticked + 1
+		if ticked < 5 then return minetest.after(0, regreport) end
 		local reg = "registered_"
 		local t = {}
 		for k, v in pairs(nodecore) do
@@ -67,8 +74,10 @@ minetest.after(0, function()
 			end
 		end
 		table_sort(t)
-		for _, x in pairs(t) do nodecore.log("warning", x) end
-	end)
+		for _, x in pairs(t) do nodecore.log("info", x) end
+	end
+	minetest.after(0, regreport)
+end
 
 include("compat_vector")
 include("issue9043")
