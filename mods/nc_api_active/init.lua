@@ -5,6 +5,7 @@ local include, nodecore
 
 nodecore.amcoremod()
 
+include("abmmux")
 include("stasis")
 include("abmhack")
 include("dnts")
