@@ -164,13 +164,24 @@ local function tryall(rc, pos, node, data)
 	return r
 end
 
-local craftidx = nodecore.item_matching_index(
+local craftidx, rebuildidx = nodecore.item_matching_index(
 	nodecore.craft_recipes,
 	function(i) return i.indexkeys or {true} end,
 	"register_craft",
 	true,
 	function(n, i) return i.action .. "|" .. n end
 )
+
+do
+	local oldreg = nodecore.register_craft
+	local function rebuildhelper(...)
+		rebuildidx()
+		return ...
+	end
+	function nodecore.register_craft(...)
+		return rebuildhelper(oldreg(...))
+	end
+end
 
 local function checkall(pos, node, data, set)
 	for _, rc in ipairs(set) do

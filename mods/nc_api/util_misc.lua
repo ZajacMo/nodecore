@@ -547,38 +547,40 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 		end
 	end
 	keymod = keymod or function(x) return x end
-	minetest.after(0, function()
-			for _, item in pairs(items) do
-				for _, name in pairs(getnames(item)) do
-					if name == true then
-						for k in pairs(minetest.registered_items) do
+	local function rebuild()
+		for k in pairs(index) do index[k] = nil end
+		for _, item in pairs(items) do
+			for _, name in pairs(getnames(item)) do
+				if name == true then
+					for k in pairs(minetest.registered_items) do
+						itemadd(keymod(k, item), item)
+					end
+				elseif type(name) == "string" and name:sub(1, 6) == "group:" then
+					for k, v in pairs(minetest.registered_items) do
+						if v and v.groups and v.groups[name:sub(7)] then
 							itemadd(keymod(k, item), item)
 						end
-					elseif type(name) == "string" and name:sub(1, 6) == "group:" then
-						for k, v in pairs(minetest.registered_items) do
-							if v and v.groups and v.groups[name:sub(7)] then
-								itemadd(keymod(k, item), item)
-							end
-						end
-					else
-						itemadd(keymod(name, item), item)
 					end
+				else
+					itemadd(keymod(name, item), item)
 				end
 			end
-			if idxname then
-				local keys = 0
-				local defs = 0
-				local peak = 0
-				for _, v in pairs(index) do
-					keys = keys + 1
-					local n = 0
-					for _ in pairs(v) do n = n + 1 end
-					defs = defs + n
-					if n > peak then peak = n end
-				end
-				nodecore.log("info", string_format("%s: %d keys, %d defs, %d peak",
-						idxname, keys, defs, peak))
+		end
+		if idxname then
+			local keys = 0
+			local defs = 0
+			local peak = 0
+			for _, v in pairs(index) do
+				keys = keys + 1
+				local n = 0
+				for _ in pairs(v) do n = n + 1 end
+				defs = defs + n
+				if n > peak then peak = n end
 			end
-		end)
-	return index
+			nodecore.log("info", string_format("%s: %d keys, %d defs, %d peak",
+					idxname, keys, defs, peak))
+		end
+	end
+	minetest.after(0, rebuild)
+	return index, rebuild
 end

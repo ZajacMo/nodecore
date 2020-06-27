@@ -67,6 +67,7 @@ function nodecore.register_concrete(def)
 				priority = 2,
 				toolgroups = {thumpy = 1},
 				normal = {y = 1},
+				indexkeys = def.craft_from_keys,
 				nodes = {
 					{
 						match = def.craft_from
@@ -92,6 +93,7 @@ function nodecore.register_concrete(def)
 				priority = 1,
 				toolgroups = {thumpy = 1},
 				normal = {y = 1},
+				indexkeys = def.craft_from_keys,
 				nodes = {
 					{
 						match = def.craft_from,
