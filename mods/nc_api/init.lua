@@ -4,8 +4,8 @@ local dofile, error, minetest, pairs, rawget, rawset, setmetatable,
       table, tostring, type
     = dofile, error, minetest, pairs, rawget, rawset, setmetatable,
       table, tostring, type
-local table_concat, table_insert
-    = table.concat, table.insert
+local table_concat, table_insert, table_sort
+    = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local nodecore = rawget(_G, "nodecore") or {}
@@ -57,6 +57,18 @@ function nodecore.log(level, ...)
 	if not level or not levels[level] then error("invalid log level " .. tostring(level)) end
 	return minetest.log(level, ...)
 end
+
+minetest.after(0, function()
+		local reg = "registered_"
+		local t = {}
+		for k, v in pairs(nodecore) do
+			if k:sub(1, #reg) == reg and type(v) == "table" and #v > 0 then
+				t[#t + 1] = k .. ": " .. #v
+			end
+		end
+		table_sort(t)
+		for _, x in pairs(t) do nodecore.log("warning", x) end
+	end)
 
 include("compat_vector")
 include("issue9043")
