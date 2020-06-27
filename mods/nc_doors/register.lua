@@ -94,6 +94,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			action = "pummel",
 			toolgroups = {thumpy = 3},
 			normal = {y = 1},
+			rootmatch = {"group:chisel"},
 			nodes = {
 				{
 					match = {

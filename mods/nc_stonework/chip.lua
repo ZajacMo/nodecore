@@ -16,6 +16,7 @@ minetest.register_craftitem(modname .. ":chip", {
 nodecore.register_craft({
 		label = "break cobble to chips",
 		action = "pummel",
+		rootmatch = {"nc_terrain:cobble_loose"},
 		nodes = {
 			{match = "nc_terrain:cobble_loose", replace = "nc_terrain:gravel"}
 		},
@@ -29,6 +30,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "break packed cobble to chips",
 		action = "pummel",
+		rootmatch = {"nc_terrain:cobble"},
 		nodes = {
 			{match = "nc_terrain:cobble", replace = "nc_terrain:gravel"}
 		},
@@ -42,6 +44,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "repack chips to cobble",
 		action = "pummel",
+		rootmatch = {modname .. ":chip"},
 		nodes = {
 			{
 				match = {name = modname .. ":chip", count = 8},

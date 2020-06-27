@@ -155,6 +155,7 @@ nodecore.register_craft({
 		label = "forge lode block",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		rootmatch = {modname .. ":prill_hot"},
 		nodes = {
 			{
 				match = {name = modname .. ":prill_hot", count = 8},
@@ -171,6 +172,7 @@ nodecore.register_craft({
 		label = "break apart lode block",
 		action = "pummel",
 		toolgroups = {choppy = 5},
+		rootmatch = {modname .. ":block_hot"},
 		nodes = {
 			{
 				match = modname .. ":block_hot",

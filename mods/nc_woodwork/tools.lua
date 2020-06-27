@@ -36,6 +36,7 @@ local function toolhead(name, from, group, sticks)
 		nodecore.register_craft({
 				label = "assemble wood " .. name:lower(),
 				normal = {y = 1},
+				rootmatch = {n},
 				nodes = {
 					{match = n, replace = "air"},
 					{y = -1, match = modname .. ":staff", replace = "air"},
@@ -50,6 +51,7 @@ local function toolhead(name, from, group, sticks)
 			label = "carve " .. from,
 			action = "pummel",
 			toolgroups = {choppy = 1},
+			rootmatch = {from},
 			nodes = {
 				{match = from, replace = "air"}
 			},

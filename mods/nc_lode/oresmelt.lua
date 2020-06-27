@@ -11,6 +11,7 @@ nodecore.register_craft({
 		touchgroups = {flame = 3},
 		duration = 30,
 		cookfx = true,
+		rootmatch = {"group:lode_cobble"},
 		nodes = {
 			{
 				match = {groups = {lode_cobble = true}},
@@ -40,6 +41,7 @@ nodecore.register_craft({
 		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
+		rootmatch = {modname .. ":cobble_hot"},
 		nodes = {
 			{
 				match = modname .. ":cobble_hot",
@@ -56,6 +58,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return nodecore.quenched(pos)
 		end,
+		rootmatch = {modname .. ":cobble_hot"},
 		nodes = {
 			{
 				match = modname .. ":cobble_hot",

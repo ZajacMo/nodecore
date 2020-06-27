@@ -22,6 +22,7 @@ minetest.register_tool(modname .. ":stylus", {
 nodecore.register_craft({
 		label = "assemble stylus",
 		normal = {y = 1},
+		rootmatch = {"nc_stonework:chip"},
 		nodes = {
 			{match = "nc_stonework:chip", replace = "air"},
 			{y = -1, match = "nc_tree:stick", replace = "air"},
@@ -40,6 +41,7 @@ nodecore.register_craft({
 		label = "stylus etch",
 		action = "pummel",
 		toolgroups = {scratchy = 1},
+		rootmatch = {"group:concrete_etchable"},
 		nodes = {
 			{
 				match = {groups = {concrete_etchable = true}}

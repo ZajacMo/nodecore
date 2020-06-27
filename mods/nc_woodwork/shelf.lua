@@ -35,6 +35,7 @@ minetest.register_node(modname .. ":shelf", {
 nodecore.register_craft({
 		label = "assemble wood shelf",
 		norotate = true,
+		rootmatch = {modname .. ":plank"},
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
@@ -47,6 +48,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "assemble wood shelf",
 		norotate = true,
+		rootmatch = {modname .. ":plank"},
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
 			{x = 0, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},

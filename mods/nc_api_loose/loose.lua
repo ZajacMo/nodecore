@@ -53,6 +53,7 @@ nodecore.register_on_register_item(function(name, def)
 					nodecore.register_craft({
 							label = "repack " .. loose.name,
 							action = "pummel",
+							rootmatch = {loose.name},
 							nodes = {
 								{match = loose.name, replace = name}
 							},

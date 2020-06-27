@@ -26,6 +26,7 @@ nodecore.register_craft({
 		priority = -1,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		rootmatch = {modname .. ":prill_annealed"},
 		nodes = {
 			{
 				match = modname .. ":prill_annealed",
@@ -47,6 +48,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 3},
 		normal = {y = 1},
+		rootmatch = {modname .. ":bar_annealed"},
 		nodes = {
 			{
 				match = modname .. ":bar_annealed",
@@ -82,6 +84,7 @@ nodecore.register_craft({
 		label = "anvil making lode rod",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		rootmatch = {modname .. ":bar_annealed"},
 		nodes = {
 			{
 				match = {name = modname .. ":bar_annealed", count = 2},
@@ -101,6 +104,7 @@ nodecore.register_craft({
 		label = "recycle lode rod",
 		action = "pummel",
 		toolgroups = {choppy = 3},
+		rootmatch = {modname .. ":rod_annealed"},
 		nodes = {
 			{
 				match = modname .. ":rod_annealed",

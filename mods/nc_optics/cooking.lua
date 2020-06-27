@@ -16,6 +16,7 @@ nodecore.register_craft({
 		},
 		duration = 20,
 		cookfx = true,
+		rootmatch = {"group:sand"},
 		nodes = {
 			{
 				match = {groups = {sand = true}},
@@ -45,6 +46,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return not near(pos, {flow})
 		end,
+		rootmatch = {src},
 		nodes = {
 			{
 				match = src,
@@ -61,6 +63,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return not near(pos, {flow})
 		end,
+		rootmatch = {src},
 		nodes = {
 			{
 				match = src,
@@ -81,6 +84,7 @@ nodecore.register_craft({
 			return (not near(pos, {flow}))
 			and nodecore.quenched(pos)
 		end,
+		rootmatch = {src},
 		nodes = {
 			{
 				match = src,
@@ -96,6 +100,7 @@ nodecore.register_craft({
 			return near(pos, {flow})
 			and nodecore.quenched(pos)
 		end,
+		rootmatch = {src},
 		nodes = {
 			{
 				match = src,

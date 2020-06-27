@@ -33,6 +33,7 @@ nodecore.register_craft({
 		label = "squeeze sponge",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
+		rootmatch = {spongewet},
 		nodes = {
 			{
 				match = spongewet

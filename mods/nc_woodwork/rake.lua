@@ -100,6 +100,7 @@ local adze = {name = modname .. ":adze", wear = 0.05}
 nodecore.register_craft({
 		label = "assemble rake",
 		norotate = true,
+		rootmatch = {"nc_tree:stick"},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
 			{x = 0, z = -1, match = adze, replace = "air"},

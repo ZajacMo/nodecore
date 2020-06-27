@@ -25,6 +25,7 @@ nodecore.register_craft({
 		check = function(_, data)
 			return nodecore.facedirs[data.node.param2].t.y == 1
 		end,
+		rootmatch = {"group:log"},
 		nodes = {
 			{match = {groups = {log = true}}, replace = "air"}
 		},
@@ -38,6 +39,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 3},
 		normal = {y = 1},
+		rootmatch = {plank},
 		nodes = {
 			{match = plank, replace = "air"}
 		},
