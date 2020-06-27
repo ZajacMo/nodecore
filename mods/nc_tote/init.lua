@@ -183,7 +183,7 @@ reg("_full", modname .. "_fill.png", "")
 nodecore.register_craft({
 		label = "craft tote handle",
 		norotate = true,
-		rootmatch = {"nc_woodwork:frame"},
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{y = -1, match = "nc_lode:block_annealed", replace = modname .. ":handle"},
@@ -204,7 +204,7 @@ nodecore.register_craft({
 			if stack:get_name() ~= modname .. ":handle" then return end
 			return (stack:get_meta():get_string("carrying") or "") == ""
 		end,
-		rootmatch = {modname .. ":handle"},
+		indexkeys = {modname .. ":handle"},
 		nodes = {
 			{
 				match = modname .. ":handle",

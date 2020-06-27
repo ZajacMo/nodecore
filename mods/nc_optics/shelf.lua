@@ -45,7 +45,7 @@ minetest.register_node(modname .. ":shelf", {
 nodecore.register_craft({
 		label = "assemble glass tank",
 		norotate = true,
-		rootmatch = {"nc_woodwork:frame"},
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},
@@ -62,7 +62,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "assemble glass tank",
 		norotate = true,
-		rootmatch = {"nc_woodwork:frame"},
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{x = 0, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},

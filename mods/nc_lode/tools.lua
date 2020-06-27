@@ -47,7 +47,7 @@ local function toolhead(name, groups, prills)
 		nodecore.register_craft({
 				label = "assemble lode " .. n,
 				normal = {y = 1},
-				rootmatch = {modname .. ":toolhead_" .. n .. "_" .. t},
+				indexkeys = {modname .. ":toolhead_" .. n .. "_" .. t},
 				nodes = {
 					{match = modname .. ":toolhead_" .. n .. "_" .. t,
 						replace = "air"},
@@ -70,7 +70,7 @@ local function forgecore(from, fromqty, to, prills, fromtemper, anviltemper)
 			label = anviltemper .. " anvil making " .. fromtemper .. " lode " .. (to or "prills"),
 			action = "pummel",
 			toolgroups = {thumpy = 3},
-			rootmatch = {modname .. ":" .. from .. "_" .. fromtemper},
+			indexkeys = {modname .. ":" .. from .. "_" .. fromtemper},
 			nodes = {
 				{
 					match = {name = modname .. ":" .. from .. "_" .. fromtemper,
@@ -109,7 +109,7 @@ local function mattock(a, b)
 			action = "pummel",
 			toolgroups = {thumpy = 3},
 			normal = {y = 1},
-			rootmatch = {modname .. (a == 0 and ":toolhead_pick_hot" or ":toolhead_spade_hot")},
+			indexkeys = {modname .. (a == 0 and ":toolhead_pick_hot" or ":toolhead_spade_hot")},
 			nodes = {
 				{
 					y = a,

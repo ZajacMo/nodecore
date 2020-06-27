@@ -26,7 +26,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 2},
 		normal = {y = 1},
-		rootmatch = {"nc_lode:prill_hot"},
+		indexkeys = {"nc_lode:prill_hot"},
 		nodes = {
 			{
 				match = "nc_lode:prill_hot",

@@ -44,7 +44,7 @@ minetest.register_node(modname .. ":torch", {
 nodecore.register_craft({
 		label = "assemble torch",
 		normal = {y = 1},
-		rootmatch = {"nc_fire:lump_coal"},
+		indexkeys = {"nc_fire:lump_coal"},
 		nodes = {
 			{match = "nc_fire:lump_coal", replace = "air"},
 			{y = -1, match = "nc_woodwork:staff", replace = modname .. ":torch"},

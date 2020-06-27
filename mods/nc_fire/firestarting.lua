@@ -11,7 +11,7 @@ nodecore.register_craft({
 		wield = {
 			groups = {firestick = true}
 		},
-		rootmatch = {"group:firestick"},
+		indexkeys = {"group:firestick"},
 		nodes = {
 			{match = {groups = {firestick = true}}}
 		},

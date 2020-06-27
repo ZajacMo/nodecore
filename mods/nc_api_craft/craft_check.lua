@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, minetest, nodecore, pairs, type
+local ItemStack, error, ipairs, minetest, nodecore, pairs, type
+    = ItemStack, error, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addgroups(sum, pos)
@@ -164,14 +164,16 @@ local function tryall(rc, pos, node, data)
 	return r
 end
 
-function nodecore.craft_check(pos, node, data)
-	data = data or {}
-	node.x = pos.x
-	node.y = pos.y
-	node.z = pos.z
-	data.pos = pos
-	data.node = node
-	for _, rc in ipairs(nodecore.craft_recipes) do
+local craftidx = nodecore.item_matching_index(
+	nodecore.craft_recipes,
+	function(i) return i.indexkeys or {false} end,
+	"register_craft",
+	true,
+	function(n, i) return i.action .. (n and ("|" .. n) or "") end
+)
+
+local function checkall(pos, node, data, set)
+	for _, rc in ipairs(set) do
 		if data.action == rc.action
 		and nodecore.match(node, rc.root.match) then
 			data.recipe = rc
@@ -180,4 +182,32 @@ function nodecore.craft_check(pos, node, data)
 			if r then return r == true end
 		end
 	end
+end
+
+function nodecore.craft_check(pos, node, data)
+	if not data or not data.action then
+		return error("craft_check without data.action")
+	end
+
+	node.x = pos.x
+	node.y = pos.y
+	node.z = pos.z
+	data.pos = pos
+	data.node = node
+
+	if node and node.name then
+		local key = data.action .. "|" .. node.name
+		local set = craftidx[key]
+		if set and checkall(pos, node, data, set) then return true end
+	end
+
+	local stack = pos and nodecore.stack_get(pos)
+	if not stack:is_empty() then
+		local key = data.action .. "|" .. stack:get_name()
+		local set = craftidx[key]
+		if set and checkall(pos, node, data, set) then return true end
+	end
+
+	local legacy = craftidx[data.action]
+	return legacy and checkall(pos, node, data, legacy)
 end

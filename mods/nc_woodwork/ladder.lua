@@ -37,7 +37,7 @@ minetest.register_node(modname .. ":ladder", {
 nodecore.register_craft({
 		label = "assemble wood ladder",
 		normal = {x = 1},
-		rootmatch = {"nc_tree:stick"},
+		indexkeys = {"nc_tree:stick"},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
 			{x = -1, match = modname .. ":staff", replace = modname .. ":ladder"},
@@ -67,7 +67,7 @@ minetest.register_node(modname .. ":frame", {
 nodecore.register_craft({
 		label = "assemble wood frame",
 		normal = {x = 1},
-		rootmatch = {modname .. ":staff"},
+		indexkeys = {modname .. ":staff"},
 		nodes = {
 			{match = modname .. ":staff", replace = "air"},
 			{x = -1, match = modname .. ":staff", replace = modname .. ":frame"},

@@ -34,7 +34,7 @@ nodecore.register_craft({
 		norotate = true,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
-		rootmatch = {modname .. ":prill_hot"},
+		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{match = modname .. ":prill_hot", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
@@ -52,7 +52,7 @@ nodecore.register_craft({
 		norotate = true,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
-		rootmatch = {modname .. ":prill_hot"},
+		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{match = modname .. ":prill_hot", replace = "air"},
 			{x = -1, z = 0, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
@@ -71,7 +71,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {choppy = 3},
 		check = function(pos) return nodecore.stack_get(pos):is_empty() end,
-		rootmatch = {modname .. ":shelf"},
+		indexkeys = {modname .. ":shelf"},
 		nodes = {
 			{match = modname .. ":shelf", replace = "air"},
 		},

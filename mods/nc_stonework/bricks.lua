@@ -23,7 +23,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 3},
 		normal = {y = 1},
-		rootmatch = {"group:chisel"},
+		indexkeys = {"group:chisel"},
 		nodes = {
 			{
 				match = {

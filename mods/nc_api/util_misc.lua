@@ -4,9 +4,11 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
     = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
 local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
-      math_random, math_sin, math_sqrt, string_gsub, string_lower
+      math_random, math_sin, math_sqrt, string_format, string_gsub,
+      string_lower
     = math.abs, math.cos, math.floor, math.log, math.pi, math.pow,
-      math.random, math.sin, math.sqrt, string.gsub, string.lower
+      math.random, math.sin, math.sqrt, string.format, string.gsub,
+      string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -529,3 +531,50 @@ local function mismatch(a, b)
 	return a ~= b
 end
 nodecore.prop_mismatch = mismatch
+
+function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
+	local index = {}
+	local function itemadd(key, item)
+		local t = index[key]
+		if not t then
+			t = {}
+			index[key] = t
+		end
+		if asarray then
+			t[#t + 1] = item
+		else
+			t[item] = true
+		end
+	end
+	keymod = keymod or function(x) return x end
+	minetest.after(0, function()
+			for _, item in pairs(items) do
+				for _, name in pairs(getnames(item)) do
+					if type(name) == "string" and name:sub(1, 6) == "group:" then
+						for k, v in pairs(minetest.registered_items) do
+							if v and v.groups and v.groups[name:sub(7)] then
+								itemadd(keymod(k, item), item)
+							end
+						end
+					else
+						itemadd(keymod(name, item), item)
+					end
+				end
+			end
+			if idxname then
+				local keys = 0
+				local defs = 0
+				local peak = 0
+				for _, v in pairs(index) do
+					keys = keys + 1
+					local n = 0
+					for _ in pairs(v) do n = n + 1 end
+					defs = defs + n
+					if n > peak then peak = n end
+				end
+				nodecore.log("info", string_format("%s: %d keys, %d defs, %d peak",
+						idxname, keys, defs, peak))
+			end
+		end)
+	return index
+end

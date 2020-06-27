@@ -46,7 +46,7 @@ nodecore.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
-		rootmatch = {modname .. ":leaves_loose"},
+		indexkeys = {modname .. ":leaves_loose"},
 		nodes = {
 			{
 				match = {name = modname .. ":leaves_loose", count = 8},

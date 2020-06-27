@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, string
-    = ItemStack, math, minetest, nodecore, pairs, string
-local math_random, string_format
-    = math.random, string.format
+local ItemStack, math, minetest, nodecore, pairs
+    = ItemStack, math, minetest, nodecore, pairs
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Active ItemStack Modifiers
@@ -20,37 +20,11 @@ nodecore.register_aism,
 nodecore.registered_aisms
 = nodecore.mkreg()
 
-local aismidx = {}
-local function defadd(key, def)
-	aismidx[key] = aismidx[key] or {}
-	aismidx[key][def] = true
-end
-minetest.after(0, function()
-		for _, def in pairs(nodecore.registered_aisms) do
-			for _, name in pairs(def.itemnames) do
-				if name:sub(1, 6) == "group:" then
-					for k, v in pairs(minetest.registered_items) do
-						if v and v.groups and v.groups[name:sub(7)] then
-							defadd(k, def)
-						end
-					end
-				else
-					defadd(name, def)
-				end
-			end
-		end
-		local keys = 0
-		local defs = 0
-		local peak = 0
-		for _, v in pairs(aismidx) do
-			keys = keys + 1
-			local n = 0
-			for _ in pairs(v) do n = n + 1 end
-			defs = defs + n
-			if n > peak then peak = n end
-		end
-		nodecore.log("info", string_format("register_aism: %d keys, %d defs, %d peak", keys, defs, peak))
-	end)
+local aismidx = nodecore.item_matching_index(
+	nodecore.registered_aisms,
+	function(i) return i.itemnames end,
+	"register_aism"
+)
 
 local function checkrun(def, stack, data)
 	if nodecore.stasis and not def.ignore_stasis then return end
