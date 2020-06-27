@@ -166,10 +166,10 @@ end
 
 local craftidx = nodecore.item_matching_index(
 	nodecore.craft_recipes,
-	function(i) return i.indexkeys or {false} end,
+	function(i) return i.indexkeys or {true} end,
 	"register_craft",
 	true,
-	function(n, i) return i.action .. (n and ("|" .. n) or "") end
+	function(n, i) return i.action .. "|" .. n end
 )
 
 local function checkall(pos, node, data, set)
@@ -195,19 +195,24 @@ function nodecore.craft_check(pos, node, data)
 	data.pos = pos
 	data.node = node
 
+	local seen = {}
 	if node and node.name then
 		local key = data.action .. "|" .. node.name
 		local set = craftidx[key]
 		if set and checkall(pos, node, data, set) then return true end
+		for _, i in pairs(set) do seen[i] = true end
 	end
 
 	local stack = pos and nodecore.stack_get(pos)
 	if not stack:is_empty() then
 		local key = data.action .. "|" .. stack:get_name()
 		local set = craftidx[key]
-		if set and checkall(pos, node, data, set) then return true end
+		if set then
+			local unique = {}
+			for _, i in ipairs(set) do
+				if not seen[i] then unique[#unique + 1] = i end
+			end
+			if #unique > 0 and checkall(pos, node, data, unique) then return true end
+		end
 	end
-
-	local legacy = craftidx[data.action]
-	return legacy and checkall(pos, node, data, legacy)
 end

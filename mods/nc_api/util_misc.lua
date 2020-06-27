@@ -550,7 +550,11 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 	minetest.after(0, function()
 			for _, item in pairs(items) do
 				for _, name in pairs(getnames(item)) do
-					if type(name) == "string" and name:sub(1, 6) == "group:" then
+					if name == true then
+						for k in pairs(minetest.registered_items) do
+							itemadd(keymod(k, item), item)
+						end
+					elseif type(name) == "string" and name:sub(1, 6) == "group:" then
 						for k, v in pairs(minetest.registered_items) do
 							if v and v.groups and v.groups[name:sub(7)] then
 								itemadd(keymod(k, item), item)
