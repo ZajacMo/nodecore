@@ -113,6 +113,15 @@ function nodecore.dnt_set(pos, name, time)
 	return save()
 end
 
+function nodecore.dnt_reset(pos, name, time)
+	local data, save = dntload(pos)
+	local prev = data[name]
+	time = time or nodecore.registered_dnts[name].time or 1
+	if prev and prev == time then return end
+	data[name] = time
+	return save()
+end
+
 minetest.nodedef_default.on_timer = function(pos)
 	local _, save = dntload(pos)
 	return save()
