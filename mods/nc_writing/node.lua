@@ -39,6 +39,7 @@ for i = 1, #nodecore.writing_glyphs do
 			},
 			drop = coallump,
 			floodable = true,
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
 			on_node_touchthru = function(pos, node, under, player)
 				local raw = nodecore.touchtip_node(under, nil, player)
 				if vector.equals(vector.subtract(under, pos),

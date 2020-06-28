@@ -26,14 +26,14 @@ nodecore.register_on_punchnode("charcoal writing check", function(pos, node, pun
 		local above = pointed.above
 		local anode = minetest.get_node_or_nil(above)
 		if not anode then return end
-
+		if anode.name:sub(1, #nodepref) ~= nodepref then return end
+		local g = tonumber(anode.name:sub(#nodepref + 1))
+		if g and nodecore.writing_glyph_next[g] then
+			anode.name = nodepref .. nodecore.writing_glyph_next[g]
+		end
+		minetest.swap_node(above, anode)
+		nodecore.node_sound(above, "place", {node = anode})
 		if minetest.get_item_group(anode.name, "alpha_glyph") ~= 0 then
-			if anode.name:sub(1, #nodepref) ~= nodepref then return end
-			local g = tonumber(anode.name:sub(#nodepref + 1))
-			if g and nodecore.writing_glyph_next[g] then
-				anode.name = nodepref .. nodecore.writing_glyph_next[g]
-			end
-			minetest.swap_node(above, anode)
 			local def = minetest.registered_items[anode.name] or {}
 			if def.on_spin then def.on_spin(above, anode) end
 		end
@@ -63,6 +63,7 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2, ...)
 	end
 	anode.param2 = np2
 	minetest.swap_node(above, anode)
+	nodecore.node_sound(above, "place", {node = anode})
 	local def = minetest.registered_items[anode.name] or {}
 	if def.on_spin then def.on_spin(above, anode) end
 end
@@ -90,7 +91,7 @@ nodecore.register_craft({
 			local dir = vector.subtract(pos, data.pointed.above)
 			for i = 1, #nodecore.facedirs do
 				if vector.equals(nodecore.facedirs[i].b, dir) then
-					return minetest.set_node(data.pointed.above, {
+					return nodecore.set_loud(data.pointed.above, {
 							name = nodepref .. 1,
 							param2 = i
 						})
