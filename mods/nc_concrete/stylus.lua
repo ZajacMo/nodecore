@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local ItemStack, minetest, nodecore, pairs
+    = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -16,7 +16,17 @@ minetest.register_tool(modname .. ":stylus", {
 				scratchy = 3
 			}),
 		on_ignite = "nc_stonework:chip",
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		on_stack_touchtip = function(stack, desc)
+			local patt = stack:get_meta():get_string("pattern")
+			if not patt then return desc end
+			for _, def in pairs(nodecore.registered_concrete_patterns) do
+				if patt == def.name and def.description then
+					return desc .. "\n" .. def.description
+				end
+			end
+			return desc
+		end
 	})
 
 nodecore.register_craft({
@@ -27,9 +37,13 @@ nodecore.register_craft({
 			{match = "nc_stonework:chip", replace = "air"},
 			{y = -1, match = "nc_tree:stick", replace = "air"},
 		},
-		items = {
-			{y = -1, name = modname .. ":stylus"}
-		}
+		after = function(pos)
+			pos.y = pos.y - 1
+			local item = ItemStack(modname .. ":stylus")
+			item:get_meta():set_string("pattern",
+				nodecore.pickrand(nodecore.registered_concrete_patterns).name)
+			return nodecore.item_eject(pos, item)
+		end
 	})
 
 local function getdefs(node)
@@ -47,12 +61,21 @@ nodecore.register_craft({
 				match = {groups = {concrete_etchable = true}}
 			}
 		},
-		after = function(pos)
+		after = function(pos, data)
 			local pattdef, etchdef = getdefs(minetest.get_node(pos))
 			if not (pattdef and etchdef) then return end
-			local plyname = modname .. ":" .. etchdef.name .. "_"
-			.. pattdef.next.name .. "_ply"
-			nodecore.set_loud(pos, {name = plyname})
+			local setpref = modname .. ":" .. etchdef.name .. "_"
+			local wieldpatt = data.wield and data.wield:get_meta():get_string("pattern")
+			if wieldpatt and wieldpatt ~= pattdef.name then
+				nodecore.set_loud(pos, {name = setpref .. wieldpatt .. "_ply"})
+				return
+			end
+			local nxpatt = pattdef.next.name
+			nodecore.set_loud(pos, {name = setpref .. nxpatt .. "_ply"})
+			if data.wield and data.crafter then
+				data.wield:get_meta():set_string("pattern", nxpatt)
+				data.crafter:set_wielded_item(data.wield)
+			end
 		end
 	})
 

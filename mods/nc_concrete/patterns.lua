@@ -135,7 +135,7 @@ for k in pairs({
 		end)
 end
 
-nodecore.register_concrete_pattern({name = "blank", blank = true})
+nodecore.register_concrete_pattern({description = "Blank", blank = true})
 nodecore.register_concrete_pattern({description = "Bricky"})
 nodecore.register_concrete_pattern({description = "Vermy"})
 nodecore.register_concrete_pattern({description = "Hashy"})
