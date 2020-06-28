@@ -25,6 +25,22 @@ local glyphs = {
 	modname .. "_rex.png",
 	modname .. "_rex.png^[transformFX"
 }
+
+local glyphnames = {
+	"Cav",
+	"Odo",
+	"Niz",
+	"Zin",
+	"Mew",
+	"Fot",
+	"Tof",
+	"Yit",
+	"Geq",
+	"Qeg",
+	"Prx",
+	"Xrp"
+}
+
 local glyph_next = {}
 local glyph_alts = {}
 for i = 2, #glyphs do
@@ -66,7 +82,7 @@ local coallump = "nc_fire:lump_coal"
 
 for i = 1, #glyphs do
 	minetest.register_node(nodepref .. i, {
-			description = "Charcoal Glyph",
+			description = glyphnames[i] .. " Charcoal Glyph",
 			tiles = {
 				glyphs[i],
 				"[combine:1x1"
