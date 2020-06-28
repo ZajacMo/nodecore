@@ -7,5 +7,4 @@ nodecore.amcoremod()
 
 include("api")
 include("node")
-include("stylus")
 include("craft")
