@@ -7,6 +7,13 @@ local string_format
 
 -- Active Block Modifiers, meet Delayed Node Triggers.
 
+-- Definition:
+--- mname: "modname:technicalname"
+--- nodenames: {"mod:itemname", "group:name"}
+--- time: float (optional),
+--- loop: boolean,
+--- action: function(pos, node) end
+
 nodecore.registered_dnts = {}
 
 local grouppref = "group:"
@@ -38,7 +45,7 @@ end
 
 function nodecore.register_dnt(def)
 	if not def.name then return error("dnt name required") end
-	if not def.name then return error("dnt action required") end
+	if not def.action then return error("dnt action required") end
 	if nodecore.registered_dnts[def.name] then
 		return error(string_format("dnt %q already registered", def.name))
 	end
@@ -102,6 +109,15 @@ function nodecore.dnt_set(pos, name, time)
 	local prev = data[name]
 	time = time or nodecore.registered_dnts[name].time or 1
 	if prev and prev < time then return end
+	data[name] = time
+	return save()
+end
+
+function nodecore.dnt_reset(pos, name, time)
+	local data, save = dntload(pos)
+	local prev = data[name]
+	time = time or nodecore.registered_dnts[name].time or 1
+	if prev and prev == time then return end
 	data[name] = time
 	return save()
 end
