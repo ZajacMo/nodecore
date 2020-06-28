@@ -19,7 +19,7 @@ local function handlepickups(player)
 		local widx = player:get_wield_index()
 		for i in nodecore.inv_walk(player, widx, inv) do
 			local cur = inv:get_stack("main", i)
-			local old = snap[i]
+			local old = snap[i] or ItemStack("")
 			if old:is_empty() or cur:peek_item(1):to_string()
 			== old:peek_item(1):to_string() then
 				if not nodecore.item_is_virtual(cur) then
