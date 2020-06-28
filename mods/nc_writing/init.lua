@@ -12,18 +12,18 @@ nodecore.amcoremod()
 local modname = minetest.get_current_modname()
 
 local glyphs = {
-	modname .. "_ava.png",
-	modname .. "_del.png",
-	modname .. "_enz.png",
-	modname .. "_enz.png^[transformFX",
-	modname .. "_san.png",
-	modname .. "_tef.png",
-	modname .. "_tef.png^[transformFX",
-	modname .. "_yut.png",
+	modname .. "_cav.png",
+	modname .. "_odo.png",
+	modname .. "_niz.png",
+	modname .. "_niz.png^[transformFX",
+	modname .. "_mew.png",
+	modname .. "_fot.png",
+	modname .. "_fot.png^[transformFX",
+	modname .. "_yit.png",
 	modname .. "_geq.png",
 	modname .. "_geq.png^[transformFX",
-	modname .. "_rex.png",
-	modname .. "_rex.png^[transformFX"
+	modname .. "_prx.png",
+	modname .. "_prx.png^[transformFX"
 }
 
 local glyphnames = {
