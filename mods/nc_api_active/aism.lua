@@ -11,7 +11,7 @@ local math_random
 --- itemnames: {"mod:itemname", "group:name"}
 --- interval: integer,
 --- chance: integer,
---- func: function(stack, data) end
+--- action: function(stack, data) end
 -- Data:
 --- {pos, node}
 --- {player, inv, list, slot}
