@@ -35,7 +35,7 @@ local function calcprops(itemname, iswield)
 		visual_size = iswield and (def and def.type == "tool" and size_w_tool
 			or size_w_item) or (itemname == "" and size_slot) or size_item,
 		textures = {itemname},
-		glow = def and def.light_source or def.glow or 0
+		glow = def and (def.light_source or def.glow or 0)
 	}
 end
 
