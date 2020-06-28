@@ -68,6 +68,17 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2, ...)
 	if def.on_spin then def.on_spin(above, anode) end
 end
 
+local function setglyphdir(pos, dir)
+	for i = 0, #nodecore.facedirs do
+		if vector.equals(nodecore.facedirs[i].b, dir) then
+			return nodecore.set_loud(pos, {
+					name = nodepref .. 1,
+					param2 = i
+				})
+		end
+	end
+end
+
 nodecore.register_craft({
 		label = "charcoal writing",
 		action = "pummel",
@@ -88,14 +99,29 @@ nodecore.register_craft({
 		nodes = {{match = {walkable = true}}},
 		after = function(pos, data)
 			skip[minetest.hash_node_position(pos)] = nodecore.gametime
+
 			local dir = vector.subtract(pos, data.pointed.above)
-			for i = 1, #nodecore.facedirs do
-				if vector.equals(nodecore.facedirs[i].b, dir) then
-					return nodecore.set_loud(data.pointed.above, {
-							name = nodepref .. 1,
-							param2 = i
-						})
+			if dir.y == 0 then return setglyphdir(data.pointed.above, dir) end
+
+			local look = data.crafter and data.crafter:get_look_dir()
+			if not look then return setglyphdir(data.pointed.above, dir) end
+
+			local bestface = 0
+			local bestdot = 2
+			for i = 0, #nodecore.facedirs do
+				local face = nodecore.facedirs[i]
+				if vector.equals(face.b, dir) then
+					local dot = vector.dot(look, face.k) * dir.y
+					print(dot)
+					if dot < bestdot then
+						bestdot = dot
+						bestface = i
+					end
 				end
 			end
+			return nodecore.set_loud(data.pointed.above, {
+					name = nodepref .. 1,
+					param2 = bestface
+				})
 		end
 	})
