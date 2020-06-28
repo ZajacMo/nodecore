@@ -16,6 +16,7 @@ minetest.register_node(modname .. ":stylus", {
 		},
 		stack_max = 1,
 		place_as_item = true,
+		node_placement_prediction = "",
 		groups = {
 			firestick = 1,
 			snappy = 1,
