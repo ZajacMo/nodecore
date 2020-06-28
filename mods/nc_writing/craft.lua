@@ -12,7 +12,10 @@ local modname = minetest.get_current_modname()
 local nodepref = modname .. ":glyph"
 local coallump = "nc_fire:lump_coal"
 
+local skip = {}
+
 nodecore.register_on_punchnode("charcoal writing check", function(pos, node, puncher, pointed)
+		if skip[minetest.hash_node_position(pos)] == nodecore.gametime then return end
 		if (not puncher) or (not puncher:is_player()) then return end
 
 		local wield = puncher:get_wielded_item()
@@ -83,6 +86,7 @@ nodecore.register_craft({
 		end,
 		nodes = {{match = {walkable = true}}},
 		after = function(pos, data)
+			skip[minetest.hash_node_position(pos)] = nodecore.gametime
 			local dir = vector.subtract(pos, data.pointed.above)
 			for i = 1, #nodecore.facedirs do
 				if vector.equals(nodecore.facedirs[i].b, dir) then
