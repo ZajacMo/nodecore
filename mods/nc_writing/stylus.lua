@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local ItemStack, math, minetest, nodecore
+    = ItemStack, math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -22,7 +24,13 @@ minetest.register_node(modname .. ":stylus", {
 			snappy = 1,
 			flammable = 1,
 		},
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		on_stack_touchtip = function(stack, desc)
+			local glyph = stack:get_meta():get_int("glyph")
+			glyph = nodecore.writing_glyphs[glyph]
+			if not glyph then return desc end
+			return desc .. "\n" .. glyph.name
+		end
 	})
 
 nodecore.register_craft({
@@ -33,7 +41,10 @@ nodecore.register_craft({
 			{match = "nc_fire:lump_coal", replace = "air"},
 			{y = -1, match = "nc_tree:stick", replace = "air"},
 		},
-		items = {
-			{y = -1, name = modname .. ":stylus"}
-		}
+		after = function(pos)
+			pos.y = pos.y - 1
+			local item = ItemStack(modname .. ":stylus")
+			item:get_meta():set_int("glyph", math_random(1, #nodecore.writing_glyphs))
+			return nodecore.item_eject(pos, item)
+		end
 	})
