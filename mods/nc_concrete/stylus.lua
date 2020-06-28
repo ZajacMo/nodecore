@@ -66,7 +66,7 @@ nodecore.register_craft({
 			if not (pattdef and etchdef) then return end
 			local setpref = modname .. ":" .. etchdef.name .. "_"
 			local wieldpatt = data.wield and data.wield:get_meta():get_string("pattern")
-			if wieldpatt and wieldpatt ~= pattdef.name then
+			if wieldpatt and wieldpatt ~= "" and wieldpatt ~= pattdef.name then
 				nodecore.set_loud(pos, {name = setpref .. wieldpatt .. "_ply"})
 				return
 			end
