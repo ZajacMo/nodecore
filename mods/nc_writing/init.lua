@@ -102,7 +102,15 @@ for i = 1, #glyphs do
 				alpha_glyph = 1
 			},
 			drop = coallump,
-			floodable = true
+			floodable = true,
+			on_node_touchthru = function(pos, node, under, player)
+				local raw = nodecore.touchtip_node(under, nil, player)
+				if vector.equals(vector.subtract(under, pos),
+					nodecore.facedirs[node.param2].b) then
+					return raw .. "\n" .. glyphnames[i] .. " Charcoal Glyph"
+				end
+				return raw
+			end
 		})
 end
 
