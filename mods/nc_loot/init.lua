@@ -72,7 +72,7 @@ local function applyloot(pos)
 	minetest.set_node(pos, {name = set[rng(1, #set)]})
 end
 
-minetest.register_globalstep(function()
+nodecore.register_globalstep("dungeon loot queue", function()
 		local dirty
 		for blockkey, list in pairs(db) do
 			local bpos = vector.multiply(minetest.string_to_pos(blockkey), 16)
