@@ -43,16 +43,17 @@ local function regspring(label, node, rarity)
 				if rng() < (rawqty - qty) then qty = qty + 1 end
 
 				for _ = 1, qty do
-					local x = math_floor(rng() * (maxp.x - minp.x + 1)) + minp.x
-					local y = math_floor(rng() * (maxp.y - minp.y + 1)) + minp.y
-					local z = math_floor(rng() * (maxp.z - minp.z + 1)) + minp.z
-					if c_stones[data[area:index(x, y, z)]]
-					and (x < maxp.x and data[area:index(x + 1, y, z)] == c_air
-						or x > minp.x and data[area:index(x - 1, y, z)] == c_air
-						or y < maxp.y and data[area:index(x, y + 1, z)] == c_air
-						or y > minp.y and data[area:index(x, y - 1, z)] == c_air
-						or z < maxp.z and data[area:index(x, y, z + 1)] == c_air
-						or z > minp.z and data[area:index(x, y, z - 1)] == c_air)
+					local x = rng(minp.x + 1, maxp.x - 1)
+					local y = rng(minp.y + 1, maxp.y - 1)
+					local z = rng(minp.z + 1, maxp.z - 1)
+					local idx = area:index(x, y, z)
+					if c_stones[idx]
+					and (data[idx - 1] == c_air
+						or data[idx + 1] == c_air
+						or data[idx - area.ystride] == c_air
+						or data[idx + area.ystride] == c_air
+						or data[idx - area.zstride] == c_air
+						or data[idx + area.zstride] == c_air)
 					then data[area:index(x, y, z)] = c_node end
 				end
 			end

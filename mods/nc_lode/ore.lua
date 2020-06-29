@@ -160,6 +160,7 @@ local c_ore = minetest.get_content_id(ore)
 local c_lodestone = minetest.get_content_id(stone)
 local getstoneids = nodecore.memoize(function()
 		local stoneids = {}
+		for i = 1, 65535 do stoneids[i] = false end
 		local stratadata = nodecore.stratadata()
 		for _, id in pairs({
 				c_lodestone,
@@ -179,15 +180,12 @@ nodecore.register_mapgen_shared({
 		func = function(minp, maxp, area, data)
 			local stoneids = getstoneids()
 
-			local function bad(x, y, z)
-				local c = data[area:index(x, y, z)]
-				return not stoneids[c]
-			end
-
+			local ai = area.index
 			for z = minp.z, maxp.z do
 				for y = minp.y, maxp.y do
+					local offs = ai(area, 0, y, z)
 					for x = minp.x, maxp.x do
-						local i = area:index(x, y, z)
+						local i = offs + x
 						if data[i] == c_ore then
 							if x == minp.x
 							or x == maxp.x
@@ -195,12 +193,12 @@ nodecore.register_mapgen_shared({
 							or y == maxp.y
 							or z == minp.z
 							or z == maxp.z
-							or bad(x + 1, y, z)
-							or bad(x - 1, y, z)
-							or bad(x, y + 1, z)
-							or bad(x, y - 1, z)
-							or bad(x, y, z + 1)
-							or bad(x, y, z - 1)
+							or (not stoneids[data[i - 1]])
+							or (not stoneids[data[i + 1]])
+							or (not stoneids[data[i - area.ystride]])
+							or (not stoneids[data[i + area.ystride]])
+							or (not stoneids[data[i - area.zstride]])
+							or (not stoneids[data[i + area.zstride]])
 							then data[i] = c_lodestone
 						end
 					end

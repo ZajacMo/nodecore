@@ -10,7 +10,9 @@ local thickness = 128
 nodecore.stratadata = nodecore.memoize(function()
 		local data = {}
 		data.stratbyid = {}
+		for i = 1, 65535 do data.stratbyid[i] = false end
 		data.altsbyid = {}
+		for i = 1, 65535 do data.altsbyid[i] = false end
 		for k, v in pairs(minetest.registered_nodes) do
 			if v.strata then
 				local sn
@@ -53,8 +55,9 @@ nodecore.register_mapgen_shared({
 					else
 						dither = (dither * thickness + 1) / 5
 					end
+					local offs = ai(area, 0, y, z)
 					for x = minp.x, maxp.x do
-						local i = ai(area, x, y, z)
+						local i = offs + x
 						if byid[data[i]] then
 							if dither and rng() >= dither then
 								data[i] = alts[data[i]][strat]
