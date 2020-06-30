@@ -58,7 +58,6 @@ for i = 0, h - 1 do
 		:add(liv2:opacity(a2))
 		:add(water))
 end
-print(txr)
 
 minetest.register_node(modname .. ":sponge_living", {
 		description = "Living Sponge",
