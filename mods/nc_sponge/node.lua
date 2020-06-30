@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_ceil, math_cos, math_pi
+    = math.ceil, math.cos, math.pi
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -35,11 +37,34 @@ minetest.register_node(modname .. ":sponge_wet", {
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 
+local base = modname .. ".png^[resize:16x16"
+local liv = modname .. "_living.png^[resize:16x16"
+local water = "nc_terrain_water.png"
+local h = 32
+local txr = "[combine:16x" .. (16 * h)
+for i = 0, h - 1 do
+	txr = txr .. ":0," .. (16 * i) .. "=" .. (
+		base .. "^(" .. liv .. "^[opacity:"
+		.. math_ceil(math_cos(i * math_pi * 2 / h) * 63 + 192)
+		.. ")^(" .. water .. "^[opacity:96)"
+	):gsub("%^", "\\^"):gsub(":", "\\:")
+end
+print(txr)
+
 minetest.register_node(modname .. ":sponge_living", {
 		description = "Living Sponge",
 		drawtype = "allfaces_optional",
-		tiles = {modname .. ".png^" .. modname
-			.. "_living.png^(nc_terrain_water.png^[opacity:96)"},
+		tiles = {
+			{
+				name = txr,
+				animation = {
+					["type"] = "vertical_frames",
+					aspect_w = 16,
+					aspect_h = 16,
+					length = 1.5
+				}
+			}
+		},
 		paramtype = "light",
 		groups = {
 			crumbly = 2,
