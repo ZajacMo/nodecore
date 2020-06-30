@@ -81,6 +81,7 @@ end
 
 include("compat_vector")
 include("issue9043")
+include("nodemetahack")
 
 include("util_misc")
 include("util_hookmeta")
