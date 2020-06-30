@@ -7,4 +7,3 @@ nodecore.amcoremod()
 
 include("node")
 include("abm")
-include("cmd")
