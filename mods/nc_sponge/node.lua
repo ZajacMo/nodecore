@@ -37,17 +37,19 @@ minetest.register_node(modname .. ":sponge_wet", {
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 
+local function esc(t) return t:gsub("%^", "\\^"):gsub(":", "\\:") end
 local base = modname .. ".png^[resize:16x16"
 local liv = modname .. "_living.png^[resize:16x16"
 local water = "nc_terrain_water.png"
 local h = 32
 local txr = "[combine:16x" .. (16 * h)
 for i = 0, h - 1 do
-	txr = txr .. ":0," .. (16 * i) .. "=" .. (
-		base .. "^(" .. liv .. "^[opacity:"
+	txr = txr .. ":0," .. (16 * i) .. "=" .. esc(
+		base .. "^(" .. liv .. "^[mask:" .. modname .. "_mask1.png^[opacity:"
 		.. math_ceil(math_cos(i * math_pi * 2 / h) * 63 + 192)
-		.. ")^(" .. water .. "^[opacity:96)"
-	):gsub("%^", "\\^"):gsub(":", "\\:")
+		.. ")^(" .. liv .. "^[mask:" .. modname .. "_mask2.png^[opacity:"
+		.. math_ceil(-math_cos(i * math_pi * 2 / h) * 63 + 192)
+		.. ")^(" .. water .. "^[opacity:96)")
 end
 print(txr)
 
@@ -61,7 +63,7 @@ minetest.register_node(modname .. ":sponge_living", {
 					["type"] = "vertical_frames",
 					aspect_w = 16,
 					aspect_h = 16,
-					length = 1.5
+					length = 2
 				}
 			}
 		},
