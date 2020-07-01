@@ -69,8 +69,13 @@ local function tryreplace(pos, newname, rootpos)
 end
 
 function nodecore.scaling_apply(pointed, player)
-	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under)
-	or minetest.is_protected(pointed.above, player:get_player_name()) then return end
+	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
+
+	if player and player:is_player()
+	and minetest.is_protected(pointed.above, player:get_player_name()) then
+		minetest.record_protection_violation(pointed.above, player:get_player_name())
+		return
+	end
 
 	local pos = pointed.above
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then

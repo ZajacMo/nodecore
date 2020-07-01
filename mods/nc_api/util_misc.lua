@@ -310,6 +310,12 @@ function nodecore.node_spin_custom(...)
 	local qty = #arr
 
 	return function(pos, node, clicker, itemstack)
+		if clicker and clicker:is_player()
+		and minetest.is_protected(pos, clicker:get_player_name()) then
+			minetest.record_protection_violation(pos, clicker:get_player_name())
+			return
+		end
+
 		node = node or minetest.get_node(pos)
 		node.param2 = lut[node.param2] or lut[false]
 		if clicker:is_player() then
