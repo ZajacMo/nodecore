@@ -100,14 +100,13 @@ nodecore.register_playerstep({
 				local need = slotidx[def.item]
 
 				if #reg > need then
-					local pos = player:get_pos()
 					while #reg > need do
 						local n = pickend(#reg)
 						local i = reg[n]
 						table_remove(reg, n)
 						local stack = inv:get_stack("main", i)
 						if not nodecore.item_is_virtual(stack) then
-							nodecore.item_eject(pos, stack, 5)
+							nodecore.item_lose(player, "main", i, 5)
 						end
 						inv:set_stack("main", i, def.item)
 					end

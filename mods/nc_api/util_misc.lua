@@ -221,65 +221,6 @@ function nodecore.node_group(name, pos, node)
 	return def.groups and def.groups[name]
 end
 
-function nodecore.item_eject(pos, stack, speed, qty, vel)
-	stack = ItemStack(stack)
-	speed = speed or 0
-	vel = vel or {x = 0, y = 0, z = 0}
-	if speed == 0 and vel.x == 0 and vel.y == 0 and vel.z == 0
-	and nodecore.place_stack and minetest.get_node(pos).name == "air" then
-		stack:set_count(stack:get_count() * (qty or 1))
-		return nodecore.place_stack(pos, stack)
-	end
-	for _ = 1, (qty or 1) do
-		local v = {x = vel.x, y = vel.y, z = vel.z}
-		if speed > 0 then
-			local inc = math_random() * math_pi / 3
-			local y = math_sin(inc)
-			local xz = math_cos(inc)
-			local theta = math_random() * math_pi * 2
-			local x = math_sin(theta) * xz
-			local z = math_cos(theta) * xz
-			v = {
-				x = v.x + x * speed,
-				y = v.y + y * speed,
-				z = v.z + z * speed
-			}
-		end
-		local p = {x = pos.x, y = pos.y + 0.25, z = pos.z}
-		local obj = minetest.add_item(p, stack)
-		if obj then obj:set_velocity(v) end
-	end
-end
-
-do
-	local stddirs = {}
-	for _, v in pairs(nodecore.dirs()) do
-		if v.y <= 0 then stddirs[#stddirs + 1] = v end
-	end
-	function nodecore.item_disperse(pos, name, qty, outdirs)
-		if qty < 1 then return end
-		local dirs = {}
-		for _, d in pairs(outdirs or stddirs) do
-			local p = vector.add(pos, d)
-			if nodecore.buildable_to(p) then
-				dirs[#dirs + 1] = {pos = p, qty = 0}
-			end
-		end
-		if #dirs < 1 then
-			return nodecore.item_eject(pos, name .. " " .. qty)
-		end
-		for _ = 1, qty do
-			local p = dirs[math_random(1, #dirs)]
-			p.qty = p.qty + 1
-		end
-		for _, v in pairs(dirs) do
-			if v.qty > 0 then
-				nodecore.item_eject(v.pos, name .. " " .. v.qty)
-			end
-		end
-	end
-end
-
 function nodecore.find_nodes_around(pos, spec, r, s)
 	r = r or 1
 	if type(r) == "number" then
@@ -435,23 +376,6 @@ function nodecore.get_objects_at_pos(pos)
 		end
 	end
 	return t
-end
-
-function nodecore.inventory_dump(player)
-	local pos = player:get_pos()
-	pos.y = pos.y + player:get_properties().eye_height
-	local inv = player:get_inventory()
-	for lname, list in pairs(inv:get_lists()) do
-		if lname ~= "hand" then
-			for slot, stack in pairs(list) do
-				if not (stack:is_empty() or nodecore
-					and nodecore.item_is_virtual(stack)) then
-					nodecore.item_eject(pos, stack, 0.001)
-					inv:set_stack(lname, slot, "")
-				end
-			end
-		end
-	end
 end
 
 function nodecore.get_depth_light(y, qty)
