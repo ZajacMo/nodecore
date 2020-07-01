@@ -89,9 +89,9 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 
 		if pum.count < 2 then return end
 
-		if minetest.is_protected(pos, pname) then
-			minetest.record_protection_violation(pos, pname)
+		if nodecore.protection_test(pos, pname) then
 			pummeling[pname] = nil
+			return
 		end
 
 		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then

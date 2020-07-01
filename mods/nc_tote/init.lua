@@ -66,11 +66,7 @@ end
 local function toteplace(stack, placer, pointed)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
-
-	if protected(pos, placer) then
-		minetest.record_protection_violation(pos, placer:get_player_name())
-		return
-	end
+	if nodecore.protection_test(pos, placer) then return end
 
 	stack = ItemStack(stack)
 	local inv = stack:get_meta():get_string("carrying")
