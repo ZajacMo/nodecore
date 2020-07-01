@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, minetest, nodecore, pairs, table, type
-    = io, minetest, nodecore, pairs, table, type
+local io, minetest, nodecore, pairs, table, tostring, type
+    = io, minetest, nodecore, pairs, table, tostring, type
 local io_open, table_concat, table_sort
     = io.open, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -32,7 +32,7 @@ local function overlay(name, img, imgtype)
 	end
 	f:close()
 
-	return img .. "^" .. tpath .. "^[makealpha:255,254,2"
+	return tostring(nodecore.tmod(img):add(tpath):makealpha(255, 254, 2))
 end
 
 nodecore.register_on_register_item(function(name, def)
