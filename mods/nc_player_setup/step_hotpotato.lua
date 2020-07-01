@@ -6,6 +6,7 @@ local minetest, nodecore, pairs
 nodecore.register_playerstep({
 		label = "hot potatoes",
 		action = function(player)
+			if nodecore.stasis then return end
 			local inv = player:get_inventory()
 			local hurt = 0
 			local throw = {}
