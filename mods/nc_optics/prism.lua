@@ -12,7 +12,7 @@ local function prism_check(_, node, check)
 		return modname .. ":prism_gated"
 	end
 	if check(face.f) or check(face.r) then
-		return modname .. ":prism_on", {face.k, face.l}
+		return modname .. ":prism_on"
 	end
 	return modname .. ":prism"
 end
@@ -71,7 +71,11 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
 		},
-		light_source = 1
+		light_source = 1,
+		optic_source = function(_, node)
+			local fd = nodecore.facedirs[node.param2]
+			return {fd.k, fd.l}
+		end
 	})
 reg("_gated", {
 		description = "Gated Prism",

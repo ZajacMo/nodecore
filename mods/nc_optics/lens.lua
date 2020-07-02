@@ -16,7 +16,7 @@ local function lens_check(pos, node, check)
 	local nnode = minetest.get_node(fore)
 	local def = minetest.registered_items[nnode.name] or {}
 	if def.light_source and def.light_source > 4 then
-		return modname .. ":lens_on", {face.k}
+		return modname .. ":lens_on"
 	end
 
 	return modname .. ":lens"
@@ -72,7 +72,10 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
-		light_source = 1
+		light_source = 1,
+		optic_source = function(_, node)
+			return {nodecore.facedirs[node.param2].k}
+		end
 	})
 reg("_glow", {
 		description = "Shining Lens",
