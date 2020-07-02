@@ -9,10 +9,14 @@ local modname = minetest.get_current_modname()
 
 local node_optic_checks = {}
 local node_optic_sources = {}
+local node_opaque = {}
+local node_visinv = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			node_optic_checks[k] = v.optic_check or nil
 			node_optic_sources[k] = v.optic_source or nil
+			node_opaque[k] = (not v.sunlight_propagates) or nil
+			node_visinv[k] = v.groups and v.groups.visinv or nil
 		end
 	end)
 
@@ -26,12 +30,10 @@ local function scan(pos, dir, max, deps)
 		if deps then deps[minetest.hash_node_position(p)] = true end
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
-		local def = minetest.registered_items[node.name] or {}
-		if not def.sunlight_propagates then return p, node end
-		if def.groups and def.groups.visinv then
+		if node_opaque[node.name] then return p, node end
+		if node_visinv[node.name] then
 			local stack = nodecore.stack_get(p)
-			def = minetest.registered_items[stack:get_name()]
-			if def and def.type == "node" and not def.sunlight_propagates then
+			if node_opaque[stack:get_name()] then
 				return p, node
 			end
 		end
