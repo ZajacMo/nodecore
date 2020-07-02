@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, string
-    = error, minetest, nodecore, pairs, string
-local string_format
-    = string.format
+local error, math, minetest, nodecore, pairs, string
+    = error, math, minetest, nodecore, pairs, string
+local math_random, string_format
+    = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Active Block Modifiers, meet Delayed Node Triggers.
@@ -104,11 +104,20 @@ local function dntload(pos)
 	return s, function() return dntsave(pos, meta, s) end
 end
 
+local squelched = {}
+local function maybecheck(pos, save)
+	local hash = minetest.hash_node_position(pos)
+	local s = squelched[hash]
+	if s and s > nodecore.gametime then return end
+	squelched[hash] = nodecore.gametime + 5 + math_random() * 10
+	return save()
+end
+
 function nodecore.dnt_set(pos, name, time)
 	local data, save = dntload(pos)
 	local prev = data[name]
 	time = time or nodecore.registered_dnts[name].time or 1
-	if prev and prev < time then return end
+	if prev and prev < time then return maybecheck(pos, save) end
 	data[name] = time
 	return save()
 end
@@ -117,7 +126,7 @@ function nodecore.dnt_reset(pos, name, time)
 	local data, save = dntload(pos)
 	local prev = data[name]
 	time = time or nodecore.registered_dnts[name].time or 1
-	if prev and prev == time then return end
+	if prev and prev == time then return maybecheck(pos, save) end
 	data[name] = time
 	return save()
 end
