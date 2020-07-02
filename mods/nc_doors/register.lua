@@ -5,7 +5,8 @@ local ItemStack, minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
-local function doorop(pos, node, _, _, pointed)
+local function doorop(pos, node, clicker, _, pointed)
+	if nodecore.protection_test(pos, clicker) then return end
 	if (not pointed.above) or (not pointed.under) then return end
 	local force = vector.subtract(pointed.under, pointed.above)
 	nodecore.operate_door(pos, node, force)
@@ -43,6 +44,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			paramtype2 = "facedir",
 			silktouch = false,
 			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
+				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)
 				if (not stack) or (stack:get_name() ~= pin) then
 					return spin(pos, node, clicker, stack, pointed, ...)

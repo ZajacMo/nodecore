@@ -68,9 +68,10 @@ local function tryreplace(pos, newname, rootpos)
 	return true
 end
 
-function nodecore.scaling_apply(pointed)
+function nodecore.scaling_apply(pointed, player)
 	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
 	local pos = pointed.above
+	if nodecore.protection_test(pos, player) then return end
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then
 		if tryreplace(pos, "ceil", pointed.under) then
 			if tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) then

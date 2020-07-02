@@ -58,9 +58,10 @@ function minetest.register_abm(def)
 	if abmsdefined[muxkey] then return end
 	abmsdefined[muxkey] = true
 	local warnunused
-	warnunused = function()
+	warnunused = function(nn)
 		warnunused = function() end
-		return nodecore.log("warning", "no abm found for mux " .. rawkey)
+		return nodecore.log("warning", "no abm found for mux " .. rawkey
+			.. " node " .. nn)
 	end
 	return oldreg({
 			label = "mux abm for " .. rawkey,
@@ -72,7 +73,7 @@ function minetest.register_abm(def)
 			action = function(pos, node, ...)
 				local oldname = node.name
 				local found = muxidx[muxkey .. oldname]
-				if not found then return warnunused() end
+				if not found then return warnunused(oldname) end
 				found[1].action(pos, node, ...)
 				if #found <= 1 then return end
 				for i = 2, #found do

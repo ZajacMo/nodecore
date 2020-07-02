@@ -1,23 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, type, vector
+    = math, minetest, nodecore, pairs, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local optic_queue = {}
+local node_optic_checks = {}
+local node_optic_sources = {}
+local node_opaque = {}
+local node_visinv = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			node_optic_checks[k] = v.optic_check or nil
+			node_optic_sources[k] = v.optic_source or nil
+			node_opaque[k] = (not v.sunlight_propagates) or nil
+			node_visinv[k] = v.groups and v.groups.visinv or nil
+		end
+	end)
 
-local function dirname(pos)
-	if pos.x > 0 then return "e" end
-	if pos.x < 0 then return "w" end
-	if pos.y > 0 then return "u" end
-	if pos.y < 0 then return "d" end
-	if pos.z > 0 then return "n" end
-	if pos.z < 0 then return "s" end
-	return ""
-end
+local optic_queue = {}
 
 local function scan(pos, dir, max, deps)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
@@ -27,12 +30,10 @@ local function scan(pos, dir, max, deps)
 		if deps then deps[minetest.hash_node_position(p)] = true end
 		local node = minetest.get_node(p)
 		if node.name == "ignore" then return false, node end
-		local def = minetest.registered_items[node.name] or {}
-		if not def.sunlight_propagates then return p, node end
-		if def.groups and def.groups.visinv then
+		if node_opaque[node.name] then return p, node end
+		if node_visinv[node.name] then
 			local stack = nodecore.stack_get(p)
-			def = minetest.registered_items[stack:get_name()]
-			if def and def.type == "node" and not def.sunlight_propagates then
+			if node_opaque[stack:get_name()] then
 				return p, node
 			end
 		end
@@ -42,11 +43,15 @@ end
 local function scan_recv(pos, dir, deps)
 	local hit, node = scan(pos, dir, nil, deps)
 	if not hit then return hit, node end
-	local data = minetest.get_meta(hit):get_string("nc_optics")
-	if data == "" then return end
-	dir = dirname(vector.multiply(dir, -1))
-	if not minetest.deserialize(data)[dir] then return end
-	return hit, node
+	local src = node_optic_sources[node.name]
+	src = src and src(hit, node)
+	if not src then return end
+	local rev = vector.multiply(dir, -1)
+	for _, v in pairs(src) do
+		if vector.equals(v, rev) then
+			return hit, node
+		end
+	end
 end
 
 local function optic_check(pos)
@@ -57,29 +62,27 @@ nodecore.optic_check = optic_check
 local function optic_trigger(start, dir, max)
 	local pos, node = scan(start, dir, max)
 	if not node then return end
-	local def = minetest.registered_items[node.name] or {}
-	if def and def.optic_check then return optic_check(pos) end
+	if node_optic_checks[node.name] then return optic_check(pos) end
 end
 
 local function optic_process(trans, pos)
 	local node = minetest.get_node(pos)
 	if node.name == "ignore" then return end
-	local def = minetest.registered_items[node.name] or {}
 
 	local ignored
-	if def and def.optic_check then
+	local check = node_optic_checks[node.name]
+	if check then
 		local deps = {}
 		local func = function(dir)
 			local hit, hnode = scan_recv(pos, dir, deps)
 			ignored = ignored or hit == false
 			return hit, hnode
 		end
-		local nn, res = def.optic_check(pos, node, func, def)
+		local nn = check(pos, node, func)
 		if (not ignored) and nn then
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
 				nn = nn,
-				data = res,
 				deps = deps
 			}
 		end
@@ -90,35 +93,36 @@ local depidx = {}
 local deprev = {}
 
 local function optic_commit(v)
-	local meta = minetest.get_meta(v.pos)
-	local old = meta:get_string("nc_optics")
-	old = old and (old ~= "") and minetest.deserialize(old) or {}
-
-	local updated
 	local node = minetest.get_node(v.pos)
-	if node.name ~= v.nn then
-		node.name = v.nn
-		minetest.set_node(v.pos, node)
-		updated = true
-	end
 
-	local data = {}
-	for _, vv in pairs(v.data or {}) do
-		data[dirname(vv)] = 1
-	end
-
-	local dirty
-	for _, dir in pairs(nodecore.dirs()) do
-		local dn = dirname(dir)
-		if old[dn] ~= data[dn] then
-			optic_trigger(v.pos, dir)
-			dirty = true
-		elseif updated then
-			optic_trigger(v.pos, dir, 1)
+	local oldidx = {}
+	local oldsrc = node_optic_sources[node.name]
+	oldsrc = oldsrc and oldsrc(v.pos, node)
+	if oldsrc then
+		for _, dir in pairs(oldsrc) do
+			oldidx[minetest.hash_node_position(dir)] = dir
 		end
 	end
-	if dirty then
-		meta:set_string("nc_optics", minetest.serialize(data))
+
+	local nn = v.nn
+	if type(nn) == "string" then nn = {name = nn} end
+	nn.param = nn.param or node.param
+	nn.param2 = nn.param2 or node.param2
+	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
+		minetest.set_node(v.pos, nn)
+		local src = node_optic_sources[nn.name]
+		src = src and src(v.pos, nn)
+		local newidx = {}
+		if src then
+			for _, dir in pairs(src) do
+				local hash = minetest.hash_node_position(dir)
+				if not oldidx[hash] then optic_trigger(v.pos, dir) end
+				newidx[hash] = dir
+			end
+		end
+		for hash, dir in pairs(oldidx) do
+			if not newidx[hash] then optic_trigger(v.pos, dir) end
+		end
 	end
 
 	local hash = minetest.hash_node_position(v.pos)
