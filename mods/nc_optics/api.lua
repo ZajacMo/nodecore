@@ -73,12 +73,18 @@ local function optic_process(trans, pos)
 	local check = node_optic_checks[node.name]
 	if check then
 		local deps = {}
-		local func = function(dir)
+		local recv = function(dir)
 			local hit, hnode = scan_recv(pos, dir, deps)
 			ignored = ignored or hit == false
 			return hit, hnode
 		end
-		local nn = check(pos, node, func)
+		local getnode = function(p)
+			local gn = minetest.get_node(p)
+			deps[minetest.hash_node_position(p)] = true
+			ignored = ignored or gn.name == "ignore"
+			return gn
+		end
+		local nn = check(pos, node, recv, getnode)
 		if (not ignored) and nn then
 			trans[minetest.hash_node_position(pos)] = {
 				pos = pos,
