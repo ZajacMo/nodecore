@@ -5,13 +5,13 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function prism_check(_, node, check)
+local function prism_check(_, node, recv)
 	local face = nodecore.facedirs[node.param2]
 
-	if check(face.t) or check(face.b) then
+	if recv(face.t) or recv(face.b) then
 		return modname .. ":prism_gated"
 	end
-	if check(face.f) or check(face.r) then
+	if recv(face.f) or recv(face.r) then
 		return modname .. ":prism_on"
 	end
 	return modname .. ":prism"
