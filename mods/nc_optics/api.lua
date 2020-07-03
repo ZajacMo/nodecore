@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, tonumber, type, vector
-    = math, minetest, nodecore, pairs, tonumber, type, vector
-local math_random
-    = math.random
+local math, minetest, nodecore, pairs, string, tonumber, type, vector
+    = math, minetest, nodecore, pairs, string, tonumber, type, vector
+local math_random, string_format
+    = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -249,10 +249,18 @@ do
 	local total = 0
 	nodecore.register_globalstep("optic tick", function(dtime)
 			total = total + dtime / tick
-			local exp = microtime() + optic_tick_limit * 1000000
+			local starttime = microtime()
+			local exp = starttime + optic_tick_limit * 1000000
+			local starttotal = total
 			while total > 1 do
 				optic_check_pump()
 				if microtime() >= exp then
+					nodecore.log("warning", string_format("optics stopped"
+							.. " after running %d cycles in %0.3fs"
+							.. ", behind %0.2f",
+							starttotal - total,
+							(microtime() - starttime) / 1000000,
+							total))
 					total = 0
 				else
 					total = total - 1
