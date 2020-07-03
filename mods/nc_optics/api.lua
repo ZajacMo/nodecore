@@ -18,6 +18,16 @@ local optic_interval = tonumber(config("interval")) or 5
 local optic_passive_max = tonumber(config("passive_max")) or 25
 local optic_passive_min = tonumber(config("passive_max")) or 5
 
+local hashposraw = minetest.hash_node_position
+local function hashpos(pos)
+	local n = pos.hash
+	if n then return n end
+	n = hashposraw(pos)
+	pos.hash = n
+	return n
+end
+local unhash = minetest.get_position_from_hash
+
 local node_optic_checks = {}
 local node_optic_sources = {}
 local node_opaque = {}
@@ -32,6 +42,9 @@ minetest.after(0, function()
 	end)
 
 local optic_queue = {}
+local passive_queue = {}
+local dependency_index = {}
+local dependency_reverse = {}
 
 local function scan(pos, dir, max, getnode)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
@@ -65,19 +78,43 @@ local function scan_recv(pos, dir, max, getnode)
 end
 
 local function optic_check(pos)
-	optic_queue[minetest.hash_node_position(pos)] = pos
+	optic_queue[hashpos(pos)] = pos
 end
 nodecore.optic_check = optic_check
 
+local get_node_virtual, set_node_virtual, node_virtual_commit
+do
+	local commit = {}
+	local cache = {}
+	get_node_virtual = function(pos)
+		local hash = hashpos(pos)
+		local found = commit[hash] or cache[hash]
+		if found then return found end
+		found = minetest.get_node(pos)
+		cache[hash] = found
+		return found
+	end
+	set_node_virtual = function(pos, node)
+		commit[hashpos(pos)] = node
+	end
+	node_virtual_commit = function()
+		for k, v in pairs(commit) do
+			minetest.set_node(unhash(k), v)
+		end
+		commit = {}
+		cache = {}
+	end
+end
+
 local function optic_trigger(start, dir, max)
-	local pos, node = scan(start, dir, max, minetest.get_node)
+	local pos, node = scan(start, dir, max, get_node_virtual)
 	if node and node_optic_checks[node.name] then
 		return optic_check(pos)
 	end
 end
 
 local function optic_process(trans, pos)
-	local node = minetest.get_node(pos)
+	local node = get_node_virtual(pos)
 	if node.name == "ignore" then return end
 
 	local check = node_optic_checks[node.name]
@@ -85,8 +122,8 @@ local function optic_process(trans, pos)
 		local ignored
 		local deps = {}
 		local getnode = function(p)
-			local gn = minetest.get_node(p)
-			deps[minetest.hash_node_position(p)] = true
+			local gn = get_node_virtual(p)
+			deps[hashpos(p)] = true
 			ignored = ignored or gn.name == "ignore"
 			return gn
 		end
@@ -95,7 +132,7 @@ local function optic_process(trans, pos)
 		end
 		local nn = check(pos, node, recv, getnode)
 		if (not ignored) and nn then
-			trans[minetest.hash_node_position(pos)] = {
+			trans[hashpos(pos)] = {
 				pos = pos,
 				nn = nn,
 				deps = deps
@@ -104,18 +141,15 @@ local function optic_process(trans, pos)
 	end
 end
 
-local depidx = {}
-local deprev = {}
-
 local function optic_commit(v)
-	local node = minetest.get_node(v.pos)
+	local node = get_node_virtual(v.pos)
 
 	local oldidx = {}
 	local oldsrc = node_optic_sources[node.name]
 	oldsrc = oldsrc and oldsrc(v.pos, node)
 	if oldsrc then
 		for _, dir in pairs(oldsrc) do
-			oldidx[minetest.hash_node_position(dir)] = dir
+			oldidx[hashpos(dir)] = dir
 		end
 	end
 
@@ -124,13 +158,13 @@ local function optic_commit(v)
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
 	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
-		minetest.set_node(v.pos, nn)
+		set_node_virtual(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
 		local newidx = {}
 		if src then
 			for _, dir in pairs(src) do
-				local hash = minetest.hash_node_position(dir)
+				local hash = hashpos(dir)
 				if not oldidx[hash] then optic_trigger(v.pos, dir) end
 				newidx[hash] = dir
 			end
@@ -140,25 +174,24 @@ local function optic_commit(v)
 		end
 	end
 
-	local hash = minetest.hash_node_position(v.pos)
-	local olddep = deprev[hash]
+	local hash = hashpos(v.pos)
+	local olddep = dependency_reverse[hash]
 	if olddep then
 		for k in pairs(olddep) do
-			local t = depidx[k]
+			local t = dependency_index[k]
 			if t then t[hash] = nil end
 		end
 	end
 	for k in pairs(v.deps) do
-		local t = depidx[k]
+		local t = dependency_index[k]
 		if not t then
 			t = {}
-			depidx[k] = t
+			dependency_index[k] = t
 		end
 		t[hash] = true
 	end
 end
 
-local passive_queue = {}
 nodecore.register_limited_abm({
 		label = "optic check",
 		interval = optic_interval,
@@ -175,55 +208,59 @@ nodecore.register_lbm({
 		action = optic_check
 	})
 
-local passive_batch = {}
-local function optic_check_pump()
-	local batch = optic_queue
-	optic_queue = {}
+local optic_check_pump
+do
+	local passive_batch = {}
+	optic_check_pump = function()
+		local batch = optic_queue
+		optic_queue = {}
 
-	if nodecore.stasis then
-		passive_queue = {}
-		return
-	end
-
-	if #passive_queue > 0 then
-		passive_batch = passive_queue
-		passive_queue = {}
-		for i = 1, #passive_batch do
-			local j = math_random(1, #passive_batch)
-			local t = passive_batch[i]
-			passive_batch[i] = passive_batch[j]
-			passive_batch[j] = t
+		if nodecore.stasis then
+			passive_queue = {}
+			return
 		end
-	end
-	local max = optic_passive_max - #batch
-	if max < optic_passive_min then max = optic_passive_min end
-	if max > #passive_batch then max = #passive_batch end
-	for _ = 1, max do
-		local pos = passive_batch[#passive_batch]
-		passive_batch[#passive_batch] = nil
-		batch[minetest.hash_node_position(pos)] = pos
-	end
 
-	local trans = {}
-	for _, pos in pairs(batch) do
-		optic_process(trans, pos)
-	end
+		if #passive_queue > 0 then
+			passive_batch = passive_queue
+			passive_queue = {}
+			for i = 1, #passive_batch do
+				local j = math_random(1, #passive_batch)
+				local t = passive_batch[i]
+				passive_batch[i] = passive_batch[j]
+				passive_batch[j] = t
+			end
+		end
+		local max = optic_passive_max - #batch
+		if max < optic_passive_min then max = optic_passive_min end
+		if max > #passive_batch then max = #passive_batch end
+		for _ = 1, max do
+			local pos = passive_batch[#passive_batch]
+			passive_batch[#passive_batch] = nil
+			batch[hashpos(pos)] = pos
+		end
 
-	for _, v in pairs(trans) do
-		optic_commit(v)
+		local trans = {}
+		for _, pos in pairs(batch) do
+			optic_process(trans, pos)
+		end
+
+		for _, v in pairs(trans) do
+			optic_commit(v)
+		end
 	end
 end
 
 do
 	local tick = 1 / optic_speed
 	local total = 0
-	nodecore.register_globalstep("optic check", function(dtime)
+	nodecore.register_globalstep("optic tick", function(dtime)
 			total = total + dtime / tick
 			if total > optic_tick_limit then total = optic_tick_limit end
 			while total > 1 do
 				optic_check_pump()
 				total = total - 1
 			end
+			node_virtual_commit()
 		end)
 end
 
@@ -238,10 +275,10 @@ for fn in pairs({
 	}) do
 	local func = minetest[fn]
 	minetest[fn] = function(pos, ...)
-		local t = depidx[minetest.hash_node_position(pos)]
+		local t = dependency_index[hashpos(pos)]
 		if t then
 			for k in pairs(t) do
-				optic_check(minetest.get_position_from_hash(k))
+				optic_check(unhash(k))
 			end
 		end
 		return func(pos, ...)
