@@ -13,11 +13,12 @@ local function config(n)
 end
 local optic_distance = tonumber(config("distance")) or 16
 local optic_speed = tonumber(config("speed")) or 12
-local optic_tick_limit = tonumber(config("tick_limit")) or 10
+local optic_tick_limit = tonumber(config("tick_limit")) or 0.2
 local optic_interval = tonumber(config("interval")) or 5
 local optic_passive_max = tonumber(config("passive_max")) or 25
 local optic_passive_min = tonumber(config("passive_max")) or 5
 
+local microtime = minetest.get_us_time
 local hashpos = minetest.hash_node_position
 local unhash = minetest.get_position_from_hash
 
@@ -248,10 +249,14 @@ do
 	local total = 0
 	nodecore.register_globalstep("optic tick", function(dtime)
 			total = total + dtime / tick
-			if total > optic_tick_limit then total = optic_tick_limit end
+			local exp = microtime() + optic_tick_limit * 1000000
 			while total > 1 do
 				optic_check_pump()
-				total = total - 1
+				if microtime() >= exp then
+					total = 0
+				else
+					total = total - 1
+				end
 			end
 			node_virtual_commit()
 		end)
