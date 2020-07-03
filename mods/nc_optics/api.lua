@@ -33,14 +33,13 @@ minetest.after(0, function()
 
 local optic_queue = {}
 
-local function scan(pos, dir, max, deps)
+local function scan(pos, dir, max, getnode)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
 	if (not max) or (max > optic_distance) then max = optic_distance end
 	for _ = 1, max do
 		p = vector.add(p, dir)
-		if deps then deps[minetest.hash_node_position(p)] = true end
-		local node = minetest.get_node(p)
-		if node.name == "ignore" then return false, node end
+		local node = getnode(p)
+		if (not node) or node.name == "ignore" then return end
 		if node_opaque[node.name] then return p, node end
 		if node_visinv[node.name] then
 			local stack = nodecore.stack_get(p)
@@ -51,9 +50,9 @@ local function scan(pos, dir, max, deps)
 	end
 end
 
-local function scan_recv(pos, dir, deps)
-	local hit, node = scan(pos, dir, nil, deps)
-	if not hit then return hit, node end
+local function scan_recv(pos, dir, max, getnode)
+	local hit, node = scan(pos, dir, max, getnode)
+	if not node then return end
 	local src = node_optic_sources[node.name]
 	src = src and src(hit, node)
 	if not src then return end
@@ -71,9 +70,10 @@ end
 nodecore.optic_check = optic_check
 
 local function optic_trigger(start, dir, max)
-	local pos, node = scan(start, dir, max)
-	if not node then return end
-	if node_optic_checks[node.name] then return optic_check(pos) end
+	local pos, node = scan(start, dir, max, minetest.get_node)
+	if node and node_optic_checks[node.name] then
+		return optic_check(pos)
+	end
 end
 
 local function optic_process(trans, pos)
@@ -90,10 +90,8 @@ local function optic_process(trans, pos)
 			ignored = ignored or gn.name == "ignore"
 			return gn
 		end
-		local recv = function(dir)
-			local hit, hnode = scan_recv(pos, dir, deps)
-			ignored = ignored or hit == false
-			return hit, hnode
+		local recv = function(dir, max)
+			return scan_recv(pos, dir, max, getnode)
 		end
 		local nn = check(pos, node, recv, getnode)
 		if (not ignored) and nn then
