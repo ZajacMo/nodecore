@@ -1,11 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type, vector
-    = math, minetest, nodecore, pairs, type, vector
+local math, minetest, nodecore, pairs, tonumber, type, vector
+    = math, minetest, nodecore, pairs, tonumber, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+
+local function config(n)
+	return minetest.settings:get(nodecore.product:lower()
+		.. "_optic_" .. n)
+end
+local optic_distance = tonumber(config("distance")) or 16
+local optic_speed = tonumber(config("speed")) or 12
+local optic_tick_limit = tonumber(config("tick_limit")) or 10
+local optic_interval = tonumber(config("interval")) or 5
+local optic_passive_max = tonumber(config("passive_max")) or 25
+local optic_passive_min = tonumber(config("passive_max")) or 5
 
 local node_optic_checks = {}
 local node_optic_sources = {}
@@ -24,7 +35,7 @@ local optic_queue = {}
 
 local function scan(pos, dir, max, deps)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
-	if (not max) or (max > 16) then max = 16 end
+	if (not max) or (max > optic_distance) then max = optic_distance end
 	for _ = 1, max do
 		p = vector.add(p, dir)
 		if deps then deps[minetest.hash_node_position(p)] = true end
@@ -69,20 +80,20 @@ local function optic_process(trans, pos)
 	local node = minetest.get_node(pos)
 	if node.name == "ignore" then return end
 
-	local ignored
 	local check = node_optic_checks[node.name]
 	if check then
+		local ignored
 		local deps = {}
-		local recv = function(dir)
-			local hit, hnode = scan_recv(pos, dir, deps)
-			ignored = ignored or hit == false
-			return hit, hnode
-		end
 		local getnode = function(p)
 			local gn = minetest.get_node(p)
 			deps[minetest.hash_node_position(p)] = true
 			ignored = ignored or gn.name == "ignore"
 			return gn
+		end
+		local recv = function(dir)
+			local hit, hnode = scan_recv(pos, dir, deps)
+			ignored = ignored or hit == false
+			return hit, hnode
 		end
 		local nn = check(pos, node, recv, getnode)
 		if (not ignored) and nn then
@@ -152,7 +163,7 @@ end
 local passive_queue = {}
 nodecore.register_limited_abm({
 		label = "optic check",
-		interval = 5,
+		interval = optic_interval,
 		chance = 1,
 		nodenames = {"group:optic_check"},
 		action = function(pos)
@@ -186,8 +197,8 @@ local function optic_check_pump()
 			passive_batch[j] = t
 		end
 	end
-	local max = 25 - #batch
-	if max < 5 then max = 5 end
+	local max = optic_passive_max - #batch
+	if max < optic_passive_min then max = optic_passive_min end
 	if max > #passive_batch then max = #passive_batch end
 	for _ = 1, max do
 		local pos = passive_batch[#passive_batch]
@@ -206,11 +217,11 @@ local function optic_check_pump()
 end
 
 do
-	local tick = 1/12
+	local tick = 1 / optic_speed
 	local total = 0
 	nodecore.register_globalstep("optic check", function(dtime)
 			total = total + dtime / tick
-			if total > 10 then total = 10 end
+			if total > optic_tick_limit then total = optic_tick_limit end
 			while total > 1 do
 				optic_check_pump()
 				total = total - 1
