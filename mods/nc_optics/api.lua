@@ -18,14 +18,7 @@ local optic_interval = tonumber(config("interval")) or 5
 local optic_passive_max = tonumber(config("passive_max")) or 25
 local optic_passive_min = tonumber(config("passive_max")) or 5
 
-local hashposraw = minetest.hash_node_position
-local function hashpos(pos)
-	local n = pos.hash
-	if n then return n end
-	n = hashposraw(pos)
-	pos.hash = n
-	return n
-end
+local hashpos = minetest.hash_node_position
 local unhash = minetest.get_position_from_hash
 
 local node_optic_checks = {}
