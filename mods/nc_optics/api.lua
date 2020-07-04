@@ -21,6 +21,8 @@ local optic_passive_min = tonumber(config("passive_max")) or 5
 local microtime = minetest.get_us_time
 local hashpos = minetest.hash_node_position
 local unhash = minetest.get_position_from_hash
+local get_node = minetest.get_node
+local set_node = minetest.set_node
 
 local node_optic_checks = {}
 local node_optic_sources = {}
@@ -76,39 +78,15 @@ local function optic_check(pos)
 end
 nodecore.optic_check = optic_check
 
-local get_node_virtual, set_node_virtual, node_virtual_commit
-do
-	local commit = {}
-	local cache = {}
-	get_node_virtual = function(pos)
-		local hash = hashpos(pos)
-		local found = commit[hash] or cache[hash]
-		if found then return found end
-		found = minetest.get_node(pos)
-		cache[hash] = found
-		return found
-	end
-	set_node_virtual = function(pos, node)
-		commit[hashpos(pos)] = node
-	end
-	node_virtual_commit = function()
-		for k, v in pairs(commit) do
-			minetest.set_node(unhash(k), v)
-		end
-		commit = {}
-		cache = {}
-	end
-end
-
 local function optic_trigger(start, dir, max)
-	local pos, node = scan(start, dir, max, get_node_virtual)
+	local pos, node = scan(start, dir, max, get_node)
 	if node and node_optic_checks[node.name] then
 		return optic_check(pos)
 	end
 end
 
 local function optic_process(trans, pos)
-	local node = get_node_virtual(pos)
+	local node = get_node(pos)
 	if node.name == "ignore" then return end
 
 	local check = node_optic_checks[node.name]
@@ -116,7 +94,7 @@ local function optic_process(trans, pos)
 		local ignored
 		local deps = {}
 		local getnode = function(p)
-			local gn = get_node_virtual(p)
+			local gn = get_node(p)
 			deps[hashpos(p)] = true
 			ignored = ignored or gn.name == "ignore"
 			return gn
@@ -136,7 +114,7 @@ local function optic_process(trans, pos)
 end
 
 local function optic_commit(v)
-	local node = get_node_virtual(v.pos)
+	local node = get_node(v.pos)
 
 	local oldidx = {}
 	local oldsrc = node_optic_sources[node.name]
@@ -152,7 +130,7 @@ local function optic_commit(v)
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
 	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
-		set_node_virtual(v.pos, nn)
+		set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
 		local newidx = {}
@@ -266,7 +244,6 @@ do
 					total = total - 1
 				end
 			end
-			node_virtual_commit()
 		end)
 end
 
@@ -290,3 +267,4 @@ for fn in pairs({
 		return func(pos, ...)
 	end
 end
+set_node = minetest.set_node
