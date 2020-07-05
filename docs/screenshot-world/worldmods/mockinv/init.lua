@@ -1,14 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs
-    = ItemStack, math, minetest, nodecore, pairs
-local math_pi
-    = math.pi
+local ItemStack, minetest, nodecore, pairs
+    = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname();
-
-minetest.settings:set("time_speed", 0)
-minetest.after(0, function() minetest.set_timeofday(0.5) end)
 
 local setinv = {
 	{"nc_stonework:tool_pick", 1, 0.7},
@@ -39,22 +34,6 @@ for _, v in pairs(setinv) do
 end
 
 local function setup(p)
-	local n = p:get_player_name()
-
-	local r = minetest.get_player_privs(n)
-	r.fly = true
-	r.fast = true
-	r.give = true
-	r.interact = true
-	r.nc_reative = true
-	minetest.set_player_privs(n, r)
-
-	p:set_pos({x = -112.6, y = 5, z = -92.6})
-	p:set_look_horizontal(163.8 * math_pi / 180)
-	p:set_look_vertical(9 * math_pi / 180)
-
-	p:hud_set_flags({crosshair = false})
-
 	local inv = p:get_inventory()
 	for i, v in pairs(setinv) do
 		if v then
@@ -65,5 +44,5 @@ local function setup(p)
 		end
 	end
 end
-nodecore.register_on_joinplayer("mock setup on join", setup)
-nodecore.register_on_respawnplayer("mock setup on respawn", setup)
+nodecore.register_on_joinplayer(setup)
+nodecore.register_on_respawnplayer(setup)
