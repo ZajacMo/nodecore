@@ -472,6 +472,7 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 		end
 	end
 	keymod = keymod or function(x) return x end
+	local report_pending
 	local function rebuild()
 		for k in pairs(index) do index[k] = nil end
 		for _, item in pairs(items) do
@@ -491,19 +492,25 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 				end
 			end
 		end
-		if idxname then
-			local keys = 0
-			local defs = 0
-			local peak = 0
-			for _, v in pairs(index) do
-				keys = keys + 1
-				local n = 0
-				for _ in pairs(v) do n = n + 1 end
-				defs = defs + n
-				if n > peak then peak = n end
-			end
-			nodecore.log("action", string_format("%s: %d keys, %d defs, %d peak",
-					idxname, keys, defs, peak))
+		if idxname and not report_pending then
+			report_pending = true
+			minetest.after(0, function()
+					report_pending = nil
+					local keys = 0
+					local defs = 0
+					local peak = 0
+					for _, v in pairs(index) do
+						keys = keys + 1
+						local n = 0
+						for _ in pairs(v) do n = n + 1 end
+						defs = defs + n
+						if n > peak then peak = n end
+					end
+					nodecore.log("action", string_format(
+							"%s %s: %d keys, %d defs, %d peak",
+							"item_matching_index",
+							idxname, keys, defs, peak))
+				end)
 		end
 	end
 	minetest.after(0, rebuild)
