@@ -67,7 +67,7 @@ local function handlepickups(player)
 		end
 
 		if dirty then
-			nodecore.log("info", "inventory rearranged for " .. pname)
+			nodecore.log("warning", "inventory rearranged for " .. pname)
 			inv:set_list("main", snap)
 		end
 	end

@@ -11,7 +11,7 @@ minetest.after(0, function()
 		local t = {}
 		for k in pairs(missing) do t[#t + 1] = k end
 		if #t < 1 then
-			return nodecore.log("info", "txp override images ok")
+			return nodecore.log("action", "txp override images ok")
 		end
 		table_sort(t)
 		nodecore.log("warning", "missing txp override images:\n\t"
