@@ -14,6 +14,7 @@ minetest.register_node(genname, {
 		drawtype = "airlike",
 		paramtype = "light",
 		sunlight_propagates = true,
+		walkable = false,
 		groups = {snappy = 1}
 	})
 
