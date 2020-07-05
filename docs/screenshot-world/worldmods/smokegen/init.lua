@@ -20,7 +20,7 @@ minetest.register_node(genname, {
 nodecore.register_dnt({
 		name = genname,
 		nodenames = {genname},
-		time = 59,
+		time = 2,
 		loop = true,
 		ignore_stasis = true,
 		action = function(pos)
@@ -36,7 +36,7 @@ nodecore.register_dnt({
 						pos = p,
 						texture = "nc_api_craft_smoke.png",
 						size = rng() * 2 + 1,
-						expirationtime = 60
+						expirationtime = 2.1
 					})
 			end
 		end
