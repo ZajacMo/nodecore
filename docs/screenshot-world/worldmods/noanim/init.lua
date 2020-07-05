@@ -6,7 +6,7 @@ local minetest, nodecore, pairs, rawset, type
 local function noanim(t)
 	if type(t) ~= "table" then return t end
 	if t.animation then
-		rawset(t.animation, "length", 1/0)
+		rawset(t.animation, "length", 1000000)
 	end
 	for _, v in pairs(t) do noanim(v) end
 	return t
