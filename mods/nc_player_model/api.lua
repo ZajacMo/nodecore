@@ -54,7 +54,7 @@ local function walkspeed(player, anim)
 	return t
 end
 
-nodecore.player_anim = nodecore.player_anim or function(player)
+nodecore.player_anim = nodecore.player_anim or function(player, data)
 	local hp = player:get_hp()
 	if hp <= 0 then
 		return nodecore.player_anim_data.lay
@@ -64,7 +64,15 @@ nodecore.player_anim = nodecore.player_anim or function(player)
 	local walk = (ctl.up or ctl.down) and not (ctl.up and ctl.down)
 	or (ctl.right or ctl.left) and not (ctl.right and ctl.left)
 	local mine = ctl.LMB or ctl.RMB
+	if data then
+		if mine then data.animcontrol_mine_exp = nodecore.gametime + 0.25 end
+		mine = mine or data.animcontrol_mine_exp and data.animcontrol_mine_exp >= nodecore.gametime
+	end
 	local aux = ctl.aux1
+	if data then
+		if aux then data.animcontrol_aux_exp = nodecore.gametime + 1 end
+		aux = aux or data.animcontrol_aux_exp and data.animcontrol_aux_exp >= nodecore.gametime
+	end
 
 	if not nodecore.player_swimming(player) then
 		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
@@ -93,6 +101,7 @@ nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
 	return {
 		visual = "mesh",
 		visual_size = {x = 0.9, y = 0.9, z = 0.9},
-		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d"
+		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d",
+		backface_culling = true
 	}
 end

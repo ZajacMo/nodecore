@@ -27,6 +27,7 @@ return {
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issueTracker = "https://discord.gg/NNYeF6f",
+	forums = "https://forum.minetest.net/viewtopic.php?f=15&t=24857",
 	screenshots = alpha
 	and {readbinary('.cdb-alpha.jpg'), readbinary('.cdb-release.jpg')}
 	or {readbinary('.cdb-release.jpg')}

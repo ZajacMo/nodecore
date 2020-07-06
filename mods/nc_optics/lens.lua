@@ -5,15 +5,15 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function lens_check(pos, node, check)
+local function lens_check(pos, node, recv, getnode)
 	local face = nodecore.facedirs[node.param2]
 
-	if check(face.k) then
+	if recv(face.k) then
 		return modname .. ":lens_glow"
 	end
 
 	local fore = vector.add(pos, face.f)
-	local nnode = minetest.get_node(fore)
+	local nnode = getnode(fore)
 	local def = minetest.registered_items[nnode.name] or {}
 	if def.light_source and def.light_source > 4 then
 		return modname .. ":lens_on"

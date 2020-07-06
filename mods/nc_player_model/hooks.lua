@@ -8,7 +8,7 @@ nodecore.register_playerstep({
 		action = function(player, data)
 			if data.properties.visual_size.x <= 0 then return end
 
-			local props = nodecore.player_visuals_base(player)
+			local props = nodecore.player_visuals_base(player, data)
 
 			-- Skin can be set preemptively by visuals_base; if so, then will
 			-- not be modified here.
@@ -19,14 +19,14 @@ nodecore.register_playerstep({
 				local now = minetest.get_us_time() / 1000000
 				if (not data.skincalctime) or (now >= data.skincalctime + 2) then
 					data.skincalctime = now
-					local t = nodecore.player_skin(player)
+					local t = nodecore.player_skin(player, data)
 					props.textures = {t}
 				end
 			end
 
 			for k, v in pairs(props) do data.properties[k] = v end
 
-			local anim = nodecore.player_anim(player)
+			local anim = nodecore.player_anim(player, data)
 			data.animation = {{x = anim.x, y = anim.y}, anim.speed}
 		end
 	})

@@ -58,7 +58,7 @@ function nodecore.log(level, ...)
 	return minetest.log(level, ...)
 end
 
-nodecore.log("info", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
+nodecore.log("action", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
 		or " DEVELOPMENT VERSION"))
 
 do
@@ -70,11 +70,11 @@ do
 		local t = {}
 		for k, v in pairs(nodecore) do
 			if k:sub(1, #reg) == reg and type(v) == "table" and #v > 0 then
-				t[#t + 1] = k .. ": " .. #v
+				t[#t + 1] = k:sub(#reg + 1) .. "=" .. #v
 			end
 		end
 		table_sort(t)
-		for _, x in pairs(t) do nodecore.log("info", x) end
+		nodecore.log("action", "registered: " .. table_concat(t, " "))
 	end
 	minetest.after(0, regreport)
 end
