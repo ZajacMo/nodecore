@@ -38,3 +38,9 @@ function minetest.register_abm(def, ...)
 	end
 	return abm(def, ...)
 end
+
+local oldcheck = minetest.check_single_for_falling
+function minetest.check_single_for_falling(...)
+	if nodecore.stasis then return end
+	return oldcheck(...)
+end
