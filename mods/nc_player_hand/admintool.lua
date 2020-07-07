@@ -30,3 +30,40 @@ minetest.register_chatcommand("nckfa", {
 			minetest.registered_chatcommands.giveme.func(name, supername)
 		end
 	})
+
+local cooldown = {}
+local function givestack(pos, player, stack)
+	if stack:is_empty() then return end
+	stack = player:get_inventory():add_item("main", stack)
+	if stack:is_empty() then return end
+	return nodecore.item_eject(pos, stack)
+end
+minetest.register_on_punchnode(function(pos, node, puncher)
+		if not (puncher and puncher:is_player()) then return end
+
+		local ctl = puncher:get_player_control()
+		if not (ctl.sneak and ctl.aux1) then return end
+
+		local wield = puncher:get_wielded_item()
+		if wield:get_name() ~= supername then return end
+
+		if node.name == "air" or node.name == "ignore" then return end
+
+		local now = minetest.get_us_time()
+		local pname = puncher:get_player_name()
+		local cd = cooldown[pname]
+		if cd and cd > now then return end
+		cooldown[pname] = now + 250 * 1000
+
+		givestack(pos, puncher, nodecore.stack_get(pos))
+
+		local def = minetest.registered_nodes[node.name]
+		if (not def) or (not def.air_equivalent) and (not def.groups.is_stack_only) then
+			local stack = ItemStack(node.name)
+			stack:get_meta():from_table({fields = minetest.get_meta(pos)
+					:to_table().field})
+			givestack(pos, puncher, stack)
+		end
+
+		minetest.remove_node(pos)
+	end)
