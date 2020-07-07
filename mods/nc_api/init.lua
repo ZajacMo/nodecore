@@ -80,8 +80,9 @@ do
 end
 
 include("compat_vector")
-include("issue9043")
-include("nodemetahack")
+include("compat_issue9043")
+include("compat_nodemeta")
+include("compat_legacyent")
 
 include("util_misc")
 include("util_hookmeta")
