@@ -42,7 +42,7 @@ for i = 1, #nodecore.writing_glyphs do
 			sounds = nodecore.sounds("nc_terrain_crunchy"),
 			on_node_touchthru = function(pos, node, under, player)
 				local raw = nodecore.touchtip_node(under, nil, player)
-				if vector.equals(vector.subtract(under, pos),
+				if raw and vector.equals(vector.subtract(under, pos),
 					nodecore.facedirs[node.param2].b) then
 					return raw .. "\n" .. desc
 				end
