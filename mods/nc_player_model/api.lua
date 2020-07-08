@@ -101,7 +101,6 @@ nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
 	return {
 		visual = "mesh",
 		visual_size = {x = 0.9, y = 0.9, z = 0.9},
-		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d",
-		backface_culling = true
+		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d"
 	}
 end
