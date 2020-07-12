@@ -324,8 +324,7 @@ function nodecore.obstructed(minpos, maxpos)
 		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
 		then
 			local lua = obj.get_luaentity and obj:get_luaentity()
-			if not ((lua and lua.is_stack) or (not nodecore.interact(obj))
-				or (not nodecore.player_visible(obj))) then
+			if lua and not lua.is_stack then
 				return obj
 			end
 		end
