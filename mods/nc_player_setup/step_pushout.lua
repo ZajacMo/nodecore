@@ -1,14 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, type, vector
+    = math, minetest, nodecore, pairs, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+local function normalbox(box)
+	if not box then return true end
+	if type(box) ~= "table" then return end
+	if box.fixed then return normalbox(box.fixed) end
+	if #box == 1 then return box[1] end
+	return box[1] == -0.5 and box[2] == -0.5 and box[3] == -0.5
+	and box[4] == 0.5 and box[5] == 0.5 and box[6] == 0.5
+end
+
 local solids = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
-			if v.walkable and not v.climbable and v.liquidtype == "none" then
+			if v.walkable and v.liquidtype == "none"
+			and normalbox(v.collision_box) then
 				solids[k] = true
 			end
 		end
