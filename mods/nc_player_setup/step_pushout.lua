@@ -57,6 +57,7 @@ nodecore.register_playerstep({
 							nc_type = "pushout"
 						})
 				end
+				newpos.y = newpos.y - 0.49
 				return player:set_pos(newpos)
 			end
 
