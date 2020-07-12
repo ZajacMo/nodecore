@@ -66,10 +66,14 @@ nodecore.register_playerstep({
 					return pushto(p)
 				end
 			end
+			local function bias(n)
+				return n + ((n > 0) and math_random(-6, 4)
+					or math_random(-4, 6))
+			end
 			return pushto({
-					x = pos.x + math_random(-5, 5),
-					y = pos.y + math_random(-3, 7),
-					z = pos.z + math_random(-5, 5)
+					x = bias(pos.x),
+					y = bias(pos.y),
+					z = bias(pos.z)
 				})
 		end
 	})
