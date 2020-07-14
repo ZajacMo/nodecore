@@ -1,9 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, type, vector
-    = math, minetest, nodecore, pairs, type, vector
+local math, minetest, nodecore, pairs, tonumber, type, vector
+    = math, minetest, nodecore, pairs, tonumber, type, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local mintime = tonumber(minetest.settings:get(nodecore.product:lower() .. "_pushout_time")) or 2
+local stepdist = tonumber(minetest.settings:get(nodecore.product:lower() .. "_pushout_stepdist")) or 5
 
 local function normalbox(box)
 	if not box then return true end
@@ -34,21 +37,29 @@ local function isroom(pos)
 			}).name])
 end
 
+nodecore.player_pushout_disable = nodecore.player_pushout_disable or function() end
+
 nodecore.register_playerstep({
 		label = "push player out of solids",
 		action = function(player, data, dtime)
-			if minetest.check_player_privs(player, "noclip") then
-				data.pushout = 0
-				return
-			end
-			local pos = vector.round(player:get_pos())
-			if isroom(pos) then
-				data.pushout = 0
-				return
-			end
+			local function reset() data.pushout = nil end
 
-			data.pushout = (data.pushout or 0) + dtime
-			if data.pushout < 1 then return end
+			if minetest.check_player_privs(player, "noclip")
+			or nodecore.player_pushout_disable(player, data)
+			then return reset() end
+
+			local pos = vector.round(player:get_pos())
+			if isroom(pos) then return reset() end
+
+			local podata = data.pushout or {}
+			local oldpos = podata.pos or pos
+			if not vector.equals(pos, oldpos) then return reset() end
+
+			local pt = (podata.time or 0) + dtime
+			if pt < mintime then
+				data.pushout = {time = pt, pos = pos}
+				return
+			end
 
 			local function pushto(newpos)
 				local dist = vector.distance(pos, newpos)
@@ -58,7 +69,8 @@ nodecore.register_playerstep({
 						})
 				end
 				newpos.y = newpos.y - 0.49
-				return player:set_pos(newpos)
+				player:set_pos(newpos)
+				return reset()
 			end
 
 			for rel in nodecore.settlescan() do
@@ -68,8 +80,8 @@ nodecore.register_playerstep({
 				end
 			end
 			local function bias(n)
-				return n + ((n > 0) and math_random(-6, 4)
-					or math_random(-4, 6))
+				return n + ((n > 0) and math_random(-stepdist - 1, stepdist - 1)
+					or math_random(-stepdist + 1, stepdist + 1))
 			end
 			return pushto({
 					x = bias(pos.x),
