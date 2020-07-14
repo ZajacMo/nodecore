@@ -81,7 +81,7 @@ end
 
 include("compat_vector")
 include("compat_issue9043")
-include("compat_nodemeta")
+include("compat_issue10127")
 include("compat_legacyent")
 
 include("util_misc")

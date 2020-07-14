@@ -283,11 +283,6 @@ function nodecore.node_spin_filtered(func)
 	return nodecore.node_spin_custom(unpack(rots))
 end
 
-function nodecore.node_change(pos, node, newname)
-	if node.name == newname then return end
-	return minetest.set_node(pos, underride({name = newname}, node))
-end
-
 local function scrubkey(s)
 	return string_lower(string_gsub(tostring(s), "%W+", "_"))
 end
