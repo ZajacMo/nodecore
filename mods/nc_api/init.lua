@@ -79,8 +79,14 @@ do
 	minetest.after(0, regreport)
 end
 
-include("compat_vector")
-include("compat_issue9043")
+minetest.register_on_joinplayer(function(player)
+		local pname = player:get_player_name()
+		local pinfo = minetest.get_player_information(pname)
+		if pinfo.protocol_version < 39 then
+			return minetest.kick_player(pname, "Outdated client")
+		end
+	end)
+
 include("compat_issue10127")
 include("compat_legacyent")
 

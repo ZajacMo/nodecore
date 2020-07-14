@@ -57,16 +57,12 @@ NEW MT RELEASE PROCESS
 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-- After 5.0 EOS:
-	- Add an on_prejoin check to disallow clients with proto version
-	  too low.
-	- Remove issue7020 workaround, reevaluate other workarounds.
-	- Remove set_sky compat workaround in register_playerstep()
-
 - After 5.2 EOS:
 	- Change bandolier slot items back to upright_sprite
 	- Consider switching touchtips to waypoint HUDs now that
 	  hiding distance is an options.
+	- Switch ents to using on_step moveresult for collision
+	  detection instead of checking nodes directly.
 
 ........................................................................
 ========================================================================
