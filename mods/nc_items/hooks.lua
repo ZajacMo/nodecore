@@ -13,7 +13,7 @@ local dntname = modname .. ":cookcheck"
 local nevermatch = {}
 local function nomatches(k)
 	local stack = ItemStack(k)
-	for _, rc in ipairs(nodecore.craft_recipes) do
+	for _, rc in ipairs(nodecore.registered_recipes) do
 		if rc.action == "cook" then
 			if nodecore.match({stack = stack}, rc.root.match) then return end
 		end

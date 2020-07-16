@@ -87,7 +87,7 @@ end
 
 minetest.after(0, function()
 		local t = {}
-		for _, v in ipairs(nodecore.craft_recipes) do t[#t + 1] = v end
+		for _, v in ipairs(nodecore.registered_recipes) do t[#t + 1] = v end
 		minetest.after(0, function()
 				for _, v in ipairs(t) do pressify(v) end
 			end)

@@ -165,7 +165,7 @@ local function tryall(rc, pos, node, data)
 end
 
 local craftidx, rebuildidx = nodecore.item_matching_index(
-	nodecore.craft_recipes,
+	nodecore.registered_recipes,
 	function(i) return i.indexkeys or {true} end,
 	"register_craft",
 	true,
