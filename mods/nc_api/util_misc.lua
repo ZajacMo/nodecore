@@ -313,15 +313,14 @@ function nodecore.obstructed(minpos, maxpos)
 	local radius = 4 + vector.distance(minpos, maxpos) / 2
 	for _, obj in pairs(minetest.get_objects_inside_radius(avgpos, radius)) do
 		local op = obj:get_pos()
-		local cb = obj:get_properties().collisionbox
-		if maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
+		local props = obj:get_properties()
+		local cb = props.collisionbox
+		if props.static_save
+		and maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
 		and maxpos.y > op.y + cb[2] and minpos.y < op.y + cb[5]
 		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
-		then
-			local lua = obj.get_luaentity and obj:get_luaentity()
-			if lua and not lua.is_stack then
-				return obj
-			end
+		and obj.get_luaentity and obj:get_luaentity() then
+			return obj
 		end
 	end
 end
