@@ -70,7 +70,6 @@ regterrain({
 			"sandstone",
 			"mese",
 		},
-		silktouch = false,
 		groups = {
 			stone = 1,
 			rock = 1,
