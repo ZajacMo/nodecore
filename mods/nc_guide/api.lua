@@ -49,8 +49,16 @@ function nodecore.addhint(text, goal, reqs)
 end
 
 function nodecore.hint_state(player)
-	local rawdb = nodecore.statsdb[type(player) == "string"
-	and player or player:get_player_name()] or {}
+	local pname
+	if type(player) == "string" then
+		pname, player = player, minetest.get_player_by_name(player)
+	else
+		pname = player:get_player_name()
+	end
+
+	if type(player) == "string" then player = minetest.get_player_by_name(pname) end
+
+	local rawdb = nodecore.statsdb[pname] or {}
 
 	local db = {}
 	for _, r in ipairs({"inv", "punch", "dig", "place", "craft", "witness"}) do
@@ -77,9 +85,9 @@ function nodecore.hint_state(player)
 	local done = {}
 	local found = {}
 	for _, hint in ipairs(nodecore.hints) do
-		if hint.goal(db) then
+		if hint.goal(db, pname, player) then
 			done[#done + 1] = hint
-		elseif hint.reqs(db) then
+		elseif hint.reqs(db, pname, player) then
 			found[#found + 1] = hint
 		end
 	end
