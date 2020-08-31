@@ -30,7 +30,7 @@ local function process(pos)
 	if water < 1 or lava < 1 then return end
 
 	local chance = harden_idx[node.name] - (water > lava and water or lava) / 8
-	if (chance > 0) and (math_random() > 0.5 ^ chance) then return end
+	if (chance > 0) and (math_random() > 0.25 ^ chance) then return end
 
 	return nodecore.set_loud(pos, node)
 end
