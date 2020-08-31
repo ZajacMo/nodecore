@@ -9,7 +9,26 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Lux tools should degrade in water.
+	- Consistent with water being deleterious to radiation.
+	- Yet another drawback to lux tools, which are still heavily
+	  favorable.
+
+- Buff igniting
+	- Make hot lode and other heated materials able to ignite
+		- This was probably not already done just because we
+		  didn't have AISMs at the time, but we do now.
+	- Reconsider lux fluid ignition again.
+		- Maybe have rare "spark" events that can ignite?
+		- Maybe have it involve proximity to other materials?
+			- Water? Lava?
+			- Optic beams?
+
 - Chop frames, ladders, staves back down into sticks?
+
+- Can we use glasslike_framed for shelves?
+	- Alternate 2 versions of the registration based on y coord
+	  so it forces top/bottom faces to show
 
 - More lode bar crafts:
 	- Frames
@@ -24,6 +43,11 @@ IDEAS: Possible future additions/improvements to the game
 	- Make wear carry across heating/cooling recipes
 		- Allow full-lode tools to be tempered
 	- All these need to be recyclable.
+
+- Piezo node for optics detects sounds?
+	- Sounds emitted by mod stuff?
+	- Footsteps?
+	- Can be used as a BUD
 
 - Lode tongs?
 	- Craft from bars/rods (or lode adzes?).

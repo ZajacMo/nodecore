@@ -9,6 +9,19 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Buff wall scaling
+	- Allow 1n lateral movement along wall
+	- Makes outer wall corners navigable
+
+- Silk Touch needs a review, possible nerf.
+	- Review what materials are silk toucheable and which are not
+	  at this point, make adjustments if needed.
+	- Maybe require some preparatory step, like a pummel into a
+	  prepped material before dig?
+
+- Make a way to prevent crafting on place
+	- Sneak? Aux?
+
 - Buff lux burns significantly when touching lux.
 	- Change lux burn model to operate like radiant heat instead?
 		- Genericize radiant damage check to check a hook for damage
@@ -18,6 +31,15 @@ ISSUES-GAME: Gameplay-affecting issues
 	- May need a hack to play damage effects when not altering hp.
 		- Set hp lower and use 1+ delta, then let damage normalizer
 		  reset it?
+
+- Consider changing wet/dry stack splitting
+	- Currently, original stack remains in place, wetted/dried
+	  stack jumps out to new spot.
+	- Instead, maybe wetted/dried stays in place and original
+	  jumps out (unless there's an adjacent wetted/dried stack to
+	  reuse).
+	- More similar to the way flammable stack ignition works
+	- Just meaner overall
 
 - Consider largely retiring offline time-integral mechanics
 	- Keepers:
@@ -56,6 +78,13 @@ ISSUES-GAME: Gameplay-affecting issues
 		  COMPELLED to chop up a lode crate unnecessarily for the
 		  hint completion)
 		- Hints could be re-expanded by 3rd party mods
+
+- Delay lens full brightess?
+	- Propagate optic signals immediately
+	- Reach full brightness a few seconds later, to reduce map
+	  update work and prevent rapid strobes.
+	- Strobes can cause excess lighting recalcs and block
+	  transfers, and can cause seizure problems for users
 
 - Consider doing looktips and using a custom HUD to force crosshair
   for mobile as well.
@@ -98,9 +127,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level
 	- Maybe some ores for cobble and/or loose cobble?
-	
-- Make stone brick more easily crafted by chiseling with a high-tier
-  pick, e.g. tier 7+
 
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire
