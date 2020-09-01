@@ -12,15 +12,15 @@ local charge = {}
 
 local boost_suff = "_boost"
 
-for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
+local function mktool(tshape)
 	for _, temper in pairs({"tempered", "annealed"}) do
-		local orig = minetest.registered_items["nc_lode:tool_" .. shape .. "_" .. temper]
+		local orig = minetest.registered_items["nc_lode:" .. tshape .. "_" .. temper]
 
 		local def = nodecore.underride({
 				description = "Infused " .. orig.description,
 				inventory_image = orig.inventory_image .. "^(" .. modname
 				.. "_base.png^[mask:" .. modname
-				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
+				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
 				.. ".png^[opacity:80])",
 				tool_wears_to = orig.name,
 				glow = 1
@@ -42,7 +42,7 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 		local boost = nodecore.underride({
 				inventory_image = orig.inventory_image .. "^(" .. modname
 				.. "_base.png^[mask:" .. modname
-				.. "_infuse_mask.png^[mask:nc_lode_tool_" .. shape
+				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
 				.. ".png^[opacity:120])",
 				tool_capabilities = nodecore.toolcaps(tc),
 				glow = 2,
@@ -51,10 +51,10 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 
 		boost.groups = nodecore.underride({lux_tool = 2}, def.groups)
 
-		def.name = modname .. ":tool_" .. shape .. "_" .. temper
+		def.name = modname .. ":" .. tshape .. "_" .. temper
 		minetest.register_tool(def.name, def)
 
-		boost.name = modname .. ":tool_" .. shape .. "_" .. temper .. boost_suff
+		boost.name = modname .. ":" .. tshape .. "_" .. temper .. boost_suff
 		minetest.register_tool(boost.name, boost)
 
 		convert[orig.name] = def.name
@@ -62,6 +62,10 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 		charge[boost.name] = true
 	end
 end
+for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
+	mktool("tool_" .. shape)
+end
+mktool("adze")
 
 local alltools = {}
 for k in pairs(convert) do alltools[#alltools + 1] = k end
