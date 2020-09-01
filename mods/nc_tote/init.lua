@@ -157,6 +157,7 @@ local function reg(suff, inner, pred)
 				{name = txr_handle, backface_culling = true},
 				{name = inner, backface_culling = true}
 			},
+			use_texture_alpha = true,
 			groups = {
 				snappy = 1,
 				container = 100,

@@ -15,6 +15,7 @@ minetest.register_node(modname .. ":shelf", {
 		collision_box = cbox(0.5),
 		selection_box = cbox(0.5),
 		tiles = {tile("side"), tile("base"), tile("side")},
+		use_texture_alpha = true,
 		groups = {
 			cracky = 3,
 			visinv = 1,
