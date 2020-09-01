@@ -87,11 +87,16 @@ nodecore.register_craft({
 		indexkeys = {modname .. ":bar_annealed"},
 		nodes = {
 			{
-				match = {name = modname .. ":bar_annealed", count = 2},
+				match = {name = modname .. ":bar_annealed"},
 				replace = "air"
 			},
 			{
 				y = -1,
+				match = {name = modname .. ":bar_annealed"},
+				replace = "air"
+			},
+			{
+				y = -2,
 				match = modname .. ":block_tempered"
 			}
 		},
@@ -104,14 +109,14 @@ nodecore.register_craft({
 		label = "recycle lode rod",
 		action = "pummel",
 		toolgroups = {choppy = 3},
-		indexkeys = {modname .. ":rod_annealed"},
+		indexkeys = {modname .. ":rod_hot"},
 		nodes = {
 			{
-				match = modname .. ":rod_annealed",
+				match = modname .. ":rod_hot",
 				replace = "air"
 			}
 		},
 		items = {
-			{name = modname .. ":bar_annealed", count = 2}
+			{name = modname .. ":bar_hot", count = 2}
 		}
 	})
