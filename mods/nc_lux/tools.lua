@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs
-    = ItemStack, math, minetest, nodecore, pairs
+local ItemStack, math, minetest, nodecore, pairs, vector
+    = ItemStack, math, minetest, nodecore, pairs, vector
 local math_ceil, math_exp, math_log
     = math.ceil, math.exp, math.log
 -- LUALOCALS > ---------------------------------------------------------
@@ -120,6 +120,26 @@ nodecore.register_aism({
 				name = name:sub(1, -1 - #boost_suff)
 			end
 			stack:set_name(name)
+			return stack
+		end
+	})
+
+nodecore.register_aism({
+		label = "lux diffuse in water",
+		interval = 2,
+		chance = 1,
+		itemnames = {"group:lux_tool"},
+		action = function(stack, data)
+			if not data.pos then return end
+			local qty = #nodecore.find_nodes_around(data.pos, "group:water")
+			if qty < 1 then return end
+			if data.player then
+				qty = qty * (1 + vector.length(
+						data.player:get_player_velocity()) / 5)
+			end
+			local dur = 65535 - stack:get_wear()
+			dur = dur * 0.9998 ^ qty
+			stack:set_wear(65535 - dur)
 			return stack
 		end
 	})

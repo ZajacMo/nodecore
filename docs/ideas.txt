@@ -9,11 +9,6 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Lux tools should degrade in water.
-	- Consistent with water being deleterious to radiation.
-	- Yet another drawback to lux tools, which are still heavily
-	  favorable.
-
 - Buff igniting
 	- Make hot lode and other heated materials able to ignite
 		- This was probably not already done just because we
