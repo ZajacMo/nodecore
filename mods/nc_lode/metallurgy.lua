@@ -93,6 +93,7 @@ nodecore.register_lode("Block", {
 nodecore.register_lode("Prill", {
 		type = "craft",
 		groups = {metal_prill = 1},
+		light_source = 1,
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
