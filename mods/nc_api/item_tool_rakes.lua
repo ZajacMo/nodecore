@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table, vector
-    = ipairs, minetest, nodecore, pairs, table, vector
-local table_sort
-    = table.sort
+local ipairs, math, minetest, nodecore, pairs, table, vector
+    = ipairs, math, minetest, nodecore, pairs, table, vector
+local math_abs, math_max, table_sort
+    = math.abs, math.max, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 -- To register a tool as a rake, provie a callback:
@@ -23,6 +23,8 @@ for dy = -dymax, dymax do
 		for dz = -dxzmax, dxzmax do
 			local v = {x = dx, y = dy, z = dz}
 			v.d = vector.length(v)
+			v.rxz = math_max(math_abs(dx), math_abs(dz))
+			v.ry = math_abs(dy)
 			rakepos[#rakepos + 1] = v
 		end
 	end
@@ -59,7 +61,7 @@ local function dorake(pos, node, user, ...)
 	for _, rel in ipairs(rakepos) do
 		local p = vector.add(pos, rel)
 		local n = minetest.get_node(p)
-		local allow = lastraking(n.name, rel, p)
+		local allow = (rel.d > 0 or nil) and lastraking(n.name, rel, p)
 		if allow == false then break end
 		if allow and ((not sneak) or matching(pos, node, p, n)) then
 			minetest.node_dig(p, n, user, ...)
@@ -82,9 +84,8 @@ local rakelock = {}
 nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
 		if not lastraking then return end
 
-		if not (pos and node and node.name and lastraking(node.name, {
-					x = 0, y = 0, z = 0, d = 0
-				}, pos)) then return end
+		if not (pos and node and node.name
+			and lastraking(node.name, rakepos[1], pos)) then return end
 		if not user:is_player() then return end
 
 		local pname = user:get_player_name()
