@@ -46,7 +46,7 @@ nodecore.register_lode("rake", {
 				return r <= (1 + dlv) or nil
 			end
 		end,
-		tool_wears_to = modname .. ":prill_# 3"
+		tool_wears_to = modname .. ":prill_# 13"
 	})
 
 local adze = {name = modname .. ":adze_annealed", wear = 0.05}
