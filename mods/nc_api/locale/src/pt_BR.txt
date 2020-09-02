@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2020-09-02 04:13+0000\n"
+"PO-Revision-Date: 2020-09-02 12:25+0000\n"
 "Last-Translator: Terifo <none@example.org>\n"
 "Language-Team: Portuguese (Brazil) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/pt_BR/>\n"
@@ -1081,3 +1081,36 @@ msgstr "Pedra Liguenta"
 
 msgid "Bindy Sandstone"
 msgstr "Arenito Liguento"
+
+msgid "Boxy Tarstone"
+msgstr "Pedra de Alcatrão Quadrada"
+
+msgid "Boxy Stone"
+msgstr "Pedra Quadrada"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Pedra de Alcatrão Flexível Quadrada"
+
+msgid "Boxy Sandstone"
+msgstr "Arenito Quadrada"
+
+msgid "Boxy Pliant Stone"
+msgstr "Pedra Flexível Quadrada"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Arenito Flexível Quadrado"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Adobe Flexível Quadrado"
+
+msgid "Boxy Adobe"
+msgstr "Adobe Quadrado"
+
+msgid "Boxy"
+msgstr "Quadradão"
+
+msgid "Bonded Stone Bricks"
+msgstr "Tijolos de Pedra Ligados"
+
+msgid "Blank"
+msgstr "Vazio(Em Branco)"
