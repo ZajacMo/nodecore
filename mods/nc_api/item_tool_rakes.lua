@@ -47,6 +47,16 @@ function nodecore.rake_index(filterfunc)
 	return function(_, node) return rakable[node.name] end
 end
 
+local function deferfall(func, ...)
+	local oldfall = minetest.check_for_falling
+	minetest.check_for_falling = nodecore.fallcheck
+	local function helper(...)
+		minetest.check_for_falling = oldfall
+		return ...
+	end
+	return helper(func(...))
+end
+
 local laststack
 local lastraking
 local old_node_dig = minetest.node_dig
@@ -54,6 +64,7 @@ minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
 	local wield = user and user:is_player() and user:get_wielded_item()
 	lastraking = wield and (wield:get_definition() or {}).on_rake
+	if lastraking then return deferfall(old_node_dig, pos, node, user, ...) end
 	return old_node_dig(pos, node, user, ...)
 end
 
@@ -109,6 +120,6 @@ nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
 		local pname = user:get_player_name()
 		if rakelock[pname] then return end
 		rakelock[pname] = true
-		dorake(volume, check, pos, node, user, ...)
+		deferfall(dorake, volume, check, pos, node, user, ...)
 		rakelock[pname] = nil
 	end)
