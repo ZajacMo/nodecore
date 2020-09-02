@@ -55,13 +55,13 @@ local function matching(_, na, pb, nb)
 	return na.name == nb.name
 end
 
-local function dorake(pos, node, user, ...)
+local function dorake(rakecheck, pos, node, user, ...)
 	local sneak = user:get_player_control().sneak
 	local objpos = {}
 	for _, rel in ipairs(rakepos) do
 		local p = vector.add(pos, rel)
 		local n = minetest.get_node(p)
-		local allow = (rel.d > 0 or nil) and lastraking(n.name, rel, p)
+		local allow = (rel.d > 0 or nil) and rakecheck(n.name, rel, p)
 		if allow == false then break end
 		if allow and ((not sneak) or matching(pos, node, p, n)) then
 			minetest.node_dig(p, n, user, ...)
@@ -82,16 +82,17 @@ end
 local rakelock = {}
 
 nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
-		if not lastraking then return end
+		local rakecheck = lastraking
+		if not rakecheck then return end
 
 		if not (pos and node and node.name
-			and lastraking(node.name, rakepos[1], pos)) then return end
+			and rakecheck(node.name, rakepos[1], pos)) then return end
 		if not user:is_player() then return end
 
 		local pname = user:get_player_name()
 		if rakelock[pname] then return end
 		rakelock[pname] = true
-		dorake(pos, node, user, ...)
+		dorake(rakecheck, pos, node, user, ...)
 		rakelock[pname] = nil
 
 		lastraking = nil
