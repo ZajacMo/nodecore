@@ -69,3 +69,19 @@ nodecore.register_craft({
 			modname .. ":rake_annealed"
 		}
 	})
+nodecore.register_craft({
+		label = "recycle lode rake",
+		action = "pummel",
+		toolgroups = {choppy = 3},
+		indexkeys = {modname .. ":rake_hot"},
+		nodes = {
+			{
+				match = modname .. ":rake_hot",
+				replace = "air"
+			}
+		},
+		items = {
+			{name = modname .. ":bar_hot", count = 5},
+			{name = modname .. ":rod_hot", count = 4}
+		}
+	})
