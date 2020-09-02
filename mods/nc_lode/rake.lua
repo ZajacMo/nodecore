@@ -1,24 +1,31 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local rakable = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups then
-				if v.groups.damage_touch then
-					rakable[k] = nil
-				elseif v.groups.snappy == 1 then
-					rakable[k] = true
-				elseif v.groups.crumbly then
-					rakable[k] = v.groups.crumbly
-				end
-			end
-		end
+local loosevol = nodecore.rake_volume(2, 1)
+local loosetest = nodecore.rake_index(function(def)
+		return def.groups and def.groups.falling_node
+		and def.groups.snappy == 1
 	end)
+local snapvol = nodecore.rake_volume(1, 1)
+local snaptest = nodecore.rake_index(function(def)
+		return def.groups and def.groups.snappy == 1
+	end)
+local crumbvol = nodecore.rake_volume(1, 0)
+local function mkonrake(crumblv)
+	local crumbtest = nodecore.rake_index(function(def)
+			return def.groups and def.groups.crumbly
+			and def.groups.crumbly <= crumblv
+		end)
+	return function(pos, node)
+		if loosetest(pos, node) then return loosevol, loosetest end
+		if snaptest(pos, node) then return snapvol, snaptest end
+		if crumbtest(pos, node) then return crumbvol, crumbtest end
+	end
+end
 
 nodecore.register_lode("rake", {
 		type = "tool",
@@ -38,13 +45,7 @@ nodecore.register_lode("rake", {
 					crumbly = 1 + dlv,
 					uses = 20 + 5 * dlv
 				})
-			d.rake_check = function(itemname, rel)
-				local r = rakable[itemname]
-				if not r then return end
-				if r == true then return true end
-				if rel.rxz > 1 or rel.ry > 0 then return end
-				return r <= (1 + dlv) or nil
-			end
+			d.on_rake = mkonrake(1 + dlv)
 		end,
 		tool_wears_to = modname .. ":prill_# 13"
 	})

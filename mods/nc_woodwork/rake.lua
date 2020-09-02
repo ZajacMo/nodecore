@@ -1,17 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local rakable = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups and v.groups.falling_node and v.groups.snappy == 1 then
-				rakable[k] = true
-			end
-		end
+local rakevol = nodecore.rake_volume(2, 1)
+local raketest = nodecore.rake_index(function(def)
+		return def.groups and def.groups.falling_node
+		and def.groups.snappy == 1
 	end)
 
 minetest.register_tool(modname .. ":rake", {
@@ -23,9 +20,7 @@ minetest.register_tool(modname .. ":rake", {
 			}),
 		groups = {flammable = 1},
 		sounds = nodecore.sounds("nc_tree_sticky"),
-		rake_check = function(itemname)
-			return rakable[itemname]
-		end
+		on_rake = function() return rakevol, raketest end
 	})
 
 local adze = {name = modname .. ":adze", wear = 0.05}

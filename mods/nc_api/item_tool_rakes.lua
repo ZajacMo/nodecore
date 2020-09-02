@@ -6,30 +6,46 @@ local math_abs, math_max, table_sort
 -- LUALOCALS > ---------------------------------------------------------
 
 -- To register a tool as a rake, provie a callback:
--- rake_check(itemname, rel, pos)
--- - itemname is name of the node being raked
--- - rel is a relative position vector plus d = distance from center
--- - pos is absolute position vector (no d)
--- return
--- - truthy to allow raking
--- - nil to disallow raking
--- - false to disallow and stop processing (max radius)
+-- on_rake(pos, node, user) returns volume, checkfunc
+-- volume: ordered array of relative positions to be dug by rake
+-- checkfunc(pos, node, rel): determine if item can be dug
+-- rel: relative vector taken from volume array
+-- returns true to dig, nil to not dig, false to abort loop
 
-local dxzmax = 2
-local dymax = 1
-local rakepos = {}
-for dy = -dymax, dymax do
-	for dx = -dxzmax, dxzmax do
-		for dz = -dxzmax, dxzmax do
-			local v = {x = dx, y = dy, z = dz}
-			v.d = vector.length(v)
-			v.rxz = math_max(math_abs(dx), math_abs(dz))
-			v.ry = math_abs(dy)
-			rakepos[#rakepos + 1] = v
+local volcache = {}
+function nodecore.rake_volume(dxmax, dymax, dzmax)
+	dzmax = dzmax or dxmax
+	local key = minetest.pos_to_string({x = dxmax, y = dymax, z = dzmax})
+	local rakepos = volcache[key]
+	if rakepos then return rakepos end
+	rakepos = {}
+	for dy = -dymax, dymax do
+		for dx = -dxmax, dxmax do
+			for dz = -dzmax, dzmax do
+				local v = {x = dx, y = dy, z = dz}
+				v.d = vector.length(v)
+				v.rxz = math_max(math_abs(dx), math_abs(dz))
+				v.ry = math_abs(dy)
+				rakepos[#rakepos + 1] = v
+			end
 		end
 	end
+	table_sort(rakepos, function(a, b) return a.d < b.d end)
+	volcache[key] = rakepos
+	return rakepos
 end
-table_sort(rakepos, function(a, b) return a.d < b.d end)
+
+function nodecore.rake_index(filterfunc)
+	local rakable = {}
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_nodes) do
+				if filterfunc(v, k) then
+					rakable[k] = true
+				end
+			end
+		end)
+	return function(_, node) return rakable[node.name] end
+end
 
 local laststack
 local lastraking
@@ -37,7 +53,7 @@ local old_node_dig = minetest.node_dig
 minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
 	local wield = user and user:is_player() and user:get_wielded_item()
-	lastraking = wield and (wield:get_definition() or {}).rake_check
+	lastraking = wield and (wield:get_definition() or {}).on_rake
 	return old_node_dig(pos, node, user, ...)
 end
 
@@ -55,13 +71,13 @@ local function matching(_, na, pb, nb)
 	return na.name == nb.name
 end
 
-local function dorake(rakecheck, pos, node, user, ...)
+local function dorake(volume, check, pos, node, user, ...)
 	local sneak = user:get_player_control().sneak
 	local objpos = {}
-	for _, rel in ipairs(rakepos) do
+	for _, rel in ipairs(volume) do
 		local p = vector.add(pos, rel)
 		local n = minetest.get_node(p)
-		local allow = (rel.d > 0 or nil) and rakecheck(n.name, rel, p)
+		local allow = (rel.d > 0 or nil) and check(p, n, rel)
 		if allow == false then break end
 		if allow and ((not sneak) or matching(pos, node, p, n)) then
 			minetest.node_dig(p, n, user, ...)
@@ -82,18 +98,17 @@ end
 local rakelock = {}
 
 nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
-		local rakecheck = lastraking
-		if not rakecheck then return end
+		local nowraking = lastraking
+		if not nowraking then return end
+		lastraking = nil
 
-		if not (pos and node and node.name
-			and rakecheck(node.name, rakepos[1], pos)) then return end
-		if not user:is_player() then return end
+		if not (pos and node and user and user:is_player()) then return end
+		local volume, check = nowraking(pos, node, user, ...)
+		if not (volume and check) then return end
 
 		local pname = user:get_player_name()
 		if rakelock[pname] then return end
 		rakelock[pname] = true
-		dorake(rakecheck, pos, node, user, ...)
+		dorake(volume, check, pos, node, user, ...)
 		rakelock[pname] = nil
-
-		lastraking = nil
 	end)
