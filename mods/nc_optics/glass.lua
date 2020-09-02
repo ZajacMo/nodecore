@@ -100,7 +100,6 @@ local moltdef = {
 	liquid_range = 2,
 	light_source = 4,
 	walkable = false,
-	diggable = false,
 	buildable_to = false,
 	drowning = 2,
 	damage_per_second = 3,

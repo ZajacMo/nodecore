@@ -41,7 +41,6 @@ function nodecore.register_concrete(def)
 			liquid_alternative_flowing = basename .. "_wet_flowing",
 			liquid_alternative_source = basename .. "_wet_source",
 			walkable = false,
-			diggable = false,
 			drowning = 2,
 			post_effect_color = def.swim_color,
 			groups = def.groups_wet,

@@ -18,7 +18,6 @@ local wetdef = {
 	liquid_alternative_source = modname .. ":flux_source",
 	pointable = false,
 	walkable = false,
-	diggable = false,
 	buildable_to = true,
 	light_source = 10,
 	sunlight_propagates = true,
