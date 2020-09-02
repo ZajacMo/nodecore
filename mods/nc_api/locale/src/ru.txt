@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-29 09:54+0000\n"
-"Last-Translator: Kimapr <none2@example.org>\n"
+"PO-Revision-Date: 2020-04-20 13:07+0000\n"
+"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
@@ -175,40 +175,40 @@ msgid "About"
 msgstr "Об игре"
 
 msgid "...have you broken cobble into chips yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you bashed a plank into sticks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled an annealed lode tote handle yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled an adze out of sticks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled a wooden tool yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled a wooden shelf yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled a wooden ladder yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled a wooden frame yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you assembled a staff from sticks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you activated a lens yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...and @1 more hints..."
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]."
 
 msgid "...and 1 more hint..."
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Ударять нужно не так часто (около 1 удара в секунду)."
@@ -230,7 +230,7 @@ msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP
 msgstr "- Игра сложная по задумке, иногда разочаровывает. НЕ СДАВАЙТЕСЬ!"
 
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]."
 
 msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
 msgstr ""
@@ -266,7 +266,7 @@ msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают."
 
 msgid "- Drop items onto ground to create stack nodes.  They do not decay."
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]."
 
 msgid "- DONE: @1"
 msgstr "- ЗАВЕРШЕНО: @1"
@@ -293,40 +293,40 @@ msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 Аарон Суэн <warr1024@@gmail.com>"
 
 msgid "...have you carved a wooden plank completely yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you carved wooden tool heads from planks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you chipped chromatic glass into prisms yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you chopped a lode cube into prills yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you chopped chromatic glass into lenses yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you made fire by rubbing sticks together yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you chopped up charcoal yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you put a stone tip onto a tool yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you cold-forged an annealed lode tool head yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you cold-forged lode down completely yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "Loose Humus"
 msgstr "Рыхлый Гумус"
 
 msgid "...have you cooled molten glass into crude glass yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "Loose Lode Cobble"
 msgstr "Рыхлый Булыжник с Металлом"
@@ -335,97 +335,97 @@ msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "Лицензия MIT (http://www.opensource.org/licenses/MIT)"
 
 msgid "...have you cut down a tree yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "Not all game content is covered by hints. Explore!"
 msgstr "Не вся игра покрыта подсказками. Исследуйте!"
 
 msgid "...have you dug up a tree stump yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you dug up dirt yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you dug up gravel yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you dug up lode ore yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you dug up sand yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you dug up stone yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found a lode stratum yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found ash yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found charcoal yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found deep stone strata yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found dry leaves yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found eggcorns yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found lode ore yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found molten rock yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found sponges yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you found sticks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you melted down lode metal yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you melted sand into glass yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you molded molten glass into clear glass yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you packed high-quality charcoal yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you packed stone chips back into cobble yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you planted an eggcorn yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you produced light from a lens yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you quenched molten glass into chromatic glass yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you sintered glowing lode into a cube yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you split a tree trunk into planks yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you tempered a lode anvil yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you tempered a lode tool head yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "...have you welded a lode pick and spade together yet?"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]?"
 
 msgid "Discord:   https://discord.gg/SHq2tkb"
 msgstr "[УДАЛЕНО]"
@@ -639,7 +639,7 @@ msgid "Molten Rock"
 msgstr "Расплавленный Камень"
 
 msgid "Not all game content is covered by hints.  Explore!"
-msgstr "[УДАЛЕНО]"
+msgstr "[УДАЛЕНО]!"
 
 msgid "Peat"
 msgstr "Торф"

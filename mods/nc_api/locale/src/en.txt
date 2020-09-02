@@ -17,244 +17,244 @@ msgid "+"
 msgstr "+"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "[REMOVED]."
 
 msgid "- @1"
 msgstr "- @1"
 
 msgid "- Can't dig trees or grass? Search for sticks in the canopy."
-msgstr "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "[REMOVED]."
 
 msgid "- Crafting is done by building recipes in-world."
-msgstr "- Crafting is done by building recipes in-world."
+msgstr "[REMOVED]."
 
 msgid "- DONE: @1"
 msgstr "- DONE: @1"
 
 msgid "- Do not use F5 debug info; it will mislead you!"
-msgstr "- Do not use F5 debug info; it will mislead you!"
+msgstr "[REMOVED]!"
 
 msgid "- Drop items onto ground to create stack nodes.  They do not decay."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
-msgstr "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "[REMOVED]."
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
-msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr "[REMOVED]."
 
 msgid "- If a recipe exists, you will see a special particle effect."
-msgstr "- If a recipe exists, you will see a special particle effect."
+msgstr "[REMOVED]."
 
 msgid "- Items picked up try to fit into the current selected slot first."
-msgstr "- Items picked up try to fit into the current selected slot first."
+msgstr "[REMOVED]."
 
 msgid "- Larger recipes are usually more symmetrical."
-msgstr "- Larger recipes are usually more symmetrical."
+msgstr "[REMOVED]."
 
 msgid "- Order and specific face of placement may matter for crafting."
-msgstr "- Order and specific face of placement may matter for crafting."
+msgstr "[REMOVED]."
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
-msgstr "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "[REMOVED]."
 
 msgid "- Recipes are time-based, punching faster does not speed up."
-msgstr "- Recipes are time-based, punching faster does not speed up."
+msgstr "[REMOVED]."
 
 msgid "- Sneak+drop to count out single items from stack."
-msgstr "- Sneak+drop to count out single items from stack."
+msgstr "[REMOVED]."
 
 msgid "- Some recipes require "pummeling" a node."
-msgstr "- Some recipes require "pummeling" a node."
+msgstr "[REMOVED]."
 
 msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-msgstr "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr "[REMOVED]."
 
 msgid "- Stacks may be pummeled, exact item count may matter."
-msgstr "- Stacks may be pummeled, exact item count may matter."
+msgstr "[REMOVED]."
 
 msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
-msgstr "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "[REMOVED]!"
 
 msgid "- There is NO inventory screen."
-msgstr "- There is NO inventory screen."
+msgstr "[REMOVED]."
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "[REMOVED]."
 
 msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
-msgstr "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "[REMOVED]."
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
-msgstr "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "[REMOVED]."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
-msgstr "- You do not have to punch very fast (about 1 per second)."
+msgstr "[REMOVED]."
 
 msgid "...and 1 more hint..."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "...and @1 more hints..."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "...have you activated a lens yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled a staff from sticks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled a wooden frame yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled a wooden ladder yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled a wooden shelf yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled a wooden tool yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled an adze out of sticks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you assembled an annealed lode tote handle yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you bashed a plank into sticks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you broken cobble into chips yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you carved a wooden plank completely yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you carved wooden tool heads from planks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you chipped chromatic glass into prisms yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you chopped a lode cube into prills yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you chopped chromatic glass into lenses yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you chopped up charcoal yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you cold-forged an annealed lode tool head yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you cold-forged lode down completely yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you cooled molten glass into crude glass yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you cut down a tree yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up a tree stump yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up dirt yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up gravel yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up lode ore yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up sand yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you dug up stone yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found a lode stratum yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found ash yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found charcoal yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found deep stone strata yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found dry leaves yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found eggcorns yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found lode ore yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found molten rock yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found sponges yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you found sticks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you made fire by rubbing sticks together yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you melted down lode metal yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you melted sand into glass yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you molded molten glass into clear glass yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you packed high-quality charcoal yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you packed stone chips back into cobble yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you planted an eggcorn yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you produced light from a lens yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you put a stone tip onto a tool yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you quenched molten glass into chromatic glass yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you sintered glowing lode into a cube yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you split a tree trunk into planks yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you tempered a lode anvil yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you tempered a lode tool head yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "...have you welded a lode pick and spade together yet?"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]?"
 
 msgid "@1 (100@2)"
 msgstr "@1 (100@2)"
@@ -358,6 +358,9 @@ msgstr "Amalgamation"
 msgid "Annealed Lode"
 msgstr "Annealed Lode"
 
+msgid "Annealed Lode Adze"
+msgstr "Annealed Lode Adze"
+
 msgid "Annealed Lode Bar"
 msgstr "Annealed Lode Bar"
 
@@ -388,6 +391,9 @@ msgstr "Annealed Lode Pick Head"
 msgid "Annealed Lode Prill"
 msgstr "Annealed Lode Prill"
 
+msgid "Annealed Lode Rake"
+msgstr "Annealed Lode Rake"
+
 msgid "Annealed Lode Rod"
 msgstr "Annealed Lode Rod"
 
@@ -405,6 +411,9 @@ msgstr "Ash"
 
 msgid "Ash Lump"
 msgstr "Ash Lump"
+
+msgid "Bindy"
+msgstr "Bindy"
 
 msgid "Bindy Adobe"
 msgstr "Bindy Adobe"
@@ -430,8 +439,14 @@ msgstr "Bindy Stone"
 msgid "Bindy Tarstone"
 msgstr "Bindy Tarstone"
 
+msgid "Blank"
+msgstr "Blank"
+
 msgid "Bonded Stone Bricks"
 msgstr "Bonded Stone Bricks"
+
+msgid "Boxy"
+msgstr "Boxy"
 
 msgid "Boxy Adobe"
 msgstr "Boxy Adobe"
@@ -456,6 +471,9 @@ msgstr "Boxy Stone"
 
 msgid "Boxy Tarstone"
 msgstr "Boxy Tarstone"
+
+msgid "Bricky"
+msgstr "Bricky"
 
 msgid "Bricky Adobe"
 msgstr "Bricky Adobe"
@@ -487,17 +505,20 @@ msgstr "Burn"
 msgid "Burning Embers"
 msgstr "Burning Embers"
 
+msgid "Cav Charcoal Glyph"
+msgstr "Cav Charcoal Glyph"
+
 msgid "Charcoal"
 msgstr "Charcoal"
 
 msgid "Charcoal Glyph"
-msgstr "Charcoal Glyph"
+msgstr "[REMOVED]"
 
 msgid "Charcoal Lump"
 msgstr "Charcoal Lump"
 
 msgid "Cheat Torch"
-msgstr "Cheat Torch"
+msgstr "[REMOVED]"
 
 msgid "Chromatic Glass"
 msgstr "Chromatic Glass"
@@ -541,8 +562,14 @@ msgstr "Fire"
 msgid "Float Glass"
 msgstr "Float Glass"
 
+msgid "Fot Charcoal Glyph"
+msgstr "Fot Charcoal Glyph"
+
 msgid "Gated Prism"
 msgstr "Gated Prism"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Geq Charcoal Glyph"
 
 msgid "GitLab:    https://gitlab.com/sztest/nodecore"
 msgstr "[REMOVED]"
@@ -555,6 +582,9 @@ msgstr "Glass Tank"
 
 msgid "Glowing Lode"
 msgstr "Glowing Lode"
+
+msgid "Glowing Lode Adze"
+msgstr "Glowing Lode Adze"
 
 msgid "Glowing Lode Bar"
 msgstr "Glowing Lode Bar"
@@ -589,6 +619,9 @@ msgstr "Glowing Lode Pick Head"
 msgid "Glowing Lode Prill"
 msgstr "Glowing Lode Prill"
 
+msgid "Glowing Lode Rake"
+msgstr "Glowing Lode Rake"
+
 msgid "Glowing Lode Rod"
 msgstr "Glowing Lode Rod"
 
@@ -609,6 +642,12 @@ msgstr "Growing Leaves"
 
 msgid "Growing Tree Trunk"
 msgstr "Growing Tree Trunk"
+
+msgid "HAND OF POWER"
+msgstr "HAND OF POWER"
+
+msgid "Hashy"
+msgstr "Hashy"
 
 msgid "Hashy Adobe"
 msgstr "Hashy Adobe"
@@ -636,6 +675,9 @@ msgstr "Hashy Tarstone"
 
 msgid "Hints"
 msgstr "Hints"
+
+msgid "Horzy"
+msgstr "Horzy"
 
 msgid "Horzy Adobe"
 msgstr "Horzy Adobe"
@@ -667,6 +709,9 @@ msgstr "Humus"
 msgid "IRC: #nodecore @@ chat.freenode.net"
 msgstr "IRC: #nodecore @@ chat.freenode.net"
 
+msgid "Iceboxy"
+msgstr "Iceboxy"
+
 msgid "Iceboxy Adobe"
 msgstr "Iceboxy Adobe"
 
@@ -694,6 +739,9 @@ msgstr "Iceboxy Tarstone"
 msgid "Ignore"
 msgstr "Ignore"
 
+msgid "Infused Annealed Lode Adze"
+msgstr "Infused Annealed Lode Adze"
+
 msgid "Infused Annealed Lode Hatchet"
 msgstr "Infused Annealed Lode Hatchet"
 
@@ -708,6 +756,9 @@ msgstr "Infused Annealed Lode Pick"
 
 msgid "Infused Annealed Lode Spade"
 msgstr "Infused Annealed Lode Spade"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Infused Tempered Lode Adze"
 
 msgid "Infused Tempered Lode Hatchet"
 msgstr "Infused Tempered Lode Hatchet"
@@ -732,6 +783,9 @@ msgstr "Inventory"
 
 msgid "Leaves"
 msgstr "Leaves"
+
+msgid "Left-click to set 1st position, right-click to set 2nd"
+msgstr "Left-click to set 1st position, right-click to set 2nd"
 
 msgid "Lens"
 msgstr "Lens"
@@ -793,32 +847,41 @@ msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
 msgid "MIT License:  http://www.opensource.org/licenses/MIT"
 msgstr "[REMOVED]"
 
+msgid "Mew Charcoal Glyph"
+msgstr "Mew Charcoal Glyph"
+
 msgid "Molten Glass"
 msgstr "Molten Glass"
 
 msgid "Molten Rock"
 msgstr "Molten Rock"
 
+msgid "Niz Charcoal Glyph"
+msgstr "Niz Charcoal Glyph"
+
 msgid "NodeCore"
 msgstr "NodeCore"
 
 msgid "Not all game content is covered by hints.  Explore!"
-msgstr "[REMOVED]"
+msgstr "[REMOVED]!"
 
 msgid "Not all game content is covered by hints. Explore!"
 msgstr "Not all game content is covered by hints. Explore!"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Odo Charcoal Glyph"
 
 msgid "Peat"
 msgstr "Peat"
 
 msgid "Player's Guide: Inventory Management"
-msgstr "Player's Guide: Inventory Management"
+msgstr "[REMOVED]"
 
 msgid "Player's Guide: Pummeling Recipes"
-msgstr "Player's Guide: Pummeling Recipes"
+msgstr "[REMOVED]"
 
 msgid "Player's Guide: Tips and Guidance"
-msgstr "Player's Guide: Tips and Guidance"
+msgstr "[REMOVED]"
 
 msgid "Pliant Adobe"
 msgstr "Pliant Adobe"
@@ -838,8 +901,17 @@ msgstr "Prism"
 msgid "Progress: @1 complete, @2 current, @3 future"
 msgstr "Progress: @1 complete, @2 current, @3 future"
 
+msgid "Prx Charcoal Glyph"
+msgstr "Prx Charcoal Glyph"
+
+msgid "Pumice"
+msgstr "Pumice"
+
 msgid "Pummel"
 msgstr "Pummel"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Qeg Charcoal Glyph"
 
 msgid "Rake"
 msgstr "Rake"
@@ -907,6 +979,9 @@ msgstr "[REMOVED]"
 msgid "Tempered Lode"
 msgstr "Tempered Lode"
 
+msgid "Tempered Lode Adze"
+msgstr "Tempered Lode Adze"
+
 msgid "Tempered Lode Bar"
 msgstr "Tempered Lode Bar"
 
@@ -937,6 +1012,9 @@ msgstr "Tempered Lode Pick Head"
 msgid "Tempered Lode Prill"
 msgstr "Tempered Lode Prill"
 
+msgid "Tempered Lode Rake"
+msgstr "Tempered Lode Rake"
+
 msgid "Tempered Lode Rod"
 msgstr "Tempered Lode Rod"
 
@@ -948,6 +1026,9 @@ msgstr "Tempered Lode Spade Head"
 
 msgid "Tips"
 msgstr "Tips"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Tof Charcoal Glyph"
 
 msgid "Torch"
 msgstr "Torch"
@@ -985,6 +1066,9 @@ msgstr "Tree Trunk"
 msgid "Unknown Item"
 msgstr "Unknown Item"
 
+msgid "Vermy"
+msgstr "Vermy"
+
 msgid "Vermy Adobe"
 msgstr "Vermy Adobe"
 
@@ -1011,6 +1095,9 @@ msgstr "Vermy Tarstone"
 
 msgid "Version"
 msgstr "[REMOVED]"
+
+msgid "Verty"
+msgstr "Verty"
 
 msgid "Verty Adobe"
 msgstr "Verty Adobe"
@@ -1098,6 +1185,15 @@ msgstr "Wooden Spade"
 
 msgid "Wooden Spade Head"
 msgstr "Wooden Spade Head"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Xrp Charcoal Glyph"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Yit Charcoal Glyph"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Zin Charcoal Glyph"
 
 msgid "activate a lens"
 msgstr "activate a lens"
@@ -1400,7 +1496,7 @@ msgid "temper a lode tool head"
 msgstr "temper a lode tool head"
 
 msgid "traverse a dark floor by feel"
-msgstr "traverse a dark floor by feel"
+msgstr "[REMOVED]"
 
 msgid "weld glowing lode pick and spade heads together"
 msgstr "weld glowing lode pick and spade heads together"
