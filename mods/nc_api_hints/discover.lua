@@ -40,6 +40,8 @@ local function discover(p, k)
 	local db, player, pname = loaddb(p)
 	if not db then return end
 
+	if db[k] then return end
+
 	db[k] = true
 	player:get_meta():set_string(modname, minetest.serialize(db))
 	minetest.log("action", string_format("player %q discovered %q", pname, k))
@@ -57,8 +59,7 @@ local function reghook(func, stat, pwhom, npos)
 			local t = {...}
 			local whom = t[pwhom]
 			local n = npos and t[npos].name or nil
-			if n then stat = stat .. ":" .. n end
-			return discover(whom, stat)
+			return discover(whom, n and (stat .. ":" .. n) or stat)
 		end)
 end
 reghook(nodecore.register_on_punchnode, "punch", 3, 2)
@@ -88,7 +89,7 @@ nodecore.register_on_cheat("cheat stats", function(player, reason)
 	end)
 
 nodecore.register_on_chat_message("chat message stats", function(name, msg)
-		discover(name, "chat:" .. (msg:sub(1, 1) == "/") and "command" or "message")
+		discover(name, "chat:" .. ((msg:sub(1, 1) == "/") and "command" or "message"))
 	end)
 
 ------------------------------------------------------------------------
@@ -106,7 +107,7 @@ nodecore.register_playerstep({
 				end
 			end
 			for k in pairs(t) do
-				discover(player, "inv", k)
+				discover(player, "inv:" .. k)
 			end
 		end
 	})
