@@ -8,7 +8,8 @@ local modname = minetest.get_current_modname()
 local injured = modname .. ":injured"
 nodecore.register_virtual_item(injured, {
 		description = "Injury",
-		inventory_image = modname .. "_injured.png"
+		inventory_image = "[combine:1x1",
+		hotbar_type = "injury",
 	})
 
 nodecore.register_healthfx({
