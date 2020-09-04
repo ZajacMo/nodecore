@@ -74,8 +74,6 @@ nodecore.register_aism({
 		action = function(stack, data)
 			local def = minetest.registered_items[stack:get_name()]
 			local emit = def and def.groups and def.groups.lux_emit
-			or def and def.groups and def.groups.lux_tool
-			and def.groups.lux_tool * 0.25
 			if emit then return rademit(data.pos, emit) end
 		end
 	})
@@ -109,5 +107,14 @@ nodecore.interval(1, function()
 			rad = rad * prop
 
 			meta:set_float("rad", rad)
+			-- nodecore.hud_set_multiline(player, {
+			-- label = "radinfo",
+			-- hud_elem_type = "text",
+			-- position = {x = 0.5, y = 0.85},
+			-- text = "rad: " .. rad .. "\naccum: " .. accum,
+			-- number = 0xFFFFFF,
+			-- alignment = {x = 0, y = 0},
+			-- offset = {x = 0, y = 0}
+			-- })
 		end
 	end)

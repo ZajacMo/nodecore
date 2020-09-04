@@ -27,7 +27,7 @@ local function mktool(tshape)
 			}, orig)
 		def.after_use = nil
 
-		def.groups = nodecore.underride({lux_tool = 1}, orig.groups or {})
+		def.groups = nodecore.underride({lux_tool = 1, lux_emit = 1}, orig.groups or {})
 
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
@@ -49,7 +49,7 @@ local function mktool(tshape)
 				light_source = 1
 			}, def)
 
-		boost.groups = nodecore.underride({lux_tool = 2}, def.groups)
+		boost.groups = nodecore.underride({lux_tool = 1, lux_emit = 2}, def.groups)
 
 		def.name = modname .. ":" .. tshape .. "_" .. temper
 		minetest.register_tool(def.name, def)
