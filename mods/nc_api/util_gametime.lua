@@ -5,16 +5,16 @@ local math_abs
     = math.abs
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.register_globalstep(function(dtime)
+nodecore.register_globalstep("gametime", function(dtime)
 		local mtt = minetest.get_gametime()
 		local nct = nodecore.gametime
 		if not nct then
-			minetest.log("nodecore.gametime: init to " .. mtt)
+			nodecore.log("action", "nodecore.gametime: init to " .. mtt)
 			nct = mtt
 		end
 		nct = nct + dtime
 		if math_abs(nct - mtt) >= 2 then
-			minetest.log("nodecore.gametime: excess drift; nct="
+			nodecore.log("warning", "nodecore.gametime: excess drift; nct="
 				.. nct .. ", mtt=" .. mtt)
 			nct = mtt
 		end

@@ -10,20 +10,19 @@ local function getcrushdamage(name, alreadyloose)
 	return name and getcrushdamage(name .. "_loose", true) or 0
 end
 
-local function register(fallname, mult, getname)
-	local fallnode = minetest.registered_entities[fallname]
-
-	local oldtick = fallnode.on_step
-	fallnode.on_step = function(self, dtime, ...)
+local function maketick(mult, getname, oldtick)
+	oldtick = oldtick or function() end
+	return function(self, dtime, ...)
 		self.crush_damage = self.crush_damage or getcrushdamage(getname(self))
 		if self.crush_damage <= 0 then
 			return oldtick(self, dtime, ...)
 		end
 
 		local pos = self.object:get_pos()
+		if not pos then return end
 		pos.y = pos.y - 1
 		local vel = self.object:get_velocity()
-		local v = -vel.y
+		local v = vel and -vel.y or 0
 		if v <= 0 then
 			return oldtick(self, dtime, ...)
 		end
@@ -31,10 +30,13 @@ local function register(fallname, mult, getname)
 		local hit
 		for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if o:is_player() then
-				hit = hit or nodecore.addphealth(o, -q)
+				hit = hit or nodecore.addphealth(o, -q, {
+						nc_type = "crushing",
+						entity = self
+					})
 			end
 		end
-		if hit then
+		if hit and vel then
 			self.object:set_velocity({
 					x = vel.x / 2,
 					y = -vel.y / 4,
@@ -44,9 +46,7 @@ local function register(fallname, mult, getname)
 
 		return oldtick(self, dtime, ...)
 	end
-
-	minetest.register_entity(":" .. fallname, fallnode)
 end
 
-register("__builtin:falling_node", 1, function(s) return s.node.name end)
-register("__builtin:item", 0.2, function(s) return ItemStack(s.itemstring):get_name() end)
+nodecore.register_falling_node_step(maketick(1, function(s) return s.node.name end))
+nodecore.register_item_entity_step(maketick(0.2, function(s) return ItemStack(s.itemstring):get_name() end))

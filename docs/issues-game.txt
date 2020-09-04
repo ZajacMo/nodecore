@@ -1,0 +1,155 @@
+========================================================================
+ISSUES-GAME: Gameplay-affecting issues
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Infuse rakes.
+	- Larger radius?
+	- Dig more types of stuff?
+	- Silk touch?
+
+- Stone softening rates feel off.
+	- Once first stage of stone softens, others follow really
+	  quicky (exponential runaway basically).
+	- If you leave stone soaking for a while, it looks like it
+	  basically softens all or nothing.
+	- Can we smooth this out and make it less jarring?
+
+- Buff wall scaling
+	- Allow 1n lateral movement along wall
+	- Makes outer wall corners navigable
+
+- Silk Touch needs a review, possible nerf.
+	- Review what materials are silk toucheable and which are not
+	  at this point, make adjustments if needed.
+	- Maybe require some preparatory step, like a pummel into a
+	  prepped material before dig?
+
+- Make a way to prevent crafting on place
+	- Sneak? Aux?
+
+- Buff lux burns significantly when touching lux.
+	- Change lux burn model to operate like radiant heat instead?
+		- Genericize radiant damage check to check a hook for damage
+		  applicability from nodes found
+		- Maybe retire classic damage per second entirely
+	- Maybe replace all normal damage with lux burns?
+	- May need a hack to play damage effects when not altering hp.
+		- Set hp lower and use 1+ delta, then let damage normalizer
+		  reset it?
+
+- Consider changing wet/dry stack splitting
+	- Currently, original stack remains in place, wetted/dried
+	  stack jumps out to new spot.
+	- Instead, maybe wetted/dried stays in place and original
+	  jumps out (unless there's an adjacent wetted/dried stack to
+	  reuse).
+	- More similar to the way flammable stack ignition works
+	- Just meaner overall
+
+- Consider largely retiring offline time-integral mechanics
+	- Keepers:
+		- Tree growth
+		- Compost
+	- Losers:
+		- Sponge expiration
+		- Torch expiration
+		- Leaching
+		- Repacking
+		- Concrete
+		- Lux renew
+	- Logic: Action by a living thing (i.e. presence of player or
+	  microorganisms) is what keeps time ticking...?
+	- Be more consistent with some non-offline mechanics like
+	  fire fuel consumption
+	- "Fairness" issues, e.g. when sponge expiration happens before
+	  squeezer DNTs have had a chance to fire.
+	- When we did torches via expiration metadata, the reason at the
+	  time was that there was no way to get them to tick reliably like
+	  we can with nodes; with AISMs this is no longer the case.
+
+- Repose changes
+	- Staves/rods should repose a lot less or not at all.
+	- Rework repose to be based on amount of loose material below, not
+	  amount of distance available to fall?  repose only needs to have a
+	  particular angle as measured on flat land?
+
+- Hint system
+	- Updates for everything since renewable ores (read changelog)
+		- Agg may have been broken by concrete overhaul
+	- Consider removing redundant or reverse paths, i.e. recycling
+	  or artificial resource recipes.
+		- They complicate maintenance.
+		- They are distracting for players (e.g. Emerald feeling
+		  COMPELLED to chop up a lode crate unnecessarily for the
+		  hint completion)
+		- Hints could be re-expanded by 3rd party mods
+
+- Delay lens full brightess?
+	- Propagate optic signals immediately
+	- Reach full brightness a few seconds later, to reduce map
+	  update work and prevent rapid strobes.
+	- Strobes can cause excess lighting recalcs and block
+	  transfers, and can cause seizure problems for users
+
+- Consider doing looktips and using a custom HUD to force crosshair
+  for mobile as well.
+	- Looktips can re-show any time lookdir changes, not just on
+	  change of target node name, so rejiggling the view can
+	  give more time to read tip.
+	- Don't allow looktip if the "above" node is below a certain
+	  light level
+	- Consider separating wieldtips and punch/looktips again.
+
+- falling_node pillars settle out of order!
+	- Also anectodal issues with falling nodes sometimes
+	  tunneling WAY upwards now, as observed with BXS's
+	  mine on NCC where gravel tunneled all the way up
+	  the ladder
+
+- Tote issues:
+	- Consider updating tote recipe.
+	- Totes should do face-connected search for totables; don't pick up
+	  shelves only touching via a corner.
+
+- Flammables should respond via AISM when bathed in fire or igniting
+  liquids like molten glass or rock.
+
+- Import YCTIWY as part of the base game.
+	- Setting to disable entirely
+	- Setting to disable compact mode
+	- Setting for fresh/stale like bones; items become accessible
+	  only after time has passed since last login
+	- Make the priv just to override any protections
+
+- Shelf recipe reform
+	- Add a "shelf frame" node made from wooden frames
+	- Add appropriate material to shelf frame to make shelf
+	- 2-stage construction should make it easier to discover
+	- Shelf frame can gain its own distinct uses
+		- e.g. some things can fall through it but not others.
+		  Items?  Players?  Fluids?
+
+- Should there be pockets of softer stone at depth, like there is gravel?
+	- Register ores for softer stone of each level
+	- Maybe some ores for cobble and/or loose cobble?
+
+- Consider checking for a nearby active player before running
+  "fast-evolving" ABMs that don't normally work offline, like fire
+  extinguishing/spreading?
+	- This would make gameplay more fair for those who tend to
+	  go AFK suddenly and can't return for a long time.
+	- This would reduce the gap between things that support the offline
+	  mechanic and those that don't between MP and SP.
+
+- Make separate walkable/non-walkable stack nodes.
+	- Should sticks and eggcorns be non-walkable?
+
+........................................................................
+========================================================================

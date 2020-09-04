@@ -16,6 +16,7 @@ minetest.register_node(modname .. ":shelf", {
 			txr_pane .. "^" .. txr_frame,
 			txr_frame
 		},
+		use_texture_alpha = true,
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {
@@ -26,10 +27,12 @@ minetest.register_node(modname .. ":shelf", {
 			fire_fuel = 2,
 			visinv = 1,
 			storebox = 1,
-			totable = 1
+			totable = 1,
+			scaling_time = 200
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
+		air_pass = false,
 		sounds = nodecore.sounds("nc_optics_glassy"),
 		storebox_access = function(pt) return pt.above.y > pt.under.y end,
 		on_ignite = function(pos)
@@ -43,6 +46,7 @@ minetest.register_node(modname .. ":shelf", {
 nodecore.register_craft({
 		label = "assemble glass tank",
 		norotate = true,
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},
@@ -59,6 +63,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "assemble glass tank",
 		norotate = true,
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{x = 0, z = -1, match = modname .. ":glass", replace = modname .. ":shelf"},

@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include("chip")
 include("tools")
+include("bricks")

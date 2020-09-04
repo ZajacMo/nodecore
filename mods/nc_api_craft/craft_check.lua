@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, minetest, nodecore, pairs, type
+local ItemStack, error, ipairs, minetest, nodecore, pairs, type
+    = ItemStack, error, ipairs, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addgroups(sum, pos)
@@ -95,17 +95,20 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 				local x = s:get_count() - (v.match.count or 1)
 				if x > 0 then
 					s:set_count(x)
-					nodecore.item_eject(p, s, 0.001)
+					nodecore.item_eject(p, s)
 				end
 				nodecore.stack_set(p, ItemStack(""))
 			end
 			if r then
 				local n = minetest.get_node(p)
 				r.param2 = n.param2
-				minetest.set_node(p, r)
-				nodecore.node_sound(p, "place")
+				nodecore.set_loud(p, r)
 				nodecore.fallcheck(p)
 			end
+		end
+		if v.dig then
+			local p = rel(v.x, v.y, v.z)
+			minetest.node_dig(p, minetest.get_node(p))
 		end
 	end
 	if recipe.items then
@@ -127,14 +130,14 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	if recipe.witness then
 		local lut = {}
 		for _, v in pairs(recipe.nodes) do
-			lut[minetest.pos_to_string(v)] = true
+			lut[minetest.hash_node_position(v)] = true
 		end
-		nodecore.witness(pos, recipe.label,
+		nodecore.witness(pos, {recipe.action, recipe.label},
 			type(recipe.witness) == "number" and recipe.witness or nil,
-			function(p) return lut[minetest.pos_to_string(p)] end
+			function(p) return lut[minetest.hash_node_position(p)] end
 		)
 	end
-	minetest.log((data.crafter and data.crafter:get_player_name() or "unknown")
+	nodecore.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
 		.. " completed recipe \"" .. recipe.label .. "\" at " ..
 		minetest.pos_to_string(pos) .. " upon " .. node.name)
 	return true
@@ -161,19 +164,68 @@ local function tryall(rc, pos, node, data)
 	return r
 end
 
+local craftidx, rebuildidx = nodecore.item_matching_index(
+	nodecore.registered_recipes,
+	function(i) return i.indexkeys or {true} end,
+	"register_craft",
+	true,
+	function(n, i) return i.action .. "|" .. n end
+)
+
+do
+	local oldreg = nodecore.register_craft
+	local function rebuildhelper(...)
+		rebuildidx()
+		return ...
+	end
+	function nodecore.register_craft(...)
+		return rebuildhelper(oldreg(...))
+	end
+end
+
+local function checkall(pos, node, data, set)
+	for _, rc in ipairs(set) do
+		if data.action == rc.action
+		and nodecore.match(node, rc.root.match) then
+			data.recipe = rc
+			if data.rootmatch then data.rootmatch(data) end
+			local r = tryall(rc, pos, node, data)
+			if r then return r == true end
+		end
+	end
+end
+
 function nodecore.craft_check(pos, node, data)
-	data = data or {}
+	if not data or not data.action then
+		return error("craft_check without data.action")
+	end
+
 	node.x = pos.x
 	node.y = pos.y
 	node.z = pos.z
 	data.pos = pos
 	data.node = node
-	for _, rc in ipairs(nodecore.craft_recipes) do
-		if data.action == rc.action
-		and nodecore.match(node, rc.root.match) then
-			data.recipe = rc
-			local r = tryall(rc, pos, node, data)
-			if r then return r == true end
+
+	local seen = {}
+	if node and node.name then
+		local key = data.action .. "|" .. node.name
+		local set = craftidx[key]
+		if set then
+			if checkall(pos, node, data, set) then return true end
+			for _, i in pairs(set) do seen[i] = true end
+		end
+	end
+
+	local stack = pos and nodecore.stack_get(pos)
+	if not stack:is_empty() then
+		local key = data.action .. "|" .. stack:get_name()
+		local set = craftidx[key]
+		if set then
+			local unique = {}
+			for _, i in ipairs(set) do
+				if not seen[i] then unique[#unique + 1] = i end
+			end
+			if #unique > 0 and checkall(pos, node, data, unique) then return true end
 		end
 	end
 end

@@ -9,7 +9,7 @@ local lt = 1/16
 local lw = 3/16
 local ll = 1/2
 
-local tt = "nc_tree_tree_side.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
+local tt = "nc_woodwork_frame.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
 
 minetest.register_node(modname .. ":ladder", {
 		description = "Wooden Ladder",
@@ -24,8 +24,7 @@ minetest.register_node(modname .. ":ladder", {
 			snappy = 1,
 			flammable = 2,
 			fire_fuel = 1,
-			falling_node = 1,
-			stack_as_node = 1
+			falling_node = 1
 		},
 		crush_damage = 0.25,
 		paramtype = "light",
@@ -38,6 +37,7 @@ minetest.register_node(modname .. ":ladder", {
 nodecore.register_craft({
 		label = "assemble wood ladder",
 		normal = {x = 1},
+		indexkeys = {"nc_tree:stick"},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
 			{x = -1, match = modname .. ":staff", replace = modname .. ":ladder"},
@@ -57,7 +57,6 @@ minetest.register_node(modname .. ":frame", {
 			snappy = 1,
 			flammable = 2,
 			fire_fuel = 1,
-			stack_as_node = 1
 		},
 		paramtype = "light",
 		climbable = true,
@@ -68,6 +67,7 @@ minetest.register_node(modname .. ":frame", {
 nodecore.register_craft({
 		label = "assemble wood frame",
 		normal = {x = 1},
+		indexkeys = {modname .. ":staff"},
 		nodes = {
 			{match = modname .. ":staff", replace = "air"},
 			{x = -1, match = modname .. ":staff", replace = modname .. ":frame"},

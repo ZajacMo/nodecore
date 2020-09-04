@@ -1,17 +1,59 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, pairs, rawset, vector
+    = minetest, nodecore, pairs, rawset, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
+local dntname = modname .. ":ablation"
+local lenson = "nc_optics:lens_on"
+
+local function ablation(pos, node)
+	local face = nodecore.facedirs[node.param2]
+	local out = vector.add(face.k, pos)
+	local tn = minetest.get_node(out)
+	if nodecore.operate_door(out, tn, face.k) then
+		nodecore.witness(pos, "door ablation")
+		return nodecore.dnt_set(pos, dntname, 2)
+	end
+end
+
+nodecore.register_dnt({
+		name = dntname,
+		nodenames = {lenson},
+		time = 2,
+		action = ablation
+	})
+
 nodecore.register_limited_abm({
-		label = "Door Laser Ablation",
+		label = "door ablation",
 		interval = 2,
 		chance = 1,
-		nodenames = {"nc_optics:lens_on"},
-		action = function(pos, node)
-			local face = nodecore.facedirs[node.param2]
-			local out = vector.add(face.k, pos)
-			local tn = minetest.get_node(out)
-			nodecore.operate_door(out, tn, face.k)
+		nodenames = {lenson},
+		neighbors = {"group:door"},
+		action = function(pos)
+			return nodecore.dnt_set(pos, dntname, 2)
 		end
 	})
+
+local function doortrigger(doorpos)
+	for _, dir in pairs(nodecore.dirs()) do
+		local lenspos = vector.add(doorpos, dir)
+		local lensnode = minetest.get_node(lenspos)
+		if lensnode.name == lenson then
+			local face = nodecore.facedirs[lensnode.param2]
+			local out = vector.add(face.k, lenspos)
+			if vector.equals(doorpos, out) then
+				return ablation(lenspos, minetest.get_node(lenspos))
+			end
+		end
+	end
+end
+
+minetest.after(0, function()
+		for _, v in pairs(minetest.registered_nodes) do
+			if v.groups.door and v.groups.door > 0 then
+				rawset(v, "optic_check", doortrigger)
+			end
+		end
+	end)

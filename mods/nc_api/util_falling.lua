@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local queue
@@ -15,5 +15,6 @@ function nodecore.fallcheck(pos)
 				queue = nil
 			end)
 	end
-	queue[minetest.pos_to_string(pos)] = pos
+	pos = vector.round(pos)
+	queue[minetest.hash_node_position(pos)] = pos
 end

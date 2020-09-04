@@ -20,7 +20,8 @@ function nodecore.scan_flood(pos, range, func)
 					local np = {
 						x = p.x + v.x,
 						y = p.y + v.y,
-						z = p.z + v.z
+						z = p.z + v.z,
+						prev = p
 					}
 					local nk = minetest.hash_node_position(np)
 					if not seen[nk] then

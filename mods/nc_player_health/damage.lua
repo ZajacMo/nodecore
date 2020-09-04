@@ -1,14 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.register_on_player_hpchange(function(player, hp)
+local hurtcache = {}
+
+nodecore.register_on_player_hpchange("damage modifier", function(player, hp)
 		local orig = player:get_hp()
-		if player:get_armor_groups().immortal then
+		if not nodecore.player_can_take_damage(player) then
 			return orig
 		end
+		local pname
 		if hp < 0 then
+			pname = player:get_player_name()
+			hurtcache[pname] = nodecore.gametime
 			player:get_meta():set_float("hurttime", nodecore.gametime)
 			if nodecore.player_visible(player) then
 				minetest.after(0, function()
@@ -30,20 +35,38 @@ minetest.register_on_player_hpchange(function(player, hp)
 	true
 )
 
-minetest.register_on_dieplayer(function(player)
-		player:set_hp(1)
-		player:get_meta():set_float("dhp", -1)
+nodecore.register_on_dieplayer("player virtual 0 health", function(player)
+		nodecore.setphealth(player, 0, "on_dieplayer")
 	end)
 
-local function heal(player, dtime)
-	if player:get_hp() <= 0 then return end
-	if player:get_breath() <= 0 then return end
-	local hurt = player:get_meta():get_float("hurttime")
-	if hurt >= nodecore.gametime - 4 then return end
-	nodecore.addphealth(player, dtime * 2)
-end
-minetest.register_globalstep(function(dtime)
-		for _, player in pairs(minetest.get_connected_players()) do
-			heal(player, dtime)
+local full = {}
+nodecore.register_playerstep({
+		label = "healing",
+		action = function(player, _, dtime)
+			local hp = player:get_hp()
+			if hp <= 0 then return end
+			if hp == 1 then
+				local meta = player:get_meta()
+				if meta:get_float("dhp") == -1 then
+					local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
+					if hurt + 0.5 < nodecore.gametime then
+						nodecore.setphealth(player, 0, "heal_rehurtfx", 2)
+					end
+				end
+			end
+			local pname = player:get_player_name()
+			local hpmax = player:get_properties().hp_max
+			if full[pname] and player:get_hp() >= hpmax then return end
+			full[pname] = nil
+			local hurt = hurtcache[pname] or player:get_meta():get_float("hurttime")
+			if hurt >= nodecore.gametime - 4 then return end
+			nodecore.addphealth(player, dtime * 2, "heal")
+			if nodecore.getphealth(player) >= hpmax then full[pname] = true end
 		end
-	end)
+	})
+
+local function setmax(player)
+	player:set_properties({hp_max = 8})
+end
+nodecore.register_on_joinplayer("set max health on join", setmax)
+nodecore.register_on_newplayer("set max health on new", setmax)

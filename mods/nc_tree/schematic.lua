@@ -48,6 +48,36 @@ local top = {
 	".....",
 }
 
+nodecore.tree_params = {
+	{},
+	{
+		prob = 160
+	},
+	{
+		prob = 160
+	},
+	{
+		leaves = 2,
+		prob = 160
+	},
+	{
+		leaves = 4
+	},
+	{
+		leaves = 4,
+		prob = 160
+	},
+	{
+		leaves = 6,
+		notrunk = true,
+		prob = 160
+	},
+	{
+		leaves = 2,
+		notrunk = true
+	}
+}
+
 nodecore.tree_schematic = nodecore.ezschematic(
 	{
 		["."] = {name = "air", prob = 0},

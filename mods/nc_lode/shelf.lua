@@ -15,11 +15,14 @@ minetest.register_node(modname .. ":shelf", {
 		collision_box = cbox(0.5),
 		selection_box = cbox(0.5),
 		tiles = {tile("side"), tile("base"), tile("side")},
+		use_texture_alpha = true,
 		groups = {
 			cracky = 3,
 			visinv = 1,
 			storebox = 2,
-			totable = 1
+			totable = 1,
+			metal_cube = 1,
+			scaling_time = 50
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -32,6 +35,7 @@ nodecore.register_craft({
 		norotate = true,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{match = modname .. ":prill_hot", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
@@ -49,6 +53,7 @@ nodecore.register_craft({
 		norotate = true,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{match = modname .. ":prill_hot", replace = "air"},
 			{x = -1, z = 0, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
@@ -67,6 +72,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {choppy = 3},
 		check = function(pos) return nodecore.stack_get(pos):is_empty() end,
+		indexkeys = {modname .. ":shelf"},
 		nodes = {
 			{match = modname .. ":shelf", replace = "air"},
 		},

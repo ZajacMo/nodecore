@@ -33,14 +33,13 @@ local function grassable(above)
 	or (def.damage_per_second and def.damage_per_second > 0)
 	then return false end
 
-	local ln = minetest.get_node_light(above) or 0
-	if ln >= 10 then return true end
-	local ld = minetest.get_node_light(above, 0.5) or 0
-	if ld >= 10 then return end
+	local ln = nodecore.get_node_light(above)
+	if not ln then return end
+	return ln >= 10
 end
 
 nodecore.register_limited_abm({
-		label = "Grass Spread",
+		label = "grass spread",
 		nodenames = {"group:soil"},
 		neighbors = {grass},
 		interval = 6,
@@ -54,7 +53,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Grass Decay",
+		label = "grass decay",
 		nodenames = {grass},
 		interval = 8,
 		chance = 50,
@@ -65,4 +64,4 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_dirt_leeching(dirt, modname .. ":sand_loose")
+nodecore.register_dirt_leaching(dirt, modname .. ":sand_loose")

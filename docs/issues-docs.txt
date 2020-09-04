@@ -1,0 +1,25 @@
+========================================================================
+ISSUES-DOCS: Issues related to documentation
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Add a code of conduct to project
+	- Cover chat rules from discord, servers?
+
+- Add a credits file with more extensive/specific credits, including
+  non-copyrightable contributions to core project...?
+
+- Design doc needs another shakedown.
+	- Expecially: what has "nodecorian" come to mean?
+
+- Need to clean out issues in wishlist.
+	- Put some issues unlikely to be resolved on ice.
+
+........................................................................
+========================================================================

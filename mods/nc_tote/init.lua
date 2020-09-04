@@ -18,6 +18,11 @@ local metadescs = {
 	"Tote (8 Slots)",
 }
 
+local function protected(pos, whom)
+	return whom and whom:is_player()
+	and minetest.is_protected(pos, whom:get_player_name())
+end
+
 local function totedug(pos, _, _, digger)
 	local drop = ItemStack(modname .. ":handle")
 	if not digger:get_player_control().sneak then
@@ -27,7 +32,8 @@ local function totedug(pos, _, _, digger)
 				local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
 				local n = minetest.get_node(p)
 				local d = minetest.registered_items[n.name] or {}
-				if d and d.groups and d.groups.totable then
+				if d and d.groups and d.groups.totable
+				and not protected(p, digger) then
 					local m = minetest.get_meta(p):to_table()
 					for _, v1 in pairs(m.inventory or {}) do
 						for k2, v2 in pairs(v1) do
@@ -57,10 +63,10 @@ local function totedug(pos, _, _, digger)
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
 
-local function toteplace(stack, _, pointed)
+local function toteplace(stack, placer, pointed)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
-	if not pos then return stack end
+	if nodecore.protection_test(pos, placer) then return end
 
 	stack = ItemStack(stack)
 	local inv = stack:get_meta():get_string("carrying")
@@ -75,7 +81,8 @@ local function toteplace(stack, _, pointed)
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
-			if (not nodecore.buildable_to(p)) or nodecore.obstructed(p) then
+			if (not nodecore.buildable_to(p)) or nodecore.obstructed(p)
+			or protected(p, placer) then
 				commit = nil
 			else
 				commit[#commit + 1] = {p, v.n, v.m}
@@ -84,7 +91,7 @@ local function toteplace(stack, _, pointed)
 	end
 	if commit then
 		for _, v in ipairs(commit) do
-			minetest.set_node(v[1], v[2])
+			nodecore.set_loud(v[1], v[2])
 			minetest.get_meta(v[1]):from_table(v[3])
 		end
 		stack:set_count(stack:get_count() - 1)
@@ -134,7 +141,7 @@ local txr_sides = "(" .. txr_bot .. "^[mask:nc_tote_sides.png)"
 local txr_top = "nc_tree_tree_side.png^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
 local txr_handle = "nc_tree_tree_side.png^[transformR90"
 
-local function reg(suff, inner)
+local function reg(suff, inner, pred)
 	return minetest.register_node(modname .. ":handle" .. suff, {
 			description = "Tote Handle",
 			meta_descriptions = metadescs,
@@ -150,26 +157,30 @@ local function reg(suff, inner)
 				{name = txr_handle, backface_culling = true},
 				{name = inner, backface_culling = true}
 			},
+			use_texture_alpha = true,
 			groups = {
 				snappy = 1,
 				container = 100,
 				flammable = 5,
-				tote = 1
+				tote = 1,
+				scaling_time = 50
 			},
 			on_ignite = tote_ignite,
 			stack_max = 1,
 			after_dig_node = totedug,
 			on_place = toteplace,
 			drop = "",
+			node_placement_prediction = pred,
 			sounds = nodecore.sounds("nc_lode_annealed")
 		})
 end
 reg("", "[combine:1x1")
-reg("_full", modname .. "_fill.png")
+reg("_full", modname .. "_fill.png", "")
 
 nodecore.register_craft({
 		label = "craft tote handle",
 		norotate = true,
+		indexkeys = {"nc_woodwork:frame"},
 		nodes = {
 			{match = "nc_woodwork:frame", replace = "air"},
 			{y = -1, match = "nc_lode:block_annealed", replace = modname .. ":handle"},
@@ -190,6 +201,7 @@ nodecore.register_craft({
 			if stack:get_name() ~= modname .. ":handle" then return end
 			return (stack:get_meta():get_string("carrying") or "") == ""
 		end,
+		indexkeys = {modname .. ":handle"},
 		nodes = {
 			{
 				match = modname .. ":handle",
@@ -205,7 +217,7 @@ nodecore.register_aism({
 		label = "Packed Tote AISMs",
 		interval = 1,
 		chance = 1,
-		itemnames = {modname .. ":handle"},
+		itemnames = {"group:tote"},
 		action = function(stack, data)
 			local stackmeta = stack:get_meta()
 			local raw = stackmeta:get_string("carrying")

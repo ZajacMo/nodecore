@@ -17,14 +17,10 @@ local function pezdispense(pos)
 	return pezdispense(above)
 end
 
+nodecore.stack_node_sounds_except = {}
+
 minetest.register_node(modname .. ":stack", {
-		drawtype = "signlike",
-		paramtype2 = "wallmounted",
-		use_texture_alpha = true,
-		tiles = {
-			"nc_items_shadow.png",
-			"[combine:1x1",
-		},
+		drawtype = "airlike",
 		walkable = true,
 		selection_box = nodecore.fixedbox(
 			{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
@@ -56,8 +52,11 @@ minetest.register_node(modname .. ":stack", {
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_construct = function(pos, ...)
+			local key = minetest.hash_node_position(pos)
 			minetest.after(0, function()
-					return nodecore.stack_sounds(pos, "place")
+					local except = nodecore.stack_node_sounds_except[key]
+					nodecore.stack_node_sounds_except[key] = nil
+					return nodecore.stack_sounds(pos, "place", nil, except)
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
 		end,
@@ -69,14 +68,14 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	if minetest.get_node(below).name == modname .. ":stack" then
-		stack = nodecore.stack_add(below, stack)
+		stack = nodecore.stack_add(below, stack, placer)
 		if stack:is_empty() then return end
 	end
 
 	if stack:get_count() == 1 then
 		local def = minetest.registered_nodes[stack:get_name()]
 		if def and def.groups and def.groups.stack_as_node then
-			minetest.set_node(pos, {name = stack:get_name()})
+			nodecore.set_loud(pos, {name = stack:get_name()})
 			if def.after_place_node then
 				def.after_place_node(pos, nil, stack)
 			end
@@ -84,8 +83,8 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		end
 	end
 
-	minetest.set_node(pos, {name = modname .. ":stack", param2 = 1})
-	nodecore.stack_set(pos, stack)
+	minetest.set_node(pos, {name = modname .. ":stack"})
+	nodecore.stack_set(pos, stack, placer)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {
 				action = "place",
@@ -96,16 +95,3 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 
 	return nodecore.fallcheck(pos)
 end
-
-minetest.register_lbm({
-		label = "Update Stack Node Wallmounted",
-		name = modname .. ":wallmounted",
-		nodenames = {modname .. ":stack"},
-		run_at_every_load = false,
-		action = function(pos, node)
-			if node.param2 ~= 1 then
-				node.param2 = 1
-				return minetest.swap_node(pos, node)
-			end
-		end
-	})

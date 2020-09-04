@@ -3,10 +3,12 @@ local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
     = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
       tonumber, tostring, type, unpack, vector
-local math_cos, math_floor, math_log, math_pi, math_random, math_sin,
-      math_sqrt, string_gsub, string_lower
-    = math.cos, math.floor, math.log, math.pi, math.random, math.sin,
-      math.sqrt, string.gsub, string.lower
+local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
+      math_random, math_sin, math_sqrt, string_format, string_gsub,
+      string_lower
+    = math.abs, math.cos, math.floor, math.log, math.pi, math.pow,
+      math.random, math.sin, math.sqrt, string.format, string.gsub,
+      string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 for k, v in pairs(minetest) do
@@ -159,11 +161,12 @@ function nodecore.tool_digs(what, groups)
 end
 
 function nodecore.interval(after, func)
-	local function go()
-		minetest.after(after, go)
-		return func()
-	end
-	minetest.after(after, go)
+	local go
+	local setnext = (type(after) == "function")
+	and function() return minetest.after(after(), go) end
+	or function() return minetest.after(after, go) end
+	go = function() setnext() return func() end
+	minetest.after(0, go)
 end
 
 function nodecore.wear_wield(player, groups, qty)
@@ -179,7 +182,7 @@ function nodecore.wear_wield(player, groups, qty)
 				wielded:add_wear(dp.wear * (qty or 1))
 				if wielded:get_count() <= 0 and wdef.sound
 				and wdef.sound.breaks then
-					minetest.sound_play(wdef.sound.breaks,
+					nodecore.sound_play(wdef.sound.breaks,
 						{object = player, gain = 0.5})
 				end
 			end
@@ -218,60 +221,6 @@ function nodecore.node_group(name, pos, node)
 	return def.groups and def.groups[name]
 end
 
-function nodecore.item_eject(pos, stack, speed, qty, vel)
-	stack = ItemStack(stack)
-	speed = speed or 0
-	vel = vel or {x = 0, y = 0, z = 0}
-	if speed == 0 and vel.x == 0 and vel.y == 0 and vel.z == 0
-	and nodecore.place_stack and minetest.get_node(pos).name == "air" then
-		stack:set_count(stack:get_count() * (qty or 1))
-		return nodecore.place_stack(pos, stack)
-	end
-	for _ = 1, (qty or 1) do
-		local v = {
-			x = vel.x + (math_random() - 0.5) * speed,
-			y = vel.y + math_random() * speed,
-			z = vel.z + (math_random() - 0.5) * speed,
-		}
-		local p = {
-			x = v.x > 0 and pos.x + 0.4 or v.x < 0 and pos.x - 0.4 or pos.x,
-			y = pos.y + 0.25,
-			z = v.z > 0 and pos.z + 0.4 or v.z < 0 and pos.z - 0.4 or pos.z,
-		}
-		local obj = minetest.add_item(p, stack)
-		if obj then obj:set_velocity(v) end
-	end
-end
-
-do
-	local stddirs = {}
-	for _, v in pairs(nodecore.dirs()) do
-		if v.y <= 0 then stddirs[#stddirs + 1] = v end
-	end
-	function nodecore.item_disperse(pos, name, qty, outdirs)
-		if qty < 1 then return end
-		local dirs = {}
-		for _, d in pairs(outdirs or stddirs) do
-			local p = vector.add(pos, d)
-			if nodecore.buildable_to(p) then
-				dirs[#dirs + 1] = {pos = p, qty = 0}
-			end
-		end
-		if #dirs < 1 then
-			return nodecore.item_eject(pos, name .. " " .. qty)
-		end
-		for _ = 1, qty do
-			local p = dirs[math_random(1, #dirs)]
-			p.qty = p.qty + 1
-		end
-		for _, v in pairs(dirs) do
-			if v.qty > 0 then
-				nodecore.item_eject(v.pos, name .. " " .. v.qty)
-			end
-		end
-	end
-end
-
 function nodecore.find_nodes_around(pos, spec, r, s)
 	r = r or 1
 	if type(r) == "number" then
@@ -302,10 +251,11 @@ function nodecore.node_spin_custom(...)
 	local qty = #arr
 
 	return function(pos, node, clicker, itemstack)
+		if nodecore.protection_test(pos, clicker) then return end
 		node = node or minetest.get_node(pos)
 		node.param2 = lut[node.param2] or lut[false]
 		if clicker:is_player() then
-			minetest.log(clicker:get_player_name() .. " spins "
+			nodecore.log("action", clicker:get_player_name() .. " spins "
 				.. node.name .. " at " .. minetest.pos_to_string(pos)
 				.. " to param2 " .. node.param2 .. " ("
 				.. qty .. " total)")
@@ -333,11 +283,6 @@ function nodecore.node_spin_filtered(func)
 	return nodecore.node_spin_custom(unpack(rots))
 end
 
-function nodecore.node_change(pos, node, newname)
-	if node.name == newname then return end
-	return minetest.set_node(pos, underride({name = newname}, node))
-end
-
 local function scrubkey(s)
 	return string_lower(string_gsub(tostring(s), "%W+", "_"))
 end
@@ -354,6 +299,11 @@ function nodecore.rate_adjustment(...)
 	return rate
 end
 
+local infodump_key = scrubkey(nodecore.product) .. "_infodump"
+function nodecore.infodump()
+	return minetest.settings:get_bool(infodump_key)
+end
+
 function nodecore.obstructed(minpos, maxpos)
 	if not maxpos then
 		maxpos = {x = minpos.x + 0.5, y = minpos.y + 0.5, z = minpos.z + 0.5}
@@ -363,16 +313,211 @@ function nodecore.obstructed(minpos, maxpos)
 	local radius = 4 + vector.distance(minpos, maxpos) / 2
 	for _, obj in pairs(minetest.get_objects_inside_radius(avgpos, radius)) do
 		local op = obj:get_pos()
-		local cb = obj:get_properties().collisionbox
-		if maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
+		local props = obj:get_properties()
+		local cb = props.collisionbox
+		if props.static_save
+		and maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
 		and maxpos.y > op.y + cb[2] and minpos.y < op.y + cb[5]
 		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
-		then
-			local lua = obj.get_luaentity and obj:get_luaentity()
-			if not ((lua and lua.is_stack) or (not nodecore.interact(obj))
-				or (not nodecore.player_visible(obj))) then
-				return obj
+		and obj.get_luaentity and obj:get_luaentity() then
+			return obj
+		end
+	end
+end
+
+local gravity = tonumber(minetest.settings:get("movement_gravity")) or 9.81
+local friction = tonumber(minetest.settings:get("nodecore_air_friction")) or 0.0004
+
+local function air_accel_factor(v)
+	local q = (friction * v * v) * 2 - 1
+	return q > 0 and q or 0
+end
+function nodecore.grav_air_physics_player(v)
+	if v.y > 0 then return 1 end
+	return 1 - air_accel_factor(v.y)
+end
+local function air_accel_net(v)
+	return v == 0 and 0 or v / -math_abs(v) * gravity * air_accel_factor(v)
+end
+function nodecore.grav_air_accel(v)
+	return {
+		x = air_accel_net(v.x),
+		y = air_accel_net(v.y) - gravity,
+		z = air_accel_net(v.z)
+	}
+end
+function nodecore.grav_air_accel_ent(obj)
+	local cur = obj:get_acceleration()
+	local new = nodecore.grav_air_accel(obj:get_velocity())
+	if vector.equals(cur, new) then return end
+	return obj:set_acceleration(new)
+end
+
+function nodecore.near_unloaded(pos, radius)
+	return minetest.find_node_near(pos, radius or 1, {"ignore"}, true)
+end
+
+function nodecore.get_objects_at_pos(pos)
+	pos = vector.round(pos)
+	local t = {}
+	-- get_objects_inside_radius just loops over these and does a euclidian
+	-- distance check anyway, which we can skip
+	for _, obj in pairs(minetest.object_refs) do
+		local p = obj:get_pos()
+		if p and vector.equals(vector.round(p), pos) then
+			t[#t + 1] = obj
+		end
+	end
+	return t
+end
+
+function nodecore.get_depth_light(y, qty)
+	qty = qty or 4/5
+	if y < 0 then qty = qty * math_pow(2, y / 64) end
+	return qty
+end
+
+nodecore.light_sun = 15
+nodecore.light_sky = math_floor(0.5 + nodecore.light_sun * nodecore.get_depth_light(0))
+
+function nodecore.is_full_sun(pos)
+	return pos.y >= 0 and minetest.get_node_light(pos, 0.5) == nodecore.light_sun
+end
+
+function nodecore.get_node_light(pos)
+	local artificial = minetest.get_node_light(pos, 0)
+	if not artificial then return end
+	local natural = math_floor(0.5 + minetest.get_node_light(pos, 0.5)
+		* nodecore.get_depth_light(pos.y))
+	return artificial > natural and artificial or natural
+end
+
+local liquids = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v.liquidtype and v.liquidtype ~= "none" then
+				liquids[k] = v
 			end
 		end
+	end)
+nodecore.registered_liquids = liquids
+local player_was_swimming = {}
+function nodecore.player_swimming(player)
+	local pname = player:get_player_name()
+	local pos = player:get_pos()
+	local r = 0.6
+	local swimming = true
+	for dz = -r, r, r do
+		for dx = -r, r, r do
+			local p = {
+				x = pos.x + dx,
+				y = pos.y,
+				z = pos.z + dz
+			}
+			local node = minetest.get_node(p)
+			if (node.name == "air" or liquids[node.name]) then
+				p.y = p.y - 0.35
+				node = minetest.get_node(p)
+			end
+			if node.name == "air" then swimming = nil
+			elseif not liquids[node.name] then
+				player_was_swimming[pname] = nil
+				return
+			end
+		end
+	end
+	if swimming then
+		player_was_swimming[pname] = true
+		return true
+	end
+	return player_was_swimming[pname]
+end
+
+local function mismatch(a, b)
+	if type(a) == "table" then
+		if type(b) ~= "table" then return true end
+		for k, v in pairs(a) do
+			if mismatch(v, b[k]) then return true end
+		end
+		return
+	end
+	if type(a) == "number" and type(b) == "number" then
+		local ratio = a / b
+		-- Floating point rounding...
+		if ratio > 0.99999 and ratio < 1.00001 then return end
+	end
+	return a ~= b
+end
+nodecore.prop_mismatch = mismatch
+
+function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
+	local index = {}
+	local function itemadd(key, item)
+		local t = index[key]
+		if not t then
+			t = {}
+			index[key] = t
+		end
+		if asarray then
+			t[#t + 1] = item
+		else
+			t[item] = true
+		end
+	end
+	keymod = keymod or function(x) return x end
+	local report_pending
+	local function rebuild()
+		for k in pairs(index) do index[k] = nil end
+		for _, item in pairs(items) do
+			for _, name in pairs(getnames(item)) do
+				if name == true then
+					for k in pairs(minetest.registered_items) do
+						itemadd(keymod(k, item), item)
+					end
+				elseif type(name) == "string" and name:sub(1, 6) == "group:" then
+					for k, v in pairs(minetest.registered_items) do
+						if v and v.groups and v.groups[name:sub(7)] then
+							itemadd(keymod(k, item), item)
+						end
+					end
+				else
+					itemadd(keymod(name, item), item)
+				end
+			end
+		end
+		if idxname and not report_pending then
+			report_pending = true
+			minetest.after(0, function()
+					report_pending = nil
+					local keys = 0
+					local defs = 0
+					local peak = 0
+					for _, v in pairs(index) do
+						keys = keys + 1
+						local n = 0
+						for _ in pairs(v) do n = n + 1 end
+						defs = defs + n
+						if n > peak then peak = n end
+					end
+					nodecore.log("action", string_format(
+							"%s %s: %d keys, %d defs, %d peak",
+							"item_matching_index",
+							idxname, keys, defs, peak))
+				end)
+		end
+	end
+	minetest.after(0, rebuild)
+	return index, rebuild
+end
+
+function nodecore.protection_test(pos, player)
+	if not player then return end
+	if type(player) ~= "string" then
+		if not player:is_player() then return end
+		player = player:get_player_name()
+	end
+	if minetest.is_protected(pos, player) then
+		minetest.record_protection_violation(pos, player)
+		return true
 	end
 end

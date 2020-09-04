@@ -43,8 +43,13 @@ end
 
 local pummeling = {}
 
-minetest.register_on_punchnode(function(pos, node, puncher, pointed)
-		if not puncher:is_player() then return end
+nodecore.register_on_dignode("dig pummel reset", function(_, _, digger)
+		if not (digger and digger:is_player()) then return end
+		pummeling[digger:get_player_name()] = nil
+	end)
+
+nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, pointed)
+		if (not puncher:is_player()) or puncher:get_player_control().sneak then return end
 		local pname = puncher:get_player_name()
 		if not nodecore.interact(pname) then return end
 
@@ -83,6 +88,11 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed)
 		pummeling[pname] = pum
 
 		if pum.count < 2 then return end
+
+		if nodecore.protection_test(pos, pname) then
+			pummeling[pname] = nil
+			return
+		end
 
 		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then
 			pummeling[pname] = nil

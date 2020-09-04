@@ -9,6 +9,7 @@ local wetdef = {
 	description = "Lux Flow",
 	tiles = {modname .. "_base.png"},
 	special_tiles = {modname .. "_base.png", modname .. "_base.png"},
+	paramtype = "light",
 	alpha = 64,
 	liquid_viscosity = 0,
 	liquid_renewable = false,
@@ -17,14 +18,19 @@ local wetdef = {
 	liquid_alternative_source = modname .. ":flux_source",
 	pointable = false,
 	walkable = false,
-	diggable = false,
 	buildable_to = true,
 	light_source = 10,
+	sunlight_propagates = true,
+	air_pass = true,
 	damage_per_second = 1,
 	drowning = 0,
-	groups = {lux_emit = 10, lux_fluid = 1, stack_as_node = 1},
-	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
-	sounds = nodecore.sounds("nc_terrain_chompy")
+	groups = {
+		lux_emit = 10,
+		lux_fluid = 1,
+		stack_as_node = 1,
+		damage_radiant = 1
+	},
+	post_effect_color = {a = 64, r = 251, g = 241, b = 143}
 }
 minetest.register_node(modname .. ":flux_source", nodecore.underride({
 			drawtype = "liquid",
@@ -43,7 +49,7 @@ for _, v in pairs(nodecore.dirs()) do
 	end
 end
 nodecore.register_limited_abm({
-		label = "Lux Flow Leakage",
+		label = "lux flow leak",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,
@@ -66,7 +72,7 @@ for _, v in pairs(nodecore.dirs()) do
 	end
 end
 nodecore.register_limited_abm({
-		label = "Lux Flow Ebb",
+		label = "lux flow ebb",
 		interval = 1,
 		chance = 2,
 		limited_max = 100,

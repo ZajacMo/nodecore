@@ -25,14 +25,18 @@ local tempers = {
 }
 
 function nodecore.register_lode(shape, rawdef)
+	rawdef.groups = rawdef.groups or {}
 	for _, temper in pairs(tempers) do
 		local def = nodecore.underride({}, rawdef)
+		def.groups = nodecore.underride({}, def.groups)
 		def = nodecore.underride(def, {
 				description = temper.desc .. " Lode " .. shape,
 				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
 				groups = {
 					cracky = 3,
-					falling_node = temper.name == "hot" and 1 or nil
+					metallic = 1,
+					falling_node = temper.name == "hot" and 1 or nil,
+					["metal_temper_" .. temper.name] = 1
 				},
 				["metal_temper_" .. temper.name] = true,
 				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
@@ -44,9 +48,9 @@ function nodecore.register_lode(shape, rawdef)
 		if not temper.glow then
 			def.light_source = nil
 		else
-			def.groups = def.groups or {}
 			def.groups.falling_node = 1
-			def.damage_per_second = 2
+			def.groups.damage_touch = 1
+			def.groups.damage_radiant = 1
 		end
 
 		if def.tiles then
@@ -68,7 +72,10 @@ function nodecore.register_lode(shape, rawdef)
 			local fullname = modname .. ":" .. def.name
 			minetest.register_item(fullname, def)
 			if def.type == "node" then
-				nodecore.register_cook_abm({nodenames = {fullname}})
+				nodecore.register_cook_abm({
+						nodenames = {fullname},
+						neighbors = (not temper.glow) and {"group:flame"} or nil
+					})
 			end
 		end
 	end
@@ -78,12 +85,15 @@ nodecore.register_lode("Block", {
 		type = "node",
 		description = "## Lode",
 		tiles = {modname .. "_#.png"},
+		groups = {metal_cube = 1},
 		light_source = 8,
 		crush_damage = 4
 	})
 
 nodecore.register_lode("Prill", {
 		type = "craft",
+		groups = {metal_prill = 1},
+		light_source = 1,
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
@@ -146,6 +156,7 @@ nodecore.register_craft({
 		label = "forge lode block",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{
 				match = {name = modname .. ":prill_hot", count = 8},
@@ -162,6 +173,7 @@ nodecore.register_craft({
 		label = "break apart lode block",
 		action = "pummel",
 		toolgroups = {choppy = 5},
+		indexkeys = {modname .. ":block_hot"},
 		nodes = {
 			{
 				match = modname .. ":block_hot",

@@ -17,7 +17,7 @@ local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
 
 -- On player joining, disable the built-in nametag by setting its
 -- text to whitespace and color to transparent.
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("join hide nametag", function(player)
 		player:set_nametag_attributes({
 				text = " ",
 				color = {a = 0, r = 0, g = 0, b = 0}
@@ -53,9 +53,9 @@ local function canseeface(p1, p2)
 	local dz = o1.z - o2.z
 	local dsqr = (dx * dx + dy * dy + dz * dz)
 	if dsqr < 1 then return end
-	local ll = minetest.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
+	local ll = nodecore.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
 	if not ll then return end
-	local ld = (ll / 15 * distance)
+	local ld = (ll / nodecore.light_sun * distance)
 	if dsqr > (ld * ld) then return end
 
 	-- Make sure players' eyes are inside the same fluid.
@@ -104,7 +104,7 @@ end
 
 -- On each global step, check all player visibility, and create/remove/update
 -- each player's HUDs accordingly.
-minetest.register_globalstep(function()
+nodecore.register_globalstep("player names", function()
 		local conn = minetest.get_connected_players()
 		for _, p1 in pairs(conn) do
 			for _, p2 in pairs(conn) do
@@ -119,6 +119,7 @@ minetest.register_globalstep(function()
 								world_pos = p,
 								name = n2,
 								text = "",
+								precision = 0,
 								number = 0xffffff,
 								quick = true
 							})
@@ -131,5 +132,16 @@ minetest.register_globalstep(function()
 					end
 				end
 			end
+		end
+	end)
+
+nodecore.register_on_leaveplayer("leave clear names", function(player)
+		local pname = player:get_player_name()
+		for _, peer in pairs(minetest.get_connected_players()) do
+			nodecore.hud_set(peer, {
+					label = "pname:" .. pname,
+					ttl = 0,
+					quick = true
+				})
 		end
 	end)

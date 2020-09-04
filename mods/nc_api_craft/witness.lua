@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, type, vector
+    = math, minetest, nodecore, pairs, type, vector
 local math_pi
     = math.pi
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,7 +38,9 @@ function nodecore.witness(pos, label, maxdist, check)
 	if not nodecore.player_stat_add then return end
 	for _, player in pairs(minetest.get_connected_players()) do
 		if playercheck(player, pos, maxdist or 32, check) then
-			nodecore.player_stat_add(1, player, "witness", label)
+			for _, l in pairs(type(label) == "table" and label or {label}) do
+				nodecore.player_stat_add(1, player, "witness", l)
+			end
 		end
 	end
 end

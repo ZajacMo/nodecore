@@ -39,7 +39,21 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = {groups = {silica_clear = true}},
+				match = {groups = {silica_clear = true, visinv = false}},
+				replace = modname .. ":glass_crude"
+			}
+		}
+	})
+
+nodecore.register_craft({
+		label = "hammer tank to crude",
+		action = "pummel",
+		priority = -1,
+		toolgroups = {thumpy = 3},
+		check = function(pos) return nodecore.stack_get(pos):is_empty() end,
+		nodes = {
+			{
+				match = modname .. ":shelf",
 				replace = modname .. ":glass_crude"
 			}
 		}
@@ -52,7 +66,7 @@ nodecore.register_craft({
 		toolgroups = {thumpy = 3},
 		nodes = {
 			{
-				match = {groups = {silica = true, silica_lens = false}},
+				match = {groups = {silica = true, silica_molten = false, silica_lens = false, visinv = false}},
 				replace = "nc_terrain:sand_loose"
 			}
 		}

@@ -6,4 +6,5 @@ mod_storage
 players.*
 players
 nc_api.template.tr
+texturepack_override.template.txt
 world.mt

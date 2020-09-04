@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, math, minetest, nodecore, pairs, vector
     = ItemStack, math, minetest, nodecore, pairs, vector
-local math_ceil, math_exp, math_log, math_pow
-    = math.ceil, math.exp, math.log, math.pow
+local math_ceil, math_exp, math_log
+    = math.ceil, math.exp, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -10,46 +10,62 @@ local modname = minetest.get_current_modname()
 local convert = {}
 local charge = {}
 
-for _, shape in pairs({'mallet', 'spade', 'hatchet', 'pick', 'mattock'}) do
-	for _, temper in pairs({'tempered', 'annealed'}) do
-		local orig = minetest.registered_items["nc_lode:tool_" .. shape .. "_" .. temper]
+local boost_suff = "_boost"
+
+local function mktool(tshape)
+	for _, temper in pairs({"tempered", "annealed"}) do
+		local orig = minetest.registered_items["nc_lode:" .. tshape .. "_" .. temper]
 
 		local def = nodecore.underride({
 				description = "Infused " .. orig.description,
 				inventory_image = orig.inventory_image .. "^(" .. modname
-				.. "_base.png^[mask:nc_lode_tool_" .. shape .. ".png^[opacity:64])",
-				tool_wears_to = orig.name
+				.. "_base.png^[mask:" .. modname
+				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
+				.. ".png^[opacity:80])",
+				tool_wears_to = orig.name,
+				glow = 1
 			}, orig)
 		def.after_use = nil
 
-		def.groups = def.groups or {}
-		def.groups.lux_tool = 1
+		def.groups = nodecore.underride({lux_tool = 1}, orig.groups or {})
 
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1
 		end
-		tc.uses = 0.5
+		tc.uses = 0.125
 		def.tool_capabilities = nodecore.toolcaps(tc)
 
-		def.name = modname .. ":tool_" .. shape .. "_" .. temper
+		for k, v in pairs(orig.tool_capabilities.opts) do
+			tc[k] = v + 2
+		end
+		local boost = nodecore.underride({
+				inventory_image = orig.inventory_image .. "^(" .. modname
+				.. "_base.png^[mask:" .. modname
+				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
+				.. ".png^[opacity:120])",
+				tool_capabilities = nodecore.toolcaps(tc),
+				glow = 2,
+				light_source = 1
+			}, def)
+
+		boost.groups = nodecore.underride({lux_tool = 2}, def.groups)
+
+		def.name = modname .. ":" .. tshape .. "_" .. temper
 		minetest.register_tool(def.name, def)
+
+		boost.name = modname .. ":" .. tshape .. "_" .. temper .. boost_suff
+		minetest.register_tool(boost.name, boost)
 
 		convert[orig.name] = def.name
 		charge[def.name] = true
+		charge[boost.name] = true
 	end
 end
-
-local function isfluid(pos)
-	local def = minetest.registered_nodes[minetest.get_node(pos).name]
-	return def and def.groups and def.groups.lux_fluid
+for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
+	mktool("tool_" .. shape)
 end
-local indirs = {}
-for _, v in pairs(nodecore.dirs()) do
-	if v.y == 0 then
-		indirs[#indirs + 1] = v
-	end
-end
+mktool("adze")
 
 local alltools = {}
 for k in pairs(convert) do alltools[#alltools + 1] = k end
@@ -59,9 +75,10 @@ for k in pairs(charge) do
 	end
 end
 
-local ratefactor = 40000
+local ratefactor = 20000
 nodecore.register_soaking_aism({
-		label = "Lux Infusion",
+		label = "lux infuse",
+		fieldname = "infuse",
 		interval = 2,
 		chance = 1,
 		itemnames = alltools,
@@ -70,23 +87,7 @@ nodecore.register_soaking_aism({
 			if (not charge[name]) and (not convert[name]) then return false end
 
 			local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
-
-			local above = vector.add(pos, {x = 0, y = 1, z = 0})
-			if not isfluid(above) then return false end
-			local qty = 1
-			for _, v in pairs(indirs) do
-				if isfluid(vector.add(pos, v)) then qty = qty + 1 end
-			end
-
-			local dist = nodecore.scan_flood(above, 14, function(p, d)
-					if p.dir and p.dir.y < 0 then return false end
-					local nn = minetest.get_node(p).name
-					if nn == modname .. ":flux_source" then return d end
-					if nn ~= modname .. ":flux_flowing" then return false end
-				end)
-			if not dist then return false end
-
-			return qty * 20 / math_pow(2, dist / 2)
+			return nodecore.lux_soak_rate(pos)
 		end,
 		soakcheck = function(data, stack)
 			local name = stack:get_name()
@@ -99,8 +100,50 @@ nodecore.register_soaking_aism({
 			local wear = stack:get_wear()
 			local newear = math_ceil(wear * math_exp(-data.total / ratefactor))
 			if newear == wear then return data.total, stack end
+			if newear < 1 then return 1 end
 			local used = math_log(wear / newear) * ratefactor
 			stack:set_wear(newear)
 			return data.total - used, stack
+		end
+	})
+
+nodecore.register_aism({
+		label = "lux boost",
+		interval = 2,
+		chance = 1,
+		itemnames = {"group:lux_tool"},
+		action = function(stack, data)
+			local name = stack:get_name()
+			local boosted = name:sub(-#boost_suff) == boost_suff
+			local boost = #nodecore.find_nodes_around(data.pos, "group:lux_fluid", 2) > 0
+			if boost == boosted then return end
+
+			if boost and not boosted then
+				name = name .. boost_suff
+			else
+				name = name:sub(1, -1 - #boost_suff)
+			end
+			stack:set_name(name)
+			return stack
+		end
+	})
+
+nodecore.register_aism({
+		label = "lux diffuse in water",
+		interval = 2,
+		chance = 1,
+		itemnames = {"group:lux_tool"},
+		action = function(stack, data)
+			if not data.pos then return end
+			local qty = #nodecore.find_nodes_around(data.pos, "group:water")
+			if qty < 1 then return end
+			if data.player then
+				qty = qty * (1 + vector.length(
+						data.player:get_player_velocity()) / 5)
+			end
+			local dur = 65535 - stack:get_wear()
+			dur = dur * 0.9998 ^ qty
+			stack:set_wear(65535 - dur)
+			return stack
 		end
 	})

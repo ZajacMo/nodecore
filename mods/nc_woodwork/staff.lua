@@ -13,7 +13,7 @@ minetest.register_node(modname .. ":staff", {
 		tiles = {
 			"nc_tree_tree_top.png",
 			"nc_tree_tree_top.png",
-			"nc_tree_tree_side.png"
+			"nc_woodwork_frame.png"
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -21,8 +21,7 @@ minetest.register_node(modname .. ":staff", {
 			firestick = 2,
 			snappy = 1,
 			flammable = 2,
-			falling_repose = 2,
-			stack_as_node = 1
+			falling_repose = 2
 		},
 		sounds = nodecore.sounds("nc_tree_sticky")
 	})
@@ -30,6 +29,7 @@ minetest.register_node(modname .. ":staff", {
 nodecore.register_craft({
 		label = "assemble staff",
 		normal = {y = 1},
+		indexkeys = {"nc_tree:stick"},
 		nodes = {
 			{match = "nc_tree:stick", replace = "air"},
 			{y = -1, match = "nc_tree:stick", replace = modname .. ":staff"}

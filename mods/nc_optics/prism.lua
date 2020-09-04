@@ -5,14 +5,14 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function prism_check(_, node, check)
+local function prism_check(_, node, recv)
 	local face = nodecore.facedirs[node.param2]
 
-	if check(face.t) or check(face.b) then
+	if recv(face.t) or recv(face.b) then
 		return modname .. ":prism_gated"
 	end
-	if check(face.f) or check(face.r) then
-		return modname .. ":prism_on", {face.k, face.l}
+	if recv(face.f) or recv(face.r) then
+		return modname .. ":prism_on"
 	end
 	return modname .. ":prism"
 end
@@ -40,8 +40,11 @@ local basedef = {
 	groups = {
 		silica = 1,
 		optic_check = 1,
-		cracky = 3
+		cracky = 3,
+		silica_prism = 1,
+		scaling_time = 125
 	},
+	silktouch = false,
 	drop = modname .. ":prism",
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,
@@ -68,7 +71,11 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
 		},
-		light_source = 2
+		light_source = 1,
+		optic_source = function(_, node)
+			local fd = nodecore.facedirs[node.param2]
+			return {fd.k, fd.l}
+		end
 	})
 reg("_gated", {
 		description = "Gated Prism",
@@ -77,5 +84,5 @@ reg("_gated", {
 			txr .. "^" .. shin .. "^" .. dark,
 			txr .. "^" .. shin .. "^" .. dark
 		},
-		light_source = 3
+		light_source = 1
 	})

@@ -4,6 +4,8 @@
 Remember, check out the CONTRIBUTING file for guidelines on contributing
 to the project!
 
+- Testing and bug reports!
+
 - Translations:
 	- NodeCore is running Weblate:
 		https://nodecore.mine.nu/trans/projects/nodecore/core/
@@ -11,56 +13,67 @@ to the project!
 	  want to contribute translations.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- #9934: This bug is causing us to maintain a workaround in
+	  NodeCore which is fragile and keeps breaking, leading to
+	  significant network load for some clients.
+	- #9377: This causes some annoyances when handling lux tools,
+	  and makes a certain mechanic blatant when it's intended to be
+	  subtle.
+	- #7245: This is blocking making navigation challenges and
+	  distinguishing nodes with similar appearance into gameplay
+	  elements.  Current open PR is #9315.
+	- #7876: Causes a damage flash when a new player joins, or a
+	  player from before 2020-02-19 when max HP was changed.
+	- TBD: It would be nice to be able to make the player neutrally
+	  buoyant (disable slow downward drift) in water/liquids.  This
+	  probably needs to be supported explicitly by the MT client.
 	- TBD: Bone attachment axes invert if there is any animation on
 	  that bone/axis.  This is blocking the visible inventory
 	  feature. (MTG #2547, but it's probably an engine bug)
-	- #7245: This is blocking making navigation challenges and
-	  distinguishing nodes with similar appearance into gameplay
-	  elements.
 	- #8952: This causes hidden bases and other items to be visible
-	  through walls and other terrain in our MP server.
-	- #8141: We want cleaner player name labels, and to move
-	  the touchtip from screen-space into node-space.
-	- #9043: This bug requires NodeCore to maintain a workaround for
-	  the engine in its own code.
-	- #9048: Causes player inventory sounds to be played at the wrong
-	  volume.
-	- TBD: Engine should provide a standard way to make digparticles
+	  through walls when ent/player transfer distance is high; when
+	  low, instead it causes players/ents to be invisible even when
+	  terrain is loaded and visible, causing distant player activity
+	  to look like poltergeists.
+	- #9912: Engine should provide a standard way to make digparticles
 	  that doesn't depend on using [combine and knowing exact source
 	  texture size (breaks texturepacks).
+	- #6963: If this is implemented, we may have a more efficient
+	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
+	  and other container nodes.
+
+- Help with documentation
+	- Improvements to the in-game guidance, esp. for onboarding new
+	  players, are wanted.  Ideally we want to offer a spoiler-free
+	  experience by default, but want players to have options/resources
+	  in the event they can't figure something out.
+	- Advising players where they can find external resources, or other
+	  sources of help, such as wikis, youtube, chatrooms, multiplayer
+	  servers, etc.
+	- Work on improving the nodecore wiki itself.
+
+- Improved versions of any art assets (sounds, textures, models).
+	- All textures for base inclusion should be 16x (keep
+	  high-def textures to texture packs).  Note that textures
+	  larger than 16x are allowed (and already used) in the game
+	  for textures that "spill over" into neighoring spaces, but
+	  the spatial resolution of 16 pixels per node is maintained.
+	- It must be practical to maintain a consistent style for
+	  other assets, including future related ones, or the content
+	  being reworked should be mature and stable, independent of
+	  other content areas, and the new textures should mesh
+	  reasonably well with the existing style.
+	- Alternatively, publish your mods, texturepacks, or soundpacks
+	  directly to the community, via ContentDB.
+	- Replacements for nodeboxes and meshes that render faster (i.e.
+	  better FPS preservation when tons of them are around) on most
+	  or all systems are wanted.
 
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,
 	  videos and streams!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
-
-- Improved versions of any art assets (sounds, textures, models).
-	- All textures for base inclusion should be 16x (keep
-	  high-def textures to texture packs).
-	- It must be practical to maintain a consistent style for
-	  other assets, including future related ones.
-	- Alternatively, publish your mods, texturepacks, or soundpacks
-	  directly to the community, via ContentDB.
-	- Nodebox replacements with significantly lower poly count
-	  are wanted.  Pull in outer faces by 1/256 to avoid z-fighting
-	  under water.
-
-- Help maintaining the hint system.
-	- Development of hints often lags behind development of new
-	  features, sometimes significantly.
-	- Hint organization and content is subject to improvement.
-
-- Door animations.
-	- These need to be relatively efficient, i.e. not involve
-	  a ton of node manipulation or spawning lots of entities.
-	  Of particular concern is network packet load on clients.
-	- Something using animated entities (which could represent
-	  multiple nodes sharing an axis) could work well.
-	- Alternatively, a reasonable particle effect?  Something
-	  abstract is fine too, as long as it conveys a sense of
-	  movement to help players visualize what's moving and in
-	  what direction.
 
 ........................................................................
 ========================================================================

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+local ItemStack, nodecore
+    = ItemStack, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -19,7 +19,7 @@ local function handlepickups(player)
 		local widx = player:get_wield_index()
 		for i in nodecore.inv_walk(player, widx, inv) do
 			local cur = inv:get_stack("main", i)
-			local old = snap[i]
+			local old = snap[i] or ItemStack("")
 			if old:is_empty() or cur:peek_item(1):to_string()
 			== old:peek_item(1):to_string() then
 				if not nodecore.item_is_virtual(cur) then
@@ -50,7 +50,7 @@ local function handlepickups(player)
 					v = nodecore.stack_merge(snap[j], v)
 				end
 				if not v:is_empty() then
-					minetest.log("failed to reinsert item "
+					nodecore.log("error", "failed to reinsert item "
 						.. v:get_name() .. " " .. v:get_count()
 						.. " for " .. pname)
 					dirty = nil
@@ -67,15 +67,11 @@ local function handlepickups(player)
 		end
 
 		if dirty then
-			minetest.log("inventory rearranged for " .. pname)
+			nodecore.log("warning", "inventory rearranged for " .. pname)
 			inv:set_list("main", snap)
 		end
 	end
 	cache[pname] = inv:get_list("main")
 end
 
-minetest.register_globalstep(function()
-		for _, p in ipairs(minetest.get_connected_players()) do
-			handlepickups(p)
-		end
-	end)
+nodecore.register_playerstep({label = "pickup rearrange", action = handlepickups})

@@ -1,0 +1,22 @@
+------------------------------------------------------------------------
+
+This world is maintained as a "standard" screenshot to show a visual
+example of a plausible game scene, including a variety of in-game
+elements.  It can be used freely (MIT licensed like the rest of the
+game) for making screenshots for texture packs.
+
+How To Use:
+- Copy or symlink this dir into ~/.minetest/worlds, or wherever your
+  minetest worlds are stored.
+- Copy the world.mt.dist file to world.mt.
+- Enter the world (singleplayer or "host game"; either is fine).
+- Do NOT move the mouse or any other controls; keep your exact position
+  and looking angle.  If you mess up, leave and rejoin.
+- Hide the chat (F2) and wait for on-screen messages to fade.
+- Select the "empty" hotbar slot #6.
+- Resize your window to the largest size possible, with a ~16:9 or
+  ~16:10 aspect ratio.
+- Hold the zoom key (and no other key).
+- Capture an in-game screenshot (F12).
+
+------------------------------------------------------------------------

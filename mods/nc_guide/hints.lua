@@ -10,7 +10,6 @@ local addhint = nodecore.addhint
 
 addhint("scale a sheer wall", "scaling dy=0")
 addhint("scale a sheer overhang", "scaling dy=1")
-addhint("traverse a dark floor by feel", "scaling dy=-1")
 
 ------------------------------------------------------------------------
 -- TERRAIN
@@ -39,37 +38,35 @@ addhint("find deep stone strata",
 )
 
 addhint("find molten rock",
-	"group:lava",
+	{true, "group:amalgam", "group:lava"},
 	"nc_terrain:cobble_loose"
+)
+
+addhint("quench molten rock to amalgamation",
+	"group:amalgam",
+	{true, "group:amalgam", "group:lava"}
+)
+
+addhint("leach dirt to sand",
+	"leach nc_terrain:dirt",
+	"dig:nc_terrain:dirt_loose"
 )
 
 ------------------------------------------------------------------------
 -- SPONGE
 
 addhint("find a sponge",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("harvest a sponge",
 	"inv:nc_sponge:sponge_living",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("dry out a sponge",
 	"nc_sponge:sponge",
-	{true,
-		"nc_sponge:sponge",
-		"nc_sponge:sponge_wet",
-		"nc_sponge:sponge_living"
-	}
+	"group:sponge"
 )
 
 addhint("squeeze out a sponge",
@@ -98,7 +95,10 @@ addhint("plant an eggcorn",
 )
 
 addhint("see a tree grow",
-	"tree growth",
+	{true,
+		"tree growth",
+		"nc_tree:tree_bud"
+	},
 	"eggcorn planting"
 )
 
@@ -126,6 +126,11 @@ addhint("ferment peat into humus",
 	"nc_tree:peat"
 )
 
+addhint("leach humus to dirt",
+	"leach nc_tree:humus",
+	"nc_tree:humus"
+)
+
 ------------------------------------------------------------------------
 -- FIRE
 
@@ -145,7 +150,17 @@ addhint("find charcoal",
 )
 
 addhint("chop up charcoal",
-	"nc_fire:lump_coal",
+	{true,
+		"nc_fire:lump_coal",
+		"chop nc_fire:coal1",
+		"chop nc_fire:coal2",
+		"chop nc_fire:coal3",
+		"chop nc_fire:coal4",
+		"chop nc_fire:coal5",
+		"chop nc_fire:coal6",
+		"chop nc_fire:coal7",
+		"chop nc_fire:coal8"
+	},
 	"group:charcoal"
 )
 
@@ -233,6 +248,11 @@ addhint("assemble a wooden shelf from frames and planks",
 	{"nc_woodwork:plank", "nc_woodwork:frame"}
 )
 
+addhint("assemble a rake from adzes and a stick",
+	"assemble rake",
+	"assemble wood adze"
+)
+
 ------------------------------------------------------------------------
 -- STONEWORK
 
@@ -272,13 +292,8 @@ addhint("make wet aggregate",
 ------------------------------------------------------------------------
 -- LODE
 
-addhint("find a lode stratum",
-	"group:lodey"
-)
-
 addhint("find lode ore",
-	"nc_lode:ore",
-	"group:lodey"
+	"nc_lode:ore"
 )
 
 addhint("dig up lode ore",
@@ -306,21 +321,40 @@ addhint("sinter glowing lode prills into a cube",
 
 addhint("chop a glowing lode cube into prills",
 	"break apart lode block",
-	"forge lode block"
+	{"forge lode block", "nc_lode:tool_hatchet_tempered"}
 )
 
-addhint("make an anvil by tempering a lode cube",
+addhint("temper a lode cube to use as an anvil",
 	"nc_lode:block_tempered",
 	"forge lode block"
 )
 
-addhint("cold-forge annealed lode prills into a tool head",
-	"anvil making lode toolhead_mallet",
+local any_lode_toolhead = {true,
+	"annealed anvil making hot lode toolhead_mallet",
+	"tempered anvil making hot lode toolhead_mallet",
+	"tempered anvil making annealed lode toolhead_mallet"
+}
+local any_lode_anvil = {true,
+	"nc_lode:block_annealed",
 	"nc_lode:block_tempered"
+}
+
+addhint("forge lode prills into a tool head on an anvil",
+	any_lode_toolhead,
+	any_lode_anvil
 )
 
-addhint("cold-forge lode down completely",
-	"anvil making lode prills",
+addhint("forge lode down completely on an anvil",
+	{true,
+		"annealed anvil making hot lode prills",
+		"tempered anvil making hot lode prills",
+		"tempered anvil making annealed lode prills"
+	},
+	any_lode_toolhead
+)
+
+addhint("cold-forge annealed lode on a tempered anvil",
+	"tempered anvil making annealed lode toolhead_mallet",
 	"nc_lode:block_tempered"
 )
 
@@ -329,14 +363,19 @@ addhint("temper a lode tool head",
 		"nc_lode:toolhead_mallet_tempered",
 		"nc_lode:toolhead_spade_tempered",
 		"nc_lode:toolhead_hatchet_tempered",
-		"nc_lode:toolhead_pick_tempered"
+		"nc_lode:toolhead_pick_tempered",
+		"nc_lode:toolhead_mattock_tempered"
 	},
-	"anvil making lode toolhead_mallet"
+	any_lode_toolhead
 )
 
 addhint("weld glowing lode pick and spade heads together",
 	"assemble lode mattock head",
-	"anvil making lode toolhead_pick"
+	{true,
+		"annealed anvil making hot lode toolhead_pick",
+		"tempered anvil making hot lode toolhead_pick",
+		"tempered anvil making annealed lode toolhead_pick"
+	}
 )
 
 addhint("hammer a lode prill into a bar",
@@ -392,6 +431,21 @@ addhint("insert metal rod into a cobble panel",
 	"drill door cobble"
 )
 
+addhint("compress something with a hinged panel",
+	"witness:press",
+	"group:door"
+)
+
+addhint("catapult an item with a hinged panel",
+	"door catapult",
+	"group:door"
+)
+
+addhint("propel hinged panel with focused light",
+	"door ablation",
+	{"nc_optics:lens_on", "group:door"}
+)
+
 ------------------------------------------------------------------------
 -- LUX
 
@@ -427,6 +481,11 @@ addhint("assemble an annealed lode tote handle",
 	{"nc_lode:block_annealed", "nc_woodwork:shelf"}
 )
 
+addhint("pack up a complete tote",
+	"inv:nc_tote:handle_full",
+	"craft tote handle"
+)
+
 ------------------------------------------------------------------------
 -- OPTICS
 
@@ -456,23 +515,36 @@ addhint("cool molten glass into crude glass",
 )
 
 addhint("chip chromatic glass into prisms",
-	"nc_optics:prism",
-	"nc_optics:glass_opaque"
+	"group:silica_prism",
+	{"nc_optics:glass_opaque", "nc_lode:tool_mallet_tempered"}
 )
 
 addhint("chop chromatic glass into lenses",
-	"nc_optics:lens",
-	"nc_optics:glass_opaque"
+	"group:silica_lens",
+	{"nc_optics:glass_opaque", "nc_lode:tool_hatchet_tempered"}
 )
 
-local opticactive = {true, "nc_optics:lens_on", "nc_optics:prism_on"}
-
 addhint("activate a lens",
-	opticactive,
-	"nc_optics:lens"
+	"nc_optics:lens_on",
+	"group:silica_lens"
 )
 
 addhint("produce light from a lens",
 	"nc_optics:lens_glow",
-	opticactive
+	"group:silica_lens"
+)
+
+addhint("activate a prism",
+	"nc_optics:prism_on",
+	"nc_optics:lens_on"
+)
+
+addhint("gate a prism",
+	"nc_optics:prism_gated",
+	"nc_optics:lens_on"
+)
+
+addhint("assemble a glass tank",
+	"assemble glass tank",
+	{"nc_optics:glass", "nc_woodwork:frame"}
 )

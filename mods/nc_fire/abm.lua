@@ -18,7 +18,7 @@ do
 			end
 		end)
 	nodecore.register_limited_abm({
-			label = "Fire Requires/Consumes Embers and Emits Particles",
+			label = "fire consume",
 			interval = 1,
 			chance = 1,
 			nodenames = {modname .. ":fire"},
@@ -64,7 +64,7 @@ end
 local igniteseen = {}
 local ignitequeue = {}
 local igniteqty = 0
-minetest.register_globalstep(function()
+nodecore.register_globalstep("fire ignition", function()
 		if #ignitequeue < 1 then return end
 		for _, pos in ipairs(ignitequeue) do
 			nodecore.fire_check_ignite(pos)
@@ -73,15 +73,15 @@ minetest.register_globalstep(function()
 		ignitequeue = {}
 		igniteqty = 0
 	end)
-minetest.register_abm({
-		label = "Flammables Ignite",
+nodecore.register_limited_abm({
+		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
 		nodenames = {"group:igniter"},
 		neighbors = {"group:flammable"},
 		action = function(pos)
 			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable")) do
-				local key = minetest.pos_to_string(pos)
+				local key = minetest.hash_node_position(pos)
 				if not igniteseen[key] then
 					igniteseen[key] = true
 					igniteqty = igniteqty + 1
@@ -99,7 +99,7 @@ minetest.register_abm({
 	})
 
 nodecore.register_limited_abm({
-		label = "Fuel Burning/Snuffing",
+		label = "ember consume",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
@@ -115,10 +115,19 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_ambiance({
-		label = "Flame Ambiance",
-		nodenames = {modname .. ":fire"},
+		label = "flame ambiance",
+		nodenames = {"group:flame_ambiance"},
 		interval = 1,
 		chance = 1,
 		sound_name = "nc_fire_flamy",
-		sound_gain = 0.3
+		sound_gain = 0.1
+	})
+
+nodecore.register_item_ambiance({
+		label = "flame ambiance",
+		itemnames = {"group:flame_ambiance"},
+		interval = 1,
+		chance = 1,
+		sound_name = "nc_fire_flamy",
+		sound_gain = 0.1
 	})

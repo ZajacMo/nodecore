@@ -5,30 +5,18 @@ local minetest, nodecore, vector
 
 local modname = minetest.get_current_modname()
 
-local function lens_check(pos, node, check)
+local function lens_check(pos, node, recv, getnode)
 	local face = nodecore.facedirs[node.param2]
 
-	if check(face.k) then
+	if recv(face.k) then
 		return modname .. ":lens_glow"
 	end
 
 	local fore = vector.add(pos, face.f)
-	local on
-	if face.f.y == 1 then
-		local ll = minetest.get_node_light(fore)
-		if ll then
-			local lt = 15
-			if node and node.name == modname .. ":lens_on" then lt = 14 end
-			on = ll >= lt and face.f.y == 1
-		end
-	end
-	if not on then
-		local nnode = minetest.get_node(fore)
-		local def = minetest.registered_items[nnode.name] or {}
-		on = def.light_source and def.light_source > 4
-	end
-	if on then
-		return modname .. ":lens_on", {face.k}
+	local nnode = getnode(fore)
+	local def = minetest.registered_items[nnode.name] or {}
+	if def.light_source and def.light_source > 4 then
+		return modname .. ":lens_on"
 	end
 
 	return modname .. ":lens"
@@ -55,8 +43,10 @@ local basedef = {
 		silica = 1,
 		silica_lens = 1,
 		optic_check = 1,
-		cracky = 3
+		cracky = 3,
+		scaling_time = 125
 	},
+	silktouch = false,
 	drop = modname .. ":lens",
 	on_construct = nodecore.optic_check,
 	on_destruct = nodecore.optic_check,
@@ -82,7 +72,10 @@ reg("_on", {
 			txr .. "^" .. pact .. "^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
-		light_source = 2
+		light_source = 1,
+		optic_source = function(_, node)
+			return {nodecore.facedirs[node.param2].k}
+		end
 	})
 reg("_glow", {
 		description = "Shining Lens",
@@ -95,7 +88,7 @@ reg("_glow", {
 	})
 
 nodecore.register_limited_abm({
-		label = "Lens Fire Starting",
+		label = "lens fire start",
 		interval = 2,
 		chance = 2,
 		nodenames = {modname .. ":lens_on"},

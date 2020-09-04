@@ -5,8 +5,8 @@ local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
-local craft_recipes = {}
-nodecore.craft_recipes = craft_recipes
+local registered_recipes = {}
+nodecore.registered_recipes = registered_recipes
 
 local id = 0
 
@@ -71,15 +71,15 @@ function nodecore.register_craft(recipe)
 	local newp = recipe.priority or 0
 
 	local min = 1
-	local max = #craft_recipes + 1
+	local max = #registered_recipes + 1
 	while max > min do
 		local try = math_floor((min + max) / 2)
-		local oldp = craft_recipes[try].priority or 0
+		local oldp = registered_recipes[try].priority or 0
 		if newp < oldp then
 			min = try + 1
 		else
 			max = try
 		end
 	end
-	table_insert(craft_recipes, min, recipe)
+	table_insert(registered_recipes, min, recipe)
 end

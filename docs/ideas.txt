@@ -1,0 +1,271 @@
+========================================================================
+IDEAS: Possible future additions/improvements to the game
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Visual "subtitles" for sounds?
+	- Use new image_waypoint HUD type; it works in new versions,
+	  invisible in old versions (graceful fallback).
+	- An icon for each sound type.
+
+- Separate air vs. node cursor?
+	- Like the node vs. entity cursor, can we hide the cursor when
+	  pointing only at air?
+	- Would server lag be too much?
+	- This would integrate really well with a WAILA sort of thing.
+	- Could totally revamp touchtips, and dynamic feel Lightning.
+	- Use an image HUD so we can force mobile to display it too, so
+	  mobile players can use look dir too?
+
+- Buff igniting
+	- Make hot lode and other heated materials able to ignite
+		- This was probably not already done just because we
+		  didn't have AISMs at the time, but we do now.
+	- Reconsider lux fluid ignition again.
+		- Maybe have rare "spark" events that can ignite?
+		- Maybe have it involve proximity to other materials?
+			- Water? Lava?
+			- Optic beams?
+
+- Chop frames, ladders, staves back down into sticks?
+
+- Can we use glasslike_framed for shelves?
+	- Alternate 2 versions of the registration based on y coord
+	  so it forces top/bottom faces to show
+
+- More lode bar crafts:
+	- Frames
+	- Ladders?
+	- Adzes?
+		- chop+crumb -1 relative tier
+		- cracky -2 relative tier
+		- full durability
+		- Should these be full lode or wood handle?
+	- Rakes?
+		- Return some prills after construction?
+	- Make wear carry across heating/cooling recipes
+		- Allow full-lode tools to be tempered
+	- All these need to be recyclable.
+
+- Piezo node for optics detects sounds?
+	- Sounds emitted by mod stuff?
+	- Footsteps?
+	- Can be used as a BUD
+
+- Lode tongs?
+	- Craft from bars/rods (or lode adzes?).
+	- Add an API to hot potato
+		- Scan for all hot potato items and produce a list of slot->bool
+		- If any items found with an on_hot_potato callback, pass them
+		  that list (and player, inv, etc) to be modified.
+	- If slot is marked "safe" then no hot potato if items are in
+	  a slot adjacent to tongs.
+	- If slot is not marked safe, mark it safe if tongs or any tool
+	  are wielded item.
+	- Unmark safe any slots that don't contain hot things after
+	  hot potato check.
+
+- Allow frame loose ends to be chopped off when placed next to other
+  frames, so custom shapes can be made.
+
+- Dungeon loot
+	- Add recipe hints (prearranged nodes) as decorations?
+	- Rows of shelves against walls.  Very rarely lode crates.
+	- Loot items in shelves, weighted pickrand().  Add a "margin" pick
+	  result with value of proportion of where in range the picked value
+	  was, and vary tool durability or stack count non-linearly by it.
+	- Scattered items on floor.  Most are from loot tables, some are
+	  crates or storeboxes.
+
+- A lode "mace" tool with all dig groups?
+	- Would require reevaluatng recipe priority, or tool modality.
+
+- Make lava easier to find at a distance visually
+	- Particles, like cherenkov?
+
+- New Darkness feature:
+	- Keep track of queue of recent "safe spots" for player:
+	  in sunlight, on solid ground or climbable etc.
+	- Also check for being completely entombed in solid non-climbables.
+	- Track player darkness, search for nearby light.  Keep track of recent hit/miss (ring/queue).
+	- If player is in TOTAL darkness for long enough to be certain, then do "fugue" teleportation.
+	- Fade screen to black slowly via HUD (maybe have an API for this for skyrealms).
+	- Drop all items.
+	- Apply a temporary debuff...?
+	- Teleport player back to recent safe spots until we find one, or run out.
+	- Fade screen back from black.
+
+- Should tool appearance vary based on wear?
+	- Make "fresh" vs. "worn" tools (for purposes of their usability
+	  in crafts) have a distinct look?
+
+- Tree sap
+	- Stumps with air above exude, become dry stumps.
+	- Use as a glue/resin in recipes.
+	- Make longer-life torches?
+	- Stick optics in place to prevent rotating?
+
+- Straw/thatch?
+
+- Domain Wall Sensor
+	- Adapt from sztest?
+	- Field Generator?
+		- Power an annealed lode block from 2 opposite faces.
+		- Generates particle effect at mapblock boundary.
+	- Particle effect with lux fluid and/or cobble?
+	- Create particle effect around player while carrying lux in
+	  inventory?
+		- Maybe only if the lux is higher activation tier?
+
+- Should ash and derivatives have a fertilizing effect?
+	- Maybe wet/tacky stuccos?
+
+- Optic locking
+	- Prevent accidental rotation.
+	- Use tree sap / glue?
+		- Make "glued" optic node?
+		- Detect adjacent glue node?
+	- Apply frame, make framed optics?
+	- Hammer into place with certain tool?
+
+- Door Automation
+	- Should have press recipes for stickcraft, i.e. staves,
+	  frames, ladders.
+	- Press tools (or tool heads) into nodes to activate other
+	  pummel recipes like chopping.
+		- Mount tool heads on frames to make machine tools?
+	- Press recipes for digging.
+		- If pushing a node (or toolhead backed by node) and there
+		  is a climbable walkable behind it, or a storebox, dig the
+		  node and push it through climable as catapult, or into
+		  storebox if it fits.
+	- Pressing stack of 1 node places it, instead of pummeling it.
+	  Can pummel on the second push.
+	- Should doors trigger place recipes when blocked?
+	- Push players?
+	- Need more door materials: lode, glasses
+
+- Renewability Gap
+	- Renewable but not generatable
+		- Sponges: Sprout under water from peat+sand?
+		- Lode
+		- Lux
+		- Water sources.
+	- Sustainable but not renewable
+	- Not sustainable
+		- Lava sources.
+			- Surround stone with lava to melt?
+
+- Threats
+	- Visceral
+		- Flammable/toxic gas?
+		- Monsters: stone-lurkers, mimics.
+			- Complex multi-node mimic that eats tools you try to dig it with,
+			  stores them in core node(s) inside somewhere to be recovered.
+		- Lightning, meteor strikes?
+	- Creeping
+		- Cellular automata hazards.
+		- From exploration, delving too deep, leaving things to rot, etc.
+		- Blights, Fungi
+		- Termites, carpenter ants, other wood-eating inflictions?
+
+- Lurk Ore
+	- Moves freely among air-exposed stone while no player is looking.
+	- Follows after player, attempting to cause harm.
+		- Weakens nodes above/below player into falling nodes,
+		  e.g. loose cobble, gravel?
+		- Steals items from player, drops onto ground or absorbs them
+		  into body?  Saps tool durability?
+		- Ignites flammables it passes by?
+		- Downgrades or absorbs ores nearby by contact or air floodfill?
+		- Creates illusionary nodes you can fall through?
+	- Cannot be dug or damaged directly.
+		- Digging it yields plain stone, but converts up to 2
+		  surrounding stone nodes into Lurk.
+	- Need to dig all around it so it cannot move, then apply Some
+	  time-integrated process to convert it to useful form.
+
+- New materials to craft with.
+	- Dungeon materials, stonework?
+	- Decorations for dungeons
+	- Small plants? Reeds? Mallows?
+	- Sea stars, anenome, coral, other underwater things?
+	- Fungi, esp. tree-destroying ones, blight?
+	- Oil, natural gas?  Fossils and fossil fuels?
+	- Geode, hydra crystals, radioactives?
+	- Shipwrecks or alien tech
+	- Slow-moving animals? Snails? Miniature spice worms?
+	- Non-portable things, like "spawners" or wormholes
+	- Tubers and taproots, cacti, and other "defensive" plantlife
+	- Plant-like CA animals, like bee nests and clouds of bees?
+	  Termine mounds? Ant colonies? Coral?
+	- Popeggcorn?
+	- Ores that smelt via heating and then rapid quenching?
+	- Things that cannot ever be dug, and must be moved only
+	  by in-world machinery?
+
+- Vary player walking speed based on nodes under feet?
+
+- Visual "craft guide" system?
+	- Build a 3x3 work space out of wood/logs, place center node
+	  last and it will convert to a workbench node.
+	- Workbench node will scan for potential recipe matches
+	  centered on the space above based on what's present
+	  and matches at least 1 non-air node, picks one.
+	- Create display "ghost" entities representing items that
+	  can be placed to complete the recipe.
+
+- Should tree growth rate start out faster but slow down?
+	- This could make the decision to harvest trees early vs
+	  wait for them to mature more nuanced.
+
+- Social features
+	- Randomize player appearance/colors.
+		- Shirt/pants, possibly w/ stripes/patterns
+		- Skin color, hair color, eye color?
+	- Add a "cloak" layer for cloaks, capes, over entire body
+	- Make some control states / anims last a little longer, e.g.
+	  extend mining or waving anims to a second or so to make sure
+	  they're visible and not just flicker.
+
+- Drop-in recipes, triggered on thrown or falling items settling?
+	- Good for dangerous stuff, maybe?
+
+- Compact signage via concrete/writing/stylus
+	- Draw glyphs on a wall.
+	- Place a lens focusing light from the wall onto a spot.
+	- Put pliant concrete in that spot.
+	- Make sure wall is adequately lit.
+	- Etch the lens-facing side of the pliant concrete with stylus.
+- Create a "custom patterned" concrete sign block with letters etched
+  onto it.  Store in metadata, use ents to render, etc.
+
+- Allow metalworking with wood tools?
+	- Eat a lot of extra durability?
+
+- Door animations.
+	- These need to be relatively efficient, i.e. not involve
+	  a ton of node manipulation or spawning lots of entities.
+	  Of particular concern is network packet load on clients.
+	- Something using animated entities (which could represent
+	  multiple nodes sharing an axis) could work well.
+	- Alternatively, a reasonable particle effect?  Something
+	  abstract is fine too, as long as it conveys a sense of
+	  movement to help players visualize what's moving and in
+	  what direction.
+
+- Visual in-world hotbar
+	- GreenXenith's visualbar mod
+	- Replace hotbar, merge it with both bandolier and YCTIWY?
+	- Players could be "pickpocketed" during normal gameplay.
+		- Make a sound/visual to warn player.
+	- Jordach's new first-person-attached entities feature?
+
+........................................................................
+========================================================================

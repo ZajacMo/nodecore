@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, vector
-    = ipairs, math, minetest, nodecore, vector
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -54,19 +54,20 @@ local function playercheck(dtime, player)
 	if player:get_player_control().sneak or
 	not nodecore.player_visible(player) then return end
 
-	local q = (qtys[name] or 0)
-	+ vector.distance(pos, old) * 0.25
-	+ dtime * 0.05
+	local dist = vector.distance(pos, old)
+	if dist > 20 then dist = 20 end
+	local q = (qtys[name] or 0) + dist * 0.25 + dtime * 0.05
 	queuechecks(math_floor(q), name, pos)
 	qtys[name] = q - math_floor(q)
 end
-minetest.register_globalstep(function(dtime)
-		for _, player in ipairs(minetest.get_connected_players()) do
-			playercheck(dtime, player)
+nodecore.register_playerstep({
+		label = "fallingnode disturbance",
+		action = function(player, _, dtime)
+			if not nodecore.stasis then return playercheck(dtime, player) end
 		end
-	end)
+	})
 
-minetest.register_on_dignode(function(pos, _, digger)
+nodecore.register_on_dignode("nodefall disturb on dig", function(pos, _, digger)
 		local name = "(unknown)"
 		if digger and digger.get_player_name then name = digger:get_player_name() end
 		queuechecks(4, name, pos)

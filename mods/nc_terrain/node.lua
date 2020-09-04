@@ -47,8 +47,17 @@ local function regliquid(def)
 	t.drawtype = "flowingliquid"
 	t.liquidtype = "flowing"
 	t.paramtype2 = "flowingliquid"
+	t.buildable_to = true
 	regterrain(t)
 end
+
+--[[
+STONE GROUPS:
+rock: all rocky/stony things, including stone, cobble, brick, etc.
+stone: variants of smooth stone, including ones with inclusions (ore).
+hard_stone: deeper strata that trigger the hint.
+smoothstone: smooth stone that can be chiseled to bricks.
+--]]
 
 local strata = {}
 regterrain({
@@ -61,10 +70,10 @@ regterrain({
 			"sandstone",
 			"mese",
 		},
-		silktouch = false,
 		groups = {
 			stone = 1,
 			rock = 1,
+			smoothstone = 1,
 			cracky = 2
 		},
 		drop_in_place = modname .. ":cobble",
@@ -79,7 +88,7 @@ for i = 1, nodecore.hard_stone_strata do
 			tiles = {nodecore.hard_stone_tile(i)},
 			silktouch = false,
 			groups = {
-				stone = i,
+				stone = i + 1,
 				rock = i,
 				cracky = i + 2,
 				hard_stone = i
@@ -105,7 +114,8 @@ regterrain({
 		groups = {
 			cobble = 1,
 			rock = 1,
-			cracky = 1
+			cracky = 1,
+			cobbley = 1
 		},
 		alternate_loose = {
 			repack_level = 2,
@@ -141,7 +151,8 @@ regterrain({
 			groups = {
 				dirt_loose = 1,
 				falling_repose = 2,
-				soil = 2
+				soil = 2,
+				grassable = 1
 			}
 		},
 		mapgen = {
@@ -151,7 +162,8 @@ regterrain({
 		groups = {
 			dirt = 1,
 			crumbly = 1,
-			soil = 1
+			soil = 1,
+			grassable = 1
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_terrain_crunchy")
@@ -162,7 +174,8 @@ regterrain({
 		tiles = {
 			modname .. "_grass_top.png",
 			modname .. "_dirt.png",
-			modname .. "_dirt.png^" .. modname .. "_grass_side.png"
+			modname .. "_dirt.png^(" .. modname .. "_grass_top.png^[mask:"
+			.. modname .. "_grass_sidemask.png)"
 		},
 		mapgen = {
 			"dirt_with_grass",
@@ -244,9 +257,8 @@ regliquid({
 		alpha = 192,
 		walkable = false,
 		pointable = false,
-		diggable = false,
 		buildable_to = true,
-		drowning = 1,
+		drowning = 2,
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
@@ -266,9 +278,8 @@ regliquid({
 		alpha = 160,
 		walkable = false,
 		pointable = false,
-		diggable = false,
 		buildable_to = true,
-		drowning = 1,
+		drowning = 2,
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2},
 		post_effect_color = {a = 103, r = 91, g = 97, b = 103},
@@ -289,13 +300,16 @@ regliquid({
 		liquid_renewable = false,
 		light_source = 13,
 		walkable = false,
-		diggable = false,
-		buildable_to = true,
-		drowning = 1,
+		drowning = 2,
 		damage_per_second = 8,
-		on_punch = nodecore.node_punch_hurt,
 		drop = "",
-		groups = {igniter = 1, lava = 2, stack_as_node = 1},
+		groups = {
+			igniter = 1,
+			lava = 2,
+			stack_as_node = 1,
+			damage_touch = 1,
+			damage_radiant = 8
+		},
 		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})

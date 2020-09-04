@@ -1,0 +1,68 @@
+========================================================================
+RELENG: Release engineering and version support
+------------------------------------------------------------------------
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+VERSION POLICY
+--------------
+
+Version support should go as far back as:
+- One official minor release (e.g. #.#) prior to the latest across all
+  platforms.
+- The latest officially supported release for each platform.
+This means that during the 5.2 release, we support 5.2, 5.1, and 5.0
+(because android is stuck on 5.0).  When 5.3 is released and brings
+back current android support, we will drop 5.0 and 5.1, since all
+platforms will be at 5.3, and thus 5.2 will be the earliest.
+
+Version support should go as far forward as:
+Support the current latest release at all times.  Test the game out on
+dev versions so we can be prepared to support the next release as soon
+as it happens.
+
+ENGINE/FORK POLICY
+------------------
+
+NodeCore is only designed to fully support the official minetest.net
+game engine at this time, on all supported desktop and mobile
+platforms.
+
+Forks may be unofficially supported if they are 100% API-compatible
+with an officially-supported engine, or if there is benefit to
+supporting them and they require only negligible changes/maintenance
+to get working.
+
+Compatible forks will not explicitly be blocked from running NodeCore
+if they are capable of running it.  Nags/warnings may be added for
+such engines, but only if they have the potential to cause significant
+disruption, such as generating excessive frivolous support issues,
+allowing cheating, or providing an altered game experience without
+indication that it does not represent the original.
+
+NEW MT RELEASE PROCESS
+----------------------
+
+- Wait for a grace period (standard 1 week) after new MT release before
+  evaluating EOS for previous versions.
+- Reevaluate the policy and decide which version(s) need EOS
+	- Check CDB for version strings and update .cdbrelease.lua
+	- Check this doc for special TODO items related to release
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+- After 5.2 EOS:
+	- Change bandolier slot items back to upright_sprite
+	- Consider switching touchtips to waypoint HUDs now that
+	  hiding distance is an options.
+	- Switch ents to using on_step moveresult for collision
+	  detection instead of checking nodes directly.
+
+........................................................................
+========================================================================

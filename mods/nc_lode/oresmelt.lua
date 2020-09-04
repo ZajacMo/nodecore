@@ -11,6 +11,7 @@ nodecore.register_craft({
 		touchgroups = {flame = 3},
 		duration = 30,
 		cookfx = true,
+		indexkeys = {"group:lode_cobble"},
 		nodes = {
 			{
 				match = {groups = {lode_cobble = true}},
@@ -26,9 +27,8 @@ nodecore.register_limited_abm({
 		chance = 1,
 		action = function(pos)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			if nodecore.match(below, {walkable = true}) then return end
-			minetest.set_node(pos, {name = "nc_terrain:cobble"})
-			nodecore.node_sound(pos, "place")
+			if nodecore.walkable(below) then return end
+			nodecore.set_loud(pos, {name = "nc_terrain:cobble"})
 			return nodecore.item_eject(below, modname
 				.. ":prill_hot " .. (nodecore.exporand(1) + 1))
 		end
@@ -38,13 +38,14 @@ nodecore.register_craft({
 		label = "lode ore cooling",
 		action = "cook",
 		touchgroups = {flame = 0},
-		duration = 30,
+		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
+		indexkeys = {modname .. ":cobble_hot"},
 		nodes = {
 			{
 				match = modname .. ":cobble_hot",
-				replace = modname .. ":cobble"
+				replace = modname .. ":ore"
 			}
 		}
 	})
@@ -57,6 +58,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return nodecore.quenched(pos)
 		end,
+		indexkeys = {modname .. ":cobble_hot"},
 		nodes = {
 			{
 				match = modname .. ":cobble_hot",

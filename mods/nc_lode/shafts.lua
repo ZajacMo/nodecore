@@ -16,7 +16,8 @@ nodecore.register_lode("Bar", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		groups = {
-			falling_repose = 1
+			falling_repose = 1,
+			chisel = 1
 		}
 	})
 
@@ -25,6 +26,7 @@ nodecore.register_craft({
 		priority = -1,
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		indexkeys = {modname .. ":prill_annealed"},
 		nodes = {
 			{
 				match = modname .. ":prill_annealed",
@@ -46,6 +48,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {thumpy = 3},
 		normal = {y = 1},
+		indexkeys = {modname .. ":bar_annealed"},
 		nodes = {
 			{
 				match = modname .. ":bar_annealed",
@@ -72,7 +75,8 @@ nodecore.register_lode("Rod", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		groups = {
-			falling_repose = 2
+			falling_repose = 2,
+			chisel = 2
 		}
 	})
 
@@ -80,13 +84,19 @@ nodecore.register_craft({
 		label = "anvil making lode rod",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		indexkeys = {modname .. ":bar_annealed"},
 		nodes = {
 			{
-				match = {name = modname .. ":bar_annealed", count = 2},
+				match = {name = modname .. ":bar_annealed"},
 				replace = "air"
 			},
 			{
 				y = -1,
+				match = {name = modname .. ":bar_annealed"},
+				replace = "air"
+			},
+			{
+				y = -2,
 				match = modname .. ":block_tempered"
 			}
 		},
@@ -99,13 +109,14 @@ nodecore.register_craft({
 		label = "recycle lode rod",
 		action = "pummel",
 		toolgroups = {choppy = 3},
+		indexkeys = {modname .. ":rod_hot"},
 		nodes = {
 			{
-				match = modname .. ":rod_annealed",
+				match = modname .. ":rod_hot",
 				replace = "air"
 			}
 		},
 		items = {
-			{name = modname .. ":bar_annealed", count = 2}
+			{name = modname .. ":bar_hot", count = 2}
 		}
 	})

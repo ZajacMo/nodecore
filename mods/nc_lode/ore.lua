@@ -25,18 +25,24 @@ end
 
 local stratstone = {}
 local stratore = {}
+local oretile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png)"
+local stonetile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_sign.png^[opacity:140)"
 local stone = reg("Stone", {
 		description = "Stone",
-		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png^[opacity:48)"},
+		tiles = {"nc_terrain_stone.png^" .. stonetile},
 		drop_in_place = "nc_terrain:cobble",
+		groups = {
+			stone = 1,
+			smoothstone = 1
+		},
+		silktouch = false,
 		strata = stratstone
 	})
 stratstone[1] = stone
 local ore = reg("Ore", {
-		tiles = {"nc_terrain_stone.png^(" .. modname .. "_ore.png^[mask:"
-			.. modname .. "_mask_ore.png)"},
+		tiles = {"nc_terrain_stone.png^" .. oretile},
 		drop_in_place = modname .. ":cobble",
+		groups = {stone = 1},
 		strata = stratore
 	})
 stratore[1] = ore
@@ -44,22 +50,23 @@ for i = 1, nodecore.hard_stone_strata do
 	local hst = nodecore.hard_stone_tile(i)
 	stratstone[i + 1] = reg("Stone_" .. i, {
 			description = "Stone",
-			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png^[opacity:48)"},
+			tiles = {hst .. "^" .. stonetile},
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			groups = {
+				stone = i + 1,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
-			}
+			},
+			silktouch = false
 		})
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
-			tiles = {hst .. "^(" .. modname .. "_ore.png^[mask:"
-				.. modname .. "_mask_ore.png)"},
+			tiles = {hst .. "^" .. oretile},
 			drop_in_place = modname .. ":cobble",
 			groups = {
+				stone = i + 1,
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
@@ -70,9 +77,11 @@ end
 reg("Cobble", {
 		tiles = {modname .. "_ore.png^nc_terrain_cobble.png"},
 		groups = {
+			rock = 1,
 			lode_cobble = 1,
 			cracky = 2,
-			lodey = 1
+			lodey = 1,
+			cobbley = 1
 		},
 		alternate_loose = {
 			repack_level = 2,
@@ -93,9 +102,13 @@ reg("cobble_hot", {
 			"nc_terrain_gravel.png^(" .. modname .. "_hot.png^[mask:"
 			.. modname .. "_mask_molten.png)^nc_terrain_cobble.png"
 		},
-		groups = {cracky = 0, lodey = 1},
-		damage_per_second = 2,
-		on_punch = nodecore.node_punch_hurt
+		groups = {
+			cracky = 0,
+			lodey = 1,
+			cobbley = 1,
+			damage_touch = 1,
+			damage_radiant = 1
+		}
 	})
 
 local oreid = 0
@@ -147,6 +160,7 @@ local c_ore = minetest.get_content_id(ore)
 local c_lodestone = minetest.get_content_id(stone)
 local getstoneids = nodecore.memoize(function()
 		local stoneids = {}
+		for i = 1, 65535 do stoneids[i] = false end
 		local stratadata = nodecore.stratadata()
 		for _, id in pairs({
 				c_lodestone,
@@ -161,35 +175,35 @@ local getstoneids = nodecore.memoize(function()
 		return stoneids
 	end)
 
-nodecore.register_mapgen_shared(function(minp, maxp, area, data)
-		local stoneids = getstoneids()
+nodecore.register_mapgen_shared({
+		label = "lode exposure",
+		func = function(minp, maxp, area, data)
+			local stoneids = getstoneids()
 
-		local function bad(x, y, z)
-			local c = data[area:index(x, y, z)]
-			return not stoneids[c]
-		end
-
-		for z = minp.z, maxp.z do
-			for y = minp.y, maxp.y do
-				for x = minp.x, maxp.x do
-					local i = area:index(x, y, z)
-					if data[i] == c_ore then
-						if x == minp.x
-						or x == maxp.x
-						or y == minp.y
-						or y == maxp.y
-						or z == minp.z
-						or z == maxp.z
-						or bad(x + 1, y, z)
-						or bad(x - 1, y, z)
-						or bad(x, y + 1, z)
-						or bad(x, y - 1, z)
-						or bad(x, y, z + 1)
-						or bad(x, y, z - 1)
-						then data[i] = c_lodestone
+			local ai = area.index
+			for z = minp.z, maxp.z do
+				for y = minp.y, maxp.y do
+					local offs = ai(area, 0, y, z)
+					for x = minp.x, maxp.x do
+						local i = offs + x
+						if data[i] == c_ore then
+							if x == minp.x
+							or x == maxp.x
+							or y == minp.y
+							or y == maxp.y
+							or z == minp.z
+							or z == maxp.z
+							or (not stoneids[data[i - 1]])
+							or (not stoneids[data[i + 1]])
+							or (not stoneids[data[i - area.ystride]])
+							or (not stoneids[data[i + area.ystride]])
+							or (not stoneids[data[i - area.zstride]])
+							or (not stoneids[data[i + area.zstride]])
+							then data[i] = c_lodestone
+						end
 					end
 				end
 			end
 		end
 	end
-end)
+})

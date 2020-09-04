@@ -21,6 +21,7 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	if not def then return end
+	if nodecore.protection_test(pos, clicker) then return stack end
 	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, clicker, pos, node)) then
 		return doplace(stack, clicker, pointed_thing)
@@ -28,7 +29,7 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 	if def.stack_allow and def.stack_allow(pos, node, stack) == false then
 		return doplace(stack, clicker, pointed_thing)
 	end
-	return nodecore.stack_add(pos, stack)
+	return nodecore.stack_add(pos, stack, clicker)
 end
 
 function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
@@ -37,6 +38,7 @@ function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
 	if puncher:get_player_control().sneak then return end
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
+	if nodecore.protection_test(pos, puncher) then return end
 	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, puncher, pos, node)) then return end
 	if pointed_thing.above.y < pointed_thing.under.y then return end
@@ -66,7 +68,8 @@ nodecore.register_on_register_item(function(_, def)
 			end
 		end
 
-		def.groups.visinv = def.groups.visinv + 1
+		def.groups.visinv = def.groups.visinv or 1
+		def.groups.always_scalable = def.groups.always_scalable or 1
 		def.groups.container = def.groups.container or def.groups.storebox
 
 		def.on_construct = def.on_construct or nodecore.visinv_on_construct

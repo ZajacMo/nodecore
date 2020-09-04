@@ -5,6 +5,8 @@ local string_gmatch, string_rep
     = string.gmatch, string.rep
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local huds = {}
 
 local myprops = {
@@ -15,8 +17,21 @@ local myprops = {
 
 local function copytbl(t)
 	local u = {}
-	for k, v in pairs(t) do u[k] = v end
+	for k, v in pairs(t) do u[k] = type(v) == "table" and copytbl(v) or v end
 	return u
+end
+
+local function differ(a, b)
+	if type(a) == "table" and type(b) == "table" then
+		for k, v in pairs(a) do
+			if differ(b[k], v) then return true end
+		end
+		for k, v in pairs(b) do
+			if differ(a[k], v) then return true end
+		end
+		return
+	end
+	return a ~= b
 end
 
 local function updatehud(player, entry, phuds, dtime)
@@ -30,7 +45,7 @@ local function updatehud(player, entry, phuds, dtime)
 	end
 	if entry.id then
 		for k, v in pairs(entry.new) do
-			if (not myprops[k]) and (v ~= entry.old[k]) then
+			if (not myprops[k]) and differ(v, entry.old[k]) then
 				player:hud_change(entry.id, k, v)
 				entry.old[k] = v
 			end
@@ -66,11 +81,11 @@ local function hud_set(player, def)
 	end
 	local entry = phuds[def.label]
 	if not entry then
-		entry = {label = def.label}
+		entry = {}
 		phuds[def.label] = entry
 	end
-	entry.new = def
-	entry.ttl = def.ttl or entry.ttl
+	entry.new = {}
+	for k, v in pairs(def) do (myprops[k] and entry or entry.new)[k] = v end
 	if def.quick then return updatehud(player, entry, phuds, 0) end
 end
 nodecore.hud_set = hud_set
@@ -80,6 +95,7 @@ function nodecore.hud_set_multiline(player, def, trans)
 	player, pname, def = hud_params(player, def)
 
 	local lines = {}
+	def.text = def.text or ""
 	for str in string_gmatch(def.text, "[^\r\n]+") do
 		lines[#lines + 1] = trans and trans(str) or str
 	end
@@ -112,7 +128,7 @@ function nodecore.hud_set_multiline(player, def, trans)
 end
 
 minetest.after(0, function()
-		minetest.register_globalstep(function(dtime)
+		nodecore.register_globalstep("hud update", function(dtime)
 				for _, player in pairs(minetest.get_connected_players()) do
 					local pname = player:get_player_name()
 					local phuds = huds[pname]
@@ -125,6 +141,6 @@ minetest.after(0, function()
 			end)
 	end)
 
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_on_leaveplayer("leave clear huds", function(player)
 		huds[player:get_player_name()] = nil
 	end)

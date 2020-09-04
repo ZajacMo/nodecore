@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -11,12 +13,14 @@ minetest.register_node(modname .. ":humus", {
 		groups = {
 			dirt = 2,
 			crumbly = 1,
-			soil = 4
+			soil = 4,
+			grassable = 1
 		},
 		alternate_loose = {
 			groups = {
 				dirt_loose = 2,
-				soil = 5
+				soil = 5,
+				grassable = 1
 			}
 		},
 		crush_damage = 1,
@@ -42,6 +46,7 @@ nodecore.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
+		indexkeys = {modname .. ":leaves_loose"},
 		nodes = {
 			{
 				match = {name = modname .. ":leaves_loose", count = 8},
@@ -50,21 +55,33 @@ nodecore.register_craft({
 		}
 	})
 
+local compostcost = 2500
+
 nodecore.register_soaking_abm({
-		label = "Composting Growing",
+		label = "peat compost",
+		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
-		interval = 10,
-		chance = 1,
+		interval = 1,
+		chance = 10,
 		limited_max = 100,
 		limited_alert = 1000,
 		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
-			if data.total < 2500 then return end
+			if data.total < compostcost then return end
 			minetest.get_meta(pos):from_table({})
-			minetest.set_node(pos, {name = modname .. ":humus"})
-			nodecore.node_sound(pos, "place")
+			if math_random(1, 100) == 1 and nodecore.is_full_sun(
+				{x = pos.x, y = pos.y + 1, z = pos.z}) then
+				nodecore.set_loud(pos, {name = "nc_terrain:dirt_with_grass"})
+				return
+			end
+			nodecore.set_loud(pos, {name = modname .. ":humus"})
+			local found = nodecore.find_nodes_around(pos, {modname .. ":peat"})
+			if #found < 1 then return false end
+			nodecore.soaking_abm_push(nodecore.pickrand(found),
+				"compost", data.total - compostcost)
+			return false
 		end
 	})
 
-nodecore.register_dirt_leeching(modname .. ":humus", "nc_terrain:dirt_loose", 3)
+nodecore.register_dirt_leaching(modname .. ":humus", "nc_terrain:dirt_loose", 3)

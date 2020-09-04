@@ -29,13 +29,15 @@ minetest.register_node(modname .. ":fire", {
 			flame = 1,
 			flame_sound = 1,
 			stack_as_node = 1,
+			damage_touch = 1,
+			damage_radiant = 1,
+			flame_ambiance = 1
 		},
-		damage_per_second = 2,
+		damage_per_second = 1,
 		sunlight_propagates = true,
 		floodable = true,
 		walkable = false,
 		pointable = false,
-		diggable = false,
 		buildable_to = true,
 		drop = ""
 	})
@@ -104,11 +106,10 @@ for num = 1, nodecore.fire_max do
 				ember = num,
 				falling_node = 1,
 				stack_as_node = 1,
+				damage_touch = 1,
+				damage_radiant = 3
 			},
 			drop = "",
-			diggable = false,
-			damage_per_second = 2,
-			on_punch = nodecore.node_punch_hurt,
 			crush_damage = 1,
 			sounds = nodecore.sounds("nc_terrain_crunchy")
 		})

@@ -12,6 +12,10 @@ nodecore.amcoremod()
 local modname = minetest.get_current_modname()
 local modstore = minetest.get_mod_storage()
 
+nodecore.register_on_player_discover,
+nodecore.registered_on_player_discovers
+= nodecore.mkreg()
+
 ------------------------------------------------------------------------
 -- DATABASE SETUP
 
@@ -71,8 +75,11 @@ local function playeradd(qty, player, ...)
 	end
 	if qty ~= 0 and dbadd(qty, pname, ...) <= qty then
 		local t = {...}
-		minetest.log(string_format("player %q discovered %q",
+		nodecore.log("action", string_format("player %q discovered %q",
 				pname, table_concat(t, ":")))
+		for _, v in pairs(nodecore.registered_on_player_discovers) do
+			v(player, t)
+		end
 	end
 	if not statsdb[pname].firstseen then
 		statsdb[pname].firstseen = os_date("!*t")
@@ -85,27 +92,28 @@ nodecore.player_stat_add = playeradd
 -- PLAYER EVENTS
 
 local function reghook(func, stat, pwhom, npos)
-	return func(function(...)
+	return func("stat hook", function(...)
 			local t = {...}
 			local whom = t[pwhom]
 			local n = npos and t[npos].name or nil
 			return playeradd(1, whom, stat, n)
 		end)
 end
-reghook(minetest.register_on_punchnode, "punch", 3, 2)
-reghook(minetest.register_on_dignode, "dig", 3, 2)
-reghook(minetest.register_on_placenode, "place", 3, 2)
-reghook(minetest.register_on_dieplayer, "die", 1)
-reghook(minetest.register_on_respawnplayer, "spawn", 1)
-reghook(minetest.register_on_joinplayer, "join", 1)
+reghook(nodecore.register_on_punchnode, "punch", 3, 2)
+reghook(nodecore.register_on_dignode, "dig", 3, 2)
+reghook(nodecore.register_on_placenode, "place", 3, 2)
+reghook(nodecore.register_on_dieplayer, "die", 1)
+reghook(nodecore.register_on_respawnplayer, "spawn", 1)
+reghook(nodecore.register_on_joinplayer, "join", 1)
 
 local function unpackreason(reason)
 	if type(reason) ~= "table" then return reason or "?" end
+	if reason.nc_type then return "nc", reason.nc_type end
 	if reason.from then return reason.from, reason.type or nil end
 	return reason.type or "?"
 end
 
-minetest.register_on_player_hpchange(function(whom, change, reason)
+nodecore.register_on_player_hpchange("hurt/heal stats", function(whom, change, reason)
 		if change < 0 then
 			return playeradd(-change, whom, "hurt", unpackreason(reason))
 		else
@@ -113,11 +121,11 @@ minetest.register_on_player_hpchange(function(whom, change, reason)
 		end
 	end)
 
-minetest.register_on_cheat(function(player, reason)
+nodecore.register_on_cheat("cheat stats", function(player, reason)
 		playeradd(1, player, "cheat", unpackreason(reason))
 	end)
 
-minetest.register_on_chat_message(function(name, msg)
+nodecore.register_on_chat_message("chat message stats", function(name, msg)
 		dbadd(1, name, "chat", (msg:sub(1, 1) == "/") and "command" or "message")
 	end)
 
@@ -189,7 +197,7 @@ local function movement(dt, player)
 		end
 	end
 end
-minetest.register_globalstep(function(dt)
+nodecore.register_globalstep("stats player scan", function(dt)
 		for _, player in pairs(minetest.get_connected_players()) do
 			invscan(dt, player)
 			movement(dt, player)
@@ -225,30 +233,28 @@ local function flushop()
 	return flushkey(k)
 end
 
-local function flushenq()
-	minetest.after(20, flushenq)
-	if #opq > 0 then return end
-	for k in pairs(statsdb) do
-		opq[#opq + 1] = k
-	end
-	for i = 1, #opq do
-		local j = math_random(1, #opq)
-		opq[i], opq[j] = opq[j], opq[i]
-	end
-	minetest.after(0, flushop)
-end
-flushenq()
+nodecore.interval(20, function()
+		if #opq > 0 then return end
+		for k in pairs(statsdb) do
+			opq[#opq + 1] = k
+		end
+		for i = 1, #opq do
+			local j = math_random(1, #opq)
+			opq[i], opq[j] = opq[j], opq[i]
+		end
+		minetest.after(0, flushop)
+	end)
 
-minetest.register_globalstep(function(dt)
+nodecore.register_globalstep("stats timers", function(dt)
 		dbadd(dt, false, "elapsed")
 		dbadd(1, false, "tick")
 	end)
 
-minetest.register_on_leaveplayer(function(player)
+nodecore.register_on_leaveplayer("leave flush stats", function(player)
 		playeradd(1, player, "leave")
 		return flushkey(player:get_player_name(), player)
 	end)
-minetest.register_on_shutdown(function()
+nodecore.register_on_shutdown("shutdown flush stats", function()
 		opq = {}
 		dbadd(1, false, "shutdown")
 		flushkey(false)

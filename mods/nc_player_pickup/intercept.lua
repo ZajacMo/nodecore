@@ -23,10 +23,11 @@ local function wrapplayer(player)
 	return t
 end
 
-local oldstackgive = nodecore.stack_giveto
-nodecore.stack_giveto = function(a, whom, ...)
-	return oldstackgive(a, wrapplayer(whom), ...)
-end
+-- XXX: TODO: FIXME
+-- local oldstackgive = nodecore.stack_giveto
+-- nodecore.stack_giveto = function(a, whom, ...)
+-- return oldstackgive(a, wrapplayer(whom), ...)
+-- end
 
 local olddrops = minetest.handle_node_drops
 function minetest.handle_node_drops(a, b, whom, ...)

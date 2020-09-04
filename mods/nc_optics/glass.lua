@@ -15,7 +15,8 @@ minetest.register_node(modname .. ":glass", {
 		groups = {
 			silica = 1,
 			silica_clear = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
@@ -27,7 +28,8 @@ minetest.register_node(modname .. ":glass_opaque", {
 		tiles = {modname .. "_glass_frost.png"},
 		groups = {
 			silica = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_optics_glassy")
@@ -44,7 +46,8 @@ minetest.register_node(modname .. ":glass_crude", {
 		groups = {
 			silica = 1,
 			falling_node = 1,
-			crumbly = 2
+			crumbly = 2,
+			scaling_time = 150
 		},
 		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
@@ -53,15 +56,16 @@ minetest.register_node(modname .. ":glass_float", {
 		description = "Float Glass",
 		drawtype = "glasslike_framed_optional",
 		tiles = {
-			modname .. "_glass_float.png^" .. modname .. "_glass_edges.png",
-			modname .. "_glass_float.png"
+			modname .. "_glass_edges.png",
+			"[combine:16x16"
 		},
-		propagates_sunlight = true,
+		sunlight_propagates = true,
 		paramtype = "light",
 		groups = {
 			silica = 1,
 			silica_clear = 1,
-			cracky = 3
+			cracky = 3,
+			scaling_time = 300
 		},
 		sounds = nodecore.sounds("nc_optics_glassy")
 	})
@@ -80,7 +84,7 @@ end
 
 local animglass = ""
 for i = 0, 31 do
-	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_glare.png"
+	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_sparkle.png"
 end
 local molttxr = anim("[combine:16x512:0,0=nc_terrain_lava.png" .. animglass, 8)
 local flowtxr = anim("[combine:16x512:0,0=nc_terrain_lava_flow.png" .. animglass, 8)
@@ -96,13 +100,18 @@ local moltdef = {
 	liquid_range = 2,
 	light_source = 4,
 	walkable = false,
-	diggable = false,
 	buildable_to = false,
-	drowning = 1,
-	on_punch = nodecore.node_punch_hurt,
-	damage_per_second = 4,
+	drowning = 2,
+	damage_per_second = 3,
 	drop = "",
-	groups = {igniter = 1, silica = 1, stack_as_node = 1},
+	groups = {
+		igniter = 1,
+		silica = 1,
+		silica_molten = 1,
+		stack_as_node = 1,
+		damage_touch = 1,
+		damage_radiant = 3
+	},
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",
@@ -121,7 +130,7 @@ minetest.register_node(modname .. ":glass_hot_flowing",
 		}, moltdef))
 
 nodecore.register_ambiance({
-		label = "Glass Source Ambiance",
+		label = "glass source ambiance",
 		nodenames = {modname .. ":glass_hot_source"},
 		neigbors = {"air"},
 		interval = 1,
@@ -130,7 +139,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.2
 	})
 nodecore.register_ambiance({
-		label = "Glass Flow Ambiance",
+		label = "glass flow ambiance",
 		nodenames = {modname .. ":glass_hot_flowing"},
 		neigbors = {"air"},
 		interval = 1,

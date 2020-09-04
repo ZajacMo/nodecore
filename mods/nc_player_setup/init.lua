@@ -6,4 +6,12 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("setup")
-include("hotpotato")
+include("step_autorun")
+include("step_fallspeed")
+include("step_footsteps")
+include("step_hotpotato")
+include("step_interactinv")
+include("step_invulnbreath")
+include("step_stepheight")
+include("step_zoomfocus")
+include("step_pushout")

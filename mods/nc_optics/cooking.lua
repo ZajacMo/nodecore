@@ -16,6 +16,7 @@ nodecore.register_craft({
 		},
 		duration = 20,
 		cookfx = true,
+		indexkeys = {"group:sand"},
 		nodes = {
 			{
 				match = {groups = {sand = true}},
@@ -45,6 +46,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return not near(pos, {flow})
 		end,
+		indexkeys = {src},
 		nodes = {
 			{
 				match = src,
@@ -61,6 +63,7 @@ nodecore.register_craft({
 		check = function(pos)
 			return not near(pos, {flow})
 		end,
+		indexkeys = {src},
 		nodes = {
 			{
 				match = src,
@@ -81,6 +84,7 @@ nodecore.register_craft({
 			return (not near(pos, {flow}))
 			and nodecore.quenched(pos)
 		end,
+		indexkeys = {src},
 		nodes = {
 			{
 				match = src,
@@ -96,6 +100,7 @@ nodecore.register_craft({
 			return near(pos, {flow})
 			and nodecore.quenched(pos)
 		end,
+		indexkeys = {src},
 		nodes = {
 			{
 				match = src,
@@ -107,7 +112,7 @@ nodecore.register_craft({
 nodecore.register_cook_abm({nodenames = {src}})
 
 nodecore.register_limited_abm({
-		label = "Molten Glass Flowing",
+		label = "molten glass wander",
 		interval = 1,
 		chance = 4,
 		nodenames = {src},
@@ -116,7 +121,7 @@ nodecore.register_limited_abm({
 			local gen = meta:get_int("glassgen")
 			if gen >= 32 and math_random(1, 2) == 1 then
 				minetest.set_node(pos, {name = modname .. ":glass_crude"})
-				minetest.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
+				nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
 				return nodecore.smokefx(pos, 0.2, 80)
 			end
 			local miny = pos.y

@@ -10,7 +10,8 @@ local plank = modname .. "_plank.png^(" .. bark .. ")"
 
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
-		tiles = {bark, plank, plank},
+		tiles = {bark, plank},
+		use_texture_alpha = true,
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {
@@ -19,7 +20,8 @@ minetest.register_node(modname .. ":shelf", {
 			flammable = 2,
 			fire_fuel = 3,
 			storebox = 1,
-			totable = 1
+			totable = 1,
+			scaling_time = 50
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_tree_woody"),
@@ -34,6 +36,7 @@ minetest.register_node(modname .. ":shelf", {
 nodecore.register_craft({
 		label = "assemble wood shelf",
 		norotate = true,
+		indexkeys = {modname .. ":plank"},
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
 			{x = -1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
@@ -46,6 +49,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "assemble wood shelf",
 		norotate = true,
+		indexkeys = {modname .. ":plank"},
 		nodes = {
 			{match = modname .. ":plank", replace = "air"},
 			{x = 0, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},

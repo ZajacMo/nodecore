@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -75,7 +75,17 @@ local function stack_desc(s, noqty)
 end
 nodecore.touchtip_stack = stack_desc
 
-local function node_desc(pos, node)
+local function node_desc(pos, node, puncher, pointed, ...)
+	if pointed and pointed.above and pointed.under
+	and vector.equals(pos, pointed.under) then
+		local anode = minetest.get_node(pointed.above)
+		local def = minetest.registered_items[anode.name] or {}
+		if def.on_node_touchthru then
+			return def.on_node_touchthru(pointed.above,
+				anode, pointed.under, puncher, ...)
+		end
+	end
+
 	node = node or minetest.get_node(pos)
 	local name = node.name
 	local def = minetest.registered_items[name] or {}
@@ -97,7 +107,7 @@ local function node_desc(pos, node)
 	end
 
 	if def.on_node_touchtip then
-		return def.on_node_touchtip(pos, node, name) or name
+		return def.on_node_touchtip(pos, node, name, puncher, pointed, ...) or name
 	end
 	return name
 end
@@ -105,23 +115,23 @@ nodecore.touchtip_node = node_desc
 
 local wields = {}
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
+nodecore.register_playerstep({
+		label = "wield touchtips",
+		action = function(player)
 			local pname = player:get_player_name()
-
 			local wn = stack_desc(player:get_wielded_item(), true)
 			if wn ~= wields[pname] then
 				wields[pname] = wn
 				show(player, wn)
 			end
 		end
+	})
+
+nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher, ...)
+		return show(puncher, node_desc(pos, node, puncher, ...))
 	end)
 
-minetest.register_on_punchnode(function(pos, node, puncher)
-		return show(puncher, node_desc(pos, node))
-	end)
-
-minetest.register_on_joinplayer(function(player)
+nodecore.register_on_joinplayer("touchtip wield reset", function(player)
 		local pname = player:get_player_name()
 		wields[pname] = nil
 	end)

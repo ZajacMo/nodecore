@@ -5,6 +5,8 @@ local ItemStack, minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
+nodecore.scaling_light_level = 2
+
 function nodecore.scaling_particles(pos, def)
 	def = nodecore.underride(def or {}, {
 			texture = "[combine:1x1^[noalpha",
@@ -66,9 +68,10 @@ local function tryreplace(pos, newname, rootpos)
 	return true
 end
 
-function nodecore.scaling_apply(pointed)
+function nodecore.scaling_apply(pointed, player)
 	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
 	local pos = pointed.above
+	if nodecore.protection_test(pos, player) then return end
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then
 		if tryreplace(pos, "ceil", pointed.under) then
 			if tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) then
@@ -83,9 +86,11 @@ function nodecore.scaling_apply(pointed)
 		local ok = tryreplace(pos, "wall", pointed.under)
 		if ok then tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) end
 		return ok
-	elseif pointed.under.y < pointed.above.y and issolid(pointed.under) then
-		if (minetest.get_node_light(pointed.above) or 1) < 1 then
-			return tryreplace(pos, "floor", pointed.under)
-		end
 	end
+end
+
+function nodecore.scaling_closenough(pos, player)
+	local pp = player:get_pos()
+	pp.y = pp.y + 1
+	return vector.distance(pos, pp) <= 5
 end

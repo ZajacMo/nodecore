@@ -21,7 +21,7 @@ local drydrawtypes = {
 }
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_items) do
-			if v["type"] ~= "node" or v.damage_per_second > 0
+			if v["type"] ~= "node" or (v.groups.damage_radiant or 0) > 0
 			or v.liquidtype == "none" and not v.groups.moist
 			and not v.groups.silica and (drydrawtypes[v.drawtype]
 				or v.climbable or not v.walkable) then
@@ -32,7 +32,7 @@ minetest.after(0, function()
 
 local function notdry(pos)
 	local node = minetest.get_node_or_nil(pos)
-	if not node then return end
+	if not node then return true end
 	if not dryitems[node.name] then return true end
 	local def = minetest.registered_items[node.name]
 	if def and def.groups.is_stack_only then
@@ -45,6 +45,7 @@ local function sealed_or_notdry(nodename, pos)
 	if nodename == "nc_optics:shelf" then
 		return (not pos) or notdry({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
+	if not pos then return end
 	for _, d in pairs(alldirs) do
 		if not notdry(vector.add(pos, d)) then return end
 	end
@@ -53,7 +54,7 @@ end
 
 local function spongesurvive(data)
 	if data.toteslot then
-		return sealed_or_notdry(data.toleslot.n.name)
+		return sealed_or_notdry(data.toteslot.n.name)
 	elseif data.node then
 		return sealed_or_notdry(data.node.name, data.pos)
 	elseif data.inv then
@@ -62,15 +63,14 @@ local function spongesurvive(data)
 end
 
 nodecore.register_limited_abm({
-		label = "Sponge Growth",
+		label = "sponge grow",
 		interval = 1,
 		chance = 10,
 		limited_max = 1000,
 		nodenames = {living},
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
-				minetest.set_node(pos, {name = wet})
-				nodecore.node_sound(pos, "place")
+				nodecore.set_loud(pos, {name = wet})
 				return nodecore.fallcheck(pos)
 			end
 
@@ -100,18 +100,18 @@ nodecore.register_limited_abm({
 				grp = def and def.groups and def.groups.sand
 				if (not grp) or (grp < 1) then return end
 			end
-			minetest.set_node(pos, {name = living})
+			nodecore.set_loud(pos, {name = living})
 		end
 	})
 
 nodecore.register_aism({
-		label = "Sponge Stack Survival",
+		label = "sponge stack death",
 		interval = 2,
 		chance = 1,
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
-			minetest.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
+			nodecore.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
 			stack:set_name(wet)
 			return stack
 		end

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, table
-    = ipairs, math, minetest, nodecore, pairs, table
+local math, minetest, nodecore, pairs, table
+    = math, minetest, nodecore, pairs, table
 local math_floor, math_random, table_remove, table_sort
     = math.floor, math.random, table.remove, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,7 +11,9 @@ local strings = {
 	onemore = "(and 1 more hint)",
 	fewmore = "(and @1 more hints)",
 	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by hints. Explore!"
+	explore = "Not all game content is covered by hints. Explore!",
+	hint = "- @1",
+	done = "- DONE: @1"
 }
 
 for k, v in pairs(strings) do
@@ -22,42 +24,14 @@ end
 local function gethint(player)
 	local pname = player:get_player_name()
 
-	local now = math_floor(minetest.get_us_time() / 1000000 / 5)
+	local now = math_floor(minetest.get_us_time() / 1000000)
 	local cached = pcache[pname]
 	if cached and cached.time == now then return cached.found end
 
-	local rawdb = nodecore.statsdb[pname] or {}
-	local db = {}
-	for _, r in ipairs({"inv", "punch", "dig", "place", "craft", "witness"}) do
-		for k, v in pairs(rawdb[r] or {}) do
-			db[k] = v
-			db[r .. ":" .. k] = v
-		end
-	end
-	for k, v in pairs(minetest.registered_items) do
-		if db[k] then
-			if v.tool_capabilities and v.tool_capabilities.groupcaps then
-				for gn, gv in pairs(v.tool_capabilities.groupcaps) do
-					for gt in pairs(gv.times or {}) do
-						db["toolcap:" .. gn .. ":" .. gt] = true
-					end
-				end
-			end
-			for gn, gv in pairs(v.groups or {}) do
-				db["group:" .. gn] = gv
-			end
-		end
-	end
+	local found, done = nodecore.hint_state(pname)
+	for k, v in pairs(found) do found[k] = strings.hint(v.text) end
+	for k, v in pairs(done) do done[k] = strings.done(v.text) end
 
-	local done = {}
-	local found = {}
-	for _, hint in ipairs(nodecore.hints) do
-		if hint.goal(db) then
-			done[#done + 1] = hint.done
-		elseif hint.reqs(db) then
-			found[#found + 1] = hint.text
-		end
-	end
 	local prog = #found
 	local left = #(nodecore.hints) - prog - #done
 
@@ -86,5 +60,6 @@ end
 
 nodecore.register_inventory_tab({
 		title = "Hints",
+		visible = function() return not nodecore.hints_disabled() end,
 		content = gethint
 	})

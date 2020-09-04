@@ -49,12 +49,43 @@ end
 function nodecore.tree_growth_rate(pos)
 	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 	if minetest.get_node(above).name ~= "air" then return end
-	local ll = minetest.get_node_light(above, 0.5)
+	local ll = nodecore.get_node_light(above)
 	if (not ll) or (ll < 8) then return end
 	for y = 2, 5 do
-		local p ={x = pos.x, y = pos.y + y, z = pos.z}
+		local p = {x = pos.x, y = pos.y + y, z = pos.z}
 		local nn = minetest.get_node(p).name
 		if nn ~= "air" and nn ~= modname .. ":leaves" then return end
 	end
 	return nodecore.tree_soil_rate(pos) * math_sqrt((ll - 7) / 8)
+end
+
+function nodecore.tree_trunk_growth_rate(pos, node)
+	if node and node.name == modname .. ":root" then
+		return nodecore.tree_soil_rate(pos)
+	end
+	local bpos = {x = pos.x, y = pos.y, z = pos.z}
+	for _ = 1, #nodecore.tree_params do
+		bpos.y = bpos.y - 1
+		node = minetest.get_node(bpos)
+		if node.name == "ignore" then
+			return
+		elseif node.name == modname .. ":root" then
+			return nodecore.tree_soil_rate(bpos)
+		elseif node.name ~= modname .. ":tree" then
+			minetest.set_node(pos, {name = modname .. ":tree"})
+			return false
+		end
+	end
+end
+
+function nodecore.calc_leaves(pos)
+	local leaflv = nodecore.scan_flood(pos, 2, function(p, d)
+			if minetest.get_node(p).name == modname .. ":tree" then
+				return 3 - d
+			end
+		end)
+	return {
+		name = modname .. ":leaves",
+		param2 = leaflv or 0
+	}
 end

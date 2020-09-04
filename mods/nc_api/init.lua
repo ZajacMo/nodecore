@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
-local dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, type
-    = dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, type
-local table_concat, table_insert
-    = table.concat, table.insert
+local dofile, error, ipairs, minetest, pairs, rawget, rawset,
+      setmetatable, table, tostring, type
+    = dofile, error, ipairs, minetest, pairs, rawget, rawset,
+      setmetatable, table, tostring, type
+local table_concat, table_insert, table_sort
+    = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local nodecore = rawget(_G, "nodecore") or {}
@@ -42,11 +42,58 @@ setmetatable(nodecore, {
 		end
 	})
 
-include("compat_vector")
-include("issue7020")
-include("issue9043")
+minetest.register_on_mods_loaded(function()
+		for _, n in pairs(minetest.get_modnames()) do
+			if n == "default" then
+				error(nodecore.product
+					.. " cannot be loaded on top of another game!")
+				error()
+			end
+		end
+	end)
+
+local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
+function nodecore.log(level, ...)
+	if not level or not levels[level] then error("invalid log level " .. tostring(level)) end
+	return minetest.log(level, ...)
+end
+
+nodecore.log("action", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
+		or " DEVELOPMENT VERSION"))
+
+do
+	local ticked = 0
+	local function regreport()
+		ticked = ticked + 1
+		if ticked < 5 then return minetest.after(0, regreport) end
+		local reg = "registered_"
+		local t = {}
+		for k, v in pairs(nodecore) do
+			if k:sub(1, #reg) == reg and type(v) == "table" then
+				local qty = 0
+				for _ in pairs(v) do qty = qty + 1 end
+				t[#t + 1] = "#" .. k .. " = " .. qty
+			end
+		end
+		table_sort(t)
+		for _, x in ipairs(t) do nodecore.log("action", x) end
+	end
+	minetest.after(0, regreport)
+end
+
+minetest.register_on_joinplayer(function(player)
+		local pname = player:get_player_name()
+		local pinfo = minetest.get_player_information(pname)
+		if pinfo.protocol_version < 39 then
+			return minetest.kick_player(pname, "Outdated client")
+		end
+	end)
+
+include("compat_issue10127")
+include("compat_legacyent")
 
 include("util_misc")
+include("util_hookmeta")
 include("util_falling")
 include("util_scan_flood")
 include("util_node_is")
@@ -58,27 +105,29 @@ include("util_sound")
 include("util_translate")
 include("util_ezschematic")
 include("util_gametime")
+include("util_settlescan")
+include("util_texturemod")
 include("match")
 
 include("fx_digparticles")
 
-include("register_limited_abm")
-include("register_aism")
-include("register_soaking")
-include("register_ambiance")
 include("register_mods")
+include("register_entlabels")
+
+include("mapgen_limits")
 include("mapgen_shared")
 
 include("item_on_register")
 include("item_drop_in_place")
-include("item_falling_repose")
-include("item_falling_settle")
-include("item_alternate_loose")
-include("item_group_visinv")
 include("item_oldnames")
-include("item_tool_wears_to")
+include("item_tool_break")
 include("item_tool_sounds")
+include("item_tool_rakes")
 include("item_punch_sounds")
+include("item_sound_pitch")
 include("item_nodebox_zfighting")
 include("item_virtual")
 include("item_stackmax")
+include("item_touch_hurt")
+include("item_txp_overlay")
+include("item_tiledump")

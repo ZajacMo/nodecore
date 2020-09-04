@@ -1,9 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, type
-    = nodecore, type
+local ipairs, minetest, nodecore, pairs, string, type
+    = ipairs, minetest, nodecore, pairs, string, type
+local string_lower
+    = string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.hints = {}
+
+function nodecore.hints_disabled()
+	return minetest.settings:get_bool(
+		string_lower(nodecore.product) .. "_disable_hints")
+end
 
 local function conv(spec)
 	if not spec then
@@ -33,11 +40,57 @@ function nodecore.addhint(text, goal, reqs)
 	local hints = nodecore.hints
 	local t = nodecore.translate(text)
 	local h = {
-		text = nodecore.translate("- @1", t),
-		done = nodecore.translate("- DONE: @1", t),
+		text = t,
 		goal = conv(goal),
 		reqs = conv(reqs)
 	}
 	hints[#hints + 1] = h
 	return h
+end
+
+function nodecore.hint_state(player)
+	local pname
+	if type(player) == "string" then
+		pname, player = player, minetest.get_player_by_name(player)
+	else
+		pname = player:get_player_name()
+	end
+
+	if type(player) == "string" then player = minetest.get_player_by_name(pname) end
+
+	local rawdb = nodecore.statsdb[pname] or {}
+
+	local db = {}
+	for _, r in ipairs({"inv", "punch", "dig", "place", "craft", "witness"}) do
+		for k, v in pairs(rawdb[r] or {}) do
+			db[k] = v
+			db[r .. ":" .. k] = v
+		end
+	end
+	for k, v in pairs(minetest.registered_items) do
+		if db[k] then
+			if v.tool_capabilities and v.tool_capabilities.groupcaps then
+				for gn, gv in pairs(v.tool_capabilities.groupcaps) do
+					for gt in pairs(gv.times or {}) do
+						db["toolcap:" .. gn .. ":" .. gt] = true
+					end
+				end
+			end
+			for gn, gv in pairs(v.groups or {}) do
+				db["group:" .. gn] = gv
+			end
+		end
+	end
+
+	local done = {}
+	local found = {}
+	for _, hint in ipairs(nodecore.hints) do
+		if hint.goal(db, pname, player) then
+			done[#done + 1] = hint
+		elseif hint.reqs(db, pname, player) then
+			found[#found + 1] = hint
+		end
+	end
+
+	return found, done
 end

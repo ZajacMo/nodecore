@@ -5,39 +5,58 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-minetest.register_node(modname .. ":aggregate", {
-		description = "Aggregate",
-		tiles = {"nc_terrain_gravel.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"},
+minetest.register_node(modname .. ":sandstone", {
+		description = "Sandstone",
+		tiles = {modname .. "_sandstone.png"},
 		groups = {
-			crumbly = 2,
-			falling_node = 1,
-			falling_repose = 1
+			cracky = 1
 		},
-		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_chompy")
+		drop_in_place = "nc_terrain:sand",
+		crush_damage = 2,
+		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
-local wettile = "nc_terrain_stone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)"
-local wetdef = {
-	description = "Wet Aggregate",
-	tiles = {wettile},
-	special_tiles = {wettile, wettile},
-	liquid_viscosity = 15,
-	liquid_renewable = false,
-	liquid_range = 1,
-	liquid_alternative_flowing = modname .. ":wet_flowing",
-	liquid_alternative_source = modname .. ":wet_source",
-	walkable = false,
-	diggable = false,
-	drowning = 1,
-	post_effect_color = {a = 240, r = 32, g = 32, b = 32},
-	sounds = nodecore.sounds("nc_terrain_chompy")
-}
-minetest.register_node(modname .. ":wet_source", nodecore.underride({
-			liquidtype = "source"
-		}, wetdef))
-minetest.register_node(modname .. ":wet_flowing", nodecore.underride({
-			drawtype = "flowingliquid",
-			liquidtype = "flowing",
-			paramtype2 = "flowingliquid"
-		}, wetdef))
+minetest.register_node(modname .. ":adobe", {
+		description = "Adobe",
+		tiles = {modname .. "_adobe.png"},
+		groups = {
+			cracky = 1
+		},
+		drop_in_place = "nc_terrain:dirt",
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_stony")
+	})
+
+minetest.register_node(modname .. ":coalstone", {
+		description = "Tarstone",
+		tiles = {"nc_terrain_stone.png^[colorize:#000000:160"},
+		groups = {
+			cracky = 2
+		},
+		drop_in_place = "nc_terrain:cobble",
+		drop = "nc_fire:lump_coal",
+		crush_damage = 2,
+		sounds = nodecore.sounds("nc_terrain_stony")
+	})
+
+nodecore.register_stone_bricks("sandstone", "Sandstone",
+	modname .. "_sandstone.png",
+	192, 96,
+	modname .. ":sandstone",
+	{cracky = 1},
+	{cracky = 2}
+)
+nodecore.register_stone_bricks("adobe", "Adobe",
+	modname .. "_adobe.png",
+	240, 120,
+	modname .. ":adobe",
+	{cracky = 1},
+	{cracky = 2}
+)
+nodecore.register_stone_bricks("coalstone", "Tarstone",
+	"nc_terrain_stone.png^[colorize:#000000:160",
+	255, 160,
+	modname .. ":coalstone",
+	{cracky = 2},
+	{cracky = 3}
+)

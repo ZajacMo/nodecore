@@ -7,18 +7,11 @@ local math_exp, math_log
 
 local modname = minetest.get_current_modname()
 
-local hand = minetest.registered_items[""]
 local irradiated = modname .. ":irradiated"
-minetest.register_craftitem(irradiated, {
+nodecore.register_virtual_item(irradiated, {
 		description = "Burn",
-		stack_max = 1,
 		inventory_image = "[combine:1x1",
 		hotbar_type = "burn",
-		wield_image = hand.wield_image,
-		wield_scale = hand.wield_scale,
-		on_drop = function(stack) return stack end,
-		on_place = function(stack) return stack end,
-		virtual_item = true
 	})
 
 nodecore.register_healthfx({
@@ -62,7 +55,7 @@ local function rademit(pos, emit)
 end
 
 nodecore.register_limited_abm({
-		label = "Lux Irradiate",
+		label = "lux irradiate",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_emit"},
@@ -74,7 +67,7 @@ nodecore.register_limited_abm({
 	})
 
 nodecore.register_aism({
-		label = "Lux Stack Irradiate",
+		label = "lux stack irradiate",
 		interval = 1,
 		chance = 2,
 		itemnames = {"group:lux_emit"},
@@ -82,41 +75,39 @@ nodecore.register_aism({
 			local def = minetest.registered_items[stack:get_name()]
 			local emit = def and def.groups and def.groups.lux_emit
 			or def and def.groups and def.groups.lux_tool
-			and def.groups.lux_tool * 0.1
+			and def.groups.lux_tool * 0.25
 			if emit then return rademit(data.pos, emit) end
 		end
 	})
 
-local function luxradpump()
-	minetest.after(1, luxradpump)
-	for _, player in pairs(minetest.get_connected_players()) do
-		local meta = player:get_meta()
-		local rad = meta:get_float("rad") or 0
+nodecore.interval(1, function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			local meta = player:get_meta()
+			local rad = meta:get_float("rad") or 0
 
-		local pname = player:get_player_name()
-		local accum = luxaccum[pname] or 0
-		luxaccum[pname] = 0
+			local pname = player:get_player_name()
+			local accum = luxaccum[pname] or 0
+			luxaccum[pname] = 0
 
-		local prop = math_exp(-accum / 10000)
-		rad = rad * prop + (1 - prop)
+			local prop = math_exp(-accum / 10000)
+			rad = rad * prop + (1 - prop)
 
-		local redux = 0.1
-		local pos = player:get_pos()
-		local node = minetest.get_node(pos)
-		local def = minetest.registered_items[node.name]
-		if def and def.groups and def.groups.water then
-			redux = redux + 50
+			local redux = 0.1
+			local pos = player:get_pos()
+			local node = minetest.get_node(pos)
+			local def = minetest.registered_items[node.name]
+			if def and def.groups and def.groups.water then
+				redux = redux + 50
+			end
+			pos.y = pos.y + 1
+			node = minetest.get_node(pos)
+			def = minetest.registered_items[node.name]
+			if def and def.groups and def.groups.water then
+				redux = redux + 500
+			end
+			prop = math_exp(-redux / 10000)
+			rad = rad * prop
+
+			meta:set_float("rad", rad)
 		end
-		pos.y = pos.y + 1
-		node = minetest.get_node(pos)
-		def = minetest.registered_items[node.name]
-		if def and def.groups and def.groups.water then
-			redux = redux + 500
-		end
-		prop = math_exp(-redux / 10000)
-		rad = rad * prop
-
-		meta:set_float("rad", rad)
-	end
-end
-luxradpump()
+	end)

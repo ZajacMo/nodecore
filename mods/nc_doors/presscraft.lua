@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, vector
-    = ipairs, minetest, nodecore, pairs, vector
+local ItemStack, ipairs, minetest, nodecore, pairs, vector
+    = ItemStack, ipairs, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_craft({
@@ -29,17 +29,17 @@ nodecore.register_craft({
 				vector.subtract(pos, ctr),
 				vector.subtract(data.pointed.under, data.pointed.above)
 			)
+			local one = ItemStack(stack:to_string())
+			one:set_count(1)
 			nodecore.item_eject(
 				vector.add(pos, vector.multiply(vel, 0.25)),
-				stack:get_name(),
-				0,
-				1,
-				vector.multiply(vel, 4)
+				one, 0, 1, vector.multiply(vel, 4)
 			)
 			stack:take_item(1)
 			if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
 				return minetest.remove_node(pos)
 			end
+			nodecore.witness(pos, "door catapult")
 			return nodecore.stack_set(pos, stack)
 		end
 	})
@@ -67,7 +67,6 @@ local function pressify(rc)
 	local nr = {}
 	for k, v in pairs(rc) do nr[k] = v end
 
-	nr.label = "press " .. nr.label
 	nr.action = "press"
 	nr.toolgroups = nil
 
@@ -88,7 +87,7 @@ end
 
 minetest.after(0, function()
 		local t = {}
-		for _, v in ipairs(nodecore.craft_recipes) do t[#t + 1] = v end
+		for _, v in ipairs(nodecore.registered_recipes) do t[#t + 1] = v end
 		minetest.after(0, function()
 				for _, v in ipairs(t) do pressify(v) end
 			end)

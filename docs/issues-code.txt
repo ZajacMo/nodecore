@@ -1,0 +1,136 @@
+========================================================================
+ISSUES-CODE: Issues related to code quality and APIs
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Look into game default settings.
+	- Change default ABM budget
+	  (https://github.com/minetest/minetest/pull/10290)
+
+- Make door pusheability customizable
+	- door_can_push or door_cannot_push groups/flags or something.
+	- Allow override of standard falling_node check.
+
+- Overhaul player health to work entirely virtual
+	- Raise max up a lot to make room for fine grained falling
+	  damage so we can raise threshold
+	- Consider falling damage add percent to all nodes?
+	- Add API for doing fake damage effect using set hp
+
+- Allow optics pending transaction to be flushed early
+	- Optics interacting with doors are out of sync
+	- May need to commit the optic state immediately when triggering
+	  doors so they get the correct current state.
+
+- Consider full eversion of event handlers
+	- Disallow (or automatically convert) traditional single-hanlders
+	  on all definitions
+	- Use a register_on_something() method to hook pretty much
+	  everything
+
+- Unify mkreg
+	- Add validation/modifying and order comparison funcs
+	- Use for recipes, mapgen_shared, playerstep, etc.
+	- Consider replacing with register_generic():
+		- Allow lazy registration, i.e. a register method that can
+		  register for things not yet defined, and allow later registration
+		  of the registration definition that will pick up those missed.
+	- Define order for inv tabs
+
+- Hint System Refactor
+	- Move stats into an api layer to ensure availability
+	- Simplify stats, track less detail, limit data growth.
+	- Break up hints into each individual mod.
+	- Add shortcuts for hint registrations, e.g. integrated with recipes.
+
+- Transactional api ref localization
+	- For certain large computations, like an optic processing, it may be
+	  worthwhile to capture some often-repeated functions like minetest.get_node
+	  as locals.
+	- May need to test performance on a non-JIT build, where this is expected
+	  to have a larger impact, since JIT probably optimizes the difference away.
+
+- Continue to chisel away at ABM perf issues.
+	- Simplify or optimize existing ABMs
+	- Convert things to DNTs.
+
+- Some time-integral processes are not resetting when prereqs removed
+	- Cooking resumes instead of resetting when fire removed.
+	- Leaching resumes instead of resetting when water removed.
+
+- Take advantage of the fact that players/inventories use a single shared
+  metatable for player inventory arrangement hooks in nc_player_pickup,
+  like we did for entity:set_properties.
+	- Currently inv pickup logic isn't working and we're relying on
+	  rearrangement; need to resolve this one way or another.
+
+- Make leaf decay group-driven for mod applicability.
+
+- Switch some extended attributes to first-class support instead of modifying
+  definition at registration time.
+	- e.g. drop_in_place should hook the engine's dig event instead of
+	  registering an on_dig on the node, so inheritance works.
+
+- Add a nodecore.inherit_node() helper that registers a node as a
+  modified copy of another definition, e.g. for planted eggcorns copying
+  dirt, door panels copying original materials, etc.
+
+- Add an on_falling_check handler to replace check_single_for_falling custom
+  hook in writing, and possibly other places.
+
+- Should we create "recipe groups" to make it easier to specify
+  equivalent recipes for hint purposes?	
+
+- Need to find a way to make AISMs work with falling_node.
+	- Create ItemStack, run hooks, try to convert back to node
+	  (assume node and item meta map 1:1) and if it fails then
+	  spawn an item_ent.
+	- Need this for amalgamation remelting.
+	- Would it make sense to unify the item and falling_node ents?
+
+- API for map-seed-deterministic scatter.
+	- Given minp, maxp, seed and density, find all positions.
+	- Use for sponges, lava/water springs, etc.
+
+- Unify sponge growth logic so it can be used for mapgen, to ensure
+  that spawned sponges match naturally-grown ones?
+
+- Easier recipe API:
+	- Use ascii art like ezschematic?
+	- Aliases like "sides"/"corners"?
+	- Make 3x3 recipes easier to define.
+
+- Standardize visinv access API
+	- stack_access(pos, node, dirfrom) - return booly
+	  whether access to inside stack is allowed.
+	- Use for shelf API.
+	- Use for touchtips inv access.
+	- Genericize sponge logic using stack_access API
+
+- Wandering fluids API for concrete, glass?
+	- Configurable setting for generation count multiplier.
+
+- API for recursing through embedded inventories, e.g. in totes.
+	- Lux reaction cannot sense other lux inside totes.
+
+- Scripts to validate dependency graph.
+	- Tag deps directly in code at place of use.
+	- Auto-generate mod.conf / depends.txt
+
+- API Cleanup
+	- Further nc_api break-up, clean up util functions.
+	- Heat API
+		- Quenched, Flames as numbers or nil?
+	- Unify nc_items and visinv API.
+		- Stack nodes are "special", get first-class support.
+	- APIs for different kinds of "neighbor" scans
+		- Face, edge, corner touching
+
+........................................................................
+========================================================================

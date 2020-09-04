@@ -13,7 +13,7 @@ local function wieldsound(player, idx, gain)
 			t.object = player
 			t.gain = gain or 1
 			if player:get_player_control().sneak then t.gain = t.gain / 4 end
-			return function() minetest.sound_play(t.name, t) end
+			return function() nodecore.sound_play(t.name, t) end
 		end
 	end
 	return function() end
@@ -21,8 +21,9 @@ end
 
 local wields = {}
 local pending = {}
-minetest.register_globalstep(function(dtime)
-		for _, player in pairs(minetest.get_connected_players()) do
+nodecore.register_playerstep({
+		label = "wield sounds",
+		action = function(player, _, dtime)
 			local pname = player:get_player_name()
 
 			local pend = pending[pname]
@@ -48,4 +49,4 @@ minetest.register_globalstep(function(dtime)
 				}
 			end
 		end
-	end)
+	})

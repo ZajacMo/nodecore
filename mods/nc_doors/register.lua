@@ -5,10 +5,11 @@ local ItemStack, minetest, nodecore, pairs, vector
 
 local modname = minetest.get_current_modname()
 
-local function doorop(pos, node, _, _, pointed)
+local function doorop(pos, node, clicker, _, pointed)
+	if nodecore.protection_test(pos, clicker) then return end
 	if (not pointed.above) or (not pointed.under) then return end
 	local force = vector.subtract(pointed.under, pointed.above)
-	return nodecore.operate_door(pos, node, force)
+	nodecore.operate_door(pos, node, force)
 end
 
 local tilemods = {
@@ -43,6 +44,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			paramtype2 = "facedir",
 			silktouch = false,
 			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
+				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)
 				if (not stack) or (stack:get_name() ~= pin) then
 					return spin(pos, node, clicker, stack, pointed, ...)
@@ -54,8 +56,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 					node.name = doorname
 					nodecore.player_stat_add(1, clicker, "craft",
 						"door pin " .. basenode:lower())
-					minetest.set_node(pos, node)
-					nodecore.node_sound(pos, "place")
+					nodecore.set_loud(pos, node)
 					stack:take_item(1)
 					return stack
 				end
@@ -66,7 +67,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 	paneldef.drop_in_place = nil
 	paneldef.after_dig_node = nil
 
-	minetest.register_node(paneldef.name, paneldef)
+	minetest.register_node(":" .. paneldef.name, paneldef)
 
 	local t = minetest.registered_items[pin].tiles
 	t = t[3] or t[2] or t[1]
@@ -88,16 +89,21 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 			groups = groups
 		}, paneldef)
 
-	minetest.register_node(doordef.name, doordef)
+	minetest.register_node(":" .. doordef.name, doordef)
 
 	nodecore.register_craft({
 			label = "drill door " .. basenode:lower(),
 			action = "pummel",
 			toolgroups = {thumpy = 3},
 			normal = {y = 1},
+			indexkeys = {"group:chisel"},
 			nodes = {
 				{
-					match = "nc_lode:rod_tempered",
+					match = {
+						metal_temper_tempered = true,
+						groups = {chisel = 2}
+					},
+					dig = true
 				},
 				{
 					y = -1,

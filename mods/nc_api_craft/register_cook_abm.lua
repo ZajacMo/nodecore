@@ -22,7 +22,7 @@ end
 local function playcookfx(pos, cookfx, sound, smokeqty, smoketime)
 	if not cookfx then return end
 	if cookfx == true or cookfx and cookfx[sound] then
-		minetest.sound_play("nc_api_craft_" .. sound,
+		nodecore.sound_play("nc_api_craft_" .. sound,
 			{gain = 1, pos = pos})
 	end
 	if cookfx == true or cookfx and cookfx.smoke then
@@ -62,20 +62,39 @@ local function cookdone(pos, data)
 	return playcookfx(pos, recipe.cookfx, "hiss", 80, 0.2)
 end
 
+local function mkdata()
+	return {
+		action = "cook",
+		duration = getduration,
+		inprogress = inprogress,
+		after = cookdone
+	}
+end
+nodecore.craft_cooking_data = mkdata
+
+local dntname = modname .. ":cookcheck"
+
+local function cookcheck(pos, node)
+	node = node or minetest.get_node(pos)
+	local data = mkdata()
+	nodecore.craft_check(pos, node, data)
+	if not data.progressing then
+		return minetest.get_meta(pos):set_string(modname, "")
+	else
+		return nodecore.dnt_set(pos, dntname)
+	end
+end
+
+nodecore.register_dnt({
+		name = dntname,
+		time = 1,
+		action = cookcheck
+	})
+
 function nodecore.register_cook_abm(def)
+	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
-	def.action = function(pos, node)
-		local data = {
-			action = "cook",
-			duration = getduration,
-			inprogress = inprogress,
-			after = cookdone
-		}
-		nodecore.craft_check(pos, node, data)
-		if not data.progressing then
-			minetest.get_meta(pos):set_string(modname, "")
-		end
-	end
+	def.action = cookcheck
 	nodecore.register_limited_abm(def)
 end
