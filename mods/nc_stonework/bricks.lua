@@ -5,13 +5,14 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-function nodecore.register_stone_bricks(name, desc, tile, madefrom, groups, bonded)
+function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, madefrom, groups, bonded)
 	groups = nodecore.underride(groups, {
 			falling_node = 1
 		})
 	minetest.register_node(":" .. modname .. ":bricks_" .. name, {
 			description = desc .. " Bricks",
-			tiles = {tile .. "^" .. modname .. "_bricks.png"},
+			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:"
+				.. alpha .. ")"},
 			groups = groups,
 			crush_damage = 2,
 			sounds = nodecore.sounds("nc_terrain_stony")
@@ -43,7 +44,8 @@ function nodecore.register_stone_bricks(name, desc, tile, madefrom, groups, bond
 	bonded.falling_node = nil
 	minetest.register_node(":" .. modname .. ":bricks_" .. name .. "_bonded", {
 			description = "Bonded " .. desc .. " Bricks",
-			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:128)"},
+			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:"
+				.. bondalpha .. ")"},
 			groups = bonded,
 			crush_damage = 2,
 			sounds = nodecore.sounds("nc_terrain_stony")
@@ -64,6 +66,7 @@ end
 
 nodecore.register_stone_bricks("stone", "Stone",
 	"nc_terrain_stone.png",
+	240, 120,
 	{groups = {smoothstone = true}},
 	{stone = 1, rock = 1, cracky = 2},
 	{cracky = 3}

@@ -41,18 +41,21 @@ minetest.register_node(modname .. ":coalstone", {
 
 nodecore.register_stone_bricks("sandstone", "Sandstone",
 	modname .. "_sandstone.png",
+	192, 96,
 	modname .. ":sandstone",
 	{cracky = 1},
 	{cracky = 2}
 )
 nodecore.register_stone_bricks("adobe", "Adobe",
 	modname .. "_adobe.png",
+	240, 120,
 	modname .. ":adobe",
 	{cracky = 1},
 	{cracky = 2}
 )
 nodecore.register_stone_bricks("coalstone", "Tarstone",
 	"nc_terrain_stone.png^[colorize:#000000:160",
+	255, 160,
 	modname .. ":coalstone",
 	{cracky = 2},
 	{cracky = 3}
