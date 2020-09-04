@@ -3,7 +3,7 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local addhint = nodecore.addhint
+local addhint = nodecore.register_hint
 
 ------------------------------------------------------------------------
 -- SCALING

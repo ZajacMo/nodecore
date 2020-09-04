@@ -124,9 +124,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	end
 	if recipe.after then recipe.after(pos, data) end
 	if data.after then data.after(pos, data) end
-	if nodecore.player_stat_add then
-		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
-	end
+	nodecore.player_discover(data.crafter, "craft:" .. recipe.label)
 	if recipe.witness then
 		local lut = {}
 		for _, v in pairs(recipe.nodes) do

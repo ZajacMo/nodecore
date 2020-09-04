@@ -5,7 +5,4 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("api")
 include("hints")
-include("invtab")
-include("alerts")
