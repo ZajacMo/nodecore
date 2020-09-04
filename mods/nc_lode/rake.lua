@@ -47,7 +47,7 @@ nodecore.register_lode("rake", {
 				})
 			d.on_rake = mkonrake(1 + dlv)
 		end,
-		tool_wears_to = modname .. ":prill_# 13"
+		tool_wears_to = modname .. ":prill_# 12"
 	})
 
 local adze = {name = modname .. ":adze_annealed", wear = 0.05}

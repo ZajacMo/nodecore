@@ -26,7 +26,7 @@ nodecore.register_lode("adze", {
 				d.tool_capabilities = lodzecaps(2)
 			end
 		end,
-		tool_wears_to = modname .. ":prill_# 3"
+		tool_wears_to = modname .. ":prill_# 2"
 	})
 
 nodecore.register_craft({
