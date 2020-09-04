@@ -18,13 +18,14 @@ nodecore.register_playerstep({
 			for i = 1, hotbar_slots do
 				local stack = inv:get_stack("main", i)
 				local def = stack and (not stack:is_empty()) and stack:get_definition()
-				local suff = (i == player:get_wield_index()) and "_sel" or "_slot"
+				local suff = "_sel"
 				if def and def.hotbar_type then
 					suff = suff .. "_" .. def.hotbar_type
 				end
 				bar = bar .. ":" .. (i * bar_scale - bar_scale + bar_margin)
 				.. "," .. bar_margin .. "=" .. modname .. suff
 				.. ".png\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
+				.. "\\^[opacity\\:192"
 			end
 
 			if data.slots ~= hotbar_slots then
