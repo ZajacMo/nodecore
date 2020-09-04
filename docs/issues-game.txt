@@ -9,6 +9,18 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Infuse rakes.
+	- Larger radius?
+	- Dig more types of stuff?
+	- Silk touch?
+
+- Stone softening rates feel off.
+	- Once first stage of stone softens, others follow really
+	  quicky (exponential runaway basically).
+	- If you leave stone soaking for a while, it looks like it
+	  basically softens all or nothing.
+	- Can we smooth this out and make it less jarring?
+
 - Buff wall scaling
 	- Allow 1n lateral movement along wall
 	- Makes outer wall corners navigable

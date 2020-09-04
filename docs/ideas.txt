@@ -9,6 +9,20 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Visual "subtitles" for sounds?
+	- Use new image_waypoint HUD type; it works in new versions,
+	  invisible in old versions (graceful fallback).
+	- An icon for each sound type.
+
+- Separate air vs. node cursor?
+	- Like the node vs. entity cursor, can we hide the cursor when
+	  pointing only at air?
+	- Would server lag be too much?
+	- This would integrate really well with a WAILA sort of thing.
+	- Could totally revamp touchtips, and dynamic feel Lightning.
+	- Use an image HUD so we can force mobile to display it too, so
+	  mobile players can use look dir too?
+
 - Buff igniting
 	- Make hot lode and other heated materials able to ignite
 		- This was probably not already done just because we
@@ -245,6 +259,13 @@ IDEAS: Possible future additions/improvements to the game
 	  abstract is fine too, as long as it conveys a sense of
 	  movement to help players visualize what's moving and in
 	  what direction.
+
+- Visual in-world hotbar
+	- GreenXenith's visualbar mod
+	- Replace hotbar, merge it with both bandolier and YCTIWY?
+	- Players could be "pickpocketed" during normal gameplay.
+		- Make a sound/visual to warn player.
+	- Jordach's new first-person-attached entities feature?
 
 ........................................................................
 ========================================================================
