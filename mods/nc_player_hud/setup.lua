@@ -18,7 +18,7 @@ nodecore.register_playerstep({
 			for i = 1, hotbar_slots do
 				local stack = inv:get_stack("main", i)
 				local def = stack and (not stack:is_empty()) and stack:get_definition()
-				local suff = (i == player:get_wield_index()) and "_sel" or "_bar"
+				local suff = (i == player:get_wield_index()) and "_sel" or "_slot"
 				if def and def.hotbar_type then
 					suff = suff .. "_" .. def.hotbar_type
 				end
