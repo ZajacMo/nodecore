@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore
-    = math, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,9 +38,9 @@ local function sethotbar(player)
 	end
 end
 nodecore.register_playerstep({
-	label = "hotbar images",
-	action = sethotbar
-})
+		label = "hotbar images",
+		action = sethotbar
+	})
 
 nodecore.register_on_joinplayer("setup hotbar", function(player)
 		sethotbar(player)
