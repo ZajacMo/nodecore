@@ -8,10 +8,12 @@ local modname = minetest.get_current_modname()
 local hotbar_slots = 8
 
 local bar_scale = 32
+local bar_margin = 1
 nodecore.register_playerstep({
 		label = "hotbar images",
 		action = function(player, data)
-			local bar = "[combine:" .. (hotbar_slots * bar_scale) .. "x" .. bar_scale
+			local bar = "[combine:" .. (hotbar_slots * bar_scale + bar_margin * 2)
+			.. "x" .. (bar_scale + bar_margin * 2)
 			local inv = player:get_inventory()
 			for i = 1, hotbar_slots do
 				local stack = inv:get_stack("main", i)
@@ -20,9 +22,9 @@ nodecore.register_playerstep({
 				if def and def.hotbar_type then
 					suff = suff .. "_" .. def.hotbar_type
 				end
-				bar = bar .. ":" .. (i * bar_scale - bar_scale) .. ",0="
-				.. modname .. suff .. ".png\\^[resize\\:" .. bar_scale
-				.. "x" .. bar_scale
+				bar = bar .. ":" .. (i * bar_scale - bar_scale + bar_margin)
+				.. "," .. bar_margin .. "=" .. modname .. suff
+				.. ".png\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
 			end
 
 			if data.slots ~= hotbar_slots then
@@ -38,5 +40,5 @@ nodecore.register_playerstep({
 	})
 
 nodecore.register_on_joinplayer("setup hotbar", function(player)
-		player:hud_set_hotbar_selected_image("[combine:1x1")
+		player:hud_set_hotbar_selected_image(modname .. "_cursor.png")
 	end)
