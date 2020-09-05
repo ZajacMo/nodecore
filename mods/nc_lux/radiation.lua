@@ -87,7 +87,7 @@ nodecore.interval(1, function()
 			local accum = luxaccum[pname] or 0
 			luxaccum[pname] = 0
 
-			local prop = math_exp(-accum / 10000)
+			local prop = math_exp(-accum / 1000)
 			rad = rad * prop + (1 - prop)
 
 			local redux = 0.1
