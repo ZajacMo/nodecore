@@ -13,7 +13,7 @@ nodecore.register_playerstep({
 		label = "hotbar images",
 		action = function(player, data)
 			local bar = "[combine:" .. (hotbar_slots * bar_scale + bar_margin * 2)
-			.. "x" .. (bar_scale + bar_margin * 2)
+			.. "x" .. (bar_scale + bar_margin * 2) .. ":0,0=" .. modname .. "_bar.png"
 			local inv = player:get_inventory()
 			for i = 1, hotbar_slots do
 				local stack = inv:get_stack("main", i)
