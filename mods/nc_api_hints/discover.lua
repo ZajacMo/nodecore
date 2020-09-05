@@ -32,22 +32,25 @@ local function loaddb(p)
 		cache[pname] = db
 	end
 
-	return db, player, pname
+	return db, player, pname, function()
+		player:get_meta():set_string(modname, minetest.serialize(db))
+	end
+
 end
 nodecore.get_player_discovered = loaddb
 
 local function discover(p, k)
-	local db, player, pname = loaddb(p)
+	local db, player, pname, save = loaddb(p)
 	if not db then return end
 
 	if db[k] then return end
 
 	db[k] = true
-	player:get_meta():set_string(modname, minetest.serialize(db))
 	minetest.log("action", string_format("player %q discovered %q", pname, k))
 	for _, cb in pairs(nodecore.registered_on_discovers) do
 		cb(player, k, pname, db)
 	end
+	save()
 end
 nodecore.player_discover = discover
 

@@ -3,27 +3,36 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+local function dug(n)
+	return {true,
+		"dig:nc_terrain:" .. n .. "_loose",
+		"dig:nc_terrain:" .. n,
+		"inv:nc_terrain:" .. n .. "_loose",
+		"inv:nc_terrain:" .. n,
+	}
+end
+
 nodecore.register_hint("dig up dirt",
-	"dig:nc_terrain:dirt_loose"
+	dug("dirt")
 )
 
 nodecore.register_hint("dig up gravel",
-	"dig:nc_terrain:gravel_loose",
+	dug("gravel"),
 	"toolcap:crumbly:2"
 )
 
 nodecore.register_hint("dig up sand",
-	"dig:nc_terrain:sand_loose"
+	dug("sand")
 )
 
-nodecore.register_hint("dig up stone",
-	"dig:nc_terrain:cobble_loose",
+nodecore.register_hint("dig up cobble",
+	dug("cobble"),
 	"toolcap:cracky:2"
 )
 
 nodecore.register_hint("find deep stone strata",
 	"group:hard_stone",
-	"nc_terrain:cobble_loose"
+	dug("cobble")
 )
 
 nodecore.register_hint("find molten rock",
