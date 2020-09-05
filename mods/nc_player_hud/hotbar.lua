@@ -13,7 +13,8 @@ nodecore.register_playerstep({
 		label = "hotbar images",
 		action = function(player, data)
 			local bar = "[combine:" .. (hotbar_slots * bar_scale + bar_margin * 2)
-			.. "x" .. (bar_scale + bar_margin * 2) .. ":0,0=" .. modname .. "_bar.png"
+			.. "x" .. (bar_scale + bar_margin * 2) .. ":0,0=" .. modname
+			.. "_hotbar_bg.png"
 			local inv = player:get_inventory()
 			for i = 1, hotbar_slots do
 				local stack = inv:get_stack("main", i)
@@ -21,7 +22,7 @@ nodecore.register_playerstep({
 				local hbtype = def and def.hotbar_type
 				and ("_" .. def.hotbar_type) or ""
 				bar = bar .. ":" .. (i * bar_scale - bar_scale + bar_margin)
-				.. "," .. bar_margin .. "=" .. modname .. "_slot" .. hbtype
+				.. "," .. bar_margin .. "=" .. modname .. "_hotbar_slot" .. hbtype
 				.. ".png\\^[resize\\:" .. bar_scale .. "x" .. bar_scale
 				.. "\\^[opacity\\:192"
 			end
@@ -39,5 +40,5 @@ nodecore.register_playerstep({
 	})
 
 nodecore.register_on_joinplayer("setup hotbar", function(player)
-		player:hud_set_hotbar_selected_image(modname .. "_sel.png")
+		player:hud_set_hotbar_selected_image(modname .. "_hotbar_sel.png")
 	end)
