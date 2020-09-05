@@ -56,13 +56,16 @@ hand.on_place = function(stack, player, pointed, ...)
 	end
 	if now < stats.start + timecost then
 		if now >= stats.start + 1 then
-			nodecore.dynamic_light_add(pointed.above,
+			if nodecore.dynamic_light_add(pointed.above,
 				nodecore.scaling_light_level,
 				function()
 					player = minetest.get_player_by_name(pname)
 					return player and nodecore.scaling_closenough(
 						pointed.above, player)
-				end)
+				end
+			) then
+				nodecore.player_discover(player, "craft:scaling light")
+			end
 		end
 		return
 	end
@@ -73,10 +76,8 @@ hand.on_place = function(stack, player, pointed, ...)
 		stack, player, pointed, node, ...) then return end
 
 	if nodecore.scaling_apply(pointed, player) then
-		if nodecore.player_stat_add then
-			nodecore.player_stat_add(1, player, "craft",
-				"scaling dy=" .. (pointed.under.y - pointed.above.y))
-		end
+		nodecore.player_discover(player, "craft:scaling dy="
+			.. (pointed.under.y - pointed.above.y))
 		return nodecore.scaling_particles(pointed.above, {
 				time = 0.1,
 				amount = 40,

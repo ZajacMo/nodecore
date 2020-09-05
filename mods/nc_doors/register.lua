@@ -54,8 +54,8 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 				local dir = vector.subtract(pointed.above, pointed.under)
 				if vector.equals(dir, fd.t) or vector.equals(dir, fd.b) then
 					node.name = doorname
-					nodecore.player_stat_add(1, clicker, "craft",
-						"door pin " .. basenode:lower())
+					nodecore.player_discover(clicker, "craft:door pin "
+						.. basenode:lower())
 					nodecore.set_loud(pos, node)
 					stack:take_item(1)
 					return stack

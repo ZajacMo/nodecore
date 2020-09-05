@@ -28,8 +28,8 @@ nodecore.extend_item(chip, function(copy, orig)
 						nodecore.sound_play(stoned.name, stoned)
 						itemstack:set_count(itemstack:get_count() - 1)
 						if placer then
-							nodecore.player_stat_add(1, placer, "craft",
-								"assemble " .. v.to)
+							nodecore.player_discover(placer,
+								"craft:assemble " .. v.to)
 						end
 						return itemstack
 					end

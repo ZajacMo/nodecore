@@ -38,7 +38,7 @@ local function gethint(player)
 	while #found > 5 do
 		table_remove(found, math_random(1, #found))
 	end
-	while #found < 5 do
+	while #found < 5 and #done > 0 do
 		local j = math_random(1, #done)
 		found[#found + 1] = done[j]
 		table_remove(done, j)

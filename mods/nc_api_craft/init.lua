@@ -5,7 +5,6 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("witness")
 include("register_craft")
 include("craft_check")
 include("item_place_node")

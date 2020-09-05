@@ -20,7 +20,7 @@ nodecore.register_on_joinplayer("join hint setup", function(player)
 		msgcache[pname] = {}
 	end)
 
-nodecore.register_on_player_discover(function(player)
+nodecore.register_on_discover(function(player)
 		local pname = player:get_player_name()
 		local dc = donecache[pname]
 		if not dc then return end
