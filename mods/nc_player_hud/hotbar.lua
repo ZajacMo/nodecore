@@ -39,5 +39,5 @@ nodecore.register_playerstep({
 	})
 
 nodecore.register_on_joinplayer("setup hotbar", function(player)
-		player:hud_set_hotbar_selected_image(modname .. "_cursor.png")
+		player:hud_set_hotbar_selected_image(modname .. "_sel.png")
 	end)
