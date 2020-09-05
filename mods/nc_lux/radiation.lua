@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_exp, math_log
-    = math.exp, math.log
+local math_exp, math_floor, math_log, math_sqrt
+    = math.exp, math.floor, math.log, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -74,12 +74,11 @@ nodecore.register_aism({
 		action = function(stack, data)
 			local def = minetest.registered_items[stack:get_name()]
 			local emit = def and def.groups and def.groups.lux_emit
-			or def and def.groups and def.groups.lux_tool
-			and def.groups.lux_tool * 0.25
 			if emit then return rademit(data.pos, emit) end
 		end
 	})
 
+local avgs = {}
 nodecore.interval(1, function()
 		for _, player in pairs(minetest.get_connected_players()) do
 			local meta = player:get_meta()
@@ -89,7 +88,7 @@ nodecore.interval(1, function()
 			local accum = luxaccum[pname] or 0
 			luxaccum[pname] = 0
 
-			local prop = math_exp(-accum / 10000)
+			local prop = math_exp(-accum / 1000)
 			rad = rad * prop + (1 - prop)
 
 			local redux = 0.1
@@ -109,5 +108,24 @@ nodecore.interval(1, function()
 			rad = rad * prop
 
 			meta:set_float("rad", rad)
+
+			local avg = (avgs[pname] or 0) * 0.8 + accum * 0.2
+			avgs[pname] = avg
+			local img = ""
+			if avg > 0.75 then
+				local ow = math_sqrt(avg - 0.75) * 64
+				if ow > 255 then ow = 255 end
+				img = "nc_lux_radhud.png^[opacity:" .. math_floor(ow)
+			end
+			nodecore.hud_set(player, {
+					label = "luxrad",
+					hud_elem_type = "image",
+					position = {x = 0.5, y = 0.5},
+					text = img,
+					direction = 0,
+					scale = {x = -100, y = -100},
+					offset = {x = 0, y = 0},
+					quick = true
+				})
 		end
 	end)
