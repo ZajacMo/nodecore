@@ -252,3 +252,13 @@ nodecore.register_aism({
 			return stack
 		end
 	})
+
+nodecore.register_hint("assemble an annealed lode tote handle",
+	"craft tote handle",
+	{"nc_lode:block_annealed", "nc_woodwork:shelf"}
+)
+
+nodecore.register_hint("pack up a complete tote",
+	"inv:nc_tote:handle_full",
+	"craft tote handle"
+)

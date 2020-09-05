@@ -5,7 +5,9 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("api")
-include("hints")
-include("invtab")
+include("disable")
+include("discover")
+include("witness")
+include("register")
+include("state")
 include("alerts")

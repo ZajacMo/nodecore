@@ -33,9 +33,7 @@ minetest.register_node(modname .. ":eggcorn", {
 
 			nodecore.set_loud(pos, {name = epname, param2 = 16})
 
-			if nodecore.player_stat_add then
-				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
-			end
+			nodecore.player_discover(whom, "craft:eggcorn planting")
 			nodecore.log("action", (whom and whom:get_player_name() or "unknown")
 				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
 
