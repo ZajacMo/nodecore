@@ -4,10 +4,10 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local droppingall = {}
-local function dropall(pname, pos, matching)
+local function dropall(pname, matching)
 	local player = minetest.get_player_by_name(pname)
 	if not player then return end
-	if droppingall[pname] then return end
+	local pos = player:get_pos()
 	droppingall[pname] = true
 	local inv = player:get_inventory()
 	for i = 1, inv:get_size("main") do
@@ -26,8 +26,10 @@ function minetest.item_drop(item, player, ...)
 	local pctl = player:get_player_control()
 	if pctl.aux1 then
 		local pname = player:get_player_name()
-		minetest.after(0, dropall, pname, player:get_pos(),
-			pctl.sneak and player:get_wielded_item():get_name())
+		if not droppingall[pname] then
+			minetest.after(0, dropall, pname,
+				pctl.sneak and player:get_wielded_item():get_name())
+		end
 	end
 	return olddrop(item, player, ...)
 end
