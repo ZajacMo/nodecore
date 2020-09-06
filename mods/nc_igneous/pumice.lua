@@ -14,6 +14,7 @@ pumdef = {
 	description = "Pumice",
 	tiles = {"nc_igneous_pumice.png"},
 	groups = {
+		snappy = 2,
 		cracky = 2,
 		stack_as_node = 1
 	},
