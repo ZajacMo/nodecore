@@ -13,7 +13,7 @@ nodecore.register_hint("find an eggcorn",
 
 nodecore.register_hint("plant an eggcorn",
 	"eggcorn planting",
-	{"nc_tree:eggcorn", "nc_terrain:dirt_loose"}
+	{"inv:nc_tree:eggcorn", "inv:nc_terrain:dirt_loose"}
 )
 
 nodecore.register_hint("see a tree grow",
