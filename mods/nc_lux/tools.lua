@@ -29,25 +29,29 @@ local function mktool(tshape, buffs)
 		def.after_use = nil
 
 		def.groups = nodecore.underride({lux_tool = 1, lux_emit = 1}, orig.groups or {})
-
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1 + (buffs[k] or 0)
 		end
 		tc.uses = 0.125
 		def.tool_capabilities = nodecore.toolcaps(tc)
+		if def.on_rake then
+			def.on_rake = nodecore.lode_rake_function(def.tool_capabilities)
+		end
 
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 2 + (buffs[k] or 0)
 		end
+		local boosttc = nodecore.toolcaps(tc)
 		local boost = nodecore.underride({
 				inventory_image = orig.inventory_image .. "^(" .. modname
 				.. "_base.png^[mask:" .. modname
 				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
 				.. ".png^[opacity:120])",
-				tool_capabilities = nodecore.toolcaps(tc),
+				tool_capabilities = boosttc,
 				glow = 2,
-				light_source = 1
+				light_source = 1,
+				on_rake = def.on_rake and nodecore.lode_rake_function(boosttc)
 			}, def)
 
 		boost.groups = nodecore.underride({lux_tool = 1, lux_emit = 2}, def.groups)

@@ -11,14 +11,15 @@ local loosetest = nodecore.rake_index(function(def)
 		and def.groups.snappy == 1
 	end)
 local snapvol = nodecore.rake_volume(1, 1)
-local snaptest = nodecore.rake_index(function(def)
-		return def.groups and def.groups.snappy == 1
-	end)
 local crumbvol = nodecore.rake_volume(1, 0)
-local function mkonrake(crumblv)
+local function mkonrake(toolcaps)
+	local snaptest = nodecore.rake_index(function(def)
+			return def.groups and def.groups.snappy
+			and def.groups.snappy <= toolcaps.opts.snappy
+		end)
 	local crumbtest = nodecore.rake_index(function(def)
 			return def.groups and def.groups.crumbly
-			and def.groups.crumbly <= crumblv
+			and def.groups.crumbly <= toolcaps.opts.crumbly
 		end)
 	return function(pos, node)
 		if loosetest(pos, node) then return loosevol, loosetest end
@@ -26,6 +27,7 @@ local function mkonrake(crumblv)
 		if crumbtest(pos, node) then return crumbvol, crumbtest end
 	end
 end
+nodecore.lode_rake_function = mkonrake
 
 nodecore.register_lode("rake", {
 		type = "tool",
@@ -45,7 +47,7 @@ nodecore.register_lode("rake", {
 					crumbly = 1 + dlv,
 					uses = 20 + 5 * dlv
 				})
-			d.on_rake = mkonrake(1 + dlv)
+			d.on_rake = mkonrake(d.tool_capabilities)
 		end,
 		tool_wears_to = modname .. ":prill_# 12"
 	})
