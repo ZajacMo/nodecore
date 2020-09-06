@@ -11,7 +11,6 @@ local plank = modname .. "_plank.png^(" .. bark .. ")"
 minetest.register_node(modname .. ":shelf", {
 		description = "Wooden Shelf",
 		tiles = {bark, plank},
-		use_texture_alpha = true,
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {

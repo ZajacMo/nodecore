@@ -23,7 +23,6 @@ for i = 1, #nodecore.writing_glyphs do
 				tile,
 				"[combine:1x1"
 			},
-			use_texture_alpha = true,
 			drawtype = "nodebox",
 			node_box = nodecore.fixedbox(
 				{-0.5, -15/32, -0.5, 0.5, -14/32, 0.5}

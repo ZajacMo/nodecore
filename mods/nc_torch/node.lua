@@ -16,7 +16,6 @@ minetest.register_node(modname .. ":torch", {
 			"nc_fire_coal_4.png^[lowpart:50:nc_tree_tree_side.png",
 			"[combine:1x1"
 		},
-		use_texture_alpha = true,
 		selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 		collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 		paramtype = "light",
@@ -76,7 +75,6 @@ for i = 1, nodecore.torch_life_stages do
 					}
 				}
 			},
-			use_texture_alpha = true,
 			selection_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 			collision_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 6/16, 1/16),
 			paramtype = "light",

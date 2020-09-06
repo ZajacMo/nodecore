@@ -16,7 +16,6 @@ minetest.register_node(modname .. ":shelf", {
 			txr_pane .. "^" .. txr_frame,
 			txr_frame
 		},
-		use_texture_alpha = true,
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {
