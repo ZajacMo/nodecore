@@ -12,7 +12,8 @@ local charge = {}
 
 local boost_suff = "_boost"
 
-local function mktool(tshape)
+local function mktool(tshape, buffs)
+	buffs = buffs or {}
 	for _, temper in pairs({"tempered", "annealed"}) do
 		local orig = minetest.registered_items["nc_lode:" .. tshape .. "_" .. temper]
 
@@ -31,13 +32,13 @@ local function mktool(tshape)
 
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
-			tc[k] = v + 1
+			tc[k] = v + 1 + (buffs[k] or 0)
 		end
 		tc.uses = 0.125
 		def.tool_capabilities = nodecore.toolcaps(tc)
 
 		for k, v in pairs(orig.tool_capabilities.opts) do
-			tc[k] = v + 2
+			tc[k] = v + 2 + (buffs[k] or 0)
 		end
 		local boost = nodecore.underride({
 				inventory_image = orig.inventory_image .. "^(" .. modname
@@ -66,6 +67,7 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 	mktool("tool_" .. shape)
 end
 mktool("adze")
+mktool("rake", {crumbly = 3})
 
 local alltools = {}
 for k in pairs(convert) do alltools[#alltools + 1] = k end
