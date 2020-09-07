@@ -114,7 +114,6 @@ nodecore.register_craft({
 				local face = nodecore.facedirs[i]
 				if vector.equals(face.b, dir) then
 					local dot = vector.dot(look, face.k) * dir.y
-					print(dot)
 					if dot < bestdot then
 						bestdot = dot
 						bestface = i
