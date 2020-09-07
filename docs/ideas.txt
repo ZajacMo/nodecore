@@ -135,8 +135,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Hammer into place with certain tool?
 
 - Door Automation
-	- Should have press recipes for stickcraft, i.e. staves,
-	  frames, ladders.
 	- Press tools (or tool heads) into nodes to activate other
 	  pummel recipes like chopping.
 		- Mount tool heads on frames to make machine tools?
@@ -145,10 +143,6 @@ IDEAS: Possible future additions/improvements to the game
 		  is a climbable walkable behind it, or a storebox, dig the
 		  node and push it through climable as catapult, or into
 		  storebox if it fits.
-	- Pressing stack of 1 node places it, instead of pummeling it.
-	  Can pummel on the second push.
-	- Should doors trigger place recipes when blocked?
-	- Push players?
 	- Need more door materials: lode, glasses
 
 - Renewability Gap

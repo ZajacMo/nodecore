@@ -101,3 +101,61 @@ nodecore.register_craft = function(def, ...)
 	end
 	return helper(oldreg(def, ...))
 end
+
+local checkedstack = {}
+nodecore.register_craft({
+		action = "press",
+		label = "press place stack",
+		priority = 1,
+		nodes = {{match = {stacked = true}}},
+		check = function(pos, data)
+			if not backstop(pos, vector.subtract(data.pointed.under,
+					data.pointed.above), 4) then return end
+
+			local stack = nodecore.stack_get(pos)
+			if not stack or stack:is_empty() or stack:get_count() ~= 1
+			then return end
+			local def = stack:get_definition()
+			if not (def and def.type == "node")
+			or def.groups.stack_as_node then return end
+
+			data[checkedstack] = stack
+			return true
+		end,
+		after = function(pos, data)
+			local stack = data[checkedstack]
+			if not stack then return end
+			minetest.remove_node(pos)
+			stack = minetest.item_place_node(stack, nil, data.pointed)
+			nodecore.node_sound(pos, "place")
+			if not stack:is_empty() then
+				nodecore.item_eject(pos, stack)
+			end
+			return nodecore.craft_check(pos,
+				minetest.get_node(pos),
+				{
+					action = "place",
+					pointed = data.pointed
+				})
+		end
+	})
+
+nodecore.register_craft({
+		action = "press",
+		label = "press node craft",
+		priority = -1,
+		nodes = {{match = {groups = {stack_as_node = true}}}},
+		check = function(pos, data)
+			if not backstop(pos, vector.subtract(data.pointed.under,
+					data.pointed.above), 4) then return end
+			return true
+		end,
+		after = function(pos, data)
+			return nodecore.craft_check(pos,
+				minetest.get_node(pos),
+				{
+					action = "place",
+					pointed = data.pointed
+				})
+		end
+	})
