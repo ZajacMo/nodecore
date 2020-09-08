@@ -9,6 +9,38 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Now that tote handles are separated between bare and packed totes,
+  we can treat them separately.
+	- Allow bare tote handles to be stackable?
+	- Allow bare tote handles to be stored in storeboxes?
+
+- Buff lux fluid range to 2?
+
+- Rework falling_node (or build alternative) with customizability
+	- Allow lode rods, ladders to hang from ceilings?
+
+- Durable transparent/window material.
+	- Harder to mine, noob protection.
+	- "Reinforced glass?"
+		- Use lava+water hardening recipe on glasses?
+	- Lode frames to fill this role?
+		- Reach-through-able lux rad shielding?
+
+- Lux rad trace simplification
+	- Use node grid bounding boxes instead of selectionboxes
+	  used by raycast, allowing porous faraday cages.
+	- Cast outward from player instead of using ABM, like
+	  radiant damage.
+	- Unify radiant heat and lux systems?
+
+- Make radiant heat do burn damage instead of plain?
+	- Reuse lux burns?  Different kind of burn?
+
+- Make etched concrete rotatble?
+	- Rotate only in pliant state by rightclick.
+	- When dug w/ silk touch, store param2 in metadata, add rotation
+	  value to touchtip to explain non-stacking.
+
 - Visual "subtitles" for sounds?
 	- Use new image_waypoint HUD type; it works in new versions,
 	  invisible in old versions (graceful fallback).
@@ -149,15 +181,23 @@ IDEAS: Possible future additions/improvements to the game
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
 		- Lode
-		- Lux
+		- Lux cobbl
 		- Water sources.
 	- Sustainable but not renewable
 	- Not sustainable
 		- Lava sources.
 			- Surround stone with lava to melt?
+		- Lux stone (smooth)
 
 - Threats
 	- Visceral
+		- Leaping sparks/podobos from lava
+			- Only where multiple source nodes are adjacent (lava lakes)
+			  to be nicer to managed builds and skyblocks.
+			- They fly ballistically, maybe bounce, and set fires where
+			  they land.
+			- Possibly knock stone loose and cause cave-ins?  Displacing
+			  lava lakes upward would be pretty dramatic.
 		- Flammable/toxic gas?
 		- Monsters: stone-lurkers, mimics.
 			- Complex multi-node mimic that eats tools you try to dig it with,

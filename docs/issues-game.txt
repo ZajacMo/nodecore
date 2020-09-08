@@ -9,6 +9,14 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Door-wheels do not affect attached glyphs...
+
+- Add a few smoke particles to fire?
+	- Make them different (smaller?) than cooking to differentiate.
+
+- Remove randomness from catpult velocity.
+	- Need to make it so automation based on this is reliable.
+
 - Stone softening rates feel off.
 	- Once first stage of stone softens, others follow really
 	  quicky (exponential runaway basically).
@@ -76,6 +84,7 @@ ISSUES-GAME: Gameplay-affecting issues
 	  particular angle as measured on flat land?
 
 - Hint system
+	- New hints for other play systems, like running at full speed
 	- Updates for everything since renewable ores (read changelog)
 		- Agg may have been broken by concrete overhaul
 	- Consider removing redundant or reverse paths, i.e. recycling
@@ -85,6 +94,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		  COMPELLED to chop up a lode crate unnecessarily for the
 		  hint completion)
 		- Hints could be re-expanded by 3rd party mods
+	- Social achievments
+		- When completing a hint, also tell other players on
+		  the same server if they've completed it too.
 
 - Delay lens full brightess?
 	- Propagate optic signals immediately
