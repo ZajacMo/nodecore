@@ -86,8 +86,8 @@ nodecore.register_limited_abm({
 					igniteseen[key] = true
 					igniteqty = igniteqty + 1
 					if igniteqty > 100 then
-						local i = math_random(1, igniteqty + 1)
-						if i < 100 then
+						local i = math_random(1, igniteqty)
+						if i <= 100 then
 							ignitequeue[i] = p
 						end
 					else
