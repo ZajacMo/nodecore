@@ -9,6 +9,9 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Check for further player inv rearrange traps, and if there are none
+  then finally retire the safety net.
+
 - Look into game default settings.
 	- Change default ABM budget
 	  (https://github.com/minetest/minetest/pull/10290)
@@ -63,12 +66,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
 	- Leaching resumes instead of resetting when water removed.
-
-- Take advantage of the fact that players/inventories use a single shared
-  metatable for player inventory arrangement hooks in nc_player_pickup,
-  like we did for entity:set_properties.
-	- Currently inv pickup logic isn't working and we're relying on
-	  rearrangement; need to resolve this one way or another.
 
 - Make leaf decay group-driven for mod applicability.
 
