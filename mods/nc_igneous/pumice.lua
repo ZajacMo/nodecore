@@ -71,6 +71,8 @@ nodecore.register_limited_abm({
 		neighbors = {"group:lava"},
 		action = function(pos)
 			if math_random() < 0.95 and nodecore.quenched(pos) then return end
-			return nodecore.set_loud(pos, {name = "nc_terrain:lava_flowing", param2 = 7})
+			nodecore.set_loud(pos, {name = "nc_terrain:lava_flowing", param2 = 7})
+			pos.y = pos.y + 1
+			return nodecore.fallcheck(pos)
 		end
 	})
