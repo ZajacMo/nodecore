@@ -293,7 +293,7 @@ regliquid({
 			anim(modname .. "_lava_flow.png", 8),
 			anim(modname .. "_lava_flow.png", 8)
 		},
-		description = "Molten Rock",
+		description = "Pumwater",
 		mapgen = {"lava_source"},
 		paramtype = "light",
 		liquid_viscosity = 7,

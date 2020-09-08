@@ -35,7 +35,7 @@ nodecore.register_hint("find deep stone strata",
 	dug("cobble")
 )
 
-nodecore.register_hint("find molten rock",
+nodecore.register_hint("find pumwater",
 	{true, "group:amalgam", "group:lava"},
 	"nc_terrain:cobble_loose"
 )
