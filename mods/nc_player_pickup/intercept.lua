@@ -1,69 +1,56 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, setmetatable
-    = ipairs, minetest, nodecore, setmetatable
+local getmetatable, minetest, nodecore, setmetatable
+    = getmetatable, minetest, nodecore, setmetatable
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
+local invplayer = {}
+setmetatable(invplayer, {__mode = "k"})
+
+local invgiving = {}
+setmetatable(invgiving, {__mode = "k"})
+
 local function wrapinv(inv, player)
-	if not inv then return inv end
-	local t = {}
-	setmetatable(t, {__index = inv})
-	function t.add_item(_, list, stack)
-		return nodecore.give_item(player, stack, list, inv)
-	end
-	return t
-end
-
-local function wrapplayer(player)
-	if not player then return player end
-	local t = {}
-	setmetatable(t, {__index = player})
-	function t.get_inventory()
-		return wrapinv(player:get_inventory(), player)
-	end
-	return t
-end
-
--- XXX: TODO: FIXME
--- local oldstackgive = nodecore.stack_giveto
--- nodecore.stack_giveto = function(a, whom, ...)
--- return oldstackgive(a, wrapplayer(whom), ...)
--- end
-
-local olddrops = minetest.handle_node_drops
-function minetest.handle_node_drops(a, b, whom, ...)
-	return olddrops(a, b, wrapplayer(whom), ...)
-end
-
-local oldeat = minetest.do_item_eat
-function minetest.do_item_eat(a, b, c, whom, ...)
-	return oldeat(a, b, c, wrapplayer(whom), ...)
-end
-
-local bii = minetest.registered_entities["__builtin:item"]
-local item = {
-	on_punch = function(self, whom, ...)
-		return bii.on_punch(self, wrapplayer(whom), ...)
-	end
-}
-setmetatable(item, bii)
-minetest.register_entity(":__builtin:item", item)
-
-for _, cmd in ipairs({"give", "giveme"}) do
-	local give = minetest.registered_chatcommands[cmd] or {}
-	local oldfunc = give.func or function() end
-	give.func = function(...)
-		local oldgpbn = minetest.get_player_by_name
+	local meta = getmetatable(inv)
+	meta = meta and meta.__index or meta
+	local oldadd = meta.add_item
+	function meta:add_item(listname, stack, ...)
+		if invgiving[self] then return oldadd(self, listname, stack, ...) end
+		invgiving[self] = true
 		local function helper(...)
-			minetest.get_player_by_name = oldgpbn
+			invgiving[self] = nil
 			return ...
 		end
-		minetest.get_player_by_name = function(...)
-			local function helpest(p, ...)
-				p = wrapplayer(p)
-				return p, ...
-			end
-			return helpest(oldgpbn(...))
+		local found = invplayer[self]
+		if found then
+			return helper(nodecore.give_item(found, stack, listname, self))
+		else
+			return helper(oldadd(self, listname, stack, ...))
 		end
-		return helper(oldfunc(...))
 	end
+	nodecore.log("action", modname .. " inventory:add_item hooked")
+	wrapinv = function(i, p)
+		invplayer[i] = p
+		return i
+	end
+	return wrapinv(inv, player)
 end
+
+local function patchplayers()
+	local player = (minetest.get_connected_players())[1]
+	if not player then
+		return minetest.after(0, patchplayers)
+	end
+
+	local meta = getmetatable(player)
+	meta = meta and meta.__index or meta
+	if not meta.get_inventory then return end
+
+	local getraw = meta.get_inventory
+	function meta:get_inventory(...)
+		return wrapinv(getraw(self, ...), self)
+	end
+	nodecore.log("action", modname .. " player:get_inventory hooked")
+end
+minetest.after(0, patchplayers)

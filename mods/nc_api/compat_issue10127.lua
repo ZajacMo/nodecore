@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, pairs
-    = getmetatable, minetest, pairs
+local getmetatable, minetest, nodecore, pairs
+    = getmetatable, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local publicfields = {
@@ -17,6 +17,7 @@ local function hook(meta)
 				end
 				return v(data, name, ...)
 			end
+			nodecore.log("action", "auto-privatized meta " .. k)
 		end
 	end
 end
