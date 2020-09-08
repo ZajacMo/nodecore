@@ -11,9 +11,11 @@ NONIDEAS: Ideas already considered and rejected
 
 - Anything Already Added
 	- If something already exists in the game then it will not
-	  be added.
-	- Please play though the game enough to understand what is
-	  already in the game before making suggestions.
+	  be added.  Please play though the game enough to understand
+	  what is already in the game before making suggestions.
+	- Things that are ALMOST like things already in the game will
+	  not be added.  Players are expected to adapt their ideas to
+	  the materials available, not the other way around.
 
 - Mobs/Animals
 	- Things that are "off-grid" are discouraged.  Node-based
