@@ -136,7 +136,7 @@ minetest.nodedef_default.on_timer = function(pos)
 	return save()
 end
 
-nodecore.register_on_register_item(function(def)
+nodecore.register_on_register_item(function(_, def)
 		if def.on_timer then
 			return error("on_timer hook is disallowed in "
 				.. nodecore.product .. "; use DNT instead")
