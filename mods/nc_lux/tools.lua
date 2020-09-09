@@ -33,7 +33,7 @@ local function mktool(tshape, buffs)
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1 + (buffs[k] or 0)
 		end
-		tc.uses = 0.125
+		tc.uses = 0.125 * (buffs.uses or 1)
 		def.tool_capabilities = nodecore.toolcaps(tc)
 		if def.on_rake then
 			def.on_rake = nodecore.lode_rake_function(def.tool_capabilities)
@@ -71,7 +71,7 @@ for _, shape in pairs({"mallet", "spade", "hatchet", "pick", "mattock"}) do
 	mktool("tool_" .. shape)
 end
 mktool("adze")
-mktool("rake", {crumbly = 3})
+mktool("rake", {snappy = 3, crumbly = 3, uses = 5})
 
 local alltools = {}
 for k in pairs(convert) do alltools[#alltools + 1] = k end
