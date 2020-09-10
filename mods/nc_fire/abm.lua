@@ -66,7 +66,7 @@ local ignition
 nodecore.register_globalstep("fire ignition", function()
 		if not ignition then return end
 		nodecore.log("info", string_format("fire ignition: %d (%d/%d)",
-				ignition.qty, #ignition.queue / ignitemax))
+				ignition.qty, #ignition.queue, ignitemax))
 		for _, pos in ipairs(ignition.queue) do
 			nodecore.fire_check_ignite(pos)
 		end
