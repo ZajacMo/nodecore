@@ -61,6 +61,7 @@ do
 		})
 end
 
+local poshash = minetest.hash_node_position
 local ignitemax = 250
 local ignition
 nodecore.register_globalstep("fire ignition", function()
@@ -80,7 +81,7 @@ nodecore.register_limited_abm({
 		neighbors = {"group:flammable"},
 		action = function(pos)
 			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable")) do
-				local key = minetest.pos_to_string(pos)
+				local key = poshash(p)
 				if not ignition then
 					ignition = {
 						queue = {},
