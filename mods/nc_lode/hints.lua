@@ -30,11 +30,6 @@ nodecore.register_hint("sinter glowing lode prills into a cube",
 	}
 )
 
-nodecore.register_hint("chop a glowing lode cube into prills",
-	"break apart lode block",
-	{"forge lode block", "nc_lode:tool_hatchet_tempered"}
-)
-
 nodecore.register_hint("temper a lode cube to use as an anvil",
 	"nc_lode:block_tempered",
 	"forge lode block"
@@ -53,15 +48,6 @@ local any_lode_anvil = {true,
 nodecore.register_hint("forge lode prills into a tool head on an anvil",
 	any_lode_toolhead,
 	any_lode_anvil
-)
-
-nodecore.register_hint("forge lode down completely on an anvil",
-	{true,
-		"annealed anvil making hot lode prills",
-		"tempered anvil making hot lode prills",
-		"tempered anvil making annealed lode prills"
-	},
-	any_lode_toolhead
 )
 
 nodecore.register_hint("cold-forge annealed lode on a tempered anvil",
@@ -94,19 +80,9 @@ nodecore.register_hint("hammer a lode prill into a bar",
 	"nc_lode:block_tempered"
 )
 
-nodecore.register_hint("hammer a lode bar back to a prill",
-	"anvil recycle lode bar",
-	"anvil making lode bar"
-)
-
 nodecore.register_hint("hammer lode bars into a rod",
 	"anvil making lode rod",
 	"anvil making lode bar"
-)
-
-nodecore.register_hint("chop a lode rod back into bars",
-	"recycle lode rod",
-	"anvil making lode rod"
 )
 
 nodecore.register_hint("solder lode rods into crates",
@@ -114,7 +90,12 @@ nodecore.register_hint("solder lode rods into crates",
 	"anvil making lode rod"
 )
 
-nodecore.register_hint("chop a lode crate back apart",
-	"break apart lode shelf",
-	"assemble lode shelf"
+nodecore.register_hint("assemble a lode adze",
+	"anvil making lode adze",
+	"anvil making lode rod"
+)
+
+nodecore.register_hint("assemble a lode rake",
+	"assemble lode rake",
+	"anvil making lode adze"
 )

@@ -6,7 +6,7 @@ local minetest, nodecore, pairs, vector
 local modname = minetest.get_current_modname()
 
 local wetdef = {
-	description = "Lux Flow",
+	description = "Flux",
 	tiles = {modname .. "_base.png"},
 	special_tiles = {modname .. "_base.png", modname .. "_base.png"},
 	paramtype = "light",

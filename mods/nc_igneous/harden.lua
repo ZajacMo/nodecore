@@ -39,6 +39,7 @@ local function process(pos)
 	if (chance > 0) and (math_random() > (1/3) ^ chance) then return end
 	nodecore.log("action", (water > lux and "hardened" or "softened")
 		.. " to " .. node.name .. " at " .. minetest.pos_to_string(pos))
+	nodecore.witness(pos, "stone " .. (water > lux and "hardened" or "softened"))
 	return nodecore.set_loud(pos, node)
 end
 
