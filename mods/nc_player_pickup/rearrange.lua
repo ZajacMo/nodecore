@@ -1,17 +1,31 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, nodecore
-    = ItemStack, nodecore
+local ItemStack, minetest, nodecore, string
+    = ItemStack, minetest, nodecore, string
+local string_format
+    = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
+
+local function shortdesc(stack)
+	stack = ItemStack(stack)
+	stack:get_meta():from_table({})
+	return stack:to_string()
+end
 
 local function handlepickups(player)
 	local inv = player:get_inventory()
 	local pname = player:get_player_name()
 	local cached = cache[pname]
 	if cached then
+		local dbg_pre = {}
+		local dbg_cur = {}
+
 		local snap = {}
-		for i = 1, #cached do snap[i] = ItemStack(cached[i]) end
+		for i = 1, #cached do
+			snap[i] = ItemStack(cached[i])
+			dbg_pre[i] = shortdesc(snap[i])
+		end
 
 		local excess = {}
 		local dirty
@@ -19,6 +33,7 @@ local function handlepickups(player)
 		local widx = player:get_wield_index()
 		for i in nodecore.inv_walk(player, widx, inv) do
 			local cur = inv:get_stack("main", i)
+			dbg_cur[i] = shortdesc(cur)
 			local old = snap[i] or ItemStack("")
 			if old:is_empty() or cur:peek_item(1):to_string()
 			== old:peek_item(1):to_string() then
@@ -67,8 +82,13 @@ local function handlepickups(player)
 		end
 
 		if dirty then
-			nodecore.log("warning", "inventory rearranged for " .. pname)
 			inv:set_list("main", snap)
+			local dbg_end = {}
+			for i = 1, #snap do dbg_end = shortdesc(snap[i]) end
+			local ser = minetest.serialize
+			nodecore.log("warning", string_format("inventory rearranged for"
+					.. " %s cached %s in %s out %s", pname,
+					ser(dbg_pre), ser(dbg_cur), ser(dbg_end)))
 		end
 	end
 	cache[pname] = inv:get_list("main")
