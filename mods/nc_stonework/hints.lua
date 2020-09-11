@@ -22,3 +22,13 @@ nodecore.register_hint("put a stone tip onto a wooden tool",
 	},
 	"nc_stonework:chip"
 )
+
+nodecore.register_hint("chisel stone bricks",
+	"chisel stone bricks",
+	{"group:smoothstone", "group:chisel"}
+)
+
+nodecore.register_hint("bond stone bricks",
+	"bond stone bricks",
+	"chisel stone bricks"
+)

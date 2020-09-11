@@ -58,6 +58,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 			interval = 1,
 			chance = 2,
 			action = function(pos)
+				nodecore.witness(pos, "bond " .. name .. " bricks")
 				nodecore.set_loud(pos, {name = modname .. ":bricks_"
 						.. name .. "_bonded"})
 			end
