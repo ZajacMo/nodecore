@@ -340,6 +340,9 @@ msgstr "Active Prism"
 msgid "Adobe"
 msgstr "Adobe"
 
+msgid "Adobe Bricks"
+msgstr "Adobe Bricks"
+
 msgid "Adobe Mix"
 msgstr "Adobe Mix"
 
@@ -442,8 +445,17 @@ msgstr "Bindy Tarstone"
 msgid "Blank"
 msgstr "Blank"
 
+msgid "Bonded Adobe Bricks"
+msgstr "Bonded Adobe Bricks"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Bonded Sandstone Bricks"
+
 msgid "Bonded Stone Bricks"
 msgstr "Bonded Stone Bricks"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Bonded Tarstone Bricks"
 
 msgid "Boxy"
 msgstr "Boxy"
@@ -500,7 +512,7 @@ msgid "Bricky Tarstone"
 msgstr "Bricky Tarstone"
 
 msgid "Burn"
-msgstr "Burn"
+msgstr "[REMOVED]"
 
 msgid "Burning Embers"
 msgstr "Burning Embers"
@@ -539,7 +551,10 @@ msgid "Crude Glass"
 msgstr "Crude Glass"
 
 msgid "DEVELOPMENT VERSION"
-msgstr "DEVELOPMENT VERSION"
+msgstr "[REMOVED]"
+
+msgid "DEVELOPMENT/CONTENTDB VERSION"
+msgstr "DEVELOPMENT/CONTENTDB VERSION"
 
 msgid "Dirt"
 msgstr "Dirt"
@@ -754,6 +769,9 @@ msgstr "Infused Annealed Lode Mattock"
 msgid "Infused Annealed Lode Pick"
 msgstr "Infused Annealed Lode Pick"
 
+msgid "Infused Annealed Lode Rake"
+msgstr "Infused Annealed Lode Rake"
+
 msgid "Infused Annealed Lode Spade"
 msgstr "Infused Annealed Lode Spade"
 
@@ -772,11 +790,14 @@ msgstr "Infused Tempered Lode Mattock"
 msgid "Infused Tempered Lode Pick"
 msgstr "Infused Tempered Lode Pick"
 
+msgid "Infused Tempered Lode Rake"
+msgstr "Infused Tempered Lode Rake"
+
 msgid "Infused Tempered Lode Spade"
 msgstr "Infused Tempered Lode Spade"
 
 msgid "Injury"
-msgstr "Injury"
+msgstr "[REMOVED]"
 
 msgid "Inventory"
 msgstr "Inventory"
@@ -854,7 +875,7 @@ msgid "Molten Glass"
 msgstr "Molten Glass"
 
 msgid "Molten Rock"
-msgstr "Molten Rock"
+msgstr "[REMOVED]"
 
 msgid "Niz Charcoal Glyph"
 msgstr "Niz Charcoal Glyph"
@@ -910,6 +931,9 @@ msgstr "Pumice"
 msgid "Pummel"
 msgstr "Pummel"
 
+msgid "Pumwater"
+msgstr "Pumwater"
+
 msgid "Qeg Charcoal Glyph"
 msgstr "Qeg Charcoal Glyph"
 
@@ -924,6 +948,9 @@ msgstr "Sand"
 
 msgid "Sandstone"
 msgstr "Sandstone"
+
+msgid "Sandstone Bricks"
+msgstr "Sandstone Bricks"
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "See included LICENSE file for full details and credits"
@@ -972,6 +999,9 @@ msgstr "Stump"
 
 msgid "Tarstone"
 msgstr "Tarstone"
+
+msgid "Tarstone Bricks"
+msgstr "Tarstone Bricks"
 
 msgid "Teleport to get unstuck (but you can't bring your items)"
 msgstr "[REMOVED]"
@@ -1201,6 +1231,9 @@ msgstr "activate a lens"
 msgid "activate a prism"
 msgstr "activate a prism"
 
+msgid "add coal to aggregate to make tarstone"
+msgstr "add coal to aggregate to make tarstone"
+
 msgid "assemble a glass tank"
 msgstr "assemble a glass tank"
 
@@ -1209,6 +1242,9 @@ msgstr "assemble a rake from adzes and a stick"
 
 msgid "assemble a staff from sticks"
 msgstr "assemble a staff from sticks"
+
+msgid "assemble a stone-tipped stylus"
+msgstr "assemble a stone-tipped stylus"
 
 msgid "assemble a wooden frame from staves"
 msgstr "assemble a wooden frame from staves"
@@ -1231,6 +1267,18 @@ msgstr "assemble an annealed lode tote handle"
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
 
+msgid "bond adobe bricks"
+msgstr "bond adobe bricks"
+
+msgid "bond sandstone bricks"
+msgstr "bond sandstone bricks"
+
+msgid "bond stone bricks"
+msgstr "bond stone bricks"
+
+msgid "bond tarstone bricks"
+msgstr "bond tarstone bricks"
+
 msgid "break cobble into chips"
 msgstr "break cobble into chips"
 
@@ -1243,6 +1291,9 @@ msgstr "carve wooden tool heads from planks"
 msgid "catapult an item with a hinged panel"
 msgstr "catapult an item with a hinged panel"
 
+msgid "change a stylus pattern"
+msgstr "change a stylus pattern"
+
 msgid "chip chromatic glass into prisms"
 msgstr "chip chromatic glass into prisms"
 
@@ -1251,6 +1302,18 @@ msgstr "chisel a hinge groove into a wooden plank"
 
 msgid "chisel a hinge groove into cobble"
 msgstr "chisel a hinge groove into cobble"
+
+msgid "chisel adobe bricks"
+msgstr "chisel adobe bricks"
+
+msgid "chisel sandstone bricks"
+msgstr "chisel sandstone bricks"
+
+msgid "chisel stone bricks"
+msgstr "chisel stone bricks"
+
+msgid "chisel tarstone bricks"
+msgstr "chisel tarstone bricks"
 
 msgid "chop a glowing lode cube into prills"
 msgstr "chop a glowing lode cube into prills"
@@ -1279,6 +1342,9 @@ msgstr "[REMOVED]"
 msgid "cold-forge lode down completely"
 msgstr "[REMOVED]"
 
+msgid "complete a craft with a door"
+msgstr "complete a craft with a door"
+
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
 
@@ -1288,11 +1354,20 @@ msgstr "cool molten glass into crude glass"
 msgid "craft a torch from staff and coal lump"
 msgstr "craft a torch from staff and coal lump"
 
+msgid "cure pliant concrete fully"
+msgstr "cure pliant concrete fully"
+
 msgid "cut down a tree"
 msgstr "cut down a tree"
 
+msgid "cycle through all charcoal glyphs"
+msgstr "cycle through all charcoal glyphs"
+
 msgid "dig up a tree stump"
 msgstr "dig up a tree stump"
+
+msgid "dig up cobble"
+msgstr "dig up cobble"
 
 msgid "dig up dirt"
 msgstr "dig up dirt"
@@ -1310,10 +1385,13 @@ msgid "dig up sand"
 msgstr "dig up sand"
 
 msgid "dig up stone"
-msgstr "dig up stone"
+msgstr "[REMOVED]"
 
 msgid "dry out a sponge"
 msgstr "dry out a sponge"
+
+msgid "etch pliant concrete with a stylus"
+msgstr "etch pliant concrete with a stylus"
 
 msgid "extract living sponge from colony center"
 msgstr "[REMOVED]"
@@ -1352,7 +1430,10 @@ msgid "find lux"
 msgstr "find lux"
 
 msgid "find molten rock"
-msgstr "find molten rock"
+msgstr "[REMOVED]"
+
+msgid "find pumwater"
+msgstr "find pumwater"
 
 msgid "forge lode down completely on an anvil"
 msgstr "forge lode down completely on an anvil"
@@ -1362,6 +1443,9 @@ msgstr "forge lode prills into a tool head on an anvil"
 
 msgid "gate a prism"
 msgstr "gate a prism"
+
+msgid "go for a swim"
+msgstr "go for a swim"
 
 msgid "grind leaves into peat"
 msgstr "grind leaves into peat"
@@ -1380,6 +1464,9 @@ msgstr "harvest a sponge"
 
 msgid "hint complete - @1"
 msgstr "hint complete - @1"
+
+msgid "hold your breath"
+msgstr "hold your breath"
 
 msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
@@ -1415,7 +1502,7 @@ msgid "make fire by rubbing sticks together"
 msgstr "make fire by rubbing sticks together"
 
 msgid "make wet aggregate"
-msgstr "make wet aggregate"
+msgstr "[REMOVED]"
 
 msgid "melt down lode metal from lode cobble"
 msgstr "melt down lode metal from lode cobble"
@@ -1423,14 +1510,23 @@ msgstr "melt down lode metal from lode cobble"
 msgid "melt sand into glass"
 msgstr "melt sand into glass"
 
+msgid "mix dirt into ash to make adobe mix"
+msgstr "mix dirt into ash to make adobe mix"
+
 msgid "mix gravel into ash to make aggregate"
 msgstr "mix gravel into ash to make aggregate"
+
+msgid "mix sand into ash to make render"
+msgstr "mix sand into ash to make render"
 
 msgid "mold molten glass into clear glass"
 msgstr "mold molten glass into clear glass"
 
 msgid "mold molten glass into float glass"
 msgstr "mold molten glass into float glass"
+
+msgid "navigate by touch in darkness"
+msgstr "navigate by touch in darkness"
 
 msgid "observe a lux reaction"
 msgstr "observe a lux reaction"
@@ -1450,6 +1546,9 @@ msgstr "pack stone chips back into cobble"
 msgid "pack up a complete tote"
 msgstr "pack up a complete tote"
 
+msgid "place a node with a door"
+msgstr "place a node with a door"
+
 msgid "plant an eggcorn"
 msgstr "plant an eggcorn"
 
@@ -1466,16 +1565,34 @@ msgid "quench molten glass into chromatic glass"
 msgstr "quench molten glass into chromatic glass"
 
 msgid "quench molten rock to amalgamation"
-msgstr "quench molten rock to amalgamation"
+msgstr "[REMOVED]"
+
+msgid "quench pumwater to amalgamation"
+msgstr "quench pumwater to amalgamation"
+
+msgid "rotate a charcoal glyph"
+msgstr "rotate a charcoal glyph"
+
+msgid "run at full speed"
+msgstr "run at full speed"
 
 msgid "scale a sheer overhang"
-msgstr "scale a sheer overhang"
+msgstr "[REMOVED]"
 
 msgid "scale a sheer wall"
-msgstr "scale a sheer wall"
+msgstr "[REMOVED]"
+
+msgid "scale a wall"
+msgstr "scale a wall"
+
+msgid "scale an overhang"
+msgstr "scale an overhang"
 
 msgid "see a tree grow"
 msgstr "see a tree grow"
+
+msgid "set concrete to pliant"
+msgstr "set concrete to pliant"
 
 msgid "sinter glowing lode prills into a cube"
 msgstr "sinter glowing lode prills into a cube"
@@ -1500,6 +1617,9 @@ msgstr "[REMOVED]"
 
 msgid "weld glowing lode pick and spade heads together"
 msgstr "weld glowing lode pick and spade heads together"
+
+msgid "wet a concrete mix"
+msgstr "wet a concrete mix"
 
 msgid "write on a surface with a charcoal lump"
 msgstr "write on a surface with a charcoal lump"
