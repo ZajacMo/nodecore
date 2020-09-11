@@ -37,3 +37,13 @@ nodecore.register_hint("propel hinged panel with focused light",
 	"door ablation",
 	{"nc_optics:lens_on", "group:door"}
 )
+
+nodecore.register_hint("place a node with a door",
+	"witness:door placement",
+	"group:door"
+)
+
+nodecore.register_hint("complete a craft with a door",
+	"witness:door place-craft",
+	"group:door"
+)

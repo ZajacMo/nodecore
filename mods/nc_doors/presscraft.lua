@@ -69,6 +69,7 @@ local function pressify(rc)
 
 	nr.action = "press"
 	nr.toolgroups = nil
+	nr.witness = 16
 
 	local oldcheck = nr.check
 	nr.check = function(pos, data)
@@ -102,6 +103,28 @@ nodecore.register_craft = function(def, ...)
 	return helper(oldreg(def, ...))
 end
 
+nodecore.register_craft({
+		action = "press",
+		label = "press node craft",
+		priority = -1,
+		nodes = {{match = {groups = {stack_as_node = true}}}},
+		check = function(pos, data)
+			if not backstop(pos, vector.subtract(data.pointed.under,
+					data.pointed.above), 4) then return end
+			return true
+		end,
+		after = function(pos, data)
+			return nodecore.craft_check(pos,
+				minetest.get_node(pos),
+				{
+					action = "place",
+					pointed = data.pointed,
+					witness = 16,
+					label = "door place-craft"
+				})
+		end
+	})
+
 local checkedstack = {}
 nodecore.register_craft({
 		action = "press",
@@ -126,36 +149,17 @@ nodecore.register_craft({
 			local stack = data[checkedstack]
 			if not stack then return end
 			minetest.remove_node(pos)
-			stack = minetest.item_place_node(stack, nil, data.pointed)
+			nodecore.witness(pos, "door placement")
+			local pt = {}
+			for k, v in pairs(data.pointed) do pt[k] = v end
+			pt.craftdata = {
+				witness = 16,
+				label = "door place-craft"
+			}
+			stack = minetest.item_place_node(stack, nil, pt)
 			nodecore.node_sound(pos, "place")
 			if not stack:is_empty() then
 				nodecore.item_eject(pos, stack)
 			end
-			return nodecore.craft_check(pos,
-				minetest.get_node(pos),
-				{
-					action = "place",
-					pointed = data.pointed
-				})
-		end
-	})
-
-nodecore.register_craft({
-		action = "press",
-		label = "press node craft",
-		priority = -1,
-		nodes = {{match = {groups = {stack_as_node = true}}}},
-		check = function(pos, data)
-			if not backstop(pos, vector.subtract(data.pointed.under,
-					data.pointed.above), 4) then return end
-			return true
-		end,
-		after = function(pos, data)
-			return nodecore.craft_check(pos,
-				minetest.get_node(pos),
-				{
-					action = "place",
-					pointed = data.pointed
-				})
 		end
 	})

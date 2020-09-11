@@ -125,13 +125,14 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	if recipe.after then recipe.after(pos, data) end
 	if data.after then data.after(pos, data) end
 	nodecore.player_discover(data.crafter, "craft:" .. recipe.label)
-	if recipe.witness then
+	local witness = data.witness or recipe.witness
+	if witness then
 		local lut = {}
 		for _, v in pairs(recipe.nodes) do
 			lut[minetest.hash_node_position(v)] = true
 		end
-		nodecore.witness(pos, {recipe.action, recipe.label},
-			type(recipe.witness) == "number" and recipe.witness or nil,
+		nodecore.witness(pos, {recipe.action, recipe.label, data.label},
+			type(witness) == "number" and witness or nil,
 			function(p) return lut[minetest.hash_node_position(p)] end
 		)
 	end
