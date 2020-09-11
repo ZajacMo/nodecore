@@ -19,6 +19,7 @@ nodecore.register_playerstep({
 		label = "breath hud",
 		action = function(player)
 			local br = player:get_breath()
+			nodecore.player_discover(player, "breath_" .. br)
 			local img = ""
 			local o = 255 * (1 - br / 11)
 			if o > 0 then

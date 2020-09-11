@@ -1,10 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, nodecore
-    = include, nodecore
+local nodecore
+    = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
-include("api")
-include("hooks")
-include("hints")
+nodecore.register_hint(
+	"hold your breath",
+	"breath_3"
+)

@@ -27,6 +27,9 @@ nodecore.register_playerstep({
 			for k, v in pairs(props) do data.properties[k] = v end
 
 			local anim = nodecore.player_anim(player, data)
+			if anim.name then
+				nodecore.player_discover(player, "anim_" .. anim.name)
+			end
 			data.animation = {{x = anim.x, y = anim.y}, anim.speed}
 		end
 	})

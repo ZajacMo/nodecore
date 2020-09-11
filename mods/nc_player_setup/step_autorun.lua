@@ -6,7 +6,7 @@ local math_pi, math_sin
 -- LUALOCALS > ---------------------------------------------------------
 
 local autorun_walkspeed = 1.25 * nodecore.rate_adjustment("autorun", "walkspeed")
-local autorun_walktime = 2 * nodecore.rate_adjustment("waautorunlk", "walktime")
+local autorun_walktime = 2 * nodecore.rate_adjustment("autorun", "walktime")
 local autorun_acceltime = 4 * nodecore.rate_adjustment("autorun", "acceltime")
 local autorun_ratio = 2 * nodecore.rate_adjustment("autorun", "ratio")
 
@@ -38,6 +38,7 @@ nodecore.register_playerstep({
 			if walking and data.autoruntime then
 				local t = nodecore.gametime - data.autoruntime - autorun_walktime
 				if t > math_pi * autorun_acceltime then
+					nodecore.player_discover(player, "autorun")
 					speed = max
 				elseif t > 0 then
 					local hr = (autorun_ratio - 1) / 2

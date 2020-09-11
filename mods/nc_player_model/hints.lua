@@ -1,10 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, nodecore
-    = include, nodecore
+local nodecore
+    = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
-include("api")
-include("hooks")
-include("hints")
+nodecore.register_hint(
+	"go for a swim",
+	{true,
+		"anim_swim_up",
+		"anim_swim_down",
+		"anim_swim_mine"
+	}
+)
