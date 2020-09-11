@@ -75,21 +75,10 @@ local function stack_desc(s, noqty)
 end
 nodecore.touchtip_stack = stack_desc
 
-local function node_desc(pos, node, puncher, pointed, ...)
-	if pointed and pointed.above and pointed.under
-	and vector.equals(pos, pointed.under) then
-		local anode = minetest.get_node(pointed.above)
-		local def = minetest.registered_items[anode.name] or {}
-		if def.on_node_touchthru then
-			return def.on_node_touchthru(pointed.above,
-				anode, pointed.under, puncher, ...)
-		end
-	end
-
+local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
 	node = node or minetest.get_node(pos)
-	local name = node.name
-	local def = minetest.registered_items[name] or {}
-	if def.air_equivalent or def.pointable == false then return end
+	name = name or node.name
+	def = def or minetest.registered_items[name] or {}
 
 	local metaname = minetest.get_meta(pos):get_string("description")
 	if metaname and metaname ~= "" then
@@ -111,27 +100,61 @@ local function node_desc(pos, node, puncher, pointed, ...)
 	end
 	return name
 end
-nodecore.touchtip_node = node_desc
 
-local wields = {}
+local function node_desc(pos, node, puncher, pointed, ...)
+	if not (puncher and puncher:is_player()) then return end
 
-nodecore.register_playerstep({
-		label = "wield touchtips",
-		action = function(player)
-			local pname = player:get_player_name()
-			local wn = stack_desc(player:get_wielded_item(), true)
-			if wn ~= wields[pname] then
-				wields[pname] = wn
-				show(player, wn)
+	local adesc = " "
+	if pointed and pointed.above and pointed.under
+	and vector.equals(pos, pointed.under) then
+		local anode = minetest.get_node(pointed.above)
+		local def = minetest.registered_items[anode.name] or {}
+		if def.on_node_touchthru then
+			return def.on_node_touchthru(pointed.above,
+				anode, pointed.under, puncher, ...)
+		elseif def.touchthru or def.touchthru ~= false and
+			def.liquidtype ~= "none" and (not def.pointable
+			) then
+				adesc = rawnodedesc(pointed.above, anode,
+					anode.name, def, puncher, pointed, ...)
+				local ppos = puncher:get_pos()
+				ppos.y = ppos.y + puncher:get_properties().eye_height
+				local pnode = minetest.get_node(ppos)
+				local pdesc = rawnodedesc(ppos, pnode, pnode.name,
+					minetest.registered_items[pnode.name] or {},
+					puncher, pointed, ...)
+				if adesc == pdesc then adesc = " " end
 			end
 		end
-	})
+		node = node or minetest.get_node(pos)
+		local name = node.name
+		local def = minetest.registered_items[name] or {}
+		if def.air_equivalent or def.pointable == false then return end
 
-nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher, ...)
-		return show(puncher, node_desc(pos, node, puncher, ...))
-	end)
+		return adesc .. "\n" .. rawnodedesc(pos, node,
+			name, def, puncher, pointed, ...)
+	end
+	nodecore.touchtip_node = node_desc
 
-nodecore.register_on_joinplayer("touchtip wield reset", function(player)
-		local pname = player:get_player_name()
-		wields[pname] = nil
-	end)
+	local wields = {}
+
+	nodecore.register_playerstep({
+			label = "wield touchtips",
+			action = function(player)
+				local pname = player:get_player_name()
+				local wn = stack_desc(player:get_wielded_item(), true)
+				if wn ~= wields[pname] then
+					wields[pname] = wn
+					show(player, wn)
+				end
+			end
+		})
+
+	nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher, ...)
+			return show(puncher, node_desc(pos, node, puncher, ...))
+		end)
+
+	nodecore.register_on_joinplayer("touchtip wield reset", function(player)
+			local pname = player:get_player_name()
+			wields[pname] = nil
+		end)
