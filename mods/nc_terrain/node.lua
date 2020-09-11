@@ -310,6 +310,6 @@ regliquid({
 			damage_touch = 1,
 			damage_radiant = 8
 		},
-		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
+		post_effect_color = {a = 240, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})
