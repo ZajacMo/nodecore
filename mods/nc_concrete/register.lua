@@ -117,6 +117,7 @@ do
 					end
 					return stack
 				end
+				nodecore.player_discover("craft:" .. modname .. ":coalaggregate")
 				nodecore.set_loud(pos,
 					{name = modname .. ":coalaggregate_wet_source"})
 				stack:take_item(1)
