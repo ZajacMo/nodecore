@@ -266,7 +266,7 @@ regliquid({
 	})
 regliquid({
 		name = "water_gray",
-		description = "Artificial Water",
+		description = "Water",
 		tiles = {anim(gray(""), 4)},
 		special_tiles = {
 			anim(gray("_flow"), 4),
