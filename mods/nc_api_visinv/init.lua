@@ -178,7 +178,7 @@ minetest.get_node_drops = function(...)
 	if stack and not stack:is_empty() then
 		local def = stack:get_definition()
 		local dmg = def and def.groups and def.groups.damage_touch
-		if dmg and dmg > 0 then
+		if dug.who and dmg and dmg > 0 then
 			nodecore.addphealth(dug.who, -dmg, "hot pickup")
 			nodecore.item_eject(dug.pos, stack, 0.001)
 		else
