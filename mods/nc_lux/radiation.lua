@@ -134,7 +134,7 @@ local function itemscan(player)
 		if math_random() < rad.absorb then break end
 		if math_random() < rad.scatter then break end
 	end
-	return emit / 4
+	return emit / 8
 end
 
 nodecore.register_playerstep({
@@ -161,7 +161,7 @@ nodecore.register_playerstep({
 			if data.radtime > 1 then data.radtime = 1 end
 			while data.radtime > 1/16 do
 				data.radtime = data.radtime - 1/16
-				local prob = (nodescan(player) + itemscan(player)) / 64
+				local prob = (nodescan(player) + itemscan(player)) / 128
 				if prob > 0 and math_random() < prob then
 					rad = 1 - (1 - rad) * 7/8
 				end
