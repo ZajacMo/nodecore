@@ -158,25 +158,32 @@ nodecore.register_lbm({
 ------------------------------------------------------------------------
 -- DIG INVENTORY
 
-local digpos
+local dug
 local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, ...)
+minetest.node_dig = function(pos, node, digger, ...)
 	nodecore.stack_sounds(pos, "dug")
 	local function helper(...)
-		digpos = nil
+		dug = nil
 		return ...
 	end
-	digpos = pos
-	return helper(old_node_dig(pos, ...))
+	dug = {pos = pos, who = digger}
+	return helper(old_node_dig(pos, node, digger, ...))
 end
 local old_get_node_drops = minetest.get_node_drops
 minetest.get_node_drops = function(...)
 	local drops = old_get_node_drops(...)
-	if not digpos then return drops end
+	if not dug then return drops end
 	drops = drops or {}
-	local stack = nodecore.stack_get(digpos)
+	local stack = nodecore.stack_get(dug.pos)
 	if stack and not stack:is_empty() then
-		drops[#drops + 1] = stack
+		local def = stack:get_definition()
+		local dmg = def and def.groups and def.groups.damage_touch
+		if dmg and dmg > 0 then
+			nodecore.addphealth(dug.who, -dmg, "hot pickup")
+			nodecore.item_eject(dug.pos, stack, 0.001)
+		else
+			drops[#drops + 1] = stack
+		end
 	end
 	return drops
 end
