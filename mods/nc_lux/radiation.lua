@@ -94,7 +94,7 @@ local function randdir()
 	}
 end
 
-local function radscan(player)
+local function nodescan(player)
 	local emit = 0
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
@@ -121,6 +121,22 @@ local function radscan(player)
 	return emit
 end
 
+local function itemscan(player)
+	local list = player:get_inventory():get_list("main")
+	for k, v in pairs(list) do list[k] = rad_lut[v:get_name()] end
+	for i = #list, 1, -1 do
+		local j = math_random(1, i)
+		list[i], list[j] = list[j], list[i]
+	end
+	local emit = 0
+	for _, rad in pairs(list) do
+		if rad.emit then emit = emit + rad.emit end
+		if math_random() < rad.absorb then break end
+		if math_random() < rad.scatter then break end
+	end
+	return emit / 4
+end
+
 nodecore.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
@@ -145,7 +161,7 @@ nodecore.register_playerstep({
 			if data.radtime > 1 then data.radtime = 1 end
 			while data.radtime > 1/16 do
 				data.radtime = data.radtime - 1/16
-				local prob = radscan(player, data) / 64
+				local prob = (nodescan(player) + itemscan(player)) / 64
 				if prob > 0 and math_random() < prob then
 					rad = 1 - (1 - rad) * 7/8
 				end
