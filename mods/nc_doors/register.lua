@@ -116,3 +116,15 @@ end
 
 nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff", 2)
 nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered", 3)
+
+for k, v in pairs(minetest.registered_nodes) do
+	if v.groups and v.groups.stone_bricks == 2 then
+		nodecore.register_door(
+			k:gsub(":.*", ""),
+			k:gsub(".*:", ""),
+			v.description:gsub("Bricks", "Brick"),
+			"nc_lode:rod_tempered",
+			4
+		)
+	end
+end

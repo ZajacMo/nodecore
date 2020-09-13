@@ -7,6 +7,7 @@ local modname = minetest.get_current_modname()
 
 function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, madefrom, groups, bonded)
 	groups = nodecore.underride(groups, {
+			stone_bricks = 1,
 			falling_node = 1
 		})
 	minetest.register_node(":" .. modname .. ":bricks_" .. name, {
@@ -41,6 +42,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 		})
 
 	bonded = nodecore.underride(bonded, groups)
+	bonded.stone_bricks = 2
 	bonded.falling_node = nil
 	minetest.register_node(":" .. modname .. ":bricks_" .. name .. "_bonded", {
 			description = "Bonded " .. desc .. " Bricks",
