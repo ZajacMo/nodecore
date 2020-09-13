@@ -157,13 +157,15 @@ nodecore.register_playerstep({
 				data.unradtime = data.unradtime - use
 			end
 
-			data.radtime = (data.radtime or 0) + dtime
-			if data.radtime > 1 then data.radtime = 1 end
-			while data.radtime > 1/16 do
-				data.radtime = data.radtime - 1/16
-				local prob = (nodescan(player) + itemscan(player)) / 128
-				if prob > 0 and math_random() < prob then
-					rad = 1 - (1 - rad) * 7/8
+			if nodecore.player_can_take_damage(player) then
+				data.radtime = (data.radtime or 0) + dtime
+				if data.radtime > 1 then data.radtime = 1 end
+				while data.radtime > 1/16 do
+					data.radtime = data.radtime - 1/16
+					local prob = (nodescan(player) + itemscan(player)) / 128
+					if prob > 0 and math_random() < prob then
+						rad = 1 - (1 - rad) * 7/8
+					end
 				end
 			end
 
