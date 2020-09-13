@@ -46,12 +46,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		  of the registration definition that will pick up those missed.
 	- Define order for inv tabs
 
-- Hint System Refactor
-	- Move stats into an api layer to ensure availability
-	- Simplify stats, track less detail, limit data growth.
-	- Break up hints into each individual mod.
-	- Add shortcuts for hint registrations, e.g. integrated with recipes.
-
 - Transactional api ref localization
 	- For certain large computations, like an optic processing, it may be
 	  worthwhile to capture some often-repeated functions like minetest.get_node
