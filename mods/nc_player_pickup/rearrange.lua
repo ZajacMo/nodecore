@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, minetest, nodecore, string
     = ItemStack, minetest, nodecore, string
-local string_format
-    = string.format
+local string_format, string_gsub
+    = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
@@ -84,8 +84,10 @@ local function handlepickups(player)
 		if dirty then
 			inv:set_list("main", snap)
 			local dbg_end = {}
-			for i = 1, #snap do dbg_end = shortdesc(snap[i]) end
-			local ser = minetest.serialize
+			for i = 1, #snap do dbg_end[i] = shortdesc(snap[i]) end
+			local ser = function(s)
+				return string_gsub(minetest.serialize(s), "^return ", "")
+			end
 			nodecore.log("warning", string_format("inventory rearranged for"
 					.. " %s cached %s in %s out %s", pname,
 					ser(dbg_pre), ser(dbg_cur), ser(dbg_end)))
