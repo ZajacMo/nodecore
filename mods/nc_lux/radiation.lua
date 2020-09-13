@@ -162,9 +162,9 @@ nodecore.register_playerstep({
 				if data.radtime > 1 then data.radtime = 1 end
 				while data.radtime > 1/16 do
 					data.radtime = data.radtime - 1/16
-					local prob = (nodescan(player) + itemscan(player)) / 128
+					local prob = (nodescan(player) + itemscan(player)) / 64
 					if prob > 0 and math_random() < prob then
-						rad = 1 - (1 - rad) * 7/8
+						rad = 1 - (1 - rad) * 31/32
 					end
 				end
 			end

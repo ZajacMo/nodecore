@@ -24,7 +24,7 @@ local wetdef = {
 	air_pass = true,
 	drowning = 0,
 	groups = {
-		lux_emit = 8,
+		lux_emit = 12,
 		lux_fluid = 1,
 		stack_as_node = 1
 	},
