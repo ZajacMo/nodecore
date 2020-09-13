@@ -26,13 +26,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Lode frames to fill this role?
 		- Reach-through-able lux rad shielding?
 
-- Lux rad trace simplification
-	- Use node grid bounding boxes instead of selectionboxes
-	  used by raycast, allowing porous faraday cages.
-	- Cast outward from player instead of using ABM, like
-	  radiant damage.
-	- Unify radiant heat and lux systems?
-
 - Make radiant heat do burn damage instead of plain?
 	- Reuse lux burns?  Different kind of burn?
 
@@ -65,8 +58,6 @@ IDEAS: Possible future additions/improvements to the game
 			- Water? Lava?
 			- Optic beams?
 
-- Chop frames, ladders, staves back down into sticks?
-
 - Can we use glasslike_framed for shelves?
 	- Alternate 2 versions of the registration based on y coord
 	  so it forces top/bottom faces to show
@@ -74,16 +65,8 @@ IDEAS: Possible future additions/improvements to the game
 - More lode bar crafts:
 	- Frames
 	- Ladders?
-	- Adzes?
-		- chop+crumb -1 relative tier
-		- cracky -2 relative tier
-		- full durability
-		- Should these be full lode or wood handle?
-	- Rakes?
-		- Return some prills after construction?
-	- Make wear carry across heating/cooling recipes
-		- Allow full-lode tools to be tempered
-	- All these need to be recyclable.
+	- Allow frame loose ends to be chopped off when placed next to other
+	  frames, so custom shapes can be made.
 
 - Piezo node for optics detects sounds?
 	- Sounds emitted by mod stuff?
@@ -102,9 +85,6 @@ IDEAS: Possible future additions/improvements to the game
 	  are wielded item.
 	- Unmark safe any slots that don't contain hot things after
 	  hot potato check.
-
-- Allow frame loose ends to be chopped off when placed next to other
-  frames, so custom shapes can be made.
 
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
@@ -157,14 +137,6 @@ IDEAS: Possible future additions/improvements to the game
 
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
-
-- Optic locking
-	- Prevent accidental rotation.
-	- Use tree sap / glue?
-		- Make "glued" optic node?
-		- Detect adjacent glue node?
-	- Apply frame, make framed optics?
-	- Hammer into place with certain tool?
 
 - Door Automation
 	- Press tools (or tool heads) into nodes to activate other
