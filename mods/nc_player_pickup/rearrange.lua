@@ -82,7 +82,7 @@ local function handlepickups(player)
 		end
 
 		if dirty then
-			inv:set_list("main", snap)
+			-- inv:set_list("main", snap)
 			local dbg_end = {}
 			for i = 1, #snap do dbg_end[i] = shortdesc(snap[i]) end
 			local ser = function(s)
