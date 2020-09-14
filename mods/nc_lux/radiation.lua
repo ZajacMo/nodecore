@@ -9,25 +9,26 @@ local math_cos, math_floor, math_pi, math_pow, math_random, math_sin,
 
 local modname = minetest.get_current_modname()
 
-local radlevel
-do
-	local radcache = {}
-	local metakey = "rad"
-	radlevel = function(player, setto)
+local function metastat(metakey)
+	local statcache = {}
+	return function(player)
 		local pname = player:get_player_name()
 		local meta = player:get_meta()
-		local found = radcache[pname]
-		if setto and found ~= setto then
-			radcache[pname] = setto
-			meta:set_float(metakey, setto)
-			return setto
+		local found = statcache[pname]
+		if not found then
+			found = meta:get_float(metakey)
+			statcache[pname] = found
 		end
-		if found then return found end
-		found = meta:get_float(metakey) or 0
-		radcache[pname] = found
-		return found
+		return found, function(v)
+			if v == found then return end
+			found = v
+			statcache[pname] = v
+			meta:set_float(metakey, v)
+		end
 	end
 end
+local radlevel = metastat("rad")
+local radrate = metastat("radrate")
 
 local irradiated = modname .. ":irradiated"
 nodecore.register_virtual_item(irradiated, {
@@ -140,7 +141,8 @@ end
 nodecore.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
-			local rad = radlevel(player)
+			local rad, setrad = radlevel(player)
+			local rate, setrate = radrate(player)
 
 			data.unradtime = (data.unradtime or 0) + dtime
 			if data.unradtime > 1 then
@@ -162,13 +164,36 @@ nodecore.register_playerstep({
 				if data.radtime > 1 then data.radtime = 1 end
 				while data.radtime > 1/16 do
 					data.radtime = data.radtime - 1/16
-					local prob = (nodescan(player) + itemscan(player)) / 256
-					if prob > 0 and math_random() < prob then
+					local inrate = (nodescan(player) + itemscan(player)) / 256
+					rate = (rate or 0) * 0.99 + inrate * 0.01
+					if inrate > 0 and math_random() < inrate then
 						rad = 1 - (1 - rad) * 31/32
 					end
 				end
 			end
+			setrate(rate)
 
-			return radlevel(player, rad)
+			data.radhudtime = (data.radhudtime or 0) + dtime * 2
+			if data.radhudtime >= 1 then
+				data.radhudtime = data.radhudtime - math_floor(data.radhudtime)
+				local o = math_floor(math_pow(rate, 1/3) * 1000)
+				if o > 255 then o = 255 end
+				local img = ""
+				if o > 0 then img = modname .. "_radhud.png"
+					if o < 255 then img = img .. "^[opacity:" .. o end
+				end
+				nodecore.hud_set(player, {
+						label = "radiation",
+						hud_elem_type = "image",
+						position = {x = 0.5, y = 0.5},
+						text = img,
+						direction = 0,
+						scale = {x = -100, y = -100},
+						offset = {x = 0, y = 0},
+						quick = true
+					})
+			end
+
+			return setrad(rad)
 		end
 	})
