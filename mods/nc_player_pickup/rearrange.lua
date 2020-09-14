@@ -89,8 +89,8 @@ local function handlepickups(player)
 				return string_gsub(minetest.serialize(s), "^return ", "")
 			end
 			nodecore.log("warning", string_format("inventory rearranged for"
-					.. " %s cached %s in %s out %s", pname,
-					ser(dbg_pre), ser(dbg_cur), ser(dbg_end)))
+					.. " %s cached %s in %s out %s wield ", pname,
+					ser(dbg_pre), ser(dbg_cur), ser(dbg_end), widx))
 		end
 	end
 	cache[pname] = inv:get_list("main")
