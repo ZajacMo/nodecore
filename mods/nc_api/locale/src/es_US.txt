@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-15 03:10+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2020-09-15 12:49+0000\n"
+"Last-Translator: Elon_Satoshi <none1@example.org>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
 "Language: es_US\n"
@@ -250,7 +250,7 @@ msgid "Glass Tank"
 msgstr "Depósito de Vidrio"
 
 msgid "Gated Prism"
-msgstr "Compuerta de Prisma"
+msgstr "Prisma Cerrado"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
