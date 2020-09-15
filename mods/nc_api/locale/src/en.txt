@@ -407,7 +407,7 @@ msgid "Annealed Lode Spade Head"
 msgstr "Annealed Lode Spade Head"
 
 msgid "Artificial Water"
-msgstr "Artificial Water"
+msgstr "[REMOVED]"
 
 msgid "Ash"
 msgstr "Ash"
@@ -445,14 +445,38 @@ msgstr "Bindy Tarstone"
 msgid "Blank"
 msgstr "Blank"
 
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Bonded Adobe Brick Hinged Panel"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Bonded Adobe Brick Panel"
+
 msgid "Bonded Adobe Bricks"
 msgstr "Bonded Adobe Bricks"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Bonded Sandstone Brick Hinged Panel"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Bonded Sandstone Brick Panel"
 
 msgid "Bonded Sandstone Bricks"
 msgstr "Bonded Sandstone Bricks"
 
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Bonded Stone Brick Hinged Panel"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Bonded Stone Brick Panel"
+
 msgid "Bonded Stone Bricks"
 msgstr "Bonded Stone Bricks"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Bonded Tarstone Brick Hinged Panel"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Bonded Tarstone Brick Panel"
 
 msgid "Bonded Tarstone Bricks"
 msgstr "Bonded Tarstone Bricks"
@@ -576,6 +600,9 @@ msgstr "Fire"
 
 msgid "Float Glass"
 msgstr "Float Glass"
+
+msgid "Flux"
+msgstr "Flux"
 
 msgid "Fot Charcoal Glyph"
 msgstr "Fot Charcoal Glyph"
@@ -860,7 +887,7 @@ msgid "Lux Cobble"
 msgstr "Lux Cobble"
 
 msgid "Lux Flow"
-msgstr "Lux Flow"
+msgstr "[REMOVED]"
 
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
@@ -1237,6 +1264,12 @@ msgstr "add coal to aggregate to make tarstone"
 msgid "assemble a glass tank"
 msgstr "assemble a glass tank"
 
+msgid "assemble a lode adze"
+msgstr "assemble a lode adze"
+
+msgid "assemble a lode rake"
+msgstr "assemble a lode rake"
+
 msgid "assemble a rake from adzes and a stick"
 msgstr "assemble a rake from adzes and a stick"
 
@@ -1316,13 +1349,13 @@ msgid "chisel tarstone bricks"
 msgstr "chisel tarstone bricks"
 
 msgid "chop a glowing lode cube into prills"
-msgstr "chop a glowing lode cube into prills"
+msgstr "[REMOVED]"
 
 msgid "chop a lode crate back apart"
-msgstr "chop a lode crate back apart"
+msgstr "[REMOVED]"
 
 msgid "chop a lode rod back into bars"
-msgstr "chop a lode rod back into bars"
+msgstr "[REMOVED]"
 
 msgid "chop chromatic glass into lenses"
 msgstr "chop chromatic glass into lenses"
@@ -1432,11 +1465,14 @@ msgstr "find lux"
 msgid "find molten rock"
 msgstr "[REMOVED]"
 
+msgid "find pumice"
+msgstr "find pumice"
+
 msgid "find pumwater"
 msgstr "find pumwater"
 
 msgid "forge lode down completely on an anvil"
-msgstr "forge lode down completely on an anvil"
+msgstr "[REMOVED]"
 
 msgid "forge lode prills into a tool head on an anvil"
 msgstr "forge lode prills into a tool head on an anvil"
@@ -1451,13 +1487,16 @@ msgid "grind leaves into peat"
 msgstr "grind leaves into peat"
 
 msgid "hammer a lode bar back to a prill"
-msgstr "hammer a lode bar back to a prill"
+msgstr "[REMOVED]"
 
 msgid "hammer a lode prill into a bar"
 msgstr "hammer a lode prill into a bar"
 
 msgid "hammer lode bars into a rod"
 msgstr "hammer lode bars into a rod"
+
+msgid "harden stone"
+msgstr "harden stone"
 
 msgid "harvest a sponge"
 msgstr "harvest a sponge"
@@ -1614,6 +1653,9 @@ msgstr "temper a lode tool head"
 
 msgid "traverse a dark floor by feel"
 msgstr "[REMOVED]"
+
+msgid "weaken stone by soaking"
+msgstr "weaken stone by soaking"
 
 msgid "weld glowing lode pick and spade heads together"
 msgstr "weld glowing lode pick and spade heads together"
