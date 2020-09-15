@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-15 00:34+0000\n"
-"Last-Translator: heshman <heshman@example.org>\n"
+"PO-Revision-Date: 2020-09-15 03:10+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
 "Language: es_US\n"
@@ -61,7 +61,7 @@ msgid "(and 1 more hint)"
 msgstr "(y una pista más)"
 
 msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
-msgstr "(C)2018-2020 por Aaron Suen <warr1024@gmail.com>"
+msgstr "(C)2018-2020 por Aaron Suen <warr1024@@gmail.com>"
 
 msgid "Annealed Lode Rake"
 msgstr "Rastrillo de Veta Recocido"
