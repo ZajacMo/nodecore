@@ -26,7 +26,7 @@ sub getlang {
 sub savelang {
 	my $lang = shift();
 	my $en = shift();
-	my %db = %{getlang($lang)};
+	my %db = %{shift()};
 	map { $en->{$_} and $db{$_} ne $_ or delete $db{$_} } keys %db;
 	%db or return;
 	open(my $fh, ">", "nc_api.$lang.tr") or die($!);
@@ -41,6 +41,7 @@ for my $k ( keys %$en ) {
 	$en->{$k} eq "[REMOVED]" and delete $en->{$k};
 }
 
+my %langdb;
 my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
 while($page) {
 	open(my $fh, "-|", "curl", $page) or die($!);
@@ -51,6 +52,18 @@ while($page) {
 		$r->{component}->{slug} eq "core" or next;
 		$r->{component}->{project}->{slug} eq "nodecore" or next;
 		my $code = $r->{language}->{code};
-		$code eq 'en' or savelang($code, $en);
+		$code eq 'en' or $langdb{$code} = getlang($code);
 	}
+	for my $sub ( keys %langdb ) {
+		my $gen = $sub;
+		$gen =~ s#_\S+$## or next;
+		$langdb{$gen} //= {};
+		map { $langdb{$gen}{$_} //= $langdb{$sub}{$_} } keys %{$langdb{$sub}};
+	}
+	for my $sub ( keys %langdb ) {
+		my $gen = $sub;
+		$gen =~ s#_\S+$## or next;
+		map { $langdb{$sub}{$_} //= $langdb{$gen}{$_} } keys %{$langdb{$sub}};
+	}
+	map { savelang($_, $en, $langdb{$_}) } keys %langdb;
 }
