@@ -85,7 +85,8 @@ minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		local pinfo = minetest.get_player_information(pname)
 		if pinfo.protocol_version < 39 then
-			return minetest.kick_player(pname, "Outdated client")
+			minetest.kick_player(pname, "Outdated client")
+			return minetest.chat_send_all(pname .. ": outdated client")
 		end
 	end)
 
