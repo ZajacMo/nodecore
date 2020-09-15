@@ -54,7 +54,7 @@ while($page) {
 		my $code = $r->{language}->{code};
 		$code eq 'en' or $langdb{$code} = getlang($code);
 	}
-	for my $sub ( keys %langdb ) {
+	for my $sub ( sort keys %langdb ) {
 		my $gen = $sub;
 		$gen =~ s#_\S+$## or next;
 		$langdb{$gen} //= {};
