@@ -29,11 +29,13 @@ nodecore.register_craft({
 				vector.subtract(pos, ctr),
 				vector.subtract(data.pointed.under, data.pointed.above)
 			)
+			local doorlv = minetest.get_item_group(minetest.get_node(
+					data.pointed.above).name, "door") or 0
 			local one = ItemStack(stack:to_string())
 			one:set_count(1)
 			nodecore.item_eject(
 				vector.add(pos, vector.multiply(vel, 0.25)),
-				one, 0, 1, vector.multiply(vel, 4)
+				one, 0, 1, vector.multiply(vel, 2 + doorlv)
 			)
 			stack:take_item(1)
 			if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
