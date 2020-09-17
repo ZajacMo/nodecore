@@ -40,7 +40,7 @@ for i = 1, 65535 do
 	nodecore.translate_inform(weardescs[i])
 end
 
-local function stack_desc(s, noqty)
+function nodecore.touchtip_stack(s, noqty)
 	if s:is_empty() then return "" end
 
 	local n = s:get_name()
@@ -73,7 +73,6 @@ local function stack_desc(s, noqty)
 	end
 	return t
 end
-nodecore.touchtip_stack = stack_desc
 
 local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
 	node = node or minetest.get_node(pos)
@@ -84,14 +83,14 @@ local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
 	if metaname and metaname ~= "" then
 		name = metaname
 	elseif def.groups and def.groups.is_stack_only then
-		name = stack_desc(nodecore.stack_get(pos))
+		name = nodecore.touchtip_stack(nodecore.stack_get(pos))
 	elseif def.description then
 		name = def.description
 	end
 
 	if def.groups and def.groups.visinv and not def.groups.is_stack_only then
 		local s = nodecore.stack_get(pos)
-		local t = stack_desc(s)
+		local t = nodecore.touchtip_stack(s)
 		if t and t ~= "" then name = name .. "\n" .. t end
 	end
 
@@ -101,7 +100,7 @@ local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
 	return name
 end
 
-local function node_desc(pos, node, puncher, pointed, ...)
+function nodecore.touchtip_node(pos, node, puncher, pointed, ...)
 	if not (puncher and puncher:is_player()) then return end
 
 	local adesc = " "
@@ -137,7 +136,6 @@ local function node_desc(pos, node, puncher, pointed, ...)
 	return adesc .. "\n" .. rawnodedesc(pos, node,
 		name, def, puncher, pointed, ...)
 end
-nodecore.touchtip_node = node_desc
 
 local wields = {}
 
@@ -145,7 +143,7 @@ nodecore.register_playerstep({
 		label = "wield touchtips",
 		action = function(player)
 			local pname = player:get_player_name()
-			local wn = stack_desc(player:get_wielded_item(), true)
+			local wn = nodecore.touchtip_stack(player:get_wielded_item(), true)
 			if wn ~= wields[pname] then
 				wields[pname] = wn
 				show(player, wn)
@@ -154,7 +152,7 @@ nodecore.register_playerstep({
 	})
 
 nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher, ...)
-		return show(puncher, node_desc(pos, node, puncher, ...))
+		return show(puncher, nodecore.touchtip_node(pos, node, puncher, ...))
 	end)
 
 nodecore.register_on_joinplayer("touchtip wield reset", function(player)
