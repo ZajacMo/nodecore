@@ -8,6 +8,7 @@ local modname = minetest.get_current_modname()
 local lt = 1/16
 local lw = 3/16
 local ll = 1/2
+local lf = 1/8
 
 local tt = "nc_woodwork_frame.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
 
@@ -19,6 +20,7 @@ minetest.register_node(modname .. ":ladder", {
 			{-lw, -lt, -lt, lw, lt, lt},
 			{-lt, -lt, -lw, lt, lt, lw}
 		),
+		selection_box = nodecore.fixedbox(-lw, -ll, -lw, lw, ll, lw),
 		tiles = {tt},
 		groups = {
 			snappy = 1,
@@ -51,6 +53,11 @@ minetest.register_node(modname .. ":frame", {
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-ll, -lt, -lt, ll, lt, lt},
 			{-lt, -lt, -ll, lt, lt, ll}
+		),
+		selection_box = nodecore.fixedbox(
+			{-lf, -ll, -lf, lf, ll, lf},
+			{-ll, -lf, -lf, ll, lf, lf},
+			{-lf, -lf, -ll, lf, lf, ll}
 		),
 		tiles = {tt},
 		groups = {
