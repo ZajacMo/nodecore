@@ -7,5 +7,4 @@ nodecore.amcoremod()
 
 include("api")
 include("intercept")
-include("rearrange")
 include("dropall")
