@@ -60,7 +60,6 @@ end
 local laststack
 local lastraking
 local old_node_dig = minetest.node_dig
-
 minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
 	local wield = user and user:is_player() and user:get_wielded_item()
@@ -93,7 +92,7 @@ local function dorake(volume, check, pos, node, user, ...)
 		local allow = (rel.d > 0 or nil) and check(p, n, rel)
 		if allow == false then break end
 		if allow and ((not sneak) or matching(pos, node, p, n)) then
-			deferfall(old_node_dig, p, n, user, ...)
+			minetest.node_dig(p, n, user, ...)
 			objpos[minetest.hash_node_position(p)] = true
 		end
 	end
