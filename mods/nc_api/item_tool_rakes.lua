@@ -78,9 +78,10 @@ minetest.after(0, function()
 local function matching(_, na, pb, nb)
 	if stackonly[na.name] then
 		if not stackonly[nb.name] then return end
-		return (laststack and laststack:get_name()) == nodecore.stack_get(pb):get_name()
+		return (laststack and nodecore.stack_family(laststack))
+		== nodecore.stack_family(nodecore.stack_get(pb))
 	end
-	return na.name == nb.name
+	return nodecore.stack_family(na.name) == nodecore.stack_family(nb.name)
 end
 
 local function dorake(volume, check, pos, node, user, ...)

@@ -13,7 +13,7 @@ local function dropall(pname, matching)
 	for i = 1, inv:get_size("main") do
 		local stack = inv:get_stack("main", i)
 		if not (stack:is_empty() or nodecore.item_is_virtual(stack)
-			or matching and stack:get_name() ~= matching) then
+			or matching and nodecore.stack_family(stack) ~= matching) then
 			stack = minetest.item_drop(stack, player, pos)
 			inv:set_stack("main", i, stack)
 		end
@@ -28,7 +28,7 @@ function minetest.item_drop(item, player, ...)
 		local pname = player:get_player_name()
 		if not droppingall[pname] then
 			minetest.after(0, dropall, pname,
-				pctl.sneak and player:get_wielded_item():get_name())
+				pctl.sneak and nodecore.stack_family(player:get_wielded_item()))
 		end
 	end
 	return olddrop(item, player, ...)
