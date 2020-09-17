@@ -12,7 +12,7 @@ local raketest = nodecore.rake_index(function(def)
 	end)
 
 minetest.register_tool(modname .. ":rake", {
-		description = "Rake",
+		description = "Wooden Rake",
 		inventory_image = modname .. "_rake.png",
 		tool_capabilities = nodecore.toolcaps({
 				snappy = 1,
