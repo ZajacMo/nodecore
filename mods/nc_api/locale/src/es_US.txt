@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-15 12:49+0000\n"
+"PO-Revision-Date: 2020-09-17 00:29+0000\n"
 "Last-Translator: Elon_Satoshi <none1@example.org>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
@@ -301,10 +301,10 @@ msgid "Chromatic Glass"
 msgstr "Vidrio Cromático"
 
 msgid "Charcoal"
-msgstr "Bloque de Carbón Vegetal"
+msgstr "Carbón Vegetal"
 
 msgid "Charcoal Lump"
-msgstr "Carbón Vegetal"
+msgstr "Polvo de Carbón Vegetal"
 
 msgid "Charcoal Glyph"
 msgstr "Glifo de Carbón Vegetal"
@@ -487,10 +487,10 @@ msgid "Bindy"
 msgstr "\"Bindy\""
 
 msgid "Ash Lump"
-msgstr "Ceniza"
+msgstr "Polvo de Ceniza"
 
 msgid "Ash"
-msgstr "Bloque de Ceniza"
+msgstr "Ceniza"
 
 msgid "Bonded Stone Bricks"
 msgstr "Ladrillos de piedra adheridos"
@@ -563,3 +563,75 @@ msgstr "... ¿has encontrado ceniza ya?"
 
 msgid "...have you found a lode stratum yet?"
 msgstr "... ¿Ha encontrado ya un extracto de veta?"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Zin\""
+
+msgid "Yit Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Yit\""
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Xrp\""
+
+msgid "Tof Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Tof\""
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Qeg\""
+
+msgid "Prx Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Prx\""
+
+msgid "Odo Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Odo\""
+
+msgid "Niz Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Niz\""
+
+msgid "Mew Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Mew\""
+
+msgid "Verty Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Verty\""
+
+msgid "Verty Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Verty\""
+
+msgid "Vermy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Vermy\""
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Vermy\""
+
+msgid "Tarstone"
+msgstr "Piedra de alquitrán"
+
+msgid "Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible"
+
+msgid "Iceboxy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Iceboxy"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Iceboxy\""
+
+msgid "Horzy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Horzy"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Horzy\""
+
+msgid "Hashy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Hashy\""
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Hashy\""
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Hacha con Punta de Piedra"
+
+msgid "Stone-Tipped Pick"
+msgstr "Pico con Punta de Piedra"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Mazo con Punta de Piedra"
