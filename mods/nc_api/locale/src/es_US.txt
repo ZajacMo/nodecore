@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-17 00:29+0000\n"
+"PO-Revision-Date: 2020-09-17 12:57+0000\n"
 "Last-Translator: Elon_Satoshi <none1@example.org>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
@@ -635,3 +635,45 @@ msgstr "Pico con Punta de Piedra"
 
 msgid "Stone-Tipped Mallet"
 msgstr "Mazo con Punta de Piedra"
+
+msgid "Wooden Spade Head"
+msgstr "Cabeza de Pala de Madera"
+
+msgid "Wooden Spade"
+msgstr "Pala de Madera"
+
+msgid "Wooden Shelf"
+msgstr "Balda de Madera"
+
+msgid "Wooden Plank"
+msgstr "Tablón de Madera"
+
+msgid "Wooden Pick Head"
+msgstr "Cabeza de Pico de Madera"
+
+msgid "Wooden Pick"
+msgstr "Pico de Madera"
+
+msgid "Wooden Panel"
+msgstr "Panel de Madera"
+
+msgid "Wooden Mallet Head"
+msgstr "Cabeza de Mazo de Madera"
+
+msgid "Wooden Ladder"
+msgstr "Escalera de Madera"
+
+msgid "Wooden Hinged Panel"
+msgstr "Panel con Bisagras"
+
+msgid "Wooden Frame"
+msgstr "Marco de Madera"
+
+msgid "Wooden Mallet"
+msgstr "Mazo de Madera"
+
+msgid "Wooden Hatchet Head"
+msgstr "Cabeza de Hacha de Madera"
+
+msgid "Wooden Hatchet"
+msgstr "Hacha de Madera"

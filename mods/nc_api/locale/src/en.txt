@@ -347,7 +347,7 @@ msgid "Adobe Mix"
 msgstr "Adobe Mix"
 
 msgid "Adze"
-msgstr "Adze"
+msgstr "[REMOVED]"
 
 msgid "Aggregate"
 msgstr "Aggregate"
@@ -965,7 +965,7 @@ msgid "Qeg Charcoal Glyph"
 msgstr "Qeg Charcoal Glyph"
 
 msgid "Rake"
-msgstr "Rake"
+msgstr "[REMOVED]"
 
 msgid "Render"
 msgstr "Render"
@@ -1199,7 +1199,7 @@ msgid "Wet Tarry Aggregate"
 msgstr "Wet Tarry Aggregate"
 
 msgid "Wooden Adze"
-msgstr "[REMOVED]"
+msgstr "Wooden Adze"
 
 msgid "Wooden Frame"
 msgstr "Wooden Frame"
@@ -1233,6 +1233,9 @@ msgstr "Wooden Pick Head"
 
 msgid "Wooden Plank"
 msgstr "Wooden Plank"
+
+msgid "Wooden Rake"
+msgstr "Wooden Rake"
 
 msgid "Wooden Shelf"
 msgstr "Wooden Shelf"
