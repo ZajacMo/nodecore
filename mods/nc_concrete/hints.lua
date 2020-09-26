@@ -14,7 +14,7 @@ nodecore.register_hint("etch pliant concrete with a stylus",
 	"assemble stylus"
 )
 nodecore.register_hint("change a stylus pattern",
-	"styles train",
+	"stylus train",
 	"stylus etch"
 )
 

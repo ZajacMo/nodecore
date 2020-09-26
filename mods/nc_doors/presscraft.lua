@@ -37,11 +37,11 @@ nodecore.register_craft({
 				vector.add(pos, vector.multiply(vel, 0.25)),
 				one, 0, 1, vector.multiply(vel, 2 + doorlv)
 			)
+			nodecore.witness(pos, "door catapult")
 			stack:take_item(1)
 			if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
 				return minetest.remove_node(pos)
 			end
-			nodecore.witness(pos, "door catapult")
 			return nodecore.stack_set(pos, stack)
 		end
 	})

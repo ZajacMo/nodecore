@@ -8,13 +8,13 @@ nodecore.register_hint("find lux",
 )
 
 nodecore.register_hint("dig up lux cobble",
-	"group:lux_cobble",
+	"inv:group:lux_cobble",
 	"group:lux_emit"
 )
 
 nodecore.register_hint("observe a lux reaction",
 	"group:lux_hot",
-	"group:lux_cobble"
+	"inv:group:lux_cobble"
 )
 
 nodecore.register_hint("observe lux criticality",
