@@ -23,8 +23,10 @@ end
 
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)
+	nodecore.player_discover(player, "item_drop")
 	local pctl = player:get_player_control()
 	if pctl.aux1 then
+		nodecore.player_discover(player, "aux_item_drop")
 		local pname = player:get_player_name()
 		if not droppingall[pname] then
 			minetest.after(0, dropall, pname,
