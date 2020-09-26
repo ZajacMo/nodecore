@@ -60,13 +60,18 @@ function nodecore.hint_state(pspec)
 
 	local done = {}
 	local found = {}
+	local future = {}
 	for _, hint in ipairs(nodecore.hints) do
 		if hint.goal(db, pname, player) then
 			done[#done + 1] = hint
-		elseif (not hint.hide) and hint.reqs(db, pname, player) then
-			found[#found + 1] = hint
+		elseif (not hint.hide) then
+			if hint.reqs(db, pname, player) then
+				found[#found + 1] = hint
+			else
+				future[#future + 1] = hint
+			end
 		end
 	end
 
-	return found, done
+	return found, done, future
 end
