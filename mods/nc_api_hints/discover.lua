@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, string, type
     = minetest, nodecore, pairs, string, type
-local string_format
-    = string.format
+local string_format, string_gsub
+    = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -43,10 +43,20 @@ local function discover(p, k)
 	local db, player, pname, save = loaddb(p)
 	if not db then return end
 
-	if db[k] then return end
+	if (type(k) == "table") then
+		local dirty
+		for kk in pairs(k) do
+			dirty = dirty or not db[kk]
+			db[kk] = true
+		end
+		if not dirty then return end
+	else
+		if db[k] then return end
+		db[k] = true
+	end
 
-	db[k] = true
-	minetest.log("action", string_format("player %q discovered %q", pname, k))
+	minetest.log("action", string_format("player %q discovered %s", pname,
+			string_gsub(minetest.serialize(k), "^return ", "")))
 	for _, cb in pairs(nodecore.registered_on_discovers) do
 		cb(player, k, pname, db)
 	end

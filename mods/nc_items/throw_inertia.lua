@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, nodecore, vector
+    = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local item_last_added
@@ -22,6 +22,10 @@ function minetest.item_drop(itemstack, dropper, ...)
 	local function helper(...)
 		if item_last_added then
 			item_last_added:add_velocity(dropper:get_player_velocity())
+			local speed = vector.length(item_last_added:get_velocity())
+			local disc = {}
+			for i = 1, speed do disc["item_drop_speed_" .. i] = true end
+			nodecore.player_discover(dropper, disc)
 		end
 		return ...
 	end
