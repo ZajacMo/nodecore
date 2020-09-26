@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, type, vector
-    = math, minetest, nodecore, pairs, string, type, vector
-local math_pi, string_format, string_gsub
-    = math.pi, string.format, string.gsub
+local math, minetest, nodecore, pairs, type, vector
+    = math, minetest, nodecore, pairs, type, vector
+local math_pi
+    = math.pi
 -- LUALOCALS > ---------------------------------------------------------
 
 local function playercheck(player, pos, maxdist, check)
@@ -36,9 +36,6 @@ end
 
 function nodecore.witness(pos, label, maxdist, check)
 	maxdist = maxdist or 16
-	nodecore.log("action", string_format("witness %s at %s range %d",
-			string_gsub(minetest.serialize(label), "^return ", ""),
-			minetest.pos_to_string(pos), maxdist))
 	for _, player in pairs(minetest.get_connected_players()) do
 		if playercheck(player, pos, maxdist, check) then
 			for _, l in pairs(type(label) == "table" and label or {label}) do
