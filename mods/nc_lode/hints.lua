@@ -8,7 +8,7 @@ nodecore.register_hint("find lode ore",
 )
 
 nodecore.register_hint("dig up lode ore",
-	"nc_lode:cobble_loose",
+	"inv:nc_lode:cobble_loose",
 	"nc_lode:ore"
 )
 
@@ -18,7 +18,7 @@ nodecore.register_hint("melt down lode metal from lode cobble",
 		"nc_lode:prill_annealed",
 		"nc_lode:prill_tempered"
 	},
-	"nc_lode:cobble_loose"
+	"inv:nc_lode:cobble_loose"
 )
 
 nodecore.register_hint("sinter glowing lode prills into a cube",

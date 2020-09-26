@@ -57,15 +57,22 @@ nodecore.player_discover = discover
 ------------------------------------------------------------------------
 -- PLAYER EVENTS
 
-local function reghook(func, stat, pwhom, npos)
+local function reghook(func, stat, pwhom, npos, ppos)
 	return func("stat hook", function(...)
 			local t = {...}
 			local whom = t[pwhom]
 			local n = npos and t[npos].name or nil
+			if ppos then
+				local pos = t[ppos]
+				local stack = pos and nodecore.stack_get(pos)
+				if stack and not stack:is_empty() then
+					discover(whom, stat .. ":" .. stack:get_name())
+				end
+			end
 			return discover(whom, n and (stat .. ":" .. n) or stat)
 		end)
 end
-reghook(nodecore.register_on_punchnode, "punch", 3, 2)
+reghook(nodecore.register_on_punchnode, "punch", 3, 2, 1)
 reghook(nodecore.register_on_dignode, "dig", 3, 2)
 reghook(nodecore.register_on_placenode, "place", 3, 2)
 reghook(nodecore.register_on_dieplayer, "die", 1)
