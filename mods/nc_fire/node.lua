@@ -33,6 +33,7 @@ minetest.register_node(modname .. ":fire", {
 			damage_radiant = 1,
 			flame_ambiance = 1
 		},
+		stack_max = 1,
 		damage_per_second = 1,
 		sunlight_propagates = true,
 		floodable = true,
@@ -109,6 +110,7 @@ for num = 1, nodecore.fire_max do
 				damage_touch = 1,
 				damage_radiant = 3
 			},
+			stack_max = 1,
 			drop = "",
 			crush_damage = 1,
 			sounds = nodecore.sounds("nc_terrain_crunchy")
