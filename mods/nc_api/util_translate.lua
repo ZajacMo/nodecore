@@ -1,14 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table, type
-    = ipairs, minetest, nodecore, pairs, table, type
-local table_sort
-    = table.sort
+local ipairs, minetest, nodecore, pairs, string, table, type
+    = ipairs, minetest, nodecore, pairs, string, table, type
+local string_format, table_sort
+    = string.format, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 local strings = {}
 local strings_dirty
+
+local loadtimeover
+minetest.register_on_mods_loaded(function() loadtimeover = true end)
 
 local prefix = minetest.translate(modname, "x")
 prefix = prefix:sub(1, prefix:find(modname) - 1)
@@ -18,6 +21,11 @@ function nodecore.translate_inform(str)
 	or (str:sub(1, #prefix) == prefix) then return end
 
 	if not strings[str] then
+		if loadtimeover then
+			nodecore.log("warning", string_format(
+					"Translation string informed late: %q",
+					str))
+		end
 		strings[str] = true
 		strings_dirty = true
 	end
