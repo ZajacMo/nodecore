@@ -63,6 +63,8 @@ NEW MT RELEASE PROCESS
 	  hiding distance is an options.
 	- Switch ents to using on_step moveresult for collision
 	  detection instead of checking nodes directly.
+	- We can reliably detect the zoom player control, make
+	  far-zoom only work while zooming, and add hints for it.
 
 ........................................................................
 ========================================================================

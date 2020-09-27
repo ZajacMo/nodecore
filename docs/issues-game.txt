@@ -9,6 +9,8 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Should item ents experience more drag when in fluids?
+
 - Door-wheels do not affect attached glyphs...
 
 - Add a few smoke particles to fire?
@@ -69,11 +71,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Rework repose to be based on amount of loose material below, not
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
-
-- Hint system
-	- Social achievments
-		- When completing a hint, also tell other players on
-		  the same server if they've completed it too.
 
 - Delay lens full brightess?
 	- Propagate optic signals immediately

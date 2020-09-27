@@ -9,6 +9,12 @@ ISSUES-DOCS: Issues related to documentation
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Official screenshot
+	- Add various kinds of rakes, maybe to lower left.
+
+- Notes for translators explaining whimsical terms
+	- lode, lux, eggcorns, pumwater, tarstone, pattern names
+
 - Add a code of conduct to project
 	- Cover chat rules from discord, servers?
 

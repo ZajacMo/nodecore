@@ -9,6 +9,12 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Plants from nc_nature?
+	- Rushes, mushrooms
+	- Require/consume special dirt (humus/peat) to grow/repro?
+	- Source of special materials like ash? Cheaper peat?  Thatch?
+	- Upconvert dirt to humus nearby?
+
 - Now that tote handles are separated between bare and packed totes,
   we can treat them separately.
 	- Allow bare tote handles to be stackable?
@@ -85,6 +91,10 @@ IDEAS: Possible future additions/improvements to the game
 	  are wielded item.
 	- Unmark safe any slots that don't contain hot things after
 	  hot potato check.
+	- Will probably need to unify damage_touch into an API that checks
+	  for damage given a player and a stack.
+		- Check for hot potato.
+		- Check upon pickup for anti-lode-move-exploit.
 
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
@@ -232,6 +242,13 @@ IDEAS: Possible future additions/improvements to the game
 	  wait for them to mature more nuanced.
 
 - Social features
+	- Hint system
+		- Social achievments
+			- When completing a hint, also tell other players on
+			  the same server if they've completed it too.
+		- Vicarious discovery
+			- When a player completes a hint/discovery, generate
+			  witness events for anyone who can see.
 	- Randomize player appearance/colors.
 		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?

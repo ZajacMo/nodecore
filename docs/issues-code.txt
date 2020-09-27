@@ -9,8 +9,14 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Check for further player inv rearrange traps, and if there are none
-  then finally retire the safety net.
+- Try to detect and separate out translation strings coming from
+  non-core mods so we can consistently generate the game translation
+  file without having to disable mods.
+
+- Test nc_wield with items that have their own visual scale.
+
+- Flammability ABM ordering.  Always do extinguish check after ignite
+  checks or vice versa, so suboptimal firestarting is consistent.
 
 - Look into game default settings.
 	- Change default ABM budget
@@ -19,6 +25,9 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Make door pusheability customizable
 	- door_can_push or door_cannot_push groups/flags or something.
 	- Allow override of standard falling_node check.
+
+- Allow items to have a "drop" field that's honored when stacks are
+  dug or items are pulled off shelves...?
 
 - Overhaul player health to work entirely virtual
 	- Raise max up a lot to make room for fine grained falling
