@@ -7,13 +7,21 @@ local table_concat, table_insert
 
 nodecore.amcoremod()
 
-nodecore.register_inventory_tab,
-nodecore.registered_inventory_tabs
-= nodecore.mkreg()
+local tabs = {}
+nodecore.registered_inventory_tabs = tabs
+function nodecore.register_inventory_tab(def)
+	tabs[#tabs + 1] = def
+	nodecore.translate_inform(def.title)
+	if type(def.content) == "table" then
+		for i = 1, #def.content do
+			nodecore.translate_inform(def.content[i])
+		end
+	end
+end
 
 local nct = nodecore.translate
-
 local fse = minetest.formspec_escape
+
 function nodecore.inventory_formspec(player, curtab)
 	local t = {
 		"bgcolor[#000000C0;true]",
