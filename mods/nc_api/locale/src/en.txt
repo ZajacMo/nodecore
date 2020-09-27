@@ -1264,6 +1264,9 @@ msgstr "activate a prism"
 msgid "add coal to aggregate to make tarstone"
 msgstr "add coal to aggregate to make tarstone"
 
+msgid "anneal a lode cube"
+msgstr "anneal a lode cube"
+
 msgid "assemble a glass tank"
 msgstr "assemble a glass tank"
 
@@ -1379,7 +1382,10 @@ msgid "cold-forge lode down completely"
 msgstr "[REMOVED]"
 
 msgid "complete a craft with a door"
-msgstr "complete a craft with a door"
+msgstr "[REMOVED]"
+
+msgid "complete a craft with a hinged panel"
+msgstr "complete a craft with a hinged panel"
 
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
@@ -1422,6 +1428,12 @@ msgstr "dig up sand"
 
 msgid "dig up stone"
 msgstr "[REMOVED]"
+
+msgid "drop all your items at once"
+msgstr "drop all your items at once"
+
+msgid "drop an item"
+msgstr "drop an item"
 
 msgid "dry out a sponge"
 msgstr "dry out a sponge"
@@ -1517,7 +1529,10 @@ msgid "insert metal rod into a cobble panel"
 msgstr "insert metal rod into a cobble panel"
 
 msgid "insert wooden pin into wooden door panel"
-msgstr "insert wooden pin into wooden door panel"
+msgstr "[REMOVED]"
+
+msgid "insert wooden pin into wooden panel"
+msgstr "insert wooden pin into wooden panel"
 
 msgid "leach dirt to sand"
 msgstr "leach dirt to sand"
@@ -1589,7 +1604,10 @@ msgid "pack up a complete tote"
 msgstr "pack up a complete tote"
 
 msgid "place a node with a door"
-msgstr "place a node with a door"
+msgstr "[REMOVED]"
+
+msgid "place a node with a hinged panel"
+msgstr "place a node with a hinged panel"
 
 msgid "plant an eggcorn"
 msgstr "plant an eggcorn"
@@ -1653,6 +1671,9 @@ msgstr "temper a lode cube to use as an anvil"
 
 msgid "temper a lode tool head"
 msgstr "temper a lode tool head"
+
+msgid "throw an item really fast"
+msgstr "throw an item really fast"
 
 msgid "traverse a dark floor by feel"
 msgstr "[REMOVED]"
