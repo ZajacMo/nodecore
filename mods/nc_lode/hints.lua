@@ -30,6 +30,11 @@ nodecore.register_hint("sinter glowing lode prills into a cube",
 	}
 )
 
+nodecore.register_hint("anneal a lode cube",
+	"nc_lode:block_annealed",
+	"forge lode block"
+)
+
 nodecore.register_hint("temper a lode cube to use as an anvil",
 	"nc_lode:block_tempered",
 	"forge lode block"
