@@ -8,7 +8,7 @@ nodecore.register_hint("chisel a hinge groove into a wooden plank",
 	{"anvil making lode rod", "split tree to planks"}
 )
 
-nodecore.register_hint("insert wooden pin into wooden door panel",
+nodecore.register_hint("insert wooden pin into wooden panel",
 	"door pin plank",
 	"drill door plank"
 )
@@ -38,12 +38,12 @@ nodecore.register_hint("propel hinged panel with focused light",
 	{"nc_optics:lens_on", "group:door"}
 )
 
-nodecore.register_hint("place a node with a door",
+nodecore.register_hint("place a node with a hinged panel",
 	"witness:door placement",
 	"group:door"
 )
 
-nodecore.register_hint("complete a craft with a door",
+nodecore.register_hint("complete a craft with a hinged panel",
 	"witness:door place-craft",
 	"group:door"
 )
