@@ -1,11 +1,31 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table, type, vector
-    = minetest, nodecore, pairs, table, type, vector
-local table_remove
-    = table.remove
+local math, minetest, nodecore, pairs, table, type, vector
+    = math, minetest, nodecore, pairs, table, type, vector
+local math_pi, table_remove
+    = math.pi, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+
+local seethru = {}
+minetest.after(0, function()
+		for name, def in pairs(minetest.registered_nodes) do
+			if (minetest.get_item_group(name, "witness_opaque") == 0)
+			and (
+				minetest.get_item_group(name, "witness_transparent") > 0
+				or def.sunlight_propagates
+				or (
+					def.paramtype == "light"
+					and def.alpha
+					and def.alpha > 0
+					and def.alpha < 255
+				)
+
+			) then
+				seethru[name] = true
+			end
+		end
+	end)
 
 local metakey = modname .. "_witness"
 local cache = {}
@@ -22,31 +42,59 @@ local function witnessdata(player)
 	return data, function() return meta:set_string(metakey, minetest.serialize(data)) end
 end
 
+local function canwitnessnow(player, pos)
+	local ppos = player:get_pos()
+	ppos.y = ppos.y + player:get_properties().eye_height
+
+	local look = player:get_look_dir()
+	local targ = vector.normalize(vector.subtract(pos, ppos))
+	if vector.angle(look, targ) > math_pi / 8 then return end
+
+	local rp = vector.round(pos)
+	for pt in minetest.raycast(pos, ppos, false, true) do
+		if not pt.under then return end
+		if vector.equals(pt.under, rp) then return true end
+		local node = minetest.get_node(pt.under)
+		if not seethru[node.name] then return end
+	end
+	return true
+end
+
+local function witnesslater(player, pos, disc)
+	local data, save = witnessdata(player)
+	local newdata = {
+		node = minetest.get_node(pos).name,
+		stack = nodecore.stack_get(pos):get_name(),
+		disc = disc
+	}
+	local posstr = minetest.pos_to_string(pos)
+	local olddata = data.lookup[posstr]
+	if olddata and (olddata.node == newdata.node) and (olddata.stack
+		== newdata.stack) then
+		for k in pairs(disc) do olddata.disc[k] = true end
+	else
+		data.queue[#data.queue + 1] = pos
+		while #data.queue > 100 do table_remove(data.queue, 1) end
+		data.lookup[posstr] = newdata
+	end
+	save()
+end
+
 function nodecore.witness(pos, label, maxdist)
 	maxdist = maxdist or 16
+
 	label = type(label) == "table" and label or {label}
+	local disc = {}
+	for i = 1, #label do disc["witness:" .. label[i]] = true end
+
 	for _, player in pairs(minetest.get_connected_players()) do
 		local ppos = player:get_pos()
 		if vector.distance(ppos, pos) <= maxdist then
-			local data, save = witnessdata(player)
-			local newdata = {
-				node = minetest.get_node(pos).name,
-				stack = nodecore.stack_get(pos):get_name(),
-				label = label
-			}
-			local posstr = minetest.pos_to_string(pos)
-			local olddata = data.lookup[posstr]
-			if olddata and (olddata.node == newdata.node) and (olddata.stack
-				== newdata.stack) then
-				for i = 1, #label do
-					olddata.label[#olddata.label + 1] = label[i]
-				end
+			if canwitnessnow(player, pos) then
+				nodecore.player_discover(player, disc)
 			else
-				data.queue[#data.queue + 1] = pos
-				while #data.queue > 100 do table_remove(data.queue, 1) end
-				data.lookup[posstr] = newdata
+				witnesslater(player, pos, disc)
 			end
-			save()
 		end
 	end
 end
@@ -61,7 +109,5 @@ minetest.register_on_punchnode(function(pos, node, puncher)
 		node = node or minetest.get_node(pos)
 		if (found.node ~= node.name) or (nodecore.stack_get(pos):get_name()
 			~= found.stack) then return end
-		local disc = found.label
-		for i = 1, #found.label do disc["witness:" .. found.label[i]] = true end
-		return nodecore.player_discover(puncher, disc)
+		return nodecore.player_discover(puncher, found.disc)
 	end)
