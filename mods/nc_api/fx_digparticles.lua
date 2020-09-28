@@ -1,9 +1,34 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_ceil, math_floor, math_random
-    = math.ceil, math.floor, math.random
+local math_ceil, math_random
+    = math.ceil, math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local getcoord
+do
+	local coords = {}
+	for x = 0, 12, 4 do
+		for y = 0, 12, 4 do
+			coords[#coords + 1] = x .. "," .. y
+		end
+	end
+	local size = #coords
+	local pos = size + 1
+	getcoord = function()
+		if pos > size then
+			for i = size, 2, -1 do
+				local j = math_random(1, i)
+				local x = coords[i]
+				coords[i] = coords[j]
+				coords[j] = x
+			end
+			pos = 1
+		end
+		pos = pos + 1
+		return coords[pos - 1]
+	end
+end
 
 function nodecore.digparticles(nodedef, partdef)
 	if partdef.forcetexture then
@@ -29,8 +54,7 @@ function nodecore.digparticles(nodedef, partdef)
 	local t = {}
 	for _ = 1, 4 do
 		partdef.texture = img .. "^[resize:16x16^[mask:[combine\\:16x16\\:"
-		.. math_floor(math_random() * 12) .. ","
-		.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
+		.. getcoord() .. "=nc_api_pummel.png"
 		t[#t + 1] = minetest.add_particlespawner(partdef)
 	end
 	return function()

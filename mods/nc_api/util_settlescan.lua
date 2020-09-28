@@ -39,8 +39,8 @@ for _, k in pairs(keys) do
 		if stamp == nodecore.gametime then return t end
 		local n = #t
 		if n < 2 then return t end
-		for i = 1, n do
-			local j = math_random(1, n)
+		for i = n, 2, -1 do
+			local j = math_random(1, i)
 			local x = t[i]
 			t[i] = t[j]
 			t[j] = x
