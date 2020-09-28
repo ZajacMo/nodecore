@@ -176,7 +176,7 @@ nodecore.register_playerstep({
 			data.radhudtime = (data.radhudtime or 0) + dtime * 2
 			if data.radhudtime >= 1 then
 				data.radhudtime = data.radhudtime - math_floor(data.radhudtime)
-				local o = math_floor(math_pow(rate, 1/3) * 1000)
+				local o = math_floor(math_pow(rate, 1/3) * 62) * 16
 				if o > 255 then o = 255 end
 				local img = ""
 				if o > 0 then img = modname .. "_radhud.png"
