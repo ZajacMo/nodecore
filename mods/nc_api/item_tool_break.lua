@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, nodecore, vector
-    = ItemStack, nodecore, vector
+local ItemStack, nodecore
+    = ItemStack, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local function breakfx(who, def)
@@ -8,25 +8,7 @@ local function breakfx(who, def)
 		nodecore.sound_play(def.sound.breaks,
 			{object = who, gain = 0.5})
 	end
-	local pos = who:get_pos()
-	if pos then
-		pos.y = pos.y + who:get_properties().eye_height - 0.1
-		local look = vector.multiply(who:get_look_dir(), 2)
-		for _ = 1, 5 do
-			nodecore.digparticles(def, {
-					time = 0.05,
-					amount = 10,
-					minpos = pos,
-					maxpos = pos,
-					minvel = vector.add(look, {x = -2, y = -2, z = -2}),
-					maxvel = vector.add(look, {x = 2, y = 2, z = 2}),
-					minacc = {x = 0, y = -8, z = 0},
-					maxacc = {x = 0, y = -8, z = 0},
-					minexptime = 0.25,
-					maxexptime = 1
-				})
-		end
-	end
+	return nodecore.toolbreakparticles(who, def, 40)
 end
 
 nodecore.register_on_register_item(function(_, def)

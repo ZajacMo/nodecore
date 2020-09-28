@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
 local math_ceil, math_random
     = math.ceil, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -62,4 +62,29 @@ function nodecore.digparticles(nodedef, partdef)
 			minetest.delete_particlespawner(v)
 		end
 	end
+end
+
+function nodecore.toolbreakparticles(player, wielddef, amount)
+	local pos = player:get_pos()
+	if not pos then return end
+	wielddef = wielddef or minetest.registered_items[player:get_wielded_item():get_name()]
+	if not wielddef then return end
+	pos.y = pos.y + player:get_properties().eye_height - 0.1
+	local look = player:get_look_dir()
+	pos = vector.add(pos, vector.multiply(look, 0.5))
+	local look2 = vector.multiply(look, 2)
+	return nodecore.digparticles(wielddef, {
+			time = 0.05,
+			amount = amount,
+			minpos = pos,
+			maxpos = pos,
+			minvel = vector.add(look2, {x = -2, y = -2, z = -2}),
+			maxvel = vector.add(look2, {x = 2, y = 2, z = 2}),
+			minacc = {x = 0, y = -8, z = 0},
+			maxacc = {x = 0, y = -8, z = 0},
+			minexptime = 0.25,
+			maxexptime = 1,
+			minsize = 2,
+			maxsize = 4
+		})
 end
