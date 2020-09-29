@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, setmetatable, vector
     = math, minetest, nodecore, pairs, setmetatable, vector
-local math_cos, math_floor, math_pi, math_pow, math_random, math_sin,
-      math_sqrt
-    = math.cos, math.floor, math.pi, math.pow, math.random, math.sin,
-      math.sqrt
+local math_cos, math_floor, math_log, math_pi, math_pow, math_random,
+      math_sin, math_sqrt
+    = math.cos, math.floor, math.log, math.pi, math.pow, math.random,
+      math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -138,6 +138,8 @@ local function itemscan(player)
 	return emit / 8
 end
 
+local base = 1.25
+local logbase = math_log(base)
 nodecore.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
@@ -176,7 +178,9 @@ nodecore.register_playerstep({
 			data.radhudtime = (data.radhudtime or 0) + dtime * 2
 			if data.radhudtime >= 1 then
 				data.radhudtime = data.radhudtime - math_floor(data.radhudtime)
-				local o = math_floor(math_pow(rate, 1/3) * 62) * 16
+				local o = math_floor(math_pow(base,
+						math_floor(math_log(math_sqrt(rate)
+								* 2000) / logbase)))
 				if o > 255 then o = 255 end
 				local img = ""
 				if o > 0 then img = modname .. "_radhud.png"
