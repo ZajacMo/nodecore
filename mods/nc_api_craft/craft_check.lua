@@ -56,8 +56,9 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	local mindur = recipe.duration or 0
 	if type(mindur) == "function" then mindur = mindur(recipe, pos, node, data) end
 	if recipe.toolgroups then
-		if not data.wield then return end
-		local dg = data.wield:get_tool_capabilities().groupcaps
+		local dg = data.toolgroupcaps or (data.wield
+			and data.wield:get_tool_capabilities().groupcaps)
+		if not dg then return end
 		local t
 		for gn, lv in pairs(recipe.toolgroups) do
 			local gt = dg[gn]
