@@ -18,6 +18,9 @@ local function toolhead(name, from, group, sticks)
 					choppy = 1,
 					flammable = 2
 				},
+				tool_head_capabilities = nodecore.toolcaps({
+						[group] = 2
+					}),
 				sounds = nodecore.sounds("nc_tree_woody")
 			})
 		local m = modname .. ":tool_" .. name:lower()
