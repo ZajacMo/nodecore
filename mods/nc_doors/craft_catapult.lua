@@ -1,13 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, vector
-    = ItemStack, minetest, nodecore, vector
+local ItemStack, minetest, nodecore, pairs, vector
+    = ItemStack, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
+
+local presstoolcaps = {}
+minetest.after(0, function()
+		for name, def in pairs(minetest.registered_items) do
+			if def.tool_capabilities then
+				presstoolcaps[name] = "dig"
+			elseif def.tool_head_capabilities then
+				presstoolcaps[name] = def.tool_head_capabilities.groupcaps
+			end
+		end
+	end)
 
 local function checktarget(data, stack)
 	local target = vector.subtract(vector.multiply(
 			data.pointed.under, 2), data.pointed.above)
 	local node = minetest.get_node(target)
 	local def = minetest.registered_items[node.name] or {walkable = true}
+
+	-- Inject item into available storebox
 	if def.groups and def.groups.visinv and (def.groups.is_stack_only
 		or def.storebox_access and def.storebox_access({
 				type = "node",
@@ -18,18 +31,52 @@ local function checktarget(data, stack)
 		local one = ItemStack(stack:to_string())
 		one:set_count(1)
 		local tstack = nodecore.stack_get(target)
-		if not tstack:item_fits(one) then return end
-		data.intostorebox = target
+		if tstack:item_fits(one) then
+			data.intostorebox = target
+			return true
+		end
+	end
+
+	-- Eject item as entity
+	if not def.walkable then return true end
+
+	-- Try to dig item
+	local caps = presstoolcaps[stack:get_name()]
+	if not caps then return end
+	if caps == "dig" then
+		if not (def and def.groups and nodecore.tool_digs(
+				stack, def.groups)) then return end
+		data.pressdig = target
 		return true
 	end
-	return not def.walkable
+
+	local pumdata = {
+		action = "pummel",
+		pos = target,
+		pointed = {
+			type = "node",
+			above = data.pointed.under,
+			under = target
+		},
+		node = node,
+		nodedef = def,
+		duration = 3600,
+		toolgroupcaps = caps
+	}
+	local recipe = nodecore.craft_search(target, node, pumdata)
+	data.presscommit = recipe
+	return recipe
 end
 
 local function doitemeject(pos, data)
+	if data.pressdig then return minetest.dig_node(data.pressdig) end
+	if data.presscommit then return data.presscommit() end
+
 	local stack = nodecore.stack_get(pos)
 	if (not stack) or stack:is_empty() then return end
 	local one = ItemStack(stack:to_string())
 	one:set_count(1)
+
 	if data.intostorebox then
 		one = nodecore.stack_add(data.intostorebox, one)
 		if not one:is_empty() then return end
