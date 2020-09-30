@@ -61,7 +61,7 @@ nodecore.register_craft({
 
 			local pt = data.pointed
 			local backstop = vector.subtract(vector.multiply(
-				pt.under, 2), pt.above)
+					pt.under, 2), pt.above)
 			if nodecore.match(backstop, {walkable = true}) then return end
 
 			local node = minetest.get_node(pt.under)
