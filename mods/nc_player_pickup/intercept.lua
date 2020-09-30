@@ -31,7 +31,7 @@ local function wrapinv(inv, player)
 	end
 	nodecore.log("action", modname .. " inventory:add_item hooked")
 	wrapinv = function(i, p)
-		invplayer[i] = p
+		if i then invplayer[i] = p end
 		return i
 	end
 	return wrapinv(inv, player)

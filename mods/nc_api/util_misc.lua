@@ -128,8 +128,9 @@ end
 function nodecore.player_visible(player)
 	if type(player) == "string" then player = minetest.get_player_by_name(player) end
 	if not player then return end
-	local vs = player:get_properties().visual_size
-	return vs.x > 0 and vs.y > 0
+	local props = player:get_properties()
+	local vs = props and props.visual_size
+	return vs and vs.x > 0 and vs.y > 0
 end
 
 function nodecore.wieldgroup(who, group)
@@ -138,26 +139,6 @@ function nodecore.wieldgroup(who, group)
 	if nodedef then return nodedef.groups and nodedef.groups[group] end
 	local caps = wielded and wielded:get_tool_capabilities()
 	return caps and caps.groupcaps and caps.groupcaps[group]
-end
-
-function nodecore.toolspeed(what, groups)
-	if not what then return end
-	local dg = what:get_tool_capabilities().groupcaps
-	local t
-	for gn, lv in pairs(groups) do
-		local gt = dg[gn]
-		gt = gt and gt.times
-		gt = gt and gt[lv]
-		if gt and (not t or t > gt) then t = gt end
-	end
-	if (not t) and (not what:is_empty()) then
-		return nodecore.toolspeed(ItemStack(""), groups)
-	end
-	return t
-end
-function nodecore.tool_digs(what, groups)
-	local s = nodecore.toolspeed(what, groups)
-	return s and s <= 4
 end
 
 function nodecore.interval(after, func)

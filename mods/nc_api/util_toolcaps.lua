@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, pairs
-    = math, nodecore, pairs
+local ItemStack, math, nodecore, pairs
+    = ItemStack, math, nodecore, pairs
 local math_pow
     = math.pow
 -- LUALOCALS > ---------------------------------------------------------
@@ -38,4 +38,37 @@ function nodecore.toolcaps(opts)
 		end
 	end
 	return {groupcaps = gcaps, opts = opts, punch_attack_uses = 0}
+end
+
+function nodecore.toolspeed(what, groups)
+	if not what then return end
+	local dg = what:get_tool_capabilities().groupcaps
+	local t
+	for gn, lv in pairs(groups) do
+		local gt = dg[gn]
+		gt = gt and gt.times
+		gt = gt and gt[lv]
+		if gt and (not t or t > gt) then t = gt end
+	end
+	if (not t) and (not what:is_empty()) then
+		return nodecore.toolspeed(ItemStack(""), groups)
+	end
+	return t
+end
+function nodecore.tool_digs(what, groups)
+	local s = nodecore.toolspeed(what, groups)
+	return s and s <= 4
+end
+
+function nodecore.toolheadspeed(what, groups)
+	return nodecore.toolspeed({
+			get_tool_capabilities = function()
+				return what:get_definition().tool_head_capabilities
+				or ItemStack(""):get_tool_capabilities()
+			end
+		}, groups)
+end
+function nodecore.tool_head_digs(what, groups)
+	local s = nodecore.toolheadspeed(what, groups)
+	return s and s <= 4
 end

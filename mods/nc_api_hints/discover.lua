@@ -71,6 +71,7 @@ local function reghook(func, stat, pwhom, npos, ppos)
 	return func("stat hook", function(...)
 			local t = {...}
 			local whom = t[pwhom]
+			if not (whom and whom:is_player()) then return end
 			local n = npos and t[npos].name or nil
 			if ppos then
 				local pos = t[ppos]
