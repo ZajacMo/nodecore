@@ -3,7 +3,7 @@ local ItemStack, minetest, nodecore, vector
     = ItemStack, minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local function checktarget(data)
+local function checktarget(data, stack)
 	local target = vector.subtract(vector.multiply(
 			data.pointed.under, 2), data.pointed.above)
 	local node = minetest.get_node(target)
@@ -15,6 +15,10 @@ local function checktarget(data)
 				under = vector.subtract(vector.multiply(
 						target, 2), data.pointed.under)
 			})) then
+		local one = ItemStack(stack:to_string())
+		one:set_count(1)
+		local tstack = nodecore.stack_get(target)
+		if not tstack:item_fits(one) then return end
 		data.intostorebox = target
 		return true
 	end
@@ -64,7 +68,7 @@ nodecore.register_craft({
 		check = function(pos, data)
 			local stack = nodecore.stack_get(pos)
 			if (not stack) or stack:is_empty() then return end
-			return checktarget(data)
+			return checktarget(data, stack)
 		end,
 		after = doitemeject
 	})
@@ -80,7 +84,7 @@ nodecore.register_craft({
 			local stack = nodecore.stack_get(pos)
 			if (not stack) or stack:is_empty() then return end
 
-			if not checktarget(data) then return end
+			if not checktarget(data, stack) then return end
 
 			local pt = data.pointed
 			local node = minetest.get_node(pt.under)
