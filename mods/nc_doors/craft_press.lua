@@ -122,3 +122,62 @@ nodecore.register_craft({
 			end
 		end
 	})
+
+local presstoolcaps = {}
+minetest.after(0, function()
+		for name, def in pairs(minetest.registered_items) do
+			if def.tool_capabilities then
+				presstoolcaps[name] = "dig"
+			elseif def.tool_head_capabilities then
+				presstoolcaps[name] = def.tool_head_capabilities.groupcaps
+			end
+		end
+	end)
+
+nodecore.register_craft({
+		action = "press",
+		label = "press tool use",
+		priority = -10,
+		nodes = {{match = {stacked = true}}},
+		check = function(_, data)
+			local stack = nodecore.stack_get(data.pointed.under)
+			local caps = presstoolcaps[stack:get_name()]
+			if not caps then return end
+
+			local target = vector.subtract(vector.multiply(
+					data.pointed.under, 2), data.pointed.above)
+			data.presstarget = target
+			local tnode = minetest.get_node(target)
+			local tdef = minetest.registered_items[tnode.name]
+			if caps == "dig" then
+				if not (tdef and tdef.groups and nodecore.tool_digs(
+						stack, tdef.groups)) then return end
+				data.presscommit = "dig"
+				return true
+			end
+
+			local pumdata = {
+				action = "pummel",
+				pos = target,
+				pointed = {
+					type = "node",
+					above = data.pointed.under,
+					under = target
+				},
+				node = tnode,
+				nodedef = tdef,
+				duration = 3600,
+				toolgroupcaps = caps
+			}
+			local recipe = nodecore.craft_search(target, tnode, pumdata)
+			data.presscommit = recipe
+			return recipe
+		end,
+		after = function(_, data)
+			if data.presscommit == "dig" then
+				return minetest.dig_node(data.presstarget)
+			else
+				return data.presscommit()
+			end
+		end
+	})
