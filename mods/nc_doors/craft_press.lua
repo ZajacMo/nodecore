@@ -66,7 +66,7 @@ nodecore.register_craft({
 		action = "press",
 		label = "press node craft",
 		priority = -1,
-		nodes = {{match = {groups = {stack_as_node = true}}}},
+		nodes = {{match = {groups = {stack_as_node = true, stacked = false}}}},
 		check = function(pos, data)
 			if not backstop(pos, vector.subtract(data.pointed.under,
 					data.pointed.above), 4) then return end
