@@ -69,8 +69,14 @@ local function checktarget(data, stack)
 end
 
 local function doitemeject(pos, data)
-	if data.pressdig then return minetest.dig_node(data.pressdig) end
-	if data.presscommit then return data.presscommit() end
+	if data.pressdig then
+		nodecore.witness(pos, "door dig")
+		return minetest.dig_node(data.pressdig)
+	end
+	if data.presscommit then
+		nodecore.witness(pos, "door pummel")
+		return data.presscommit()
+	end
 
 	local stack = nodecore.stack_get(pos)
 	if (not stack) or stack:is_empty() then return end
@@ -78,6 +84,7 @@ local function doitemeject(pos, data)
 	one:set_count(1)
 
 	if data.intostorebox then
+		nodecore.witness(pos, "door store")
 		one = nodecore.stack_add(data.intostorebox, one)
 		if not one:is_empty() then return end
 	else

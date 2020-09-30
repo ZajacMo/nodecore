@@ -47,3 +47,18 @@ nodecore.register_hint("complete a craft with a hinged panel",
 	"witness:door place-craft",
 	"group:door"
 )
+
+nodecore.register_hint("complete a pummel with a hinged panel and tool head",
+	"witness:door pummel",
+	"group:door"
+)
+
+nodecore.register_hint("dig a node with a hinged panel and tool",
+	"witness:door dig",
+	"group:door"
+)
+
+nodecore.register_hint("put an item in a storage box with a hinged panel",
+	"witness:door store",
+	"group:door"
+)
