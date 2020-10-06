@@ -46,7 +46,10 @@ local function checktarget(data, stack)
 	if caps == "dig" then
 		if not (def and def.groups and nodecore.tool_digs(
 				stack, def.groups)) then return end
-		data.pressdig = target
+		data.pressdig = {
+			pos = target,
+			tool = stack
+		}
 		return true
 	end
 
@@ -71,7 +74,8 @@ end
 local function doitemeject(pos, data)
 	if data.pressdig then
 		nodecore.witness(pos, "door dig")
-		return minetest.dig_node(data.pressdig)
+		nodecore.machine_digging = data.pressdig
+		return minetest.dig_node(data.pressdig.pos)
 	end
 	if data.presscommit then
 		nodecore.witness(pos, "door pummel")
