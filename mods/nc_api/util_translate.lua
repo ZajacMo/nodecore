@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, minetest, nodecore, pairs, string, table, type
     = ipairs, minetest, nodecore, pairs, string, table, type
-local string_format, table_sort
-    = string.format, table.sort
+local string_format, string_match, table_sort
+    = string.format, string.match, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -17,7 +17,7 @@ local prefix = minetest.translate(modname, "x")
 prefix = prefix:sub(1, prefix:find(modname) - 1)
 
 function nodecore.translate_inform(str)
-	if (not str) or (type(str) ~= "string") or (#str < 1)
+	if (not str) or (type(str) ~= "string") or (not string_match(str, "%S"))
 	or (str:sub(1, #prefix) == prefix) then return end
 
 	if not strings[str] then
