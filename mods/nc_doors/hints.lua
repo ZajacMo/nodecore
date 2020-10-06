@@ -58,7 +58,7 @@ nodecore.register_hint("dig a node with a hinged panel and tool",
 	"group:door"
 )
 
-nodecore.register_hint("put an item in a storage box with a hinged panel",
+nodecore.register_hint("push an item into a storage box with a hinged panel",
 	"witness:door store",
 	"group:door"
 )
