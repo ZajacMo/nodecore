@@ -20,15 +20,20 @@ end
 
 local convey = {}
 
-local function conveytrace(okay, seg, u)
+local function movecheck(okay, seg, to, tkey, collide)
+	if (not nodecore.buildable_to(to))
+	or nodecore.obstructed(to) or collide[tkey]
+	then return end
+	for x in pairs(seg) do okay[x] = true end
+	collide[tkey] = true
+	return true
+end
+
+local function conveytrace(okay, seg, u, collide)
 	if u.tkey2 then
 		local w = convey[u.tkey2]
 		if w then return w end
-		if nodecore.buildable_to(u.to2) then
-			local ok = (not nodecore.obstructed(u.to2)) or nil
-			for x in pairs(seg) do
-				okay[x] = ok
-			end
+		if movecheck(okay, seg, u.to2, u.tkey2, collide) then
 			u.to = u.to2
 			u.tkey = u.tkey2
 			return
@@ -36,12 +41,7 @@ local function conveytrace(okay, seg, u)
 	end
 	local w = convey[u.tkey]
 	if w then return w end
-	if nodecore.buildable_to(u.to) then
-		local ok = (not nodecore.obstructed(u.to)) or nil
-		for x in pairs(seg) do
-			okay[x] = ok
-		end
-	end
+	movecheck(okay, seg, u.to, u.tkey, collide)
 end
 
 local function set_node(pos, node)
@@ -70,13 +70,14 @@ nodecore.register_globalstep("door conveyance", function()
 			end
 		end
 		local okay = {}
+		local collide = {}
 		for k, v in pairs(convey) do
 			if not nonheads[k] then
 				local seg = {}
 				local u = v
 				while u do
 					seg[u] = true
-					u = conveytrace(okay, seg, u)
+					u = conveytrace(okay, seg, u, collide)
 				end
 				for x in pairs(seg) do
 					convey[x.fkey] = nil
