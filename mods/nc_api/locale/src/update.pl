@@ -3,10 +3,18 @@ use strict;
 use warnings;
 use JSON qw(from_json);
 
+sub curl {
+	my @cmd = ("curl");
+	$ENV{NC_WEBLATE_TOKEN} and
+	  push @cmd, "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
+	push @cmd, @_;
+	open(my $fh, "-|", @cmd) or die($!);
+	return $fh;
+}
 sub getlang {
 	my $lang = shift();
 	my %db;
-	open(my $fh, "-|", "curl", "https://nodecore.mine.nu/trans/api/translations/nodecore/core/$lang/file/") or die($!);
+	my $fh = curl("https://nodecore.mine.nu/trans/api/translations/nodecore/core/$lang/file/");
 	open(my $raw, ">", "src/$lang.txt") or die($!);
 	my $id;
 	while(<$fh>) {
@@ -44,7 +52,7 @@ for my $k ( keys %$en ) {
 my %langdb;
 my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
 while($page) {
-	open(my $fh, "-|", "curl", $page) or die($!);
+	my $fh = curl($page);
 	my $json = from_json(do { local $/; <$fh> });
 	close($fh);
 	$page = $json->{next};
