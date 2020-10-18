@@ -78,6 +78,7 @@ for level = 1, nodecore.light_sun - 1 do
 	if nodes[level] then return nodes[level] end
 	local name = dynamic_light_node(level)
 	local def = {
+		description = minetest.registered_nodes.air.description,
 		light_source = level,
 		air_equivalent = true,
 		groups = {dynamic_light = level}

@@ -30,6 +30,7 @@ minetest.register_item(":", {
 
 local scale = 2
 minetest.register_node(modname .. ":hand", {
+		description = "",
 		drawtype = "mesh",
 		mesh = modname .. ".obj",
 		tiles = {"nc_player_model_base.png"},

@@ -7,6 +7,7 @@ local modname = minetest.get_current_modname()
 
 local function reg(name, climb, light, fx, lv)
 	local def = {
+		description = minetest.registered_nodes.air.description,
 		drawtype = "airlike",
 		paramtype = "light",
 		sunlight_propagates = true,

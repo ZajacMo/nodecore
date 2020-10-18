@@ -11,6 +11,7 @@ local modname = minetest.get_current_modname()
 
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
+			description = "",
 			inventory_image = "nc_player_wield_" .. n .. ".png",
 			virtual_item = true
 		})

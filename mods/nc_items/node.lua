@@ -20,6 +20,7 @@ end
 nodecore.stack_node_sounds_except = {}
 
 minetest.register_node(modname .. ":stack", {
+		description = "",
 		drawtype = "airlike",
 		walkable = true,
 		selection_box = nodecore.fixedbox(
