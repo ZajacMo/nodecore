@@ -45,9 +45,6 @@ sub savelang {
 }
 
 my $en = getlang("en");
-for my $k ( keys %$en ) {
-	$en->{$k} eq "[REMOVED]" and delete $en->{$k};
-}
 
 my %langdb;
 my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
