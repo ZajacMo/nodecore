@@ -148,15 +148,12 @@ IDEAS: Possible future additions/improvements to the game
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
+- Way to detect specific nodes
+	- Comparison against a sample node?
+	- Allow optic signals to carry "chroma" signatures, compare?
+
 - Door Automation
-	- Press tools (or tool heads) into nodes to activate other
-	  pummel recipes like chopping.
-		- Mount tool heads on frames to make machine tools?
-	- Press recipes for digging.
-		- If pushing a node (or toolhead backed by node) and there
-		  is a climbable walkable behind it, or a storebox, dig the
-		  node and push it through climable as catapult, or into
-		  storebox if it fits.
+	- Mount tool heads on frames to make machine tools?
 	- Need more door materials: lode, glasses
 
 - Renewability Gap
