@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-17 12:57+0000\n"
+"PO-Revision-Date: 2020-11-20 17:39+0000\n"
 "Last-Translator: Elon_Satoshi <none1@example.org>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
@@ -337,7 +337,7 @@ msgid "- Can't dig trees or grass? Search for sticks in the canopy."
 msgstr "[REMOVIDO]."
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "[REMOVIDO]."
+msgstr "- No hay hornos en Nodecore; fundir con llamas abiertas."
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "[REMOVIDO]"
