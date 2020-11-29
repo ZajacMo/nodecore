@@ -9,6 +9,14 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- High tier door ideas
+	- Require higher-tier doors to operate higher-tier
+	  tools/heads?
+	- Limit ability of lower-tier doors to drive higher-tier
+	  doors, e.g. only allow driving up to 1 tier above?  This
+	  could allow one-way slippage mechanisms.
+	- Some doors can't be hand-operated, only ablated.
+
 - Plants from nc_nature?
 	- Rushes, mushrooms
 	- Require/consume special dirt (humus/peat) to grow/repro?

@@ -9,6 +9,13 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Door upward conveying is sort of useless right now; make it also
+  push objects outward, so this motion can be useful for upward
+  item transport?
+
+- Valleys mapgen rivers seem to rely on having an actual separate
+  river water registration with a specific liquid range.
+
 - Should item ents experience more drag when in fluids?
 
 - Door-wheels do not affect attached glyphs...
@@ -111,6 +118,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Shelf recipe reform
 	- Add a "shelf frame" node made from wooden frames
+		- Name: "form"?
 	- Add appropriate material to shelf frame to make shelf
 	- 2-stage construction should make it easier to discover
 	- Shelf frame can gain its own distinct uses
