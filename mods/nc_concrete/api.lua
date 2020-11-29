@@ -35,6 +35,7 @@ function nodecore.register_concrete(def)
 			description = "Wet " .. def.description,
 			tiles = {def.tile_wet},
 			special_tiles = {def.tile_wet, def.tile_wet},
+			paramtype = "light",
 			liquid_viscosity = 15,
 			liquid_renewable = false,
 			liquid_range = 1,
