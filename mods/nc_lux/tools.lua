@@ -129,6 +129,7 @@ nodecore.register_aism({
 			else
 				name = name:sub(1, -1 - #boost_suff)
 			end
+			if not minetest.registered_items[name] then return end
 			stack:set_name(name)
 			return stack
 		end
