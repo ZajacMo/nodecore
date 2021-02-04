@@ -77,9 +77,10 @@ nodecore.register_aism({
 
 			local pos = data.pos
 			local player = data.player
-			if player then
-				if data.list ~= "main" or player:get_wield_index()
-				~= data.slot then return end
+			local wield
+			if player and data.list == "main"
+			and player:get_wield_index() == data.slot then
+				wield = true
 				pos = vector.add(pos, vector.multiply(player:get_look_dir(), 0.5))
 			end
 
@@ -87,7 +88,8 @@ nodecore.register_aism({
 				nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 				return "nc_fire:lump_ash"
 			end
-			if math_random() < 0.1 then nodecore.fire_check_ignite(pos) end
+
+			if wield and math_random() < 0.1 then nodecore.fire_check_ignite(pos) end
 
 			local nn = modname .. ":torch_lit_" .. torchlife(expire)
 			if stack:get_name() ~= nn then
