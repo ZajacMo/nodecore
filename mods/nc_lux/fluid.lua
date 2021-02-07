@@ -7,10 +7,10 @@ local modname = minetest.get_current_modname()
 
 local wetdef = {
 	description = "Flux",
-	tiles = {modname .. "_base.png"},
-	special_tiles = {modname .. "_base.png", modname .. "_base.png"},
+	tiles = {modname .. "_base.png^[opacity:64"},
+	special_tiles = {modname .. "_base.png^[opacity:64", modname .. "_base.png^[opacity:64"},
+	use_texture_alpha = "blend",
 	paramtype = "light",
-	alpha = 64,
 	liquid_viscosity = 0,
 	liquid_renewable = false,
 	liquid_range = 2,

@@ -66,6 +66,7 @@ nodecore.register_on_register_item(function(_, def)
 					t[k] = {name = v, backface_culling = true}
 				end
 			end
+			def.use_texture_alpha = def.use_texture_alpha or "clip"
 		end
 
 		def.groups.visinv = def.groups.visinv or 1

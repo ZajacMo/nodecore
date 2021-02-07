@@ -240,21 +240,21 @@ end
 local function gray(suff)
 	local t = modname .. "_water" .. suff .. ".png"
 	local g = modname .. "_water_gray" .. suff .. ".png"
-	return t .. "^(" .. g .. "^[opacity:64)"
+	return t .. "^(" .. g .. "^[opacity:64)^[opacity:160"
 end
 
 regliquid({
 		description = "Water",
 		mapgen = {"river_water_source", "water_source"},
-		tiles = {anim(modname .. "_water.png", 4)},
+		tiles = {anim(modname .. "_water.png^[opacity:192", 4)},
 		special_tiles = {
-			anim(modname .. "_water_flow.png", 4),
-			anim(modname .. "_water_flow.png", 4)
+			anim(modname .. "_water_flow.png^[opacity:192", 4),
+			anim(modname .. "_water_flow.png^[opacity:192", 4)
 		},
+		use_texture_alpha = "blend",
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = true,
-		alpha = 192,
 		walkable = false,
 		pointable = false,
 		buildable_to = true,
@@ -272,10 +272,10 @@ regliquid({
 			anim(gray("_flow"), 4),
 			anim(gray("_flow"), 4)
 		},
+		use_texture_alpha = "blend",
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = false,
-		alpha = 160,
 		walkable = false,
 		pointable = false,
 		buildable_to = true,
