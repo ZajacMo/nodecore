@@ -57,14 +57,8 @@ NEW MT RELEASE PROCESS
 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-- After 5.2 EOS:
-	- Change bandolier slot items back to upright_sprite
-	- Consider switching touchtips to waypoint HUDs now that
-	  hiding distance is an options.
-	- Switch ents to using on_step moveresult for collision
-	  detection instead of checking nodes directly.
-	- We can reliably detect the zoom player control, make
-	  far-zoom only work while zooming, and add hints for it.
+- After 5.3 EOS:
+	- We can reliably use first-person-visible attachments
 
 ........................................................................
 ========================================================================

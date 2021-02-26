@@ -9,6 +9,9 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Switch ents to using on_step moveresult for collision detection
+  instead of checking nodes directly.
+
 - Organize into modpacks for layers
 	- Compat
 	- Util

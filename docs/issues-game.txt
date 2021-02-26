@@ -9,6 +9,14 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Change bandolier slot items back to upright_sprite
+
+- We can reliably detect the zoom player control, make far-zoom only
+  work while zooming, and add hints for it.
+
+- Consider switching touchtips to waypoint HUDs now that hiding
+  distance is an option.
+
 - BUG: Torch light doesn't update if players are standing still when
   torch goes out.
 
