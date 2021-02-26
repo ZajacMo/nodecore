@@ -9,6 +9,19 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Can use FOV changing as a "camera shake" effect.
+	- For damage
+	- As visual indication of a sound out of view?
+
+- Sky navigation
+	- Use multiple skybox layers so we can modify based on
+	  player position
+	- Maybe a particle effect, e.g. meteor showers?
+
+- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
+	- Optic pulse/strobe to accelerate checks
+	- Esp. for soaking things like making ores
+
 - High tier door ideas
 	- Require higher-tier doors to operate higher-tier
 	  tools/heads?
@@ -104,6 +117,8 @@ IDEAS: Possible future additions/improvements to the game
 		- Check for hot potato.
 		- Check upon pickup for anti-lode-move-exploit.
 
+- Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
+
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
 	- Rows of shelves against walls.  Very rarely lode crates.
@@ -112,6 +127,9 @@ IDEAS: Possible future additions/improvements to the game
 	  was, and vary tool durability or stack count non-linearly by it.
 	- Scattered items on floor.  Most are from loot tables, some are
 	  crates or storeboxes.
+	- Find cobble floor on mapgen, scan up to check for ceiling to
+	  be sure we're in a dungeon.
+	- Vary loot density/quality.
 
 - A lode "mace" tool with all dig groups?
 	- Would require reevaluatng recipe priority, or tool modality.

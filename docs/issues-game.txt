@@ -9,6 +9,12 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- BUG: Torch light doesn't update if players are standing still when
+  torch goes out.
+
+- BUG: Players with very high lag are sometimes able to dig air,
+  flux into their inventory, esp. with silk-touch tools.
+
 - Door upward conveying is sort of useless right now; make it also
   push objects outward, so this motion can be useful for upward
   item transport?

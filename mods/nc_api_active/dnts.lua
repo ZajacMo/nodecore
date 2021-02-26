@@ -8,7 +8,7 @@ local math_random, string_format
 -- Active Block Modifiers, meet Delayed Node Triggers.
 
 -- Definition:
---- mname: "modname:technicalname"
+--- name: "modname:technicalname"
 --- nodenames: {"mod:itemname", "group:name"}
 --- time: float (optional),
 --- loop: boolean,

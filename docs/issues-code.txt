@@ -9,9 +9,18 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Organize into modpacks for layers
+	- Compat
+	- Util
+	- API
+	- Natural
+	- Tech
+
 - Try to detect and separate out translation strings coming from
   non-core mods so we can consistently generate the game translation
   file without having to disable mods.
+
+- Automate uploading translation source strings?
 
 - Test nc_wield with items that have their own visual scale.
 
