@@ -10,7 +10,8 @@
 		"pve",
 		"technology"
 	],
-	"license": "mit",
+	"license": "MIT",
+	"media_license": "MIT",
 	"repo": "https://gitlab.com/sztest/nodecore",
 	"website": "https://nodecore.mine.nu",
 	"issueTracker": "https://discord.gg/NNYeF6f",
