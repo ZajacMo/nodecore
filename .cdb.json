@@ -1,0 +1,18 @@
+{
+	"user": "Warr1024",
+	"type": "game",
+	"tags": ["building",
+		"crafting",
+		"environment",
+		"inventory",
+		"oneofakind__original",
+		"puzzle",
+		"pve",
+		"technology"
+	],
+	"license": "mit",
+	"repo": "https://gitlab.com/sztest/nodecore",
+	"website": "https://nodecore.mine.nu",
+	"issueTracker": "https://discord.gg/NNYeF6f",
+	"forums": 24857,
+}
