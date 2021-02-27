@@ -13,7 +13,6 @@ readbinary = readbinary or function() end
 return {
 	user = "Warr1024",
 	pkg = alpha and "nodecore_alpha" or "nodecore",
-	min = "5.3",
 	version = dofile("./mods/nc_api/version.lua"),
 	path = ".",
 	type = "game",
