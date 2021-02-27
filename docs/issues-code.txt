@@ -12,8 +12,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 - A wooden plank appeared to have decayed in place of a scaling node;
   could it be a problem with ABM muxing?
 
-- Lens flicker is still a thing.
-
 - Switch ents to using on_step moveresult for collision detection
   instead of checking nodes directly.
 
