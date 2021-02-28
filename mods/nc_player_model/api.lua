@@ -9,30 +9,45 @@ local math_ceil, math_floor, math_pi, math_sin, string_format,
 
 local modname = minetest.get_current_modname()
 
-local function addcolor(layers, id, value)
+local function addcolor(id, value)
 	local theta = tonumber(value, 16) / 32768 * math_pi
 	local r = math_sin(theta + math_pi * 0/3) * 63 + 160
 	local g = math_sin(theta + math_pi * 2/3) * 63 + 160
 	local b = math_sin(theta + math_pi * 4/3) * 63 + 160
-	layers[#layers + 1] = string_format("(%s_color%d.png^[multiply:#%02x%02x%02x)",
+	return string_format("(%s_color%d.png^[multiply:#%02x%02x%02x)",
 		modname, id, math_ceil(r), math_ceil(g), math_ceil(b))
+end
+
+local colorcache = {}
+local function getcolors(name, layers)
+	if name == "singleplayer" then return end
+
+	local found = colorcache[name]
+	if found then
+		layers[#layers + 1] = found
+		return
+	end
+
+	local hash = minetest.sha1(name)
+	found =
+	addcolor(1, string_sub(hash, 1, 4)) .. "^" ..
+	addcolor(2, string_sub(hash, 5, 8)) .. "^" ..
+	addcolor(3, string_sub(hash, 9, 12))
+
+	colorcache[name] = found
+	layers[#layers + 1] = found
 end
 
 nodecore.player_skin = nodecore.player_skin or function(player)
 	local skin = player:get_meta():get_string("custom_skin") or ""
 	if skin ~= "" then return skin end
 
+	local name = player:get_player_name()
 	local layers = {modname .. "_base.png"}
 
-	local name = player:get_player_name()
-	if name ~= "singleplayer" then
-		local hash = minetest.sha1(name)
-		addcolor(layers, 1, string_sub(hash, 1, 4))
-		addcolor(layers, 2, string_sub(hash, 5, 8))
-		addcolor(layers, 3, string_sub(hash, 9, 12))
-	end
+	getcolors(name, layers)
 
-	local privs = minetest.get_player_privs(player:get_player_name())
+	local privs = minetest.get_player_privs(name)
 	if not privs.interact then
 		layers[#layers + 1] = modname .. "_no_interact.png"
 		layers[#layers + 1] = "[makealpha:254,0,253"
