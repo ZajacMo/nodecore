@@ -11,9 +11,9 @@ local modname = minetest.get_current_modname()
 
 local function addcolor(layers, id, value)
 	local theta = tonumber(value, 16) / 32768 * math_pi
-	local r = math_sin(theta + math_pi * 0/3) * 127 + 128
-	local g = math_sin(theta + math_pi * 2/3) * 127 + 128
-	local b = math_sin(theta + math_pi * 4/3) * 127 + 128
+	local r = math_sin(theta + math_pi * 0/3) * 63 + 160
+	local g = math_sin(theta + math_pi * 2/3) * 63 + 160
+	local b = math_sin(theta + math_pi * 4/3) * 63 + 160
 	layers[#layers + 1] = string_format("(%s_color%d.png^[multiply:#%02x%02x%02x)",
 		modname, id, math_ceil(r), math_ceil(g), math_ceil(b))
 end
