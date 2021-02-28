@@ -275,7 +275,6 @@ IDEAS: Possible future additions/improvements to the game
 			- When a player completes a hint/discovery, generate
 			  witness events for anyone who can see.
 	- Randomize player appearance/colors.
-		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
 	- Add a "cloak" layer for cloaks, capes, over entire body
 	- Make some control states / anims last a little longer, e.g.
