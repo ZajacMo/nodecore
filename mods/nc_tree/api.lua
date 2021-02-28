@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore
-    = ipairs, math, minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,19 +9,6 @@ local modname = minetest.get_current_modname()
 
 nodecore.register_leaf_drops, nodecore.registered_leaf_drops
 = nodecore.mkreg()
-
-function nodecore.leaf_decay(pos, node)
-	node = node or minetest.get_node(pos)
-	local t = {}
-	for _, v in ipairs(nodecore.registered_leaf_drops) do
-		t = v(pos, node, t) or t
-	end
-	local p = nodecore.pickrand(t, function(x) return x.prob end)
-	if not p then return end
-	minetest.set_node(pos, p)
-	if p.item then nodecore.item_eject(pos, p.item) end
-	return nodecore.fallcheck(pos)
-end
 
 function nodecore.tree_soil_rate(pos)
 	local d = 1

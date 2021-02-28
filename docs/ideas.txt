@@ -9,8 +9,6 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Accelerate leaf decay: if a leaf decays, check its neighbors
-
 - Can use FOV changing as a "camera shake" effect.
 	- For damage
 	- As visual indication of a sound out of view?
