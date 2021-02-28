@@ -14,7 +14,7 @@ local alpha = config and config.branch == "dev"
 return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
 	version = dofile("./mods/nc_api/version.lua"),
-	type = "mod",
+	type = "game",
 	title = "NodeCore" .. (alpha and " ALPHA" or ""),
 	short_description = (alpha
 		and "Experimental early-access release of NodeCore."
