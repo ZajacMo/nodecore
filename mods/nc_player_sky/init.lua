@@ -55,7 +55,7 @@ nodecore.register_playerstep({
 			pos = vector.multiply(pos, log / dist)
 			local px = pos.z
 			local py = -pos.x
-			local opac = (px * px + py * py) / 8 - 100
+			local opac = (px * px + py * py) / 8 - 200
 			if opac > 0 then
 				if opac > 255 then opac = 255 end
 				top = top .. ":" .. (123 + px) .. "," .. (123 + py)
