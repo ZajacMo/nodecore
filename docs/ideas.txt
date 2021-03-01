@@ -13,11 +13,6 @@ IDEAS: Possible future additions/improvements to the game
 	- For damage
 	- As visual indication of a sound out of view?
 
-- Sky navigation
-	- Use multiple skybox layers so we can modify based on
-	  player position
-	- Maybe a particle effect, e.g. meteor showers?
-
 - Systems for accelerating idle mechanics using higher-tier tech or more complex builds
 	- Optic pulse/strobe to accelerate checks
 	- Esp. for soaking things like making ores
