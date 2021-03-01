@@ -20,12 +20,21 @@ end
 local xyz = function(n) return {x = n, y = n, z = n} end
 local size_w_item = xyz(0.2)
 local size_w_tool = xyz(0.3)
-local size_slot = xyz(0.075)
+local size_slot = xyz(0.15)
 local size_item = xyz(0.1)
 
 local hidden = {is_visible = false}
-local selslot = {is_visible = true, visual_size = size_slot, textures = {modname .. ":sel"}}
-local emptyslot = {is_visible = true, visual_size = size_slot, textures = {modname .. ":slot"}}
+local selslot = {is_visible = true,
+	visual = "upright_sprite",
+	visual_size = size_slot,
+	textures = {modname .. "_sel.png"}
+}
+local emptyslot = {
+	is_visible = true,
+	visual = "upright_sprite",
+	visual_size = size_slot,
+	textures = {modname .. "_slot.png"}
+}
 
 local function calcprops(itemname, iswield)
 	local def = minetest.registered_items[itemname]
@@ -35,6 +44,7 @@ local function calcprops(itemname, iswield)
 		is_visible = true,
 		visual_size = iswield and (def and def.type == "tool" and size_w_tool
 			or size_w_item) or (itemname == "" and size_slot) or size_item,
+		visual = "wielditem",
 		textures = {itemname},
 		glow = def and (def.light_source or def.glow or 0)
 	}
@@ -75,7 +85,6 @@ entdef = {
 		physical = false,
 		collide_with_objects = false,
 		collisionbox = {0, 0, 0, 0, 0, 0},
-		visual = "wielditem",
 		textures = {""},
 		is_visible = false,
 		static_save = false,
