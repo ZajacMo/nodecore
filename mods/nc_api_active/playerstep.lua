@@ -62,7 +62,7 @@ end
 local cache = {}
 local function step_player(player, dtime)
 	local pname = player:get_player_name()
-	local data = cache[pname] or {}
+	local data = cache[pname] or {pname = pname}
 	data.physics = player:get_physics_override()
 	local orig_phys = clone(data.physics)
 	data.properties = player:get_properties()

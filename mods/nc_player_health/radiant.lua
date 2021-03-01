@@ -39,7 +39,7 @@ local heat = {}
 
 nodecore.register_playerstep({
 		label = "radiant heat damage",
-		action = function(player, _, dtime)
+		action = function(player, data, dtime)
 			if nodecore.stasis or not nodecore.player_visible(player) then return end
 
 			local pos = player:get_pos()
@@ -48,8 +48,7 @@ nodecore.register_playerstep({
 			if not dps then return end
 
 			local w = math_exp(-dtime)
-			local pname = player:get_player_name()
-			heat[pname] = (heat[pname] or 0) * w + dps * (1 - w)
+			heat[data.pname] = (heat[data.pname] or 0) * w + dps * (1 - w)
 		end
 	})
 

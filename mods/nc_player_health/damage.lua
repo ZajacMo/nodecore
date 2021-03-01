@@ -10,9 +10,8 @@ nodecore.register_on_player_hpchange("damage modifier", function(player, hp)
 		if not nodecore.player_can_take_damage(player) then
 			return orig
 		end
-		local pname
 		if hp < 0 then
-			pname = player:get_player_name()
+			local pname = player:get_player_name()
 			hurtcache[pname] = nodecore.gametime
 			player:get_meta():set_float("hurttime", nodecore.gametime)
 			if nodecore.player_visible(player) then
@@ -42,19 +41,19 @@ nodecore.register_on_dieplayer("player virtual 0 health", function(player)
 local full = {}
 nodecore.register_playerstep({
 		label = "healing",
-		action = function(player, _, dtime)
+		action = function(player, data, dtime)
+			local pname = data.pname
 			local hp = player:get_hp()
 			if hp <= 0 then return end
 			if hp == 1 then
 				local meta = player:get_meta()
 				if meta:get_float("dhp") == -1 then
-					local hurt = hurtcache[player:get_player_name()] or meta:get_float("hurttime")
+					local hurt = hurtcache[pname] or meta:get_float("hurttime")
 					if hurt + 0.5 < nodecore.gametime then
 						nodecore.setphealth(player, 0, "heal_rehurtfx", 2)
 					end
 				end
 			end
-			local pname = player:get_player_name()
 			local hpmax = player:get_properties().hp_max
 			if full[pname] and player:get_hp() >= hpmax then return end
 			full[pname] = nil

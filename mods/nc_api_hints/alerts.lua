@@ -38,11 +38,10 @@ nodecore.register_on_discover(function(_, key, pname)
 
 nodecore.register_playerstep({
 		label = "hint alerts",
-		action = function(player)
+		action = function(player, data)
 			if nodecore.hints_disabled() then return end
 
-			local pname = player:get_player_name()
-			local mc = msgcache[pname] or {}
+			local mc = msgcache[data.pname] or {}
 			local t = {}
 			for k, v in pairs(mc) do
 				if v < nodecore.gametime then

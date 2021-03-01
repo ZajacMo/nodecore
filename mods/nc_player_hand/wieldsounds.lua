@@ -23,9 +23,8 @@ local wields = {}
 local pending = {}
 nodecore.register_playerstep({
 		label = "wield sounds",
-		action = function(player, _, dtime)
-			local pname = player:get_player_name()
-
+		action = function(player, data, dtime)
+			local pname = data.pname
 			local pend = pending[pname]
 			if pend then
 				pend.t = pend.t - dtime

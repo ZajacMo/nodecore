@@ -141,11 +141,10 @@ local wields = {}
 
 nodecore.register_playerstep({
 		label = "wield touchtips",
-		action = function(player)
-			local pname = player:get_player_name()
+		action = function(player, data)
 			local wn = nodecore.touchtip_stack(player:get_wielded_item(), true)
-			if wn ~= wields[pname] then
-				wields[pname] = wn
+			if wn ~= wields[data.pname] then
+				wields[data.pname] = wn
 				show(player, wn)
 			end
 		end

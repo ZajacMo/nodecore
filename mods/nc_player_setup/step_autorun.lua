@@ -43,7 +43,7 @@ nodecore.register_playerstep({
 			local speed = autorun_walkspeed
 			local max = autorun_walkspeed * autorun_ratio
 			if walking and data.autoruntime then
-				local ht = hurttime[player:get_player_name()]
+				local ht = hurttime[data.pname]
 				if ht and ht > data.autoruntime then data.autoruntime = ht end
 				local t = nodecore.gametime - data.autoruntime - autorun_walktime
 				if t > math_pi * autorun_acceltime then
