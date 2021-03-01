@@ -58,9 +58,10 @@ nodecore.register_playerstep({
 			local opac = (px * px + py * py) / 8 - 200
 			if opac > 0 then
 				if opac > 255 then opac = 255 end
-				top = top .. ":" .. (123 + px) .. "," .. (123 + py)
+				top = top .. ":" .. (123 + math_ceil(px))
+				.. "," .. (123 + math_ceil(py))
 				.. "=" .. esc("nc_player_sky_star.png^[resize:11x11"
-					.. "^[opacity:" .. opac)
+					.. "^[opacity:" .. math_ceil(opac))
 				data.sky.textures[1] = top
 			end
 
