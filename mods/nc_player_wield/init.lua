@@ -124,6 +124,9 @@ entdef = {
 				not conf.slot))
 	end,
 	on_punch = function(self, puncher)
+		local objpos = self.object:get_pos()
+		if not objpos then return end
+
 		if not (puncher and puncher:is_player()) then return end
 
 		local conf = self.conf
@@ -138,11 +141,39 @@ entdef = {
 		local face = minetest.yaw_to_dir(pdata.player:get_look_horizontal())
 		if vector.dot(face, diff) >= 0 then return end
 
+		local inv = pdata.player:get_inventory()
+		local slot = conf.slot or pdata.widx
+		local stack = inv:get_stack("main", slot)
+
 		local stime = self.swipetime or 0
 		if stime < nodecore.gametime - 0.5 then
 			self.swipetime = nodecore.gametime
+			nodecore.stack_sounds(objpos, "dig", stack)
 			nodecore.sound_play(modname .. "_swipe",
-				{object = self.object, gain = 0.5})
+				{object = self.object, gain = 0.25})
+			local stackdef = stack:get_definition()
+			if stackdef then
+				local spos = {
+					x = ppos.x,
+					y = ppos.y + 1,
+					z = ppos.z
+				}
+				local vel = vector.multiply(vector.normalize(diff), -2)
+				nodecore.digparticles(stackdef, {
+						time = 0.5,
+						amount = 20,
+						minpos = spos,
+						maxpos = spos,
+						minvel = vector.multiply(vel, 0.75),
+						maxvel = vel,
+						minacc = {x = 0, y = 0, z = 0},
+						maxacc = {x = 0, y = 0, z = 0},
+						minexptime = 0.25,
+						maxexptime = 1,
+						minsize = 1,
+						maxsize = 2
+					})
+			end
 		end
 
 		local pname = puncher:get_player_name()
@@ -164,9 +195,6 @@ entdef = {
 		end
 
 		self.thief_name = nil
-		local inv = pdata.player:get_inventory()
-		local slot = conf.slot or pdata.widx
-		local stack = inv:get_stack("main", slot)
 		local oname = nodecore.stack_shortdesc(stack, true)
 		local orig = stack:get_count()
 		stack = puncher:get_inventory():add_item("main", stack)
