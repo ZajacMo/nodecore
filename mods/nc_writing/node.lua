@@ -58,7 +58,7 @@ function minetest.check_single_for_falling(pos, ...)
 	if not node then return oldcsff(pos, ...) end
 	if minetest.get_item_group(node.name, "alpha_glyph") ~= 0 then
 		local dp = vector.add(pos, nodecore.facedirs[node.param2].b)
-		if not nodecore.writing_writable(dp) then
+		if not nodecore.writing_writable(dp, nil, true) then
 			minetest.remove_node(pos)
 			return true
 		end
