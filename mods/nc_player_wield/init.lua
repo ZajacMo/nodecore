@@ -1,13 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string, table, vector
-    = minetest, nodecore, pairs, string, table, vector
-local string_format, table_remove
-    = string.format, table.remove
+local math, minetest, nodecore, pairs, string, table, vector
+    = math, minetest, nodecore, pairs, string, table, vector
+local math_sqrt, string_format, table_remove
+    = math.sqrt, string.format, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
+
+local steal_fxtime = 0.5
+local steal_reset = 2
+local steal_complete = 4.5
 
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
@@ -145,51 +149,59 @@ entdef = {
 		local slot = conf.slot or pdata.widx
 		local stack = inv:get_stack("main", slot)
 
-		local stime = self.swipetime or 0
-		if stime < nodecore.gametime - 0.5 then
-			self.swipetime = nodecore.gametime
-			nodecore.stack_sounds(objpos, "dig", stack)
-			nodecore.sound_play(modname .. "_swipe",
-				{object = self.object, gain = 0.25})
-			local stackdef = stack:get_definition()
-			if stackdef then
-				local spos = {
-					x = ppos.x,
-					y = ppos.y + 1,
-					z = ppos.z
-				}
-				local vel = vector.multiply(vector.normalize(diff), -2)
-				nodecore.digparticles(stackdef, {
-						time = 0.5,
-						amount = 20,
-						minpos = spos,
-						maxpos = spos,
-						minvel = vector.multiply(vel, 0.75),
-						maxvel = vel,
-						minacc = {x = 0, y = 0, z = 0},
-						maxacc = {x = 0, y = 0, z = 0},
-						minexptime = 0.25,
-						maxexptime = 1,
-						minsize = 1,
-						maxsize = 2
-					})
-			end
-		end
-
 		local pname = puncher:get_player_name()
 		local tname = self.thief_name
 		if not tname or tname ~= pname then
 			self.thief_name = pname
 			self.thief_start = nodecore.gametime
 			self.thief_last = nodecore.gametime
-			return
 		end
 
-		if nodecore.gametime > self.thief_last + 2 then
+		if nodecore.gametime > self.thief_last + steal_reset then
 			self.thief_name = nil
 			return
 		end
-		if nodecore.gametime < self.thief_start + 4.25 then
+
+		nodecore.show_touchtip(puncher, nodecore.touchtip_stack(stack)
+			.. "\n" .. conf.pname .. "'s Inventory")
+
+		local stime = self.swipetime or 0
+		if stime < nodecore.gametime - steal_fxtime then
+			self.swipetime = nodecore.gametime
+			nodecore.stack_sounds(objpos, "dig", stack)
+			local gain = (nodecore.gametime - self.thief_start - steal_fxtime)
+			/ steal_complete
+			if gain > 0 then
+				if gain > 1 then gain = 1 end
+				nodecore.sound_play(modname .. "_swipe",
+					{object = self.object, gain = 0.25 * math_sqrt(gain)})
+				local stackdef = stack:get_definition()
+				if stackdef then
+					local spos = {
+						x = ppos.x,
+						y = ppos.y + 1,
+						z = ppos.z
+					}
+					local vel = vector.multiply(diff, -1)
+					nodecore.digparticles(stackdef, {
+							time = 0.5,
+							amount = 20,
+							minpos = spos,
+							maxpos = spos,
+							minvel = vector.multiply(vel, 0.9),
+							maxvel = vel,
+							minacc = {x = 0, y = 0, z = 0},
+							maxacc = {x = 0, y = 0, z = 0},
+							minexptime = 0.25,
+							maxexptime = 1,
+							minsize = 1,
+							maxsize = 2
+						})
+				end
+			end
+		end
+
+		if nodecore.gametime < self.thief_start + steal_complete then
 			self.thief_last = nodecore.gametime
 			return
 		end
