@@ -11,13 +11,13 @@ local rejected = {}
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		local pinfo = minetest.get_player_information(pname)
-		if pinfo.protocol_version < minproto then
+		if (not pinfo) or (pinfo.protocol_version < minproto) then
 			rejected[pname] = true
 			minetest.kick_player(pname, "Outdated client, "
 				.. minrelease .. " required")
 			minetest.chat_send_all("*** " .. pname
 				.. " rejected. (protocol version "
-				.. pinfo.protocol_version .. ")")
+				.. (pinfo and pinfo.protocol_version or "unknown") .. ")")
 		else
 			rejected[pname] = nil
 		end
