@@ -43,7 +43,7 @@ function nodecore.match(thing, crit)
 	end
 	local def = minetest.registered_items[thing.name]
 	if (not thing.stacked) and def and def.groups and def.groups.is_stack_only then
-		local stack = nodecore.stack_get(thing)
+		local stack = thing.x and thing.y and thing.z and nodecore.stack_get(thing)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
 			def = minetest.registered_items[thing.name]
