@@ -56,8 +56,9 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	local mindur = recipe.duration or 0
 	if type(mindur) == "function" then mindur = mindur(recipe, pos, node, data) end
 	if recipe.toolgroups then
-		if not data.wield then return end
-		local dg = data.wield:get_tool_capabilities().groupcaps
+		local dg = data.toolgroupcaps or (data.wield
+			and data.wield:get_tool_capabilities().groupcaps)
+		if not dg then return end
 		local t
 		for gn, lv in pairs(recipe.toolgroups) do
 			local gt = dg[gn]
@@ -75,72 +76,65 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if type(dur) == "function" then dur = dur(pos, data) end
 		if not dur or dur < mindur then
 			if data.inprogress then data.inprogress(pos, data) end
-			return 1
+			return false
 		end
 	end
-	if data.before then data.before(pos, data) end
-	if recipe.before then recipe.before(pos, data) end
-	for _, v in ipairs(recipe.nodes) do
-		if v.replace then
-			local p = rel(v.x, v.y, v.z)
-			local r = v.replace
-			while type(r) == "function" do
-				r = r(p, v)
-			end
-			if r and type(r) == "string" then
-				r = {name = r}
-			end
-			if v.match.excess then
-				local s = nodecore.stack_get(p)
-				local x = s:get_count() - (v.match.count or 1)
-				if x > 0 then
-					s:set_count(x)
-					nodecore.item_eject(p, s)
+	return function()
+		if data.before then data.before(pos, data) end
+		if recipe.before then recipe.before(pos, data) end
+		for _, v in ipairs(recipe.nodes) do
+			if v.replace then
+				local p = rel(v.x, v.y, v.z)
+				local r = v.replace
+				while type(r) == "function" do
+					r = r(p, v)
 				end
-				nodecore.stack_set(p, ItemStack(""))
+				if r and type(r) == "string" then
+					r = {name = r}
+				end
+				if v.match.excess then
+					local s = nodecore.stack_get(p)
+					local x = s:get_count() - (v.match.count or 1)
+					if x > 0 then
+						s:set_count(x)
+						nodecore.item_eject(p, s)
+					end
+					nodecore.stack_set(p, ItemStack(""))
+				end
+				if r then
+					local n = minetest.get_node(p)
+					r.param2 = n.param2
+					nodecore.set_loud(p, r)
+					nodecore.fallcheck(p)
+				end
 			end
-			if r then
-				local n = minetest.get_node(p)
-				r.param2 = n.param2
-				nodecore.set_loud(p, r)
-				nodecore.fallcheck(p)
+			if v.dig then
+				local p = rel(v.x, v.y, v.z)
+				minetest.node_dig(p, minetest.get_node(p))
 			end
 		end
-		if v.dig then
-			local p = rel(v.x, v.y, v.z)
-			minetest.node_dig(p, minetest.get_node(p))
+		if recipe.items then
+			for _, v in pairs(recipe.items) do
+				nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0),
+					v.name, v.scatter, v.count, v.velocity)
+			end
 		end
-	end
-	if recipe.items then
-		for _, v in pairs(recipe.items) do
-			nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0),
-				v.name, v.scatter, v.count, v.velocity)
+		if recipe.consumewield then
+			nodecore.consume_wield(data.crafter, recipe.consumewield)
+		elseif recipe.toolgroups and recipe.toolwear and data.crafter then
+			nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 		end
-	end
-	if recipe.consumewield then
-		nodecore.consume_wield(data.crafter, recipe.consumewield)
-	elseif recipe.toolgroups and recipe.toolwear and data.crafter then
-		nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
-	end
-	if recipe.after then recipe.after(pos, data) end
-	if data.after then data.after(pos, data) end
-	if nodecore.player_stat_add then
-		nodecore.player_stat_add(1, data.crafter, "craft", recipe.label)
-	end
-	if recipe.witness then
-		local lut = {}
-		for _, v in pairs(recipe.nodes) do
-			lut[minetest.hash_node_position(v)] = true
+		if recipe.after then recipe.after(pos, data) end
+		if data.after then data.after(pos, data) end
+		nodecore.player_discover(data.crafter, "craft:" .. recipe.label)
+		local witness = data.witness or recipe.witness
+		if witness then
+			nodecore.witness(pos, {recipe.action, recipe.label, data.label})
 		end
-		nodecore.witness(pos, {recipe.action, recipe.label},
-			type(recipe.witness) == "number" and recipe.witness or nil,
-			function(p) return lut[minetest.hash_node_position(p)] end
-		)
+		nodecore.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
+			.. " completed recipe \"" .. recipe.label .. "\" at " ..
+			minetest.pos_to_string(pos) .. " upon " .. node.name)
 	end
-	nodecore.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
-		.. " completed recipe \"" .. recipe.label .. "\" at " ..
-		minetest.pos_to_string(pos) .. " upon " .. node.name)
-	return true
 end
 
 local function tryall(rc, pos, node, data)
@@ -165,7 +159,7 @@ local function tryall(rc, pos, node, data)
 end
 
 local craftidx, rebuildidx = nodecore.item_matching_index(
-	nodecore.craft_recipes,
+	nodecore.registered_recipes,
 	function(i) return i.indexkeys or {true} end,
 	"register_craft",
 	true,
@@ -190,12 +184,13 @@ local function checkall(pos, node, data, set)
 			data.recipe = rc
 			if data.rootmatch then data.rootmatch(data) end
 			local r = tryall(rc, pos, node, data)
-			if r then return r == true end
+			if r == false then return end
+			if r then return r end
 		end
 	end
 end
 
-function nodecore.craft_check(pos, node, data)
+function nodecore.craft_search(pos, node, data)
 	if not data or not data.action then
 		return error("craft_check without data.action")
 	end
@@ -211,7 +206,8 @@ function nodecore.craft_check(pos, node, data)
 		local key = data.action .. "|" .. node.name
 		local set = craftidx[key]
 		if set then
-			if checkall(pos, node, data, set) then return true end
+			local found = checkall(pos, node, data, set)
+			if found then return found end
 			for _, i in pairs(set) do seen[i] = true end
 		end
 	end
@@ -225,7 +221,17 @@ function nodecore.craft_check(pos, node, data)
 			for _, i in ipairs(set) do
 				if not seen[i] then unique[#unique + 1] = i end
 			end
-			if #unique > 0 and checkall(pos, node, data, unique) then return true end
+			if #unique > 0 then
+				local found = checkall(pos, node, data, unique)
+				if found then return found end
+			end
 		end
 	end
+end
+
+function nodecore.craft_check(...)
+	local commit = nodecore.craft_search(...)
+	if not commit then return end
+	commit()
+	return true
 end

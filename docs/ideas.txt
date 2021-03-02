@@ -9,21 +9,91 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Chop frames, ladders, staves back down into sticks?
+- Can use FOV changing as a "camera shake" effect.
+	- For damage
+	- As visual indication of a sound out of view?
+
+- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
+	- Optic pulse/strobe to accelerate checks
+	- Esp. for soaking things like making ores
+
+- High tier door ideas
+	- Require higher-tier doors to operate higher-tier
+	  tools/heads?
+	- Limit ability of lower-tier doors to drive higher-tier
+	  doors, e.g. only allow driving up to 1 tier above?  This
+	  could allow one-way slippage mechanisms.
+	- Some doors can't be hand-operated, only ablated.
+
+- Plants from nc_nature?
+	- Rushes, mushrooms
+	- Require/consume special dirt (humus/peat) to grow/repro?
+	- Source of special materials like ash? Cheaper peat?  Thatch?
+	- Upconvert dirt to humus nearby?
+
+- Now that tote handles are separated between bare and packed totes,
+  we can treat them separately.
+	- Allow bare tote handles to be stackable?
+	- Allow bare tote handles to be stored in storeboxes?
+
+- Buff lux fluid range to 2?
+
+- Rework falling_node (or build alternative) with customizability
+	- Allow lode rods, ladders to hang from ceilings?
+
+- Durable transparent/window material.
+	- Harder to mine, noob protection.
+	- "Reinforced glass?"
+		- Use lava+water hardening recipe on glasses?
+	- Lode frames to fill this role?
+		- Reach-through-able lux rad shielding?
+
+- Make radiant heat do burn damage instead of plain?
+	- Reuse lux burns?  Different kind of burn?
+
+- Make etched concrete rotatble?
+	- Rotate only in pliant state by rightclick.
+	- When dug w/ silk touch, store param2 in metadata, add rotation
+	  value to touchtip to explain non-stacking.
+
+- Visual "subtitles" for sounds?
+	- Use new image_waypoint HUD type; it works in new versions,
+	  invisible in old versions (graceful fallback).
+	- An icon for each sound type.
+
+- Separate air vs. node cursor?
+	- Like the node vs. entity cursor, can we hide the cursor when
+	  pointing only at air?
+	- Would server lag be too much?
+	- This would integrate really well with a WAILA sort of thing.
+	- Could totally revamp touchtips, and dynamic feel Lightning.
+	- Use an image HUD so we can force mobile to display it too, so
+	  mobile players can use look dir too?
+
+- Buff igniting
+	- Make hot lode and other heated materials able to ignite
+		- This was probably not already done just because we
+		  didn't have AISMs at the time, but we do now.
+	- Reconsider lux fluid ignition again.
+		- Maybe have rare "spark" events that can ignite?
+		- Maybe have it involve proximity to other materials?
+			- Water? Lava?
+			- Optic beams?
+
+- Can we use glasslike_framed for shelves?
+	- Alternate 2 versions of the registration based on y coord
+	  so it forces top/bottom faces to show
 
 - More lode bar crafts:
 	- Frames
 	- Ladders?
-	- Adzes?
-		- chop+crumb -1 relative tier
-		- cracky -2 relative tier
-		- full durability
-		- Should these be full lode or wood handle?
-	- Rakes?
-		- Return some prills after construction?
-	- Make wear carry across heating/cooling recipes
-		- Allow full-lode tools to be tempered
-	- All these need to be recyclable.
+	- Allow frame loose ends to be chopped off when placed next to other
+	  frames, so custom shapes can be made.
+
+- Piezo node for optics detects sounds?
+	- Sounds emitted by mod stuff?
+	- Footsteps?
+	- Can be used as a BUD
 
 - Lode tongs?
 	- Craft from bars/rods (or lode adzes?).
@@ -37,9 +107,12 @@ IDEAS: Possible future additions/improvements to the game
 	  are wielded item.
 	- Unmark safe any slots that don't contain hot things after
 	  hot potato check.
+	- Will probably need to unify damage_touch into an API that checks
+	  for damage given a player and a stack.
+		- Check for hot potato.
+		- Check upon pickup for anti-lode-move-exploit.
 
-- Allow frame loose ends to be chopped off when placed next to other
-  frames, so custom shapes can be made.
+- Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 
 - Dungeon loot
 	- Add recipe hints (prearranged nodes) as decorations?
@@ -49,6 +122,9 @@ IDEAS: Possible future additions/improvements to the game
 	  was, and vary tool durability or stack count non-linearly by it.
 	- Scattered items on floor.  Most are from loot tables, some are
 	  crates or storeboxes.
+	- Find cobble floor on mapgen, scan up to check for ceiling to
+	  be sure we're in a dungeon.
+	- Vary loot density/quality.
 
 - A lode "mace" tool with all dig groups?
 	- Would require reevaluatng recipe priority, or tool modality.
@@ -93,44 +169,35 @@ IDEAS: Possible future additions/improvements to the game
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
-- Optic locking
-	- Prevent accidental rotation.
-	- Use tree sap / glue?
-		- Make "glued" optic node?
-		- Detect adjacent glue node?
-	- Apply frame, make framed optics?
-	- Hammer into place with certain tool?
+- Way to detect specific nodes
+	- Comparison against a sample node?
+	- Allow optic signals to carry "chroma" signatures, compare?
 
 - Door Automation
-	- Should have press recipes for stickcraft, i.e. staves,
-	  frames, ladders.
-	- Press tools (or tool heads) into nodes to activate other
-	  pummel recipes like chopping.
-		- Mount tool heads on frames to make machine tools?
-	- Press recipes for digging.
-		- If pushing a node (or toolhead backed by node) and there
-		  is a climbable walkable behind it, or a storebox, dig the
-		  node and push it through climable as catapult, or into
-		  storebox if it fits.
-	- Pressing stack of 1 node places it, instead of pummeling it.
-	  Can pummel on the second push.
-	- Should doors trigger place recipes when blocked?
-	- Push players?
+	- Mount tool heads on frames to make machine tools?
 	- Need more door materials: lode, glasses
 
 - Renewability Gap
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
 		- Lode
-		- Lux
+		- Lux cobbl
 		- Water sources.
 	- Sustainable but not renewable
 	- Not sustainable
 		- Lava sources.
 			- Surround stone with lava to melt?
+		- Lux stone (smooth)
 
 - Threats
 	- Visceral
+		- Leaping sparks/podobos from lava
+			- Only where multiple source nodes are adjacent (lava lakes)
+			  to be nicer to managed builds and skyblocks.
+			- They fly ballistically, maybe bounce, and set fires where
+			  they land.
+			- Possibly knock stone loose and cause cave-ins?  Displacing
+			  lava lakes upward would be pretty dramatic.
 		- Flammable/toxic gas?
 		- Monsters: stone-lurkers, mimics.
 			- Complex multi-node mimic that eats tools you try to dig it with,
@@ -193,8 +260,14 @@ IDEAS: Possible future additions/improvements to the game
 	  wait for them to mature more nuanced.
 
 - Social features
+	- Hint system
+		- Social achievments
+			- When completing a hint, also tell other players on
+			  the same server if they've completed it too.
+		- Vicarious discovery
+			- When a player completes a hint/discovery, generate
+			  witness events for anyone who can see.
 	- Randomize player appearance/colors.
-		- Shirt/pants, possibly w/ stripes/patterns
 		- Skin color, hair color, eye color?
 	- Add a "cloak" layer for cloaks, capes, over entire body
 	- Make some control states / anims last a little longer, e.g.
@@ -226,6 +299,13 @@ IDEAS: Possible future additions/improvements to the game
 	  abstract is fine too, as long as it conveys a sense of
 	  movement to help players visualize what's moving and in
 	  what direction.
+
+- Visual in-world hotbar
+	- GreenXenith's visualbar mod
+	- Replace hotbar, merge it with both bandolier and YCTIWY?
+	- Players could be "pickpocketed" during normal gameplay.
+		- Make a sound/visual to warn player.
+	- Jordach's new first-person-attached entities feature?
 
 ........................................................................
 ========================================================================

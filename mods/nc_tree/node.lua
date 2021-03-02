@@ -86,7 +86,8 @@ minetest.register_node(modname .. ":leaves", {
 			flammable = 3,
 			fire_fuel = 2,
 			green = 3,
-			scaling_time = 90
+			scaling_time = 90,
+			leaf_decay = 1
 		},
 		alternate_loose = {
 			tiles = {modname .. "_leaves_dry.png"},
@@ -97,7 +98,8 @@ minetest.register_node(modname .. ":leaves", {
 				flammable = 1,
 				falling_repose = 1,
 				green = 1,
-				stack_as_node = 1
+				stack_as_node = 1,
+				leaf_decay = 0
 			}
 		},
 		alternate_solid = {

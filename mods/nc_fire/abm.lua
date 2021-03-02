@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local ipairs, math, minetest, nodecore, pairs, string, vector
+    = ipairs, math, minetest, nodecore, pairs, string, vector
+local math_random, string_format
+    = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -61,17 +61,17 @@ do
 		})
 end
 
-local igniteseen = {}
-local ignitequeue = {}
-local igniteqty = 0
+local poshash = minetest.hash_node_position
+local ignitemax = 250
+local ignition
 nodecore.register_globalstep("fire ignition", function()
-		if #ignitequeue < 1 then return end
-		for _, pos in ipairs(ignitequeue) do
+		if not ignition then return end
+		nodecore.log("info", string_format("fire ignition: %d (%d/%d)",
+				ignition.qty, #ignition.queue, ignitemax))
+		for _, pos in ipairs(ignition.queue) do
 			nodecore.fire_check_ignite(pos)
 		end
-		igniteseen = {}
-		ignitequeue = {}
-		igniteqty = 0
+		ignition = nil
 	end)
 nodecore.register_limited_abm({
 		label = "flammables ignite",
@@ -81,17 +81,26 @@ nodecore.register_limited_abm({
 		neighbors = {"group:flammable"},
 		action = function(pos)
 			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable")) do
-				local key = minetest.hash_node_position(pos)
-				if not igniteseen[key] then
-					igniteseen[key] = true
-					igniteqty = igniteqty + 1
-					if igniteqty > 100 then
-						local i = math_random(1, igniteqty + 1)
-						if i < 100 then
-							ignitequeue[i] = p
+				local key = poshash(p)
+				if not ignition then
+					ignition = {
+						queue = {},
+						seen = {},
+						qty = 0
+					}
+				end
+				local seen = ignition.seen
+				if not seen[key] then
+					seen[key] = true
+					local qty = ignition.qty + 1
+					ignition.qty = qty
+					if qty > ignitemax then
+						local i = math_random(1, qty)
+						if i <= ignitemax then
+							ignition.queue[i] = p
 						end
 					else
-						ignitequeue[igniteqty] = p
+						ignition.queue[qty] = p
 					end
 				end
 			end

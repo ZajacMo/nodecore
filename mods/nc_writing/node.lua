@@ -23,6 +23,7 @@ for i = 1, #nodecore.writing_glyphs do
 				tile,
 				"[combine:1x1"
 			},
+			use_texture_alpha = "clip",
 			drawtype = "nodebox",
 			node_box = nodecore.fixedbox(
 				{-0.5, -15/32, -0.5, 0.5, -14/32, 0.5}
@@ -42,7 +43,7 @@ for i = 1, #nodecore.writing_glyphs do
 			sounds = nodecore.sounds("nc_terrain_crunchy"),
 			on_node_touchthru = function(pos, node, under, player)
 				local raw = nodecore.touchtip_node(under, nil, player)
-				if vector.equals(vector.subtract(under, pos),
+				if raw and vector.equals(vector.subtract(under, pos),
 					nodecore.facedirs[node.param2].b) then
 					return raw .. "\n" .. desc
 				end

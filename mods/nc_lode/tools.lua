@@ -20,7 +20,16 @@ local function toolhead(name, groups, prills)
 			description = "## Lode " .. name .. " Head",
 			inventory_image = modname .. "_#.png^[mask:" ..
 			modname .. "_toolhead_" .. n .. ".png",
-			stack_max = 1
+			stack_max = 1,
+			tool_head_capabilities = toolcap(4),
+			bytemper = function(t, d)
+				if t.name == "tempered" then
+					d.tool_head_capabilities = toolcap(5)
+					else if t.name == "hot" then
+						d.tool_head_capabilities = toolcap(3)
+					end
+				end
+			end
 		})
 
 	nodecore.register_lode("tool_" .. n, {

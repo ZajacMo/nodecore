@@ -14,7 +14,7 @@
    viewBox="0 0 56.302864 56.302863"
    version="1.1"
    id="svg8"
-   inkscape:export-filename="/home/warr/git/gitlab.com/sztest/nodecore/mods/nc_player_hud/textures/crosshair.png"
+   inkscape:export-filename="/home/warr/git/gitlab.com/sztest/nodecore/mods/nc_player_hud/textures/object_crosshair.png"
    inkscape:export-xdpi="7.2827797"
    inkscape:export-ydpi="7.2827797"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
@@ -28,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.86288462"
-     inkscape:cx="267.01126"
-     inkscape:cy="-63.629877"
+     inkscape:zoom="1.4294983"
+     inkscape:cx="-42.917015"
+     inkscape:cy="112.62276"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:pagecheckerboard="true"
      fit-margin-top="0"
@@ -52,15 +52,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
+     inkscape:label="Node"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-26.734718,-77.206967)">
+     transform="translate(-26.734718,-77.206967)"
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        sodipodi:type="star"
        style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:0;stroke:#ffffff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
@@ -81,5 +83,18 @@
        inkscape:export-filename="/home/warr/git/gitlab.com/sztest/nodecore/mods/nc_player_hud/textures/path4518.png"
        inkscape:export-xdpi="7.1957402"
        inkscape:export-ydpi="7.1957402" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Entity"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:0;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       d="m 49.566899,13.849105 -3.708098,9.55766 7.990002,6.42279 m -2.603759,9.71758 -10.130956,1.56712 -1.56714,10.13084 m -9.71706,2.60374 -6.422847,-7.98992 -9.55778,3.70806 m -7.1133001,-7.11385 3.7080901,-9.55704 -7.9899901,-6.42278 m 2.60375,-9.717579 10.1309501,-1.567129 1.56716,-10.1308426 m 9.71769,-2.603727 6.422847,7.9899096 9.55714,-3.7080526"
+       id="path4518-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccc" />
   </g>
 </svg>

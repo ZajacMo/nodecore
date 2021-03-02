@@ -1,0 +1,679 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-11-20 17:39+0000\n"
+"Last-Translator: Elon_Satoshi <none1@example.org>\n"
+"Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
+"nodecore/core/es_US/>\n"
+"Language: es_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.0.4\n"
+
+msgid "...have you assembled a wooden tool yet?"
+msgstr "... ¿Ya hiciste una herramienta de madera?"
+
+msgid "...have you assembled a wooden shelf yet?"
+msgstr "... ¿Ya has armado un estante de madera?"
+
+msgid "...have you assembled a wooden ladder yet?"
+msgstr "... ¿Ya has armado una escalera de madera?"
+
+msgid "...have you assembled a wooden frame yet?"
+msgstr "... ¿ya has armado un marco de madera?"
+
+msgid "...have you assembled a staff from sticks yet?"
+msgstr "... ¿ya has armado un bastón con los palos?"
+
+msgid "...and @1 more hints..."
+msgstr "... y @1 pistas más..."
+
+msgid "...and 1 more hint..."
+msgstr "... y una pista más..."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr ""
+"No es necesario golpear muy rápido (aproximadamente 1 golpe por segundo)."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"El objeto seleccionado, la cara objetivo y los nodos alrededor pueden ser "
+"importantes."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"¿Problemas para encender un fuego? Intente usar palos más largos, más hojas."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "[REMOVIDO]."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "+"
+msgstr "+"
+
+msgid "(and @1 more hints)"
+msgstr "(y @1 pistas más)"
+
+msgid "(and 1 more hint)"
+msgstr "(y una pista más)"
+
+msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2020 por Aaron Suen <warr1024@@gmail.com>"
+
+msgid "Annealed Lode Rake"
+msgstr "Rastrillo de Veta Recocido"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Cabeza de Pico de Veta Recocido"
+
+msgid "Annealed Lode Pick"
+msgstr "Pico de Veta Recocido"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Cabeza de Azadón de Veta Recocido"
+
+msgid "Annealed Lode Mattock"
+msgstr "Azadón de Veta Recocido"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Cabeza de Mazo de Veta Recocido"
+
+msgid "Annealed Lode Mallet"
+msgstr "Mazo de Veta Recocido"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Cabeza de Hacha de Veta Recocido"
+
+msgid "Adze"
+msgstr "Azuela"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Hacha de Veta Recocido"
+
+msgid "Annealed Lode Bar"
+msgstr "Palo de Veta Recocido"
+
+msgid "Annealed Lode Adze"
+msgstr "Azuela de Veta Recocido"
+
+msgid "Annealed Lode"
+msgstr "Veta Recocido"
+
+msgid "Air"
+msgstr "Aire"
+
+msgid "...have you dug up stone yet?"
+msgstr "... ¿Ya has desenterrado piedra?"
+
+msgid "...have you dug up sand yet?"
+msgstr "... ¿Ha excavado arena?"
+
+msgid "...have you dug up lode ore yet?"
+msgstr "... ¿Ha excavado ya el mineral de veta?"
+
+msgid "...have you dug up gravel yet?"
+msgstr "... ¿Ya has excavado grava?"
+
+msgid "...have you dug up dirt yet?"
+msgstr "... ¿Ya has excavado tierra?"
+
+msgid "...have you dug up a tree stump yet?"
+msgstr "... ¿Ya has desenterrado un tocón de árbol?"
+
+msgid "...have you cut down a tree yet?"
+msgstr "... ¿ya has cortado un árbol?"
+
+msgid "...have you cooled molten glass into crude glass yet?"
+msgstr "... ¿Ya ha enfriado vidrio fundido para hacer vidrio crudo?"
+
+msgid "...have you cold-forged lode down completely yet?"
+msgstr "... ¿Ya ha forjado en frío un cabezal de herramienta con veta recocido?"
+
+msgid "...have you cold-forged an annealed lode tool head yet?"
+msgstr "... ¿Ya ha forjado en frío un cabezal de herramienta de veta recocido?"
+
+msgid "...have you chopped up charcoal yet?"
+msgstr "... ¿Ya has cortado carbón?"
+
+msgid "...have you chopped chromatic glass into lenses yet?"
+msgstr "... ¿Ya has cortado vidrio en lentes?"
+
+msgid "...have you chopped a lode cube into prills yet?"
+msgstr "... ¿ya has cortado un cubo de veta en pepitas?"
+
+msgid "...have you chipped chromatic glass into prisms yet?"
+msgstr "... ¿Ya has picado vidrio en prismas?"
+
+msgid "...have you carved wooden tool heads from planks yet?"
+msgstr "... ¿Ya ha tallado cabezas de herramientas en madera?"
+
+msgid "...have you carved a wooden plank completely yet?"
+msgstr "... ¿Has tallado una tabla de madera por completo?"
+
+msgid "...have you broken cobble into chips yet?"
+msgstr "... ¿Ya sacaste piedras de un adoquín?"
+
+msgid "...have you bashed a plank into sticks yet?"
+msgstr "...¿ya golpeaste madera para obtener palos?"
+
+msgid "...have you assembled an annealed lode tote handle yet?"
+msgstr "... ¿Ya hiciste un asa con Veta Recocida?"
+
+msgid "...have you assembled an adze out of sticks yet?"
+msgstr "... ¿Ya hiciste una azuela con palos?"
+
+msgid "Hashy Pliant Stone"
+msgstr "Piedra Flexible con un patrón llamado \"Hashy\""
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Arenisca flexible con un patrón llamado \"Hashy\""
+
+msgid "Hashy Pliant Adobe"
+msgstr "Adobe Flexible con un patrón llamado \"Hashy\""
+
+msgid "Hashy Adobe"
+msgstr "Adobe con un patrón llamado \"Hashy"
+
+msgid "Hashy"
+msgstr "\"Hashy\""
+
+msgid "HAND OF POWER"
+msgstr "MANO DE PODER"
+
+msgid "Growing Tree Trunk"
+msgstr "Tronco Creciente"
+
+msgid "Growing Leaves"
+msgstr "Hojas Crecientes"
+
+msgid "Gravel"
+msgstr "Grava"
+
+msgid "Grass"
+msgstr "Césped"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Cabeza de Pala de Veta Encendida"
+
+msgid "Glowing Lode Spade"
+msgstr "Pala de Veta Encendida"
+
+msgid "Glowing Lode Rod"
+msgstr "Barra de Veta Encendida"
+
+msgid "Glowing Lode Rake"
+msgstr "Rastrillo de Veta Encendida"
+
+msgid "Glowing Lode Prill"
+msgstr "Pepita de Veta Encendida"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Cabeza de Pico de Veta Encendido"
+
+msgid "Glowing Lode Pick"
+msgstr "Pico de Veta Encendido"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Cabeza de Azadón de Veta Encendido"
+
+msgid "Glowing Lode Mattock"
+msgstr "Azadón de Veta Encendido"
+
+msgid "Glowing Lode Mallet"
+msgstr "Mazo de Veta Encendido"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Cabeza de Mazo de Veta Encendido"
+
+msgid "Glowing Lode Hatchet"
+msgstr "Hacha de Veta Encendido"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Cabeza de Hacha de Veta Encendido"
+
+msgid "Glowing Lode Cobble"
+msgstr "Adoquín con Veta Encendido"
+
+msgid "Glowing Lode Bar"
+msgstr "Palo de Veta Encendido"
+
+msgid "Glowing Lode Adze"
+msgstr "Azuela de Veta Encendido"
+
+msgid "Glowing Lode"
+msgstr "Veta Encendido"
+
+msgid "Glass Tank"
+msgstr "Depósito de Vidrio"
+
+msgid "Gated Prism"
+msgstr "Prisma Cerrado"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Geq\""
+
+msgid "Float Glass"
+msgstr "Vidrio Flotado"
+
+msgid "Eggcorn"
+msgstr "Eggcorn"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Fot\""
+
+msgid "Fire"
+msgstr "Fuego"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Discord: https://discord.gg/NNYeF6f"
+
+msgid "Dirt"
+msgstr "Tierra"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERSIÓN DE DESARROLLO"
+
+msgid "Crude Glass"
+msgstr "Vidrio Crudo"
+
+msgid "Cobble Panel"
+msgstr "Panel de Adoquín"
+
+msgid "Cobble Hinged Panel"
+msgstr "Panel de Adoquín con Bisagras"
+
+msgid "Cobble"
+msgstr "Adoquín"
+
+msgid "Burning Embers"
+msgstr "Brasas Ardientes"
+
+msgid "Clear Glass"
+msgstr "Vidrio Claro"
+
+msgid "Chromatic Glass"
+msgstr "Vidrio Cromático"
+
+msgid "Charcoal"
+msgstr "Carbón Vegetal"
+
+msgid "Charcoal Lump"
+msgstr "Polvo de Carbón Vegetal"
+
+msgid "Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Cav\""
+
+msgid "Burn"
+msgstr "Quemadura"
+
+msgid "Bricky Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Bricky\""
+
+msgid "Bricky Stone"
+msgstr "Piedra con un patrón llamado \"Bricky\""
+
+msgid "Bricky Sandstone"
+msgstr "Arenisca con un patrón llamado \"Bricky\""
+
+msgid "- Drop items onto ground to create stack nodes.  They do not decay."
+msgstr "[REMOVIDO]."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "[REMOVIDO]!"
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "[REMOVIDO]."
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "[REMOVIDO]."
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- No hay hornos en Nodecore; fundir con llamas abiertas."
+
+msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "[REMOVIDO]"
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "[REMOVIDO]."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "[REMOVIDO]."
+
+msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr "[REMOVIDO]."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "[REMOVIDO]."
+
+msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
+msgstr "[REMOVIDO]."
+
+msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
+msgstr "[REMOVIDO]."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "[REMOVIDO]!"
+
+msgid "- There is NO inventory screen."
+msgstr "[REMOVIDO]."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "[REMOVED]."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "[REMOVED]."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "[REMOVED]."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "[REMOVED]."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "[REMOVED]."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "[REMOVED]."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr "[REMOVED]."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "[REMOVED]."
+
+msgid "- DONE: @1"
+msgstr "- LISTO: @1"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Bricky\""
+
+msgid "Bricky Pliant Stone"
+msgstr "Piedra flexible con un patrón llamado \"Bricky\""
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Arenisca flexible con un patrón llamado \"Bricky\""
+
+msgid "Bricky Pliant Adobe"
+msgstr "Adobe flexible con un patrón llamado \"Bricky\""
+
+msgid "Bricky Adobe"
+msgstr "Adobe con un patrón llamado \"Bricky\""
+
+msgid "Bricky"
+msgstr "\"Bricky\""
+
+msgid "Boxy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Boxy\""
+
+msgid "Boxy Stone"
+msgstr "Piedra con un patrón llamado \"Boxy\""
+
+msgid "Boxy Sandstone"
+msgstr "Arenisca con un patrón llamado \"Boxy\""
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Boxy\""
+
+msgid "Boxy Pliant Stone"
+msgstr "Piedra flexible con un patrón llamado \"Boxy\""
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Arenisca flexible con un patrón llamado \"Boxy\""
+
+msgid "Boxy Pliant Adobe"
+msgstr "Adobe flexible con un patrón llamado \"Boxy\""
+
+msgid "Boxy Adobe"
+msgstr "Adobe con un patrón llamado \"Boxy\""
+
+msgid "Boxy"
+msgstr "\"Boxy\""
+
+msgid "Bindy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Bindy\""
+
+msgid "Bindy Stone"
+msgstr "Piedra con un patrón llamado \"Bindy\""
+
+msgid "Bindy Sandstone"
+msgstr "Piedra arenisca con un patrón llamado \"Bindy\""
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Bindy\""
+
+msgid "Bindy Pliant Stone"
+msgstr "Piedra flexible con un patrón llamado \"Bindy\""
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Piedra arenisca flexible con un patrón llamado \"Bindy\""
+
+msgid "Bindy Pliant Adobe"
+msgstr "Adobe flexible con un patrón llamada \"Bindy\""
+
+msgid "Amalgamation"
+msgstr "Amalgamación"
+
+msgid "Adobe Mix"
+msgstr "Mezcla de Adobe"
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "Active Prism"
+msgstr "Prisma Activo"
+
+msgid "Active Lens"
+msgstr "Lente activo"
+
+msgid "About"
+msgstr "Sobre Nodecore"
+
+msgid "Aggregate"
+msgstr "Conglomerado"
+
+msgid "Bindy Adobe"
+msgstr "Adobe con un patrón llamado \"Bindy\""
+
+msgid "Bindy"
+msgstr "\"Bindy\""
+
+msgid "Ash Lump"
+msgstr "Polvo de Ceniza"
+
+msgid "Ash"
+msgstr "Ceniza"
+
+msgid "Bonded Stone Bricks"
+msgstr "Ladrillos de piedra adheridos"
+
+msgid "Blank"
+msgstr "Blanco"
+
+msgid "Artificial Water"
+msgstr "Agua Artificial"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Cabeza de Pala de Veta Recocido"
+
+msgid "Annealed Lode Spade"
+msgstr "Pala de Veta Recocido"
+
+msgid "Annealed Lode Rod"
+msgstr "Barra de Veta Recocido"
+
+msgid "Annealed Lode Prill"
+msgstr "Pepita de Veta Recocido"
+
+msgid "...have you planted an eggcorn yet?"
+msgstr "... ¿ya plantaste una bellota?"
+
+msgid "...have you packed stone chips back into cobble yet?"
+msgstr "... ¿Ya has empacado trozos de piedra en el adoquín?"
+
+msgid "...have you packed high-quality charcoal yet?"
+msgstr "... ¿Has empacado carbón de alta calidad?"
+
+msgid "...have you molded molten glass into clear glass yet?"
+msgstr "... ¿Ya ha moldeado vidrio fundido en vidrio transparente?"
+
+msgid "...have you melted sand into glass yet?"
+msgstr "... ¿Ya has derretido arena en vidrio?"
+
+msgid "...have you melted down lode metal yet?"
+msgstr "... ¿ya has fundido metal de veta?"
+
+msgid "...have you made fire by rubbing sticks together yet?"
+msgstr "... ¿Has hecho fuego frotando palos?"
+
+msgid "...have you found sticks yet?"
+msgstr "... ¿ya has encontrado palos?"
+
+msgid "...have you found sponges yet?"
+msgstr "... ¿Ya has encontrado esponjas de mar?"
+
+msgid "...have you found molten rock yet?"
+msgstr "... ¿Has encontrado ya roca fundida?"
+
+msgid "...have you found lode ore yet?"
+msgstr "... ¿Has encontrado el mineral de veta?"
+
+msgid "...have you found eggcorns yet?"
+msgstr "¿ya has encontrado una bellota?"
+
+msgid "...have you found dry leaves yet?"
+msgstr "... ¿Ya has encontrado hojas secas?"
+
+msgid "...have you found deep stone strata yet?"
+msgstr "... ¿Has encontrado ya extractos de piedra profunda?"
+
+msgid "...have you found charcoal yet?"
+msgstr "... ¿Ya has encontrado carbón?"
+
+msgid "...have you found ash yet?"
+msgstr "... ¿has encontrado ceniza ya?"
+
+msgid "...have you found a lode stratum yet?"
+msgstr "... ¿Ha encontrado ya un extracto de veta?"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Zin\""
+
+msgid "Yit Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Yit\""
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Xrp\""
+
+msgid "Tof Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Tof\""
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Qeg\""
+
+msgid "Prx Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Prx\""
+
+msgid "Odo Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Odo\""
+
+msgid "Niz Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Niz\""
+
+msgid "Mew Charcoal Glyph"
+msgstr "Glifo de Carbón Vegetal llamado \"Mew\""
+
+msgid "Verty Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Verty\""
+
+msgid "Verty Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Verty\""
+
+msgid "Vermy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Vermy\""
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Vermy\""
+
+msgid "Tarstone"
+msgstr "Piedra de alquitrán"
+
+msgid "Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible"
+
+msgid "Iceboxy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Iceboxy"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Iceboxy\""
+
+msgid "Horzy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Horzy"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Horzy\""
+
+msgid "Hashy Tarstone"
+msgstr "Piedra de alquitrán con un patrón llamado \"Hashy\""
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Piedra de alquitrán flexible con un patrón llamado \"Hashy\""
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Hacha con Punta de Piedra"
+
+msgid "Stone-Tipped Pick"
+msgstr "Pico con Punta de Piedra"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Mazo con Punta de Piedra"
+
+msgid "Wooden Spade Head"
+msgstr "Cabeza de Pala de Madera"
+
+msgid "Wooden Spade"
+msgstr "Pala de Madera"
+
+msgid "Wooden Shelf"
+msgstr "Balda de Madera"
+
+msgid "Wooden Plank"
+msgstr "Tablón de Madera"
+
+msgid "Wooden Pick Head"
+msgstr "Cabeza de Pico de Madera"
+
+msgid "Wooden Pick"
+msgstr "Pico de Madera"
+
+msgid "Wooden Panel"
+msgstr "Panel de Madera"
+
+msgid "Wooden Mallet Head"
+msgstr "Cabeza de Mazo de Madera"
+
+msgid "Wooden Ladder"
+msgstr "Escalera de Madera"
+
+msgid "Wooden Hinged Panel"
+msgstr "Panel con Bisagras"
+
+msgid "Wooden Frame"
+msgstr "Marco de Madera"
+
+msgid "Wooden Mallet"
+msgstr "Mazo de Madera"
+
+msgid "Wooden Hatchet Head"
+msgstr "Cabeza de Hacha de Madera"
+
+msgid "Wooden Hatchet"
+msgstr "Hacha de Madera"

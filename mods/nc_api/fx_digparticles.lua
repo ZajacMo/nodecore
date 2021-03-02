@@ -1,9 +1,34 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
-local math_ceil, math_floor, math_random
-    = math.ceil, math.floor, math.random
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_ceil, math_random
+    = math.ceil, math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local getcoord
+do
+	local coords = {}
+	for x = 0, 12, 4 do
+		for y = 0, 12, 4 do
+			coords[#coords + 1] = x .. "," .. y
+		end
+	end
+	local size = #coords
+	local pos = size + 1
+	getcoord = function()
+		if pos > size then
+			for i = size, 2, -1 do
+				local j = math_random(1, i)
+				local x = coords[i]
+				coords[i] = coords[j]
+				coords[j] = x
+			end
+			pos = 1
+		end
+		pos = pos + 1
+		return coords[pos - 1]
+	end
+end
 
 function nodecore.digparticles(nodedef, partdef)
 	if partdef.forcetexture then
@@ -29,8 +54,7 @@ function nodecore.digparticles(nodedef, partdef)
 	local t = {}
 	for _ = 1, 4 do
 		partdef.texture = img .. "^[resize:16x16^[mask:[combine\\:16x16\\:"
-		.. math_floor(math_random() * 12) .. ","
-		.. math_floor(math_random() * 12) .. "=nc_api_pummel.png"
+		.. getcoord() .. "=nc_api_pummel.png"
 		t[#t + 1] = minetest.add_particlespawner(partdef)
 	end
 	return function()
@@ -38,4 +62,29 @@ function nodecore.digparticles(nodedef, partdef)
 			minetest.delete_particlespawner(v)
 		end
 	end
+end
+
+function nodecore.toolbreakparticles(player, wielddef, amount)
+	local pos = player:get_pos()
+	if not pos then return end
+	wielddef = wielddef or minetest.registered_items[player:get_wielded_item():get_name()]
+	if not wielddef then return end
+	pos.y = pos.y + player:get_properties().eye_height - 0.1
+	local look = player:get_look_dir()
+	pos = vector.add(pos, vector.multiply(look, 0.5))
+	local look2 = vector.multiply(look, 2)
+	return nodecore.digparticles(wielddef, {
+			time = 0.05,
+			amount = amount,
+			minpos = pos,
+			maxpos = pos,
+			minvel = vector.add(look2, {x = -2, y = -2, z = -2}),
+			maxvel = vector.add(look2, {x = 2, y = 2, z = 2}),
+			minacc = {x = 0, y = -8, z = 0},
+			maxacc = {x = 0, y = -8, z = 0},
+			minexptime = 0.25,
+			maxexptime = 1,
+			minsize = 2,
+			maxsize = 4
+		})
 end

@@ -1,0 +1,58 @@
+========================================================================
+NONIDEAS: Ideas already considered and rejected
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Anything Already Added
+	- If something already exists in the game then it will not
+	  be added.  Please play though the game enough to understand
+	  what is already in the game before making suggestions.
+	- Things that are ALMOST like things already in the game will
+	  not be added.  Players are expected to adapt their ideas to
+	  the materials available, not the other way around.
+
+- Mobs/Animals
+	- Things that are "off-grid" are discouraged.  Node-based
+	  "staybs" could at least fit the mechanics, but entity-based
+	  creatures that move freely do not.  Use of /clearobjects
+	  should not remove key gameplay elements as long as the game
+	  is allowed to "quiesce" first.
+	- Monsters that are easy to understand and deal with would not
+	  fit the games theme or play style.  Threats need to be subtle,
+	  insidious, and indirect.  Threats that offer no direct
+	  cathartic response (i.e. bashing it to death) also fit the
+	  theme better, as well as threats that can be turned around and
+	  exploited as resources once mastered (but remain a threat if
+	  handled carelessly).
+	- NodeCore pacing requires that dangers to a player should be
+	  consequences of the player's own decisions, and not something
+	  that can be blamed on environment or chance.  Having monsters
+	  spawn spontaneously and stalk the player would be problematic.
+	- NodeCore "conservation" mechanics discourage having things
+	  spawn spontaneously at all, and they would need to be part of
+	  mapgen.
+
+- Food/Hunger
+	- Players are like ethereal beings who visit the world only
+	  temporarily and are not subject to injury or survival
+	  mechanics within the world.
+	- Things that focus a mechanic on/through the player do not
+	  fit the world-centric/node-centric theme of the game.
+	- Using food items to provide things like temporary buffs is
+	  likely to be a lot of effort and likely to be skipped by most
+	  players.
+
+- Beds
+	- There is no night to skip, and players have no need for sleep.
+	- Bed-like structures can be made out of existing nodes. Purely
+	  decorative elements that are not fungible do not fit the
+	  game's design.
+
+........................................................................
+========================================================================

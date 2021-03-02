@@ -9,6 +9,7 @@ minetest.register_node(modname .. ":staff", {
 		description = "Staff",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
+		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0.5, 1/8),
 		oldnames = {"nc_tree:staff"},
 		tiles = {
 			"nc_tree_tree_top.png",

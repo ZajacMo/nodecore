@@ -17,22 +17,27 @@ minetest.register_node(plank, {
 		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
-nodecore.register_craft({
-		label = "split tree to planks",
-		action = "pummel",
-		toolgroups = {choppy = 1},
-		normal = {y = 1},
-		check = function(_, data)
-			return nodecore.facedirs[data.node.param2].t.y == 1
-		end,
-		indexkeys = {"group:log"},
-		nodes = {
-			{match = {groups = {log = true}}, replace = "air"}
-		},
-		items = {
-			{name = plank, count = 4, scatter = 5}
-		}
-	})
+local function splitrecipe(choppy, normaly)
+	nodecore.register_craft({
+			label = "split tree to planks",
+			action = "pummel",
+			toolgroups = {choppy = choppy},
+			normal = {y = normaly},
+			check = function(_, data)
+				local y = nodecore.facedirs[data.node.param2].t.y
+				return y == 1 or y == -1
+			end,
+			indexkeys = {"group:log"},
+			nodes = {
+				{match = {groups = {log = true}}, replace = "air"}
+			},
+			items = {
+				{name = plank, count = 4, scatter = 5}
+			}
+		})
+end
+splitrecipe(1, 1)
+splitrecipe(4, -1)
 
 nodecore.register_craft({
 		label = "bash planks to sticks",

@@ -9,15 +9,62 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Buff lux burns significantly when touching lux.
-	- Change lux burn model to operate like radiant heat instead?
-		- Genericize radiant damage check to check a hook for damage
-		  applicability from nodes found
-		- Maybe retire classic damage per second entirely
-	- Maybe replace all normal damage with lux burns?
-	- May need a hack to play damage effects when not altering hp.
-		- Set hp lower and use 1+ delta, then let damage normalizer
-		  reset it?
+- Change bandolier slot items back to upright_sprite
+
+- We can reliably detect the zoom player control, make far-zoom only
+  work while zooming, and add hints for it.
+
+- Consider switching touchtips to waypoint HUDs now that hiding
+  distance is an option.
+
+- BUG: Torch light doesn't update if players are standing still when
+  torch goes out.
+
+- BUG: Players with very high lag are sometimes able to dig air,
+  flux into their inventory, esp. with silk-touch tools.
+
+- Door upward conveying is sort of useless right now; make it also
+  push objects outward, so this motion can be useful for upward
+  item transport?
+
+- Valleys mapgen rivers seem to rely on having an actual separate
+  river water registration with a specific liquid range.
+
+- Should item ents experience more drag when in fluids?
+
+- Door-wheels do not affect attached glyphs...
+
+- Add a few smoke particles to fire?
+	- Make them different (smaller?) than cooking to differentiate.
+
+- Stone softening rates feel off.
+	- Once first stage of stone softens, others follow really
+	  quicky (exponential runaway basically).
+	- If you leave stone soaking for a while, it looks like it
+	  basically softens all or nothing.
+	- Can we smooth this out and make it less jarring?
+
+- Buff wall scaling
+	- Allow 1n lateral movement along wall
+	- Makes outer wall corners navigable
+
+- Silk Touch needs a review, possible nerf.
+	- Review what materials are silk toucheable and which are not
+	  at this point, make adjustments if needed.
+	- Maybe require some preparatory step, like a pummel into a
+	  prepped material before dig?
+
+- Make a way to prevent crafting on place
+	- Sneak? Aux?
+
+- Consider changing wet/dry stack splitting
+	- Currently, original stack remains in place, wetted/dried
+	  stack jumps out to new spot.
+	- Instead, maybe wetted/dried stays in place and original
+	  jumps out (unless there's an adjacent wetted/dried stack to
+	  reuse).
+	- More similar to the way flammable stack ignition works
+	- Just meaner overall
 
 - Consider largely retiring offline time-integral mechanics
 	- Keepers:
@@ -46,16 +93,12 @@ ISSUES-GAME: Gameplay-affecting issues
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
 
-- Hint system
-	- Updates for everything since renewable ores (read changelog)
-		- Agg may have been broken by concrete overhaul
-	- Consider removing redundant or reverse paths, i.e. recycling
-	  or artificial resource recipes.
-		- They complicate maintenance.
-		- They are distracting for players (e.g. Emerald feeling
-		  COMPELLED to chop up a lode crate unnecessarily for the
-		  hint completion)
-		- Hints could be re-expanded by 3rd party mods
+- Delay lens full brightess?
+	- Propagate optic signals immediately
+	- Reach full brightness a few seconds later, to reduce map
+	  update work and prevent rapid strobes.
+	- Strobes can cause excess lighting recalcs and block
+	  transfers, and can cause seizure problems for users
 
 - Consider doing looktips and using a custom HUD to force crosshair
   for mobile as well.
@@ -89,6 +132,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Shelf recipe reform
 	- Add a "shelf frame" node made from wooden frames
+		- Name: "form"?
 	- Add appropriate material to shelf frame to make shelf
 	- 2-stage construction should make it easier to discover
 	- Shelf frame can gain its own distinct uses
@@ -98,9 +142,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level
 	- Maybe some ores for cobble and/or loose cobble?
-	
-- Make stone brick more easily crafted by chiseling with a high-tier
-  pick, e.g. tier 7+
 
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire

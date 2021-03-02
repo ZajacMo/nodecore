@@ -33,9 +33,7 @@ minetest.register_node(modname .. ":eggcorn", {
 
 			nodecore.set_loud(pos, {name = epname, param2 = 16})
 
-			if nodecore.player_stat_add then
-				nodecore.player_stat_add(1, whom, "craft", "eggcorn planting")
-			end
+			nodecore.player_discover(whom, "craft:eggcorn planting")
 			nodecore.log("action", (whom and whom:get_player_name() or "unknown")
 				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
 
@@ -107,7 +105,8 @@ minetest.register_node(modname .. ":leaves_bud", {
 			flammable = 5,
 			fire_fuel = 2,
 			green = 4,
-			scaling_time = 90
+			scaling_time = 90,
+			leaf_decay = 1
 		},
 		treeable_to = true,
 		drop = "",
@@ -115,5 +114,9 @@ minetest.register_node(modname .. ":leaves_bud", {
 			return nodecore.leaf_decay(pos, nodecore.calc_leaves(pos))
 		end,
 		node_dig_prediction = "air",
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		leaf_decay_as = {
+			name = modname .. ":leaves",
+			param2 = 0
+		}
 	})

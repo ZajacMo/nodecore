@@ -23,7 +23,7 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 	if not def then return end
 	if nodecore.protection_test(pos, clicker) then return stack end
 	if def.storebox_access and (not def.storebox_access(
-			pointed_thing, clicker, pos, node)) then
+			pointed_thing, pos, node)) then
 		return doplace(stack, clicker, pointed_thing)
 	end
 	if def.stack_allow and def.stack_allow(pos, node, stack) == false then
@@ -40,7 +40,7 @@ function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
 	local def = minetest.registered_items[node.name]
 	if nodecore.protection_test(pos, puncher) then return end
 	if def.storebox_access and (not def.storebox_access(
-			pointed_thing, puncher, pos, node)) then return end
+			pointed_thing, pos, node)) then return end
 	if pointed_thing.above.y < pointed_thing.under.y then return end
 	return nodecore.stack_giveto(pos, puncher)
 end
@@ -66,6 +66,7 @@ nodecore.register_on_register_item(function(_, def)
 					t[k] = {name = v, backface_culling = true}
 				end
 			end
+			def.use_texture_alpha = def.use_texture_alpha or "clip"
 		end
 
 		def.groups.visinv = def.groups.visinv or 1

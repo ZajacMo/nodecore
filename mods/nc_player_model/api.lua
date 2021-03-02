@@ -1,19 +1,53 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
-local math_floor, table_concat
-    = math.floor, table.concat
+local math, minetest, nodecore, pairs, string, table, tonumber
+    = math, minetest, nodecore, pairs, string, table, tonumber
+local math_ceil, math_floor, math_pi, math_sin, string_format,
+      string_sub, table_concat
+    = math.ceil, math.floor, math.pi, math.sin, string.format,
+      string.sub, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
+
+local function addcolor(id, value)
+	local theta = tonumber(value, 16) / 32768 * math_pi
+	local r = math_sin(theta + math_pi * 0/3) * 63 + 160
+	local g = math_sin(theta + math_pi * 2/3) * 63 + 160
+	local b = math_sin(theta + math_pi * 4/3) * 63 + 160
+	return string_format("(%s_color%d.png^[multiply:#%02x%02x%02x)",
+		modname, id, math_ceil(r), math_ceil(g), math_ceil(b))
+end
+
+local colorcache = {}
+local function getcolors(name, layers)
+	if name == "singleplayer" then return end
+
+	local found = colorcache[name]
+	if found then
+		layers[#layers + 1] = found
+		return
+	end
+
+	local hash = minetest.sha1(name)
+	found =
+	addcolor(1, string_sub(hash, 1, 4)) .. "^" ..
+	addcolor(2, string_sub(hash, 5, 8)) .. "^" ..
+	addcolor(3, string_sub(hash, 9, 12))
+
+	colorcache[name] = found
+	layers[#layers + 1] = found
+end
 
 nodecore.player_skin = nodecore.player_skin or function(player)
 	local skin = player:get_meta():get_string("custom_skin") or ""
 	if skin ~= "" then return skin end
 
+	local name = player:get_player_name()
 	local layers = {modname .. "_base.png"}
 
-	local privs = minetest.get_player_privs(player:get_player_name())
+	getcolors(name, layers)
+
+	local privs = minetest.get_player_privs(name)
 	if not privs.interact then
 		layers[#layers + 1] = modname .. "_no_interact.png"
 		layers[#layers + 1] = "[makealpha:254,0,253"
@@ -101,7 +135,6 @@ nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
 	return {
 		visual = "mesh",
 		visual_size = {x = 0.9, y = 0.9, z = 0.9},
-		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d",
-		backface_culling = true
+		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d"
 	}
 end

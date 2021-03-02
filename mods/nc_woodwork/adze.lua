@@ -12,7 +12,7 @@ local adzecaps = nodecore.toolcaps({
 adzecaps.groupcaps.crumbly.uses = adzecaps.groupcaps.choppy.uses
 
 minetest.register_tool(modname .. ":adze", {
-		description = "Adze",
+		description = "Wooden Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
 			firestick = 2,

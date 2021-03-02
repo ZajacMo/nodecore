@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include("node")
 include("abm")
+include("hints")

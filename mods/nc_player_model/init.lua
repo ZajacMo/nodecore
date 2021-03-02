@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include("api")
 include("hooks")
+include("hints")

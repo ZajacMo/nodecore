@@ -3,10 +3,18 @@ use strict;
 use warnings;
 use JSON qw(from_json);
 
+sub curl {
+	my @cmd = ("curl");
+	$ENV{NC_WEBLATE_TOKEN} and
+	  push @cmd, "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
+	push @cmd, @_;
+	open(my $fh, "-|", @cmd) or die($!);
+	return $fh;
+}
 sub getlang {
 	my $lang = shift();
 	my %db;
-	open(my $fh, "-|", "curl", "https://nodecore.mine.nu/trans/api/translations/nodecore/core/$lang/file/") or die($!);
+	my $fh = curl("https://nodecore.mine.nu/trans/api/translations/nodecore/core/$lang/file/");
 	open(my $raw, ">", "src/$lang.txt") or die($!);
 	my $id;
 	while(<$fh>) {
@@ -26,7 +34,7 @@ sub getlang {
 sub savelang {
 	my $lang = shift();
 	my $en = shift();
-	my %db = %{getlang($lang)};
+	my %db = %{shift()};
 	map { $en->{$_} and $db{$_} ne $_ or delete $db{$_} } keys %db;
 	%db or return;
 	open(my $fh, ">", "nc_api.$lang.tr") or die($!);
@@ -37,13 +45,11 @@ sub savelang {
 }
 
 my $en = getlang("en");
-for my $k ( keys %$en ) {
-	$en->{$k} eq "[REMOVED]" and delete $en->{$k};
-}
 
+my %langdb;
 my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
 while($page) {
-	open(my $fh, "-|", "curl", $page) or die($!);
+	my $fh = curl($page);
 	my $json = from_json(do { local $/; <$fh> });
 	close($fh);
 	$page = $json->{next};
@@ -51,6 +57,18 @@ while($page) {
 		$r->{component}->{slug} eq "core" or next;
 		$r->{component}->{project}->{slug} eq "nodecore" or next;
 		my $code = $r->{language}->{code};
-		$code eq 'en' or savelang($code, $en);
+		$code eq 'en' or $langdb{$code} = getlang($code);
 	}
+	for my $sub ( sort keys %langdb ) {
+		my $gen = $sub;
+		$gen =~ s#_\S+$## or next;
+		$langdb{$gen} //= {};
+		map { $langdb{$gen}{$_} //= $langdb{$sub}{$_} } keys %{$langdb{$sub}};
+	}
+	for my $sub ( keys %langdb ) {
+		my $gen = $sub;
+		$gen =~ s#_\S+$## or next;
+		map { $langdb{$sub}{$_} //= $langdb{$gen}{$_} } keys %{$langdb{$sub}};
+	}
+	map { savelang($_, $en, $langdb{$_}) } keys %langdb;
 }

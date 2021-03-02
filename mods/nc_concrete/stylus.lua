@@ -77,6 +77,7 @@ nodecore.register_craft({
 			local nxpatt = pattdef.next.name
 			nodecore.set_loud(pos, {name = setpref .. nxpatt .. "_ply"})
 			if data.wield and data.crafter then
+				nodecore.player_discover(data.crafter, "stylus train")
 				data.wield:get_meta():set_string("pattern", nxpatt)
 				data.crafter:set_wielded_item(data.wield)
 			end
@@ -107,6 +108,7 @@ nodecore.register_soaking_abm({
 			if not (pattdef and etchdef) then return end
 			local curename = modname .. ":" .. etchdef.name .. "_" .. pattdef.name
 			if pattdef.blank then curename = etchdef.basename end
+			nodecore.witness(pos, "cure pliant concrete")
 			nodecore.set_loud(pos, {name = curename})
 			return false
 		end

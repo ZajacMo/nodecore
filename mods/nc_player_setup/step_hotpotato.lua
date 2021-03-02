@@ -5,7 +5,7 @@ local minetest, nodecore, pairs
 
 nodecore.register_playerstep({
 		label = "hot potatoes",
-		action = function(player)
+		action = function(player, data)
 			if nodecore.stasis then return end
 			local inv = player:get_inventory()
 			local hurt = 0
@@ -22,7 +22,6 @@ nodecore.register_playerstep({
 				end
 			end
 			if #throw > 0 then
-				local pname = player:get_player_name()
 				local pos = player:get_pos()
 				pos.y = pos.y + 1.2
 				local dir = player:get_look_dir()
@@ -32,7 +31,7 @@ nodecore.register_playerstep({
 				for _, v in pairs(throw) do
 					local obj = minetest.add_item(pos, v)
 					obj:set_velocity(dir)
-					obj:get_luaentity().dropped_by = pname
+					obj:get_luaentity().dropped_by = data.pname
 				end
 			end
 			if hurt > 0 then nodecore.addphealth(player, -hurt, "hotpotato") end

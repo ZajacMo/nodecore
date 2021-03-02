@@ -24,9 +24,6 @@ to the project!
 	  elements.  Current open PR is #9315.
 	- #7876: Causes a damage flash when a new player joins, or a
 	  player from before 2020-02-19 when max HP was changed.
-	- TBD: It would be nice to be able to make the player neutrally
-	  buoyant (disable slow downward drift) in water/liquids.  This
-	  probably needs to be supported explicitly by the MT client.
 	- TBD: Bone attachment axes invert if there is any animation on
 	  that bone/axis.  This is blocking the visible inventory
 	  feature. (MTG #2547, but it's probably an engine bug)
@@ -41,6 +38,16 @@ to the project!
 	- #6963: If this is implemented, we may have a more efficient
 	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
 	  and other container nodes.
+
+- Help with documentation
+	- Improvements to the in-game guidance, esp. for onboarding new
+	  players, are wanted.  Ideally we want to offer a spoiler-free
+	  experience by default, but want players to have options/resources
+	  in the event they can't figure something out.
+	- Advising players where they can find external resources, or other
+	  sources of help, such as wikis, youtube, chatrooms, multiplayer
+	  servers, etc.
+	- Work on improving the nodecore wiki itself.
 
 - Improved versions of any art assets (sounds, textures, models).
 	- All textures for base inclusion should be 16x (keep

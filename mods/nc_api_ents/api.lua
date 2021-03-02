@@ -120,7 +120,7 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		self.not_rising = yvel <= 0
 		if not coll then
 			if self.setvel then
-				self.object:set_velocity(self.vel)
+				if self.vel then self.object:set_velocity(self.vel) end
 				self.setvel = nil
 			end
 			self.vel = self.object:get_velocity()

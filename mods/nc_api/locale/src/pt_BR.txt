@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2020-03-27 11:11+0000\n"
-"Last-Translator: Weblate Admin <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2020-09-02 12:25+0000\n"
+"Last-Translator: Terifo <none@example.org>\n"
 "Language-Team: Portuguese (Brazil) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.0.4\n"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 por Aaron Suen <war1024@@gmail.com>"
@@ -225,7 +225,7 @@ msgid "Active Prism"
 msgstr "Prisma Ativo"
 
 msgid "Aggregate"
-msgstr "Agregar"
+msgstr "Agregado"
 
 msgid "Air"
 msgstr "Ar"
@@ -631,7 +631,7 @@ msgstr ""
 "- O jogo é feito para ser desafiante, algumas fezes frustrante. NÃO DESISTA!"
 
 msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[REMOVED]"
+msgstr "[REMOVED]."
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr ""
@@ -956,3 +956,161 @@ msgstr "(C)2018-2020 por Aaron Suen <war1024@@gmail.com>"
 
 msgid "+"
 msgstr "+"
+
+msgid "Artificial Water"
+msgstr "Água Artificial"
+
+msgid "Amalgamation"
+msgstr "Amalgamação"
+
+msgid "Adobe Mix"
+msgstr "Mistura de Adobe"
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 (90@2)"
+msgstr "@1 (90@2)"
+
+msgid "@1 (9)"
+msgstr "@1 (9)"
+
+msgid "@1 (80@2)"
+msgstr "@1 (80@2)"
+
+msgid "@1 (8)"
+msgstr "@1 (8)"
+
+msgid "@1 (70@2)"
+msgstr "@1 (70@2)"
+
+msgid "@1 (7)"
+msgstr "@1 (7)"
+
+msgid "@1 (60@2)"
+msgstr "@1 (60@2)"
+
+msgid "@1 (6)"
+msgstr "@1 (6)"
+
+msgid "@1 (50@2)"
+msgstr "@1 (50@2)"
+
+msgid "@1 (5)"
+msgstr "@1 (5)"
+
+msgid "@1 (40@2)"
+msgstr "@1 (40@2)"
+
+msgid "@1 (4)"
+msgstr "@1 (4)"
+
+msgid "@1 (30@2)"
+msgstr "@1 (30@2)"
+
+msgid "@1 (3)"
+msgstr "@1 (3)"
+
+msgid "@1 (20@2)"
+msgstr "@1 (20@2)"
+
+msgid "@1 (2)"
+msgstr "@1 (2)"
+
+msgid "@1 (10@2)"
+msgstr "@1 (10@2)"
+
+msgid "@1 (100@2)"
+msgstr "@1 (100@2)"
+
+msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr ""
+"- Algumas receitas usam uma \"grade\" 3x3, disposta diretamente sobre o chão."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Receitas maiores geralmente são mais simétricas."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+"- Segure/repita o clique direito em paredes/tetos para escalar com mãos nuas."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Não use as informações de debug do F5; Apenas irão lhe confundir!"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Pedra de Alcatrão Flexível Liguenta"
+
+msgid "Bindy Pliant Stone"
+msgstr "Pedra Flexível Liguenta"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Arenito Flexível Liguento"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Adobe Flexível Liguenta"
+
+msgid "Bindy Adobe"
+msgstr "Adobe Liguento"
+
+msgid "Bindy"
+msgstr "Liguento"
+
+msgid "Bindy Tarstone"
+msgstr "Pedra de Alcatrão Liguenta"
+
+msgid "Bindy Stone"
+msgstr "Pedra Liguenta"
+
+msgid "Bindy Sandstone"
+msgstr "Arenito Liguento"
+
+msgid "Boxy Tarstone"
+msgstr "Pedra de Alcatrão Quadrada"
+
+msgid "Boxy Stone"
+msgstr "Pedra Quadrada"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Pedra de Alcatrão Flexível Quadrada"
+
+msgid "Boxy Sandstone"
+msgstr "Arenito Quadrada"
+
+msgid "Boxy Pliant Stone"
+msgstr "Pedra Flexível Quadrada"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Arenito Flexível Quadrado"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Adobe Flexível Quadrado"
+
+msgid "Boxy Adobe"
+msgstr "Adobe Quadrado"
+
+msgid "Boxy"
+msgstr "Quadradão"
+
+msgid "Bonded Stone Bricks"
+msgstr "Tijolos de Pedra Ligados"
+
+msgid "Blank"
+msgstr "Vazio(Em Branco)"

@@ -16,6 +16,20 @@ local faces = {
 	"back"
 }
 
+local function tilize(tiles, max)
+	if not tiles then return end
+	tiles = minetest.deserialize(minetest.serialize(tiles))
+	if not tiles then return end
+	for k2, v2 in pairs(tiles) do
+		tiles[k2] = (type(v2) == "table" and v2.name or v2.image) or v2
+	end
+	while max and #tiles > max do tiles[#tiles] = nil end
+	while (#tiles > 1) and (tiles[#tiles] == tiles[#tiles - 1]) do
+		tiles[#tiles] = nil
+	end
+	return tiles
+end
+
 minetest.after(0, function()
 		local function noblank(s) return s and tostring(s):match("%S") and tostring(s) or nil end
 
@@ -24,23 +38,14 @@ minetest.after(0, function()
 			local key = noblank(v.description) or k
 			key = key:gsub("%W+", "_"):lower()
 			data[key] = data[key] or {}
-			local tiles = minetest.deserialize(minetest.serialize(v.tiles))
-			if tiles then
-				for k2, v2 in pairs(tiles) do
-					tiles[k2] = type(v2) == "table" and v2.name or v2.image or v2
-				end
-				while #tiles > #faces do tiles[#tiles] = nil end
-				while (#tiles > 1) and (tiles[#tiles] == tiles[#tiles - 1]) do
-					tiles[#tiles] = nil
-				end
-			end
 			data[key][#data[key] + 1] = {
 				technical_name = k,
 				drawtype = v.drawtype,
 				description = v.description,
-				tiles = tiles,
+				tiles = tilize(v.tiles, #faces),
 				inventory_image = noblank(v.inventory_image),
-				wield_image = noblank(v.wield_image)
+				wield_image = noblank(v.wield_image),
+				special_tiles = tilize(v.special_tiles),
 			}
 		end
 
@@ -61,6 +66,11 @@ minetest.after(0, function()
 						else
 							writeln(tn .. " " .. faces[i] .. " " .. tt[i])
 						end
+					end
+				end
+				if t.special_tiles then
+					for i, st in pairs(t.special_tiles) do
+						writeln(tn .. " special_" .. i .. " " .. st)
 					end
 				end
 				if noblank(t.inventory_image) then

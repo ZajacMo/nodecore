@@ -70,7 +70,6 @@ regterrain({
 			"sandstone",
 			"mese",
 		},
-		silktouch = false,
 		groups = {
 			stone = 1,
 			rock = 1,
@@ -241,24 +240,23 @@ end
 local function gray(suff)
 	local t = modname .. "_water" .. suff .. ".png"
 	local g = modname .. "_water_gray" .. suff .. ".png"
-	return t .. "^(" .. g .. "^[opacity:64)"
+	return t .. "^(" .. g .. "^[opacity:64)^[opacity:160"
 end
 
 regliquid({
 		description = "Water",
 		mapgen = {"river_water_source", "water_source"},
-		tiles = {anim(modname .. "_water.png", 4)},
+		tiles = {anim(modname .. "_water.png^[opacity:192", 4)},
 		special_tiles = {
-			anim(modname .. "_water_flow.png", 4),
-			anim(modname .. "_water_flow.png", 4)
+			anim(modname .. "_water_flow.png^[opacity:192", 4),
+			anim(modname .. "_water_flow.png^[opacity:192", 4)
 		},
+		use_texture_alpha = "blend",
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = true,
-		alpha = 192,
 		walkable = false,
 		pointable = false,
-		diggable = false,
 		buildable_to = true,
 		drowning = 2,
 		drop = "",
@@ -268,19 +266,18 @@ regliquid({
 	})
 regliquid({
 		name = "water_gray",
-		description = "Artificial Water",
+		description = "Water",
 		tiles = {anim(gray(""), 4)},
 		special_tiles = {
 			anim(gray("_flow"), 4),
 			anim(gray("_flow"), 4)
 		},
+		use_texture_alpha = "blend",
 		paramtype = "light",
 		liquid_viscosity = 1,
 		liquid_renewable = false,
-		alpha = 160,
 		walkable = false,
 		pointable = false,
-		diggable = false,
 		buildable_to = true,
 		drowning = 2,
 		drop = "",
@@ -296,14 +293,13 @@ regliquid({
 			anim(modname .. "_lava_flow.png", 8),
 			anim(modname .. "_lava_flow.png", 8)
 		},
-		description = "Molten Rock",
+		description = "Pumwater",
 		mapgen = {"lava_source"},
 		paramtype = "light",
 		liquid_viscosity = 7,
 		liquid_renewable = false,
 		light_source = 13,
 		walkable = false,
-		diggable = false,
 		drowning = 2,
 		damage_per_second = 8,
 		drop = "",
@@ -314,6 +310,7 @@ regliquid({
 			damage_touch = 1,
 			damage_radiant = 8
 		},
-		post_effect_color = {a = 191, r = 255, g = 64, b = 0},
+		stack_max = 1,
+		post_effect_color = {a = 240, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")
 	})

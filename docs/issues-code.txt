@@ -9,6 +9,58 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- A wooden plank appeared to have decayed in place of a scaling node;
+  could it be a problem with ABM muxing?
+
+- Switch ents to using on_step moveresult for collision detection
+  instead of checking nodes directly.
+
+- Organize into modpacks for layers
+	- Compat
+	- Util
+	- API
+	- Natural
+	- Tech
+
+- Try to detect and separate out translation strings coming from
+  non-core mods so we can consistently generate the game translation
+  file without having to disable mods.
+
+- Automate uploading translation source strings?
+
+- Test nc_wield with items that have their own visual scale.
+
+- Flammability ABM ordering.  Always do extinguish check after ignite
+  checks or vice versa, so suboptimal firestarting is consistent.
+
+- Look into game default settings.
+	- Change default ABM budget
+	  (https://github.com/minetest/minetest/pull/10290)
+
+- Make door pusheability customizable
+	- door_can_push or door_cannot_push groups/flags or something.
+	- Allow override of standard falling_node check.
+
+- Allow items to have a "drop" field that's honored when stacks are
+  dug or items are pulled off shelves...?
+
+- Overhaul player health to work entirely virtual
+	- Raise max up a lot to make room for fine grained falling
+	  damage so we can raise threshold
+	- Consider falling damage add percent to all nodes?
+	- Add API for doing fake damage effect using set hp
+
+- Allow optics pending transaction to be flushed early
+	- Optics interacting with doors are out of sync
+	- May need to commit the optic state immediately when triggering
+	  doors so they get the correct current state.
+
+- Consider full eversion of event handlers
+	- Disallow (or automatically convert) traditional single-hanlders
+	  on all definitions
+	- Use a register_on_something() method to hook pretty much
+	  everything
+
 - Unify mkreg
 	- Add validation/modifying and order comparison funcs
 	- Use for recipes, mapgen_shared, playerstep, etc.
@@ -17,12 +69,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		  register for things not yet defined, and allow later registration
 		  of the registration definition that will pick up those missed.
 	- Define order for inv tabs
-
-- Hint System Refactor
-	- Move stats into an api layer to ensure availability
-	- Simplify stats, track less detail, limit data growth.
-	- Break up hints into each individual mod.
-	- Add shortcuts for hint registrations, e.g. integrated with recipes.
 
 - Transactional api ref localization
 	- For certain large computations, like an optic processing, it may be
@@ -38,12 +84,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
 	- Leaching resumes instead of resetting when water removed.
-
-- Take advantage of the fact that players/inventories use a single shared
-  metatable for player inventory arrangement hooks in nc_player_pickup,
-  like we did for entity:set_properties.
-	- Currently inv pickup logic isn't working and we're relying on
-	  rearrangement; need to resolve this one way or another.
 
 - Make leaf decay group-driven for mod applicability.
 

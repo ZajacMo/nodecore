@@ -5,6 +5,8 @@ local minetest, nodecore, pairs, vector
 
 local modstore = minetest.get_mod_storage()
 
+local hashpos = minetest.pos_to_string
+
 local function hingeaxis(pos, node)
 	local fd = node and node.param2 or 0
 	fd = nodecore.facedirs[fd]
@@ -18,15 +20,20 @@ end
 
 local convey = {}
 
-local function conveytrace(okay, seg, u)
+local function movecheck(okay, seg, to, tkey, collide)
+	if (not nodecore.buildable_to(to))
+	or nodecore.obstructed(to) or collide[tkey]
+	then return end
+	for x in pairs(seg) do okay[x] = true end
+	collide[tkey] = true
+	return true
+end
+
+local function conveytrace(okay, seg, u, collide)
 	if u.tkey2 then
 		local w = convey[u.tkey2]
 		if w then return w end
-		if nodecore.buildable_to(u.to2) then
-			local ok = (not nodecore.obstructed(u.to2)) or nil
-			for x in pairs(seg) do
-				okay[x] = ok
-			end
+		if movecheck(okay, seg, u.to2, u.tkey2, collide) then
 			u.to = u.to2
 			u.tkey = u.tkey2
 			return
@@ -34,12 +41,7 @@ local function conveytrace(okay, seg, u)
 	end
 	local w = convey[u.tkey]
 	if w then return w end
-	if nodecore.buildable_to(u.to) then
-		local ok = (not nodecore.obstructed(u.to)) or nil
-		for x in pairs(seg) do
-			okay[x] = ok
-		end
-	end
+	movecheck(okay, seg, u.to, u.tkey, collide)
 end
 
 local function set_node(pos, node)
@@ -68,13 +70,14 @@ nodecore.register_globalstep("door conveyance", function()
 			end
 		end
 		local okay = {}
+		local collide = {}
 		for k, v in pairs(convey) do
 			if not nonheads[k] then
 				local seg = {}
 				local u = v
 				while u do
 					seg[u] = true
-					u = conveytrace(okay, seg, u)
+					u = conveytrace(okay, seg, u, collide)
 				end
 				for x in pairs(seg) do
 					convey[x.fkey] = nil
@@ -116,14 +119,14 @@ local function trypush(pos, dir, dir2)
 
 	local data = {
 		from = pos,
-		fkey = minetest.hash_node_position(pos),
+		fkey = hashpos(pos),
 		to = vector.add(pos, dir),
 		node = node,
 	}
-	data.tkey = minetest.hash_node_position(data.to)
+	data.tkey = hashpos(data.to)
 	if dir2 then
 		data.to2 = vector.add(pos, dir2)
-		data.tkey2 = minetest.hash_node_position(data.to2)
+		data.tkey2 = hashpos(data.to2)
 	end
 	convey[data.fkey] = data
 end
@@ -140,7 +143,7 @@ nodecore.register_globalstep("door squelch", function(dtime)
 local is_door = {groups = {door = true}}
 
 function nodecore.operate_door(pos, node, dir)
-	local key = minetest.hash_node_position(pos)
+	local key = hashpos(pos)
 	if squelch[key] then return end
 	node = node or minetest.get_node_or_nil(pos)
 	if (not node) or (not nodecore.match(node, is_door)) then return end
@@ -160,7 +163,7 @@ function nodecore.operate_door(pos, node, dir)
 			if not n then return true end
 			if (not nodecore.match(n, is_door))
 			or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
-			found[minetest.hash_node_position(p)] = {pos = p, node = n}
+			found[hashpos(p)] = {pos = p, node = n}
 		end
 	) then return end
 
@@ -172,7 +175,7 @@ function nodecore.operate_door(pos, node, dir)
 		v.dir2 = rotdir == "r" and ffd.k or ffd.l
 		local to = vector.add(v.pos, v.dir)
 
-		if (not found[minetest.hash_node_position(to)])
+		if (not found[hashpos(to)])
 		and (not nodecore.buildable_to(to))
 		then
 			if press then return end
@@ -185,7 +188,7 @@ function nodecore.operate_door(pos, node, dir)
 
 		if nodecore.obstructed(to) then return end
 
-		local str = minetest.hash_node_position(to)
+		local str = hashpos(to)
 		if squelch[str] then return end
 
 		v.str = str
@@ -231,7 +234,7 @@ function nodecore.operate_door(pos, node, dir)
 		for i, xfd in pairs(nodecore.facedirs) do
 			if vector.equals(xfd.t, v.fd.t)
 			and vector.equals(xfd.r, rotdir == "r" and v.fd.f or v.fd.k) then
-				toset[minetest.hash_node_position(v.to)] = {
+				toset[hashpos(v.to)] = {
 					pos = v.to,
 					name = v.node.name,
 					param2 = i
@@ -245,7 +248,7 @@ function nodecore.operate_door(pos, node, dir)
 		set_node(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
-			local k = "sfx" .. minetest.hash_node_position(p)
+			local k = "sfx" .. hashpos(p)
 			if not squelch[k] then
 				squelch[k] = 0
 				nodecore.sound_play("nc_doors_operate",

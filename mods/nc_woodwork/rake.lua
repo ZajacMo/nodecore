@@ -1,100 +1,27 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table, vector
-    = ipairs, minetest, nodecore, pairs, table, vector
-local table_sort
-    = table.sort
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
+local rakevol = nodecore.rake_volume(2, 1)
+local raketest = nodecore.rake_index(function(def)
+		return def.groups and def.groups.falling_node
+		and def.groups.snappy == 1
+	end)
+
 minetest.register_tool(modname .. ":rake", {
-		description = "Rake",
+		description = "Wooden Rake",
 		inventory_image = modname .. "_rake.png",
 		tool_capabilities = nodecore.toolcaps({
 				snappy = 1,
 				uses = 10
 			}),
 		groups = {flammable = 1},
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		on_rake = function() return rakevol, raketest end
 	})
-
-local rakable = {}
-local stackonly = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups and v.groups.falling_node and v.groups.snappy == 1 then
-				rakable[k] = true
-				if v.groups.is_stack_only then stackonly[k] = true end
-			end
-		end
-	end)
-
-local rakepos = {}
-for dy = -1, 1 do
-	for dx = -2, 2 do
-		for dz = -2, 2 do
-			rakepos[#rakepos + 1] = {x = dx, y = dy, z = dz}
-		end
-	end
-end
-table_sort(rakepos, function(a, b) return vector.length(a) < vector.length(b) end)
-
-local laststack
-local lastraking
-local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, node, user, ...)
-	laststack = nodecore.stack_get(pos)
-	local wield = user and user:is_player() and user:get_wielded_item()
-	lastraking = wield and wield:get_name() == modname .. ":rake"
-	return old_node_dig(pos, node, user, ...)
-end
-
-local function matching(_, na, pb, nb)
-	if stackonly[na.name] then
-		if not stackonly[nb.name] then return end
-		return (laststack and laststack:get_name()) == nodecore.stack_get(pb):get_name()
-	end
-	return na.name == nb.name
-end
-
-local function dorake(pos, node, user, ...)
-	local sneak = user:get_player_control().sneak
-	local objpos = {}
-	for _, rel in ipairs(rakepos) do
-		local p = vector.add(pos, rel)
-		local n = minetest.get_node(p)
-		if rakable[n.name] and ((not sneak) or matching(pos, node, p, n)) then
-			minetest.node_dig(p, n, user, ...)
-		end
-		objpos[minetest.hash_node_position(p)] = true
-	end
-	for _, lua in pairs(minetest.luaentities) do
-		if lua.name == "__builtin:item" then
-			local p = lua.object and lua.object:get_pos()
-			if p and objpos[minetest.hash_node_position(
-				vector.round(p))] then
-				lua.object:set_pos(pos)
-			end
-		end
-	end
-end
-
-local rakelock = {}
-
-nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
-		if not lastraking then return end
-
-		if not (node and node.name and rakable[node.name]) then return end
-		if not user:is_player() then return end
-
-		local pname = user:get_player_name()
-		if rakelock[pname] then return end
-		rakelock[pname] = true
-		dorake(pos, node, user, ...)
-		rakelock[pname] = nil
-
-		lastraking = nil
-	end)
 
 local adze = {name = modname .. ":adze", wear = 0.05}
 nodecore.register_craft({

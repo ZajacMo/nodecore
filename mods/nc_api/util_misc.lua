@@ -144,8 +144,9 @@ end
 function nodecore.player_visible(player)
 	if type(player) == "string" then player = minetest.get_player_by_name(player) end
 	if not player then return end
-	local vs = player:get_properties().visual_size
-	return vs.x > 0 and vs.y > 0
+	local props = player:get_properties()
+	local vs = props and props.visual_size
+	return vs and vs.x > 0 and vs.y > 0
 end
 
 function nodecore.wieldgroup(who, group)
@@ -154,26 +155,6 @@ function nodecore.wieldgroup(who, group)
 	if nodedef then return nodedef.groups and nodedef.groups[group] end
 	local caps = wielded and wielded:get_tool_capabilities()
 	return caps and caps.groupcaps and caps.groupcaps[group]
-end
-
-function nodecore.toolspeed(what, groups)
-	if not what then return end
-	local dg = what:get_tool_capabilities().groupcaps
-	local t
-	for gn, lv in pairs(groups) do
-		local gt = dg[gn]
-		gt = gt and gt.times
-		gt = gt and gt[lv]
-		if gt and (not t or t > gt) then t = gt end
-	end
-	if (not t) and (not what:is_empty()) then
-		return nodecore.toolspeed(ItemStack(""), groups)
-	end
-	return t
-end
-function nodecore.tool_digs(what, groups)
-	local s = nodecore.toolspeed(what, groups)
-	return s and s <= 4
 end
 
 function nodecore.interval(after, func)
@@ -299,11 +280,6 @@ function nodecore.node_spin_filtered(func)
 	return nodecore.node_spin_custom(unpack(rots))
 end
 
-function nodecore.node_change(pos, node, newname)
-	if node.name == newname then return end
-	return minetest.set_node(pos, underride({name = newname}, node))
-end
-
 local function scrubkey(s)
 	return string_lower(string_gsub(tostring(s), "%W+", "_"))
 end
@@ -334,16 +310,14 @@ function nodecore.obstructed(minpos, maxpos)
 	local radius = 4 + vector.distance(minpos, maxpos) / 2
 	for _, obj in pairs(minetest.get_objects_inside_radius(avgpos, radius)) do
 		local op = obj:get_pos()
-		local cb = obj:get_properties().collisionbox
-		if maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
+		local props = obj:get_properties()
+		local cb = props.collisionbox
+		if props.static_save
+		and maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
 		and maxpos.y > op.y + cb[2] and minpos.y < op.y + cb[5]
 		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
-		then
-			local lua = obj.get_luaentity and obj:get_luaentity()
-			if not ((lua and lua.is_stack) or (not nodecore.interact(obj))
-				or (not nodecore.player_visible(obj))) then
-				return obj
-			end
+		and obj.get_luaentity and obj:get_luaentity() then
+			return obj
 		end
 	end
 end

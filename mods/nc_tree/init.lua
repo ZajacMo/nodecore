@@ -19,3 +19,5 @@ include("grow_node")
 include("grow_active")
 
 include("ambiance")
+
+include("hints")

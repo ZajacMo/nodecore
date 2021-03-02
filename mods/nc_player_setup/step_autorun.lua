@@ -6,7 +6,7 @@ local math_pi, math_sin
 -- LUALOCALS > ---------------------------------------------------------
 
 local autorun_walkspeed = 1.25 * nodecore.rate_adjustment("autorun", "walkspeed")
-local autorun_walktime = 2 * nodecore.rate_adjustment("waautorunlk", "walktime")
+local autorun_walktime = 2 * nodecore.rate_adjustment("autorun", "walktime")
 local autorun_acceltime = 4 * nodecore.rate_adjustment("autorun", "acceltime")
 local autorun_ratio = 2 * nodecore.rate_adjustment("autorun", "ratio")
 
@@ -16,6 +16,13 @@ local function solid(pos)
 	if not def then return true end
 	return def.liquidtype == "none" and def.walkable
 end
+
+local hurttime = {}
+nodecore.register_on_player_hpchange("lose speed on hurt", function(player, hp)
+		if hp >= 0 then return end
+		if not nodecore.player_can_take_damage(player) then return end
+		hurttime[player:get_player_name()] = nodecore.gametime
+	end)
 
 nodecore.register_playerstep({
 		label = "autorun",
@@ -36,8 +43,11 @@ nodecore.register_playerstep({
 			local speed = autorun_walkspeed
 			local max = autorun_walkspeed * autorun_ratio
 			if walking and data.autoruntime then
+				local ht = hurttime[data.pname]
+				if ht and ht > data.autoruntime then data.autoruntime = ht end
 				local t = nodecore.gametime - data.autoruntime - autorun_walktime
 				if t > math_pi * autorun_acceltime then
+					nodecore.player_discover(player, "autorun")
 					speed = max
 				elseif t > 0 then
 					local hr = (autorun_ratio - 1) / 2

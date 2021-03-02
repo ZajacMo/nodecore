@@ -19,7 +19,7 @@ for i = 1, 8 do
 			groups = {
 				rock = 1,
 				lux_cobble = 1,
-				lux_emit = i,
+				lux_emit = i * 2,
 				cracky = 1,
 				cobbley = 1,
 				lux_cobble_max = i == 8 and 1 or nil,

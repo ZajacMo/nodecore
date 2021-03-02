@@ -20,7 +20,8 @@ minetest.register_node(modname .. ":humus", {
 			groups = {
 				dirt_loose = 2,
 				soil = 5,
-				grassable = 1
+				grassable = 1,
+				falling_repose = 1
 			}
 		},
 		crush_damage = 1,

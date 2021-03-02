@@ -158,3 +158,31 @@ function nodecore.fire_check_snuff(pos, node)
 	res = res and nodecore.fire_snuff(pos)
 	return res, vents
 end
+
+minetest.register_chatcommand("ignite", {
+		description = "Set fire to all nearby flammables",
+		privs = {["debug"] = true},
+		func = function(pname)
+			local player = minetest.get_player_by_name(pname)
+			if not player then return end
+			local pos = player:get_pos()
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable", 5)) do
+				nodecore.fire_check_ignite(p, nil, true)
+			end
+		end
+	})
+minetest.register_chatcommand("snuff", {
+		description = "Extinguish all nearby embers",
+		privs = {["debug"] = true},
+		func = function(pname)
+			local player = minetest.get_player_by_name(pname)
+			if not player then return end
+			local pos = player:get_pos()
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:ember", 5)) do
+				snuff(0, true, p)
+			end
+			for _, p in pairs(nodecore.find_nodes_around(pos, modname .. ":fire", 5)) do
+				minetest.remove_node(p)
+			end
+		end
+	})

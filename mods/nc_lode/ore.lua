@@ -106,9 +106,11 @@ reg("cobble_hot", {
 			cracky = 0,
 			lodey = 1,
 			cobbley = 1,
+			stack_as_node = 1,
 			damage_touch = 1,
 			damage_radiant = 1
-		}
+		},
+		stack_max = 1
 	})
 
 local oreid = 0

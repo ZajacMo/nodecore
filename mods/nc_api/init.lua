@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
-local dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, tostring, type
-    = dofile, error, minetest, pairs, rawget, rawset, setmetatable,
-      table, tostring, type
+local dofile, error, ipairs, minetest, pairs, rawget, rawset,
+      setmetatable, table, tostring, type
+    = dofile, error, ipairs, minetest, pairs, rawget, rawset,
+      setmetatable, table, tostring, type
 local table_concat, table_insert, table_sort
     = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -69,19 +69,22 @@ do
 		local reg = "registered_"
 		local t = {}
 		for k, v in pairs(nodecore) do
-			if k:sub(1, #reg) == reg and type(v) == "table" and #v > 0 then
-				t[#t + 1] = k:sub(#reg + 1) .. "=" .. #v
+			if k:sub(1, #reg) == reg and type(v) == "table" then
+				local qty = 0
+				for _ in pairs(v) do qty = qty + 1 end
+				t[#t + 1] = "#" .. k .. " = " .. qty
 			end
 		end
 		table_sort(t)
-		nodecore.log("action", "registered: " .. table_concat(t, " "))
+		for _, x in ipairs(t) do nodecore.log("action", x) end
 	end
 	minetest.after(0, regreport)
 end
 
-include("compat_vector")
-include("issue9043")
-include("nodemetahack")
+include("compat_clientversion")
+include("compat_issue10127")
+include("compat_legacyent")
+include("compat_nodealpha")
 
 include("util_misc")
 include("util_hookmeta")
@@ -113,6 +116,7 @@ include("item_drop_in_place")
 include("item_oldnames")
 include("item_tool_break")
 include("item_tool_sounds")
+include("item_tool_rakes")
 include("item_punch_sounds")
 include("item_sound_pitch")
 include("item_nodebox_zfighting")

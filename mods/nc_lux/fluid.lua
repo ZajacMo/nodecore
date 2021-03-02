@@ -6,11 +6,11 @@ local minetest, nodecore, pairs, vector
 local modname = minetest.get_current_modname()
 
 local wetdef = {
-	description = "Lux Flow",
-	tiles = {modname .. "_base.png"},
-	special_tiles = {modname .. "_base.png", modname .. "_base.png"},
+	description = "Flux",
+	tiles = {modname .. "_base.png^[opacity:64"},
+	special_tiles = {modname .. "_base.png^[opacity:64", modname .. "_base.png^[opacity:64"},
+	use_texture_alpha = "blend",
 	paramtype = "light",
-	alpha = 64,
 	liquid_viscosity = 0,
 	liquid_renewable = false,
 	liquid_range = 2,
@@ -18,18 +18,15 @@ local wetdef = {
 	liquid_alternative_source = modname .. ":flux_source",
 	pointable = false,
 	walkable = false,
-	diggable = false,
 	buildable_to = true,
 	light_source = 10,
 	sunlight_propagates = true,
 	air_pass = true,
-	damage_per_second = 1,
 	drowning = 0,
 	groups = {
-		lux_emit = 10,
+		lux_emit = 16,
 		lux_fluid = 1,
-		stack_as_node = 1,
-		damage_radiant = 1
+		stack_as_node = 1
 	},
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143}
 }

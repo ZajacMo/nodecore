@@ -59,49 +59,25 @@ local function setdelta(cur, old)
 	return set
 end
 
-local setsky = function() end
-local getsky = function() end
-local function checksky()
-	local player = minetest.get_connected_players()[1]
-	if not player then return minetest.after(0, checksky) end
-	if player.get_sky_color then
-		setsky = player.set_sky
-		getsky = function(p)
-			local b, t, x, c = p:get_sky()
-			local s = p:get_sky_color()
-			return {
-				base_color = b,
-				type = t,
-				textures = x,
-				clouds = c,
-				sky_color = s
-			}
-		end
-	else
-		setsky = function(p, params) return p:set_sky(params.base_color,
-			params.type, params.textures, params.clouds) end
-		getsky = function(p)
-			local b, t, x, c = p:get_sky()
-			return {
-				base_color = b,
-				type = t,
-				textures = x,
-				clouds = c
-			}
-		end
-	end
-end
-minetest.after(0, checksky)
-
 local cache = {}
 local function step_player(player, dtime)
 	local pname = player:get_player_name()
-	local data = cache[pname] or {}
+	local data = cache[pname] or {pname = pname}
 	data.physics = player:get_physics_override()
 	local orig_phys = clone(data.physics)
 	data.properties = player:get_properties()
 	local orig_props = clone(data.properties)
-	data.sky = getsky(player)
+	do
+		local b, t, x, c = player:get_sky()
+		local s = player:get_sky_color()
+		data.sky = {
+			base_color = b,
+			type = t,
+			textures = x,
+			clouds = c,
+			sky_color = s
+		}
+	end
 	local orig_sky = clone(data.sky)
 	data.daynight = player:get_day_night_ratio()
 	local orig_daynight = clone(data.daynight)
@@ -120,9 +96,7 @@ local function step_player(player, dtime)
 	if mismatch(data.animation, orig_anim) then
 		player:set_animation(unpack(data.animation))
 	end
-	if mismatch(data.sky, orig_sky) then
-		setsky(player, data.sky)
-	end
+	if mismatch(data.sky, orig_sky) then player:set_sky(data.sky) end
 	if mismatch(data.daynight, orig_daynight) then
 		player:override_day_night_ratio(data.daynight)
 	end

@@ -9,6 +9,7 @@ minetest.register_node(modname .. ":stick", {
 		description = "Stick",
 		drawtype = "nodebox",
 		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
+		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0, 1/8),
 		tiles = {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",

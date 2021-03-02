@@ -37,6 +37,7 @@ nodecore.register_on_punchnode("charcoal writing check", function(pos, node, pun
 			local def = minetest.registered_items[anode.name] or {}
 			if def.on_spin then def.on_spin(above, anode) end
 		end
+		nodecore.player_discover(puncher, "place:" .. anode.name)
 	end)
 
 local old_place = minetest.item_place
@@ -66,6 +67,7 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2, ...)
 	nodecore.node_sound(above, "place", {node = anode})
 	local def = minetest.registered_items[anode.name] or {}
 	if def.on_spin then def.on_spin(above, anode) end
+	nodecore.player_discover(placer, "charcoal writing rotate")
 end
 
 local function setglyphdir(pos, dir)
@@ -112,7 +114,6 @@ nodecore.register_craft({
 				local face = nodecore.facedirs[i]
 				if vector.equals(face.b, dir) then
 					local dot = vector.dot(look, face.k) * dir.y
-					print(dot)
 					if dot < bestdot then
 						bestdot = dot
 						bestface = i
