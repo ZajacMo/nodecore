@@ -32,10 +32,38 @@ minetest.register_node(modname .. ":eggcorn", {
 			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
 
 			nodecore.set_loud(pos, {name = epname, param2 = 16})
+			local soil = def.groups.soil or 0
+			if soil > 2 then
+				nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
+				local zero = {x = 0, y = 0, z = 0}
+				nodecore.digparticles(minetest.registered_items[
+					modname .. ":leaves_bud"],
+					{
+						amount = (soil - 2) * 10,
+						time = 0.5,
+						minpos = {
+							x = pos.x - 0.45,
+							y = pos.y + 33/64,
+							z = pos.z - 0.45
+						},
+						maxpos = {
+							x = pos.x + 0.45,
+							y = pos.y + 33/64,
+							z = pos.z + 0.45
+						},
+						minvel = zero,
+						maxvel = zero,
+						minexptime = 0.25,
+						maxexptime = 1,
+						minsize = 3 * 0.45,
+						maxsize = 9 * 0.45,
+					})
+			end
 
 			nodecore.player_discover(whom, "craft:eggcorn planting")
 			nodecore.log("action", (whom and whom:get_player_name() or "unknown")
-				.. " planted an eggcorn at " .. minetest.pos_to_string(pos))
+				.. " planted an eggcorn at " .. minetest.pos_to_string(pos)
+				.. " with " .. stack:get_name())
 
 			stack:set_count(stack:get_count() - 1)
 			return stack
