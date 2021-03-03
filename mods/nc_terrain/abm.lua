@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -8,31 +8,36 @@ local modname = minetest.get_current_modname()
 local dirt = modname .. ":dirt"
 local grass = modname .. ":dirt_with_grass"
 
-local breathable = {
-	airlike = true,
-	allfaces = true,
-	allfaces_optional = true,
-	torchlike = true,
-	signlike = true,
-	plantlike = true,
-	firelike = true,
-	raillike = true,
-	nodebox = true,
-	mesh = true,
-	plantlike_rooted = true
-}
+local grassable_nodes = {}
+do
+	local breathable = {
+		airlike = true,
+		allfaces = true,
+		allfaces_optional = true,
+		torchlike = true,
+		signlike = true,
+		plantlike = true,
+		firelike = true,
+		raillike = true,
+		nodebox = true,
+		mesh = true,
+		plantlike_rooted = true
+	}
+	minetest.after(0, function()
+			for name, def in pairs(minetest.registered_nodes) do
+				if def.drawtype and breathable[def.drawtype]
+				and (def.damage_per_second or 0) <= 0 then
+					grassable_nodes[name] = true
+				end
+			end
+		end)
+end
 
 -- nil = stay, false = die, true = grow
 local function grassable(above)
-	local node = minetest.get_node(above)
-	if node.name == "ignore" then return end
-
-	local def = minetest.registered_items[node.name] or {}
-
-	if (not def.drawtype) or (not breathable[def.drawtype])
-	or (def.damage_per_second and def.damage_per_second > 0)
-	then return false end
-
+	local nodename = minetest.get_node(above).name
+	if nodename == "ignore" then return end
+	if (not grassable_nodes[nodename]) then return false end
 	local ln = nodecore.get_node_light(above)
 	if not ln then return end
 	return ln >= 10
