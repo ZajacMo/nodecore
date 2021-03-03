@@ -7,7 +7,7 @@ local nct = nodecore.translate
 
 local version = nodecore.version
 version = version and (nct("Version") .. " " .. version)
-or nct("DEVELOPMENT/CONTENTDB VERSION")
+or nct("DEVELOPMENT VERSION")
 
 nodecore.register_inventory_tab({
 		title = "About",
