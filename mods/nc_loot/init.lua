@@ -67,8 +67,9 @@ nodecore.register_dungeongen({
 				local p = {x = pos.x, y = pos.y + dy, z = pos.z}
 				local nn = minetest.get_node(p).name
 				if cobbles[nn] then return addloot(above, dy - 2) end
-				if nn ~= "air" then return
-				end
+				if nn ~= "air" then return end
 			end
+			if pos.y > -64 then return end
+			addloot(above, 8)
 		end
 	})
