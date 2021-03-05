@@ -1,0 +1,16 @@
+------------------------------------------------------------------------
+
+An easy method for generating dungeon loot tables is probably just to
+scrape real NodeCore worlds for existing storage contents, to get an
+idea of what kinds of items people would store in normal, real gameplay,
+so dungeon loot can be "realistic" in game terms.
+
+To do this:
+- Enable this mod.
+- Load a snapshot of a world with real gameplay.
+- Fly around areas where players have settled.
+- Quit the world.
+- Pull the JSON out of mod_storage in the world dir.
+- Run the nodejs script against it.
+
+------------------------------------------------------------------------
