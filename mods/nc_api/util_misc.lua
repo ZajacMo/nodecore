@@ -59,7 +59,7 @@ function nodecore.dirs()
 	}
 end
 
-function nodecore.pickrand(tbl, weight)
+function nodecore.pickrand(tbl, weight, rng)
 	weight = weight or function() end
 	local t = {}
 	local max = 0
@@ -71,7 +71,7 @@ function nodecore.pickrand(tbl, weight)
 		end
 	end
 	if max <= 0 then return end
-	max = math_random() * max
+	max = (rng or math_random)() * max
 	for _, v in ipairs(t) do
 		max = max - v.w
 		if max <= 0 then return v.v, v.k end

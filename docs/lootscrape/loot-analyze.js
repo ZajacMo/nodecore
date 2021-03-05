@@ -37,6 +37,6 @@ console.log('return {');
 Object.keys(items)
 	.sort((a, b) => stacks[b] - stacks[a])
 	.slice(0, 100)
-	.forEach(k => console.log(`\t["${k}"] = {prob = ${stacks[k]}, qty = ${
+	.forEach(k => console.log(`\t{item = "${k}", prob = ${stacks[k]}, qty = ${
 		Math.round(items[k] / stacks[k])}},`));
 console.log('}');
