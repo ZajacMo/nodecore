@@ -9,13 +9,21 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Need to reduce overreliance on soaking API
+	- It's complex, expensive, and prone to problems.
+	- Need a unified "theory" of soaking.
+		- Only things a certain kind of "alive" cause time to pass.
+		- Players
+		- Eggcorns (life inside the seed)
+		- Interaction between lux and tools
+	- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
+		- Optic pulse/strobe to accelerate checks
+			- Combine with lux reaction?
+		- Register nodes for extra check callbacks in area
+
 - Can use FOV changing as a "camera shake" effect.
 	- For damage
 	- As visual indication of a sound out of view?
-
-- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
-	- Optic pulse/strobe to accelerate checks
-	- Esp. for soaking things like making ores
 
 - High tier door ideas
 	- Require higher-tier doors to operate higher-tier
@@ -30,11 +38,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Require/consume special dirt (humus/peat) to grow/repro?
 	- Source of special materials like ash? Cheaper peat?  Thatch?
 	- Upconvert dirt to humus nearby?
-
-- Now that tote handles are separated between bare and packed totes,
-  we can treat them separately.
-	- Allow bare tote handles to be stackable?
-	- Allow bare tote handles to be stored in storeboxes?
 
 - Buff lux fluid range to 2?
 

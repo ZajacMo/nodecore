@@ -60,9 +60,9 @@ do
 end
 nodecore.writing_spinmap = spinmap
 
-local function writable(pos, node)
+local function writable(pos, node, default)
 	node = node or minetest.get_node_or_nil(pos)
-	if not node then return end
+	if not node then return default end
 	local def = minetest.registered_nodes[node.name]
 	return def.walkable and def.paramtype ~= "light"
 	and not nodecore.tool_digs(ItemStack(""), def.groups)
