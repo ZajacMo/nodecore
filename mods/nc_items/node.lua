@@ -57,7 +57,8 @@ minetest.register_node(modname .. ":stack", {
 			minetest.after(0, function()
 					local except = nodecore.stack_node_sounds_except[key]
 					nodecore.stack_node_sounds_except[key] = nil
-					return nodecore.stack_sounds(pos, "place", nil, except)
+					return except == true
+					or nodecore.stack_sounds(pos, "place", nil, except)
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
 		end,
