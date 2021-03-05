@@ -70,7 +70,11 @@ nodecore.register_dungeongen({
 			for dy = 2, 8 do
 				local p = {x = pos.x, y = pos.y + dy, z = pos.z}
 				local nn = minetest.get_node(p).name
-				if cobbles[nn] then return addloot(above, dy - 2) end
+				if cobbles[nn] then
+					return #nodecore.find_nodes_around(pos,
+						{"air"}, {1, 0, 1}) > 0
+					or addloot(above, dy - 2)
+				end
 				if nn ~= "air" then return end
 			end
 			if pos.y > -64 then return end
