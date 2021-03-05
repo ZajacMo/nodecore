@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, include, math, minetest, nodecore, pairs
     = ItemStack, include, math, minetest, nodecore, pairs
-local math_floor
-    = math.floor
+local math_floor, math_log
+    = math.floor, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
 local loottable = include("loottable")
@@ -62,7 +62,12 @@ nodecore.register_dungeongen({
 			if minetest.get_node(above).name ~= "air" then return end
 			local rand = mapperlin:get_3d(pos)
 			rand = rand - math_floor(rand)
-			if rand > 0.05 then return end
+			local prob = 0.05
+			if pos.y < -128 then
+				prob = prob * math_log(pos.y / -64) / math_log(2)
+			end
+			print(prob)
+			if rand > prob then return end
 			for dy = 2, 8 do
 				local p = {x = pos.x, y = pos.y + dy, z = pos.z}
 				local nn = minetest.get_node(p).name
