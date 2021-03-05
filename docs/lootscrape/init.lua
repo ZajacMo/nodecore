@@ -1,9 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, minetest, nodecore, pairs
+    = ItemStack, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modstore = minetest.get_mod_storage()
+minetest.after(0, function()
+		local coremods = {}
+		for k in pairs(nodecore.coremods) do
+			coremods[k] = true
+		end
+		modstore:set_string('*', minetest.write_json(coremods))
+	end)
 nodecore.register_lbm({
 		name = minetest.get_current_modname() .. ":record",
 		run_at_every_load = true,

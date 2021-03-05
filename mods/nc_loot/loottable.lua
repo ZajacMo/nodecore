@@ -93,10 +93,10 @@ return {
 	["nc_lode:rod_annealed"] = {prob = 4, qty = 15},
 	["nc_lode:cobble"] = {prob = 4, qty = 36},
 	["nc_lode:tool_hatchet_annealed"] = {prob = 4, qty = 1},
-	["nc_skyrealm:portal"] = {prob = 3, qty = 1},
 	["nc_lode:rake_tempered"] = {prob = 3, qty = 1},
 	["nc_stonework:bricks_adobe_bonded"] = {prob = 3, qty = 9},
 	["nc_stonework:bricks_sandstone_bonded"] = {prob = 3, qty = 49},
 	["nc_concrete:concrete_adobe_verty"] = {prob = 3, qty = 11},
 	["nc_stonework:bricks_adobe"] = {prob = 3, qty = 5},
+	["nc_lux:tool_mallet_annealed"] = {prob = 3, qty = 1},
 }

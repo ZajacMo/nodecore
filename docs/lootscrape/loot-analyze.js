@@ -4,11 +4,17 @@ const fs = require('fs');
 
 const raw = JSON.parse(fs.readFileSync(0));
 
+const coremods = JSON.parse(raw['*']);
+delete raw['*'];
+
 const stacks = {};
 const items = {};
 
 const base = 2;
 Object.values(raw).forEach(v => {
+	const mod = v.match(/^([^:]+):*/);
+	if (!mod || !coremods[mod[1]]) return;
+
 	const m = v.match(/ (\d+)$/);
 	const qty = m && Number(m[1]) || 1;
 	v = v.replace(/ (\d+)$/, '');
