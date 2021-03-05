@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
-      tonumber, tostring, type, unpack, vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
-      tonumber, tostring, type, unpack, vector
+local ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
+      string, tonumber, tostring, type, unpack, vector
+    = ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
+      string, tonumber, tostring, type, unpack, vector
 local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
       math_random, math_sin, math_sqrt, string_format, string_gsub,
       string_lower
@@ -59,7 +59,7 @@ function nodecore.dirs()
 	}
 end
 
-function nodecore.pickrand(tbl, weight)
+function nodecore.pickrand(tbl, weight, rng)
 	weight = weight or function() end
 	local t = {}
 	local max = 0
@@ -71,7 +71,7 @@ function nodecore.pickrand(tbl, weight)
 		end
 	end
 	if max <= 0 then return end
-	max = math_random() * max
+	max = (rng or math_random)() * max
 	for _, v in ipairs(t) do
 		max = max - v.w
 		if max <= 0 then return v.v, v.k end
@@ -93,10 +93,26 @@ do
 	end
 end
 
-function nodecore.exporand(mean)
+function nodecore.exporand(mean, rng)
 	local r = 0
-	while r == 0 do r = math_random() end
+	while r == 0 do r = (rng or math_random)() end
 	return math_floor(-math_log(r) * (mean + 0.5))
+end
+
+function nodecore.seeded_rng(seed)
+	if PcgRandom then
+		seed = math_floor((seed - math_floor(seed)) * 2 ^ 32 - 2 ^ 31)
+		local pcg = PcgRandom(seed)
+		return function(a, b)
+			if b then
+				return pcg:next(a, b)
+			elseif a then
+				return pcg:next(1, a)
+			end
+			return (pcg:next() + 2 ^ 31) / 2 ^ 32
+		end
+	end
+	return math_random
 end
 
 function nodecore.extend_item(name, func)

@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local PcgRandom, VoxelArea, ipairs, math, minetest, nodecore, table
-    = PcgRandom, VoxelArea, ipairs, math, minetest, nodecore, table
-local math_floor, math_random, table_insert
-    = math.floor, math.random, table.insert
+local VoxelArea, ipairs, math, minetest, nodecore, table
+    = VoxelArea, ipairs, math, minetest, nodecore, table
+local math_floor, table_insert
+    = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local mapgens = {}
@@ -44,20 +44,7 @@ nodecore.register_on_generated("mapgen shared", function(minp, maxp)
 		local data = vm:get_data()
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 
-		local rng = math_random
-		if PcgRandom then
-			local seed = mapperlin:get_3d({x = minp.x, y = minp.y, z = minp.z})
-			seed = math_floor((seed - math_floor(seed)) * 2 ^ 32 - 2 ^ 31)
-			local pcg = PcgRandom(seed)
-			rng = function(a, b)
-				if b then
-					return pcg:next(a, b)
-				elseif a then
-					return pcg:next(1, a)
-				end
-				return (pcg:next() + 2 ^ 31) / 2 ^ 32
-			end
-		end
+		local rng = nodecore.seeded_rng(mapperlin:get_3d(minp))
 
 		for _, def in ipairs(mapgens) do
 			local en = def.enabled

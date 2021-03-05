@@ -7,6 +7,7 @@ nodecore.amcoremod()
 
 include('api')
 include('node')
+include('dungeon')
 include('biome')
 include('strata')
 include('ore')
