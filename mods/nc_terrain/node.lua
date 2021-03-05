@@ -102,6 +102,7 @@ end
 
 regterrain({
 		description = "Cobble",
+		is_ground_content = false,
 		tiles = {modname .. "_gravel.png^" .. modname .. "_cobble.png"},
 		mapgen = {
 			"sandstonebrick",
