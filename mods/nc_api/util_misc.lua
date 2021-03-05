@@ -93,9 +93,9 @@ do
 	end
 end
 
-function nodecore.exporand(mean)
+function nodecore.exporand(mean, rng)
 	local r = 0
-	while r == 0 do r = math_random() end
+	while r == 0 do r = (rng or math_random)() end
 	return math_floor(-math_log(r) * (mean + 0.5))
 end
 

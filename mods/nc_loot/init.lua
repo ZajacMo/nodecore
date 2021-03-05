@@ -12,7 +12,17 @@ minetest.after(0, function() mapperlin = minetest.get_perlin(432, 1, 0, 1) end)
 local function addloot(pos) -- (pos, height)
 	local rng = nodecore.seeded_rng(mapperlin:get_3d(pos))
 	local loot = nodecore.pickrand(loottable, function(t) return t.prob end, rng)
+	local def = minetest.registered_items[loot.item]
+	if not def then return end
 	local stack = ItemStack(loot.item)
+	if def.type == "tool" then
+		stack:set_wear(rng(20000, 50000))
+	elseif def.stack_max > 1 then
+		local qty = math_floor(nodecore.exporand(loot.qty / 10, rng))
+		if qty < 1 then qty = 1 end
+		if qty > def.stack_max then qty = def.stack_max end
+		stack:set_count(qty)
+	end
 	minetest.set_node(pos, {name = "nc_items:stack"})
 	nodecore.stack_set(pos, stack)
 end
