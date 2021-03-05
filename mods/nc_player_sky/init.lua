@@ -7,13 +7,13 @@ local math_ceil, math_floor, math_log, string_gsub
 
 nodecore.amcoremod()
 
+local basetextures = {}
+for i = 1, 6 do
+	basetextures[i] = "nc_player_sky_box" .. i .. ".png"
+end
+
 local skyboxes = {}
 for dark = 0, 255 do
-	local txr = {}
-	for i = 1, 6 do
-		txr[#txr + 1] = "nc_player_sky_box" .. i
-		.. ".png^[colorize:#000000:" .. dark
-	end
 	local color = {r = 0x1d, g = 0x21, b = 0x36}
 	for k, v in pairs(color) do
 		color[k] = math_floor(0.5 + v * (255 - dark) / 255)
@@ -21,9 +21,13 @@ for dark = 0, 255 do
 	skyboxes[dark] = {
 		base_color = color,
 		type = "skybox",
-		textures = txr,
+		textures = {},
+		darken = "^[colorize:#000000:" .. dark,
 		clouds = false
 	}
+	for k, v in pairs(basetextures) do
+		skyboxes[dark].textures[k] = v .. skyboxes[dark].darken
+	end
 end
 
 local function esc(t) return string_gsub(string_gsub(t, "%^", "\\^"), ":", "\\:") end
@@ -40,12 +44,12 @@ nodecore.register_playerstep({
 			for k, v in pairs(skyboxes[dark]) do
 				data.sky[k] = v
 			end
-			local txr = data.sky.textures
+			local oldtxr = data.sky.textures
 			data.sky.textures = {}
-			for k, v in pairs(txr) do
+			for k, v in pairs(oldtxr) do
 				data.sky.textures[k] = v
 			end
-			local top = data.sky.textures[1]
+			local top = basetextures[1]
 			top = "[combine:256x256:0,0=" .. esc("(" .. top .. ")^[resize:256x256")
 
 			local pos = player:get_pos()
@@ -62,7 +66,7 @@ nodecore.register_playerstep({
 				.. "," .. (123 + math_ceil(py))
 				.. "=" .. esc("nc_player_sky_star.png^[resize:11x11"
 					.. "^[opacity:" .. math_ceil(opac))
-				data.sky.textures[1] = top
+				data.sky.textures[1] = top .. data.sky.darken
 			end
 
 			data.daynight = nodecore.get_depth_light(depth)
