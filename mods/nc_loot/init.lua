@@ -66,7 +66,6 @@ nodecore.register_dungeongen({
 			if pos.y < -128 then
 				prob = prob * math_log(pos.y / -64) / math_log(2)
 			end
-			print(prob)
 			if rand > prob then return end
 			for dy = 2, 8 do
 				local p = {x = pos.x, y = pos.y + dy, z = pos.z}

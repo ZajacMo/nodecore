@@ -41,12 +41,7 @@ function nodecore.register_dungeongen(def)
 	table_insert(dungens, min, def)
 end
 
-local fired = 0
-local function rpt() minetest.chat_send_all(fired) minetest.after(1, rpt) end
-rpt()
-
 local function dungeonprocess(pos, node)
-	fired = fired + 1
 	for _, def in ipairs(dungens) do
 		if def.enabled ~= false then
 			def.func(pos, node)
