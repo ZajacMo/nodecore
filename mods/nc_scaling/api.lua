@@ -84,7 +84,15 @@ function nodecore.scaling_apply(pointed, player)
 		end
 	elseif pointed.under.y == pointed.above.y and issolid(pointed.under) then
 		local ok = tryreplace(pos, "wall", pointed.under)
-		if ok then tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) end
+		if ok and tryreplace({x = pos.x, y = pos.y - 1, z = pos.z}, "hang", pos) then
+			if pointed.under.x == pointed.above.x then
+				tryreplace({x = pos.x + 1, y = pos.y - 1, z = pos.z}, "hang", pos)
+				tryreplace({x = pos.x - 1, y = pos.y - 1, z = pos.z}, "hang", pos)
+			else
+				tryreplace({x = pos.x, y = pos.y - 1, z = pos.z + 1}, "hang", pos)
+				tryreplace({x = pos.x, y = pos.y - 1, z = pos.z - 1}, "hang", pos)
+			end
+		end
 		return ok
 	end
 end
