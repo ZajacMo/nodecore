@@ -54,7 +54,7 @@ return {
 	{item = "nc_lode:rod_tempered", prob = 20, qty = 5},
 	{item = "nc_lux:tool_hatchet_tempered", prob = 19, qty = 2},
 	{item = "nc_lode:prill_tempered", prob = 19, qty = 8},
-	{item = "nc_tote:handle_full", prob = 17, qty = 1},
+	{item = "nc_tote:handle", prob = 17, qty = 1},
 	{item = "nc_lux:cobble1", prob = 16, qty = 12},
 	{item = "nc_tree:peat", prob = 15, qty = 29},
 	{item = "nc_lux:tool_mallet_tempered", prob = 15, qty = 2},

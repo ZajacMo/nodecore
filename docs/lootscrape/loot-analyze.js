@@ -24,6 +24,9 @@ Object.values(raw).forEach(v => {
 	// regular ones.
 	v = v.replace(/_boost$/, '');
 
+	// Special case: tote handles can't be packed
+	v = v.replace(/_full$/, '');
+
 	items[v] = (items[v] || 0) + qty;
 });
 
