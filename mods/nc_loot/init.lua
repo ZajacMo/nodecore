@@ -5,6 +5,8 @@ local math_floor, math_log
     = math.floor, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local loottable = include("loottable")
 
 local mapperlin
