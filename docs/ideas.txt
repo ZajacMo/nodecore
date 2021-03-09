@@ -21,10 +21,6 @@ IDEAS: Possible future additions/improvements to the game
 			- Combine with lux reaction?
 		- Register nodes for extra check callbacks in area
 
-- Can use FOV changing as a "camera shake" effect.
-	- For damage
-	- As visual indication of a sound out of view?
-
 - High tier door ideas
 	- Require higher-tier doors to operate higher-tier
 	  tools/heads?
@@ -38,8 +34,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Require/consume special dirt (humus/peat) to grow/repro?
 	- Source of special materials like ash? Cheaper peat?  Thatch?
 	- Upconvert dirt to humus nearby?
-
-- Buff lux fluid range to 2?
 
 - Rework falling_node (or build alternative) with customizability
 	- Allow lode rods, ladders to hang from ceilings?
@@ -63,15 +57,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Use new image_waypoint HUD type; it works in new versions,
 	  invisible in old versions (graceful fallback).
 	- An icon for each sound type.
-
-- Separate air vs. node cursor?
-	- Like the node vs. entity cursor, can we hide the cursor when
-	  pointing only at air?
-	- Would server lag be too much?
-	- This would integrate really well with a WAILA sort of thing.
-	- Could totally revamp touchtips, and dynamic feel Lightning.
-	- Use an image HUD so we can force mobile to display it too, so
-	  mobile players can use look dir too?
 
 - Buff igniting
 	- Make hot lode and other heated materials able to ignite
