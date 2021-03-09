@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -86,6 +88,21 @@ minetest.register_entity(entname, {
 		itemcheck = itemcheck
 	})
 
+local check_retry
+local function check_retry_add(key, val)
+	if not check_retry then
+		check_retry = {}
+		minetest.after(1 + math_random(), function()
+				for k, v in pairs(check_retry) do
+					check_queue[k] = v
+				end
+				check_queue_dirty = true
+				check_retry = nil
+			end)
+	end
+	check_retry[key] = val
+end
+
 nodecore.register_globalstep("visinv check", function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
@@ -117,6 +134,8 @@ nodecore.register_globalstep("visinv check", function()
 					ent.is_stack = true
 					ent.poskey = poskey
 					itemcheck(ent)
+				else
+					check_retry_add(poskey, data)
 				end
 			end
 		end
