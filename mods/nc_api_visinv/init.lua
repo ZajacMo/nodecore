@@ -93,11 +93,14 @@ local function check_retry_add(key, val)
 	if not check_retry then
 		check_retry = {}
 		minetest.after(1 + math_random(), function()
+				local total = 0
 				for k, v in pairs(check_retry) do
+					total = total + 1
 					check_queue[k] = v
 				end
 				check_queue_dirty = true
 				check_retry = nil
+				nodecore.log("warning", "visinv entity retry: " .. total)
 			end)
 	end
 	check_retry[key] = val
