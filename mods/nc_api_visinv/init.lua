@@ -177,6 +177,14 @@ nodecore.register_lbm({
 		action = function(...) return nodecore.visinv_update_ents(...) end
 	})
 
+nodecore.register_abm({
+		label = "visinv check",
+		interval = 2,
+		chance = 1,
+		nodenames = {"group:visinv"},
+		action = function(...) return nodecore.visinv_update_ents(...) end
+	})
+
 ------------------------------------------------------------------------
 -- DIG INVENTORY
 
