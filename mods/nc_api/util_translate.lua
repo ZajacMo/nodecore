@@ -42,7 +42,7 @@ function nodecore.translate(str, ...)
 	return minetest.translate(modname, str, ...)
 end
 
-function nodecore.notranlsate(str)
+function nodecore.notranslate(str)
 	return nodecore.translate(passthru, str)
 end
 
