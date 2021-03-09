@@ -148,7 +148,7 @@ entdef = {
 		local stack = inv:get_stack("main", slot)
 
 		nodecore.show_touchtip(puncher, nodecore.touchtip_stack(stack)
-			.. "\n" .. conf.pname .. "'s Inventory")
+			.. "\n" .. nodecore.notranslate(conf.pname))
 
 		local stime = self.swipetime or 0
 		local dofx = stime < nodecore.gametime - steal_fxtime

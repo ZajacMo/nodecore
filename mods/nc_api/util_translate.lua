@@ -16,9 +16,13 @@ minetest.register_on_mods_loaded(function() loadtimeover = true end)
 local prefix = minetest.translate(modname, "x")
 prefix = prefix:sub(1, prefix:find(modname) - 1)
 
+local passthru = "@1"
+
 function nodecore.translate_inform(str)
 	if (not str) or (type(str) ~= "string") or (not string_match(str, "%S"))
 	or (str:sub(1, #prefix) == prefix) then return end
+
+	if str == passthru then return true end
 
 	if not strings[str] then
 		if loadtimeover then
@@ -36,6 +40,10 @@ end
 function nodecore.translate(str, ...)
 	if not nodecore.translate_inform(str) then return str end
 	return minetest.translate(modname, str, ...)
+end
+
+function nodecore.notranlsate(str)
+	return nodecore.translate(passthru, str)
 end
 
 if nodecore.infodump() then
