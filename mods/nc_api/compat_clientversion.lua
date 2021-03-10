@@ -15,9 +15,11 @@ minetest.register_on_joinplayer(function(player)
 			rejected[pname] = true
 			minetest.kick_player(pname, "Outdated client, "
 				.. minrelease .. " required")
-			minetest.chat_send_all("*** " .. pname
-				.. " rejected. (protocol version "
-				.. (pinfo and pinfo.protocol_version or "unknown") .. ")")
+			return minetest.after(0, function()
+					return minetest.chat_send_all("*** " .. pname
+						.. " rejected. (protocol version "
+						.. (pinfo and pinfo.protocol_version or "unknown") .. ")")
+				end)
 		else
 			rejected[pname] = nil
 		end
