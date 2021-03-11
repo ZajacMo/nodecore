@@ -37,12 +37,14 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 		end)
 
 	local doorname = modname .. ":door_" .. basenode
+	local groups = nodecore.underride({door_panel = lv}, basedef.groups)
 	local paneldef = nodecore.underride({}, {
 			name = modname .. ":panel_" .. basenode,
 			description = (desc or basedef.description) .. " Panel",
 			tiles = tiles,
 			paramtype2 = "facedir",
 			silktouch = false,
+			groups = groups,
 			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
 				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)
@@ -78,7 +80,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 		.. "_mask.png^[transform" .. v.tran .. ")"
 	end
 
-	local groups = nodecore.underride({door = lv}, basedef.groups)
+	groups = nodecore.underride({door = lv}, basedef.groups)
 	local doordef = nodecore.underride({
 			name = doorname,
 			description = (desc or basedef.description) .. " Hinged Panel",
@@ -118,7 +120,8 @@ nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff", 2)
 nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered", 3)
 
 for k, v in pairs(minetest.registered_nodes) do
-	if v.groups and v.groups.stone_bricks == 2 then
+	if v.groups and v.groups.stone_bricks == 2
+	and not (v.groups.door or v.groups.door_panel) then
 		nodecore.register_door(
 			k:gsub(":.*", ""),
 			k:gsub(".*:", ""),
