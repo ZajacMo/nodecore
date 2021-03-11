@@ -57,7 +57,6 @@ end
 local function regdungeon(name)
 	local def = nodecore.underride({groups = {dungeon_mapgen = 1}},
 		minetest.registered_nodes[cobble])
-	def.description = "Dungeon Cobble"
 	def.mapgen = nil
 	return minetest.register_node(modname .. ":" .. name, def)
 end
