@@ -1,5 +1,5 @@
-msgid "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
-msgstr "(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>"
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 
 msgid "(and 1 more hint)"
 msgstr "(and 1 more hint)"
@@ -388,8 +388,8 @@ msgstr "Cobble Panel"
 msgid "Crude Glass"
 msgstr "Crude Glass"
 
-msgid "DEVELOPMENT/CONTENTDB VERSION"
-msgstr "DEVELOPMENT/CONTENTDB VERSION"
+msgid "DEVELOPMENT VERSION"
+msgstr "DEVELOPMENT VERSION"
 
 msgid "Dirt"
 msgstr "Dirt"

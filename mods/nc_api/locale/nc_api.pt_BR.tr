@@ -1,5 +1,4 @@
 # textdomain: nc_api
-(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2020 por Aaron Suen <war1024@@gmail.com>
 (and 1 more hint)=(e mais 1 dica)
 (and @1 more hints)=(e mais @1 dica)
 - "Furnaces" are not a thing; discover smelting with open flames.=-"Fornalhas" não existem; descubra como cozinhar com chamas à céu aberto.
@@ -76,6 +75,7 @@ Cobble=Pedregulho
 Cobble Hinged Panel=Painel de Pedregulho Articulado
 Cobble Panel=Painel de Pedregulho
 Crude Glass=Vidro Bruto
+DEVELOPMENT VERSION=VERSÃO EM DESENVOLVIMENTO
 Dirt=Terra
 Eggcorn=Semente de Carvalho
 Fire=Fogo

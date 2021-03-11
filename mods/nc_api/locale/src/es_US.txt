@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-20 17:39+0000\n"
-"Last-Translator: Elon_Satoshi <none1@example.org>\n"
+"PO-Revision-Date: 2021-03-11 15:03+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Spanish (American) <http://nodecore.mine.nu/trans/projects/"
 "nodecore/core/es_US/>\n"
 "Language: es_US\n"
@@ -677,3 +677,6 @@ msgstr "Cabeza de Hacha de Madera"
 
 msgid "Wooden Hatchet"
 msgstr "Hacha de Madera"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 por Aaron Suen <warr1024@@gmail.com>"

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 16:25+0000\n"
+"PO-Revision-Date: 2021-03-11 15:03+0000\n"
 "Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -1131,3 +1131,30 @@ msgstr ""
 msgid "- Do not use F5 debug info; it will mislead you!"
 msgstr ""
 "- Не используйте отладочную информацию F5; Она введет вас в заблуждение!"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+
+msgid "Adobe Mix"
+msgstr ""
+
+msgid "Annealed Lode Adze"
+msgstr ""
+
+msgid "Annealed Lode Rake"
+msgstr ""
+
+msgid "Adobe"
+msgstr ""
+
+msgid "Adobe Bricks"
+msgstr ""
+
+msgid "@1 ....."
+msgstr ""
+
+msgid "Bindy"
+msgstr ""
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 Аарон Суэн <warr1024@@gmail.com>"
