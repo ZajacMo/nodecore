@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, pairs, string, vector
-    = math, nodecore, pairs, string, vector
+local math, minetest, nodecore, pairs, string, vector
+    = math, minetest, nodecore, pairs, string, vector
 local math_ceil, math_floor, math_log, string_gsub
     = math.ceil, math.floor, math.log, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
@@ -32,6 +32,12 @@ end
 
 local function esc(t) return string_gsub(string_gsub(t, "%^", "\\^"), ":", "\\:") end
 
+local spawn
+nodecore.interval(1, function()
+		spawn = minetest.setting_get_pos("static_spawnpoint")
+		or {x = 0, y = 0, z = 0}
+	end)
+
 local posscale = 128 / math_log(32768)
 nodecore.register_playerstep({
 		label = "skybox/sunlight",
@@ -52,7 +58,7 @@ nodecore.register_playerstep({
 			local top = basetextures[1]
 			top = "[combine:256x256:0,0=" .. esc("(" .. top .. ")^[resize:256x256")
 
-			local pos = player:get_pos()
+			local pos = vector.subtract(player:get_pos(), spawn)
 			pos.y = 0
 			local dist = vector.length(pos)
 			local log = math_log(dist + 1) * posscale
