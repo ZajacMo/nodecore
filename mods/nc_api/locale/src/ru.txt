@@ -174,42 +174,6 @@ msgstr "Активная Линза"
 msgid "About"
 msgstr "Об игре"
 
-msgid "...have you broken cobble into chips yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you bashed a plank into sticks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled an annealed lode tote handle yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled an adze out of sticks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled a wooden tool yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled a wooden shelf yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled a wooden ladder yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled a wooden frame yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you assembled a staff from sticks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you activated a lens yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...and @1 more hints..."
-msgstr "[УДАЛЕНО]."
-
-msgid "...and 1 more hint..."
-msgstr "[УДАЛЕНО]."
-
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Ударять нужно не так часто (около 1 удара в секунду)."
 
@@ -228,9 +192,6 @@ msgstr "- Экрана инвентаря НЕТ."
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 msgstr "- Игра сложная по задумке, иногда разочаровывает. НЕ СДАВАЙТЕСЬ!"
-
-msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[УДАЛЕНО]."
 
 msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
 msgstr ""
@@ -265,9 +226,6 @@ msgstr "- Если рецепт существует, вы увидите спе
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают."
 
-msgid "- Drop items onto ground to create stack nodes.  They do not decay."
-msgstr "[УДАЛЕНО]."
-
 msgid "- DONE: @1"
 msgstr "- ЗАВЕРШЕНО: @1"
 
@@ -292,41 +250,8 @@ msgstr "(и еще 1 подсказка)"
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 Аарон Суэн <warr1024@@gmail.com>"
 
-msgid "...have you carved a wooden plank completely yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you carved wooden tool heads from planks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you chipped chromatic glass into prisms yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you chopped a lode cube into prills yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you chopped chromatic glass into lenses yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you made fire by rubbing sticks together yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you chopped up charcoal yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you put a stone tip onto a tool yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you cold-forged an annealed lode tool head yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you cold-forged lode down completely yet?"
-msgstr "[УДАЛЕНО]?"
-
 msgid "Loose Humus"
 msgstr "Рыхлый Гумус"
-
-msgid "...have you cooled molten glass into crude glass yet?"
-msgstr "[УДАЛЕНО]?"
 
 msgid "Loose Lode Cobble"
 msgstr "Рыхлый Булыжник с Металлом"
@@ -334,122 +259,14 @@ msgstr "Рыхлый Булыжник с Металлом"
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "Лицензия MIT (http://www.opensource.org/licenses/MIT)"
 
-msgid "...have you cut down a tree yet?"
-msgstr "[УДАЛЕНО]?"
-
 msgid "Not all game content is covered by hints. Explore!"
 msgstr "Не вся игра покрыта подсказками. Исследуйте!"
-
-msgid "...have you dug up a tree stump yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you dug up dirt yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you dug up gravel yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you dug up lode ore yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you dug up sand yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you dug up stone yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found a lode stratum yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found ash yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found charcoal yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found deep stone strata yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found dry leaves yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found eggcorns yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found lode ore yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found molten rock yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found sponges yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you found sticks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you melted down lode metal yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you melted sand into glass yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you molded molten glass into clear glass yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you packed high-quality charcoal yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you packed stone chips back into cobble yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you planted an eggcorn yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you produced light from a lens yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you quenched molten glass into chromatic glass yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you sintered glowing lode into a cube yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you split a tree trunk into planks yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you tempered a lode anvil yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you tempered a lode tool head yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "...have you welded a lode pick and spade together yet?"
-msgstr "[УДАЛЕНО]?"
-
-msgid "Discord:   https://discord.gg/SHq2tkb"
-msgstr "[УДАЛЕНО]"
-
-msgid "GitLab:    https://gitlab.com/sztest/nodecore"
-msgstr "[УДАЛЕНО]"
-
-msgid "Glowing Lode Hatchet"
-msgstr "[УДАЛЕНО]"
-
-msgid "Glowing Lode Mallet"
-msgstr "[УДАЛЕНО]"
 
 msgid "Gated Prism"
 msgstr "Призма-Вентиль"
 
 msgid "Eggcorn"
 msgstr "Яйцезерно"
-
-msgid "Glowing Lode Mattock"
-msgstr "[УДАЛЕНО]"
-
-msgid "Glowing Lode Pick"
-msgstr "[УДАЛЕНО]"
 
 msgid "Burn"
 msgstr "Ожог"
@@ -462,9 +279,6 @@ msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
 msgid "DEVELOPMENT VERSION"
 msgstr "ВЕРСИЯ ДЛЯ РАЗРАБОТКИ"
-
-msgid "Glowing Lode Spade"
-msgstr "[УДАЛЕНО]"
 
 msgid "Infused Annealed Lode Pick"
 msgstr "Заряженная Обожжённая Металлическая Кирка"
@@ -480,9 +294,6 @@ msgstr "Заряжённая Закалённая Металлическая К�
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "См. детали и кредиты в файле LICENSE"
-
-msgid "Teleport to get unstuck (but you can't bring your items)"
-msgstr "[УДАЛЕНО]"
 
 msgid "Tempered Lode Hatchet Head"
 msgstr "Закалённый Металлический Обух Топорика"
@@ -629,17 +440,11 @@ msgstr "Булыжник с Люксом"
 msgid "Lux Flow"
 msgstr "Поток Люкса"
 
-msgid "MIT License:  http://www.opensource.org/licenses/MIT"
-msgstr "[УДАЛЕНО]"
-
 msgid "Molten Glass"
 msgstr "Расплавленное Стекло"
 
 msgid "Molten Rock"
 msgstr "Расплавленный Камень"
-
-msgid "Not all game content is covered by hints.  Explore!"
-msgstr "[УДАЛЕНО]!"
 
 msgid "Peat"
 msgstr "Торф"
@@ -761,9 +566,6 @@ msgstr "Рукоять Сумки"
 msgid "Tree Trunk"
 msgstr "Ствол Дерева"
 
-msgid "Version"
-msgstr "[УДАЛЕНО]"
-
 msgid "Water"
 msgstr "Вода"
 
@@ -772,9 +574,6 @@ msgstr "Влажный Цемент"
 
 msgid "Wet Sponge"
 msgstr "Влажная Губка"
-
-msgid "Wooden Adze"
-msgstr "[УДАЛЕНО]"
 
 msgid "Wooden Frame"
 msgstr "Деревянный Каркас"
@@ -868,9 +667,6 @@ msgstr "выкуйте холодный металл до конца"
 
 msgid "cool molten glass into crude glass"
 msgstr "остудите расплавленное стекло в рыхлое стекло"
-
-msgid "chop lode a rod back into bars"
-msgstr "[УДАЛЕНО]"
 
 msgid "craft a torch from staff and coal lump"
 msgstr "скрафтите факел из жезла и кусочка угля"
@@ -970,9 +766,6 @@ msgstr "наблюдайте критичность люкса"
 
 msgid "pack high-quality charcoal"
 msgstr "соберите высококачественный уголь"
-
-msgid "pack leaves into peat"
-msgstr "[УДАЛЕНО]"
 
 msgid "plant an eggcorn"
 msgstr "посадите яйцезерно"

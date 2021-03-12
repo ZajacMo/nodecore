@@ -630,9 +630,6 @@ msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP
 msgstr ""
 "- O jogo é feito para ser desafiante, algumas fezes frustrante. NÃO DESISTA!"
 
-msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[REMOVED]."
-
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr ""
 "- Minérios talvez estejam escondidos, mas podem ser revelados por dicas "
@@ -941,12 +938,6 @@ msgstr ""
 
 msgid "chop a lode rod back into bars"
 msgstr "martele uma haste de veio mineral de volta em barras"
-
-msgid "pack leaves into peat"
-msgstr "[REMOVED]"
-
-msgid "chop lode a rod back into bars"
-msgstr "[REMOVED]"
 
 msgid "Adze"
 msgstr "Enxó"

@@ -45,9 +45,6 @@ msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
 msgstr ""
 "¿Problemas para encender un fuego? Intente usar palos más largos, más hojas."
 
-msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "[REMOVIDO]."
-
 msgid "- @1"
 msgstr "- @1"
 
@@ -324,71 +321,8 @@ msgstr "Piedra con un patrón llamado \"Bricky\""
 msgid "Bricky Sandstone"
 msgstr "Arenisca con un patrón llamado \"Bricky\""
 
-msgid "- Drop items onto ground to create stack nodes.  They do not decay."
-msgstr "[REMOVIDO]."
-
-msgid "- Do not use F5 debug info; it will mislead you!"
-msgstr "[REMOVIDO]!"
-
-msgid "- Crafting is done by building recipes in-world."
-msgstr "[REMOVIDO]."
-
-msgid "- Can't dig trees or grass? Search for sticks in the canopy."
-msgstr "[REMOVIDO]."
-
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- No hay hornos en Nodecore; fundir con llamas abiertas."
-
-msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
-msgstr "[REMOVIDO]"
-
-msgid "- Sneak+drop to count out single items from stack."
-msgstr "[REMOVIDO]."
-
-msgid "- Some recipes require "pummeling" a node."
-msgstr "[REMOVIDO]."
-
-msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-msgstr "[REMOVIDO]."
-
-msgid "- Stacks may be pummeled, exact item count may matter."
-msgstr "[REMOVIDO]."
-
-msgid "- Stuck in a pit? Hold right-click on surfaces barehanded to climb."
-msgstr "[REMOVIDO]."
-
-msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[REMOVIDO]."
-
-msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
-msgstr "[REMOVIDO]!"
-
-msgid "- There is NO inventory screen."
-msgstr "[REMOVIDO]."
-
-msgid "- Recipes are time-based, punching faster does not speed up."
-msgstr "[REMOVED]."
-
-msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
-msgstr "[REMOVED]."
-
-msgid "- Order and specific face of placement may matter for crafting."
-msgstr "[REMOVED]."
-
-msgid "- Larger recipes are usually more symmetrical."
-msgstr "[REMOVED]."
-
-msgid "- Items picked up try to fit into the current selected slot first."
-msgstr "[REMOVED]."
-
-msgid "- If a recipe exists, you will see a special particle effect."
-msgstr "[REMOVED]."
-
-msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
-msgstr "[REMOVED]."
-
-msgid "- Drop items onto ground to create stack nodes. They do not decay."
-msgstr "[REMOVED]."
 
 msgid "- DONE: @1"
 msgstr "- LISTO: @1"

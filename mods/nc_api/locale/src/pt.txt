@@ -632,12 +632,6 @@ msgstr "(e mais @1 dicas)"
 msgid "(and 1 more hint)"
 msgstr "( e mais 1 dica)"
 
-msgid "pack leaves into peat"
-msgstr "[REMOVED]"
-
-msgid "- Stuck in a pit? Pummel surfaces barehanded to find places to climb."
-msgstr "[REMOVED]."
-
 msgid "Adze"
 msgstr "Enxó"
 
