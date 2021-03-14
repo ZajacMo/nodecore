@@ -171,10 +171,9 @@ IDEAS: Possible future additions/improvements to the game
 		- Lode
 		- Lux cobbl
 		- Water sources.
+		- Lava sources.
 	- Sustainable but not renewable
 	- Not sustainable
-		- Lava sources.
-			- Surround stone with lava to melt?
 		- Lux stone (smooth)
 
 - Threats

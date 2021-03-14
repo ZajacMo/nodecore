@@ -20,8 +20,6 @@ minetest.after(0, function()
 		end
 	end)
 
-local queue = {}
-
 local function process(pos)
 	local water = #nodecore.find_nodes_around(pos, "group:water")
 	local lux = #nodecore.find_nodes_around(pos, "group:lux_fluid")
@@ -42,6 +40,8 @@ local function process(pos)
 	nodecore.witness(pos, "stone " .. (water > lux and "hardened" or "softened"))
 	return nodecore.set_loud(pos, node)
 end
+
+local queue = {}
 
 nodecore.register_globalstep("stone hardening", function()
 		for _, p in pairs(queue) do process(p) end
