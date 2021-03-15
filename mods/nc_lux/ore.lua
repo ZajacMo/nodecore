@@ -54,6 +54,7 @@ minetest.register_node(modname .. ":stone", {
 			lux_emit = 1,
 			cracky = 2
 		},
+		silktouch = false,
 		light_source = 1,
 		drop_in_place = modname .. ":cobble1",
 		sounds = nodecore.sounds("nc_terrain_stony")
