@@ -145,12 +145,13 @@ local function reg(suff, inner, def)
 				selection_box = nodecore.fixedbox(),
 				paramtype = "light",
 				tiles = {
-					{name = txr_sides, backface_culling = true},
-					{name = txr_bot, backface_culling = true},
-					{name = txr_top, backface_culling = true},
-					{name = txr_handle, backface_culling = true},
-					{name = inner, backface_culling = true}
+					txr_sides,
+					txr_bot,
+					txr_top,
+					txr_handle,
+					inner
 				},
+				backface_culling = true,
 				use_texture_alpha = "clip",
 				groups = {
 					snappy = 1,

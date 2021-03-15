@@ -39,6 +39,7 @@ local basedef = {
 		txr .. "^" .. pout,
 		txr .. "^" .. pinp
 	},
+	backface_culling = true,
 	groups = {
 		silica = 1,
 		silica_lens = 1,
