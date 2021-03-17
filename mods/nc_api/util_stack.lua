@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, getmetatable, math, minetest, nodecore, pairs, string,
-      vector
-    = ItemStack, getmetatable, math, minetest, nodecore, pairs, string,
-      vector
+local ItemStack, math, minetest, nodecore, pairs, string, vector
+    = ItemStack, math, minetest, nodecore, pairs, string, vector
 local math_cos, math_floor, math_pi, math_random, math_sin,
       string_format
     = math.cos, math.floor, math.pi, math.random, math.sin,
@@ -217,34 +215,5 @@ function nodecore.inventory_dump(player)
 				item_lose(player, listname, slot, 0.001)
 			end
 		end
-	end
-end
-
-local keeppriv = "keepinv"
-minetest.register_privilege(keeppriv, {
-		description = "Allow player to keep inventory on teleport",
-		give_to_singleplayer = false,
-		give_to_admin = false
-	})
-
-local telefunc = minetest.registered_chatcommands.teleport
-telefunc = telefunc and telefunc.func
-if telefunc then
-	minetest.registered_chatcommands.teleport.func = function(...)
-		local anyplayer = minetest.get_connected_players()[1]
-		local meta = anyplayer and getmetatable(anyplayer)
-		local oldsetpos = meta and meta.set_pos
-		if not oldsetpos then return telefunc(...) end
-		meta.set_pos = function(player, ...)
-			if not minetest.check_player_privs(player, keeppriv) then
-				nodecore.inventory_dump(player)
-			end
-			return oldsetpos(player, ...)
-		end
-		local function helper(...)
-			meta.set_pos = oldsetpos
-			return ...
-		end
-		return helper(telefunc(...))
 	end
 end

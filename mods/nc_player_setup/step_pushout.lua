@@ -74,6 +74,7 @@ nodecore.register_playerstep({
 						data.pname,
 						minetest.pos_to_string(pos),
 						minetest.pos_to_string(newpos)))
+				newpos.keepinv = true
 				player:set_pos(newpos)
 				return reset()
 			end
