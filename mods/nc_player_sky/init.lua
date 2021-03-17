@@ -63,13 +63,12 @@ nodecore.register_playerstep({
 			local dist = vector.length(pos)
 			local log = math_log(dist + 1) * posscale
 			pos = vector.multiply(pos, log / dist)
-			local px = pos.z
-			local py = -pos.x
+			local px = math_ceil(pos.z)
+			local py = math_ceil(-pos.x)
 			local opac = (px * px + py * py) / 8 - 200
 			if opac > 0 then
 				if opac > 255 then opac = 255 end
-				top = top .. ":" .. (123 + math_ceil(px))
-				.. "," .. (123 + math_ceil(py))
+				top = top .. ":" .. (123 + px) .. "," .. (123 + py)
 				.. "=" .. esc("nc_player_sky_star.png^[resize:11x11"
 					.. "^[opacity:" .. math_ceil(opac))
 				data.sky.textures[1] = top .. data.sky.darken
