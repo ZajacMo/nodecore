@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, nodecore, type, vector
-    = getmetatable, minetest, nodecore, type, vector
+local getmetatable, minetest, nodecore, string, type, vector
+    = getmetatable, minetest, nodecore, string, type, vector
+local string_format
+    = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -32,6 +34,9 @@ local function patchplayers()
 		end
 		local old = self:get_pos()
 		if old and vector.distance(pos, old) > 16 then
+			nodecore.log("action", string_format("%s teleporting from %s to %s",
+					self:get_player_name(), minetest.pos_to_string(old, 0),
+					minetest.pos_to_string(pos, 0)))
 			nodecore.inventory_dump(self)
 		end
 		return setraw(self, pos, ...)
