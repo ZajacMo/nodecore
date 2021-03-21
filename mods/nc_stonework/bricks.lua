@@ -57,6 +57,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 			label = "bond " .. name .. " bricks",
 			nodenames = {modname .. ":bricks_" .. name},
 			neighbors = {"group:concrete_wet"},
+			neighbors_invert = true,
 			interval = 1,
 			chance = 2,
 			action = function(pos)
