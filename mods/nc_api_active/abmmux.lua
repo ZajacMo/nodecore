@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, rawset, table
-    = minetest, nodecore, pairs, rawset, table
-local table_concat
-    = table.concat
+local minetest, nodecore, pairs, rawset, string, table
+    = minetest, nodecore, pairs, rawset, string, table
+local string_format, table_concat
+    = string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local muxdefs = {}
@@ -36,6 +36,19 @@ local muxidx = nodecore.item_matching_index(muxdefs,
 	true,
 	function(n, i) return i.muxkey .. n end
 )
+
+local nodes = 0
+local actions = 0
+local started = minetest.get_us_time() / 1000000
+local function statistics()
+	local now = minetest.get_us_time() / 1000000
+	local elapsed = now - started
+	started = now
+	nodecore.log("action", string_format("ABM average %0.2f actions for %0.2f nodes per second",
+			actions / elapsed, nodes / elapsed))
+	minetest.after(300, statistics)
+end
+minetest.after(300, statistics)
 
 local oldreg = minetest.register_abm
 function minetest.register_abm(def)
@@ -72,13 +85,16 @@ function minetest.register_abm(def)
 			neighbors = def.neighbors,
 			nodenames = {"group:abmmux_" .. muxkey},
 			action = function(pos, node, ...)
+				nodes = nodes + 1
 				local oldname = node.name
 				local found = muxidx[muxkey .. oldname]
 				if not found then return warnunused(oldname) end
+				actions = actions + 1
 				found[1].action(pos, node, ...)
 				if #found <= 1 then return end
 				for i = 2, #found do
 					if minetest.get_node(pos).name ~= oldname then return end
+					actions = actions + 1
 					found[i].action(pos, node, ...)
 				end
 			end
