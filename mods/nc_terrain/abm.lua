@@ -47,6 +47,7 @@ nodecore.register_limited_abm({
 		label = "grass spread",
 		nodenames = {"group:soil"},
 		neighbors = {grass},
+		neighbors_invert = true,
 		interval = 6,
 		chance = 50,
 		action = function(pos, node)
