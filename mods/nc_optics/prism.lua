@@ -1,18 +1,27 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function prism_check(_, node, recv)
+local function altblock(pos)
+	return (math_floor((pos.x + 0.5) / 16)
+		+ math_floor((pos.y + 0.5) / 16)
+		+ math_floor((pos.z + 0.5) / 16))
+	% 2 == 1
+end
+
+local function prism_check(pos, node, recv)
 	local face = nodecore.facedirs[node.param2]
 
 	if recv(face.t) or recv(face.b) then
 		return modname .. ":prism_gated"
 	end
 	if recv(face.f) or recv(face.r) then
-		return modname .. ":prism_on"
+		return modname .. ":prism_on" .. (altblock(pos) and "_alt" or "")
 	end
 	return modname .. ":prism"
 end
@@ -24,6 +33,8 @@ local pinp = modname .. "_port_wide.png"
 local pina = modname .. "_port_wide_act.png"
 local shin = modname .. "_shine_end.png"
 local dark = modname .. "_port_input.png"
+local mask1 = "[mask:" .. modname .. "_blockmask_1.png"
+local mask2 = "[mask:" .. modname .. "_blockmask_2.png"
 
 local basedef = {
 	description = "Prism",
@@ -68,8 +79,21 @@ reg("", {})
 reg("_on", {
 		description = "Active Prism",
 		tiles = {
-			txr .. "^(" .. pact .. "^[opacity:96)",
-			txr .. "^" .. pact .. "^" .. pout,
+			txr .. "^(" .. pact .. "^" .. mask1 .. "^[opacity:96)",
+			txr .. "^(" .. pact .. "^" .. mask1 .. ")^" .. pout,
+			txr .. "^" .. pinp .. "^" .. pina
+		},
+		light_source = 1,
+		optic_source = function(_, node)
+			local fd = nodecore.facedirs[node.param2]
+			return {fd.k, fd.l}
+		end
+	})
+reg("_on_alt", {
+		description = "Active Prism",
+		tiles = {
+			txr .. "^(" .. pact .. "^" .. mask2 .. "^[opacity:96)",
+			txr .. "^(" .. pact .. "^" .. mask2 .. ")^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pina
 		},
 		light_source = 1,

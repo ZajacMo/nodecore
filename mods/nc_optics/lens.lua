@@ -1,14 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local math, minetest, nodecore, vector
+    = math, minetest, nodecore, vector
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
+local function altblock(pos)
+	return (math_floor((pos.x + 0.5) / 16)
+		+ math_floor((pos.y + 0.5) / 16)
+		+ math_floor((pos.z + 0.5) / 16))
+	% 2 == 1
+end
+
 local function lens_check(pos, node, recv, getnode)
 	local face = nodecore.facedirs[node.param2]
 
-	if recv(face.k) and node.name ~= modname .. ":lens_on" then
+	if recv(face.k) and node.name ~= modname .. ":lens_on"
+	and node.name ~= modname .. ":lens_on_alt" then
 		return modname .. ":lens_glow"
 	end
 
@@ -16,7 +26,7 @@ local function lens_check(pos, node, recv, getnode)
 	local nnode = getnode(fore)
 	local def = minetest.registered_items[nnode.name] or {}
 	if def.light_source and def.light_source > 4 then
-		return modname .. ":lens_on"
+		return modname .. ":lens_on" .. (altblock(pos) and "_alt" or "")
 	end
 
 	return modname .. ":lens"
@@ -26,6 +36,8 @@ local txr = modname .. "_glass_frost.png"
 local pact = modname .. "_port_active.png"
 local pout = modname .. "_port_output.png"
 local pinp = modname .. "_port_input.png"
+local mask1 = "[mask:" .. modname .. "_blockmask_1.png"
+local mask2 = "[mask:" .. modname .. "_blockmask_2.png"
 
 local basedef = {
 	description = "Lens",
@@ -69,8 +81,20 @@ reg("", {})
 reg("_on", {
 		description = "Active Lens",
 		tiles = {
-			txr .. "^(" .. pact .. "^[opacity:96)",
-			txr .. "^" .. pact .. "^" .. pout,
+			txr .. "^(" .. pact .. "^" .. mask1 .. "^[opacity:96)",
+			txr .. "^(" .. pact .. "^" .. mask1 .. ")^" .. pout,
+			txr .. "^" .. pinp .. "^" .. pout
+		},
+		light_source = 1,
+		optic_source = function(_, node)
+			return {nodecore.facedirs[node.param2].k}
+		end
+	})
+reg("_on_alt", {
+		description = "Active Lens",
+		tiles = {
+			txr .. "^(" .. pact .. "^" .. mask2 .. "^[opacity:96)",
+			txr .. "^(" .. pact .. "^" .. mask2 .. ")^" .. pout,
 			txr .. "^" .. pinp .. "^" .. pout
 		},
 		light_source = 1,
