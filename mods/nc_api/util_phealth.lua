@@ -6,11 +6,13 @@ local math_ceil
 -- LUALOCALS > ---------------------------------------------------------
 
 local function getphealth(player)
+	if not (player and player.is_player and player:is_player()) then return 0 end
 	return player:get_hp() + player:get_meta():get_float("dhp")
 end
 nodecore.getphealth = getphealth
 
 local function setphealth(player, hp, reason, minwhole)
+	if not (player and player.is_player and player:is_player()) then return end
 	local hpmax = player:get_properties().hp_max
 	if hp > hpmax then hp = hpmax end
 	if hp < 0 then hp = 0 end
