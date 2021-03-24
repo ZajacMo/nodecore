@@ -74,6 +74,7 @@ reg("_on", {
 			txr .. "^" .. pinp .. "^" .. pout
 		},
 		light_source = 1,
+		groups = {optic_source = 1},
 		optic_source = function(_, node)
 			return {nodecore.facedirs[node.param2].k}
 		end

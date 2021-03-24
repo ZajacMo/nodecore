@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, string, tonumber, type,
-      vector
-    = ipairs, math, minetest, nodecore, pairs, string, tonumber, type,
-      vector
+local math, minetest, nodecore, pairs, string, tonumber, type, vector
+    = math, minetest, nodecore, pairs, string, tonumber, type, vector
 local math_floor, math_random, string_format
     = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -43,8 +41,6 @@ local optic_queue = {}
 local passive_queue = {}
 local dependency_index = {}
 local dependency_reverse = {}
-local cbb_index = {}
-local trigger_cache = {}
 
 local function mapblock(pos)
 	return {
@@ -82,6 +78,7 @@ local function scan(pos, dir, max, getnode, cbbs)
 		end
 	end
 end
+nodecore.optic_scan = scan
 
 local function scan_recv(pos, dir, max, getnode)
 	local hit, node = scan(pos, dir, max, getnode)
@@ -102,8 +99,8 @@ local function optic_check(pos)
 end
 nodecore.optic_check = optic_check
 
-local function optic_trigger(start, dir, max, cbbs)
-	local pos, node = scan(start, dir, max, get_node, cbbs)
+local function optic_trigger(start, dir, max)
+	local pos, node = scan(start, dir, max, get_node)
 	if node and node_optic_checks[node.name] then
 		return optic_check(pos)
 	end
@@ -154,29 +151,23 @@ local function optic_commit(v)
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
-	if (not trigger_cache[vhash]) or node.name ~= nn.name
-	or node.param ~= nn.param or nn.param2 ~= nn.param2 then
+	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
 		set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
 		local newidx = {}
 		if src then
-			local cbbs = {}
-			cbb_index[vhash] = cbbs
 			for _, dir in pairs(src) do
 				local hash = hashpos(dir)
-				if not (trigger_cache[vhash] and oldidx[hash]) then
-					optic_trigger(v.pos, dir, nil, cbbs)
+				if not oldidx[hash] then
+					optic_trigger(v.pos, dir)
 				end
 				newidx[hash] = dir
 			end
-		else
-			cbb_index[vhash] = nil
 		end
 		for hash, dir in pairs(oldidx) do
 			if not newidx[hash] then optic_trigger(v.pos, dir) end
 		end
-		trigger_cache[vhash] = true
 	end
 
 	local olddep = dependency_reverse[vhash]
@@ -300,47 +291,3 @@ for fn in pairs({
 	end
 end
 set_node = minetest.set_node
-
-nodecore.interval(2, function()
-		local dedupe = {}
-		for _, list in pairs(cbb_index) do
-			for i = 1, #list do
-				local item = list[i]
-				dedupe[minetest.pos_to_string(item.pos, 1)
-				.. minetest.pos_to_string(item.plane, 0)] = item
-			end
-		end
-		local players = {}
-		for _, p in ipairs(minetest.get_connected_players()) do
-			local pos = p:get_pos()
-			pos.y = pos.y + p:get_properties().eye_height
-			players[#players + 1] = {
-				name = p:get_player_name(),
-				pos = pos
-			}
-		end
-		for _, item in pairs(dedupe) do
-			for i = 1, #players do
-				local play = players[i]
-				local diff = vector.subtract(item.pos, play.pos)
-				if vector.dot(diff, diff) < 64 then
-					minetest.add_particlespawner({
-							amount = 10,
-							time = 2,
-							minpos = vector.add(item.pos, vector.multiply(item.plane, -0.1)),
-							maxpos = vector.add(item.pos, vector.multiply(item.plane, 0.1)),
-							minvel = vector.multiply(item.dir, -0.1),
-							maxvel = vector.multiply(item.dir, 0.1),
-							minacc = vector.multiply(item.plane, -0.25),
-							maxacc = vector.multiply(item.plane, 0.25),
-							minsize = 0.25,
-							maxsize = 0.5,
-							minexptime = 1,
-							maxexptime = 2,
-							texture = modname .. "_port_output.png",
-							playername = play.name
-						})
-				end
-			end
-		end
-	end)
