@@ -7,23 +7,14 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
-do
-	local flamedirs = nodecore.dirs()
-	local embers = {}
-	minetest.after(0, function()
-			for k, v in pairs(minetest.registered_items) do
-				if v.groups.ember then
-					embers[k] = true
-				end
-			end
-		end)
-	nodecore.register_limited_abm({
-			label = "fire consume",
-			interval = 1,
-			chance = 1,
-			nodenames = {modname .. ":fire"},
-			action = function(pos)
-				if math_random(1, 5) == 1 then
+local sparks = {}
+local sparkqty = 0
+local sparkmax = 50
+nodecore.register_globalstep("fire sparks", function()
+		if sparkqty < 1 then return end
+		for i = 1, #sparks do
+			local pos = sparks[i]
+			minetest.after(math_random(), function()
 					minetest.add_particlespawner({
 							amount = math_random(1, 3),
 							time = 1,
@@ -42,6 +33,36 @@ do
 							texture = "nc_fire_spark.png",
 							glow = math_random(5, 9)
 						})
+				end)
+		end
+		sparks = {}
+		sparkqty = 0
+	end)
+
+do
+	local flamedirs = nodecore.dirs()
+	local embers = {}
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_items) do
+				if v.groups.ember then
+					embers[k] = true
+				end
+			end
+		end)
+	nodecore.register_limited_abm({
+			label = "fire consume",
+			interval = 1,
+			chance = 1,
+			nodenames = {modname .. ":fire"},
+			action = function(pos)
+				sparkqty = sparkqty + 1
+				if sparkqty > sparkmax then
+					local sparkid = math_random(1, sparkqty)
+					if sparkid <= sparkmax then
+						sparks[sparkid] = pos
+					end
+				else
+					sparks[sparkqty] = pos
 				end
 
 				local found = {}
