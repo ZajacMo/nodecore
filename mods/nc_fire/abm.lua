@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, string, vector
-    = ipairs, math, minetest, nodecore, pairs, string, vector
-local math_random, string_format
-    = math.random, string.format
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -61,54 +61,20 @@ do
 		})
 end
 
-local poshash = minetest.hash_node_position
-local ignitemax = 250
-local ignition
-nodecore.register_globalstep("fire ignition", function()
-		if not ignition then return end
-		nodecore.log("info", string_format("fire ignition: %d (%d/%d)",
-				ignition.qty, #ignition.queue, ignitemax))
-		for _, pos in ipairs(ignition.queue) do
-			nodecore.fire_check_ignite(pos)
-		end
-		ignition = nil
-	end)
 nodecore.register_limited_abm({
 		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
-		nodenames = {"group:igniter"},
-		neighbors = {"group:flammable"},
+		nodenames = {"group:flammable"},
+		neighbors = {"group:igniter"},
+		neighbors_invert = true,
 		action = function(pos)
-			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable")) do
-				local key = poshash(p)
-				if not ignition then
-					ignition = {
-						queue = {},
-						seen = {},
-						qty = 0
-					}
-				end
-				local seen = ignition.seen
-				if not seen[key] then
-					seen[key] = true
-					local qty = ignition.qty + 1
-					ignition.qty = qty
-					if qty > ignitemax then
-						local i = math_random(1, qty)
-						if i <= ignitemax then
-							ignition.queue[i] = p
-						end
-					else
-						ignition.queue[qty] = p
-					end
-				end
-			end
+			nodecore.fire_check_ignite(pos)
 		end
 	})
 
 nodecore.register_limited_abm({
-		label = "ember consume",
+		label = "ember snuff/flames",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
