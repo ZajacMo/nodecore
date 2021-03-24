@@ -1,7 +1,37 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs
-    = ipairs, minetest, nodecore, pairs
+local ipairs, math, minetest, nodecore, pairs
+    = ipairs, math, minetest, nodecore, pairs
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local queue
+local function process()
+	local expire = minetest.get_us_time() * 200000
+	local batch = {}
+	for _, v in pairs(queue) do batch[#batch + 1] = v end
+	queue = nil
+	for i = #batch, 2, -1 do
+		local j = math_random(1, i)
+		if j ~= i then
+			local x = batch[i]
+			batch[i] = batch[j]
+			batch[j] = x
+		end
+	end
+	for i = 1, #batch do
+		if minetest.get_us_time() > expire then
+			nodecore.log("warning", "skipping " .. (#batch - i + 1)
+				.. " inverted ABM actions due to time budget")
+			return
+		end
+		local v = batch[i]
+		local nnode = minetest.get_node(v.pos)
+		if nnode.name == v.node.name then
+			v.action(v.pos, nnode)
+		end
+	end
+end
 
 local hash = minetest.hash_node_position
 
@@ -15,17 +45,6 @@ function minetest.register_abm(def, ...)
 
 	local oldact = def.action
 
-	local queue
-	local function process()
-		for _, v in pairs(queue) do
-			local nnode = minetest.get_node(v.pos)
-			if nnode.name == v.node.name then
-				oldact(v.pos, nnode)
-			end
-		end
-		queue = nil
-	end
-
 	function def.action(pos)
 		if not queue then
 			queue = {}
@@ -34,7 +53,8 @@ function minetest.register_abm(def, ...)
 		for _, npos in ipairs(nodecore.find_nodes_around(pos, nnames, 1)) do
 			queue[hash(pos)] = {
 				pos = npos,
-				node = minetest.get_node(npos)
+				node = minetest.get_node(npos),
+				action = oldact
 			}
 		end
 	end
