@@ -39,16 +39,30 @@ local muxidx = nodecore.item_matching_index(muxdefs,
 
 local nodes = 0
 local actions = 0
+local players = 0
 local started = minetest.get_us_time() / 1000000
 local function statistics()
 	local now = minetest.get_us_time() / 1000000
 	local elapsed = now - started
 	started = now
-	nodecore.log("action", string_format("ABM average %0.2f actions for %0.2f nodes per second",
-			actions / elapsed, nodes / elapsed))
+	if actions > 0 then
+		nodecore.log("action", string_format("ABM average"
+				.. " %0.2f actions for %0.2f nodes"
+				.. " with %0.2f players per second",
+				actions / elapsed, nodes / elapsed,
+				players / elapsed))
+	end
+	nodes = 0
+	actions = 0
+	players = 0
 	minetest.after(300, statistics)
 end
 minetest.after(300, statistics)
+local function pcount()
+	players = players + #minetest.get_connected_players()
+	minetest.after(1, pcount)
+end
+minetest.after(1, pcount)
 
 local oldreg = minetest.register_abm
 function minetest.register_abm(def)
