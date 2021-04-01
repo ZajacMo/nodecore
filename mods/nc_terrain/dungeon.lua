@@ -77,6 +77,13 @@ end
 ------------------------------------------------------------------------
 -- DUNGEON MODIFIER HOOKS
 
+nodecore.register_lbm({
+		name = modname .. ":dungeons",
+		run_at_every_load = true,
+		nodenames = {"group:dungeon_mapgen"},
+		action = dungeonprocess
+	})
+
 minetest.register_abm({
 		label = modname .. " dungeon cleanup",
 		interval = 1,
