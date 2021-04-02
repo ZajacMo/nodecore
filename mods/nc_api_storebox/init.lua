@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, type
-    = minetest, nodecore, pairs, type
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -60,12 +60,7 @@ nodecore.register_on_register_item(function(_, def)
 			def.drawtype = "mesh"
 			def.visual_scale = nodecore.z_fight_ratio
 			def.mesh = def.mesh or modname .. "_box.obj"
-			local t = def.tiles or {}
-			for k, v in pairs(t) do
-				if type(v) == "string" then
-					t[k] = {name = v, backface_culling = true}
-				end
-			end
+			def.backface_culling = true
 			def.use_texture_alpha = def.use_texture_alpha or "clip"
 		end
 

@@ -75,7 +75,7 @@ nodecore.register_globalstep("door conveyance", function()
 			if not nonheads[k] then
 				local seg = {}
 				local u = v
-				while u do
+				while u and not seg[u] do
 					seg[u] = true
 					u = conveytrace(okay, seg, u, collide)
 				end

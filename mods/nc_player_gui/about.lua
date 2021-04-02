@@ -14,7 +14,7 @@ nodecore.register_inventory_tab({
 		content = {
 			nct(nodecore.product) .. " - " .. version,
 			"",
-			"(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>",
+			"(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>",
 			"MIT License (http://www.opensource.org/licenses/MIT)",
 			"See included LICENSE file for full details and credits",
 			"",

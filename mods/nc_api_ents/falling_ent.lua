@@ -93,6 +93,14 @@ minetest.register_entity(":__builtin:falling_node", {
 					return
 				end
 
+				local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+				local node = minetest.get_node(below)
+				local def = minetest.registered_nodes[node.name] or {}
+				if def.groups and def.groups.is_stack_only then
+					minetest.dig_node(below)
+					return
+				end
+
 				displace_check(pos)
 
 				nodecore.set_loud(pos, self.node)

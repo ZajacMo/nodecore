@@ -57,7 +57,6 @@ end
 local function regdungeon(name)
 	local def = nodecore.underride({groups = {dungeon_mapgen = 1}},
 		minetest.registered_nodes[cobble])
-	def.description = "Dungeon Cobble"
 	def.mapgen = nil
 	return minetest.register_node(modname .. ":" .. name, def)
 end
@@ -77,6 +76,13 @@ end
 
 ------------------------------------------------------------------------
 -- DUNGEON MODIFIER HOOKS
+
+nodecore.register_lbm({
+		name = modname .. ":dungeons",
+		run_at_every_load = true,
+		nodenames = {"group:dungeon_mapgen"},
+		action = dungeonprocess
+	})
 
 minetest.register_abm({
 		label = modname .. " dungeon cleanup",

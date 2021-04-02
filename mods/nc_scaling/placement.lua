@@ -75,7 +75,7 @@ hand.on_place = function(stack, player, pointed, ...)
 	if def and def.on_scaling and def.on_scaling(stats,
 		stack, player, pointed, node, ...) then return end
 
-	if nodecore.scaling_apply(pointed, player) then
+	if nodecore.scaling_apply(pointed) then
 		nodecore.player_discover(player, "craft:scaling dy="
 			.. (pointed.under.y - pointed.above.y))
 		return nodecore.scaling_particles(pointed.above, {

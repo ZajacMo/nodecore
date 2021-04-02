@@ -63,30 +63,33 @@ local function dntsave(pos, meta, data)
 	local min
 	local run = {}
 	local reg = nodecore.registered_dnts
+	local any
 	for k, v in pairs(data) do
 		if k then
 			v = v - el
-			if v < 0 then
-				local def = reg[k]
-				if def then
+			local def = reg[k]
+			if not def then
+				-- clear deprecated dnts
+				data[k] = nil
+			else
+				if v < 0 then
 					if def.ignore_stasis or not nodecore.stasis then
 						run[def] = true
 						v = def.loop and def.time or nil
 					else
+						-- auto-defer while on stasis
 						v = def.time and (def.time < 1) and def.time or 1
 					end
-					data[k] = v
-					if (not min) or (min < v) then min = v end
 				end
-			else
 				data[k] = v
-				if (not min) or (min < v) then min = v end
+				any = any or v
+				if v and ((not min) or (min < v)) then min = v end
 			end
 		end
 	end
 	data[false] = now
 
-	meta:set_string(dntkey, minetest.serialize(data))
+	meta:set_string(dntkey, any and minetest.serialize(data) or "")
 	if min then minetest.get_node_timer(pos):start(min) end
 
 	local node = minetest.get_node(pos)

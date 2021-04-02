@@ -139,9 +139,14 @@ end
 
 local function player_wield_light(player)
 	local glow = 0
-	for _, stack in pairs(player:get_inventory():get_list("main")) do
+	local srcidx, srcstack
+	for idx, stack in pairs(player:get_inventory():get_list("main")) do
 		local src = lightsrc(stack)
-		if src > glow then glow = src end
+		if src > glow then
+			glow = src
+			srcidx = idx
+			srcstack = stack:get_name()
+		end
 	end
 	if glow < 1 then return end
 	local pos = player:get_pos()
@@ -153,7 +158,9 @@ local function player_wield_light(player)
 			if not pl then return end
 			local pp = pl:get_pos()
 			pp.y = pp.y + pl:get_properties().eye_height
-			return vector.equals(pos, vector.round(pp))
+			if not vector.equals(pos, vector.round(pp)) then return end
+			return pl:get_inventory():get_stack("main", srcidx)
+			:get_name() == srcstack
 		end)
 end
 

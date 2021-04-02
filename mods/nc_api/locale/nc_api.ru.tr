@@ -1,5 +1,5 @@
 # textdomain: nc_api
-(C)2018-2020 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2020 Аарон Суэн <warr1024@@gmail.com>
+(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 Аарон Суэн <warr1024@@gmail.com>
 (and 1 more hint)=(и еще 1 подсказка)
 (and @1 more hints)=(и еще @1 подсказок)
 - "Furnaces" are not a thing; discover smelting with open flames.=- "Печек" тут нет; откройте для себя плавку открытым огнём.
@@ -55,6 +55,7 @@ Cobble=Булыжник
 Cobble Hinged Panel=Прикрепленная Булыжниковая Панель
 Cobble Panel=Булыжниковая Панель
 Crude Glass=Сырое стекло
+DEVELOPMENT VERSION=ВЕРСИЯ ДЛЯ РАЗРАБОТКИ
 Dirt=Грязь
 Eggcorn=Яйцезерно
 Fire=Огонь
@@ -161,7 +162,6 @@ Unknown Item=Неизвестный Предмет
 Water=Вода
 Wet Aggregate=Влажный Цемент
 Wet Sponge=Влажная Губка
-Wooden Adze=[УДАЛЕНО]
 Wooden Frame=Деревянный Каркас
 Wooden Hatchet=Деревянный Топорик
 Wooden Hatchet Head=Деревянный Обух Топорика

@@ -24,3 +24,8 @@ nodecore.register_hint("weaken stone by soaking",
 	"stone softened",
 	"group:lava"
 )
+
+nodecore.register_hint("melt stone into pumwater",
+	"stone melted",
+	"group:lava"
+)

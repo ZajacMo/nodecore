@@ -45,7 +45,6 @@ nodecore.register_inventory_tab({
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
 			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
-			"- If it takes more than 5 seconds to dig, you don't have the right tool.",
 			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 		}
 	})

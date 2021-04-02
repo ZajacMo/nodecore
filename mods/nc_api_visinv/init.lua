@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -86,6 +88,24 @@ minetest.register_entity(entname, {
 		itemcheck = itemcheck
 	})
 
+local check_retry
+local function check_retry_add(key, val)
+	if not check_retry then
+		check_retry = {}
+		minetest.after(1 + math_random(), function()
+				local total = 0
+				for k, v in pairs(check_retry) do
+					total = total + 1
+					check_queue[k] = v
+				end
+				check_queue_dirty = true
+				check_retry = nil
+				nodecore.log("warning", "visinv entity retry: " .. total)
+			end)
+	end
+	check_retry[key] = val
+end
+
 nodecore.register_globalstep("visinv check", function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
@@ -117,6 +137,8 @@ nodecore.register_globalstep("visinv check", function()
 					ent.is_stack = true
 					ent.poskey = poskey
 					itemcheck(ent)
+				else
+					check_retry_add(poskey, data)
 				end
 			end
 		end
@@ -151,6 +173,14 @@ nodecore.register_on_register_item(function(_, def)
 nodecore.register_lbm({
 		name = modname .. ":init",
 		run_at_every_load = true,
+		nodenames = {"group:visinv"},
+		action = function(...) return nodecore.visinv_update_ents(...) end
+	})
+
+nodecore.register_abm({
+		label = "visinv check",
+		interval = 2,
+		chance = 1,
 		nodenames = {"group:visinv"},
 		action = function(...) return nodecore.visinv_update_ents(...) end
 	})

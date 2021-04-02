@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, string, tonumber, type, vector
     = math, minetest, nodecore, pairs, string, tonumber, type, vector
-local math_random, string_format
-    = math.random, string.format
+local math_floor, math_random, string_format
+    = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -42,11 +42,31 @@ local passive_queue = {}
 local dependency_index = {}
 local dependency_reverse = {}
 
-local function scan(pos, dir, max, getnode)
-	local p = {x = pos.x, y = pos.y, z = pos.z}
+local function mapblock(pos)
+	return {
+		x = math_floor((pos.x + 0.5) / 16),
+		y = math_floor((pos.y + 0.5) / 16),
+		z = math_floor((pos.z + 0.5) / 16),
+	}
+end
+
+local function scan(pos, dir, max, getnode, cbbs)
+	local p = pos
 	if (not max) or (max > optic_distance) then max = optic_distance end
 	for _ = 1, max do
+		local o = p
 		p = vector.add(p, dir)
+		if cbbs and not vector.equals(mapblock(o), mapblock(p)) then
+			cbbs[#cbbs + 1] = {
+				pos = vector.add(o, vector.multiply(dir, 0.5)),
+				dir = dir,
+				plane = {
+					x = dir.x == 0 and 1 or 0,
+					y = dir.y == 0 and 1 or 0,
+					z = dir.z == 0 and 1 or 0,
+				}
+			}
+		end
 		local node = getnode(p)
 		if (not node) or node.name == "ignore" then return end
 		if node_opaque[node.name] then return p, node end
@@ -58,6 +78,7 @@ local function scan(pos, dir, max, getnode)
 		end
 	end
 end
+nodecore.optic_scan = scan
 
 local function scan_recv(pos, dir, max, getnode)
 	local hit, node = scan(pos, dir, max, getnode)
@@ -129,6 +150,7 @@ local function optic_commit(v)
 	if type(nn) == "string" then nn = {name = nn} end
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
+	local vhash = hashpos(v.pos)
 	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
 		set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
@@ -137,7 +159,9 @@ local function optic_commit(v)
 		if src then
 			for _, dir in pairs(src) do
 				local hash = hashpos(dir)
-				if not oldidx[hash] then optic_trigger(v.pos, dir) end
+				if not oldidx[hash] then
+					optic_trigger(v.pos, dir)
+				end
 				newidx[hash] = dir
 			end
 		end
@@ -146,12 +170,11 @@ local function optic_commit(v)
 		end
 	end
 
-	local hash = hashpos(v.pos)
-	local olddep = dependency_reverse[hash]
+	local olddep = dependency_reverse[vhash]
 	if olddep then
 		for k in pairs(olddep) do
 			local t = dependency_index[k]
-			if t then t[hash] = nil end
+			if t then t[vhash] = nil end
 		end
 	end
 	for k in pairs(v.deps) do
@@ -160,7 +183,7 @@ local function optic_commit(v)
 			t = {}
 			dependency_index[k] = t
 		end
-		t[hash] = true
+		t[vhash] = true
 	end
 end
 

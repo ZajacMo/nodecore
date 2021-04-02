@@ -43,6 +43,7 @@ local ore = reg("Ore", {
 		tiles = {"nc_terrain_stone.png^" .. oretile},
 		drop_in_place = modname .. ":cobble",
 		groups = {stone = 1},
+		silktouch = false,
 		strata = stratore
 	})
 stratore[1] = ore

@@ -27,7 +27,8 @@ nodecore.register_craft({
 
 nodecore.register_cook_abm({
 		nodenames = {"group:sand"},
-		neighbors = {"group:flame"}
+		neighbors = {"group:flame"},
+		neighbors_invert = true
 	})
 
 local src = modname .. ":glass_hot_source"

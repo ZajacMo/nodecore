@@ -9,16 +9,11 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Change bandolier slot items back to upright_sprite
-
 - We can reliably detect the zoom player control, make far-zoom only
   work while zooming, and add hints for it.
 
 - Consider switching touchtips to waypoint HUDs now that hiding
   distance is an option.
-
-- BUG: Torch light doesn't update if players are standing still when
-  torch goes out.
 
 - BUG: Players with very high lag are sometimes able to dig air,
   flux into their inventory, esp. with silk-touch tools.
@@ -43,16 +38,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- If you leave stone soaking for a while, it looks like it
 	  basically softens all or nothing.
 	- Can we smooth this out and make it less jarring?
-
-- Buff wall scaling
-	- Allow 1n lateral movement along wall
-	- Makes outer wall corners navigable
-
-- Silk Touch needs a review, possible nerf.
-	- Review what materials are silk toucheable and which are not
-	  at this point, make adjustments if needed.
-	- Maybe require some preparatory step, like a pummel into a
-	  prepped material before dig?
 
 - Make a way to prevent crafting on place
 	- Sneak? Aux?
@@ -108,6 +93,16 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Don't allow looktip if the "above" node is below a certain
 	  light level
 	- Consider separating wieldtips and punch/looktips again.
+	- Separate air vs. node cursor?
+		- Like the node vs. entity cursor, can we hide the cursor when
+		  pointing only at air?
+		- Could have an API to check for pointability, e.g. bandolier
+		  slots from the back.
+		- Would server lag be too much?
+		- This would integrate really well with a WAILA sort of thing.
+		- Could totally revamp touchtips, and dynamic feel Lightning.
+		- Use an image HUD so we can force mobile to display it too, so
+		  mobile players can use look dir too?
 
 - falling_node pillars settle out of order!
 	- Also anectodal issues with falling nodes sometimes

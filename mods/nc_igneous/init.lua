@@ -5,7 +5,8 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include('amalgam')
-include('pumice')
+include("amalgam")
+include("pumice")
 include("harden")
 include("hints")
+include("renew")

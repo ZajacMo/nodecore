@@ -31,18 +31,11 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Test nc_wield with items that have their own visual scale.
 
 - Flammability ABM ordering.  Always do extinguish check after ignite
-  checks or vice versa, so suboptimal firestarting is consistent.
-
-- Look into game default settings.
-	- Change default ABM budget
-	  (https://github.com/minetest/minetest/pull/10290)
+  checks or vice versa, so suboptimal firestarting is consiste
 
 - Make door pusheability customizable
 	- door_can_push or door_cannot_push groups/flags or something.
 	- Allow override of standard falling_node check.
-
-- Allow items to have a "drop" field that's honored when stacks are
-  dug or items are pulled off shelves...?
 
 - Overhaul player health to work entirely virtual
 	- Raise max up a lot to make room for fine grained falling
@@ -77,10 +70,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- May need to test performance on a non-JIT build, where this is expected
 	  to have a larger impact, since JIT probably optimizes the difference away.
 
-- Continue to chisel away at ABM perf issues.
-	- Simplify or optimize existing ABMs
-	- Convert things to DNTs.
-
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
 	- Leaching resumes instead of resetting when water removed.
@@ -108,10 +97,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	  spawn an item_ent.
 	- Need this for amalgamation remelting.
 	- Would it make sense to unify the item and falling_node ents?
-
-- API for map-seed-deterministic scatter.
-	- Given minp, maxp, seed and density, find all positions.
-	- Use for sponges, lava/water springs, etc.
 
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?

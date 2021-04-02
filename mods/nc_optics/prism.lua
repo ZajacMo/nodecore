@@ -37,6 +37,7 @@ local basedef = {
 		txr .. "^" .. pout,
 		txr .. "^" .. pinp
 	},
+	backface_culling = true,
 	groups = {
 		silica = 1,
 		optic_check = 1,
@@ -72,6 +73,7 @@ reg("_on", {
 			txr .. "^" .. pinp .. "^" .. pina
 		},
 		light_source = 1,
+		groups = {optic_source = 1},
 		optic_source = function(_, node)
 			local fd = nodecore.facedirs[node.param2]
 			return {fd.k, fd.l}

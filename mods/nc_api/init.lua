@@ -107,11 +107,13 @@ include("fx_digparticles")
 
 include("register_mods")
 include("register_entlabels")
+include("register_backfaces")
 
 include("mapgen_limits")
 include("mapgen_shared")
 
 include("item_on_register")
+include("item_diggable")
 include("item_drop_in_place")
 include("item_oldnames")
 include("item_tool_break")
