@@ -13,6 +13,26 @@ local function ablation(pos, node)
 	local out = vector.add(face.k, pos)
 	local tn = minetest.get_node(out)
 	if nodecore.operate_door(out, tn, face.k) then
+		local ppos = vector.add(vector.multiply(face.k, 0.5), pos)
+		local vel = vector.multiply(face.f, 0.5)
+		local dvel = {
+			x = vel.x ~= 0 and 0.5 or 2,
+			y = vel.y ~= 0 and 0.5 or 2,
+			z = vel.z ~= 0 and 0.5 or 2,
+		}
+		minetest.add_particlespawner({
+				time = 0.05,
+				amount = 30,
+				minpos = ppos,
+				maxpos = ppos,
+				minvel = vector.add(vel, vector.multiply(dvel, -1)),
+				maxvel = vector.add(vel, dvel),
+				texture = "[combine:1x1^[noalpha^[invert:rgb^[multiply:#808080",
+				minsize = 0.25,
+				maxsize = 1,
+				minexptime = 0.25,
+				maxexptime = 0.5
+			})
 		nodecore.witness(pos, "door ablation")
 		return nodecore.dnt_set(pos, dntname, 2)
 	end
