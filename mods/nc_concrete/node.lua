@@ -34,7 +34,6 @@ minetest.register_node(modname .. ":coalstone", {
 			cracky = 2
 		},
 		drop_in_place = "nc_terrain:cobble",
-		drop = "nc_fire:lump_coal",
 		crush_damage = 2,
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
