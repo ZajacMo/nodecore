@@ -78,8 +78,8 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Switch some extended attributes to first-class support instead of modifying
   definition at registration time.
-	- e.g. drop_in_place should hook the engine's dig event instead of
-	  registering an on_dig on the node, so inheritance works.
+	- e.g. the way drop_in_place used to be an after_dig_node hook
+	  modifier but became first-class.
 
 - Add a nodecore.inherit_node() helper that registers a node as a
   modified copy of another definition, e.g. for planted eggcorns copying
@@ -89,7 +89,7 @@ ISSUES-CODE: Issues related to code quality and APIs
   hook in writing, and possibly other places.
 
 - Should we create "recipe groups" to make it easier to specify
-  equivalent recipes for hint purposes?	
+  equivalent recipes for hint purposes?
 
 - Need to find a way to make AISMs work with falling_node.
 	- Create ItemStack, run hooks, try to convert back to node
