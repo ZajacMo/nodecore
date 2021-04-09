@@ -47,8 +47,7 @@ function minetest.node_dig(pos, node, digger, ...)
 			end
 
 			if def.drop_non_silktouch then
-				return yielditem(pos, digger,
-					ItemStack(def.drop_non_silktouch))
+				yielditem(pos, digger, ItemStack(def.drop_non_silktouch))
 			end
 
 			return minetest.set_node(pos, {
