@@ -46,12 +46,29 @@ function nodecore.stack_merge(dest, src)
 	return src
 end
 
-function nodecore.node_inv(pos)
-	return minetest.get_meta(pos):get_inventory()
-end
+local metakey = "ncitem"
 
 function nodecore.stack_get(pos)
-	return nodecore.node_inv(pos):get_stack("solo", 1)
+	local meta = minetest.get_meta(pos)
+	local str = meta:get_string(metakey)
+	if str and str ~= "" then return ItemStack(str) end
+	local inv = meta:get_inventory()
+	local stack = inv:get_stack("solo", 1)
+	if stack:is_empty() then return stack end
+	meta:set_string(metakey, stack:to_string())
+	inv:set_size("solo", 0)
+	return stack
+end
+
+function nodecore.stack_get_serial(metatable)
+	local str = metatable
+	str = str and str.fields
+	str = str and str[metakey]
+	if str and str ~= "" then return ItemStack(str) end
+	local inv = metatable.inventory
+	inv = inv and inv.solo
+	inv = inv and inv[1]
+	if inv and inv ~= "" then return ItemStack(inv) end
 end
 
 local function update(pos, ...)
@@ -64,12 +81,14 @@ function nodecore.stack_set(pos, stack, player)
 		nodecore.log("action", string_format("%s sets stack %q at %s",
 				player:get_player_name(), shortdesc(stack), minetest.pos_to_string(pos)))
 	end
-	return update(pos, nodecore.node_inv(pos):set_stack("solo", 1, ItemStack(stack)))
+	return update(pos, minetest.get_meta(pos):set_string(metakey,
+			ItemStack(stack):to_string()))
 end
 
 function nodecore.stack_add(pos, stack, player)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
+	if not def.can_have_itemstack then return end
 	if def.stack_allow then
 		local ret = def.stack_allow(pos, node, stack)
 		if ret == false then return stack end
@@ -79,13 +98,8 @@ function nodecore.stack_add(pos, stack, player)
 	local donate = stack:get_count()
 	local item = nodecore.stack_get(pos)
 	local exist = item:get_count()
-	local left
-	if item:is_empty() then
-		left = nodecore.node_inv(pos):add_item("solo", stack)
-	else
-		left = nodecore.stack_merge(item, stack)
-		nodecore.stack_set(pos, item)
-	end
+	local left = nodecore.stack_merge(item, stack)
+	nodecore.stack_set(pos, item)
 	local remain = left:get_count()
 	if donate ~= remain then
 		if player then
