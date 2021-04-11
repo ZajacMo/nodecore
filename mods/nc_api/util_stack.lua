@@ -88,7 +88,7 @@ end
 function nodecore.stack_add(pos, stack, player)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}
-	if not def.can_have_itemstack then return end
+	if not def.can_have_itemstack then return stack end
 	if def.stack_allow then
 		local ret = def.stack_allow(pos, node, stack)
 		if ret == false then return stack end
