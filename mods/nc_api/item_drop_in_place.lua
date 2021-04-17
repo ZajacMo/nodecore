@@ -13,7 +13,6 @@ local function yielditem(pos, digger, stack)
 		stack = digger:get_inventory():add_item("main", stack)
 	end
 	if stack:is_empty() then return end
-	minetest.chat_send_all(stack:to_string())
 	return nodecore.item_eject(pos, stack)
 end
 
