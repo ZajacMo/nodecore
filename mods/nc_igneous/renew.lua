@@ -21,7 +21,7 @@ nodecore.register_limited_abm({
 
 			local lavas = 0
 			for _, dir in pairs(nodecore.dirs()) do
-				if minetest.get_node(vector.add(pos, dir)) == lavaname then
+				if minetest.get_node(vector.add(pos, dir)).name == lavaname then
 					lavas = lavas + 1
 				end
 			end
