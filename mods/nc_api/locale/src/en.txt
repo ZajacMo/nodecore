@@ -535,8 +535,8 @@ msgstr "Horzy Tarstone"
 msgid "Humus"
 msgstr "Humus"
 
-msgid "IRC: #nodecore @@ chat.freenode.net"
-msgstr "IRC: #nodecore @@ chat.freenode.net"
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
 
 msgid "Iceboxy"
 msgstr "Iceboxy"

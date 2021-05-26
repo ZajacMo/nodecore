@@ -21,6 +21,6 @@ nodecore.register_inventory_tab({
 			"https://content.minetest.net/packages/Warr1024/nodecore/",
 			"GitLab: https://gitlab.com/sztest/nodecore",
 			"Discord: https://discord.gg/NNYeF6f",
-			"IRC: #nodecore @@ chat.freenode.net"
+			"IRC: #nodecore @@ irc.libera.chat"
 		}
 	})
