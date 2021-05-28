@@ -51,7 +51,7 @@ function minetest.register_abm(def, ...)
 			minetest.after(0, process)
 		end
 		for _, npos in ipairs(nodecore.find_nodes_around(pos, nnames, 1)) do
-			queue[hash(pos)] = {
+			queue[hash(npos)] = {
 				pos = npos,
 				node = minetest.get_node(npos),
 				action = oldact
