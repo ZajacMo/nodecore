@@ -58,6 +58,9 @@ GitLab:
 Discord:
 	https://discord.gg/NNYeF6f
 
+Matrix:
+  #nodecore:matrix.org
+
 IRC:
 	#nodecore on irc.libera.chat
 	(bridged to Discord)
