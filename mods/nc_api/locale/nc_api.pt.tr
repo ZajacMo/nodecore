@@ -1,10 +1,10 @@
 # textdomain: nc_api
 (C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 por Aaron Suen <war1024@@gmail.com>
-- "Furnaces" are not a thing; discover smelting with open flames.=-"Fornalhas" não existem; descubra como cozinhar com chamas à céu aberto.
-- Can't dig trees or grass? Search for sticks in the canopy.=- Não consegue quebrar árvores ou cavar? Procure por gravetos na cobertura.
-- Crafting is done by building recipes in-world.=- A Criação de Itens é feita construindo as receitas pelo mundo.
+- "Furnaces" are not a thing; discover smelting with open flames.=- Não existem "Fornos"; descubra derretimento em chamas abertas.
+- Can't dig trees or grass? Search for sticks in the canopy.=arvores.
+- Crafting is done by building recipes in-world.=- A Criação de itens é feita construindo as receitas pelo mundo.
 - Do not use F5 debug info; it will mislead you!=- Não use as informações de debug do F5; Apenas irão lhe confundir!
-- Drop items onto ground to create stack nodes. They do not decay.=- Derrube itens no chão para criar pilhas de nodes. Eles não somem.
+- Drop items onto ground to create stack nodes. They do not decay.=- Jogue itens no chão para criar pilhas de nós. Eles não desaparecem.
 - Hold/repeat right-click on walls/ceilings barehanded to climb.=- Segure/repita o clique direito em paredes/tetos para escalar com mãos nuas.
 - If a recipe exists, you will see a special particle effect.=- Se uma receita existe, você verá um efeito especial de partícula sair do node.
 - Items picked up try to fit into the current selected slot first.=- Os itens pegados são primeiramente armazenados no espaço atualmente selecionado.

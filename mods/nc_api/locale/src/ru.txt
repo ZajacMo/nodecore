@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-11 15:03+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2021-06-17 20:43+0000\n"
+"Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.0.4\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.6.2\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -920,6 +920,8 @@ msgstr "- Большие рецепты обычно более симметри
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
 msgstr ""
+"- Удерживайте/повторяйте щелчок правой кнопкой мыши на стенах/потолках, "
+"чтобы взобраться на них."
 
 msgid "- Do not use F5 debug info; it will mislead you!"
 msgstr ""
@@ -929,25 +931,577 @@ msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
 
 msgid "Adobe Mix"
-msgstr ""
+msgstr "Саманная Смесь"
 
 msgid "Annealed Lode Adze"
-msgstr ""
+msgstr "Отожженное Металлическое Тесло"
 
 msgid "Annealed Lode Rake"
-msgstr ""
+msgstr "Отожженные Металлические Грабли"
 
 msgid "Adobe"
-msgstr ""
+msgstr "Саман"
 
 msgid "Adobe Bricks"
-msgstr ""
+msgstr "Саманные Кирпичи"
 
 msgid "@1 ....."
-msgstr ""
+msgstr "@1 ....."
 
 msgid "Bindy"
-msgstr ""
+msgstr "Связка"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 Аарон Суэн <warr1024@@gmail.com>"
+
+msgid "place a node with a hinged panel"
+msgstr "поставьте ноду с навесной панелью"
+
+msgid "run at full speed"
+msgstr "пробегите на полной скорости"
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "Blank"
+msgstr "Пустой"
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "harden stone"
+msgstr "затвердите камень"
+
+msgid "find pumice"
+msgstr "найдите пемзу"
+
+msgid "cure pliant concrete fully"
+msgstr "затвердите мягкий бетон"
+
+msgid "drop all your items at once"
+msgstr "выбросьте все свои предметы за раз"
+
+msgid "chisel adobe bricks"
+msgstr "высеките самановые кирпичи"
+
+msgid "drop an item"
+msgstr "бросьте предмет"
+
+msgid "Wooden Adze"
+msgstr "Деревянное тесло"
+
+msgid "cycle through all charcoal glyphs"
+msgstr "пройдитесь по всем угольным глифам"
+
+msgid "dig a node with a hinged panel and tool"
+msgstr "выкопайте ноду с навесной панелью и инструментом"
+
+msgid "complete a craft with a hinged panel"
+msgstr "завершить поделку навесной панелью"
+
+msgid "dig up cobble"
+msgstr "выкопайте булыжник"
+
+msgid "change a stylus pattern"
+msgstr "измените паттерн стилуса"
+
+msgid "chisel sandstone bricks"
+msgstr "высеките кирпичи из песчаника"
+
+msgid "chisel stone bricks"
+msgstr "высеките каменные кирпичи"
+
+msgid "chisel tarstone bricks"
+msgstr "высеките смоляные кирпичи"
+
+msgid "leach humus to dirt"
+msgstr "выщелочить чернозем в грязь"
+
+msgid "propel hinged panel with focused light"
+msgstr "продвиньте навесную панель со сфокусированным светом"
+
+msgid "gate a prism"
+msgstr "затмите призму"
+
+msgid "temper a lode cube to use as an anvil"
+msgstr "закалите жильный куб для использования в качестве наковальни"
+
+msgid "Bricky Adobe"
+msgstr "Кирпичный Саман"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Кирпичный мягкий Саман"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Кирпичный мягкий песчаник"
+
+msgid "Bricky Pliant Stone"
+msgstr "Кирпичный мягкий камень"
+
+msgid "forge lode prills into a tool head on an anvil"
+msgstr "выковайте рудные присадки в головку инструмента на наковальне"
+
+msgid "hint complete - @1"
+msgstr "подсказка завершена - @1"
+
+msgid "leach dirt to sand"
+msgstr "выщелочить грязь в песок"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Discord: https://discord.gg/NNYeF6f"
+
+msgid "Tarstone Bricks"
+msgstr "Смоляные кирпичи"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "добавьте угль в заполнитель для получения смолистого камня"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Кирпичный мягкий смолистый камень"
+
+msgid "Bricky Sandstone"
+msgstr "Кирпичный песчаник"
+
+msgid "Bricky Stone"
+msgstr "Кирпичный камень"
+
+msgid "Bricky Tarstone"
+msgstr "Кирпичный смолистый камень"
+
+msgid "Pliant Sandstone"
+msgstr "Мягкий песчаник"
+
+msgid "Pliant Stone"
+msgstr "Мягкий камень"
+
+msgid "Pliant Tarstone"
+msgstr "Мягкий смоляной камень"
+
+msgid "Sandstone"
+msgstr "Песчаник"
+
+msgid "Stone Bricks"
+msgstr "Каменные кирпичи"
+
+msgid "Tarstone"
+msgstr "Смоляной камень"
+
+msgid "Pliant Adobe"
+msgstr "Мягкий саман"
+
+msgid "Render"
+msgstr "Штукатурка"
+
+msgid "Wooden Rake"
+msgstr "Деревянные грабли"
+
+msgid "assemble a lode adze"
+msgstr "соберите тесло из руды"
+
+msgid "assemble a lode rake"
+msgstr "соберите грабли из руды"
+
+msgid "rotate a charcoal glyph"
+msgstr "поверните угольный глиф"
+
+msgid "go for a swim"
+msgstr "пойдите поплавайте"
+
+msgid "mix dirt into ash to make adobe mix"
+msgstr "смешать грязь с золой для получения саманной смеси"
+
+msgid "mix sand into ash to make render"
+msgstr "смешайте песок с золой для получения штукатурки"
+
+msgid "navigate by touch in darkness"
+msgstr "ориентируйтесь на ощупь в темноте"
+
+msgid "hold your breath"
+msgstr "задержите дыхание"
+
+msgid "scale an overhang"
+msgstr "взберитесь по навесу"
+
+msgid "scale a wall"
+msgstr "взберитесь по стене"
+
+msgid "weaken stone by soaking"
+msgstr "ослабьте камень замачиванием"
+
+msgid "push an item into a storage box with a hinged panel"
+msgstr "поместить предмет в ящик для хранения с откидной панелью"
+
+msgid "wet a concrete mix"
+msgstr "намочите бетонную смесь"
+
+msgid "anneal a lode cube"
+msgstr "отжигать рудный куб"
+
+msgid "complete a pummel with a hinged panel and tool head"
+msgstr "завершите избиение навесной панели и головки инструмента"
+
+msgid "Bindy Adobe"
+msgstr "Завязанный Саман"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Завязанный мягкий саман"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Завязанный мягкий песчаник"
+
+msgid "Bindy Pliant Stone"
+msgstr "Завязанный мягкий камень"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Завязанный мягкий смолистый камень"
+
+msgid "Bindy Sandstone"
+msgstr "Завязанный песчаник"
+
+msgid "Bindy Stone"
+msgstr "Завязанный камень"
+
+msgid "Bindy Tarstone"
+msgstr "Завязанный смолистый камень"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Скреплённая панель из кирпича саман"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Скреплённая навесная панель из кирпича песчаника"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Скреплённая кирпичная панель из песчаника"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Скреплённые кирпичи из песчаника"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Скреплённые кирпичи из самана"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Скреплённая навесная панель из каменного кирпича"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Скреплённая панель из каменного кирпича"
+
+msgid "Bonded Stone Bricks"
+msgstr "Скреплённые каменные кирпичи"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Скреплённая панель из кирпича смолистого камня"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Скреплённая навесная панель из кирпича смолистого камня"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Скреплённые кирпичи из смолистого камня"
+
+msgid "Boxy"
+msgstr "Коробчатый"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Коробчатый мягкий саман"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Коробчатый мягкий песчаник"
+
+msgid "Boxy Pliant Stone"
+msgstr "Коробчатый мягкий камень"
+
+msgid "Boxy Tarstone"
+msgstr "Коробчатый смолистый камень"
+
+msgid "Boxy Adobe"
+msgstr "Коробчатый саман"
+
+msgid "Boxy Sandstone"
+msgstr "Коробчатый песчаник"
+
+msgid "Boxy Stone"
+msgstr "Коробчатый камень"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Коробчатый мягкий смолистый камень"
+
+msgid "Bricky"
+msgstr "Кирпичный"
+
+msgid "Hashy"
+msgstr "Решёточный"
+
+msgid "Hashy Adobe"
+msgstr "Решёточный саман"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Решёточный мягкий саман"
+
+msgid "Hashy Pliant Stone"
+msgstr "Решёточный мягкий камень"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Решёточный мягкий смолистый камень"
+
+msgid "Hashy Sandstone"
+msgstr "Решёточный песчаник"
+
+msgid "Hashy Stone"
+msgstr "Решёточный камень"
+
+msgid "Hashy Tarstone"
+msgstr "Решёточный смолистый камень"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
+
+msgid "Pumice"
+msgstr "Пемза"
+
+msgid "Pumwater"
+msgstr "Пемзо-Вода"
+
+msgid "Matrix: #nodecore:matrix.org"
+msgstr "Matrix: #nodecore:matrix.org"
+
+msgid "Sandstone Bricks"
+msgstr "Кирпичи из песчаника"
+
+msgid "Wet Adobe Mix"
+msgstr "Влажная смесь самана"
+
+msgid "Wet Render"
+msgstr "Влажная штукатурка"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Влажный смолистый агрегат"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Скреплённая навесная панель из кирпича самана"
+
+msgid "bond tarstone bricks"
+msgstr "Связанные кирпичи из смолистого камня"
+
+msgid "bond adobe bricks"
+msgstr "Связанные кирпичи из самана"
+
+msgid "bond sandstone bricks"
+msgstr "Связанные кирпичи из песчаника"
+
+msgid "bond stone bricks"
+msgstr "Связанные кирпичи из камня"
+
+msgid "insert wooden pin into wooden panel"
+msgstr "вставьте деревянный штифт в деревянную панель"
+
+msgid "set concrete to pliant"
+msgstr "сделайте бетон мягким"
+
+msgid "HAND OF POWER"
+msgstr "РУКА СИЛЫ"
+
+msgid "pack up a complete tote"
+msgstr "собрать полную сумку"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Решёточный мягкий песчаник"
+
+msgid "assemble a stone-tipped stylus"
+msgstr "соберите стилус с каменным наконечником"
+
+msgid "throw an item really fast"
+msgstr "очень быстро бросьте предмет"
+
+msgid "melt stone into pumwater"
+msgstr "переплавьте камень в водяную пемзу"
+
+msgid "Iceboxy Adobe"
+msgstr "Ледяная коробка самана"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Ледяная коробка мягкого самана"
+
+msgid "Iceboxy"
+msgstr "Ледяная коробка"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Ледяная коробка мягкого камня"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Ледяная коробка мягкого песчаника"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Ледяная коробка мягкого смоляного камня"
+
+msgid "Iceboxy Sandstone"
+msgstr "Ледяная коробка песчаника"
+
+msgid "Iceboxy Stone"
+msgstr "Ледяная коробка камня"
+
+msgid "Iceboxy Tarstone"
+msgstr "Ледяная коробка смолистого камня"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Тесло из настойки отожжённой руды"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Настойка отожжённой рудной грабли"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Тесло из настойки закаленной руды"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Грабли из настойки закаленной руды"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Кав Глиф из угля"
+
+msgid "Flux"
+msgstr "Флюс"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Фот Глиф из угля"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Гекь Глиф из угля"
+
+msgid "Glowing Lode Adze"
+msgstr "Светящиеся Металлическое Тесло"
+
+msgid "Glowing Lode Rake"
+msgstr "Светящиеся Металлические Грабли"
+
+msgid "Horzy"
+msgstr "Гориз"
+
+msgid "Horzy Pliant Adobe"
+msgstr "Гориз Мягкий Саман"
+
+msgid "Horzy Adobe"
+msgstr "Гориз Саман"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Гориз Мягкий Песчаник"
+
+msgid "Horzy Pliant Stone"
+msgstr "Гориз Мягкий Камень"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Гориз Мягкий Смоленной Камень"
+
+msgid "Horzy Sandstone"
+msgstr "Гориз Песчаник"
+
+msgid "Horzy Stone"
+msgstr "Гориз Камень"
+
+msgid "Horzy Tarstone"
+msgstr "Гориз Смоленой Камень"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Пркс Глиф из угля"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Кюег Глиф из угля"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Мью Глиф из угля"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Низ Глиф из угля"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Одо Глиф из угля"
+
+msgid "etch pliant concrete with a stylus"
+msgstr "выгравировать на мягком цементе со стилусом"
+
+msgid "Tempered Lode Adze"
+msgstr "Закалённое Тесло"
+
+msgid "Stone-Tipped Stylus"
+msgstr "Стилус с каменным наконечником"
+
+msgid "Tempered Lode Rake"
+msgstr "Закаленные Грабли"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Тоф Глиф из угля"
+
+msgid "Verty"
+msgstr "Вертик"
+
+msgid "Verty Adobe"
+msgstr "Вертик Саман"
+
+msgid "Verty Pliant Adobe"
+msgstr "Вертик Мягкий Саман"
+
+msgid "Verty Pliant Sandstone"
+msgstr "Вертик Мягкий Песчаник"
+
+msgid "Verty Pliant Stone"
+msgstr "Вертик Мягкий Камень"
+
+msgid "Verty Pliant Tarstone"
+msgstr "Вертик Мягкий Смоленной Камень"
+
+msgid "Verty Sandstone"
+msgstr "Вертик Песчаник"
+
+msgid "Verty Stone"
+msgstr "Вертик Камень"
+
+msgid "Verty Tarstone"
+msgstr "Вертик Смоленой Камень"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Ксрп Глиф из угля"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Йит Глиф из угля"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Зин Глиф из угля"
+
+msgid "find pumwater"
+msgstr "найдите водяную пемзу"
+
+msgid "quench pumwater to amalgamation"
+msgstr "тушите водяную пемзу до амальгамации"
+
+msgid "Vermy Pliant Adobe"
+msgstr "Рыхлый Мягкий Саман"
+
+msgid "Vermy"
+msgstr "Рыхлая"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "Рыхлый Мягкий Песчаник"
+
+msgid "Vermy Pliant Stone"
+msgstr "Рыхлый Мягкий Камень"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Рыхлый Мягкий Смоленной Камень"
+
+msgid "Vermy Sandstone"
+msgstr "Рыхлый Песчаник"
+
+msgid "Vermy Stone"
+msgstr "Рыхлый Камень"
+
+msgid "Vermy Tarstone"
+msgstr "Рыхлый Смолиной Камень"
+
+msgid "Vermy Adobe"
+msgstr "Рыхлый Саман"

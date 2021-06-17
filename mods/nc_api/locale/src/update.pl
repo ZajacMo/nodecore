@@ -6,7 +6,7 @@ use JSON qw(from_json);
 sub curl {
 	my @cmd = ("curl");
 	$ENV{NC_WEBLATE_TOKEN} and
-	  push @cmd, "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
+	  push @cmd, "-f", "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
 	push @cmd, @_;
 	open(my $fh, "-|", @cmd) or die($!);
 	return $fh;
