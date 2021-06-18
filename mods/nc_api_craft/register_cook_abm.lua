@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local minetest, nodecore, pairs, type
+    = minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -91,10 +91,51 @@ nodecore.register_dnt({
 		action = cookcheck
 	})
 
+local cooknames = {}
 function nodecore.register_cook_abm(def)
 	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
 	def.action = cookcheck
+	for _, n in pairs(def.nodenames) do cooknames[n] = true end
 	nodecore.register_limited_abm(def)
+end
+
+minetest.after(0, function()
+		local originalnames = cooknames
+		cooknames = {}
+		local grp = "group:"
+		for k in pairs(originalnames) do
+			if k:sub(1, #grp) == grp then
+				local g = k:sub(#grp + 1)
+				for n in pairs(minetest.registered_nodes) do
+					if minetest.get_item_group(n, g) > 0 then
+						cooknames[n] = true
+					end
+				end
+			else
+				cooknames[k] = true
+			end
+		end
+	end)
+
+for fn, param in pairs({
+		set_node = true,
+		add_node = true,
+		remove_node = false,
+		swap_node = true,
+		dig_node = false,
+		place_node = true,
+		add_node_level = false
+	}) do
+	local func = minetest[fn]
+	minetest[fn] = function(pos, pn, ...)
+		local node = param and pn or minetest.get_node(pos)
+		if cooknames[node.name] then
+			nodecore.log("action", "fast node cook check of "
+				.. node.name .. " at " .. minetest.pos_to_string(pos))
+			cookcheck(pos, node)
+		end
+		return func(pos, pn, ...)
+	end
 end
