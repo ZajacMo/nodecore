@@ -21,13 +21,19 @@ contribution.
   contributions.  You agree that this constitutes adequate attribution
   under the terms of the license.
 
-- You may request to be attributed pseudonymously at the time of
-  submission.  Unless otherwise specified, source control metadata
-  will be used for attribution.
+- You may request to be attributed pseudonymously immediately before or
+  at the time of submission.  Unless otherwise specified, source control
+  metadata will be used for attribution.
 
 ........................................................................
 
 Other Guidelines:
+
+- For translators: Weblate defaults to using your full name and email
+  as entered during registration for attribution.  "Time of submission"
+  is as soon as you start translating any strings.  If you want a
+  different attribution be sure to request it BEFORE you start
+  translation work.
 
 - Please do not use the nc_* namespace for projects you will be
   releasing directly to the public, e.g. via ContentDB, Forums, etc.
