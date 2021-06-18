@@ -130,12 +130,11 @@ for fn, param in pairs({
 	}) do
 	local func = minetest[fn]
 	minetest[fn] = function(pos, pn, ...)
-		local node = param and pn or minetest.get_node(pos)
-		if cooknames[node.name] then
-			nodecore.log("action", "fast node cook check of "
-				.. node.name .. " at " .. minetest.pos_to_string(pos))
-			cookcheck(pos, node)
+		local function helper(...)
+			local node = param and pn or minetest.get_node(pos)
+			if cooknames[node.name] then cookcheck(pos, node) end
+			return ...
 		end
-		return func(pos, pn, ...)
+		return helper(func(pos, pn, ...))
 	end
 end
