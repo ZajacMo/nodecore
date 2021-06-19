@@ -6,7 +6,7 @@
 - DONE: @1=- ЗАВЕРШЕНО: @1
 - Do not use F5 debug info; it will mislead you!=- Не используйте отладочную информацию F5; Она введет вас в заблуждение!
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=чтобы взобраться на них.
+- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Удерживайте/повторяйте щелчок правой кнопкой мыши на стенах/потолках, чтобы взобраться на них.
 - If a recipe exists, you will see a special particle effect.=- Если рецепт существует, вы увидите спец-эффект.
 - Items picked up try to fit into the current selected slot first.=- Подобранные предметы пытаются поместиться в выделенный слот.
 - Larger recipes are usually more symmetrical.=- Большие рецепты обычно более симметричны.
