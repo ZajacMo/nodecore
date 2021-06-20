@@ -119,22 +119,6 @@ minetest.after(0, function()
 		end
 	end)
 
-for fn, param in pairs({
-		set_node = true,
-		add_node = true,
-		remove_node = false,
-		swap_node = true,
-		dig_node = false,
-		place_node = true,
-		add_node_level = false
-	}) do
-	local func = minetest[fn]
-	minetest[fn] = function(pos, pn, ...)
-		local function helper(...)
-			local node = param and pn or minetest.get_node(pos)
-			if cooknames[node.name] then cookcheck(pos, node) end
-			return ...
-		end
-		return helper(func(pos, pn, ...))
-	end
-end
+nodecore.register_on_nodeupdate(function(pos, node)
+		if cooknames[node.name] then cookcheck(pos, node) end
+	end)

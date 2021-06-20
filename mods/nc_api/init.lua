@@ -109,6 +109,7 @@ include("fx_digparticles")
 include("register_mods")
 include("register_entlabels")
 include("register_backfaces")
+include("register_nodeupdate")
 
 include("mapgen_limits")
 include("mapgen_shared")
