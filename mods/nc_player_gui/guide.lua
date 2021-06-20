@@ -55,7 +55,8 @@ nodecore.register_inventory_tab({
 			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
 			"- Climbing spots also produce very faint light; raise display gamma to see.",
 			"- Climbing spots may be climbed once black particles appear.",
-			"- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+			"- Be wary of dark caves/chasms; you are responsible for getting yourself out.",
+			"- Hopelessly trapped? Stand still and press and release sneak repeatedly."
 		}
 	})
 
