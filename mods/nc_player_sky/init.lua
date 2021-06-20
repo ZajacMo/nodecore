@@ -7,6 +7,9 @@ local math_ceil, math_floor, math_log, string_gsub
 
 nodecore.amcoremod()
 
+minetest.settings:set("time_speed", 0)
+minetest.set_timeofday(0)
+
 local basetextures = {}
 for i = 1, 6 do
 	basetextures[i] = "nc_player_sky_box" .. i .. ".png"
