@@ -25,7 +25,7 @@ nodecore.register_limited_abm({
 					lavas = lavas + 1
 				end
 			end
-			if (lavas < 4) or (math_random() > math_pow(1.5, lavas - 4) / 3) then return end
+			if (lavas < 4) or (math_random() > math_pow(1.25, lavas - 4) / 3) then return end
 
 			nodecore.log("action", string_format("%s melted to %s at %s (%d sources)",
 					stonename, lavaname, minetest.pos_to_string(pos), lavas))
