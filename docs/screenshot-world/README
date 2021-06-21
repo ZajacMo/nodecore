@@ -8,7 +8,7 @@ game) for making screenshots for texture packs.
 How To Use:
 - Copy or symlink this dir into ~/.minetest/worlds, or wherever your
   minetest worlds are stored.
-- Copy the world.mt.dist file to world.mt.
+- Run `make` in the world dir.
 - Enter the world (singleplayer or "host game"; either is fine).
 - Do NOT move the mouse or any other controls; keep your exact position
   and looking angle.  If you mess up, leave and rejoin.
