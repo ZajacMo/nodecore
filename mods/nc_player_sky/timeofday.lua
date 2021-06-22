@@ -1,12 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local math, minetest, nodecore, string
+    = math, minetest, nodecore, string
+local math_abs, string_format
+    = math.abs, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.settings:set("time_speed", 0)
+local fixedtime = 0.2
 
-minetest.after(0, function()
-		minetest.set_timeofday(5/24)
+local timer = 0
+minetest.register_globalstep(function(dtime)
+		timer = timer - dtime
+		if timer > 0 then return end
+		timer = 4
+		local curtime = minetest.get_timeofday()
+		if math_abs(curtime - fixedtime) > 0.001 then
+			nodecore.log("warning", string_format(
+					"time of day: %1.4f -> %1.4f",
+					curtime, fixedtime))
+			minetest.set_timeofday(fixedtime)
+		end
 	end)
 
 minetest.unregister_chatcommand("time")
