@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs, table
     = math, minetest, nodecore, pairs, table
-local math_floor, table_insert, table_sort
-    = math.floor, table.insert, table.sort
+local math_floor, math_random, table_insert
+    = math.floor, math.random, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local pcache = {}
@@ -19,6 +19,13 @@ for k, v in pairs(strings) do
 	strings[k] = function(...) return nodecore.translate(v, ...) end
 end
 
+local function shuffle(t)
+	for i = #t, 2, -1 do
+		local j = math_random(1, i)
+		t[i], t[j] = t[j], t[i]
+	end
+end
+
 local function gethint(player)
 	local pname = player:get_player_name()
 
@@ -28,9 +35,9 @@ local function gethint(player)
 
 	local found, done = nodecore.hint_state(pname)
 	for k, v in pairs(found) do found[k] = strings.hint(v.text) end
-	table_sort(found)
+	shuffle(found)
 	for k, v in pairs(done) do done[k] = strings.done(v.text) end
-	table_sort(done)
+	shuffle(done)
 
 	local prog = #found
 	local left = #(nodecore.hints) - prog - #done
