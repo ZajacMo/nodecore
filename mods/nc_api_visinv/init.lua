@@ -148,15 +148,12 @@ nodecore.register_globalstep("visinv check", function()
 -- NODE REGISTRATION HELPERS
 
 function nodecore.visinv_on_construct(pos)
-	local meta = minetest.get_meta(pos)
-	local inv = meta:get_inventory()
-	inv:set_size("solo", 1)
-	nodecore.visinv_update_ents(pos)
+	return nodecore.visinv_update_ents(pos)
 end
 
 function nodecore.visinv_after_destruct(pos)
 	nodecore.visinv_update_ents(pos)
-	nodecore.fallcheck(pos)
+	return nodecore.fallcheck(pos)
 end
 
 nodecore.register_on_register_item(function(_, def)
@@ -165,6 +162,7 @@ nodecore.register_on_register_item(function(_, def)
 		def.groups = def.groups or {}
 
 		if def.groups.visinv then
+			def.can_have_itemstack = true
 			def.on_construct = def.on_construct or nodecore.visinv_on_construct
 			def.after_destruct = def.after_destruct or nodecore.visinv_after_destruct
 		end

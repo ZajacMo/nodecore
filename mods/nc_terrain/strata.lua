@@ -10,9 +10,7 @@ local thickness = 128
 nodecore.stratadata = nodecore.memoize(function()
 		local data = {}
 		data.stratbyid = {}
-		for i = 1, 65535 do data.stratbyid[i] = false end
 		data.altsbyid = {}
-		for i = 1, 65535 do data.altsbyid[i] = false end
 		for k, v in pairs(minetest.registered_nodes) do
 			if v.strata then
 				local sn

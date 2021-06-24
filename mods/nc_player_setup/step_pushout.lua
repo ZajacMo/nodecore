@@ -48,7 +48,9 @@ nodecore.register_playerstep({
 			or nodecore.player_pushout_disable(player, data)
 			then return reset() end
 
-			local pos = vector.round(player:get_pos())
+			local pos = player:get_pos()
+			pos.y = pos.y + 0.01
+			pos = vector.round(pos)
 			if isroom(pos) then return reset() end
 
 			local podata = data.pushout or {}

@@ -82,6 +82,7 @@ do
 end
 
 include("compat_clientversion")
+include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
 include("compat_nodealpha")
@@ -108,6 +109,7 @@ include("fx_digparticles")
 include("register_mods")
 include("register_entlabels")
 include("register_backfaces")
+include("register_nodeupdate")
 
 include("mapgen_limits")
 include("mapgen_shared")
@@ -125,5 +127,5 @@ include("item_nodebox_zfighting")
 include("item_virtual")
 include("item_stackmax")
 include("item_touch_hurt")
-include("item_txp_overlay")
+include("item_support_falling")
 include("item_tiledump")

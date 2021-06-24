@@ -1,0 +1,186 @@
+========================================================================
+Glossary for Translators
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+------------------------------------------------------------------------
+
+Anneal / Annealed:
+	Heat and then cool slowly, to form a specific kind of crystal
+	structure.
+
+Bindy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles binding/tying the corners of a
+	node with cord or rope.
+
+Bond / Bonded:
+	Used in NodeCore stone brickwork.  Cementing/gluing bricks
+	together.
+
+Boxy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles a square box.
+
+Bricky:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles bricks.
+
+Cav:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Eggcorn:
+	NodeCore name for a tree seed.  Derived from a misnomer for
+	an acorn that gave rise to a linguistic term.
+	https://en.wikipedia.org/wiki/Eggcorn#Etymology
+
+Fot:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Flux:
+	A liquid flow of concentrated lux radiation.  Name is derived
+	from the parent "lux" material name, plus the meaning "flow".
+
+Gate (Gated Prism / "Gate a prism"):
+	To block or close off, as per shutting a gate.  From the name
+	of the terminal in a field effect transistor that's used to
+	control whether current is allowed to flow through it.
+	https://en.wikipedia.org/wiki/Field-effect_transistor
+
+Geq:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Hashy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles a diagonal hash/grid.
+
+Horzy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles horizontal stripes.
+
+Iceboxy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles a square box with a four-pointed
+	pattern contained inside it.
+
+Leach:
+	Dissolving substances out of something, specifically removing
+	organic material from soil to leave behind sediments.
+	https://en.wikipedia.org/wiki/Leaching_(pedology)
+	https://en.wikipedia.org/wiki/Leaching_(agriculture)
+	https://en.wikipedia.org/wiki/Leaching_(chemistry)
+
+Lode:
+	A metallic ore found in NodeCore and used to craft tools.
+	Similar to iron or carbon steel but no exact real-world
+	equivalent.  The name comes from a rare/archaic term for ore.
+
+Lux:
+	A light-emitting radioactive stone.  Name means "light".
+
+Mew:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Niz:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Odo:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Prx:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Pumwater:
+	Molten rock (magma or lava).  The name is derived from a pun:
+	what you get when you melt pumice.
+	Ice -> water, pumice -> pumwater.
+
+Qeg:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Render:
+	Used in NodeCore to refer to a type of cement material,
+	specifically one made of sand and used to make sandstone.
+	https://en.wikipedia.org/wiki/Cement_render
+
+Scale / Scaling:
+	Used in NodeCore in the sense of "climbing."
+
+Tarstone:
+	A darkened, tarry-looking stone made from stone dyed with
+	charcoal.  No exact real-world equivalent.
+
+Temper / Tempered:
+	Heat and then cool quickly, to form a specific kind of crystal
+	structure.  As it's used in NodeCore, technically the term
+	"harden" might be more accurate.
+
+Tof:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Vermy:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles criss-crossing irregular
+	lines/curves, like the trails of worms ("vermiform").
+
+Verty:
+	A concrete etching pattern.  Can eappear as an adjective
+	modifying a node, or on its own to describe the pattern
+	programmed into a stylus.
+	This pattern resembles vertical stripes.
+
+Xrp:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Yit:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+Zin:
+	Name of a glyph shape in NodeCore.  The name itself is mostly
+	meaningless and derived from some of the latin characters that
+	the glyph can be used to represent.
+
+........................................................................
+========================================================================

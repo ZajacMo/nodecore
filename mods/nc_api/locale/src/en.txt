@@ -1,12 +1,6 @@
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 
-msgid "(and 1 more hint)"
-msgstr "(and 1 more hint)"
-
-msgid "(and @1 more hints)"
-msgstr "(and @1 more hints)"
-
 msgid "+"
 msgstr "+"
 
@@ -36,9 +30,6 @@ msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
 
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- If a recipe exists, you will see a special particle effect."
-
-msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
-msgstr "- If it takes more than 5 seconds to dig, you don't have the right tool."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- Items picked up try to fit into the current selected slot first."
@@ -535,8 +526,8 @@ msgstr "Horzy Tarstone"
 msgid "Humus"
 msgstr "Humus"
 
-msgid "IRC: #nodecore @@ chat.freenode.net"
-msgstr "IRC: #nodecore @@ chat.freenode.net"
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
 
 msgid "Iceboxy"
 msgstr "Iceboxy"
@@ -669,6 +660,9 @@ msgstr "Lux Cobble"
 
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
+
+msgid "Matrix: #nodecore:matrix.org"
+msgstr "Matrix: #nodecore:matrix.org"
 
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
@@ -1278,6 +1272,9 @@ msgstr "melt down lode metal from lode cobble"
 
 msgid "melt sand into glass"
 msgstr "melt sand into glass"
+
+msgid "melt stone into pumwater"
+msgstr "melt stone into pumwater"
 
 msgid "mix dirt into ash to make adobe mix"
 msgstr "mix dirt into ash to make adobe mix"

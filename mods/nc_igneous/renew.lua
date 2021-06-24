@@ -21,11 +21,11 @@ nodecore.register_limited_abm({
 
 			local lavas = 0
 			for _, dir in pairs(nodecore.dirs()) do
-				if minetest.get_node(vector.add(pos, dir)) == lavaname then
+				if minetest.get_node(vector.add(pos, dir)).name == lavaname then
 					lavas = lavas + 1
 				end
 			end
-			if (lavas < 4) or (math_random() > math_pow(1.5, lavas - 4) / 3) then return end
+			if (lavas < 4) or (math_random() > math_pow(1.25, lavas - 4) / 3) then return end
 
 			nodecore.log("action", string_format("%s melted to %s at %s (%d sources)",
 					stonename, lavaname, minetest.pos_to_string(pos), lavas))

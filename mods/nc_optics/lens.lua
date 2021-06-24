@@ -15,7 +15,7 @@ local function lens_check(pos, node, recv, getnode)
 	local fore = vector.add(pos, face.f)
 	local nnode = getnode(fore)
 	local def = minetest.registered_items[nnode.name] or {}
-	if def.light_source and def.light_source > 4 then
+	if def.light_source and def.light_source > 3 then
 		return modname .. ":lens_on"
 	end
 

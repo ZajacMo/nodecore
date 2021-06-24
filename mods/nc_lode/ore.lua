@@ -163,7 +163,6 @@ local c_ore = minetest.get_content_id(ore)
 local c_lodestone = minetest.get_content_id(stone)
 local getstoneids = nodecore.memoize(function()
 		local stoneids = {}
-		for i = 1, 65535 do stoneids[i] = false end
 		local stratadata = nodecore.stratadata()
 		for _, id in pairs({
 				c_lodestone,

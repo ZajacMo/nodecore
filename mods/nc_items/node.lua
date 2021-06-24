@@ -94,6 +94,8 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 				pointed = pointed_thing
 			})
 	end
+	local data = nodecore.craft_cooking_data()
+	nodecore.craft_check(pos, minetest.get_node(pos), data)
 
 	return nodecore.fallcheck(pos)
 end

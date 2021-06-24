@@ -87,8 +87,7 @@ nodecore.register_concrete_etchable({
 		pliant = {
 			sounds = nodecore.sounds("nc_terrain_chompy"),
 			drop_in_place = modname .. ":coalaggregate_wet_source",
-			silktouch = false,
-			drop = ""
+			silktouch = false
 		}
 	})
 nodecore.register_concrete({

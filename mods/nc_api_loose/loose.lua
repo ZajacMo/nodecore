@@ -62,13 +62,14 @@ nodecore.register_on_register_item(function(name, def)
 				end)
 		end
 
+		local solid = nodecore.underride(def.alternate_solid or {}, def)
+		solid.drop_in_place = loose.name
+		loose.drop_in_place = nil
+
 		loose.alternate_loose = nil
 		loose.alternate_solid = nil
 		loose.repack_to = name
 		minetest.register_node(loose.name, loose)
-
-		local solid = nodecore.underride(def.alternate_solid or {}, def)
-		solid.drop_in_place = solid.drop_in_place or loose.name
 
 		solid.alternate_loose = nil
 		solid.alternate_solid = nil

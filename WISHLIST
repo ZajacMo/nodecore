@@ -7,37 +7,38 @@ to the project!
 - Testing and bug reports!
 
 - Translations:
-	- NodeCore is running Weblate:
-		https://nodecore.mine.nu/trans/projects/nodecore/core/
-	- Contact the NodeCore Developer(s) to get an account if you
-	  want to contribute translations.
+	- https://nodecore.mine.nu/trans/projects/nodecore/core/
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
-	- #9934: This bug is causing us to maintain a workaround in
-	  NodeCore which is fragile and keeps breaking, leading to
-	  significant network load for some clients.
-	- #9377: This causes some annoyances when handling lux tools,
-	  and makes a certain mechanic blatant when it's intended to be
-	  subtle.
-	- #7245: This is blocking making navigation challenges and
-	  distinguishing nodes with similar appearance into gameplay
-	  elements.  Current open PR is #9315.
-	- #7876: Causes a damage flash when a new player joins, or a
-	  player from before 2020-02-19 when max HP was changed.
-	- TBD: Bone attachment axes invert if there is any animation on
-	  that bone/axis.  This is blocking the visible inventory
-	  feature. (MTG #2547, but it's probably an engine bug)
-	- #8952: This causes hidden bases and other items to be visible
-	  through walls when ent/player transfer distance is high; when
-	  low, instead it causes players/ents to be invisible even when
-	  terrain is loaded and visible, causing distant player activity
-	  to look like poltergeists.
-	- #9912: Engine should provide a standard way to make digparticles
-	  that doesn't depend on using [combine and knowing exact source
-	  texture size (breaks texturepacks).
-	- #6963: If this is implemented, we may have a more efficient
-	  way to handle "visinv" nodes, i.e. stacks, storage boxes,
-	  and other container nodes.
+	- Major game-breakers:
+		- #7245: This is blocking making navigation challenges and
+		  distinguishing nodes with similar appearance into gameplay
+		  elements.  Current open PR is #9315.
+	- Minor game-breakers:
+		- #9377: This causes some annoyances when handling lux tools,
+		  and makes a certain mechanic blatant when it's intended to be
+		  subtle.
+		- #7876: Causes a damage flash when a new player joins, or a
+		  player from before 2020-02-19 when max HP was changed.
+		- #8952: This causes hidden bases and other items to be visible
+		  through walls when ent/player transfer distance is high; when
+		  low, instead it causes players/ents to be invisible even when
+		  terrain is loaded and visible, causing distant player activity
+		  to look like poltergeists.
+	- Blocking new features:
+		- TBD: Bone attachment axes invert if there is any animation on
+		  that bone/axis.  This is blocking the head pitching
+		  feature. (MTG #2547, but it's probably an engine bug)
+		- #9912: Engine should provide a standard way to make digparticles
+		  that doesn't depend on using [combine and knowing exact source
+		  texture size (breaks texturepacks).
+	- Internal/annoyance:
+		- #9934: This bug is causing us to maintain a workaround in
+		  NodeCore which is fragile and keeps breaking, leading to
+		  significant network load for some clients.
+		- #6963: If this is implemented, we may have a more efficient
+		  way to handle "visinv" nodes, i.e. stacks, storage boxes,
+		  and other container nodes.
 
 - Help with documentation
 	- Improvements to the in-game guidance, esp. for onboarding new

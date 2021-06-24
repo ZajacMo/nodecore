@@ -270,24 +270,11 @@ do
 		end)
 end
 
-for fn in pairs({
-		set_node = true,
-		add_node = true,
-		remove_node = true,
-		swap_node = true,
-		dig_node = true,
-		place_node = true,
-		add_node_level = true
-	}) do
-	local func = minetest[fn]
-	minetest[fn] = function(pos, ...)
+nodecore.register_on_nodeupdate(function(pos)
 		local t = dependency_index[hashpos(pos)]
 		if t then
 			for k in pairs(t) do
 				optic_check(unhash(k))
 			end
 		end
-		return func(pos, ...)
-	end
-end
-set_node = minetest.set_node
+	end)

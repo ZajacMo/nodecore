@@ -77,7 +77,7 @@ local function collides(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
 	if not def then return node end
-	if def.walkable then return node end
+	if def.walkable or def.groups and def.groups.support_falling then return node end
 end
 
 local oldcheck = minetest.check_single_for_falling

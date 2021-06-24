@@ -5,5 +5,5 @@ local nodecore
 
 nodecore.register_hint(
 	"throw an item really fast",
-	"item_drop_speed_15"
+	"item_drop_speed_14"
 )

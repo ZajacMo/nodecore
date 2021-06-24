@@ -1,9 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, nodecore
-    = include, nodecore
+local minetest
+    = minetest
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
-include("timeofday")
-include("skybox")
+function minetest.is_creative_enabled() return false end
