@@ -15,6 +15,16 @@ Anneal / Annealed:
 	Heat and then cool slowly, to form a specific kind of crystal
 	structure.
 
+Aux:
+	a.k.a. "Aux1"
+	a.k.a. "Special" in some places before MT 5.5
+	An input key that can be bound in the minetest "Change Keys"
+	settings menu.  It can be a different key for each user, so the
+	name of the specific key cannot be used.
+	In minetest_game this is mostly used for sprinting but in
+	NodeCore it's used for a handful of things like advanced item
+	dropping and rakes.
+
 Bindy:
 	A concrete etching pattern.  Can eappear as an adjective
 	modifying a node, or on its own to describe the pattern
@@ -139,6 +149,18 @@ Render:
 
 Scale / Scaling:
 	Used in NodeCore in the sense of "climbing."
+
+Sneak:
+	An input key that can be bound in the minetest "Change Keys"
+	settings menu.  It can be a different key for each user, so the
+	name of the specific key cannot be used.
+	This is sometimes called "shift" because that's a very
+	common / default binding for it, but that is not necessarily
+	correct.
+	Used to allow walking to the edge of a node without falling
+	off (defined by engine) and various overrides in NodeCore like
+	inspecting shelf contents without taking items, preventing
+	rotation on right-click, rake selectivity, etc.
 
 Tarstone:
 	A darkened, tarry-looking stone made from stone dyed with
