@@ -35,14 +35,13 @@ function minetest.node_dig(pos, node, digger, ...)
 
 		local mock = ItemStack(node.name)
 		mock:set_count(def.stack_max or 99)
-
-		local stack = nodecore.stack_get(pos)
-		nodecore.stack_set(pos, "")
+		local dmeta = minetest.serialize(
+			nodecore.meta_serializable(minetest.get_meta(pos)))
 
 		minetest.set_node(pos, {name = nodename})
 		nodecore.stack_set(pos, mock)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("dstack", stack:to_string())
+		meta:set_string("dmeta", dmeta)
 		meta:set_string("dnode", minetest.serialize(node))
 
 		return nodecore.scaling_particles(pos, {
@@ -69,8 +68,8 @@ nodecore.register_limited_abm({
 			if not (node and node.name) then
 				return minetest.remove_node(pos)
 			end
-			local stack = meta:get_string("dstack") or ""
+			local dmeta = minetest.deserialize(meta:get_string("dmeta"))
 			minetest.set_node(pos, node)
-			nodecore.stack_set(pos, stack)
+			if dmeta then minetest.get_meta(pos):from_table(dmeta) end
 		end
 	})
