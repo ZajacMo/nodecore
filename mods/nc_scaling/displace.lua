@@ -65,9 +65,12 @@ nodecore.register_limited_abm({
 				if nodecore.scaling_closenough(pos, p) then return end
 			end
 			local meta = minetest.get_meta(pos)
-			local stack = meta:get_string("dstack")
-			local node = meta:get_string("dnode")
-			minetest.set_node(pos, minetest.deserialize(node))
+			local node = minetest.deserialize(meta:get_string("dnode"))
+			if not (node and node.name) then
+				return minetest.remove_node(pos)
+			end
+			local stack = meta:get_string("dstack") or ""
+			minetest.set_node(pos, node)
 			nodecore.stack_set(pos, stack)
 		end
 	})
