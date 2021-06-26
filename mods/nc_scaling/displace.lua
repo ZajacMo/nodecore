@@ -25,7 +25,7 @@ minetest.register_node(nodename, {
 local olddig = minetest.node_dig
 function minetest.node_dig(pos, node, digger, ...)
 	local def = node and node.name and minetest.registered_nodes[node.name]
-	if def then
+	if def and def.diggable ~= false then
 		local tool = digger and digger:is_player()
 		and digger:get_wielded_item()
 
