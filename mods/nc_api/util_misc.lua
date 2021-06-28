@@ -518,3 +518,20 @@ function nodecore.protection_test(pos, player)
 		return true
 	end
 end
+
+function nodecore.meta_serializable(meta)
+	local mt = type(meta)
+	if mt == "table" or mt == "userdata" then
+		if type(meta.to_table) == "function" then
+			meta = meta:to_table()
+		end
+		for _, list in pairs(meta.inventory or {}) do
+			for i, stack in pairs(list) do
+				if type(stack) == "userdata" then
+					list[i] = stack:to_string()
+				end
+			end
+		end
+	end
+	return meta
+end

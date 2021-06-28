@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, type, vector
-    = ipairs, minetest, nodecore, pairs, type, vector
+local ipairs, minetest, nodecore, pairs, vector
+    = ipairs, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_falling_node_step,
@@ -68,18 +68,7 @@ minetest.register_entity(":__builtin:falling_node", {
 					textures = {def and def.falling_visual or node.name},
 				})
 
-			meta = meta or {}
-			if type(meta.to_table) == "function" then
-				meta = meta:to_table()
-			end
-			for _, list in pairs(meta.inventory or {}) do
-				for i, stack in pairs(list) do
-					if type(stack) == "userdata" then
-						list[i] = stack:to_string()
-					end
-				end
-			end
-			self.meta = meta
+			self.meta = nodecore.meta_serializable(meta)
 
 			for _, func in ipairs(nodecore.registered_falling_node_on_setnodes) do
 				if func(self, node, meta) == true then return end

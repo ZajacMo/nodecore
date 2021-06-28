@@ -25,7 +25,7 @@ minetest.register_node(nodename, {
 local olddig = minetest.node_dig
 function minetest.node_dig(pos, node, digger, ...)
 	local def = node and node.name and minetest.registered_nodes[node.name]
-	if def then
+	if def and def.diggable ~= false then
 		local tool = digger and digger:is_player()
 		and digger:get_wielded_item()
 
@@ -35,14 +35,13 @@ function minetest.node_dig(pos, node, digger, ...)
 
 		local mock = ItemStack(node.name)
 		mock:set_count(def.stack_max or 99)
-
-		local stack = nodecore.stack_get(pos)
-		nodecore.stack_set(pos, "")
+		local dmeta = minetest.serialize(
+			nodecore.meta_serializable(minetest.get_meta(pos)))
 
 		minetest.set_node(pos, {name = nodename})
 		nodecore.stack_set(pos, mock)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("dstack", stack:to_string())
+		meta:set_string("dmeta", dmeta)
 		meta:set_string("dnode", minetest.serialize(node))
 
 		return nodecore.scaling_particles(pos, {
@@ -65,9 +64,12 @@ nodecore.register_limited_abm({
 				if nodecore.scaling_closenough(pos, p) then return end
 			end
 			local meta = minetest.get_meta(pos)
-			local stack = meta:get_string("dstack")
-			local node = meta:get_string("dnode")
-			minetest.set_node(pos, minetest.deserialize(node))
-			nodecore.stack_set(pos, stack)
+			local node = minetest.deserialize(meta:get_string("dnode"))
+			if not (node and node.name) then
+				return minetest.remove_node(pos)
+			end
+			local dmeta = minetest.deserialize(meta:get_string("dmeta"))
+			minetest.set_node(pos, node)
+			if dmeta then minetest.get_meta(pos):from_table(dmeta) end
 		end
 	})

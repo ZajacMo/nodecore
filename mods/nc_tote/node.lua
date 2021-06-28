@@ -32,7 +32,7 @@ local function totedug(pos, _, _, digger)
 				local d = minetest.registered_items[n.name] or {}
 				if d and d.groups and d.groups.totable
 				and not protected(p, digger) then
-					local m = minetest.get_meta(p):to_table()
+					local m = nodecore.meta_serializable(minetest.get_meta(p))
 					for _, v1 in pairs(m.inventory or {}) do
 						for k2, v2 in pairs(v1) do
 							if type(v2) == "userdata" then

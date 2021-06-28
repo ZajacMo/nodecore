@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-17 20:43+0000\n"
+"PO-Revision-Date: 2021-06-26 14:44+0000\n"
 "Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -929,6 +929,8 @@ msgstr ""
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
+"- Если копание занимает более 5 секунд, значит, у вас нет подходящего "
+"инструмента."
 
 msgid "Adobe Mix"
 msgstr "Саманная Смесь"
@@ -1505,3 +1507,67 @@ msgstr "Рыхлый Смолиной Камень"
 
 msgid "Vermy Adobe"
 msgstr "Рыхлый Саман"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Остерегайтесь темных пещер / пропастей; вы несете ответственность за то, "
+"чтобы выбраться отсюда."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Места для лазания также дают очень слабый свет; увеличьте гамму дисплея, "
+"чтобы увидеть."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Бросьте и соберите предметы, чтобы переставить инвентарь."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- Для больших рецептов центральный предмет обычно ставится последним."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Научитесь использовать звезды для навигации на большие расстояния."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Чтобы бежать быстрее, постоянно идите / плывите вперед или поднимайтесь / "
+"плывите вверх."
+
+msgid "Movement"
+msgstr "Движение"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "Руководство игрока: Движение и Навигация"
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- По местам для лазанья можно взбираться после появления черных частиц."
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Смещенные ноды можно преодолевать как места для лазания."
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux + сбросить любой предмет, чтобы сбросить все."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Ноды, выкопанные без правильного инструмента, нельзя подобрать, их можно "
+"только смещать."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr ""
+"- Инструменты, используемые в качестве ингредиентов, должны быть в очень "
+"хорошем состоянии."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- Красться + aux + выброс вещи, чтобы сбросить все подходящие предметы."
+
+msgid "CHEATS ENABLED"
+msgstr "ЧИТЫ ВКЛЮЧЕНЫ"
+
+msgid "Crafting"
+msgstr "Крафтинг"
+
+msgid "Displaced Node"
+msgstr "Смещенная Нода"
+
+msgid "Player's Guide: Crafting"
+msgstr "Руководство игрока: Крафтинг"

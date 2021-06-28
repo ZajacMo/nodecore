@@ -15,7 +15,7 @@ minetest.register_globalstep(function(dtime)
 		local curtime = minetest.get_timeofday()
 		if math_abs(curtime - fixedtime) > 0.001 then
 			nodecore.log("warning", string_format(
-					"time of day: %1.4f -> %1.4f",
+					"time of day: %1.4f -> %1.4f; make sure time_speed = 0",
 					curtime, fixedtime))
 			minetest.set_timeofday(fixedtime)
 		end

@@ -54,5 +54,20 @@ NONIDEAS: Ideas already considered and rejected
 	  decorative elements that are not fungible do not fit the
 	  game's design.
 
+- Music
+	- Minetest engine only technically supports music, but it
+	  doesn't work smoothly.
+	- Music would increase the download size of the game, and
+	  correspondingly the media transfer time on joining servers,
+	  but a decimal order of magnitude and is not worth it, even
+	  at the lowest quality settings.
+	- Players often prefer playing their own music, and can just
+	  play other music with another media player in background.
+	- Music is generally problematic for streamers and even music
+	  that is supposedly freely-licensed sometimes ends up in
+	  content fingerprint databases for automatic copyright strikes.
+	  In theory this is not exclusive to music, but its prevalence
+	  in music already is a big problem.
+
 ........................................................................
 ========================================================================
