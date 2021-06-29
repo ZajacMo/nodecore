@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_random, math_sqrt
     = math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -26,7 +26,11 @@ minetest.register_node(modname .. ":rush", {
 			flammable = 3,
 			attached_node = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		selection_box = nodecore.fixedbox(
+			{-1/8, -1/2, -1/2, 1/8, 1/2, 1/2},
+			{-1/2, -1/2, -1/8, 1/2, 1/2, 1/8}
+		)
 	})
 
 minetest.register_node(modname .. ":rush_dry", {
@@ -47,7 +51,11 @@ minetest.register_node(modname .. ":rush_dry", {
 			flammable = 2,
 			attached_node = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		selection_box = nodecore.fixedbox(
+			{-1/8, -1/2, -1/2, 1/8, 1/2, 1/2},
+			{-1/2, -1/2, -1/8, 1/2, 1/2, 1/8}
+		)
 	})
 
 minetest.register_decoration({
@@ -71,26 +79,53 @@ minetest.register_decoration({
 		param2 = 4,
 	})
 
-local function rushdie(pos)
-	return nodecore.set_loud(pos, {name = modname .. ":rush_dry", param2 = 4})
-end
+local rush_substrate = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			if v.groups and v.groups.soil or v.groups.sand then
+				rush_substrate[k] = v.soil_degrades_to or true
+			end
+		end
+	end)
 
+local function rushcheck(pos)
+	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+	local bnode = minetest.get_node_or_nil(below)
+	if not bnode then return end
+	local subst = rush_substrate[bnode.name]
+	if not subst then return false end
+	if #nodecore.find_nodes_around(pos, "group:moist", 2) < 1 then
+		return false
+	end
+	return subst, below
+end
 nodecore.register_limited_abm({
-		label = "rush dry",
+		label = "rush drying/dying",
 		interval = 1,
 		chance = 25,
 		nodenames = {modname .. ":rush"},
 		action = function(pos)
-			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			local bnode = minetest.get_node_or_nil(below)
-			if not bnode then return end
-			if minetest.get_item_group(bnode.name, "soil")
-			+ minetest.get_item_group(bnode.name, "sand") < 1 then
-				return rushdie(pos)
+			local subst, below = rushcheck(pos)
+			if subst == false then
+				return nodecore.set_loud(pos, {
+						name = modname .. ":rush_dry",
+						param2 = 4
+					})
 			end
-			if #nodecore.find_nodes_around(pos, "group:moist", 2) < 1 then
-				return rushdie(pos)
-			end
+			if subst == true then return end
+			if math_random(1, 10) ~= 1 then return end
+			local pick = {
+				x = pos.x + math_random(-1, 1),
+				y = pos.y + math_random(-1, 1),
+				z = pos.z + math_random(-1, 1),
+			}
+			if not (nodecore.match(pick, {air_equivalent = true})
+				and rushcheck(pick)) then return end
+			nodecore.set_loud(below, {name = subst})
+			nodecore.set_loud(pick, {
+					name = modname .. ":rush",
+					param2 = 4
+				})
 		end
 	})
 

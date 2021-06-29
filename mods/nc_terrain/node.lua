@@ -148,7 +148,9 @@ end
 
 regterrain({
 		description = "Dirt",
+		soil_degrades_to = modname .. ":sand",
 		alternate_loose = {
+			soil_degrades_to = modname .. ":sand_loose",
 			groups = {
 				dirt_loose = 1,
 				falling_repose = 2,
