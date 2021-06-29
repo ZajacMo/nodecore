@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
 local dofile, error, ipairs, minetest, pairs, rawget, rawset,
-      setmetatable, table, tostring, type
+      setmetatable, string, table, tostring, type
     = dofile, error, ipairs, minetest, pairs, rawget, rawset,
-      setmetatable, table, tostring, type
-local table_concat, table_insert, table_sort
-    = table.concat, table.insert, table.sort
+      setmetatable, string, table, tostring, type
+local string_format, table_concat, table_insert, table_sort
+    = string.format, table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local nodecore = rawget(_G, "nodecore") or {}
@@ -129,3 +129,12 @@ include("item_stackmax")
 include("item_touch_hurt")
 include("item_support_falling")
 include("item_tiledump")
+
+nodecore.register_on_register_item(function(_, def)
+		def.on_flood = function(pos, node)
+			nodecore.log("action", string_format("FLOOD %s %s %s",
+					minetest.pos_to_string(pos),
+					node.name,
+					minetest.get_node(pos).name))
+		end
+	end)
