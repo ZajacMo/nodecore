@@ -100,9 +100,9 @@ local function rushcheck(pos)
 	return subst, below
 end
 nodecore.register_limited_abm({
-		label = "rush drying/dying",
+		label = "rush drying/spreading",
 		interval = 1,
-		chance = 25,
+		chance = 50,
 		nodenames = {modname .. ":rush"},
 		action = function(pos)
 			local subst, below = rushcheck(pos)
