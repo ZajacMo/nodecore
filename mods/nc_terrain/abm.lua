@@ -42,6 +42,7 @@ local function grassable(above)
 	if not ln then return end
 	return ln >= 10
 end
+nodecore.grassable = grassable
 
 nodecore.register_limited_abm({
 		label = "grass spread",

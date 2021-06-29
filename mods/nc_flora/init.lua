@@ -6,3 +6,4 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("rushes")
+include("sedges")
