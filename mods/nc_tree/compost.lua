@@ -16,7 +16,9 @@ minetest.register_node(modname .. ":humus", {
 			soil = 4,
 			grassable = 1
 		},
+		soil_degrades_to = "nc_terrain:dirt",
 		alternate_loose = {
+			soil_degrades_to = "nc_terrain:dirt_loose",
 			groups = {
 				dirt_loose = 2,
 				soil = 5,

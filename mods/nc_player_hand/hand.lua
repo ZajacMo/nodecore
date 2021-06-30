@@ -28,14 +28,13 @@ minetest.register_item(":", {
 		node_placement_prediction = ""
 	})
 
-local scale = 2
 minetest.register_node(modname .. ":hand", {
 		description = "",
 		drawtype = "mesh",
 		mesh = modname .. ".obj",
 		tiles = {"nc_player_model_base.png"},
 		use_texture_alpha = "clip",
-		wield_scale = {x = scale, y = scale, z = scale},
+		wield_scale = {x = 2, y = 2, z = 2},
 		virtual_item = true,
 		stack_max = 1,
 		node_placement_prediction = "",
