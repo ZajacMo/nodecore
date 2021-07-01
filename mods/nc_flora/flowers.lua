@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, string
-    = minetest, nodecore, string
-local string_format
-    = string.format
+local ipairs, math, minetest, nodecore, string
+    = ipairs, math, minetest, nodecore, string
+local math_floor, math_random, string_format
+    = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -53,13 +53,13 @@ for shapeid = 1, #shapes do
 				place_param2 = shape.param2,
 				groups = {
 					snappy = 1,
-					flower = 1,
+					living_flower = 1,
 					flammable = 1,
 					attached_node = 1
 				},
 				nc_flower_shape = shapeid,
 				nc_flower_color = colorid,
-				wilts_to = flowername(shapeid, 0),
+				flower_wilts_to = flowername(shapeid, 0),
 				sounds = nodecore.sounds("nc_terrain_swishy"),
 				selection_box = {
 					type = "fixed",
@@ -87,7 +87,6 @@ for shapeid = 1, #shapes do
 			place_param2 = shape.param2,
 			groups = {
 				snappy = 1,
-				flower = 1,
 				flammable = 1,
 				attached_node = 1
 			},
@@ -123,3 +122,74 @@ reggen(2, 3, 0.02)
 reggen(3, 4, 0.2)
 reggen(4, 5, 0.02)
 reggen(5, 6, 0.002)
+
+local function flowerable(pos)
+	local grass = nodecore.grassable(pos)
+	if not grass then return grass end
+	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+	local bnode = minetest.get_node_or_nil(below)
+	if not bnode then return end
+	local soil = minetest.get_item_group(bnode.name, "soil")
+	if soil == 1 then return end
+	return soil > 1
+end
+
+local function updatesample(weight, mean, var, value)
+	local delta = value - mean
+	mean = mean + delta / weight
+	local delta2 = value - mean
+	var = var + delta * delta2
+	return mean, var
+end
+
+nodecore.register_limited_abm({
+		label = "flowers wilting/growing",
+		interval = 1,
+		chance = 50,
+		nodenames = {"group:living_flower"},
+		action = function(pos, node)
+			local check = flowerable(pos)
+			if check == false then
+				local wilt = minetest.registered_items[node.name].flower_wilts_to
+				if not wilt then return end
+				return nodecore.set_loud(pos, {name = wilt})
+			end
+
+			if (not check) or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
+			then return end
+
+			local grow = {
+				x = pos.x + math_random(-2, 2),
+				y = pos.y + math_random(-1, 1),
+				z = pos.z + math_random(-2, 2)
+			}
+			if not (nodecore.buildable_to(grow) and flowerable(grow)) then return end
+
+			local weight = 3
+			local m_shape = minetest.registered_items[node.name].nc_flower_shape
+			local v_shape = 0
+			local m_color = minetest.registered_items[node.name].nc_flower_color
+			local v_color = 0
+			for _, p in ipairs(nodecore.find_nodes_around(grow, "group:living_flower", 2, 1)) do
+				local def = minetest.registered_items[minetest.get_node(p).name]
+				if def and def.nc_flower_shape and def.nc_flower_color then
+					weight = weight + 1
+					m_shape, v_shape = updatesample(weight, m_shape, v_shape, def.nc_flower_shape)
+					m_color, v_color = updatesample(weight, m_color, v_color, def.nc_flower_color)
+				end
+			end
+			v_shape = (v_shape / weight) ^ 0.5 + 0.01
+			v_color = (v_color / weight) ^ 0.5 + 0.01
+			local newshape = math_floor(nodecore.boxmuller() * v_shape + m_shape + 0.5)
+			local newcolor = math_floor(nodecore.boxmuller() * v_color + m_color + 0.5)
+			nodecore.log("warning", string_format("flower at %s: m_shape %f, v_shape %f, shape %d; "
+					.. "m_color %f, v_color %f, color %d", minetest.pos_to_string(grow),
+					m_shape, v_shape, newshape, m_color, v_color, newcolor))
+			if newcolor < 1 or newcolor > #colors or newshape < 1 or newshape > #shapes then return end
+
+			nodecore.set_loud(grow, {
+					name = flowername(newshape, newcolor),
+					param2 = shapes[newshape].param2
+				})
+		end
+	})
