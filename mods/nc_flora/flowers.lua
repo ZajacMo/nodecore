@@ -27,7 +27,7 @@ local colors = {
 	{name = "Black", color = "202020"},
 }
 local function flowername(shapeid, colorid)
-	return string_format("%s:flower%d%d", modname, shapeid, colorid)
+	return string_format("%s:flower_%d_%d", modname, shapeid, colorid)
 end
 
 for shapeid = 1, #shapes do
