@@ -7,7 +7,13 @@ local string_format
 
 local modname = minetest.get_current_modname()
 
-local shapeparams = {0, 0, 0, 2, 4}
+local shapes = {
+	{name = "Urn", size = 1/4},
+	{name = "Bell", size = 1/4},
+	{name = "Rosette", size = 1/4},
+	{name = "Cluster", param2 = 2, size = 3/8},
+	{name = "Star", param2 = 4, size = 3/8},
+}
 
 local colors = {
 	{name = "Pink", color = "e040c0"},
@@ -15,7 +21,7 @@ local colors = {
 	{name = "Orange", color = "ff8000"},
 	{name = "Yellow", color = "ffff00"},
 	{name = "White", color = "e0e0e0"},
-	{name = "Cyan", color = "00c0c0"},
+	{name = "Azure", color = "0080c0"},
 	{name = "Blue", color = "0000ff"},
 	{name = "Violet", color = "8000ff"},
 	{name = "Black", color = "202020"},
@@ -24,14 +30,16 @@ local function flowername(shapeid, colorid)
 	return string_format("%s:flower%d%d", modname, shapeid, colorid)
 end
 
-for shapeid = 1, 5 do
+for shapeid = 1, #shapes do
 	for colorid = 1, #colors do
 		local txr = modname .. "_flower_" .. shapeid .. "_top.png^[multiply:#"
 		.. colors[colorid].color .. "^" .. modname .. "_flower_" .. shapeid
 		.. "_base.png"
+		local shape = shapes[shapeid]
+		local color = colors[colorid]
 		minetest.register_node(flowername(shapeid, colorid),
 			{
-				description = colors[colorid].name .. " Flower",
+				description = color.name .. " " .. shape.name .. " Flower",
 				drawtype = 'plantlike',
 				waving = 1,
 				tiles = {txr},
@@ -41,7 +49,7 @@ for shapeid = 1, 5 do
 				paramtype = 'light',
 				walkable = false,
 				paramtype2 = "meshoptions",
-				place_param2 = shapeparams[shapeid],
+				place_param2 = shape.param2,
 				groups = {
 					snappy = 1,
 					flower = 1,
@@ -53,7 +61,8 @@ for shapeid = 1, 5 do
 				sounds = nodecore.sounds("nc_terrain_swishy"),
 				selection_box = {
 					type = "fixed",
-					fixed = {-6/16, -0.5, -6/16, 6/16, 4/16, 6/16},
+					fixed = {-shape.size, -0.5, -shape.size,
+						shape.size, 4/16, shape.size},
 				},
 			})
 	end
@@ -74,7 +83,7 @@ local function reggen(shapeid, colorid, rare)
 				persist = 0.7
 			},
 			decoration = flowername(shapeid, colorid),
-			param2 = shapeparams[shapeid],
+			param2 = shapes[shapeid].param2,
 		})
 end
 reggen(1, 2, 0.002)
