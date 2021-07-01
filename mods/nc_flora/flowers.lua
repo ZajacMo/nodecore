@@ -8,8 +8,8 @@ local string_format
 local modname = minetest.get_current_modname()
 
 local shapes = {
-	{name = "Urn", size = 1/4},
 	{name = "Bell", size = 1/4},
+	{name = "Cup", size = 1/4},
 	{name = "Rosette", size = 1/4},
 	{name = "Cluster", param2 = 2, size = 3/8},
 	{name = "Star", param2 = 4, size = 3/8},
