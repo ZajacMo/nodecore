@@ -27,6 +27,15 @@ minetest.register_ore({
 		noise_threshold = 1.2
 	})
 
+local queue = {}
+
+minetest.register_globalstep(function()
+		for i = 1, #queue do
+			minetest.transforming_liquid_add(queue[i])
+		end
+		queue = {}
+	end)
+
 local c_air = minetest.get_content_id("air")
 local c_stones = {}
 for _, n in pairs(minetest.registered_nodes[modname .. ":stone"].strata) do
@@ -47,18 +56,21 @@ local function regspring(label, node, rarity)
 					local y = rng(minp.y + 1, maxp.y - 1)
 					local z = rng(minp.z + 1, maxp.z - 1)
 					local idx = area:index(x, y, z)
-					if c_stones[idx]
+					if c_stones[data[idx]]
 					and (data[idx - 1] == c_air
 						or data[idx + 1] == c_air
 						or data[idx - area.ystride] == c_air
 						or data[idx + area.ystride] == c_air
 						or data[idx - area.zstride] == c_air
 						or data[idx + area.zstride] == c_air)
-					then data[area:index(x, y, z)] = c_node end
+					then
+						data[area:index(x, y, z)] = c_node
+						queue[#queue + 1] = {x = x, y = y, z = z}
+					end
 				end
 			end
 		})
 end
 local baserarity = 32 * 32 * 32
 regspring("water spring", modname .. ":water_source", baserarity)
-regspring("lava spring", modname .. ":lava_source", baserarity * 8)
+regspring("lava spring", modname .. ":lava_source", baserarity * 4)
