@@ -31,12 +31,13 @@ local function flowername(shapeid, colorid)
 end
 
 for shapeid = 1, #shapes do
+	local shape = shapes[shapeid]
 	for colorid = 1, #colors do
-		local txr = modname .. "_flower_" .. shapeid .. "_top.png^[multiply:#"
-		.. colors[colorid].color .. "^" .. modname .. "_flower_" .. shapeid
-		.. "_base.png"
-		local shape = shapes[shapeid]
 		local color = colors[colorid]
+		local txr = string_format("%s_flower_color.png^(nc_terrain_grass_top.png"
+			.. "^[mask:%s_grass_mask.png)^[mask:%s_flower_%d_base.png"
+			.. "^(%s_flower_%d_top.png^[multiply:#%s)", modname, modname,
+			modname, shapeid, modname, shapeid, color.color)
 		minetest.register_node(flowername(shapeid, colorid),
 			{
 				description = color.name .. " " .. shape.name .. " Flower",
@@ -58,6 +59,7 @@ for shapeid = 1, #shapes do
 				},
 				nc_flower_shape = shapeid,
 				nc_flower_color = colorid,
+				wilts_to = flowername(shapeid, 0),
 				sounds = nodecore.sounds("nc_terrain_swishy"),
 				selection_box = {
 					type = "fixed",
@@ -66,6 +68,36 @@ for shapeid = 1, #shapes do
 				},
 			})
 	end
+	local dry = string_format("%s_flower_color_dry.png^(nc_terrain_grass_top.png"
+		.. "^[mask:%s_grass_mask.png)^[mask:%s_flower_%d_base.png"
+		.. "^(%s_flower_%d_top.png^[multiply:#7b7a64)", modname, modname,
+		modname, shapeid, modname, shapeid)
+	minetest.register_node(flowername(shapeid, 0),
+		{
+			description = "Wilted " .. shape.name .. " Flower",
+			drawtype = 'plantlike',
+			waving = 1,
+			tiles = {dry},
+			wield_image = dry,
+			inventory_image = dry,
+			sunlight_propagates = true,
+			paramtype = 'light',
+			walkable = false,
+			paramtype2 = "meshoptions",
+			place_param2 = shape.param2,
+			groups = {
+				snappy = 1,
+				flower = 1,
+				flammable = 1,
+				attached_node = 1
+			},
+			sounds = nodecore.sounds("nc_terrain_swishy"),
+			selection_box = {
+				type = "fixed",
+				fixed = {-shape.size, -0.5, -shape.size,
+					shape.size, 4/16, shape.size},
+			},
+		})
 end
 
 local function reggen(shapeid, colorid, rare)
