@@ -7,3 +7,4 @@ nodecore.amcoremod()
 
 include("rushes")
 include("sedges")
+include("flowers")
