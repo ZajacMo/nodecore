@@ -68,7 +68,7 @@ local function reggen(shapeid, colorid, rare)
 			noise_params = {
 				offset = -0.001 + 0.001 * rare,
 				scale = 0.001,
-				spread = {x = 200, y = 200, z = 200},
+				spread = {x = 100, y = 100, z = 100},
 				seed = 1572,
 				octaves = 3,
 				persist = 0.7
