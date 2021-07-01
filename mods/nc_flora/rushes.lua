@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, pairs
     = math, minetest, nodecore, pairs
-local math_random, math_sqrt
-    = math.random, math.sqrt
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -135,18 +135,15 @@ nodecore.register_aism({
 		chance = 25,
 		itemnames = {modname .. ":rush"},
 		action = function(stack, data)
-			local moist = 0
-			local dirt = 0
-			if data.player and data.list == "main" and data.slot then
+			if data.toteslot then return end
+			if data.player and data.list then
 				local inv = data.player:get_inventory()
 				for i = 1, inv:get_size(data.list) do
 					local item = inv:get_stack(data.list, i):get_name()
-					moist = moist + minetest.get_item_group(item, "moist")
-					dirt = dirt + minetest.get_item_group(item, "soil")
-					dirt = dirt + minetest.get_item_group(item, "sand")
+					if minetest.get_item_group(item, "moist") > 0 then return end
 				end
 			end
-			if math_random() * 12 < math_sqrt(dirt * moist) then return end
+			if #nodecore.find_nodes_around(data.pos, "group:moist", 2) > 0 then return end
 			nodecore.sound_play("nc_terrain_swishy", {pos = data.pos})
 			local taken = stack:take_item(1)
 			taken:set_name(modname .. ":rush_dry")
