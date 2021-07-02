@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, string
-    = ipairs, math, minetest, nodecore, string
-local math_floor, math_random, string_format
-    = math.floor, math.random, string.format
+local ipairs, math, minetest, nodecore, pairs, string
+    = ipairs, math, minetest, nodecore, pairs, string
+local math_exp, math_floor, math_random, string_format
+    = math.exp, math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -26,9 +26,18 @@ local colors = {
 	{name = "Violet", color = "5900b2"},
 	{name = "Black", color = "202020"},
 }
+
 local function flowername(shapeid, colorid)
 	return string_format("%s:flower_%d_%d", modname, shapeid, colorid)
 end
+
+local mapgenrates = {
+	[flowername(1, 2)] = {shape = 1, rate = 0.002},
+	[flowername(2, 3)] = {shape = 2, rate = 0.02},
+	[flowername(3, 4)] = {shape = 3, rate = 0.2},
+	[flowername(4, 5)] = {shape = 4, rate = 0.02},
+	[flowername(5, 6)] = {shape = 5, rate = 0.002},
+}
 
 for shapeid = 1, #shapes do
 	local shape = shapes[shapeid]
@@ -55,7 +64,9 @@ for shapeid = 1, #shapes do
 					snappy = 1,
 					living_flower = 1,
 					flammable = 1,
-					attached_node = 1
+					attached_node = 1,
+					flower_mutant = mapgenrates[flowername(shapeid,
+						colorid)] and 0 or 1
 				},
 				nc_flower_shape = shapeid,
 				nc_flower_color = colorid,
@@ -99,29 +110,24 @@ for shapeid = 1, #shapes do
 		})
 end
 
-local function reggen(shapeid, colorid, rare)
-	return minetest.register_decoration({
-			name = flowername(shapeid, colorid),
+for k, v in pairs(mapgenrates) do
+	minetest.register_decoration({
+			name = k,
 			deco_type = "simple",
 			place_on = {"nc_terrain:dirt_with_grass"},
 			sidelen = 1,
 			noise_params = {
-				offset = -0.001 + 0.001 * rare,
+				offset = -0.001 + 0.001 * v.rate,
 				scale = 0.001,
 				spread = {x = 100, y = 100, z = 100},
 				seed = 1572,
 				octaves = 3,
 				persist = 0.7
 			},
-			decoration = flowername(shapeid, colorid),
-			param2 = shapes[shapeid].param2,
+			decoration = k,
+			param2 = shapes[v.shape].param2,
 		})
 end
-reggen(1, 2, 0.002)
-reggen(2, 3, 0.02)
-reggen(3, 4, 0.2)
-reggen(4, 5, 0.02)
-reggen(5, 6, 0.002)
 
 local function flowerable(pos)
 	local grass = nodecore.grassable(pos)
@@ -149,15 +155,20 @@ nodecore.register_limited_abm({
 		chance = 100,
 		nodenames = {"group:living_flower"},
 		action = function(pos, node)
-			local soil = flowerable(pos)
-			if soil == false then
+			local function die()
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
 				if not wilt then return end
 				return nodecore.set_loud(pos, {name = wilt})
 			end
+
+			local soil = flowerable(pos)
+			if soil == false then return die() end
 			if (not soil) or (math_random(1, 5) > soil)
 			or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
 			then return end
+
+			local rads = 1 + #nodecore.find_nodes_around(pos, "group:lux_emit", 2)
+			if math_random(1, 100) < rads then return die() end
 
 			local grow = {
 				x = pos.x + math_random(-2, 2),
@@ -181,8 +192,8 @@ nodecore.register_limited_abm({
 			end
 			m_shape = m_shape - 0.2
 			m_color = m_color - 0.2
-			v_shape = (v_shape / weight) ^ 0.5 / 2 + 0.01
-			v_color = (v_color / weight) ^ 0.5 / 2 + 0.01
+			v_shape = (v_shape / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
+			v_color = (v_color / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
 			local newshape = math_floor(nodecore.boxmuller() * v_shape + m_shape + 0.5)
 			local newcolor = math_floor(nodecore.boxmuller() * v_color + m_color + 0.5)
 			nodecore.log("warning", string_format("flower at %s: m_shape %f, v_shape %f, shape %d; "
