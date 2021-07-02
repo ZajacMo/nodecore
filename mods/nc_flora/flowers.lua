@@ -130,8 +130,9 @@ local function flowerable(pos)
 	local bnode = minetest.get_node_or_nil(below)
 	if not bnode then return end
 	local soil = minetest.get_item_group(bnode.name, "soil")
+	if soil < 1 then return false end
 	if soil == 1 then return end
-	return soil > 1
+	return soil - 1
 end
 
 local function updatesample(weight, mean, var, value)
@@ -145,17 +146,17 @@ end
 nodecore.register_limited_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
-		chance = 50,
+		chance = 100,
 		nodenames = {"group:living_flower"},
 		action = function(pos, node)
-			local check = flowerable(pos)
-			if check == false then
+			local soil = flowerable(pos)
+			if soil == false then
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
 				if not wilt then return end
 				return nodecore.set_loud(pos, {name = wilt})
 			end
-
-			if (not check) or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
+			if (not soil) or (math_random(1, 5) > soil)
+			or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
 			then return end
 
 			local grow = {
@@ -178,8 +179,10 @@ nodecore.register_limited_abm({
 					m_color, v_color = updatesample(weight, m_color, v_color, def.nc_flower_color)
 				end
 			end
-			v_shape = (v_shape / weight) ^ 0.5 + 0.01
-			v_color = (v_color / weight) ^ 0.5 + 0.01
+			m_shape = m_shape - 0.2
+			m_color = m_color - 0.2
+			v_shape = (v_shape / weight) ^ 0.5 / 2 + 0.01
+			v_color = (v_color / weight) ^ 0.5 / 2 + 0.01
 			local newshape = math_floor(nodecore.boxmuller() * v_shape + m_shape + 0.5)
 			local newcolor = math_floor(nodecore.boxmuller() * v_color + m_color + 0.5)
 			nodecore.log("warning", string_format("flower at %s: m_shape %f, v_shape %f, shape %d; "
