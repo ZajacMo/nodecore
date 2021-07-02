@@ -32,11 +32,11 @@ local function flowername(shapeid, colorid)
 end
 
 local mapgenrates = {
-	[flowername(1, 2)] = {shape = 1, rate = 0.002},
-	[flowername(2, 3)] = {shape = 2, rate = 0.02},
-	[flowername(3, 4)] = {shape = 3, rate = 0.2},
-	[flowername(4, 5)] = {shape = 4, rate = 0.02},
-	[flowername(5, 6)] = {shape = 5, rate = 0.002},
+	[flowername(1, 2)] = {shape = 1, rate = 0.001},
+	[flowername(2, 3)] = {shape = 2, rate = 0.01},
+	[flowername(3, 4)] = {shape = 3, rate = 0.1},
+	[flowername(4, 5)] = {shape = 4, rate = 0.01},
+	[flowername(5, 6)] = {shape = 5, rate = 0.001},
 }
 
 for shapeid = 1, #shapes do
@@ -121,7 +121,7 @@ for k, v in pairs(mapgenrates) do
 			place_on = {"nc_terrain:dirt_with_grass"},
 			sidelen = 1,
 			noise_params = {
-				offset = -0.001 + 0.001 * v.rate,
+				offset = -0.001 + 0.005 * v.rate,
 				scale = 0.001,
 				spread = {x = 100, y = 100, z = 100},
 				seed = 1572,
