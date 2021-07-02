@@ -16,7 +16,9 @@ local droprates = {
 	{{items = {sedge1}, rarity = 1}, {items = {sedge1}, rarity = 2}},
 }
 
-local tilebase = "nc_terrain_grass_top.png^" .. modname .. "_sedge_overlay.png"
+local tilebase = modname .. "_sedge_color.png^(nc_terrain_grass_top.png^[mask:"
+.. modname .. "_grass_mask.png)"
+
 local allsedges = {}
 for i = 1, 5 do
 	allsedges[modname .. ":sedge_" .. i] = i
