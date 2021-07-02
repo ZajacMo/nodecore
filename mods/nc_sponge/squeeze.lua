@@ -12,8 +12,6 @@ local spongedirs = {
 	{x = 0, y = 0, z = -1}
 }
 
-local watersrc = "nc_terrain:water_gray_source"
-local waterflow = "nc_terrain:water_gray_flowing"
 local spongewet = modname .. ":sponge_wet"
 
 nodecore.register_craft({
@@ -30,17 +28,12 @@ nodecore.register_craft({
 			local found
 			for _, d in pairs(spongedirs) do
 				local p = vector.add(pos, d)
-				local nn = minetest.get_node(p).name
-				local def = minetest.registered_nodes[nn] or {}
-				if nn == watersrc or nn == waterflow or def.air_equivalent then
-					nodecore.artificial_water(p, {
-							matchpos = pos,
-							match = spongewet,
-							minttl = 1,
-							maxttl = 10
-						})
-					found = true
-				end
+				if nodecore.artificial_water(p, {
+						matchpos = pos,
+						match = spongewet,
+						minttl = 1,
+						maxttl = 10
+					}) then found = true end
 			end
 			if found then nodecore.node_sound(pos, "dig") end
 		end

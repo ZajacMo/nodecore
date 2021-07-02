@@ -118,9 +118,14 @@ artificial water def:
 - minttl = minimum amount of time water must be there before rechecking for valid source
 - maxttl = maximum amount of time water will remain without being updated
 --]]
-function nodecore.artificial_water(pos, def)
-	local nn = minetest.get_node(pos).name
+function nodecore.artificial_water(pos, def, node)
+	node = node or minetest.get_node(pos)
+	local nn = node.name
 	if nn ~= graywatersrc and nn ~= graywaterflow then
+		local nd = minetest.registered_nodes[nn]
+		if not (nd and nd.floodable) then return end
+		if nd.on_flood and not nd.on_flood(
+			pos, node, {name = graywatersrc}) then return end
 		nodecore.set_loud(pos, {name = graywatersrc})
 	end
 	local meta = minetest.get_meta(pos)
@@ -132,5 +137,6 @@ function nodecore.artificial_water(pos, def)
 	}
 	meta:set_string(modname, minetest.serialize(data))
 	graywatercache[minetest.hash_node_position(pos)] = data
-	return nodecore.dnt_set(pos, graywatersrc, def.minttl or 1)
+	nodecore.dnt_set(pos, graywatersrc, def.minttl or 1)
+	return true
 end
