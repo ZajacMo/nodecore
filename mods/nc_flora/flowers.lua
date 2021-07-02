@@ -16,14 +16,14 @@ local shapes = {
 }
 
 local colors = {
-	{name = "Pink", color = "e040c0"},
-	{name = "Red", color = "ff0000"},
-	{name = "Orange", color = "ff8000"},
-	{name = "Yellow", color = "ffff00"},
-	{name = "White", color = "e0e0e0"},
-	{name = "Azure", color = "0080c0"},
-	{name = "Blue", color = "0000ff"},
-	{name = "Violet", color = "8000ff"},
+	{name = "Pink", color = "d23379"},
+	{name = "Red", color = "d80000"},
+	{name = "Orange", color = "c16100"},
+	{name = "Yellow", color = "baba00"},
+	{name = "White", color = "adadad"},
+	{name = "Azure", color = "39849b"},
+	{name = "Blue", color = "2424fe"},
+	{name = "Violet", color = "5900b2"},
 	{name = "Black", color = "202020"},
 }
 local function flowername(shapeid, colorid)
