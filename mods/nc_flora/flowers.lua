@@ -149,6 +149,13 @@ local function updatesample(weight, mean, var, value)
 	return mean, var
 end
 
+local function tryrand(mean, stddev, min, max)
+	for _ = 1, 5 do
+	local value = math_floor(nodecore.boxmuller() * stddev + mean + 0.5)
+	if value >= min and value <= max then return value end
+	end
+end
+
 nodecore.register_limited_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
@@ -194,12 +201,11 @@ nodecore.register_limited_abm({
 			m_color = m_color - 0.2
 			v_shape = (v_shape / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
 			v_color = (v_color / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
-			local newshape = math_floor(nodecore.boxmuller() * v_shape + m_shape + 0.5)
-			local newcolor = math_floor(nodecore.boxmuller() * v_color + m_color + 0.5)
-			nodecore.log("warning", string_format("flower at %s: m_shape %f, v_shape %f, shape %d; "
-					.. "m_color %f, v_color %f, color %d", minetest.pos_to_string(grow),
-					m_shape, v_shape, newshape, m_color, v_color, newcolor))
-			if newcolor < 1 or newcolor > #colors or newshape < 1 or newshape > #shapes then return end
+
+			local newshape = tryrand(m_shape, v_shape, 1, #shapes)
+			if not newshape then return end
+			local newcolor = tryrand(m_color, v_color, 1, #colors)
+			if not newcolor then return end
 
 			nodecore.set_loud(grow, {
 					name = flowername(newshape, newcolor),
