@@ -128,6 +128,7 @@ include("item_virtual")
 include("item_stackmax")
 include("item_touch_hurt")
 include("item_support_falling")
+include("item_dig_destroy")
 include("item_tiledump")
 
 nodecore.register_on_register_item(function(_, def)

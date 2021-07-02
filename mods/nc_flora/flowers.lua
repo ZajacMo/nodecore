@@ -58,6 +58,7 @@ for shapeid = 1, #shapes do
 				sunlight_propagates = true,
 				paramtype = 'light',
 				walkable = false,
+				floodable = true,
 				paramtype2 = "meshoptions",
 				place_param2 = shape.param2,
 				groups = {
@@ -94,6 +95,7 @@ for shapeid = 1, #shapes do
 			sunlight_propagates = true,
 			paramtype = 'light',
 			walkable = false,
+			floodable = true,
 			paramtype2 = "meshoptions",
 			place_param2 = shape.param2,
 			groups = {
@@ -107,6 +109,8 @@ for shapeid = 1, #shapes do
 				fixed = {-shape.size, -0.5, -shape.size,
 					shape.size, 4/16, shape.size},
 			},
+			drop = "",
+			destroy_on_dig = 100
 		})
 end
 
