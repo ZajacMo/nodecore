@@ -9,11 +9,11 @@ local grassname = "nc_terrain:dirt_with_grass"
 
 local sedge1 = modname .. ":sedge_1"
 local droprates = {
+	{{items = {sedge1}, rarity = 32}},
 	{{items = {sedge1}, rarity = 16}},
 	{{items = {sedge1}, rarity = 8}},
 	{{items = {sedge1}, rarity = 4}},
-	{{items = {sedge1}, rarity = 2}},
-	{{items = {sedge1}, rarity = 1}, {items = {sedge1}, rarity = 2}},
+	{{items = {sedge1}, rarity = 1}, {items = {sedge1}, rarity = 4}},
 }
 
 local tilebase = modname .. "_sedge_color.png^(nc_terrain_grass_top.png^[mask:"
