@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local sandname = "nc_terrain:sand"
 local sanddef = minetest.registered_items[sandname] or {}
-for i = 1, 5 do
+for i = 1, 6 do
 	minetest.register_node(modname .. ":sand_with_raking_" .. i,
 		nodecore.underride({
 				description = "Raked Sand",
