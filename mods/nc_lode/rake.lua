@@ -49,6 +49,7 @@ nodecore.register_lode("rake", {
 				})
 			d.on_rake = mkonrake(d.tool_capabilities)
 		end,
+		groups = {rakey = 2},
 		tool_wears_to = modname .. ":prill_# 12"
 	})
 
