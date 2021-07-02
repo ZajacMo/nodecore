@@ -32,7 +32,7 @@ local function flowername(shapeid, colorid)
 end
 
 local mapgenrates = {
-	[flowername(1, 2)] = {shape = 1, rate = 0.001},
+	[flowername(1, 2)] = {shape = 1, rate = 0.002},
 	[flowername(2, 3)] = {shape = 2, rate = 0.01},
 	[flowername(3, 4)] = {shape = 3, rate = 0.1},
 	[flowername(4, 5)] = {shape = 4, rate = 0.01},
