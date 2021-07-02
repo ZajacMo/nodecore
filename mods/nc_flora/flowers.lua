@@ -151,8 +151,8 @@ end
 
 local function tryrand(mean, stddev, min, max)
 	for _ = 1, 5 do
-	local value = math_floor(nodecore.boxmuller() * stddev + mean + 0.5)
-	if value >= min and value <= max then return value end
+		local value = math_floor(nodecore.boxmuller() * stddev + mean + 0.5)
+		if value >= min and value <= max then return value end
 	end
 end
 
