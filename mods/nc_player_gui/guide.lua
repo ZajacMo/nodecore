@@ -48,9 +48,9 @@ nodecore.register_inventory_tab({
 	})
 
 nodecore.register_inventory_tab({
-		title = "Movement",
+		title = "Motion",
 		content = {
-			"Player's Guide: Movement and Navigation",
+			"Player's Guide: Motion and Navigation",
 			"",
 			"- To run faster, walk/swim forward or climb/swim upward continuously.",
 			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",

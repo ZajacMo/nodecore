@@ -22,7 +22,7 @@ end
 local nct = nodecore.translate
 local fse = minetest.formspec_escape
 
-local formwidth = 15
+local formwidth = 13
 local formheight = formwidth / 2
 
 local tabwidth = (formwidth - 0.25) / 7
