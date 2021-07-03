@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, table, tonumber
-    = math, minetest, nodecore, pairs, string, table, tonumber
+local math, minetest, nodecore, pairs, string, table, tonumber, type
+    = math, minetest, nodecore, pairs, string, table, tonumber, type
 local math_ceil, math_floor, math_pi, math_sin, string_format,
       string_sub, table_concat
     = math.ceil, math.floor, math.pi, math.sin, string.format,
@@ -38,21 +38,25 @@ local function getcolors(name, layers)
 	layers[#layers + 1] = found
 end
 
-nodecore.player_skin = nodecore.player_skin or function(player)
-	local skin = player:get_meta():get_string("custom_skin") or ""
+nodecore.player_skin = nodecore.player_skin or function(player, options)
+	if type(options) ~= "table" then options = nil end
+
+	local skin = options.custom or (options.nometa and ""
+		or player:get_meta():get_string("custom_skin")) or ""
 	if skin ~= "" then return skin end
 
-	local name = player:get_player_name()
+	local name = options.playername or player:get_player_name()
 	local layers = {modname .. "_base.png"}
 
 	getcolors(name, layers)
 
-	local privs = minetest.get_player_privs(name)
-	if not privs.interact then
+	local privs = options.privs or minetest.get_player_privs(
+		options.privname or name)
+	if options.noarms or not privs.interact then
 		layers[#layers + 1] = modname .. "_no_interact.png"
 		layers[#layers + 1] = "[makealpha:254,0,253"
 	end
-	if not privs.shout then
+	if options.nomouth or not privs.shout then
 		layers[#layers + 1] = modname .. "_no_shout.png"
 	end
 

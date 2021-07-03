@@ -29,6 +29,13 @@ minetest.register_entity(modname .. ":ent", {
 		on_activate = function(self, data)
 			self.data = data and minetest.deserialize(data) or {}
 			local obj = self.object
+			local pos = obj:get_pos()
+			local skinopts = {
+				playername = minetest.pos_to_string(pos) .. 2,
+				nometa = true,
+				privs = {interact = true, shout = true}
+			}
+			obj:set_properties({textures = {nodecore.player_skin(nil, skinopts)}})
 			obj:set_acceleration({x = 0, y = -10, z = 0})
 			local anim = self.data.anim or 0
 			obj:set_animation({x = anim, y = anim}, 1)
