@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_pi
     = math.pi
 -- LUALOCALS > ---------------------------------------------------------
@@ -13,7 +13,6 @@ local function setup(p)
 	r.fast = true
 	r.give = true
 	r.interact = true
-	r.nc_reative = true
 	minetest.set_player_privs(n, r)
 
 	p:set_pos({x = -112.6, y = 5, z = -92.6})
@@ -24,3 +23,9 @@ local function setup(p)
 end
 nodecore.register_on_joinplayer(setup)
 nodecore.register_on_respawnplayer(setup)
+
+minetest.register_globalstep(function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			nodecore.hud_set(player, {label = "cheats", ttl = 0})
+		end
+	end)
