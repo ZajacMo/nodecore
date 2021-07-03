@@ -39,7 +39,7 @@ local function getcolors(name, layers)
 end
 
 nodecore.player_skin = nodecore.player_skin or function(player, options)
-	if type(options) ~= "table" then options = nil end
+	if type(options) ~= "table" then options = {} end
 
 	local skin = options.custom or (options.nometa and ""
 		or player:get_meta():get_string("custom_skin")) or ""
