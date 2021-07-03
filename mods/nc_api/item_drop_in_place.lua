@@ -41,7 +41,7 @@ function minetest.node_dig(pos, node, digger, ...)
 			if def.silktouch and digger and nodecore.tool_digs(tool,
 				def.silktouch) then
 				nodecore.silktouch_digging = true
-				yielditem(pos, digger, ItemStack(node.name))
+				yielditem(pos, digger, ItemStack(def.silktouch_as or node.name))
 				return oldrm(p2, ...)
 			end
 
