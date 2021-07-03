@@ -9,9 +9,17 @@ local modname = minetest.get_current_modname()
 
 local sandname = "nc_terrain:sand"
 local sanddef = minetest.registered_items[sandname] or {}
+local basedef = {
+	description = "Raked Sand",
+	paramtype2 = "facedir",
+	falling_replacement = sandname,
+	silktouch_as = sandname,
+	on_door_conveyed = function(pos)
+		return minetest.set_node(pos, {name = sandname})
+	end
+}
 minetest.register_node(modname .. ":sand_raked",
 	nodecore.underride({
-			description = "Raked Sand",
 			tiles = {
 				sanddef.tiles[1] .. "^" .. modname
 				.. "_raking_linear.png",
@@ -19,34 +27,22 @@ minetest.register_node(modname .. ":sand_raked",
 				sanddef.tiles[1] .. "^" .. modname
 				.. "_raking_side.png"
 			},
-			paramtype2 = "facedir",
 			on_place = function(itemstack, placer, pointed_thing)
 				return minetest.rotate_and_place(
 					itemstack, placer, pointed_thing,
 					false, {force_floor = true})
-			end,
-			falling_replacement = sandname,
-			silktouch_as = sandname
-		}, sanddef))
+			end
+		}, basedef, sanddef))
 minetest.register_node(modname .. ":sand_raked_nexus",
 	nodecore.underride({
-			description = "Raked Sand",
 			tiles = {
 				sanddef.tiles[1] .. "^" .. modname
 				.. "_raking_nexus.png",
 				sanddef.tiles[1],
 				sanddef.tiles[1] .. "^" .. modname
 				.. "_raking_side.png"
-			},
-			paramtype2 = "facedir",
-			on_place = function(itemstack, placer, pointed_thing)
-				return minetest.rotate_and_place(
-					itemstack, placer, pointed_thing,
-					false, {force_floor = true})
-			end,
-			falling_replacement = sandname,
-			silktouch_as = sandname
-		}, sanddef))
+			}
+		}, basedef, sanddef))
 
 nodecore.register_craft({
 		label = "rake sand",

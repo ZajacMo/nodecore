@@ -107,6 +107,10 @@ nodecore.register_globalstep("door conveyance", function()
 				minetest.get_meta(v.pos):from_table(v.meta)
 				nodecore.visinv_update_ents(v.pos)
 			end
+			local def = minetest.registered_nodes[v.node.name]
+			if def and def.on_door_conveyed then
+				def.on_door_conveyed(v.pos, v.node)
+			end
 			nodecore.fallcheck(v.pos)
 		end
 	end)
