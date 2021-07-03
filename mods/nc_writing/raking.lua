@@ -7,7 +7,7 @@ local math_pi, string_gsub, string_lower
 
 local modname = minetest.get_current_modname()
 
-function nodecore.register_raked(basename, desc, recipematch, recipeidx)
+function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx)
 	local name = string_gsub(string_lower(desc), "%W", "_")
 	local basedef = minetest.registered_items[basename] or {}
 	local commondef = {
@@ -23,11 +23,11 @@ function nodecore.register_raked(basename, desc, recipematch, recipeidx)
 	minetest.register_node(linearname,
 		nodecore.underride({
 				tiles = {
-					basedef.tiles[1] .. "^" .. modname
-					.. "_raking_linear.png",
+					basedef.tiles[1] .. "^(" .. modname
+					.. "_raking_linear.png^[opacity:" .. opacity .. ")",
 					basedef.tiles[1],
-					basedef.tiles[1] .. "^" .. modname
-					.. "_raking_side.png"
+					basedef.tiles[1] .. "^(" .. modname
+					.. "_raking_side.png^[opacity:" .. opacity .. ")"
 				},
 				on_place = function(itemstack, placer, pointed_thing)
 					return minetest.rotate_and_place(
@@ -40,11 +40,11 @@ function nodecore.register_raked(basename, desc, recipematch, recipeidx)
 	minetest.register_node(nexusname,
 		nodecore.underride({
 				tiles = {
-					basedef.tiles[1] .. "^" .. modname
-					.. "_raking_nexus.png",
+					basedef.tiles[1] .. "^(" .. modname
+					.. "_raking_nexus.png^[opacity:" .. opacity .. ")",
 					basedef.tiles[1],
-					basedef.tiles[1] .. "^" .. modname
-					.. "_raking_side.png"
+					basedef.tiles[1] .. "^(" .. modname
+					.. "_raking_side.png^[opacity:" .. opacity .. ")"
 				}
 			}, commondef, basedef))
 
@@ -88,9 +88,9 @@ function nodecore.register_raked(basename, desc, recipematch, recipeidx)
 		})
 end
 
-nodecore.register_raked("nc_terrain:sand", "Sand",
+nodecore.register_raked("nc_terrain:sand", "Sand", 96,
 	{groups = {sand = true, falling_repose = false}},
 	{"group:sand"})
-nodecore.register_raked("nc_terrain:gravel", "Gravel",
+nodecore.register_raked("nc_terrain:gravel", "Gravel", 160,
 	{groups = {gravel = true, falling_repose = false}},
 	{"group:gravel"})
