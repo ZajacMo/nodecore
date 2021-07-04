@@ -41,10 +41,6 @@ end
 nodecore.player_skin = nodecore.player_skin or function(player, options)
 	if type(options) ~= "table" then options = {} end
 
-	local skin = options.custom or (options.nometa and ""
-		or player:get_meta():get_string("custom_skin")) or ""
-	if skin ~= "" then return skin end
-
 	local name = options.playername or player:get_player_name()
 	local layers = {modname .. "_base.png"}
 

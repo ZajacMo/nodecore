@@ -32,7 +32,6 @@ minetest.register_entity(modname .. ":ent", {
 			local pos = obj:get_pos()
 			local skinopts = {
 				playername = minetest.pos_to_string(pos) .. 2,
-				nometa = true,
 				privs = {interact = true, shout = true}
 			}
 			obj:set_properties({textures = {nodecore.player_skin(nil, skinopts)}})
