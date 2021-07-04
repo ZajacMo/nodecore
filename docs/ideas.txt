@@ -9,6 +9,25 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Alternative path to wood tech.
+	- Get around the "climb a tree and chop from the top"
+	  counterintuitive leap.
+	- Use gravel to stone-tip an adze, giving it choppy=2
+	- Make stone adze break really fast if used to cut a tree
+	  (modify durability?  post-dig hook?)
+
+- Lenses in inventory react to nearby light.
+	- Shine if facing an active lens within range.
+	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
+
+- Stone brick hardening (in-place)?
+
+- Use stylus on sand to produce same patterns as on concrete, inverted?
+
+- Display some kind of warning on >2s lagspikes
+	- This breaks some game things like pummels
+	- Players should all be warned ... HUD?
+
 - Need to reduce overreliance on soaking API
 	- It's complex, expensive, and prone to problems.
 	- Need a unified "theory" of soaking.
@@ -29,11 +48,13 @@ IDEAS: Possible future additions/improvements to the game
 	  could allow one-way slippage mechanisms.
 	- Some doors can't be hand-operated, only ablated.
 
-- Plants from nc_nature?
-	- Rushes, mushrooms
-	- Require/consume special dirt (humus/peat) to grow/repro?
-	- Source of special materials like ash? Cheaper peat?  Thatch?
-	- Upconvert dirt to humus nearby?
+- Plants from nc_nature
+	- To import:
+		- Mushrooms
+	- Function:
+		- Source of special materials like ash? Cheaper peat?
+		- Thatch?
+		- Upconvert dirt to humus nearby?
 
 - Rework falling_node (or build alternative) with customizability
 	- Allow lode rods, ladders to hang from ceilings?
@@ -47,6 +68,18 @@ IDEAS: Possible future additions/improvements to the game
 
 - Make radiant heat do burn damage instead of plain?
 	- Reuse lux burns?  Different kind of burn?
+
+- Spindle/axle nodes
+	- Can carry door rotations along a 1x1 path
+	- Don't actually move (except maybe animate)
+	- Apply friction in all 4 directions
+	- Can act as gears.
+	- Note that they should "spin" twice as fast, though this
+	  probably wouldn't actually matter according to actual mechanics.
+	- Maybe make threading?
+		- Apply lateral forces to certain nodes?
+		- Make grain augers?
+		- Special threaded elevator nodes?
 
 - Make etched concrete rotatble?
 	- Rotate only in pliant state by rightclick.
@@ -78,6 +111,8 @@ IDEAS: Possible future additions/improvements to the game
 	- Allow frame loose ends to be chopped off when placed next to other
 	  frames, so custom shapes can be made.
 
+- Chop wood ladders/frames back into sticks?
+
 - Piezo node for optics detects sounds?
 	- Sounds emitted by mod stuff?
 	- Footsteps?
@@ -103,16 +138,8 @@ IDEAS: Possible future additions/improvements to the game
 - Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 
 - Dungeon loot
+	- Expose API for mods to intercept/modify loot
 	- Add recipe hints (prearranged nodes) as decorations?
-	- Rows of shelves against walls.  Very rarely lode crates.
-	- Loot items in shelves, weighted pickrand().  Add a "margin" pick
-	  result with value of proportion of where in range the picked value
-	  was, and vary tool durability or stack count non-linearly by it.
-	- Scattered items on floor.  Most are from loot tables, some are
-	  crates or storeboxes.
-	- Find cobble floor on mapgen, scan up to check for ceiling to
-	  be sure we're in a dungeon.
-	- Vary loot density/quality.
 
 - A lode "mace" tool with all dig groups?
 	- Would require reevaluatng recipe priority, or tool modality.
