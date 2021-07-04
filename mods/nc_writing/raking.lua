@@ -15,6 +15,7 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 		paramtype2 = "facedir",
 		falling_replacement = basename,
 		silktouch_as = basename,
+		groups = {[name .. "_raked"] = 1},
 		on_door_conveyed = function(pos)
 			return minetest.set_node(pos, {name = basename})
 		end
@@ -85,6 +86,18 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 				nodecore.wear_wield(data.crafter, {snappy = 1}, 1)
 				return nodecore.set_loud(pos, newnode)
 			end
+		})
+
+	nodecore.register_craft({
+			label = "un-rake " .. name,
+			action = "pummel",
+			toolgroups = {thumpy = 1},
+			normal = {y = 1},
+			indexkeys = {"group:" .. name .. "_raked"},
+			nodes = {{
+					match = {groups = {[name .. "_raked"] = true}},
+					replace = basename
+			}},
 		})
 end
 
