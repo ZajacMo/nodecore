@@ -9,6 +9,15 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Soaking API: detect reset conditions like dirt becoming ineligible for
+  leaching if leach already started, and update timestamp with 0 progress
+	- Switch to using ABM-patrolled DNT, so we can watch the node
+	  even in the event its neighbors stop matching?
+	- Hook into on_nodeupdate API?
+
+- Unify the "node destruction particles" system.  Allow complex options,
+  like alternative node def, particle def, disable on silk touch.
+
 - A wooden plank appeared to have decayed in place of a scaling node;
   could it be a problem with ABM muxing?
 

@@ -22,6 +22,7 @@ local function mktool(tshape, buffs)
 		def.after_use = nil
 
 		def.groups = nodecore.underride({lux_tool = 1, lux_emit = 1}, orig.groups or {})
+		if def.groups.rakey then def.groups.rakey = def.groups.rakey + 1 end
 		local tc = {}
 		for k, v in pairs(orig.tool_capabilities.opts) do
 			tc[k] = v + 1 + (buffs[k] or 0)

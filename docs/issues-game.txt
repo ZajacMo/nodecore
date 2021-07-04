@@ -9,14 +9,79 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Doors sometimes double-fire quickly with optics, maybe caused by
+  having other optics nearby switch and causes an update?
+
+- Remove fullbright from admin hand.
+	- Separate fullbright priv.
+		- Also disable skybox/sunlight diminishing by depth?
+	- The hand could use a bit of an overhaul too.
+		- Better name, appearance.
+		- Make it look like a tool instead of hand?
+		- Maybe some kind of force entity like a lighting bolt?
+
+- Accidental rotations (optics) are too easy.
+	- Require 2 right-clicks in a row, first one "unlocks",
+	  displays some particles/ent to show state?
+
+- Hint System Catch-Up:
+	- Rushes
+		- Find
+		- Witness growth
+	- Sedges
+		- Find
+		- Capture
+		- Witness growth
+	- Flowers
+		- Find any
+		- Create a novel mutant
+		- (maybe) full completion?
+
+- Hint system: use crafting instead of inv/punch checks for "make" hints.
+	- Fixes hints completing on dungeon/multiplayer cases.
+
+- Tarstone should produce coal particles consistently when broken back
+  down to regular cobble, but it only works with the base node, not the
+  etched ones.
+
+- Sponges are too delicate in node form.
+	- Sometimes killed by "cavitation" bubble from digging nearby.
+	- Make ABM kick off a DNT to do the actual killing after a few
+	  seconds.
+
+- YCTIWY/Pickpocketing integration/overhaul.
+	- Protect items from being taken if:
+		- Player was non-idle within a certain amount of time
+		- Player is offline but was last on within certain time
+		- Player has a certain priv
+	- Display a "ghost" player entity for offline players
+		- Include a priv to prevent.
+		- Overlay a texture modifier to make them an outline.
+		- Make wield use an API to access players to allow virtual
+		  players with virtual inventories.
+	- Disable pickpocket taking w/ sneak.
+	- Don't get into the weeds of trying to optimize for the "tons of
+	  players" case until we have evidence it's a real issue.
+
+- Rakes don't work with door press.
+
+- Players losing run speed on damage would be simplified by checking for
+  <max health instead of time of last damage.
+	- Should lose farzoom when damaged too.
+
+- Optic domain wall particles are too obtrusive, and make it too easy
+  to aim optics as a side effect.
+	- Spread out particles?
+	- Switch to alternative option of involving lux?
+
+- Should water/lava springs vary by depth?  Lava seems kind of laborious
+  to find right now.
+
 - We can reliably detect the zoom player control, make far-zoom only
   work while zooming, and add hints for it.
 
 - Consider switching touchtips to waypoint HUDs now that hiding
   distance is an option.
-
-- BUG: Players with very high lag are sometimes able to dig air,
-  flux into their inventory, esp. with silk-touch tools.
 
 - Door upward conveying is sort of useless right now; make it also
   push objects outward, so this motion can be useful for upward
@@ -118,13 +183,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
 
-- Import YCTIWY as part of the base game.
-	- Setting to disable entirely
-	- Setting to disable compact mode
-	- Setting for fresh/stale like bones; items become accessible
-	  only after time has passed since last login
-	- Make the priv just to override any protections
-
 - Shelf recipe reform
 	- Add a "shelf frame" node made from wooden frames
 		- Name: "form"?
@@ -133,6 +191,7 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Shelf frame can gain its own distinct uses
 		- e.g. some things can fall through it but not others.
 		  Items?  Players?  Fluids?
+	- For glass tank, dig out center of clear glass w/ pick?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level

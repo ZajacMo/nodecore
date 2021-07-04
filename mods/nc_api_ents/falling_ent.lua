@@ -63,6 +63,9 @@ minetest.register_entity(":__builtin:falling_node", {
 
 			self.node = node
 			local def = minetest.registered_items[node.name]
+			if def.falling_replacement then
+				self.node.name = def.falling_replacement
+			end
 			self.object:set_properties({
 					is_visible = true,
 					textures = {def and def.falling_visual or node.name},
