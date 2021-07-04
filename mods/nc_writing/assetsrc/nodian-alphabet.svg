@@ -56,9 +56,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2871094"
-     inkscape:cx="198.86325"
-     inkscape:cy="59.25639"
+     inkscape:zoom="2.0000457"
+     inkscape:cx="253.11861"
+     inkscape:cy="133.32031"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -99,11 +99,11 @@
      transform="translate(53.078922,27.345748)">
     <g
        id="g4677"
-       inkscape:export-xdpi="14.33"
-       inkscape:export-ydpi="14.33"
+       inkscape:export-xdpi="12.54"
+       inkscape:export-ydpi="12.54"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(4.7898273,0,0,4.7898273,-52.647514,-30.107558)"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_cav.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_cav.png">
       <path
          inkscape:connector-curvature="0"
          id="path3684"
@@ -113,10 +113,10 @@
     <g
        id="g4681"
        transform="matrix(4.7898273,0,0,4.7898273,-46.31097,-30.107558)"
-       inkscape:export-xdpi="14.33"
-       inkscape:export-ydpi="14.33"
+       inkscape:export-xdpi="12.54"
+       inkscape:export-ydpi="12.54"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_mew.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_mew.png">
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
@@ -127,10 +127,10 @@
     <g
        id="g4685"
        transform="matrix(4.7898273,0,0,4.7898273,-39.974426,-30.107558)"
-       inkscape:export-xdpi="14.337128"
-       inkscape:export-ydpi="14.337128"
+       inkscape:export-xdpi="12.54"
+       inkscape:export-ydpi="12.54"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_odo.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_odo.png">
       <path
          inkscape:connector-curvature="0"
          id="path3715"
@@ -140,10 +140,10 @@
     <g
        id="g4690"
        transform="matrix(4.7898273,0,0,4.7898273,-33.637887,-30.107558)"
-       inkscape:export-xdpi="14.31545"
-       inkscape:export-ydpi="14.31545"
+       inkscape:export-xdpi="12.526019"
+       inkscape:export-ydpi="12.526019"
        style="stroke:#ffffff;stroke-width:0.62632738;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_fot.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_fot.png">
       <path
          inkscape:connector-curvature="0"
          id="path3717"
@@ -158,10 +158,10 @@
     <g
        id="g4695"
        transform="matrix(4.7898273,0,0,4.7898273,-154.03219,1.5750914)"
-       inkscape:export-xdpi="14.326282"
-       inkscape:export-ydpi="14.326282"
+       inkscape:export-xdpi="12.535497"
+       inkscape:export-ydpi="12.535497"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_geq.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_geq.png">
       <path
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
@@ -177,10 +177,10 @@
     <g
        id="g4704"
        transform="matrix(4.7898273,0,0,4.7898273,-147.69565,1.5750914)"
-       inkscape:export-xdpi="14.33"
-       inkscape:export-ydpi="14.33"
+       inkscape:export-xdpi="12.538836"
+       inkscape:export-ydpi="12.538836"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_niz.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_niz.png">
       <path
          inkscape:connector-curvature="0"
          id="path4560"
@@ -191,10 +191,10 @@
     <g
        id="g4710"
        transform="matrix(4.7898273,0,0,4.7898273,-141.35911,1.5750914)"
-       inkscape:export-xdpi="14.32"
-       inkscape:export-ydpi="14.32"
+       inkscape:export-xdpi="12.526026"
+       inkscape:export-ydpi="12.526026"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_yit.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_yit.png">
       <path
          inkscape:connector-curvature="0"
          id="path4577"
@@ -214,10 +214,10 @@
     <g
        transform="matrix(-4.7898273,0,0,-4.7898273,257.84306,45.980783)"
        id="g4714-4-8-4-9"
-       inkscape:export-xdpi="14.329487"
-       inkscape:export-ydpi="14.329487"
+       inkscape:export-xdpi="12.538301"
+       inkscape:export-ydpi="12.538301"
        style="stroke:#ffffff;stroke-width:0.6263274;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_prx.png">
+       inkscape:export-filename="/home/warr/.minetest/games/nodecore/mods/nc_writing/textures/nc_writing_glyph_prx.png">
       <path
          inkscape:connector-curvature="0"
          id="path4598-4-4-4-1"
