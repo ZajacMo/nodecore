@@ -52,7 +52,7 @@ if minetest.register_on_liquid_transformed then
 	minetest.register_on_liquid_transformed(function(list)
 			local started = minetest.get_us_time()
 			for i = 1, #list do
-				local pos = list[i].pos
+				local pos = list[i]
 				local phash = hash(pos)
 				if not mask[phash] then
 					mask[phash] = true
