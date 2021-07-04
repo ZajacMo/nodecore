@@ -22,15 +22,24 @@ end
 local nct = nodecore.translate
 local fse = minetest.formspec_escape
 
+local formwidth = 15
+local formheight = formwidth / 2
+
+local tabwidth = (formwidth - 0.25) / 7
+local tabheight = 0.5
+local tabmarginx = tabwidth + 0.2
+local tabmarginy = tabheight + 0.25
+local tabmax = formwidth - 0.5
+
+local textmarginx = 0.25
+local textmarginy = 0.1
+local textheight = formheight + 0.8
+
 function nodecore.inventory_formspec(player, curtab)
 	local t = {
 		"bgcolor[#000000C0;true]",
 		"listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
 	}
-
-	local tabwidth = 1.67
-	local tabmargin = 0.2
-	local tabmax = 11.5
 
 	local x = 0
 	local y = 0
@@ -39,8 +48,8 @@ function nodecore.inventory_formspec(player, curtab)
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
 		if vis == nil or vis then
-			t[#t + 1] = "button[" .. x .. "," .. y
-			.. ";" .. (tabwidth + tabmargin) .. ",0.5;tab" .. i
+			t[#t + 1] = "button[" .. x .. "," .. y .. ";"
+			.. tabmarginx .. "," .. tabheight .. ";tab" .. i
 			.. ";" .. fse(nct(v.title)) .. "]"
 			if curtab == i or (not curtab and i == 1) then
 				content = v.content
@@ -48,16 +57,17 @@ function nodecore.inventory_formspec(player, curtab)
 			x = x + tabwidth
 			if x >= tabmax then
 				x = 0
-				y = y + 0.75
+				y = y + tabmarginy
 			end
 		end
 	end
-	if x > 0 then y = y + 0.5 end
+	if x > 0 then y = y + tabmarginy end
 
-	table_insert(t, 1, "size[12," .. 6 + y .. "]")
+	table_insert(t, 1, "size[" .. formwidth .. "," .. formheight + y .. "]")
 
 	if content then
-		t[#t + 1] = "textarea[0.25," .. (y + 0.1) .. ";12,6.8;;;"
+		t[#t + 1] = "textarea[" .. textmarginx .. "," .. (y + textmarginy)
+		.. ";" .. formwidth .. "," .. textheight .. ";;;"
 		if type(content) == "function" then content = content(player) end
 		for i = 1, #content do t[#t + 1] = fse(nct(content[i]) .. "\n") end
 		t[#t + 1] = "]"

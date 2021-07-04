@@ -27,7 +27,8 @@ nodecore.register_inventory_tab({
 			"- Order and specific face of placement may matter for crafting.",
 			"- Some recipes use a 3x3 \"grid\", laid out flat on the ground.",
 			"- Larger recipes are usually more symmetrical.",
-			"- For larger recipes, the center item is usually placed last."
+			"- For larger recipes, the center item is usually placed last.",
+			"- Tools used as ingredients must be in very good condition."
 		}
 	})
 
@@ -55,7 +56,11 @@ nodecore.register_inventory_tab({
 			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
 			"- Climbing spots also produce very faint light; raise display gamma to see.",
 			"- Climbing spots may be climbed once black particles appear.",
-			"- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+			"- Learn to use the stars for long distance navigation.",
+			"- Be wary of dark caves/chasms; you are responsible for getting yourself out.",
+			"- If it takes more than 5 seconds to dig, you don't have the right tool.",
+			"- Nodes dug without the right tool cannot be picked up, only displaced.",
+			"- Displaced nodes can be climbed through like climbing spots."
 		}
 	})
 

@@ -20,7 +20,8 @@ local cheats = {
 }
 
 local function privcheck(player)
-	local cheating
+	local cheating = not (nodecore.player_can_take_damage(player)
+		and nodecore.player_visible(player))
 	local privs = minetest.get_player_privs(player:get_player_name())
 	for k in pairs(cheats) do
 		cheating = cheating or privs[k]
