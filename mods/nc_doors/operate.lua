@@ -64,7 +64,7 @@ nodecore.register_globalstep("door conveyance", function()
 			else
 				if v.tkey2 and (convey[v.tkey2] or nodecore.buildable_to(v.to2)) then
 					nonheads[v.tkey2] = true
-				else
+				elseif nodecore.buildable_to(v.to) then
 					nonheads[v.tkey] = true
 				end
 			end
