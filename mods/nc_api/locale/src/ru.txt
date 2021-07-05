@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-26 14:44+0000\n"
+"PO-Revision-Date: 2021-06-26 20:08+0000\n"
 "Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -1146,7 +1146,7 @@ msgid "wet a concrete mix"
 msgstr "намочите бетонную смесь"
 
 msgid "anneal a lode cube"
-msgstr "отжигать рудный куб"
+msgstr "отожгите металлический куб"
 
 msgid "complete a pummel with a hinged panel and tool head"
 msgstr "завершите избиение навесной панели и головки инструмента"

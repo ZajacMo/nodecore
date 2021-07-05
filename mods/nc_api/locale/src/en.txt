@@ -265,6 +265,21 @@ msgstr "Ash"
 msgid "Ash Lump"
 msgstr "Ash Lump"
 
+msgid "Azure Bell Flower"
+msgstr "Azure Bell Flower"
+
+msgid "Azure Cluster Flower"
+msgstr "Azure Cluster Flower"
+
+msgid "Azure Cup Flower"
+msgstr "Azure Cup Flower"
+
+msgid "Azure Rosette Flower"
+msgstr "Azure Rosette Flower"
+
+msgid "Azure Star Flower"
+msgstr "Azure Star Flower"
+
 msgid "Bindy"
 msgstr "Bindy"
 
@@ -292,8 +307,38 @@ msgstr "Bindy Stone"
 msgid "Bindy Tarstone"
 msgstr "Bindy Tarstone"
 
+msgid "Black Bell Flower"
+msgstr "Black Bell Flower"
+
+msgid "Black Cluster Flower"
+msgstr "Black Cluster Flower"
+
+msgid "Black Cup Flower"
+msgstr "Black Cup Flower"
+
+msgid "Black Rosette Flower"
+msgstr "Black Rosette Flower"
+
+msgid "Black Star Flower"
+msgstr "Black Star Flower"
+
 msgid "Blank"
 msgstr "Blank"
+
+msgid "Blue Bell Flower"
+msgstr "Blue Bell Flower"
+
+msgid "Blue Cluster Flower"
+msgstr "Blue Cluster Flower"
+
+msgid "Blue Cup Flower"
+msgstr "Blue Cup Flower"
+
+msgid "Blue Rosette Flower"
+msgstr "Blue Rosette Flower"
+
+msgid "Blue Star Flower"
+msgstr "Blue Star Flower"
 
 msgid "Bonded Adobe Brick Hinged Panel"
 msgstr "Bonded Adobe Brick Hinged Panel"
@@ -432,6 +477,9 @@ msgstr "Discord: https://discord.gg/NNYeF6f"
 
 msgid "Displaced Node"
 msgstr "Displaced Node"
+
+msgid "Dry Rush"
+msgstr "Dry Rush"
 
 msgid "Eggcorn"
 msgstr "Eggcorn"
@@ -727,8 +775,38 @@ msgstr "Not all game content is covered by hints. Explore!"
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
 
+msgid "Orange Bell Flower"
+msgstr "Orange Bell Flower"
+
+msgid "Orange Cluster Flower"
+msgstr "Orange Cluster Flower"
+
+msgid "Orange Cup Flower"
+msgstr "Orange Cup Flower"
+
+msgid "Orange Rosette Flower"
+msgstr "Orange Rosette Flower"
+
+msgid "Orange Star Flower"
+msgstr "Orange Star Flower"
+
 msgid "Peat"
 msgstr "Peat"
+
+msgid "Pink Bell Flower"
+msgstr "Pink Bell Flower"
+
+msgid "Pink Cluster Flower"
+msgstr "Pink Cluster Flower"
+
+msgid "Pink Cup Flower"
+msgstr "Pink Cup Flower"
+
+msgid "Pink Rosette Flower"
+msgstr "Pink Rosette Flower"
+
+msgid "Pink Star Flower"
+msgstr "Pink Star Flower"
 
 msgid "Player's Guide: Crafting"
 msgstr "Player's Guide: Crafting"
@@ -778,8 +856,32 @@ msgstr "Pumwater"
 msgid "Qeg Charcoal Glyph"
 msgstr "Qeg Charcoal Glyph"
 
+msgid "Raked Gravel"
+msgstr "Raked Gravel"
+
+msgid "Raked Sand"
+msgstr "Raked Sand"
+
+msgid "Red Bell Flower"
+msgstr "Red Bell Flower"
+
+msgid "Red Cluster Flower"
+msgstr "Red Cluster Flower"
+
+msgid "Red Cup Flower"
+msgstr "Red Cup Flower"
+
+msgid "Red Rosette Flower"
+msgstr "Red Rosette Flower"
+
+msgid "Red Star Flower"
+msgstr "Red Star Flower"
+
 msgid "Render"
 msgstr "Render"
+
+msgid "Rush"
+msgstr "Rush"
 
 msgid "Sand"
 msgstr "Sand"
@@ -789,6 +891,9 @@ msgstr "Sandstone"
 
 msgid "Sandstone Bricks"
 msgstr "Sandstone Bricks"
+
+msgid "Sedge"
+msgstr "Sedge"
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "See included LICENSE file for full details and credits"
@@ -982,6 +1087,21 @@ msgstr "Verty Stone"
 msgid "Verty Tarstone"
 msgstr "Verty Tarstone"
 
+msgid "Violet Bell Flower"
+msgstr "Violet Bell Flower"
+
+msgid "Violet Cluster Flower"
+msgstr "Violet Cluster Flower"
+
+msgid "Violet Cup Flower"
+msgstr "Violet Cup Flower"
+
+msgid "Violet Rosette Flower"
+msgstr "Violet Rosette Flower"
+
+msgid "Violet Star Flower"
+msgstr "Violet Star Flower"
+
 msgid "Water"
 msgstr "Water"
 
@@ -999,6 +1119,36 @@ msgstr "Wet Sponge"
 
 msgid "Wet Tarry Aggregate"
 msgstr "Wet Tarry Aggregate"
+
+msgid "White Bell Flower"
+msgstr "White Bell Flower"
+
+msgid "White Cluster Flower"
+msgstr "White Cluster Flower"
+
+msgid "White Cup Flower"
+msgstr "White Cup Flower"
+
+msgid "White Rosette Flower"
+msgstr "White Rosette Flower"
+
+msgid "White Star Flower"
+msgstr "White Star Flower"
+
+msgid "Wilted Bell Flower"
+msgstr "Wilted Bell Flower"
+
+msgid "Wilted Cluster Flower"
+msgstr "Wilted Cluster Flower"
+
+msgid "Wilted Cup Flower"
+msgstr "Wilted Cup Flower"
+
+msgid "Wilted Rosette Flower"
+msgstr "Wilted Rosette Flower"
+
+msgid "Wilted Star Flower"
+msgstr "Wilted Star Flower"
 
 msgid "Wooden Adze"
 msgstr "Wooden Adze"
@@ -1050,6 +1200,21 @@ msgstr "Wooden Spade Head"
 
 msgid "Xrp Charcoal Glyph"
 msgstr "Xrp Charcoal Glyph"
+
+msgid "Yellow Bell Flower"
+msgstr "Yellow Bell Flower"
+
+msgid "Yellow Cluster Flower"
+msgstr "Yellow Cluster Flower"
+
+msgid "Yellow Cup Flower"
+msgstr "Yellow Cup Flower"
+
+msgid "Yellow Rosette Flower"
+msgstr "Yellow Rosette Flower"
+
+msgid "Yellow Star Flower"
+msgstr "Yellow Star Flower"
 
 msgid "Yit Charcoal Glyph"
 msgstr "Yit Charcoal Glyph"
@@ -1122,6 +1287,9 @@ msgstr "bond tarstone bricks"
 
 msgid "break cobble into chips"
 msgstr "break cobble into chips"
+
+msgid "breed a new flower variety"
+msgstr "breed a new flower variety"
 
 msgid "carve a wooden plank completely"
 msgstr "carve a wooden plank completely"
@@ -1219,6 +1387,9 @@ msgstr "drop all your items at once"
 msgid "drop an item"
 msgstr "drop an item"
 
+msgid "dry out a rush"
+msgstr "dry out a rush"
+
 msgid "dry out a sponge"
 msgstr "dry out a sponge"
 
@@ -1227,6 +1398,15 @@ msgstr "etch pliant concrete with a stylus"
 
 msgid "ferment peat into humus"
 msgstr "ferment peat into humus"
+
+msgid "find a flower"
+msgstr "find a flower"
+
+msgid "find a rush"
+msgstr "find a rush"
+
+msgid "find a sedge"
+msgstr "find a sedge"
 
 msgid "find a sponge"
 msgstr "find a sponge"
@@ -1272,6 +1452,15 @@ msgstr "go for a swim"
 
 msgid "grind leaves into peat"
 msgstr "grind leaves into peat"
+
+msgid "grow a flower on moist soil"
+msgstr "grow a flower on moist soil"
+
+msgid "grow a rush on moist soil"
+msgstr "grow a rush on moist soil"
+
+msgid "grow a sedge on moist grass"
+msgstr "grow a sedge on moist grass"
 
 msgid "hammer a lode prill into a bar"
 msgstr "hammer a lode prill into a bar"
@@ -1357,6 +1546,9 @@ msgstr "pack stone chips back into cobble"
 msgid "pack up a complete tote"
 msgstr "pack up a complete tote"
 
+msgid "pick a sedge"
+msgstr "pick a sedge"
+
 msgid "place a node with a hinged panel"
 msgstr "place a node with a hinged panel"
 
@@ -1428,6 +1620,9 @@ msgstr "weld glowing lode pick and spade heads together"
 
 msgid "wet a concrete mix"
 msgstr "wet a concrete mix"
+
+msgid "wilt a flower"
+msgstr "wilt a flower"
 
 msgid "write on a surface with a charcoal lump"
 msgstr "write on a surface with a charcoal lump"
