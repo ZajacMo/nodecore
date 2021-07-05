@@ -12,7 +12,7 @@ nodecore.register_hint("dry out a rush",
 	"nc_flora:rush"
 )
 
-nodecore.register_hint("grow a rush on soil",
+nodecore.register_hint("grow a rush on moist soil",
 	"rush spread",
 	"nc_flora:rush"
 )
@@ -26,7 +26,7 @@ nodecore.register_hint("pick a sedge",
 	"group:flora_sedges"
 )
 
-nodecore.register_hint("grow a sedge",
+nodecore.register_hint("grow a sedge on moist grass",
 	"sedge growth",
 	"group:flora_sedges"
 )
