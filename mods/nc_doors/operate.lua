@@ -3,8 +3,6 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modstore = minetest.get_mod_storage()
-
 local hashpos = minetest.pos_to_string
 
 local function hingeaxis(pos, node)
@@ -18,32 +16,6 @@ local function hingeaxis(pos, node)
 	}
 end
 
-local convey = {}
-
-local function movecheck(okay, seg, to, tkey, collide)
-	if (not nodecore.buildable_to(to))
-	or nodecore.obstructed(to) or collide[tkey]
-	then return end
-	for x in pairs(seg) do okay[x] = true end
-	collide[tkey] = true
-	return true
-end
-
-local function conveytrace(okay, seg, u, collide)
-	if u.tkey2 then
-		local w = convey[u.tkey2]
-		if w then return w end
-		if movecheck(okay, seg, u.to2, u.tkey2, collide) then
-			u.to = u.to2
-			u.tkey = u.tkey2
-			return
-		end
-	end
-	local w = convey[u.tkey]
-	if w then return w end
-	movecheck(okay, seg, u.to, u.tkey, collide)
-end
-
 local function set_node(pos, node)
 	local exists = minetest.get_node(pos)
 	if exists.name ~= node.name
@@ -53,95 +25,11 @@ local function set_node(pos, node)
 	end
 end
 
-nodecore.register_globalstep("door conveyance", function()
-		local nonheads = {}
-		for k, v in pairs(convey) do
-			local node = minetest.get_node(v.from)
-			if node.name ~= v.node.name
-			or node.param ~= v.node.param
-			or node.param2 ~= v.node.param2 then
-				convey[k] = nil
-			else
-				if v.tkey2 and (convey[v.tkey2] or nodecore.buildable_to(v.to2)) then
-					nonheads[v.tkey2] = true
-				elseif nodecore.buildable_to(v.to) then
-					nonheads[v.tkey] = true
-				end
-			end
-		end
-		local okay = {}
-		local collide = {}
-		for k, v in pairs(convey) do
-			if not nonheads[k] then
-				local seg = {}
-				local u = v
-				while u and not seg[u] do
-					seg[u] = true
-					u = conveytrace(okay, seg, u, collide)
-				end
-				for x in pairs(seg) do
-					convey[x.fkey] = nil
-				end
-			end
-		end
-		for _, v in pairs(convey) do
-			okay[v] = true
-		end
-		convey = {}
-
-		local air = {name = "air"}
-		local toset = {}
-		for v in pairs(okay) do
-			toset[v.fkey] = {pos = v.from, node = air}
-		end
-		for v in pairs(okay) do
-			toset[v.tkey] = {
-				pos = v.to,
-				node = v.node,
-				meta = minetest.get_meta(v.from):to_table()
-			}
-		end
-		for _, v in pairs(toset) do
-			set_node(v.pos, v.node)
-			if v.meta then
-				minetest.get_meta(v.pos):from_table(v.meta)
-				nodecore.visinv_update_ents(v.pos)
-			end
-			local def = minetest.registered_nodes[v.node.name]
-			if def and def.on_door_conveyed then
-				def.on_door_conveyed(v.pos, v.node)
-			end
-			nodecore.fallcheck(v.pos)
-		end
-	end)
-
-local is_falling = {groups = {falling_node = true}}
-
-local function trypush(pos, dir, dir2)
-	local node = minetest.get_node(pos)
-	if not nodecore.match(node, is_falling) then return end
-
-	local data = {
-		from = pos,
-		fkey = hashpos(pos),
-		to = vector.add(pos, dir),
-		node = node,
-	}
-	data.tkey = hashpos(data.to)
-	if dir2 then
-		data.to2 = vector.add(pos, dir2)
-		data.tkey2 = hashpos(data.to2)
-	end
-	convey[data.fkey] = data
-end
-
-local squelch = modstore:get_string("squelch")
-squelch = squelch and squelch ~= "" and minetest.deserialize(squelch) or {}
+local squelch = {}
 nodecore.register_globalstep("door squelch", function(dtime)
 		for k, v in pairs(squelch) do
 			squelch[k] = (v > dtime) and (v - dtime) or nil
 		end
-		modstore:set_string("squelch", squelch)
 	end)
 
 local is_door = {groups = {door = true}}
@@ -149,6 +37,7 @@ local is_door = {groups = {door = true}}
 function nodecore.operate_door(pos, node, dir)
 	local key = hashpos(pos)
 	if squelch[key] then return end
+
 	node = node or minetest.get_node_or_nil(pos)
 	if (not node) or (not nodecore.match(node, is_door)) then return end
 
@@ -263,11 +152,11 @@ function nodecore.operate_door(pos, node, dir)
 		end
 	end
 	for _, v in pairs(found) do
-		trypush({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir, v.dir2)
+		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir, v.dir2)
 	end
 	for _, v in pairs(toop) do
 		nodecore.operate_door(v.pos, nil, v.dir)
-		trypush(v.pos, v.dir)
+		nodecore.door_push(v.pos, v.dir)
 	end
 	return true
 end
