@@ -126,6 +126,7 @@ nodecore.register_limited_abm({
 					name = modname .. ":rush",
 					param2 = 4
 				})
+			return nodecore.witness(pick, "rush spread")
 		end
 	})
 

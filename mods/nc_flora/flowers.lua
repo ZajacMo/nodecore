@@ -63,11 +63,11 @@ for shapeid = 1, #shapes do
 				place_param2 = shape.param2,
 				groups = {
 					snappy = 1,
-					living_flower = 1,
+					flower_living = 1,
 					flammable = 1,
 					attached_node = 1,
-					flower_mutant = mapgenrates[flowername(shapeid,
-						colorid)] and 0 or 1
+					flower_mutant = (not mapgenrates[flowername(shapeid,
+							colorid)]) and 1 or nil
 				},
 				nc_flower_shape = shapeid,
 				nc_flower_color = colorid,
@@ -100,6 +100,7 @@ for shapeid = 1, #shapes do
 			place_param2 = shape.param2,
 			groups = {
 				snappy = 1,
+				flower_wilted = 1,
 				flammable = 1,
 				attached_node = 1
 			},
@@ -164,7 +165,7 @@ nodecore.register_limited_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
 		chance = 100,
-		nodenames = {"group:living_flower"},
+		nodenames = {"group:flower_living"},
 		action = function(pos, node)
 			local function die()
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
@@ -193,7 +194,7 @@ nodecore.register_limited_abm({
 			local v_shape = 0
 			local m_color = minetest.registered_items[node.name].nc_flower_color
 			local v_color = 0
-			for _, p in ipairs(nodecore.find_nodes_around(grow, "group:living_flower", 2, 1)) do
+			for _, p in ipairs(nodecore.find_nodes_around(grow, "group:flower_living", 2, 1)) do
 				local def = minetest.registered_items[minetest.get_node(p).name]
 				if def and def.nc_flower_shape and def.nc_flower_color then
 					weight = weight + 1
@@ -215,6 +216,7 @@ nodecore.register_limited_abm({
 					name = flowername(newshape, newcolor),
 					param2 = shapes[newshape].param2
 				})
+			return nodecore.witness(grow, "flower spread")
 		end
 	})
 
@@ -222,7 +224,7 @@ nodecore.register_aism({
 		label = "flower stack wilt",
 		interval = 1,
 		chance = 50,
-		itemnames = {"group:living_flower"},
+		itemnames = {"group:flower_living"},
 		action = function(stack, data)
 			if data.toteslot then return end
 			local shapeid = minetest.registered_items[stack:get_name()].nc_flower_shape

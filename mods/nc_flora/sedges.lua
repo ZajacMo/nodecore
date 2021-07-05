@@ -100,7 +100,8 @@ nodecore.register_limited_abm({
 			local lv = allsedges[node.name]
 			local grow = lv and allsedges[lv + 1]
 			if grow then
-				return nodecore.set_loud(pos, {name = grow, param2 = 2})
+				nodecore.set_loud(pos, {name = grow, param2 = 2})
+				return nodecore.witness(pos, "sedge growth")
 			end
 		end
 	})
