@@ -9,9 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Doors sometimes double-fire quickly with optics, maybe caused by
-  having other optics nearby switch and causes an update?
-
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
@@ -23,19 +20,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Accidental rotations (optics) are too easy.
 	- Require 2 right-clicks in a row, first one "unlocks",
 	  displays some particles/ent to show state?
-
-- Hint System Catch-Up:
-	- Rushes
-		- Find
-		- Witness growth
-	- Sedges
-		- Find
-		- Capture
-		- Witness growth
-	- Flowers
-		- Find any
-		- Create a novel mutant
-		- (maybe) full completion?
 
 - Hint system: use crafting instead of inv/punch checks for "make" hints.
 	- Fixes hints completing on dungeon/multiplayer cases.
