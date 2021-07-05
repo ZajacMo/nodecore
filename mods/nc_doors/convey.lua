@@ -35,7 +35,10 @@ local function tryprocess(item, retry)
 			local meta = minetest.get_meta(item.from):to_table()
 			minetest.remove_node(item.from)
 			nodecore.set_loud(t, node)
+			meta.fields = meta.fields or {}
+			meta.fields.tweenfrom = minetest.serialize(item.from)
 			minetest.get_meta(t):from_table(meta)
+			nodecore.visinv_update_ents(t)
 			nodecore.fallcheck(t)
 			local re = retry[hashpos(item.from)]
 			if not re then return end
