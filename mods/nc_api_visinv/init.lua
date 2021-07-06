@@ -32,11 +32,14 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
+local hash = minetest.hash_node_position
+local unhash = minetest.get_position_from_hash
+
 local check_queue = {}
 local check_queue_dirty
 local function visinv_update_ents(pos)
 	pos = vector.round(pos)
-	check_queue[minetest.hash_node_position(pos)] = pos
+	check_queue[hash(pos)] = pos
 	check_queue_dirty = true
 end
 nodecore.visinv_update_ents = visinv_update_ents
@@ -49,14 +52,16 @@ end
 
 local function itemcheck(self)
 	local obj = self.object
-	local pos = obj:get_pos()
-	if not pos then visinv_ents[self] = nil return end
+	if not (obj and obj:get_pos()) then
+		visinv_ents[self] = nil
+		return
+	end
 
-	local rp = vector.round(pos)
+	local rp = self.pos
 	local nodemeta = minetest.get_meta(rp)
 	local tweenfrom = minetest.deserialize(nodemeta:get_string("tweenfrom"))
 
-	local stack = nodecore.stack_get(pos)
+	local stack = nodecore.stack_get(rp)
 
 	local sstr = stack:to_string()
 	if (not tweenfrom) and self.stackstring == sstr then return end
@@ -168,6 +173,7 @@ nodecore.register_globalstep("visinv check", function()
 					visinv_ents[ent] = true
 					ent.is_stack = true
 					ent.poskey = poskey
+					ent.pos = unhash(poskey)
 					itemcheck(ent)
 				else
 					check_retry_add(poskey, data)

@@ -46,7 +46,6 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 				nodecore.place_stack(p, item)
 				minetest.get_meta(p):set_string("tweenfrom",
 					minetest.serialize(self.object:get_pos()))
-				self.itemstring = ""
 				self.on_step = function()
 					self.on_step = function() self.object:remove() end
 				end
