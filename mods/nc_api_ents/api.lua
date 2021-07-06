@@ -44,7 +44,7 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		props.visual_size = {x = scale, y = scale}
 
 		props.automatic_rotate = rotate
-		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or nil
+		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or 0
 
 		local def = minetest.registered_items[stack:get_name()]
 		props.glow = def and (def.glow or def.light_source)

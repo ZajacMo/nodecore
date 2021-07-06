@@ -47,7 +47,11 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 				minetest.get_meta(p):set_string("tweenfrom",
 					minetest.serialize(self.object:get_pos()))
 				self.itemstring = ""
-				self.object:remove()
+				self.on_step = function()
+					self.on_step = function() self.object:remove() end
+				end
+				nodecore.visinv_reuse_ents[minetest.hash_node_position(
+					vector.round(p))] = self
 				return true
 			end
 		end

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, setmetatable, vector
+    = math, minetest, nodecore, pairs, setmetatable, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -119,6 +119,9 @@ local function check_retry_add(key, val)
 	check_retry[key] = val
 end
 
+nodecore.visinv_reuse_ents = {}
+local reusekeep = {object = true}
+
 nodecore.register_globalstep("visinv check", function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
@@ -143,7 +146,23 @@ nodecore.register_globalstep("visinv check", function()
 		end
 		for poskey, data in pairs(batch) do
 			if (not data.n) and (not nodecore.stack_get(data):is_empty()) then
-				local obj = minetest.add_entity(data, entname)
+				local obj = nodecore.visinv_reuse_ents[poskey]
+				if obj then
+					nodecore.visinv_reuse_ents[poskey] = nil
+					local meta = {}
+					setmetatable(obj, meta)
+					for k in pairs(obj) do
+						if not reusekeep[k] then
+							obj[k] = nil
+						end
+					end
+					meta.__index = minetest.registered_entities[entname]
+					obj = obj.object
+					obj:set_velocity({x = 0, y = 0, z = 0})
+					obj:set_acceleration({x = 0, y = 0, z = 0})
+				else
+					obj = minetest.add_entity(data, entname)
+				end
 				local ent = obj and obj:get_luaentity()
 				if ent then
 					visinv_ents[ent] = true
