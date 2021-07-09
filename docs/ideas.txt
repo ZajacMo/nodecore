@@ -55,9 +55,11 @@ IDEAS: Possible future additions/improvements to the game
 		- Source of special materials like ash? Cheaper peat?
 		- Thatch?
 		- Upconvert dirt to humus nearby?
+		- Rushes to reeds to windchimes?
 
 - Rework falling_node (or build alternative) with customizability
 	- Allow lode rods, ladders to hang from ceilings?
+	- Add on_fall_check hook, hook in check_single_for_falling
 
 - Durable transparent/window material.
 	- Harder to mine, noob protection.
