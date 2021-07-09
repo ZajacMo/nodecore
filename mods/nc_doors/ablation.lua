@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, rawset, vector
-    = minetest, nodecore, pairs, rawset, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -75,10 +75,12 @@ local function doortrigger(doorpos)
 	end
 end
 
-minetest.after(0, function()
-		for _, v in pairs(minetest.registered_nodes) do
-			if v.groups.door and v.groups.door > 0 then
-				rawset(v, "optic_check", doortrigger)
+nodecore.register_on_register_item({
+		retroactive = true,
+		func = function(_, def)
+			if def.groups and def.groups.door and def.groups.door > 0 then
+				def.optic_check = doortrigger
+				def.groups.optic_check = 1
 			end
 		end
-	end)
+	})
