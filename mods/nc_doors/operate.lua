@@ -152,7 +152,7 @@ function nodecore.operate_door(pos, node, dir)
 		end
 	end
 	for _, v in pairs(found) do
-		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir, v.dir2)
+		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir2, v.dir)
 	end
 	for _, v in pairs(toop) do
 		nodecore.operate_door(v.pos, nil, v.dir)
