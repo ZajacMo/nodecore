@@ -11,11 +11,18 @@ local function setup(p)
 	local r = minetest.get_player_privs(n)
 	r.fly = true
 	r.fast = true
+	r.noclip = true
+	r.debug = true
+	r.basic_debug = true
 	r.give = true
+	r.pulverize = true
 	r.interact = true
+	r.keepinv = true
+	r.ncdqd = true
+	r.teleport = true
 	minetest.set_player_privs(n, r)
 
-	p:set_pos({x = -112.6, y = 5, z = -92.6})
+	p:set_pos({x = -112.4, y = 5, z = -91.8})
 	p:set_look_horizontal(163.8 * math_pi / 180)
 	p:set_look_vertical(9 * math_pi / 180)
 
