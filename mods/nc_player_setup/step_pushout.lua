@@ -1,12 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, tonumber, type, vector
-    = math, minetest, nodecore, pairs, string, tonumber, type, vector
+local math, minetest, nodecore, pairs, string, type, vector
+    = math, minetest, nodecore, pairs, string, type, vector
 local math_random, string_format
     = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local mintime = tonumber(minetest.settings:get(nodecore.product:lower() .. "_pushout_time")) or 2
-local stepdist = tonumber(minetest.settings:get(nodecore.product:lower() .. "_pushout_stepdist")) or 5
+local modname = minetest.get_current_modname()
+local mintime = nodecore.setting_float(modname .. "_time", 2,
+	"Push out of solid time", [[The amount of time a player
+	needs to be trapped in a solid node before being pushed out.]])
+local stepdist = nodecore.setting_float(modname .. "_stepdist", 5,
+	"Push out of solid distance", [[The maximum distance in
+	nodes that a player will be pushed out of solids.]])
 
 local function normalbox(box)
 	if not box then return true end
