@@ -39,7 +39,6 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			label = fromnode .. " leaching to " .. tonode,
 			fieldname = "leach",
 			nodenames = {fromnode},
-			neighbors = {"group:water"},
 			interval = 5,
 			soakrate = function(pos)
 				if not waterat(pos, 0, 1, 0) then return false end

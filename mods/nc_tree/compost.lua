@@ -64,7 +64,6 @@ nodecore.register_soaking_abm({
 		label = "peat compost",
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
-		neighbors = {"group:soil"},
 		interval = 10,
 		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
