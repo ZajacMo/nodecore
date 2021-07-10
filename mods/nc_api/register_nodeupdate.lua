@@ -38,25 +38,12 @@ for fn, param in pairs({
 end
 
 if minetest.register_on_liquid_transformed then
-	local liquids = 0
-	local time = 0
-	local function liquidrpt()
-		nodecore.log("warning", "handled liquid transform for "
-			.. liquids .. " nodes over " .. (time / 1000000)
-			.. " seconds")
-		liquids = 0
-		time = 0
-		minetest.after(10, liquidrpt)
-	end
-	minetest.after(10, liquidrpt)
 	minetest.register_on_liquid_transformed(function(list)
-			local started = minetest.get_us_time()
 			for i = 1, #list do
 				local pos = list[i]
 				local phash = hash(pos)
 				if not mask[phash] then
 					mask[phash] = true
-					liquids = liquids + 1
 					local node = minetest.get_node(pos)
 					for j = 1, #nodecore.registered_on_nodeupdates do
 						(nodecore.registered_on_nodeupdates[j])(pos, node)
@@ -64,6 +51,5 @@ if minetest.register_on_liquid_transformed then
 					mask[phash] = nil
 				end
 			end
-			time = time + minetest.get_us_time() - started
 		end)
 end
