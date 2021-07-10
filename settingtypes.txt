@@ -206,8 +206,8 @@ nc_api_rate_zoom_time (Speed adjust > zoom > time) float 1
 nc_optics_interval (Optic check interval) float 5
 
 # The maximum number of optics that can be queued in a single pass for
-# "passive" checks to run (pending passive) checks will be included to
-# fill up remaining spaces up to this total). Passive checks are used to
+# "passive" checks to run; pending passive checks will be included to
+# fill up remaining spaces up to this total. Passive checks are used to
 # catch optics in an inconsistent state, e.g. that missed their change
 # event.
 nc_optics_passive_max (Optic check passive max) float 25
