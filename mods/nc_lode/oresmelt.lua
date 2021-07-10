@@ -20,7 +20,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lode cobble drain",
 		nodenames = {modname .. ":cobble_hot"},
 		interval = 1,

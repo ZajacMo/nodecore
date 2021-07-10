@@ -67,8 +67,8 @@ minetest.after(1, pcount)
 local oldreg = minetest.register_abm
 function minetest.register_abm(def)
 	local rawkey = table_concat({
-			def.interval,
-			def.chance,
+			def.interval or 1,
+			def.chance or 1,
 			def.catchup and 1 or 0,
 			table_concat(def.neighbors or {}, ";")
 		}, "|")

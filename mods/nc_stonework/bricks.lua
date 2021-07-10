@@ -53,7 +53,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 
-	nodecore.register_limited_abm({
+	minetest.register_abm({
 			label = "bond " .. name .. " bricks",
 			nodenames = {modname .. ":bricks_" .. name},
 			neighbors = {"group:concrete_wet"},

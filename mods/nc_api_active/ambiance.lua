@@ -66,7 +66,7 @@ end
 local function abm_pos(pos) return pos end
 function nodecore.register_ambiance(def)
 	ambiance_core(def, abm_pos)
-	return nodecore.register_limited_abm(def)
+	return minetest.register_abm(def)
 end
 
 local function aism_pos(_, data) return data.pos end

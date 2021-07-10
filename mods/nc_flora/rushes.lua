@@ -99,7 +99,7 @@ local function rushcheck(pos)
 	end
 	return subst, below
 end
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "rush drying/spreading",
 		interval = 1,
 		chance = 50,

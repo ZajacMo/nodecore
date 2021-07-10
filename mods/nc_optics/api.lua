@@ -199,7 +199,7 @@ for k in pairs(v.deps) do
 end
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 	label = "optic check",
 	interval = optic_interval,
 	chance = 1,

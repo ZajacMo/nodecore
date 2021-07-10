@@ -98,7 +98,7 @@ function nodecore.register_cook_abm(def)
 	def.chance = def.chance or 1
 	def.action = cookcheck
 	for _, n in pairs(def.nodenames) do cooknames[n] = true end
-	nodecore.register_limited_abm(def)
+	minetest.register_abm(def)
 end
 
 minetest.after(0, function()

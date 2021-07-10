@@ -27,7 +27,7 @@ minetest.register_node(pumname, pumdef)
 
 do
 	local dirs = nodecore.dirs()
-	nodecore.register_limited_abm({
+	minetest.register_abm({
 			label = "lava pumice",
 			interval = 1,
 			chance = 2,
@@ -46,7 +46,7 @@ do
 		})
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "pumice melt",
 		interval = 1,
 		chance = 2,

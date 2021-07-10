@@ -46,11 +46,10 @@ for _, v in pairs(nodecore.dirs()) do
 		outdirs[#outdirs + 1] = v
 	end
 end
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lux flow leak",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:lux_cobble_max"},
 		action = function(pos)
 			for _, v in pairs(outdirs) do
@@ -69,11 +68,10 @@ for _, v in pairs(nodecore.dirs()) do
 		indirs[#indirs + 1] = v
 	end
 end
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lux flow ebb",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {modname .. ":flux_source"},
 		action = function(pos)
 			for _, v in pairs(indirs) do

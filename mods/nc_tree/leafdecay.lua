@@ -109,12 +109,10 @@ minetest.register_globalstep(function()
 		end
 	end)
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "leaves decay",
 		interval = 2,
 		chance = 5,
-		limited_max = 100,
-		limited_alert = 1000,
 		nodenames = {"group:leaf_decay"},
 		action = check_decay
 	})

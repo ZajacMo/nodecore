@@ -62,11 +62,10 @@ local function spongesurvive(data)
 	end
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "sponge grow",
 		interval = 1,
 		chance = 10,
-		limited_max = 1000,
 		nodenames = {living},
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then

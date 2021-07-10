@@ -112,7 +112,7 @@ nodecore.register_craft({
 
 nodecore.register_cook_abm({nodenames = {src}})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "molten glass wander",
 		interval = 1,
 		chance = 4,

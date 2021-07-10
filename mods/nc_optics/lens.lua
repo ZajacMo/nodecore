@@ -89,7 +89,7 @@ reg("_glow", {
 		},
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lens fire start",
 		interval = 2,
 		chance = 2,

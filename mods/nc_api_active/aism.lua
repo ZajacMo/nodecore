@@ -43,7 +43,7 @@ local function checkstack(stack, data)
 end
 nodecore.aism_check_stack = checkstack
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "aism schedule",
 		nodenames = {"group:visinv"},
 		interval = 1,

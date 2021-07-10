@@ -41,7 +41,6 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			nodenames = {fromnode},
 			neighbors = {"group:water"},
 			interval = 5,
-			chance = 1,
 			soakrate = function(pos)
 				if not waterat(pos, 0, 1, 0) then return false end
 				local qty = 1
@@ -103,7 +102,7 @@ nodecore.register_dnt({
 		action = function(pos) return nodecore.artificial_water_check(pos) end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "artificial water check",
 		interval = 1,
 		chance = 1,

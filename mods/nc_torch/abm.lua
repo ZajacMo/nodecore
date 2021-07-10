@@ -14,7 +14,7 @@ local checkdirs = {
 	{x = 0, y = 0, z = -1},
 	{x = 0, y = 1, z = 0}
 }
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "torch ignite",
 		interval = 6,
 		chance = 1,
@@ -44,7 +44,7 @@ local function torchlife(expire)
 	return stage
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "torch snuff",
 		interval = 1,
 		chance = 1,

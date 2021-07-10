@@ -161,7 +161,7 @@ local function tryrand(mean, stddev, min, max)
 	end
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
 		chance = 100,

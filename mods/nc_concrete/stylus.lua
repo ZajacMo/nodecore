@@ -87,8 +87,6 @@ nodecore.register_craft({
 nodecore.register_soaking_abm({
 		label = "pliable concrete cure",
 		interval = 1,
-		chance = 1,
-		limited_max = 100,
 		nodenames = {"group:concrete_etchable"},
 		fieldname = "plycuring",
 		soakrate = function(pos)

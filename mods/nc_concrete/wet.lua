@@ -15,11 +15,10 @@ local function wetname(name)
 	return def and (def .. "_wet_source")
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "concrete wet",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:concrete_powder"},
 		neighbors = {"group:water"},
 		action = function(pos, node)
@@ -51,11 +50,10 @@ nodecore.register_aism({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "concrete wander",
 		interval = 4,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:concrete_source"},
 		neighbors = {"group:concrete_flow"},
 		action = function(pos, node)
@@ -95,11 +93,10 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "concrete sink/disperse",
 		interval = 4,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:concrete_source"},
 		neighbors = {"group:water"},
 		action = function(pos, node)
@@ -125,8 +122,6 @@ nodecore.register_limited_abm({
 nodecore.register_soaking_abm({
 		label = "wet concrete cure",
 		interval = 5,
-		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:concrete_source"},
 		fieldname = "curing",
 		soakrate = function(pos)

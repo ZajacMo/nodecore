@@ -50,7 +50,7 @@ nodecore.register_dnt({
 		action = ablation
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "door ablation",
 		interval = 2,
 		chance = 1,

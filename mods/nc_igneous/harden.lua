@@ -20,7 +20,7 @@ minetest.after(0, function()
 		end
 	end)
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "stone hardening",
 		nodenames = {"group:stone"},
 		neighbors = {"group:lava"},

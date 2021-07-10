@@ -54,7 +54,7 @@ minetest.register_node(amalgam, {
 		sounds = nodecore.sounds("nc_terrain_stony"),
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lava quench",
 		interval = 1,
 		chance = 2,
@@ -67,7 +67,7 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "amalgam melt",
 		interval = 1,
 		chance = 2,

@@ -81,7 +81,7 @@ nodecore.register_on_nodeupdate(function(pos, node)
 		if allsedges[node.name] then return minetest.remove_node(above) end
 	end)
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "sedge growth/death",
 		interval = 2,
 		chance = 250,

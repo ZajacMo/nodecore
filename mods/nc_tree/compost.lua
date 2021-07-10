@@ -65,10 +65,7 @@ nodecore.register_soaking_abm({
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		neighbors = {"group:soil"},
-		interval = 1,
-		chance = 10,
-		limited_max = 100,
-		limited_alert = 1000,
+		interval = 10,
 		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end

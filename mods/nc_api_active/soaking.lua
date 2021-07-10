@@ -82,7 +82,7 @@ local soaking_abm_by_fieldname = {}
 function nodecore.register_soaking_abm(def)
 	soaking_abm_by_fieldname[def.fieldname] = def
 	return soaking_core(def,
-		nodecore.register_limited_abm,
+		minetest.register_abm,
 		function(pos) return minetest.get_meta(pos) end
 	)
 end
@@ -116,7 +116,7 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local tf = fieldname .. "time"
 	if (meta:get_float(tf) or 0) == 0 then meta:set_float(tf, nodecore.gametime) end
 
-	local func = abm.limited_action or abm.action
+	local func = abm.action
 	if pending then
 		pending[#pending + 1] = function() return func(pos, node) end
 	else

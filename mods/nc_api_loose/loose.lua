@@ -83,9 +83,6 @@ nodecore.register_soaking_abm({
 		fieldname = "repack",
 		nodenames = {"group:loose_repack"},
 		interval = 10,
-		chance = 1,
-		limited_max = 100,
-		limited_alert = 1000,
 		soakrate = function(pos, node)
 			local def = minetest.registered_items[node.name] or {}
 			if def.no_repack or def.no_self_repack then return end

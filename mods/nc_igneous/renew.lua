@@ -8,7 +8,7 @@ local math_pow, math_random, string_format
 local lavaname = "nc_terrain:lava_source"
 local stonename = "nc_terrain:stone"
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "stone melting",
 		nodenames = {stonename},
 		neighbors = {lavaname},

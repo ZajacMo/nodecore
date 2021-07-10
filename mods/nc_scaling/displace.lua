@@ -52,11 +52,10 @@ function minetest.node_dig(pos, node, digger, ...)
 	end
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "node displacement decay",
 		interval = 1,
 		chance = 1,
-		limited_max = 100,
 		nodenames = {nodename},
 		ignore_stasis = true,
 		action = function(pos)
