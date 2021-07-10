@@ -8,11 +8,14 @@ local modname = minetest.get_current_modname()
 local dntname = modname .. ":ablation"
 local lenson = "nc_optics:lens_on"
 
+local hash = minetest.hash_node_position
+local cooldowns = {}
+
 local function ablation(pos, node)
-	local meta = minetest.get_meta(pos)
-	local cooldown = meta:get_float("ablation") or 0
+	local key = hash(pos)
+	local cooldown = cooldowns[key] or 0
 	if cooldown > nodecore.gametime then return end
-	meta:set_float("ablation", nodecore.gametime + 2)
+	cooldowns[key] = nodecore.gametime + 2
 
 	local face = nodecore.facedirs[node.param2]
 	local out = vector.add(face.k, pos)
