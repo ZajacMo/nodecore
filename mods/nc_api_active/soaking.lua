@@ -6,12 +6,8 @@ local math_floor, math_sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local function metaclear(meta, def)
-	local tbl = meta:to_table()
-	if not (tbl.fields[def.fieldname .. "qty"] or
-		tbl.fields[def.fieldname .. "time"]) then return end
-	tbl.fields[def.fieldname .. "qty"] = nil
-	tbl.fields[def.fieldname .. "time"] = nil
-	meta:from_table(tbl)
+	meta:set_string(def.fieldname .. "qty", "")
+	meta:set_string(def.fieldname .. "time", "")
 end
 
 local function soaking_core(def, reg, getmeta)
