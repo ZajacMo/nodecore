@@ -175,13 +175,11 @@ function nodecore.wear_wield(player, groups, qty)
 		if wdef and wdef.after_use then
 			wielded = wdef.after_use(wielded, player, nil, dp) or wielded
 		else
-			if not minetest.settings:get_bool("creative_mode") then
-				wielded:add_wear(dp.wear * (qty or 1))
-				if wielded:get_count() <= 0 and wdef.sound
-				and wdef.sound.breaks then
-					nodecore.sound_play(wdef.sound.breaks,
-						{object = player, gain = 0.5})
-				end
+			wielded:add_wear(dp.wear * (qty or 1))
+			if wielded:get_count() <= 0 and wdef.sound
+			and wdef.sound.breaks then
+				nodecore.sound_play(wdef.sound.breaks,
+					{object = player, gain = 0.5})
 			end
 		end
 		return player:set_wielded_item(wielded)
