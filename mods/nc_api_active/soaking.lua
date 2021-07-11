@@ -9,34 +9,37 @@ local metacache = {}
 
 local function metaget(meta, def, nodekey)
 	local cached = nodekey and metacache[nodekey]
-	local qty, time
-	if cached then
-		qty = cached.qty
-		time = cached.time
-	else
-		qty = meta:get_float(def.fieldname .. "qty") or 0
+	if cached then return cached end
+	cached = {
+		qty = meta:get_float(def.fieldname .. "qty"),
 		time = meta:get_float(def.fieldname .. "time")
+	}
+	if cached.qty == 0 then cached.qty = nil end
+	if cached.time == 0 then cached.time = nil end
+	if nodekey then metacache = cached end
+	return cached
+end
+
+local function metaset_core(meta, field, value)
+	if value then
+		return meta:set_float(field, value)
+	else
+		return meta:set_string(field, "")
 	end
-	return qty, time
 end
 
 local function metaset(meta, def, nodekey, qty, time)
-	local cached = nodekey and metacache[nodekey]
-	if not (cached and cached.qty == qty) then
-		if qty then
-			meta:set_float(def.fieldname .. "qty", qty)
-		else
-			meta:set_string(def.fieldname .. "qty", "")
-		end
+	local cached = metaget(meta, def, nodekey)
+	if cached.qty ~= qty then
+		print("wrote " .. def.fieldname .. "qty")
+		metaset_core(meta, def.fieldname .. "qty", qty)
+		cached.qty = qty
 	end
-	if not (cached and cached.time == time) then
-		if time then
-			meta:set_float(def.fieldname .. "time", time)
-		else
-			meta:set_string(def.fieldname .. "time", "")
-		end
+	if cached.time ~= time then
+		print("wrote " .. def.fieldname .. "time")
+		metaset_core(meta, def.fieldname .. "time", time)
+		cached.time = time
 	end
-	if nodekey then metacache[nodekey] = {qty = qty, time = time} end
 end
 
 local function soaking_core(def, reg, getmeta, getnodekey)
@@ -67,7 +70,9 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 
 		local nodekey = getnodekey(...)
 		local meta = getmeta(...)
-		local total, start = metaget(meta, def, nodekey)
+		local metadata = metaget(meta, def, nodekey)
+		local total = metadata.qty or 0
+		local start = metadata.time
 		start = start and start ~= 0 and start or now
 
 		local rate = 0
