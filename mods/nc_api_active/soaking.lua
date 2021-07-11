@@ -31,12 +31,10 @@ end
 local function metaset(meta, def, nodekey, qty, time)
 	local cached = metaget(meta, def, nodekey)
 	if cached.qty ~= qty then
-		print("wrote " .. def.fieldname .. "qty")
 		metaset_core(meta, def.fieldname .. "qty", qty)
 		cached.qty = qty
 	end
 	if cached.time ~= time then
-		print("wrote " .. def.fieldname .. "time")
 		metaset_core(meta, def.fieldname .. "time", time)
 		cached.time = time
 	end
