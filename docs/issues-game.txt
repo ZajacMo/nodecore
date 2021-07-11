@@ -9,6 +9,13 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Fix crappy sponge death mechanic
+	- Remove special treatment of glass tank and glass nodes
+		- May need to find a new use-case for glass tank?
+	- Use majority heuristic for sponge death in node form
+		- Death if dry nodes > 0 and >= wet nodes nearby
+		- Ignore sealing nodes
+
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
