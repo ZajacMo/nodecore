@@ -13,7 +13,9 @@ end
 local function soaking_core(def, reg, getmeta)
 	if not def.fieldname then error("soaking def missing fieldname") end
 
-	def.soakinterval = def.soakinterval or ((def.interval or 1) * (def.chance or 1))
+	def.interval = def.interval or 1
+	def.chance = def.chance or 1
+	def.soakinterval = def.soakinterval or (def.interval * def.chance)
 
 	if not def.soakrate then error("soaking missing soakrate callback") end
 	if not def.soakcheck then error("soaking missing soakcheck callback") end
