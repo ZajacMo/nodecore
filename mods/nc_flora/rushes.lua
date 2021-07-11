@@ -27,10 +27,7 @@ minetest.register_node(modname .. ":rush", {
 			attached_node = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox(
-			{-1/8, -1/2, -1/2, 1/8, 1/2, 1/2},
-			{-1/2, -1/2, -1/8, 1/2, 1/2, 1/8}
-		)
+		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
 	})
 
 minetest.register_node(modname .. ":rush_dry", {
@@ -52,10 +49,7 @@ minetest.register_node(modname .. ":rush_dry", {
 			attached_node = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox(
-			{-1/8, -1/2, -1/2, 1/8, 1/2, 1/2},
-			{-1/2, -1/2, -1/8, 1/2, 1/2, 1/8}
-		)
+		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
 	})
 
 minetest.register_decoration({
