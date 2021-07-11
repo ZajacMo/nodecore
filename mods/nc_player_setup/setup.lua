@@ -14,7 +14,15 @@ nodecore.register_on_joinplayer("join setup inv", function(player)
 
 		player:set_properties({
 				pointable = false,
-				breath_max = 20
+				breath_max = 20,
+				collisionbox = {
+					-0.3,
+					-0.05,
+					-0.3,
+					0.3,
+					1.8,
+					0.3
+				}
 			})
 	end)
 
