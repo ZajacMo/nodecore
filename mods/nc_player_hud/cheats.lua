@@ -50,3 +50,9 @@ minetest.register_on_priv_revoke(privcheck_delay)
 minetest.register_on_joinplayer(function(player)
 		return privcheck_delay(player:get_player_name())
 	end)
+
+nodecore.interval(2, function()
+		for _, player in pairs(minetest.get_connected_players()) do
+			privcheck(player)
+		end
+	end)
