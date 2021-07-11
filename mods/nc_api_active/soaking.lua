@@ -5,12 +5,41 @@ local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-local function metaclear(meta, def)
-	meta:set_string(def.fieldname .. "qty", "")
-	meta:set_string(def.fieldname .. "time", "")
+local metacache = {}
+
+local function metaget(meta, def, nodekey)
+	local cached = nodekey and metacache[nodekey]
+	local qty, time
+	if cached then
+		qty = cached.qty
+		time = cached.time
+	else
+		qty = meta:get_float(def.fieldname .. "qty") or 0
+		time = meta:get_float(def.fieldname .. "time")
+	end
+	return qty, time
 end
 
-local function soaking_core(def, reg, getmeta)
+local function metaset(meta, def, nodekey, qty, time)
+	local cached = nodekey and metacache[nodekey]
+	if not (cached and cached.qty == qty) then
+		if qty then
+			meta:set_float(def.fieldname .. "qty", qty)
+		else
+			meta:set_string(def.fieldname .. "qty", "")
+		end
+	end
+	if not (cached and cached.time == time) then
+		if time then
+			meta:set_float(def.fieldname .. "time", time)
+		else
+			meta:set_string(def.fieldname .. "time", "")
+		end
+	end
+	if nodekey then metacache[nodekey] = {qty = qty, time = time} end
+end
+
+local function soaking_core(def, reg, getmeta, getnodekey)
 	if not def.fieldname then error("soaking def missing fieldname") end
 
 	def.interval = def.interval or 1
@@ -36,9 +65,9 @@ local function soaking_core(def, reg, getmeta)
 	def.action = function(...)
 		local now = nodecore.gametime
 
+		local nodekey = getnodekey(...)
 		local meta = getmeta(...)
-		local total = meta:get_float(def.fieldname .. "qty") or 0
-		local start = meta:get_float(def.fieldname .. "time")
+		local total, start = metaget(meta, def, nodekey)
 		start = start and start ~= 0 and start or now
 
 		local rate = 0
@@ -46,7 +75,7 @@ local function soaking_core(def, reg, getmeta)
 		if start <= now then
 			rate = def.soakrate(...)
 			if rate == false then
-				metaclear(meta, def)
+				metaset(meta, def, nodekey)
 				return ...
 			end
 			rate = rate or 0
@@ -58,12 +87,12 @@ local function soaking_core(def, reg, getmeta)
 
 		local function helper(set, ...)
 			if set == false then
-				metaclear(meta, def)
+				metaset(meta, def, nodekey)
 				return ...
 			end
-			meta:set_float(def.fieldname .. "qty",
-				set and type(set) == "number" and set or total)
-			meta:set_float(def.fieldname .. "time", start)
+			metaset(meta, def, nodekey,
+				set and type(set) == "number" and set or total,
+				start)
 			return ...
 		end
 		return helper(def.soakcheck({
@@ -81,13 +110,15 @@ function nodecore.register_soaking_abm(def)
 	soaking_abm_by_fieldname[def.fieldname] = def
 	return soaking_core(def,
 		minetest.register_abm,
-		function(pos) return minetest.get_meta(pos) end
+		function(pos) return minetest.get_meta(pos) end,
+		minetest.hash_node_position
 	)
 end
 function nodecore.register_soaking_aism(def)
 	return soaking_core(def,
 		nodecore.register_aism,
-		function(stack) return stack:get_meta() end
+		function(stack) return stack:get_meta() end,
+		function() end
 	)
 end
 
