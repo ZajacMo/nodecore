@@ -17,7 +17,7 @@ nodecore.register_on_joinplayer("join setup inv", function(player)
 				breath_max = 20,
 				collisionbox = {
 					-0.3,
-					-0.05,
+					-0.0001,
 					-0.3,
 					0.3,
 					1.8,
