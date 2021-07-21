@@ -17,8 +17,8 @@ return {
 	type = "game",
 	title = "NodeCore" .. (alpha and " ALPHA" or ""),
 	short_description = (alpha
-		and "Experimental early-access release of NodeCore."
-		or "Original, immersive puzzle/adventure game with NO popup GUIs, minimal HUDs."),
+		and "Early-access edition of NodeCore with latest features (and bugs)"
+		or "Minetest's top original voxel game about emergent mechanics and exploration"),
 	tags = {
 		"building",
 		"crafting",
@@ -33,7 +33,9 @@ return {
 	content_warnings = {},
 	license = "MIT",
 	media_license = "MIT",
-	long_description = alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'),
+	long_description = readtext('.cdb-header.md') .. "\n\n"
+	.. (alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'))
+	.. "\n\n" .. readtext('.cdb-footer.md'),
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issue_tracker = "https://discord.gg/NNYeF6f",
