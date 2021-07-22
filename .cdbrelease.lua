@@ -11,6 +11,21 @@ readbinary = readbinary or function() end
 
 local alpha = config and config.branch == "dev"
 
+local tags = {
+	"building",
+	"crafting",
+	"environment",
+	"inventory",
+	"oneofakind__original",
+	"player_effects",
+	"puzzle",
+	"pve",
+	"technology"
+}
+if not alpha then
+	tags[#tags + 1] = "featured"
+end
+
 return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
 	version = dofile("./mods/nc_api/version.lua"),
@@ -19,17 +34,7 @@ return {
 	short_description = (alpha
 		and "Early-access edition of NodeCore with latest features (and bugs)"
 		or "Minetest's top original voxel game about emergent mechanics and exploration"),
-	tags = {
-		"building",
-		"crafting",
-		"environment",
-		"inventory",
-		"oneofakind__original",
-		"player_effects",
-		"puzzle",
-		"pve",
-		"technology"
-	},
+	tags = tags,
 	content_warnings = {},
 	license = "MIT",
 	media_license = "MIT",
