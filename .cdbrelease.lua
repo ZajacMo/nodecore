@@ -14,6 +14,7 @@ local alpha = config and config.branch == "dev"
 local tags = {
 	"building",
 	"crafting",
+	"education",
 	"environment",
 	"inventory",
 	"oneofakind__original",
