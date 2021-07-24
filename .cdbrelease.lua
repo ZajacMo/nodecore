@@ -40,7 +40,7 @@ return {
 	type = "game",
 	title = "NodeCore" .. (alpha and " ALPHA" or ""),
 	short_description = (alpha
-		and "Early-access edition of NodeCore with latest features (and bugs)"
+		and "Early-access edition of NodeCore with latest features (and maybe bugs)"
 		or "Minetest's top original voxel game about emergent mechanics and exploration"),
 	tags = tags,
 	content_warnings = {},
