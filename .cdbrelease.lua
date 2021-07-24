@@ -27,6 +27,13 @@ if not alpha then
 	tags[#tags + 1] = "featured"
 end
 
+local screenshots = {}
+if alpha then screenshots[1] = readbinary('.cdb-alpha.jpg') end
+screenshots[#screenshots + 1] = readbinary('.cdb-release.jpg')
+for i = 1, 5 do
+	screenshots[#screenshots + 1] = readbinary('.cdb-screen' .. i .. '.jpg')
+end
+
 return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
 	version = dofile("./mods/nc_api/version.lua"),
@@ -47,9 +54,7 @@ return {
 	issue_tracker = "https://discord.gg/NNYeF6f",
 	forums = 24857,
 	maintainers = {"Warr1024"},
-	screenshots = (alpha
-		and {readbinary('.cdb-alpha.jpg'), readbinary('.cdb-release.jpg')}
-		or {readbinary('.cdb-release.jpg')})
+	screenshots = screenshots
 }
 
 -- luacheck: pop
