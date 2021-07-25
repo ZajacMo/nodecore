@@ -20,8 +20,6 @@ end
 
 local colorcache = {}
 local function getcolors(name, layers)
-	if name == "singleplayer" then return end
-
 	local found = colorcache[name]
 	if found then
 		layers[#layers + 1] = found
