@@ -32,7 +32,7 @@ minetest.register_node(modname .. ":hand", {
 		description = "",
 		drawtype = "mesh",
 		mesh = modname .. ".obj",
-		tiles = {"nc_player_model_base.png"},
+		tiles = {"nc_player_model_singleplayer.png"},
 		use_texture_alpha = "clip",
 		wield_scale = {x = 2, y = 2, z = 2},
 		virtual_item = true,
