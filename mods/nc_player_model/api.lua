@@ -42,10 +42,9 @@ nodecore.player_skin = nodecore.player_skin or function(player, options)
 	if type(options) ~= "table" then options = {} end
 
 	local name = options.playername or player:get_player_name()
+	local layers = {modname .. "_base.png"}
 
-	local layers = {}
 	getcolors(name, layers)
-	layers[#layers + 1] = modname .. "_base.png"
 
 	local privs = options.privs or minetest.get_player_privs(
 		options.privname or name)
@@ -131,10 +130,11 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 	return walkspeed(player, nodecore.player_anim_data.swim_down)
 end
 
-nodecore.player_visuals_base = nodecore.player_visuals_base or function()
+nodecore.player_visuals_base = nodecore.player_visuals_base or function(player)
+	local mesh = player:get_meta():get_string("custom_mesh") or ""
 	return {
 		visual = "mesh",
 		visual_size = {x = 0.9, y = 0.9, z = 0.9},
-		mesh = modname .. ".b3d"
+		mesh = mesh and mesh ~= "" and mesh or modname .. ".b3d"
 	}
 end
