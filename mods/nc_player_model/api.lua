@@ -38,14 +38,10 @@ local function getcolors(name, layers)
 	layers[#layers + 1] = found
 end
 
-local spname = "singleplayer"
 nodecore.player_skin = nodecore.player_skin or function(player, options)
 	if type(options) ~= "table" then options = {} end
 
-	local name = options.playername or player
-	and player:get_player_name() or spname
-
-	if name == spname then return modname .. "_singleplayer.png" end
+	local name = options.playername or player:get_player_name()
 
 	local layers = {}
 	getcolors(name, layers)
