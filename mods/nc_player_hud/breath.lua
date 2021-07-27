@@ -17,6 +17,7 @@ local breath_mask = "^[mask:nc_player_hud_breath_mask.png\\^[resize\\:" .. w .. 
 
 nodecore.register_playerstep({
 		label = "breath hud",
+		priority = -1000,
 		action = function(player)
 			local br = player:get_breath()
 			nodecore.player_discover(player, "breath_" .. br)
