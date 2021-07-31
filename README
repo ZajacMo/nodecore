@@ -10,42 +10,19 @@
             \        \/    |/      \     \/      \/    | \    \
 
 ========================================================================
-  NodeCore - An original, immersive puzzle/adventure game for Minetest
+             NodeCore - Minetest's top original voxel game
+                about emergent mechanics and exploration
 ------------------------------------------------------------------------
 
-NodeCore is a major reconstruction of survival gameplay from the ground
-up.  Relearn much of what you thought you knew about Minetest!
+A surreal dream-world where everything is possible but nothing is easy.
+Peaceful and Zen.  Brutally obstinate.  Prepare to unlearn everything
+you thought you knew about voxel sandbox games.
 
-Features:
-
-- Immersive gameplay.  Zero in-game pop-up GUIs.  Minimal HUDs.
-  All interactions take place in continuous first-person perspective.
-  Nothing gets between you and the game world.
-
-- Nearly everything is on the grid. Item stacks settle onto the grid
-  and persist.  Complex machines (e.g. furnaces, storage) are built
-  in-world and can be designed, customized, optimized.
-
-- In-world crafting.  Assemble more complex recipes directly on the grid
-  or in-place.  Learn how to "pummel" nodes to hammer things together
-  or break things apart.
-
-- Built-in player guide and hint system provides low-spoiler guidance.
-
-- Rich and subtle interactions.  Some materials dig and transform in
-  stages. Some materials slump into repose when stacked high.  Some
-  things transform if conditions are met, but transform faster based
-  on environment.  Experiment and see what effects what!
-
-- Build complex in-game systems.  Design your own furnace.  Construct
-  digital logic circuits.  Build gears and rotary machinery.  Assemble
-  portable storage containers.
-
-- Eggcorns!
+Visit the Minetest ContentDB Listing (below) for more details.
 
 ------------------------------------------------------------------------
 
-NodeCore is (C)2018-2020 by Aaron Suen <warr1024@gmail.com>
+NodeCore is (C)2018-2021 by Aaron Suen <warr1024@gmail.com>
 MIT License (http://www.opensource.org/licenses/MIT)
 See included LICENSE file for full details and credits
 
@@ -55,15 +32,19 @@ Minetest ContentDB Listing:
 GitLab:
 	https://gitlab.com/sztest/nodecore
 
-Discord:
-	https://discord.gg/NNYeF6f
+Chat Networks (all bridged):
+	Discord:
+		https://discord.gg/NNYeF6f
+	Matrix:
+		#nodecore:matrix.org
+	IRC:
+		#nodecore on irc.libera.chat
 
-Matrix:
-  #nodecore:matrix.org
+Semi-Unofficial Wiki:
+	https://nodecore.mine.nu/
 
-IRC:
-	#nodecore on irc.libera.chat
-	(bridged to Discord)
+Minetest Forum Topic:
+	https://forum.minetest.net/viewtopic.php?t=24857
 
 ------------------------------------------------------------------------
 ========================================================================
