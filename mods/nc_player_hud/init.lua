@@ -6,10 +6,12 @@ local include, nodecore
 nodecore.amcoremod()
 
 include("setup")
-include("crosshair")
 include("breath")
 include("hotbar")
 include("touchtip")
+include("looktip")
+include("wieldtip")
+include("crosshair")
 include("pretrans")
 include("cheats")
 include("hints")
