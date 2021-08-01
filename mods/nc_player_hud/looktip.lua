@@ -49,7 +49,6 @@ nodecore.register_playerstep({
 		priority = -100,
 		action = function(player, data)
 			data.pointing = nil
-			if not nodecore.interact(player) then return settip(player) end
 
 			local pos = player:get_pos()
 			pos.y = pos.y + player:get_properties().eye_height
