@@ -66,7 +66,7 @@ nodecore.register_playerstep({
 					if ll <= 0 then
 						local pname = player:get_player_name()
 						local tp = touched[pname]
-						if tp and vector.equals(tp, pt.under) then
+						if tp and vector.equals(tp, nodeface(pt)) then
 							ll = 1
 						end
 					end
