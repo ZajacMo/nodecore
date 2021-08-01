@@ -1,39 +1,39 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, type, vector
+    = minetest, nodecore, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local touched = {}
 
-nodecore.register_on_punchnode("touchtip on punch", function(pos, _, puncher)
-		if not puncher then return end
-		local pname = puncher:get_player_name()
+local function nodeface(pt)
+	return vector.multiply(vector.add(
+			pt.under, pt.above), 0.5)
+end
+
+nodecore.register_on_punchnode("touchtip on punch", function(_, _, player, pt)
+		if not player then return end
+		local pname = player:get_player_name()
 		if not pname then return end
-		touched[pname] = pos
+		touched[pname] = nodeface(pt)
 	end)
 
-local function settip(player, pt)
-	local pname = player:get_player_name()
-	local tp = touched[pname]
-	if (not pt) or (tp and not vector.equals(tp, pt.under)) then
-		touched[pname] = nil
-	end
-	if not pt then
+local function settip(player, pos, name)
+	if not pos then
 		return nodecore.hud_set_multiline(player, {
 				label = "looktip",
 				ttl = 0
 			}, nil, "name")
 	end
+	local pname = player:get_player_name()
+	local tp = touched[pname]
+	if tp and not vector.equals(tp, pos) then
+		touched[pname] = nil
+	end
 	return nodecore.hud_set_multiline(player, {
 			label = "looktip",
 			hud_elem_type = "waypoint",
-			world_pos = vector.multiply(vector.add(
-					pt.under, pt.above), 0.5),
-			name = nodecore.touchtip_node(
-				pt.under,
-				minetest.get_node(pt.under),
-				player,
-				pt),
+			world_pos = pos,
+			name = name,
 			text = "",
 			precision = 0,
 			number = 0xffffff,
@@ -53,7 +53,8 @@ nodecore.register_playerstep({
 			local pos = player:get_pos()
 			pos.y = pos.y + player:get_properties().eye_height
 			local look = player:get_look_dir()
-			local wield = minetest.registered_items[player:get_wielded_item():get_name()]
+			local wield = minetest.registered_items[player
+			:get_wielded_item():get_name()]
 			local range = wield and wield.range or default_range
 			local target = vector.add(pos, vector.multiply(look, range))
 
@@ -71,13 +72,31 @@ nodecore.register_playerstep({
 					end
 					if ll <= 0 then return settip(player) end
 					data.pointing = "node"
-					return settip(player, pt)
-				elseif pt.type == "object" and pt.ref ~= player
-					and pt.ref:get_attach() ~= player then
+					return settip(player, nodeface(pt),
+						nodecore.touchtip_node(
+							pt.under,
+							minetest.get_node(pt.under),
+							player,
+							pt))
+				elseif pt.type == "object" and pt.ref ~= player and pt.ref:get_attach() ~= player then
+					local ll = nodecore.get_node_light(
+						pt.ref:get_pos()) or 0
+					if ll >= 0 then
 						data.pointing = "obj"
-						return
+						local luent = pt.ref:get_luaentity()
+						local desc = luent.description
+						if desc then
+							if type(desc) == "function" then
+								desc = desc(luent)
+							end
+							return settip(player,
+								pt.ref:get_pos(),
+								desc)
+						end
 					end
+					return
 				end
-				return settip(player)
 			end
-		})
+			return settip(player)
+		end
+	})

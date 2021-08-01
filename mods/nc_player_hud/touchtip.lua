@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, vector
-    = math, minetest, nodecore, vector
+local ItemStack, math, minetest, nodecore, rawset, vector
+    = ItemStack, math, minetest, nodecore, rawset, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -124,3 +124,14 @@ function nodecore.touchtip_node(pos, node, puncher, pointed, ...)
 end
 
 nodecore.show_touchtip = function() end
+
+local function adddesc(entname, func)
+	local def = minetest.registered_entities[entname]
+	rawset(def, "description", func)
+end
+adddesc("__builtin:item", function(self)
+		return nodecore.touchtip_stack(ItemStack(self.itemstring))
+	end)
+adddesc("__builtin:falling_node", function(self)
+		return nodecore.touchtip_stack(ItemStack(self.node.name))
+	end)
