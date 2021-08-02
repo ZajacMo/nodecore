@@ -9,12 +9,6 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Wandering fluids API for concrete, glass?
-	- Switch to DNT instead of just ABM
-	- Configurable setting for generation count multiplier.
-	- Momentum?
-	- Search beyond range for floodables to find hole?
-
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
 
@@ -61,7 +55,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 	  doors so they get the correct current state.
 
 - Consider full eversion of event handlers
-	- Disallow (or automatically convert) traditional single-hanlders
+	- Disallow (or automatically convert) traditional single-handlers
 	  on all definitions
 	- Use a register_on_something() method to hook pretty much
 	  everything

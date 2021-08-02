@@ -37,6 +37,10 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Require 2 right-clicks in a row, first one "unlocks",
 	  displays some particles/ent to show state?
 
+- Add a way to extend wandering generations
+	- For glass, heat sources
+	- For concrete, moisture sources
+
 - Hint system: use crafting instead of inv/punch checks for "make" hints.
 	- Fixes hints completing on dungeon/multiplayer cases.
 

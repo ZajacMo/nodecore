@@ -112,37 +112,15 @@ nodecore.register_craft({
 
 nodecore.register_cook_abm({nodenames = {src}})
 
-minetest.register_abm({
-		label = "molten glass wander",
-		interval = 1,
-		chance = 4,
-		nodenames = {src},
-		action = function(pos, node)
-			local meta = minetest.get_meta(pos)
-			local gen = meta:get_int("glassgen")
-			if gen >= 32 and math_random(1, 2) == 1 then
-				minetest.set_node(pos, {name = modname .. ":glass_crude"})
-				nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
-				return nodecore.smokefx(pos, 0.2, 80)
-			end
-			local miny = pos.y
-			local found = {}
-			nodecore.scan_flood(pos, 5, function(p)
-					local nn = minetest.get_node(p).name
-					if nn == src then return end
-					if nn ~= flow then return false end
-					if p.y > miny then return end
-					if p.y == miny then
-						found[#found + 1] = p
-						return
-					end
-					miny = p.y
-					found = {p}
-				end)
-			if #found < 1 then return end
-			local np = nodecore.pickrand(found)
-			minetest.set_node(np, node)
-			minetest.get_meta(np):set_int("glassgen", gen + 1)
-			minetest.set_node(pos, {name = flow, param2 = 7})
-		end
-	})
+nodecore.register_fluidwandering(
+	"glass",
+	{src},
+	2,
+	function(pos, _, gen)
+		if gen < 16 or math_random(1, 2) == 1 then return end
+		minetest.set_node(pos, {name = modname .. ":glass_crude"})
+		nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
+		nodecore.smokefx(pos, 0.2, 80)
+		return true
+	end
+)

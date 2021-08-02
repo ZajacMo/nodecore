@@ -50,48 +50,24 @@ nodecore.register_aism({
 		end
 	})
 
-minetest.register_abm({
-		label = "concrete wander",
-		interval = 4,
-		chance = 2,
-		nodenames = {"group:concrete_source"},
-		neighbors = {"group:concrete_flow"},
-		action = function(pos, node)
-			local def = concdef(node.name)
-			local meta = minetest.get_meta(pos)
-			local gen = meta:get_int("agggen")
-			if gen >= 8 and math_random(1, 2) == 1 then
-				nodecore.witness({
-						x = pos.x,
-						y = pos.y + 0.5,
-						z = pos.z
-					},
-					def.name .. " to " .. def.to_crude)
-				return nodecore.set_loud(pos, {name = def.to_crude})
-			end
-			local miny = pos.y
-			local found = {}
-			nodecore.scan_flood(pos, 2, function(p)
-					local nn = minetest.get_node(p).name
-					if nn == node.name then return end
-					if minetest.get_item_group(nn, "concrete_flow") < 1
-					then return false end
-					if p.y > miny then return end
-					if p.y == miny then
-						found[#found + 1] = p
-						return
-					end
-					miny = p.y
-					found = {p}
-				end)
-			if #found < 1 then return end
-			local np = nodecore.pickrand(found)
-			nodecore.set_loud(np, node)
-			minetest.get_meta(np):set_int("agggen", gen + 1)
-			local flow = minetest.registered_items[node.name].liquid_alternative_flowing
-			minetest.set_node(pos, {name = flow, param2 = 7})
-		end
-	})
+nodecore.register_fluidwandering(
+	"concrete",
+	{"group:concrete_source"},
+	10,
+	function(pos, node, gen)
+		local def = concdef(node.name)
+		if gen < 8 or math_random(1, 2) == 1 then return end
+		nodecore.witness({
+				x = pos.x,
+				y = pos.y + 0.5,
+				z = pos.z
+			},
+			node.name .. " to " .. def.to_crude)
+		nodecore.set_loud(pos, {name = def.to_crude})
+		return true
+	end,
+	1
+)
 
 minetest.register_abm({
 		label = "concrete sink/disperse",
