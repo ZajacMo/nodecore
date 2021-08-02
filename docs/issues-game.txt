@@ -9,6 +9,15 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- LookTips
+	- Don't seem to be working for bandolier, not catching raycast?
+	- API needs an overhaul
+		- Simplify
+		- Rename stuff
+		- Better support for entities/objects
+	- Hint discovery by "staring"
+	- Update mods depending on touchtips
+
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes
 		- May need to find a new use-case for glass tank?
@@ -35,11 +44,6 @@ ISSUES-GAME: Gameplay-affecting issues
   down to regular cobble, but it only works with the base node, not the
   etched ones.
 
-- Sponges are too delicate in node form.
-	- Sometimes killed by "cavitation" bubble from digging nearby.
-	- Make ABM kick off a DNT to do the actual killing after a few
-	  seconds.
-
 - YCTIWY/Pickpocketing integration/overhaul.
 	- Protect items from being taken if:
 		- Player was non-idle within a certain amount of time
@@ -64,15 +68,13 @@ ISSUES-GAME: Gameplay-affecting issues
   to aim optics as a side effect.
 	- Spread out particles?
 	- Switch to alternative option of involving lux?
+	- Add delay player must be watching for?
 
 - Should water/lava springs vary by depth?  Lava seems kind of laborious
   to find right now.
 
 - We can reliably detect the zoom player control, make far-zoom only
   work while zooming, and add hints for it.
-
-- Consider switching touchtips to waypoint HUDs now that hiding
-  distance is an option.
 
 - Door upward conveying is sort of useless right now; make it also
   push objects outward, so this motion can be useful for upward
@@ -107,11 +109,11 @@ ISSUES-GAME: Gameplay-affecting issues
 	- More similar to the way flammable stack ignition works
 	- Just meaner overall
 
-- Consider largely retiring offline time-integral mechanics
-	- Keepers:
+- Consistentize soaking/offline mechanics
+	- Use a DNT to make check regular for things actually soaking
+	- To consider:
 		- Tree growth
 		- Compost
-	- Losers:
 		- Sponge expiration
 		- Torch expiration
 		- Leaching
@@ -122,8 +124,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	  microorganisms) is what keeps time ticking...?
 	- Be more consistent with some non-offline mechanics like
 	  fire fuel consumption
-	- "Fairness" issues, e.g. when sponge expiration happens before
-	  squeezer DNTs have had a chance to fire.
 	- When we did torches via expiration metadata, the reason at the
 	  time was that there was no way to get them to tick reliably like
 	  we can with nodes; with AISMs this is no longer the case.
@@ -140,25 +140,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	  update work and prevent rapid strobes.
 	- Strobes can cause excess lighting recalcs and block
 	  transfers, and can cause seizure problems for users
-
-- Consider doing looktips and using a custom HUD to force crosshair
-  for mobile as well.
-	- Looktips can re-show any time lookdir changes, not just on
-	  change of target node name, so rejiggling the view can
-	  give more time to read tip.
-	- Don't allow looktip if the "above" node is below a certain
-	  light level
-	- Consider separating wieldtips and punch/looktips again.
-	- Separate air vs. node cursor?
-		- Like the node vs. entity cursor, can we hide the cursor when
-		  pointing only at air?
-		- Could have an API to check for pointability, e.g. bandolier
-		  slots from the back.
-		- Would server lag be too much?
-		- This would integrate really well with a WAILA sort of thing.
-		- Could totally revamp touchtips, and dynamic feel Lightning.
-		- Use an image HUD so we can force mobile to display it too, so
-		  mobile players can use look dir too?
 
 - falling_node pillars settle out of order!
 	- Also anectodal issues with falling nodes sometimes

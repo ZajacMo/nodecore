@@ -9,11 +9,14 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Soaking API: detect reset conditions like dirt becoming ineligible for
-  leaching if leach already started, and update timestamp with 0 progress
-	- Switch to using ABM-patrolled DNT, so we can watch the node
-	  even in the event its neighbors stop matching?
-	- Hook into on_nodeupdate API?
+- Wandering fluids API for concrete, glass?
+	- Switch to DNT instead of just ABM
+	- Configurable setting for generation count multiplier.
+	- Momentum?
+	- Search beyond range for floodables to find hole?
+
+- Make door operation bredth-first queue-recursive for consistent
+  operation and addressing timing conflicts.
 
 - Unify the "node destruction particles" system.  Allow complex options,
   like alternative node def, particle def, disable on silk touch.
@@ -40,7 +43,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Test nc_wield with items that have their own visual scale.
 
 - Flammability ABM ordering.  Always do extinguish check after ignite
-  checks or vice versa, so suboptimal firestarting is consiste
+  checks or vice versa, so suboptimal firestarting is consistent
 
 - Make door pusheability customizable
 	- door_can_push or door_cannot_push groups/flags or something.
@@ -121,9 +124,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Use for shelf API.
 	- Use for touchtips inv access.
 	- Genericize sponge logic using stack_access API
-
-- Wandering fluids API for concrete, glass?
-	- Configurable setting for generation count multiplier.
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.

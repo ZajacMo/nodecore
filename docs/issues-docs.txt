@@ -9,19 +9,8 @@ ISSUES-DOCS: Issues related to documentation
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Official screenshot
-	- Setup an image board, contest/voting for additional
-	  screenshots for CDB?
-
 - Add a credits file with more extensive/specific credits, including
   non-copyrightable contributions to core project...?
-
-- Descriptions need an overhaul.
-	- Especially the one-liner in CDB.
-		- From Kimapr: "voxel game about emergent mechanics
-		  and exploration"
-	- Cover Zen/peaceful aspects.
-	- Cover brutal/hardcore aspects.
 
 - Design doc needs another shakedown.
 	- Expecially: what has "nodecorian" come to mean?

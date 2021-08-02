@@ -28,17 +28,14 @@ IDEAS: Possible future additions/improvements to the game
 	- This breaks some game things like pummels
 	- Players should all be warned ... HUD?
 
-- Need to reduce overreliance on soaking API
-	- It's complex, expensive, and prone to problems.
-	- Need a unified "theory" of soaking.
-		- Only things a certain kind of "alive" cause time to pass.
-		- Players
-		- Eggcorns (life inside the seed)
-		- Interaction between lux and tools
-	- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
-		- Optic pulse/strobe to accelerate checks
-			- Combine with lux reaction?
-		- Register nodes for extra check callbacks in area
+- Incorporate something like Kimapr's Tree Dance into the game?
+	- Some way for players to actively accelerate soaking mechanics
+	  and other very slow processes.
+	- A dance?  A craft?  An artificial item?  Changing builds?
+
+- More social particles
+	- On digging
+	- On pummel (don't just show to one player)
 
 - High tier door ideas
 	- Require higher-tier doors to operate higher-tier
@@ -60,6 +57,9 @@ IDEAS: Possible future additions/improvements to the game
 - Rework falling_node (or build alternative) with customizability
 	- Allow lode rods, ladders to hang from ceilings?
 	- Add on_fall_check hook, hook in check_single_for_falling
+
+- A pure white concrete material?
+	- Ash + aggregate?
 
 - Durable transparent/window material.
 	- Harder to mine, noob protection.
