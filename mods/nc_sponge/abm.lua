@@ -19,11 +19,10 @@ local function soakup(pos)
 	return any
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "sponge wet",
 		interval = 1,
 		chance = 10,
-		limited_max = 100,
 		nodenames = {modname .. ":sponge"},
 		neighbors = {"group:water"},
 		action = function(pos)
@@ -50,11 +49,10 @@ nodecore.register_aism({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "sponge sun dry",
 		interval = 1,
 		chance = 100,
-		limited_max = 100,
 		nodenames = {modname .. ":sponge_wet"},
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
@@ -85,11 +83,10 @@ nodecore.register_aism({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "sponge fire dry",
 		interval = 1,
 		chance = 20,
-		limited_max = 100,
 		nodenames = {modname .. ":sponge_wet"},
 		neighbors = {"group:igniter"},
 		action = function(pos)

@@ -64,7 +64,7 @@ nodecore.register_dungeongen({
 			if minetest.get_node(above).name ~= "air" then return end
 			local rand = mapperlin:get_3d(pos)
 			rand = rand - math_floor(rand)
-			local prob = 0.05
+			local prob = 0.1
 			if pos.y < -128 then
 				prob = prob * math_log(pos.y / -64) / math_log(2)
 			end

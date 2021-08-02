@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
-      string, tonumber, tostring, type, unpack, vector
+      string, tostring, type, unpack, vector
     = ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
-      string, tonumber, tostring, type, unpack, vector
+      string, tostring, type, unpack, vector
 local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
       math_random, math_sin, math_sqrt, string_format, string_gsub,
       string_lower
@@ -10,6 +10,8 @@ local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
       math.random, math.sin, math.sqrt, string.format, string.gsub,
       string.lower
 -- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
 
 for k, v in pairs(minetest) do
 	if type(v) == "function" then
@@ -175,13 +177,11 @@ function nodecore.wear_wield(player, groups, qty)
 		if wdef and wdef.after_use then
 			wielded = wdef.after_use(wielded, player, nil, dp) or wielded
 		else
-			if not minetest.settings:get_bool("creative_mode") then
-				wielded:add_wear(dp.wear * (qty or 1))
-				if wielded:get_count() <= 0 and wdef.sound
-				and wdef.sound.breaks then
-					nodecore.sound_play(wdef.sound.breaks,
-						{object = player, gain = 0.5})
-				end
+			wielded:add_wear(dp.wear * (qty or 1))
+			if wielded:get_count() <= 0 and wdef.sound
+			and wdef.sound.breaks then
+				nodecore.sound_play(wdef.sound.breaks,
+					{object = player, gain = 0.5})
 			end
 		end
 		return player:set_wielded_item(wielded)
@@ -286,19 +286,18 @@ end
 
 function nodecore.rate_adjustment(...)
 	local rate = 1
-	local key = scrubkey(nodecore.product)
+	local key = modname .. "_rate"
+	local name = ""
 	for _, k in ipairs({...}) do
 		if not k then break end
 		key = key .. "_" .. scrubkey(k)
-		local adj = tonumber(minetest.settings:get(key))
+		name = name .. " > " .. k
+		local adj = nodecore.setting_float(key, 1, "Speed adjust" .. name,
+			[[Speed adjustment ratio, multiplied by all parent ratios.
+			Intended for custom servers and special sub-game types only.]])
 		if adj then rate = rate * adj end
 	end
 	return rate
-end
-
-local infodump_key = scrubkey(nodecore.product) .. "_infodump"
-function nodecore.infodump()
-	return minetest.settings:get_bool(infodump_key)
 end
 
 function nodecore.obstructed(minpos, maxpos)
@@ -322,8 +321,13 @@ function nodecore.obstructed(minpos, maxpos)
 	end
 end
 
-local gravity = tonumber(minetest.settings:get("movement_gravity")) or 9.81
-local friction = tonumber(minetest.settings:get("nodecore_air_friction")) or 0.0004
+local gravity = nodecore.setting_float("movement_gravity", 9.81)
+local friction = nodecore.setting_float(modname .. "_air_friction", 0.0004,
+	"Air friction", [[Air friction coefficient for velocity-squared
+	term. Used to adjust air resistance for player and moving entities,
+	especially tuning terminal velocity. Lower terminal velocity may
+	reduce players stopping on onloaded chunks while falling on a
+	busy/slow server.]])
 
 local function air_accel_factor(v)
 	local q = (friction * v * v) * 2 - 1
@@ -517,4 +521,21 @@ function nodecore.protection_test(pos, player)
 		minetest.record_protection_violation(pos, player)
 		return true
 	end
+end
+
+function nodecore.meta_serializable(meta)
+	local mt = type(meta)
+	if mt == "table" or mt == "userdata" then
+		if type(meta.to_table) == "function" then
+			meta = meta:to_table()
+		end
+		for _, list in pairs(meta.inventory or {}) do
+			for i, stack in pairs(list) do
+				if type(stack) == "userdata" then
+					list[i] = stack:to_string()
+				end
+			end
+		end
+	end
+	return meta
 end

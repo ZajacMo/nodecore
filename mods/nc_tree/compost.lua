@@ -16,7 +16,9 @@ minetest.register_node(modname .. ":humus", {
 			soil = 4,
 			grassable = 1
 		},
+		soil_degrades_to = "nc_terrain:dirt",
 		alternate_loose = {
+			soil_degrades_to = "nc_terrain:dirt_loose",
 			groups = {
 				dirt_loose = 2,
 				soil = 5,
@@ -62,11 +64,7 @@ nodecore.register_soaking_abm({
 		label = "peat compost",
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
-		neighbors = {"group:soil"},
-		interval = 1,
-		chance = 10,
-		limited_max = 100,
-		limited_alert = 1000,
+		interval = 10,
 		soakrate = nodecore.tree_soil_rate,
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end

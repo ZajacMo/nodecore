@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-18 01:02+0000\n"
+"PO-Revision-Date: 2021-06-19 11:38+0000\n"
 "Last-Translator: Krzysztof Jeszke <krzysztofjesz@gmail.com>\n"
 "Language-Team: Esperanto <http://nodecore.mine.nu/trans/projects/nodecore/"
 "core/eo/>\n"
@@ -190,3 +190,123 @@ msgstr "Aero"
 
 msgid "Amalgamation"
 msgstr "Kunfandiĝo"
+
+msgid "Annealed Lode"
+msgstr "Kalcinita Ercvejno"
+
+msgid "Annealed Lode Adze"
+msgstr "Kalcinita Ercvejno Adzo"
+
+msgid "Annealed Lode Bar"
+msgstr "Kalcinita Ercvejno Fandaĵo"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Kalcinita Ercvejno Hakilo"
+
+msgid "Annealed Lode Mallet"
+msgstr "Kalcinita Ercvejno Maleo"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Kalcinita Ercvejno Maleo Kapo"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Kalcinita Ercvejno Hakil Kapo"
+
+msgid "Annealed Lode Mattock"
+msgstr "Kalcinita Ercvejno Naturo"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Kalcinita Ercvejno Naturo Kapo"
+
+msgid "Annealed Lode Pick"
+msgstr "Kalcinita Ercvejno Pioĉo"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Kalcinita Ercvejno Pioĉo Kapo"
+
+msgid "Annealed Lode Prill"
+msgstr "Kalcinita Ercvejno Prilo"
+
+msgid "Annealed Lode Rake"
+msgstr "Kalcinita Ercvejno Rastilo"
+
+msgid "Annealed Lode Rod"
+msgstr "Kalcinita Ercbastono"
+
+msgid "Annealed Lode Spade"
+msgstr "Kalcinita Ercvejno Fosilo"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Kalcinita Ercvejno Fosilo Kapo"
+
+msgid "Ash"
+msgstr "Cindro"
+
+msgid "Ash Lump"
+msgstr "Cindero Peco"
+
+msgid "Bindy"
+msgstr "Bindi"
+
+msgid "Bindy Adobe"
+msgstr "Bindi Adobo"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Bindi Fleksebla Adobo"
+
+msgid "Bindy Pliant Stone"
+msgstr "Bindi Fleksebla Stono"
+
+msgid "Bindy Stone"
+msgstr "Bindi Stono"
+
+msgid "Bindy Tarstone"
+msgstr "Bindi Gudristono"
+
+msgid "Blank"
+msgstr "Malplena"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Ligita Adobo Brikon Ĉarniran Panelon"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Ligitajn Adobo Brikojn"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Ligita Adobo Brikon Panelon"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Ligita Sabloŝtonon Brikon Ĉarniran Panelon"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Bindi Fleksiĝema Sabloŝtono"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Bindi Fleksiĝema Gudristono"
+
+msgid "Bindy Sandstone"
+msgstr "Bindi Sabloŝtono"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Ligita Sabloŝtonon Brikon Panelon"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Ligita Sabloŝtonon Brikojn"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Ligita Ŝtonon Brikon Ĉarniran Panelon"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Ligita Ŝtonon Brikon Panelon"
+
+msgid "Bonded Stone Bricks"
+msgstr "Ligita Ŝtonon Brikojn"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Ligita Gudroŝtono Brikon Ĉarniran Panelon"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Ligita Gudroŝtono Brikon Panelon"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Ligitajn Gudristono Brikojn"

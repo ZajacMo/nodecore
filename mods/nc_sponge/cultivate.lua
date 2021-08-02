@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
+local math_random, math_sqrt
+    = math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -11,6 +11,9 @@ local alldirs = nodecore.dirs()
 
 local living = modname .. ":sponge_living"
 local wet = modname .. ":sponge_wet"
+
+local water = {}
+local sand = {}
 
 local dryitems = {}
 local drydrawtypes = {
@@ -21,6 +24,12 @@ local drydrawtypes = {
 }
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_items) do
+			if v["type"] == "node" and v.groups.water then
+				water[k] = true
+			end
+			if v["type"] == "node" and v.groups.sand then
+				sand[k] = true
+			end
 			if v["type"] ~= "node" or (v.groups.damage_radiant or 0) > 0
 			or v.liquidtype == "none" and not v.groups.moist
 			and not v.groups.silica and (drydrawtypes[v.drawtype]
@@ -62,45 +71,16 @@ local function spongesurvive(data)
 	end
 end
 
-nodecore.register_limited_abm({
-		label = "sponge grow",
+minetest.register_abm({
+		label = "sponge death",
 		interval = 1,
 		chance = 10,
-		limited_max = 1000,
 		nodenames = {living},
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
 				nodecore.set_loud(pos, {name = wet})
 				return nodecore.fallcheck(pos)
 			end
-
-			if math_random(1, 250) ~= 1 then return end
-
-			local total = 0
-			if nodecore.scan_flood(pos, 6,
-				function(p, d)
-					if d >= 6 then return true end
-					if minetest.get_node(p).name ~= living then return false end
-					total = total + 1
-					if total >= 20 then return true end
-				end
-			) then return end
-
-			pos = vector.add(pos, alldirs[math_random(1, #alldirs)])
-			node = minetest.get_node_or_nil(pos)
-
-			local def = node and minetest.registered_nodes[node.name]
-			local grp = def and def.groups and def.groups.water
-			if (not grp) or (grp < 1) then return end
-
-			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			node = minetest.get_node(below)
-			if (math_random() > 0.1) or (node.name ~= living) then
-				def = minetest.registered_nodes[node.name]
-				grp = def and def.groups and def.groups.sand
-				if (not grp) or (grp < 1) then return end
-			end
-			nodecore.set_loud(pos, {name = living})
 		end
 	})
 
@@ -114,5 +94,60 @@ nodecore.register_aism({
 			nodecore.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
 			stack:set_name(wet)
 			return stack
+		end
+	})
+
+local growdirs = {}
+for _, p in pairs(nodecore.dirs()) do
+	if p.y >= 0 then growdirs[#growdirs + 1] = p end
+end
+
+local basecost = 2000
+nodecore.register_soaking_abm({
+		label = "sponge grow",
+		fieldname = "spongegrow",
+		nodenames = {living},
+		interval = 2,
+		soakrate = function() return 2 end,
+		soakcheck = function(data, pos)
+			if nodecore.near_unloaded(pos) then return end
+			if data.total < basecost then return end
+
+			local count = 0
+			if nodecore.scan_flood(pos, 6,
+				function(p, d)
+					if d >= 6 then return true end
+					if minetest.get_node(p).name ~= living then return false end
+					count = count + 1
+					if count >= 20 then return true end
+				end
+			) then return false end
+			local realcost = basecost * math_sqrt(count)
+			if data.total < realcost then return end
+
+			for i = #growdirs, 2, -1 do
+				local j = math_random(1, i)
+				growdirs[i], growdirs[j] = growdirs[j], growdirs[i]
+			end
+			local spawned = {}
+			for _, rel in ipairs(growdirs) do
+				local dest = vector.add(pos, rel)
+				local node = minetest.get_node(dest)
+				if water[node.name] then
+					local below = {x = dest.x, y = dest.y - 1, z = dest.z}
+					node = minetest.get_node(below)
+					if node.name == living or sand[node.name] then
+						nodecore.set_loud(dest, {name = living})
+						spawned[#spawned + 1] = dest
+						if dest.y <= pos.y and math_random(1, 2) == 1 then
+							nodecore.soaking_abm_push(dest,
+								"spongegrow", data.total - realcost)
+							return false
+						end
+						return
+					end
+				end
+			end
+			return false
 		end
 	})

@@ -44,7 +44,7 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		props.visual_size = {x = scale, y = scale}
 
 		props.automatic_rotate = rotate
-		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or nil
+		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or 0
 
 		local def = minetest.registered_items[stack:get_name()]
 		props.glow = def and (def.glow or def.light_source)
@@ -77,7 +77,7 @@ local function collides(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
 	if not def then return node end
-	if def.walkable then return node end
+	if def.walkable or def.groups and def.groups.support_falling then return node end
 end
 
 local oldcheck = minetest.check_single_for_falling

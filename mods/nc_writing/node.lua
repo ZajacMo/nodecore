@@ -13,9 +13,11 @@ local coallump = "nc_fire:lump_coal"
 for i = 1, #nodecore.writing_glyphs do
 	local glyph = nodecore.writing_glyphs[i]
 	local desc = glyph.name .. " Charcoal Glyph"
+
 	local tile = glyph.flipped
-	and (modname .. "_" .. glyph.flipped .. ".png^[transformFX")
-	or (modname .. "_" .. glyph.name:lower() .. ".png")
+	and (modname .. "_glyph_" .. glyph.flipped .. ".png^[transformFX")
+	or (modname .. "_glyph_" .. glyph.name:lower() .. ".png")
+	tile = "nc_fire_coal_4.png^[mask:" .. tile
 
 	minetest.register_node(nodepref .. i, {
 			description = desc,

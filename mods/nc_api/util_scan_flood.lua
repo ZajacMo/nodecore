@@ -33,8 +33,8 @@ function nodecore.scan_flood(pos, range, func)
 			end
 		end
 		if #nxt < 1 then break end
-		for i = 1, #nxt do
-			local j = math_random(1, #nxt)
+		for i = #nxt, 2, -1 do
+			local j = math_random(1, i)
 			nxt[i], nxt[j] = nxt[j], nxt[i]
 		end
 		q = nxt

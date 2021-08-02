@@ -40,7 +40,6 @@ minetest.after(0, function()
 				label = "lux infuse",
 				fieldname = "infuse",
 				interval = 2,
-				chance = 1,
 				itemnames = allinfuse,
 				soakrate = function(stack, aismdata)
 					local name = stack:get_name()

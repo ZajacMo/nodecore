@@ -5,9 +5,10 @@ local include, nodecore
 
 nodecore.amcoremod()
 
+include("convey")
 include("operate")
-include("register")
 include("ablation")
+include("register")
 include("craft_catapult")
 include("craft_press")
 include("hints")

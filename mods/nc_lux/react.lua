@@ -3,11 +3,10 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lux reaction",
 		interval = 1,
 		chance = 2,
-		limited_max = 100,
 		nodenames = {"group:lux_cobble"},
 		action = function(pos, node)
 			local qty = nodecore.lux_react_qty(pos)

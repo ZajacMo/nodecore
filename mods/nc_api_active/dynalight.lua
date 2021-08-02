@@ -93,7 +93,7 @@ minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 -- API for adding dynamic lights to world
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "dynamic light cleanup",
 		interval = 1,
 		chance = 1,

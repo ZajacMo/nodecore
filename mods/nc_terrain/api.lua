@@ -39,9 +39,7 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			label = fromnode .. " leaching to " .. tonode,
 			fieldname = "leach",
 			nodenames = {fromnode},
-			neighbors = {"group:water"},
 			interval = 5,
-			chance = 1,
 			soakrate = function(pos)
 				if not waterat(pos, 0, 1, 0) then return false end
 				local qty = 1
@@ -103,7 +101,7 @@ nodecore.register_dnt({
 		action = function(pos) return nodecore.artificial_water_check(pos) end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "artificial water check",
 		interval = 1,
 		chance = 1,
@@ -118,9 +116,14 @@ artificial water def:
 - minttl = minimum amount of time water must be there before rechecking for valid source
 - maxttl = maximum amount of time water will remain without being updated
 --]]
-function nodecore.artificial_water(pos, def)
-	local nn = minetest.get_node(pos).name
+function nodecore.artificial_water(pos, def, node)
+	node = node or minetest.get_node(pos)
+	local nn = node.name
 	if nn ~= graywatersrc and nn ~= graywaterflow then
+		local nd = minetest.registered_nodes[nn]
+		if not (nd and nd.floodable) then return end
+		if nd.on_flood and not nd.on_flood(
+			pos, node, {name = graywatersrc}) then return end
 		nodecore.set_loud(pos, {name = graywatersrc})
 	end
 	local meta = minetest.get_meta(pos)
@@ -132,5 +135,6 @@ function nodecore.artificial_water(pos, def)
 	}
 	meta:set_string(modname, minetest.serialize(data))
 	graywatercache[minetest.hash_node_position(pos)] = data
-	return nodecore.dnt_set(pos, graywatersrc, def.minttl or 1)
+	nodecore.dnt_set(pos, graywatersrc, def.minttl or 1)
+	return true
 end

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, tonumber
-    = math, minetest, nodecore, pairs, tonumber
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -10,7 +10,10 @@ nodecore.amcoremod()
 local modname = minetest.get_current_modname()
 
 -- Maximum distance at which custom nametags are visible.
-local distance = tonumber(minetest.settings:get(modname .. "_distance")) or 16
+local distance = nodecore.setting_float(modname .. "_distance", 16,
+	"Max player nametag distance", [[The maximum distance in nodes
+	that other players' nametags will be visible under optimum
+	conditions.]])
 
 ------------------------------------------------------------------------
 -- PLAYER JOIN/LEAVE

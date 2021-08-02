@@ -119,7 +119,7 @@ end
 nodecore.register_craft({
 		action = "press",
 		label = "eject item",
-		priority = -1,
+		priority = 2,
 		nodes = {
 			{match = {stacked = true, count = false}}
 		},

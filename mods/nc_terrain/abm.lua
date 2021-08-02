@@ -42,8 +42,9 @@ local function grassable(above)
 	if not ln then return end
 	return ln >= 10
 end
+nodecore.grassable = grassable
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "grass spread",
 		nodenames = {"group:soil"},
 		neighbors = {grass},
@@ -58,7 +59,7 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "grass decay",
 		nodenames = {grass},
 		interval = 8,

@@ -90,13 +90,14 @@ local function hud_set(player, def)
 end
 nodecore.hud_set = hud_set
 
-function nodecore.hud_set_multiline(player, def, trans)
+function nodecore.hud_set_multiline(player, def, trans, txtkey)
 	local pname
 	player, pname, def = hud_params(player, def)
 
+	txtkey = txtkey or "text"
 	local lines = {}
-	def.text = def.text or ""
-	for str in string_gmatch(def.text, "[^\r\n]+") do
+	def[txtkey] = def[txtkey] or ""
+	for str in string_gmatch(def[txtkey], "[^\r\n]+") do
 		lines[#lines + 1] = trans and trans(str) or str
 	end
 	for i = 1, #lines do
@@ -106,7 +107,7 @@ function nodecore.hud_set_multiline(player, def, trans)
 
 	for i = 1, #lines do
 		local t = copytbl(def)
-		t.text = lines[i]
+		t[txtkey] = lines[i]
 		t.label = def.label .. ":" .. i
 		hud_set(player, t)
 	end

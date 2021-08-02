@@ -5,19 +5,47 @@ local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-local function metaclear(meta, def)
-	local tbl = meta:to_table()
-	if not (tbl.fields[def.fieldname .. "qty"] or
-		tbl.fields[def.fieldname .. "time"]) then return end
-	tbl.fields[def.fieldname .. "qty"] = nil
-	tbl.fields[def.fieldname .. "time"] = nil
-	meta:from_table(tbl)
+local metacache = {}
+
+local function metaget(meta, def, nodekey)
+	local cached = nodekey and metacache[nodekey]
+	if cached then return cached end
+	cached = {
+		qty = meta:get_float(def.fieldname .. "qty"),
+		time = meta:get_float(def.fieldname .. "time")
+	}
+	if cached.qty == 0 then cached.qty = nil end
+	if cached.time == 0 then cached.time = nil end
+	if nodekey then metacache = cached end
+	return cached
 end
 
-local function soaking_core(def, reg, getmeta)
+local function metaset_core(meta, field, value)
+	if value then
+		return meta:set_float(field, value)
+	else
+		return meta:set_string(field, "")
+	end
+end
+
+local function metaset(meta, def, nodekey, qty, time)
+	local cached = metaget(meta, def, nodekey)
+	if cached.qty ~= qty then
+		metaset_core(meta, def.fieldname .. "qty", qty)
+		cached.qty = qty
+	end
+	if cached.time ~= time then
+		metaset_core(meta, def.fieldname .. "time", time)
+		cached.time = time
+	end
+end
+
+local function soaking_core(def, reg, getmeta, getnodekey)
 	if not def.fieldname then error("soaking def missing fieldname") end
 
-	def.soakinterval = def.soakinterval or ((def.interval or 1) * (def.chance or 1))
+	def.interval = def.interval or 1
+	def.chance = def.chance or 1
+	def.soakinterval = def.soakinterval or (def.interval * def.chance)
 
 	if not def.soakrate then error("soaking missing soakrate callback") end
 	if not def.soakcheck then error("soaking missing soakcheck callback") end
@@ -38,9 +66,11 @@ local function soaking_core(def, reg, getmeta)
 	def.action = function(...)
 		local now = nodecore.gametime
 
+		local nodekey = getnodekey(...)
 		local meta = getmeta(...)
-		local total = meta:get_float(def.fieldname .. "qty") or 0
-		local start = meta:get_float(def.fieldname .. "time")
+		local metadata = metaget(meta, def, nodekey)
+		local total = metadata.qty or 0
+		local start = metadata.time
 		start = start and start ~= 0 and start or now
 
 		local rate = 0
@@ -48,7 +78,7 @@ local function soaking_core(def, reg, getmeta)
 		if start <= now then
 			rate = def.soakrate(...)
 			if rate == false then
-				metaclear(meta, def)
+				metaset(meta, def, nodekey)
 				return ...
 			end
 			rate = rate or 0
@@ -60,12 +90,12 @@ local function soaking_core(def, reg, getmeta)
 
 		local function helper(set, ...)
 			if set == false then
-				metaclear(meta, def)
+				metaset(meta, def, nodekey)
 				return ...
 			end
-			meta:set_float(def.fieldname .. "qty",
-				set and type(set) == "number" and set or total)
-			meta:set_float(def.fieldname .. "time", start)
+			metaset(meta, def, nodekey,
+				set and type(set) == "number" and set or total,
+				start)
 			return ...
 		end
 		return helper(def.soakcheck({
@@ -82,14 +112,16 @@ local soaking_abm_by_fieldname = {}
 function nodecore.register_soaking_abm(def)
 	soaking_abm_by_fieldname[def.fieldname] = def
 	return soaking_core(def,
-		nodecore.register_limited_abm,
-		function(pos) return minetest.get_meta(pos) end
+		minetest.register_abm,
+		function(pos) return minetest.get_meta(pos) end,
+		minetest.hash_node_position
 	)
 end
 function nodecore.register_soaking_aism(def)
 	return soaking_core(def,
 		nodecore.register_aism,
-		function(stack) return stack:get_meta() end
+		function(stack) return stack:get_meta() end,
+		function() end
 	)
 end
 
@@ -116,7 +148,7 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local tf = fieldname .. "time"
 	if (meta:get_float(tf) or 0) == 0 then meta:set_float(tf, nodecore.gametime) end
 
-	local func = abm.limited_action or abm.action
+	local func = abm.action
 	if pending then
 		pending[#pending + 1] = function() return func(pos, node) end
 	else

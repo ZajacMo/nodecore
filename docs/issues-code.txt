@@ -9,6 +9,18 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Wandering fluids API for concrete, glass?
+	- Switch to DNT instead of just ABM
+	- Configurable setting for generation count multiplier.
+	- Momentum?
+	- Search beyond range for floodables to find hole?
+
+- Make door operation bredth-first queue-recursive for consistent
+  operation and addressing timing conflicts.
+
+- Unify the "node destruction particles" system.  Allow complex options,
+  like alternative node def, particle def, disable on silk touch.
+
 - A wooden plank appeared to have decayed in place of a scaling node;
   could it be a problem with ABM muxing?
 
@@ -31,7 +43,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Test nc_wield with items that have their own visual scale.
 
 - Flammability ABM ordering.  Always do extinguish check after ignite
-  checks or vice versa, so suboptimal firestarting is consiste
+  checks or vice versa, so suboptimal firestarting is consistent
 
 - Make door pusheability customizable
 	- door_can_push or door_cannot_push groups/flags or something.
@@ -112,9 +124,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Use for shelf API.
 	- Use for touchtips inv access.
 	- Genericize sponge logic using stack_access API
-
-- Wandering fluids API for concrete, glass?
-	- Configurable setting for generation count multiplier.
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.

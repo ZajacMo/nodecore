@@ -1,22 +1,34 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, tonumber, type, vector
-    = math, minetest, nodecore, pairs, string, tonumber, type, vector
+local math, minetest, nodecore, pairs, string, type, vector
+    = math, minetest, nodecore, pairs, string, type, vector
 local math_floor, math_random, string_format
     = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local function config(n)
-	return minetest.settings:get(nodecore.product:lower()
-		.. "_optic_" .. n)
-end
-local optic_distance = tonumber(config("distance")) or 16
-local optic_speed = tonumber(config("speed")) or 12
-local optic_tick_limit = tonumber(config("tick_limit")) or 0.2
-local optic_interval = tonumber(config("interval")) or 5
-local optic_passive_max = tonumber(config("passive_max")) or 25
-local optic_passive_min = tonumber(config("passive_max")) or 5
+local optic_distance = 16
+local optic_speed = 12
+local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
+	"Optic tick limit", [[Maxiumum amount of time in seconds that may be
+	spent during a single server step to calculate optic state. Optics
+	will be allowed to slow don to stay within this limit.]])
+local optic_interval = nodecore.setting_float(modname .. "_interval", 5,
+	"Optic check interval", [[ABM interval for periodically pushing
+	optics into the "passive" queue.
+	Passive checks are used to catch optics in an inconsistent state, e.g.
+	that missed their change event.]])
+local optic_passive_max = nodecore.setting_float(modname .. "_passive_max", 25,
+	"Optic check passive max", [[The maximum number of optics that can be
+	queued in a single pass for "passive" checks to run; pending passive
+	checks will be included to fill up remaining spaces up to this total.
+	Passive checks are used to catch optics in an inconsistent state, e.g.
+	that missed their change event.]])
+local optic_passive_min = nodecore.setting_float(modname .. "_passive_min", 5,
+	"Optic check passive min", [[The minimum number of "passive" optic
+	checks that are run each cycle, overriding the max if needed.
+	Passive checks are used to catch optics in an inconsistent state, e.g.
+	that missed their change event.]])
 
 local microtime = minetest.get_us_time
 local hashpos = minetest.hash_node_position
@@ -187,7 +199,7 @@ local function optic_commit(v)
 	end
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "optic check",
 		interval = optic_interval,
 		chance = 1,
@@ -270,24 +282,11 @@ do
 		end)
 end
 
-for fn in pairs({
-		set_node = true,
-		add_node = true,
-		remove_node = true,
-		swap_node = true,
-		dig_node = true,
-		place_node = true,
-		add_node_level = true
-	}) do
-	local func = minetest[fn]
-	minetest[fn] = function(pos, ...)
+nodecore.register_on_nodeupdate(function(pos)
 		local t = dependency_index[hashpos(pos)]
 		if t then
 			for k in pairs(t) do
 				optic_check(unhash(k))
 			end
 		end
-		return func(pos, ...)
-	end
-end
-set_node = minetest.set_node
+	end)

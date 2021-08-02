@@ -32,11 +32,14 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
+local hash = minetest.hash_node_position
+local unhash = minetest.get_position_from_hash
+
 local check_queue = {}
 local check_queue_dirty
 local function visinv_update_ents(pos)
 	pos = vector.round(pos)
-	check_queue[minetest.hash_node_position(pos)] = pos
+	check_queue[hash(pos)] = pos
 	check_queue_dirty = true
 end
 nodecore.visinv_update_ents = visinv_update_ents
@@ -49,18 +52,23 @@ end
 
 local function itemcheck(self)
 	local obj = self.object
-	local pos = obj:get_pos()
-	if not pos then visinv_ents[self] = nil return end
+	if not (obj and obj:get_pos()) then
+		visinv_ents[self] = nil
+		return
+	end
 
-	local stack = nodecore.stack_get(pos)
+	local rp = self.pos
+	local nodemeta = minetest.get_meta(rp)
+	local tweenfrom = minetest.deserialize(nodemeta:get_string("tweenfrom"))
+
+	local stack = nodecore.stack_get(rp)
 
 	local sstr = stack:to_string()
-	if self.stackstring == sstr then return end
+	if (not tweenfrom) and self.stackstring == sstr then return end
 	self.stackstring = sstr
 
 	if stack:is_empty() then return objremove(self, obj) end
 
-	local rp = vector.round(pos)
 	local def = minetest.registered_items[stack:get_name()] or {}
 	local src = def.light_source or 0
 	if src > 0 then
@@ -70,14 +78,24 @@ local function itemcheck(self)
 
 	local props, scale, yaw = nodecore.stackentprops(stack,
 		rp.x * 3 + rp.y * 5 + rp.z * 7)
-	rp.y = rp.y + scale - 31/64
+	local op = {
+		x = rp.x,
+		y = rp.y + scale - 31/64,
+		z = rp.z
+	}
+
+	if tweenfrom then
+		nodemeta:set_string("tweenfrom", "")
+		obj:set_pos(tweenfrom)
+		obj:move_to(op)
+	elseif not vector.equals(obj:get_pos(), op) then
+		obj:set_pos(op)
+	end
 
 	if obj:get_yaw() ~= yaw then
 		obj:set_yaw(yaw)
 	end
-	if not vector.equals(obj:get_pos(), rp) then
-		obj:set_pos(rp)
-	end
+
 	return obj:set_properties(props)
 end
 
@@ -136,6 +154,7 @@ nodecore.register_globalstep("visinv check", function()
 					visinv_ents[ent] = true
 					ent.is_stack = true
 					ent.poskey = poskey
+					ent.pos = unhash(poskey)
 					itemcheck(ent)
 				else
 					check_retry_add(poskey, data)

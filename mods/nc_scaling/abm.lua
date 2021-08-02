@@ -5,11 +5,10 @@ local minetest, nodecore, pairs
 
 local modname = minetest.get_current_modname()
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "scaling decay",
 		interval = 1,
 		chance = 1,
-		limited_max = 100,
 		nodenames = {"group:" .. modname},
 		ignore_stasis = true,
 		action = function(pos)
@@ -40,11 +39,10 @@ nodecore.register_dnt({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "scaling particles",
 		interval = 1,
 		chance = 1,
-		limited_max = 100,
 		nodenames = {"group:" .. modname .. "_fx"},
 		action = function(pos)
 			return nodecore.dnt_set(pos, dntname)

@@ -24,7 +24,7 @@ sub getlang {
 		my $str = $1;
 		$str =~ m#\S# or next;
 		$str =~ s#\\"#"#g;
-		$db{$id} = $str;
+		$db{$id} = ($db{$id} // "") . $str;
 	}
 	close($fh);
 	close($raw);

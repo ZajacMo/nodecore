@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, rawset, vector
-    = minetest, nodecore, pairs, rawset, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -8,7 +8,15 @@ local modname = minetest.get_current_modname()
 local dntname = modname .. ":ablation"
 local lenson = "nc_optics:lens_on"
 
+local hash = minetest.hash_node_position
+local cooldowns = {}
+
 local function ablation(pos, node)
+	local key = hash(pos)
+	local cooldown = cooldowns[key] or 0
+	if cooldown > nodecore.gametime then return end
+	cooldowns[key] = nodecore.gametime + 2
+
 	local face = nodecore.facedirs[node.param2]
 	local out = vector.add(face.k, pos)
 	local tn = minetest.get_node(out)
@@ -45,7 +53,7 @@ nodecore.register_dnt({
 		action = ablation
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "door ablation",
 		interval = 2,
 		chance = 1,
@@ -70,10 +78,12 @@ local function doortrigger(doorpos)
 	end
 end
 
-minetest.after(0, function()
-		for _, v in pairs(minetest.registered_nodes) do
-			if v.groups.door and v.groups.door > 0 then
-				rawset(v, "optic_check", doortrigger)
+nodecore.register_on_register_item({
+		retroactive = true,
+		func = function(_, def)
+			if def.groups and def.groups.door and def.groups.door > 0 then
+				def.optic_check = doortrigger
+				def.groups.optic_check = 1
 			end
 		end
-	end)
+	})

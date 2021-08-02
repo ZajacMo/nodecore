@@ -38,9 +38,6 @@ nodecore.register_soaking_abm({
 		fieldname = "eggcorn",
 		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
-		chance = 1,
-		limited_max = 100,
-		limited_alert = 1000,
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
 			if nodecore.near_unloaded(pos) then return end
@@ -80,9 +77,6 @@ nodecore.register_soaking_abm({
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
-		chance = 1,
-		limited_max = 100,
-		limited_alert = 1000,
 		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
 			if nodecore.near_unloaded(pos) then return end
@@ -137,9 +131,6 @@ nodecore.register_soaking_abm({
 		nodenames = {modname .. ":leaves_bud"},
 		fieldname = "leafgrow",
 		interval = 10,
-		chance = 1,
-		limited_max = 100,
-		limited_alert = 1000,
 		soakrate = function(pos)
 			local rate = minetest.get_meta(pos):get_float("growrate") or 0
 			return rate and rate ~= 0 and rate or 10

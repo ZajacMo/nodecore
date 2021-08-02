@@ -3,8 +3,10 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+local modstore = minetest.get_mod_storage()
+
 if nodecore.stasis == nil then
-	nodecore.stasis = minetest.settings:get_bool("nodecore_stasis")
+	nodecore.stasis = modstore:get_int("stasis") == 1
 end
 
 minetest.register_chatcommand("stasis", {
@@ -23,6 +25,7 @@ minetest.register_chatcommand("stasis", {
 			else
 				nodecore.stasis = not nodecore.stasis
 			end
+			modstore:set_int("stasis", nodecore.stasis and 1 or 0)
 			return true, "World is now " .. (nodecore.stasis and "FROZEN" or "ACTIVE")
 		end
 	})

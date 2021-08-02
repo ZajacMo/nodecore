@@ -49,7 +49,7 @@ do
 				end
 			end
 		end)
-	nodecore.register_limited_abm({
+	minetest.register_abm({
 			label = "fire consume",
 			interval = 1,
 			chance = 1,
@@ -82,7 +82,7 @@ do
 		})
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
@@ -94,7 +94,7 @@ nodecore.register_limited_abm({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "ember snuff/flames",
 		interval = 1,
 		chance = 1,

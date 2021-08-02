@@ -18,7 +18,7 @@ minetest.register_tool(modname .. ":rake", {
 				snappy = 1,
 				uses = 10
 			}),
-		groups = {flammable = 1},
+		groups = {flammable = 1, rakey = 1},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_rake = function() return rakevol, raketest end
 	})

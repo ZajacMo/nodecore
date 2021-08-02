@@ -41,7 +41,7 @@ nodecore.register_dnt({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "item stack cook",
 		nodenames = {modname .. ":stack"},
 		interval = 1,

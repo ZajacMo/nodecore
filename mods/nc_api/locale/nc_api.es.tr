@@ -3,14 +3,13 @@
 - "Furnaces" are not a thing; discover smelting with open flames.=- No hay hornos en Nodecore; fundir con llamas abiertas.
 - DONE: @1=- LISTO: @1
 - Trouble lighting a fire? Try using longer sticks, more tinder.=¿Problemas para encender un fuego? Intente usar palos más largos, más hojas.
-- Wielded item, target face, and surrounding nodes may matter.=importantes.
+- Wielded item, target face, and surrounding nodes may matter.=El objeto seleccionado, la cara objetivo y los nodos alrededor pueden ser importantes.
 - You do not have to punch very fast (about 1 per second).=No es necesario golpear muy rápido (aproximadamente 1 golpe por segundo).
 About=Sobre Nodecore
 Active Lens=Lente activo
 Active Prism=Prisma Activo
 Adobe Mix=Mezcla de Adobe
 Aggregate=Conglomerado
-Air=Aire
 Amalgamation=Amalgamación
 Annealed Lode=Veta Recocido
 Annealed Lode Adze=Azuela de Veta Recocido

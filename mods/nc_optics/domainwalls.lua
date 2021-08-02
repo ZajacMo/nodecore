@@ -68,7 +68,7 @@ nodecore.register_dnt({
 		end
 	})
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = modname .. ":cbbs",
 		interval = 2,
 		chance = 1,

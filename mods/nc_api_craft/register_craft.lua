@@ -16,8 +16,7 @@ local witnessable = {
 }
 
 local rate_adj_actions = {
-	cook = true,
-	pummel = true
+	cook = true
 }
 
 function nodecore.register_craft(recipe)

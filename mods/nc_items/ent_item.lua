@@ -44,7 +44,8 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
 				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
 				nodecore.place_stack(p, item)
-				self.itemstring = ""
+				minetest.get_meta(p):set_string("tweenfrom",
+					minetest.serialize(self.object:get_pos()))
 				self.object:remove()
 				return true
 			end

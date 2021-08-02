@@ -35,7 +35,7 @@ local function check(pos, player)
 	return check(pos, player)
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "lux react",
 		interval = 1,
 		chance = 2,

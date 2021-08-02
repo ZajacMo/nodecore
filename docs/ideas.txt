@@ -9,17 +9,33 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Need to reduce overreliance on soaking API
-	- It's complex, expensive, and prone to problems.
-	- Need a unified "theory" of soaking.
-		- Only things a certain kind of "alive" cause time to pass.
-		- Players
-		- Eggcorns (life inside the seed)
-		- Interaction between lux and tools
-	- Systems for accelerating idle mechanics using higher-tier tech or more complex builds
-		- Optic pulse/strobe to accelerate checks
-			- Combine with lux reaction?
-		- Register nodes for extra check callbacks in area
+- Alternative path to wood tech.
+	- Get around the "climb a tree and chop from the top"
+	  counterintuitive leap.
+	- Use gravel to stone-tip an adze, giving it choppy=2
+	- Make stone adze break really fast if used to cut a tree
+	  (modify durability?  post-dig hook?)
+
+- Lenses in inventory react to nearby light.
+	- Shine if facing an active lens within range.
+	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
+
+- Stone brick hardening (in-place)?
+
+- Use stylus on sand to produce same patterns as on concrete, inverted?
+
+- Display some kind of warning on >2s lagspikes
+	- This breaks some game things like pummels
+	- Players should all be warned ... HUD?
+
+- Incorporate something like Kimapr's Tree Dance into the game?
+	- Some way for players to actively accelerate soaking mechanics
+	  and other very slow processes.
+	- A dance?  A craft?  An artificial item?  Changing builds?
+
+- More social particles
+	- On digging
+	- On pummel (don't just show to one player)
 
 - High tier door ideas
 	- Require higher-tier doors to operate higher-tier
@@ -29,14 +45,21 @@ IDEAS: Possible future additions/improvements to the game
 	  could allow one-way slippage mechanisms.
 	- Some doors can't be hand-operated, only ablated.
 
-- Plants from nc_nature?
-	- Rushes, mushrooms
-	- Require/consume special dirt (humus/peat) to grow/repro?
-	- Source of special materials like ash? Cheaper peat?  Thatch?
-	- Upconvert dirt to humus nearby?
+- Plants from nc_nature
+	- To import:
+		- Mushrooms
+	- Function:
+		- Source of special materials like ash? Cheaper peat?
+		- Thatch?
+		- Upconvert dirt to humus nearby?
+		- Rushes to reeds to windchimes?
 
 - Rework falling_node (or build alternative) with customizability
 	- Allow lode rods, ladders to hang from ceilings?
+	- Add on_fall_check hook, hook in check_single_for_falling
+
+- A pure white concrete material?
+	- Ash + aggregate?
 
 - Durable transparent/window material.
 	- Harder to mine, noob protection.
@@ -47,6 +70,18 @@ IDEAS: Possible future additions/improvements to the game
 
 - Make radiant heat do burn damage instead of plain?
 	- Reuse lux burns?  Different kind of burn?
+
+- Spindle/axle nodes
+	- Can carry door rotations along a 1x1 path
+	- Don't actually move (except maybe animate)
+	- Apply friction in all 4 directions
+	- Can act as gears.
+	- Note that they should "spin" twice as fast, though this
+	  probably wouldn't actually matter according to actual mechanics.
+	- Maybe make threading?
+		- Apply lateral forces to certain nodes?
+		- Make grain augers?
+		- Special threaded elevator nodes?
 
 - Make etched concrete rotatble?
 	- Rotate only in pliant state by rightclick.
@@ -78,6 +113,8 @@ IDEAS: Possible future additions/improvements to the game
 	- Allow frame loose ends to be chopped off when placed next to other
 	  frames, so custom shapes can be made.
 
+- Chop wood ladders/frames back into sticks?
+
 - Piezo node for optics detects sounds?
 	- Sounds emitted by mod stuff?
 	- Footsteps?
@@ -103,16 +140,8 @@ IDEAS: Possible future additions/improvements to the game
 - Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 
 - Dungeon loot
+	- Expose API for mods to intercept/modify loot
 	- Add recipe hints (prearranged nodes) as decorations?
-	- Rows of shelves against walls.  Very rarely lode crates.
-	- Loot items in shelves, weighted pickrand().  Add a "margin" pick
-	  result with value of proportion of where in range the picked value
-	  was, and vary tool durability or stack count non-linearly by it.
-	- Scattered items on floor.  Most are from loot tables, some are
-	  crates or storeboxes.
-	- Find cobble floor on mapgen, scan up to check for ceiling to
-	  be sure we're in a dungeon.
-	- Vary loot density/quality.
 
 - A lode "mace" tool with all dig groups?
 	- Would require reevaluatng recipe priority, or tool modality.

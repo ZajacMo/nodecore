@@ -92,9 +92,13 @@ function nodecore.node_sound(pos, kind, opts)
 	return nodecore.sound_play_except(t.name, t, opts and opts.except)
 end
 
-function nodecore.set_loud(pos, node, opts)
-	minetest.set_node(pos, node)
-	opts = opts or {}
-	opts.node = node
-	return nodecore.node_sound(pos, "place", opts)
+local function mkloud(fn)
+	return function(pos, node, opts)
+		fn(pos, node)
+		opts = opts or {}
+		opts.node = node
+		return nodecore.node_sound(pos, "place", opts)
+	end
 end
+nodecore.set_loud = mkloud(minetest.set_node)
+nodecore.swap_loud = mkloud(minetest.swap_node)

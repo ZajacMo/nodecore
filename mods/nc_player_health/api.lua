@@ -16,8 +16,7 @@ minetest.register_privilege("ncdqd", {
 	})
 
 function nodecore.player_can_take_damage(player)
-	return minetest.settings:get_bool("enable_damage")
-	and not player:get_armor_groups().immortal
+	return not player:get_armor_groups().immortal
 	and not minetest.check_player_privs(player, "ncdqd")
 end
 

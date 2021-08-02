@@ -19,32 +19,15 @@ pumdef = {
 		stack_as_node = 1
 	},
 	drop = "",
+	destroy_on_dig = true,
 	silktouch = false,
-	after_dig_node = function(pos)
-		nodecore.digparticles(pumdef, {
-				time = 0.05,
-				amount = 100,
-				minpos = {x = pos.x - 0.5, y = pos.y - 0.5, z = pos.z - 0.5},
-				maxpos = {x = pos.x + 0.5, y = pos.y + 0.5, z = pos.z + 0.5},
-				minvel = {x = -2, y = -2, z = -2},
-				maxvel = {x = 2, y = 2, z = 2},
-				minacc = {x = 0, y = -8, z = 0},
-				maxacc = {x = 0, y = -8, z = 0},
-				minexptime = 0.25,
-				maxexptime = 0.5,
-				collisiondetection = true,
-				collision_removal = true,
-				minsize = 1,
-				maxsize = 6
-			})
-	end,
 	sounds = nodecore.sounds("nc_optics_glassy", nil, 0.8),
 }
 minetest.register_node(pumname, pumdef)
 
 do
 	local dirs = nodecore.dirs()
-	nodecore.register_limited_abm({
+	minetest.register_abm({
 			label = "lava pumice",
 			interval = 1,
 			chance = 2,
@@ -63,7 +46,7 @@ do
 		})
 end
 
-nodecore.register_limited_abm({
+minetest.register_abm({
 		label = "pumice melt",
 		interval = 1,
 		chance = 2,

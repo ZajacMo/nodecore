@@ -1,23 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, vector
-    = math, minetest, nodecore, vector
+local ItemStack, math, minetest, nodecore, rawset, vector
+    = ItemStack, math, minetest, nodecore, rawset, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
-
-local function show(player, text, ttl)
-	nodecore.hud_set_multiline(player, {
-			label = "touchtip",
-			hud_elem_type = "text",
-			position = {x = 0.5, y = 0.75},
-			text = text,
-			number = 0xFFFFFF,
-			alignment = {x = 0, y = 0},
-			offset = {x = 0, y = 0},
-			ttl = ttl or 2
-		}, nodecore.translate)
-end
-nodecore.show_touchtip = show
 
 local countdescs = {"@1"}
 for i = 2, 9 do countdescs[i] = "@1 (" .. i .. ")" end
@@ -137,24 +123,15 @@ function nodecore.touchtip_node(pos, node, puncher, pointed, ...)
 		name, def, puncher, pointed, ...)
 end
 
-local wields = {}
+nodecore.show_touchtip = function() end
 
-nodecore.register_playerstep({
-		label = "wield touchtips",
-		action = function(player, data)
-			local wn = nodecore.touchtip_stack(player:get_wielded_item(), true)
-			if wn ~= wields[data.pname] then
-				wields[data.pname] = wn
-				show(player, wn)
-			end
-		end
-	})
-
-nodecore.register_on_punchnode("touchtip on punch", function(pos, node, puncher, ...)
-		return show(puncher, nodecore.touchtip_node(pos, node, puncher, ...))
+local function adddesc(entname, func)
+	local def = minetest.registered_entities[entname]
+	rawset(def, "description", func)
+end
+adddesc("__builtin:item", function(self)
+		return nodecore.touchtip_stack(ItemStack(self.itemstring))
 	end)
-
-nodecore.register_on_joinplayer("touchtip wield reset", function(player)
-		local pname = player:get_player_name()
-		wields[pname] = nil
+adddesc("__builtin:falling_node", function(self)
+		return nodecore.touchtip_stack(ItemStack(self.node.name))
 	end)
