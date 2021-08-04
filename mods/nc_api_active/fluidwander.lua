@@ -17,6 +17,7 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 		minetest.set_node(np, node)
 		minetest.get_meta(np):set_int("fluidgen_" .. name, gen + 1)
 		minetest.set_node(pos, {name = flowname, param2 = 7})
+		nodecore.dnt_set(pos, "fluidwander_" .. name)
 	end
 	return function(pos, node)
 		local meta = minetest.get_meta(pos)
@@ -111,7 +112,7 @@ function nodecore.register_fluidwandering(name, nodenames, interval, gencheck, m
 			chance = 1,
 			nodenames = nodenames,
 			action = function(pos)
-				return nodecore.dnt_set(pos, labelname, movedist, interval)
+				return nodecore.dnt_set(pos, labelname)
 			end
 		})
 end

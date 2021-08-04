@@ -22,7 +22,10 @@ nodecore.register_craft({
 				match = {groups = {sand = true}},
 				replace = modname .. ":glass_hot_source"
 			}
-		}
+		},
+		after = function(pos)
+			nodecore.dnt_set(pos, "fluidwander_glass")
+		end
 	})
 
 nodecore.register_cook_abm({
