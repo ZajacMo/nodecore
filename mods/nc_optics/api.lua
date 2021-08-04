@@ -34,7 +34,6 @@ local microtime = minetest.get_us_time
 local hashpos = minetest.hash_node_position
 local unhash = minetest.get_position_from_hash
 local get_node = minetest.get_node
-local set_node = minetest.set_node
 
 local node_optic_checks = {}
 local node_optic_sources = {}
@@ -164,7 +163,7 @@ local function optic_commit(v)
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
 	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
-		set_node(v.pos, nn)
+		minetest.set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
 		local newidx = {}
