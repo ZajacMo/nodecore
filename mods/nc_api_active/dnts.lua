@@ -102,7 +102,7 @@ local function dntsave(pos, meta, data)
 		local idx = k.nodeidx
 		if (not idx) or idx[nn] then
 			k.action(pos, node)
-			if minetest.get_node(pos) ~= nn then break end
+			if minetest.get_node(pos).name ~= nn then break end
 		end
 	end
 end
