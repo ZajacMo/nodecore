@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local error, math, minetest, nodecore, pairs, string
     = error, math, minetest, nodecore, pairs, string
-local math_random, string_format
-    = math.random, string.format
+local math_floor, math_random, string_format
+    = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Active Block Modifiers, meet Delayed Node Triggers.
@@ -16,32 +16,17 @@ local math_random, string_format
 
 nodecore.registered_dnts = {}
 
-local grouppref = "group:"
-local function buildidx(list)
-	if not list then return end
-	local n = {}
-	local g
-	for _, v in pairs(list) do
-		if v:sub(1, #grouppref) == grouppref then
-			g = g or {}
-			g[v:sub(#grouppref + 1)] = true
-		else
-			n[v] = true
+local autostarts = {}
+local function dntregen(pos, node)
+	local start = autostarts[node.name]
+	if start then
+		minetest.log("warning", minetest.pos_to_string(pos) .. " = " .. node.name)
+		for def in pairs(start) do
+			nodecore.dnt_set(pos, def.name)
 		end
 	end
-	if g then
-		minetest.after(0, function()
-				for k in pairs(minetest.registered_nodes) do
-					for x in pairs(g) do
-						if minetest.get_item_group(k, x) > 0 then
-							n[k] = true
-						end
-					end
-				end
-			end)
-	end
-	return n
 end
+nodecore.register_on_nodeupdate(dntregen)
 
 function nodecore.register_dnt(def)
 	if not def.name then return error("dnt name required") end
@@ -49,7 +34,26 @@ function nodecore.register_dnt(def)
 	if nodecore.registered_dnts[def.name] then
 		return error(string_format("dnt %q already registered", def.name))
 	end
-	def.nodeidx = buildidx(def.nodenames)
+	def.nodeidx = nodecore.group_expand(def.nodenames, true)
+	if def.autostart then
+		nodecore.group_expand(def.nodenames, function(name)
+				local set = autostarts[name]
+				if not set then
+					set = {}
+					autostarts[name] = set
+				end
+				set[def] = true
+			end)
+		local abmtime = math_floor(def.time or 1)
+		if abmtime < 1 then abmtime = 1 end
+		minetest.register_abm({
+				label = "dnt regen: " .. def.name,
+				interval = abmtime,
+				chance = 1,
+				nodenames = def.nodenames,
+				action = dntregen
+			})
+	end
 	nodecore.registered_dnts[def.name] = def
 end
 
@@ -96,7 +100,10 @@ local function dntsave(pos, meta, data)
 	local nn = node.name
 	for k in pairs(run) do
 		local idx = k.nodeidx
-		if (not idx) or idx[nn] then k.action(pos, node) end
+		if (not idx) or idx[nn] then
+			k.action(pos, node)
+			if minetest.get_node(pos) ~= nn then break end
+		end
 	end
 end
 

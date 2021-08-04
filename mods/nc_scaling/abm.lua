@@ -32,19 +32,10 @@ nodecore.register_dnt({
 		name = dntname,
 		time = 1,
 		loop = true,
+		autostart = true,
 		nodenames = {"group:" .. modname .. "_fx"},
 		action = function(pos)
 			nodecore.scaling_particles(pos)
 			return nodecore.dnt_set(pos, dntname, 1)
-		end
-	})
-
-minetest.register_abm({
-		label = "scaling particles",
-		interval = 1,
-		chance = 1,
-		nodenames = {"group:" .. modname .. "_fx"},
-		action = function(pos)
-			return nodecore.dnt_set(pos, dntname)
 		end
 	})

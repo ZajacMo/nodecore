@@ -104,15 +104,7 @@ function nodecore.register_fluidwandering(name, nodenames, interval, gencheck, m
 			name = labelname,
 			nodenames = nodenames,
 			time = interval,
+			autostart = true,
 			action = nodecore.fluidwander(name, gencheck, movedist, scandist)
-		})
-	minetest.register_abm({
-			label = labelname,
-			interval = interval,
-			chance = 1,
-			nodenames = nodenames,
-			action = function(pos)
-				return nodecore.dnt_set(pos, labelname)
-			end
 		})
 end

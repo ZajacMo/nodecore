@@ -8,22 +8,11 @@ local string_format, table_concat
 local muxdefs = {}
 local abmsdefined = {}
 
-local grp = "group:"
-local function matches(name, def, nodenames)
-	for _, n in pairs(nodenames) do
-		if name == n then return true
-		elseif n:sub(1, #grp) == grp then
-			local g = def.groups and def.groups[n:sub(#grp + 1)]
-			if g and g > 0 then return true end
-		end
-	end
-end
-
 nodecore.register_on_register_item(function(name, def)
 		if def.type == "node" then
 			for _, mux in pairs(muxdefs) do
 				if (not (def.groups and def.groups[mux.muxkey]))
-				and matches(name, def, mux.nodenames) then
+				and nodecore.would_match(name, def, mux.nodenames) then
 					rawset(def.groups, "abmmux_" .. mux.muxkey, 1)
 				end
 			end
@@ -77,7 +66,7 @@ function minetest.register_abm(def)
 	def.muxkey = muxkey
 	muxdefs[#muxdefs + 1] = def
 	for k, v in pairs(minetest.registered_nodes) do
-		if (not v.groups[muxkey]) and matches(k, v, def.nodenames) then
+		if (not v.groups[muxkey]) and nodecore.would_match(k, v, def.nodenames) then
 			rawset(v.groups, "abmmux_" .. muxkey, 1)
 			minetest.override_item(k, {groups = v.groups})
 		end

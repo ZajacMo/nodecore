@@ -110,6 +110,7 @@ end
 
 local soaking_abm_by_fieldname = {}
 function nodecore.register_soaking_abm(def)
+	def.nodeidx = nodecore.group_expand(def.nodenames, true)
 	soaking_abm_by_fieldname[def.fieldname] = def
 	return soaking_core(def,
 		minetest.register_abm,
@@ -131,16 +132,7 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	if not abm then return end
 
 	local node = minetest.get_node(pos)
-
-	local found
-	for _, v in pairs(abm.nodenames or {}) do
-		if node.name == v then
-			found = true
-		elseif v:sub(1, 6) == "group:" then
-			found = found or minetest.get_item_group(node.name, v:sub(7)) ~= 0
-		end
-	end
-	if not found then return end
+	if not abm.nodeidx[node.name] then return end
 
 	local meta = minetest.get_meta(pos)
 	local qf = fieldname .. "qty"

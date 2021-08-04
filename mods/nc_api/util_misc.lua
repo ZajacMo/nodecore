@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
-      string, tostring, type, unpack, vector
-    = ItemStack, PcgRandom, ipairs, math, minetest, nodecore, pairs,
-      string, tostring, type, unpack, vector
+local ItemStack, PcgRandom, error, ipairs, math, minetest, next,
+      nodecore, pairs, string, tostring, type, unpack, vector
+    = ItemStack, PcgRandom, error, ipairs, math, minetest, next,
+      nodecore, pairs, string, tostring, type, unpack, vector
 local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
       math_random, math_sin, math_sqrt, string_format, string_gsub,
-      string_lower
+      string_lower, string_sub
     = math.abs, math.cos, math.floor, math.log, math.pi, math.pow,
       math.random, math.sin, math.sqrt, string.format, string.gsub,
-      string.lower
+      string.lower, string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -451,6 +451,52 @@ local function mismatch(a, b)
 end
 nodecore.prop_mismatch = mismatch
 
+local grp = "group:"
+local function would_match(name, def, itemnames)
+	if not (name and def) then return end
+	if itemnames == true or not itemnames then return itemnames end
+	if name == itemnames then return true end
+	local namestype = type(itemnames)
+	if namestype == "string" then
+		if string_sub(itemnames, 1, #grp) == grp then
+			local gn = string_sub(itemnames, #grp + 1)
+			return def and def.groups and def.groups[gn] and def.groups[gn] > 0
+		end
+		return name == itemnames
+	elseif namestype == "table" then
+		for i = 1, #itemnames do
+			if would_match(name, def, itemnames[i]) then
+				return true
+			end
+		end
+	else
+		error("invalid would_match type " .. namestype)
+	end
+end
+nodecore.would_match = would_match
+
+local function group_expand(itemnames, deferred)
+	local deffunc = type(deferred) == "function" and deferred or nil
+	local idx = {}
+	local function populate()
+		while true do
+			local k = next(idx)
+			if not k then break end
+			idx[k] = nil
+		end
+		for k, v in pairs(minetest.registered_items) do
+			if would_match(k, v, itemnames) then
+				idx[k] = true
+				if deffunc then deffunc(k, idx) end
+			end
+		end
+	end
+	populate()
+	if deferred then minetest.after(0, populate) end
+	return idx
+end
+nodecore.group_expand = group_expand
+
 function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 	local index = {}
 	local function itemadd(key, item)
@@ -470,20 +516,8 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 	local function rebuild()
 		for k in pairs(index) do index[k] = nil end
 		for _, item in pairs(items) do
-			for _, name in pairs(getnames(item)) do
-				if name == true then
-					for k in pairs(minetest.registered_items) do
-						itemadd(keymod(k, item), item)
-					end
-				elseif type(name) == "string" and name:sub(1, 6) == "group:" then
-					for k, v in pairs(minetest.registered_items) do
-						if v and v.groups and v.groups[name:sub(7)] then
-							itemadd(keymod(k, item), item)
-						end
-					end
-				else
-					itemadd(keymod(name, item), item)
-				end
+			for k in pairs(nodecore.group_expand(getnames(item))) do
+				itemadd(keymod(k, item), item)
 			end
 		end
 		if idxname and not report_pending then
