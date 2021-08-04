@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 minetest.register_node(modname .. ":glass", {
 		description = "Clear Glass",
-		drawtype = "glasslike_framed_optional",
+		drawtype = "glasslike_framed",
 		tiles = {
 			modname .. "_glass_glare.png^" .. modname .. "_glass_edges.png",
 			modname .. "_glass_glare.png"
@@ -37,7 +37,7 @@ minetest.register_node(modname .. ":glass_opaque", {
 
 minetest.register_node(modname .. ":glass_crude", {
 		description = "Crude Glass",
-		drawtype = "glasslike_framed_optional",
+		drawtype = "glasslike_framed",
 		tiles = {
 			modname .. "_glass_crude.png^" .. modname .. "_glass_edges.png",
 			modname .. "_glass_crude.png"
@@ -54,7 +54,7 @@ minetest.register_node(modname .. ":glass_crude", {
 
 minetest.register_node(modname .. ":glass_float", {
 		description = "Float Glass",
-		drawtype = "glasslike_framed_optional",
+		drawtype = "glasslike_framed",
 		tiles = {
 			modname .. "_glass_edges.png",
 			"[combine:16x16"
