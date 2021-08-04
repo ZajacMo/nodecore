@@ -27,8 +27,9 @@ for fn, param in pairs({
 		mask[phash] = true
 		local function helper(...)
 			local node = param and pn or minetest.get_node(pos)
-			for i = 1, #nodecore.registered_on_nodeupdates do
-				(nodecore.registered_on_nodeupdates[i])(pos, node)
+			local nups = nodecore.registered_on_nodeupdates
+			for i = 1, #nups do
+				(nups[i])(pos, node)
 			end
 			mask[phash] = nil
 			return ...
@@ -45,8 +46,9 @@ if minetest.register_on_liquid_transformed then
 				if not mask[phash] then
 					mask[phash] = true
 					local node = minetest.get_node(pos)
-					for j = 1, #nodecore.registered_on_nodeupdates do
-						(nodecore.registered_on_nodeupdates[j])(pos, node)
+					local nups = nodecore.registered_on_nodeupdates
+					for j = 1, #nups do
+						(nups[j])(pos, node)
 					end
 					mask[phash] = nil
 				end
