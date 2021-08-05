@@ -208,7 +208,7 @@ minetest.register_abm({
 		end
 	})
 nodecore.register_lbm({
-		name = modname .. ":check",
+		name = modname .. ":optic_check",
 		run_at_every_load = true,
 		nodenames = {"group:optic_check"},
 		action = optic_check

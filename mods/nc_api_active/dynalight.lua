@@ -43,7 +43,7 @@ local function setup_light(pos, check)
 		exp = nodecore.gametime + ttl,
 		check = check
 	}
-	nodecore.dnt_set(pos, modname .. ":check")
+	nodecore.dnt_set(pos, modname .. ":dynalight_check")
 end
 
 local function check_light(pos)
@@ -52,7 +52,7 @@ local function check_light(pos)
 	if nodecore.gametime < data.exp then return end
 	if data.check and data.check() then
 		data.exp = nodecore.gametime + ttl
-		nodecore.dnt_set(pos, modname .. ":check")
+		nodecore.dnt_set(pos, modname .. ":dynalight_check")
 		return
 	end
 	minetest.remove_node(pos)
@@ -60,7 +60,7 @@ local function check_light(pos)
 end
 
 nodecore.register_dnt({
-		name = modname .. ":check",
+		name = modname .. ":dynalight_check",
 		nodenames = {"group:dynamic_light"},
 		ignore_stasis = true,
 		time = ttl,
