@@ -434,15 +434,25 @@ function nodecore.player_swimming(player)
 	return player_was_swimming[pname]
 end
 
-local function mismatch(a, b)
+local function deepcopy(x)
+	if type(x) == "table" then
+		local t = {}
+		for k, v in pairs(x) do t[k] = deepcopy(v) end
+		return t
+	end
+	return x
+end
+nodecore.deepcopy = deepcopy
+
+local function mismatch(a, b, exact)
 	if type(a) == "table" then
 		if type(b) ~= "table" then return true end
 		for k, v in pairs(a) do
-			if mismatch(v, b[k]) then return true end
+			if mismatch(v, b[k], exact) then return true end
 		end
 		return
 	end
-	if type(a) == "number" and type(b) == "number" then
+	if (not exact) and type(a) == "number" and type(b) == "number" then
 		local ratio = a / b
 		-- Floating point rounding...
 		if ratio > 0.99999 and ratio < 1.00001 then return end

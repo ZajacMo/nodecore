@@ -9,12 +9,6 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- DNT API efficiencies:
-	- Store next-run time in DNTs instead of countdown
-	- Metadata handling similar to soaking reforms
-		- Generational caching of DNT data
-		- Dirty checking, avoid excessive writes
-
 - Convert more things to autostart DNTs?
 
 - Make door operation bredth-first queue-recursive for consistent
