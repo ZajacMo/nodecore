@@ -35,10 +35,9 @@ local function check_empty(pos, dx, dy, dz)
 	end
 	return {x = pos.x + dx, y = pos.y, z = pos.z + dz}
 end
-function nodecore.falling_repose_check(pos)
-	if minetest.check_single_for_falling(pos) then return end
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
+function nodecore.falling_repose_positions(pos, node, def)
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_items[node.name] or {}
 	local repose = def.groups and def.groups.falling_repose
 	if not repose then return end
 
@@ -59,7 +58,12 @@ function nodecore.falling_repose_check(pos)
 	if ok then open[#open + 1] = ok end
 	ok = check_empty(pos, 0, -repose, -1)
 	if ok then open[#open + 1] = ok end
-	if #open < 1 then return end
+	return #open > 0 and open or nil, node, def
+end
+function nodecore.falling_repose_check(pos)
+	if minetest.check_single_for_falling(pos) then return end
+	local open, node, def = nodecore.falling_repose_positions(pos)
+	if not open then return end
 	return def.repose_drop(pos, open[math_random(1, #open)], node)
 end
 

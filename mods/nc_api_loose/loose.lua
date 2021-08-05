@@ -89,7 +89,13 @@ nodecore.register_soaking_abm({
 
 			local bnode = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
 			local bdef = minetest.registered_items[bnode.name] or {}
-			if (not bdef.groups) or bdef.groups.falling_node then return false end
+			if not bdef.groups then return end
+			if bdef.groups.falling_node then
+				if bdef.repack_to and (not def.no_repack)
+				and (not def.no_self_repack) then return false end
+				if nodecore.falling_repose_positions(pos, node, def)
+				then return false end
+			end
 
 			local weight = 1
 			for dy = 1, 8 do

@@ -5,5 +5,5 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("loose")
 include("repose")
+include("loose")
