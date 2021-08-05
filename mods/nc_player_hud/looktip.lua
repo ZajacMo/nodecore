@@ -84,7 +84,7 @@ nodecore.register_playerstep({
 					if ll >= 0 then
 						data.pointing = "obj"
 						local luent = pt.ref:get_luaentity()
-						local desc = luent.description
+						local desc = luent and luent.description
 						if desc then
 							if type(desc) == "function" then
 								desc = desc(luent)
