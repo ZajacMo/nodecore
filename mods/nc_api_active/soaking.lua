@@ -7,6 +7,10 @@ local math_floor, math_sqrt
 
 local metacache = {}
 
+nodecore.register_on_nodeupdate(function(pos)
+		metacache[minetest.hash_node_position(pos)] = nil
+	end)
+
 local function metaget(meta, def, nodekey)
 	local cached = nodekey and metacache[nodekey]
 	if cached then return cached end
