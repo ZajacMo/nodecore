@@ -64,10 +64,15 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 
 	local rateadj = nodecore.rate_adjustment("speed", "soaking", def.label)
 	def.action = function(...)
-		local now = nodecore.gametime
-
 		local nodekey = getnodekey(...)
 		local meta = getmeta(...)
+		if def.quickcheck and not def.quickcheck(...) then
+			metaset(meta, def, nodekey)
+			return ...
+		end
+
+		local now = nodecore.gametime
+
 		local metadata = metaget(meta, def, nodekey)
 		local total = metadata.qty or 0
 		local start = metadata.time

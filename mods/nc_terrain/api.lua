@@ -40,8 +40,10 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			fieldname = "leach",
 			nodenames = {fromnode},
 			interval = 5,
+			quickcheck = function(pos)
+				return waterat(pos, 0, 1, 0)
+			end,
 			soakrate = function(pos)
-				if not waterat(pos, 0, 1, 0) then return false end
 				local qty = 1
 				if waterat(pos, 1, 0, 0) then qty = qty * 1.5 end
 				if waterat(pos, -1, 0, 0) then qty = qty * 1.5 end
