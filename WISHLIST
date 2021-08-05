@@ -10,6 +10,10 @@ to the project!
 	- https://nodecore.mine.nu/trans/projects/nodecore/core/
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
+	- Major game-breakers:
+		- #10304: Causes looktips to conflict with pickpocketing, so
+		  pickpocketing, being the lower priority feature, got cut;
+		  fixing this could feasibly allow both to coexist.
 	- Minor game-breakers:
 		- #9377: This causes some annoyances when handling lux tools,
 		  and makes a certain mechanic blatant when it's intended to be

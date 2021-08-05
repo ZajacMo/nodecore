@@ -1,17 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, table, vector
-    = math, minetest, nodecore, pairs, string, table, vector
-local math_sqrt, string_format, table_remove
-    = math.sqrt, string.format, table.remove
+local minetest, nodecore, pairs, table
+    = minetest, nodecore, pairs, table
+local table_remove
+    = table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
-
-local steal_fxtime = 0.5
-local steal_reset = 2
-local steal_complete = 4.5
 
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
@@ -31,14 +27,12 @@ local size_item = xyz(0.1)
 local hidden = {is_visible = false}
 local selslot = {
 	is_visible = true,
-	selectionbox = bbox(0),
 	visual = "upright_sprite",
 	visual_size = size_slot,
 	textures = {modname .. "_sel.png"}
 }
 local emptyslot = {
 	is_visible = true,
-	selectionbox = bbox(0),
 	visual = "upright_sprite",
 	visual_size = size_slot,
 	textures = {modname .. "_slot.png"}
@@ -53,7 +47,6 @@ local function calcprops(itemname, iswield)
 	return {
 		is_visible = true,
 		visual_size = size,
-		selectionbox = bbox(size.x),
 		visual = "wielditem",
 		textures = {itemname},
 		glow = def and (def.light_source or def.glow or 0)
@@ -97,6 +90,7 @@ entdef = {
 		collisionbox = bbox(0),
 		selectionbox = bbox(0),
 		textures = {""},
+		pointable = false,
 		is_visible = false,
 		static_save = false,
 		glow = 0
@@ -126,99 +120,6 @@ entdef = {
 		return self.object:set_properties(itemprops(
 				pdata.inv[conf.slot or widx]:get_name(),
 				not conf.slot))
-	end,
-	on_punch = function(self, puncher)
-		local objpos = self.object:get_pos()
-		if not objpos then return end
-
-		if not (puncher and puncher:is_player()) then return end
-
-		local conf = self.conf
-		if not conf then return end
-		local pdata = playerdata[conf.pname]
-		if not pdata then return end
-
-		local ppos = pdata.player:get_pos()
-		local diff = vector.subtract(ppos, puncher:get_pos())
-		local face = minetest.yaw_to_dir(pdata.player:get_look_horizontal())
-		if vector.dot(face, diff) >= 0 then return end
-
-		local inv = pdata.player:get_inventory()
-		local slot = conf.slot or pdata.widx
-		local stack = inv:get_stack("main", slot)
-
-		nodecore.show_touchtip(puncher, nodecore.touchtip_stack(stack)
-			.. "\n" .. nodecore.notranslate(conf.pname))
-
-		local stime = self.swipetime or 0
-		local dofx = stime < nodecore.gametime - steal_fxtime
-		if dofx then
-			self.swipetime = nodecore.gametime
-			nodecore.stack_sounds(objpos, "dig", stack)
-		end
-
-		if vector.dot(diff, diff) > 9 then return end
-
-		local pname = puncher:get_player_name()
-		local tname = self.thief_name
-		if not tname or tname ~= pname then
-			self.thief_name = pname
-			self.thief_start = nodecore.gametime
-			self.thief_last = nodecore.gametime
-		end
-
-		if nodecore.gametime > self.thief_last + steal_reset then
-			self.thief_name = nil
-			return
-		end
-
-		local gain = dofx and (nodecore.gametime - self.thief_start - steal_fxtime)
-		/ steal_complete or 0
-		if gain > 0 then
-			if gain > 1 then gain = 1 end
-			nodecore.sound_play(modname .. "_swipe",
-				{object = self.object, gain = 0.25 * math_sqrt(gain)})
-			local stackdef = stack:get_definition()
-			if stackdef then
-				local spos = {
-					x = ppos.x,
-					y = ppos.y + 1,
-					z = ppos.z
-				}
-				local vel = vector.multiply(diff, -1)
-				nodecore.digparticles(stackdef, {
-						time = 0.5,
-						amount = 20,
-						minpos = spos,
-						maxpos = spos,
-						minvel = vector.multiply(vel, 0.9),
-						maxvel = vel,
-						minacc = {x = 0, y = 0, z = 0},
-						maxacc = {x = 0, y = 0, z = 0},
-						minexptime = 0.25,
-						maxexptime = 1,
-						minsize = 1,
-						maxsize = 2
-					})
-			end
-		end
-
-		if nodecore.gametime < self.thief_start + steal_complete then
-			self.thief_last = nodecore.gametime
-			return
-		end
-
-		self.thief_name = nil
-		local oname = nodecore.stack_shortdesc(stack, true)
-		local orig = stack:get_count()
-		stack = puncher:get_inventory():add_item("main", stack)
-		local left = stack:get_count()
-		inv:set_stack("main", slot, stack)
-
-		return nodecore.log("action", string_format(
-				"%s pickpockets stack %q %d - %d = %d from %s slot %d",
-				pname, oname, orig, orig - left, left, conf.pname, slot,
-				minetest.pos_to_string(ppos)))
 	end
 }
 minetest.register_entity(modname .. ":ent", entdef)
