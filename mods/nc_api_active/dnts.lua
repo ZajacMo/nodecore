@@ -159,7 +159,7 @@ function nodecore.register_dnt(def)
 	if nodecore.registered_dnts[def.name] then
 		return error(string_format("dnt %q already registered", def.name))
 	end
-	def.nodeidx = nodecore.group_expand(def.nodenames, true)
+	def.nodeidx = def.nodenames and nodecore.group_expand(def.nodenames, true)
 	if def.autostart then
 		nodecore.group_expand(def.nodenames, function(name)
 				local set = autostarts[name]
