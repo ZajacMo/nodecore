@@ -103,19 +103,12 @@ local function dnt_execute(pos, data)
 	dnt_timer(data)
 end
 
--- local squelched = {}
--- local function maybecheck(data)
--- local s = squelched[data.key]
--- if s and s > nodecore.gametime then return end
--- squelched[data.key] = nodecore.gametime + 5 + math_random() * 10
--- return dnt_execute(data.pos, data)
--- end
-
 function nodecore.dnt_set(pos, name, time)
 	local data = data_load(pos)
 	local prev = data.sched[name]
-	time = nodecore.gametime + (time or nodecore.registered_dnts[name].time or 1)
-	if prev and prev <= time then return end
+	local now = nodecore.gametime
+	time = now + (time or nodecore.registered_dnts[name].time or 1)
+	if prev and prev >= now and prev <= time then return end
 	data.sched[name] = time
 	data_save(data)
 	dnt_timer(data)
