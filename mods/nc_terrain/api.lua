@@ -54,8 +54,8 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			end,
 			soakcheck = function(data, pos)
 				if data.total < 5000 then return end
-				nodecore.witness(pos, "leach " .. fromnode)
 				nodecore.set_loud(pos, {name = tonode})
+				nodecore.witness(pos, "leach " .. fromnode)
 				return nodecore.fallcheck(pos)
 			end
 		})
