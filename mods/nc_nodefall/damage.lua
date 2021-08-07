@@ -27,21 +27,13 @@ local function maketick(mult, getname, oldtick)
 			return oldtick(self, dtime, ...)
 		end
 		local q = v * v * dtime * self.crush_damage * mult
-		local hit
 		for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			if o:is_player() then
-				hit = hit or nodecore.addphealth(o, -q, {
+				nodecore.addphealth(o, -q, {
 						nc_type = "crushing",
 						entity = self
 					})
 			end
-		end
-		if hit and vel then
-			self.object:set_velocity({
-					x = vel.x / 2,
-					y = -vel.y / 4,
-					z = vel.z / 2
-				})
 		end
 
 		return oldtick(self, dtime, ...)
