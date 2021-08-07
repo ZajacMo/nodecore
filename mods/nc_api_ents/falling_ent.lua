@@ -55,13 +55,15 @@ minetest.register_entity(":__builtin:falling_node", {
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
-			return data_load(self, data)
+			data_load(self, data)
+			self.represents_item = self.node and self.node.name
 		end,
 
 		set_node = function(self, node, meta)
 			if not node then return self.object:remove() end
 
 			self.node = node
+			self.represents_item = self.node and self.node.name
 			local def = minetest.registered_items[node.name]
 			if def.falling_replacement then
 				self.node.name = def.falling_replacement

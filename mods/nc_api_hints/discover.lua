@@ -114,11 +114,12 @@ nodecore.register_on_chat_message("chat message stats", function(name, msg)
 	end)
 
 ------------------------------------------------------------------------
--- PLAYER INVENTORY SCAN
+-- PLAYER SCAN
 
 nodecore.register_playerstep({
 		label = "inv",
-		action = function(player)
+		action = function(player, data)
+			-- inventory
 			local inv = player:get_inventory()
 			local t = {}
 			for i = 1, inv:get_size("main") do
@@ -129,6 +130,24 @@ nodecore.register_playerstep({
 			end
 			for k in pairs(t) do
 				discover(player, "inv:" .. k)
+			end
+
+			-- looking at
+			local pt = data.raycast()
+			if pt then
+				if pt.type == "node" then
+					local nn = minetest.get_node(pt.under).name
+					discover(player, "look:" .. nn)
+					local stack = nodecore.stack_get(pt.under)
+					if stack and not stack:is_empty() then
+						discover(player, "look:" .. stack:get_name())
+					end
+				elseif pt.type == "object" then
+					local luaent = pt.ref:get_luaentity()
+					if luaent and luaent.represents_item then
+						discover(player, "look:" .. luaent.represents_item)
+					end
+				end
 			end
 		end
 	})
