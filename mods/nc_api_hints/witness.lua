@@ -99,15 +99,19 @@ function nodecore.witness(pos, label, maxdist)
 	end
 end
 
-minetest.register_on_punchnode(function(pos, node, puncher)
-		local data, save = witnessdata(puncher)
-		local posstr = minetest.pos_to_string(pos)
-		local found = data.lookup[posstr]
-		if not found then return end
-		data.lookup[posstr] = nil
-		save()
-		node = node or minetest.get_node(pos)
-		if (found.node ~= node.name) or (nodecore.stack_get(pos):get_name()
-			~= found.stack) then return end
-		return nodecore.player_discover(puncher, found.disc)
+local function delayed_witness(pos, node, player)
+	local data, save = witnessdata(player)
+	local posstr = minetest.pos_to_string(pos)
+	local found = data.lookup[posstr]
+	if not found then return end
+	data.lookup[posstr] = nil
+	save()
+	node = node or minetest.get_node(pos)
+	if (found.node ~= node.name) or (nodecore.stack_get(pos):get_name()
+		~= found.stack) then return end
+	return nodecore.player_discover(player, found.disc)
+end
+minetest.register_on_punchnode(delayed_witness)
+nodecore.register_on_node_stare(function(player, pt)
+		delayed_witness(pt.under, minetest.get_node(pt.under), player)
 	end)

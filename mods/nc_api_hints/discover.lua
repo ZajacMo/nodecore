@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string, type, vector
-    = minetest, nodecore, pairs, string, type, vector
+local ipairs, minetest, nodecore, pairs, string, type, vector
+    = ipairs, minetest, nodecore, pairs, string, type, vector
 local string_format, string_gsub
     = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
@@ -116,6 +116,9 @@ nodecore.register_on_chat_message("chat message stats", function(name, msg)
 ------------------------------------------------------------------------
 -- PLAYER SCAN
 
+nodecore.register_on_node_stare,
+nodecore.registered_on_node_stares = nodecore.mkreg()
+
 nodecore.register_playerstep({
 		label = "inv",
 		action = function(player, data, dtime)
@@ -138,11 +141,9 @@ nodecore.register_playerstep({
 			and vector.equals(data.staring_pos, pt.under) then
 				data.staring_time = data.staring_time + dtime
 				if data.staring_time >= 0.8 then
-					local nn = minetest.get_node(pt.under).name
-					discover(player, "look:" .. nn)
-					local stack = nodecore.stack_get(pt.under)
-					if stack and not stack:is_empty() then
-						discover(player, "look:" .. stack:get_name())
+					data.staring_time = 0
+					for _, f in ipairs(nodecore.registered_on_node_stares) do
+						f(player, pt, data)
 					end
 				end
 			else
@@ -151,3 +152,12 @@ nodecore.register_playerstep({
 			end
 		end
 	})
+
+nodecore.register_on_node_stare(function(player, pt)
+		local nn = minetest.get_node(pt.under).name
+		discover(player, "look:" .. nn)
+		local stack = nodecore.stack_get(pt.under)
+		if stack and not stack:is_empty() then
+			discover(player, "look:" .. stack:get_name())
+		end
+	end)
