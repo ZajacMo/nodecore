@@ -25,8 +25,7 @@ local wetdef = {
 	drowning = 0,
 	groups = {
 		lux_emit = 16,
-		lux_fluid = 1,
-		stack_as_node = 1
+		lux_fluid = 1
 	},
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143}
 }
