@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, type, unpack
-    = math, minetest, nodecore, pairs, table, type, unpack
+local math, minetest, nodecore, pairs, table, type, unpack, vector
+    = math, minetest, nodecore, pairs, table, type, unpack, vector
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
@@ -59,10 +59,37 @@ local function setdelta(cur, old)
 	return set
 end
 
+local default_range = 4
+local function lazy_raycast(player)
+	local saved = false
+	return function()
+		if saved ~= false then return saved end
+
+		local pos = player:get_pos()
+		pos.y = pos.y + player:get_properties().eye_height
+		local look = player:get_look_dir()
+		local wield = minetest.registered_items[player
+		:get_wielded_item():get_name()]
+		local range = wield and wield.range or default_range
+		local target = vector.add(pos, vector.multiply(look, range))
+
+		for pt in minetest.raycast(pos, target, true, false) do
+			if pt.type == "object" or pt.ref ~= player
+			or pt.ref:get_attach() ~= player then
+				saved = pt
+				return pt
+			end
+		end
+
+		saved = nil
+	end
+end
+
 local cache = {}
 local function step_player(player, dtime)
 	local pname = player:get_player_name()
 	local data = cache[pname] or {pname = pname}
+	data.raycast = lazy_raycast(player)
 	data.physics = player:get_physics_override()
 	local orig_phys = clone(data.physics)
 	data.properties = player:get_properties()

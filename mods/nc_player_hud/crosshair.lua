@@ -23,12 +23,14 @@ nodecore.register_playerstep({
 		label = "crosshair",
 		priority = -101,
 		action = function(player, data)
-			if data.pointing == "node" then
-				return crosshair(player, "crosshair.png")
-			elseif data.pointing == "obj" then
-				return crosshair(player, "object_crosshair.png")
-			else
-				return crosshair(player, "crosshair.png", true)
+			local pt = data.raycast()
+			if pt then
+				if pt.type == "node" then
+					return crosshair(player, "crosshair.png")
+				elseif pt.type == "obj" then
+					return crosshair(player, "object_crosshair.png")
+				end
 			end
+			return crosshair(player, "crosshair.png", true)
 		end
 	})

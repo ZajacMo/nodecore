@@ -42,23 +42,12 @@ local function settip(player, pos, name)
 		}, nodecore.translate, "name")
 end
 
-local default_range = 4
-
 nodecore.register_playerstep({
 		label = "looktip",
 		priority = -100,
 		action = function(player, data)
-			data.pointing = nil
-
-			local pos = player:get_pos()
-			pos.y = pos.y + player:get_properties().eye_height
-			local look = player:get_look_dir()
-			local wield = minetest.registered_items[player
-			:get_wielded_item():get_name()]
-			local range = wield and wield.range or default_range
-			local target = vector.add(pos, vector.multiply(look, range))
-
-			for pt in minetest.raycast(pos, target, true, false) do
+			local pt = data.raycast()
+			if pt then
 				if pt.type == "node" then
 					local llu = nodecore.get_node_light(pt.under) or 0
 					local lla = nodecore.get_node_light(pt.above) or 0
@@ -78,7 +67,7 @@ nodecore.register_playerstep({
 							minetest.get_node(pt.under),
 							player,
 							pt))
-				elseif pt.type == "object" and pt.ref ~= player and pt.ref:get_attach() ~= player then
+				elseif pt.type == "object" then
 					local ll = nodecore.get_node_light(
 						pt.ref:get_pos()) or 0
 					if ll >= 0 then

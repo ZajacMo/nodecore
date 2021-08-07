@@ -10,7 +10,6 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - LookTips
-	- Don't seem to be working for bandolier, not catching raycast?
 	- API needs an overhaul
 		- Simplify
 		- Rename stuff
