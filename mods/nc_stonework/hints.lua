@@ -3,7 +3,7 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("put a gravel edge on a wooden adze",
+nodecore.register_hint("put a gravel tip on a wooden adze",
 	"assemble graveled adze",
 	{"inv:group:gravel", "nc_woodwork:adze"}
 )
