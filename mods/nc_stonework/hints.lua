@@ -3,6 +3,11 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.register_hint("put a gravel edge on a wooden adze",
+	"assemble graveled adze",
+	{"inv:group:gravel", "nc_woodwork:adze"}
+)
+
 nodecore.register_hint("break cobble into chips",
 	"break cobble to chips",
 	"nc_terrain:cobble_loose"

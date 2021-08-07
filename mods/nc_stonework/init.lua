@@ -5,6 +5,7 @@ local include, nodecore
 
 nodecore.amcoremod()
 
+include("adze")
 include("chip")
 include("tools")
 include("bricks")

@@ -46,19 +46,7 @@ ISSUES-GAME: Gameplay-affecting issues
   down to regular cobble, but it only works with the base node, not the
   etched ones.
 
-- YCTIWY/Pickpocketing integration/overhaul.
-	- Protect items from being taken if:
-		- Player was non-idle within a certain amount of time
-		- Player is offline but was last on within certain time
-		- Player has a certain priv
-	- Display a "ghost" player entity for offline players
-		- Include a priv to prevent.
-		- Overlay a texture modifier to make them an outline.
-		- Make wield use an API to access players to allow virtual
-		  players with virtual inventories.
-	- Disable pickpocket taking w/ sneak.
-	- Don't get into the weeds of trying to optimize for the "tons of
-	  players" case until we have evidence it's a real issue.
+- Integrate YCTIWY into base game
 
 - Rakes don't work with door press.
 

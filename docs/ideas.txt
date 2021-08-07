@@ -9,13 +9,6 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Alternative path to wood tech.
-	- Get around the "climb a tree and chop from the top"
-	  counterintuitive leap.
-	- Use gravel to stone-tip an adze, giving it choppy=2
-	- Make stone adze break really fast if used to cut a tree
-	  (modify durability?  post-dig hook?)
-
 - Lenses in inventory react to nearby light.
 	- Shine if facing an active lens within range.
 	- Cast a distant flashlight beam if carrying a source (e.g. torch)?

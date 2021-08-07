@@ -10,6 +10,7 @@ local function breakfx(who, def)
 	end
 	return nodecore.toolbreakparticles(who, def, 40)
 end
+nodecore.toolbreakeffects = breakfx
 
 nodecore.register_on_register_item(function(_, def)
 		if def.tool_wears_to or def.type == "tool" then
