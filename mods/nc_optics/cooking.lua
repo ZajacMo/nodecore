@@ -124,6 +124,7 @@ nodecore.register_fluidwandering(
 		minetest.set_node(pos, {name = modname .. ":glass_crude"})
 		nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
 		nodecore.smokefx(pos, 0.2, 80)
+		nodecore.fallcheck(pos)
 		return true
 	end
 )
