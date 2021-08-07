@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string, type
-    = minetest, nodecore, pairs, string, type
+local minetest, nodecore, pairs, string, type, vector
+    = minetest, nodecore, pairs, string, type, vector
 local string_format, string_gsub
     = string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
@@ -118,7 +118,7 @@ nodecore.register_on_chat_message("chat message stats", function(name, msg)
 
 nodecore.register_playerstep({
 		label = "inv",
-		action = function(player, data)
+		action = function(player, data, dtime)
 			-- inventory
 			local inv = player:get_inventory()
 			local t = {}
@@ -134,20 +134,20 @@ nodecore.register_playerstep({
 
 			-- looking at
 			local pt = data.raycast()
-			if pt then
-				if pt.type == "node" then
+			if pt and pt.type == "node" and data.staring_pos
+			and vector.equals(data.staring_pos, pt.under) then
+				data.staring_time = data.staring_time + dtime
+				if data.staring_time >= 0.8 then
 					local nn = minetest.get_node(pt.under).name
 					discover(player, "look:" .. nn)
 					local stack = nodecore.stack_get(pt.under)
 					if stack and not stack:is_empty() then
 						discover(player, "look:" .. stack:get_name())
 					end
-				elseif pt.type == "object" then
-					local luaent = pt.ref:get_luaentity()
-					if luaent and luaent.represents_item then
-						discover(player, "look:" .. luaent.represents_item)
-					end
 				end
+			else
+				data.staring_pos = pt and pt.under
+				data.staring_time = dtime
 			end
 		end
 	})

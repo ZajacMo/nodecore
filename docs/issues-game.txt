@@ -14,7 +14,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Simplify
 		- Rename stuff
 		- Better support for entities/objects
-	- Hint discovery by "staring"
 	- Update mods depending on touchtips
 
 - Fix crappy sponge death mechanic

@@ -56,7 +56,6 @@ minetest.register_entity(":__builtin:falling_node", {
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
 			data_load(self, data)
-			self.represents_item = self.node and self.node.name
 		end,
 
 		set_node = function(self, node, meta)

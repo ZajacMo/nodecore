@@ -33,7 +33,6 @@ minetest.register_entity(":__builtin:item", {
 		set_item = function(self, item)
 			local stack = ItemStack(item)
 			item = item and stack:to_string()
-			self.represents_item = stack:get_name()
 			if item and item ~= self.itemstring then
 				self.itemstring = item
 				self.object:set_yaw(math_random() * math_pi * 2)
