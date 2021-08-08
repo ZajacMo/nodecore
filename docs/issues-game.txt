@@ -23,6 +23,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Death if dry nodes > 0 and >= wet nodes nearby
 		- Ignore sealing nodes
 
+- Make door operation bredth-first queue-recursive for consistent
+  operation and addressing timing conflicts.
+
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
@@ -53,12 +56,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Players losing run speed on damage would be simplified by checking for
   <max health instead of time of last damage.
 	- Should lose farzoom when damaged too.
-
-- Optic domain wall particles are too obtrusive, and make it too easy
-  to aim optics as a side effect.
-	- Spread out particles?
-	- Switch to alternative option of involving lux?
-	- Add delay player must be watching for?
 
 - Should water/lava springs vary by depth?  Lava seems kind of laborious
   to find right now.

@@ -11,9 +11,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Convert more things to autostart DNTs?
 
-- Make door operation bredth-first queue-recursive for consistent
-  operation and addressing timing conflicts.
-
 - Unify the "node destruction particles" system.  Allow complex options,
   like alternative node def, particle def, disable on silk touch.
 
