@@ -16,8 +16,13 @@ local toolcaps = nodecore.toolcaps({
 local gcaps = toolcaps.groupcaps
 for k, v in pairs(nodecore.tool_basetimes) do
 	gcaps[k] = gcaps[k] or {uses = 0, times = {}}
+	local times = gcaps[k].times
 	for n = 1, 100 do
-		gcaps[k].times[n] = gcaps[k].times[n] or (10 * v * math_pow(2, n))
+		if not times[n] then
+			local t = 10 * v * math_pow(2, n)
+			if t > 60 then t = 60 end
+			times[n] = t
+		end
 	end
 end
 
