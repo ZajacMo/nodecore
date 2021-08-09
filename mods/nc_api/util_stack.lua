@@ -133,6 +133,42 @@ function nodecore.stack_giveto(pos, player)
 	return stack:is_empty()
 end
 
+local ejectdir
+do
+	local margin = 0.001
+	local function theta2dir(theta)
+		return {
+			min = theta / 4 + margin,
+			range = 1/2 - margin * 2
+		}
+	end
+	local function checkdir(opts, pos, dx, dz, theta)
+		local p = {x = pos.x + dx, y = pos.y, z = pos.z + dz}
+		if nodecore.walkable(p) then return end
+		opts[#opts + 1] = theta2dir(theta)
+	end
+	local anydir = {}
+	for i = -1, 5, 2 do anydir[#anydir + 1] = theta2dir(i) end
+	local function rawdirs(pos)
+		local opts = {}
+		checkdir(opts, pos, 1, 0, -1)
+		checkdir(opts, pos, 0, 1, 1)
+		checkdir(opts, pos, -1, 0, 3)
+		checkdir(opts, pos, 0, -1, 5)
+		if #opts < 1 then opts = anydir end
+		return opts
+	end
+
+	local cache = {}
+	function ejectdir(pos)
+		local key = minetest.hash_node_position(vector.round(pos))
+		local cached = cache[key] or math_random(1, 4)
+		cache[key] = cached + 1
+		local dirs = rawdirs(pos)
+		return dirs[(cached % #dirs) + 1]
+	end
+end
+
 function nodecore.item_eject(pos, stack, speed, qty, vel)
 	stack = ItemStack(stack)
 	speed = speed or 0
@@ -148,9 +184,11 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			local inc = math_random() * math_pi / 3
 			local y = math_sin(inc)
 			local xz = math_cos(inc)
-			local theta = math_random() * math_pi * 2
-			local x = math_sin(theta) * xz
-			local z = math_cos(theta) * xz
+			local dir = ejectdir(pos)
+			local theta = dir.min + math_random() * dir.range
+			theta = theta * math_pi
+			local x = math_cos(theta) * xz
+			local z = math_sin(theta) * xz
 			v = {
 				x = v.x + x * speed,
 				y = v.y + y * speed,
