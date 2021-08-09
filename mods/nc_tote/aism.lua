@@ -17,17 +17,22 @@ nodecore.register_aism({
 			local dirty
 			for _, slot in pairs(inv) do
 				-- Modern format
-				if slot and slot.m and slot.m.fields and slot.m.fields.ncitem then
-					local istack = ItemStack(slot.m.fields.ncitem)
-					local sdata = {
-						pos = data.pos,
-						toteslot = slot,
-						set = function(s)
-							slot.m.fields.ncitem = s:to_string()
-							dirty = true
-						end
-					}
+				local ncitem = slot and slot.m and slot.m.fields
+				and slot.m.fields.ncitem
+				if ncitem then
+					local istack = ItemStack(ncitem)
 					if not istack:is_empty() then
+						local sdata = {
+							pos = data.pos,
+							toteslot = slot,
+							set = function(s)
+								local ss = s:to_string()
+								if ss ~= ncitem then
+									slot.m.fields.ncitem = ss
+									dirty = true
+								end
+							end
+						}
 						nodecore.aism_check_stack(istack, sdata)
 					end
 				end
@@ -35,18 +40,18 @@ nodecore.register_aism({
 				for lname, list in pairs(slot and slot.m and slot.m.inventory or {}) do
 					for sub, item in pairs(list) do
 						local istack = ItemStack(item)
-						local sdata = {
-							pos = data.pos,
-							toteslot = slot,
-							totelistname = lname,
-							totelist = list,
-							totesubslot = sub,
-							set = function(s)
-								list[sub] = s:to_string()
-								dirty = true
-							end
-						}
 						if not istack:is_empty() then
+							local sdata = {
+								pos = data.pos,
+								toteslot = slot,
+								totelistname = lname,
+								totelist = list,
+								totesubslot = sub,
+								set = function(s)
+									list[sub] = s:to_string()
+									dirty = true
+								end
+							}
 							nodecore.aism_check_stack(istack, sdata)
 						end
 					end
