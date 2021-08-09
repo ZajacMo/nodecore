@@ -171,7 +171,7 @@ nodecore.register_on_joinplayer("join setup wieldview", function(player)
 
 		local function cslot(n, x, y, z)
 			return addslot(n, "Bandolier", x * 0.8,
-				0.75 + y * 1.6,
+				2 + y * 1.6,
 				-0.25 + z)
 		end
 
