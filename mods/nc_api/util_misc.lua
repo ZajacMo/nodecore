@@ -42,11 +42,13 @@ function nodecore.mkreg()
 end
 
 function nodecore.memoize(func)
-	local cache
+	local cachedval
+	local cached
 	return function()
-		if cache then return cache[1] end
-		cache = {func()}
-		return cache[1]
+		if cached then return cachedval end
+		cachedval = func()
+		cached = true
+		return cachedval
 	end
 end
 
