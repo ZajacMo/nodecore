@@ -30,7 +30,14 @@ nodecore.register_craft({
 		indexkeys = {"group:gravel"},
 		nodes = {
 			{match = {groups = {gravel = true}}},
-			{y = -1, match = "nc_woodwork:adze", replace = "air"},
+			{
+				y = -1,
+				match = {
+					name = "nc_woodwork:adze",
+					wear = 0.05
+				},
+				replace = "air"
+			},
 		},
 		items = {
 			{name = modname .. ":adze"}
