@@ -27,7 +27,7 @@ nodecore.register_playerstep({
 			if pt then
 				if pt.type == "node" then
 					return crosshair(player, "crosshair.png")
-				elseif pt.type == "obj" then
+				elseif pt.type == "object" then
 					return crosshair(player, "object_crosshair.png")
 				end
 			end
