@@ -32,7 +32,8 @@ local function getcolors(name, layers)
 	found =
 	addcolor(1, string_sub(hash, 1, 4)) .. "^" ..
 	addcolor(2, string_sub(hash, 5, 8)) .. "^" ..
-	addcolor(3, string_sub(hash, 9, 12))
+	addcolor(3, string_sub(hash, 9, 12)) .. "^" ..
+	addcolor(4, string_sub(hash, 13, 16))
 
 	colorcache[name] = found
 	layers[#layers + 1] = found
