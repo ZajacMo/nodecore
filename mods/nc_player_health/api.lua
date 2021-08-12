@@ -20,13 +20,18 @@ function nodecore.player_can_take_damage(player)
 	and not minetest.check_player_privs(player, "ncdqd")
 end
 
-local handnode = minetest.registered_items["nc_player_hand:hand"]
 function nodecore.register_virtual_item(name, def)
-	return minetest.register_node(name, nodecore.underride(def, {
+	return minetest.register_craftitem(name, nodecore.underride(def, {
+				on_use = function() end,
 				on_drop = function(stack) return stack end,
 				on_place = function(stack) return stack end,
-				node_placement_prediction = ""
-			}, handnode))
+				description = "",
+				inventory_image = "[combine:1x1",
+				wield_image = "[combine:1x1",
+				virtual_item = true,
+				stack_max = 1,
+				node_placement_prediction = "",
+			}))
 end
 
 local function pickend(q)
