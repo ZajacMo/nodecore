@@ -9,6 +9,9 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make infused tools not directly flammable, BUT lose durability when
+  near igniters similar to water effect.
+
 - Lenses in inventory react to nearby light.
 	- Shine if facing an active lens within range.
 	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
@@ -52,7 +55,11 @@ IDEAS: Possible future additions/improvements to the game
 	- Add on_fall_check hook, hook in check_single_for_falling
 
 - A pure white concrete material?
-	- Ash + aggregate?
+	- Use crude glass for recipe?  Flow wet concrete into crude
+	  glass from above?
+
+- Magnets or other items to help find metal, especially locating
+  lost valuable tools, totes, etc?
 
 - Durable transparent/window material.
 	- Harder to mine, noob protection.
@@ -241,7 +248,7 @@ IDEAS: Possible future additions/improvements to the game
 	- Sea stars, anenome, coral, other underwater things?
 	- Fungi, esp. tree-destroying ones, blight?
 	- Oil, natural gas?  Fossils and fossil fuels?
-	- Geode, hydra crystals, radioactives?
+	- Geode, hydra crystals, corundum?
 	- Shipwrecks or alien tech
 	- Slow-moving animals? Snails? Miniature spice worms?
 	- Non-portable things, like "spawners" or wormholes
