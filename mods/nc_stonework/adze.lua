@@ -27,19 +27,22 @@ minetest.register_tool(modname .. ":adze", adzedef)
 
 nodecore.register_craft({
 		label = "assemble graveled adze",
-		indexkeys = {"group:gravel"},
+		action = "stackapply",
+		wield = {groups = {gravel = true}},
+		consumewield = 1,
+		indexkeys = {"nc_woodwork:adze"},
 		nodes = {
-			{match = {groups = {gravel = true}}},
 			{
-				y = -1,
 				match = {
 					name = "nc_woodwork:adze",
 					wear = 0.05
-				},
-				replace = "air"
+				}
 			},
 		},
 		items = {
 			{name = modname .. ":adze"}
-		}
+		},
+		after = function(pos, data)
+			nodecore.set_loud(pos, {name = data.wield:get_name()})
+		end
 	})
