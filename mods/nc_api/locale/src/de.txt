@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-08-14 11:38+0000\n"
+"Last-Translator: luatic <appgurulars@gmx.de>\n"
+"Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
+"de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6.2\n"
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr ""
+"- Wirf Gegenstände auf den Boden, um Blockstapel die nicht zerfallen zu "
+"erzeugen."
+
+#, fuzzy
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr ""
+"- Aufgehobene Gegenstände versuchen zuerst, in dem aktuell ausgewählten Slot "
+"Platz zu finden."
+
+#, fuzzy
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Größere Bauanleitungen sind normalerweise symmetrischer."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Lerne die Sterne für Langstreckennavigation zu nutzen."
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- \"Öfen\" gibt es nicht; entdecke Schmelzen mit offenem Feuer."
+
+msgid "- DONE: @1"
+msgstr "- ERLEDIGT: @1"
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Nutze nicht F5 für Entwicklerinformationen, es wird dich irreführen!"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Wenn es mehr als 5 Sekunden zum Abbauen braucht, hast du nicht das "
+"richtige Werkzeug."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Blöcke, die nicht mit dem richtigen Werkzeug abgebaut wurden, können nicht "
+"aufgehoben, sondern nur verschoben werden."
+
+#, fuzzy
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "- Erze mögen versteckt sein, werden aber subtil vom Terrain verraten"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Probleme mit dem Entzünden eines Feuers? Versuche längere Stöcke und mehr "
+"Zunder."
+
+msgid "write on a surface with a charcoal lump"
+msgstr "Schreib auf eine Oberfläche mit Kohleklumpen"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- Das Spiel ist herausfordernd, manchmal frustrierend entworfen. GIB NICHT "
+"AUF!"
+
+msgid "Blue Cup Flower"
+msgstr ""
+
+msgid "HAND OF POWER"
+msgstr "MÄCHTIGE HAND"
+
+msgid "Grass"
+msgstr "Gras"
+
+msgid "Gravel"
+msgstr "Kies"
+
+msgid "go for a swim"
+msgstr "geh Schwimmen"
+
+msgid "find charcoal"
+msgstr "finde Holzkohle"
+
+msgid "find a sponge"
+msgstr "finde einen Schwamm"
+
+msgid "find a flower"
+msgstr "finde eine Blume"
+
+msgid "dry out a sponge"
+msgstr "Trockne einen Schwamm aus"
+
+msgid "find a stick"
+msgstr "finde einen Stock"
+
+msgid "find ash"
+msgstr "finde Asche"
+
+msgid "hold your breath"
+msgstr "halte deinen Atem an"
+
+msgid "light a torch"
+msgstr "entzünde eine Fackel"
+
+msgid "drop an item"
+msgstr "Lass einen Gegenstand fallen"
+
+msgid "Growing Tree Trunk"
+msgstr "Wachsender Baumstamm"
+
+msgid "About"
+msgstr "Über"

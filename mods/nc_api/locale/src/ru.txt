@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-06-26 20:08+0000\n"
+"PO-Revision-Date: 2021-08-13 14:58+0000\n"
 "Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -215,7 +215,8 @@ msgstr ""
 "- Может руды и спрятаны, но их раскрывают тонкие подсказки на местности."
 
 msgid "- Order and specific face of placement may matter for crafting."
-msgstr "- Порядок и грань размещения может может иметь значение."
+msgstr ""
+"- Порядок и конкретное лицо размещения могут иметь значение для крафтинга."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- Подобранные предметы пытаются поместиться в выделенный слот."
@@ -1571,3 +1572,216 @@ msgstr "Смещенная Нода"
 
 msgid "Player's Guide: Crafting"
 msgstr "Руководство игрока: Крафтинг"
+
+msgid "Azure Star Flower"
+msgstr "Лазурный Звездный Цветок"
+
+msgid "Black Bell Flower"
+msgstr "Черный Колокольчик"
+
+msgid "Black Rosette Flower"
+msgstr "Черный Розетка Цветок"
+
+msgid "Clear Glass Tank"
+msgstr "Прозрачный Стеклянный Резервуар"
+
+msgid "Float Glass Tank"
+msgstr "Резервуар c Флоат-Стеклом"
+
+msgid "Orange Bell Flower"
+msgstr "Оранжевый Колокольчик"
+
+msgid "Orange Cluster Flower"
+msgstr "Оранжевый Кластерный Цветок"
+
+msgid "Pink Bell Flower"
+msgstr "Розовый Колокольчик"
+
+msgid "Pink Rosette Flower"
+msgstr "Розовый Розетка Цветок"
+
+msgid "Raked Gravel"
+msgstr "Разграбленный Гравий"
+
+msgid "Red Cluster Flower"
+msgstr "Красный Кластерный Цветок"
+
+msgid "Violet Bell Flower"
+msgstr "Фиолетовый Колокольчик"
+
+msgid "Violet Cluster Flower"
+msgstr "Фиолетовый Кластерный Цветок"
+
+msgid "Violet Cup Flower"
+msgstr "Фиолетовый Чашечный Цветок"
+
+msgid "White Cluster Flower"
+msgstr "Белый Кластерный Цветок"
+
+msgid "Wilted Bell Flower"
+msgstr "Увядший Колокольчик"
+
+msgid "Wilted Star Flower"
+msgstr "Увядший Звездный Цветок"
+
+msgid "Yellow Rosette Flower"
+msgstr "Желтый Розетка Цветок"
+
+msgid "assemble a clear glass tank"
+msgstr "соберите прозрачный стеклянный резервуар"
+
+msgid "breed a new flower variety"
+msgstr "выведите новый сорт цветов"
+
+msgid "dry out a rush"
+msgstr "высушите камыш"
+
+msgid "grow a flower on moist soil"
+msgstr "вырастите цветок на влажной почве"
+
+msgid "pick a sedge"
+msgstr "сорвите осоку"
+
+msgid "put a gravel tip on a wooden adze"
+msgstr "насадите наконечник из гравия на деревянное тесло"
+
+msgid "Azure Bell Flower"
+msgstr "Лазурный Колокольчик"
+
+msgid "Azure Cluster Flower"
+msgstr "Лазурный Кластерный Цветок"
+
+msgid "Azure Cup Flower"
+msgstr "Лазурный Чашечный Цветок"
+
+msgid "Azure Rosette Flower"
+msgstr "Лазурный Розетка Цветок"
+
+msgid "Black Cluster Flower"
+msgstr "Черный Кластерный Цветок"
+
+msgid "Black Cup Flower"
+msgstr "Черный Чашечный Цветок"
+
+msgid "Black Star Flower"
+msgstr "Черный Звездный Цветок"
+
+msgid "Blue Bell Flower"
+msgstr "Синий Колокольчик"
+
+msgid "Blue Cluster Flower"
+msgstr "Синий Кластерный Цветок"
+
+msgid "Blue Cup Flower"
+msgstr "Синий Чашечный Цветок"
+
+msgid "Blue Rosette Flower"
+msgstr "Синий Розетка Цветок"
+
+msgid "Blue Star Flower"
+msgstr "Синий Звездный Цветок"
+
+msgid "Dry Rush"
+msgstr "Сухой Камыш"
+
+msgid "Graveled Adze"
+msgstr "Гравированное Тесло"
+
+msgid "Orange Cup Flower"
+msgstr "Оранжевый Чашечный Цветок"
+
+msgid "Orange Rosette Flower"
+msgstr "Оранжевый Розетка Цветок"
+
+msgid "Orange Star Flower"
+msgstr "Оранжевый Звездный Цветок"
+
+msgid "Pink Cluster Flower"
+msgstr "Розовый Кластерный Цветок"
+
+msgid "Pink Cup Flower"
+msgstr "Розовый Чашечный Цветок"
+
+msgid "Pink Star Flower"
+msgstr "Розовый Звездный Цветок"
+
+msgid "Raked Sand"
+msgstr "Разграбленный Песок"
+
+msgid "Red Bell Flower"
+msgstr "Красный Колокольчик"
+
+msgid "Red Cup Flower"
+msgstr "Красный Чашечный Цветок"
+
+msgid "Red Rosette Flower"
+msgstr "Красный Розетка Цветок"
+
+msgid "Red Star Flower"
+msgstr "Красный Звездный Цветок"
+
+msgid "Rush"
+msgstr "Камыш"
+
+msgid "Sedge"
+msgstr "Осока"
+
+msgid "Violet Rosette Flower"
+msgstr "Фиолетовый Розетка Цветок"
+
+msgid "Violet Star Flower"
+msgstr "Фиолетовый Звездный Цветок"
+
+msgid "White Bell Flower"
+msgstr "Белый Колокольчик"
+
+msgid "White Cup Flower"
+msgstr "Белый Чашечный Цветок"
+
+msgid "White Rosette Flower"
+msgstr "Белый Розетка Цветок"
+
+msgid "White Star Flower"
+msgstr "Белый Звездный Цветок"
+
+msgid "Wilted Cluster Flower"
+msgstr "Увядший Кластерный Цветок"
+
+msgid "Wilted Cup Flower"
+msgstr "Увядший Чашечный Цветок"
+
+msgid "Wilted Rosette Flower"
+msgstr "Увядший Розетка Цветок"
+
+msgid "Yellow Bell Flower"
+msgstr "Желтый Колокольчик"
+
+msgid "Yellow Cluster Flower"
+msgstr "Желтый Кластерный Цветок"
+
+msgid "Yellow Cup Flower"
+msgstr "Желтый Чашечный Цветок"
+
+msgid "Yellow Star Flower"
+msgstr "Желтый Звездный Цветок"
+
+msgid "assemble a float glass tank"
+msgstr "соберите резервуар из флоат-стекла"
+
+msgid "grow a sedge on moist grass"
+msgstr "вырастите осоку на влажной траве"
+
+msgid "find a flower"
+msgstr "найдите цветок"
+
+msgid "find a rush"
+msgstr "найдите камыш"
+
+msgid "find a sedge"
+msgstr "найдите осоку"
+
+msgid "grow a rush on moist soil"
+msgstr "вырастите камыш на влажной почве"
+
+msgid "wilt a flower"
+msgstr "высушите цветок"

@@ -14,6 +14,7 @@ Glossary for Translators
 Anneal / Annealed:
 	Heat and then cool slowly, to form a specific kind of crystal
 	structure.
+	https://en.wikipedia.org/wiki/Annealing_(materials_science)
 
 Aux:
 	a.k.a. "Aux1"
@@ -63,6 +64,12 @@ Fot:
 	meaningless and derived from some of the latin characters that
 	the glyph can be used to represent.
 
+Float Glass:
+	Glass made using the modern process of floating molten glass
+	on top of another molten/liquid substance.  See
+	wikipedia/dictionary.
+	https://en.wikipedia.org/wiki/Float_glass
+
 Flux:
 	A liquid flow of concentrated lux radiation.  Name is derived
 	from the parent "lux" material name, plus the meaning "flow".
@@ -77,6 +84,9 @@ Geq:
 	Name of a glyph shape in NodeCore.  The name itself is mostly
 	meaningless and derived from some of the latin characters that
 	the glyph can be used to represent.
+
+Graveled:
+	Tipped/edged with gravel.
 
 Hashy:
 	A concrete etching pattern.  Can eappear as an adjective
@@ -170,6 +180,7 @@ Temper / Tempered:
 	Heat and then cool quickly, to form a specific kind of crystal
 	structure.  As it's used in NodeCore, technically the term
 	"harden" might be more accurate.
+	https://en.wikipedia.org/wiki/Annealing_(materials_science)
 
 Tof:
 	Name of a glyph shape in NodeCore.  The name itself is mostly

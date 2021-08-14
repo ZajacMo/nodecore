@@ -451,6 +451,9 @@ msgstr "Chromatic Glass"
 msgid "Clear Glass"
 msgstr "Clear Glass"
 
+msgid "Clear Glass Tank"
+msgstr "Clear Glass Tank"
+
 msgid "Cobble"
 msgstr "Cobble"
 
@@ -490,6 +493,9 @@ msgstr "Fire"
 msgid "Float Glass"
 msgstr "Float Glass"
 
+msgid "Float Glass Tank"
+msgstr "Float Glass Tank"
+
 msgid "Flux"
 msgstr "Flux"
 
@@ -504,9 +510,6 @@ msgstr "Geq Charcoal Glyph"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
-
-msgid "Glass Tank"
-msgstr "Glass Tank"
 
 msgid "Glowing Lode"
 msgstr "Glowing Lode"
@@ -549,6 +552,9 @@ msgstr "Grass"
 
 msgid "Gravel"
 msgstr "Gravel"
+
+msgid "Graveled Adze"
+msgstr "Graveled Adze"
 
 msgid "Growing Leaves"
 msgstr "Growing Leaves"
@@ -1234,8 +1240,11 @@ msgstr "add coal to aggregate to make tarstone"
 msgid "anneal a lode cube"
 msgstr "anneal a lode cube"
 
-msgid "assemble a glass tank"
-msgstr "assemble a glass tank"
+msgid "assemble a clear glass tank"
+msgstr "assemble a clear glass tank"
+
+msgid "assemble a float glass tank"
+msgstr "assemble a float glass tank"
 
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
@@ -1563,6 +1572,9 @@ msgstr "propel hinged panel with focused light"
 
 msgid "push an item into a storage box with a hinged panel"
 msgstr "push an item into a storage box with a hinged panel"
+
+msgid "put a gravel tip on a wooden adze"
+msgstr "put a gravel tip on a wooden adze"
 
 msgid "put a stone tip onto a wooden tool"
 msgstr "put a stone tip onto a wooden tool"
