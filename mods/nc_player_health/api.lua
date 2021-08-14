@@ -29,6 +29,8 @@ function nodecore.register_virtual_item(name, def)
 				inventory_image = "[combine:1x1",
 				wield_image = "[combine:1x1",
 				virtual_item = true,
+				wield_no_anim_mine = true,
+				wield_no_anim_place = true,
 				stack_max = 1,
 				node_placement_prediction = "",
 			}))

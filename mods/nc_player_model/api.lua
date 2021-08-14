@@ -98,7 +98,9 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 	local ctl = player:get_player_control()
 	local walk = (ctl.up or ctl.down) and not (ctl.up and ctl.down)
 	or (ctl.right or ctl.left) and not (ctl.right and ctl.left)
-	local mine = ctl.LMB or ctl.RMB
+	local wielddef = player:get_wielded_item():get_definition()
+	local mine = ctl.LMB and not (wielddef and wielddef.wield_no_anim_mine)
+	or ctl.RMB and not (wielddef and wielddef.wield_no_anim_place)
 	if data then
 		if mine then data.animcontrol_mine_exp = nodecore.gametime + 0.25 end
 		mine = mine or data.animcontrol_mine_exp and data.animcontrol_mine_exp >= nodecore.gametime
