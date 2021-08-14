@@ -43,7 +43,7 @@ function nodecore.inventory_formspec(player, curtab)
 
 	local x = 0
 	local y = 0
-	local content
+	local tabdata
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
@@ -52,7 +52,7 @@ function nodecore.inventory_formspec(player, curtab)
 			.. tabmarginx .. "," .. tabheight .. ";tab" .. i
 			.. ";" .. fse(nct(v.title)) .. "]"
 			if curtab == i or (not curtab and i == 1) then
-				content = v.content
+				tabdata = v
 			end
 			x = x + tabwidth
 			if x >= tabmax then
@@ -65,12 +65,27 @@ function nodecore.inventory_formspec(player, curtab)
 
 	table_insert(t, 1, "size[" .. formwidth .. "," .. formheight + y .. "]")
 
-	if content then
-		t[#t + 1] = "textarea[" .. textmarginx .. "," .. (y + textmarginy)
-		.. ";" .. formwidth .. "," .. textheight .. ";;;"
-		if type(content) == "function" then content = content(player) end
-		for i = 1, #content do t[#t + 1] = fse(nct(content[i]) .. "\n") end
-		t[#t + 1] = "]"
+	if tabdata then
+		local content = tabdata.content
+		if type(content) == "function" then
+			content = content(player, {
+					w = formwidth,
+					h = textheight,
+					x = textmarginx,
+					y = y + textmarginy
+				}, t)
+		end
+		if not content then return end
+		if tabdata.raw then
+			if type(content) == "table" then
+				for _, v in ipairs(content) do t[#t + 1] = v end
+			end
+		else
+			t[#t + 1] = "textarea[" .. textmarginx .. "," .. (y + textmarginy)
+			.. ";" .. formwidth .. "," .. textheight .. ";;;"
+			for _, v in ipairs(content) do t[#t + 1] = fse(nct(v) .. "\n") end
+			t[#t + 1] = "]"
+		end
 	end
 
 	return table_concat(t)
@@ -91,8 +106,11 @@ nodecore.register_on_player_receive_fields("player inv formspec returned",
 				end
 			end
 			if tab then
-				minetest.show_formspec(player:get_player_name(), formname,
-					nodecore.inventory_formspec(player, tab))
+				local td = nodecore.inventory_formspec(player, tab)
+				if td then
+					minetest.show_formspec(player:get_player_name(),
+						formname, td)
+				end
 			end
 		end
 	end)
