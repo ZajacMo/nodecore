@@ -25,13 +25,18 @@ minetest.register_node(modname .. ":eggcorn", {
 		},
 		node_placement_prediction = "nc_items:stack",
 		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_corny"),
-		stack_rightclick = function(pos, _, whom, stack)
-			if nodecore.stack_get(pos):get_count() ~= 1 then return end
-			local def = minetest.registered_items[stack:get_name()]
-			if (not def) or (not def.groups) or (not def.groups.dirt_loose) then return end
+		sounds = nodecore.sounds("nc_tree_corny")
+	})
 
-			nodecore.set_loud(pos, {name = epname, param2 = 16})
+nodecore.register_craft({
+		label = "eggcorn planting",
+		action = "stackapply",
+		wield = {groups = {dirt_loose = true}},
+		consumewield = 1,
+		indexkeys = {modname .. ":eggcorn"},
+		nodes = {{match = modname .. ":eggcorn", replace = epname}},
+		after = function(pos, data)
+			local def = minetest.registered_items[data.wield:get_name()]
 			local soil = def.groups.soil or 0
 			if soil > 2 then
 				nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
@@ -59,14 +64,6 @@ minetest.register_node(modname .. ":eggcorn", {
 						maxsize = 9 * 0.45,
 					})
 			end
-
-			nodecore.player_discover(whom, "craft:eggcorn planting")
-			nodecore.log("action", (whom and whom:get_player_name() or "unknown")
-				.. " planted an eggcorn at " .. minetest.pos_to_string(pos)
-				.. " with " .. stack:get_name())
-
-			stack:set_count(stack:get_count() - 1)
-			return stack
 		end
 	})
 

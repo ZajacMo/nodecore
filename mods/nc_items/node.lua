@@ -43,13 +43,15 @@ minetest.register_node(modname .. ":stack", {
 			end
 			return minetest.remove_node(posfrom)
 		end,
-		on_rightclick = function(pos, node, whom, stack, pointed, ...)
+		on_rightclick = function(pos, _, whom, stack, pointed)
 			if not nodecore.interact(whom) then return stack end
-			local def = nodecore.stack_get(pos):get_definition() or {}
-			if def.stack_rightclick then
-				local rtn = def.stack_rightclick(pos, node, whom, stack, pointed, ...)
-				if rtn then return rtn end
-			end
+			minetest.after(0, function()
+					nodecore.craft_check(pos, minetest.get_node(pos), {
+							action = "stackapply",
+							crafter = whom,
+							pointed = pointed
+						})
+				end)
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_construct = function(pos, ...)
