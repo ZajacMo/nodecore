@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local function crosshair(player, img, fade)
-	if img then img = img .. "^[opacity:" .. (fade and 32 or 192) end
+local function crosshair(player, locked, fade)
 	nodecore.hud_set(player, {
 			label = "crosshair",
 			hud_elem_type = "image",
 			position = {x = 0.5, y = 0.5},
-			text = img,
+			text = "nc_player_hud_crosshair" .. (locked and "_locked" or "")
+			.. ".png^[opacity:" .. (fade and 32 or 192),
 			direction = 0,
 			alignment = {x = 0, y = 0},
 			scale = {x = 1, y = 1},
@@ -26,11 +26,15 @@ nodecore.register_playerstep({
 			local pt = data.raycast()
 			if pt then
 				if pt.type == "node" then
-					return crosshair(player, "crosshair.png")
+					if minetest.is_protected(pt.under, data.pname) then
+						return crosshair(player, true)
+					else
+						return crosshair(player)
+					end
 				elseif pt.type == "object" then
-					return crosshair(player, "object_crosshair.png")
+					return crosshair(player)
 				end
 			end
-			return crosshair(player, "crosshair.png", true)
+			return crosshair(player, nil, true)
 		end
 	})
