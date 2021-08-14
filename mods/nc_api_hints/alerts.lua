@@ -43,14 +43,18 @@ nodecore.register_playerstep({
 
 			local mc = msgcache[data.pname] or {}
 			local t = {}
+			local o = {}
 			for k, v in pairs(mc) do
 				if v < nodecore.gametime then
 					mc[k] = nil
 				else
 					t[#t + 1] = nodecore.translate(msg, k)
+					o[t[#t]] = v
 				end
 			end
-			table_sort(t)
+			table_sort(t, function(a, b)
+					return o[a] < o[b] or o[a] == o[b] and a < b
+				end)
 			nodecore.hud_set_multiline(player, {
 					label = "hintcomplete",
 					hud_elem_type = "text",
