@@ -66,6 +66,18 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 						.. name .. "_bonded"})
 			end
 		})
+	nodecore.register_craft({
+			label = "unbond " .. name .. " bricks",
+			action = "pummel",
+			toolgroups = {cracky = 4},
+			indexkeys = {modname .. ":bricks_" .. name .. "_bonded"},
+			nodes = {
+				{
+					match = modname .. ":bricks_" .. name .. "_bonded",
+					replace = modname .. ":bricks_" .. name
+				}
+			}
+		})
 end
 
 nodecore.register_stone_bricks("stone", "Stone",
