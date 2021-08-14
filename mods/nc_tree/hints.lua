@@ -3,12 +3,18 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.register_hint("dig leaves",
+	"dig:nc_tree:leaves"
+)
+
 nodecore.register_hint("find dry (loose) leaves",
-	"nc_tree:leaves_loose"
+	"nc_tree:leaves_loose",
+	"dig:nc_tree:leaves"
 )
 
 nodecore.register_hint("find an eggcorn",
-	"nc_tree:eggcorn"
+	"nc_tree:eggcorn",
+	"dig:nc_tree:leaves"
 )
 
 nodecore.register_hint("plant an eggcorn",
@@ -25,7 +31,8 @@ nodecore.register_hint("see a tree grow",
 )
 
 nodecore.register_hint("find a stick",
-	"nc_tree:stick"
+	"nc_tree:stick",
+	"dig:nc_tree:leaves"
 )
 
 nodecore.register_hint("cut down a tree",

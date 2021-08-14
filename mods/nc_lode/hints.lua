@@ -4,12 +4,13 @@ local nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_hint("find lode ore",
-	"nc_lode:ore"
+	"nc_lode:ore",
+	"toolcap:cracky:2"
 )
 
 nodecore.register_hint("dig up lode ore",
 	"inv:nc_lode:cobble_loose",
-	"nc_lode:ore"
+	{"nc_lode:ore", "toolcap:cracky:2"}
 )
 
 nodecore.register_hint("melt down lode metal from lode cobble",

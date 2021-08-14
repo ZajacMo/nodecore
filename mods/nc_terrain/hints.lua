@@ -13,7 +13,8 @@ local function dug(n)
 end
 
 nodecore.register_hint("dig up dirt",
-	dug("dirt")
+	dug("dirt"),
+	"toolcap:crumbly:2"
 )
 
 nodecore.register_hint("dig up gravel",

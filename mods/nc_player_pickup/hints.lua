@@ -10,5 +10,6 @@ nodecore.register_hint(
 
 nodecore.register_hint(
 	"drop all your items at once",
-	"aux_item_drop"
+	"aux_item_drop",
+	"item_drop"
 )

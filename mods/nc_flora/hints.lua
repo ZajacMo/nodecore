@@ -32,7 +32,8 @@ nodecore.register_hint("grow a sedge on moist grass",
 )
 
 nodecore.register_hint("find a flower",
-	"group:flower_living"
+	"group:flower_living",
+	"group:flora_sedges"
 )
 
 nodecore.register_hint("wilt a flower",

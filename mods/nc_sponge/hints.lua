@@ -4,7 +4,12 @@ local nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_hint("find a sponge",
-	"group:sponge"
+	"group:sponge",
+	{true,
+		"anim_swim_up",
+		"anim_swim_down",
+		"anim_swim_mine"
+	}
 )
 
 nodecore.register_hint("harvest a sponge",
