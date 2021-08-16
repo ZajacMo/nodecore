@@ -14,8 +14,8 @@ nodecore.registered_on_discovers
 local cache = {}
 
 local function loaddb(p)
-	if nodecore.hints_disabled() then return end
-	if not p then return end
+	if nodecore.hints_disabled(p) then return end
+	if not (p and nodecore.interact(p)) then return end
 	local player
 	local pname
 	if type(p) == "string" then

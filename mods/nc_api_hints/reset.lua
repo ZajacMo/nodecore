@@ -13,7 +13,8 @@ minetest.register_chatcommand("tabula", {
 			end
 			local db, player, pname, save = nodecore.get_player_discovered(name)
 			if not db then
-				return false, "Must be online to use this command"
+				return false, "Must be online and have interact privs"
+				.. " to use this command"
 			end
 			while next(db) do db[next(db)] = nil end
 			for _, cb in pairs(nodecore.registered_on_discovers) do
