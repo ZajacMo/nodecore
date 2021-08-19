@@ -11,6 +11,8 @@ to the project!
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- Major game-breakers:
+		- #11531: Prevents some effects from being usable, especially
+		  a fancy skybox with extended navigation capabilities.
 		- #10304: Causes looktips to conflict with pickpocketing, so
 		  pickpocketing, being the lower priority feature, got cut;
 		  fixing this could feasibly allow both to coexist.

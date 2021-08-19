@@ -11,6 +11,13 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Convert more things to autostart DNTs?
 
+- Expand stackapply recipes
+	- Allow them to work with non-stacks?
+		- Hook into item_place
+	- Work for mixing coal into wet concrete?
+	- Make stickcraft recipes work in tight spaces?
+		- Simulate node placement for place recipes?
+
 - Unify the "node destruction particles" system.  Allow complex options,
   like alternative node def, particle def, disable on silk touch.
 

@@ -9,12 +9,31 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Flower breeding is broken
+	- Mutation rate is way high
+	- Mutation math is pretty much intractable
+	- Need sane rules for breeding and mutations
+
+- Effect rate-limiting, esp. for particles, sounds, etc.
+	- Placing large amount of certain things like
+	  pliant concrete using randomizers or worldedit
+	  can cause ambient effects to clog the game.
+	- Gradual diminishing fair-weighted probability;
+	  after reaching a reserved limit, increase
+	  probability of skipping as count goes up,
+	  decrease count estimate over time...?
+
 - LookTips
+	- Need to be less obtrusive
+		- Some kinds of delays before they show up?
+		- Probably need some fine-tuning.
 	- API needs an overhaul
 		- Simplify
 		- Rename stuff
 		- Better support for entities/objects
 	- Update mods depending on touchtips
+	- Fix glyph handling to be face-specific instead of
+	  always naming the glyph if above, even if wrong face
 
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes
@@ -22,6 +41,14 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Use majority heuristic for sponge death in node form
 		- Death if dry nodes > 0 and >= wet nodes nearby
 		- Ignore sealing nodes
+
+- Hint system:
+	- Use crafting instead of inv/punch checks for "make" hints.
+		- Fixes hints completing on dungeon/multiplayer cases.
+	- Hints for finding gravel?
+	- Make all crafts/recipes trigger witnessing?
+
+- Health system slot bias should be a bit stronger
 
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
@@ -41,9 +68,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Add a way to extend wandering generations
 	- For glass, heat sources
 	- For concrete, moisture sources
-
-- Hint system: use crafting instead of inv/punch checks for "make" hints.
-	- Fixes hints completing on dungeon/multiplayer cases.
 
 - Tarstone should produce coal particles consistently when broken back
   down to regular cobble, but it only works with the base node, not the
