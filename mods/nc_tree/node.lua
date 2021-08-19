@@ -73,11 +73,15 @@ nodecore.register_aism({
 		end
 	})
 
+local function fade(txr)
+	return txr .. "^[multiply:#a0a0a0^" .. txr
+end
+
 minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
-		tiles = {modname .. "_leaves.png"},
+		tiles = {fade(modname .. "_leaves.png")},
 		waving = 1,
 		air_pass = true,
 		groups = {
@@ -90,7 +94,7 @@ minetest.register_node(modname .. ":leaves", {
 			leaf_decay = 1
 		},
 		alternate_loose = {
-			tiles = {modname .. "_leaves_dry.png"},
+			tiles = {fade(modname .. "_leaves_dry.png")},
 			walkable = false,
 			groups = {
 				canopy = 0,

@@ -117,11 +117,15 @@ minetest.register_node(modname .. ":tree_bud", {
 		drop_in_place = modname .. ":tree"
 	})
 
+local function fade(txr)
+	return txr .. "^[multiply:#a0a0a0^" .. txr
+end
+
 minetest.register_node(modname .. ":leaves_bud", {
 		description = "Growing Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
-		tiles = {modname .. "_leaves.png^" .. modname .. "_leaves_bud.png"},
+		tiles = {fade(modname .. "_leaves.png^" .. modname .. "_leaves_bud.png")},
 		waving = 1,
 		air_pass = true,
 		groups = {
