@@ -45,7 +45,14 @@ end
 nodecore.register_playerstep({
 		label = "looktip",
 		priority = -100,
-		action = function(player, data)
+		action = function(player, data, dtime)
+			local ctl = data.control
+			if ctl.up or ctl.down or ctl.left or ctl.right or ctl.jump then
+				data.looktip_time = 0
+				return settip(player)
+			end
+			data.looktip_time = (data.looktip_time or 0) + dtime
+			if data.looktip_time < 0.4 then return end
 			local pt = data.raycast()
 			if pt then
 				if pt.type == "node" then
