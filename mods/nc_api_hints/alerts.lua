@@ -11,14 +11,15 @@ local msgcache = {}
 local msg = "hint complete - @1"
 nodecore.translate_inform(msg)
 
-nodecore.register_on_joinplayer("join hint setup", function(player)
-		local pname = player:get_player_name()
-		local _, done = nodecore.hint_state(pname)
-		local t = {}
-		for _, v in pairs(done) do t[v.text] = true end
-		donecache[pname] = t
-		msgcache[pname] = {}
-	end)
+local function hintinit(player)
+	local pname = player:get_player_name()
+	local _, done = nodecore.hint_state(pname)
+	local t = {}
+	for _, v in pairs(done) do t[v.text] = true end
+	donecache[pname] = t
+	msgcache[pname] = {}
+end
+nodecore.register_on_joinplayer("join hint setup", hintinit)
 
 nodecore.register_on_discover(function(_, key, pname)
 		if not key then donecache[pname] = {} end
@@ -40,6 +41,13 @@ nodecore.register_playerstep({
 		label = "hint alerts",
 		action = function(player, data)
 			if nodecore.hints_disabled() then return end
+
+			if not nodecore.interact(player) then
+				data.hints_nointeract = true
+			elseif data.hints_nointeract then
+				data.hints_nointeract = nil
+				hintinit(player)
+			end
 
 			local mc = msgcache[data.pname] or {}
 			local t = {}
