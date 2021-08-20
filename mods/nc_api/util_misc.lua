@@ -41,6 +41,29 @@ function nodecore.mkreg()
 	return f, t
 end
 
+function nodecore.fairlimit(max)
+	local queue = {}
+	local qty = 0
+	local function add(item)
+		qty = qty + 1
+		if qty > max then
+			local id = math_random(1, qty)
+			if id <= max then
+				queue[id] = item
+			end
+		else
+			queue[qty] = item
+		end
+	end
+	local function flush()
+		local batch = queue
+		queue = {}
+		qty = 0
+		return batch
+	end
+	return add, flush
+end
+
 function nodecore.memoize(func)
 	local cachedval
 	local cached

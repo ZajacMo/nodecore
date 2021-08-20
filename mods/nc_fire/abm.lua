@@ -7,13 +7,10 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
-local sparks = {}
-local sparkqty = 0
-local sparkmax = 50
+local sparks_add, sparks_flush = nodecore.fairlimit(50)
+
 nodecore.register_globalstep("fire sparks", function()
-		if sparkqty < 1 then return end
-		for i = 1, #sparks do
-			local pos = sparks[i]
+		for _, pos in ipairs(sparks_flush()) do
 			minetest.after(math_random(), function()
 					minetest.add_particlespawner({
 							amount = math_random(1, 3),
@@ -35,8 +32,6 @@ nodecore.register_globalstep("fire sparks", function()
 						})
 				end)
 		end
-		sparks = {}
-		sparkqty = 0
 	end)
 
 do
@@ -55,16 +50,7 @@ do
 			chance = 1,
 			nodenames = {modname .. ":fire"},
 			action = function(pos)
-				sparkqty = sparkqty + 1
-				if sparkqty > sparkmax then
-					local sparkid = math_random(1, sparkqty)
-					if sparkid <= sparkmax then
-						sparks[sparkid] = pos
-					end
-				else
-					sparks[sparkqty] = pos
-				end
-
+				sparks_add(pos)
 				local found = {}
 				for _, dp in ipairs(flamedirs) do
 					local npos = vector.add(pos, dp)
