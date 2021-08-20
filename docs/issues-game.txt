@@ -14,15 +14,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Mutation math is pretty much intractable
 	- Need sane rules for breeding and mutations
 
-- Effect rate-limiting, esp. for particles, sounds, etc.
-	- Placing large amount of certain things like
-	  pliant concrete using randomizers or worldedit
-	  can cause ambient effects to clog the game.
-	- Gradual diminishing fair-weighted probability;
-	  after reaching a reserved limit, increase
-	  probability of skipping as count goes up,
-	  decrease count estimate over time...?
-
 - LookTips
 	- API needs an overhaul
 		- Simplify
