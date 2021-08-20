@@ -107,9 +107,8 @@ function minetest.item_drop(item, player, ...)
 				end
 			})
 
-		local name = stack:get_name()
 		local function tryplace(p)
-			if nodecore.match(p, {name = name, count = false}) then
+			if minetest.get_node(p).name == modname .. ":stack" then
 				stack = nodecore.stack_add(p, stack, player)
 				if stack:is_empty() then return dummyent end
 			end
