@@ -42,7 +42,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Hint system:
 	- Use crafting instead of inv/punch checks for "make" hints.
 		- Fixes hints completing on dungeon/multiplayer cases.
-	- Hints for finding gravel?
 	- Make all crafts/recipes trigger witnessing?
 
 - Health system slot bias should be a bit stronger
