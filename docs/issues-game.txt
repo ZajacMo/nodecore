@@ -24,9 +24,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	  decrease count estimate over time...?
 
 - LookTips
-	- Need to be less obtrusive
-		- Some kinds of delays before they show up?
-		- Probably need some fine-tuning.
 	- API needs an overhaul
 		- Simplify
 		- Rename stuff

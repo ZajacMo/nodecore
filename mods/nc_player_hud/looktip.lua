@@ -3,7 +3,13 @@ local minetest, nodecore, type, vector
     = minetest, nodecore, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local touched = {}
+local modname = minetest.get_current_modname()
+
+local looktip_after = nodecore.setting_float(modname .. "_looktip_time", 0.4,
+	"LookTip Delay Time", [[The number of seconds a player must be
+	standing still, or focused on one node face, to trigger a LookTip.]])
+
+local touched_faces = {}
 
 local function nodeface(pt)
 	return vector.multiply(vector.add(
@@ -14,7 +20,7 @@ nodecore.register_on_punchnode("touchtip on punch", function(_, _, player, pt)
 		if not player then return end
 		local pname = player:get_player_name()
 		if not pname then return end
-		touched[pname] = nodeface(pt)
+		touched_faces[pname] = nodeface(pt)
 	end)
 
 local function settip(player, pos, name)
@@ -23,11 +29,6 @@ local function settip(player, pos, name)
 				label = "looktip",
 				ttl = 0
 			}, nil, "name")
-	end
-	local pname = player:get_player_name()
-	local tp = touched[pname]
-	if tp and not vector.equals(tp, pos) then
-		touched[pname] = nil
 	end
 	return nodecore.hud_set_multiline(player, {
 			label = "looktip",
@@ -42,57 +43,65 @@ local function settip(player, pos, name)
 		}, nodecore.translate, "name")
 end
 
+local function checknode(player, pt, data)
+	local face = nodeface(pt)
+
+	local pname = player:get_player_name()
+	local tp = touched_faces[pname]
+	if tp and vector.equals(tp, face) then return true end
+	if tp then touched_faces[pname] = nil end
+
+	local llu = nodecore.get_node_light(pt.under) or 0
+	local lla = nodecore.get_node_light(pt.above) or 0
+	local ll = (llu > lla) and llu or lla
+	if ll <= 0 then return end
+
+	if data.looktip_stoptime <= nodecore.gametime then return true end
+
+	local old = data.looktip_focus
+	data.looktip_focus = face
+	data.looktip_focustime = old and vector.equals(old, face)
+	and data.looktip_focustime or nodecore.gametime + looktip_after
+	return data.looktip_focustime <= nodecore.gametime
+end
+
 nodecore.register_playerstep({
 		label = "looktip",
 		priority = -100,
-		action = function(player, data, dtime)
+		action = function(player, data)
 			local ctl = data.control
-			if ctl.up or ctl.down or ctl.left or ctl.right or ctl.jump then
-				data.looktip_time = 0
-				return settip(player)
-			end
-			data.looktip_time = (data.looktip_time or 0) + dtime
-			if data.looktip_time < 0.4 then return end
+			data.looktip_stoptime = (not (ctl.up or ctl.down or ctl.left
+					or ctl.right or ctl.jump)) and data.looktip_stoptime
+			or nodecore.gametime + looktip_after
+
 			local pt = data.raycast()
-			if pt then
-				if pt.type == "node" then
-					local llu = nodecore.get_node_light(pt.under) or 0
-					local lla = nodecore.get_node_light(pt.above) or 0
-					local ll = (llu > lla) and llu or lla
-					if ll <= 0 then
-						local pname = player:get_player_name()
-						local tp = touched[pname]
-						if tp and vector.equals(tp, nodeface(pt)) then
-							ll = 1
-						end
-					end
-					if ll <= 0 then return settip(player) end
-					data.pointing = "node"
+			if not pt then return settip(player) end
+			if pt.type == "node" then
+				if checknode(player, pt, data) then
 					return settip(player, nodeface(pt),
 						nodecore.touchtip_node(
 							pt.under,
 							minetest.get_node(pt.under),
 							player,
 							pt))
-				elseif pt.type == "object" then
-					local ll = nodecore.get_node_light(
-						pt.ref:get_pos()) or 0
-					if ll >= 0 then
-						data.pointing = "obj"
-						local luent = pt.ref:get_luaentity()
-						local desc = luent and luent.description
-						if desc then
-							if type(desc) == "function" then
-								desc = desc(luent)
-							end
-							return settip(player,
-								pt.ref:get_pos(),
-								desc)
-						end
-					end
-					return
 				end
+				return settip(player)
+			elseif pt.type == "object" then
+				local ll = nodecore.get_node_light(
+					pt.ref:get_pos()) or 0
+				if ll >= 0 then
+					local luent = pt.ref:get_luaentity()
+					local desc = luent and luent.description
+					if desc then
+						if type(desc) == "function" then
+							desc = desc(luent)
+						end
+						return settip(player,
+							pt.ref:get_pos(),
+							desc)
+					end
+				end
+				return
 			end
-			return settip(player)
 		end
 	})
