@@ -72,7 +72,8 @@ end
 
 local function setglyphdir(pos, dir)
 	for i = 0, #nodecore.facedirs do
-		if vector.equals(nodecore.facedirs[i].b, dir) then
+		if vector.equals(nodecore.facedirs[i].b, dir)
+		and nodecore.facedirs[i].k.y > 0 then
 			return nodecore.set_loud(pos, {
 					name = nodepref .. 1,
 					param2 = i
