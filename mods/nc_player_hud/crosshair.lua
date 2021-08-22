@@ -26,9 +26,13 @@ nodecore.register_playerstep({
 			local pt = data.raycast()
 			if pt then
 				if pt.type == "node" then
-					return crosshair(player)
+					local llu = nodecore.get_node_light(pt.under) or 0
+					local lla = nodecore.get_node_light(pt.above) or 0
+					local ll = (llu > lla) and llu or lla
+					return crosshair(player, ll <= 0)
 				elseif pt.type == "object" then
-					return crosshair(player)
+					local ll = nodecore.get_node_light(pt.ref:get_pos()) or 0
+					return crosshair(player, ll <= 0)
 				end
 			end
 			return crosshair(player, true)

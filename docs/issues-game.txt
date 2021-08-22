@@ -16,12 +16,15 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - LookTips
 	- API needs an overhaul
-		- Simplify
-		- Rename stuff
-		- Better support for entities/objects
+		- Use a single generic name everywhere (getdesc?)
+		- Simplify calling, maybe pass data table
+		- Unify between node/itemdefs, entdefs, etc.
 	- Update mods depending on touchtips
 	- Fix glyph handling to be face-specific instead of
 	  always naming the glyph if above, even if wrong face
+	- Crosshair still not fully synced with looktip: node
+	  name visible due to punching nodes still does not
+	  solidify the crosshair in darkness.
 
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes

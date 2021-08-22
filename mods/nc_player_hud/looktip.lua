@@ -85,23 +85,21 @@ nodecore.register_playerstep({
 							player,
 							pt))
 				end
-				return settip(player)
 			elseif pt.type == "object" then
 				local ll = nodecore.get_node_light(
 					pt.ref:get_pos()) or 0
-				if ll >= 0 then
-					local luent = pt.ref:get_luaentity()
-					local desc = luent and luent.description
-					if desc then
-						if type(desc) == "function" then
-							desc = desc(luent)
-						end
-						return settip(player,
-							pt.ref:get_pos(),
-							desc)
+				if ll <= 0 then return settip(player) end
+				local luent = pt.ref:get_luaentity()
+				local desc = luent and luent.description
+				if desc then
+					if type(desc) == "function" then
+						desc = desc(luent)
 					end
+					return settip(player,
+						pt.ref:get_pos(),
+						desc)
 				end
-				return
 			end
+			return settip(player)
 		end
 	})
