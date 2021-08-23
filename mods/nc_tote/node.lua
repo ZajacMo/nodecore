@@ -64,7 +64,7 @@ end
 local function toteplace(stack, placer, pointed, ...)
 	local pos = nodecore.buildable_to(pointed.under) and pointed.under
 	or nodecore.buildable_to(pointed.above) and pointed.above
-	if nodecore.protection_test(pos, placer) then return end
+	if (not pos) or nodecore.protection_test(pos, placer) then return end
 
 	stack = ItemStack(stack)
 	local inv = stack:get_meta():get_string("carrying")
