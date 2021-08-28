@@ -18,5 +18,8 @@ ISSUES-DOCS: Issues related to documentation
 - Need to clean out issues in wishlist.
 	- Put some issues unlikely to be resolved on ice.
 
+- Consider migrating NC's Weblate into the hosted instance that
+  Minetest Engine uses?
+
 ........................................................................
 ========================================================================

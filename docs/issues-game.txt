@@ -9,22 +9,14 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Fix underground sand issue, make ocean biome stop at y=-79?
+
 - Flower breeding is broken
 	- Mutation rate is way high
 	- Mutation math is pretty much intractable
 	- Need sane rules for breeding and mutations
-
-- LookTips
-	- API needs an overhaul
-		- Use a single generic name everywhere (getdesc?)
-		- Simplify calling, maybe pass data table
-		- Unify between node/itemdefs, entdefs, etc.
-	- Update mods depending on touchtips
-	- Fix glyph handling to be face-specific instead of
-	  always naming the glyph if above, even if wrong face
-	- Crosshair still not fully synced with looktip: node
-	  name visible due to punching nodes still does not
-	  solidify the crosshair in darkness.
+	- Idea: flowers too different will attack/wilt each other
+	  when on rich soil (reproduction conditions)
 
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes
@@ -32,6 +24,13 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Use majority heuristic for sponge death in node form
 		- Death if dry nodes > 0 and >= wet nodes nearby
 		- Ignore sealing nodes
+
+- Ore density reform
+	- Make all ores rarer, denser at all depths
+	- Reduces tedium of lode-finding, while keeping
+	  challenge roughly intact (clues/stains more important)
+	- Track counts in mapgen, do surveys to keep
+	  averages about the same
 
 - Hint system:
 	- Use crafting instead of inv/punch checks for "make" hints.
@@ -42,7 +41,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
-
+	  
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
@@ -51,19 +50,28 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Make it look like a tool instead of hand?
 		- Maybe some kind of force entity like a lighting bolt?
 
-- Accidental rotations (optics) are too easy.
+- Rethink optic rotation
 	- Require 2 right-clicks in a row, first one "unlocks",
 	  displays some particles/ent to show state?
+	- Intuitive rotation handles that turn node in specific dir?
+	- Right-clicking on specific edge of face pushes it?
+	- Use player controls (walk) to rotate?
 
 - Add a way to extend wandering generations
 	- For glass, heat sources
 	- For concrete, moisture sources
+
+- Rakes should probably not charge durability for digging first item
+  stack, or should charge reduced wear for item stacks.
 
 - Tarstone should produce coal particles consistently when broken back
   down to regular cobble, but it only works with the base node, not the
   etched ones.
 
 - Integrate YCTIWY into base game
+
+- Consider reverting burning item stack lossiness, make stacks
+  exactly conserve quantity when ignited?
 
 - Rakes don't work with door press.
 
@@ -169,6 +177,7 @@ ISSUES-GAME: Gameplay-affecting issues
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level
 	- Maybe some ores for cobble and/or loose cobble?
+	- Maybe ores for dirt, sand?
 
 - Consider checking for a nearby active player before running
   "fast-evolving" ABMs that don't normally work offline, like fire

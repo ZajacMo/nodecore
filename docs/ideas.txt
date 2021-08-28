@@ -9,6 +9,13 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Hint system "quest" lines?
+	- Series of hints specially marked.
+	- Special game significance.
+	- Examples:
+		- Tool tiers
+		- Automation
+
 - Make infused tools not directly flammable, BUT lose durability when
   near igniters similar to water effect.
 

@@ -9,6 +9,34 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Recipe "rate adjust" is messed up.
+	- Make rate_adjust ONLY use config
+	- Add a speed adjustment for manual changes, e.g. when
+	  tool speed is used
+
+- LookTips
+	- API needs an overhaul
+		- Use a single generic name everywhere (getdesc?)
+		- Simplify calling, maybe pass data table
+		- Unify between node/itemdefs, entdefs, etc.
+	- Update mods depending on touchtips
+	- Fix glyph handling to be face-specific instead of
+	  always naming the glyph if above, even if wrong face
+	- Crosshair still not fully synced with looktip: node
+	  name visible due to punching nodes still does not
+	  solidify the crosshair in darkness.
+
+- Player skin API overhaul
+	- Pass a context object only
+	- Use player name, not player obj
+
+- Update based on recentish engine sound improvements
+	- Improvements committed 2020-02-01
+	- exclude_player in sound_play instead of looping through
+	  https://github.com/minetest/minetest/commit/ace3c7611
+	- Remove NC's "social sounds" feature for dig/place
+	  https://github.com/minetest/minetest/commit/c10e18859
+
 - Convert more things to autostart DNTs?
 
 - Expand stackapply recipes
