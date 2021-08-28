@@ -27,7 +27,7 @@ minetest.register_biome({
 		depth_filler = 1,
 		node_riverbed = modname .. ":sand",
 		depth_riverbed = 2,
-		y_min = -31000,
+		y_min = -79,
 		y_max = 3,
 		heat_point = 0,
 		humidity_point = 0,

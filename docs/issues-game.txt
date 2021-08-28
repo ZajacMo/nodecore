@@ -9,8 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Fix underground sand issue, make ocean biome stop at y=-79?
-
 - Flower breeding is broken
 	- Mutation rate is way high
 	- Mutation math is pretty much intractable
