@@ -178,7 +178,7 @@ end
 minetest.register_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
-		chance = 1,
+		chance = 100,
 		nodenames = {"group:flower_living"},
 		action = function(pos, node)
 			local function die()
