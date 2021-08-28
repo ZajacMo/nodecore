@@ -37,6 +37,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Fixes hints completing on dungeon/multiplayer cases.
 	- Make all crafts/recipes trigger witnessing?
 
+- A way to visualize the infusion rate effects would be nice
+	- Particles don't work due to semitransparent liquid
+
 - Health system slot bias should be a bit stronger
 
 - Make door operation bredth-first queue-recursive for consistent
