@@ -9,13 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Flower breeding is broken
-	- Mutation rate is way high
-	- Mutation math is pretty much intractable
-	- Need sane rules for breeding and mutations
-	- Idea: flowers too different will attack/wilt each other
-	  when on rich soil (reproduction conditions)
-
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes
 		- May need to find a new use-case for glass tank?

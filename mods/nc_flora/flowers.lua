@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, pairs, string
     = ipairs, math, minetest, nodecore, pairs, string
-local math_exp, math_floor, math_random, string_format
-    = math.exp, math.floor, math.random, string.format
+local math_abs, math_random, string_format
+    = math.abs, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -146,25 +146,39 @@ local function flowerable(pos)
 	return soil - 1
 end
 
-local function updatesample(weight, mean, var, value)
-	local delta = value - mean
-	mean = mean + delta / weight
-	local delta2 = value - mean
-	var = var + delta * delta2
-	return mean, var
-end
-
-local function tryrand(mean, stddev, min, max)
-	for _ = 1, 5 do
-		local value = math_floor(nodecore.boxmuller() * stddev + mean + 0.5)
-		if value >= min and value <= max then return value end
+local function getvariation(basenode, peers, key, max, mutate)
+	local basedef = minetest.registered_items[basenode.name]
+	local baseval = basedef and basedef[key]
+	if not baseval then return end
+	local maxdiff = 0
+	local up
+	local down
+	for _, p in ipairs(peers) do
+		local def = minetest.registered_items[minetest.get_node(p).name]
+		local val = def and def[key]
+		if val then
+			local diff = math_abs(val - baseval)
+			if diff > maxdiff then maxdiff = diff end
+			if val == baseval + 1 then up = true end
+			if val == baseval - 1 then down = true end
+		end
 	end
+	if math_random(1, 200) < (maxdiff * maxdiff) then return end
+	if baseval > 1 then
+		local downchance = (down and 0.1 or 0) + (up and 0.05 or 0) + 0.01
+		if math_random() < downchance * mutate then return baseval - 1 end
+	end
+	if baseval < max then
+		local upchance = (up and 0.05 or 0) + (down and 0.02 or 0) + 0.005
+		if math_random() < upchance * mutate then return baseval + 1 end
+	end
+	return baseval
 end
 
 minetest.register_abm({
 		label = "flowers wilting/growing",
 		interval = 1,
-		chance = 100,
+		chance = 1,
 		nodenames = {"group:flower_living"},
 		action = function(pos, node)
 			local function die()
@@ -179,7 +193,10 @@ minetest.register_abm({
 			or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
 			then return end
 
-			local rads = 1 + #nodecore.find_nodes_around(pos, "group:lux_emit", 2)
+			local rads = 0
+			for _, p in ipairs(nodecore.find_nodes_around(pos, "group:lux_emit", 2)) do
+				rads = rads + minetest.get_item_group(minetest.get_node(p).name, "lux_emit")
+			end
 			if math_random(1, 100) < rads then return die() end
 
 			local grow = {
@@ -189,32 +206,17 @@ minetest.register_abm({
 			}
 			if not (nodecore.buildable_to(grow) and flowerable(grow)) then return end
 
-			local weight = 3
-			local m_shape = minetest.registered_items[node.name].nc_flower_shape
-			local v_shape = 0
-			local m_color = minetest.registered_items[node.name].nc_flower_color
-			local v_color = 0
-			for _, p in ipairs(nodecore.find_nodes_around(grow, "group:flower_living", 2, 1)) do
-				local def = minetest.registered_items[minetest.get_node(p).name]
-				if def and def.nc_flower_shape and def.nc_flower_color then
-					weight = weight + 1
-					m_shape, v_shape = updatesample(weight, m_shape, v_shape, def.nc_flower_shape)
-					m_color, v_color = updatesample(weight, m_color, v_color, def.nc_flower_color)
-				end
-			end
-			m_shape = m_shape - 0.2
-			m_color = m_color - 0.2
-			v_shape = (v_shape / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
-			v_color = (v_color / weight) ^ 0.5 * 0.8 + math_exp(rads / 20) + 0.01
-
-			local newshape = tryrand(m_shape, v_shape, 1, #shapes)
-			if not newshape then return end
-			local newcolor = tryrand(m_color, v_color, 1, #colors)
-			if not newcolor then return end
+			local mutate = 1 + rads * rads / 20
+			print("rads " .. rads .. " mutate " .. mutate)
+			local peers = nodecore.find_nodes_around(grow, "group:flower_living", 2, 1)
+			local shape = getvariation(node, peers, "nc_flower_shape", #shapes, mutate)
+			if not shape then return die() end
+			local color = getvariation(node, peers, "nc_flower_color", #colors, mutate)
+			if not color then return die() end
 
 			nodecore.set_loud(grow, {
-					name = flowername(newshape, newcolor),
-					param2 = shapes[newshape].param2
+					name = flowername(shape, color),
+					param2 = shapes[shape].param2
 				})
 			return nodecore.witness(grow, "flower spread")
 		end
