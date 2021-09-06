@@ -102,7 +102,8 @@ for shapeid = 1, #shapes do
 				snappy = 1,
 				flower_wilted = 1,
 				flammable = 1,
-				attached_node = 1
+				attached_node = 1,
+				flora_dry = 1
 			},
 			sounds = nodecore.sounds("nc_terrain_swishy"),
 			selection_box = {

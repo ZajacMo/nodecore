@@ -43,6 +43,7 @@ for i = 1, 5 do
 				snappy = 1,
 				flora = 1,
 				flora_sedges = 1,
+				flora_dry = 1,
 				flammable = 3,
 				attached_node = 1
 			},
