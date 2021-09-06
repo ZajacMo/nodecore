@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-14 11:38+0000\n"
+"PO-Revision-Date: 2021-08-30 15:30+0000\n"
 "Last-Translator: luatic <appgurulars@gmx.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -13,8 +13,7 @@ msgstr ""
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
-"- Wirf Gegenstände auf den Boden, um Blockstapel die nicht zerfallen zu "
-"erzeugen."
+"- Wirf Gegenstände auf den Boden, um beständige Blockstapel zu erzeugen."
 
 #, fuzzy
 msgid "- Items picked up try to fit into the current selected slot first."
@@ -112,3 +111,132 @@ msgstr "Wachsender Baumstamm"
 
 msgid "About"
 msgstr "Über"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 Aaron Suen <warr1024@@gmail.com>"
+
+msgid "+"
+msgstr "+"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux + fallen lassen um alles fallen zu lassen."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- Kletterstellen können erklommen werden, sobald schwarze Partikel "
+"erscheinen."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Kletterstellen erzeugen sehr schwaches Licht; erhöhe deine "
+"Bildschirmhelligkeit um zu sehen."
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr ""
+"- Nicht in der Lage Bäume oder Gras abzubauen? Suche Stöcke in den "
+"Baumkronen."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- Reihenfolge und Orientierung der Platzierungen können fürs Werken wichtig "
+"sein."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr ""
+"- Lasse Gegenstände fallen und hebe sie wieder auf, um dein Inventar "
+"umzuordnen."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Werken funktioniert, indem man nach Anleitung in der Welt baut."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Bei größeren Anleitungen wird der mittlere Gegenstand für gewöhnlich "
+"zuletzt platziert."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr ""
+"- Wenn eine Anleitung existiert, wirst du einen speziellen Partikeleffekt "
+"sehen."
+
+#, fuzzy
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Anleitung sind zeitabhängig, schneller schlagen beschleunigt nicht."
+
+msgid "- There is NO inventory screen."
+msgstr "- Es gibt KEIN Inventarfenster."
+
+msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
+msgstr ""
+"- Manche Anleitungen verwenden ein 3x3 \"Gitter\", flach auf dem Boden "
+"liegend."
+
+msgid "@1 (100@2)"
+msgstr "@1 (100@2)"
+
+msgid "@1 (10@2)"
+msgstr "@1 (10@2)"
+
+msgid "@1 (2)"
+msgstr "@1 (2)"
+
+msgid "@1 (20@2)"
+msgstr "@1 (20@2)"
+
+msgid "@1 (3)"
+msgstr "@1 (3)"
+
+#, fuzzy
+msgid "Annealed Lode"
+msgstr "Erhärtete Ader"
+
+msgid "@1 (30@2)"
+msgstr "@1 (30@2)"
+
+msgid "@1 (4)"
+msgstr "@1 (4)"
+
+msgid "@1 (40@2)"
+msgstr "@1 (40@2)"
+
+msgid "@1 (5)"
+msgstr "@1 (5)"
+
+msgid "Ash"
+msgstr "Asche"
+
+msgid "Ash Lump"
+msgstr "Ascheklumpen"
+
+msgid "Growing Leaves"
+msgstr "Wachsende Blätter"
+
+msgid "Hints"
+msgstr "Hinweise"
+
+msgid "Humus"
+msgstr "Humus"
+
+msgid "Wooden Frame"
+msgstr "Hölzerner Rahmen"
+
+msgid "Wet Sponge"
+msgstr "Feuchter Schwamm"
+
+msgid "Water"
+msgstr "Wasser"
+
+#, fuzzy
+msgid "Amalgamation"
+msgstr "Legierung"
+
+msgid "Wooden Ladder"
+msgstr "Holzleiter"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Hüte dich vor dunklen Höhlen oder Kluften; du bist dafür verantwortlich, "
+"wieder hinaus zu finden."
