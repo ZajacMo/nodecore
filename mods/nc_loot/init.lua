@@ -59,6 +59,7 @@ end
 
 nodecore.register_dungeongen({
 		label = "dungeon loot",
+		priority = 100,
 		func = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if minetest.get_node(above).name ~= "air" then return end
