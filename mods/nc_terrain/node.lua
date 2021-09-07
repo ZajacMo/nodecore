@@ -248,7 +248,7 @@ end
 
 regliquid({
 		description = "Water",
-		mapgen = {"river_water_source", "water_source"},
+		mapgen = {"water_source"},
 		tiles = {anim(modname .. "_water.png^[opacity:192", 4)},
 		special_tiles = {
 			anim(modname .. "_water_flow.png^[opacity:192", 4),
@@ -262,6 +262,29 @@ regliquid({
 		pointable = false,
 		buildable_to = true,
 		drowning = 2,
+		drop = "",
+		groups = {coolant = 1, water = 2, moist = 2},
+		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
+		sounds = nodecore.sounds("nc_terrain_watery")
+	})
+regliquid({
+		name = "river_water",
+		description = "Water",
+		mapgen = {"river_water_source"},
+		tiles = {anim(modname .. "_water.png^[opacity:192", 4)},
+		special_tiles = {
+			anim(modname .. "_water_flow.png^[opacity:192", 4),
+			anim(modname .. "_water_flow.png^[opacity:192", 4)
+		},
+		use_texture_alpha = "blend",
+		paramtype = "light",
+		liquid_viscosity = 1,
+		liquid_renewable = false,
+		walkable = false,
+		pointable = false,
+		buildable_to = true,
+		drowning = 2,
+		liquid_range = 2,
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
