@@ -24,18 +24,23 @@ local size_w_tool = xyz(0.3)
 local size_slot = xyz(0.15)
 local size_item = xyz(0.1)
 
-local hidden = {is_visible = false}
+local hidden = {
+	is_visible = false,
+	glow = 0
+}
 local selslot = {
 	is_visible = true,
 	visual = "upright_sprite",
 	visual_size = size_slot,
-	textures = {modname .. "_sel.png"}
+	textures = {modname .. "_sel.png"},
+	glow = 0
 }
 local emptyslot = {
 	is_visible = true,
 	visual = "upright_sprite",
 	visual_size = size_slot,
-	textures = {modname .. "_slot.png"}
+	textures = {modname .. "_slot.png"},
+	glow = 0
 }
 
 local function calcprops(itemname, iswield)
