@@ -9,6 +9,12 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Add "welcome" messages on login
+	- In the same spirit as the server version line
+	- Notify if NodeCore updated since last played
+	- Welcome new players?
+	- Warn on special conditions, e.g. world in stasis?
+
 - Hint system "quest" lines?
 	- Series of hints specially marked.
 	- Special game significance.

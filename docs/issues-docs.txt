@@ -18,5 +18,15 @@ ISSUES-DOCS: Issues related to documentation
 - Consider migrating NC's Weblate into the hosted instance that
   Minetest Engine uses?
 
+- Documentation about accessibility
+	- Accessibility features
+		- All significant actions have sounds
+		- All sounds should have visuals (subtitle branch?)
+		- All text translatable
+		- Input speed limits, e.g. Mobile and RSI
+	- Recommend user settings
+		- Gamma/lighting
+		- Enlarge HUDs and GUIs
+
 ........................................................................
 ========================================================================

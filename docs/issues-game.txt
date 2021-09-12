@@ -9,6 +9,14 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Item ent fixes
+	- Try to settle more reliably on landing using moveresult
+		- Items tend to slide more under lag conditions
+	- Crush damage issues
+		- Use velocity relative to player, not absolute
+		  velocity, to calculate damage
+		- Exempt thrown items from hurting players for a
+		  second or so after being thrown
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass tank and glass nodes
 		- May need to find a new use-case for glass tank?
