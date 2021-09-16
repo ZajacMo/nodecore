@@ -82,7 +82,10 @@ local mudgroups = {
 	cracky = 0,
 	crumbly = 1,
 	snappy = 0,
-	choppy = 0
+	choppy = 0,
+	stone = 0,
+	smoothstone = 0,
+	rock = 0
 }
 local function buildpatterns()
 	for _, patt in pairs(nodecore.registered_concrete_patterns) do

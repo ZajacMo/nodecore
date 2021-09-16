@@ -70,9 +70,9 @@ function nodecore.match(thing, crit)
 		if (not def) or (not def.groups) then return end
 		for k, v in pairs(crit.groups) do
 			if v == true then
-				if not def.groups[k] then return end
+				if not def.groups[k] or def.groups[k] == 0 then return end
 			elseif v == false then
-				if def.groups[k] then return end
+				if def.groups[k] and def.groups[k] ~= 0 then return end
 			else
 				if def.groups[k] ~= v then return end
 			end
