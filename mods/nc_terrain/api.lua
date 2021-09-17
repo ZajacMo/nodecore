@@ -121,11 +121,13 @@ artificial water def:
 function nodecore.artificial_water(pos, def, node)
 	node = node or minetest.get_node(pos)
 	local nn = node.name
-	if nn ~= graywatersrc and nn ~= graywaterflow then
-		local nd = minetest.registered_nodes[nn]
-		if not (nd and nd.floodable) then return end
-		if nd.on_flood and not nd.on_flood(
-			pos, node, {name = graywatersrc}) then return end
+	if nn ~= graywatersrc then
+		if nn ~= graywaterflow then
+			local nd = minetest.registered_nodes[nn]
+			if not (nd and nd.floodable) then return end
+			if nd.on_flood and not nd.on_flood(
+				pos, node, {name = graywatersrc}) then return end
+		end
 		nodecore.set_loud(pos, {name = graywatersrc})
 	end
 	local meta = minetest.get_meta(pos)
