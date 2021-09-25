@@ -209,7 +209,7 @@ minetest.register_abm({
 
 			local mutate = 1 + rads * rads / 20
 			print("rads " .. rads .. " mutate " .. mutate)
-			local peers = nodecore.find_nodes_around(grow, "group:flower_living", 2, 1)
+			local peers = nodecore.find_nodes_around(grow, "group:flower_living", {2, 1, 2})
 			local shape = getvariation(node, peers, "nc_flower_shape", #shapes, mutate)
 			if not shape then return die() end
 			local color = getvariation(node, peers, "nc_flower_color", #colors, mutate)
