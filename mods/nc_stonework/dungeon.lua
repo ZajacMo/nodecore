@@ -7,6 +7,7 @@ local modname = minetest.get_current_modname()
 
 function nodecore.dungeon_bricks()
 	return {
+		fill = "nc_terrain:cobble",
 		brick = modname .. ":bricks_stone",
 		bonded = modname .. ":bricks_stone_bonded"
 	}
