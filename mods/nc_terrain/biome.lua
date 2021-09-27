@@ -32,3 +32,14 @@ minetest.register_biome({
 		heat_point = 0,
 		humidity_point = 0,
 	})
+
+minetest.register_biome({
+		name = "deep",
+		depth_top = 0,
+		depth_filler = 0,
+		depth_riverbed = 0,
+		y_min = -31000,
+		y_max = -80,
+		heat_point = 0,
+		humidity_point = 0,
+	})
