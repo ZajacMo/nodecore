@@ -25,15 +25,15 @@ minetest.after(0, function()
 	end)
 
 local oldbricks = nodecore.dungeon_bricks
-function nodecore.dungeon_bricks(pos, rng)
+function nodecore.dungeon_bricks(pos, rng, ...)
 	if pos.y >= 32 then
 		if pos.y >= 64 or heightperlin:get_3d(pos) < (pos.y / 16 - 3) then
 			return surfperlin:get_3d(pos) > 0 and dirty or sandy
 		end
-		return oldbricks(pos, rng)
+		return oldbricks(pos, rng, ...)
 	end
 	if pos.y >= -640 then return oldbricks(pos, rng) end
 	if pos.y < -768 then return tarry end
 	if heightperlin:get_3d(pos) > (pos.y / 64 + 11) then return tarry end
-	return oldbricks(pos, rng)
+	return oldbricks(pos, rng, ...)
 end
