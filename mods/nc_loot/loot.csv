@@ -57,7 +57,7 @@ nc_lux:cobble1,16,12,-384
 nc_fire:coal5,15,4,32000
 nc_tree:peat,15,29,-16
 nc_concrete:render,15,27,-80
-nc_optics:glass_float,15,39,-128
+nc_optics:glass_float,15,39,-512
 nc_doors:panel_plank,14,26,-256
 nc_concrete:aggregate,13,51,-80
 nc_woodwork:toolhead_hatchet,12,1,32000
@@ -80,7 +80,7 @@ nc_concrete:sandstone,6,3,-80
 nc_lode:block_annealed,6,2,-128
 nc_lode:bar_tempered,6,2,-128
 nc_lode:block_tempered,6,1,-128
-nc_terrain:dirt_with_grass,6,7,-384
+nc_terrain:dirt_with_grass,6,7,-512
 nc_lode:rod_annealed,4,1,-128
 nc_lode:cobble,4,36,-128
 nc_lode:tool_hatchet_annealed,4,1,-128
