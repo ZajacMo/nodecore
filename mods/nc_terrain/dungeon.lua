@@ -41,10 +41,14 @@ function nodecore.register_dungeongen(def)
 	table_insert(dungens, min, def)
 end
 
+local mapperlin
+minetest.after(0, function() mapperlin = minetest.get_perlin(45821, 1, 0, 1) end)
+
 local function dungeonprocess(pos, node)
+	local rng = nodecore.seeded_rng(mapperlin:get_3d(pos))
 	for _, def in ipairs(dungens) do
 		if def.enabled ~= false then
-			def.func(pos, node)
+			def.func(pos, node, rng)
 			if minetest.get_node(pos).name ~= node.name then return end
 		end
 	end

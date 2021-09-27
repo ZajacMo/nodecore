@@ -5,9 +5,6 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-local mapperlin
-minetest.after(0, function() mapperlin = minetest.get_perlin(45821, 1, 0, 1) end)
-
 function nodecore.dungeon_bricks()
 	return {
 		brick = modname .. ":bricks_stone",
@@ -18,8 +15,7 @@ end
 nodecore.register_dungeongen({
 		label = "dungeon concrete/bricks",
 		priority = -100,
-		func = function(pos)
-			local rng = nodecore.seeded_rng(mapperlin:get_3d(pos))
+		func = function(pos, _, rng)
 			local profile = nodecore.dungeon_bricks(pos, rng)
 			if rng(1, 4) ~= 1 then
 				return profile.fill and
