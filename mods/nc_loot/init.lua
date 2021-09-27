@@ -1,19 +1,36 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, include, math, minetest, nodecore, pairs
-    = ItemStack, include, math, minetest, nodecore, pairs
-local math_floor, math_log
-    = math.floor, math.log
+local ItemStack, io, ipairs, math, minetest, nodecore, pairs, tonumber
+    = ItemStack, io, ipairs, math, minetest, nodecore, pairs, tonumber
+local io_open, math_floor, math_log
+    = io.open, math.floor, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
-local loottable = include("loottable")
+local loottable = {}
+do
+	local ltcsv = io_open(minetest.get_modpath(minetest.get_current_modname())
+		.. "/loot.csv", "r")
+	local cols = ltcsv:read("*l"):split(",")
+	while true do
+		local str = ltcsv:read("*l")
+		if not str then break end
+		local data = str:split(",")
+		local row = {}
+		for i, k in ipairs(cols) do
+			row[k] = tonumber(data[i]) or data[i]
+		end
+		loottable[#loottable + 1] = row
+	end
+end
 
 local mapperlin
 minetest.after(0, function() mapperlin = minetest.get_perlin(432, 1, 0, 1) end)
 
-local function lootstack(rng)
-	local loot = nodecore.pickrand(loottable, function(t) return t.prob end, rng)
+local function lootstack(pos, rng)
+	local loot = nodecore.pickrand(loottable,
+		function(t) return pos.y <= t.depth and t.prob or 0 end,
+		rng)
 	local def = minetest.registered_items[loot.item]
 	if not def then return end
 	local stack = ItemStack(loot.item)
@@ -47,13 +64,13 @@ local function addloot(pos, height)
 		if max < 1 then max = 1 elseif max > height then max = height end
 		for _ = 1, max do
 			minetest.set_node(pos, {name = "nc_woodwork:shelf"})
-			nodecore.stack_set(pos, lootstack(rng))
+			nodecore.stack_set(pos, lootstack(pos, rng))
 			pos.y = pos.y + 1
 		end
 		return
 	end
 	minetest.set_node(pos, {name = "nc_items:stack"})
-	nodecore.stack_set(pos, lootstack(rng))
+	nodecore.stack_set(pos, lootstack(pos, rng))
 	nodecore.stack_node_sounds_except[minetest.hash_node_position(pos)] = true
 end
 
