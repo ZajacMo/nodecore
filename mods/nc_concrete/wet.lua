@@ -23,7 +23,9 @@ minetest.register_abm({
 		neighbors = {"group:water"},
 		action = function(pos, node)
 			local wet = wetname(node.name)
-			if wet then return nodecore.set_loud(pos, {name = wet}) end
+			if not wet then return end
+			nodecore.set_loud(pos, {name = wet})
+			nodecore.dnt_set(pos, "fluidwander_concrete")
 		end
 	})
 
@@ -45,6 +47,7 @@ nodecore.register_aism({
 				end
 			end
 			nodecore.set_loud(found, {name = wet})
+			nodecore.dnt_set(found, "fluidwander_concrete")
 			stack:take_item(1)
 			return stack
 		end
