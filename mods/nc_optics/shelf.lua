@@ -13,7 +13,7 @@ local txr_frame = modname .. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
 local function register_tank(subname, desc, pane, recipeitem)
 	local tankname = modname .. ":" .. subname
 	minetest.register_node(tankname, {
-			description = desc .. " Glass Tank",
+			description = desc .. " Glass Case",
 			tiles = {
 				pane .. txr_frame,
 				pane .. txr_frame,
@@ -45,7 +45,7 @@ local function register_tank(subname, desc, pane, recipeitem)
 			end
 		})
 
-	local craftlabel = "assemble " .. string_lower(desc) .. " glass tank"
+	local craftlabel = "assemble " .. string_lower(desc) .. " glass case"
 	nodecore.register_craft({
 			label = craftlabel,
 			norotate = true,

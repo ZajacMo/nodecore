@@ -58,11 +58,11 @@ nodecore.register_hint("gate a prism",
 	"nc_optics:lens_on"
 )
 
-nodecore.register_hint("assemble a clear glass tank",
-	"assemble clear glass tank",
+nodecore.register_hint("assemble a clear glass case",
+	"assemble clear glass case",
 	{"nc_optics:glass", "nc_woodwork:frame"}
 )
-nodecore.register_hint("assemble a float glass tank",
-	"assemble float glass tank",
+nodecore.register_hint("assemble a float glass case",
+	"assemble float glass case",
 	{"nc_optics:glass_float", "nc_woodwork:frame"}
 )

@@ -46,7 +46,7 @@ nodecore.register_craft({
 	})
 
 nodecore.register_craft({
-		label = "hammer tank to crude",
+		label = "hammer case to crude",
 		action = "pummel",
 		priority = -1,
 		toolgroups = {thumpy = 3},

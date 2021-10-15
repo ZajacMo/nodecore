@@ -18,8 +18,8 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Exempt thrown items from hurting players for a
 		  second or so after being thrown
 - Fix crappy sponge death mechanic
-	- Remove special treatment of glass tank and glass nodes
-		- May need to find a new use-case for glass tank?
+	- Remove special treatment of glass case and glass nodes
+		- May need to find a new use-case for glass case?
 	- Use majority heuristic for sponge death in node form
 		- Death if dry nodes > 0 and >= wet nodes nearby
 		- Ignore sealing nodes
@@ -174,7 +174,7 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Shelf frame can gain its own distinct uses
 		- e.g. some things can fall through it but not others.
 		  Items?  Players?  Fluids?
-	- For glass tank, dig out center of clear glass w/ pick?
+	- For glass case, dig out center of clear glass w/ pick?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level
