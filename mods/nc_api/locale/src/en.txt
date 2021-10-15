@@ -451,8 +451,8 @@ msgstr "Chromatic Glass"
 msgid "Clear Glass"
 msgstr "Clear Glass"
 
-msgid "Clear Glass Tank"
-msgstr "Clear Glass Tank"
+msgid "Clear Glass Case"
+msgstr "Clear Glass Case"
 
 msgid "Cobble"
 msgstr "Cobble"
@@ -493,8 +493,8 @@ msgstr "Fire"
 msgid "Float Glass"
 msgstr "Float Glass"
 
-msgid "Float Glass Tank"
-msgstr "Float Glass Tank"
+msgid "Float Glass Case"
+msgstr "Float Glass Case"
 
 msgid "Flux"
 msgstr "Flux"
@@ -1240,11 +1240,11 @@ msgstr "add coal to aggregate to make tarstone"
 msgid "anneal a lode cube"
 msgstr "anneal a lode cube"
 
-msgid "assemble a clear glass tank"
-msgstr "assemble a clear glass tank"
+msgid "assemble a clear glass case"
+msgstr "assemble a clear glass case"
 
-msgid "assemble a float glass tank"
-msgstr "assemble a float glass tank"
+msgid "assemble a float glass case"
+msgstr "assemble a float glass case"
 
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
@@ -1368,6 +1368,9 @@ msgstr "cycle through all charcoal glyphs"
 
 msgid "dig a node with a hinged panel and tool"
 msgstr "dig a node with a hinged panel and tool"
+
+msgid "dig leaves"
+msgstr "dig leaves"
 
 msgid "dig up a tree stump"
 msgstr "dig up a tree stump"

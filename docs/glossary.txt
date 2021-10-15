@@ -85,6 +85,9 @@ Geq:
 	meaningless and derived from some of the latin characters that
 	the glyph can be used to represent.
 
+Glass Case:
+	https://en.wikipedia.org/wiki/Display_case
+
 Graveled:
 	Tipped/edged with gravel.
 
