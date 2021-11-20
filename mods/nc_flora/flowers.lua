@@ -143,8 +143,7 @@ local function flowerable(pos)
 	if not bnode then return end
 	local soil = minetest.get_item_group(bnode.name, "soil")
 	if soil < 1 then return false end
-	if soil == 1 then return end
-	return soil - 1
+	return soil
 end
 
 local function getvariation(basenode, peers, key, max, mutate)
@@ -170,7 +169,7 @@ local function getvariation(basenode, peers, key, max, mutate)
 		if math_random() < downchance * mutate then return baseval - 1 end
 	end
 	if baseval < max then
-		local upchance = (up and 0.05 or 0) + (down and 0.02 or 0) + 0.005
+		local upchance = (up and 0.05 or 0) + (down and 0.02 or 0) + 0.002
 		if math_random() < upchance * mutate then return baseval + 1 end
 	end
 	return baseval
