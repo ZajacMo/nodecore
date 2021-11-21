@@ -27,7 +27,6 @@ minetest.register_node(modname .. ":fire", {
 		groups = {
 			igniter = 1,
 			flame = 1,
-			flame_sound = 1,
 			stack_as_node = 1,
 			damage_touch = 1,
 			damage_radiant = 1,

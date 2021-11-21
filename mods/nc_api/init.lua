@@ -131,4 +131,6 @@ include("item_liquid_stack")
 include("item_touch_hurt")
 include("item_support_falling")
 include("item_dig_destroy")
+
+include("item_groupdump")
 include("item_tiledump")
