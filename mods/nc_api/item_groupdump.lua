@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, minetest, nodecore, pairs, string, table
-    = io, minetest, nodecore, pairs, string, table
+local io, minetest, nodecore, pairs, rawset, setmetatable, string,
+      table
+    = io, minetest, nodecore, pairs, rawset, setmetatable, string,
+      table
 local io_open, string_format, string_gsub, table_concat, table_sort
     = io.open, string.format, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -56,6 +58,7 @@ local groups = {
 	flame = "(specific) open flame",
 	flame_ambiance = "emits crackling fire ambiance (e.g. flames, torches)",
 	flammable = "can catch fire; becomes ember if fire_fuel, or flame otherwise",
+	float = "built-in: falling node lands on top of liquids",
 	flora = "decorative plants (nc_flora) or equivalent",
 	flora_dry = "decorative plants that are dry (dried rushes, wilted flowers, all sedges)",
 	flora_sedges = "(specific) sedge grass height",
@@ -76,6 +79,7 @@ local groups = {
 	lodey = "stone with lode in various states",
 	log = "tree trunks and logs, can be split to planks",
 	loose_repack = "loose nodes that self-repack over time",
+	lux_absorb = "lux radiation absorption proportion in 64ths of total",
 	lux_cobble = "lux cobble that reacts to nearby lux cobble",
 	lux_cobble_max = "lux cobble that produces lux flows",
 	lux_emit = "things that emit lux radiation that irradiates players over time",
@@ -113,29 +117,64 @@ local groups = {
 	stone_bricks = "smooth stone that's been chiseled into bricks",
 	storebox = "storage containers (e.g. shelves, cases, crates)",
 	support_falling = "falling_nodes can rest on it even if not walkable",
+	thumpy = "dig group: mallets and hand",
 	torch_lit = "(specific) lit torches, subject to various events/timers",
 	totable = "nodes that can be packed up into a tote",
 	tote = "totes and tote handles",
 	visinv = "display nodecore.stack_get() stack as an entity in node",
 	water = "water, artificial water, or equivalent",
+	witness_opaque = "force things to be treated as opaque for hint witnessing",
+	witness_transparent = "force things to be treated as transparent for hint witnessing",
 }
+
+local dumpqueued
+
+local function dumpfile()
+	dumpqueued = nil
+	local sorted = {}
+	for k in pairs(groups) do sorted[#sorted + 1] = k end
+	table_sort(sorted)
+	for i = 1, #sorted do
+		local k = sorted[i]
+		sorted[i] = (string_gsub(string_gsub(k, "%w", ""), "_", "")
+			~= "" and string_format("[% q]", k) or k) .. " = "
+		.. string_format("%q", groups[k]) .. ","
+	end
+	local f = io_open(minetest.get_worldpath() .. "/groups.txt", "wb")
+	f:write(table_concat(sorted, "\n"))
+	f:close()
+end
+
+dumpqueued = true
+minetest.after(0, dumpfile)
+
+local function learngroup(name)
+	if groups[name] then return end
+	groups[name] = ""
+	if dumpqueued then return end
+	dumpqueued = true
+	minetest.after(0, dumpfile)
+end
+
+local oldgetgroup = minetest.get_item_group
+function minetest.get_item_group(name, group, ...)
+	learngroup(group)
+	return oldgetgroup(name, group, ...)
+end
 
 minetest.after(0, function()
 		for _, v in pairs(minetest.registered_items) do
-			for k in pairs(v.groups or {}) do
+			local oldgroups = v.groups or {}
+			for k in pairs(oldgroups) do
 				groups[k] = groups[k] or ""
 			end
+			local newgroups = {}
+			rawset(v, "groups", newgroups)
+			setmetatable(newgroups, {
+					__index = function(_, k)
+						learngroup(k)
+						return oldgroups[k]
+					end
+				})
 		end
-		local sorted = {}
-		for k in pairs(groups) do sorted[#sorted + 1] = k end
-		table_sort(sorted)
-		for i = 1, #sorted do
-			local k = sorted[i]
-			sorted[i] = (string_gsub(string_gsub(k, "%w", ""), "_", "")
-				~= "" and string_format("[% q]", k) or k) .. " = "
-			.. string_format("%q", groups[k]) .. ","
-		end
-		local f = io_open(minetest.get_worldpath() .. "/groups.txt", "wb")
-		f:write(table_concat(sorted, "\n"))
-		f:close()
 	end)
