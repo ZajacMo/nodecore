@@ -4,11 +4,11 @@ local minetest, next, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 minetest.register_chatcommand("tabula", {
-		desciption = "Reset NodeCore hints",
+		desciption = "Reset NodeCore challenges",
 		params = "rasa",
 		func = function(name, param)
 			if param ~= "rasa" then
-				return false, "If you're sure you want to erase all hint"
+				return false, "If you're sure you want to erase all challenge"
 				.. "progress, use the command \"/tabula rasa\""
 			end
 			local db, player, pname, save = nodecore.get_player_discovered(name)
@@ -21,6 +21,6 @@ minetest.register_chatcommand("tabula", {
 				cb(player, nil, pname, db)
 			end
 			save()
-			return true, "All hints reset"
+			return true, "All challenges reset"
 		end
 	})

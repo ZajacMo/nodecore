@@ -8,7 +8,7 @@ local table_concat, table_sort
 local donecache = {}
 local msgcache = {}
 
-local msg = "hint complete - @1"
+local msg = "challenge complete - @1"
 nodecore.translate_inform(msg)
 
 local function hintinit(player)

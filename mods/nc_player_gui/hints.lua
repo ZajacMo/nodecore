@@ -9,7 +9,7 @@ local pcache = {}
 
 local strings = {
 	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by hints. Explore!",
+	explore = "Not all game content is covered by challenges. Explore!",
 	hint = "- @1",
 	done = "- DONE: @1"
 }
@@ -54,7 +54,7 @@ local function gethint(player)
 end
 
 nodecore.register_inventory_tab({
-		title = "Hints",
+		title = "Challenges",
 		visible = function() return not nodecore.hints_disabled() end,
 		content = gethint
 	})
