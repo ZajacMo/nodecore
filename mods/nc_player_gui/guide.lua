@@ -74,6 +74,7 @@ nodecore.register_inventory_tab({
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
 			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
-			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!",
+			"- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 		}
 	})
