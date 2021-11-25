@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, minetest, nodecore, pairs, rawset, setmetatable, string,
-      table
-    = io, minetest, nodecore, pairs, rawset, setmetatable, string,
-      table
+local io, minetest, nodecore, pairs, setmetatable, string, table
+    = io, minetest, nodecore, pairs, setmetatable, string, table
 local io_open, string_format, string_gsub, table_concat, table_sort
     = io.open, string.format, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -163,17 +161,13 @@ function minetest.get_item_group(name, group, ...)
 end
 
 minetest.after(0, function()
-		for _, v in pairs(minetest.registered_items) do
-			local oldgroups = v.groups or {}
-			for k in pairs(oldgroups) do
+		for _, def in pairs(minetest.registered_items) do
+			for k in pairs(def.groups) do
 				groups[k] = groups[k] or ""
 			end
-			local newgroups = {}
-			rawset(v, "groups", newgroups)
-			setmetatable(newgroups, {
+			setmetatable(def.groups, {
 					__index = function(_, k)
 						learngroup(k)
-						return oldgroups[k]
 					end
 				})
 		end
