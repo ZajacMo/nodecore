@@ -439,6 +439,9 @@ msgstr "CHEATS ENABLED"
 msgid "Cav Charcoal Glyph"
 msgstr "Cav Charcoal Glyph"
 
+msgid "Challenges"
+msgstr "Challenges"
+
 msgid "Charcoal"
 msgstr "Charcoal"
 
@@ -591,9 +594,6 @@ msgstr "Hashy Stone"
 
 msgid "Hashy Tarstone"
 msgstr "Hashy Tarstone"
-
-msgid "Hints"
-msgstr "Hints"
 
 msgid "Horzy"
 msgstr "Horzy"
@@ -775,8 +775,8 @@ msgstr "Niz Charcoal Glyph"
 msgid "NodeCore"
 msgstr "NodeCore"
 
-msgid "Not all game content is covered by hints. Explore!"
-msgstr "Not all game content is covered by hints. Explore!"
+msgid "Not all game content is covered by challenges. Explore!"
+msgstr "Not all game content is covered by challenges. Explore!"
 
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
@@ -1309,6 +1309,9 @@ msgstr "carve wooden tool heads from planks"
 msgid "catapult an item with a hinged panel"
 msgstr "catapult an item with a hinged panel"
 
+msgid "challenge complete - @1"
+msgstr "challenge complete - @1"
+
 msgid "change a stylus pattern"
 msgstr "change a stylus pattern"
 
@@ -1485,9 +1488,6 @@ msgstr "harden stone"
 
 msgid "harvest a sponge"
 msgstr "harvest a sponge"
-
-msgid "hint complete - @1"
-msgstr "hint complete - @1"
 
 msgid "hold your breath"
 msgstr "hold your breath"
