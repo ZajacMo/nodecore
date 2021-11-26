@@ -10,12 +10,20 @@ ISSUES-CODE: Issues related to code quality and APIs
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Reconsider how items_fall_thru works:
-	- Unified API
-		- can_stack_enter(pos, dir, stack)
-		- on_stack_enter(pos, dir, stack)
+	- Unified visinv/storebox API
+		- can_stack_enter(pos, node, dirfrom, stack)
+		- on_stack_enter(pos, node, dirfrom, stack, objref?)
 	- Make forms check if stack can enter into node below and
 	  eject stack as ent if it can
 	- Forms can just be a normal storebox then
+
+- Standardize visinv access API
+	- stack_access(pos, node, dirfrom, player) - return booly
+	  whether access to inside stack is allowed.
+	- Specifically for players, not item ents or falling_nodes
+	- Use for shelf API.
+	- Use for touchtips inv access.
+	- Genericize sponge logic using stack_access API
 
 - Allow mods to affect game time flow
 	- Allow skipping forward through time
@@ -158,13 +166,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Use ascii art like ezschematic?
 	- Aliases like "sides"/"corners"?
 	- Make 3x3 recipes easier to define.
-
-- Standardize visinv access API
-	- stack_access(pos, node, dirfrom) - return booly
-	  whether access to inside stack is allowed.
-	- Use for shelf API.
-	- Use for touchtips inv access.
-	- Genericize sponge logic using stack_access API
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.
