@@ -29,6 +29,10 @@ IDEAS: Possible future additions/improvements to the game
 	- Shine if facing an active lens within range.
 	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
 
+- Underground generated mazes, more compact than dungeons
+	- Made of harder stone
+	- Hide prizes like ores, treasures, etc.
+
 - Stone brick hardening (in-place)?
 
 - Use stylus on sand to produce same patterns as on concrete, inverted?

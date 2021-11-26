@@ -9,6 +9,11 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Allow mods to affect game time flow
+	- Allow skipping forward through time
+	- For an offline mod for mobile SP to make gametime Track
+	  realtime even when world is offline
+
 - Recipe "rate adjust" is messed up.
 	- Make rate_adjust ONLY use config
 	- Add a speed adjustment for manual changes, e.g. when

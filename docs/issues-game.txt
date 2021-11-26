@@ -9,6 +9,74 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Unconfirmed: bug involving a player dropping all inventory into
+  a narrow vertical shaft (on VE-NC server) and having items cycle
+  indefinitely without settling to a steady state.
+  https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
+
+- Shelf recipe (and any other 3x3 recipe) reform
+	- Add a "shelf frame" node made from wooden frames
+		- Name: "form"?
+	- Add appropriate material to shelf frame to make shelf
+	- 2-stage construction should make it easier to discover
+	- Shelf frame can gain its own distinct uses
+		- e.g. some things can fall through it but not others.
+		  Items?  Players?  Fluids?
+	- For glass case, dig out center of clear glass w/ pick?
+
+- Make solid push-out not push you out of item stacks or other
+  non-full-solids so players aren't shoved off cliffs by
+  dropping/placing items, torches, etc.
+
+- Lode prills should be able to drain from glowing ore into
+  glass cases and crates
+
+- Fix crappy sponge death mechanic
+	- Remove special treatment of glass case and glass nodes
+		- May need to find a new use-case for glass case?
+	- Use majority heuristic for sponge death in node form
+		- Death if dry nodes > 0 and >= wet nodes nearby
+		- Ignore sealing nodes
+
+- Improve sponge colony growth shape
+	- Prevent tall vertical column growth seen on NCC by Kimapr
+	- Instead of just pushing out a sponge, floodfill to find colony
+	  (reuse colony volume check), then pick a random surface node
+	  to grow from; maybe save candidate water spots during the flood
+	  scan and grow non-locally to that?
+
+- Reduce the "lode gate" further
+	- Use chisels to make lenses/prisms?
+
+- Hint system:
+	- Split hint descriptions into "pre" and "post" parts.
+		- Undiscovered, show just "pre" part (1 stick + 4 adze)
+		- After, show both (1 stick + 4 adze => rake)
+	- Use crafting instead of inv/punch checks for "make" hints.
+		- Fixes hints completing on dungeon/multiplayer cases.
+	- Make all crafts/recipes trigger witnessing?
+	- Hide stylus hint until after mixed concrete
+
+- Make a way to prevent crafting on place
+	- Sneak? Aux?
+	- Confirmation UI after completing recipe, e.g. floating ent
+	- Make all recipes include some pummel factor?
+
+- Rakes don't work with door press.
+
+- Health system slot bias should be a bit stronger
+
+- Consider making offline (e.g. soaking) growth rates sublinear
+  with time, e.g. diminishing returns for offline time, to create
+  incentives to build nearby
+
+- Stone softening rates feel off.
+	- Once first stage of stone softens, others follow really
+	  quicky (exponential runaway basically).
+	- If you leave stone soaking for a while, it looks like it
+	  basically softens all or nothing.
+	- Can we smooth this out and make it less jarring?
+
 - Item ent fixes
 	- Try to settle more reliably on landing using moveresult
 		- Items tend to slide more under lag conditions
@@ -17,29 +85,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		  velocity, to calculate damage
 		- Exempt thrown items from hurting players for a
 		  second or so after being thrown
-- Fix crappy sponge death mechanic
-	- Remove special treatment of glass case and glass nodes
-		- May need to find a new use-case for glass case?
-	- Use majority heuristic for sponge death in node form
-		- Death if dry nodes > 0 and >= wet nodes nearby
-		- Ignore sealing nodes
-
-- Ore density reform
-	- Make all ores rarer, denser at all depths
-	- Reduces tedium of lode-finding, while keeping
-	  challenge roughly intact (clues/stains more important)
-	- Track counts in mapgen, do surveys to keep
-	  averages about the same
-
-- Hint system:
-	- Use crafting instead of inv/punch checks for "make" hints.
-		- Fixes hints completing on dungeon/multiplayer cases.
-	- Make all crafts/recipes trigger witnessing?
 
 - A way to visualize the infusion rate effects would be nice
 	- Particles don't work due to semitransparent liquid
-
-- Health system slot bias should be a bit stronger
 
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
@@ -75,8 +123,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Consider reverting burning item stack lossiness, make stacks
   exactly conserve quantity when ignited?
 
-- Rakes don't work with door press.
-
 - Players losing run speed on damage would be simplified by checking for
   <max health instead of time of last damage.
 	- Should lose farzoom when damaged too.
@@ -100,16 +146,6 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Add a few smoke particles to fire?
 	- Make them different (smaller?) than cooking to differentiate.
-
-- Stone softening rates feel off.
-	- Once first stage of stone softens, others follow really
-	  quicky (exponential runaway basically).
-	- If you leave stone soaking for a while, it looks like it
-	  basically softens all or nothing.
-	- Can we smooth this out and make it less jarring?
-
-- Make a way to prevent crafting on place
-	- Sneak? Aux?
 
 - Consider changing wet/dry stack splitting
 	- Currently, original stack remains in place, wetted/dried
@@ -165,16 +201,6 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.
-
-- Shelf recipe reform
-	- Add a "shelf frame" node made from wooden frames
-		- Name: "form"?
-	- Add appropriate material to shelf frame to make shelf
-	- 2-stage construction should make it easier to discover
-	- Shelf frame can gain its own distinct uses
-		- e.g. some things can fall through it but not others.
-		  Items?  Players?  Fluids?
-	- For glass case, dig out center of clear glass w/ pick?
 
 - Should there be pockets of softer stone at depth, like there is gravel?
 	- Register ores for softer stone of each level
