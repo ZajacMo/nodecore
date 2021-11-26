@@ -9,6 +9,14 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Reconsider how items_fall_thru works:
+	- Unified API
+		- can_stack_enter(pos, dir, stack)
+		- on_stack_enter(pos, dir, stack)
+	- Make forms check if stack can enter into node below and
+	  eject stack as ent if it can
+	- Forms can just be a normal storebox then
+
 - Allow mods to affect game time flow
 	- Allow skipping forward through time
 	- For an offline mod for mobile SP to make gametime Track
