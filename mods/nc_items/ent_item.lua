@@ -15,15 +15,15 @@ minetest.after(0, function()
 	end)
 
 nodecore.register_item_entity_on_settle(function(self, pos)
-		local node = minetest.get_node(pos)
-		if node.name == "ignore" then return end
-		if pos.y - 1 >= nodecore.map_limit_min then
-			node = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
-			if node.name == "ignore" then return end
-		end
+		local curnode = minetest.get_node(pos)
+		if curnode.name == "ignore" then return end
 
 		local below = {x = pos.x, y = pos.y - 0.55, z = pos.z}
 		local bnode = minetest.get_node(below)
+
+		if (pos.y - 1 >= nodecore.map_limit_min) and (bnode.name == "ignore")
+		then return end
+
 		if minetest.get_item_group(bnode.name, "items_fall_thru") > 0 then
 			return self.object:move_to(below)
 		end
@@ -32,6 +32,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
 		local boxes = {}
+		local falling_thru = minetest.get_item_group(curnode.name, "items_fall_thru") > 0
 		local item = ItemStack(self.itemstring)
 		for rel in nodecore.settlescan() do
 			local p = vector.add(pos, rel)
@@ -48,7 +49,11 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			end
 			if nodecore.buildable_to(p) and (p.y >= nodecore.map_limit_min)
 			and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
-				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
+				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z}))
+			and not (falling_thru and nodecore.match(
+					{x = p.x, y = p.y - 1, z = p.z},
+					{groups = {items_fall_thru = true}}
+			)) then
 				nodecore.place_stack(p, item)
 				minetest.get_meta(p):set_string("tweenfrom",
 					minetest.serialize(self.object:get_pos()))
