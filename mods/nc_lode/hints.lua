@@ -36,29 +36,18 @@ nodecore.register_hint("anneal a lode cube",
 	"forge lode block"
 )
 
-nodecore.register_hint("temper a lode cube to use as an anvil",
+nodecore.register_hint("temper a lode cube",
 	"nc_lode:block_tempered",
 	"forge lode block"
 )
 
-local any_lode_toolhead = {true,
-	"annealed anvil making hot lode toolhead_mallet",
-	"tempered anvil making hot lode toolhead_mallet",
-	"tempered anvil making annealed lode toolhead_mallet"
-}
-local any_lode_anvil = {true,
-	"nc_lode:block_annealed",
-	"nc_lode:block_tempered"
-}
-
-nodecore.register_hint("forge lode prills into a tool head on an anvil",
-	any_lode_toolhead,
-	any_lode_anvil
-)
-
-nodecore.register_hint("cold-forge annealed lode on a tempered anvil",
-	"tempered anvil making annealed lode toolhead_mallet",
-	"nc_lode:block_tempered"
+nodecore.register_hint("forge lode prills into a tool head",
+	"forge lode toolhead_mallet",
+	{true,
+		"nc_lode:prill_hot",
+		"nc_lode:prill_annealed",
+		"nc_lode:prill_tempered"
+	}
 )
 
 nodecore.register_hint("temper a lode tool head",
@@ -69,16 +58,12 @@ nodecore.register_hint("temper a lode tool head",
 		"nc_lode:toolhead_pick_tempered",
 		"nc_lode:toolhead_mattock_tempered"
 	},
-	any_lode_toolhead
+	"forge lode toolhead_mallet"
 )
 
 nodecore.register_hint("weld glowing lode pick and spade heads together",
 	"assemble lode mattock head",
-	{true,
-		"annealed anvil making hot lode toolhead_pick",
-		"tempered anvil making hot lode toolhead_pick",
-		"tempered anvil making annealed lode toolhead_pick"
-	}
+	"forge lode toolhead_pick"
 )
 
 nodecore.register_hint("hammer a lode prill into a bar",

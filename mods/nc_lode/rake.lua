@@ -54,25 +54,27 @@ nodecore.register_lode("rake", {
 	})
 
 local adze = {name = modname .. ":adze_annealed", wear = 0.05}
-nodecore.register_craft({
-		label = "assemble lode rake",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		norotate = true,
-		priority = 1,
-		indexkeys = {modname .. ":bar_annealed"},
-		nodes = {
-			{match = modname .. ":bar_annealed", replace = "air"},
-			{y = -1, match = modname .. ":block_tempered"},
-			{x = 0, z = -1, match = adze, replace = "air"},
-			{x = 0, z = 1, match = adze, replace = "air"},
-			{x = -1, z = 0, match = adze, replace = "air"},
-			{x = 1, z = 0, match = adze, replace = "air"},
-		},
-		items = {
-			modname .. ":rake_annealed"
+nodecore.register_lode_anvil_recipe(-1, function(temper)
+		return {
+			label = "assemble lode rake",
+			action = "pummel",
+			toolgroups = {thumpy = 3},
+			norotate = true,
+			priority = 1,
+			indexkeys = {modname .. ":bar_" .. temper},
+			nodes = {
+				{match = modname .. ":bar_" .. temper, replace = "air"},
+				{x = 0, z = -1, match = adze, replace = "air"},
+				{x = 0, z = 1, match = adze, replace = "air"},
+				{x = -1, z = 0, match = adze, replace = "air"},
+				{x = 1, z = 0, match = adze, replace = "air"},
+			},
+			items = {
+				modname .. ":rake_annealed"
+			}
 		}
-	})
+	end)
+
 nodecore.register_craft({
 		label = "recycle lode rake",
 		action = "pummel",

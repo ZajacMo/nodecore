@@ -7,6 +7,7 @@ nodecore.amcoremod()
 
 include("ore")
 include("metallurgy")
+include("anvils")
 include("oresmelt")
 include("tools")
 include("shafts")
