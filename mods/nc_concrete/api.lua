@@ -52,7 +52,7 @@ function nodecore.register_concrete(def)
 					liquidtype = "source",
 					groups = {concrete_source = 1}
 				}, wetdef))
-		minetest.register_node(basename .. "_wet_flowing", nodecore.underride({
+		minetest.register_node(":" .. basename .. "_wet_flowing", nodecore.underride({
 					drawtype = "flowingliquid",
 					liquidtype = "flowing",
 					paramtype2 = "flowingliquid",
