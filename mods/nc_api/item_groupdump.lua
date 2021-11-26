@@ -70,6 +70,7 @@ local groups = {
 	hard_stone = "stratum of hard stone for stone, ores, and similar",
 	igniter = "causes nearby flammable things to ignite",
 	is_stack_only = "(specific) a bare item stack as a node",
+	items_fall_thru = "items do not settle here",
 	lava = "(specific) source or flowing pumwater",
 	leaf_decay = "decays into its leaf_decay_as items if not connected to tree trunk",
 	leafy = "(deprecated) loose leaves",

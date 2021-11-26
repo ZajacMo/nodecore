@@ -57,6 +57,12 @@ minetest.register_node(modname .. ":stack", {
 		on_construct = function(pos, ...)
 			local key = minetest.hash_node_position(pos)
 			minetest.after(0, function()
+					local below = {x = pos.x, y = pos.y - 0.55, z = pos.z}
+					local bnode = minetest.get_node(below)
+					if minetest.get_item_group(bnode.name, "items_fall_thru") > 0 then
+						nodecore.item_eject(below, nodecore.stack_get(pos))
+						return minetest.remove_node(pos)
+					end
 					local except = nodecore.stack_node_sounds_except[key]
 					nodecore.stack_node_sounds_except[key] = nil
 					return except == true

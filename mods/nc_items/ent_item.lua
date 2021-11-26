@@ -22,6 +22,12 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			if node.name == "ignore" then return end
 		end
 
+		local below = {x = pos.x, y = pos.y - 0.55, z = pos.z}
+		local bnode = minetest.get_node(below)
+		if minetest.get_item_group(bnode.name, "items_fall_thru") > 0 then
+			return self.object:move_to(below)
+		end
+
 		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
