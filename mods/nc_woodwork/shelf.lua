@@ -6,6 +6,43 @@ local minetest, nodecore
 local modname = minetest.get_current_modname()
 
 local bark = "nc_tree_tree_side.png^[mask:nc_api_storebox_frame.png"
+
+minetest.register_node(modname .. ":form", {
+		description = "Wooden Form",
+		drawtype = "mesh",
+		visual_scale = nodecore.z_fight_ratio,
+		mesh = "nc_api_storebox_box.obj",
+		backface_culling = true,
+		use_texture_alpha = "clip",
+		tiles = {bark},
+		selection_box = nodecore.fixedbox(),
+		collision_box = nodecore.fixedbox(),
+		groups = {
+			snappy = 1,
+			flammable = 2,
+			fire_fuel = 1,
+			totable = 1,
+			items_fall_thru = 1
+		},
+		paramtype = "light",
+		sunlight_propagates = true,
+		sounds = nodecore.sounds("nc_tree_sticky")
+	})
+
+local function regconv(from, to)
+	return nodecore.register_craft({
+			label = "wooden " .. from .. " to " .. to,
+			action = "pummel",
+			toolgroups = {thumpy = 1},
+			indexkeys = {modname .. ":" .. from},
+			nodes = {
+				{match = modname .. ":" .. from, replace = modname .. ":" .. to}
+			}
+		})
+end
+regconv("frame", "form")
+regconv("form", "frame")
+
 local plank = modname .. "_plank.png^(" .. bark .. ")"
 
 minetest.register_node(modname .. ":shelf", {
