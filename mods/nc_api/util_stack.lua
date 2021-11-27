@@ -48,8 +48,8 @@ end
 
 local metakey = "ncitem"
 
-function nodecore.stack_get(pos)
-	local meta = minetest.get_meta(pos)
+function nodecore.stack_get(pos, meta)
+	meta = meta or minetest.get_meta(pos)
 	local str = meta:get_string(metakey)
 	if str and str ~= "" then return ItemStack(str) end
 	local inv = meta:get_inventory()
@@ -76,18 +76,27 @@ local function update(pos, ...)
 	return ...
 end
 
-function nodecore.stack_set(pos, stack, player)
+function nodecore.stack_set(pos, stack, player, node, def)
 	if player then
 		nodecore.log("action", string_format("%s sets stack %q at %s",
 				player:get_player_name(), shortdesc(stack), minetest.pos_to_string(pos)))
 	end
-	return update(pos, minetest.get_meta(pos):set_string(metakey,
-			ItemStack(stack):to_string()))
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_items[node.name] or {}
+	local meta = minetest.get_meta(pos)
+	stack = ItemStack(stack)
+	local old = def.on_stack_change and nodecore.stack_get(pos, meta)
+	local stackstring = stack:to_string()
+	meta:set_string(metakey, stackstring)
+	if def.on_stack_change and old:to_string() ~= stackstring then
+		def.on_stack_change(pos, node, stack, old)
+	end
+	return update(pos)
 end
 
-function nodecore.stack_add(pos, stack, player)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
+function nodecore.stack_add(pos, stack, player, node, def)
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_items[node.name] or {}
 	if not def.can_have_itemstack then return stack end
 	if def.stack_allow then
 		local ret = def.stack_allow(pos, node, stack)
@@ -99,7 +108,7 @@ function nodecore.stack_add(pos, stack, player)
 	local item = nodecore.stack_get(pos)
 	local exist = item:get_count()
 	local left = nodecore.stack_merge(item, stack)
-	nodecore.stack_set(pos, item)
+	nodecore.stack_set(pos, item, nil, node, def)
 	local remain = left:get_count()
 	if donate ~= remain then
 		if player then
@@ -114,7 +123,7 @@ function nodecore.stack_add(pos, stack, player)
 	return update(pos, left)
 end
 
-function nodecore.stack_giveto(pos, player)
+function nodecore.stack_giveto(pos, player, node, def)
 	local stack = nodecore.stack_get(pos)
 	local qty = stack:get_count()
 	if qty < 1 then return true end
@@ -129,7 +138,7 @@ function nodecore.stack_giveto(pos, player)
 			qty, qty - remain, remain, minetest.pos_to_string(pos)))
 
 	nodecore.stack_sounds(pos, "dug")
-	nodecore.stack_set(pos, left)
+	nodecore.stack_set(pos, left, nil, node, def)
 	return stack:is_empty()
 end
 

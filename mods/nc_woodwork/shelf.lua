@@ -28,6 +28,13 @@ minetest.register_node(modname .. ":form", {
 			if minetest.get_node(pos).name == modname .. ":form" then
 				return nodecore.stack_get(pos)
 			end
+		end,
+		on_stack_change = function(pos, _, stack)
+			nodecore.stack_set(pos, nodecore.stack_settle({
+						x = pos.x,
+						y = pos.y - 1,
+						z = pos.z
+					}, stack))
 		end
 	})
 
