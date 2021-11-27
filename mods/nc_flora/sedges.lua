@@ -13,7 +13,13 @@ local droprates = {
 	{{items = {sedge1}, rarity = 16}},
 	{{items = {sedge1}, rarity = 8}},
 	{{items = {sedge1}, rarity = 4}},
-	{{items = {sedge1}, rarity = 1}, {items = {sedge1}, rarity = 4}},
+	{
+		max_items = 1,
+		items = {
+			{items = {sedge1 .. " 2"}, rarity = 4},
+			{items = {sedge1}, rarity = 1}
+		}
+	}
 }
 
 local tilebase = modname .. "_sedge_color.png^(nc_terrain_grass_top.png^[mask:"
