@@ -1,8 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, type, vector
-    = ItemStack, math, minetest, nodecore, pairs, type, vector
-local math_floor, math_pi, math_random, math_sqrt
-    = math.floor, math.pi, math.random, math.sqrt
+local ItemStack, math, minetest, nodecore, pairs, table, type, vector
+    = ItemStack, math, minetest, nodecore, pairs, table, type, vector
+local math_floor, math_pi, math_random, math_sqrt, table_insert,
+      table_remove
+    = math.floor, math.pi, math.random, math.sqrt, table.insert,
+      table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 function minetest.spawn_falling_node(pos, node, meta)
@@ -61,10 +63,12 @@ function nodecore.entity_staticdata_helpers(savedprops)
 	return function(self, data)
 		data = data and minetest.deserialize(data) or {}
 		for k in pairs(savedprops) do self[k] = data[k] end
+		self.startpos = data.startpos or self.object:get_pos()
 	end,
 	function(self)
 		local data = {}
 		for k in pairs(savedprops) do data[k] = self[k] end
+		data.startpos = self.startpos or self.object:get_pos()
 		return minetest.serialize(data)
 	end
 end
@@ -92,6 +96,91 @@ function minetest.check_single_for_falling(...)
 		return ...
 	end
 	return helper(oldcheck(...))
+end
+
+local hash_node_position = minetest.hash_node_position
+local round = vector.round
+local function yqinsert(yq, ent)
+	local key = ent.startpos.y
+
+	local grp = yq.ents[key]
+	if not grp then
+		grp = {}
+		yq.ents[key] = grp
+
+		local min = 1
+		local max = #yq.idx
+		while max > min do
+			local try = math_floor((min + max) / 2)
+			if key > yq.idx[try] then
+				min = try + 1
+			else
+				max = try
+			end
+		end
+		table_insert(yq.idx, min, key)
+	end
+	grp[#grp + 1] = ent
+end
+local function yqinsertall(yq, bypos, pos)
+	local key = hash_node_position(round(pos))
+	local list = bypos[key]
+	if not list then return end
+	bypos[key] = nil
+	for e in pairs(list) do
+		yqinsert(yq, e)
+	end
+end
+local entity_settle_recursing
+function nodecore.entity_settle_recurse(pos)
+	if entity_settle_recursing then return end
+	entity_settle_recursing = true
+	local bypos = {}
+	for _, ent in pairs(minetest.luaentities) do
+		if ent.settle_check and ent.startpos and ent.startpos.y then
+			local p = ent.object:get_pos()
+			if p then
+				local hash = hash_node_position(round(pos))
+				local set = bypos[hash]
+				if not set then
+					set = {}
+					bypos[hash] = set
+				end
+				set[ent] = true
+			end
+		end
+	end
+	local queue = {idx = {}, ents = {}}
+	yqinsertall(queue, bypos, pos)
+	pos.y = pos.y + 1
+	yqinsertall(queue, bypos, pos)
+	while #queue.idx > 0 do
+		local key = queue.idx[1]
+		local ents = queue.ents[key]
+		local ent = ents[#ents]
+		if #ents == 1 then
+			queue.ents[key] = nil
+			table_remove(queue.idx, 1)
+		else
+			ents[#ents] = nil
+		end
+		local p = ent.object:get_pos()
+		while true do
+			local c = collides(p)
+			if not (c and c ~= area_unloaded) then
+				ent.object:set_pos(p)
+				break
+			end
+			p.y = p.y + 1
+		end
+		ent:settle_check()
+		if collides(p) then
+			yqinsertall(queue, bypos, p)
+			p.y = p.y + 1
+			yqinsertall(queue, bypos, p)
+		end
+	end
+	entity_settle_recursing = nil
 end
 
 function nodecore.entity_settle_check(on_settle, isnode)
@@ -135,14 +224,7 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		pos = vector.round(pos)
 
 		if not on_settle(self, pos, collides) then return end
-
-		pos.y = pos.y + 1
-		for _, obj in pairs(nodecore.get_objects_at_pos(pos)) do
-			obj = obj.get_luaentity and obj:get_luaentity()
-			if obj and obj.settle_check then
-				obj:settle_check()
-			end
-		end
+		nodecore.entity_settle_recurse(pos)
 
 		return nodecore.fallcheck(pos)
 	end
