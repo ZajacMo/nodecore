@@ -9,10 +9,10 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Unconfirmed: bug involving a player dropping all inventory into
-  a narrow vertical shaft (on VE-NC server) and having items cycle
-  indefinitely without settling to a steady state.
-  https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
+- Hints for new anvil system
+	- Test/fix hints for affected crafts
+	- Hook in recipe after() for discovery for general anvil uses
+	- Add hints to try each anvil type
 
 - Shelf recipe (and any other 3x3 recipe) reform
 	- Add a "shelf frame" node made from wooden frames
@@ -30,6 +30,11 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Lode prills should be able to drain from glowing ore into
   glass cases and crates
+
+- Unconfirmed: bug involving a player dropping all inventory into
+  a narrow vertical shaft (on VE-NC server) and having items cycle
+  indefinitely without settling to a steady state.
+  https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
 
 - Fix crappy sponge death mechanic
 	- Remove special treatment of glass case and glass nodes

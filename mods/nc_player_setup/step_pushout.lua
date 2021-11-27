@@ -17,16 +17,22 @@ local function normalbox(box)
 	if not box then return true end
 	if type(box) ~= "table" then return end
 	if box.fixed then return normalbox(box.fixed) end
-	if #box == 1 then return box[1] end
+	if #box == 1 then return normalbox(box[1]) end
 	return box[1] == -0.5 and box[2] == -0.5 and box[3] == -0.5
 	and box[4] == 0.5 and box[5] == 0.5 and box[6] == 0.5
+end
+
+local function ispushout(def)
+	if not def.walkable then return end
+	if def.liquidtype ~= "none" then return end
+	if def.groups and def.groups.is_stack_only then return end
+	return normalbox(def.collision_box)
 end
 
 local solids = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
-			if v.walkable and v.liquidtype == "none"
-			and normalbox(v.collision_box) then
+			if ispushout(v) then
 				solids[k] = true
 			end
 		end
