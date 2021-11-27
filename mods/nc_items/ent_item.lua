@@ -14,6 +14,12 @@ minetest.after(0, function()
 		end
 	end)
 
+local function nuke(self)
+	self.itemstring = ""
+	self.object:remove()
+	return true
+end
+
 nodecore.register_item_entity_on_settle(function(self, pos)
 		local curnode = minetest.get_node(pos)
 		if curnode.name == "ignore" then return end
@@ -25,12 +31,15 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		then return end
 
 		local item = ItemStack(self.itemstring)
-		item = nodecore.stack_settle(pos, item, bnode)
-		if item:is_empty() then
-			self.itemstring = ""
-			self.object:remove()
-			return true
+		item = nodecore.stack_settle(pos, item, curnode, nil, true)
+		if item:is_empty() then return nuke(self) end
+		if nodecore.stack_can_fall_in(below, item, bnode, nil, self) then
+			self.object:set_pos({x = pos.x, y = pos.y - 0.55, z = pos.z})
+			self.object:set_velocity({x = 0, y = 0, z = 0})
+			return
 		end
+		item = nodecore.stack_settle(below, item, bnode)
+		if item:is_empty() then return nuke(self) end
 
 		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
@@ -41,11 +50,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			local n = minetest.get_node(p)
 			if stackonly[n.name] then
 				item = nodecore.stack_add(p, item)
-				if item:is_empty() then
-					self.itemstring = ""
-					self.object:remove()
-					return true
-				end
+				if item:is_empty() then return nuke(self) end
 			else
 				boxes[#boxes + 1] = p
 			end
@@ -55,17 +60,12 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 				nodecore.place_stack(p, item)
 				minetest.get_meta(p):set_string("tweenfrom",
 					minetest.serialize(self.object:get_pos()))
-				self.object:remove()
-				return true
+				return nuke(self)
 			end
 		end
 		for _, p in pairs(boxes) do
 			item = nodecore.stack_add(p, item)
-			if item:is_empty() then
-				self.itemstring = ""
-				self.object:remove()
-				return true
-			end
+			if item:is_empty() then return nuke(self) end
 		end
 		self.itemstring = item:to_string()
 	end)

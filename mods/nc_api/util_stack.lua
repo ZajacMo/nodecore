@@ -142,13 +142,22 @@ function nodecore.stack_giveto(pos, player, node, def)
 	return stack:is_empty()
 end
 
-function nodecore.stack_settle(pos, stack, node, def)
+function nodecore.stack_settle(pos, stack, node, def, inside)
 	stack = ItemStack(stack)
 	if stack:is_empty() then return stack end
 	node = node or minetest.get_node(pos)
 	def = def or minetest.registered_items[node.name] or {}
 	if not def.on_settle_item then return stack end
-	return def.on_settle_item(pos, node, stack)
+	return def.on_settle_item(pos, node, stack, inside)
+end
+
+function nodecore.stack_can_fall_in(pos, stack, node, def, ent)
+	stack = ItemStack(stack)
+	if stack:is_empty() then return end
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_items[node.name] or {}
+	if not def.can_item_fall_in then return def.buildable_to end
+	return def.can_item_fall_in(pos, node, stack, ent)
 end
 
 local ejectdir
@@ -214,7 +223,7 @@ function nodecore.item_eject(pos, stack, speed, qty, vel)
 			}
 		end
 		local p = {x = pos.x, y = pos.y + 0.25, z = pos.z}
-		local obj = minetest.add_item(p, stack)
+		local obj = nodecore.add_item_raw(p, stack)
 		if obj then obj:set_velocity(v) end
 	end
 end

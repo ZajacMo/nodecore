@@ -69,6 +69,15 @@ function nodecore.storebox_on_settle_item(pos, node, stack)
 	return nodecore.stack_add(pos, stack)
 end
 
+function nodecore.storebox_can_item_fall_in(pos, node)
+	if not nodecore.stack_get(pos):is_empty() then return end
+	local def = node and minetest.registered_items[node.name] or {}
+	if def.storebox_access and (not def.storebox_access(
+			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
+				under = pos}, pos, node)) then return end
+	return true
+end
+
 nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" or (not def.groups) or (not def.groups.storebox) then return end
 
@@ -91,4 +100,5 @@ nodecore.register_on_register_item(function(_, def)
 		def.on_punch = def.on_punch or nodecore.storebox_on_punch
 		def.stack_allow = def.stack_allow or nodecore.storebox_stack_allow
 		def.on_settle_item = def.on_settle_item or nodecore.storebox_on_settle_item
+		def.can_item_fall_in = def.can_item_fall_in or nodecore.storebox_can_item_fall_in
 	end)

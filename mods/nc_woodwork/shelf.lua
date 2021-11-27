@@ -29,12 +29,24 @@ minetest.register_node(modname .. ":form", {
 				return nodecore.stack_get(pos)
 			end
 		end,
+		on_settle_item = function(pos, node, stack, inside, ...)
+			if inside and nodecore.stack_can_fall_in({
+					x = pos.x,
+					y = pos.y - 1,
+					z = pos.z
+				}, stack) then return stack end
+			return nodecore.storebox_on_settle_item(pos, node, stack, inside, ...)
+		end,
 		on_stack_change = function(pos, _, stack)
-			nodecore.stack_set(pos, nodecore.stack_settle({
-						x = pos.x,
-						y = pos.y - 1,
-						z = pos.z
-					}, stack))
+			if stack:is_empty() then return end
+			print(stack:to_string())
+			if not nodecore.stack_can_fall_in({
+					x = pos.x,
+					y = pos.y - 1,
+					z = pos.z
+				}, stack) then return end
+			nodecore.stack_set(pos, "")
+			nodecore.item_eject(pos, stack)
 		end
 	})
 

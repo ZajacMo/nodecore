@@ -81,6 +81,8 @@ do
 	minetest.after(0, regreport)
 end
 
+nodecore.add_item_raw = minetest.add_item
+
 include("compat_clientversion")
 include("compat_creative")
 include("compat_issue10127")
