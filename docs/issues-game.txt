@@ -67,7 +67,9 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Confirmation UI after completing recipe, e.g. floating ent
 	- Make all recipes include some pummel factor?
 
-- Rakes don't work with door press.
+- Door press recipe limitations
+	- Rakes don't work with door press
+	- Stackapply recipes
 
 - Health system slot bias should be a bit stronger
 
