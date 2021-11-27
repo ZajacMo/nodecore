@@ -13,7 +13,7 @@ minetest.register_node(modname .. ":form", {
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
 		groups = {
-			snappy = 1,
+			choppy = 1,
 			flammable = 2,
 			fire_fuel = 1,
 			totable = 1,
