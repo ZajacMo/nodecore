@@ -123,7 +123,7 @@ local function yqinsert(yq, ent)
 	grp[#grp + 1] = ent
 end
 local function yqinsertall(yq, bypos, pos)
-	local key = hash_node_position(round(pos))
+	local key = hash_node_position(pos)
 	local list = bypos[key]
 	if not list then return end
 	bypos[key] = nil
@@ -135,6 +135,8 @@ local entity_settle_recursing
 function nodecore.entity_settle_recurse(pos)
 	if entity_settle_recursing then return end
 	entity_settle_recursing = true
+	pos = round(pos)
+	local blocked = {[hash_node_position(pos)] = true}
 	local bypos = {}
 	for _, ent in pairs(minetest.luaentities) do
 		if ent.settle_check and ent.startpos and ent.startpos.y then
@@ -164,9 +166,9 @@ function nodecore.entity_settle_recurse(pos)
 		else
 			ents[#ents] = nil
 		end
-		local p = ent.object:get_pos()
+		local p = round(ent.object:get_pos())
 		while true do
-			local c = collides(p)
+			local c = blocked[hash_node_position(p)]
 			if not (c and c ~= area_unloaded) then
 				ent.object:set_pos(p)
 				break
@@ -175,6 +177,7 @@ function nodecore.entity_settle_recurse(pos)
 		end
 		ent:settle_check()
 		if collides(p) then
+			blocked[hash_node_position(p)] = true
 			yqinsertall(queue, bypos, p)
 			p.y = p.y + 1
 			yqinsertall(queue, bypos, p)
