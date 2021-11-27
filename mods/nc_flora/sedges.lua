@@ -50,7 +50,7 @@ for i = 1, 5 do
 				flammable = 3,
 				attached_node = 1
 			},
-			sounds = nodecore.sounds("nc_terrain_swishy"),
+			sounds = nodecore.sounds("nc_terrain_grassy"),
 			selection_box = nodecore.fixedbox(
 				{-3/8, -1/2, -3/8, 3/8, -1/2 + i / 8, 3/8}
 			),
