@@ -85,11 +85,14 @@ function nodecore.stack_set(pos, stack, player, node, def)
 	def = def or minetest.registered_items[node.name] or {}
 	local meta = minetest.get_meta(pos)
 	stack = ItemStack(stack)
-	local old = def.on_stack_change and nodecore.stack_get(pos, meta)
+	local old = nodecore.stack_get(pos, meta)
 	local stackstring = stack:to_string()
 	meta:set_string(metakey, stackstring)
-	if def.on_stack_change and old:to_string() ~= stackstring then
-		def.on_stack_change(pos, node, stack, old)
+	if old:to_string() ~= stackstring then
+		if def.on_stack_change then
+			def.on_stack_change(pos, node, stack, old)
+		end
+		nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
 	return update(pos)
 end

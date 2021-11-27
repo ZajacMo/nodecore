@@ -7,6 +7,20 @@ nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
+function nodecore.storebox_open_bottom(pos, node, def, stack)
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_nodes[node.name] or {}
+	stack = stack or nodecore.stack_get(pos)
+	if def.storebox_access and (not def.storebox_access(
+			{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
+				under = pos}, pos, node)) then return end
+	return nodecore.stack_can_fall_in({
+			x = pos.x,
+			y = pos.y - 1,
+			z = pos.z
+		}, stack)
+end
+
 local function doplace(stack, clicker, pointed_thing, ...)
 	local function helper(left, ok, ...)
 		if ok then nodecore.node_sound(pointed_thing.above, "place") end
@@ -61,7 +75,10 @@ function nodecore.storebox_stack_allow(pos, node, stack)
 	and idef.groups.container >= def.groups.storebox then return false end
 end
 
-function nodecore.storebox_on_settle_item(pos, node, stack)
+function nodecore.storebox_on_settle_item(pos, node, stack, inside)
+	if inside and nodecore.storebox_open_bottom(pos, node, nil, stack) then
+		return stack
+	end
 	local def = node and minetest.registered_items[node.name] or {}
 	if def.storebox_access and (not def.storebox_access(
 			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
@@ -76,6 +93,26 @@ function nodecore.storebox_can_item_fall_in(pos, node)
 			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
 				under = pos}, pos, node)) then return end
 	return true
+end
+
+function nodecore.storebox_check_item_fall_out(pos, node, stack)
+	if not nodecore.storebox_open_bottom(pos, node) then return end
+	if stack:is_empty() then return false end
+	if not nodecore.stack_can_fall_in({
+			x = pos.x,
+			y = pos.y - 1,
+			z = pos.z
+		}, stack) then return end
+	nodecore.stack_set(pos, "")
+	nodecore.item_eject(pos, stack)
+	return true
+end
+nodecore.storebox_on_stack_change = function(...)
+	return nodecore.storebox_check_item_fall_out(...)
+end
+nodecore.storebox_on_falling_check = function(pos)
+	return nodecore.storebox_check_item_fall_out(pos,
+		minetest.get_node(pos), nodecore.stack_get(pos))
 end
 
 nodecore.register_on_register_item(function(_, def)
@@ -98,7 +135,12 @@ nodecore.register_on_register_item(function(_, def)
 
 		def.on_rightclick = def.on_rightclick or nodecore.storebox_on_rightclick
 		def.on_punch = def.on_punch or nodecore.storebox_on_punch
+
 		def.stack_allow = def.stack_allow or nodecore.storebox_stack_allow
+
 		def.on_settle_item = def.on_settle_item or nodecore.storebox_on_settle_item
 		def.can_item_fall_in = def.can_item_fall_in or nodecore.storebox_can_item_fall_in
+
+		def.on_stack_change = def.on_stack_change or nodecore.storebox_on_stack_change
+		def.on_falling_check = def.on_falling_check or nodecore.storebox_on_falling_check
 	end)
