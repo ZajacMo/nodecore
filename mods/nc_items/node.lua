@@ -45,13 +45,16 @@ minetest.register_node(modname .. ":stack", {
 		end,
 		on_rightclick = function(pos, _, whom, stack, pointed)
 			if not nodecore.interact(whom) then return stack end
-			minetest.after(0, function()
-					nodecore.craft_check(pos, minetest.get_node(pos), {
-							action = "stackapply",
-							crafter = whom,
-							pointed = pointed
-						})
-				end)
+
+			if whom and whom.is_player and whom:is_player()
+			and nodecore.craft_check(pos, minetest.get_node(pos), {
+					action = "stackapply",
+					crafter = whom,
+					pointed = pointed
+				}) then
+				return whom:get_wielded_item()
+			end
+
 			return nodecore.stack_add(pos, stack)
 		end,
 		on_construct = function(pos, ...)
