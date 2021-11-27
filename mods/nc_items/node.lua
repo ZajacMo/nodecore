@@ -67,17 +67,17 @@ minetest.register_node(modname .. ":stack", {
 				end)
 			return nodecore.visinv_on_construct(pos, ...)
 		end,
-		after_dig_node = pezdispense
+		after_dig_node = pezdispense,
+		on_settle_item = function(pos, _, stack)
+			return nodecore.stack_add(pos, stack)
+		end
 	})
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	stack = ItemStack(stack)
 
-	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	if minetest.get_node(below).name == modname .. ":stack" then
-		stack = nodecore.stack_add(below, stack, placer)
-		if stack:is_empty() then return end
-	end
+	stack = nodecore.stack_settle({x = pos.x, y = pos.y - 1, z = pos.z}, stack)
+	if stack:is_empty() then return end
 
 	if stack:get_count() == 1 then
 		local def = minetest.registered_nodes[stack:get_name()]

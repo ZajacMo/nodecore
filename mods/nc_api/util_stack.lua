@@ -133,6 +133,15 @@ function nodecore.stack_giveto(pos, player)
 	return stack:is_empty()
 end
 
+function nodecore.stack_settle(pos, stack, node, def)
+	stack = ItemStack(stack)
+	if stack:is_empty() then return stack end
+	node = node or minetest.get_node(pos)
+	def = def or minetest.registered_items[node.name] or {}
+	if not def.on_settle_item then return stack end
+	return def.on_settle_item(pos, node, stack)
+end
+
 local ejectdir
 do
 	local margin = 0.001

@@ -24,8 +24,11 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		if (pos.y - 1 >= nodecore.map_limit_min) and (bnode.name == "ignore")
 		then return end
 
-		local bdef = minetest.registered_items[bnode.name] or {}
-		if bdef.on_settle_item and bdef.on_settle_item(below, bnode, self) then
+		local item = ItemStack(self.itemstring)
+		item = nodecore.stack_settle(pos, item, bnode)
+		if item:is_empty() then
+			self.itemstring = ""
+			self.object:remove()
 			return true
 		end
 
@@ -33,7 +36,6 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
 		local boxes = {}
-		local item = ItemStack(self.itemstring)
 		for rel in nodecore.settlescan() do
 			local p = vector.add(pos, rel)
 			local n = minetest.get_node(p)
