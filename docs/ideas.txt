@@ -67,10 +67,6 @@ IDEAS: Possible future additions/improvements to the game
 		- Upconvert dirt to humus nearby?
 		- Rushes to reeds to windchimes?
 
-- Rework falling_node (or build alternative) with customizability
-	- Allow lode rods, ladders to hang from ceilings?
-	- Add on_fall_check hook, hook in check_single_for_falling
-
 - A pure white concrete material?
 	- Use crude glass for recipe?  Flow wet concrete into crude
 	  glass from above?

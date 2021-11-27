@@ -141,9 +141,6 @@ ISSUES-CODE: Issues related to code quality and APIs
   modified copy of another definition, e.g. for planted eggcorns copying
   dirt, door panels copying original materials, etc.
 
-- Add an on_falling_check handler to replace check_single_for_falling custom
-  hook in writing, and possibly other places.
-
 - Should we create "recipe groups" to make it easier to specify
   equivalent recipes for hint purposes?
 

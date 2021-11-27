@@ -129,25 +129,6 @@ function minetest.item_drop(item, player, ...)
 	return helper(olddrop(item, player, ...))
 end
 
-local oldfallcheck = minetest.check_single_for_falling
-function minetest.check_single_for_falling(pos, ...)
-	local function helper(...)
-		if minetest.get_node(pos).name ~= modname .. ":stack" then return ... end
-		local stack = nodecore.stack_get(pos)
-		local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-		if minetest.get_node(below).name == modname .. ":stack" then
-			stack = nodecore.stack_add(below, stack)
-			if stack:is_empty() then
-				minetest.remove_node(pos)
-			else
-				nodecore.stack_set(pos, stack)
-			end
-			return ...
-		end
-	end
-	return helper(oldfallcheck(pos, ...))
-end
-
 local oldlog = minetest.log
 function minetest.log(...)
 	local args = {...}

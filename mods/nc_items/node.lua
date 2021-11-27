@@ -70,6 +70,19 @@ minetest.register_node(modname .. ":stack", {
 		after_dig_node = pezdispense,
 		on_settle_item = function(pos, _, stack)
 			return nodecore.stack_add(pos, stack)
+		end,
+		on_falling_check = function(pos)
+			local stack = nodecore.stack_get(pos)
+			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+			if minetest.get_node(below).name == modname .. ":stack" then
+				stack = nodecore.stack_add(below, stack)
+				if stack:is_empty() then
+					minetest.remove_node(pos)
+				else
+					nodecore.stack_set(pos, stack)
+				end
+				return false
+			end
 		end
 	})
 

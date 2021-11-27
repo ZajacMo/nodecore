@@ -50,20 +50,14 @@ for i = 1, #nodecore.writing_glyphs do
 					return raw .. "\n" .. desc
 				end
 				return raw
+			end,
+			on_falling_check = function(pos, node)
+				local dp = vector.add(pos, nodecore.facedirs[node.param2].b)
+				if not nodecore.writing_writable(dp, nil, true) then
+					minetest.remove_node(pos)
+					return true
+				end
+				return false
 			end
 		})
-end
-
-local oldcsff = minetest.check_single_for_falling
-function minetest.check_single_for_falling(pos, ...)
-	local node = minetest.get_node_or_nil(pos)
-	if not node then return oldcsff(pos, ...) end
-	if minetest.get_item_group(node.name, "alpha_glyph") ~= 0 then
-		local dp = vector.add(pos, nodecore.facedirs[node.param2].b)
-		if not nodecore.writing_writable(dp, nil, true) then
-			minetest.remove_node(pos)
-			return true
-		end
-	end
-	return oldcsff(pos, ...)
 end

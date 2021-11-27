@@ -13,9 +13,16 @@ function minetest.check_single_for_falling(pos, ...)
 		if not def then return n end
 		return (not (def and def.groups and def.groups.support_falling)) and n or nil
 	end
-	local function helper(...)
+	local function helper(fell, ...)
 		minetest.get_node_or_nil = gnon
-		return ...
+		if not fell then
+			local node = minetest.get_node(pos)
+			local def = minetest.registered_nodes[node.name] or {}
+			if def.on_falling_check then
+				return def.on_falling_check(pos, node)
+			end
+		end
+		return fell, ...
 	end
 	return helper(csff(pos, ...))
 end
