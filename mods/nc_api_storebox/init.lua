@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -61,6 +61,20 @@ function nodecore.storebox_stack_allow(pos, node, stack)
 	and idef.groups.container >= def.groups.storebox then return false end
 end
 
+function nodecore.storebox_on_settle_item(pos, node, ent)
+	local def = node and minetest.registered_items[node.name] or {}
+	if def.storebox_access and (not def.storebox_access(
+			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
+				under = pos}, pos, node)) then return end
+	local item = nodecore.stack_add(pos, ItemStack(ent.itemstring or ""))
+	if item:is_empty() then
+		ent.itemstring = ""
+		ent.object:remove()
+		return true
+	end
+	ent.itemstring = item:to_string()
+end
+
 nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" or (not def.groups) or (not def.groups.storebox) then return end
 
@@ -82,4 +96,5 @@ nodecore.register_on_register_item(function(_, def)
 		def.on_rightclick = def.on_rightclick or nodecore.storebox_on_rightclick
 		def.on_punch = def.on_punch or nodecore.storebox_on_punch
 		def.stack_allow = def.stack_allow or nodecore.storebox_stack_allow
+		def.on_settle_item = def.on_settle_item or nodecore.storebox_on_settle_item
 	end)

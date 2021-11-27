@@ -9,11 +9,6 @@ local bark = "nc_tree_tree_side.png^[mask:nc_api_storebox_frame.png"
 
 minetest.register_node(modname .. ":form", {
 		description = "Wooden Form",
-		drawtype = "mesh",
-		visual_scale = nodecore.z_fight_ratio,
-		mesh = "nc_api_storebox_box.obj",
-		backface_culling = true,
-		use_texture_alpha = "clip",
 		tiles = {bark},
 		selection_box = nodecore.fixedbox(),
 		collision_box = nodecore.fixedbox(),
@@ -22,11 +17,18 @@ minetest.register_node(modname .. ":form", {
 			flammable = 2,
 			fire_fuel = 1,
 			totable = 1,
-			items_fall_thru = 1
+			storebox = 1,
+			visinv = 1,
+			container = 0
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		on_ignite = function(pos)
+			if minetest.get_node(pos).name == modname .. ":form" then
+				return nodecore.stack_get(pos)
+			end
+		end
 	})
 
 local function regconv(from, to)

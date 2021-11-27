@@ -10,20 +10,15 @@ ISSUES-CODE: Issues related to code quality and APIs
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Reconsider how items_fall_thru works:
-	- Unified visinv/storebox API
-		- can_stack_enter(pos, node, dirfrom, stack)
-		- on_stack_enter(pos, node, dirfrom, stack, objref?)
-	- Make forms check if stack can enter into node below and
-	  eject stack as ent if it can
-	- Forms can just be a normal storebox then
-
-- Standardize visinv access API
-	- stack_access(pos, node, dirfrom, player) - return booly
-	  whether access to inside stack is allowed.
-	- Specifically for players, not item ents or falling_nodes
-	- Use for shelf API.
-	- Use for touchtips inv access.
-	- Genericize sponge logic using stack_access API
+	- Need a unified item_can_enter
+		- Lode ore dropping
+		- Handle storebox access
+		- Item stack placement and combining
+	- Wooden forms need to eject items downward
+		- Probably need an on_stack_changed notify API
+	- Handle non-falling cases
+		- Door pushing stack onto top of case/crate
+		- Change on_settle_item api to take/return itemstack?
 
 - Allow mods to affect game time flow
 	- Allow skipping forward through time
