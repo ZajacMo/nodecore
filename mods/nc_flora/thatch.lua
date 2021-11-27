@@ -13,7 +13,7 @@ minetest.register_node(modname .. ":thatch", {
 			flammable = 3,
 			fire_fuel = 4
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_grassy")
 	})
 
 nodecore.register_craft({

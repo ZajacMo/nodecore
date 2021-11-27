@@ -116,7 +116,9 @@ minetest.register_abm({
 			}
 			if not (nodecore.match(pick, {air_equivalent = true})
 				and rushcheck(pick)) then return end
-			nodecore.set_loud(below, {name = subst})
+			if math_random(1, 4) == 1 then
+				nodecore.set_loud(below, {name = subst})
+			end
 			nodecore.set_loud(pick, {
 					name = modname .. ":rush",
 					param2 = 4
