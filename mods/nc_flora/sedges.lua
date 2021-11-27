@@ -14,11 +14,8 @@ local droprates = {
 	{{items = {sedge1}, rarity = 8}},
 	{{items = {sedge1}, rarity = 4}},
 	{
-		max_items = 1,
-		items = {
-			{items = {sedge1 .. " 2"}, rarity = 4},
-			{items = {sedge1}, rarity = 1}
-		}
+		{items = {sedge1 .. " 2"}, rarity = 4},
+		{items = {sedge1}, rarity = 1}
 	}
 }
 
@@ -58,7 +55,7 @@ for i = 1, 5 do
 				{-3/8, -1/2, -3/8, 3/8, -1/2 + i / 8, 3/8}
 			),
 			stack_family = modname .. ":sedge_1",
-			drop = {items = droprates[i]},
+			drop = {max_items = 1, items = droprates[i]},
 			destroy_on_dig = 50
 		})
 
