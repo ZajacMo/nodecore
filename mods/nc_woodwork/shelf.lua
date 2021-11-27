@@ -37,6 +37,9 @@ local function regconv(from, to)
 			action = "pummel",
 			toolgroups = {thumpy = 1},
 			indexkeys = {modname .. ":" .. from},
+			check = function(pos)
+				return nodecore.stack_get(pos):is_empty()
+			end,
 			nodes = {
 				{match = modname .. ":" .. from, replace = modname .. ":" .. to}
 			}
