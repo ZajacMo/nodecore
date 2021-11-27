@@ -26,6 +26,14 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 			pointed_thing, pos, node)) then
 		return doplace(stack, clicker, pointed_thing)
 	end
+	if clicker and clicker.get_wielded_item
+	and nodecore.craft_check(pos, minetest.get_node(pos), {
+			action = "stackapply",
+			crafter = clicker,
+			pointed = pointed_thing
+		}) then
+		return clicker:get_wielded_item()
+	end
 	if def.stack_allow and def.stack_allow(pos, node, stack) == false then
 		return doplace(stack, clicker, pointed_thing)
 	end
