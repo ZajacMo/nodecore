@@ -25,7 +25,7 @@ nodecore.register_playerstep({
 		action = function(player, data)
 			local pt = data.raycast()
 			if pt then
-				if pt.type == "node" then
+				if pt.type == "node" and nodecore.within_map_limits(pt.under) then
 					local llu = nodecore.get_node_light(pt.under) or 0
 					local lla = nodecore.get_node_light(pt.above) or 0
 					local ll = (llu > lla) and llu or lla

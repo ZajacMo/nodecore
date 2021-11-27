@@ -44,6 +44,8 @@ local function settip(player, pos, name)
 end
 
 local function checknode(player, pt, data)
+	if not nodecore.within_map_limits(pt.under) then return end
+
 	local face = nodeface(pt)
 
 	local pname = player:get_player_name()

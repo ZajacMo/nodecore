@@ -16,3 +16,12 @@ nodecore.map_limit_max = (limitchunks - 0.5) * chunksize + 7.5
 
 nodecore.log("action", string_format("mapgen limit: %d, chunk: %d, bounds: %0.1f to %0.1f",
 		limit, chunksize, nodecore.map_limit_min, nodecore.map_limit_max))
+
+function nodecore.within_map_limits(pos)
+	return pos.x >= nodecore.map_limit_min
+	and pos.y >= nodecore.map_limit_min
+	and pos.z >= nodecore.map_limit_min
+	and pos.x <= nodecore.map_limit_max
+	and pos.y <= nodecore.map_limit_max
+	and pos.z <= nodecore.map_limit_max
+end
