@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, type
-    = ItemStack, minetest, nodecore, pairs, type
+local ItemStack, error, minetest, nodecore, pairs, type
+    = ItemStack, error, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -104,14 +104,13 @@ local function replacestack(pos, alt)
 	local name = stack and stack:get_name() or node.name
 	local def = minetest.registered_items[name] or {}
 	alt = def["metal_alt_" .. alt]
-	if not alt then return nodecore.remove_node(pos) end
+	if not alt then return error("no " .. alt .. " alt for " .. name) end
 	if stack then
 		local repl = ItemStack(alt)
 		local qty = stack:get_count()
 		if qty == 0 then qty = 1 end
 		repl:set_count(qty * repl:get_count())
-		nodecore.remove_node(pos)
-		return nodecore.item_eject(pos, repl)
+		nodecore.stack_set(pos, repl)
 	else
 		nodecore.set_node(pos, {name = alt})
 		nodecore.fallcheck(pos)

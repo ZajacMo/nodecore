@@ -47,6 +47,9 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		addgroups(sum, rel(0, -1, 0))
 		addgroups(sum, rel(0, 0, 1))
 		addgroups(sum, rel(0, 0, -1))
+		if data.touchgroupmodify then
+			data.touchgroupmodify(sum)
+		end
 		for k, v in pairs(recipe.touchgroups) do
 			local w = sum[k] or 0
 			if v > 0 and w < v then return end

@@ -26,12 +26,17 @@ minetest.after(0, function()
 		end
 	end)
 
+local function flameblock(sum) sum.flame = nil end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
-		nodenames = {modname .. ":stack"},
+		nodenames = {"group:visinv"},
 		action = function(pos, node)
+			node.stack = nodecore.stack_get(pos)
 			local data = nodecore.craft_cooking_data()
+			if minetest.get_item_group(node.name, "is_stack_only") == 0 then
+				data.touchgroupmodify = flameblock
+			end
 			nodecore.craft_check(pos, node, data)
 			if not data.progressing then
 				return minetest.get_meta(pos):set_string(modname, "")
@@ -43,7 +48,7 @@ nodecore.register_dnt({
 
 minetest.register_abm({
 		label = "item stack cook",
-		nodenames = {modname .. ":stack"},
+		nodenames = {"group:visinv"},
 		interval = 1,
 		chance = 1,
 		action = function(pos)
