@@ -82,7 +82,7 @@ function nodecore.storebox_on_settle_item(pos, node, stack, inside)
 	local def = node and minetest.registered_items[node.name] or {}
 	if def.storebox_access and (not def.storebox_access(
 			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
-				under = pos}, pos, node)) then return end
+				under = pos}, pos, node)) then return stack end
 	return nodecore.stack_add(pos, stack)
 end
 
