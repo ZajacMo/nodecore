@@ -6,7 +6,7 @@ set -ex
 
 # "dev" to run latest development/test version
 # "master" to run stable production version
-BRANCH=dev
+BRANCH="dev"
 
 # Where the game is supposed to be installed
 INSTALLDIR="$HOME/.minetest/games/nodecore"
