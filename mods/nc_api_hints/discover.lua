@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string, type, vector
-    = ipairs, minetest, nodecore, pairs, string, type, vector
-local string_format, string_gsub
-    = string.format, string.gsub
+local ipairs, minetest, nodecore, pairs, string, table, type, vector
+    = ipairs, minetest, nodecore, pairs, string, table, type, vector
+local string_format, table_concat
+    = string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -39,26 +39,36 @@ local function loaddb(p)
 end
 nodecore.get_player_discovered = loaddb
 
-local function discover(p, k)
-	local db, player, pname, save = loaddb(p)
-	if not db then return end
-
-	if (type(k) == "table") then
-		local dirty
-		for kk in pairs(k) do
-			dirty = dirty or not db[kk]
-			db[kk] = true
-		end
-		if not dirty then return end
-	else
-		if db[k] then return end
-		db[k] = true
+-- Discovery accepts complex mixed list formats, including
+-- "key", {"key1", "key2"}, {key1 = true, key2 = true},
+-- and nested/mixed like {key1 = true, {"key2", key3 = true}}
+local function setall(db, new, keys, prefix)
+	if keys == nil then return end
+	if type(keys) ~= "table" then
+		keys = prefix .. keys
+		if db[keys] then return end
+		db[keys] = true
+		new[#new + 1] = string_format("%q", keys)
+		return true
 	end
+	local dirty
+	for k in pairs(keys) do
+		k = type(k) == "number" and keys[k] or k
+		if k ~= nil then
+			dirty = setall(db, new, k, prefix) or dirty
+		end
+	end
+	return dirty
+end
 
+local function discover(p, keys, prefix)
+	local db, player, pname, save = loaddb(p)
+	local new = {}
+	if not (db and setall(db, new, keys, prefix or "")) then return end
 	minetest.log("action", string_format("player %q discovered %s", pname,
-			string_gsub(minetest.serialize(k), "^return ", "")))
+			table_concat(new, ", ")))
 	for _, cb in pairs(nodecore.registered_on_discovers) do
-		cb(player, k, pname, db)
+		cb(player, keys, pname, db)
 	end
 	save()
 end

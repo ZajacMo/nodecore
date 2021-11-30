@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, type, vector
-    = math, minetest, nodecore, pairs, table, type, vector
+local math, minetest, nodecore, pairs, table, vector
+    = math, minetest, nodecore, pairs, table, vector
 local math_pi, table_remove
     = math.pi, table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -80,20 +80,15 @@ local function witnesslater(player, pos, disc)
 	save()
 end
 
-function nodecore.witness(pos, label, maxdist)
+function nodecore.witness(pos, disc, maxdist)
 	maxdist = maxdist or 16
-
-	label = type(label) == "table" and label or {label}
-	local disc = {}
-	for i = 1, #label do disc["witness:" .. label[i]] = true end
-
 	for _, player in pairs(minetest.get_connected_players()) do
 		local ppos = player:get_pos()
 		if vector.distance(ppos, pos) <= maxdist then
 			if canwitnessnow(player, pos) then
-				nodecore.player_discover(player, disc)
+				nodecore.player_discover(player, disc, "witness:")
 			else
-				witnesslater(player, pos, disc)
+				witnesslater(player, pos, disc, "witness:")
 			end
 		end
 	end
