@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string, table
-    = minetest, nodecore, pairs, string, table
+local ipairs, minetest, nodecore, pairs, string, table
+    = ipairs, minetest, nodecore, pairs, string, table
 local string_format, table_concat, table_sort
     = string.format, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,23 +12,59 @@ function nodecore.amcoremod(v)
 end
 nodecore.amcoremod()
 
-for k, v in pairs(minetest.registered_chatcommands) do
-	if k == "mods" then
-		minetest.override_chatcommand(k, nodecore.underride({
-					func = function()
-						local mods = {}
-						for _, n in pairs(minetest.get_modnames()) do
-							if not nodecore.coremods[n] then
-								mods[#mods + 1] = n
-							end
-						end
-						table_sort(mods)
-						return true, string_format("%s(%s)%s%s",
-							nodecore.product,
-							nodecore.version or "DEV",
-							#mods > 0 and " + " or "",
-							table_concat(mods, ", "))
-					end
-				}, v))
+local function idx2str(idx, key)
+	local parts = {}
+	if idx[true] then
+		parts[#parts + 1] = key
 	end
+	local keys = {}
+	for k in pairs(idx) do
+		if k ~= true then
+			keys[#keys + 1] = k
+		end
+	end
+	if #keys == 1 then
+		local k = keys[1]
+		parts[#parts + 1] = idx2str(idx[k], k)
+	elseif #keys > 1 then
+		table_sort(keys)
+		for i = 1, #keys do
+			local k = keys[i]
+			keys[i] = idx2str(idx[k], k)
+		end
+		parts[#parts + 1] = (key and key .. "_{" or "")
+		.. table_concat(keys, ", ")
+		.. (key and "}" or "")
+	end
+	return table_concat(parts, ", "), #parts > 1
+end
+
+minetest.register_on_mods_loaded(function()
+		local idx = {}
+		for _, n in pairs(minetest.get_modnames()) do
+			if not nodecore.coremods[n] then
+				local parts = n:split("_")
+				local nav = idx
+				for _, p in ipairs(parts) do
+					nav[p] = nav[p] or {}
+					nav = nav[p]
+				end
+				nav[true] = true
+			end
+		end
+		nodecore.added_mods_list = idx2str(idx)
+	end)
+
+local modcmd = minetest.registered_chatcommands.mods
+if modcmd then
+	minetest.override_chatcommand("mods", nodecore.underride({
+				func = function()
+					local mods = nodecore.added_mods_list
+					return true, string_format("%s(%s)%s%s",
+						nodecore.product,
+						nodecore.version or "DEV",
+						#mods > 0 and " + " or "",
+						mods)
+				end
+			}, modcmd))
 end

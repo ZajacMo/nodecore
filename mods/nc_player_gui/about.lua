@@ -1,8 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table
-    = minetest, nodecore, pairs, table
-local table_concat, table_sort
-    = table.concat, table.sort
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local nct = nodecore.translate
@@ -26,19 +24,15 @@ local about = {
 	"IRC: #nodecore @@ irc.libera.chat"
 }
 
-local modfmt = "- @1"
+local modfmt = "Additional Mods Loaded: @1"
 nodecore.translate_inform(modfmt)
-local mods = {}
-for _, n in pairs(minetest.get_modnames()) do
-	if not nodecore.coremods[n] then
-		mods[#mods + 1] = n
-	end
-end
-table_sort(mods)
-if #mods > 0 then
-	about[#about + 1] = ""
-	about[#about + 1] = "Additional Mods Loaded: " .. table_concat(mods, ", ")
-end
+minetest.after(0, function()
+		local mods = nodecore.added_mods_list
+		if #mods > 0 then
+			about[#about + 1] = ""
+			about[#about + 1] = nodecore.translate(modfmt, mods)
+		end
+	end)
 
 nodecore.register_inventory_tab({
 		title = "About",
