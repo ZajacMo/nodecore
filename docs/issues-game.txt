@@ -24,12 +24,13 @@ ISSUES-GAME: Gameplay-affecting issues
 		  Items?  Players?  Fluids?
 	- For glass case, dig out center of clear glass w/ pick?
 
-- Make solid push-out not push you out of item stacks or other
-  non-full-solids so players aren't shoved off cliffs by
-  dropping/placing items, torches, etc.
+- Make flowers explicitly not spread on grass.
 
-- Lode prills should be able to drain from glowing ore into
-  glass cases and crates
+- Sedges are way too slow to farm compared to rushes.
+
+- Do we really need stack_as_node for leaves, sticks, and a
+  few other ordinary items anymore, or has our falling_node
+  rework made that irrelevant now?
 
 - Unconfirmed: bug involving a player dropping all inventory into
   a narrow vertical shaft (on VE-NC server) and having items cycle
