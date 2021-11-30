@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string, table, type, vector
-    = ipairs, minetest, nodecore, pairs, string, table, type, vector
+local ipairs, minetest, nodecore, pairs, string, table, tostring, type,
+      vector
+    = ipairs, minetest, nodecore, pairs, string, table, tostring, type,
+      vector
 local string_format, table_concat
     = string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -39,36 +41,22 @@ local function loaddb(p)
 end
 nodecore.get_player_discovered = loaddb
 
--- Discovery accepts complex mixed list formats, including
--- "key", {"key1", "key2"}, {key1 = true, key2 = true},
--- and nested/mixed like {key1 = true, {"key2", key3 = true}}
-local function setall(db, new, keys, prefix)
-	if keys == nil then return end
-	if type(keys) ~= "table" then
-		keys = prefix .. keys
-		if db[keys] then return end
-		db[keys] = true
-		new[#new + 1] = string_format("%q", keys)
-		return true
-	end
-	local dirty
-	for k in pairs(keys) do
-		k = type(k) == "number" and keys[k] or k
-		if k ~= nil then
-			dirty = setall(db, new, k, prefix) or dirty
-		end
-	end
-	return dirty
-end
-
 local function discover(p, keys, prefix)
 	local db, player, pname, save = loaddb(p)
 	local new = {}
-	if not (db and setall(db, new, keys, prefix or "")) then return end
+	if not db then return end
+	for k in pairs(nodecore.flatkeys(keys)) do
+		k = (prefix or "") .. tostring(k)
+		if not db[k] then
+			db[k] = true
+			new[#new + 1] = k
+		end
+	end
+	if #new < 1 then return end
 	minetest.log("action", string_format("player %q discovered %s", pname,
 			table_concat(new, ", ")))
 	for _, cb in pairs(nodecore.registered_on_discovers) do
-		cb(player, keys, pname, db)
+		cb(player, new, pname, db)
 	end
 	save()
 end

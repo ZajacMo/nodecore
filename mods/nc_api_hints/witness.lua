@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, vector
-    = math, minetest, nodecore, pairs, table, vector
+local math, minetest, nodecore, pairs, table, type, vector
+    = math, minetest, nodecore, pairs, table, type, vector
 local math_pi, table_remove
     = math.pi, table.remove
 -- LUALOCALS > ---------------------------------------------------------
@@ -61,6 +61,7 @@ local function canwitnessnow(player, pos)
 end
 
 local function witnesslater(player, pos, disc)
+	disc = nodecore.flatkeys(disc)
 	local data, save = witnessdata(player)
 	local newdata = {
 		node = minetest.get_node(pos).name,
@@ -70,8 +71,10 @@ local function witnesslater(player, pos, disc)
 	local posstr = minetest.pos_to_string(pos)
 	local olddata = data.lookup[posstr]
 	if olddata and (olddata.node == newdata.node) and (olddata.stack
-		== newdata.stack) then
-		for k in pairs(disc) do olddata.disc[k] = true end
+		== newdata.stack) and (type(olddata.disc) == "table") then
+		for k in pairs(disc) do
+			olddata.disc[k] = true
+		end
 	else
 		data.queue[#data.queue + 1] = pos
 		while #data.queue > 100 do table_remove(data.queue, 1) end
@@ -88,7 +91,7 @@ function nodecore.witness(pos, disc, maxdist)
 			if canwitnessnow(player, pos) then
 				nodecore.player_discover(player, disc, "witness:")
 			else
-				witnesslater(player, pos, disc, "witness:")
+				witnesslater(player, pos, disc)
 			end
 		end
 	end
@@ -104,7 +107,7 @@ local function delayed_witness(pos, node, player)
 	node = node or minetest.get_node(pos)
 	if (found.node ~= node.name) or (nodecore.stack_get(pos):get_name()
 		~= found.stack) then return end
-	return nodecore.player_discover(player, found.disc)
+	return nodecore.player_discover(player, found.disc, "witness:")
 end
 minetest.register_on_punchnode(delayed_witness)
 nodecore.register_on_node_stare(function(player, pt)

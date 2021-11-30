@@ -35,6 +35,31 @@ local function underride(t, u, u2, ...)
 end
 nodecore.underride = underride
 
+--[[--
+Converts a complex/mixed list into a flat hashset.
+Accepted input values:
+- "key" (or other non-nil scalar)
+- an array like {"key1", "key2"}
+- a hashset like {key1 = true, key2 = true} (values ignored)
+- mixed array like {key1 = true, "key2"}
+- non-cyclical nesting like {{key1 = true} = true, "key2", {"key3"}}
+all nil values are ignored
+--]]--
+local function flatkeys(list, addto)
+	addto = addto or {}
+	if list == nil then return end
+	if type(list) ~= "table" then
+		addto[list] = true
+		return addto
+	end
+	for k in pairs(list) do
+		k = type(k) == "number" and list[k] or k
+		if k ~= nil then flatkeys(k, addto) end
+	end
+	return addto
+end
+nodecore.flatkeys = flatkeys
+
 function nodecore.mkreg()
 	local t = {}
 	local f = function(x) t[#t + 1] = x end

@@ -24,6 +24,7 @@ minetest.register_node(modname .. ":form", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_tree_sticky"),
+		storebox_access = function() return true end,
 		on_ignite = function(pos)
 			if minetest.get_node(pos).name == modname .. ":form" then
 				return nodecore.stack_get(pos)
