@@ -20,8 +20,8 @@ local function pressify(rc)
 	local thumpy = rc.toolgroups and rc.toolgroups.thumpy
 	if not thumpy then return end
 
-	if done[rc.label] then return end
-	done[rc.label] = true
+	if done[rc] then return end
+	done[rc] = true
 
 	local nr = {}
 	for k, v in pairs(rc) do nr[k] = v end
