@@ -63,12 +63,10 @@ function nodecore.entity_staticdata_helpers(savedprops)
 	return function(self, data)
 		data = data and minetest.deserialize(data) or {}
 		for k in pairs(savedprops) do self[k] = data[k] end
-		self.startpos = data.startpos or self.object:get_pos()
 	end,
 	function(self)
 		local data = {}
 		for k in pairs(savedprops) do data[k] = self[k] end
-		data.startpos = self.startpos or self.object:get_pos()
 		return minetest.serialize(data)
 	end
 end
@@ -98,10 +96,21 @@ function minetest.check_single_for_falling(...)
 	return helper(oldcheck(...))
 end
 
+function nodecore.entity_update_maxy(self, pos, vel)
+	pos = pos or self.object:get_pos()
+	if not pos then return end
+	if (not self.maxy) or pos.y > self.maxy then
+		self.maxy = pos.y
+		return
+	end
+	vel = vel or self.object:get_velocity()
+	if vel.y > 0 then self.maxy = pos.y end
+end
+
 local hash_node_position = minetest.hash_node_position
 local round = vector.round
 local function yqinsert(yq, ent)
-	local key = ent.startpos.y
+	local key = ent.maxy
 
 	local grp = yq.ents[key]
 	if not grp then
@@ -139,7 +148,7 @@ function nodecore.entity_settle_recurse(pos)
 	local blocked = {[hash_node_position(pos)] = true}
 	local bypos = {}
 	for _, ent in pairs(minetest.luaentities) do
-		if ent.settle_check and ent.startpos and ent.startpos.y then
+		if ent.settle_check and ent.maxy then
 			local p = ent.object:get_pos()
 			if p then
 				local hash = hash_node_position(round(pos))
@@ -167,9 +176,10 @@ function nodecore.entity_settle_recurse(pos)
 			ents[#ents] = nil
 		end
 		local p = round(ent.object:get_pos())
+		local maxy = math_floor(ent.maxy + 0.5)
 		while true do
 			local c = blocked[hash_node_position(p)]
-			if not (c and c ~= area_unloaded) then
+			if p.y >= maxy or not (c and c ~= area_unloaded) then
 				ent.object:set_pos(p)
 				break
 			end

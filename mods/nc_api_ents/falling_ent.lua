@@ -12,6 +12,7 @@ nodecore.registered_falling_node_on_setnodes
 = nodecore.mkreg()
 
 local data_load, data_save = nodecore.entity_staticdata_helpers({
+		maxy = true,
 		node = true,
 		meta = true,
 		vel = true,
@@ -55,6 +56,7 @@ minetest.register_entity(":__builtin:falling_node", {
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
+			nodecore.entity_update_maxy(self)
 			data_load(self, data)
 		end,
 
@@ -108,6 +110,7 @@ minetest.register_entity(":__builtin:falling_node", {
 
 		on_step = function(self, ...)
 			if not self.node then return self.object:remove() end
+			nodecore.entity_update_maxy(self)
 			if self:settle_check() then return end
 
 			for _, func in ipairs(nodecore.registered_falling_node_steps) do

@@ -16,6 +16,7 @@ nodecore.registered_item_entity_on_settles
 local function stub() end
 
 local data_load, data_save = nodecore.entity_staticdata_helpers({
+		maxy = true,
 		itemstring = true,
 		spin = true,
 		vel = true,
@@ -51,6 +52,7 @@ minetest.register_entity(":__builtin:item", {
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
+			nodecore.entity_update_maxy(self)
 			data_load(self, data)
 			return self:set_item()
 		end,
@@ -85,6 +87,7 @@ minetest.register_entity(":__builtin:item", {
 
 		on_step = function(self, dtime, ...)
 			if not self.itemstring then return self.object:remove() end
+			nodecore.entity_update_maxy(self)
 			if self:settle_check() then return end
 
 			for _, func in ipairs(nodecore.registered_item_entity_steps) do
