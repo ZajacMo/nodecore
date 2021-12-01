@@ -28,12 +28,16 @@ local function checktarget(data, stack)
 				under = vector.subtract(vector.multiply(
 						target, 2), data.pointed.under)
 			})) then
-		local one = ItemStack(stack:to_string())
-		one:set_count(1)
-		local tstack = nodecore.stack_get(target)
-		if tstack:item_fits(one) then
-			data.intostorebox = target
-			return true
+		-- Never insert from bottom, so we can always dig
+		local dir = vector.subtract(data.pointed.under, data.pointed.above)
+		if dir.y <= 0 then
+			local one = ItemStack(stack:to_string())
+			one:set_count(1)
+			local tstack = nodecore.stack_get(target)
+			if tstack:item_fits(one) then
+				data.intostorebox = target
+				return true
+			end
 		end
 	end
 
