@@ -26,6 +26,7 @@ do
 	minetest.after(0, function()
 			for name, def in pairs(minetest.registered_nodes) do
 				if def.drawtype and breathable[def.drawtype]
+				and (not (def.groups and def.groups.moist))
 				and (def.damage_per_second or 0) <= 0 then
 					grassable_nodes[name] = true
 				end
