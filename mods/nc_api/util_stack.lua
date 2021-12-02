@@ -156,7 +156,6 @@ end
 
 function nodecore.stack_can_fall_in(pos, stack, node, def, ent)
 	stack = ItemStack(stack)
-	if stack:is_empty() then return end
 	node = node or minetest.get_node(pos)
 	def = def or minetest.registered_items[node.name] or {}
 	if not def.can_item_fall_in then return def.buildable_to end

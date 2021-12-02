@@ -7,18 +7,12 @@ nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
-function nodecore.storebox_open_bottom(pos, node, def, stack)
+function nodecore.storebox_open_bottom(pos, node, def)
 	node = node or minetest.get_node(pos)
 	def = def or minetest.registered_nodes[node.name] or {}
-	stack = stack or nodecore.stack_get(pos)
-	if def.storebox_access and (not def.storebox_access(
-			{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
-				under = pos}, pos, node)) then return end
-	return nodecore.stack_can_fall_in({
-			x = pos.x,
-			y = pos.y - 1,
-			z = pos.z
-		}, stack)
+	return (not def.storebox_access) or def.storebox_access(
+		{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
+			under = pos}, pos, node)
 end
 
 local function doplace(stack, clicker, pointed_thing, ...)
@@ -76,7 +70,12 @@ function nodecore.storebox_stack_allow(pos, node, stack)
 end
 
 function nodecore.storebox_on_settle_item(pos, node, stack, inside)
-	if inside and nodecore.storebox_open_bottom(pos, node, nil, stack) then
+	if inside and nodecore.storebox_open_bottom(pos, node)
+	and nodecore.stack_can_fall_in({
+			x = pos.x,
+			y = pos.y - 1,
+			z = pos.z
+		}, stack) then
 		return stack
 	end
 	local def = node and minetest.registered_items[node.name] or {}
@@ -86,8 +85,8 @@ function nodecore.storebox_on_settle_item(pos, node, stack, inside)
 	return nodecore.stack_add(pos, stack)
 end
 
-function nodecore.storebox_can_item_fall_in(pos, node)
-	if not nodecore.stack_get(pos):is_empty() then return end
+function nodecore.storebox_can_item_fall_in(pos, node, stack)
+	if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
 	local def = node and minetest.registered_items[node.name] or {}
 	if def.storebox_access and (not def.storebox_access(
 			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
@@ -98,11 +97,14 @@ end
 function nodecore.storebox_check_item_fall_out(pos, node, stack)
 	if not nodecore.storebox_open_bottom(pos, node) then return end
 	if stack:is_empty() then return false end
-	if not nodecore.stack_can_fall_in({
-			x = pos.x,
-			y = pos.y - 1,
-			z = pos.z
-		}, stack) then return end
+
+	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
+	if not nodecore.stack_can_fall_in(below, stack) then
+		if not nodecore.stack_can_fall_in(below, "") then return false end
+		nodecore.stack_set(pos, nodecore.stack_add(below, stack))
+		return false
+	end
+
 	nodecore.stack_set(pos, "")
 	nodecore.item_eject(pos, stack)
 	return true
