@@ -132,3 +132,23 @@ nodecore.register_on_player_receive_fields("player inv formspec returned",
 			end
 		end
 	end)
+
+local pending = {}
+function nodecore.inventory_notify(pname, event)
+	pname = type(pname) == "string" and pname or pname:get_player_name()
+	local key = pname .. "|" .. event
+	if pending[key] then return end
+	pending[key] = true
+	minetest.after(0, function()
+			pending[key] = nil
+
+			local player = minetest.get_player_by_name(pname)
+			if not player then return end
+
+			local tab = nodecore.inventory_tab_get(player)
+			tab = tab and nodecore.registered_inventory_tabs[tab]
+			local evt = tab and tab["on_" .. event]
+			if type(evt) == "function" then evt = evt(player, pname) end
+			if evt then return nodecore.inventory_formspec_update(player) end
+		end)
+end
