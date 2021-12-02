@@ -81,7 +81,7 @@ do
 	minetest.after(0, regreport)
 end
 
-nodecore.add_item_raw = minetest.add_item
+for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
 
 include("compat_clientversion")
 include("compat_creative")
