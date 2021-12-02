@@ -5,7 +5,7 @@ local table_concat, table_insert
     = table.concat, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+local modname = minetest.get_current_modname()
 
 local tabs = {}
 nodecore.registered_inventory_tabs = tabs
@@ -35,7 +35,17 @@ local textmarginx = 0.25
 local textmarginy = 0.1
 local textheight = formheight + 0.8
 
-function nodecore.inventory_formspec(player, curtab)
+local metakey = modname .. "_inventory_key"
+function nodecore.inventory_tab_get(player)
+	local n = player:get_meta():get_int(metakey)
+	return nodecore.registered_inventory_tabs[n] and n or 1
+end
+function nodecore.inventory_tab_set(player, tab)
+	player:get_meta():set_int(metakey,
+		tab and nodecore.registered_inventory_tabs[tab] and tab or 0)
+end
+
+function nodecore.inventory_formspec(player)
 	local t = {
 		"bgcolor[#000000C0;true]",
 		"listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
@@ -44,6 +54,7 @@ function nodecore.inventory_formspec(player, curtab)
 	local x = 0
 	local y = 0
 	local tabdata
+	local curtab = nodecore.inventory_tab_get(player)
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
@@ -51,9 +62,7 @@ function nodecore.inventory_formspec(player, curtab)
 			t[#t + 1] = "button[" .. x .. "," .. y .. ";"
 			.. tabmarginx .. "," .. tabheight .. ";tab" .. i
 			.. ";" .. fse(nct(v.title)) .. "]"
-			if curtab == i or (not curtab and i == 1) then
-				tabdata = v
-			end
+			if curtab == i then tabdata = v end
 			x = x + tabwidth
 			if x >= tabmax then
 				x = 0
@@ -91,9 +100,20 @@ function nodecore.inventory_formspec(player, curtab)
 	return table_concat(t)
 end
 
-nodecore.register_on_joinplayer("join set inv formspec", function(player)
-		player:set_inventory_formspec(nodecore.inventory_formspec(player))
+local invspeccache = {}
+minetest.register_on_leaveplayer(function(player)
+		invspeccache[player:get_player_name()] = nil
 	end)
+function nodecore.inventory_formspec_update(player)
+	local str = nodecore.inventory_formspec(player)
+	local pname = player:get_player_name()
+	if invspeccache[pname] == str then return str end
+	player:set_inventory_formspec(str)
+	invspeccache[pname] = str
+	return str
+end
+
+nodecore.register_on_joinplayer("join set inv formspec", nodecore.inventory_formspec_update)
 
 nodecore.register_on_player_receive_fields("player inv formspec returned",
 	function(player, formname, fields)
@@ -106,11 +126,9 @@ nodecore.register_on_player_receive_fields("player inv formspec returned",
 				end
 			end
 			if tab then
-				local td = nodecore.inventory_formspec(player, tab)
-				if td then
-					minetest.show_formspec(player:get_player_name(),
-						formname, td)
-				end
+				nodecore.inventory_tab_set(player, tab)
+				minetest.show_formspec(player:get_player_name(),
+					formname, nodecore.inventory_formspec_update(player))
 			end
 		end
 	end)

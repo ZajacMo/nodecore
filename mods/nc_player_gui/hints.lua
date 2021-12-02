@@ -53,8 +53,28 @@ local function gethint(player)
 	return found
 end
 
-nodecore.register_inventory_tab({
-		title = "Challenges",
-		visible = function() return not nodecore.hints_disabled() end,
-		content = gethint
-	})
+local mytab = {
+	title = "Challenges",
+	visible = function() return not nodecore.hints_disabled() end,
+	content = gethint
+}
+nodecore.register_inventory_tab(mytab)
+
+local pending = {}
+nodecore.register_on_discover(function(_, _, pname)
+		if pending[pname] then return end
+		pending[pname] = true
+		minetest.after(0, function()
+				pending[pname] = nil
+
+				local player = minetest.get_player_by_name(pname)
+				if not player then return end
+
+				local tab = nodecore.inventory_tab_get(player)
+				tab = tab and nodecore.registered_inventory_tabs[tab]
+				if tab ~= mytab then return end
+
+				pcache[pname] = nil
+				nodecore.inventory_formspec_update(player)
+			end)
+	end)
