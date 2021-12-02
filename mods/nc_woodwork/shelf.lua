@@ -18,8 +18,7 @@ minetest.register_node(modname .. ":form", {
 			fire_fuel = 1,
 			totable = 1,
 			storebox = 1,
-			visinv = 1,
-			container = 0
+			visinv = 1
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
