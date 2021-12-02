@@ -9,22 +9,29 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make flowers explicitly not spread on grass.
+
 - Hints for new anvil system
+	- Rework recipe labels/discovery
+		- Set label to "base label (temper on anviltype)"
+		- Add discovery for...
+			- base label
+			- temper on anviltype
+			- anvil: anviltype
 	- Test/fix hints for affected crafts
-	- Hook in recipe after() for discovery for general anvil uses
-	- Add hints to try each anvil type
+	- Add hints for each type of anvil process
 
 - Shelf recipe (and any other 3x3 recipe) reform
-	- Add a "shelf frame" node made from wooden frames
-		- Name: "form"?
-	- Add appropriate material to shelf frame to make shelf
-	- 2-stage construction should make it easier to discover
-	- Shelf frame can gain its own distinct uses
-		- e.g. some things can fall through it but not others.
-		  Items?  Players?  Fluids?
-	- For glass case, dig out center of clear glass w/ pick?
+	- Fix shelf recipes
+		- Form + plank = shelf
+		- Form + glass = case
+	- Add lode forms
+		- Pummel form w/ glowing lode = crate
+		- Form w/ something (frame? staff?) = tote handle
+	- Rake recipes
+		- Based on user guesses, use only 3 rakes
+		- Maybe 2x adze -> tongs, 2x tongs -> rake?
 
-- Make flowers explicitly not spread on grass.
 
 - Sedges are way too slow to farm compared to rushes.
 

@@ -9,6 +9,9 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Expand the concept of "placed tools" in crafting
+	- Things like presence of an anvil or use of a chisel
+
 - Add "welcome" messages on login
 	- In the same spirit as the server version line
 	- Notify if NodeCore updated since last played
