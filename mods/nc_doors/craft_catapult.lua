@@ -41,15 +41,10 @@ local function checktarget(data, stack)
 		end
 	end
 
-	-- Eject item as entity
-	if not def.walkable then return true end
-
 	-- Try to dig item
 	local caps = presstoolcaps[stack:get_name()]
-	if not caps then return end
-	if caps == "dig" then
-		if not (def and def.groups and nodecore.tool_digs(
-				stack, def.groups)) then return end
+	if caps == "dig" and def and def.groups
+	and nodecore.tool_digs(stack, def.groups) then
 		data.pressdig = {
 			pos = target,
 			tool = stack
@@ -57,6 +52,10 @@ local function checktarget(data, stack)
 		return true
 	end
 
+	-- Eject item as entity
+	if not def.walkable then return true end
+
+	if not caps then return end
 	local pumdata = {
 		action = "pummel",
 		pos = target,
