@@ -59,10 +59,14 @@ function nodecore.inventory_formspec(player)
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
 		if vis == nil or vis then
+			if curtab == i then
+				tabdata = v
+				t[#t + 1] = "box[" .. x .. "," .. (y + tabheight) .. ";"
+				.. (tabwidth - 0.04) .. ",0.1;#ffffff]"
+			end
 			t[#t + 1] = "button[" .. x .. "," .. y .. ";"
 			.. tabmarginx .. "," .. tabheight .. ";tab" .. i
 			.. ";" .. fse(nct(v.title)) .. "]"
-			if curtab == i then tabdata = v end
 			x = x + tabwidth
 			if x >= tabmax then
 				x = 0
