@@ -5,6 +5,49 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
+minetest.register_node(modname .. ":form", {
+		description = "Lode Form",
+		tiles = {modname .. "_annealed.png^[mask:nc_api_storebox_frame.png"},
+		selection_box = nodecore.fixedbox(),
+		collision_box = nodecore.fixedbox(),
+		groups = {
+			cracky = 2,
+			totable = 1,
+			storebox = 2,
+			visinv = 1,
+			metal_cube = 1,
+			scaling_time = 50
+		},
+		paramtype = "light",
+		sunlight_propagates = true,
+		sounds = nodecore.sounds("nc_lode_annealed"),
+		storebox_access = function() return true end
+	})
+
+local function regconv(from, to)
+	return nodecore.register_craft({
+			label = "lode " .. from .. " to " .. to,
+			action = "pummel",
+			toolgroups = {thumpy = 3},
+			indexkeys = {modname .. ":" .. from},
+			check = function(pos)
+				return nodecore.stack_get(pos):is_empty()
+			end,
+			nodes = {
+				{
+					match = modname .. ":" .. from,
+					replace = modname .. ":" .. to
+				},
+				{
+					y = -1,
+					match = modname .. ":block_tempered"
+				}
+			}
+		})
+end
+regconv("frame_annealed", "form")
+regconv("form", "frame_annealed")
+
 local function tile(n)
 	return modname .. "_annealed.png^[mask:" .. modname .. "_shelf_" .. n .. ".png"
 end
