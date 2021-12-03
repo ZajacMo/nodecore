@@ -21,7 +21,7 @@ function minetest.item_drop(itemstack, dropper, ...)
 	end
 	local function helper(...)
 		if item_last_added then
-			item_last_added:add_velocity(dropper:get_player_velocity())
+			item_last_added:add_velocity(dropper:get_velocity())
 			local speed = vector.length(item_last_added:get_velocity())
 			local disc = {}
 			for i = 1, speed do disc["item_drop_speed_" .. i] = true end

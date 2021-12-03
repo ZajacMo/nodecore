@@ -93,7 +93,7 @@ nodecore.register_aism({
 			if qty < 1 then return end
 			if data.player then
 				qty = qty * (1 + vector.length(
-						data.player:get_player_velocity()) / 5)
+						data.player:get_velocity()) / 5)
 			end
 			local dur = 65535 - stack:get_wear()
 			dur = dur * 0.9998 ^ qty

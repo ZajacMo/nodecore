@@ -41,6 +41,6 @@ local function patchplayers()
 		end
 		return setraw(self, pos, ...)
 	end
-	nodecore.log("action", modname .. " player:get_inventory hooked")
+	nodecore.log("action", modname .. " player:set_pos hooked")
 end
 minetest.after(0, patchplayers)

@@ -88,6 +88,7 @@ include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
 include("compat_nodealpha")
+include("compat_player_velocity")
 
 include("util_settings")
 include("util_misc")

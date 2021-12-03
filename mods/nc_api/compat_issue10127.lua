@@ -3,6 +3,8 @@ local getmetatable, minetest, nodecore, pairs
     = getmetatable, minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
 local publicfields = {
 	formspec = true,
 	infotext = true
@@ -17,7 +19,7 @@ local function hook(meta)
 				end
 				return v(data, name, ...)
 			end
-			nodecore.log("action", "auto-privatized meta " .. k)
+			nodecore.log("action", modname .. " auto-privatized meta " .. k)
 		end
 	end
 end

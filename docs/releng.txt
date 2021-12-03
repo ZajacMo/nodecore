@@ -58,7 +58,7 @@ NEW MT RELEASE PROCESS
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
 AFTER 5.3 EOS:
-- Replace get_player_velocity() with get_velocity()
+- Remove compat_player_velocity
 
 ........................................................................
 ========================================================================

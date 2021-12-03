@@ -128,7 +128,7 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 		end
 		return t
 	end
-	local v = player:get_player_velocity()
+	local v = player:get_velocity()
 	if v and v.y >= -0.5 then return walkspeed(player, nodecore.player_anim_data.swim_up) end
 	return walkspeed(player, nodecore.player_anim_data.swim_down)
 end
