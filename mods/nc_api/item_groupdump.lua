@@ -21,6 +21,7 @@ be used nor relied upon by mods.
 --]]--
 
 local groups = {
+	activates_lens = "always activates optics lenses, regardless of light_source",
 	alpha_glyph = "(specific) nc_writing glyphs",
 	always_scalable = "nodes that can always be scaled even if they define on_rightclick",
 	amalgam = "(specific) nc_igneous amalgamation",

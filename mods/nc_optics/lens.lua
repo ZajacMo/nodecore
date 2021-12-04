@@ -9,13 +9,18 @@ local function lens_check(pos, node, recv, getnode)
 	local face = nodecore.facedirs[node.param2]
 
 	if recv(face.k) and node.name ~= modname .. ":lens_on" then
-		return modname .. ":lens_glow"
+		if node.name == modname .. ":lens_glow" then
+			return modname .. ":lens_glow"
+		else
+			return modname .. ":lens_glow_start"
+		end
 	end
 
 	local fore = vector.add(pos, face.f)
 	local nnode = getnode(fore)
 	local def = minetest.registered_items[nnode.name] or {}
-	if def.light_source and def.light_source > 3 then
+	if (def.light_source and def.light_source > 3)
+	or (def.groups and def.groups.activates_lens) then
 		return modname .. ":lens_on"
 	end
 
@@ -87,6 +92,28 @@ reg("_glow", {
 			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
 			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
 		},
+	})
+reg("_glow_start", {
+		description = "Shining Lens",
+		light_source = 1,
+		groups = {activates_lens = 1},
+		tiles = {
+			txr .. "^" .. modname .. "_shine_side.png",
+			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
+			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
+		},
+		on_construct = function(pos) return nodecore.dnt_set(pos,
+			modname .. ":lens_warmup") end
+	})
+
+nodecore.register_dnt({
+		name = modname .. ":lens_warmup",
+		nodenames = {modname .. ":lens_glow_start"},
+		time = 2,
+		action = function(pos, node)
+			node.name = modname .. ":lens_glow"
+			return nodecore.set_node(pos, node)
+		end
 	})
 
 minetest.register_abm({
