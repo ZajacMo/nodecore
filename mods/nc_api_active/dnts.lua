@@ -137,6 +137,7 @@ nodecore.register_on_register_item(function(_, def)
 
 local autostarts = {}
 local function dntregen(pos, node)
+	datacache[hash(pos)] = nil
 	local start = autostarts[node.name]
 	if start then
 		for def in pairs(start) do
