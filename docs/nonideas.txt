@@ -17,6 +17,21 @@ NONIDEAS: Ideas already considered and rejected
 	  not be added.  Players are expected to adapt their ideas to
 	  the materials available, not the other way around.
 
+- Anything Explicitly Removed
+	- If something previously existed in the game, but was
+	  explicitly removed, then it was removed for a good reason and
+	  will not be re-added.
+	- Suggestions to reverse removals must meet a high standard
+	  for comelling evidence, including an understanding of the
+	  context and reasons for the original removal.
+
+- Copying From Other Games
+	- A game element added to NodeCore needs to be able to justify
+	  its existence purely in the context of NodeCore.
+	- The presence of an element in another game is not compelling
+	  evidence it should exist in this one, even if the element is
+	  a useful enhancing feature of that other game.
+
 - Mobs/Animals
 	- Things that are "off-grid" are discouraged.  Node-based
 	  "staybs" could at least fit the mechanics, but entity-based
@@ -47,6 +62,35 @@ NONIDEAS: Ideas already considered and rejected
 	- Using food items to provide things like temporary buffs is
 	  likely to be a lot of effort and likely to be skipped by most
 	  players.
+
+- Day/Night Cycle
+	- Previously existed, was removed.
+	- Was only ever of cosmetic value while it existed.
+	- Only ever useful for powering lenses by skylight, but that
+	  violated the game's principle of action only being dependent
+	  on the state of things and their local surroundings, not on
+	  specific times or places.
+	- Interfered with gameplay by forcing players to take measures
+	  to skip night (waiting, or begging for beds, see below) until
+	  they had achieved reliable artificial lighting.  It was not
+	  useful to compel players to develop lighting because darkness
+	  underground was already sufficient for that.
+
+- Health, Death, and Respawn
+	- Previously existed, was removed.
+	- Only ever included because it was provided by the
+	  engine/built-in, but it never provided any justification for
+	  its existence.
+	- Only ever distracted from gameplay and design.  Health had
+	  no effect other than death, and death was never more than an
+	  inconvenience at worst.  Attempts to make taking damage
+	  disadvantageous e.g. by slowing walking speed were only ever
+	  annoying and tedious.
+	- Death respawn could easily be exploited as a form of
+	  teleportation, which was convenient under many circumstances,
+	  and nerfed the threat of becoming lost or falling into
+	  darkness, removing a lot of compelling reasons for players to
+	  put attention into the game.
 
 - Beds
 	- There is no night to skip, and players have no need for sleep.
