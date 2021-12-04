@@ -26,6 +26,7 @@ local allsedges = {}
 for i = 1, 5 do
 	allsedges[modname .. ":sedge_" .. i] = i
 	allsedges[i] = modname .. ":sedge_" .. i
+	local h = (i == 5) and (3/4) or (i / 8)
 	minetest.register_node(modname .. ":sedge_" .. i, {
 			description = "Sedge",
 			drawtype = "plantlike",
@@ -52,7 +53,7 @@ for i = 1, 5 do
 			},
 			sounds = nodecore.sounds("nc_terrain_grassy"),
 			selection_box = nodecore.fixedbox(
-				{-3/8, -1/2, -3/8, 3/8, -1/2 + i / 8, 3/8}
+				{-3/8, -1/2, -3/8, 3/8, -1/2 + h, 3/8}
 			),
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
