@@ -12,6 +12,10 @@ IDEAS: Possible future additions/improvements to the game
 - Expand the concept of "placed tools" in crafting
 	- Things like presence of an anvil or use of a chisel
 
+- Should there be a way to pluck wilted flowers without destroying?
+	- Dig dirt below, override behavior of attached_node?
+	- Do not allow, force players to re-wilt other flowers in place?
+
 - Add "welcome" messages on login
 	- In the same spirit as the server version line
 	- Notify if NodeCore updated since last played
@@ -214,9 +218,12 @@ IDEAS: Possible future additions/improvements to the game
 	- Renewable but not generatable
 		- Sponges: Sprout under water from peat+sand?
 		- Lode
-		- Lux cobbl
-		- Water sources.
-		- Lava sources.
+		- Lux cobble
+		- Water sources
+		- Lava sources
+		- Sedges
+		- Rushes
+		- Flowers
 	- Sustainable but not renewable
 	- Not sustainable
 		- Lux stone (smooth)
