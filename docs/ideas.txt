@@ -9,6 +9,13 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Wicker baskets
+	- Limited alternative to full tote
+	- Made of cheaper materials (wicker, wood form)
+	- Can only carry wooden forms (must be unpacked on a flat surface)
+	- Very flammable, ejects all contents (nodes and stacks) upon
+	  ignition
+
 - Expand the concept of "placed tools" in crafting
 	- Things like presence of an anvil or use of a chisel
 
@@ -57,22 +64,25 @@ IDEAS: Possible future additions/improvements to the game
 	- On digging
 	- On pummel (don't just show to one player)
 
-- High tier door ideas
-	- Require higher-tier doors to operate higher-tier
-	  tools/heads?
-	- Limit ability of lower-tier doors to drive higher-tier
-	  doors, e.g. only allow driving up to 1 tier above?  This
-	  could allow one-way slippage mechanisms.
-	- Some doors can't be hand-operated, only ablated.
+- More door stuff
+	- More materials
+		- Wicker?
+		- Forms of glass?
+		- Lode?
+	- High tier door ideas
+		- Require higher-tier doors to operate higher-tier
+		tools/heads?
+		- Limit ability of lower-tier doors to drive higher-tier
+		doors, e.g. only allow driving up to 1 tier above?  This
+		could allow one-way slippage mechanisms.
+		- Some doors can't be hand-operated, only ablated.
 
 - Plants from nc_nature
 	- To import:
 		- Mushrooms
 	- Function:
 		- Source of special materials like ash? Cheaper peat?
-		- Thatch?
 		- Upconvert dirt to humus nearby?
-		- Rushes to reeds to windchimes?
 
 - A pure white concrete material?
 	- Use crude glass for recipe?  Flow wet concrete into crude
@@ -102,8 +112,11 @@ IDEAS: Possible future additions/improvements to the game
 		- Apply lateral forces to certain nodes?
 		- Make grain augers?
 		- Special threaded elevator nodes?
+	- Clutch nodes to rotate nodes on ends
+		- Rotate facedir nodes
+		- Make storeboxed rotatable so we can dump them out
 
-- Make etched concrete rotatble?
+- Make etched concrete rotatable?
 	- Rotate only in pliant state by rightclick.
 	- When dug w/ silk touch, store param2 in metadata, add rotation
 	  value to touchtip to explain non-stacking.
@@ -127,9 +140,11 @@ IDEAS: Possible future additions/improvements to the game
 	- Alternate 2 versions of the registration based on y coord
 	  so it forces top/bottom faces to show
 
+- Sealed storeboxes?
+	- Pummel glass onto case, planks onto shelf
+	- No side access at all until unsealed
+
 - More lode bar crafts:
-	- Frames
-	- Ladders?
 	- Allow frame loose ends to be chopped off when placed next to other
 	  frames, so custom shapes can be made.
 
@@ -191,28 +206,12 @@ IDEAS: Possible future additions/improvements to the game
 	- Make longer-life torches?
 	- Stick optics in place to prevent rotating?
 
-- Straw/thatch?
-
-- Domain Wall Sensor
-	- Adapt from sztest?
-	- Field Generator?
-		- Power an annealed lode block from 2 opposite faces.
-		- Generates particle effect at mapblock boundary.
-	- Particle effect with lux fluid and/or cobble?
-	- Create particle effect around player while carrying lux in
-	  inventory?
-		- Maybe only if the lux is higher activation tier?
-
 - Should ash and derivatives have a fertilizing effect?
 	- Maybe wet/tacky stuccos?
 
 - Way to detect specific nodes
 	- Comparison against a sample node?
 	- Allow optic signals to carry "chroma" signatures, compare?
-
-- Door Automation
-	- Mount tool heads on frames to make machine tools?
-	- Need more door materials: lode, glasses
 
 - Renewability Gap
 	- Renewable but not generatable
@@ -264,6 +263,11 @@ IDEAS: Possible future additions/improvements to the game
 	- Need to dig all around it so it cannot move, then apply Some
 	  time-integrated process to convert it to useful form.
 
+- Chop (menger) sponges into (sierpinski) carpets?
+	- Walk-through thin facade nodes, like charcoal glyphs
+	- Block liquid flow paths
+	- Hold moisture, act as non-blocking coolant?
+
 - New materials to craft with.
 	- Dungeon materials, stonework?
 	- Decorations for dungeons
@@ -278,7 +282,7 @@ IDEAS: Possible future additions/improvements to the game
 	- Tubers and taproots, cacti, and other "defensive" plantlife
 	- Plant-like CA animals, like bee nests and clouds of bees?
 	  Termine mounds? Ant colonies? Coral?
-	- Popeggcorn?
+	- Popeggcorn?  Like a plank but falling_node?
 	- Ores that smelt via heating and then rapid quenching?
 	- Things that cannot ever be dug, and must be moved only
 	  by in-world machinery?
@@ -325,9 +329,6 @@ IDEAS: Possible future additions/improvements to the game
 - Create a "custom patterned" concrete sign block with letters etched
   onto it.  Store in metadata, use ents to render, etc.
 
-- Allow metalworking with wood tools?
-	- Eat a lot of extra durability?
-
 - Door animations.
 	- These need to be relatively efficient, i.e. not involve
 	  a ton of node manipulation or spawning lots of entities.
@@ -345,6 +346,8 @@ IDEAS: Possible future additions/improvements to the game
 	- Players could be "pickpocketed" during normal gameplay.
 		- Make a sound/visual to warn player.
 	- Jordach's new first-person-attached entities feature?
+	- Avicennia's Satchel mod?
+	- "Yoshi's Island" chain of followers?
 
 ........................................................................
 ========================================================================
