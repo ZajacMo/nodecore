@@ -141,9 +141,11 @@ local function flowerable(pos)
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	local bnode = minetest.get_node_or_nil(below)
 	if not bnode then return end
-	local soil = minetest.get_item_group(bnode.name, "soil")
-	if soil < 1 then return false end
-	return soil
+	local def = minetest.registered_nodes[bnode.name]
+	local grp = def and def.groups or {}
+	if grp.grass and grp.grass > 0 then return end
+	if not (grp.soil and grp.soil > 0) then return false end
+	return grp.soil
 end
 
 local function getvariation(basenode, peers, key, max, mutate)
