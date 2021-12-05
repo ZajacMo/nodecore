@@ -42,24 +42,26 @@ minetest.register_abm({
 function nodecore.register_lode_anvil_recipe(anvilpos, func)
 	if type(anvilpos) == "number" then anvilpos = {y = anvilpos} end
 
-	local function register(match, replace, temper)
+	local function register(match, replace, temper, label)
 		local anvil = {match = match, replace = replace}
 		for k, v in pairs(anvilpos) do anvil[k] = v end
 		local recipe = func(temper)
+		recipe.discover = {recipe.label, "anvil:" .. label}
+		recipe.label = recipe.label .. " (" .. label .. ")"
 		recipe.nodes = recipe.nodes or {}
 		recipe.nodes[#recipe.nodes + 1] = anvil
 		return nodecore.register_craft(recipe)
 	end
 
 	-- Tempered anvils can work hot or cold
-	register(modname .. ":block_tempered", nil, "annealed")
-	register(modname .. ":block_tempered", nil, "hot")
+	register(modname .. ":block_tempered", nil, "annealed", "cold/tempered")
+	register(modname .. ":block_tempered", nil, "hot", "hot/tempered")
 
 	-- Annealed anvils only work hot
-	register(modname .. ":block_annealed", nil, "hot")
+	register(modname .. ":block_annealed", nil, "hot", "hot/annealed")
 
 	-- Smooth stone turns into cracked stone and only works
 	-- as long as it remains cracked stone.
-	register("nc_terrain:stone", cracked, "hot")
-	register(cracked, nil, "hot")
+	register("nc_terrain:stone", cracked, "hot", "hot/stone")
+	register(cracked, nil, "hot", "hot/stone")
 end

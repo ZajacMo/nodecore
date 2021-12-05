@@ -41,6 +41,28 @@ nodecore.register_hint("temper a lode cube",
 	"forge lode block"
 )
 
+nodecore.register_hint("work glowing lode on a stone anvil",
+	"anvil:hot/stone",
+	{true,
+		"nc_lode:prill_hot",
+		"nc_lode:prill_annealed",
+		"nc_lode:prill_tempered"
+	}
+)
+
+nodecore.register_hint("work glowing lode on a lode anvil",
+	{true,
+		"anvil:hot/annealed",
+		"anvil:hot/tempered",
+	},
+	"nc_lode:block_annealed"
+)
+
+nodecore.register_hint("work annealed lode on a tempered lode anvil",
+	"anvil:cold/tempered",
+	"nc_lode:block_tempered"
+)
+
 nodecore.register_hint("forge lode prills into a tool head",
 	"forge lode toolhead_mallet",
 	{true,

@@ -9,21 +9,11 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- CATCH UP HINT SYSTEM
+- CATCH UP HINT SYSTEM & RETEST
 
 - Lode crates only come in annealed, while lode frames come in
   all 3 tempers.  Which side of this should the form fall on,
   and how do we make the "funneling" into one type reasonable?
-
-- Hints for new anvil system
-	- Rework recipe labels/discovery
-		- Set label to "base label (temper on anviltype)"
-		- Add discovery for...
-			- base label
-			- temper on anviltype
-			- anvil: anviltype
-	- Test/fix hints for affected crafts
-	- Add hints for each type of anvil process
 
 - Shelf recipe (and any other 3x3 recipe) reform
 	- Fix shelf recipes
@@ -35,7 +25,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Rake recipes
 		- Based on user guesses, use only 3 rakes
 		- Maybe 2x adze -> tongs, 2x tongs -> rake?
-
 
 - Sedges are way too slow to farm compared to rushes.
 
