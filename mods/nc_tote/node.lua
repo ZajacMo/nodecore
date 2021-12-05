@@ -87,6 +87,7 @@ local function toteplace(stack, placer, pointed, ...)
 		for _, v in ipairs(commit) do
 			nodecore.set_loud(v[1], v[2])
 			minetest.get_meta(v[1]):from_table(v[3])
+			nodecore.fallcheck(v[1])
 		end
 		stack:set_count(stack:get_count() - 1)
 	end
