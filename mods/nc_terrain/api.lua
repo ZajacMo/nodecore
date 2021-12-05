@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local math, minetest, nodecore, pairs
+    = math, minetest, nodecore, pairs
 local math_floor, math_pow, math_random
     = math.floor, math.pow, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -30,10 +30,18 @@ end
 -- Dirt Leaching
 
 function nodecore.register_dirt_leaching(fromnode, tonode, rate)
+	local waters = {}
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_nodes) do
+				if v.groups and v.groups.water and v.groups.water > 0 then
+					waters[k] = true
+				end
+			end
+		end)
 	local function waterat(pos, dx, dy, dz)
-		pos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-		local node = minetest.get_node(pos)
-		return minetest.get_item_group(node.name, "water") ~= 0
+		return waters[minetest.get_node(
+			{x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
+		).name]
 	end
 	nodecore.register_soaking_abm({
 			label = fromnode .. " leaching to " .. tonode,
