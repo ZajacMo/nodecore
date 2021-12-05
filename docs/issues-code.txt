@@ -16,6 +16,10 @@ ISSUES-CODE: Issues related to code quality and APIs
 	  until next tick so we don't have to run the flood-fill for
 	  each sponge in the colony (O(n^2))
 
+- Texturepackability audit
+	- Don't use [combine:1x1^[noalpha or other pure-computed
+	  textures with entities or particles; bake them into real PNGs.
+
 - Allow mods to affect game time flow
 	- Allow skipping forward through time
 	- For an offline mod for mobile SP to make gametime Track

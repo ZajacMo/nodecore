@@ -37,6 +37,7 @@ minetest.register_node(modname .. ":fire", {
 		sunlight_propagates = true,
 		floodable = true,
 		walkable = false,
+		touchthru = true,
 		pointable = false,
 		buildable_to = true,
 		drop = ""
