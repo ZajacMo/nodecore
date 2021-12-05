@@ -163,14 +163,13 @@ regterrain({
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_terrain_crunchy")
 	})
-local grassroots = modname .. "_dirt.png^(" .. modname .. "_grass_roots.png^[opacity:48)"
 regterrain({
 		name = "dirt_with_grass",
 		description = "Grass",
 		tiles = {
 			modname .. "_grass_top.png",
-			grassroots,
-			grassroots .. "^(" .. modname .. "_grass_top.png^[mask:"
+			modname .. "_dirt.png",
+			modname .. "_dirt.png^(" .. modname .. "_grass_top.png^[mask:"
 			.. modname .. "_grass_sidemask.png)"
 		},
 		mapgen = {
