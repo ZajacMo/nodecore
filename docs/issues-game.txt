@@ -45,6 +45,13 @@ ISSUES-GAME: Gameplay-affecting issues
   few other ordinary items anymore, or has our falling_node
   rework made that irrelevant now?
 
+- Grass, sprouts, and stumps (maybe others) all reuse textures from
+  dirt, and from some sides are visually indistinguishable from
+  dirt, yet the player is somehow able to distinguish them via a
+  looktip (not even needing to touch/hear).  This feels inconsistent
+  and maybe these nodes should have distinct textures on all sides,
+  like added roots.
+
 - Unconfirmed: bug involving a player dropping all inventory into
   a narrow vertical shaft (on VE-NC server) and having items cycle
   indefinitely without settling to a steady state.
