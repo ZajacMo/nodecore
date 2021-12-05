@@ -28,6 +28,11 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Sedges are way too slow to farm compared to rushes.
 
+- Thatch and wicker should probably have recycling recipes.
+
+- Should add a way to pluck wilted flowers without destroying.
+	- Dig dirt below, override behavior of attached_node?
+
 - Do we really need stack_as_node for leaves, sticks, and a
   few other ordinary items anymore, or has our falling_node
   rework made that irrelevant now?
