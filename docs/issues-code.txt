@@ -9,6 +9,13 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Sponge colony growth optimization
+	- Combine growth scan for entire sponge colony in one shot
+	  instead of processing growth for each individual node.
+	- When scanning a colony, mark all sponges scanned as masked
+	  until next tick so we don't have to run the flood-fill for
+	  each sponge in the colony (O(n^2))
+
 - Allow mods to affect game time flow
 	- Allow skipping forward through time
 	- For an offline mod for mobile SP to make gametime Track
