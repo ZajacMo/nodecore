@@ -15,8 +15,6 @@ ISSUES-GAME: Gameplay-affecting issues
   all 3 tempers.  Which side of this should the form fall on,
   and how do we make the "funneling" into one type reasonable?
 
-- Make flowers explicitly not spread on grass.
-
 - Hints for new anvil system
 	- Rework recipe labels/discovery
 		- Set label to "base label (temper on anviltype)"
