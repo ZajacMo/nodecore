@@ -34,10 +34,12 @@ end
 
 local function metaset(meta, def, nodekey, qty, time)
 	local cached = metaget(meta, def, nodekey)
+	if qty == 0 then qty = nil end
 	if cached.qty ~= qty then
 		metaset_core(meta, def.fieldname .. "qty", qty)
 		cached.qty = qty
 	end
+	if time == 0 then time = nil end
 	if cached.time ~= time then
 		metaset_core(meta, def.fieldname .. "time", time)
 		cached.time = time
