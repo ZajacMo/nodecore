@@ -179,7 +179,8 @@ regterrain({
 		groups = {
 			crumbly = 2,
 			soil = 1,
-			green = 1
+			green = 1,
+			grass = 1
 		},
 		drop_in_place = modname .. ":dirt",
 		sounds = nodecore.sounds("nc_terrain_grassy")
