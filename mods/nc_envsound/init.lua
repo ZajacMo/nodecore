@@ -13,7 +13,7 @@ minetest.register_entity(modname .. ":fx", {
 		initial_properties = {
 			visual_size = {x = 0, y = 0},
 			pointable = false,
-			physical = false,
+			physical = true,
 			is_visible = false,
 			collide_with_objects = false,
 			static_save = false
