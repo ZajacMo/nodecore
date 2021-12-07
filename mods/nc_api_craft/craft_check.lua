@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, error, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, error, ipairs, minetest, nodecore, pairs, type
+local ItemStack, error, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, error, ipairs, math, minetest, nodecore, pairs, type
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addgroups(sum, pos)
@@ -86,7 +88,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if data.before then data.before(pos, data) end
 		if recipe.before then recipe.before(pos, data) end
 		for _, v in ipairs(recipe.nodes) do
-			if v.replace then
+			if v.replace and ((not v.chance)
+				or (math_random(1, v.chance) == 1)) then
 				local p = rel(v.x, v.y, v.z)
 				local r = v.replace
 				while type(r) == "function" do
