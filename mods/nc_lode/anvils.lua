@@ -42,8 +42,7 @@ minetest.register_abm({
 function nodecore.register_lode_anvil_recipe(anvilpos, func)
 	if type(anvilpos) == "number" then anvilpos = {y = anvilpos} end
 
-	local function register(match, replace, temper, label)
-		local anvil = {match = match, replace = replace}
+	local function register(anvil, temper, label)
 		for k, v in pairs(anvilpos) do anvil[k] = v end
 		local recipe = func(temper)
 		recipe.discover = {recipe.label, "anvil:" .. label}
@@ -54,14 +53,25 @@ function nodecore.register_lode_anvil_recipe(anvilpos, func)
 	end
 
 	-- Tempered anvils can work hot or cold
-	register(modname .. ":block_tempered", nil, "annealed", "cold/tempered")
-	register(modname .. ":block_tempered", nil, "hot", "hot/tempered")
+	register({match = modname .. ":block_tempered"}, "annealed", "cold/tempered")
+	register({match = modname .. ":block_tempered"}, "hot", "hot/tempered")
 
 	-- Annealed anvils only work hot
-	register(modname .. ":block_annealed", nil, "hot", "hot/annealed")
+	register({match = modname .. ":block_annealed"}, "hot", "hot/annealed")
 
 	-- Smooth stone turns into cracked stone and only works
 	-- as long as it remains cracked stone.
-	register("nc_terrain:stone", cracked, "hot", "hot/stone")
-	register(cracked, nil, "hot", "hot/stone")
+	register({match = "nc_terrain:stone", replace = cracked}, "hot", "hot/stone")
+	register({match = cracked}, "hot", "hot/stone")
+
+	-- Hard stone is weakened probabilistically, but at half
+	-- the rate for each layer of hardness.
+	for i = 1, nodecore.hard_stone_strata do
+		register({
+				match = "nc_terrain:hard_stone_" .. i,
+				replace = (i == 1) and "nc_terrain:stone"
+				or ("nc_terrain:hard_stone_" .. (i - 1)),
+				chance = 2 ^ i
+			}, "hot", "hot/stone")
+	end
 end
