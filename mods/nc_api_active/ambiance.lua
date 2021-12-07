@@ -32,7 +32,9 @@ local function ambiance_core(def, getpos)
 
 				opts.name = opts.name or def.sound_name
 				opts.gain = opts.gain or def.sound_gain
-				nodecore.sound_play(opts.name, opts)
+				minetest.after(opts.delay, function()
+						nodecore.sound_play(opts.name, opts)
+					end)
 
 				time = time - rate
 			end
@@ -51,6 +53,7 @@ local function ambiance_core(def, getpos)
 			opts = {}
 		end
 		opts.pos = pos
+		opts.delay = (hash % 1000) / 1000
 		if #queue < max then
 			queue[#queue + 1] = opts
 		else
