@@ -5,20 +5,34 @@ local ItemStack, ipairs, minetest, nodecore, pairs, type
 
 local modname = minetest.get_current_modname()
 
-local metadescs = {
-	"Tote (1 Slot)",
-	"Tote (2 Slots)",
-	"Tote (3 Slots)",
-	"Tote (4 Slots)",
-	"Tote (5 Slots)",
-	"Tote (6 Slots)",
-	"Tote (7 Slots)",
-	"Tote (8 Slots)",
-}
+local metadesc = "Tote (@1 / @2)"
+nodecore.translate_inform(metadesc)
 
 local function protected(pos, whom)
 	return whom and whom:is_player()
 	and minetest.is_protected(pos, whom:get_player_name())
+end
+
+local function totefill(stack, meta, data, ser)
+	meta = meta or stack:get_meta()
+	if data and #data then
+		stack:set_name(modname .. ":handle_full")
+		meta:set_string("carrying", ser or minetest.serialize(data))
+		local slots = #data
+		local full = 0
+		for _, s in ipairs(data) do
+			local ss = s.m and nodecore.stack_get_serial(s.m)
+			if ss and not ss:is_empty() then
+				full = full + 1
+			end
+		end
+		meta:set_string("description", nodecore.translate(metadesc, full, slots))
+	else
+		stack:set_name(modname .. ":handle")
+		meta:set_string("carrying", "")
+		meta:set_string("description", "")
+	end
+	return stack
 end
 
 local function totedug(pos, _, _, digger)
@@ -51,12 +65,7 @@ local function totedug(pos, _, _, digger)
 				end
 			end
 		end
-		if dump then
-			local meta = drop:get_meta()
-			meta:set_string("carrying", minetest.serialize(dump))
-			meta:set_string("description", metadescs[#dump])
-			drop:set_name(modname .. ":handle_full")
-		end
+		totefill(drop, nil, dump)
 	end
 	minetest.handle_node_drops(pos, {drop}, digger)
 end
@@ -109,13 +118,9 @@ local function tote_ignite(pos)
 		local flam = minetest.get_item_group(nn, "flammable")
 		if flam > 0 then
 			nodecore.item_eject(pos, nn)
-			for _, list in pairs(slot and slot.m and slot.m.inventory or {}) do
-				for _, item in pairs(list) do
-					local istack = ItemStack(item)
-					if not istack:is_empty() then
-						nodecore.item_eject(pos, istack)
-					end
-				end
+			local ss = slot and slot.m and nodecore.stack_get_serial(slot.m)
+			if ss and not ss:is_empty() then
+				nodecore.item_eject(pos, ss)
 			end
 		else
 			newinv[#newinv + 1] = slot
@@ -124,9 +129,7 @@ local function tote_ignite(pos)
 	local newraw = minetest.serialize(newinv)
 	if newraw == raw then return true end
 
-	stackmeta:set_string("carrying", newraw)
-	stackmeta:set_string("description", metadescs[#newinv])
-	stack:set_name(modname .. ":handle" .. ((#newinv > 0) and "_full" or ""))
+	totefill(stack, stackmeta, newinv, newraw)
 	nodecore.stack_set(pos, stack)
 	return true
 end
@@ -139,7 +142,6 @@ local txr_handle = "nc_tree_tree_side.png^[transformR90"
 local function reg(suff, inner, def)
 	return minetest.register_node(modname .. ":handle" .. suff, nodecore.underride(def, {
 				description = "Tote Handle",
-				meta_descriptions = metadescs,
 				drawtype = "mesh",
 				visual_scale = nodecore.z_fight_ratio,
 				mesh = "nc_tote_handle.obj",
