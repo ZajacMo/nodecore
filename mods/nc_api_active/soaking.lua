@@ -12,16 +12,22 @@ nodecore.register_on_nodeupdate(function(pos)
 	end)
 
 local function metaget(meta, def, nodekey)
+	local fn = def.fieldname
 	local cached = nodekey and metacache[nodekey]
-	if cached then return cached end
-	cached = {
-		qty = meta:get_float(def.fieldname .. "qty"),
-		time = meta:get_float(def.fieldname .. "time")
+	local inner = cached and cached[fn]
+	if inner then return inner end
+	inner = {
+		qty = meta:get_float(fn .. "qty"),
+		time = meta:get_float(fn .. "time")
 	}
-	if cached.qty == 0 then cached.qty = nil end
-	if cached.time == 0 then cached.time = nil end
-	if nodekey then metacache = cached end
-	return cached
+	if inner.qty == 0 then inner.qty = nil end
+	if inner.time == 0 then inner.time = nil end
+	if nodekey then
+		cached = cached or {}
+		cached[fn] = inner
+		metacache = cached
+	end
+	return inner
 end
 
 local function metaset_core(meta, field, value)
