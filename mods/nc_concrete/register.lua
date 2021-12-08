@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local ItemStack, minetest, nodecore
+    = ItemStack, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -104,6 +104,7 @@ nodecore.register_concrete({
 		to_washed = "nc_terrain:gravel",
 		to_molded = localpref .. "coalstone_blank_ply"
 	})
+
 do
 	local aggwet = modname .. ":aggregate_wet_source"
 	local oldrc = nodecore.registered_nodes[aggwet].on_rightclick
@@ -124,4 +125,20 @@ do
 				return stack
 			end
 		})
+	nodecore.register_item_entity_step(function(self)
+			local stack = ItemStack(self.itemstring)
+			if stack:get_name() ~= "nc_fire:lump_coal" then return end
+			local pos = self.object:get_pos()
+			if not pos then return end
+			local node = minetest.get_node(pos)
+			if node.name ~= aggwet then return end
+			nodecore.set_loud(pos,
+				{name = modname .. ":coalaggregate_wet_source"})
+			stack:take_item(1)
+			if stack:is_empty() then
+				self.object:remove()
+				return true
+			end
+			self.itemstring = stack:to_string()
+		end)
 end
