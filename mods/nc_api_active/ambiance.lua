@@ -6,38 +6,28 @@ local math_random
 -- LUALOCALS > ---------------------------------------------------------
 
 local function ambiance_core(def, getpos)
-	local max = def.queue_max or 100
-	local rate = 1 / (def.queue_rate or 20)
+	local max = def.queue_max or 20
 
 	local seen = {}
 	local queue = {}
 	local total = 0
 
-	local batch
-	local time = 0
-	nodecore.register_globalstep("ambiance_core " .. (def.label or "unlabeled"), function(dtime)
-			time = time + dtime
-			while time > rate do
-				if not batch then
-					if #queue < 1 then return end
-					batch = queue
-					queue = {}
-					total = 0
-					seen = {}
-				end
+	nodecore.register_globalstep("ambiance_core " .. (def.label or "unlabeled"),
+		function()
+			if #queue < 1 then return end
 
-				local opts = batch[#batch]
-				batch[#batch] = nil
-				if #batch < 1 then batch = nil end
-
+			for i = 1, #queue do
+				local opts = queue[i]
 				opts.name = opts.name or def.sound_name
 				opts.gain = opts.gain or def.sound_gain
 				minetest.after(opts.delay, function()
 						nodecore.sound_play(opts.name, opts)
 					end)
-
-				time = time - rate
 			end
+
+			seen = {}
+			queue = {}
+			total = 0
 		end)
 
 	def.action = function(...)
