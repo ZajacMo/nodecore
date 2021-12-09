@@ -134,6 +134,7 @@ do
 			if node.name ~= aggwet then return end
 			nodecore.set_loud(pos,
 				{name = modname .. ":coalaggregate_wet_source"})
+			nodecore.witness(pos, "craft:" .. modname .. ":coalaggregate")
 			stack:take_item(1)
 			if stack:is_empty() then
 				self.object:remove()

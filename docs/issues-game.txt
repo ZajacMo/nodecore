@@ -10,6 +10,10 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - CATCH UP HINT SYSTEM & RETEST
+	- Thatch, wicker
+	- Forms, wooden and lode
+	- Lode frames, ladders
+	- High-tier digging: grass, stone, tarstone
 
 - Lode crates only come in annealed, while lode frames come in
   all 3 tempers.  Which side of this should the form fall on,
