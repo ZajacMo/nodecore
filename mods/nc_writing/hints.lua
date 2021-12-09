@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -23,4 +23,15 @@ end
 nodecore.register_hint("cycle through all charcoal glyphs",
 	placedall,
 	"charcoal writing"
+)
+
+for _, v in pairs({"sand", "gravel", "dirt"}) do
+	nodecore.register_hint("rake " .. v,
+		"rake " .. v,
+		{"group:rakey", "nc_terrain:" .. v}
+	)
+end
+nodecore.register_hint("rake humus",
+	"rake humus",
+	{"group:rakey", "nc_tree:humus"}
 )
