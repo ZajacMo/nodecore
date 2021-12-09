@@ -15,7 +15,12 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 		paramtype2 = "facedir",
 		falling_replacement = basename,
 		silktouch_as = basename,
-		groups = {[name .. "_raked"] = 1},
+		groups = {
+			[name .. "_raked"] = 1,
+			falling_node = 1,
+			soil = basedef.groups and basedef.groups.soil
+			and (basedef.groups.soil + 2) or nil
+		},
 		on_door_conveyed = function(pos)
 			return minetest.set_node(pos, {name = basename})
 		end
@@ -26,7 +31,7 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 				tiles = {
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_linear.png^[opacity:" .. opacity .. ")",
-					basedef.tiles[1],
+					basedef.tiles[1] .. "^nc_api_loose.png",
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_side.png^[opacity:" .. opacity .. ")"
 				},
@@ -43,7 +48,7 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 				tiles = {
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_nexus.png^[opacity:" .. opacity .. ")",
-					basedef.tiles[1],
+					basedef.tiles[1] .. "^nc_api_loose.png",
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_side.png^[opacity:" .. opacity .. ")"
 				}
@@ -107,3 +112,9 @@ nodecore.register_raked("nc_terrain:sand", "Sand", 96,
 nodecore.register_raked("nc_terrain:gravel", "Gravel", 160,
 	{groups = {gravel = true, falling_repose = false}},
 	{"group:gravel"})
+nodecore.register_raked("nc_terrain:dirt", "Dirt", 104,
+	{groups = {dirt = true, falling_repose = false}},
+	{"group:dirt"})
+nodecore.register_raked("nc_tree:humus", "Humus", 80,
+	{groups = {humus = true, falling_repose = false}},
+	{"group:humus"})
