@@ -9,12 +9,18 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Sponge colony growth optimization
-	- Combine growth scan for entire sponge colony in one shot
-	  instead of processing growth for each individual node.
-	- When scanning a colony, mark all sponges scanned as masked
-	  until next tick so we don't have to run the flood-fill for
-	  each sponge in the colony (O(n^2))
+- Optimize colony growth logic
+	- For each sponge found, push into a queue
+	- Process queue on step:
+		- Skip all "seen" sponges
+		- For each sponge, floodfill to find colony
+		- Mark all sponges in colony as "seen"
+	- Look for a "colony center" sponge that has colony metadata
+		- Process growth for entire colony, generate sponges
+			as needed
+		- If a sponge is dug, check to see if it's the colony
+			seed and has the metadata
+		- Transfer metadata to any face-touching sponge
 
 - Texturepackability audit
 	- Don't use [combine:1x1^[noalpha or other pure-computed
