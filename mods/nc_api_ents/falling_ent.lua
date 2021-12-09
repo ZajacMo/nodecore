@@ -104,6 +104,10 @@ minetest.register_entity(":__builtin:falling_node", {
 				end
 				self.object:remove()
 
+				if def.on_falling_node_crush then
+					def.on_falling_node_crush(below, node)
+				end
+
 				return true
 			end,
 			true),

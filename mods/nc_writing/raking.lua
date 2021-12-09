@@ -16,12 +16,16 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 		falling_replacement = basename,
 		silktouch_as = basename,
 		groups = {
+			raked = 1,
 			[name .. "_raked"] = 1,
 			falling_node = 1,
 			soil = basedef.groups and basedef.groups.soil
 			and (basedef.groups.soil + 2) or nil
 		},
 		on_door_conveyed = function(pos)
+			return minetest.set_node(pos, {name = basename})
+		end,
+		on_falling_node_crush = function(pos)
 			return minetest.set_node(pos, {name = basename})
 		end
 	}
