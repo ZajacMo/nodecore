@@ -11,7 +11,6 @@ minetest.register_node(modname .. ":humus", {
 		description = "Humus",
 		tiles = {modname .. "_humus.png"},
 		groups = {
-			dirt = 2,
 			crumbly = 1,
 			soil = 4,
 			grassable = 1
