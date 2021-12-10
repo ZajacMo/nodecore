@@ -85,8 +85,12 @@ local function toolfx(toolpos, actpos)
 					local target = ent.is_stack and ent.poskey
 					and toolfxqueue[ent.poskey]
 					if target then
-						ent.object:set_pos(target)
-						ent.object:move_to(ent.pos)
+						local obj = ent.object
+						local pos = ent.pos
+						obj:set_pos(target)
+						minetest.after(0.1, function()
+								obj:move_to(pos)
+							end)
 					end
 				end
 				toolfxqueue = nil
