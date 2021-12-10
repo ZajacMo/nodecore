@@ -10,7 +10,7 @@ minetest.register_node(modname .. ":wicker", {
 		drawtype = "glasslike",
 		tiles = {modname .. "_wicker.png"},
 		groups = {
-			choppy = 2,
+			choppy = 1,
 			flammable = 2,
 			fire_fuel = 5
 		},

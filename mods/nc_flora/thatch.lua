@@ -9,7 +9,7 @@ minetest.register_node(modname .. ":thatch", {
 		description = "Thatch",
 		tiles = {modname .. "_thatch.png"},
 		groups = {
-			choppy = 1,
+			snappy = 1,
 			flammable = 3,
 			fire_fuel = 4
 		},
