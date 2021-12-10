@@ -47,7 +47,7 @@ for i = 1, #nodecore.writing_glyphs do
 				local raw = nodecore.touchtip_node(under, nil, player)
 				if raw and vector.equals(vector.subtract(under, pos),
 					nodecore.facedirs[node.param2].b) then
-					return raw .. "\n" .. desc
+					return desc .. raw
 				end
 				return raw
 			end,
