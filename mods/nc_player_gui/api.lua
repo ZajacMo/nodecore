@@ -25,10 +25,11 @@ local fse = minetest.formspec_escape
 local formwidth = 15
 local formheight = formwidth / 2
 
-local tabwidth = (formwidth - 0.25) / 7
+local alltabswidth = formwidth - 0.25
+local maxtabs = 7
 local tabheight = 0.5
-local tabmarginx = tabwidth + 0.2
-local tabmarginy = tabheight + 0.25
+local tabmarginx = 0.2
+local tabmarginy = 0.25
 local tabmax = formwidth - 0.5
 
 local textmarginx = 0.25
@@ -51,30 +52,37 @@ function nodecore.inventory_formspec(player)
 		"listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
 	}
 
-	local x = 0
-	local y = 0
-	local tabdata
-	local curtab = nodecore.inventory_tab_get(player)
+	local tablist = {}
 	for i, v in ipairs(nodecore.registered_inventory_tabs) do
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
 		if vis == nil or vis then
-			if curtab == i then
-				tabdata = v
-				t[#t + 1] = "box[" .. x .. "," .. (y + tabheight) .. ";"
-				.. (tabwidth - 0.04) .. ",0.1;#ffffff]"
-			end
-			t[#t + 1] = "button[" .. x .. "," .. y .. ";"
-			.. tabmarginx .. "," .. tabheight .. ";tab" .. i
-			.. ";" .. fse(nct(v.title)) .. "]"
-			x = x + tabwidth
-			if x >= tabmax then
-				x = 0
-				y = y + tabmarginy
-			end
+			tablist[#tablist + 1] = {idx = i, tab = v}
 		end
 	end
-	if x > 0 then y = y + tabmarginy end
+	local tabqty = #tablist
+	if tabqty > maxtabs then tabqty = maxtabs end
+	local tabwidth = alltabswidth / tabqty
+	local x = 0
+	local y = 0
+	local tabdata
+	local curtab = nodecore.inventory_tab_get(player)
+	for i, v in ipairs(tablist) do
+		if curtab == v.idx then
+			tabdata = v.tab
+			t[#t + 1] = "box[" .. x .. "," .. (y + tabheight) .. ";"
+			.. (tabwidth - 0.04) .. ",0.1;#ffffff]"
+		end
+		t[#t + 1] = "button[" .. x .. "," .. y .. ";"
+		.. (tabwidth + tabmarginx) .. "," .. tabheight .. ";tab" .. i
+		.. ";" .. fse(nct(v.tab.title)) .. "]"
+		x = x + tabwidth
+		if x >= tabmax then
+			x = 0
+			y = y + tabheight + tabmarginy
+		end
+	end
+	if x > 0 then y = y + tabheight + tabmarginy end
 
 	table_insert(t, 1, "size[" .. formwidth .. "," .. formheight + y .. "]")
 

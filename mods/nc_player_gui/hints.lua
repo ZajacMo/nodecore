@@ -55,7 +55,11 @@ end
 
 local mytab = {
 	title = "Challenges",
-	visible = function() return not nodecore.hints_disabled() end,
+	visible = function(_, player)
+		return nodecore.interact(player)
+		and not nodecore.hints_disabled()
+		or false
+	end,
 	content = gethint,
 	on_discover = function(_, pname)
 		pcache[pname] = nil
