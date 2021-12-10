@@ -67,19 +67,10 @@ local mytab = {
 	end,
 	content = gethint,
 	on_discover = clearcache,
-	on_priv_interact = clearcache
+	on_privchange = clearcache
 }
 nodecore.register_inventory_tab(mytab)
 
 nodecore.register_on_discover(function(player)
 		return nodecore.inventory_notify(player, "discover")
 	end)
-nodecore.register_playerstep({
-		label = "hint tab watch interact",
-		action = function(player, data)
-			local inter = nodecore.interact(player) or false
-			if inter == data.priv_interact then return end
-			data.priv_interact = inter
-			return nodecore.inventory_notify(player, "priv_interact")
-		end
-	})

@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, table, type
-    = ipairs, minetest, nodecore, table, type
-local table_concat, table_insert
-    = table.concat, table.insert
+local ipairs, minetest, nodecore, pairs, table, type
+    = ipairs, minetest, nodecore, pairs, table, type
+local table_concat, table_insert, table_sort
+    = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -164,3 +164,18 @@ function nodecore.inventory_notify(pname, event)
 			if evt then return nodecore.inventory_formspec_update(player) end
 		end)
 end
+
+nodecore.register_playerstep({
+		label = "hint tab watch interact",
+		action = function(player, data)
+			local privs = {}
+			for k, v in pairs(minetest.get_player_privs(data.pname)) do
+				if v then privs[#privs + 1] = k end
+			end
+			table_sort(privs)
+			privs = table_concat(privs, ",")
+			if privs == data.privstring then return end
+			data.privstring = privs
+			return nodecore.inventory_notify(player, "privchange")
+		end
+	})
