@@ -34,6 +34,7 @@ local function tryprocess(item, retry)
 		if nodecore.buildable_to(t) then
 			local meta = minetest.get_meta(item.from):to_table()
 			minetest.remove_node(item.from)
+			nodecore.fallcheck({x = item.from.x, y = item.from.y + 1, z = item.from.z})
 			nodecore.set_loud(t, node)
 			meta.fields = meta.fields or {}
 			meta.fields.tweenfrom = minetest.serialize(item.from)
