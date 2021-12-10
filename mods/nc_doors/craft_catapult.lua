@@ -78,6 +78,7 @@ end
 local hashpos = minetest.hash_node_position
 local toolfxqueue
 local function toolfx(toolpos, actpos)
+	nodecore.node_sound(toolpos, "dig")
 	if not toolfxqueue then
 		toolfxqueue = {}
 		minetest.after(0, function()
@@ -120,6 +121,7 @@ local function doitemeject(pos, data)
 	if data.intostorebox then
 		nodecore.witness(pos, "door store")
 		one = nodecore.stack_add(data.intostorebox, one)
+		nodecore.stack_sounds(data.intostorebox, "place")
 		if not one:is_empty() then return end
 	else
 		local ctr = {
@@ -139,6 +141,7 @@ local function doitemeject(pos, data)
 		)
 	end
 	nodecore.witness(pos, "door catapult")
+	nodecore.stack_sounds(pos, "dig")
 	stack:take_item(1)
 	if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
 		return minetest.remove_node(pos)
