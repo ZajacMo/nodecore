@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-13 14:58+0000\n"
-"Last-Translator: Walter Frost <divided0303@gmail.com>\n"
+"PO-Revision-Date: 2021-12-03 02:34+0000\n"
+"Last-Translator: Lesha Vel! <lesha.programmer@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
@@ -1625,7 +1625,7 @@ msgid "Wilted Star Flower"
 msgstr "Увядший Звездный Цветок"
 
 msgid "Yellow Rosette Flower"
-msgstr "Желтый Розетка Цветок"
+msgstr "Желтый Розеточный Цветок"
 
 msgid "assemble a clear glass tank"
 msgstr "соберите прозрачный стеклянный резервуар"

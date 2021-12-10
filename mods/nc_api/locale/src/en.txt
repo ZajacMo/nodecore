@@ -49,6 +49,9 @@ msgstr "- For larger recipes, the center item is usually placed last."
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
 msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
 
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- If a recipe exists, you will see a special particle effect."
 
@@ -196,6 +199,9 @@ msgstr "Active Lens"
 msgid "Active Prism"
 msgstr "Active Prism"
 
+msgid "Additional Mods Loaded: @1"
+msgstr "Additional Mods Loaded: @1"
+
 msgid "Adobe"
 msgstr "Adobe"
 
@@ -220,11 +226,17 @@ msgstr "Annealed Lode Adze"
 msgid "Annealed Lode Bar"
 msgstr "Annealed Lode Bar"
 
+msgid "Annealed Lode Frame"
+msgstr "Annealed Lode Frame"
+
 msgid "Annealed Lode Hatchet"
 msgstr "Annealed Lode Hatchet"
 
 msgid "Annealed Lode Hatchet Head"
 msgstr "Annealed Lode Hatchet Head"
+
+msgid "Annealed Lode Ladder"
+msgstr "Annealed Lode Ladder"
 
 msgid "Annealed Lode Mallet"
 msgstr "Annealed Lode Mallet"
@@ -466,6 +478,9 @@ msgstr "Cobble Hinged Panel"
 msgid "Cobble Panel"
 msgstr "Cobble Panel"
 
+msgid "Cracked Stone"
+msgstr "Cracked Stone"
+
 msgid "Crafting"
 msgstr "Crafting"
 
@@ -526,8 +541,14 @@ msgstr "Glowing Lode Bar"
 msgid "Glowing Lode Cobble"
 msgstr "Glowing Lode Cobble"
 
+msgid "Glowing Lode Frame"
+msgstr "Glowing Lode Frame"
+
 msgid "Glowing Lode Hatchet Head"
 msgstr "Glowing Lode Hatchet Head"
+
+msgid "Glowing Lode Ladder"
+msgstr "Glowing Lode Ladder"
 
 msgid "Glowing Lode Mallet Head"
 msgstr "Glowing Lode Mallet Head"
@@ -718,6 +739,9 @@ msgstr "Lode Cobble"
 msgid "Lode Crate"
 msgstr "Lode Crate"
 
+msgid "Lode Form"
+msgstr "Lode Form"
+
 msgid "Lode Ore"
 msgstr "Lode Ore"
 
@@ -862,8 +886,14 @@ msgstr "Pumwater"
 msgid "Qeg Charcoal Glyph"
 msgstr "Qeg Charcoal Glyph"
 
+msgid "Raked Dirt"
+msgstr "Raked Dirt"
+
 msgid "Raked Gravel"
 msgstr "Raked Gravel"
+
+msgid "Raked Humus"
+msgstr "Raked Humus"
 
 msgid "Raked Sand"
 msgstr "Raked Sand"
@@ -961,11 +991,17 @@ msgstr "Tempered Lode Adze"
 msgid "Tempered Lode Bar"
 msgstr "Tempered Lode Bar"
 
+msgid "Tempered Lode Frame"
+msgstr "Tempered Lode Frame"
+
 msgid "Tempered Lode Hatchet"
 msgstr "Tempered Lode Hatchet"
 
 msgid "Tempered Lode Hatchet Head"
 msgstr "Tempered Lode Hatchet Head"
+
+msgid "Tempered Lode Ladder"
+msgstr "Tempered Lode Ladder"
 
 msgid "Tempered Lode Mallet"
 msgstr "Tempered Lode Mallet"
@@ -1000,6 +1036,9 @@ msgstr "Tempered Lode Spade"
 msgid "Tempered Lode Spade Head"
 msgstr "Tempered Lode Spade Head"
 
+msgid "Thatch"
+msgstr "Thatch"
+
 msgid "Tips"
 msgstr "Tips"
 
@@ -1009,29 +1048,8 @@ msgstr "Tof Charcoal Glyph"
 msgid "Torch"
 msgstr "Torch"
 
-msgid "Tote (1 Slot)"
-msgstr "Tote (1 Slot)"
-
-msgid "Tote (2 Slots)"
-msgstr "Tote (2 Slots)"
-
-msgid "Tote (3 Slots)"
-msgstr "Tote (3 Slots)"
-
-msgid "Tote (4 Slots)"
-msgstr "Tote (4 Slots)"
-
-msgid "Tote (5 Slots)"
-msgstr "Tote (5 Slots)"
-
-msgid "Tote (6 Slots)"
-msgstr "Tote (6 Slots)"
-
-msgid "Tote (7 Slots)"
-msgstr "Tote (7 Slots)"
-
-msgid "Tote (8 Slots)"
-msgstr "Tote (8 Slots)"
+msgid "Tote (@1 / @2)"
+msgstr "Tote (@1 / @2)"
 
 msgid "Tote Handle"
 msgstr "Tote Handle"
@@ -1141,6 +1159,9 @@ msgstr "White Rosette Flower"
 msgid "White Star Flower"
 msgstr "White Star Flower"
 
+msgid "Wicker"
+msgstr "Wicker"
+
 msgid "Wilted Bell Flower"
 msgstr "Wilted Bell Flower"
 
@@ -1158,6 +1179,9 @@ msgstr "Wilted Star Flower"
 
 msgid "Wooden Adze"
 msgstr "Wooden Adze"
+
+msgid "Wooden Form"
+msgstr "Wooden Form"
 
 msgid "Wooden Frame"
 msgstr "Wooden Frame"
@@ -1342,9 +1366,6 @@ msgstr "chop chromatic glass into lenses"
 msgid "chop up charcoal"
 msgstr "chop up charcoal"
 
-msgid "cold-forge annealed lode on a tempered anvil"
-msgstr "cold-forge annealed lode on a tempered anvil"
-
 msgid "complete a craft with a hinged panel"
 msgstr "complete a craft with a hinged panel"
 
@@ -1456,8 +1477,8 @@ msgstr "find pumice"
 msgid "find pumwater"
 msgstr "find pumwater"
 
-msgid "forge lode prills into a tool head on an anvil"
-msgstr "forge lode prills into a tool head on an anvil"
+msgid "forge lode prills into a tool head"
+msgstr "forge lode prills into a tool head"
 
 msgid "gate a prism"
 msgstr "gate a prism"
@@ -1588,6 +1609,18 @@ msgstr "quench molten glass into chromatic glass"
 msgid "quench pumwater to amalgamation"
 msgstr "quench pumwater to amalgamation"
 
+msgid "rake dirt"
+msgstr "rake dirt"
+
+msgid "rake gravel"
+msgstr "rake gravel"
+
+msgid "rake humus"
+msgstr "rake humus"
+
+msgid "rake sand"
+msgstr "rake sand"
+
 msgid "rotate a charcoal glyph"
 msgstr "rotate a charcoal glyph"
 
@@ -1618,8 +1651,8 @@ msgstr "split a tree trunk into planks"
 msgid "squeeze out a sponge"
 msgstr "squeeze out a sponge"
 
-msgid "temper a lode cube to use as an anvil"
-msgstr "temper a lode cube to use as an anvil"
+msgid "temper a lode cube"
+msgstr "temper a lode cube"
 
 msgid "temper a lode tool head"
 msgstr "temper a lode tool head"
@@ -1638,6 +1671,15 @@ msgstr "wet a concrete mix"
 
 msgid "wilt a flower"
 msgstr "wilt a flower"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "work annealed lode on a tempered lode anvil"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "work glowing lode on a lode anvil"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "work glowing lode on a stone anvil"
 
 msgid "write on a surface with a charcoal lump"
 msgstr "write on a surface with a charcoal lump"
