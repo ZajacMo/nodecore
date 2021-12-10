@@ -17,6 +17,7 @@ minetest.after(0, function()
 local function checktarget(data, stack)
 	local target = vector.subtract(vector.multiply(
 			data.pointed.under, 2), data.pointed.above)
+	data.presstarget = target
 	local node = minetest.get_node(target)
 	local def = minetest.registered_items[node.name] or {walkable = true}
 
@@ -74,14 +75,36 @@ local function checktarget(data, stack)
 	return recipe
 end
 
+local hashpos = minetest.hash_node_position
+local toolfxqueue
+local function toolfx(toolpos, actpos)
+	if not toolfxqueue then
+		toolfxqueue = {}
+		minetest.after(0, function()
+				for _, ent in pairs(minetest.luaentities) do
+					local target = ent.is_stack and ent.poskey
+					and toolfxqueue[ent.poskey]
+					if target then
+						ent.object:set_pos(target)
+						ent.object:move_to(ent.pos)
+					end
+				end
+				toolfxqueue = nil
+			end)
+	end
+	toolfxqueue[hashpos(toolpos)] = actpos
+end
+
 local function doitemeject(pos, data)
 	if data.pressdig then
 		nodecore.witness(pos, "door dig")
+		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
 		return minetest.dig_node(data.pressdig.pos)
 	end
 	if data.presscommit then
 		nodecore.witness(pos, "door pummel")
+		toolfx(pos, data.presstarget)
 		return data.presscommit()
 	end
 
