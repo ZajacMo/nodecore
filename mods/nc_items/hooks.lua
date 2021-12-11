@@ -49,7 +49,7 @@ nodecore.register_dnt({
 minetest.register_abm({
 		label = "item stack cook",
 		nodenames = {"group:visinv"},
-		interval = 1,
+		interval = 2,
 		chance = 1,
 		action = function(pos)
 			if nevermatch[nodecore.stack_get(pos):get_name()] then return end

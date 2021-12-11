@@ -107,8 +107,8 @@ nodecore.register_soaking_abm({
 		label = "sponge grow",
 		fieldname = "spongegrow",
 		nodenames = {living},
-		interval = 2,
-		chance = 5,
+		interval = 5,
+		chance = 2,
 		soakrate = function() return 2 end,
 		soakcheck = function(data, pos)
 			if nodecore.near_unloaded(pos) then return end
