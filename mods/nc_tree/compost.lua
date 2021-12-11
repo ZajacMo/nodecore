@@ -82,5 +82,3 @@ nodecore.register_soaking_abm({
 			return false
 		end
 	})
-
-nodecore.register_dirt_leaching(modname .. ":humus", "nc_terrain:dirt_loose", 3)

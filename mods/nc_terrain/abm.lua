@@ -71,5 +71,3 @@ minetest.register_abm({
 			return minetest.set_node(pos, {name = dirt})
 		end
 	})
-
-nodecore.register_dirt_leaching(dirt, modname .. ":sand_loose")
