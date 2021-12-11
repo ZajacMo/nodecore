@@ -39,16 +39,20 @@ end
 splitrecipe(1, 1)
 splitrecipe(4, -1)
 
-nodecore.register_craft({
-		label = "bash planks to sticks",
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		normal = {y = 1},
-		indexkeys = {plank},
-		nodes = {
-			{match = plank, replace = "air"}
-		},
-		items = {
-			{name = "nc_tree:stick 2", count = 4, scatter = 5}
-		}
-	})
+local function bashrecipe(thumpy, normaly)
+	nodecore.register_craft({
+			label = "bash planks to sticks",
+			action = "pummel",
+			toolgroups = {thumpy = thumpy},
+			normal = {y = normaly},
+			indexkeys = {plank},
+			nodes = {
+				{match = plank, replace = "air"}
+			},
+			items = {
+				{name = "nc_tree:stick 2", count = 4, scatter = 5}
+			}
+		})
+end
+bashrecipe(3, 1)
+bashrecipe(5, -1)
