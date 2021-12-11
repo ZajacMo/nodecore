@@ -68,6 +68,9 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Make stickcraft recipes work in tight spaces?
 		- Simulate node placement for place recipes?
 
+- Anywhere we are using explicit names or lists of names in game, we
+  should probably try registering groups to allow future expansion
+
 - Unify the "node destruction particles" system.  Allow complex options,
   like alternative node def, particle def, disable on silk touch.
 

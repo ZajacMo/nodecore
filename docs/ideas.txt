@@ -16,6 +16,15 @@ IDEAS: Possible future additions/improvements to the game
 	- Very flammable, ejects all contents (nodes and stacks) upon
 	  ignition
 
+- Half hint completion from witnessing?
+	- Some hints are witness-only like leaching, you just get full
+	  completion for those
+	- Some hints can be done by hand, or witnessed; allow a special
+	  half-completion state for those
+	- Gives players hints that they saw something worth doing, but
+	  let them keep track of the fact that they haven't figure it out
+	  themselves
+
 - Expand the concept of "placed tools" in crafting
 	- Things like presence of an anvil or use of a chisel
 
@@ -348,6 +357,12 @@ IDEAS: Possible future additions/improvements to the game
 	- Jordach's new first-person-attached entities feature?
 	- Avicennia's Satchel mod?
 	- "Yoshi's Island" chain of followers?
+
+- Mod removal substitution system
+	- Mods can register their content with fallback item lists
+	  that are saved in worlddir
+	- If mod is removed, items are replaced with their fallbacks
+	  by the game to avoid unknown_nodes.
 
 ........................................................................
 ========================================================================
