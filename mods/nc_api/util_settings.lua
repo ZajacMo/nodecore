@@ -58,6 +58,7 @@ function nodecore.infodump()
 		development use.]]
 	)
 end
+nodecore.infodump() -- for startup settingtypes.txt
 
 if nodecore.infodump() then
 	minetest.register_globalstep(function()

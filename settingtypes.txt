@@ -102,7 +102,15 @@ nc_api_rate_speed_pummel_charcoal_writing (Speed adjust > speed > pummel > charc
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
+nc_api_rate_speed_pummel_rake_dirt (Speed adjust > speed > pummel > rake dirt) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
 nc_api_rate_speed_pummel_rake_gravel (Speed adjust > speed > pummel > rake gravel) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
+nc_api_rate_speed_pummel_rake_humus (Speed adjust > speed > pummel > rake humus) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
@@ -122,6 +130,14 @@ nc_api_rate_speed_soaking_eggcorn_sprout (Speed adjust > speed > soaking > eggco
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
+nc_api_rate_speed_soaking_group_dirt_raked_leaching_to_nc_terrain_sand_loose (Speed adjust > speed > soaking > group:dirt_raked leaching to nc_terrain:sand_loose) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
+nc_api_rate_speed_soaking_group_humus_raked_leaching_to_nc_terrain_dirt_loose (Speed adjust > speed > soaking > group:humus_raked leaching to nc_terrain:dirt_loose) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
 nc_api_rate_speed_soaking_loose_self_repack (Speed adjust > speed > soaking > loose self-repack) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
@@ -134,19 +150,15 @@ nc_api_rate_speed_soaking_lux_renew (Speed adjust > speed > soaking > lux renew)
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
-nc_api_rate_speed_soaking_nc_terrain_dirt_leaching_to_nc_terrain_sand_loose (Speed adjust > speed > soaking > nc_terrain:dirt leaching to nc_terrain:sand_loose) float 1
-
-# Speed adjustment ratio, multiplied by all parent ratios. Intended for
-# custom servers and special sub-game types only.
-nc_api_rate_speed_soaking_nc_tree_humus_leaching_to_nc_terrain_dirt_loose (Speed adjust > speed > soaking > nc_tree:humus leaching to nc_terrain:dirt_loose) float 1
-
-# Speed adjustment ratio, multiplied by all parent ratios. Intended for
-# custom servers and special sub-game types only.
 nc_api_rate_speed_soaking_peat_compost (Speed adjust > speed > soaking > peat compost) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
 nc_api_rate_speed_soaking_pliable_concrete_cure (Speed adjust > speed > soaking > pliable concrete cure) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
+nc_api_rate_speed_soaking_sponge_grow (Speed adjust > speed > soaking > sponge grow) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.

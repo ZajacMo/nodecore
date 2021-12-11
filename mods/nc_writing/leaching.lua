@@ -3,8 +3,6 @@ local minetest, nodecore, pairs
     = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 	local waters = {}
 	minetest.after(0, function()
@@ -45,8 +43,5 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 		})
 end
 
-nodecore.register_dirt_leaching(modname .. ":dirt_raked", "nc_terrain:sand_loose")
-nodecore.register_dirt_leaching(modname .. ":dirt_raked_nexus", "nc_terrain:sand_loose")
-
-nodecore.register_dirt_leaching(modname .. ":humus_raked", "nc_terrain:dirt_loose", 3)
-nodecore.register_dirt_leaching(modname .. ":humus_raked_nexus", "nc_terrain:dirt_loose", 3)
+nodecore.register_dirt_leaching("group:dirt_raked", "nc_terrain:sand_loose")
+nodecore.register_dirt_leaching("group:humus_raked", "nc_terrain:dirt_loose", 3)

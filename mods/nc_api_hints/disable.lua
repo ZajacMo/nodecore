@@ -11,3 +11,5 @@ function nodecore.hints_disabled()
 		this may be useful on multiplayer servers if the players are all
 		experienced and the challenges are obtrusive or distracting.]])
 end
+
+nodecore.hints_disabled() -- for startup settingtypes.txt
