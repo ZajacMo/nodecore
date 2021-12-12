@@ -60,13 +60,13 @@ nodecore.register_fluidwandering(
 	function(pos, node, gen)
 		local def = concdef(node.name)
 		if gen < 8 or math_random(1, 2) == 1 then return end
+		nodecore.set_loud(pos, {name = def.to_crude})
 		nodecore.witness({
 				x = pos.x,
 				y = pos.y + 0.5,
 				z = pos.z
 			},
 			node.name .. " to " .. def.to_crude)
-		nodecore.set_loud(pos, {name = def.to_crude})
 		return true
 	end,
 	1

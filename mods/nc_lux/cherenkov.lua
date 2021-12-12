@@ -10,7 +10,7 @@ local modname = minetest.get_current_modname()
 local particle = modname .. "_base.png^[mask:" .. modname .. "_dot_mask.png^[opacity:32"
 
 local function check(pos, player)
-	local p = player:get_pos();
+	local p = player:get_pos()
 	p = {
 		x = p.x + nodecore.boxmuller() * 2,
 		y = p.y + nodecore.boxmuller() * 2,

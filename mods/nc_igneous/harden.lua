@@ -44,7 +44,7 @@ minetest.register_abm({
 			if (chance > 0) and (math_random() > (1/3) ^ chance) then return end
 			nodecore.log("info", (water > lux and "hardened" or "softened")
 				.. " to " .. node.name .. " at " .. minetest.pos_to_string(pos))
-			nodecore.witness(pos, "stone " .. (water > lux and "hardened" or "softened"))
-			return nodecore.set_loud(pos, node)
+			nodecore.set_loud(pos, node)
+			return nodecore.witness(pos, "stone " .. (water > lux and "hardened" or "softened"))
 		end
 	})

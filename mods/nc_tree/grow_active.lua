@@ -45,9 +45,9 @@ nodecore.register_soaking_abm({
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
 				local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
-				nodecore.witness(apos, "tree growth")
 				nodecore.set_loud(apos,
 					{name = modname .. ":tree_bud", param2 = 1})
+				nodecore.witness(apos, "tree growth")
 				return nodecore.soaking_abm_push(apos,
 					"treegrow", data.total - sproutcost)
 			end
@@ -114,11 +114,11 @@ nodecore.register_soaking_abm({
 			if tp.notrunk then
 				leafbud(apos, 0, 0, 0, tp.leaves, surplus, data.rate)
 			else
-				nodecore.witness(apos, "tree growth")
 				nodecore.set_loud(apos, {
 						name = modname .. ":tree_bud",
 						param2 = param2
 					})
+				nodecore.witness(apos, "tree growth")
 				nodecore.soaking_abm_push(apos,
 					"treegrow", surplus)
 			end

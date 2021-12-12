@@ -102,15 +102,17 @@ end
 
 local function doitemeject(pos, data)
 	if data.pressdig then
-		nodecore.witness(pos, "door dig")
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
-		return minetest.dig_node(data.pressdig.pos)
+		minetest.dig_node(data.pressdig.pos)
+		nodecore.witness(pos, "door dig")
+		return
 	end
 	if data.presscommit then
-		nodecore.witness(pos, "door pummel")
 		toolfx(pos, data.presstarget)
-		return data.presscommit()
+		data.presscommit()
+		nodecore.witness(pos, "door pummel")
+		return
 	end
 
 	local stack = nodecore.stack_get(pos)
@@ -140,13 +142,13 @@ local function doitemeject(pos, data)
 			one, 0, 1, vector.multiply(vel, 2 + doorlv)
 		)
 	end
-	nodecore.witness(pos, "door catapult")
 	nodecore.stack_sounds(pos, "dig")
 	stack:take_item(1)
 	if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
 		return minetest.remove_node(pos)
 	end
-	return nodecore.stack_set(pos, stack)
+	nodecore.stack_set(pos, stack)
+	return nodecore.witness(pos, "door catapult")
 end
 
 nodecore.register_craft({

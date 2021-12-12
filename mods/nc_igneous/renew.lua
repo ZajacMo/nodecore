@@ -29,7 +29,7 @@ minetest.register_abm({
 
 			nodecore.log("info", string_format("%s melted to %s at %s (%d sources)",
 					stonename, lavaname, minetest.pos_to_string(pos), lavas))
-			nodecore.witness(pos, "stone melted")
-			return nodecore.set_loud(pos, {name = lavaname})
+			nodecore.set_loud(pos, {name = lavaname})
+			return nodecore.witness(pos, "stone melted")
 		end
 	})

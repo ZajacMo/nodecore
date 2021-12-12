@@ -108,7 +108,6 @@ nodecore.register_craft({
 			local stack = data[checkedstack]
 			if not stack then return end
 			minetest.remove_node(pos)
-			nodecore.witness(pos, "door placement")
 			local pt = {}
 			for k, v in pairs(data.pointed) do pt[k] = v end
 			pt.craftdata = {
@@ -117,6 +116,7 @@ nodecore.register_craft({
 			}
 			stack = minetest.item_place_node(stack, nil, pt)
 			nodecore.node_sound(pos, "place")
+			nodecore.witness(pos, "door placement")
 			if not stack:is_empty() then
 				nodecore.item_eject(pos, stack)
 			end
