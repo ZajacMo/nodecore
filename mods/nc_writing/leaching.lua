@@ -43,5 +43,5 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 		})
 end
 
-nodecore.register_dirt_leaching("group:dirt_raked", "nc_terrain:sand_loose")
-nodecore.register_dirt_leaching("group:humus_raked", "nc_terrain:dirt_loose", 3)
+nodecore.register_dirt_leaching("group:dirt_raked", "nc_terrain:sand")
+nodecore.register_dirt_leaching("group:humus_raked", "nc_terrain:dirt", 3)
