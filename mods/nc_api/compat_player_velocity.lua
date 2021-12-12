@@ -11,13 +11,13 @@ local function joinhook(player)
 	hooked = true
 
 	if player:get_velocity() then
-		return nodecore.log("action", modname
+		return nodecore.log("info", modname
 			.. " player:get_velocity already correct")
 	end
 
 	local meta = getmetatable(player)
 	meta = meta and meta.__index or meta
 	meta.get_velocity = function(self) return self:get_player_velocity() end
-	nodecore.log("action", modname .. " player:get_velocity patched")
+	nodecore.log("info", modname .. " player:get_velocity patched")
 end
 minetest.register_on_joinplayer(joinhook)

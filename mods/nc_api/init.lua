@@ -58,7 +58,7 @@ function nodecore.log(level, ...)
 	return minetest.log(level, ...)
 end
 
-nodecore.log("action", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
+nodecore.log("info", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
 		or " DEVELOPMENT VERSION"))
 
 do
@@ -76,7 +76,7 @@ do
 			end
 		end
 		table_sort(t)
-		for _, x in ipairs(t) do nodecore.log("action", x) end
+		for _, x in ipairs(t) do nodecore.log("info", x) end
 	end
 	minetest.after(0, regreport)
 end

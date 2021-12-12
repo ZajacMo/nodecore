@@ -594,7 +594,7 @@ function nodecore.item_matching_index(items, getnames, idxname, asarray, keymod)
 						defs = defs + n
 						if n > peak then peak = n end
 					end
-					nodecore.log("action", string_format(
+					nodecore.log("info", string_format(
 							"%s %s: %d keys, %d defs, %d peak",
 							"item_matching_index",
 							idxname, keys, defs, peak))

@@ -9,7 +9,7 @@ nodecore.register_globalstep("gametime", function(dtime)
 		local mtt = minetest.get_gametime()
 		local nct = nodecore.gametime
 		if not nct then
-			nodecore.log("action", "nodecore.gametime: init to " .. mtt)
+			nodecore.log("info", "nodecore.gametime: init to " .. mtt)
 			nct = mtt
 		end
 		nct = nct + dtime

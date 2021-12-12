@@ -38,7 +38,7 @@ function nodecore.ezschematic(key, yslices, init)
 	for _, k in ipairs(keys) do
 		report = string_format("%s, %d %s", report, totals[k], k)
 	end
-	nodecore.log("action", report)
+	nodecore.log("info", report)
 
 	return minetest.register_schematic(init)
 end

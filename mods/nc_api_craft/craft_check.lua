@@ -135,7 +135,8 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		local discover = {recipe.action, recipe.label, data.discover, recipe.discover}
 		nodecore.player_discover(data.crafter, discover, "craft:")
 		if data.witness or recipe.witness then nodecore.witness(pos, discover) end
-		nodecore.log("action", (data.crafter and data.crafter:get_player_name() or "unknown")
+		local pname = data.crafter and data.crafter:get_player_name()
+		nodecore.log(pname and "action" or "info", (pname or "unknown")
 			.. " completed recipe \"" .. recipe.label .. "\" at " ..
 			minetest.pos_to_string(pos) .. " upon " .. node.name)
 	end

@@ -42,7 +42,7 @@ minetest.register_abm({
 			local fluid = water > lux and (water - lux) or (lux - water)
 			local chance = harden_idx[node.name] - (fluid > lava and fluid or lava) / 8
 			if (chance > 0) and (math_random() > (1/3) ^ chance) then return end
-			nodecore.log("action", (water > lux and "hardened" or "softened")
+			nodecore.log("info", (water > lux and "hardened" or "softened")
 				.. " to " .. node.name .. " at " .. minetest.pos_to_string(pos))
 			nodecore.witness(pos, "stone " .. (water > lux and "hardened" or "softened"))
 			return nodecore.set_loud(pos, node)

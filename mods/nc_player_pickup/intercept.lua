@@ -29,7 +29,7 @@ local function wrapinv(inv, player)
 			return helper(oldadd(self, listname, stack, ...))
 		end
 	end
-	nodecore.log("action", modname .. " inventory:add_item hooked")
+	nodecore.log("info", modname .. " inventory:add_item hooked")
 	wrapinv = function(i, p)
 		if i then invplayer[i] = p end
 		return i
@@ -51,6 +51,6 @@ local function patchplayers()
 	function meta:get_inventory(...)
 		return wrapinv(getraw(self, ...), self)
 	end
-	nodecore.log("action", modname .. " player:get_inventory hooked")
+	nodecore.log("info", modname .. " player:get_inventory hooked")
 end
 minetest.after(0, patchplayers)

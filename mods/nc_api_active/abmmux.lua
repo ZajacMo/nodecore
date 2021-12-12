@@ -64,7 +64,7 @@ if statinterval > 0 then
 					top[topkeys[i]].runcount,
 					top[topkeys[i]].timeused / rawtime * 100)
 			end
-			nodecore.log("action", string_format("ABM average"
+			nodecore.log("info", string_format("ABM average"
 					.. " %0.2f actions for %0.2f nodes"
 					.. " with %0.2f players, %0.2f%% running, top: %s",
 					actions / elapsed, nodes / elapsed,

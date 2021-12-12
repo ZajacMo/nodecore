@@ -19,7 +19,7 @@ local function hook(meta)
 				end
 				return v(data, name, ...)
 			end
-			nodecore.log("action", modname .. " auto-privatized meta " .. k)
+			nodecore.log("info", modname .. " auto-privatized meta " .. k)
 		end
 	end
 end
