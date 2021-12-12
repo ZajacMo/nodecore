@@ -40,8 +40,3 @@ nodecore.register_hint("find pumwater",
 	{true, "group:amalgam", "group:lava"},
 	"nc_terrain:cobble_loose"
 )
-
-nodecore.register_hint("leach dirt to sand",
-	"leach nc_terrain:dirt",
-	"dig:nc_terrain:dirt_loose"
-)

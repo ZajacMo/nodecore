@@ -35,3 +35,12 @@ nodecore.register_hint("rake humus",
 	"rake humus",
 	{"group:rakey", "nc_tree:humus"}
 )
+
+nodecore.register_hint("leach raked humus to dirt",
+	"leach group:humus_raked",
+	"group:humus_raked"
+)
+nodecore.register_hint("leach raked dirt to sand",
+	"leach group:dirt_raked",
+	"group:dirt_raked"
+)

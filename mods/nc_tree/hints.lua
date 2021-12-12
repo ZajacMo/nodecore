@@ -54,8 +54,3 @@ nodecore.register_hint("ferment peat into humus",
 	"nc_tree:humus",
 	"nc_tree:peat"
 )
-
-nodecore.register_hint("leach humus to dirt",
-	"leach nc_tree:humus",
-	"nc_tree:humus"
-)
