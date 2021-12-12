@@ -139,9 +139,10 @@ nodecore.register_on_player_receive_fields("player inv formspec returned",
 			end
 			if tab then
 				nodecore.inventory_tab_set(player, tab)
-				minetest.show_formspec(player:get_player_name(),
+				return minetest.show_formspec(player:get_player_name(),
 					formname, nodecore.inventory_formspec_update(player))
 			end
+			nodecore.inventory_formspec_update(player)
 		end
 	end)
 
