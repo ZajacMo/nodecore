@@ -85,13 +85,13 @@ minetest.register_entity(":__builtin:item", {
 				end
 			end),
 
-		on_step = function(self, dtime, ...)
+		on_step = function(self, ...)
 			if not self.itemstring then return self.object:remove() end
 			nodecore.entity_update_maxy(self)
-			if self:settle_check() then return end
+			if self:settle_check(...) then return end
 
 			for _, func in ipairs(nodecore.registered_item_entity_steps) do
-				if func(self, dtime, ...) == true then return end
+				if func(self, ...) == true then return end
 			end
 		end,
 	})

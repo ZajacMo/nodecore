@@ -196,9 +196,20 @@ function nodecore.entity_settle_recurse(pos)
 	entity_settle_recursing = nil
 end
 
+local function groundpos(moveresult)
+	if not (moveresult and moveresult.touching_ground) then return end
+	local collisions = moveresult.collisions
+	if not collisions then return end
+	local first = collisions[1]
+	if not (first and first.type == "node") then return end
+	local pos = first.nodepos
+	if not pos then return end
+	return {x = pos.x, y = pos.y + 0.55, z = pos.z}
+end
+
 function nodecore.entity_settle_check(on_settle, isnode)
-	return function(self)
-		local pos = self.object:get_pos()
+	return function(self, _, moveresult)
+		local pos = groundpos(moveresult) or self.object:get_pos()
 		if not pos then return end
 		if pos.y < nodecore.map_limit_min then
 			pos.y = nodecore.map_limit_min

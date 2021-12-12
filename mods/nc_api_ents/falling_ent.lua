@@ -115,7 +115,7 @@ minetest.register_entity(":__builtin:falling_node", {
 		on_step = function(self, ...)
 			if not self.node then return self.object:remove() end
 			nodecore.entity_update_maxy(self)
-			if self:settle_check() then return end
+			if self:settle_check(...) then return end
 
 			for _, func in ipairs(nodecore.registered_falling_node_steps) do
 				if func(self, ...) == true then return end
