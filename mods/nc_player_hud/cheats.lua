@@ -19,7 +19,7 @@ local cheats = {
 	keepinv = true
 }
 
-local function privcheck(player)
+local function ischeating(player)
 	local cheating = false
 	local privs = minetest.get_player_privs(player:get_player_name())
 	if privs.interact then
@@ -27,11 +27,40 @@ local function privcheck(player)
 		cheating = cheating or not nodecore.player_visible(player)
 		for k in pairs(cheats) do cheating = cheating or privs[k] end
 	end
+	return cheating
+end
+
+minetest.register_chatcommand("uncheat", {
+		description = "Turns off cheat privs",
+		privs = {privs = true},
+		func = function(name)
+			local privs = minetest.get_player_privs(name)
+			local qty = 0
+			for k in pairs(cheats) do
+				if privs[k] then qty = qty + 1 end
+				privs[k] = nil
+			end
+			minetest.set_player_privs(name, privs)
+			minetest.chat_send_player(name,
+				qty > 0 and ("Removed " .. qty .. " cheats")
+				or "No active cheats found")
+
+			local player = minetest.get_player_by_name(name)
+			if player and ischeating(player) then
+				minetest.chat_send_player(name, "Unable to remove"
+					.. " all cheats; may be caused by 3rd party mods,"
+					.. " player admin status, or settings (e.g."
+					.. " enable_damage)")
+			end
+		end
+	})
+
+local function privcheck(player)
 	nodecore.hud_set(player, {
 			label = "cheats",
 			hud_elem_type = "text",
 			position = {x = 0.5, y = 1},
-			text = cheating and cheatmsg or "",
+			text = ischeating(player) and cheatmsg or "",
 			number = 0xFF00C0,
 			alignment = {x = 0, y = -1},
 			offset = {x = 0, y = -4}
