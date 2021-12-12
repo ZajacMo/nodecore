@@ -8,8 +8,11 @@ local math_floor, math_random, table_insert
 local pcache = {}
 
 local strings = {
-	progress = "Progress: @1 complete, @2 current, @3 future",
-	explore = "Not all game content is covered by challenges. Explore!",
+	progress = "@1 discovered, @2 available, @3 future",
+	explore = "The discovery system only alerts you to the existence of"
+	.. "some basic game mechanics. More advanced content, such as"
+	.. " emergent systems and automation, you will have to"
+	.. " invent yourself!",
 	hint = "- @1",
 	done = "- DONE: @1"
 }
@@ -59,7 +62,7 @@ local function clearcache(_, pname)
 end
 
 local mytab = {
-	title = "Challenges",
+	title = "Discovery",
 	visible = function(_, player)
 		return nodecore.interact(player)
 		and not nodecore.hints_disabled()
