@@ -36,7 +36,7 @@ local function check(pos, player)
 end
 
 minetest.register_abm({
-		label = "lux react",
+		label = "lux cherenkov",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_emit"},
