@@ -25,7 +25,7 @@ local function metaget(meta, def, nodekey)
 	if nodekey then
 		cached = cached or {}
 		cached[fn] = inner
-		metacache = cached
+		metacache[nodekey] = cached
 	end
 	return inner
 end
