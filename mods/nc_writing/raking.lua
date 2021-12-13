@@ -116,9 +116,9 @@ nodecore.register_raked("nc_terrain:sand", "Sand", 96,
 nodecore.register_raked("nc_terrain:gravel", "Gravel", 160,
 	{groups = {gravel = true, falling_repose = false}},
 	{"group:gravel"})
-nodecore.register_raked("nc_terrain:dirt", "Dirt", 104,
+nodecore.register_raked("nc_terrain:dirt", "Dirt", 108,
 	{groups = {dirt = true, falling_repose = false}},
 	{"group:dirt"})
-nodecore.register_raked("nc_tree:humus", "Humus", 80,
+nodecore.register_raked("nc_tree:humus", "Humus", 116,
 	{groups = {humus = true, falling_repose = false}},
 	{"group:humus"})
