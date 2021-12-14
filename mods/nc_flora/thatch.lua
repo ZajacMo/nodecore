@@ -10,7 +10,7 @@ minetest.register_node(modname .. ":thatch", {
 		tiles = {modname .. "_thatch.png"},
 		groups = {
 			snappy = 1,
-			flammable = 3,
+			flammable = 1,
 			fire_fuel = 4
 		},
 		sounds = nodecore.sounds("nc_terrain_grassy")
