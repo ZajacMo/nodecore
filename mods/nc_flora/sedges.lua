@@ -9,12 +9,12 @@ local grassname = "nc_terrain:dirt_with_grass"
 
 local sedge1 = modname .. ":sedge_1"
 local droprates = {
-	{{items = {sedge1}, rarity = 32}},
 	{{items = {sedge1}, rarity = 16}},
 	{{items = {sedge1}, rarity = 8}},
 	{{items = {sedge1}, rarity = 4}},
+	{{items = {sedge1}, rarity = 2}},
 	{
-		{items = {sedge1 .. " 2"}, rarity = 4},
+		{items = {sedge1 .. " 2"}, rarity = 2},
 		{items = {sedge1}, rarity = 1}
 	}
 }
@@ -57,7 +57,7 @@ for i = 1, 5 do
 			),
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
-			destroy_on_dig = 50
+			destroy_on_dig = 20
 		})
 
 	minetest.register_decoration({
