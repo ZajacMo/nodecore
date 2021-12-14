@@ -5,6 +5,26 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
+local firedirs = {
+	{x = 0, y = 1, z = 0},
+
+	{x = 1, y = 0, z = 0},
+	{x = 1, y = 0, z = 0},
+
+	{x = -1, y = 0, z = 0},
+	{x = -1, y = 0, z = 0},
+
+	{x = 0, y = 0, z = 1},
+	{x = 0, y = 0, z = 1},
+
+	{x = 0, y = 0, z = -1},
+	{x = 0, y = 0, z = -1},
+
+	{x = 0, y = -1, z = 0},
+	{x = 0, y = -1, z = 0},
+	{x = 0, y = -1, z = 0},
+}
+
 nodecore.register_craft({
 		label = "stick fire starting",
 		action = "pummel",
@@ -39,8 +59,8 @@ nodecore.register_craft({
 					time = 0.02,
 					minpos = {x = pos.x, y = pos.y - 0.25, z = pos.z},
 					maxpos = {x = pos.x, y = pos.y + 0.5, z = pos.z},
-					minvel = {x = -2, y = 0, z = -2},
-					maxvel = {x = 2, y = 0, z = 2},
+					minvel = {x = -2, y = -3, z = -2},
+					maxvel = {x = 2, y = 1, z = 2},
 					minacc = {x = 0, y = -0.5, z = 0},
 					maxacc = {x = 0, y = -0.5, z = 0},
 					minxeptime = 0.4,
@@ -48,11 +68,12 @@ nodecore.register_craft({
 					minsize = 0.4,
 					maxsize = 0.5,
 					texture = "nc_fire_spark.png",
+					collisiondetection = true,
 					glow = 7
 				})
 
 			if math_random(1, 4) > fs then return end
-			local dir = nodecore.pickrand(nodecore.dirs())
+			local dir = firedirs[math_random(1, #firedirs)]
 			return nodecore.fire_check_ignite({
 					x = pos.x + dir.x,
 					y = pos.y + dir.y,
