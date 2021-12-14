@@ -25,7 +25,7 @@ local function idx2str(idx, key)
 	end
 	if #keys == 1 then
 		local k = keys[1]
-		parts[#parts + 1] = idx2str(idx[k], k)
+		parts[#parts + 1] = key .. "_" .. idx2str(idx[k], k)
 	elseif #keys > 1 then
 		table_sort(keys)
 		for i = 1, #keys do
