@@ -30,8 +30,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Based on user guesses, use only 3 rakes
 		- Maybe 2x adze -> tongs, 2x tongs -> rake?
 
-- Sedges are way too slow to farm compared to rushes.
-
 - Thatch and wicker should probably have recycling recipes.
 
 - Do we really need stack_as_node for leaves, sticks, and a
@@ -108,13 +106,8 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Can we smooth this out and make it less jarring?
 
 - Item ent fixes
-	- Try to settle more reliably on landing using moveresult
-		- Items tend to slide more under lag conditions
-	- Crush damage issues
-		- Use velocity relative to player, not absolute
-		  velocity, to calculate damage
-		- Exempt thrown items from hurting players for a
-		  second or so after being thrown
+	- Make crush damage use velocity relative to player,
+	  not absolute velocity, to calculate damage
 
 - A way to visualize the infusion rate effects would be nice
 	- Particles don't work due to semitransparent liquid
@@ -218,12 +211,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	  update work and prevent rapid strobes.
 	- Strobes can cause excess lighting recalcs and block
 	  transfers, and can cause seizure problems for users
-
-- falling_node pillars settle out of order!
-	- Also anectodal issues with falling nodes sometimes
-	  tunneling WAY upwards now, as observed with BXS's
-	  mine on NCC where gravel tunneled all the way up
-	  the ladder
 
 - Tote issues:
 	- Consider updating tote recipe.

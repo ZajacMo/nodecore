@@ -13,6 +13,11 @@ end
 local function maketick(mult, getname, oldtick)
 	oldtick = oldtick or function() end
 	return function(self, dtime, ...)
+		local age = self.crush_age or 0
+		age = age + dtime
+		self.crush_age = age
+		if age < 1 then return end
+
 		self.crush_damage = self.crush_damage or getcrushdamage(getname(self))
 		if self.crush_damage <= 0 then
 			return oldtick(self, dtime, ...)
