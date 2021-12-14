@@ -35,7 +35,7 @@ local function ablation(pos, node)
 				maxpos = ppos,
 				minvel = vector.add(vel, vector.multiply(dvel, -1)),
 				maxvel = vector.add(vel, dvel),
-				texture = "[combine:1x1^[noalpha^[invert:rgb^[multiply:#808080",
+				texture = "nc_doors_ablation_particle.png",
 				minsize = 0.25,
 				maxsize = 1,
 				minexptime = 0.25,

@@ -9,6 +9,8 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Add AISM profiler similar to how ABM profiler already works
+
 - Optimize colony growth logic
 	- For each sponge found, push into a queue
 	- Process queue on step:
@@ -21,10 +23,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		- If a sponge is dug, check to see if it's the colony
 			seed and has the metadata
 		- Transfer metadata to any face-touching sponge
-
-- Texturepackability audit
-	- Don't use [combine:1x1^[noalpha or other pure-computed
-	  textures with entities or particles; bake them into real PNGs.
 
 - Allow mods to affect game time flow
 	- Allow skipping forward through time

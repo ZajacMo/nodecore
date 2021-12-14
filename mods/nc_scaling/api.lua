@@ -9,7 +9,7 @@ nodecore.scaling_light_level = 2
 
 function nodecore.scaling_particles(pos, def)
 	def = nodecore.underride(def or {}, {
-			texture = "[combine:1x1^[noalpha",
+			texture = modname .. "_particle.png",
 			collisiondetection = false,
 			amount = 5,
 			time = 1,
@@ -19,8 +19,8 @@ function nodecore.scaling_particles(pos, def)
 			maxvel = {x = 0.02, y = 0.02, z = 0.02},
 			minexptime = 1,
 			maxexptime = 1,
-			minsize = 0.2,
-			maxsize = 0.25
+			minsize = 0.3,
+			maxsize = 0.35
 		})
 	for _, player in pairs(minetest.get_connected_players()) do
 		local pp = player:get_pos()
