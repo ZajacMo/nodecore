@@ -5,16 +5,8 @@ local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local countdescs = {"@1"}
-for i = 2, 9 do countdescs[i] = "@1 (" .. i .. ")" end
-for j = 10, 90, 10 do
-	for i = 0, 9 do
-		countdescs[j + i] = "@1 (" .. j .. "@2)"
-	end
-end
-countdescs[100] = "@1 (100@2)"
-for i = 2, #countdescs do nodecore.translate_inform(countdescs[i]) end
-local plus = nodecore.translate("+")
+local countdesc = "@1 (@2)"
+nodecore.translate_inform(countdesc)
 
 local weardescs = {"@1"}
 for i = 1, 65535 do
@@ -38,13 +30,8 @@ function nodecore.touchtip_stack(s, noqty)
 	if not noqty then
 		local c = s:get_count()
 		if c > 1 then
-			t = nodecore.translate(t)
-			local cd = countdescs[c > 100 and 100 or c]
-			if c >= 10 then
-				t = nodecore.translate(cd, t, c >= s:get_stack_max() and "" or plus)
-			else
-				t = nodecore.translate(cd, t)
-			end
+			t = nodecore.translate(countdesc,
+				nodecore.translate(t), c)
 		else
 			local w = s:get_wear()
 			if w > 1 then
