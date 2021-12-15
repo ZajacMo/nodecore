@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -57,7 +59,27 @@ for i = 1, 5 do
 			),
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
-			destroy_on_dig = 20
+			destroy_on_dig = 20,
+			on_place = function(stack, ...)
+				local old = stack:get_name()
+				local r = math_random(1, 31)
+				if r >= 16 then
+					stack:set_name(modname .. ":sedge_1")
+				elseif r >= 8 then
+					stack:set_name(modname .. ":sedge_2")
+				elseif r >= 4 then
+					stack:set_name(modname .. ":sedge_3")
+				elseif r >= 2 then
+					stack:set_name(modname .. ":sedge_4")
+				else
+					stack:set_name(modname .. ":sedge_5")
+				end
+				stack = minetest.item_place(stack, ...)
+				if not stack:is_empty() then
+					stack:set_name(old)
+				end
+				return stack
+			end
 		})
 
 	minetest.register_decoration({
