@@ -48,7 +48,8 @@ local function checktarget(data, stack)
 	and nodecore.tool_digs(stack, def.groups) then
 		data.pressdig = {
 			pos = target,
-			tool = stack
+			tool = stack,
+			toolpos = data.pointed.under
 		}
 		return true
 	end
@@ -105,6 +106,7 @@ local function doitemeject(pos, data)
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
 		minetest.dig_node(data.pressdig.pos)
+		nodecore.machine_digging = nil
 		nodecore.witness(pos, "door dig")
 		return
 	end

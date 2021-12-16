@@ -5,7 +5,7 @@ local math_abs, math_max, table_sort
     = math.abs, math.max, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
--- To register a tool as a rake, provie a callback:
+-- To register a tool as a rake, provide a callback:
 -- on_rake(pos, node, user) returns volume, checkfunc
 -- volume: ordered array of relative positions to be dug by rake
 -- checkfunc(pos, node, rel): determine if item can be dug
@@ -62,7 +62,9 @@ local lastraking
 local old_node_dig = minetest.node_dig
 minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
-	local wield = user and user:is_player() and user:get_wielded_item()
+	local wield = nodecore.machine_digging and nodecore.machine_digging.tool
+	or user and user:is_player() and user:get_wielded_item()
+	print(wield and wield:to_string() or "nada")
 	lastraking = wield and (wield:get_definition() or {}).on_rake
 	if lastraking then return deferfall(old_node_dig, pos, node, user, ...) end
 	return old_node_dig(pos, node, user, ...)
@@ -84,16 +86,19 @@ local function matching(_, na, pb, nb)
 end
 
 local function dorake(volume, check, pos, node, user, ...)
-	local sneak = user:get_player_control().sneak
+	local sneak = user and user:get_player_control().sneak
 	local objpos = {}
 	for _, rel in ipairs(volume) do
 		local p = vector.add(pos, rel)
-		local n = minetest.get_node(p)
-		local allow = (rel.d > 0 or nil) and check(p, n, rel)
-		if allow == false then break end
-		if allow and ((not sneak) or matching(pos, node, p, n)) then
-			minetest.node_dig(p, n, user, ...)
-			objpos[minetest.hash_node_position(p)] = true
+		if not (nodecore.machine_digging
+			and vector.equals(nodecore.machine_digging.toolpos, p)) then
+			local n = minetest.get_node(p)
+			local allow = (rel.d > 0 or nil) and check(p, n, rel)
+			if allow == false then break end
+			if allow and ((not sneak) or matching(pos, node, p, n)) then
+				minetest.node_dig(p, n, user, ...)
+				objpos[minetest.hash_node_position(p)] = true
+			end
 		end
 	end
 	for _, lua in pairs(minetest.luaentities) do
@@ -114,11 +119,12 @@ nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
 		if not nowraking then return end
 		lastraking = nil
 
-		if not (pos and node and user and user:is_player()) then return end
+		if not (pos and node) then return end
 		local volume, check = nowraking(pos, node, user, ...)
 		if not (volume and check) then return end
 
-		local pname = user:get_player_name()
+		local pname = user and user:is_player()
+		and user:get_player_name() or nowraking
 		if rakelock[pname] then return end
 		rakelock[pname] = true
 		deferfall(dorake, volume, check, pos, node, user, ...)
