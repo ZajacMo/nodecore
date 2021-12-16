@@ -230,7 +230,8 @@ local function anim(name, len)
 			aspect_w = 16,
 			aspect_h = 16,
 			length = len
-		}
+		},
+		backface_culling = false
 	}
 end
 local function gray(suff)
