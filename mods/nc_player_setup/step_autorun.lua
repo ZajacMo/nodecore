@@ -30,8 +30,14 @@ nodecore.register_playerstep({
 			local ctl = data.control
 			local walking = ctl.up and not ctl.down
 			if (not walking) and ctl.jump and (not ctl.sneak) then
-				local def = minetest.registered_nodes[minetest.get_node(player:get_pos()).name]
+				local ppos = player:get_pos()
+				local def = minetest.registered_nodes[minetest.get_node(ppos).name]
 				walking = def and (def.climbable or def.liquidtype ~= "none")
+				if not walking then
+					ppos.y = ppos.y + 1
+					def = minetest.registered_nodes[minetest.get_node(ppos).name]
+					walking = def and (def.climbable or def.liquidtype ~= "none")
+				end
 			end
 			if walking and ctl.sneak then
 				local pos = player:get_pos()
