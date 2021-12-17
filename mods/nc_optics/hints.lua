@@ -3,38 +3,38 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("melt sand into glass",
-	"group:silica",
+nodecore.register_hint("melt sand into molten glass",
+	"group:silica_molten",
 	"nc_terrain:sand_loose"
 )
 
 nodecore.register_hint("quench molten glass into chromatic glass",
-	"nc_optics:glass_opaque",
-	"group:silica"
+	"quench opaque glass",
+	"group:silica_molten"
 )
 
 nodecore.register_hint("mold molten glass into clear glass",
-	"nc_optics:glass",
-	"group:silica"
+	"cool clear glass",
+	"group:silica_molten"
 )
 
 nodecore.register_hint("mold molten glass into float glass",
-	"nc_optics:glass_float",
-	{"nc_optics:glass", "group:lava"}
+	"cool float glass",
+	{"cool clear glass", "group:lava"}
 )
 
 nodecore.register_hint("cool molten glass into crude glass",
 	"nc_optics:glass_crude",
-	"group:silica"
+	"group:silica_molten"
 )
 
 nodecore.register_hint("chip chromatic glass into prisms",
-	"group:silica_prism",
+	"hammer prism from glass",
 	{"nc_optics:glass_opaque", "nc_lode:tool_mallet_tempered"}
 )
 
 nodecore.register_hint("chop chromatic glass into lenses",
-	"group:silica_lens",
+	"cleave lenses from glass",
 	{"nc_optics:glass_opaque", "nc_lode:tool_hatchet_tempered"}
 )
 

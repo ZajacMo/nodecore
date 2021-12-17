@@ -6,9 +6,7 @@ local nodecore
 local function dug(n)
 	return {true,
 		"dig:nc_terrain:" .. n .. "_loose",
-		"dig:nc_terrain:" .. n,
-		"inv:nc_terrain:" .. n .. "_loose",
-		"inv:nc_terrain:" .. n,
+		"dig:nc_terrain:" .. n
 	}
 end
 
@@ -37,6 +35,6 @@ nodecore.register_hint("find deep stone strata",
 )
 
 nodecore.register_hint("find pumwater",
-	{true, "group:amalgam", "group:lava"},
+	{true, "group:lava"},
 	"nc_terrain:cobble_loose"
 )

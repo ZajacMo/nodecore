@@ -87,6 +87,7 @@ nodecore.register_soaking_abm({
 				return
 			end
 			nodecore.set_loud(pos, {name = modname .. ":humus"})
+			nodecore.witness(pos, "peat compost")
 			local found = nodecore.find_nodes_around(pos, {modname .. ":peat"})
 			if #found < 1 then return false end
 			nodecore.soaking_abm_push(nodecore.pickrand(found),
