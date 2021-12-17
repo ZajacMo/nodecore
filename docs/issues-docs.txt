@@ -9,6 +9,11 @@ ISSUES-DOCS: Issues related to documentation
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Official screenshot missing:
+	- Thatch
+	- Wicker
+	- Raked sand/dirt/gravel/humus
+
 - Add a credits file with more extensive/specific credits, including
   non-copyrightable contributions to core project...?
 
