@@ -10,7 +10,6 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - CATCH UP HINT SYSTEM & RETEST
-	- Thatch, wicker
 	- Forms, wooden and lode
 	- Lode frames, ladders
 	- High-tier digging: grass, stone, tarstone
@@ -48,12 +47,6 @@ ISSUES-GAME: Gameplay-affecting issues
   indefinitely without settling to a steady state.
   https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
 
-- Soil leaching optimization
-	- Especially for dirt->sand stage
-	- Dirt and water are too common, can't anchor ABM to either
-	- Primary idea: require raked dirt
-	- Require raked humus for humus->dirt for consistency
-
 - Sponge Fixes
 	- Fix crappy sponge death mechanic
 		- Remove special treatment of glass case and glass nodes
@@ -68,15 +61,10 @@ ISSUES-GAME: Gameplay-affecting issues
 		to grow from; maybe save candidate water spots during the flood
 		scan and grow non-locally to that?
 
-- Reduce the "lode gate" further
-	- Use chisels to make lenses/prisms?
-
 - Hint system:
 	- Split hint descriptions into "pre" and "post" parts.
 		- Undiscovered, show just "pre" part (1 stick + 4 adze)
 		- After, show both (1 stick + 4 adze => rake)
-	- Use crafting instead of inv/punch checks for "make" hints.
-		- Fixes hints completing on dungeon/multiplayer cases.
 	- Make all crafts/recipes trigger witnessing?
 	- Hide stylus hint until after mixed concrete
 
