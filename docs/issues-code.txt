@@ -15,16 +15,16 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Add AISM profiler similar to how ABM profiler already works
 
 - Unload boundary check consistency
-  - Need an efficient libfunc for testing for an area being loaded
-    (center/radius, min/max)
-  - Make sure the Soaking API has a way to say "no rate and don't
-    update timestamp"
-  - Maybe add an option to pre-check loadedness in
-    ABM/AISM/DNT/playerstep?
-  - Audit every ABM, AISM, DNT, playerstep, globalstep for loadedness
-  - Wild idea: a func that uses pcall and wraps get_node et al to
-    abort a function if unloaded areas are encountered.  Would need to
-    pre-check for find_nodes_in_area and find_nodes_around.
+	- Need an efficient libfunc for testing for an area being loaded
+	  (center/radius, min/max)
+	- Make sure the Soaking API has a way to say "no rate and don't
+	  update timestamp"
+	- Maybe add an option to pre-check loadedness in
+	  ABM/AISM/DNT/playerstep?
+	- Audit every ABM, AISM, DNT, playerstep, globalstep for loadedness
+	- Wild idea: a func that uses pcall and wraps get_node et al to
+	  abort a function if unloaded areas are encountered.  Would need to
+	  pre-check for find_nodes_in_area and find_nodes_around.
 
 - Optimize colony growth logic
 	- For each sponge found, push into a queue
