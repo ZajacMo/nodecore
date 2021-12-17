@@ -103,7 +103,8 @@ minetest.register_node(modname .. ":leaves", {
 				falling_repose = 1,
 				green = 1,
 				stack_as_node = 1,
-				leaf_decay = 0
+				leaf_decay = 0,
+				peat_grindable_item = 1
 			}
 		},
 		alternate_solid = {

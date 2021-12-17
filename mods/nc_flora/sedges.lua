@@ -51,7 +51,8 @@ for i = 1, 5 do
 				flora_sedges = i,
 				flora_dry = 1,
 				flammable = 3,
-				attached_node = 1
+				attached_node = 1,
+				peat_grindable_item = 1
 			},
 			sounds = nodecore.sounds("nc_terrain_grassy"),
 			selection_box = nodecore.fixedbox(

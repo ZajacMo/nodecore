@@ -45,9 +45,12 @@ nodecore.register_hint("dig up a tree stump",
 	"toolcap:choppy:4"
 )
 
-nodecore.register_hint("grind leaves into peat",
+nodecore.register_hint("grind dead plants into peat",
 	"nc_tree:peat",
-	"nc_tree:leaves_loose"
+	{true,
+		"group:peat_grindable_item",
+		"group:peat_grindable_node"
+	}
 )
 
 nodecore.register_hint("ferment peat into humus",

@@ -49,10 +49,22 @@ nodecore.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
-		indexkeys = {modname .. ":leaves_loose"},
+		indexkeys = {"group:peat_grindable_item"},
 		nodes = {
 			{
-				match = {name = modname .. ":leaves_loose", count = 8},
+				match = {groups = {peat_grindable_item = true}, count = 8},
+				replace = modname .. ":peat"
+			}
+		}
+	})
+nodecore.register_craft({
+		label = "compress peat block",
+		action = "pummel",
+		toolgroups = {crumbly = 2},
+		indexkeys = {"group:peat_grindable_node"},
+		nodes = {
+			{
+				match = {groups = {peat_grindable_node = true}, count = 1},
 				replace = modname .. ":peat"
 			}
 		}

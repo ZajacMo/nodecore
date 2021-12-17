@@ -66,6 +66,7 @@ for shapeid = 1, #shapes do
 					flower_living = 1,
 					flammable = 1,
 					attached_node = 1,
+					peat_grindable_item = 1,
 					flower_mutant = (not mapgenrates[flowername(shapeid,
 							colorid)]) and 1 or nil
 				},
@@ -103,7 +104,8 @@ for shapeid = 1, #shapes do
 				flower_wilted = 1,
 				flammable = 1,
 				attached_node = 1,
-				flora_dry = 1
+				flora_dry = 1,
+				peat_grindable_item = 1
 			},
 			sounds = nodecore.sounds("nc_terrain_swishy"),
 			selection_box = {

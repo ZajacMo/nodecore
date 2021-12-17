@@ -12,7 +12,8 @@ minetest.register_node(modname .. ":wicker", {
 		groups = {
 			choppy = 1,
 			flammable = 2,
-			fire_fuel = 5
+			fire_fuel = 5,
+			peat_grindable_node = 1
 		},
 		paramtype = "light",
 		sounds = nodecore.sounds("nc_tree_sticky")
@@ -28,15 +29,4 @@ nodecore.register_craft({
 				replace = modname .. ":wicker"
 			}
 		},
-	})
-
-nodecore.register_craft({
-		label = "grind wicker into peat",
-		action = "pummel",
-		priority = -1,
-		toolgroups = {crumbly = 3},
-		nodes = {
-			{match = modname .. ":wicker",
-				replace = "nc_tree:peat"}
-		}
 	})
