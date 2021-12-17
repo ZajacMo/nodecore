@@ -20,7 +20,6 @@ nodecore.register_hint("find charcoal",
 
 nodecore.register_hint("chop up charcoal",
 	{true,
-		"nc_fire:lump_coal",
 		"chop nc_fire:coal1",
 		"chop nc_fire:coal2",
 		"chop nc_fire:coal3",
@@ -34,6 +33,6 @@ nodecore.register_hint("chop up charcoal",
 )
 
 nodecore.register_hint("pack high-quality charcoal",
-	"nc_fire:coal" .. nodecore.fire_max,
+	"compress coal block",
 	"nc_fire:lump_coal"
 )

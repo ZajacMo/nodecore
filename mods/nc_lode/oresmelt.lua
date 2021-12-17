@@ -29,6 +29,7 @@ minetest.register_abm({
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if not nodecore.air_pass(below) then return end
 			nodecore.set_loud(pos, {name = "nc_terrain:cobble"})
+			nodecore.witness(pos, "lode cobble drain")
 			return nodecore.item_eject(below, modname
 				.. ":prill_hot " .. (nodecore.exporand(1) + 1))
 		end

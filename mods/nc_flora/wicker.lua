@@ -20,7 +20,7 @@ minetest.register_node(modname .. ":wicker", {
 	})
 
 nodecore.register_craft({
-		label = "weave dry rushes into wicker",
+		label = "pack wicker",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
 		nodes = {

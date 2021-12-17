@@ -19,15 +19,15 @@ nodecore.register_hint("change a stylus pattern",
 )
 
 nodecore.register_hint("mix gravel into ash to make aggregate",
-	modname .. ":aggregate",
+	"mix aggregate",
 	{"nc_terrain:gravel_loose", "nc_fire:ash"}
 )
 nodecore.register_hint("mix sand into ash to make render",
-	modname .. ":render",
+	"mix render",
 	{"nc_terrain:sand_loose", "nc_fire:ash"}
 )
 nodecore.register_hint("mix dirt into ash to make adobe mix",
-	modname .. ":mud",
+	"mix mud",
 	{"nc_terrain:dirt_loose", "nc_fire:ash"}
 )
 nodecore.register_hint("add coal to aggregate to make tarstone",

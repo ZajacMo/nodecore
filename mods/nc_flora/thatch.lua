@@ -18,7 +18,7 @@ minetest.register_node(modname .. ":thatch", {
 	})
 
 nodecore.register_craft({
-		label = "weave sedges into thatch",
+		label = "pack thatch",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
 		nodes = {

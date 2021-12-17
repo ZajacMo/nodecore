@@ -97,13 +97,13 @@ nodecore.register_lode("Prill", {
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
-local function replacestack(pos, alt)
+local function replacestack(pos, temper)
 	local stack = nodecore.stack_get(pos)
 	if stack:is_empty() then stack = nil end
 	local node = minetest.get_node(pos)
 	local name = stack and stack:get_name() or node.name
 	local def = minetest.registered_items[name] or {}
-	alt = def["metal_alt_" .. alt]
+	local alt = def["metal_alt_" .. temper]
 	if not alt then return error("no " .. alt .. " alt for " .. name) end
 	if stack then
 		local repl = ItemStack(alt)
@@ -115,6 +115,7 @@ local function replacestack(pos, alt)
 		nodecore.set_node(pos, {name = alt})
 		nodecore.fallcheck(pos)
 	end
+	nodecore.witness(pos, "metallurgize " .. alt)
 end
 
 nodecore.register_craft({

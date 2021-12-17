@@ -14,40 +14,28 @@ nodecore.register_hint("dig up lode ore",
 )
 
 nodecore.register_hint("melt down lode metal from lode cobble",
-	{true,
-		"nc_lode:prill_hot",
-		"nc_lode:prill_annealed",
-		"nc_lode:prill_tempered"
-	},
+	"lode cobble drain",
 	"inv:nc_lode:cobble_loose"
 )
 
 nodecore.register_hint("sinter glowing lode prills into a cube",
 	"forge lode block",
-	{true,
-		"nc_lode:prill_hot",
-		"nc_lode:prill_annealed",
-		"nc_lode:prill_tempered"
-	}
+	"nc_lode:prill_hot"
 )
 
 nodecore.register_hint("anneal a lode cube",
-	"nc_lode:block_annealed",
+	"metallurgize nc_lode:block_annealed",
 	"forge lode block"
 )
 
 nodecore.register_hint("temper a lode cube",
-	"nc_lode:block_tempered",
+	"metallurgize nc_lode:block_tempered",
 	"forge lode block"
 )
 
 nodecore.register_hint("work glowing lode on a stone anvil",
 	"anvil:hot/stone",
-	{true,
-		"nc_lode:prill_hot",
-		"nc_lode:prill_annealed",
-		"nc_lode:prill_tempered"
-	}
+	"nc_lode:prill_hot"
 )
 
 nodecore.register_hint("work glowing lode on a lode anvil",
@@ -74,11 +62,11 @@ nodecore.register_hint("forge lode prills into a tool head",
 
 nodecore.register_hint("temper a lode tool head",
 	{true,
-		"nc_lode:toolhead_mallet_tempered",
-		"nc_lode:toolhead_spade_tempered",
-		"nc_lode:toolhead_hatchet_tempered",
-		"nc_lode:toolhead_pick_tempered",
-		"nc_lode:toolhead_mattock_tempered"
+		"metallurgize nc_lode:toolhead_mallet_tempered",
+		"metallurgize nc_lode:toolhead_spade_tempered",
+		"metallurgize nc_lode:toolhead_hatchet_tempered",
+		"metallurgize nc_lode:toolhead_pick_tempered",
+		"metallurgize nc_lode:toolhead_mattock_tempered"
 	},
 	"forge lode toolhead_mallet"
 )
