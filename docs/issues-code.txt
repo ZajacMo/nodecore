@@ -11,6 +11,8 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Replace digparticles with "node" and maybe "node_tile" options for
   particlespawners new in 5.3+
+	- N.B. the docs imply it only works for nodes, not items,
+	  so tool breakage particles may still require the logic.
 
 - Add AISM profiler similar to how ABM profiler already works
 
