@@ -230,6 +230,7 @@ nodecore.register_aism({
 		label = "flower stack wilt",
 		interval = 1,
 		chance = 50,
+		arealoaded = 2,
 		itemnames = {"group:flower_living"},
 		action = function(stack, data)
 			if data.toteslot then return end

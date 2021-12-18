@@ -21,6 +21,7 @@ nodecore.register_aism({
 		label = "lux stack reaction",
 		interval = 1,
 		chance = 2,
+		arealoaded = 1,
 		itemnames = {"group:lux_cobble"},
 		action = function(stack, data)
 			local name = stack:get_name()

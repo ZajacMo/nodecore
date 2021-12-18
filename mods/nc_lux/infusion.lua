@@ -40,6 +40,7 @@ minetest.after(0, function()
 				label = "lux infuse",
 				fieldname = "infuse",
 				interval = 2,
+				arealoaded = 14,
 				itemnames = allinfuse,
 				soakrate = function(stack, aismdata)
 					local name = stack:get_name()
@@ -70,6 +71,7 @@ minetest.after(0, function()
 				label = "lux boost",
 				interval = 2,
 				chance = 1,
+				arealoaded = 2,
 				itemnames = allboost,
 				action = function(stack, data)
 					local name = stack:get_name()

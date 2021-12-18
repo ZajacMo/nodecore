@@ -68,6 +68,7 @@ nodecore.register_aism({
 		label = "sponge stack sun dry",
 		interval = 1,
 		chance = 100,
+		arealoaded = 1,
 		itemnames = {modname .. ":sponge_wet"},
 		action = function(stack, data)
 			if data.player and (data.list ~= "main"

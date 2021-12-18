@@ -83,6 +83,7 @@ nodecore.register_aism({
 		label = "amalgam stack melt",
 		interval = 1,
 		chance = 2,
+		arealoaded = 1,
 		itemnames = {"group:amalgam"},
 		action = function(stack, data)
 			if nodecore.quenched(data.pos) then return end

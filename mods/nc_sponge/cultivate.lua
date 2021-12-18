@@ -89,6 +89,7 @@ nodecore.register_aism({
 		label = "sponge stack death",
 		interval = 2,
 		chance = 1,
+		arealoaded = 1,
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
