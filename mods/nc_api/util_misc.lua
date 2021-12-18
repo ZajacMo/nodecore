@@ -404,10 +404,6 @@ function nodecore.grav_air_accel_ent(obj)
 	return obj:set_acceleration(new)
 end
 
-function nodecore.near_unloaded(pos, radius)
-	return minetest.find_node_near(pos, radius or 1, {"ignore"}, true)
-end
-
 function nodecore.get_objects_at_pos(pos)
 	pos = vector.round(pos)
 	local t = {}

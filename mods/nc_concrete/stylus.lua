@@ -89,6 +89,7 @@ nodecore.register_soaking_abm({
 		interval = 1,
 		nodenames = {"group:concrete_etchable"},
 		fieldname = "plycuring",
+		arealoaded = 1,
 		soakrate = function(pos)
 			if minetest.find_node_near(pos,
 				1, {"group:concrete_flow", "group:water"}) then

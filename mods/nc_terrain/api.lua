@@ -72,6 +72,7 @@ minetest.register_abm({
 		label = "artificial water check",
 		interval = 1,
 		chance = 1,
+		arealoaded = 1,
 		nodenames = {graywatersrc},
 		action = function(pos) return nodecore.artificial_water_check(pos) end
 	})

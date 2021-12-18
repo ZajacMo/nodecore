@@ -29,6 +29,7 @@ minetest.register_abm({
 		nodenames = {cracked},
 		interval = 1,
 		chance = 1,
+		arealoaded = 1,
 		action = function(pos)
 			if nodecore.quenched(pos) or #nodecore.find_nodes_around(
 				pos, "group:flame", 1) < 1 then

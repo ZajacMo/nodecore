@@ -22,6 +22,7 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			fieldname = "leach",
 			nodenames = {fromnode},
 			interval = 5,
+			arealoaded = 1,
 			quickcheck = function(pos)
 				return waterat(pos, 0, 1, 0)
 			end,

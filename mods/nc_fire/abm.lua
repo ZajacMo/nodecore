@@ -48,6 +48,7 @@ do
 			label = "fire consume",
 			interval = 1,
 			chance = 1,
+			arealoaded = 1,
 			nodenames = {modname .. ":fire"},
 			action = function(pos)
 				sparks_add(pos)
@@ -75,6 +76,7 @@ minetest.register_abm({
 		nodenames = {"group:flammable"},
 		neighbors = {"group:igniter"},
 		neighbors_invert = true,
+		arealoaded = 1,
 		action = function(pos)
 			nodecore.fire_check_ignite(pos)
 		end
@@ -85,6 +87,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
+		arealoaded = 1,
 		action = function(pos, node)
 			local snuff, vents = nodecore.fire_check_snuff(pos, node)
 			if snuff or not vents then return end

@@ -10,6 +10,7 @@ nodecore.register_soaking_abm({
 		fieldname = "lavalux",
 		interval = 10,
 		nodenames = {"group:amalgam"},
+		arealoaded = 14,
 		soakrate = nodecore.lux_soak_rate,
 		soakcheck = function(data, pos)
 			if data.total < 12500 then return end

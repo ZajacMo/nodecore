@@ -8,6 +8,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:lux_cobble"},
+		arealoaded = 1,
 		action = function(pos, node)
 			local qty = nodecore.lux_react_qty(pos)
 			local name = node.name:gsub("cobble%d", "cobble" .. qty)

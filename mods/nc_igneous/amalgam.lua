@@ -72,6 +72,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:amalgam"},
+		arealoaded = 1,
 		action = function(pos)
 			if nodecore.quenched(pos) then return end
 			return nodecore.set_loud(pos, {name = lavasrc})

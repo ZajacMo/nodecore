@@ -113,6 +113,7 @@ minetest.register_abm({
 		label = "sedge growth/death",
 		interval = 2,
 		chance = 250,
+		arealoaded = 1,
 		nodenames = {"group:flora_sedges"},
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}

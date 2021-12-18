@@ -184,6 +184,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 100,
 		nodenames = {"group:flower_living"},
+		arealoaded = 2,
 		action = function(pos, node)
 			local function die()
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
