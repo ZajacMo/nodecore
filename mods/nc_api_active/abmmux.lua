@@ -89,6 +89,9 @@ if statinterval > 0 then
 	minetest.after(1, pcount)
 end
 
+local rawreg = {}
+nodecore.registered_abms_demux = rawreg
+
 local anonid = 1
 local function runaction(def, ...)
 	local start = minetest.get_us_time()
@@ -99,6 +102,7 @@ local function runaction(def, ...)
 end
 local oldreg = minetest.register_abm
 function minetest.register_abm(def)
+	rawreg[#rawreg + 1] = def
 	local rawkey = table_concat({
 			def.interval or 1,
 			def.chance or 1,
