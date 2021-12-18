@@ -103,6 +103,7 @@ nodecore.register_soaking_abm({
 		interval = 5,
 		nodenames = {"group:concrete_source"},
 		fieldname = "curing",
+		arealoaded = 1,
 		soakrate = function(pos)
 			if minetest.find_node_near(pos,
 				1, {"group:concrete_flow", "group:water"}) then

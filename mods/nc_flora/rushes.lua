@@ -99,6 +99,7 @@ minetest.register_abm({
 		label = "rush drying/spreading",
 		interval = 1,
 		chance = 50,
+		arealoaded = 2,
 		nodenames = {modname .. ":rush"},
 		action = function(pos)
 			local subst, below = rushcheck(pos)
@@ -132,6 +133,7 @@ nodecore.register_aism({
 		label = "rush stack dry",
 		interval = 1,
 		chance = 25,
+		arealoaded = 2,
 		itemnames = {modname .. ":rush"},
 		action = function(stack, data)
 			if data.toteslot then return end

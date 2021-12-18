@@ -38,9 +38,9 @@ nodecore.register_soaking_abm({
 		fieldname = "eggcorn",
 		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
+		arealoaded = 1,
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total >= sproutcost then
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
@@ -77,9 +77,9 @@ nodecore.register_soaking_abm({
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
+		arealoaded = 1,
 		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total < trunkcost then
 				return growparticles(pos, data.rate, 0.45)
 			end
@@ -131,12 +131,12 @@ nodecore.register_soaking_abm({
 		nodenames = {modname .. ":leaves_bud"},
 		fieldname = "leafgrow",
 		interval = 10,
+		arealoaded = 1,
 		soakrate = function(pos)
 			local rate = minetest.get_meta(pos):get_float("growrate") or 0
 			return rate and rate ~= 0 and rate or 10
 		end,
 		soakcheck = function(data, pos, node)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total < leafcost then return end
 
 			nodecore.set_loud(pos, nodecore.calc_leaves(pos))

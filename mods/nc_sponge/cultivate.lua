@@ -76,6 +76,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 10,
 		nodenames = {living},
+		arealoaded = 1,
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
 				nodecore.set_loud(pos, {name = wet})
@@ -88,6 +89,7 @@ nodecore.register_aism({
 		label = "sponge stack death",
 		interval = 2,
 		chance = 1,
+		arealoaded = 1,
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
@@ -109,9 +111,9 @@ nodecore.register_soaking_abm({
 		nodenames = {living},
 		interval = 5,
 		chance = 2,
+		arealoaded = 6,
 		soakrate = function() return 2 end,
 		soakcheck = function(data, pos)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total < basecost then return end
 
 			local count = 0

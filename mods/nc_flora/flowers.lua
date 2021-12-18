@@ -184,6 +184,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 100,
 		nodenames = {"group:flower_living"},
+		arealoaded = 2,
 		action = function(pos, node)
 			local function die()
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
@@ -229,6 +230,7 @@ nodecore.register_aism({
 		label = "flower stack wilt",
 		interval = 1,
 		chance = 50,
+		arealoaded = 2,
 		itemnames = {"group:flower_living"},
 		action = function(stack, data)
 			if data.toteslot then return end

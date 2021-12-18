@@ -93,7 +93,9 @@ local function dnt_execute(pos, data)
 	local nn = node.name
 	for k in pairs(runnable) do
 		local idx = k.nodeidx
-		if (not idx) or idx[nn] then
+		local loaded = k.arealoaded
+		if ((not idx) or idx[nn]) and not (loaded
+			and nodecore.near_unloaded(pos, node, loaded)) then
 			k.action(pos, node)
 			if minetest.get_node(pos).name ~= nn then break end
 		end

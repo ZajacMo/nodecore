@@ -88,6 +88,7 @@ end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
+		arealoaded = 1,
 		action = cookcheck
 	})
 
@@ -96,6 +97,7 @@ function nodecore.register_cook_abm(def)
 	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
+	def.arealoaded = def.arealoaded or 1
 	def.action = cookcheck
 	nodecore.group_expand(def.nodenames, function(k) cooknames[k] = true end)
 	minetest.register_abm(def)

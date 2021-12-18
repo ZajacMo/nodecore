@@ -30,6 +30,7 @@ local function flameblock(sum) sum.flame = nil end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
+		arealoaded = 1,
 		nodenames = {"group:visinv"},
 		action = function(pos, node)
 			node.stack = nodecore.stack_get(pos)

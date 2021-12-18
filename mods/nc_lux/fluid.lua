@@ -72,6 +72,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 2,
 		nodenames = {modname .. ":flux_source"},
+		arealoaded = 1,
 		action = function(pos)
 			for _, v in pairs(indirs) do
 				local p = vector.add(pos, v)

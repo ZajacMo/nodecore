@@ -13,6 +13,7 @@ end
 
 include("abmmux")
 include("abminvert")
+include("abmarea")
 include("stasis")
 include("dnts")
 include("aism")
