@@ -18,8 +18,12 @@ to the project!
 	  pitch for a simple animation like the "headanim" mod:
 	  https://content.minetest.net/packages/Lone_Wolf/headanim/
 	- These issues may be related to bugs in the engine.  Filing
-	  issues for thos is fine, but NodeCore needs them fixed ASAP,
-	  preferably without waiting on engine fixes.
+	  issues for those is fine, but NodeCore needs them fixed ASAP,
+	  preferably without waiting on engine fixes.  Less hacky is
+	  better, but workarounds are fine where necesssary.
+	- At least one of the end of hand surface UV maps is rotated
+	  180 degrees out of place; may want to recheck UV maps more
+	  carefully.
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- Major game-breakers:
