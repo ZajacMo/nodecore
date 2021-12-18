@@ -65,6 +65,7 @@ end
 nodecore.register_dnt({
 		name = graywatersrc,
 		nodenames = {graywatersrc},
+		arealoaded = 1,
 		action = function(pos) return nodecore.artificial_water_check(pos) end
 	})
 

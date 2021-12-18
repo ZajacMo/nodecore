@@ -98,13 +98,17 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 	end
 end
 
-function nodecore.register_fluidwandering(name, nodenames, interval, gencheck, movedist, scandist)
+function nodecore.register_fluidwandering(name, nodenames, interval,
+		gencheck, movedist, scandist)
+	movedist = movedist or 2
+	scandist = scandist or 8
 	local labelname = "fluidwander_" .. name
 	nodecore.register_dnt({
 			name = labelname,
 			nodenames = nodenames,
 			time = interval,
 			autostart = true,
+			arealoaded = scandist > movedist and scandist or movedist,
 			action = nodecore.fluidwander(name, gencheck, movedist, scandist)
 		})
 end

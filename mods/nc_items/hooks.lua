@@ -30,6 +30,7 @@ local function flameblock(sum) sum.flame = nil end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
+		arealoaded = 1,
 		nodenames = {"group:visinv"},
 		action = function(pos, node)
 			node.stack = nodecore.stack_get(pos)
@@ -51,7 +52,6 @@ minetest.register_abm({
 		nodenames = {"group:visinv"},
 		interval = 2,
 		chance = 1,
-		arealoaded = 1,
 		action = function(pos)
 			if nevermatch[nodecore.stack_get(pos):get_name()] then return end
 			return nodecore.dnt_set(pos, dntname)

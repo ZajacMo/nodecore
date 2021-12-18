@@ -88,6 +88,7 @@ end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
+		arealoaded = 1,
 		action = cookcheck
 	})
 
