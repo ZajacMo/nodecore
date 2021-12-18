@@ -48,6 +48,20 @@ end
 
 local metakey = "ncitem"
 
+if (not minetest.is_singleplayer()) and nodecore.public_meta_fields
+and not nodecore.setting_bool(
+	"private_node_items",
+	false,
+	"Privatize items in node metadata",
+	[[By default, itemstacks are sent to clients as part of
+	mapblock data. If set to true, these are not sent anymore.
+	This may result in a minor reduction of network traffic,
+	but will make maps saved via "local map saving" far less
+	useful as those maps will not contain stored items.]]
+) then
+	nodecore.public_meta_fields[metakey] = true
+end
+
 function nodecore.stack_get(pos, meta)
 	meta = meta or minetest.get_meta(pos)
 	local str = meta:get_string(metakey)

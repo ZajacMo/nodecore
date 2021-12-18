@@ -9,6 +9,7 @@ local publicfields = {
 	formspec = true,
 	infotext = true
 }
+nodecore.public_meta_fields = publicfields
 
 local function hook(meta)
 	for k, v in pairs(meta) do
