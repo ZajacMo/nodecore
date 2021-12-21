@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-30 15:30+0000\n"
-"Last-Translator: luatic <appgurulars@gmx.de>\n"
+"PO-Revision-Date: 2021-12-21 16:43+0000\n"
+"Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
 "Language: de\n"
@@ -15,15 +15,13 @@ msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
 "- Wirf Gegenstände auf den Boden, um beständige Blockstapel zu erzeugen."
 
-#, fuzzy
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
-"- Aufgehobene Gegenstände versuchen zuerst, in dem aktuell ausgewählten Slot "
-"Platz zu finden."
+"- Aufgehobene Dinge werden in die gerade ausgewählte Tasche gesteckt, falls "
+"möglich."
 
-#, fuzzy
 msgid "- Larger recipes are usually more symmetrical."
-msgstr "- Größere Bauanleitungen sind normalerweise symmetrischer."
+msgstr "- Größere Baumuster sind meist symmetrisch."
 
 msgid "- Learn to use the stars for long distance navigation."
 msgstr "- Lerne die Sterne für Langstreckennavigation zu nutzen."
@@ -47,9 +45,8 @@ msgstr ""
 "- Blöcke, die nicht mit dem richtigen Werkzeug abgebaut wurden, können nicht "
 "aufgehoben, sondern nur verschoben werden."
 
-#, fuzzy
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
-msgstr "- Erze mögen versteckt sein, werden aber subtil vom Terrain verraten"
+msgstr "- Erze mögen versteckt sein, aber das umgebende Gelände gibt Hinweise."
 
 msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
 msgstr ""
@@ -162,9 +159,8 @@ msgstr ""
 "- Wenn eine Anleitung existiert, wirst du einen speziellen Partikeleffekt "
 "sehen."
 
-#, fuzzy
 msgid "- Recipes are time-based, punching faster does not speed up."
-msgstr "- Anleitung sind zeitabhängig, schneller schlagen beschleunigt nicht."
+msgstr "- Baumuster sind zeitabhängig, schneller schlagen hilft nicht."
 
 msgid "- There is NO inventory screen."
 msgstr "- Es gibt KEIN Inventarfenster."
@@ -240,3 +236,549 @@ msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself 
 msgstr ""
 "- Hüte dich vor dunklen Höhlen oder Kluften; du bist dafür verantwortlich, "
 "wieder hinaus zu finden."
+
+#, fuzzy
+msgid "Annealed Lode Mallet"
+msgstr "Gebrannter Lode-Hammer"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr "- Halte oder rechtsklicke wiederholt auf Wände/Decken um zu klettern."
+
+#, fuzzy
+msgid "Annealed Lode Prill"
+msgstr "Gebranntes Lode-Stück"
+
+msgid "Molten Glass"
+msgstr "Geschmolzenes Glas"
+
+#, fuzzy
+msgid "Not all game content is covered by challenges. Explore!"
+msgstr "Nicht aller Spielinhalt wird von Aufgaben abgedeckt. Erforsche!"
+
+msgid "Pliant Tarstone"
+msgstr "Biegsamer Teerstein"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- Total aufgeschmissen? Frag doch die Gemeinde (im \"Über\"-Tab)."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr ""
+"- Schleichen+Sonder+Abwurf drücken, um alle gleichartigen Dinge abzuwerfen."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr ""
+"- Schleichen+Abwurf drücken, um ein oder mehrere Dinge aus dem Stapel zu "
+"nehmen."
+
+#, fuzzy
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Einige Baumuster erfordern, einen Block zu \"hauen\"."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr ""
+"- Stapel können behauen werden, die Anzahl der Dinge kann ausschlaggebend "
+"sein."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Um zu behauen, schlage den Block wiederholt, OHNE zu graben."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr "- Um schneller zu werden, laufe/schwimme/klettere dauerhaft."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr ""
+"- Um Werkzeuge als Zutaten zu verwenden, müssen sie in gutem Zustand sein."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- Das Ding in der Hand, die bearbeitete Seite und umgebende Blöcke machen "
+"was aus."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Du musst nicht schnell schlagen, einmal die Sekunde reicht."
+
+msgid "Red Bell Flower"
+msgstr "Rote Glockenblume"
+
+msgid "@1 (50@2)"
+msgstr "@1 (50@2)"
+
+msgid "@1 (6)"
+msgstr "@1 (6)"
+
+msgid "@1 (60@2)"
+msgstr "@1 (60@2)"
+
+msgid "@1 (7)"
+msgstr "@1 (7)"
+
+msgid "@1 (70@2)"
+msgstr "@1 (70@2)"
+
+msgid "@1 (8)"
+msgstr "@1 (8)"
+
+msgid "@1 (80@2)"
+msgstr "@1 (80@2)"
+
+msgid "@1 (9)"
+msgstr "@1 (9)"
+
+msgid "@1 (90@2)"
+msgstr "@1 (90@2)"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "Active Lens"
+msgstr "Aktive Linse"
+
+msgid "Active Prism"
+msgstr "Aktives Prisma"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Zusätzlich geladene Mods: @1"
+
+msgid "Adobe"
+msgstr "Lehm"
+
+msgid "Adobe Bricks"
+msgstr "Lehmziegel"
+
+#, fuzzy
+msgid "Adobe Mix"
+msgstr "Lehmmischung"
+
+#, fuzzy
+msgid "Aggregate"
+msgstr "Zuschlag"
+
+#, fuzzy
+msgid "Annealed Lode Adze"
+msgstr "Gehärtete Lode-Haue"
+
+#, fuzzy
+msgid "Annealed Lode Bar"
+msgstr "Gehärteter Lode-Balken"
+
+#, fuzzy
+msgid "Annealed Lode Frame"
+msgstr "Gebrannter Lode-Rahmen"
+
+#, fuzzy
+msgid "Annealed Lode Hatchet"
+msgstr "Gebranntes Lode-Beil"
+
+#, fuzzy
+msgid "Annealed Lode Hatchet Head"
+msgstr "Gebrannter Lode-Beilkopf"
+
+msgid "Annealed Lode Ladder"
+msgstr "Gebrannte Lode-Leiter"
+
+#, fuzzy
+msgid "Annealed Lode Mallet Head"
+msgstr "Gebrannter Lode-Hammerkopf"
+
+#, fuzzy
+msgid "Annealed Lode Mattock"
+msgstr "Gebrannte Lode-Hacke"
+
+#, fuzzy
+msgid "Annealed Lode Mattock Head"
+msgstr "Gebrannter Lode-Hackenkopf"
+
+#, fuzzy
+msgid "Annealed Lode Pick"
+msgstr "Gebrannter Lode-Pickel"
+
+#, fuzzy
+msgid "Annealed Lode Pick Head"
+msgstr "Gebrannter Lode-Pickelkopf"
+
+#, fuzzy
+msgid "Annealed Lode Rake"
+msgstr "Gebrannter Lode-Rechen"
+
+#, fuzzy
+msgid "Annealed Lode Rod"
+msgstr "Gebrannte Lode-Rute"
+
+#, fuzzy
+msgid "Annealed Lode Spade"
+msgstr "Gebrannter Lode-Spaten"
+
+#, fuzzy
+msgid "Annealed Lode Spade Head"
+msgstr "Gebrannter Lode-Spatenkopf"
+
+#, fuzzy
+msgid "Azure Bell Flower"
+msgstr "Blaue Glockenblume"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "Alle Details und Verdienste siehe beigefügte LICENSE-Datei"
+
+msgid "Burning Embers"
+msgstr "Brennende Glut"
+
+msgid "CHEATS ENABLED"
+msgstr "SCHUMMELN MÖGLICH"
+
+#, fuzzy
+msgid "Challenges"
+msgstr "Herausforderungen"
+
+msgid "Charcoal"
+msgstr "Holzkohle"
+
+msgid "Charcoal Lump"
+msgstr "Holzkohleklumpen"
+
+msgid "Chromatic Glass"
+msgstr "Gefärbtes Glas"
+
+msgid "Clear Glass"
+msgstr "Klarglas"
+
+#, fuzzy
+msgid "Clear Glass Case"
+msgstr "Klarglaskasten"
+
+msgid "Cobble"
+msgstr "Bruchstein"
+
+#, fuzzy
+msgid "Cobble Hinged Panel"
+msgstr "Gelagerte Bruchsteinplatte"
+
+#, fuzzy
+msgid "Cobble Panel"
+msgstr "Bruchsteinplatte"
+
+#, fuzzy
+msgid "Cracked Stone"
+msgstr "Gerissener Stein"
+
+#, fuzzy
+msgid "Crafting"
+msgstr "Werken"
+
+msgid "Crude Glass"
+msgstr "Rohglas"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "ENTWICKLER-VERSION"
+
+msgid "Dirt"
+msgstr "Dreck"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Discord: https://discord.gg/NNYeF6f"
+
+#, fuzzy
+msgid "Displaced Node"
+msgstr "Herumliegender Block"
+
+msgid "Dry Rush"
+msgstr "Trockene Binsen"
+
+msgid "Eggcorn"
+msgstr "Eichel"
+
+msgid "Fire"
+msgstr "Feuer"
+
+msgid "Float Glass"
+msgstr "Floatglas"
+
+msgid "Float Glass Case"
+msgstr "Floatglaskasten"
+
+#, fuzzy
+msgid "Flux"
+msgstr "Flussmittel"
+
+#, fuzzy
+msgid "Glowing Lode"
+msgstr "Glühendes Lode"
+
+#, fuzzy
+msgid "Glowing Lode Adze"
+msgstr "Glühende Lode-Haue"
+
+#, fuzzy
+msgid "Glowing Lode Bar"
+msgstr "Glühender Lodebalken"
+
+#, fuzzy
+msgid "Glowing Lode Cobble"
+msgstr "Glühender Lode-Bruchstein"
+
+#, fuzzy
+msgid "Glowing Lode Frame"
+msgstr "Glühender Lode-Rahmen"
+
+#, fuzzy
+msgid "Glowing Lode Hatchet Head"
+msgstr "Glühender Lode-Beilkopf"
+
+#, fuzzy
+msgid "Glowing Lode Ladder"
+msgstr "Glühende Lode-Leiter"
+
+#, fuzzy
+msgid "Glowing Lode Mallet Head"
+msgstr "Glühender Lode-Hammerkopf"
+
+#, fuzzy
+msgid "Glowing Lode Mattock Head"
+msgstr "Glühender Lode-Hackenkopf"
+
+#, fuzzy
+msgid "Glowing Lode Pick Head"
+msgstr "Glühender Lode-Pickelkopf"
+
+#, fuzzy
+msgid "Glowing Lode Prill"
+msgstr "Glühender Lode-Brocken"
+
+msgid "Glowing Lode Rake"
+msgstr "Glühender Lode-Rechen"
+
+#, fuzzy
+msgid "Glowing Lode Rod"
+msgstr "Glühende Lode-Rute"
+
+#, fuzzy
+msgid "Glowing Lode Spade Head"
+msgstr "Glühender Lode-Spatenkopf"
+
+#, fuzzy
+msgid "Graveled Adze"
+msgstr "Gekörnte Haue"
+
+msgid "Inventory"
+msgstr "Vorrat"
+
+msgid "Leaves"
+msgstr "Blätter"
+
+msgid "Lens"
+msgstr "Linse"
+
+msgid "Lit Torch"
+msgstr "Brennende Fackel"
+
+msgid "Living Sponge"
+msgstr "Lebender Schwamm"
+
+#, fuzzy
+msgid "Lode Cobble"
+msgstr "Lode-Bruchstein"
+
+#, fuzzy
+msgid "Lode Crate"
+msgstr "Lode-Kiste"
+
+#, fuzzy
+msgid "Lode Form"
+msgstr "Lode-Form"
+
+#, fuzzy
+msgid "Lode Ore"
+msgstr "Lode-Erz"
+
+#, fuzzy
+msgid "Log"
+msgstr "Stamm"
+
+msgid "Loose Cobble"
+msgstr "Loser Bruchstein"
+
+msgid "Loose Dirt"
+msgstr "Loser Dreck"
+
+msgid "Loose Gravel"
+msgstr "Loser Kies"
+
+msgid "Loose Humus"
+msgstr "Loser Humus"
+
+msgid "Loose Leaves"
+msgstr "Lose Blätter"
+
+msgid "Loose Lode Cobble"
+msgstr "Loser Lode-Bruchstein"
+
+msgid "Loose Sand"
+msgstr "Loser Sand"
+
+msgid "Movement"
+msgstr "Bewegung"
+
+msgid "Orange Bell Flower"
+msgstr "Orangene Glockenblumen"
+
+msgid "Peat"
+msgstr "Torf"
+
+msgid "Pink Bell Flower"
+msgstr "Pinke Glockenblume"
+
+msgid "Player's Guide: Crafting"
+msgstr "Spielerhandbuch: Werken"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Spielerhandbuch: Vorratshaltung"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "Spielerhandbuch: Bewegung und Navigation"
+
+#, fuzzy
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Spielerhandbuch: Behauungsmuster"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Spielerhandbuch: Tipps und Hilfen"
+
+msgid "Pliant Adobe"
+msgstr "Biegsamer Lehm"
+
+msgid "Pliant Sandstone"
+msgstr "Biegsamer Sandstein"
+
+msgid "Pliant Stone"
+msgstr "Biegsamer Stein"
+
+msgid "Prism"
+msgstr "Prisma"
+
+msgid "Progress: @1 complete, @2 current, @3 future"
+msgstr "Fortschritt: @1 fertig, @2 momentan, @3 zukünftig"
+
+msgid "Pumice"
+msgstr "Bims"
+
+msgid "Pummel"
+msgstr "Behauen"
+
+msgid "Raked Dirt"
+msgstr "Geharkter Dreck"
+
+msgid "Raked Gravel"
+msgstr "Geharkter Kies"
+
+msgid "Raked Humus"
+msgstr "Geharkter Humus"
+
+msgid "Raked Sand"
+msgstr "Geharkter Sand"
+
+msgid "Red Cluster Flower"
+msgstr "Rote Büschelblume"
+
+#, fuzzy
+msgid "Red Cup Flower"
+msgstr "Rote Becherblume"
+
+msgid "Red Rosette Flower"
+msgstr "Rote Rosettenblume"
+
+msgid "Red Star Flower"
+msgstr "Rote Sternblume"
+
+#, fuzzy
+msgid "Render"
+msgstr "Putz"
+
+msgid "Rush"
+msgstr "Binse"
+
+msgid "Sand"
+msgstr "Sand"
+
+msgid "Sandstone"
+msgstr "Sandstein"
+
+msgid "Sandstone Bricks"
+msgstr "Sandsteinziegel"
+
+msgid "Sedge"
+msgstr "Riedgras"
+
+#, fuzzy
+msgid "Shining Lens"
+msgstr "Glänzende Linse"
+
+msgid "Sponge"
+msgstr "Schwamm"
+
+msgid "Sprout"
+msgstr "Spross"
+
+msgid "Staff"
+msgstr "Stab"
+
+msgid "Stick"
+msgstr "Stock"
+
+msgid "Stone"
+msgstr "Stein"
+
+msgid "Stone Bricks"
+msgstr "Steinziegel"
+
+msgid "Stone Chip"
+msgstr "Steinsplitter"
+
+#, fuzzy
+msgid "Stone-Tipped Hatchet"
+msgstr "Steinbespitztes Beil"
+
+#, fuzzy
+msgid "Stone-Tipped Mallet"
+msgstr "Steinbespitzter Hammer"
+
+#, fuzzy
+msgid "Stone-Tipped Pick"
+msgstr "Steinbespitzter Pickel"
+
+msgid "Stone-Tipped Spade"
+msgstr "Steinbespitzter Spaten"
+
+#, fuzzy
+msgid "Stone-Tipped Stylus"
+msgstr "Steinbespitzter Griffel"
+
+msgid "Stump"
+msgstr "Baumstumpf"
+
+msgid "Tarstone"
+msgstr "Teerstein"
+
+msgid "Tarstone Bricks"
+msgstr "Teersteinziegel"
+
+#, fuzzy
+msgid "Tempered Lode"
+msgstr "Temperiertes Lode"
+
+#, fuzzy
+msgid "Tempered Lode Adze"
+msgstr "Temperierte Lode-Haue"

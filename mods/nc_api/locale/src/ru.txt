@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-03 02:34+0000\n"
-"Last-Translator: Lesha Vel! <lesha.programmer@gmail.com>\n"
+"PO-Revision-Date: 2021-12-21 16:41+0000\n"
+"Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
 "Language: ru\n"
@@ -67,7 +67,7 @@ msgid "Glowing Lode"
 msgstr "Раскалённый Металл"
 
 msgid "Float Glass"
-msgstr "Термополированное Стекло"
+msgstr "Флоат-Стекло"
 
 msgid "Fire"
 msgstr "Огонь"
@@ -1785,3 +1785,105 @@ msgstr "вырастите камыш на влажной почве"
 
 msgid "wilt a flower"
 msgstr "высушите цветок"
+
+#, fuzzy
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О "
+"программе»)."
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Загружено дополнительных модов: @1"
+
+msgid "Annealed Lode Frame"
+msgstr "Отожженная Металлическая Рамка"
+
+msgid "Challenges"
+msgstr "Испытания"
+
+msgid "Clear Glass Case"
+msgstr "Прозрачный Стеклянный Корпус"
+
+msgid "Float Glass Case"
+msgstr "Корпус из флоат-стекла"
+
+msgid "Glowing Lode Ladder"
+msgstr "Накалённая Металлическая Лестница"
+
+msgid "Lode Form"
+msgstr "Металлическая Форма"
+
+msgid "Not all game content is covered by challenges. Explore!"
+msgstr "Не весь игровой контент охвачен испытаниями. Проводите исследования!"
+
+msgid "Raked Humus"
+msgstr "Разгребенный Гумус"
+
+msgid "Tempered Lode Ladder"
+msgstr "Закаленная Металлическая Лестница"
+
+msgid "Thatch"
+msgstr "Солома"
+
+msgid "Tote (@1 / @2)"
+msgstr "Сумка (@1 / @2)"
+
+msgid "Wooden Form"
+msgstr "Деревянная форма"
+
+msgid "assemble a clear glass case"
+msgstr "соберите прозрачный стеклянный корпус"
+
+msgid "challenge complete - @1"
+msgstr "испытание пройдено - @1"
+
+msgid "rake dirt"
+msgstr "разгребите грязь"
+
+msgid "forge lode prills into a tool head"
+msgstr "выковывайте гранулы жила в головку инструмента"
+
+msgid "rake sand"
+msgstr "разгребите песок"
+
+msgid "Annealed Lode Ladder"
+msgstr "Отожженная Металлическая Лестница"
+
+msgid "Cracked Stone"
+msgstr "Треснувший Камень"
+
+msgid "Glowing Lode Frame"
+msgstr "Накалённая Металлическая Рамка"
+
+msgid "Raked Dirt"
+msgstr "Разгребенная грязь"
+
+msgid "Tempered Lode Frame"
+msgstr "Закаленная Металлическая Рамка"
+
+msgid "Wicker"
+msgstr "Плетенка"
+
+msgid "assemble a float glass case"
+msgstr "соберите корпус из флоат-стекла"
+
+msgid "dig leaves"
+msgstr "выкопайте листья"
+
+msgid "rake gravel"
+msgstr "разгребите гравий"
+
+msgid "rake humus"
+msgstr "разгребите гумус"
+
+msgid "temper a lode cube"
+msgstr "закалите металлический куб"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "обработайте отожженную жилу на наковальне из закаленного металла"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "обработайте раскалённую жилу на наковальне из металла"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "обработайте раскалённую жилу на наковальне из камня"
