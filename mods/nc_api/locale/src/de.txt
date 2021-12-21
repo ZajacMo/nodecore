@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 16:43+0000\n"
+"PO-Revision-Date: 2021-12-21 16:44+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -782,3 +782,15 @@ msgstr "Temperiertes Lode"
 #, fuzzy
 msgid "Tempered Lode Adze"
 msgstr "Temperierte Lode-Haue"
+
+#, fuzzy
+msgid "Tempered Lode Bar"
+msgstr "Temperierter Lode-Balken"
+
+#, fuzzy
+msgid "Tempered Lode Frame"
+msgstr "Temperierter Lode-Balken"
+
+#, fuzzy
+msgid "Tempered Lode Hatchet"
+msgstr "Temperiertes Lode-Beil"
