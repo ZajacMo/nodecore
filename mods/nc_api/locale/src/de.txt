@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 16:44+0000\n"
+"PO-Revision-Date: 2021-12-21 17:22+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -794,3 +794,100 @@ msgstr "Temperierter Lode-Balken"
 #, fuzzy
 msgid "Tempered Lode Hatchet"
 msgstr "Temperiertes Lode-Beil"
+
+#, fuzzy
+msgid "Tempered Lode Hatchet Head"
+msgstr "Temperierter Lode-Beilkopf"
+
+#, fuzzy
+msgid "Tempered Lode Ladder"
+msgstr "Temperierte Lode-Leiter"
+
+#, fuzzy
+msgid "Tempered Lode Mallet"
+msgstr "Temperierter Lode-Hammer"
+
+#, fuzzy
+msgid "Tempered Lode Mallet Head"
+msgstr "Temperierter Lode-Hammerkopf"
+
+#, fuzzy
+msgid "Tempered Lode Mattock"
+msgstr "Temperierte Lode-Hacke"
+
+#, fuzzy
+msgid "Tempered Lode Mattock Head"
+msgstr "Temperierter Lode-Hackenkopf"
+
+#, fuzzy
+msgid "Tempered Lode Pick"
+msgstr "Temperierter Lode-Pickel"
+
+#, fuzzy
+msgid "Tempered Lode Pick Head"
+msgstr "Temperierter Lode-Pickelkopf"
+
+#, fuzzy
+msgid "Tempered Lode Prill"
+msgstr "Temperierter Lode-Brocken"
+
+#, fuzzy
+msgid "Tempered Lode Rake"
+msgstr "Temperierter Lode-Rechen"
+
+#, fuzzy
+msgid "Tempered Lode Rod"
+msgstr "Temperierte Lode-Harke"
+
+#, fuzzy
+msgid "Tempered Lode Spade"
+msgstr "Temperierter Lode-Spaten"
+
+#, fuzzy
+msgid "Tempered Lode Spade Head"
+msgstr "Temperierter Lode-Spatenkopf"
+
+#, fuzzy
+msgid "Thatch"
+msgstr "Stroh"
+
+#, fuzzy
+msgid "Tips"
+msgstr "Tipps"
+
+msgid "Torch"
+msgstr "Fackel"
+
+msgid "Tote (@1 / @2)"
+msgstr "Tragetasche (@1 / @2)"
+
+msgid "Tree Trunk"
+msgstr "Baumstamm"
+
+msgid "Violet Bell Flower"
+msgstr "Lila Glockenblume"
+
+#, fuzzy
+msgid "Violet Cluster Flower"
+msgstr "Lila Büschelblume"
+
+#, fuzzy
+msgid "Violet Cup Flower"
+msgstr "Lila Becherblume"
+
+msgid "Violet Rosette Flower"
+msgstr "Lila Rosettenblume"
+
+msgid "Violet Star Flower"
+msgstr "Lila Sternblume"
+
+msgid "Wet Adobe Mix"
+msgstr "Nasse Lehmmischung"
+
+#, fuzzy
+msgid "Wet Aggregate"
+msgstr "Nasser Zuschlag"
+
+#, fuzzy
+msgid "Wet Render"
+msgstr "Nasser Putz"
