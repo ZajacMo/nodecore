@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 17:22+0000\n"
+"PO-Revision-Date: 2021-12-21 23:08+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -217,7 +217,7 @@ msgid "Humus"
 msgstr "Humus"
 
 msgid "Wooden Frame"
-msgstr "Hölzerner Rahmen"
+msgstr "Holzrahmen"
 
 msgid "Wet Sponge"
 msgstr "Feuchter Schwamm"
@@ -891,3 +891,161 @@ msgstr "Nasser Zuschlag"
 #, fuzzy
 msgid "Wet Render"
 msgstr "Nasser Putz"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Nasser Teeriger Zuschlag"
+
+msgid "White Bell Flower"
+msgstr "Weiße Glockenblume"
+
+msgid "White Cluster Flower"
+msgstr "Weiße Büschelblume"
+
+#, fuzzy
+msgid "White Cup Flower"
+msgstr "Weiße Becherblume"
+
+msgid "White Rosette Flower"
+msgstr "Weiße Rosettenblume"
+
+msgid "White Star Flower"
+msgstr "Weiße Sternblume"
+
+msgid "Wicker"
+msgstr "Korb"
+
+msgid "Wooden Adze"
+msgstr "Holzhaue"
+
+msgid "Wooden Form"
+msgstr "Holzform"
+
+msgid "Wooden Hatchet"
+msgstr "Holzbeil"
+
+msgid "Wooden Hatchet Head"
+msgstr "Holzbeilkopf"
+
+msgid "Wooden Hinged Panel"
+msgstr "Gelagerte Holzplatte"
+
+msgid "Wooden Mallet"
+msgstr "Holzhammer"
+
+msgid "Wooden Mallet Head"
+msgstr "Holzhammerkopf"
+
+msgid "Wooden Panel"
+msgstr "Holzplatte"
+
+msgid "Wooden Pick"
+msgstr "Holzpickel"
+
+msgid "Wooden Pick Head"
+msgstr "Holzpickelkopf"
+
+msgid "Wooden Plank"
+msgstr "Holzplanke"
+
+msgid "breed a new flower variety"
+msgstr "züchte eine neue Blumenvariante"
+
+msgid "Wooden Rake"
+msgstr "Holzrechen"
+
+msgid "Wooden Shelf"
+msgstr "Holzregal"
+
+msgid "Wooden Spade"
+msgstr "Holzspaten"
+
+msgid "Wooden Spade Head"
+msgstr "Holzspatenkopf"
+
+msgid "Yellow Bell Flower"
+msgstr "Gelbe Glockenblume"
+
+msgid "Yellow Cluster Flower"
+msgstr "Gelbe Büschelblume"
+
+#, fuzzy
+msgid "Yellow Cup Flower"
+msgstr "Gelbe Becherblume"
+
+msgid "Yellow Rosette Flower"
+msgstr "Gelbe Rosettenblume"
+
+msgid "Yellow Star Flower"
+msgstr "Gelbe Sternblume"
+
+msgid "activate a lens"
+msgstr "aktiviere eine Linse"
+
+msgid "activate a prism"
+msgstr "aktivere ein Prisma"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "füge Kohle zum Zuschlag hinzu, um Teerstein herzustellen"
+
+msgid "assemble a clear glass case"
+msgstr "baue einen Klarglaskasten"
+
+#, fuzzy
+msgid "assemble a float glass case"
+msgstr "baue einen Floatglaskasten"
+
+#, fuzzy
+msgid "assemble a lode adze"
+msgstr "baue eine Lode-Haue"
+
+msgid "assemble a lode rake"
+msgstr "Baue einen Lode-Rechen"
+
+#, fuzzy
+msgid "assemble a rake from adzes and a stick"
+msgstr "baue einen Rechen aus Hauen und einem Stock"
+
+msgid "assemble a staff from sticks"
+msgstr "baue einen Stab aus Stöcken"
+
+#, fuzzy
+msgid "assemble a stone-tipped stylus"
+msgstr "Baue einen steinbespitzten Griffel"
+
+msgid "assemble a wooden frame from staves"
+msgstr "baue einen Holzrahmen aus Stäben"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "baue eine Holzleiter aus Stöcken"
+
+msgid "assemble a wooden shelf from frames and planks"
+msgstr "baue ein Holzregal aus Rahmen und Planken"
+
+msgid "assemble a wooden tool"
+msgstr "baue ein Holzwerkzeug"
+
+#, fuzzy
+msgid "assemble an adze out of sticks"
+msgstr "baue eine Haue aus Stöcken"
+
+msgid "bash a plank into sticks"
+msgstr "zerschlage eine Planke in Stöcke"
+
+#, fuzzy
+msgid "bond adobe bricks"
+msgstr "binde Zuschlagsziegel"
+
+#, fuzzy
+msgid "bond sandstone bricks"
+msgstr "binde Sandsteinziegel"
+
+#, fuzzy
+msgid "bond stone bricks"
+msgstr "binde Steinziegel"
+
+#, fuzzy
+msgid "bond tarstone bricks"
+msgstr "binde Teersteinziegel"
+
+msgid "break cobble into chips"
+msgstr "zersplittere Bruchstein"

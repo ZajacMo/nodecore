@@ -9,10 +9,19 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- CRITICAL: Placing a tote with a door destroys the contents
+
 - CATCH UP HINT SYSTEM & RETEST
 	- Forms, wooden and lode
 	- Lode frames, ladders
 	- High-tier digging: grass, stone, tarstone
+
+- Protection breaks door-digging.
+	- Consider rethinking protection
+	- Treat protection more like complete stasis?
+	- The goal is to make the game work and have protection not
+	  interfere with it; making protection actually work and
+	  do something useful/meaningful is secondary.
 
 - Touch-damage is overused, should probably only apply to
   obviously extremely hot things like embers and pumwater.

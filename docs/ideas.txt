@@ -16,6 +16,8 @@ IDEAS: Possible future additions/improvements to the game
 	- Very flammable, ejects all contents (nodes and stacks) upon
 	  ignition
 
+- Should pumice slowly decay?
+
 - Half hint completion from witnessing?
 	- Some hints are witness-only like leaching, you just get full
 	  completion for those
