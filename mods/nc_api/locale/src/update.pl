@@ -6,8 +6,9 @@ use JSON qw(from_json);
 sub curl {
 	my @cmd = ("curl");
 	$ENV{NC_WEBLATE_TOKEN} and
-	  push @cmd, "-f", "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
+	  push @cmd, "-fsL", "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
 	push @cmd, @_;
+	warn("@_\n");
 	open(my $fh, "-|", @cmd) or die($!);
 	return $fh;
 }
@@ -26,6 +27,7 @@ sub getlang {
 		$str =~ s#\\"#"#g;
 		$db{$id} = ($db{$id} // "") . $str;
 	}
+	$id or -s "nc_api.$lang.tr" and die("download failed or blank");
 	close($fh);
 	close($raw);
 	return \%db;
