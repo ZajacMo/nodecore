@@ -42,6 +42,7 @@ return {
 	short_description = (alpha
 		and "Early-access edition of NodeCore with latest features (and maybe bugs)"
 		or "Minetest's top original voxel game about emergent mechanics and exploration"),
+	dev_state = alpha and "BETA" or "ACTIVELY_DEVELOPED",
 	tags = tags,
 	content_warnings = {},
 	license = "MIT",
