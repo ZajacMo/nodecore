@@ -110,7 +110,7 @@ minetest.register_abm({
 					})
 			end
 			if subst == true then return end
-			if math_random(1, 30) ~= 1 then return end
+			if math_random(1, 15) ~= 1 then return end
 			local pick = {
 				x = pos.x + math_random(-1, 1),
 				y = pos.y + math_random(-1, 1),
