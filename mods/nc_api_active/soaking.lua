@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, type
-    = error, math, minetest, nodecore, pairs, type
+local error, math, minetest, nodecore, pairs, type, vector
+    = error, math, minetest, nodecore, pairs, type, vector
 local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
@@ -152,10 +152,9 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	if not abm.nodeidx[node.name] then return end
 
 	local meta = minetest.get_meta(pos)
-	local qf = fieldname .. "qty"
-	meta:set_float(qf, (meta:get_float(qf) or 0) + qty)
-	local tf = fieldname .. "time"
-	if (meta:get_float(tf) or 0) == 0 then meta:set_float(tf, nodecore.gametime) end
+	local nodekey = minetest.hash_node_position(vector.round(pos))
+	local data = metaget(meta, abm, nodekey)
+	metaset(meta, abm, nodekey, (data.qty or 0) + qty, data.time or nodecore.gametime)
 
 	local func = abm.action
 	if pending then
