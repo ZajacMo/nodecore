@@ -119,7 +119,8 @@ minetest.register_abm({
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			local bnode = minetest.get_node_or_nil(below)
 			if not bnode then return end
-			if bnode.name ~= grassname or not nodecore.grassable(pos) then
+			if bnode.name ~= grassname
+			or not nodecore.can_grass_grow_under(pos) then
 				return minetest.remove_node(pos)
 			end
 

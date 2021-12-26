@@ -138,7 +138,7 @@ for k, v in pairs(mapgenrates) do
 end
 
 local function flowerable(pos)
-	local grass = nodecore.grassable(pos)
+	local grass = nodecore.can_grass_grow_under(pos)
 	if not grass then return grass end
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	local bnode = minetest.get_node_or_nil(below)
