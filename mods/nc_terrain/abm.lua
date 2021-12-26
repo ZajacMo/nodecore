@@ -47,13 +47,12 @@ nodecore.grassable = grassable
 
 minetest.register_abm({
 		label = "grass spread",
-		nodenames = {"group:soil"},
+		nodenames = {"group:grassable"},
 		neighbors = {grass},
 		neighbors_invert = true,
 		interval = 6,
 		chance = 50,
-		action = function(pos, node)
-			if node.name == grass then return end
+		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if not grassable(above) then return end
 			return minetest.set_node(pos, {name = grass})
