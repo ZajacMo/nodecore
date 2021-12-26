@@ -81,7 +81,8 @@ end
 local decaynames = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups and v.groups.leaf_decay then
+			if v.groups and v.groups.leaf_decay
+			and v.groups.leaf_decay > 0 then
 				decaynames[k] = true
 			end
 		end
