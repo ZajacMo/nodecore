@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 23:08+0000\n"
+"PO-Revision-Date: 2021-12-23 07:03+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -1049,3 +1049,13 @@ msgstr "binde Teersteinziegel"
 
 msgid "break cobble into chips"
 msgstr "zersplittere Bruchstein"
+
+#, fuzzy
+msgid "carve a wooden plank completely"
+msgstr "zerhacke eine Holzplanke vollständig"
+
+msgid "carve wooden tool heads from planks"
+msgstr "schnitze Holzwerkzeuge aus Planken"
+
+msgid "catapult an item with a hinged panel"
+msgstr "schleudere etwas mit einer gelagerten Platte"
