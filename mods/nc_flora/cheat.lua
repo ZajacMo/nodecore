@@ -28,7 +28,7 @@ local function generate(pick, pos)
 	if not found then return end
 
 	found.y = found.y + 1
-	if not nodecore.match(found, {air_equivalent = true}) then return end
+	if not nodecore.air_equivalent(found) then return end
 
 	if found and pick.spawn_by and #nodecore.find_nodes_around(
 		found, pick.spawn_by) < 1 then return end

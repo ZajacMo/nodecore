@@ -116,7 +116,7 @@ minetest.register_abm({
 				y = pos.y + math_random(-1, 1),
 				z = pos.z + math_random(-1, 1),
 			}
-			if not (nodecore.match(pick, {air_equivalent = true})
+			if not (nodecore.air_equivalent(pick)
 				and rushcheck(pick)) then return end
 			if math_random(1, 4) == 1 then
 				nodecore.set_loud(below, {name = subst})
