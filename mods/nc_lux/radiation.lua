@@ -41,6 +41,10 @@ nodecore.register_healthfx({
 		item = irradiated,
 		getqty = function(player) return radlevel(player) end,
 		setqty = function(player, qty)
+			if qty == 0 then
+				local _, setrate = radrate(player)
+				setrate(0)
+			end
 			local _, set = radlevel(player)
 			return set(qty)
 		end
