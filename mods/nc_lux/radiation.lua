@@ -39,7 +39,11 @@ nodecore.register_virtual_item(irradiated, {
 
 nodecore.register_healthfx({
 		item = irradiated,
-		getqty = function(player) return radlevel(player) end
+		getqty = function(player) return radlevel(player) end,
+		setqty = function(player, qty)
+			local _, set = radlevel(player)
+			return set(qty)
+		end
 	})
 
 local rad_lut = {}

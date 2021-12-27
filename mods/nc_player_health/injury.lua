@@ -16,5 +16,8 @@ nodecore.register_healthfx({
 		item = injured,
 		getqty = function(player)
 			return 1 - nodecore.getphealth(player) / 8
+		end,
+		setqty = function(player, qty, ...)
+			return nodecore.setphealth(player, (1 - qty) * 8, ...)
 		end
 	})
