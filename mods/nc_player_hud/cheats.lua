@@ -42,7 +42,7 @@ minetest.register_chatcommand("uncheat", {
 			end
 			minetest.set_player_privs(name, privs)
 			minetest.chat_send_player(name,
-				qty > 0 and ("Removed " .. qty .. " cheats")
+				qty > 0 and ("Removed " .. qty .. " cheat(s)")
 				or "No active cheats found")
 
 			local player = minetest.get_player_by_name(name)
