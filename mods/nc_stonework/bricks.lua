@@ -28,7 +28,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 			nodes = {
 				{
 					match = {
-						metal_temper_cool = true,
+						lode_temper_cool = true,
 						groups = {chisel = true}
 					},
 					dig = true

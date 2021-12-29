@@ -15,7 +15,7 @@ minetest.register_node(modname .. ":form", {
 			totable = 1,
 			storebox = 2,
 			visinv = 1,
-			metal_cube = 1,
+			lode_cube = 1,
 			scaling_time = 50
 		},
 		paramtype = "light",
@@ -63,7 +63,7 @@ minetest.register_node(modname .. ":shelf", {
 			visinv = 1,
 			storebox = 2,
 			totable = 1,
-			metal_cube = 1,
+			lode_cube = 1,
 			scaling_time = 50
 		},
 		paramtype = "light",

@@ -47,7 +47,7 @@ local function toolhead(name, groups, prills)
 				d.skip_register = (t.name == "hot") or nil
 			end,
 			groups = {flammable = 4},
-			metal_alt_hot = modname .. ":prill_hot " .. prills,
+			lode_alt_hot = modname .. ":prill_hot " .. prills,
 			tool_wears_to = prills > 1 and (modname .. ":prill_# " .. (prills - 1)) or nil,
 			on_ignite = modname .. ":prill_# " .. prills
 		})
