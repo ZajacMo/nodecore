@@ -74,37 +74,12 @@ minetest.register_node(modname .. ":shelf", {
 
 nodecore.register_craft({
 		label = "assemble lode shelf",
-		norotate = true,
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		indexkeys = {modname .. ":prill_hot"},
+		action = "stackapply",
+		indexkeys = {modname .. ":form"},
+		wield = {name = modname .. ":bar_annealed"},
+		consumewield = 1,
 		nodes = {
-			{match = modname .. ":prill_hot", replace = "air"},
-			{x = -1, z = -1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = 1, z = -1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = -1, z = 1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = 1, z = 1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-		},
-		items = {
-			modname .. ":prill_annealed"
-		}
-	})
-
-nodecore.register_craft({
-		label = "assemble lode shelf",
-		norotate = true,
-		action = "pummel",
-		toolgroups = {thumpy = 3},
-		indexkeys = {modname .. ":prill_hot"},
-		nodes = {
-			{match = modname .. ":prill_hot", replace = "air"},
-			{x = -1, z = 0, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = 1, z = 0, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = 0, z = -1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-			{x = 0, z = 1, match = modname .. ":rod_annealed", replace = modname .. ":shelf"},
-		},
-		items = {
-			modname .. ":prill_annealed"
+			{match = modname .. ":form", replace = modname .. ":shelf"},
 		}
 	})
 
@@ -119,6 +94,7 @@ nodecore.register_craft({
 			{match = modname .. ":shelf", replace = "air"},
 		},
 		items = {
-			{name = modname .. ":bar_annealed 2", scatter = 0.001}
+			{name = modname .. ":frame_annealed", scatter = 0.001},
+			{name = modname .. ":bar_annealed", scatter = 0.001}
 		}
 	})
