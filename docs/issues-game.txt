@@ -38,20 +38,9 @@ ISSUES-GAME: Gameplay-affecting issues
 - Cannot catapult an item into a form from below.
 	- Is this actually important?
 
-- Lode crates only come in annealed, while lode frames come in
-  all 3 tempers.  Which side of this should the form fall on,
-  and how do we make the "funneling" into one type reasonable?
-
-- Shelf recipe (and any other 3x3 recipe) reform
-	- Fix shelf recipes
-		- Form + plank = shelf
-		- Form + glass = case
-	- Add lode forms
-		- Pummel form w/ glowing lode = crate
-		- Form w/ something (frame? staff?) = tote handle
-	- Rake recipes
-		- Based on user guesses, use only 3 rakes
-		- Maybe 2x adze -> tongs, 2x tongs -> rake?
+- Reform rake recipes
+	- Based on user guesses, use only 3 rakes
+	- Maybe 2x adze -> tongs, 2x tongs -> rake?
 
 - Thatch and wicker should probably have recycling recipes.
 
