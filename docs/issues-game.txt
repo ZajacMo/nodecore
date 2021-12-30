@@ -9,8 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- CRITICAL: Placing a tote with a door destroys the contents
-
 - CATCH UP HINT SYSTEM & RETEST
 	- Forms, wooden and lode
 	- Lode frames, ladders

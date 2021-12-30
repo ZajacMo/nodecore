@@ -165,6 +165,7 @@ local function reg(suff, inner, def)
 				on_ignite = tote_ignite,
 				after_dig_node = totedug,
 				on_place = toteplace,
+				on_place_node = toteplace,
 				drop = "",
 				sounds = nodecore.sounds("nc_lode_annealed")
 			}))

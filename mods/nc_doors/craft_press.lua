@@ -114,7 +114,12 @@ nodecore.register_craft({
 				witness = 16,
 				label = "door place-craft"
 			}
-			stack = minetest.item_place_node(stack, nil, pt)
+			local def = stack:get_definition()
+			if def and def.on_place_node then
+				stack = def.on_place_node(stack, nil, pt) or stack
+			else
+				stack = minetest.item_place_node(stack, nil, pt)
+			end
 			nodecore.node_sound(pos, "place")
 			nodecore.witness(pos, "door placement")
 			if not stack:is_empty() then
