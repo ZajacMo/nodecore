@@ -13,7 +13,8 @@ local match_skip = {
 	excess = true,
 	wear = true,
 	stacked = true,
-	any = true
+	any = true,
+	empty = true
 }
 
 function nodecore.match(thing, crit)
@@ -83,6 +84,11 @@ function nodecore.match(thing, crit)
 			if not def or def[k] ~= v then return end
 		end
 	end
+
+	-- Never match on a thing that also has a stack inside it, e.g. crafts on
+	-- shelfs/forms that are full.
+	if crit.empty and not (thing.stacked or nodecore.stack_get(thing)
+		:is_empty()) then return end
 
 	return thing
 end

@@ -12,7 +12,10 @@ nodecore.register_craft({
 		wield = {name = "nc_lode:frame_annealed"},
 		consumewield = 1,
 		nodes = {
-			{match = "nc_lode:form", replace = modname .. ":handle"},
+			{
+				match = {name = "nc_lode:form", empty = true},
+				replace = modname .. ":handle"
+			},
 		}
 	})
 

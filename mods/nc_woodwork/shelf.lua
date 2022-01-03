@@ -81,6 +81,9 @@ nodecore.register_craft({
 		wield = {name = modname .. ":plank"},
 		consumewield = 1,
 		nodes = {
-			{match = modname .. ":form", replace = modname .. ":shelf"},
+			{
+				match = {name = modname .. ":form", empty = true},
+				replace = modname .. ":shelf"
+			},
 		}
 	})

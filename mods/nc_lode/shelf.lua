@@ -79,7 +79,10 @@ nodecore.register_craft({
 		wield = {name = modname .. ":bar_annealed"},
 		consumewield = 1,
 		nodes = {
-			{match = modname .. ":form", replace = modname .. ":shelf"},
+			{
+				match = {name = modname .. ":form", empty = true},
+				replace = modname .. ":shelf"
+			},
 		}
 	})
 
@@ -91,7 +94,10 @@ nodecore.register_craft({
 		check = function(pos) return nodecore.stack_get(pos):is_empty() end,
 		indexkeys = {modname .. ":shelf"},
 		nodes = {
-			{match = modname .. ":shelf", replace = "air"},
+			{
+				match = {name = modname .. ":shelf", empty = true},
+				replace = "air"
+			},
 		},
 		items = {
 			{name = modname .. ":frame_annealed", scatter = 0.001},

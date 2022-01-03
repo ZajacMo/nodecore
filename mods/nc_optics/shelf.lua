@@ -52,7 +52,10 @@ local function register_tank(subname, desc, pane, recipeitem)
 			wield = {name = recipeitem},
 			consumewield = 1,
 			nodes = {
-				{match = "nc_woodwork:form", replace = tankname},
+				{
+					match = {name = "nc_woodwork:form", empty = true},
+					replace = tankname
+				},
 			}
 		})
 end
