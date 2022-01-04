@@ -1219,6 +1219,9 @@ msgstr "assemble a float glass case"
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
 
+msgid "assemble a lode crate from form and bar"
+msgstr "assemble a lode crate from form and bar"
+
 msgid "assemble a lode rake"
 msgstr "assemble a lode rake"
 
@@ -1240,17 +1243,14 @@ msgstr "assemble a wooden frame from staves"
 msgid "assemble a wooden ladder from sticks"
 msgstr "assemble a wooden ladder from sticks"
 
-msgid "assemble a wooden shelf from a from and plank"
-msgstr "assemble a wooden shelf from a from and plank"
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "assemble a wooden shelf from a form and plank"
 
 msgid "assemble a wooden tool"
 msgstr "assemble a wooden tool"
 
 msgid "assemble an adze out of sticks"
 msgstr "assemble an adze out of sticks"
-
-msgid "assemnble a lode crate from form and bar"
-msgstr "assemnble a lode crate from form and bar"
 
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"

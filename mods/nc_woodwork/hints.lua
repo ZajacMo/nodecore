@@ -63,7 +63,7 @@ nodecore.register_hint("bash a plank into sticks",
 	{"nc_woodwork:plank", "toolcap:thumpy:3"}
 )
 
-nodecore.register_hint("assemble a wooden shelf from a from and plank",
+nodecore.register_hint("assemble a wooden shelf from a form and plank",
 	"assemble wood shelf",
 	{"nc_woodwork:plank", "nc_woodwork:form"}
 )

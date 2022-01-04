@@ -101,7 +101,7 @@ nodecore.register_hint("forge an annealed lode frame into a form",
 	"anvil making lode frame"
 )
 
-nodecore.register_hint("assemnble a lode crate from form and bar",
+nodecore.register_hint("assemble a lode crate from form and bar",
 	"assemble lode shelf",
 	"lode frame_annealed to form"
 )
