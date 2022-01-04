@@ -10,8 +10,6 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - CATCH UP HINT SYSTEM & RETEST
-	- Forms, wooden and lode
-	- Lode frames, ladders
 	- High-tier digging: grass, stone, tarstone
 
 - Protection breaks door-digging.
@@ -142,9 +140,6 @@ ISSUES-GAME: Gameplay-affecting issues
   etched ones.
 
 - Integrate YCTIWY into base game
-
-- Consider reverting burning item stack lossiness, make stacks
-  exactly conserve quantity when ignited?
 
 - Players losing run speed on damage would be simplified by checking for
   <max health instead of time of last damage.
