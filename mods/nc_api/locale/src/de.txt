@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-23 07:03+0000\n"
+"PO-Revision-Date: 2022-01-04 15:21+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -54,7 +54,7 @@ msgstr ""
 "Zunder."
 
 msgid "write on a surface with a charcoal lump"
-msgstr "Schreib auf eine Oberfläche mit Kohleklumpen"
+msgstr "schreibe auf eine Oberfläche mit Kohleklumpen"
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 msgstr ""
@@ -187,7 +187,7 @@ msgstr "@1 (3)"
 
 #, fuzzy
 msgid "Annealed Lode"
-msgstr "Erhärtete Ader"
+msgstr "Gebranntes Lode"
 
 msgid "@1 (30@2)"
 msgstr "@1 (30@2)"
@@ -246,7 +246,7 @@ msgstr "- Halte oder rechtsklicke wiederholt auf Wände/Decken um zu klettern."
 
 #, fuzzy
 msgid "Annealed Lode Prill"
-msgstr "Gebranntes Lode-Stück"
+msgstr "Gebrannter Lode-Brocken"
 
 msgid "Molten Glass"
 msgstr "Geschmolzenes Glas"
@@ -270,9 +270,8 @@ msgstr ""
 "- Schleichen+Abwurf drücken, um ein oder mehrere Dinge aus dem Stapel zu "
 "nehmen."
 
-#, fuzzy
 msgid "- Some recipes require "pummeling" a node."
-msgstr "- Einige Baumuster erfordern, einen Block zu \"hauen\"."
+msgstr "- Einige Baumuster erfordern, einen Block zu behauen."
 
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr ""
@@ -360,7 +359,6 @@ msgstr "Lehm"
 msgid "Adobe Bricks"
 msgstr "Lehmziegel"
 
-#, fuzzy
 msgid "Adobe Mix"
 msgstr "Lehmmischung"
 
@@ -370,11 +368,11 @@ msgstr "Zuschlag"
 
 #, fuzzy
 msgid "Annealed Lode Adze"
-msgstr "Gehärtete Lode-Haue"
+msgstr "Gebrannte Lode-Haue"
 
 #, fuzzy
 msgid "Annealed Lode Bar"
-msgstr "Gehärteter Lode-Balken"
+msgstr "Gebrannter Lode-Barren"
 
 #, fuzzy
 msgid "Annealed Lode Frame"
@@ -427,15 +425,14 @@ msgstr "Gebrannter Lode-Spaten"
 msgid "Annealed Lode Spade Head"
 msgstr "Gebrannter Lode-Spatenkopf"
 
-#, fuzzy
 msgid "Azure Bell Flower"
-msgstr "Blaue Glockenblume"
+msgstr "Azurblaue Glockenblume"
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "Alle Details und Verdienste siehe beigefügte LICENSE-Datei"
 
 msgid "Burning Embers"
-msgstr "Brennende Glut"
+msgstr "Glut"
 
 msgid "CHEATS ENABLED"
 msgstr "SCHUMMELN MÖGLICH"
@@ -1059,3 +1056,132 @@ msgstr "schnitze Holzwerkzeuge aus Planken"
 
 msgid "catapult an item with a hinged panel"
 msgstr "schleudere etwas mit einer gelagerten Platte"
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 entdeckt, @2 entdeckbar, @3 zukünftige"
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Versetzte Blöcke können durchklettert werden wie Kletterstellen."
+
+msgid "Bindy"
+msgstr "Bündiger"
+
+msgid "Bindy Adobe"
+msgstr "Bündiger Lehm"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Bündiger Weicher Lehm"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Bündiger Weicher Sandstein"
+
+msgid "Bindy Pliant Stone"
+msgstr "Bündiger Weicher Stein"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Bündiger Weicher Teerstein"
+
+msgid "Bindy Sandstone"
+msgstr "Bündiger Sandstein"
+
+msgid "Bindy Stone"
+msgstr "Bündiger Stein"
+
+msgid "Bindy Tarstone"
+msgstr "Bündiger Teerstein"
+
+msgid "Blank"
+msgstr "Leeres"
+
+msgid "Boxy"
+msgstr "Kastiger"
+
+msgid "Boxy Adobe"
+msgstr "Kastiger Lehm"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Kastiger Weicher Lehm"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Kastiger Weicher Sandstein"
+
+msgid "Boxy Pliant Stone"
+msgstr "Kastiger Weicher Stein"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Kastiger Weicher Teerstein"
+
+msgid "Boxy Sandstone"
+msgstr "Kastiger Sandstein"
+
+msgid "Boxy Stone"
+msgstr "Kastiger Stein"
+
+msgid "Boxy Tarstone"
+msgstr "Kastiger Teerstein"
+
+msgid "Bricky"
+msgstr "Mauriger"
+
+msgid "Bricky Adobe"
+msgstr "Mauriger Lehm"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Mauriger Weicher Lehm"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Mauriger Weicher Sandstein"
+
+msgid "Bricky Pliant Stone"
+msgstr "Mauriger Weicher Stein"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Mauriger Weicher Teerstein"
+
+msgid "Bricky Sandstone"
+msgstr "Mauriger Sandstein"
+
+msgid "Bricky Stone"
+msgstr "Mauriger Stein"
+
+msgid "Bricky Tarstone"
+msgstr "Mauriger Teerstein"
+
+msgid "sinter glowing lode prills into a cube"
+msgstr "schmelze glühende Lodebrocken zu einem Block"
+
+msgid "solder lode rods into crates"
+msgstr "löte Lodestäbe zu Kisten"
+
+msgid "split a tree trunk into planks"
+msgstr "spalte einen Baumstamm zu Planken"
+
+msgid "squeeze out a sponge"
+msgstr "quetsche einen Schwamm aus"
+
+msgid "temper a lode cube"
+msgstr "veredle einen Lodeblock"
+
+msgid "temper a lode tool head"
+msgstr "veredle einen Lode-Werkzeugkopf"
+
+msgid "throw an item really fast"
+msgstr "wirf etwas so richtig schnell"
+
+msgid "weaken stone by soaking"
+msgstr "schwäche Stein über Durchnässung"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "schmiede glühende Pickel- und Spatenköpfe zusammen"
+
+msgid "wet a concrete mix"
+msgstr "befeuchte eine Betonmischung"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "bearbeite geglühtes Lode auf einem veredelten Lodeamboss"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "bearbeite glühendes Lode auf einem Lodeamboss"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "bearbeite glühendes Lode auf einem Steinamboss"

@@ -1222,6 +1222,9 @@ msgstr "assemble a lode adze"
 msgid "assemble a lode rake"
 msgstr "assemble a lode rake"
 
+msgid "assemble a lode tote handle"
+msgstr "assemble a lode tote handle"
+
 msgid "assemble a rake from adzes and a stick"
 msgstr "assemble a rake from adzes and a stick"
 
@@ -1237,8 +1240,8 @@ msgstr "assemble a wooden frame from staves"
 msgid "assemble a wooden ladder from sticks"
 msgstr "assemble a wooden ladder from sticks"
 
-msgid "assemble a wooden shelf from frames and planks"
-msgstr "assemble a wooden shelf from frames and planks"
+msgid "assemble a wooden shelf from a from and plank"
+msgstr "assemble a wooden shelf from a from and plank"
 
 msgid "assemble a wooden tool"
 msgstr "assemble a wooden tool"
@@ -1246,8 +1249,8 @@ msgstr "assemble a wooden tool"
 msgid "assemble an adze out of sticks"
 msgstr "assemble an adze out of sticks"
 
-msgid "assemble an annealed lode tote handle"
-msgstr "assemble an annealed lode tote handle"
+msgid "assemnble a lode crate from form and bar"
+msgstr "assemnble a lode crate from form and bar"
 
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
@@ -1317,6 +1320,12 @@ msgstr "complete a pummel with a hinged panel and tool head"
 
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
+
+msgid "convert a wooden form to a frame"
+msgstr "convert a wooden form to a frame"
+
+msgid "convert a wooden frame to a form"
+msgstr "convert a wooden frame to a form"
 
 msgid "cool molten glass into crude glass"
 msgstr "cool molten glass into crude glass"
@@ -1423,8 +1432,23 @@ msgstr "find pumice"
 msgid "find pumwater"
 msgstr "find pumwater"
 
+msgid "forge a lode prill into a bar"
+msgstr "forge a lode prill into a bar"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "forge a lode rod and bar into a ladder"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "forge an annealed lode frame into a form"
+
+msgid "forge lode bars into a rod"
+msgstr "forge lode bars into a rod"
+
 msgid "forge lode prills into a tool head"
 msgstr "forge lode prills into a tool head"
+
+msgid "forge lode rods into a frame"
+msgstr "forge lode rods into a frame"
 
 msgid "gate a prism"
 msgstr "gate a prism"
@@ -1443,12 +1467,6 @@ msgstr "grow a rush on moist soil"
 
 msgid "grow a sedge on moist grass"
 msgstr "grow a sedge on moist grass"
-
-msgid "hammer a lode prill into a bar"
-msgstr "hammer a lode prill into a bar"
-
-msgid "hammer lode bars into a rod"
-msgstr "hammer lode bars into a rod"
 
 msgid "harden stone"
 msgstr "harden stone"
@@ -1593,9 +1611,6 @@ msgstr "set concrete to pliant"
 
 msgid "sinter glowing lode prills into a cube"
 msgstr "sinter glowing lode prills into a cube"
-
-msgid "solder lode rods into crates"
-msgstr "solder lode rods into crates"
 
 msgid "split a tree trunk into planks"
 msgstr "split a tree trunk into planks"
