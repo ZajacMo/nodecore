@@ -76,19 +76,34 @@ nodecore.register_hint("weld glowing lode pick and spade heads together",
 	"forge lode toolhead_pick"
 )
 
-nodecore.register_hint("hammer a lode prill into a bar",
+nodecore.register_hint("forge a lode prill into a bar",
 	"anvil making lode bar",
-	"nc_lode:block_tempered"
+	"lode anvil"
 )
 
-nodecore.register_hint("hammer lode bars into a rod",
+nodecore.register_hint("forge lode bars into a rod",
 	"anvil making lode rod",
 	"anvil making lode bar"
 )
 
-nodecore.register_hint("solder lode rods into crates",
-	"assemble lode shelf",
+nodecore.register_hint("forge a lode rod and bar into a ladder",
+	"anvil making lode ladder",
 	"anvil making lode rod"
+)
+
+nodecore.register_hint("forge lode rods into a frame",
+	"anvil making lode frame",
+	"anvil making lode rod"
+)
+
+nodecore.register_hint("forge an annealed lode frame into a form",
+	"lode frame_annealed to form",
+	"anvil making lode frame"
+)
+
+nodecore.register_hint("assemnble a lode crate from form and bar",
+	"assemble lode shelf",
+	"lode frame_annealed to form"
 )
 
 nodecore.register_hint("assemble a lode adze",

@@ -60,9 +60,9 @@ nodecore.register_hint("gate a prism",
 
 nodecore.register_hint("assemble a clear glass case",
 	"assemble clear glass case",
-	{"nc_optics:glass", "nc_woodwork:frame"}
+	{"nc_optics:glass", "nc_woodwork:form"}
 )
 nodecore.register_hint("assemble a float glass case",
 	"assemble float glass case",
-	{"nc_optics:glass_float", "nc_woodwork:frame"}
+	{"nc_optics:glass_float", "nc_woodwork:form"}
 )

@@ -5,9 +5,9 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-nodecore.register_hint("assemble an annealed lode tote handle",
+nodecore.register_hint("assemble a lode tote handle",
 	"craft tote handle",
-	{"nc_lode:block_annealed", "group:totable"}
+	{"nc_lode:form", "nc_lode:frame_annealed", "group:totable"}
 )
 
 nodecore.register_hint("pack up a complete tote",

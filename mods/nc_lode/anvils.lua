@@ -115,6 +115,7 @@ function nodecore.register_lode_anvil_recipe(anvilpos, func)
 			recipe.check)
 		recipe.after = chain(function(_, data)
 				if data.anvilcommit then data.anvilcommit(data) end
+				return nodecore.player_discover(data.crafter, "lode anvil")
 			end,
 			recipe.after)
 		nodecore.register_craft(recipe)
