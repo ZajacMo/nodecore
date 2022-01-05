@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-04 15:21+0000\n"
+"PO-Revision-Date: 2022-01-04 21:31+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -62,7 +62,7 @@ msgstr ""
 "AUF!"
 
 msgid "Blue Cup Flower"
-msgstr ""
+msgstr "Blaue Becherblume"
 
 msgid "HAND OF POWER"
 msgstr "MÄCHTIGE HAND"
@@ -86,7 +86,7 @@ msgid "find a flower"
 msgstr "finde eine Blume"
 
 msgid "dry out a sponge"
-msgstr "Trockne einen Schwamm aus"
+msgstr "Trockne einen Schwamm"
 
 msgid "find a stick"
 msgstr "finde einen Stock"
@@ -116,7 +116,7 @@ msgid "+"
 msgstr "+"
 
 msgid "- Aux+drop any item to drop everything."
-msgstr "- Aux + fallen lassen um alles fallen zu lassen."
+msgstr "- Aux+Abwurf um alles fallen zu lassen."
 
 msgid "- @1"
 msgstr "- @1"
@@ -147,16 +147,16 @@ msgstr ""
 "umzuordnen."
 
 msgid "- Crafting is done by building recipes in-world."
-msgstr "- Werken funktioniert, indem man nach Anleitung in der Welt baut."
+msgstr "- Werken funktioniert, indem man Baumuster in der Welt aufbaut."
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
-"- Bei größeren Anleitungen wird der mittlere Gegenstand für gewöhnlich "
+"- Bei größeren Baumustern wird der mittlere Gegenstand für gewöhnlich "
 "zuletzt platziert."
 
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr ""
-"- Wenn eine Anleitung existiert, wirst du einen speziellen Partikeleffekt "
+"- Wenn ein Baumuster existiert, wirst du einen speziellen Partikeleffekt "
 "sehen."
 
 msgid "- Recipes are time-based, punching faster does not speed up."
@@ -185,9 +185,8 @@ msgstr "@1 (20@2)"
 msgid "@1 (3)"
 msgstr "@1 (3)"
 
-#, fuzzy
 msgid "Annealed Lode"
-msgstr "Gebranntes Lode"
+msgstr "Geglühtes Lode"
 
 msgid "@1 (30@2)"
 msgstr "@1 (30@2)"
@@ -234,19 +233,17 @@ msgstr "Holzleiter"
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
-"- Hüte dich vor dunklen Höhlen oder Kluften; du bist dafür verantwortlich, "
-"wieder hinaus zu finden."
+"- Hüte dich vor dunklen Höhlen oder Kluften; du musst selbst wieder "
+"herausfinden."
 
-#, fuzzy
 msgid "Annealed Lode Mallet"
-msgstr "Gebrannter Lode-Hammer"
+msgstr "Geglühter Lodehammer"
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
 msgstr "- Halte oder rechtsklicke wiederholt auf Wände/Decken um zu klettern."
 
-#, fuzzy
 msgid "Annealed Lode Prill"
-msgstr "Gebrannter Lode-Brocken"
+msgstr "Geglühter Lodebrocken"
 
 msgid "Molten Glass"
 msgstr "Geschmolzenes Glas"
@@ -290,8 +287,8 @@ msgstr ""
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr ""
-"- Das Ding in der Hand, die bearbeitete Seite und umgebende Blöcke machen "
-"was aus."
+"- Das Werkzeug, die bearbeitete Blockseite und umgebende Blöcke machen was "
+"aus."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Du musst nicht schnell schlagen, einmal die Sekunde reicht."
@@ -327,22 +324,22 @@ msgid "@1 (90@2)"
 msgstr "@1 (90@2)"
 
 msgid "@1 ....."
-msgstr "@1 ....."
+msgstr ""
 
 msgid "@1 |...."
-msgstr "@1 |...."
+msgstr ""
 
 msgid "@1 ||..."
-msgstr "@1 ||..."
+msgstr ""
 
 msgid "@1 |||.."
-msgstr "@1 |||.."
+msgstr ""
 
 msgid "@1 ||||."
-msgstr "@1 ||||."
+msgstr ""
 
 msgid "@1 |||||"
-msgstr "@1 |||||"
+msgstr ""
 
 msgid "Active Lens"
 msgstr "Aktive Linse"
@@ -362,68 +359,53 @@ msgstr "Lehmziegel"
 msgid "Adobe Mix"
 msgstr "Lehmmischung"
 
-#, fuzzy
 msgid "Aggregate"
-msgstr "Zuschlag"
+msgstr "Betonschotter"
 
-#, fuzzy
 msgid "Annealed Lode Adze"
-msgstr "Gebrannte Lode-Haue"
+msgstr "Geglühte Lodehaue"
 
-#, fuzzy
 msgid "Annealed Lode Bar"
-msgstr "Gebrannter Lode-Barren"
+msgstr "Geglühter Lode-Barren"
 
-#, fuzzy
 msgid "Annealed Lode Frame"
-msgstr "Gebrannter Lode-Rahmen"
+msgstr "Geglühter Loderahmen"
 
-#, fuzzy
 msgid "Annealed Lode Hatchet"
-msgstr "Gebranntes Lode-Beil"
+msgstr "Geglühtes Lodebeil"
 
-#, fuzzy
 msgid "Annealed Lode Hatchet Head"
-msgstr "Gebrannter Lode-Beilkopf"
+msgstr "Geglühter Lodebeilkopf"
 
 msgid "Annealed Lode Ladder"
-msgstr "Gebrannte Lode-Leiter"
+msgstr "Geglühte Lodeleiter"
 
-#, fuzzy
 msgid "Annealed Lode Mallet Head"
-msgstr "Gebrannter Lode-Hammerkopf"
+msgstr "Geglühter Lodehammerkopf"
 
-#, fuzzy
 msgid "Annealed Lode Mattock"
-msgstr "Gebrannte Lode-Hacke"
+msgstr "Geglühte Lodehacke"
 
-#, fuzzy
 msgid "Annealed Lode Mattock Head"
-msgstr "Gebrannter Lode-Hackenkopf"
+msgstr "Geglühter Lodehackenkopf"
 
-#, fuzzy
 msgid "Annealed Lode Pick"
-msgstr "Gebrannter Lode-Pickel"
+msgstr "Geglühter Lodepickel"
 
-#, fuzzy
 msgid "Annealed Lode Pick Head"
-msgstr "Gebrannter Lode-Pickelkopf"
+msgstr "Geglühter Lodepickelkopf"
 
-#, fuzzy
 msgid "Annealed Lode Rake"
-msgstr "Gebrannter Lode-Rechen"
+msgstr "Geglühter Loderechen"
 
-#, fuzzy
 msgid "Annealed Lode Rod"
-msgstr "Gebrannte Lode-Rute"
+msgstr "Geglühte Lodestange"
 
-#, fuzzy
 msgid "Annealed Lode Spade"
-msgstr "Gebrannter Lode-Spaten"
+msgstr "Geglühter Lodespaten"
 
-#, fuzzy
 msgid "Annealed Lode Spade Head"
-msgstr "Gebrannter Lode-Spatenkopf"
+msgstr "Geglühter Lodespatenkopf"
 
 msgid "Azure Bell Flower"
 msgstr "Azurblaue Glockenblume"
@@ -486,11 +468,10 @@ msgid "Dirt"
 msgstr "Dreck"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
-msgstr "Discord: https://discord.gg/NNYeF6f"
+msgstr ""
 
-#, fuzzy
 msgid "Displaced Node"
-msgstr "Herumliegender Block"
+msgstr "Versetzter Block"
 
 msgid "Dry Rush"
 msgstr "Trockene Binsen"
@@ -505,11 +486,10 @@ msgid "Float Glass"
 msgstr "Floatglas"
 
 msgid "Float Glass Case"
-msgstr "Floatglaskasten"
+msgstr "Floatglasgehäuse"
 
-#, fuzzy
 msgid "Flux"
-msgstr "Flussmittel"
+msgstr "Flux"
 
 #, fuzzy
 msgid "Glowing Lode"
@@ -772,77 +752,59 @@ msgstr "Teerstein"
 msgid "Tarstone Bricks"
 msgstr "Teersteinziegel"
 
-#, fuzzy
 msgid "Tempered Lode"
-msgstr "Temperiertes Lode"
+msgstr "Veredeltes Lode"
 
-#, fuzzy
 msgid "Tempered Lode Adze"
-msgstr "Temperierte Lode-Haue"
+msgstr "Veredelte Lodehaue"
 
-#, fuzzy
 msgid "Tempered Lode Bar"
-msgstr "Temperierter Lode-Balken"
+msgstr "Veredelter Lodebarren"
 
-#, fuzzy
 msgid "Tempered Lode Frame"
-msgstr "Temperierter Lode-Balken"
+msgstr "Veredelter Loderahmen"
 
-#, fuzzy
 msgid "Tempered Lode Hatchet"
-msgstr "Temperiertes Lode-Beil"
+msgstr "Veredeltes Lodebeil"
 
-#, fuzzy
 msgid "Tempered Lode Hatchet Head"
-msgstr "Temperierter Lode-Beilkopf"
+msgstr "Veredelter Lodebeilkopf"
 
-#, fuzzy
 msgid "Tempered Lode Ladder"
-msgstr "Temperierte Lode-Leiter"
+msgstr "Veredelte Lodeleiter"
 
-#, fuzzy
 msgid "Tempered Lode Mallet"
-msgstr "Temperierter Lode-Hammer"
+msgstr "Veredelte Lodehammer"
 
-#, fuzzy
 msgid "Tempered Lode Mallet Head"
-msgstr "Temperierter Lode-Hammerkopf"
+msgstr "Veredelter Lodehammerkopf"
 
-#, fuzzy
 msgid "Tempered Lode Mattock"
-msgstr "Temperierte Lode-Hacke"
+msgstr "Veredelte Lodehacke"
 
-#, fuzzy
 msgid "Tempered Lode Mattock Head"
-msgstr "Temperierter Lode-Hackenkopf"
+msgstr "Veredelter Lodehackenkopf"
 
-#, fuzzy
 msgid "Tempered Lode Pick"
-msgstr "Temperierter Lode-Pickel"
+msgstr "Veredelter Lodepickel"
 
-#, fuzzy
 msgid "Tempered Lode Pick Head"
-msgstr "Temperierter Lode-Pickelkopf"
+msgstr "Veredelter Lodepickelkopf"
 
-#, fuzzy
 msgid "Tempered Lode Prill"
-msgstr "Temperierter Lode-Brocken"
+msgstr "Veredelter Lodebrocken"
 
-#, fuzzy
 msgid "Tempered Lode Rake"
-msgstr "Temperierter Lode-Rechen"
+msgstr "Veredelte Loderechen"
 
-#, fuzzy
 msgid "Tempered Lode Rod"
-msgstr "Temperierte Lode-Harke"
+msgstr "Veredelte Lodeharke"
 
-#, fuzzy
 msgid "Tempered Lode Spade"
-msgstr "Temperierter Lode-Spaten"
+msgstr "Veredelter Lodespaten"
 
-#, fuzzy
 msgid "Tempered Lode Spade Head"
-msgstr "Temperierter Lode-Spatenkopf"
+msgstr "Veredelter Lodespatenkopf"
 
 #, fuzzy
 msgid "Thatch"
@@ -881,16 +843,15 @@ msgstr "Lila Sternblume"
 msgid "Wet Adobe Mix"
 msgstr "Nasse Lehmmischung"
 
-#, fuzzy
 msgid "Wet Aggregate"
-msgstr "Nasser Zuschlag"
+msgstr "Nasser Betonschotter"
 
 #, fuzzy
 msgid "Wet Render"
 msgstr "Nasser Putz"
 
 msgid "Wet Tarry Aggregate"
-msgstr "Nasser Teeriger Zuschlag"
+msgstr "Nasser Teerbetonschotter"
 
 msgid "White Bell Flower"
 msgstr "Weiße Glockenblume"
@@ -985,29 +946,25 @@ msgid "add coal to aggregate to make tarstone"
 msgstr "füge Kohle zum Zuschlag hinzu, um Teerstein herzustellen"
 
 msgid "assemble a clear glass case"
-msgstr "baue einen Klarglaskasten"
+msgstr "baue ein Klarglasgehäuse"
 
-#, fuzzy
 msgid "assemble a float glass case"
-msgstr "baue einen Floatglaskasten"
+msgstr "baue ein Floatglasgehäuse"
 
-#, fuzzy
 msgid "assemble a lode adze"
-msgstr "baue eine Lode-Haue"
+msgstr "baue eine Lodehaue"
 
 msgid "assemble a lode rake"
-msgstr "Baue einen Lode-Rechen"
+msgstr "Baue einen Loderechen"
 
-#, fuzzy
 msgid "assemble a rake from adzes and a stick"
 msgstr "baue einen Rechen aus Hauen und einem Stock"
 
 msgid "assemble a staff from sticks"
 msgstr "baue einen Stab aus Stöcken"
 
-#, fuzzy
 msgid "assemble a stone-tipped stylus"
-msgstr "Baue einen steinbespitzten Griffel"
+msgstr "baue einen steinbesetzten Griffel"
 
 msgid "assemble a wooden frame from staves"
 msgstr "baue einen Holzrahmen aus Stäben"
@@ -1028,28 +985,23 @@ msgstr "baue eine Haue aus Stöcken"
 msgid "bash a plank into sticks"
 msgstr "zerschlage eine Planke in Stöcke"
 
-#, fuzzy
 msgid "bond adobe bricks"
-msgstr "binde Zuschlagsziegel"
+msgstr "verklebte Betonschotterziegel"
 
-#, fuzzy
 msgid "bond sandstone bricks"
-msgstr "binde Sandsteinziegel"
+msgstr "verklebte Sandsteinziegel"
 
-#, fuzzy
 msgid "bond stone bricks"
-msgstr "binde Steinziegel"
+msgstr "verklebte Steinziegel"
 
-#, fuzzy
 msgid "bond tarstone bricks"
-msgstr "binde Teersteinziegel"
+msgstr "verklebte Teersteinziegel"
 
 msgid "break cobble into chips"
 msgstr "zersplittere Bruchstein"
 
-#, fuzzy
 msgid "carve a wooden plank completely"
-msgstr "zerhacke eine Holzplanke vollständig"
+msgstr "zerschnitze eine Holzplanke vollständig"
 
 msgid "carve wooden tool heads from planks"
 msgstr "schnitze Holzwerkzeuge aus Planken"
@@ -1185,3 +1137,434 @@ msgstr "bearbeite glühendes Lode auf einem Lodeamboss"
 
 msgid "work glowing lode on a stone anvil"
 msgstr "bearbeite glühendes Lode auf einem Steinamboss"
+
+msgid "Blue Star Flower"
+msgstr "Blaue Sternblume"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Aufgegossene Geglühte Lodehaue"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Odo-Holzkohlezeichen"
+
+msgid "Orange Cluster Flower"
+msgstr "Orangene Büschelblume"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Queg-Holzkohlezeichen"
+
+msgid "assemble a lode tote handle"
+msgstr "baue einen Lodetaschengriff"
+
+msgid "assemble a wooden shelf from a from and plank"
+msgstr "baue ein Holzregal aus einem Rahmen und einer Planke"
+
+msgid "assemnble a lode crate from form and bar"
+msgstr "Baue eine Lodekiste aus Rahmen und Barren"
+
+msgid "convert a wooden frame to a form"
+msgstr "Wandle einen Holzrahmen in eine Form"
+
+msgid "convert a wooden form to a frame"
+msgstr "Wandle eine Holzform in einen Rahmen"
+
+msgid "dig up a tree stump"
+msgstr "Grabe einen Baumstumpf aus"
+
+msgid "dig up cobble"
+msgstr "Grabe Bruchstein aus"
+
+msgid "discovered - @1"
+msgstr "entdeckt - @1"
+
+msgid "dry out a rush"
+msgstr "Trockne eine Binse"
+
+msgid "etch pliant concrete with a stylus"
+msgstr "verziere weichen Beton mit einem Griffel"
+
+msgid "ferment peat into humus"
+msgstr "fermentiere Torf zu Humus"
+
+msgid "find a rush"
+msgstr "Finde eine Binse"
+
+msgid "Azure Cluster Flower"
+msgstr "Azurblaue Büschelblume"
+
+msgid "Azure Cup Flower"
+msgstr "Azurblaue Becherblume"
+
+msgid "Azure Rosette Flower"
+msgstr "Azurblaue Rosettenblume"
+
+msgid "Azure Star Flower"
+msgstr "Azurblaue Sternblume"
+
+msgid "Black Bell Flower"
+msgstr "Schwarze Glockenblume"
+
+msgid "Black Cluster Flower"
+msgstr "Schwarze Büschelblume"
+
+msgid "Black Cup Flower"
+msgstr "Schwarze Becherblume"
+
+msgid "Black Rosette Flower"
+msgstr "Schwarze Rosettenblume"
+
+msgid "Black Star Flower"
+msgstr "Schwarze Sternblume"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Cav-Holzkohlezeichen"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Fot-Holzkohlezeichen"
+
+msgid "Hashy"
+msgstr "Krauses"
+
+msgid "Iceboxy"
+msgstr "Verschachtelt"
+
+msgid "Iceboxy Adobe"
+msgstr "Verschachtelter Lehm"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Verschachtelter Weicher Lehm"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Verschachtelter Weicher Sandstein"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Verschachtelter Weicher Stein"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Verschachtelter Weicher Teerstein"
+
+msgid "Iceboxy Sandstone"
+msgstr "Verschachtelter Weicher Sandstein"
+
+msgid "Iceboxy Stone"
+msgstr "Verschachtelter Weicher Stein"
+
+msgid "Iceboxy Tarstone"
+msgstr "Verschachtelter Weicher Teerstein"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Aufgegossenes Geglühtes Lodebeil"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Aufgegossener Geglühter Lodehammer"
+
+msgid "Orange Cup Flower"
+msgstr "Orangene Becherblume"
+
+msgid "Orange Rosette Flower"
+msgstr "Orangene Rosettenblume"
+
+msgid "Orange Star Flower"
+msgstr "Orangene Sternblume"
+
+msgid "Pink Cluster Flower"
+msgstr "Pinke Büschelblume"
+
+msgid "Pink Cup Flower"
+msgstr "Pinke Becherblume"
+
+msgid "Pink Rosette Flower"
+msgstr "Pinke Rosettenblume"
+
+msgid "Pink Star Flower"
+msgstr "Pinke Sternblume"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Prs-Holzkohlezeichen"
+
+#, fuzzy
+msgid "Pumwater"
+msgstr "Hauwasser"
+
+msgid "Blue Bell Flower"
+msgstr "Blaue Glockenblume"
+
+msgid "Blue Cluster Flower"
+msgstr "Blaue Büschelblume"
+
+msgid "Blue Rosette Flower"
+msgstr "Blaue Rosettenblume"
+
+msgid "Discovery"
+msgstr "Entdeckung"
+
+msgid "Gated Prism"
+msgstr "Steuerbares Prisma"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Geq-Holzkohlezeichen"
+
+msgid "Hashy Adobe"
+msgstr "Krauser Lehm"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Krauser Weicher Lehm"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Krauser Weicher Sandstein"
+
+msgid "Hashy Pliant Stone"
+msgstr "Krauser Weicher Stein"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Krauser Weicher Teerstein"
+
+msgid "Hashy Sandstone"
+msgstr "Krauser Sandstein"
+
+msgid "Hashy Stone"
+msgstr "Krauser Stein"
+
+msgid "Hashy Tarstone"
+msgstr "Krauser Teerstein"
+
+msgid "Horzy"
+msgstr "Querig"
+
+msgid "Horzy Adobe"
+msgstr "Queriger Lehm"
+
+msgid "Horzy Pliant Adobe"
+msgstr "Queriger Weicher Lehm"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Queriger Weicher Sandstein"
+
+msgid "Horzy Pliant Stone"
+msgstr "Queriger Weicher Stein"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Queriger Weicher Teerstein"
+
+msgid "Horzy Sandstone"
+msgstr "Queriger Sandstein"
+
+msgid "Horzy Stone"
+msgstr "Queriger Stein"
+
+msgid "Horzy Tarstone"
+msgstr "Queriger Teerstein"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Aufgegossene Geglühte Lodehacke"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Aufgegosseneer Geglühter Lodepickel"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Aufgegossener Geglühter Loderechen"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Aufgegossener Geglühter Lodespaten"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Aufgegossene Veredelte Lodehaue"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Aufgegossenes Veredeltes Lodebeil"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Aufgegossener Veredelter Lodehammer"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Aufgegossene Veredelte Lodehacke"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Aufgegossener Veredelter Lodepickel"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Aufgegossener Veredelter Loderechen"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Aufgegossener Veredelter Lodespaten"
+
+msgid "Loose Amalgamation"
+msgstr "Lose Legierung"
+
+msgid "Loose Lux Cobble"
+msgstr "Loser Luxbruchstein"
+
+msgid "Lux Cobble"
+msgstr "Luxbruchstein"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Mu Holzkohlezeichen"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Nis-Holzkohlezeichen"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "MIT-Lizenz (http://www.opensource.org/licenses/MIT)"
+
+msgid "Vermy Sandstone"
+msgstr "Wirrer Sandstein"
+
+msgid "Vermy Stone"
+msgstr "Wirrer Stein"
+
+msgid "Vermy Tarstone"
+msgstr "Wirrer Teerstein"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Tof-Holzkohlezeichen"
+
+msgid "Vermy"
+msgstr "Wirr"
+
+msgid "Vermy Adobe"
+msgstr "Wirrer Lehm"
+
+msgid "Vermy Pliant Adobe"
+msgstr "Wirrer Weicher Lehm"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "Wirrer Weicher Sandstein"
+
+msgid "Vermy Pliant Stone"
+msgstr "Wirrer Weicher Stein"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Wirrer Weicher Teerstein"
+
+msgid "Verty"
+msgstr "Hochig"
+
+msgid "Tote Handle"
+msgstr "Taschengriff"
+
+msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
+msgstr ""
+"Das Entdeckungssystem weist dich nur auf die Existenz einiger grundlegender "
+"Spielmechaniken hin. Fortgeschrittenes wie weiterführende Systeme und "
+"Automation wirst du selbst erfinden müssen!"
+
+msgid "Verty Adobe"
+msgstr "Hochiger Lehm"
+
+msgid "Verty Pliant Adobe"
+msgstr "Hochiger Weicher Lehm"
+
+msgid "Verty Pliant Sandstone"
+msgstr "Hochiger Weicher Sandstein"
+
+msgid "Verty Pliant Stone"
+msgstr "Hochiger Weicher Stein"
+
+msgid "Verty Pliant Tarstone"
+msgstr "Hochiger Weicher Teerstein"
+
+msgid "Verty Sandstone"
+msgstr "Hochiger Sandstein"
+
+msgid "Verty Stone"
+msgstr "Hochiger Stein"
+
+msgid "Verty Tarstone"
+msgstr "Hochiger Teerstein"
+
+msgid "Wilted Bell Flower"
+msgstr "Welke Glockenblume"
+
+msgid "Wilted Cluster Flower"
+msgstr "Welke Büschelblume"
+
+msgid "Wilted Cup Flower"
+msgstr "Welke Becherblume"
+
+msgid "Wilted Rosette Flower"
+msgstr "Welke Rosettenblume"
+
+msgid "Wilted Star Flower"
+msgstr "Welke Sternblume"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Xrp-Holzkohlezeichen"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Yit-Holzkohlezeichen"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Zin-Holzkohlezeichen"
+
+msgid "anneal a lode cube"
+msgstr "Glühe einen Lodewürfel"
+
+msgid "change a stylus pattern"
+msgstr "Ändere ein Griffelmuster"
+
+msgid "chisel sandstone bricks"
+msgstr "meißle Sandsteinziegel"
+
+msgid "chisel stone bricks"
+msgstr "meißle Steinziegel"
+
+msgid "chisel adobe bricks"
+msgstr "meißle Lehmziegel"
+
+msgid "chisel tarstone bricks"
+msgstr "meißle Teersteinziegel"
+
+msgid "chop chromatic glass into lenses"
+msgstr "zerschneide farbiges Glas in Linsen"
+
+msgid "chop up charcoal"
+msgstr "zerhacke Holzkohle"
+
+msgid "complete a craft with a hinged panel"
+msgstr "baue etwas mit einer gelagerten Platte"
+
+msgid "complete a pummel with a hinged panel and tool head"
+msgstr ""
+"vervollständige einen Hau mit einer gelagerten Platte und einem Werkzeugkopf"
+
+msgid "cool molten glass into crude glass"
+msgstr "kühle geschmolzenes Glas zu Rohglas"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "Bastle eine Fackel aus einem Stab und einem Kohleklumpen"
+
+msgid "cure pliant concrete fully"
+msgstr "Härte weichen Beton voll aus"
+
+msgid "cut down a tree"
+msgstr "Fälle einen Baum"
+
+msgid "cycle through all charcoal glyphs"
+msgstr "Durchlaufe alle Holzkohlezeichen"
+
+msgid "dig a node with a hinged panel and tool"
+msgstr "Grabe einen Block mit einer gelagerten Platte und einem Werkzeug aus"
+
+msgid "dig leaves"
+msgstr "Grabe Blätter"
+
+msgid "compress something with a hinged panel"
+msgstr "Presse etwas mit einer gelagerten Platte"
+
+msgid "dig up sand"
+msgstr "Grabe Sand aus"
+
+msgid "drop all your items at once"
+msgstr "wirf alles auf einmal weg"
+
+msgid "dig up dirt"
+msgstr "Grabe Dreck aus"
+
+msgid "dig up gravel"
+msgstr "Grabe Kies aus"
+
+msgid "dig up lode ore"
+msgstr "Grabe Lodeerz aus"
+
+msgid "dig up lux cobble"
+msgstr "Grabe Luxbruchstein aus"
