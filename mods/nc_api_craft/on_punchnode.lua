@@ -55,6 +55,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}
+		if not def.pointable then return end
 
 		local now = minetest.get_us_time() / 1000000
 		local pum = {
