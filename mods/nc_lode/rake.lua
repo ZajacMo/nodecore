@@ -53,25 +53,24 @@ nodecore.register_lode("rake", {
 		tool_wears_to = modname .. ":prill_# 12"
 	})
 
-local adze = {name = modname .. ":adze_annealed", wear = 0.05}
-nodecore.register_lode_anvil_recipe(-1, function(temper)
+nodecore.register_lode_anvil_recipe(-2, function(temper)
+		local adze = {name = modname .. ":adze_" .. temper, wear = 0.05}
 		return {
 			label = "assemble lode rake",
 			action = "pummel",
 			toolgroups = {thumpy = 3},
-			norotate = true,
 			priority = 1,
-			indexkeys = {modname .. ":bar_" .. temper},
+			indexkeys = {modname .. ":adze_" .. temper},
 			nodes = {
-				{match = modname .. ":bar_" .. temper, replace = "air"},
-				{x = 0, z = -1, match = adze, replace = "air"},
-				{x = 0, z = 1, match = adze, replace = "air"},
-				{x = -1, z = 0, match = adze, replace = "air"},
-				{x = 1, z = 0, match = adze, replace = "air"},
+				{match = adze, replace = "air"},
+				{y = -1, match = modname .. ":rod_" .. temper, replace = "air"},
+				{x = -1, match = adze, replace = "air"},
+				{x = 1, match = adze, replace = "air"},
 			},
-			items = {
-				modname .. ":rake_annealed"
-			}
+			items = {{
+					y = -1,
+					name = modname .. ":rake_annealed"
+			}}
 		}
 	end)
 

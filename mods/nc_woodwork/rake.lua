@@ -26,16 +26,15 @@ minetest.register_tool(modname .. ":rake", {
 local adze = {name = modname .. ":adze", wear = 0.05}
 nodecore.register_craft({
 		label = "assemble rake",
-		norotate = true,
-		indexkeys = {"nc_tree:stick"},
+		indexkeys = {modname .. ":adze"},
 		nodes = {
-			{match = "nc_tree:stick", replace = "air"},
-			{x = 0, z = -1, match = adze, replace = "air"},
-			{x = 0, z = 1, match = adze, replace = "air"},
-			{x = -1, z = 0, match = adze, replace = "air"},
-			{x = 1, z = 0, match = adze, replace = "air"},
+			{match = adze, replace = "air"},
+			{y = -1, match = modname .. ":staff", replace = "air"},
+			{x = -1, match = adze, replace = "air"},
+			{x = 1, match = adze, replace = "air"},
 		},
-		items = {
-			modname .. ":rake"
-		}
+		items = {{
+				y = -1,
+				name = modname .. ":rake"
+		}}
 	})
