@@ -85,9 +85,6 @@ msgstr "- Sneak+drop to count out single items from stack."
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- Some recipes require "pummeling" a node."
 
-msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-msgstr "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
 
