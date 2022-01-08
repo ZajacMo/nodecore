@@ -182,7 +182,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Easier recipe API:
 	- Use ascii art like ezschematic?
 	- Aliases like "sides"/"corners"?
-	- Make 3x3 recipes easier to define.
+	- Make larger/complex recipes easier to define.
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.

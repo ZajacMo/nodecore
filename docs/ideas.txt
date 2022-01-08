@@ -15,6 +15,9 @@ IDEAS: Possible future additions/improvements to the game
 	- Can only carry wooden forms (must be unpacked on a flat surface)
 	- Very flammable, ejects all contents (nodes and stacks) upon
 	  ignition
+	- Make them only contain certain items, others (e.g. sand/ash)
+	  filter/leak through?
+	- Make them drop items periodically?
 
 - Should pumice slowly decay?
 
@@ -182,6 +185,8 @@ IDEAS: Possible future additions/improvements to the game
 	  for damage given a player and a stack.
 		- Check for hot potato.
 		- Check upon pickup for anti-lode-move-exploit.
+	- Reform rake recipes
+		- Maybe 2x adze -> tongs, 2x tongs -> rake?
 
 - Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 
