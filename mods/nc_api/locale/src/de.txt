@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-04 21:31+0000\n"
+"PO-Revision-Date: 2022-01-06 20:05+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -435,26 +435,21 @@ msgstr "Gefärbtes Glas"
 msgid "Clear Glass"
 msgstr "Klarglas"
 
-#, fuzzy
 msgid "Clear Glass Case"
-msgstr "Klarglaskasten"
+msgstr "Klarglasgehäuse"
 
 msgid "Cobble"
 msgstr "Bruchstein"
 
-#, fuzzy
 msgid "Cobble Hinged Panel"
 msgstr "Gelagerte Bruchsteinplatte"
 
-#, fuzzy
 msgid "Cobble Panel"
 msgstr "Bruchsteinplatte"
 
-#, fuzzy
 msgid "Cracked Stone"
 msgstr "Gerissener Stein"
 
-#, fuzzy
 msgid "Crafting"
 msgstr "Werken"
 
@@ -489,62 +484,49 @@ msgid "Float Glass Case"
 msgstr "Floatglasgehäuse"
 
 msgid "Flux"
-msgstr "Flux"
+msgstr "Flussmittel"
 
-#, fuzzy
 msgid "Glowing Lode"
 msgstr "Glühendes Lode"
 
-#, fuzzy
 msgid "Glowing Lode Adze"
-msgstr "Glühende Lode-Haue"
+msgstr "Glühende Lodehaue"
 
-#, fuzzy
 msgid "Glowing Lode Bar"
-msgstr "Glühender Lodebalken"
+msgstr "Glühender Lodebarren"
 
-#, fuzzy
 msgid "Glowing Lode Cobble"
-msgstr "Glühender Lode-Bruchstein"
+msgstr "Glühender Lodebruchstein"
 
-#, fuzzy
 msgid "Glowing Lode Frame"
-msgstr "Glühender Lode-Rahmen"
+msgstr "Glühender Loderahmen"
 
-#, fuzzy
 msgid "Glowing Lode Hatchet Head"
-msgstr "Glühender Lode-Beilkopf"
+msgstr "Glühender Lodebeilkopf"
 
-#, fuzzy
 msgid "Glowing Lode Ladder"
-msgstr "Glühende Lode-Leiter"
+msgstr "Glühende Lodeleiter"
 
-#, fuzzy
 msgid "Glowing Lode Mallet Head"
-msgstr "Glühender Lode-Hammerkopf"
+msgstr "Glühender Lodehammerkopf"
 
-#, fuzzy
 msgid "Glowing Lode Mattock Head"
-msgstr "Glühender Lode-Hackenkopf"
+msgstr "Glühender Lodehackenkopf"
 
-#, fuzzy
 msgid "Glowing Lode Pick Head"
-msgstr "Glühender Lode-Pickelkopf"
+msgstr "Glühender Lodepickelkopf"
 
-#, fuzzy
 msgid "Glowing Lode Prill"
-msgstr "Glühender Lode-Brocken"
+msgstr "Glühender Lodebrocken"
 
 msgid "Glowing Lode Rake"
-msgstr "Glühender Lode-Rechen"
+msgstr "Glühender Loderechen"
 
-#, fuzzy
 msgid "Glowing Lode Rod"
-msgstr "Glühende Lode-Rute"
+msgstr "Glühende Lodestange"
 
-#, fuzzy
 msgid "Glowing Lode Spade Head"
-msgstr "Glühender Lode-Spatenkopf"
+msgstr "Glühender Lodespatenkopf"
 
 #, fuzzy
 msgid "Graveled Adze"
@@ -565,23 +547,18 @@ msgstr "Brennende Fackel"
 msgid "Living Sponge"
 msgstr "Lebender Schwamm"
 
-#, fuzzy
 msgid "Lode Cobble"
-msgstr "Lode-Bruchstein"
+msgstr "Lodebruchstein"
 
-#, fuzzy
 msgid "Lode Crate"
-msgstr "Lode-Kiste"
+msgstr "Lodekiste"
 
-#, fuzzy
 msgid "Lode Form"
-msgstr "Lode-Form"
+msgstr "Lodeform"
 
-#, fuzzy
 msgid "Lode Ore"
-msgstr "Lode-Erz"
+msgstr "Lodeerz"
 
-#, fuzzy
 msgid "Log"
 msgstr "Stamm"
 
@@ -627,7 +604,6 @@ msgstr "Spielerhandbuch: Vorratshaltung"
 msgid "Player's Guide: Movement and Navigation"
 msgstr "Spielerhandbuch: Bewegung und Navigation"
 
-#, fuzzy
 msgid "Player's Guide: Pummeling Recipes"
 msgstr "Spielerhandbuch: Behauungsmuster"
 
@@ -670,7 +646,6 @@ msgstr "Geharkter Sand"
 msgid "Red Cluster Flower"
 msgstr "Rote Büschelblume"
 
-#, fuzzy
 msgid "Red Cup Flower"
 msgstr "Rote Becherblume"
 
@@ -680,7 +655,6 @@ msgstr "Rote Rosettenblume"
 msgid "Red Star Flower"
 msgstr "Rote Sternblume"
 
-#, fuzzy
 msgid "Render"
 msgstr "Putz"
 
@@ -724,24 +698,20 @@ msgstr "Steinziegel"
 msgid "Stone Chip"
 msgstr "Steinsplitter"
 
-#, fuzzy
 msgid "Stone-Tipped Hatchet"
-msgstr "Steinbespitztes Beil"
+msgstr "Steingekörntes Beil"
 
-#, fuzzy
 msgid "Stone-Tipped Mallet"
-msgstr "Steinbespitzter Hammer"
+msgstr "Steingekörnter Hammer"
 
-#, fuzzy
 msgid "Stone-Tipped Pick"
-msgstr "Steinbespitzter Pickel"
+msgstr "Steingekörnter Pickel"
 
 msgid "Stone-Tipped Spade"
 msgstr "Steinbespitzter Spaten"
 
-#, fuzzy
 msgid "Stone-Tipped Stylus"
-msgstr "Steinbespitzter Griffel"
+msgstr "Griffel mit Steinspitze"
 
 msgid "Stump"
 msgstr "Baumstumpf"

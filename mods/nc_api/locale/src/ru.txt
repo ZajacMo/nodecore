@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-12-21 16:41+0000\n"
+"PO-Revision-Date: 2022-01-07 21:12+0000\n"
 "Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -1841,7 +1841,7 @@ msgid "rake dirt"
 msgstr "разгребите грязь"
 
 msgid "forge lode prills into a tool head"
-msgstr "выковывайте гранулы жила в головку инструмента"
+msgstr "выкуйте гранулы жила в головку инструмента"
 
 msgid "rake sand"
 msgstr "разгребите песок"
@@ -1887,3 +1887,69 @@ msgstr "обработайте раскалённую жилу на накова
 
 msgid "work glowing lode on a stone anvil"
 msgstr "обработайте раскалённую жилу на наковальне из камня"
+
+msgid "Discovery"
+msgstr "Открытие"
+
+msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
+msgstr ""
+"Система обнаружения только предупреждает вас о существовании некоторых "
+"основных игровых механик. Более продвинутый контент, такой как новые системы "
+"и автоматизация, вам придется изобретать самостоятельно!"
+
+msgid "assemble a lode tote handle"
+msgstr "соберите металлическую рукоять для сумки"
+
+msgid "convert a wooden form to a frame"
+msgstr "конвертируйте деревянную форму в раму"
+
+msgid "convert a wooden frame to a form"
+msgstr "конвертируйте деревянную раму в форму"
+
+msgid "forge lode bars into a rod"
+msgstr "выкуйте рудные бруски в стержень"
+
+msgid "forge lode rods into a frame"
+msgstr "выкуйте рудные стержни в раму"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "выкуйте металлический каркас в форму"
+
+msgid "leach raked humus to dirt"
+msgstr "вымойте разграбленный гумус в грязь"
+
+msgid "melt sand into molten glass"
+msgstr "расплавьте песок в расплавленное стекло"
+
+msgid "pack sedges into thatch"
+msgstr "упакуйте осоки в солому"
+
+msgid "assemble a lode crate from form and bar"
+msgstr "соберите металлический ящик из формы и бруса"
+
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "соберите деревянную полку из формы и доски"
+
+msgid "discovered - @1"
+msgstr "познано - @1"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "выкуйте лестницу из металлического стержня и бруска"
+
+msgid "grind dead plants into peat"
+msgstr "измельчите отмершие растения в торф"
+
+msgid "leach raked dirt to sand"
+msgstr "вымойте разграбленную грязь в песок"
+
+msgid "pack dry rushes into wicker"
+msgstr "упакуйте сухой тростник в плетенку"
+
+msgid "forge a lode prill into a bar"
+msgstr "выкуйте жилу в слиток"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 обнаружено, @2 доступно, @3 в будущем"
