@@ -36,7 +36,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if rz ~= data.pointed.above.z - data.pointed.under.z then return end
 	end
 	for _, v in pairs(recipe.nodes) do
-		if v ~= recipe.root and v.match then
+		if v.match then
 			local p = rel(v.x, v.y, v.z)
 			if not nodecore.match(p, v.match) then return end
 		end
