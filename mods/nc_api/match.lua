@@ -64,7 +64,7 @@ function nodecore.match(thing, crit)
 	if crit.count == nil and thing.count ~= 1 then return end
 	if crit.wear then
 		if crit.wear < 1 then crit.wear = crit.wear * 65535 end
-		if thing.wear > crit.wear then return end
+		if thing.wear and (thing.wear > crit.wear) then return end
 	end
 
 	if crit.groups then
