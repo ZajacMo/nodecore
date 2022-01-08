@@ -1228,8 +1228,8 @@ msgstr "assemble a lode rake"
 msgid "assemble a lode tote handle"
 msgstr "assemble a lode tote handle"
 
-msgid "assemble a rake from adzes and a stick"
-msgstr "assemble a rake from adzes and a stick"
+msgid "assemble a rake from adzes and a staff"
+msgstr "assemble a rake from adzes and a staff"
 
 msgid "assemble a staff from sticks"
 msgstr "assemble a staff from sticks"
