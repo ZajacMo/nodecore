@@ -30,19 +30,20 @@ nodecore.register_on_register_item(function(name, def)
 				tiles[k] = nodecore.underride({name = v.name .. overlay}, v)
 			end
 		end
-		minetest.register_item(gluedname, nodecore.underride({
-					description = "Glued " .. def.description,
-					groups = {
-						cracky = 0,
-						crumbly = 1,
-						optic_gluable = 0
-					},
-					optic_check = optic_check,
-					tiles = tiles,
-					drop_in_place = name,
-					drop = "",
-					on_rightclick = function() end
-				}, def))
+		local gluedef = nodecore.underride({
+				description = "Glued " .. def.description,
+				groups = {
+					cracky = 0,
+					crumbly = 1,
+					optic_gluable = 0
+				},
+				optic_check = optic_check,
+				tiles = tiles,
+				drop_in_place = name,
+				drop = ""
+			}, def)
+		gluedef.on_rightclick = nil
+		minetest.register_item(gluedname, gluedef)
 	end)
 
 nodecore.register_craft({
