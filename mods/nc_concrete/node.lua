@@ -9,7 +9,8 @@ minetest.register_node(modname .. ":sandstone", {
 		description = "Sandstone",
 		tiles = {modname .. "_sandstone.png"},
 		groups = {
-			cracky = 1
+			cracky = 1,
+			sandstone = 1
 		},
 		drop_in_place = "nc_terrain:sand",
 		crush_damage = 2,
@@ -20,7 +21,8 @@ minetest.register_node(modname .. ":adobe", {
 		description = "Adobe",
 		tiles = {modname .. "_adobe.png"},
 		groups = {
-			cracky = 1
+			cracky = 1,
+			adobe = 1
 		},
 		drop_in_place = "nc_terrain:dirt",
 		crush_damage = 1,
@@ -53,7 +55,8 @@ minetest.register_node(modname .. ":coalstone", {
 		description = "Tarstone",
 		tiles = {"nc_terrain_stone.png^[colorize:#000000:160"},
 		groups = {
-			cracky = 2
+			cracky = 2,
+			coalstone = 1
 		},
 		drop_in_place = "nc_terrain:cobble",
 		crush_damage = 2,
