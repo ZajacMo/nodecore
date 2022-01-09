@@ -43,7 +43,8 @@ local basedef = {
 		optic_check = 1,
 		cracky = 3,
 		silica_prism = 1,
-		scaling_time = 125
+		scaling_time = 125,
+		optic_gluable = 1
 	},
 	silktouch = false,
 	drop = modname .. ":prism",

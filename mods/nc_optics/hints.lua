@@ -39,22 +39,22 @@ nodecore.register_hint("chop chromatic glass into lenses",
 )
 
 nodecore.register_hint("activate a lens",
-	"nc_optics:lens_on",
+	{true, "nc_optics:lens_on", "nc_optics:lens_on_glued"},
 	"group:silica_lens"
 )
 
 nodecore.register_hint("produce light from a lens",
-	"nc_optics:lens_glow",
+	{true, "nc_optics:lens_glow", "nc_optics:lens_glow_glued"},
 	"group:silica_lens"
 )
 
 nodecore.register_hint("activate a prism",
-	"nc_optics:prism_on",
+	{true, "nc_optics:prism_on", "nc_optics:prism_on_glued"},
 	"nc_optics:lens_on"
 )
 
 nodecore.register_hint("gate a prism",
-	"nc_optics:prism_gated",
+	{true, "nc_optics:prism_gated", "nc_optics:prism_gated_glued"},
 	"nc_optics:lens_on"
 )
 

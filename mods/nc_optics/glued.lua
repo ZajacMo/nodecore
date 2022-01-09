@@ -1,0 +1,62 @@
+-- LUALOCALS < ---------------------------------------------------------
+local minetest, nodecore, pairs, string, type
+    = minetest, nodecore, pairs, string, type
+local string_sub
+    = string.sub
+-- LUALOCALS > ---------------------------------------------------------
+
+local suff = "_glued"
+local overlay = "^nc_optics_glued.png"
+
+nodecore.register_on_register_item(function(name, def)
+		if not (def.groups and def.groups.optic_gluable
+			and def.groups.optic_gluable > 0) then return end
+
+		if string_sub(name, -#suff) == suff then return end
+
+		local gluedname = name .. suff
+		if minetest.registered_items[gluedname] then return end
+
+		local oldcheck = def.optic_check
+		local optic_check = oldcheck and function(...)
+			local nn = oldcheck(...)
+			return nn and nn .. suff
+		end
+		local tiles = {}
+		for k, v in pairs(def.tiles or {}) do
+			if type(v) == "string" then
+				tiles[k] = v .. overlay
+			else
+				tiles[k] = nodecore.underride({name = v.name .. overlay}, v)
+			end
+		end
+		minetest.register_item(gluedname, nodecore.underride({
+					description = "Glued " .. def.description,
+					groups = {
+						cracky = 0,
+						crumbly = 1,
+						optic_gluable = 0
+					},
+					optic_check = optic_check,
+					tiles = tiles,
+					drop_in_place = name,
+					drop = "",
+					on_rightclick = function() end
+				}, def))
+	end)
+
+nodecore.register_craft({
+		label = "glue optic",
+		action = "pummel",
+		wield = {name = "nc_tree:eggcorn"},
+		consumewield = 1,
+		indexkeys = "group:optic_gluable",
+		duration = 2,
+		nodes = {{
+				match = {groups = {optic_gluable = true}}, stacked = false
+		}},
+		after = function(pos, data)
+			data.node.name = data.node.name .. suff
+			return nodecore.set_loud(pos, data.node)
+		end
+	})

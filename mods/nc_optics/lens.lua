@@ -50,7 +50,8 @@ local basedef = {
 		silica_lens = 1,
 		optic_check = 1,
 		cracky = 3,
-		scaling_time = 125
+		scaling_time = 125,
+		optic_gluable = 1
 	},
 	silktouch = false,
 	drop = modname .. ":lens",
