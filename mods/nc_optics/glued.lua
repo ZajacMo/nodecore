@@ -58,6 +58,6 @@ nodecore.register_craft({
 		}},
 		after = function(pos, data)
 			data.node.name = data.node.name .. suff
-			return nodecore.set_loud(pos, data.node)
+			return minetest.swap_node(pos, data.node)
 		end
 	})
