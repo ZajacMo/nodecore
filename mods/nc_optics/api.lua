@@ -268,7 +268,7 @@ do
 				optic_check_pump()
 				if microtime() >= exp then
 					nodecore.log("warning", string_format("optics stopped"
-							.. " after running %d cycles in %0.3fs"
+							.. " after running %d cycle(s) in %0.3fs"
 							.. ", behind %0.2f",
 							starttotal - total,
 							(microtime() - starttime) / 1000000,
