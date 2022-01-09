@@ -156,6 +156,7 @@ nodecore.register_craft({
 		label = "forge lode block",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		priority = 10,
 		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{
