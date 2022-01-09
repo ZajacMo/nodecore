@@ -58,6 +58,11 @@ nodecore.register_hint("gate a prism",
 	"nc_optics:lens_on"
 )
 
+nodecore.register_hint("stick a lens/prism in place",
+	"glue optic",
+	{"nc_tree:eggcorn", "group:optic_gluable"}
+)
+
 nodecore.register_hint("assemble a clear glass case",
 	"assemble clear glass case",
 	{"nc_optics:glass", "nc_woodwork:form"}
