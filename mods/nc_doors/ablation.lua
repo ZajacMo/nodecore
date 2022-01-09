@@ -67,7 +67,7 @@ local function doortrigger(doorpos)
 	for _, dir in pairs(nodecore.dirs()) do
 		local lenspos = vector.add(doorpos, dir)
 		local lensnode = minetest.get_node(lenspos)
-		if lensnode.name == lenson then
+		if minetest.get_item_group(lensnode.name, "optic_lens_emit") > 0 then
 			local face = nodecore.facedirs[lensnode.param2]
 			local out = vector.add(face.k, lenspos)
 			if vector.equals(doorpos, out) then
