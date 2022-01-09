@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-06 20:05+0000\n"
+"PO-Revision-Date: 2022-01-09 18:19+0000\n"
 "Last-Translator: Roland <community@radtournetz.de>\n"
 "Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "de/>\n"
@@ -986,7 +986,7 @@ msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr "- Versetzte Blöcke können durchklettert werden wie Kletterstellen."
 
 msgid "Bindy"
-msgstr "Bündiger"
+msgstr "Bündig"
 
 msgid "Bindy Adobe"
 msgstr "Bündiger Lehm"
@@ -1013,10 +1013,10 @@ msgid "Bindy Tarstone"
 msgstr "Bündiger Teerstein"
 
 msgid "Blank"
-msgstr "Leeres"
+msgstr "Leer"
 
 msgid "Boxy"
-msgstr "Kastiger"
+msgstr "Kastig"
 
 msgid "Boxy Adobe"
 msgstr "Kastiger Lehm"
@@ -1043,7 +1043,7 @@ msgid "Boxy Tarstone"
 msgstr "Kastiger Teerstein"
 
 msgid "Bricky"
-msgstr "Mauriger"
+msgstr "Maurig"
 
 msgid "Bricky Adobe"
 msgstr "Mauriger Lehm"
@@ -1193,7 +1193,7 @@ msgid "Fot Charcoal Glyph"
 msgstr "Fot-Holzkohlezeichen"
 
 msgid "Hashy"
-msgstr "Krauses"
+msgstr "Kraus"
 
 msgid "Iceboxy"
 msgstr "Verschachtelt"

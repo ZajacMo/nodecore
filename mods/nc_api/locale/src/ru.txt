@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-07 21:12+0000\n"
+"PO-Revision-Date: 2022-01-09 18:19+0000\n"
 "Last-Translator: Walter Frost <divided0303@gmail.com>\n"
 "Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
 "ru/>\n"
@@ -1953,3 +1953,6 @@ msgstr "@1 (@2)"
 
 msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 обнаружено, @2 доступно, @3 в будущем"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "соберите грабли из тесла и посоха"

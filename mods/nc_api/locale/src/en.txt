@@ -517,6 +517,24 @@ msgstr "Glowing Lode Rod"
 msgid "Glowing Lode Spade Head"
 msgstr "Glowing Lode Spade Head"
 
+msgid "Glued Active Lens"
+msgstr "Glued Active Lens"
+
+msgid "Glued Active Prism"
+msgstr "Glued Active Prism"
+
+msgid "Glued Gated Prism"
+msgstr "Glued Gated Prism"
+
+msgid "Glued Lens"
+msgstr "Glued Lens"
+
+msgid "Glued Prism"
+msgstr "Glued Prism"
+
+msgid "Glued Shining Lens"
+msgstr "Glued Shining Lens"
+
 msgid "Grass"
 msgstr "Grass"
 
@@ -1614,6 +1632,9 @@ msgstr "split a tree trunk into planks"
 
 msgid "squeeze out a sponge"
 msgstr "squeeze out a sponge"
+
+msgid "stick a lens/prism in place"
+msgstr "stick a lens/prism in place"
 
 msgid "temper a lode cube"
 msgstr "temper a lode cube"
