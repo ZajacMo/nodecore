@@ -80,7 +80,7 @@ reg("_on", {
 			txr .. "^" .. pinp .. "^" .. pout
 		},
 		light_source = 1,
-		groups = {optic_source = 1},
+		groups = {optic_source = 1, optic_lens_emit = 1},
 		optic_source = function(_, node)
 			return {nodecore.facedirs[node.param2].k}
 		end
@@ -121,7 +121,7 @@ minetest.register_abm({
 		label = "lens fire start",
 		interval = 2,
 		chance = 2,
-		nodenames = {modname .. ":lens_on"},
+		nodenames = {"group:optic_lens_emit"},
 		action = function(pos, node)
 			local face = nodecore.facedirs[node.param2]
 			local out = vector.add(face.k, pos)

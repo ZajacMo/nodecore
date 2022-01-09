@@ -6,7 +6,6 @@ local minetest, nodecore, pairs, vector
 local modname = minetest.get_current_modname()
 
 local dntname = modname .. ":ablation"
-local lenson = "nc_optics:lens_on"
 
 local hash = minetest.hash_node_position
 local cooldowns = {}
@@ -48,7 +47,7 @@ end
 
 nodecore.register_dnt({
 		name = dntname,
-		nodenames = {lenson},
+		nodenames = {"group:optic_lens_emit"},
 		time = 2,
 		action = ablation
 	})
@@ -57,7 +56,7 @@ minetest.register_abm({
 		label = "door ablation",
 		interval = 2,
 		chance = 1,
-		nodenames = {lenson},
+		nodenames = {"group:optic_lens_emit"},
 		neighbors = {"group:door"},
 		action = function(pos)
 			return nodecore.dnt_set(pos, dntname, 2)
