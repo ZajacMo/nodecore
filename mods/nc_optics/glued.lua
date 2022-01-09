@@ -18,8 +18,16 @@ nodecore.register_on_register_item(function(name, def)
 		if minetest.registered_items[gluedname] then return end
 
 		local oldcheck = def.optic_check
-		local optic_check = oldcheck and function(...)
-			local nn = oldcheck(...)
+		local optic_check = oldcheck and function(pos, node, ...)
+			local tn = {
+				name = node.name,
+				param = node.param,
+				param2 = node.param2
+			}
+			if string_sub(tn.name, -#suff) == suff then
+				tn.name = string_sub(tn.name, 1, -#suff - 1)
+			end
+			local nn = oldcheck(pos, tn, ...)
 			return nn and nn .. suff
 		end
 		local tiles = {}

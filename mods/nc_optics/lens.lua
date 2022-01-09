@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, string, vector
+    = minetest, nodecore, string, vector
+local string_gsub
+    = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -97,7 +99,7 @@ reg("_glow", {
 reg("_glow_start", {
 		description = "Shining Lens",
 		light_source = 1,
-		groups = {activates_lens = 1},
+		groups = {activates_lens = 1, lens_glow_start = 1},
 		tiles = {
 			txr .. "^" .. modname .. "_shine_side.png",
 			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
@@ -109,10 +111,10 @@ reg("_glow_start", {
 
 nodecore.register_dnt({
 		name = modname .. ":lens_warmup",
-		nodenames = {modname .. ":lens_glow_start"},
+		nodenames = {"group:lens_glow_start"},
 		time = 2,
 		action = function(pos, node)
-			node.name = modname .. ":lens_glow"
+			node.name = string_gsub(node.name, "_start", "")
 			return nodecore.set_node(pos, node)
 		end
 	})

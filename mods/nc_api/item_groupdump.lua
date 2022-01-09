@@ -80,6 +80,7 @@ local groups = {
 	lava = "(specific) source or flowing pumwater",
 	leaf_decay = "decays into its leaf_decay_as items if not connected to tree trunk",
 	leafy = "(deprecated) loose leaves",
+	lens_glow_start = "(specific) glowing lenses in warm-up state",
 	lode_cobble = "(specific) lode cobble or loose lode cobble",
 	lode_cube = "full cubes made of lode (lode cubes, crates)",
 	lode_prill = "(specific) lode prills of various temper",
