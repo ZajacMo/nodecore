@@ -14,7 +14,8 @@ local match_skip = {
 	wear = true,
 	stacked = true,
 	any = true,
-	empty = true
+	empty = true,
+	stackany = true
 }
 
 function nodecore.match(thing, crit)
@@ -30,6 +31,14 @@ function nodecore.match(thing, crit)
 		return
 	end
 
+	-- Allow matches on stacks inside any node, not only
+	-- bare stack nodes.
+	if crit.stackany then
+		local subcrit = nodecore.underride({}, crit)
+		subcrit.stackany = nil
+		if nodecore.match(thing, subcrit) then return thing end
+	end
+
 	thing.count = thing.count or 1
 
 	thing = nodecore.underride({}, thing)
@@ -43,7 +52,8 @@ function nodecore.match(thing, crit)
 		thing = nodecore.underride(thing, minetest.get_node(thing))
 	end
 	local def = minetest.registered_items[thing.name]
-	if (not thing.stacked) and def and def.groups and def.groups.is_stack_only then
+	if crit.stackany or (not thing.stacked) and def and def.groups
+	and def.groups.is_stack_only then
 		local stack = thing.x and thing.y and thing.z and nodecore.stack_get(thing)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
