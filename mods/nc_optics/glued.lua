@@ -41,14 +41,10 @@ nodecore.register_on_register_item(function(name, def)
 		local gluedef = nodecore.underride({
 				description = "Glued " .. def.description,
 				groups = {
-					cracky = 0,
-					crumbly = 1,
 					optic_gluable = 0
 				},
 				optic_check = optic_check,
-				tiles = tiles,
-				drop_in_place = name,
-				drop = ""
+				tiles = tiles
 			}, def)
 		gluedef.on_rightclick = nil
 		minetest.register_item(gluedname, gluedef)
