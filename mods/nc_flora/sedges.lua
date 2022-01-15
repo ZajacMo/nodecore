@@ -135,3 +135,17 @@ minetest.register_abm({
 			end
 		end
 	})
+
+nodecore.register_on_peat_compost(function(pos)
+		if math_random(1, 10) ~= 1 then return end
+
+		if minetest.get_node(pos).name ~= grassname then return end
+
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		if not (nodecore.air_equivalent(above)
+			and nodecore.can_grass_grow_under(above)
+			and #nodecore.find_nodes_around(above, "group:moist", {2, 1, 2}) > 0)
+		then return end
+
+		nodecore.set_loud(above, {name = modname .. ":sedge_1"})
+	end)
