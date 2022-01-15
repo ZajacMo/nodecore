@@ -205,3 +205,15 @@ nodecore.register_craft({
 			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
 		end
 	})
+
+nodecore.register_craft({
+		label = "tickle tree leaves",
+		action = "pummel",
+		toolgroups = {snappy = 1},
+		nodes = {
+			{match = modname .. ":leaves_bud"}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "leafgrow")
+		end
+	})
