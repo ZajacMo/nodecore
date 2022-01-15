@@ -96,7 +96,6 @@ local noisy = 0
 minetest.register_globalstep(function(dtime)
 		noisy = noisy - 25 * dtime
 		if noisy < 0 then noisy = 0 end
-		print(noisy)
 	end)
 local function mkloud(fname)
 	return function(pos, node, opts)
