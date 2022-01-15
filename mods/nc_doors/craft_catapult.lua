@@ -6,7 +6,12 @@ local ItemStack, minetest, nodecore, pairs, vector
 local presstoolcaps = {}
 minetest.after(0, function()
 		for name, def in pairs(minetest.registered_items) do
-			if def.tool_capabilities then
+			local ovrgrp = def.groups and def.groups.nc_doors_always_pummel
+			if ovrgrp and ovrgrp > 0 then
+				presstoolcaps[name] = def.tool_head_capabilities
+				and def.tool_head_capabilities.groupcaps
+				or def.tool_capabilities.groupcaps
+			elseif def.tool_capabilities then
 				presstoolcaps[name] = "dig"
 			elseif def.tool_head_capabilities then
 				presstoolcaps[name] = def.tool_head_capabilities.groupcaps

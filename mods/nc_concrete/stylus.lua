@@ -10,7 +10,8 @@ minetest.register_tool(modname .. ":stylus", {
 		tool_wears_to = "nc_tree:stick",
 		inventory_image = modname .. "_tool_stylus.png",
 		groups = {
-			flammable = 2
+			flammable = 2,
+			nc_doors_always_pummel = 1
 		},
 		tool_capabilities = nodecore.toolcaps({
 				scratchy = 3
