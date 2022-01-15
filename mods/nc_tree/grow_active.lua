@@ -8,28 +8,7 @@ local math_random, table_concat
 local modname = minetest.get_current_modname()
 
 local function growparticles(pos, rate, width)
-	local zero = {x = 0, y = 0, z = 0}
-	nodecore.digparticles(minetest.registered_items[modname .. ":leaves_bud"],
-		{
-			amount = rate,
-			time = 10,
-			minpos = {
-				x = pos.x - width,
-				y = pos.y + 33/64,
-				z = pos.z - width
-			},
-			maxpos = {
-				x = pos.x + width,
-				y = pos.y + 33/64,
-				z = pos.z + width
-			},
-			minvel = zero,
-			maxvel = zero,
-			minexptime = 0.25,
-			maxexptime = 1,
-			minsize = 3 * width,
-			maxsize = 9 * width,
-		})
+	nodecore.soaking_particles(pos, rate, 10, width, modname .. ":leaves_bud")
 end
 
 local sproutcost = 2000

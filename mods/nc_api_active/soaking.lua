@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, type, vector
-    = error, math, minetest, nodecore, pairs, type, vector
-local math_floor, math_sqrt
-    = math.floor, math.sqrt
+local error, math, minetest, nodecore, pairs, string, type, vector
+    = error, math, minetest, nodecore, pairs, string, type, vector
+local math_floor, math_sqrt, string_format
+    = math.floor, math.sqrt, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local metacache = {}
@@ -168,5 +168,50 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 			for _, f in pairs(batch) do f() end
 		end
 		pending = nil
+	end
+end
+
+function nodecore.soaking_abm_tickle(pos, fieldname, rate)
+	local meta = minetest.get_meta(pos)
+	local tickletime = meta:get_float(fieldname .. "tickle")
+	if not (tickletime and tickletime > 0
+		and tickletime < nodecore.gametime) then
+		tickletime = nodecore.gametime
+	end
+	meta:set_float(fieldname .. "tickle", nodecore.gametime)
+	local qty = ((nodecore.gametime - tickletime) ^ 0.5) * rate
+	nodecore.log("action", string_format("abm push %0.2f for %q at %s",
+			qty, fieldname, minetest.pos_to_string(pos)))
+	nodecore.soaking_abm_push(pos, fieldname, qty)
+	return qty
+end
+
+do
+	local zero = {x = 0, y = 0, z = 0}
+	function nodecore.soaking_particles(pos, amount, time, width, nodename)
+		nodename = nodename or minetest.get_node(pos).name
+		local def = minetest.registered_items[nodename]
+		if not def then return end
+		nodecore.digparticles(def,
+			{
+				amount = amount,
+				time = time,
+				minpos = {
+					x = pos.x - width,
+					y = pos.y + 33/64,
+					z = pos.z - width
+				},
+				maxpos = {
+					x = pos.x + width,
+					y = pos.y + 33/64,
+					z = pos.z + width
+				},
+				minvel = zero,
+				maxvel = zero,
+				minexptime = 0.25,
+				maxexptime = 1,
+				minsize = 3 * width,
+				maxsize = 9 * width,
+			})
 	end
 end

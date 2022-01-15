@@ -40,29 +40,8 @@ nodecore.register_craft({
 			local soil = def.groups.soil or 0
 			if soil > 2 then
 				nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
-				local zero = {x = 0, y = 0, z = 0}
-				nodecore.digparticles(minetest.registered_items[
-					modname .. ":leaves_bud"],
-					{
-						amount = (soil - 2) * 10,
-						time = 0.5,
-						minpos = {
-							x = pos.x - 0.45,
-							y = pos.y + 33/64,
-							z = pos.z - 0.45
-						},
-						maxpos = {
-							x = pos.x + 0.45,
-							y = pos.y + 33/64,
-							z = pos.z + 0.45
-						},
-						minvel = zero,
-						maxvel = zero,
-						minexptime = 0.25,
-						maxexptime = 1,
-						minsize = 3 * 0.45,
-						maxsize = 9 * 0.45,
-					})
+				nodecore.soaking_particles(pos, (soil - 2) * 10,
+					0.5, .45, modname .. ":leaves_bud")
 			end
 		end
 	})
