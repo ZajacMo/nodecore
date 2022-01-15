@@ -104,3 +104,16 @@ nodecore.register_soaking_abm({
 			return false
 		end
 	})
+
+nodecore.register_craft({
+		label = "tickle peat",
+		action = "pummel",
+		toolgroups = {crumbly = 1},
+		nodes = {
+			{match = modname .. ":peat"}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "compost")
+			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":humus")
+		end
+	})
