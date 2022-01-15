@@ -187,7 +187,7 @@ nodecore.register_craft({
 			{match = modname .. ":eggcorn_planted"}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "eggcorn", 100)
+			nodecore.soaking_abm_tickle(pos, "eggcorn")
 			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
 		end
 	})
@@ -201,7 +201,7 @@ nodecore.register_craft({
 			{match = modname .. ":tree_bud"}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "treegrow", 100)
+			nodecore.soaking_abm_tickle(pos, "treegrow")
 			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
 		end
 	})

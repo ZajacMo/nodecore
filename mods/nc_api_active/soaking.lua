@@ -171,7 +171,16 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	end
 end
 
-function nodecore.soaking_abm_tickle(pos, fieldname, rate)
+function nodecore.soaking_abm_tickle(pos, fieldname)
+	local abm = soaking_abm_by_fieldname[fieldname]
+	if not abm then return end
+
+	local node = minetest.get_node(pos)
+	if not abm.nodeidx[node.name] then return end
+
+	local rate = abm.soakrate(pos, node)
+	if not rate then return end
+
 	local meta = minetest.get_meta(pos)
 	local tickletime = meta:get_float(fieldname .. "tickle")
 	if not (tickletime and tickletime > 0
@@ -179,7 +188,7 @@ function nodecore.soaking_abm_tickle(pos, fieldname, rate)
 		tickletime = nodecore.gametime
 	end
 	meta:set_float(fieldname .. "tickle", nodecore.gametime)
-	local qty = ((nodecore.gametime - tickletime) ^ 0.5) * rate
+	local qty = ((nodecore.gametime - tickletime) ^ 0.5) * rate * 10
 	nodecore.log("action", string_format("abm push %0.2f for %q at %s",
 			qty, fieldname, minetest.pos_to_string(pos)))
 	nodecore.soaking_abm_push(pos, fieldname, qty)
