@@ -1,19 +1,7 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs
-    = ipairs, math, minetest, nodecore, pairs
-local math_random
-    = math.random
+local minetest, nodecore, pairs
+    = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
-
-local particles_add, particles_flush = nodecore.fairlimit(200)
-
-nodecore.register_globalstep("fire sparks", function()
-		for _, data in ipairs(particles_flush()) do
-			minetest.after(math_random(), function()
-					nodecore.soaking_particles(data.pos, data.rate, 5, 0.45)
-				end)
-		end
-	end)
 
 function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 	local waters = {}
@@ -48,9 +36,7 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 				return qty * (rate or 1)
 			end,
 			soakcheck = function(data, pos)
-				if data.total < 5000 then
-					return particles_add({pos = pos, rate = data.rate})
-				end
+				if data.total < 5000 then return end
 				nodecore.set_loud(pos, {name = tonode})
 				nodecore.witness(pos, "leach " .. fromnode)
 				return nodecore.fallcheck(pos)
