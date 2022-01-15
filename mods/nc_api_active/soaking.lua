@@ -171,15 +171,21 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	end
 end
 
+local function ticklelog(pos, fieldname, qty)
+	nodecore.log("action", string_format("abm push "
+			.. (type(qty) == "number" and "%0.2f" or "%q")
+			.. " for %q at %s",
+			qty, fieldname, minetest.pos_to_string(pos)))
+end
 function nodecore.soaking_abm_tickle(pos, fieldname)
 	local abm = soaking_abm_by_fieldname[fieldname]
-	if not abm then return end
+	if not abm then return ticklelog(pos, fieldname, "bad fieldname") end
 
 	local node = minetest.get_node(pos)
-	if not abm.nodeidx[node.name] then return end
+	if not abm.nodeidx[node.name] then return ticklelog(pos, fieldname, "index mismatch") end
 
 	local rate = abm.soakrate(pos, node)
-	if not rate then return end
+	if not rate then return ticklelog(pos, fieldname, "no soak rate") end
 
 	local meta = minetest.get_meta(pos)
 	local tickletime = meta:get_float(fieldname .. "tickle")
