@@ -29,10 +29,16 @@ function nodecore.leaf_decay(pos, node)
 		end
 	end
 	local t = {}
-	for _, v in ipairs(nodecore.registered_leaf_drops) do
-		t = v(pos, node, t) or t
+	local forced = minetest.get_meta(pos):get_string("leaf_drop_force")
+	forced = forced and forced ~= "" and minetest.deserialize(forced, true) or nil
+	if forced then
+		t = forced
+	else
+		for _, v in ipairs(nodecore.registered_leaf_drops) do
+			t = v(pos, node, t) or t
+		end
 	end
-	local p = nodecore.pickrand(t, function(x) return x.prob end)
+	local p = nodecore.pickrand(t, function(x) return x.prob or 1 end)
 	if not p then return end
 	minetest.set_node(pos, p)
 	if p.item then nodecore.item_eject(pos, p.item) end
