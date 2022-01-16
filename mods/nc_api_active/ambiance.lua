@@ -40,6 +40,7 @@ local function ambiance_core(def, getpos)
 		if def.check then
 			opts = def.check(pos)
 			if not opts then return end
+			if opts == true then opts = {} end
 		else
 			opts = {}
 		end
