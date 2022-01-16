@@ -88,9 +88,12 @@ end
 function nodecore.storebox_can_item_fall_in(pos, node, stack)
 	if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
 	local def = node and minetest.registered_items[node.name] or {}
-	if def.storebox_access and (not def.storebox_access(
-			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
-				under = pos}, pos, node)) then return end
+	if def.storebox_access and ((not def.storebox_access(
+				{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
+					under = pos}, pos, node))
+		or (not def.storebox_access(
+				{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
+					under = pos}, pos, node))) then return end
 	return true
 end
 
