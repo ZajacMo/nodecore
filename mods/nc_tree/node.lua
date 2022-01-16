@@ -77,6 +77,8 @@ local function fade(txr)
 	return txr .. "^[multiply:#a0a0a0^" .. txr
 end
 
+local hashpos = minetest.hash_node_position
+
 minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
@@ -108,6 +110,12 @@ minetest.register_node(modname .. ":leaves", {
 			}
 		},
 		alternate_solid = {
+			preserve_metadata = function(pos, _, oldmeta)
+				if oldmeta.leaf_decay_forced then
+					nodecore.leaf_decay_forced[hashpos(pos)]
+					= oldmeta.leaf_decay_forced
+				end
+			end,
 			after_dig_node = function(...)
 				return nodecore.leaf_decay(...)
 			end,
