@@ -84,8 +84,8 @@ nodecore.register_dnt({
 	})
 minetest.register_abm({
 		label = "sponge death",
-		interval = 4,
-		chance = 1,
+		interval = 2,
+		chance = 5,
 		nodenames = {living},
 		arealoaded = 1,
 		action = function(pos, node)
