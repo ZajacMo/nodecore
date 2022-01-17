@@ -56,9 +56,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Fix crappy sponge death mechanic
 		- Remove special treatment of glass case and glass nodes
 			- May need to find a new use-case for glass case?
-		- Use majority heuristic for sponge death in node form
-			- Death if dry nodes > 0 and >= wet nodes nearby
-			- Ignore sealing nodes
 	- Improve sponge colony growth shape
 		- Prevent tall vertical column growth seen on NCC by Kimapr
 		- Instead of just pushing out a sponge, floodfill to find colony

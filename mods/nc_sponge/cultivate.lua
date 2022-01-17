@@ -71,16 +71,26 @@ local function spongesurvive(data)
 	end
 end
 
-minetest.register_abm({
-		label = "sponge death",
-		interval = 1,
-		chance = 10,
+nodecore.register_dnt({
+		name = modname .. ":spongedie",
 		nodenames = {living},
-		arealoaded = 1,
+		time = 2,
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
 				nodecore.set_loud(pos, {name = wet})
 				return nodecore.fallcheck(pos)
+			end
+		end
+	})
+minetest.register_abm({
+		label = "sponge death",
+		interval = 4,
+		chance = 1,
+		nodenames = {living},
+		arealoaded = 1,
+		action = function(pos, node)
+			if not spongesurvive({pos = pos, node = node}) then
+				nodecore.dnt_set(pos, modname .. ":spongedie")
 			end
 		end
 	})
