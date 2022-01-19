@@ -76,7 +76,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 		pum.inprogress = pumparticles(pum, 1.5, 0.5, 8)
 
 		local old = pummeling[pname]
-		if old and old.clearfx then print("clear") old.clearfx() end
+		if old and old.clearfx then old.clearfx() end
 
 		local hash = minetest.hash_node_position
 		if old and hash(old.pos) == hash(pum.pos)
