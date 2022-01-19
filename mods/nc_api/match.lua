@@ -66,6 +66,8 @@ function nodecore.match(thing, crit)
 	if crit.stacked and not thing.stacked then return end
 	if crit.stacked == false and thing.stacked then return end
 
+	thing.name = thing.name and minetest.registered_aliases[thing.name] or thing.name
+
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
