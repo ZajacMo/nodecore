@@ -9,16 +9,17 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Need to standardize storage API between storeboxes and bare stacks
+	- Items in forms don't fall out and combine into a matching
+	  stack blocking the exit of the form.
+	- Storebox API is a mess anyway and needs a lot of cleanup.
+
 - If DNTs are deferred due to either stasis or arealoaded, need to
   set the timer re-firing to some sane future time.
 
 - Gametime handling improvements.
 	- Need to be robust in event of gametime resetting to zero,
 	  e.g. env_meta.txt corruption.
-	- Allow mods to affect game time flow
-		- Allow skipping forward through time
-		- For an offline mod for mobile SP to make gametime Track
-		realtime even when world is offline
 	- Probably need to save some metadata:
 		- Gametime adjustment, can be added/subtracted by mod.
 		- Last known gametime; if gametime is ever less,
@@ -70,6 +71,13 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Player skin API overhaul
 	- Pass a context object only
 	- Use player name, not player obj
+
+- Use set_local_animation again?
+	- Apparently it may make sense instead of handling every animation on the
+	  server side, to send sets of animations for the player based on context,
+	  e.g. swap between "swimup", "swimdown" and "standing/walking" sets and
+	  let the client handle the parts it can handle.
+	https://github.com/minetest/minetest_game/pull/2917/files#diff-bb0f88d32425a778a80208ad343f9e94880cba87893232410d8c0fba22295343R129
 
 - Update based on recentish engine sound improvements
 	- Improvements committed 2020-02-01

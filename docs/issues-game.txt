@@ -10,9 +10,10 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Door crafting issues:
-  - Can't construct a tool (apply mallet head to staff)
-  - Don't get hint from tool construction (e.g. should get "complete
-    craft with door" hint from making an adze)
+	- Can't construct a tool (apply mallet head to staff)
+	- Don't get hint from tool construction (e.g. should get "complete
+	  craft with door" hint from making an adze)
+	- Should tickling mechanic work with doors?
 
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
@@ -51,6 +52,10 @@ ISSUES-GAME: Gameplay-affecting issues
   a narrow vertical shaft (on VE-NC server) and having items cycle
   indefinitely without settling to a steady state.
   https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
+
+- Unconfirmed: loose leaf nodes disappearing almost immediately
+  after creation, including from natural decay?
+  https://discord.com/channels/507234450615042048/713203991923916840/932724813447958618
 
 - Sponge Fixes
 	- Fix crappy sponge death mechanic
