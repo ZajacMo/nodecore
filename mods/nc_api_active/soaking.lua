@@ -172,7 +172,7 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 end
 
 local function ticklelog(pos, fieldname, qty)
-	nodecore.log("action", string_format("abm push "
+	nodecore.log("info", string_format("abm push "
 			.. (type(qty) == "number" and "%0.2f" or "%q")
 			.. " for %q at %s",
 			qty, fieldname, minetest.pos_to_string(pos)))
@@ -195,8 +195,7 @@ function nodecore.soaking_abm_tickle(pos, fieldname)
 	end
 	meta:set_float(fieldname .. "tickle", nodecore.gametime)
 	local qty = ((nodecore.gametime - tickletime) ^ 0.5) * rate * 10
-	nodecore.log("action", string_format("abm push %0.2f for %q at %s",
-			qty, fieldname, minetest.pos_to_string(pos)))
+	ticklelog(pos, fieldname, qty)
 	nodecore.soaking_abm_push(pos, fieldname, qty)
 	return qty
 end

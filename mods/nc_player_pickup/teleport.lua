@@ -34,7 +34,7 @@ local function patchplayers()
 		end
 		local old = self:get_pos()
 		if old and vector.distance(pos, old) > 16 then
-			nodecore.log("action", string_format("%s teleporting from %s to %s",
+			nodecore.log("action", string_format("%s teleports from %s to %s",
 					self:get_player_name(), minetest.pos_to_string(old, 0),
 					minetest.pos_to_string(pos, 0)))
 			nodecore.inventory_dump(self)

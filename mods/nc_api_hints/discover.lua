@@ -53,7 +53,7 @@ local function discover(p, keys, prefix)
 		end
 	end
 	if #new < 1 then return end
-	minetest.log("action", string_format("player %q discovered %s", pname,
+	minetest.log("action", string_format("player %s discovers %q", pname,
 			table_concat(new, ", ")))
 	for _, cb in pairs(nodecore.registered_on_discovers) do
 		cb(player, new, pname, db)
