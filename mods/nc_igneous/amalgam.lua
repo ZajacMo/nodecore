@@ -105,3 +105,19 @@ nodecore.register_aism({
 			end
 		end
 	})
+
+nodecore.register_falling_node_step(function(self)
+		if not (self.node and self.node.name) then return end
+		if minetest.get_item_group(self.node.name, "amalgam") <= 0 then return end
+
+		local pos = self.object:get_pos()
+
+		if (not pos)
+		or nodecore.quenched(pos)
+		or not nodecore.buildable_to(pos) then return end
+
+		nodecore.set_loud(pos, {name = lavasrc})
+		self.object:remove()
+
+		return true
+	end)
