@@ -1,8 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, type, vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, type, vector
-local math_floor, math_pow, math_random
-    = math.floor, math.pow, math.random
+local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
+      vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
+      vector
+local math_floor, math_pow, math_random, string_format
+    = math.floor, math.pow, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -68,6 +70,8 @@ end
 
 function nodecore.fire_ignite(pos, node)
 	node = node or minetest.get_node(pos)
+	nodecore.log("action", string_format("ignite %s at %s", node.name,
+			minetest.pos_to_string(pos)))
 	local def = minetest.registered_items[node.name]
 	if def and def.on_ignite then
 		local ign = def.on_ignite
