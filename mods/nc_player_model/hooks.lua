@@ -5,7 +5,7 @@ local math_abs, math_deg
     = math.abs, math.deg
 -- LUALOCALS > ---------------------------------------------------------
 
-local frame_blend = 0.15
+local frame_blend = 0.1
 
 local pitch_mult = 2/3
 local pitch_max = 60
