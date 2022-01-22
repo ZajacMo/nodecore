@@ -151,6 +151,10 @@ local logbase = math_log(base)
 nodecore.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
+			if not nodecore.player_visible(player) then
+				return nodecore.hud_set(player, {label = "radiation", ttl = 0})
+			end
+
 			local rad, setrad = radlevel(player)
 			local rate, setrate = radrate(player)
 
