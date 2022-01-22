@@ -77,6 +77,7 @@ minetest.register_abm({
 		neighbors = {"group:igniter"},
 		neighbors_invert = true,
 		arealoaded = 1,
+		action_delay = true,
 		action = function(pos)
 			nodecore.fire_check_ignite(pos)
 		end

@@ -124,6 +124,7 @@ minetest.register_abm({
 		interval = 2,
 		chance = 2,
 		nodenames = {"group:optic_lens_emit"},
+		action_delay = true,
 		action = function(pos, node)
 			local face = nodecore.facedirs[node.param2]
 			local out = vector.add(face.k, pos)
