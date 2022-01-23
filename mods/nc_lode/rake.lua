@@ -50,7 +50,7 @@ nodecore.register_lode("rake", {
 			d.on_rake = mkonrake(d.tool_capabilities)
 		end,
 		groups = {rakey = 2},
-		tool_wears_to = modname .. ":prill_# 12"
+		tool_wears_to = modname .. ":prill_# 10"
 	})
 
 nodecore.register_lode_anvil_recipe(-2, function(temper)
@@ -86,7 +86,7 @@ nodecore.register_craft({
 			}
 		},
 		items = {
-			{name = modname .. ":bar_hot", count = 5},
+			{name = modname .. ":bar_hot", count = 3},
 			{name = modname .. ":rod_hot", count = 4}
 		}
 	})
