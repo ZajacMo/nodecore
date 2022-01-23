@@ -494,7 +494,9 @@ local function mismatch(a, b, exact)
 	if type(a) == "table" then
 		if type(b) ~= "table" then return true end
 		for k, v in pairs(a) do
-			if mismatch(v, b[k], exact) then return true end
+			if string_sub(k, 1, 1) ~= "_"
+			and mismatch(v, b[k], exact)
+			then return true end
 		end
 		return
 	end
