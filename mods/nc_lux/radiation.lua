@@ -151,11 +151,6 @@ local logbase = math_log(base)
 nodecore.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
-			if not (nodecore.player_visible(player)
-				and nodecore.player_can_take_damage(player)) then
-				return nodecore.hud_set(player, {label = "radiation", ttl = 0})
-			end
-
 			local rad, setrad = radlevel(player)
 			local rate, setrate = radrate(player)
 
@@ -174,15 +169,20 @@ nodecore.register_playerstep({
 				data.unradtime = data.unradtime - use
 			end
 
-			data.radtime = (data.radtime or 0) + dtime
-			if data.radtime > 1 then data.radtime = 1 end
-			while data.radtime > 1/16 do
-				data.radtime = data.radtime - 1/16
-				local inrate = (nodescan(player) + itemscan(player)) / 256
-				rate = (rate or 0) * 0.99 + inrate * 0.01
-				if inrate > 0 and math_random() < inrate then
-					rad = 1 - (1 - rad) * 31/32
+			if nodecore.player_can_take_damage(player)
+			and nodecore.player_visible(player) then
+				data.radtime = (data.radtime or 0) + dtime
+				if data.radtime > 1 then data.radtime = 1 end
+				while data.radtime > 1/16 do
+					data.radtime = data.radtime - 1/16
+					local inrate = (nodescan(player) + itemscan(player)) / 256
+					rate = (rate or 0) * 0.99 + inrate * 0.01
+					if inrate > 0 and math_random() < inrate then
+						rad = 1 - (1 - rad) * 31/32
+					end
 				end
+			else
+				rate = 0
 			end
 			setrate(rate)
 
