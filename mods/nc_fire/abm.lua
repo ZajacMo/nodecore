@@ -106,7 +106,7 @@ nodecore.register_ambiance({
 		interval = 1,
 		chance = 1,
 		sound_name = "nc_fire_flamy",
-		sound_gain = 0.1
+		sound_gain = 0.2
 	})
 
 nodecore.register_item_ambiance({
