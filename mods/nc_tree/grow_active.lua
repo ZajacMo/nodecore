@@ -184,7 +184,7 @@ nodecore.register_craft({
 		toolgroups = {crumbly = 1},
 		normal = {y = 1},
 		nodes = {
-			{match = modname .. ":eggcorn_planted"}
+			{match = {name = modname .. ":eggcorn_planted", stacked = false}}
 		},
 		after = function(pos)
 			nodecore.soaking_abm_tickle(pos, "eggcorn")
@@ -198,7 +198,7 @@ nodecore.register_craft({
 		toolgroups = {snappy = 1},
 		normal = {y = 1},
 		nodes = {
-			{match = modname .. ":tree_bud"}
+			{match = {name = modname .. ":tree_bud", stacked = false}}
 		},
 		after = function(pos)
 			nodecore.soaking_abm_tickle(pos, "treegrow")
@@ -211,7 +211,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {snappy = 1},
 		nodes = {
-			{match = modname .. ":leaves_bud"}
+			{match = {name = modname .. ":leaves_bud", stacked = false}}
 		},
 		after = function(pos)
 			nodecore.soaking_abm_tickle(pos, "leafgrow")
