@@ -9,6 +9,16 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Revert /mods changes
+	- Possibly list out add-on mods in About box in long form?
+		- Tree hierarchy?
+	- Add optional version API?
+
+- Clean up sky pummesses
+	- Make free-floating pumice randomly fall?  melt?
+	- Make pumice trigger chain melt reactions?
+	- Only if not already on the ground?
+
 - Door crafting issues:
 	- Can't construct a tool (apply mallet head to staff)
 	- Don't get hint from tool construction (e.g. should get "complete
