@@ -5,6 +5,7 @@ ipban.*
 mod_storage
 players.*
 players
+groups.txt
 nc_api.template.tr
 texturepack_override.template.txt
 world.mt
