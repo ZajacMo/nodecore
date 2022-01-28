@@ -8,28 +8,19 @@ local modname = minetest.get_current_modname()
 nodecore.stack_node_sounds_except = {}
 
 local boxable_nodes = {}
-local boxable_node_textures = {}
--- TODO list all the nodes you want stored as nodeboxes
-for name, textures in pairs{
-	["nc_terrain:cobble"] = {
-		"nc_terrain_gravel.png^nc_terrain_cobble.png",
-	},
-	["nc_tree:log"] = {
-		"nc_tree_tree_top.png",
-		"nc_tree_tree_top.png",
-		"nc_tree_tree_side.png"
-	},
-} do
-	boxable_nodes[name] = modname .. ":fullstack_" .. name:gsub(":", "__")
-	boxable_node_textures[name] = textures
-end
 
-for name, stack_name in pairs(boxable_nodes) do
-	minetest.register_node(stack_name, {
+local function register_stack(name, tiles)
+	local stack_name = modname .. ":fullstack_" .. name:gsub(":", "__")
+	boxable_nodes[name] = stack_name
+	if not tiles then
+		minetest.register_node(stack_name, {})
+		return
+	end
+	minetest.register_node(":" .. stack_name, {
 			description = "",
 			drawtype = "mesh",
 			mesh = modname .. "_stack.obj",
-			tiles = boxable_node_textures[name],
+			tiles = tiles,
 			walkable = true,
 			selection_box = nodecore.fixedbox(
 				{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
@@ -92,6 +83,24 @@ for name, stack_name in pairs(boxable_nodes) do
 			end
 		})
 end
+
+-- Registration happens in 2 passes:
+-- * The first pass registers the node.
+-- * The second pass sets the textures.
+-- This is needed to avoid mod dependencies to every boxable node
+local to_box = {
+	"nc_terrain:cobble",
+	"nc_tree:log",
+}
+for _, name in ipairs(to_box) do
+	register_stack(name, nil)
+end
+minetest.after(0, function()
+	for _, name in ipairs(to_box) do
+		local def = minetest.registered_nodes[name]
+		register_stack(name, def.tiles)
+	end
+end)
 
 minetest.register_node(modname .. ":stack", {
 		description = "",
