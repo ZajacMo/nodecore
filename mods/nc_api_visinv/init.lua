@@ -139,8 +139,13 @@ nodecore.register_globalstep("visinv check", function()
 						if data.n then
 							objremove(ent)
 						else
-							itemcheck(ent)
-							data.n = true
+							local visinv = minetest.get_item_group(minetest.get_node(data).name, "visinv")
+							if visinv == 1 then
+								itemcheck(ent)
+								data.n = true
+							else
+								objremove(ent)
+							end
 						end
 					end
 				end
@@ -148,16 +153,19 @@ nodecore.register_globalstep("visinv check", function()
 		end
 		for poskey, data in pairs(batch) do
 			if (not data.n) and (not nodecore.stack_get(data):is_empty()) then
-				local obj = minetest.add_entity(data, entname)
-				local ent = obj and obj:get_luaentity()
-				if ent then
-					visinv_ents[ent] = true
-					ent.is_stack = true
-					ent.poskey = poskey
-					ent.pos = unhash(poskey)
-					itemcheck(ent)
-				else
-					check_retry_add(poskey, data)
+				local visinv = minetest.get_item_group(minetest.get_node(data).name, "visinv")
+				if visinv == 1 then
+					local obj = minetest.add_entity(data, entname)
+					local ent = obj and obj:get_luaentity()
+					if ent then
+						visinv_ents[ent] = true
+						ent.is_stack = true
+						ent.poskey = poskey
+						ent.pos = unhash(poskey)
+						itemcheck(ent)
+					else
+						check_retry_add(poskey, data)
+					end
 				end
 			end
 		end
