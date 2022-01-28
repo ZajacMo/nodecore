@@ -9,7 +9,7 @@ nodecore.stack_node_sounds_except = {}
 
 local boxable_nodes = {}
 
-local function register_stack(name, tiles)
+local function register_full_stack(name, tiles)
 	local stack_name = modname .. ":fullstack_" .. name:gsub(":", "__")
 	boxable_nodes[name] = stack_name
 	if not tiles then
@@ -87,20 +87,49 @@ end
 -- Registration happens in 2 passes:
 -- * The first pass registers the node.
 -- * The second pass sets the textures.
--- This is needed to avoid mod dependencies to every boxable node
-local to_box = {
-	"nc_terrain:cobble",
-	"nc_tree:log",
-}
-for _, name in ipairs(to_box) do
-	register_stack(name, nil)
-end
-minetest.after(0, function()
-	for _, name in ipairs(to_box) do
-		local def = minetest.registered_nodes[name]
-		register_stack(name, def.tiles)
+-- This is needed to avoid mod dependencies to every boxable node.
+-- The server requires an additional restart after nodes are added for those nodes to be added to the list of full-stackable nodes
+do
+	local file_name = minetest.get_worldpath() .. "/stackable_nodes.txt"
+	local file = io.open(file_name, "r")
+	local to_box = {}
+	if file then
+		while true do
+			local line = file:read()
+			if line then
+				table.insert(to_box, line)
+			else
+				break
+			end
+		end
+		file:close()
+	else
+		to_box = { "nc_terrain:cobble", "nc_terrain:stone", "nc_tree:log", }
 	end
-end)
+	for _, name in ipairs(to_box) do
+		register_full_stack(name)
+	end
+	minetest.register_on_mods_loaded(function()
+		for _, name in ipairs(to_box) do
+			local def = minetest.registered_nodes[name]
+			register_full_stack(name, def.tiles)
+		end
+		local nodes = {}
+		for name, def in pairs(minetest.registered_nodes) do
+			if def.drawtype == "normal" then
+				table.insert(nodes, name)
+			end
+		end
+		table.sort(nodes)
+		local str = table.concat(nodes, '\n')
+		if table.concat(to_box, '\n') ~= str then
+			minetest.log("warning", "The list of full-stackable nodes changed. Please restart the server again.")
+			local file = io.open(file_name, "w")
+			file:write(str)
+			file:close()
+		end
+	end)
+end
 
 minetest.register_node(modname .. ":stack", {
 		description = "",
