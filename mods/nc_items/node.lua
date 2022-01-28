@@ -10,27 +10,26 @@ nodecore.stack_node_sounds_except = {}
 local boxable_nodes = {}
 local boxable_node_textures = {}
 -- TODO list all the nodes you want stored as nodeboxes
-for _, name in pairs{"nc_terrain:cobble"} do
+for name, textures in pairs{
+	["nc_terrain:cobble"] = {
+		"nc_terrain_gravel.png^nc_terrain_cobble.png",
+	},
+	["nc_tree:log"] = {
+		"nc_tree_tree_top.png",
+		"nc_tree_tree_top.png",
+		"nc_tree_tree_side.png"
+	},
+} do
 	boxable_nodes[name] = modname .. ":fullstack_" .. name:gsub(":", "__")
-	local tiles = minetest.registered_nodes[name].tiles
-	if type(tiles) == "string" then
-		tiles = {tiles, tiles, tiles}
-	end
-	while #tiles < 6 do
-		tiles[#tiles + 1] = tiles[#tiles]
-	end
-	boxable_node_textures[name] = tiles
+	boxable_node_textures[name] = textures
 end
 
 for name, stack_name in pairs(boxable_nodes) do
 	minetest.register_node(stack_name, {
 			description = "",
-			drawtype = "nodebox",
+			drawtype = "mesh",
+			mesh = modname .. "_stack.obj",
 			tiles = boxable_node_textures[name],
-			node_box = {
-				type = "fixed",
-				fixed = {-0.3, -0.385, -0.3, 0.3, 0.215, 0.3},
-			},
 			walkable = true,
 			selection_box = nodecore.fixedbox(
 				{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
