@@ -85,9 +85,13 @@ function nodecore.stack_get_serial(metatable)
 	if inv and inv ~= "" then return ItemStack(inv) end
 end
 
-local function update(pos, ...)
+local function update(pos, def, item)
+	if def.on_stack_unfill and item:get_free_space() ~= 0 then
+		def.on_stack_unfill(pos, item)
+	elseif def.on_stack_fill and item:get_free_space() == 0 then
+		def.on_stack_fill(pos, item)
+	end
 	nodecore.visinv_update_ents(pos)
-	return ...
 end
 
 function nodecore.stack_set(pos, stack, player, node, def)
@@ -108,7 +112,7 @@ function nodecore.stack_set(pos, stack, player, node, def)
 		end
 		nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
-	return update(pos)
+	update(pos, def, stack)
 end
 
 function nodecore.stack_add(pos, stack, player, node, def)
@@ -127,9 +131,6 @@ function nodecore.stack_add(pos, stack, player, node, def)
 	local left = nodecore.stack_merge(item, stack)
 	nodecore.stack_set(pos, item, nil, node, def)
 	local remain = left:get_count()
-	if def.on_stack_fill and item:get_free_space() == 0 then
-		def.on_stack_fill(pos, item)
-	end
 	if donate ~= remain then
 		if player then
 			nodecore.log("action", string_format(
@@ -140,7 +141,8 @@ function nodecore.stack_add(pos, stack, player, node, def)
 		end
 		nodecore.stack_sounds(pos, "place")
 	end
-	return update(pos, left)
+	update(pos, def, item)
+	return left
 end
 
 function nodecore.stack_giveto(pos, player, node, def)

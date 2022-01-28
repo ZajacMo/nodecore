@@ -51,6 +51,9 @@ for name, stack_name in pairs(boxable_nodes) do
 				end
 				return minetest.remove_node(posfrom)
 			end,
+			on_stack_unfill = function(pos, stack)
+				minetest.swap_node(pos, {name = modname .. ":stack"})
+			end,
 			on_rightclick = function(pos, _, whom, stack, pointed)
 				if not nodecore.interact(whom) then return stack end
 
