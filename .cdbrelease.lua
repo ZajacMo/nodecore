@@ -23,9 +23,6 @@ local tags = {
 	"pve",
 	"technology"
 }
-if not alpha then
-	tags[#tags + 1] = "featured"
-end
 
 local screenshots = {}
 if alpha then screenshots[1] = readbinary('.cdb-alpha.jpg') end
