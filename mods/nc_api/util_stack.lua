@@ -90,6 +90,20 @@ local function update(pos, ...)
 	return ...
 end
 
+local function stacks_equal(a, b)
+	if a:get_name() ~= b:get_name() then return end
+	if a:get_count() ~= b:get_count() then return end
+	-- Item stack meta can only have fields, no inventory to worry about.
+	-- Cannot compare stacks as serialized strings because field order
+	-- may differ between equivalent stacks causing false mismatch.
+	a = a:get_meta():to_table().fields
+	b = b:get_meta():to_table().fields
+	for k, v in pairs(a) do if b[k] ~= v then return end end
+	for k, v in pairs(b) do if a[k] ~= v then return end end
+	return true
+end
+nodecore.stacks_equal = stacks_equal
+
 function nodecore.stack_set(pos, stack, player, node, def)
 	if player then
 		nodecore.log("action", string_format("%s sets stack %q at %s",
@@ -100,9 +114,8 @@ function nodecore.stack_set(pos, stack, player, node, def)
 	local meta = minetest.get_meta(pos)
 	stack = ItemStack(stack)
 	local old = nodecore.stack_get(pos, meta)
-	local stackstring = stack:to_string()
-	meta:set_string(metakey, stackstring)
-	if old:to_string() ~= stackstring then
+	meta:set_string(metakey, stack:to_string())
+	if not stacks_equal(old, stack) then
 		if def.on_stack_change then
 			def.on_stack_change(pos, node, stack, old)
 		end
