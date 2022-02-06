@@ -169,7 +169,8 @@ nodecore.register_playerstep({
 				data.unradtime = data.unradtime - use
 			end
 
-			if nodecore.player_can_take_damage(player) then
+			if nodecore.player_can_take_damage(player)
+			and nodecore.player_visible(player) then
 				data.radtime = (data.radtime or 0) + dtime
 				if data.radtime > 1 then data.radtime = 1 end
 				while data.radtime > 1/16 do
@@ -180,6 +181,8 @@ nodecore.register_playerstep({
 						rad = 1 - (1 - rad) * 31/32
 					end
 				end
+			else
+				rate = 0
 			end
 			setrate(rate)
 

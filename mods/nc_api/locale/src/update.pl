@@ -4,9 +4,9 @@ use warnings;
 use JSON qw(from_json);
 
 sub curl {
-	my @cmd = ("curl");
+	my @cmd = qw(curl -fsL);
 	$ENV{NC_WEBLATE_TOKEN} and
-	  push @cmd, "-fsL", "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
+	  push @cmd, "-H", "Authorization: Token $ENV{NC_WEBLATE_TOKEN}";
 	push @cmd, @_;
 	warn("@_\n");
 	open(my $fh, "-|", @cmd) or die($!);
@@ -15,7 +15,7 @@ sub curl {
 sub getlang {
 	my $lang = shift();
 	my %db;
-	my $fh = curl("https://nodecore.mine.nu/trans/api/translations/nodecore/core/$lang/file/");
+	my $fh = curl("https://hosted.weblate.org/api/translations/minetest/nodecore/$lang/file/");
 	open(my $raw, ">", "src/$lang.txt") or die($!);
 	my $id;
 	while(<$fh>) {
@@ -49,15 +49,14 @@ sub savelang {
 my $en = getlang("en");
 
 my %langdb;
-my $page = "https://nodecore.mine.nu/trans/api/translations/?format=json";
+my $page = "https://hosted.weblate.org/api/components/minetest/nodecore/translations/?format=json";
 while($page) {
 	my $fh = curl($page);
-	my $json = from_json(do { local $/; <$fh> });
+	my $json = do { local $/; <$fh> };
 	close($fh);
+	$json = from_json($json);
 	$page = $json->{next};
 	for my $r ( @{$json->{results}} ) {
-		$r->{component}->{slug} eq "core" or next;
-		$r->{component}->{project}->{slug} eq "nodecore" or next;
 		my $code = $r->{language}->{code};
 		$code eq 'en' or $langdb{$code} = getlang($code);
 	}

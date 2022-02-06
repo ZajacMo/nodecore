@@ -75,6 +75,8 @@ nodecore.interval(1, function()
 						offset = {x = 0, y = 0},
 						quick = true
 					})
+			else
+				nodecore.hud_set(p, {label = "radiant", ttl = 0})
 			end
 		end
 	end)

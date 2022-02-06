@@ -1,15 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_exp, math_random
-    = math.exp, math.random
+local math, minetest, nodecore, pairs, string, vector
+    = math, minetest, nodecore, pairs, string, vector
+local math_exp, math_random, string_format
+    = math.exp, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
-minetest.register_entity(modname .. ":fx", {
+local entname = modname .. ":fx"
+
+minetest.register_entity(entname, {
 		initial_properties = {
 			visual_size = {x = 0, y = 0},
 			pointable = false,
@@ -18,16 +20,52 @@ minetest.register_entity(modname .. ":fx", {
 			collide_with_objects = false,
 			static_save = false
 		},
-
+		age = 0,
 		on_step = function(self, dtime)
-			self.age = (self.age or 0) + dtime
-			if self.age >= 5.5 then return self.object:remove() end
+			self.age = self.age + dtime
+			if self.age > 60 then return self.object:remove() end
 		end
 	})
 
 local function dsqr(a, b)
 	local v = vector.subtract(a, b)
 	return vector.dot(v, v)
+end
+
+local poolent
+do
+	local reused = 0
+	local created = 0
+	function poolent(pos)
+		local bestent
+		local bestd
+		for _, ent in pairs(minetest.luaentities) do
+			if ent.name == entname and ent.age >= 5.5 then
+				local op = ent.object:get_pos()
+				if op then
+					local d = dsqr(pos, op)
+					if (not bestd) or d < bestd then
+						bestd = d
+						bestent = ent
+					end
+				end
+			end
+		end
+		if bestent then
+			reused = reused + 1
+			bestent.object:set_pos(pos)
+			bestent.age = 0
+			return bestent.object
+		end
+		created = created + 1
+		return minetest.add_entity(pos, entname)
+	end
+	nodecore.interval(300, function()
+			nodecore.log("info", string_format("%s reused %d created %d",
+					modname, reused, created))
+			reused = 0
+			created = 0
+		end)
 end
 
 local function check(pos, done, srcs)
@@ -54,7 +92,7 @@ local function check(pos, done, srcs)
 			y = pos.y + math_random() * 64 - 32,
 			z = pos.z + math_random() * 64 - 32,
 		}
-		local ent = minetest.add_entity(sp, modname .. ":fx")
+		local ent = poolent(sp)
 		ent:set_velocity(vector.multiply(vector.normalize(
 					vector.subtract(np, sp)), 4 * math_random()))
 		nodecore.sound_play("nc_envsound_air", {

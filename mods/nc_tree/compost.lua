@@ -110,7 +110,7 @@ nodecore.register_craft({
 		action = "pummel",
 		toolgroups = {crumbly = 1},
 		nodes = {
-			{match = modname .. ":peat"}
+			{match = {name = modname .. ":peat", stacked = false}}
 		},
 		after = function(pos)
 			nodecore.soaking_abm_tickle(pos, "compost")

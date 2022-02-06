@@ -105,6 +105,12 @@ local function dnt_execute(pos, data)
 	dnt_timer(data)
 end
 
+function nodecore.dnt_get(pos, name)
+	local data = data_load(pos)
+	local prev = data.sched[name]
+	return prev and (prev - nodecore.gametime)
+end
+
 function nodecore.dnt_set(pos, name, time)
 	local data = data_load(pos)
 	local prev = data.sched[name]

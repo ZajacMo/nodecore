@@ -56,7 +56,7 @@ function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 				return waterat(pos, 0, 1, 0)
 			end,
 			nodes = {
-				{match = recipematch}
+				{match = {name = recipematch, stacked = false}}
 			},
 			after = function(pos)
 				nodecore.soaking_abm_tickle(pos, fieldname)

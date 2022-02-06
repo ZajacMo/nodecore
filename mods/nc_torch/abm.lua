@@ -20,6 +20,7 @@ minetest.register_abm({
 		chance = 1,
 		nodenames = {"group:torch_lit"},
 		neighbors = {"group:flammable"},
+		action_delay = true,
 		action = function(pos)
 			for _, ofst in pairs(checkdirs) do
 				local npos = vector.add(pos, ofst)
