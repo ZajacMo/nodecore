@@ -9,6 +9,13 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Full-stack rendering optimization
+	- Huge piles of cobble stacks cause significant framerate loss
+	- https://gitlab.com/sztest/nodecore/-/merge_requests/19
+	  a.k.a. full-stack-nodeboxes branch
+	- Actually all visinv entities building up in an area cause
+	  framerate loss, but most are impractical to address
+
 - Wicker baskets
 	- Limited alternative to full tote
 	- Made of cheaper materials (wicker, wood form)

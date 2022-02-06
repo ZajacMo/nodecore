@@ -9,6 +9,13 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Right-clicking the top of a shelf places a legacy plantlike eggcorn
+  node instead of an eggcorn item.
+
+- Sneak+Aux+Drop stack of leaves/sticks against a surface places 1
+  first then drops the rest as another stack.  Maybe disable the
+  default drop behavior if aux pressed?
+
 - Revert /mods changes
 	- Possibly list out add-on mods in About box in long form?
 		- Tree hierarchy?

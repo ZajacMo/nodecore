@@ -20,10 +20,23 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Gametime handling improvements.
 	- Need to be robust in event of gametime resetting to zero,
 	  e.g. env_meta.txt corruption.
-	- Probably need to save some metadata:
-		- Gametime adjustment, can be added/subtracted by mod.
-		- Last known gametime; if gametime is ever less,
-		  automatically apply an adjustment to compensate.
+	- Probably need to separate nodecore gametime entirely from
+	  minetest gametime.
+	- Always need to guard against the backward flow of time
+	  in normal gameplay circumstances, e.g. due to loss of
+	  meta files.
+		- Need to store backup in world dir next to
+		  env_meta.txt.
+		- Partial world resets (e.g. nuking map, keeping
+		  dais ex machina) should not reset time.
+	- Allow customizing time flow in vanilla:
+		- Time rate multipliers, default 1, for each of:
+			- Server offline (os.time() adjust)
+			- Server online but empty (no players online)
+			- Normal gameplay
+		- Probably need to track accumulators for each
+		  separately in mod storage and then add them together
+		  to get gametime.
 
 - Replace digparticles with "node" and maybe "node_tile" options for
   particlespawners new in 5.3+
