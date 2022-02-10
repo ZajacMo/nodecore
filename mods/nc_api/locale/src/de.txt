@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-09 18:19+0000\n"
-"Last-Translator: Roland <community@radtournetz.de>\n"
-"Language-Team: German <http://nodecore.mine.nu/trans/projects/nodecore/core/"
+"PO-Revision-Date: 2022-02-05 16:54+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -324,22 +324,22 @@ msgid "@1 (90@2)"
 msgstr "@1 (90@2)"
 
 msgid "@1 ....."
-msgstr ""
+msgstr "@1 ....."
 
 msgid "@1 |...."
-msgstr ""
+msgstr "@1 |...."
 
 msgid "@1 ||..."
-msgstr ""
+msgstr "@1 ||..."
 
 msgid "@1 |||.."
-msgstr ""
+msgstr "@1 |||.."
 
 msgid "@1 ||||."
-msgstr ""
+msgstr "@1 ||||."
 
 msgid "@1 |||||"
-msgstr ""
+msgstr "@1 |||||"
 
 msgid "Active Lens"
 msgstr "Aktive Linse"
@@ -1538,3 +1538,6 @@ msgstr "Grabe Lodeerz aus"
 
 msgid "dig up lux cobble"
 msgstr "Grabe Luxbruchstein aus"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
