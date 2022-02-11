@@ -32,6 +32,10 @@ function minetest.item_drop(item, player, ...)
 			minetest.after(0, dropall, pname,
 				pctl.sneak and nodecore.stack_family(player:get_wielded_item()))
 		end
+		if droppingall[player:get_player_name()] then
+			return olddrop(item, player, ...)
+		end
+	else
+		return olddrop(item, player, ...)
 	end
-	return olddrop(item, player, ...)
 end
