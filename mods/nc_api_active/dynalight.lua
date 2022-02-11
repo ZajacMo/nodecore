@@ -64,6 +64,8 @@ nodecore.register_dnt({
 		nodenames = {"group:dynamic_light"},
 		ignore_stasis = true,
 		time = ttl,
+		autostart = true,
+		autostart_time = 0,
 		action = check_light
 	})
 
@@ -92,15 +94,6 @@ end
 minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 -- API for adding dynamic lights to world
-
-minetest.register_abm({
-		label = "dynamic light cleanup",
-		interval = 1,
-		chance = 1,
-		ignore_stasis = true,
-		nodenames = {"group:dynamic_light"},
-		action = check_light
-	})
 
 local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end

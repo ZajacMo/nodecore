@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local error, math, minetest, next, nodecore, pairs, string, vector
     = error, math, minetest, next, nodecore, pairs, string, vector
-local math_floor, string_format
-    = math.floor, string.format
+local math_floor, string_format, string_gsub
+    = math.floor, string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Active Block Modifiers, meet Delayed Node Triggers.
@@ -144,18 +144,22 @@ nodecore.register_on_register_item(function(_, def)
 	end)
 
 local autostarts = {}
-local function dntregen(pos, node)
-	datacache[hash(pos)] = nil
-	local start = autostarts[node.name]
-	if start then
-		for def in pairs(start) do
-			nodecore.dnt_set(pos, def.name)
+local function dntregen(immediate)
+	return function(pos, node)
+		datacache[hash(pos)] = nil
+		local start = autostarts[node.name]
+		if start then
+			for def in pairs(start) do
+				nodecore.dnt_set(pos, def.name, immediate
+					and def.autostart_time or nil)
+			end
 		end
 	end
 end
-nodecore.register_on_nodeupdate(dntregen)
+nodecore.register_on_nodeupdate(dntregen(true))
 
 function nodecore.register_dnt(def)
+	local modname = minetest.get_current_modname()
 	if not def.name then return error("dnt name required") end
 	if not def.action then return error("dnt action required") end
 	if nodecore.registered_dnts[def.name] then
@@ -173,12 +177,19 @@ function nodecore.register_dnt(def)
 			end)
 		local abmtime = math_floor(def.time or 1)
 		if abmtime < 1 then abmtime = 1 end
+		local albmlabel = modname .. ":" .. string_gsub(def.name, "%W", "_")
 		minetest.register_abm({
-				label = "dnt regen: " .. def.name,
+				label = albmlabel,
 				interval = abmtime,
 				chance = 1,
 				nodenames = def.nodenames,
-				action = dntregen
+				action = dntregen()
+			})
+		minetest.register_lbm({
+				name = albmlabel,
+				run_at_every_load = true,
+				nodenames = def.nodenames,
+				action = dntregen(true)
 			})
 	end
 	nodecore.registered_dnts[def.name] = def

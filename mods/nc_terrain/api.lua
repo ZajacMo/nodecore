@@ -66,15 +66,8 @@ nodecore.register_dnt({
 		name = graywatersrc,
 		nodenames = {graywatersrc},
 		arealoaded = 1,
-		action = function(pos) return nodecore.artificial_water_check(pos) end
-	})
-
-minetest.register_abm({
-		label = "artificial water check",
-		interval = 1,
-		chance = 1,
-		arealoaded = 1,
-		nodenames = {graywatersrc},
+		autostart = true,
+		autostart_time = 0,
 		action = function(pos) return nodecore.artificial_water_check(pos) end
 	})
 

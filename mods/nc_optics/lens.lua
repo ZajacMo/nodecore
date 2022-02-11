@@ -104,15 +104,14 @@ reg("_glow_start", {
 			txr .. "^" .. modname .. "_shine_side.png",
 			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
 			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
-		},
-		on_construct = function(pos) return nodecore.dnt_set(pos,
-			modname .. ":lens_warmup") end
+		}
 	})
 
 nodecore.register_dnt({
 		name = modname .. ":lens_warmup",
 		nodenames = {"group:lens_glow_start"},
 		time = 2,
+		autostart = true,
 		action = function(pos, node)
 			node.name = string_gsub(node.name, "_start", "")
 			return nodecore.set_node(pos, node)
