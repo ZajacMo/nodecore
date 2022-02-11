@@ -16,6 +16,11 @@ ISSUES-GAME: Gameplay-affecting issues
   first then drops the rest as another stack.  Maybe disable the
   default drop behavior if aux pressed?
 
+- Detect and warn players about misuse of singlenode mapgen
+	- Mods can register if they're supporting singlenode.
+	- We can detect player "falling forever" by scanning down
+	  to find anything other than air before ignore.
+
 - Revert /mods changes
 	- Possibly list out add-on mods in About box in long form?
 		- Tree hierarchy?
