@@ -18,7 +18,7 @@ local function ablation(pos, node)
 	local cooldown = cooldowns[key] or 0
 	if cooldown > nodecore.gametime then
 		local delay = cooldown - nodecore.gametime
-		if delay < 0 then delay = 0.001 end
+		if delay < 0.001 then delay = 0.001 end
 		return nodecore.dnt_set(pos, dntname, delay)
 	end
 	cooldowns[key] = nodecore.gametime + 2
