@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, vector
-    = ipairs, minetest, nodecore, vector
+local ipairs, math, minetest, nodecore, vector
+    = ipairs, math, minetest, nodecore, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local hashpos = minetest.pos_to_string
@@ -23,6 +25,7 @@ function nodecore.door_push(pos, ...)
 		key = key,
 		from = pos,
 		try = try,
+		attempts = math_random(10, 20)
 	}
 	queued[key] = true
 end
@@ -44,7 +47,8 @@ local function tryprocess(item, retry)
 			local re = retry[hashpos(item.from)]
 			if not re then return end
 			for _, r in ipairs(re) do
-				if not queued[r.key] then
+				if r.attempts and r.attempts > 0 and not queued[r.key] then
+					r.attempts = r.attempts - 1
 					queue[#queue + 1] = r
 					queued[r.key] = true
 				end
