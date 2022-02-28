@@ -26,7 +26,12 @@ IDEAS: Possible future additions/improvements to the game
 	  filter/leak through?
 	- Make them drop items periodically?
 
-- Should pumice slowly decay?
+- Clean up sky pummesses
+	- Make free-floating pumice randomly fall?  melt?  decay?
+	- Make pumice trigger chain melt reactions?
+	- Only if not already on the ground?
+
+- Aux-punch to take 1 item out of a stack?
 
 - Half hint completion from witnessing?
 	- Some hints are witness-only like leaching, you just get full
@@ -37,18 +42,12 @@ IDEAS: Possible future additions/improvements to the game
 	  let them keep track of the fact that they haven't figure it out
 	  themselves
 
-- Expand the concept of "placed tools" in crafting
-	- Things like presence of an anvil or use of a chisel
-
-- Should there be a way to pluck wilted flowers without destroying?
-	- Dig dirt below, override behavior of attached_node?
-	- Do not allow, force players to re-wilt other flowers in place?
-
 - Add "welcome" messages on login
 	- In the same spirit as the server version line
 	- Notify if NodeCore updated since last played
 	- Welcome new players?
 	- Warn on special conditions, e.g. world in stasis?
+		 - Add to /status?
 
 - Hint system "quest" lines?
 	- Series of hints specially marked.

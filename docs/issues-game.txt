@@ -12,9 +12,22 @@ ISSUES-GAME: Gameplay-affecting issues
 - Right-clicking the top of a shelf places a legacy plantlike eggcorn
   node instead of an eggcorn item.
 
-- Sneak+Aux+Drop stack of leaves/sticks against a surface places 1
-  first then drops the rest as another stack.  Maybe disable the
-  default drop behavior if aux pressed?
+- Door crafting issues:
+	- Can't construct a tool (apply mallet head to staff)
+	- Don't get hint from tool construction (e.g. should get "complete
+	  craft with door" hint from making an adze)
+		- Witnesses emitted by doors or propelled tools should
+		  probably originate from ALL nodes involved, e.g. door,
+		  tool used, node acted upon by tool.
+	- Should tickling mechanic work with doors?
+
+- Pumwater is too hard to find
+	- Make springs more plentiful at depths <= -256?
+	- Add a new pum-construct?
+		- Extra pools?
+		- Amalgamation touching water?
+		- Pockets/traps?
+	- Make it especially plentiful below -512-ish
 
 - Detect and warn players about misuse of singlenode mapgen
 	- Mods can register if they're supporting singlenode.
@@ -25,17 +38,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Possibly list out add-on mods in About box in long form?
 		- Tree hierarchy?
 	- Add optional version API?
-
-- Clean up sky pummesses
-	- Make free-floating pumice randomly fall?  melt?
-	- Make pumice trigger chain melt reactions?
-	- Only if not already on the ground?
-
-- Door crafting issues:
-	- Can't construct a tool (apply mallet head to staff)
-	- Don't get hint from tool construction (e.g. should get "complete
-	  craft with door" hint from making an adze)
-	- Should tickling mechanic work with doors?
 
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
@@ -69,15 +71,6 @@ ISSUES-GAME: Gameplay-affecting issues
   looktip (not even needing to touch/hear).  This feels inconsistent
   and maybe these nodes should have distinct textures on all sides,
   like added roots.
-
-- Unconfirmed: bug involving a player dropping all inventory into
-  a narrow vertical shaft (on VE-NC server) and having items cycle
-  indefinitely without settling to a steady state.
-  https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
-
-- Unconfirmed: loose leaf nodes disappearing almost immediately
-  after creation, including from natural decay?
-  https://discord.com/channels/507234450615042048/713203991923916840/932724813447958618
 
 - Sponge Fixes
 	- Fix crappy sponge death mechanic
