@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-05 16:54+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2022-02-28 00:26+0000\n"
+"Last-Translator: kuboid <community@radtournetz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -253,7 +253,7 @@ msgid "Not all game content is covered by challenges. Explore!"
 msgstr "Nicht aller Spielinhalt wird von Aufgaben abgedeckt. Erforsche!"
 
 msgid "Pliant Tarstone"
-msgstr "Biegsamer Teerstein"
+msgstr "Weicher Teerstein"
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr "- Total aufgeschmissen? Frag doch die Gemeinde (im \"Über\"-Tab)."
@@ -360,7 +360,7 @@ msgid "Adobe Mix"
 msgstr "Lehmmischung"
 
 msgid "Aggregate"
-msgstr "Betonschotter"
+msgstr "Betonkies"
 
 msgid "Annealed Lode Adze"
 msgstr "Geglühte Lodehaue"
@@ -442,7 +442,7 @@ msgid "Cobble"
 msgstr "Bruchstein"
 
 msgid "Cobble Hinged Panel"
-msgstr "Gelagerte Bruchsteinplatte"
+msgstr "Bruchsteinklappe"
 
 msgid "Cobble Panel"
 msgstr "Bruchsteinplatte"
@@ -528,7 +528,6 @@ msgstr "Glühende Lodestange"
 msgid "Glowing Lode Spade Head"
 msgstr "Glühender Lodespatenkopf"
 
-#, fuzzy
 msgid "Graveled Adze"
 msgstr "Gekörnte Haue"
 
@@ -611,13 +610,13 @@ msgid "Player's Guide: Tips and Guidance"
 msgstr "Spielerhandbuch: Tipps und Hilfen"
 
 msgid "Pliant Adobe"
-msgstr "Biegsamer Lehm"
+msgstr "Weicher Lehm"
 
 msgid "Pliant Sandstone"
-msgstr "Biegsamer Sandstein"
+msgstr "Weicher Sandstein"
 
 msgid "Pliant Stone"
-msgstr "Biegsamer Stein"
+msgstr "Weicher Stein"
 
 msgid "Prism"
 msgstr "Prisma"
@@ -673,9 +672,8 @@ msgstr "Sandsteinziegel"
 msgid "Sedge"
 msgstr "Riedgras"
 
-#, fuzzy
 msgid "Shining Lens"
-msgstr "Glänzende Linse"
+msgstr "Scheinende Linse"
 
 msgid "Sponge"
 msgstr "Schwamm"
@@ -796,11 +794,9 @@ msgstr "Baumstamm"
 msgid "Violet Bell Flower"
 msgstr "Lila Glockenblume"
 
-#, fuzzy
 msgid "Violet Cluster Flower"
 msgstr "Lila Büschelblume"
 
-#, fuzzy
 msgid "Violet Cup Flower"
 msgstr "Lila Becherblume"
 
@@ -814,14 +810,13 @@ msgid "Wet Adobe Mix"
 msgstr "Nasse Lehmmischung"
 
 msgid "Wet Aggregate"
-msgstr "Nasser Betonschotter"
+msgstr "Nasser Betonkies"
 
-#, fuzzy
 msgid "Wet Render"
 msgstr "Nasser Putz"
 
 msgid "Wet Tarry Aggregate"
-msgstr "Nasser Teerbetonschotter"
+msgstr "Nasser Teerbetonkies"
 
 msgid "White Bell Flower"
 msgstr "Weiße Glockenblume"
@@ -829,7 +824,6 @@ msgstr "Weiße Glockenblume"
 msgid "White Cluster Flower"
 msgstr "Weiße Büschelblume"
 
-#, fuzzy
 msgid "White Cup Flower"
 msgstr "Weiße Becherblume"
 
@@ -855,7 +849,7 @@ msgid "Wooden Hatchet Head"
 msgstr "Holzbeilkopf"
 
 msgid "Wooden Hinged Panel"
-msgstr "Gelagerte Holzplatte"
+msgstr "Holzklappe"
 
 msgid "Wooden Mallet"
 msgstr "Holzhammer"
@@ -913,7 +907,7 @@ msgid "activate a prism"
 msgstr "aktivere ein Prisma"
 
 msgid "add coal to aggregate to make tarstone"
-msgstr "füge Kohle zum Zuschlag hinzu, um Teerstein herzustellen"
+msgstr "füge Kohle zum Betonkies hinzu, um Teerstein herzustellen"
 
 msgid "assemble a clear glass case"
 msgstr "baue ein Klarglasgehäuse"
@@ -948,9 +942,8 @@ msgstr "baue ein Holzregal aus Rahmen und Planken"
 msgid "assemble a wooden tool"
 msgstr "baue ein Holzwerkzeug"
 
-#, fuzzy
 msgid "assemble an adze out of sticks"
-msgstr "baue eine Haue aus Stöcken"
+msgstr "setze eine Haue aus Stöcken zusammen"
 
 msgid "bash a plank into sticks"
 msgstr "zerschlage eine Planke in Stöcke"
@@ -977,7 +970,7 @@ msgid "carve wooden tool heads from planks"
 msgstr "schnitze Holzwerkzeuge aus Planken"
 
 msgid "catapult an item with a hinged panel"
-msgstr "schleudere etwas mit einer gelagerten Platte"
+msgstr "schleudere etwas mit einer Klappe"
 
 msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 entdeckt, @2 entdeckbar, @3 zukünftige"
@@ -1121,7 +1114,7 @@ msgid "Orange Cluster Flower"
 msgstr "Orangene Büschelblume"
 
 msgid "Qeg Charcoal Glyph"
-msgstr "Queg-Holzkohlezeichen"
+msgstr "Qeg-Holzkohlezeichen"
 
 msgid "assemble a lode tote handle"
 msgstr "baue einen Lodetaschengriff"
@@ -1250,7 +1243,7 @@ msgid "Pink Star Flower"
 msgstr "Pinke Sternblume"
 
 msgid "Prx Charcoal Glyph"
-msgstr "Prs-Holzkohlezeichen"
+msgstr "Prx-Holzkohlezeichen"
 
 #, fuzzy
 msgid "Pumwater"
@@ -1368,10 +1361,10 @@ msgid "Lux Cobble"
 msgstr "Luxbruchstein"
 
 msgid "Mew Charcoal Glyph"
-msgstr "Mu Holzkohlezeichen"
+msgstr "Mew-Holzkohlezeichen"
 
 msgid "Niz Charcoal Glyph"
-msgstr "Nis-Holzkohlezeichen"
+msgstr "Niz-Holzkohlezeichen"
 
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT-Lizenz (http://www.opensource.org/licenses/MIT)"
@@ -1491,11 +1484,10 @@ msgid "chop up charcoal"
 msgstr "zerhacke Holzkohle"
 
 msgid "complete a craft with a hinged panel"
-msgstr "baue etwas mit einer gelagerten Platte"
+msgstr "baue etwas mit einer Klappe"
 
 msgid "complete a pummel with a hinged panel and tool head"
-msgstr ""
-"vervollständige einen Hau mit einer gelagerten Platte und einem Werkzeugkopf"
+msgstr "vervollständige einen Hau mit einer Klappe und einem Werkzeugkopf"
 
 msgid "cool molten glass into crude glass"
 msgstr "kühle geschmolzenes Glas zu Rohglas"
@@ -1513,13 +1505,13 @@ msgid "cycle through all charcoal glyphs"
 msgstr "Durchlaufe alle Holzkohlezeichen"
 
 msgid "dig a node with a hinged panel and tool"
-msgstr "Grabe einen Block mit einer gelagerten Platte und einem Werkzeug aus"
+msgstr "Grabe einen Block mit einer Klappe und einem Werkzeug aus"
 
 msgid "dig leaves"
 msgstr "Grabe Blätter"
 
 msgid "compress something with a hinged panel"
-msgstr "Presse etwas mit einer gelagerten Platte"
+msgstr "Presse etwas mit einer Klappe"
 
 msgid "dig up sand"
 msgstr "Grabe Sand aus"
@@ -1541,3 +1533,153 @@ msgstr "Grabe Luxbruchstein aus"
 
 msgid "@1 (@2)"
 msgstr "@1 (@2)"
+
+msgid "see a tree grow"
+msgstr "beobachte einen Baum beim wachsen"
+
+msgid "Glued Shining Lens"
+msgstr "geklebte scheinende Linse"
+
+msgid "Glued Prism"
+msgstr "geklebtes Prisma"
+
+msgid "Glued Active Lens"
+msgstr "geklebte aktive Linse"
+
+msgid "Glued Active Prism"
+msgstr "geklebtes aktives Prisma"
+
+msgid "Glued Gated Prism"
+msgstr "geklebtes geschaltetes Prisma"
+
+msgid "Glued Lens"
+msgstr "geklebte Linse"
+
+msgid "chisel a hinge groove into a wooden plank"
+msgstr "meißle eine Gelenkführung in eine Holzplanke"
+
+msgid "harvest a sponge"
+msgstr "ernte einen Schwamm"
+
+msgid "grind dead plants into peat"
+msgstr "mahle tote Pflanzen zu Torf"
+
+msgid "grow a sedge on moist grass"
+msgstr "züchte Riedgras auf feuchtem Gras"
+
+msgid "rotate a charcoal glyph"
+msgstr "drehe ein Holzkohlezeichen"
+
+msgid "harden stone"
+msgstr "härte Stein"
+
+msgid "grow a flower on moist soil"
+msgstr "züchte eine Pflanze auf feuchtem Boden"
+
+msgid "grow a rush on moist soil"
+msgstr "züchte eine Binse auf feuchtem Boden"
+
+msgid "chisel a hinge groove into cobble"
+msgstr "meißle eine Gelenkführung in Bruchstein"
+
+msgid "mix gravel into ash to make aggregate"
+msgstr "mische Kies in Asche um Betonkies herzustellen"
+
+msgid "propel hinged panel with focused light"
+msgstr "treibe eine Klappe durch gebündeltes Licht an"
+
+msgid "push an item into a storage box with a hinged panel"
+msgstr "schiebe etwas in einen Kasten mittels einer Klappe"
+
+msgid "place a node with a hinged panel"
+msgstr "platziere einen Block mittels einer Klappe"
+
+msgid "wilt a flower"
+msgstr "lass eine Blume verwelken"
+
+msgid "find a sedge"
+msgstr "finde Riedgras"
+
+msgid "find dry (loose) leaves"
+msgstr "finde trockene (lose) Blätter"
+
+msgid "find lux"
+msgstr "finde Lux"
+
+msgid "find pumice"
+msgstr "finde Torf"
+
+msgid "forge a lode prill into a bar"
+msgstr "schmiede einen Lode-Brocken zu einem Barren"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "schmiede einen veredelten Loderahmen zu einer Form"
+
+msgid "forge lode bars into a rod"
+msgstr "schmiede Lodebarren zu einer Stange"
+
+msgid "forge lode prills into a tool head"
+msgstr "schmiede Lodebrocken zu einem Werkzeugkopf"
+
+msgid "forge lode rods into a frame"
+msgstr "schmiede Lodestangen zu einem Rahmen"
+
+msgid "produce light from a lens"
+msgstr "erzeuge Licht mit einer Linse"
+
+msgid "put a gravel tip on a wooden adze"
+msgstr "stecke einen Kiesel auf eine Holzhaue"
+
+msgid "rake dirt"
+msgstr "harke Dreck"
+
+msgid "scale a wall"
+msgstr "erklettere eine Wand"
+
+msgid "set concrete to pliant"
+msgstr "mache Beton formbar"
+
+msgid "stick a lens/prism in place"
+msgstr "bringe eine Linse oder ein Prisma on Stellung"
+
+msgid "put a stone tip onto a wooden tool"
+msgstr "versehe ein Holzwerkzeug mit einer Steinspitze"
+
+msgid "rake gravel"
+msgstr "harke Kies"
+
+msgid "run at full speed"
+msgstr "renne mit voller Geschwindigkeit"
+
+msgid "scale an overhang"
+msgstr "erklettere einen Überhang"
+
+msgid "rake humus"
+msgstr "harke Humus"
+
+msgid "rake sand"
+msgstr "harke Sand"
+
+msgid "assemble a lode crate from form and bar"
+msgstr "setze eine Lodekiste aus einer Form und einem Barren zusammen"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "setze eine Harke aus Hauen und einem Stab zusammen"
+
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "setze ein Holzregal aus einer Form und einer Planke zusammen"
+
+msgid "chip chromatic glass into prisms"
+msgstr "Prismen aus chromatischem Glas herstellen"
+
+msgid "find an eggcorn"
+msgstr "finde eine Eichel"
+
+msgid "find lode ore"
+msgstr "finde Lode-Erz"
+
+msgid "gate a prism"
+msgstr "steuere ein Prisma an"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "schmiede eine Lodestange und einen -barren zu einer Leiter"
