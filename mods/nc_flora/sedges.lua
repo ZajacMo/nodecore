@@ -26,10 +26,11 @@ local tilebase = modname .. "_sedge_color.png^(nc_terrain_grass_top.png^[mask:"
 
 local allsedges = {}
 for i = 1, 5 do
-	allsedges[modname .. ":sedge_" .. i] = i
-	allsedges[i] = modname .. ":sedge_" .. i
+	local sedgename = modname .. ":sedge_" .. i
+	allsedges[sedgename] = i
+	allsedges[i] = sedgename
 	local h = (i == 5) and (3/4) or (i / 8)
-	minetest.register_node(modname .. ":sedge_" .. i, {
+	minetest.register_node(sedgename, {
 			description = "Sedge",
 			drawtype = "plantlike",
 			waving = 1,
@@ -61,25 +62,23 @@ for i = 1, 5 do
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
 			destroy_on_dig = 20,
-			on_place = function(stack, ...)
-				local old = stack:get_name()
+			after_place_node = function(pos)
+				local node = minetest.get_node(pos)
+				if node.name ~= sedgename then return end
 				local r = math_random(1, 31)
 				if r >= 16 then
-					stack:set_name(modname .. ":sedge_1")
+					node.name = modname .. ":sedge_1"
 				elseif r >= 8 then
-					stack:set_name(modname .. ":sedge_2")
+					node.name = modname .. ":sedge_2"
 				elseif r >= 4 then
-					stack:set_name(modname .. ":sedge_3")
+					node.name = modname .. ":sedge_3"
 				elseif r >= 2 then
-					stack:set_name(modname .. ":sedge_4")
+					node.name = modname .. ":sedge_4"
 				else
-					stack:set_name(modname .. ":sedge_5")
+					node.name = modname .. ":sedge_5"
 				end
-				stack = minetest.item_place(stack, ...)
-				if not stack:is_empty() then
-					stack:set_name(old)
-				end
-				return stack
+				if node.name == sedgename then return end
+				minetest.set_node(pos, node)
 			end
 		})
 

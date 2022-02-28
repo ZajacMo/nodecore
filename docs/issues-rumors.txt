@@ -9,21 +9,6 @@ ISSUES-RUMORS: Unconfirmed or difficult to reproduce heisenbugs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Sedge stacking bug
-	- Reported by JeremyHussell #nodecore-ingame 2022-02-18
-	  21:09 -0500
-		This time I took some sedge out of a container
-		and started planting.  One of the ones I planted
-		was, luckily, immediately mature, so I harvested it.
-		I was holding the sedges from the container at the
-		time, yet now I have two sedges filling a different
-		slot. Playing around with them, dropping and picking
-		up, putting in a container and taking out,
-		eventually results in the stacks combining and
-		thereafter behaving normally. But before then they
-		act as though they're stacks of different items.
-	- Tested by Warr1024, not reproducible on demand
-
 - Loose leaf nodes disappearing almost immediately after creation,
   including from natural decay
 	- Reported by Kimapr in nodecore-ingame 2022-01-17
