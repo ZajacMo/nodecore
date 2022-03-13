@@ -175,7 +175,7 @@ local function optic_commit(v)
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
-	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
+	if node.name ~= nn.name or node.param ~= nn.param or node.param2 ~= nn.param2 then
 		minetest.set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
