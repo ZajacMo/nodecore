@@ -294,11 +294,15 @@ do
 		end)
 end
 
-nodecore.register_on_nodeupdate(function(pos)
-		local t = dependency_index[hashpos(pos)]
-		if t then
-			for k in pairs(t) do
-				optic_check(unhash(k))
-			end
+local function optic_check_dependents(pos)
+	local t = dependency_index[hashpos(pos)]
+	if t then
+		for k in pairs(t) do
+			optic_check(unhash(k))
 		end
-	end)
+	end
+end
+nodecore.optic_check_dependents = optic_check_dependents
+
+nodecore.register_on_nodeupdate(optic_check_dependents)
+nodecore.storebox_register_on_stack_change(optic_check_dependents)
