@@ -73,7 +73,7 @@ do
 					or (g.metallic and 1)
 					or ((v.liquidtype ~= "none" or g.water or g.moist) and 7/8)
 					or (g.cracky and 1 - 1 / (g.cracky + 2))
-					or (g.flammeble and (not g.fire_fuel) and rad_default.absorb)
+					or (g.flammable and (not g.fire_fuel) and rad_default.absorb)
 					or (v.walkable and 1/4)
 					or rad_default.absorb,
 
