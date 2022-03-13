@@ -112,9 +112,18 @@ function nodecore.storebox_check_item_fall_out(pos, node, stack)
 	nodecore.item_eject(pos, stack)
 	return true
 end
+
+local storebox_register_on_stack_change, storebox_registered_on_stack_change =
+	nodecore.mkreg()
+nodecore.storebox_register_on_stack_change = storebox_register_on_stack_change
+
 nodecore.storebox_on_stack_change = function(...)
+	for _, func in ipairs(storebox_registered_on_stack_change) do
+		func(...)
+	end
 	return nodecore.storebox_check_item_fall_out(...)
 end
+
 nodecore.storebox_on_falling_check = function(pos)
 	return nodecore.storebox_check_item_fall_out(pos,
 		minetest.get_node(pos), nodecore.stack_get(pos))
