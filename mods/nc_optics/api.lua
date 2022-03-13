@@ -10,7 +10,7 @@ local modname = minetest.get_current_modname()
 local optic_distance = 16
 local optic_speed = 12
 local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
-	"Optic tick limit", [[Maxiumum amount of time in seconds that may be
+	"Optic tick limit", [[Maximum amount of time in seconds that may be
 	spent during a single server step to calculate optic state. Optics
 	will be allowed to slow don to stay within this limit.]])
 local optic_interval = nodecore.setting_float(modname .. "_interval", 5,
