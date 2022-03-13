@@ -67,6 +67,7 @@ local function scan(pos, dir, max, getnode, cbbs)
 	for _ = 1, max do
 		local o = p
 		p = vector.add(p, dir)
+
 		if cbbs and not vector.equals(mapblock(o), mapblock(p)) then
 			cbbs[#cbbs + 1] = {
 				pos = vector.add(o, vector.multiply(dir, 0.5)),
@@ -80,8 +81,20 @@ local function scan(pos, dir, max, getnode, cbbs)
 		end
 		local node = getnode(p)
 		if (not node) or node.name == "ignore" then return end
-		if node_opaque[node.name] then return p, node end
+		if node_opaque[node.name] and not node_visinv[node.name] then return p, node end
 		if node_visinv[node.name] then
+			if node_opaque[node.name] then
+				local def = minetest.registered_nodes[node.name] or {}
+				if not def.storebox_access then return p, node end
+				-- check that “light” can come in from the old position by checking for access
+				if not def.storebox_access(
+					{above = o, under = p}, p, {}) then return p, node end
+				-- check that “light” can go out: this should be checked after checking
+				-- if the content is opaque, but we're going to return the same p, node anyway
+				-- so it doesn't really matter
+				if not def.storebox_access(
+					{above = vector.add(p, dir), under = p}, p, {}) then return p, node end
+			end
 			local stack = nodecore.stack_get(p)
 			if node_opaque[stack:get_name()] then
 				return p, node
