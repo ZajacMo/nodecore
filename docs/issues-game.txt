@@ -98,6 +98,9 @@ ISSUES-GAME: Gameplay-affecting issues
 - Doors should produce particles when digging or pummeling
 
 - Door press recipe limitations
+	- Node-placing recipes don't work with itemstacks
+		- Tool and torch making don't work
+		- We should be able to detect failed-catapulting for this
 	- Stackapply recipes
 		- Needed for automatic eggcorn planting
 	- Rakes don't work with door press
