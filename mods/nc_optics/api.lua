@@ -303,6 +303,4 @@ local function optic_check_dependents(pos)
 	end
 end
 nodecore.optic_check_dependents = optic_check_dependents
-
 nodecore.register_on_nodeupdate(optic_check_dependents)
-nodecore.storebox_register_on_stack_change(optic_check_dependents)

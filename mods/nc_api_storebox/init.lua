@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore
-    = ipairs, minetest, nodecore
+local minetest, nodecore
+    = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -113,14 +113,7 @@ function nodecore.storebox_check_item_fall_out(pos, node, stack)
 	return true
 end
 
-local storebox_register_on_stack_change, storebox_registered_on_stack_change =
-nodecore.mkreg()
-nodecore.storebox_register_on_stack_change = storebox_register_on_stack_change
-
 nodecore.storebox_on_stack_change = function(...)
-	for _, func in ipairs(storebox_registered_on_stack_change) do
-		func(...)
-	end
 	return nodecore.storebox_check_item_fall_out(...)
 end
 

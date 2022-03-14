@@ -119,6 +119,7 @@ function nodecore.stack_set(pos, stack, player, node, def)
 		if def.on_stack_change then
 			def.on_stack_change(pos, node, stack, old)
 		end
+		nodecore.notify_node_update(pos, node)
 		nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
 	return update(pos)
