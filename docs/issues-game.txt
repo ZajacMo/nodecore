@@ -42,7 +42,7 @@ ISSUES-GAME: Gameplay-affecting issues
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
 
-- Add subtle visual indictor opposite door hinge
+- Add subtle visual indicator opposite door hinge
 
 - Touch-damage is overused, should probably only apply to
   obviously extremely hot things like embers and pumwater.
@@ -119,7 +119,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Stone softening rates feel off.
 	- Once first stage of stone softens, others follow really
-	  quicky (exponential runaway basically).
+	  quickly (exponential runaway basically).
 	- If you leave stone soaking for a while, it looks like it
 	  basically softens all or nothing.
 	- Can we smooth this out and make it less jarring?
@@ -133,7 +133,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
-	  
+
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
@@ -213,7 +213,7 @@ ISSUES-GAME: Gameplay-affecting issues
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
 
-- Delay lens full brightess?
+- Delay lens full brightness?
 	- Propagate optic signals immediately
 	- Reach full brightness a few seconds later, to reduce map
 	  update work and prevent rapid strobes.
