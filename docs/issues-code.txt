@@ -10,8 +10,6 @@ ISSUES-CODE: Issues related to code quality and APIs
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Need to standardize storage API between storeboxes and bare stacks
-	- Items in forms don't fall out and combine into a matching
-	  stack blocking the exit of the form.
 	- Storebox API is a mess anyway and needs a lot of cleanup.
 
 - If DNTs are deferred due to either stasis or arealoaded, need to
