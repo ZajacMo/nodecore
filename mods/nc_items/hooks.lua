@@ -58,18 +58,8 @@ minetest.register_abm({
 		end
 	})
 
-function minetest.item_place(itemstack, placer, pointed_thing, param2)
-	if not nodecore.interact(placer) then return end
-	if pointed_thing.type == "node" and placer and
-	not placer:get_player_control().sneak then
-		local n = minetest.get_node(pointed_thing.under)
-		local nn = n.name
-		local nd = minetest.registered_items[nn]
-		if nd and nd.on_rightclick then
-			return nd.on_rightclick(pointed_thing.under, n,
-				placer, itemstack, pointed_thing) or itemstack, false
-		end
-	end
+-- this function abstracts the actual placement, choosing between node or stack form
+local item_place_node_or_stack = function(itemstack, placer, pointed_thing, param2)
 	local def = itemstack:get_definition()
 	if def.type == "node" and not def.place_as_item then
 		return minetest.item_place_node(itemstack, placer, pointed_thing, param2)
@@ -86,6 +76,26 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	end
 	return itemstack
 end
+
+-- placement on right click: place the item as a node or stack as appropriate,
+-- unless the destination has an on_rightclick override and the player is not sneak-placing,
+-- in which case the on_rightclick override is invoked instead
+function minetest.item_place(itemstack, placer, pointed_thing, param2)
+	if not nodecore.interact(placer) then return end
+	if pointed_thing.type == "node" and placer and
+	not placer:get_player_control().sneak then
+		local n = minetest.get_node(pointed_thing.under)
+		local nn = n.name
+		local nd = minetest.registered_items[nn]
+		if nd and nd.on_rightclick then
+			return nd.on_rightclick(pointed_thing.under, n,
+				placer, itemstack, pointed_thing) or itemstack, false
+		end
+	end
+	return item_place_node_or_stack(itemstack, placer, pointed_thing, param2)
+end
+
+minetest.item_place_node_or_stack = item_place_node_or_stack
 
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)

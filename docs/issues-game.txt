@@ -9,9 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Right-clicking the top of a shelf places a legacy plantlike eggcorn
-  node instead of an eggcorn item.
-
 - Door crafting issues:
 	- Can't construct a tool (apply mallet head to staff)
 	- Don't get hint from tool construction (e.g. should get "complete
