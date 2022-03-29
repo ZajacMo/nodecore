@@ -84,6 +84,12 @@ local function witnesslater(player, pos, disc)
 end
 
 function nodecore.witness(pos, disc, maxdist)
+	if (not pos.x) and pos[1] and pos[1].x then
+		for i = 1, #pos do
+			nodecore.witness(pos[i], disc, maxdist)
+		end
+		return
+	end
 	maxdist = maxdist or 16
 	for _, player in pairs(minetest.get_connected_players()) do
 		local ppos = player:get_pos()

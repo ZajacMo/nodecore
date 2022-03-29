@@ -79,7 +79,7 @@ nodecore.register_craft({
 					action = "place",
 					pointed = data.pointed,
 					witness = 16,
-					label = "door place-craft"
+					discover = "door place-craft"
 				})
 		end
 	})
@@ -112,7 +112,7 @@ nodecore.register_craft({
 					action = "place",
 					pointed = data.pointed,
 					witness = 16,
-					label = "door place-craft"
+					discover = "door place-craft"
 				})
 			return data[recipefound]
 		end,
@@ -127,7 +127,7 @@ nodecore.register_craft({
 			for k, v in pairs(data.pointed) do pt[k] = v end
 			pt.craftdata = {
 				witness = 16,
-				label = "door place-craft"
+				discover = "door place-craft"
 			}
 			local def = stack:get_definition()
 			if def and def.on_place_node then
@@ -136,7 +136,7 @@ nodecore.register_craft({
 				stack = minetest.item_place_node(stack, nil, pt)
 			end
 			nodecore.node_sound(pos, "place")
-			nodecore.witness(pos, "door placement")
+			nodecore.witness({pos, data.pointed.above}, "door placement")
 			if not stack:is_empty() then
 				nodecore.item_eject(pos, stack)
 			end

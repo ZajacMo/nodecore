@@ -48,7 +48,7 @@ local function ablation(pos, node)
 				minexptime = 0.25,
 				maxexptime = 0.5
 			})
-		nodecore.witness(pos, "door ablation")
+		nodecore.witness({pos, out}, "door ablation")
 		return nodecore.dnt_set(pos, dntname)
 	end
 end

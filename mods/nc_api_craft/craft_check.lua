@@ -134,7 +134,14 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if data.after then data.after(pos, data) end
 		local discover = {recipe.action, recipe.label, data.discover, recipe.discover}
 		nodecore.player_discover(data.crafter, discover, "craft:")
-		if data.witness or recipe.witness then nodecore.witness(pos, discover) end
+		if data.witness or recipe.witness then
+			nodecore.witness(pos, discover)
+			for _, v in pairs(recipe.nodes) do
+				if v.x ~= 0 or v.y ~= 0 or v.z ~= 0 then
+					nodecore.witness(rel(v.x, v.y, v.z), discover)
+				end
+			end
+		end
 		local pname = data.crafter and data.crafter:get_player_name()
 		nodecore.log(pname and "action" or "info", (pname or "unknown")
 			.. " crafts \"" .. recipe.label .. "\" at " ..
