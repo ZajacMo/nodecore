@@ -1,0 +1,15 @@
+# textdomain: nc_api
+(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 作者 Aaron Suen <warr1024@@gmail.com>
+- "Furnaces" are not a thing; discover smelting with open flames.=- 没有“熔炉”这个东西；试着用明火熔炼。
+- Aux+drop any item to drop everything.=- 辅助键+丢弃来丢弃所有物品。
+- Be wary of dark caves/chasms; you are responsible for getting yourself out.=- 注意洞穴和深坑；你自己想办法怎么出来。
+- Can't dig trees or grass? Search for sticks in the canopy.=- 挖不了树和玻璃？在树冠上找找树枝。
+- Climbing spots also produce very faint light; raise display gamma to see.=- 攀登点也会产生非常微弱的光线；提高显示伽马查看。
+- Climbing spots may be climbed once black particles appear.=- 出现黑色颗粒，就可以爬上攀登点。
+- Crafting is done by building recipes in-world.=- 在世界中建造合成模式来合成物品。
+- DONE: @1=- 完成: @1
+- Displaced nodes can be climbed through like climbing spots.=- 移位的节点可以像攀登点一样被爬过去。
+- Do not use F5 debug info; it will mislead you!=- 不要使用F5调试信息，会误导你的！
+- Drop and pick up items to rearrange your inventory.=- 丢弃然后拿起物品来重排你的背包。
+- Drop items onto ground to create stack nodes. They do not decay.=- 将物品扔到地上，形成堆方块。堆方块不会腐烂。
+- For larger recipes, the center item is usually placed last.=- 在较大的合成模式中，中间的物品一般最后放置。

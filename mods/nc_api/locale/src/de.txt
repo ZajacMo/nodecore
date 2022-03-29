@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-28 00:26+0000\n"
+"PO-Revision-Date: 2022-03-26 23:27+0000\n"
 "Last-Translator: kuboid <community@radtournetz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -396,7 +396,7 @@ msgid "Annealed Lode Pick Head"
 msgstr "Geglühter Lodepickelkopf"
 
 msgid "Annealed Lode Rake"
-msgstr "Geglühter Loderechen"
+msgstr "Geglühter Lodeharke"
 
 msgid "Annealed Lode Rod"
 msgstr "Geglühte Lodestange"
@@ -430,7 +430,7 @@ msgid "Charcoal Lump"
 msgstr "Holzkohleklumpen"
 
 msgid "Chromatic Glass"
-msgstr "Gefärbtes Glas"
+msgstr "Lichtbrechendes Glas"
 
 msgid "Clear Glass"
 msgstr "Klarglas"
@@ -520,7 +520,7 @@ msgid "Glowing Lode Prill"
 msgstr "Glühender Lodebrocken"
 
 msgid "Glowing Lode Rake"
-msgstr "Glühender Loderechen"
+msgstr "Glühende Lodeharke"
 
 msgid "Glowing Lode Rod"
 msgstr "Glühende Lodestange"
@@ -763,10 +763,10 @@ msgid "Tempered Lode Prill"
 msgstr "Veredelter Lodebrocken"
 
 msgid "Tempered Lode Rake"
-msgstr "Veredelte Loderechen"
+msgstr "Veredelte Lodeharke"
 
 msgid "Tempered Lode Rod"
-msgstr "Veredelte Lodeharke"
+msgstr "Veredelte Lodestange"
 
 msgid "Tempered Lode Spade"
 msgstr "Veredelter Lodespaten"
@@ -873,7 +873,7 @@ msgid "breed a new flower variety"
 msgstr "züchte eine neue Blumenvariante"
 
 msgid "Wooden Rake"
-msgstr "Holzrechen"
+msgstr "Holzharke"
 
 msgid "Wooden Shelf"
 msgstr "Holzregal"
@@ -890,7 +890,6 @@ msgstr "Gelbe Glockenblume"
 msgid "Yellow Cluster Flower"
 msgstr "Gelbe Büschelblume"
 
-#, fuzzy
 msgid "Yellow Cup Flower"
 msgstr "Gelbe Becherblume"
 
@@ -919,7 +918,7 @@ msgid "assemble a lode adze"
 msgstr "baue eine Lodehaue"
 
 msgid "assemble a lode rake"
-msgstr "Baue einen Loderechen"
+msgstr "Baue eine Lodeharke"
 
 msgid "assemble a rake from adzes and a stick"
 msgstr "baue einen Rechen aus Hauen und einem Stock"
@@ -949,16 +948,16 @@ msgid "bash a plank into sticks"
 msgstr "zerschlage eine Planke in Stöcke"
 
 msgid "bond adobe bricks"
-msgstr "verklebte Betonschotterziegel"
+msgstr "binde Lehmziegel"
 
 msgid "bond sandstone bricks"
-msgstr "verklebte Sandsteinziegel"
+msgstr "binde Sandsteinziegel"
 
 msgid "bond stone bricks"
-msgstr "verklebte Steinziegel"
+msgstr "binde Steinziegel"
 
 msgid "bond tarstone bricks"
-msgstr "verklebte Teersteinziegel"
+msgstr "binde Teersteinziegel"
 
 msgid "break cobble into chips"
 msgstr "zersplittere Bruchstein"
@@ -1325,7 +1324,7 @@ msgid "Infused Annealed Lode Pick"
 msgstr "Aufgegosseneer Geglühter Lodepickel"
 
 msgid "Infused Annealed Lode Rake"
-msgstr "Aufgegossener Geglühter Loderechen"
+msgstr "Aufgegossene Geglühte Lodeharke"
 
 msgid "Infused Annealed Lode Spade"
 msgstr "Aufgegossener Geglühter Lodespaten"
@@ -1346,7 +1345,7 @@ msgid "Infused Tempered Lode Pick"
 msgstr "Aufgegossener Veredelter Lodepickel"
 
 msgid "Infused Tempered Lode Rake"
-msgstr "Aufgegossener Veredelter Loderechen"
+msgstr "Aufgegossene Veredelte Lodeharke"
 
 msgid "Infused Tempered Lode Spade"
 msgstr "Aufgegossener Veredelter Lodespaten"
@@ -1683,3 +1682,96 @@ msgstr "steuere ein Prisma an"
 
 msgid "forge a lode rod and bar into a ladder"
 msgstr "schmiede eine Lodestange und einen -barren zu einer Leiter"
+
+msgid "leach raked dirt to sand"
+msgstr "wasche geharkten Dreck zu Sand aus"
+
+msgid "leach raked humus to dirt"
+msgstr "wasche geharkten Humus zu Dreck aus"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "gebundene Lehmziegelklappe"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "gebundene gelagerte Lehmziegelklappe"
+
+msgid "Bonded Adobe Bricks"
+msgstr "gebundene Lehmziegel"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "gebundene gelagerte Lehmziegelklappe"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "gebundene Sandsteinziegelklappe"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "gebundene Sandsteinziegel"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "gebundene gelagerte Steinziegelklappe"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "gebundene Steinziegelklappe"
+
+msgid "Bonded Stone Bricks"
+msgstr "gebundene Steinziegel"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "gebundene gelagerte Teersteinziegelklappe"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "gebundene Teersteinziegelklappe"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "gebundene Teersteinziegel"
+
+msgid "insert metal rod into a cobble panel"
+msgstr "schiebe eine Metallstange in eine Bruchsteinklappe"
+
+msgid "insert wooden pin into wooden panel"
+msgstr "schiebe einen Holzstab in eine Holzklappe"
+
+msgid "make fire by rubbing sticks together"
+msgstr "entfach Feuer durch Reibung von Stöcken"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "schmelze Lodemetall aus Lodebruchstein"
+
+msgid "melt sand into molten glass"
+msgstr "schmelze Sand zu Glasschmelze"
+
+msgid "mix dirt into ash to make adobe mix"
+msgstr "mische Dreck in Asche für Lehmmischung"
+
+msgid "mix sand into ash to make render"
+msgstr "mische Sand in Asche für Putz"
+
+msgid "mold molten glass into clear glass"
+msgstr "gieße Glasschmelze zu Klarglas"
+
+msgid "mold molten glass into float glass"
+msgstr "gieße Glasschmelze zu Floatglas"
+
+msgid "navigate by touch in darkness"
+msgstr "ertaste den Weg in Dunkelheit"
+
+msgid "observe a lux reaction"
+msgstr "beobachte eine Luxreaktion"
+
+msgid "pack high-quality charcoal"
+msgstr "stopfe hochqualitative Holzkohle zusammen"
+
+msgid "pack sedges into thatch"
+msgstr "stopfe Riedgras zu Stroh zusammen"
+
+msgid "pack stone chips back into cobble"
+msgstr "stopfe Steinbrocken zu Bruchstein zusammen"
+
+msgid "pick a sedge"
+msgstr "sammle Riedgras"
+
+msgid "plant an eggcorn"
+msgstr "pflanze eine Eichel"
+
+msgid "quench molten glass into chromatic glass"
+msgstr "kühle Glasschmelze zu lichtbrechendem Glas"

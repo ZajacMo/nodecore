@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-20 11:49+0000\n"
+"PO-Revision-Date: 2022-03-20 08:57+0000\n"
 "Last-Translator: Lesha Vel <lesha.programmer@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -1785,7 +1785,6 @@ msgstr "вырастите камыш на влажной почве"
 msgid "wilt a flower"
 msgstr "высушите цветок"
 
-#, fuzzy
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr ""
 "- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О "
@@ -1955,3 +1954,24 @@ msgstr "@1 обнаружено, @2 доступно, @3 в будущем"
 
 msgid "assemble a rake from adzes and a staff"
 msgstr "соберите грабли из тесла и посоха"
+
+msgid "Glued Lens"
+msgstr "Закрепленная Линза"
+
+msgid "Glued Shining Lens"
+msgstr "Закрепленная Сияющая Линза"
+
+msgid "Glued Prism"
+msgstr "Закрепленная Призма"
+
+msgid "Glued Active Lens"
+msgstr "Закрепленная Активная Линза"
+
+msgid "stick a lens/prism in place"
+msgstr "Закрепите Линзу/Призму на месте"
+
+msgid "Glued Active Prism"
+msgstr "Закрепленная Активная Призма"
+
+msgid "Glued Gated Prism"
+msgstr "Закрепленная Призма-Вентиль"
