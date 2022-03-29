@@ -10,7 +10,6 @@ ISSUES-GAME: Gameplay-affecting issues
   ####   #        ####      #    ######  ######  #    #   ####
 
 - Door crafting issues:
-	- Can't construct a tool (apply mallet head to staff)
 	- Don't get hint from tool construction (e.g. should get "complete
 	  craft with door" hint from making an adze)
 		- Witnesses emitted by doors or propelled tools should

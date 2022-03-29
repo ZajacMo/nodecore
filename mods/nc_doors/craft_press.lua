@@ -85,6 +85,7 @@ nodecore.register_craft({
 	})
 
 local checkedstack = {}
+local recipefound = {}
 nodecore.register_craft({
 		action = "press",
 		label = "press place stack",
@@ -97,14 +98,28 @@ nodecore.register_craft({
 			local stack = nodecore.stack_get(pos)
 			if not stack or stack:is_empty() or stack:get_count() ~= 1
 			then return end
-			local def = stack:get_definition()
-			if not (def and def.type == "node")
-			or def.groups.stack_as_node then return end
 
-			data[checkedstack] = stack
-			return true
+			local def = stack:get_definition()
+			if def and def.type == "node"
+			and not def.groups.place_as_item then
+				data[checkedstack] = stack
+				return true
+			end
+
+			data[recipefound] = nodecore.craft_search(pos,
+				minetest.get_node(pos),
+				{
+					action = "place",
+					pointed = data.pointed,
+					witness = 16,
+					label = "door place-craft"
+				})
+			return data[recipefound]
 		end,
 		after = function(pos, data)
+			if data[recipefound] then
+				return data[recipefound]()
+			end
 			local stack = data[checkedstack]
 			if not stack then return end
 			minetest.remove_node(pos)
