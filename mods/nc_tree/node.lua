@@ -86,6 +86,7 @@ minetest.register_node(modname .. ":leaves", {
 		tiles = {fade(modname .. "_leaves.png")},
 		waving = 1,
 		air_pass = true,
+		silktouch = false,
 		groups = {
 			canopy = 1,
 			snappy = 1,
