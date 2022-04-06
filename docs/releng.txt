@@ -61,5 +61,8 @@ AFTER 5.4 EOS:
 
 AFTER 5.5 EOS:
 
+- Remove get_sky_as_table compat hack in playerstep; always use table
+  https://github.com/minetest/minetest/commit/44fc888bd64cc00836b0fea0666aa763b2565513
+
 ........................................................................
 ========================================================================
