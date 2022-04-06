@@ -15,6 +15,11 @@ ISSUES-CODE: Issues related to code quality and APIs
 - If DNTs are deferred due to either stasis or arealoaded, need to
   set the timer re-firing to some sane future time.
 
+- Unified heat API?
+	- Unify quenching and heating
+	- Alternative to cooking w/ 3 flames, with 5 pumwaters
+	- Replace quenched, touchgroups, neargroups
+
 - Gametime handling improvements.
 	- Need to be robust in event of gametime resetting to zero,
 	  e.g. env_meta.txt corruption.
