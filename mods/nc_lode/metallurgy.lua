@@ -122,6 +122,7 @@ nodecore.register_craft({
 		label = "lode stack heating",
 		action = "cook",
 		touchgroups = {flame = 3},
+		neargroups = {coolant = 0},
 		duration = 30,
 		cookfx = true,
 		nodes = {{match = {lode_temper_cool = true, count = false}}},
@@ -132,6 +133,7 @@ nodecore.register_craft({
 		label = "lode stack annealing",
 		action = "cook",
 		touchgroups = {flame = 0},
+		neargroups = {coolant = 0},
 		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
@@ -143,9 +145,7 @@ nodecore.register_craft({
 		label = "lode stack quenching",
 		action = "cook",
 		touchgroups = {flame = 0},
-		check = function(pos)
-			return nodecore.quenched(pos)
-		end,
+		neargroups = {coolant = 1},
 		cookfx = true,
 		nodes = {{match = {lode_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "tempered") end

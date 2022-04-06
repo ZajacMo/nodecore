@@ -41,18 +41,54 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 			if not nodecore.match(p, v.match) then return end
 		end
 	end
+	if recipe.heat then
+		data.heat = data.heat or minetest.get_node_heat(pos)
+		if recipe.heat > 0 then
+			if data.heat < recipe.heat then return end
+		elseif recipe.heat < 0 then
+			if data.heat >= 0 then return end
+		else
+			if data.heat ~= 0 then return end
+		end
+	end
 	if recipe.touchgroups then
-		local sum = {}
-		addgroups(sum, rel(1, 0, 0))
-		addgroups(sum, rel(-1, 0, 0))
-		addgroups(sum, rel(0, 1, 0))
-		addgroups(sum, rel(0, -1, 0))
-		addgroups(sum, rel(0, 0, 1))
-		addgroups(sum, rel(0, 0, -1))
-		if data.touchgroupmodify then
-			data.touchgroupmodify(sum)
+		local sum = data.touchgroups
+		if not sum then
+			sum = {}
+			addgroups(sum, rel(1, 0, 0))
+			addgroups(sum, rel(-1, 0, 0))
+			addgroups(sum, rel(0, 1, 0))
+			addgroups(sum, rel(0, -1, 0))
+			addgroups(sum, rel(0, 0, 1))
+			addgroups(sum, rel(0, 0, -1))
+			if data.touchgroupmodify then
+				data.touchgroupmodify(sum)
+			end
+			data.touchgroups = sum
 		end
 		for k, v in pairs(recipe.touchgroups) do
+			local w = sum[k] or 0
+			if v > 0 and w < v then return end
+			if v <= 0 and w > -v then return end
+		end
+	end
+	if recipe.neargroups then
+		local sum = data.neargroups
+		if not sum then
+			sum = {}
+			for dx = -1, 1 do
+				for dz = -1, 1 do
+					for dy = -1, 1 do
+						addgroups(sum, rel(dx, dy, dz))
+					end
+				end
+			end
+			if data.neargroupmodify then
+				data.neargroupmodify(sum)
+			end
+			data.neargroups = sum
+		end
+		for k, v in pairs(recipe.neargroups) do
 			local w = sum[k] or 0
 			if v > 0 and w < v then return end
 			if v <= 0 and w > -v then return end
