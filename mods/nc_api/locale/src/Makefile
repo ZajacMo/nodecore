@@ -1,2 +1,2 @@
 update:
-	cd .. && perl -w src/update.pl
+	node update.js
