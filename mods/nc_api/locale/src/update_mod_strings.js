@@ -12,7 +12,7 @@ const ifmatch = (str, rx, func) => {
 
 const onlang = lang => db[lang] = (async () => {
 	const raw = await get(`/api/translations/minetest/nodecore/${lang}/file/`);
-	await fsp.writeFile(`${lang}.txt`, raw);
+	await fsp.writeFile(`raw/${lang}.txt`, raw);
 	const db = {};
 	let id;
 	for(let line of raw.split('\n')) {
