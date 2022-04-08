@@ -2,8 +2,8 @@
 	"since": {
 		"de": "2022-03-26T08:28:15.241655+01:00",
 		"ru": "2022-03-19T03:53:55.229990+01:00",
-		"uk": "2022-03-19T09:49:56.164313+01:00",
 		"pl": "2022-03-27T11:19:59.247928+02:00",
+		"uk": "2022-03-19T09:49:56.164313+01:00",
 		"el": "2022-03-19T02:03:25.191711+01:00",
 		"zh_Hans": "2022-03-27T05:19:46.987426+02:00",
 		"sk": "2022-03-30T22:24:30.066342+02:00"
@@ -14,64 +14,64 @@
 				"full_name": "Wuzzy",
 				"username": "Wuzzy"
 			},
-			"first": "2022-02-04T19:41:08.368545+01:00",
-			"last": "2022-02-04T19:41:34.233599+01:00"
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/lesha.programmer/?format=json": {
 			"raw": {
 				"full_name": "Lesha Vel",
 				"username": "lesha.programmer"
 			},
-			"first": "2022-02-20T08:11:58.343275+01:00",
-			"last": "2022-03-19T03:53:55.229990+01:00"
-		},
-		"https://hosted.weblate.org/api/users/andmizyk/?format=json": {
-			"raw": {
-				"full_name": "Andrij Mizyk",
-				"username": "andmizyk"
-			},
-			"first": "2022-01-30T11:31:39.615533+01:00",
-			"last": "2022-03-19T09:49:56.164313+01:00"
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/Atrate/?format=json": {
 			"raw": {
 				"full_name": "Atrate",
 				"username": "Atrate"
 			},
-			"first": "2022-03-27T11:19:59.247928+02:00",
-			"last": "2022-03-27T11:19:59.247928+02:00"
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/andmizyk/?format=json": {
+			"raw": {
+				"full_name": "Andrij Mizyk",
+				"username": "andmizyk"
+			},
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/DeadManWalkingTO/?format=json": {
 			"raw": {
 				"full_name": "DeadManWalking",
 				"username": "DeadManWalkingTO"
 			},
-			"first": "2022-03-19T01:50:15.852499+01:00",
-			"last": "2022-03-19T02:03:25.191711+01:00"
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/materia-cccp/?format=json": {
 			"raw": {
 				"full_name": "Gao Tiesuan",
 				"username": "materia-cccp"
 			},
-			"first": "2022-03-27T05:08:38.583799+02:00",
-			"last": "2022-03-27T05:19:46.987426+02:00"
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/kuboid/?format=json": {
 			"raw": {
 				"full_name": "kuboid",
 				"username": "kuboid"
 			},
-			"first": "2022-02-15T09:23:03.884769+01:00",
-			"last": "2022-03-26T08:28:15.241655+01:00"
+			"first": "2022",
+			"last": "2022"
 		},
 		"https://hosted.weblate.org/api/users/pexauteau/?format=json": {
 			"raw": {
 				"full_name": "Pexauteau Santander",
 				"username": "pexauteau"
 			},
-			"first": "2022-03-30T20:37:54.115218+02:00",
-			"last": "2022-03-30T22:24:30.066342+02:00"
+			"first": "2022",
+			"last": "2022"
 		}
 	}
 }

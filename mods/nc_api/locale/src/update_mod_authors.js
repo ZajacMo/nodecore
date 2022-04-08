@@ -5,6 +5,14 @@ const fsp = require('fs')
 	.promises;
 
 const authorfile = 'authors.json';
+const licensefile = '../../../../LICENSE';
+
+const overrides = {
+	Wuzzy: { email: 'almikes@aol.com' },
+	'lesha.programmer': { email: 'lesha.programmer@gmail.com', first: '2021' },
+	kuboid: { email: 'community@radtournetz.de', first: '2021' }
+};
+
 const getauthordb = (async () => {
 	try {
 		return JSON.parse(await fsp.readFile(authorfile));
@@ -37,23 +45,55 @@ const onlang = lang => authortasks.push((async () => {
 			continue;
 		if(!authordb.since[lang] || row.timestamp > authordb.since[lang])
 			authordb.since[lang] = row.timestamp;
+		const year = row.timestamp.substring(0, 4);
 		let user = authordb.user[row.author];
 		if(!user)
 			authordb.user[row.author] = user = {
 				raw: JSON.parse(await get(row.author)),
-				first: row.timestamp,
-				last: row.timestamp
+				first: year,
+				last: year
 			};
-		if(row.timestamp < user.first)
-			user.first = row.timestamp;
-		if(row.timestamp > user.last)
-			user.last = row.timestamp;
+		if(year < user.first)
+			user.first = year;
+		if(year > user.last)
+			user.last = year;
 	}
 })());
 
 const done = async () => {
 	await Promise.all(authortasks);
-	await fsp.writeFile(authorfile, JSON.stringify(await getauthordb, null, '\t'));
+	const authordb = await getauthordb;
+
+	await fsp.writeFile(authorfile, JSON.stringify(authordb, null, '\t'));
+
+	const lines = Object.assign(...Object.values(authordb.user)
+		.map(x => Object.assign({}, x, overrides[x.raw.username] || {}))
+		.map(x => Object.assign({}, x, {
+			url: x.email || `https://hosted.weblate.org/user/${x.raw.username}/`
+		}))
+		.map(x => ({
+			[x.url]: `Portions Copyright (C)${x.first}${x.first === x.last
+				? '' : `-${x.last}`} ${x.raw.full_name} <${x.url}>`
+		})));
+
+	const license = (await fsp.readFile(licensefile))
+		.toString()
+		.split('\n');
+	for(let i = 0; i < license.length; i++) {
+		const line = license[i];
+		if(/^Portions/.test(line)) {
+			const m = line.match(/<([^>]+)>/);
+			if(m && lines[m[1]]) {
+				license[i] = lines[m[1]];
+				delete lines[m[1]];
+			}
+		}
+		if(!/\S/.test(line)) {
+			license.splice(i, 0, ...Object.values(lines));
+			break;
+		}
+	}
+	await fsp.writeFile(licensefile, license.join('\n'));
 };
 
 module.exports = { onlang, done };
