@@ -1327,11 +1327,11 @@ msgstr "chop chromatic glass into lenses"
 msgid "chop up charcoal"
 msgstr "chop up charcoal"
 
-msgid "complete a craft with a hinged panel"
-msgstr "complete a craft with a hinged panel"
-
 msgid "complete a pummel with a hinged panel and tool head"
 msgstr "complete a pummel with a hinged panel and tool head"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "complete an assembly recipe with a hinged panel"
 
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
