@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-20 08:57+0000\n"
+"PO-Revision-Date: 2022-04-09 15:05+0000\n"
 "Last-Translator: Lesha Vel <lesha.programmer@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
@@ -1579,7 +1579,7 @@ msgid "Black Bell Flower"
 msgstr "Черный Колокольчик"
 
 msgid "Black Rosette Flower"
-msgstr "Черный Розетка Цветок"
+msgstr "Черный Цветок Розы"
 
 msgid "Clear Glass Tank"
 msgstr "Прозрачный Стеклянный Резервуар"
@@ -1597,7 +1597,7 @@ msgid "Pink Bell Flower"
 msgstr "Розовый Колокольчик"
 
 msgid "Pink Rosette Flower"
-msgstr "Розовый Розетка Цветок"
+msgstr "Розовый Цветок Розы"
 
 msgid "Raked Gravel"
 msgstr "Разграбленный Гравий"
@@ -1624,7 +1624,7 @@ msgid "Wilted Star Flower"
 msgstr "Увядший Звездный Цветок"
 
 msgid "Yellow Rosette Flower"
-msgstr "Желтый Розеточный Цветок"
+msgstr "Желтый Цветок Розы"
 
 msgid "assemble a clear glass tank"
 msgstr "соберите прозрачный стеклянный резервуар"
@@ -1654,7 +1654,7 @@ msgid "Azure Cup Flower"
 msgstr "Лазурный Чашечный Цветок"
 
 msgid "Azure Rosette Flower"
-msgstr "Лазурный Розетка Цветок"
+msgstr "Лазурный Цветок Розы"
 
 msgid "Black Cluster Flower"
 msgstr "Черный Кластерный Цветок"
@@ -1675,7 +1675,7 @@ msgid "Blue Cup Flower"
 msgstr "Синий Чашечный Цветок"
 
 msgid "Blue Rosette Flower"
-msgstr "Синий Розетка Цветок"
+msgstr "Синий Цветок Розы"
 
 msgid "Blue Star Flower"
 msgstr "Синий Звездный Цветок"
@@ -1690,7 +1690,7 @@ msgid "Orange Cup Flower"
 msgstr "Оранжевый Чашечный Цветок"
 
 msgid "Orange Rosette Flower"
-msgstr "Оранжевый Розетка Цветок"
+msgstr "Оранжевый Цветок Розы"
 
 msgid "Orange Star Flower"
 msgstr "Оранжевый Звездный Цветок"
@@ -1714,7 +1714,7 @@ msgid "Red Cup Flower"
 msgstr "Красный Чашечный Цветок"
 
 msgid "Red Rosette Flower"
-msgstr "Красный Розетка Цветок"
+msgstr "Красный Цветок Розы"
 
 msgid "Red Star Flower"
 msgstr "Красный Звездный Цветок"
@@ -1726,7 +1726,7 @@ msgid "Sedge"
 msgstr "Осока"
 
 msgid "Violet Rosette Flower"
-msgstr "Фиолетовый Розетка Цветок"
+msgstr "Фиолетовый Цветок Розы"
 
 msgid "Violet Star Flower"
 msgstr "Фиолетовый Звездный Цветок"
@@ -1738,7 +1738,7 @@ msgid "White Cup Flower"
 msgstr "Белый Чашечный Цветок"
 
 msgid "White Rosette Flower"
-msgstr "Белый Розетка Цветок"
+msgstr "Белый Цветок Розы"
 
 msgid "White Star Flower"
 msgstr "Белый Звездный Цветок"
@@ -1750,7 +1750,7 @@ msgid "Wilted Cup Flower"
 msgstr "Увядший Чашечный Цветок"
 
 msgid "Wilted Rosette Flower"
-msgstr "Увядший Розетка Цветок"
+msgstr "Увядший Цветок Розы"
 
 msgid "Yellow Bell Flower"
 msgstr "Желтый Колокольчик"
@@ -1975,3 +1975,6 @@ msgstr "Закрепленная Активная Призма"
 
 msgid "Glued Gated Prism"
 msgstr "Закрепленная Призма-Вентиль"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "завершите сборку предмета с помощью навесной панели"
