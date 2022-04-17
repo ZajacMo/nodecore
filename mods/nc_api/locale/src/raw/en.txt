@@ -40,6 +40,9 @@ msgstr "- Drop and pick up items to rearrange your inventory."
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Drop items onto ground to create stack nodes. They do not decay."
 
+msgid "- FUTURE: @1"
+msgstr "- FUTURE: @1"
+
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- For larger recipes, the center item is usually placed last."
 

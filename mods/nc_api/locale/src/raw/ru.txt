@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-09 15:05+0000\n"
-"Last-Translator: Lesha Vel <lesha.programmer@gmail.com>\n"
+"PO-Revision-Date: 2022-04-13 19:11+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
 "Language: ru\n"
@@ -1978,3 +1978,6 @@ msgstr "Закрепленная Призма-Вентиль"
 
 msgid "complete an assembly recipe with a hinged panel"
 msgstr "завершите сборку предмета с помощью навесной панели"
+
+msgid "- FUTURE: @1"
+msgstr "- БУДУЩЕЕ: @1"

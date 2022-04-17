@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-03-26 23:27+0000\n"
-"Last-Translator: kuboid <community@radtournetz.de>\n"
+"PO-Revision-Date: 2022-04-13 19:11+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -463,7 +463,7 @@ msgid "Dirt"
 msgstr "Dreck"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
-msgstr ""
+msgstr "Discord: https://discord.gg/NNYeF6f"
 
 msgid "Displaced Node"
 msgstr "Versetzter Block"

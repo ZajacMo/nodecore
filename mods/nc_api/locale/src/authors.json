@@ -1,12 +1,13 @@
 {
 	"since": {
-		"de": "2022-03-26T08:28:15.241655+01:00",
-		"ru": "2022-04-09T08:08:43.070921+02:00",
+		"de": "2022-04-12T20:19:44.083643+02:00",
+		"ru": "2022-04-12T20:15:43.901698+02:00",
 		"pl": "2022-03-27T11:19:59.247928+02:00",
 		"uk": "2022-03-19T09:49:56.164313+01:00",
 		"el": "2022-03-19T02:03:25.191711+01:00",
 		"zh_Hans": "2022-03-27T05:19:46.987426+02:00",
-		"sk": "2022-03-30T22:24:30.066342+02:00"
+		"sk": "2022-03-30T22:24:30.066342+02:00",
+		"zh_Hant": "2022-04-17T16:35:07.072872+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -69,6 +70,22 @@
 			"raw": {
 				"full_name": "Pexauteau Santander",
 				"username": "pexauteau"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Warr1024/?format=json": {
+			"raw": {
+				"full_name": "Warr1024",
+				"username": "Warr1024"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Yic95/?format=json": {
+			"raw": {
+				"full_name": "Yic95",
+				"username": "Yic95"
 			},
 			"first": "2022",
 			"last": "2022"

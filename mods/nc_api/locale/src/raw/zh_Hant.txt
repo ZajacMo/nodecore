@@ -1,0 +1,311 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-17 04:43+0200\n"
+"PO-Revision-Date: 2022-04-17 14:56+0000\n"
+"Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"minetest/nodecore/zh_Hant/>\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.12-dev\n"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr "- 攀爬點也會產生微光；調高 gamma 值來看見。"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 由 Aaron Suen <warr1024@@gmail.com> 製作"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- 按輔助鍵再丟任意物品來丟掉所有物品。"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr "- 小心洞穴或深谷；你必須自己上來。"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- 無法砍樹或挖草地？試著從樹冠尋找木棒。"
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- 出現黑色粒子即可爬上攀爬點。"
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- 在世界中建出配方來合成物品。"
+
+msgid "- DONE: @1"
+msgstr "- 完成：@1"
+
+msgid "- FUTURE: @1"
+msgstr "- 延伸：@1"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr "- 空手在牆或天花板上，按住或連點右鍵來攀爬。"
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- 如果配方存在，你會看到特殊粒子效果。"
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- 學會觀星來長途移動。"
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- 配方以時間為基準，打得更快不會加快速度。"
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- 潛行時按輔助鍵丟物品來丟掉相符的物品。"
+
+msgid "- There is NO inventory screen."
+msgstr "- 「沒有」物品欄檢視畫面。"
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr "- 持續的走／跑／游／爬會愈來愈快。"
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- 環繞的物品、面向與環繞的方塊可能影響。"
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- 你不必打得很快（約一秒一次）。"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "About"
+msgstr "關於"
+
+msgid "Active Lens"
+msgstr "激發的透鏡"
+
+msgid "Active Prism"
+msgstr "激發的稜鏡"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "已載入額外的模組： @1"
+
+msgid "Adobe Mix"
+msgstr "土灰混合物"
+
+#, fuzzy
+msgid "Amalgamation"
+msgstr "混合物"
+
+msgid "Cobble"
+msgstr "鵝卵石"
+
+msgid "Displaced Node"
+msgstr "位移的方塊"
+
+msgid "Eggcorn"
+msgstr "種子"
+
+msgid "Fire"
+msgstr "火"
+
+msgid "Gravel"
+msgstr "礫石"
+
+msgid "Growing Tree Trunk"
+msgstr "生長中的樹幹"
+
+msgid "HAND OF POWER"
+msgstr "力量之手"
+
+msgid "Inventory"
+msgstr "物品欄"
+
+msgid "Leaves"
+msgstr "樹葉"
+
+msgid "Lens"
+msgstr "透鏡"
+
+msgid "Lit Torch"
+msgstr "點燃的火把"
+
+msgid "Log"
+msgstr "樹幹"
+
+msgid "Loose Cobble"
+msgstr "鬆鵝卵石"
+
+msgid "Loose Sand"
+msgstr "鬆沙"
+
+msgid "Matrix: #nodecore:matrix.org"
+msgstr "Matrix: #nodecore:matrix.org"
+
+msgid "Molten Glass"
+msgstr "熔融玻璃"
+
+msgid "Movement"
+msgstr "移動"
+
+msgid "Stone Bricks"
+msgstr "石磚磚"
+
+msgid "Stone-Tipped Hatchet"
+msgstr "石頭斧"
+
+msgid "Stone-Tipped Mallet"
+msgstr "石頭槌"
+
+msgid "Sprout"
+msgstr "芽"
+
+msgid "Sponge"
+msgstr "海綿"
+
+msgid "Stone-Tipped Pick"
+msgstr "石頭鎬"
+
+msgid "Stump"
+msgstr "根"
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- 丟物品在地面上來形成堆疊方塊。他們不會腐爛。"
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- 不要使用 F5 除錯訊息；他會誤導你！"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- 丟掉再拾起物品來重新排列你的物品欄。"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- 「熔爐」不是物品；試著用明火熔鍊。"
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- 較大的合成配方中，中心物品通常最後放置。"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- 卡關了？試著在社群聊天室發問（「關於」頁）。"
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- 較大的合成配方通常較為對稱。"
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- 順序與放置面可能影響合成。"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- 挖方塊挖超過 5 秒代表你使用了錯誤的工具。"
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr "- 方塊不能被錯誤的工具拾起，除了位移的。"
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- 拾起的物品會先嘗試進到選取的物品欄。"
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- 位移的方塊可以像攀登點一樣爬上。"
+
+#, fuzzy
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "- 礦石可能隱藏，但被地勢的隱藏線索揭露。"
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- 有些配方需要「敲打」方塊。"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- 這個遊戲被刻意設計的很有挑戰性，有時令人挫折。不 要 放 棄 ！"
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- 潛行時丟物品來從物品疊中丟出一個。"
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- 堆疊可以被敲打，精確的數量可能影響。"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- 生火有困難？試著使用更長的木棒與更多的可燃物。"
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- 「敲打」是快速的打擊方塊而非挖掘。"
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- 被當成原料的工具狀態必須很好。"
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 個發現、 @2 個可發現、 @3 個延伸"
+
+msgid "Adobe Bricks"
+msgstr "土磚"
+
+msgid "Adobe"
+msgstr "土磚方塊"
+
+msgid "Aggregate"
+msgstr "小石料"
+
+msgid "Charcoal"
+msgstr "木炭方塊"
+
+msgid "Ash"
+msgstr "灰方塊"
+
+msgid "Charcoal Lump"
+msgstr "木炭塊"
+
+msgid "Stone Chip"
+msgstr "石片"
+
+msgid "Stone-Tipped Spade"
+msgstr "石頭鏟"
+
+msgid "Ash Lump"
+msgstr "灰塊"
+
+msgid "CHEATS ENABLED"
+msgstr "作弊模式"
+
+msgid "Grass"
+msgstr "草地"
+
+msgid "Growing Leaves"
+msgstr "生長中的樹葉"
+
+msgid "Living Sponge"
+msgstr "活海綿"
+
+msgid "Loose Leaves"
+msgstr "鬆樹葉"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Stone"
+msgstr "石"
+
+msgid "Loose Dirt"
+msgstr "鬆土"
+
+msgid "Loose Gravel"
+msgstr "鬆礫石"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "MIT 授權條款 (http://www.opensource.org/licenses/MIT)"
+
+msgid "Stick"
+msgstr "木棒"
+
+msgid "Staff"
+msgstr "木棍"
