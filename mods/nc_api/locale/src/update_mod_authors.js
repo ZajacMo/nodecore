@@ -10,7 +10,8 @@ const licensefile = '../../../../LICENSE';
 const overrides = {
 	Wuzzy: { email: 'almikes@aol.com' },
 	'lesha.programmer': { email: 'lesha.programmer@gmail.com', first: '2021' },
-	kuboid: { email: 'community@radtournetz.de', first: '2021' }
+	kuboid: { email: 'community@radtournetz.de', first: '2021' },
+	Warr1024: { omit: true }
 };
 
 const getauthordb = (async () => {
@@ -68,6 +69,7 @@ const done = async () => {
 
 	const lines = Object.assign(...Object.values(authordb.user)
 		.map(x => Object.assign({}, x, overrides[x.raw.username] || {}))
+		.filter(x => !x.omit)
 		.map(x => Object.assign({}, x, {
 			url: x.email || `https://hosted.weblate.org/user/${x.raw.username}/`
 		}))
