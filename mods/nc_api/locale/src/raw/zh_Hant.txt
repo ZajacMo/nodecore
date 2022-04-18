@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-04-17 14:56+0000\n"
+"PO-Revision-Date: 2022-04-18 16:02+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -96,7 +96,7 @@ msgid "Additional Mods Loaded: @1"
 msgstr "已載入額外的模組： @1"
 
 msgid "Adobe Mix"
-msgstr "土灰混合物"
+msgstr "土胚半成品"
 
 #, fuzzy
 msgid "Amalgamation"
@@ -142,7 +142,7 @@ msgid "Loose Cobble"
 msgstr "鬆鵝卵石"
 
 msgid "Loose Sand"
-msgstr "鬆沙"
+msgstr "散沙"
 
 msgid "Matrix: #nodecore:matrix.org"
 msgstr "Matrix: #nodecore:matrix.org"
@@ -154,13 +154,13 @@ msgid "Movement"
 msgstr "移動"
 
 msgid "Stone Bricks"
-msgstr "石磚磚"
+msgstr "石磚方塊"
 
 msgid "Stone-Tipped Hatchet"
-msgstr "石頭斧"
+msgstr "石頭木短斧"
 
 msgid "Stone-Tipped Mallet"
-msgstr "石頭槌"
+msgstr "石頭木槌"
 
 msgid "Sprout"
 msgstr "芽"
@@ -169,7 +169,7 @@ msgid "Sponge"
 msgstr "海綿"
 
 msgid "Stone-Tipped Pick"
-msgstr "石頭鎬"
+msgstr "石頭木鎬"
 
 msgid "Stump"
 msgstr "根"
@@ -248,10 +248,10 @@ msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 個發現、 @2 個可發現、 @3 個延伸"
 
 msgid "Adobe Bricks"
-msgstr "土磚"
+msgstr "土胚磚方塊"
 
 msgid "Adobe"
-msgstr "土磚方塊"
+msgstr "土胚方塊"
 
 msgid "Aggregate"
 msgstr "小石料"
@@ -263,16 +263,16 @@ msgid "Ash"
 msgstr "灰方塊"
 
 msgid "Charcoal Lump"
-msgstr "木炭塊"
+msgstr "木炭"
 
 msgid "Stone Chip"
 msgstr "石片"
 
 msgid "Stone-Tipped Spade"
-msgstr "石頭鏟"
+msgstr "石頭木鏟"
 
 msgid "Ash Lump"
-msgstr "灰塊"
+msgstr "灰"
 
 msgid "CHEATS ENABLED"
 msgstr "作弊模式"
@@ -287,7 +287,7 @@ msgid "Living Sponge"
 msgstr "活海綿"
 
 msgid "Loose Leaves"
-msgstr "鬆樹葉"
+msgstr "落葉"
 
 msgid "NodeCore"
 msgstr "NodeCore"
@@ -296,10 +296,10 @@ msgid "Stone"
 msgstr "石"
 
 msgid "Loose Dirt"
-msgstr "鬆土"
+msgstr "散土"
 
 msgid "Loose Gravel"
-msgstr "鬆礫石"
+msgstr "散礫石"
 
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT 授權條款 (http://www.opensource.org/licenses/MIT)"
@@ -309,3 +309,21 @@ msgstr "木棒"
 
 msgid "Staff"
 msgstr "木棍"
+
+msgid "Annealed Lode"
+msgstr "冷卻類鋼"
+
+msgid "Annealed Lode Adze"
+msgstr "冷卻類鋼鋤"
+
+msgid "Annealed Lode Hatchet"
+msgstr "冷卻類鋼短斧"
+
+msgid "Annealed Lode Mallet"
+msgstr "冷卻類鋼錘"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "冷卻類鋼短斧頭"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "冷卻類鋼錘頭"

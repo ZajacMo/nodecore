@@ -11,6 +11,7 @@ const overrides = {
 	Wuzzy: { email: 'almikes@aol.com' },
 	'lesha.programmer': { email: 'lesha.programmer@gmail.com', first: '2021' },
 	kuboid: { email: 'community@radtournetz.de', first: '2021' },
+	Oblomov: { email: 'giuseppe.bilotta@gmail.com' },
 	Warr1024: { omit: true }
 };
 
