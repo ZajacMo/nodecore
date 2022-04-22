@@ -43,6 +43,7 @@ minetest.register_node(modname .. ":hand", {
 		virtual_item = true,
 		stack_max = 1,
 		node_placement_prediction = "",
+		paramtype = "light",
 		on_punch = minetest.remove_node
 	})
 
