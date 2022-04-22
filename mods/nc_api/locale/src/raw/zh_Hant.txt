@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-04-18 16:02+0000\n"
+"PO-Revision-Date: 2022-04-21 13:14+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -36,7 +36,7 @@ msgid "- Climbing spots may be climbed once black particles appear."
 msgstr "- 出現黑色粒子即可爬上攀爬點。"
 
 msgid "- Crafting is done by building recipes in-world."
-msgstr "- 在世界中建出配方來合成物品。"
+msgstr "- 在世界中建出配方來製作物品。"
 
 msgid "- DONE: @1"
 msgstr "- 完成：@1"
@@ -175,7 +175,7 @@ msgid "Stump"
 msgstr "根"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
-msgstr "- 丟物品在地面上來形成堆疊方塊。他們不會腐爛。"
+msgstr "- 丟物品在地面上來形成堆疊方塊。它們不會腐爛。"
 
 msgid "- Do not use F5 debug info; it will mislead you!"
 msgstr "- 不要使用 F5 除錯訊息；他會誤導你！"
@@ -190,13 +190,13 @@ msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- 較大的合成配方中，中心物品通常最後放置。"
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
-msgstr "- 卡關了？試著在社群聊天室發問（「關於」頁）。"
+msgstr "- 遊戲沒有進展？試著在社群聊天室發問（「關於」頁）。"
 
 msgid "- Larger recipes are usually more symmetrical."
 msgstr "- 較大的合成配方通常較為對稱。"
 
 msgid "- Order and specific face of placement may matter for crafting."
-msgstr "- 順序與放置面可能影響合成。"
+msgstr "- 順序與放置面可能影響製作。"
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr "- 挖方塊挖超過 5 秒代表你使用了錯誤的工具。"
@@ -210,9 +210,8 @@ msgstr "- 拾起的物品會先嘗試進到選取的物品欄。"
 msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr "- 位移的方塊可以像攀登點一樣爬上。"
 
-#, fuzzy
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
-msgstr "- 礦石可能隱藏，但被地勢的隱藏線索揭露。"
+msgstr "- 礦石可能隱藏，地勢有微小線索。"
 
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- 有些配方需要「敲打」方塊。"
@@ -327,3 +326,45 @@ msgstr "冷卻類鋼短斧頭"
 
 msgid "Annealed Lode Mallet Head"
 msgstr "冷卻類鋼錘頭"
+
+msgid "Annealed Lode Pick"
+msgstr "冷卻類鋼鎬"
+
+msgid "Annealed Lode Spade"
+msgstr "冷卻類鋼鏟"
+
+msgid "Annealed Lode Spade Head"
+msgstr "冷卻類鋼鏟頭"
+
+msgid "Annealed Lode Pick Head"
+msgstr "冷卻類鋼鎬頭"
+
+msgid "Chromatic Glass"
+msgstr "速冷玻璃"
+
+msgid "Clear Glass"
+msgstr "清澈玻璃"
+
+msgid "Dirt"
+msgstr "土"
+
+msgid "Discovery"
+msgstr "發現"
+
+msgid "Lode Ore"
+msgstr "類鋼礦"
+
+msgid "Player's Guide: Crafting"
+msgstr "玩家指南：製作"
+
+msgid "Annealed Lode Rake"
+msgstr "冷卻類鋼耙"
+
+msgid "Crafting"
+msgstr "製作"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "開發版"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
