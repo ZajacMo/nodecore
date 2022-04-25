@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-04-21 13:14+0000\n"
+"PO-Revision-Date: 2022-04-25 18:31+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 攀爬點也會產生微光；調高 gamma 值來看見。"
@@ -136,7 +136,7 @@ msgid "Lit Torch"
 msgstr "點燃的火把"
 
 msgid "Log"
-msgstr "樹幹"
+msgstr "原木"
 
 msgid "Loose Cobble"
 msgstr "鬆鵝卵石"
@@ -368,3 +368,45 @@ msgstr "開發版"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Annealed Lode Prill"
+msgstr "冷卻類鋼"
+
+msgid "Lode Cobble"
+msgstr "類鋼鵝卵石"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "玩家指南：移動與探索"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "玩家指南：敲打"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "玩家指南：引導與訣竅"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "玩家指南：物品欄管理"
+
+msgid "Sandstone"
+msgstr "砂岩"
+
+msgid "Sandstone Bricks"
+msgstr "砂岩磚方塊"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "查看內建的 LICENSE 檔案取得全部細節與 credits"
+
+msgid "Torch"
+msgstr "火把"
+
+msgid "Tree Trunk"
+msgstr "樹幹"
+
+msgid "Loose Lode Cobble"
+msgstr "鬆類鋼鵝卵石"
+
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制。"

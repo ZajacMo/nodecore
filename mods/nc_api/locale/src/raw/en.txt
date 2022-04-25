@@ -451,6 +451,9 @@ msgstr "Displaced Node"
 msgid "Dry Rush"
 msgstr "Dry Rush"
 
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "Early-access edition of NodeCore with latest features (and maybe bugs)"
+
 msgid "Eggcorn"
 msgstr "Eggcorn"
 
@@ -754,6 +757,9 @@ msgstr "Matrix: #nodecore:matrix.org"
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
 
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr "Minetest's top original voxel game about emergent mechanics and exploration"
+
 msgid "Molten Glass"
 msgstr "Molten Glass"
 
@@ -765,6 +771,9 @@ msgstr "Niz Charcoal Glyph"
 
 msgid "NodeCore"
 msgstr "NodeCore"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
 
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
