@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-18 16:02+0000\n"
-"Last-Translator: Giuseppe Bilotta <giuseppe.bilotta@gmail.com>\n"
+"PO-Revision-Date: 2022-04-25 21:02+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/it/>\n"
 "Language: it\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
@@ -109,9 +109,8 @@ msgstr "- FATTO: @1"
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Posa gli oggetti sul terreno per creare nodi catasta. Non decadono."
 
-#, fuzzy
 msgid "- Crafting is done by building recipes in-world."
-msgstr "- Le creazioni si fanno costruendo ricette nel mondo"
+msgstr "- Le creazioni si fanno costruendo ricette nel mondo."
 
 msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr ""
@@ -270,7 +269,7 @@ msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 da Aaron Suen <warr1024@@gmail.com>"
 
 msgid "- Drop and pick up items to rearrange your inventory."
-msgstr "- Posa e raccogli gli oggetti per sistemare il tuo inventario"
+msgstr "- Posa e raccogli gli oggetti per sistemare il tuo inventario."
 
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- Se una ricetta esiste, vedrai un effetto speciale di particelle."

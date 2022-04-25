@@ -72,7 +72,8 @@ const done = async () => {
 		.map(x => Object.assign({}, x, overrides[x.raw.username] || {}))
 		.filter(x => !x.omit)
 		.map(x => Object.assign({}, x, {
-			url: x.email || `https://hosted.weblate.org/user/${x.raw.username}/`
+			url: x.email || `https://hosted.weblate.org/user/${x.raw.username}/`,
+			name: x.name || x.raw.full_name,
 		}))
 		.map(x => ({
 			[x.url]: `Portions Copyright (C)${x.first}${x.first === x.last

@@ -6,11 +6,11 @@
 - Can't dig trees or grass? Search for sticks in the canopy.=- Non riesci a scavare alberi o erba? Cerca bastoncini nelle chiome.
 - Climbing spots also produce very faint light; raise display gamma to see.=- I punti di arrampicata producono anche una debole luce; alza la gamma del monitor per vederla.
 - Climbing spots may be climbed once black particles appear.=- I punti di arrampicata possono essere usati per arrampicarsi quando compaiono delle particelle nere.
-- Crafting is done by building recipes in-world.=- Le creazioni si fanno costruendo ricette nel mondo
+- Crafting is done by building recipes in-world.=- Le creazioni si fanno costruendo ricette nel mondo.
 - DONE: @1=- FATTO: @1
 - Displaced nodes can be climbed through like climbing spots.=- Sui nodi spiazzati ci si può arrampicare come sui punti di arrampicata.
 - Do not use F5 debug info; it will mislead you!=- Non usare le informazioni di debug F5; ti porteranno fuori strada!
-- Drop and pick up items to rearrange your inventory.=- Posa e raccogli gli oggetti per sistemare il tuo inventario
+- Drop and pick up items to rearrange your inventory.=- Posa e raccogli gli oggetti per sistemare il tuo inventario.
 - Drop items onto ground to create stack nodes. They do not decay.=- Posa gli oggetti sul terreno per creare nodi catasta. Non decadono.
 - FUTURE: @1=- FUTURI: @1
 - For larger recipes, the center item is usually placed last.=- Per le ricette più grosse, l'elemento centrale è generalmente messo per ultimo.

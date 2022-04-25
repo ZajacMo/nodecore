@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-25 18:31+0000\n"
+"PO-Revision-Date: 2022-04-25 21:02+0000\n"
 "Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
@@ -27,10 +27,9 @@ msgstr ""
 "- Les points d'escalade émettent également une lumière très faible ; "
 "augmenter l'affichage gamma pour le voir."
 
-#, fuzzy
 msgid "- Climbing spots may be climbed once black particles appear."
 msgstr ""
-"- Les points d'escalade peuvent être escaladés lorsque des particules noires "
+"- Les sites d'escalade peuvent être escaladés lorsque des particules noires "
 "apparaissent."
 
 msgid "- Crafting is done by building recipes in-world."
@@ -113,7 +112,7 @@ msgid "White Rosette Flower"
 msgstr "Rosier blanc"
 
 msgid "White Star Flower"
-msgstr "Fleur étoilée blanche"
+msgstr "Bourrache blanche"
 
 msgid "Wooden Mallet Head"
 msgstr "Tête de Maillet en bois"
@@ -202,7 +201,6 @@ msgstr ""
 "- Le minerai peut être caché, mais détectable par de subtils indices dans le "
 "terrain."
 
-#, fuzzy
 msgid "- Recipes are time-based, punching faster does not speed up."
 msgstr ""
 "- Les recettes sont basées sur le temps, cliquer plus rapidement ne les "
@@ -224,7 +222,6 @@ msgstr "- Il n'y a PAS d'écran d'inventaire."
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
 msgstr "- Pour marteler, frapper un bloc à plusieurs reprises SANS le miner."
 
-#, fuzzy
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr ""
 "- Pour courir vite, marcher/nager en avant ou grimper/nager vers le haut en "
@@ -233,7 +230,6 @@ msgstr ""
 msgid "- Tools used as ingredients must be in very good condition."
 msgstr "- Les outils utilisés comme ingrédients doivent être en bon état."
 
-#, fuzzy
 msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
 msgstr ""
 "- Des difficultés à allumer un feu ? Essayer d'utiliser des bâtons plus "
@@ -327,31 +323,31 @@ msgid "Ash Lump"
 msgstr "Morceau de Cendre"
 
 msgid "Azure Bell Flower"
-msgstr "Fleur à cloche azur"
+msgstr "Tulipe azur"
 
 msgid "Azure Cup Flower"
-msgstr "Fleur en coupe azur"
+msgstr "Campanule azur"
 
 msgid "Azure Rosette Flower"
 msgstr "Rosier azur"
 
 msgid "Azure Cluster Flower"
-msgstr "Fleur en grappe azur"
+msgstr "Grappe de fleurs azur"
 
 msgid "Azure Star Flower"
-msgstr "Fleur étoilée azur"
+msgstr "Bourrache azur"
 
 msgid "Black Bell Flower"
-msgstr "Fleur à cloche noire"
+msgstr "Tulipe noire"
 
 msgid "Blue Bell Flower"
-msgstr "Fleur à cloche bleue"
+msgstr "Canpanule bleue"
 
 msgid "Black Cup Flower"
-msgstr "Fleur en coupe noire"
+msgstr "Campanule noire"
 
 msgid "Blue Cup Flower"
-msgstr "Fleur en coupe bleue"
+msgstr "Campanule bleue"
 
 msgid "Black Rosette Flower"
 msgstr "Rosier noir"
@@ -360,28 +356,28 @@ msgid "Blue Rosette Flower"
 msgstr "Rosier bleu"
 
 msgid "Black Star Flower"
-msgstr "Fleur étoilée noire"
+msgstr "Bourrache noire"
 
 msgid "Black Cluster Flower"
-msgstr "Fleur en grappe noire"
+msgstr "Grappe de fleurs noires"
 
 msgid "Blue Cluster Flower"
-msgstr "Fleur en grappe bleue"
+msgstr "Grappe de fleurs bleues"
 
 msgid "Blank"
 msgstr "Lisse"
 
 msgid "Bonded Adobe Brick Panel"
-msgstr "Panneau de Briques d'Adobe Lié"
+msgstr "Panneau de Briques d'Adobe Fixé"
 
 msgid "Bonded Adobe Brick Hinged Panel"
-msgstr "Panneau Pivotant de Briques d'Adobe Lié"
+msgstr "Panneau Pivotant de Briques d'Adobe Fixé"
 
 msgid "Bonded Adobe Bricks"
-msgstr "Brique d'Adobe Liée"
+msgstr "Briques d'Adobe Fixées"
 
 msgid "Bonded Sandstone Brick Hinged Panel"
-msgstr "Panneau Pivotant de Grès Lié"
+msgstr "Panneau Pivotant de Grès Fixé"
 
 msgid "Chromatic Glass"
 msgstr "Verre Chromatique"
@@ -399,16 +395,16 @@ msgid "Burning Embers"
 msgstr "Braises Ardentes"
 
 msgid "Bonded Sandstone Brick Panel"
-msgstr "Panneau de Brique de Grès Lié"
+msgstr "Panneau de Briques de Grès Fixé"
 
 msgid "Bonded Stone Brick Hinged Panel"
-msgstr "Panneau Pivotant de Brique de Pierres Liée"
+msgstr "Panneau Pivotant de Briques de Pierres Fixé"
 
 msgid "Bonded Stone Brick Panel"
-msgstr "Panneau de Brique de Pierres Lié"
+msgstr "Panneau de Briques de Pierres Fixé"
 
 msgid "Bonded Stone Bricks"
-msgstr "Brique de Pierre Liée"
+msgstr "Briques de Pierre Fixé"
 
 msgid "Dirt"
 msgstr "Terre"
@@ -462,7 +458,7 @@ msgid "Torch"
 msgstr "Torche"
 
 msgid "White Cup Flower"
-msgstr "Fleur en coupe blanche"
+msgstr "Campanule blanche"
 
 msgid "anneal a lode cube"
 msgstr "recuire un cube de métal"
@@ -767,9 +763,8 @@ msgstr "travailler le métal brillant sur une enclume en métal"
 msgid "work glowing lode on a stone anvil"
 msgstr "travailler le métal brillant sur une enclume de pierre"
 
-#, fuzzy
 msgid "work annealed lode on a tempered lode anvil"
-msgstr "travailler le métal trempé sur une enclume en métal trempé"
+msgstr "travailler le métal recuit sur une enclume en métal trempé"
 
 msgid "wilt a flower"
 msgstr "sécher une fleur"
@@ -800,7 +795,6 @@ msgstr "Métal Brillant"
 msgid "Glowing Lode Adze"
 msgstr "Herminette de Métal Brillant"
 
-#, fuzzy
 msgid "Glowing Lode Cobble"
 msgstr "Pierre de Métal Brillant"
 
@@ -919,19 +913,19 @@ msgid "Odo Charcoal Glyph"
 msgstr "Glyphe de Charbon Odo"
 
 msgid "Orange Bell Flower"
-msgstr "Fleur à cloche orange"
+msgstr "Tulipe orange"
 
 msgid "Pink Bell Flower"
-msgstr "Fleur à cloche rose"
+msgstr "Tulipe rose"
 
 msgid "Orange Cup Flower"
-msgstr "Fleur en coupe orange"
+msgstr "Campanule orange"
 
 msgid "Orange Rosette Flower"
 msgstr "Rosier orange"
 
 msgid "Orange Star Flower"
-msgstr "Fleur étoilée orange"
+msgstr "Bourrache orange"
 
 msgid "Player's Guide: Movement and Navigation"
 msgstr "Guide du Joueur : Déplacement et Navigation"
@@ -940,16 +934,16 @@ msgid "Player's Guide: Pummeling Recipes"
 msgstr "Guide du Joueur : Recette avec martellement"
 
 msgid "Pink Cup Flower"
-msgstr "Fleur en coupe rose"
+msgstr "Campanule rose"
 
 msgid "Pink Rosette Flower"
 msgstr "Rosier rose"
 
 msgid "Pink Star Flower"
-msgstr "Fleur étoilée rose"
+msgstr "Bourrache rose"
 
 msgid "Pink Cluster Flower"
-msgstr "Fleur en grappe rose"
+msgstr "Grappe de fleurs rose"
 
 msgid "Prism"
 msgstr "Prisme"
@@ -976,19 +970,19 @@ msgid "Pumwater"
 msgstr "Magma"
 
 msgid "Red Bell Flower"
-msgstr "Fleur à cloche rouge"
+msgstr "Tulipe rouge"
 
 msgid "Red Cluster Flower"
-msgstr "Fleur en grappe rouge"
+msgstr "Grappe de fleurs rouge"
 
 msgid "Red Cup Flower"
-msgstr "Fleur en coupe rouge"
+msgstr "Campanule rouge"
 
 msgid "Red Rosette Flower"
 msgstr "Rosier rouge"
 
 msgid "Red Star Flower"
-msgstr "Fleur étoilée rouge"
+msgstr "Bourrache rouge"
 
 msgid "Rush"
 msgstr "Jonc"
@@ -1063,19 +1057,19 @@ msgid "Tree Trunk"
 msgstr "Tronc d'Arbre"
 
 msgid "Violet Bell Flower"
-msgstr "Fleur à cloche violette"
+msgstr "Tulipe violette"
 
 msgid "Violet Cup Flower"
-msgstr "Fleur en coupe violette"
+msgstr "Campanule violette"
 
 msgid "Violet Rosette Flower"
 msgstr "Rosier violet"
 
 msgid "Violet Star Flower"
-msgstr "Fleur étoilée violette"
+msgstr "Bourrache violette"
 
 msgid "Violet Cluster Flower"
-msgstr "Fleur en grappe violette"
+msgstr "Grappe de fleurs violette"
 
 msgid "Water"
 msgstr "Eau"
@@ -1093,7 +1087,7 @@ msgid "Wet Sponge"
 msgstr "Éponge Humide"
 
 msgid "White Bell Flower"
-msgstr "Fleur à cloche blanche"
+msgstr "Tulipe blanche"
 
 msgid "Wooden Adze"
 msgstr "Herminette en bois"
@@ -1105,22 +1099,22 @@ msgid "Wooden Form"
 msgstr "Charpente en bois"
 
 msgid "Wilted Bell Flower"
-msgstr "Fleur à cloche fanée"
+msgstr "Tulipe fanée"
 
 msgid "Wilted Cup Flower"
-msgstr "Fleur en coupe fanée"
+msgstr "Campanule fanée"
 
 msgid "Wilted Rosette Flower"
 msgstr "Rosier fané"
 
 msgid "Wilted Star Flower"
-msgstr "Fleur étoilée fanée"
+msgstr "Bourrache fanée"
 
 msgid "White Cluster Flower"
-msgstr "Fleur en grappe blanche"
+msgstr "Grappe de fleurs blanche"
 
 msgid "Wilted Cluster Flower"
-msgstr "Fleur en grappe fanée"
+msgstr "Grappe de fleurs fanée"
 
 msgid "Wicker"
 msgstr "Osier"
@@ -1153,19 +1147,19 @@ msgid "Xrp Charcoal Glyph"
 msgstr "Glyphe de Charbon Xrp"
 
 msgid "Yellow Bell Flower"
-msgstr "Fleur à cloche jaune"
+msgstr "Tulipe jaune"
 
 msgid "Yellow Cup Flower"
-msgstr "Fleur en coupe jaune"
+msgstr "Campanule jaune"
 
 msgid "Yellow Cluster Flower"
-msgstr "Fleur en grappe jaune"
+msgstr "Grappe de fleurs jaune"
 
 msgid "Yellow Rosette Flower"
 msgstr "Rosier jaune"
 
 msgid "Yellow Star Flower"
-msgstr "Fleur étoilée jaune"
+msgstr "Bourrache jaune"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr ""
@@ -1210,7 +1204,7 @@ msgstr ""
 "importants."
 
 msgid "Amalgamation"
-msgstr "Combinaison"
+msgstr "Amalgame"
 
 msgid "Aggregate"
 msgstr "Agrégat"
@@ -1348,9 +1342,9 @@ msgstr "Pioche de Métal Trempé"
 
 msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
 msgstr ""
-"Le système de découverte ne vous informe que de l'existence de mécaniques de "
-"jeu basiques. Pour les techniques plus avancées, telles que les systèmes "
-"émergents et l'automatisation, vous devrez les inventez par vous-même !"
+"Le système de découvertes ne vous informe que de l'existence de mécaniques "
+"de jeu basiques. Pour les techniques plus avancées, telles que les systèmes "
+"émergents et l'automatisation, vous devrez les inventer par vous-même !"
 
 msgid "Wooden Frame"
 msgstr "Cadre en bois"
@@ -1389,10 +1383,361 @@ msgid "assemble a lode crate from form and bar"
 msgstr "assembler une caisse de métal à partir d'une charpente et d'une barre"
 
 msgid "Orange Cluster Flower"
-msgstr "Fleur en grappe orange"
+msgstr "Grappe de fleurs orange"
 
 msgid "Blue Star Flower"
-msgstr "Fleur étoilée bleue"
+msgstr "Bourrache bleue"
 
 msgid "Bonded Sandstone Bricks"
-msgstr "Brique de Grès Liée"
+msgstr "Briques de Grès Fixés"
+
+msgid "Boxy"
+msgstr "Carré"
+
+msgid "Flux"
+msgstr "Flux"
+
+msgid "Hashy"
+msgstr "Hashé"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Grès Malléable Glacée"
+
+msgid "Pliant Adobe"
+msgstr "Adobe Malléable"
+
+msgid "Tarstone Bricks"
+msgstr "Briques de Bitume"
+
+msgid "Tarstone"
+msgstr "Bitume"
+
+msgid "Verty Pliant Sandstone"
+msgstr "Grès Malléable Vertical"
+
+msgid "Verty Pliant Adobe"
+msgstr "Adobe Malléable Verticale"
+
+msgid "chisel tarstone bricks"
+msgstr "ciseler des briques de bitume"
+
+msgid "gate a prism"
+msgstr "fermer un prisme"
+
+msgid "lux-infuse a lode tool"
+msgstr "outils de métal infusé de lumière"
+
+msgid "Bindy"
+msgstr "Lié"
+
+msgid "Bindy Adobe"
+msgstr "Adobe Liée"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Adobe Malléable Liée"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Grès Malléable Lié"
+
+msgid "Bindy Pliant Stone"
+msgstr "Roche Malléable Liée"
+
+msgid "Bindy Sandstone"
+msgstr "Grès Lié"
+
+msgid "Bindy Stone"
+msgstr "Roche Liée"
+
+msgid "Bindy Tarstone"
+msgstr "Bitume Lié"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Bitume Malléable Lié"
+
+msgid "Bricky"
+msgstr "Briqué"
+
+msgid "Bricky Adobe"
+msgstr "Adobe Briquée"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Adobe Malléable Briquée"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Grès Malléable Briqué"
+
+msgid "Bricky Pliant Stone"
+msgstr "Roche Malléable Briquée"
+
+msgid "Bricky Sandstone"
+msgstr "Grès Briqué"
+
+msgid "Bricky Stone"
+msgstr "Roche Briquée"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Grès Malléable Carré"
+
+msgid "Boxy Sandstone"
+msgstr "Grès Carré"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Adobe Malléable Carrée"
+
+msgid "Boxy Adobe"
+msgstr "Adobe Carrée"
+
+msgid "Boxy Pliant Stone"
+msgstr "Roche Malléable Carrée"
+
+msgid "Boxy Stone"
+msgstr "Roche Carrée"
+
+msgid "Bricky Tarstone"
+msgstr "Bitume Briqué"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Bitume Malléable Briqué"
+
+msgid "Boxy Tarstone"
+msgstr "Bitume Carré"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Bitume Malléable Carré"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Briques de Bitume Fixées"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Panneau de Briques de Bitume Fixé"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Panneau Pivotant de Briques de Bitume Fixé"
+
+msgid "bond adobe bricks"
+msgstr "fixer des briques d'adobe"
+
+msgid "bond sandstone bricks"
+msgstr "fixer des briques de grès"
+
+msgid "bond stone bricks"
+msgstr "fixer des briques de pierre"
+
+msgid "bond tarstone bricks"
+msgstr "fixer des briques de bitume"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "ajouter du charbon à de l'agrégat pour fabriquer du bitume"
+
+msgid "find lux"
+msgstr "trouver du lux"
+
+msgid "find an eggcorn"
+msgstr "trouver un gland"
+
+msgid "dig up lux cobble"
+msgstr "miner de la pierre lux"
+
+msgid "observe a lux reaction"
+msgstr "observer une réaction lumineuse"
+
+msgid "observe lux criticality"
+msgstr "observer le seuil de lux"
+
+msgid "plant an eggcorn"
+msgstr "planter un gland"
+
+msgid "Eggcorn"
+msgstr "Gland"
+
+msgid "Gated Prism"
+msgstr "Prisme Fermé"
+
+msgid "Glued Gated Prism"
+msgstr "Prisme Fermé Collé"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Adobe Malléable Hashée"
+
+msgid "Horzy"
+msgstr "Horizontal"
+
+msgid "Horzy Adobe"
+msgstr "Adobe Horizontale"
+
+msgid "Hashy Tarstone"
+msgstr "Bitume Hashé"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Bitume Malléable Hashé"
+
+msgid "Hashy Pliant Stone"
+msgstr "Roche Malléable Hashée"
+
+msgid "Hashy Sandstone"
+msgstr "Grès Hashé"
+
+msgid "Hashy Stone"
+msgstr "Roche Hashée"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Grès Malléable Horizontal"
+
+msgid "Horzy Pliant Stone"
+msgstr "Roche Malléable Horizontale"
+
+msgid "Horzy Sandstone"
+msgstr "Grès Horizontal"
+
+msgid "Horzy Stone"
+msgstr "Roche Horizontal"
+
+msgid "Horzy Tarstone"
+msgstr "Bitume Horizontal"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Bitume Malléable Horizontal"
+
+msgid "Iceboxy"
+msgstr "Glacé"
+
+msgid "Iceboxy Adobe"
+msgstr "Adobe Glacée"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Adobe Malléable Glacée"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Roche Malléable Glacée"
+
+msgid "Iceboxy Sandstone"
+msgstr "Grès Glacé"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Bitume Malléable Glacé"
+
+msgid "Iceboxy Stone"
+msgstr "Roche Glacée"
+
+msgid "Iceboxy Tarstone"
+msgstr "Bitume Glacé"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Herminette de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Hachette de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Maillet de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Pioche de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Pic de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Râteau de Métal Recuit Infusé"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Hachette de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Maillet de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Pioche de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Pic de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Râteau de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Pelle de Métal Trempé Infusé"
+
+msgid "Lux Cobble"
+msgstr "Pierre de Lux"
+
+msgid "Pliant Sandstone"
+msgstr "Grès Malléable"
+
+msgid "Pliant Stone"
+msgstr "Roche Malléable"
+
+msgid "Pliant Tarstone"
+msgstr "Bitume Malléable"
+
+msgid "Render"
+msgstr "Chaux"
+
+msgid "Vermy"
+msgstr "Vermoulu"
+
+msgid "Vermy Adobe"
+msgstr "Adobe Vermoulue"
+
+msgid "Vermy Pliant Adobe"
+msgstr "Adobe Malléable Vermoulue"
+
+msgid "Vermy Pliant Stone"
+msgstr "Roche Malléable Vermoulue"
+
+msgid "Vermy Sandstone"
+msgstr "Grès Vermoulu"
+
+msgid "Vermy Stone"
+msgstr "Roche Vermoulu"
+
+msgid "Verty"
+msgstr "Vertical"
+
+msgid "Verty Adobe"
+msgstr "Adobe Verticale"
+
+msgid "Vermy Tarstone"
+msgstr "Bitume Vermoulu"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Bitume Malléable Vermoulu"
+
+msgid "Verty Pliant Stone"
+msgstr "Roche Malléable Verticale"
+
+msgid "Verty Sandstone"
+msgstr "Grès Vertical"
+
+msgid "Verty Stone"
+msgstr "Roche Verticale"
+
+msgid "Verty Tarstone"
+msgstr "Bitume Vertical"
+
+msgid "Verty Pliant Tarstone"
+msgstr "Bitume Malléable Vertical"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Agrégat bitumeux humide"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Glyphe de Charbon Yit"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "Grès Malléable Vermoulu"
+
+msgid "Horzy Pliant Adobe"
+msgstr "Adobe Malléable Horizontale"
+
+msgid "Hashy Adobe"
+msgstr "Adobe Hashée"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Grès Malléable Hashé"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Pelle de Métal Recuit Infusé"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Herminette de Métal Trempé Infusé"
