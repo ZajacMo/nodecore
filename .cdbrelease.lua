@@ -38,7 +38,7 @@ return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
 	version = version,
 	type = "game",
-	title = "NodeCore" .. pkgmeta.title(alpha),
+	title = pkgmeta.title(alpha),
 	short_description = pkgmeta.desc(alpha),
 	dev_state = alpha and "BETA" or "ACTIVELY_DEVELOPED",
 	tags = tags,
