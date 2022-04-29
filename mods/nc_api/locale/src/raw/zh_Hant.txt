@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-04-25 18:31+0000\n"
+"PO-Revision-Date: 2022-04-27 13:15+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -410,3 +410,15 @@ msgstr "鬆類鋼鵝卵石"
 
 msgid "Minetest's top original voxel game about emergent mechanics and exploration"
 msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制。"
+
+msgid "Annealed Lode Frame"
+msgstr "冷卻類鋼框"
+
+msgid "Wooden Frame"
+msgstr "木框"
+
+msgid "assemble a wooden frame from staves"
+msgstr "用一些 木棍製作木框"
+
+msgid "convert a wooden frame to a form"
+msgstr "由木框製作成型框"

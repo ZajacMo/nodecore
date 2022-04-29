@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-25 21:02+0000\n"
+"PO-Revision-Date: 2022-04-27 07:16+0000\n"
 "Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
@@ -770,7 +770,7 @@ msgid "wilt a flower"
 msgstr "sécher une fleur"
 
 msgid "wet a concrete mix"
-msgstr "sécher un mélange de béton"
+msgstr "mouiller un mélange de béton"
 
 msgid "Fire"
 msgstr "Feu"
@@ -1075,13 +1075,13 @@ msgid "Water"
 msgstr "Eau"
 
 msgid "Wet Adobe Mix"
-msgstr "Mélange d'Adobe Mouillé"
+msgstr "Mélange d'Adobe Humide"
 
 msgid "Wet Aggregate"
-msgstr "Agrégat Mouillé"
+msgstr "Agrégat Humide"
 
 msgid "Wet Render"
-msgstr "Chaux Mouillée"
+msgstr "Chaux Humide"
 
 msgid "Wet Sponge"
 msgstr "Éponge Humide"
@@ -1422,7 +1422,7 @@ msgid "chisel tarstone bricks"
 msgstr "ciseler des briques de bitume"
 
 msgid "gate a prism"
-msgstr "fermer un prisme"
+msgstr "commander un prisme"
 
 msgid "lux-infuse a lode tool"
 msgstr "outils de métal infusé de lumière"
@@ -1551,10 +1551,10 @@ msgid "Eggcorn"
 msgstr "Gland"
 
 msgid "Gated Prism"
-msgstr "Prisme Fermé"
+msgstr "Prisme Commandé"
 
 msgid "Glued Gated Prism"
-msgstr "Prisme Fermé Collé"
+msgstr "Prisme Commandé Collé"
 
 msgid "Hashy Pliant Adobe"
 msgstr "Adobe Malléable Hashée"
@@ -1719,7 +1719,7 @@ msgid "Verty Pliant Tarstone"
 msgstr "Bitume Malléable Vertical"
 
 msgid "Wet Tarry Aggregate"
-msgstr "Agrégat bitumeux humide"
+msgstr "Agrégat Bitumeux Humide"
 
 msgid "Yit Charcoal Glyph"
 msgstr "Glyphe de Charbon Yit"
