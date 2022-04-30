@@ -55,7 +55,6 @@ local function regspring(label, node, rarity)
 				* factor
 				local qty = math_floor(rawqty)
 				if rng() < (rawqty - qty) then qty = qty + 1 end
-				print("qty: " .. qty)
 
 				for _ = 1, qty do
 					local x = rng(minp.x + 1, maxp.x - 1)
