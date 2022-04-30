@@ -9,14 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Pumwater is too hard to find
-	- Make springs more plentiful at depths <= -256?
-	- Add a new pum-construct?
-		- Extra pools?
-		- Amalgamation touching water?
-		- Pockets/traps?
-	- Make it especially plentiful below -512-ish
-
 - Brickmaking hints are too specific.
 	- Currently some hints tend to stay "future" because players
 	  must make the exact base form of adobe/sandstone/tarstone
