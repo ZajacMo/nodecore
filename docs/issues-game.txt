@@ -9,9 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Lode hints too hard to see deep underground
-	- Need to make them bolder as we make hard stone pattern bolder
-
 - Pumwater is too hard to find
 	- Make springs more plentiful at depths <= -256?
 	- Add a new pum-construct?
