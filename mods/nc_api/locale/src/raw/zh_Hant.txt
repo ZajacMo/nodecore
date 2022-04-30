@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-04-27 13:15+0000\n"
+"PO-Revision-Date: 2022-04-30 13:14+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 攀爬點也會產生微光；調高 gamma 值來看見。"
@@ -370,7 +370,7 @@ msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
 msgid "Annealed Lode Prill"
-msgstr "冷卻類鋼"
+msgstr "冷卻類鋼粒"
 
 msgid "Lode Cobble"
 msgstr "類鋼鵝卵石"
@@ -409,7 +409,7 @@ msgid "Loose Lode Cobble"
 msgstr "鬆類鋼鵝卵石"
 
 msgid "Minetest's top original voxel game about emergent mechanics and exploration"
-msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制。"
+msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制"
 
 msgid "Annealed Lode Frame"
 msgstr "冷卻類鋼框"
@@ -418,7 +418,85 @@ msgid "Wooden Frame"
 msgstr "木框"
 
 msgid "assemble a wooden frame from staves"
-msgstr "用一些 木棍製作木框"
+msgstr "用一些木棍製作木框"
 
 msgid "convert a wooden frame to a form"
 msgstr "由木框製作成型框"
+
+msgid "Crude Glass"
+msgstr "粗糙玻璃"
+
+msgid "Wooden Form"
+msgstr "木成型框"
+
+msgid "Wooden Mallet"
+msgstr "木槌"
+
+msgid "put a stone tip onto a wooden tool"
+msgstr "在木製工具上放置一石片"
+
+msgid "carve wooden tool heads from planks"
+msgstr "把木材削成木工具頭"
+
+msgid "breed a new flower variety"
+msgstr "培育新種花朵"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "由木鋤與一木棒組裝木耙"
+
+msgid "Wooden Pick Head"
+msgstr "木鎬頭"
+
+msgid "assemble a staff from sticks"
+msgstr "由木棒組裝木棍"
+
+msgid "Wooden Hatchet"
+msgstr "木短斧"
+
+msgid "assemble a wooden tool"
+msgstr "組裝一木製工具"
+
+msgid "assemble an adze out of sticks"
+msgstr "由木棒組裝木鋤"
+
+msgid "Wooden Adze"
+msgstr "木鋤"
+
+msgid "Wooden Hatchet Head"
+msgstr "木短斧頭"
+
+msgid "Wooden Ladder"
+msgstr "木梯"
+
+msgid "Wooden Mallet Head"
+msgstr "木槌頭"
+
+msgid "Wooden Pick"
+msgstr "木鎬"
+
+msgid "Wooden Plank"
+msgstr "木材"
+
+msgid "Wooden Rake"
+msgstr "木耙"
+
+msgid "Wooden Shelf"
+msgstr "木儲物架"
+
+msgid "Wooden Spade"
+msgstr "木鏟"
+
+msgid "Wooden Spade Head"
+msgstr "木鏟頭"
+
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "由一木成型框與一木材組成一木儲物架"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "由木棒組裝木梯"
+
+msgid "carve a wooden plank completely"
+msgstr "完整地把木材削成木棒"
+
+msgid "convert a wooden form to a frame"
+msgstr "由木成型框製作木框"
