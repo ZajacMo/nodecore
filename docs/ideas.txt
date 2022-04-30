@@ -9,6 +9,17 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Improve lode ore hint-stains
+	- Make sure hint stone always indicates at least some real ore
+	- Generate ore veins in mapgen
+	- In post-gen, find ore, spread stone stains outward in a few
+	  random direction streaks
+
+- Need a way to detect "curing/cooling" recipes, such as concrete
+  becoming pliant or glass cooling.
+	- Make a non-sunlight-propagates airlike node appear above
+	  for a couple seconds, corresponding to the smoke plume?
+
 - Full-stack rendering optimization
 	- Huge piles of cobble stacks cause significant framerate loss
 	- https://gitlab.com/sztest/nodecore/-/merge_requests/19
@@ -32,6 +43,14 @@ IDEAS: Possible future additions/improvements to the game
 	- Only if not already on the ground?
 
 - Aux-punch to take 1 item out of a stack?
+
+- Discovery Expansion
+	- Support for "hidden" hints that never show up as hidden/future, but
+	  only appear when completed.
+		- For bonus/hidden content like renewal recipes.
+	- Allow hints to be assigned IDs/groups, used as prereqs themselves.
+		- Would need a deferred/multipass system for testing.
+	- Maybe show hidden hints once all non-hidden ones are done?
 
 - Half hint completion from witnessing?
 	- Some hints are witness-only like leaching, you just get full

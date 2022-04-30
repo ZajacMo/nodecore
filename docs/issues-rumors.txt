@@ -9,6 +9,14 @@ ISSUES-RUMORS: Unconfirmed or difficult to reproduce heisenbugs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Items landing on crate without fallin gin
+	- Oblomov: door pushing hatched head used to chop low grade
+	  coal into coal chunks and ash; lode crate under the
+	  to-be-chopped node; node gets chopped, some lumps end on the
+	  crate without falling in despite the fact that the crate is
+	  empty
+	- https://discord.com/channels/507234450615042048/507234451085066248/961722477229260832
+
 - Loose leaf nodes disappearing almost immediately after creation,
   including from natural decay
 	- Reported by Kimapr in nodecore-ingame 2022-01-17

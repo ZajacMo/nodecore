@@ -9,8 +9,8 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Door crafting issues:
-	- Should tickling mechanic work with doors?
+- Lode hints too hard to see deep underground
+	- Need to make them bolder as we make hard stone pattern bolder
 
 - Pumwater is too hard to find
 	- Make springs more plentiful at depths <= -256?
@@ -19,6 +19,24 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Amalgamation touching water?
 		- Pockets/traps?
 	- Make it especially plentiful below -512-ish
+
+- Brickmaking hints are too specific.
+	- Currently some hints tend to stay "future" because players
+	  must make the exact base form of adobe/sandstone/tarstone
+	  to enable them.
+	- Just give players hints for the process of brickmaking
+	  rather than pre-material?
+	- https://discord.com/channels/507234450615042048/507234451085066248/963498043708178522
+
+- Facedir nodes should get a random facedir (top-up, random cardinal
+  orientation) after crafting.
+
+- /snuff should probably snuff torches too
+	- General snuffable/on_snuff API?
+	- Merge with growtrees for a general on_cheat API?
+
+- Door crafting issues:
+	- Should tickling mechanic work with doors?
 
 - Detect and warn players about misuse of singlenode mapgen
 	- Mods can register if they're supporting singlenode.
