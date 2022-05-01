@@ -64,7 +64,6 @@ minetest.node_dig = function(pos, node, user, ...)
 	laststack = nodecore.stack_get(pos)
 	local wield = nodecore.machine_digging and nodecore.machine_digging.tool
 	or user and user:is_player() and user:get_wielded_item()
-	print(wield and wield:to_string() or "nada")
 	lastraking = wield and (wield:get_definition() or {}).on_rake
 	if lastraking then return deferfall(old_node_dig, pos, node, user, ...) end
 	return old_node_dig(pos, node, user, ...)

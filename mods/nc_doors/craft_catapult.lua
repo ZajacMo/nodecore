@@ -58,6 +58,7 @@ local function checktarget(data, stack)
 			nodedef = def,
 			duration = 3600,
 			presstoolpos = data.pointed.under,
+			wield = stack,
 			toolgroupcaps = caps.groups
 		}
 		return nodecore.craft_search(target, node, pumdata)
