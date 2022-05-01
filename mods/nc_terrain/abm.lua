@@ -8,7 +8,7 @@ local modname = minetest.get_current_modname()
 local dirt = modname .. ":dirt"
 local grass = modname .. ":dirt_with_grass"
 
-local grassable_nodes = {}
+local grass_under_nodes = {}
 do
 	local breathable = {
 		airlike = true,
@@ -28,34 +28,38 @@ do
 				if def.drawtype and breathable[def.drawtype]
 				and (not (def.groups and def.groups.moist))
 				and (def.damage_per_second or 0) <= 0 then
-					grassable_nodes[name] = true
+					grass_under_nodes[name] = true
 				end
 			end
 		end)
 end
 
 -- nil = stay, false = die, true = grow
-local function grassable(above)
+local function can_grass_grow_under(above)
 	local nodename = minetest.get_node(above).name
 	if nodename == "ignore" then return end
-	if (not grassable_nodes[nodename]) then return false end
+	if (not grass_under_nodes[nodename]) then return false end
 	local ln = nodecore.get_node_light(above)
 	if not ln then return end
 	return ln >= 10
 end
-nodecore.grassable = grassable
+nodecore.can_grass_grow_under = can_grass_grow_under
+
+nodecore.grassable = function(...)
+	nodecore.log("warning", "deprecated nodecore.grassable(pos)")
+	return nodecore.can_grass_grow_under(...)
+end
 
 minetest.register_abm({
 		label = "grass spread",
-		nodenames = {"group:soil"},
+		nodenames = {"group:grassable"},
 		neighbors = {grass},
 		neighbors_invert = true,
 		interval = 6,
 		chance = 50,
-		action = function(pos, node)
-			if node.name == grass then return end
+		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if not grassable(above) then return end
+			if not can_grass_grow_under(above) then return end
 			return minetest.set_node(pos, {name = grass})
 		end
 	})
@@ -67,7 +71,7 @@ minetest.register_abm({
 		chance = 50,
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if grassable(above) ~= false then return end
+			if can_grass_grow_under(above) ~= false then return end
 			return minetest.set_node(pos, {name = dirt})
 		end
 	})

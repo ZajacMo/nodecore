@@ -404,10 +404,6 @@ function nodecore.grav_air_accel_ent(obj)
 	return obj:set_acceleration(new)
 end
 
-function nodecore.near_unloaded(pos, radius)
-	return minetest.find_node_near(pos, radius or 1, {"ignore"}, true)
-end
-
 function nodecore.get_objects_at_pos(pos)
 	pos = vector.round(pos)
 	local t = {}
@@ -498,7 +494,9 @@ local function mismatch(a, b, exact)
 	if type(a) == "table" then
 		if type(b) ~= "table" then return true end
 		for k, v in pairs(a) do
-			if mismatch(v, b[k], exact) then return true end
+			if string_sub(k, 1, 1) ~= "_"
+			and mismatch(v, b[k], exact)
+			then return true end
 		end
 		return
 	end

@@ -20,6 +20,7 @@ local function ambiance_core(def, getpos)
 				local opts = queue[i]
 				opts.name = opts.name or def.sound_name
 				opts.gain = opts.gain or def.sound_gain
+				opts.pitch = opts.pitch or def.sound_pitch
 				minetest.after(opts.delay, function()
 						nodecore.sound_play(opts.name, opts)
 					end)
@@ -39,6 +40,7 @@ local function ambiance_core(def, getpos)
 		if def.check then
 			opts = def.check(pos)
 			if not opts then return end
+			if opts == true then opts = {} end
 		else
 			opts = {}
 		end

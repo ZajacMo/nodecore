@@ -92,9 +92,16 @@ function nodecore.node_sound(pos, kind, opts)
 	return nodecore.sound_play_except(t.name, t, opts and opts.except)
 end
 
+local noisy = 0
+minetest.register_globalstep(function(dtime)
+		noisy = noisy - 25 * dtime
+		if noisy < 0 then noisy = 0 end
+	end)
 local function mkloud(fname)
 	return function(pos, node, opts)
 		minetest[fname](pos, node)
+		if noisy > math_random(5, 25) then return end
+		noisy = noisy + 1
 		opts = opts or {}
 		opts.node = node
 		return nodecore.node_sound(pos, "place", opts)

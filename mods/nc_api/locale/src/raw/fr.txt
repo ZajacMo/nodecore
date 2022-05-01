@@ -1,0 +1,1743 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-04-27 07:16+0000\n"
+"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
+"fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.12.1-dev\n"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr ""
+"- Vous n'arrivez pas à miner les arbres ou l'herbe ? Essayez de chercher des "
+"bâtons dans la canopée."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Les points d'escalade émettent également une lumière très faible ; "
+"augmenter l'affichage gamma pour le voir."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- Les sites d'escalade peuvent être escaladés lorsque des particules noires "
+"apparaissent."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr ""
+"- La fabrication se fait en construisant les recettes dans le monde nodecore."
+
+msgid "- DONE: @1"
+msgstr "- FAIT : @1"
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Les blocs déplacés peuvent être escaladés comme points d'escalade."
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+Lâcher n'importe quel objet pour tout lâcher."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Bloqué(e) sans aucun espoir ? Essayez de demander de l'aide dans les "
+"salons de discussion de la communauté (About tab)."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Lâcher et récupérer des objets pour réarranger votre inventaire."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr ""
+"- Lâcher des objets sur le sol pour créer des blocs piles d'objet. Elles ne "
+"se décomposent pas."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Pour les plus grandes recettes, l'objet central généralement placé en "
+"dernier."
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "Cobble Panel"
+msgstr "Panneau en Pierre"
+
+msgid "Cracked Stone"
+msgstr "Roche Fissurée"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Glyphe de Charbon Fot"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Tête de Hachette de Métal Brillant"
+
+msgid "Graveled Adze"
+msgstr "Herminette en gravier"
+
+msgid "Loose Humus"
+msgstr "Humus Instable"
+
+msgid "Loose Gravel"
+msgstr "Gravier Instable"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Guide du Joueur : Conseils et Astuces"
+
+msgid "Raked Dirt"
+msgstr "Terre ratissée"
+
+msgid "Raked Gravel"
+msgstr "Gravier ratissé"
+
+msgid "Stump"
+msgstr "Souche"
+
+msgid "Tempered Lode Pick"
+msgstr "Pic de Métal Trempé"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Glyphe de Charbon Tof"
+
+msgid "Tips"
+msgstr "Astuces"
+
+msgid "White Rosette Flower"
+msgstr "Rosier blanc"
+
+msgid "White Star Flower"
+msgstr "Bourrache blanche"
+
+msgid "Wooden Mallet Head"
+msgstr "Tête de Maillet en bois"
+
+msgid "Wooden Panel"
+msgstr "Panneau en bois"
+
+msgid "Wooden Pick"
+msgstr "Pic en bois"
+
+msgid "Wooden Pick Head"
+msgstr "Tête de Pic en bois"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Glyphe de Charbon Zin"
+
+msgid "activate a lens"
+msgstr "activer une lentille"
+
+msgid "assemble a staff from sticks"
+msgstr "assembler un grand bâton à partir de bâtons"
+
+msgid "assemble a wooden tool"
+msgstr "assembler un outil en bois"
+
+msgid "breed a new flower variety"
+msgstr "créer une nouvelle variété de fleur"
+
+msgid "carve a wooden plank completely"
+msgstr "découper entièrement une planche de bois"
+
+msgid "chisel sandstone bricks"
+msgstr "ciseler des briques de grès"
+
+msgid "chisel stone bricks"
+msgstr "ciseler des briques de pierre"
+
+msgid "convert a wooden form to a frame"
+msgstr "convertir une charpente de bois en cadre"
+
+msgid "convert a wooden frame to a form"
+msgstr "convertir un cadre de bois en charpente"
+
+msgid "dig up cobble"
+msgstr "miner de la pierre"
+
+msgid "dig up dirt"
+msgstr "miner de la terre"
+
+msgid "dig up gravel"
+msgstr "miner du gravier"
+
+msgid "find a flower"
+msgstr "trouver une fleur"
+
+msgid "find a rush"
+msgstr "trouver un jonc"
+
+msgid "find a sedge"
+msgstr "trouver de la laîche"
+
+msgid "- FUTURE: @1"
+msgstr "- FUTUR : @1"
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Si une recette existe, vous verrez un effet spécial des particules."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Si miner prend plus de 5 secondes, c'est que vous n'utilisez pas le bon "
+"outil."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr ""
+"- Les objets ramassés essaient de remplir l'emplacement d'inventaire "
+"sélectionné en premier d'abord."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Les recettes les plus grandes sont habituellement plus symétriques."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Apprenez à utiliser les étoiles pour la navigation longue distance."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Le minerai peut être caché, mais détectable par de subtils indices dans le "
+"terrain."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr ""
+"- Les recettes sont basées sur le temps, cliquer plus rapidement ne les "
+"accélère pas."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- Sneak+aux+lâcher un objet pour lâcher tout les objets correspondants."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Certaines recettes nécessitent de \"marteler\" un bloc."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr ""
+"- Les piles peuvent être martelées, le nombre exact d'objets peu importer."
+
+msgid "- There is NO inventory screen."
+msgstr "- Il n'y a PAS d'écran d'inventaire."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Pour marteler, frapper un bloc à plusieurs reprises SANS le miner."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Pour courir vite, marcher/nager en avant ou grimper/nager vers le haut en "
+"continu."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- Les outils utilisés comme ingrédients doivent être en bon état."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Des difficultés à allumer un feu ? Essayer d'utiliser des bâtons plus "
+"long, plus de combustible."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Vous ne devez pas frapper très vite (environ 1 fois par seconde)."
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 découvert(s), @2 disponible(s), @3 à venir"
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "About"
+msgstr "A propos"
+
+msgid "Active Lens"
+msgstr "Lentille Active"
+
+msgid "Active Prism"
+msgstr "Prisme Actif"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Mods Supplémentaires Chargés : @1"
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "Adobe Bricks"
+msgstr "Briques d'Adobe"
+
+msgid "Adobe Mix"
+msgstr "Mélange d'Adobe"
+
+msgid "Annealed Lode Pick"
+msgstr "Pic en Métal Recuit"
+
+msgid "Annealed Lode Rake"
+msgstr "Râteau en Métal Recuit"
+
+msgid "Annealed Lode Spade"
+msgstr "Pelle en Métal Recuit"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Hachette en Métal Recuit"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Tête de Hachette en Métal Recuit"
+
+msgid "Annealed Lode Ladder"
+msgstr "Échelle en Métal Recuit"
+
+msgid "Annealed Lode Mattock"
+msgstr "Pioche en Métal Recuit"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Tête de Pioche en Métal Recuit"
+
+msgid "Annealed Lode"
+msgstr "Métal Recuit"
+
+msgid "Annealed Lode Adze"
+msgstr "Herminette en Métal Recuit"
+
+msgid "Annealed Lode Prill"
+msgstr "Pastille de Métal Recuit"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Tête de Pelle en Métal Recuit"
+
+msgid "Ash"
+msgstr "Cendre"
+
+msgid "Ash Lump"
+msgstr "Morceau de Cendre"
+
+msgid "Azure Bell Flower"
+msgstr "Tulipe azur"
+
+msgid "Azure Cup Flower"
+msgstr "Campanule azur"
+
+msgid "Azure Rosette Flower"
+msgstr "Rosier azur"
+
+msgid "Azure Cluster Flower"
+msgstr "Grappe de fleurs azur"
+
+msgid "Azure Star Flower"
+msgstr "Bourrache azur"
+
+msgid "Black Bell Flower"
+msgstr "Tulipe noire"
+
+msgid "Blue Bell Flower"
+msgstr "Canpanule bleue"
+
+msgid "Black Cup Flower"
+msgstr "Campanule noire"
+
+msgid "Blue Cup Flower"
+msgstr "Campanule bleue"
+
+msgid "Black Rosette Flower"
+msgstr "Rosier noir"
+
+msgid "Blue Rosette Flower"
+msgstr "Rosier bleu"
+
+msgid "Black Star Flower"
+msgstr "Bourrache noire"
+
+msgid "Black Cluster Flower"
+msgstr "Grappe de fleurs noires"
+
+msgid "Blue Cluster Flower"
+msgstr "Grappe de fleurs bleues"
+
+msgid "Blank"
+msgstr "Lisse"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Panneau de Briques d'Adobe Fixé"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Panneau Pivotant de Briques d'Adobe Fixé"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Briques d'Adobe Fixées"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Panneau Pivotant de Grès Fixé"
+
+msgid "Chromatic Glass"
+msgstr "Verre Chromatique"
+
+msgid "Clear Glass"
+msgstr "Verre Trempé"
+
+msgid "CHEATS ENABLED"
+msgstr "TRICHE ACTIVÉE"
+
+msgid "Charcoal"
+msgstr "Charbon"
+
+msgid "Burning Embers"
+msgstr "Braises Ardentes"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Panneau de Briques de Grès Fixé"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Panneau Pivotant de Briques de Pierres Fixé"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Panneau de Briques de Pierres Fixé"
+
+msgid "Bonded Stone Bricks"
+msgstr "Briques de Pierre Fixé"
+
+msgid "Dirt"
+msgstr "Terre"
+
+msgid "Crude Glass"
+msgstr "Verre Creux"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERSION EN DÉVELOPPEMENT"
+
+msgid "Crafting"
+msgstr "Artisanat"
+
+msgid "Cobble"
+msgstr "Pierre"
+
+msgid "Dry Rush"
+msgstr "Jonc Séché"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Discord : https://discord.gg/NNYeF6f"
+
+msgid "Discovery"
+msgstr "Découverte"
+
+msgid "Displaced Node"
+msgstr "Bloc Déplacé"
+
+msgid "Clear Glass Case"
+msgstr "Vitrine en Verre Trempé"
+
+msgid "Cobble Hinged Panel"
+msgstr "Panneau Pivotant en Pierre"
+
+msgid "Glowing Lode Bar"
+msgstr "Barre de Métal Brillant"
+
+msgid "Growing Tree Trunk"
+msgstr "Tronc d'Arbre en croissance"
+
+msgid "Inventory"
+msgstr "Inventaire"
+
+msgid "Movement"
+msgstr "Déplacement"
+
+msgid "Tempered Lode Prill"
+msgstr "Pastille de Métal Trempé"
+
+msgid "Torch"
+msgstr "Torche"
+
+msgid "White Cup Flower"
+msgstr "Campanule blanche"
+
+msgid "anneal a lode cube"
+msgstr "recuire un cube de métal"
+
+msgid "catapult an item with a hinged panel"
+msgstr "catapulter un objet avec un panneau pivotant"
+
+msgid "light a torch"
+msgstr "allumer une torche"
+
+msgid "run at full speed"
+msgstr "courir à fond"
+
+msgid "cycle through all charcoal glyphs"
+msgstr "obtenir tout les glyphes de charbon"
+
+msgid "cut down a tree"
+msgstr "couper un arbre"
+
+msgid "chip chromatic glass into prisms"
+msgstr "couper du verre chromatique en prismes"
+
+msgid "chisel a hinge groove into a wooden plank"
+msgstr "ciseler une charnière dans une planche en bois"
+
+msgid "carve wooden tool heads from planks"
+msgstr "découper des têtes d'outils en bois dans des planches"
+
+msgid "change a stylus pattern"
+msgstr "changer un motif avec un stylet"
+
+msgid "chop chromatic glass into lenses"
+msgstr "couper du verre chromatique en lentilles"
+
+msgid "chop up charcoal"
+msgstr "couper du charbon en morceaux"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "compléter une recette d'assemblage avec un panneau pivotant"
+
+msgid "compress something with a hinged panel"
+msgstr "comprimer quelque chose avec un panneau pivotant"
+
+msgid "cool molten glass into crude glass"
+msgstr "refroidir du verre fondu en verre creux"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "fabriquer une torche avec un grand bâton et un morceau de charbon"
+
+msgid "activate a prism"
+msgstr "activer un prisme"
+
+msgid "assemble a lode rake"
+msgstr "assembler un râteau en métal"
+
+msgid "assemble a lode tote handle"
+msgstr "assembler une poignée métallique de sac"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "assembler un râteau à partir d'herminettes et d'un grand bâton"
+
+msgid "assemble a stone-tipped stylus"
+msgstr "assembler un stylet à pointe de pierre"
+
+msgid "assemble a wooden frame from staves"
+msgstr "assembler un cadre en bois à partir de grands bâtons"
+
+msgid "assemble an adze out of sticks"
+msgstr "assembler une herminette en partir de bâtons"
+
+msgid "bash a plank into sticks"
+msgstr "déchiqueter une planche en bâtons"
+
+msgid "assemble a float glass case"
+msgstr "assembler une vitrine de verre flotté"
+
+msgid "chisel adobe bricks"
+msgstr "ciseler des briques d'adobe"
+
+msgid "chisel a hinge groove into cobble"
+msgstr "ciseler une charnière dans de la pierre"
+
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "assembler une étagère en bois à partir d'une charpente et d'une planche"
+
+msgid "cure pliant concrete fully"
+msgstr "sécher entièrement du béton malléable"
+
+msgid "break cobble into chips"
+msgstr "briser la pierre en éclats"
+
+msgid "go for a swim"
+msgstr "aller nager"
+
+msgid "dig up a tree stump"
+msgstr "miner une souche d'arbre"
+
+msgid "dig up lode ore"
+msgstr "miner du minerai de métal"
+
+msgid "dig up sand"
+msgstr "miner du sable"
+
+msgid "discovered - @1"
+msgstr "découvert - @1"
+
+msgid "drop all your items at once"
+msgstr "lâcher tout vos objets à la fois"
+
+msgid "drop an item"
+msgstr "lâcher un objet"
+
+msgid "dry out a rush"
+msgstr "sécher des joncs"
+
+msgid "dry out a sponge"
+msgstr "sécher une éponge"
+
+msgid "etch pliant concrete with a stylus"
+msgstr "graver du béton malléable avec un stylet"
+
+msgid "ferment peat into humus"
+msgstr "fermenter de la tourbe en humus"
+
+msgid "find ash"
+msgstr "trouver de la cendre"
+
+msgid "find charcoal"
+msgstr "trouver du charbon"
+
+msgid "find a sponge"
+msgstr "trouver une éponge"
+
+msgid "find a stick"
+msgstr "trouver un bâton"
+
+msgid "find pumice"
+msgstr "trouver de la pierre ponce"
+
+msgid "harvest a sponge"
+msgstr "récolter une éponge"
+
+msgid "hold your breath"
+msgstr "retenir son souffle"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "forger un barreau et une barre de métal en une échelle"
+
+msgid "grind dead plants into peat"
+msgstr "moudre des plantes mortes en tourbe"
+
+msgid "grow a flower on moist soil"
+msgstr "faire pousser une fleur sur du sol humide"
+
+msgid "grow a sedge on moist grass"
+msgstr "faire pousser de la laîche sur de l'herbe humide"
+
+msgid "harden stone"
+msgstr "faire durcir de la roche"
+
+msgid "forge lode bars into a rod"
+msgstr "forger les barres de métal en un barreau"
+
+msgid "forge lode rods into a frame"
+msgstr "forger des barreaux de métal en un cadre"
+
+msgid "find dry (loose) leaves"
+msgstr "trouver des feuilles séchées (instables)"
+
+msgid "forge lode prills into a tool head"
+msgstr "forger des pastilles de métal en une tête d'outil"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "forger un cadre de métal recuit en charpente"
+
+msgid "find deep stone strata"
+msgstr "trouver de la roche des profondeurs"
+
+msgid "find pumwater"
+msgstr "trouver du magma"
+
+msgid "leach raked dirt to sand"
+msgstr "filtrer de la terre ratissée en sable"
+
+msgid "leach raked humus to dirt"
+msgstr "filtrer de l'humus ratissé en terre"
+
+msgid "make fire by rubbing sticks together"
+msgstr "faire du feu en frottant des bâtons ensemble"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "fondre de la pierre métallique en métal"
+
+msgid "melt sand into molten glass"
+msgstr "fondre du sable en verre fondu"
+
+msgid "insert wooden pin into wooden panel"
+msgstr "insérer une cheville en bois dans un panneau de bois"
+
+msgid "weaken stone by soaking"
+msgstr "affaiblir de la pierre par absorption"
+
+msgid "mix dirt into ash to make adobe mix"
+msgstr "mélanger de la terre dans de la cendre pour obtenir un mélange d'adobe"
+
+msgid "mix gravel into ash to make aggregate"
+msgstr "mélanger du gravier dans de la cendre pour obtenir de l'agrégat"
+
+msgid "throw an item really fast"
+msgstr "jeter un objet très vite"
+
+msgid "temper a lode tool head"
+msgstr "tremper une tête d'outil en métal"
+
+msgid "temper a lode cube"
+msgstr "tremper un cube de métal"
+
+msgid "stick a lens/prism in place"
+msgstr "coller une lentille/un prisme en place"
+
+msgid "squeeze out a sponge"
+msgstr "presser une éponge"
+
+msgid "split a tree trunk into planks"
+msgstr "découper un tronc d'arbre en planches"
+
+msgid "see a tree grow"
+msgstr "voir un arbre grandir"
+
+msgid "scale an overhang"
+msgstr "escalader un dévers"
+
+msgid "scale a wall"
+msgstr "escalader un mur"
+
+msgid "rotate a charcoal glyph"
+msgstr "tourner un glyphe de charbon"
+
+msgid "rake sand"
+msgstr "ratisser le sable"
+
+msgid "rake gravel"
+msgstr "ratisser du gravier"
+
+msgid "rake dirt"
+msgstr "ratisser de la terre"
+
+msgid "put a stone tip onto a wooden tool"
+msgstr "mettre un bout de pierre sur un outil en bois"
+
+msgid "mix sand into ash to make render"
+msgstr "mélanger du sable dans de la cendre pour obtenir de la chaux"
+
+msgid "mold molten glass into float glass"
+msgstr "façonner du verre fondu en verre flotté"
+
+msgid "pack dry rushes into wicker"
+msgstr "empaqueter des joncs secs pour obtenir de l'osier"
+
+msgid "pack high-quality charcoal"
+msgstr "empaqueter du charbon de haute qualité"
+
+msgid "pack sedges into thatch"
+msgstr "empaqueter de la laîche pour obtenir de la chaume"
+
+msgid "pack up a complete tote"
+msgstr "remplir un sac entier"
+
+msgid "place a node with a hinged panel"
+msgstr "placer un bloc avec un panneau pivotant"
+
+msgid "produce light from a lens"
+msgstr "éclairer avec une lentille"
+
+msgid "propel hinged panel with focused light"
+msgstr "propulser un panneau pivotant avec de la lumière focalisée"
+
+msgid "push an item into a storage box with a hinged panel"
+msgstr "pousser un objet dans une boite de stockage avec un panneau pivotant"
+
+msgid "quench molten glass into chromatic glass"
+msgstr "tremper du verre fondu en verre chromatique"
+
+msgid "melt stone into pumwater"
+msgstr "fondre de la roche en magma"
+
+msgid "quench pumwater to amalgamation"
+msgstr "tremper du magma en amalgame"
+
+msgid "pack stone chips back into cobble"
+msgstr "empaqueter des éclats pour obtenir de la pierre"
+
+msgid "set concrete to pliant"
+msgstr "rendre le béton malléable"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "travailler le métal brillant sur une enclume en métal"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "travailler le métal brillant sur une enclume de pierre"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "travailler le métal recuit sur une enclume en métal trempé"
+
+msgid "wilt a flower"
+msgstr "sécher une fleur"
+
+msgid "wet a concrete mix"
+msgstr "mouiller un mélange de béton"
+
+msgid "Fire"
+msgstr "Feu"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr ""
+"Édition anticipée de NodeCore avec les dernières fonctionnalités (et peut-"
+"être des bugs)"
+
+msgid "Float Glass"
+msgstr "Verre Flotté"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Glyphe de Charbon Geq"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab : https://gitlab.com/sztest/nodecore"
+
+msgid "Glowing Lode"
+msgstr "Métal Brillant"
+
+msgid "Glowing Lode Adze"
+msgstr "Herminette de Métal Brillant"
+
+msgid "Glowing Lode Cobble"
+msgstr "Pierre de Métal Brillant"
+
+msgid "Glowing Lode Frame"
+msgstr "Cadre de Métal Brillant"
+
+msgid "Glowing Lode Ladder"
+msgstr "Échelle de Métal Brillant"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Tête de Maillet en Métal Brillant"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Tête de Pioche en Métal Brillant"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Tête de Pic en Métal Brillant"
+
+msgid "Glowing Lode Rake"
+msgstr "Râteau de Métal Brillant"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Tête de Pelle en Métal Brillant"
+
+msgid "Glued Active Lens"
+msgstr "Lentille Active Collée"
+
+msgid "Glued Active Prism"
+msgstr "Prisme Actif Collé"
+
+msgid "Float Glass Case"
+msgstr "Vitrine de Verre Flotté"
+
+msgid "Glowing Lode Rod"
+msgstr "Barreau de Métal Brillant"
+
+msgid "Glowing Lode Prill"
+msgstr "Pastille de Métal Brillant"
+
+msgid "Grass"
+msgstr "Herbe"
+
+msgid "Gravel"
+msgstr "Gravier"
+
+msgid "Glued Prism"
+msgstr "Prisme Collé"
+
+msgid "Glued Shining Lens"
+msgstr "Lentille Collée Éclairée"
+
+msgid "Growing Leaves"
+msgstr "Feuilles en croissance"
+
+msgid "Humus"
+msgstr "Humus"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC : #nodecore @@ irc.libera.chat"
+
+msgid "Leaves"
+msgstr "Feuilles"
+
+msgid "Lens"
+msgstr "Lentille"
+
+msgid "Lit Torch"
+msgstr "Torche Allumée"
+
+msgid "Living Sponge"
+msgstr "Éponge Vivante"
+
+msgid "Lode Cobble"
+msgstr "Pierre métallique"
+
+msgid "Lode Crate"
+msgstr "Caisse de Métal"
+
+msgid "Lode Form"
+msgstr "Charpente en Métal"
+
+msgid "Log"
+msgstr "Bûche"
+
+msgid "Loose Amalgamation"
+msgstr "Amalgame instable"
+
+msgid "Loose Cobble"
+msgstr "Pierre Instable"
+
+msgid "Loose Dirt"
+msgstr "Terre Instable"
+
+msgid "Loose Leaves"
+msgstr "Feuilles Instables"
+
+msgid "Matrix: #nodecore:matrix.org"
+msgstr "Matrix : #nodecore:matrix.org"
+
+msgid "Loose Lode Cobble"
+msgstr "Pierre métallique Instable"
+
+msgid "Loose Lux Cobble"
+msgstr "Pierre de Lux Instable"
+
+msgid "Loose Sand"
+msgstr "Sable Instable"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Glyphe de Charbon Niz"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Glyphe de Charbon Odo"
+
+msgid "Orange Bell Flower"
+msgstr "Tulipe orange"
+
+msgid "Pink Bell Flower"
+msgstr "Tulipe rose"
+
+msgid "Orange Cup Flower"
+msgstr "Campanule orange"
+
+msgid "Orange Rosette Flower"
+msgstr "Rosier orange"
+
+msgid "Orange Star Flower"
+msgstr "Bourrache orange"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "Guide du Joueur : Déplacement et Navigation"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Guide du Joueur : Recette avec martellement"
+
+msgid "Pink Cup Flower"
+msgstr "Campanule rose"
+
+msgid "Pink Rosette Flower"
+msgstr "Rosier rose"
+
+msgid "Pink Star Flower"
+msgstr "Bourrache rose"
+
+msgid "Pink Cluster Flower"
+msgstr "Grappe de fleurs rose"
+
+msgid "Prism"
+msgstr "Prisme"
+
+msgid "Pumice"
+msgstr "Pierre Ponce"
+
+msgid "Pummel"
+msgstr "Marteler"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Glyphe de Charbon Prx"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Glyphe de Charbon Qeg"
+
+msgid "Raked Humus"
+msgstr "Humus ratissé"
+
+msgid "Raked Sand"
+msgstr "Sable ratissé"
+
+msgid "Pumwater"
+msgstr "Magma"
+
+msgid "Red Bell Flower"
+msgstr "Tulipe rouge"
+
+msgid "Red Cluster Flower"
+msgstr "Grappe de fleurs rouge"
+
+msgid "Red Cup Flower"
+msgstr "Campanule rouge"
+
+msgid "Red Rosette Flower"
+msgstr "Rosier rouge"
+
+msgid "Red Star Flower"
+msgstr "Bourrache rouge"
+
+msgid "Rush"
+msgstr "Jonc"
+
+msgid "Sand"
+msgstr "Sable"
+
+msgid "Sandstone"
+msgstr "Grès"
+
+msgid "Sandstone Bricks"
+msgstr "Briques de Grès"
+
+msgid "Sedge"
+msgstr "Laîche"
+
+msgid "See included LICENSE file for full details and credits"
+msgstr "Voir le fichier LICENCE inclus pour tout les détails et crédits"
+
+msgid "Stone-Tipped Spade"
+msgstr "Pelle à pointe de pierre"
+
+msgid "Stone-Tipped Stylus"
+msgstr "Stylet à pointe de pierre"
+
+msgid "Tempered Lode"
+msgstr "Métal Trempé"
+
+msgid "Tempered Lode Adze"
+msgstr "Herminette de Métal Trempé"
+
+msgid "Tempered Lode Bar"
+msgstr "Barre de Métal Trempé"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "Tête de Hachette de Métal Trempé"
+
+msgid "Tempered Lode Ladder"
+msgstr "Échelle de Métal Trempé"
+
+msgid "Tempered Lode Mallet"
+msgstr "Maillet de Métal Trempé"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "Tête de Maillet de Métal Trempé"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "Tête de Pioche de Métal Trempé"
+
+msgid "Tempered Lode Pick Head"
+msgstr "Tête de Pic de Métal Trempé"
+
+msgid "Tempered Lode Rake"
+msgstr "Râteau de Métal Trempé"
+
+msgid "Tempered Lode Rod"
+msgstr "Barreau de Métal Trempé"
+
+msgid "Tempered Lode Spade"
+msgstr "Pelle de Métal Trempé"
+
+msgid "Tempered Lode Spade Head"
+msgstr "Tête de Pelle de Métal Trempé"
+
+msgid "Tote (@1 / @2)"
+msgstr "Sac (@1 / @2)"
+
+msgid "Tote Handle"
+msgstr "Poignée de Sac"
+
+msgid "Tree Trunk"
+msgstr "Tronc d'Arbre"
+
+msgid "Violet Bell Flower"
+msgstr "Tulipe violette"
+
+msgid "Violet Cup Flower"
+msgstr "Campanule violette"
+
+msgid "Violet Rosette Flower"
+msgstr "Rosier violet"
+
+msgid "Violet Star Flower"
+msgstr "Bourrache violette"
+
+msgid "Violet Cluster Flower"
+msgstr "Grappe de fleurs violette"
+
+msgid "Water"
+msgstr "Eau"
+
+msgid "Wet Adobe Mix"
+msgstr "Mélange d'Adobe Humide"
+
+msgid "Wet Aggregate"
+msgstr "Agrégat Humide"
+
+msgid "Wet Render"
+msgstr "Chaux Humide"
+
+msgid "Wet Sponge"
+msgstr "Éponge Humide"
+
+msgid "White Bell Flower"
+msgstr "Tulipe blanche"
+
+msgid "Wooden Adze"
+msgstr "Herminette en bois"
+
+msgid "Wooden Hatchet"
+msgstr "Hachette en bois"
+
+msgid "Wooden Form"
+msgstr "Charpente en bois"
+
+msgid "Wilted Bell Flower"
+msgstr "Tulipe fanée"
+
+msgid "Wilted Cup Flower"
+msgstr "Campanule fanée"
+
+msgid "Wilted Rosette Flower"
+msgstr "Rosier fané"
+
+msgid "Wilted Star Flower"
+msgstr "Bourrache fanée"
+
+msgid "White Cluster Flower"
+msgstr "Grappe de fleurs blanche"
+
+msgid "Wilted Cluster Flower"
+msgstr "Grappe de fleurs fanée"
+
+msgid "Wicker"
+msgstr "Osier"
+
+msgid "Wooden Hinged Panel"
+msgstr "Panneau Pivotant en bois"
+
+msgid "Wooden Ladder"
+msgstr "Échelle en bois"
+
+msgid "Wooden Mallet"
+msgstr "Maillet en bois"
+
+msgid "Wooden Plank"
+msgstr "Planche de bois"
+
+msgid "Wooden Rake"
+msgstr "Râteau en bois"
+
+msgid "Wooden Shelf"
+msgstr "Étagère en bois"
+
+msgid "Wooden Spade"
+msgstr "Pelle en bois"
+
+msgid "Wooden Spade Head"
+msgstr "Tête de Pelle en bois"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Glyphe de Charbon Xrp"
+
+msgid "Yellow Bell Flower"
+msgstr "Tulipe jaune"
+
+msgid "Yellow Cup Flower"
+msgstr "Campanule jaune"
+
+msgid "Yellow Cluster Flower"
+msgstr "Grappe de fleurs jaune"
+
+msgid "Yellow Rosette Flower"
+msgstr "Rosier jaune"
+
+msgid "Yellow Star Flower"
+msgstr "Bourrache jaune"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr ""
+"- Les \"fourneaux\" n'existent pas ; découvrez la fonte avec des flammes "
+"nues."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Faites attention dans les grottes/gouffres non éclairés ; vous devez être "
+"capable d'en sortir par vos propres moyens."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+"- Maintenir enfoncé/répéter le clic droit sur les murs/plafonds avec ses "
+"mains nues pour grimper."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr ""
+"- Ne pas utiliser les informations de débogage F5 ; cela risque de vous "
+"induire en erreur !"
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- L'ordre et la face de placement peuvent être important pour la fabrication."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Les blocs minés avec le mauvais outil ne peuvent pas être ramassés, "
+"seulement déplacés."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Sneak+drop pour compter tout les objets d'une pile."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- Le jeu est volontairement conçu pour être exigeant, parfois frustrant. "
+"N'ABANDONNEZ PAS !"
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- L'objet en main, la face pointée et les blocs autour peuvent être "
+"importants."
+
+msgid "Amalgamation"
+msgstr "Amalgame"
+
+msgid "Aggregate"
+msgstr "Agrégat"
+
+msgid "rake humus"
+msgstr "ratisser l'humus"
+
+msgid "Annealed Lode Frame"
+msgstr "Cadre en Métal Recuit"
+
+msgid "sinter glowing lode prills into a cube"
+msgstr "forger des pastilles de métal brillant en un cube"
+
+msgid "Annealed Lode Bar"
+msgstr "Barre en Métal Recuit"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Tête de Pic en Métal Recuit"
+
+msgid "write on a surface with a charcoal lump"
+msgstr "écrire sur une surface avec un morceau de charbon"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "souder des têtes de pic et de pelle de métal brillant ensemble"
+
+msgid "Player's Guide: Crafting"
+msgstr "Guide du Joueur : Artisanat"
+
+msgid "Peat"
+msgstr "Tourbe"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Guide du Joueur : Gestion de l'Inventaire"
+
+msgid "Charcoal Lump"
+msgstr "Morceau de Charbon"
+
+msgid "dig leaves"
+msgstr "miner des feuilles"
+
+msgid "HAND OF POWER"
+msgstr "MAIN DE POUVOIR"
+
+msgid "navigate by touch in darkness"
+msgstr "naviguer au toucher dans l'obscurité"
+
+msgid "Lode Ore"
+msgstr "Minerai de Métal"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Glyphe de Charbon Cav"
+
+msgid "mold molten glass into clear glass"
+msgstr "façonner du verre fondu en verre trempé"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "Licence MIT (http://www.opensource.org/licenses/MIT)"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Glyphe de Charbon Mew"
+
+msgid "Molten Glass"
+msgstr "Verre Fondu"
+
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr ""
+"Le premier jeu voxel Minetest original basé sur les mécaniques émergentes et "
+"l'exploration"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
+
+msgid "complete a pummel with a hinged panel and tool head"
+msgstr "finir de marteler avec un panneau pivotant et une tête d'outil"
+
+msgid "Glued Lens"
+msgstr "Lentille Collée"
+
+msgid "Tempered Lode Hatchet"
+msgstr "Hachette de Métal Trempé"
+
+msgid "dig a node with a hinged panel and tool"
+msgstr "miner un bloc avec un panneau pivotant et un outil"
+
+msgid "grow a rush on moist soil"
+msgstr "faire pousser in jonc sur du sol humide"
+
+msgid "put a gravel tip on a wooden adze"
+msgstr "placer un bout de gravier sur une herminette en bois"
+
+msgid "pick a sedge"
+msgstr "ramasser de la laîche"
+
+msgid "Stone"
+msgstr "Roche"
+
+msgid "Stone-Tipped Hatchet"
+msgstr "Hachette à pointe de pierre"
+
+msgid "Tempered Lode Frame"
+msgstr "Cadre de Métal Trempé"
+
+msgid "Thatch"
+msgstr "Chaume"
+
+msgid "Shining Lens"
+msgstr "Lentille Éclairée"
+
+msgid "Sponge"
+msgstr "Éponge"
+
+msgid "Stone-Tipped Mallet"
+msgstr "Maillet à pointe de pierre"
+
+msgid "Stone-Tipped Pick"
+msgstr "Pic à pointe de pierre"
+
+msgid "Sprout"
+msgstr "Pousse"
+
+msgid "Staff"
+msgstr "Grand Bâton"
+
+msgid "Stick"
+msgstr "Bâton"
+
+msgid "Stone Bricks"
+msgstr "Briques de Pierre"
+
+msgid "Stone Chip"
+msgstr "Éclat de Pierre"
+
+msgid "Tempered Lode Mattock"
+msgstr "Pioche de Métal Trempé"
+
+msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
+msgstr ""
+"Le système de découvertes ne vous informe que de l'existence de mécaniques "
+"de jeu basiques. Pour les techniques plus avancées, telles que les systèmes "
+"émergents et l'automatisation, vous devrez les inventer par vous-même !"
+
+msgid "Wooden Frame"
+msgstr "Cadre en bois"
+
+msgid "Wooden Hatchet Head"
+msgstr "Tête de Hachette en bois"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "assembler une échelle en bois à partir de bâtons"
+
+msgid "Annealed Lode Rod"
+msgstr "Barreau en Métal Recuit"
+
+msgid "assemble a clear glass case"
+msgstr "assembler une vitrine de verre trempé"
+
+msgid "assemble a lode adze"
+msgstr "assembler une herminette en métal"
+
+msgid "Annealed Lode Mallet"
+msgstr "Maillet en Métal Recuit"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Tête de Maillet en Métal Recuit"
+
+msgid "find lode ore"
+msgstr "trouver du minerai de métal"
+
+msgid "insert metal rod into a cobble panel"
+msgstr "insérer un barreau de métal dans un panneau en pierre"
+
+msgid "forge a lode prill into a bar"
+msgstr "forger une pastille de métal en une barre"
+
+msgid "assemble a lode crate from form and bar"
+msgstr "assembler une caisse de métal à partir d'une charpente et d'une barre"
+
+msgid "Orange Cluster Flower"
+msgstr "Grappe de fleurs orange"
+
+msgid "Blue Star Flower"
+msgstr "Bourrache bleue"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Briques de Grès Fixés"
+
+msgid "Boxy"
+msgstr "Carré"
+
+msgid "Flux"
+msgstr "Flux"
+
+msgid "Hashy"
+msgstr "Hashé"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Grès Malléable Glacée"
+
+msgid "Pliant Adobe"
+msgstr "Adobe Malléable"
+
+msgid "Tarstone Bricks"
+msgstr "Briques de Bitume"
+
+msgid "Tarstone"
+msgstr "Bitume"
+
+msgid "Verty Pliant Sandstone"
+msgstr "Grès Malléable Vertical"
+
+msgid "Verty Pliant Adobe"
+msgstr "Adobe Malléable Verticale"
+
+msgid "chisel tarstone bricks"
+msgstr "ciseler des briques de bitume"
+
+msgid "gate a prism"
+msgstr "commander un prisme"
+
+msgid "lux-infuse a lode tool"
+msgstr "outils de métal infusé de lumière"
+
+msgid "Bindy"
+msgstr "Lié"
+
+msgid "Bindy Adobe"
+msgstr "Adobe Liée"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Adobe Malléable Liée"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Grès Malléable Lié"
+
+msgid "Bindy Pliant Stone"
+msgstr "Roche Malléable Liée"
+
+msgid "Bindy Sandstone"
+msgstr "Grès Lié"
+
+msgid "Bindy Stone"
+msgstr "Roche Liée"
+
+msgid "Bindy Tarstone"
+msgstr "Bitume Lié"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Bitume Malléable Lié"
+
+msgid "Bricky"
+msgstr "Briqué"
+
+msgid "Bricky Adobe"
+msgstr "Adobe Briquée"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Adobe Malléable Briquée"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Grès Malléable Briqué"
+
+msgid "Bricky Pliant Stone"
+msgstr "Roche Malléable Briquée"
+
+msgid "Bricky Sandstone"
+msgstr "Grès Briqué"
+
+msgid "Bricky Stone"
+msgstr "Roche Briquée"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Grès Malléable Carré"
+
+msgid "Boxy Sandstone"
+msgstr "Grès Carré"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Adobe Malléable Carrée"
+
+msgid "Boxy Adobe"
+msgstr "Adobe Carrée"
+
+msgid "Boxy Pliant Stone"
+msgstr "Roche Malléable Carrée"
+
+msgid "Boxy Stone"
+msgstr "Roche Carrée"
+
+msgid "Bricky Tarstone"
+msgstr "Bitume Briqué"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Bitume Malléable Briqué"
+
+msgid "Boxy Tarstone"
+msgstr "Bitume Carré"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Bitume Malléable Carré"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Briques de Bitume Fixées"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Panneau de Briques de Bitume Fixé"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Panneau Pivotant de Briques de Bitume Fixé"
+
+msgid "bond adobe bricks"
+msgstr "fixer des briques d'adobe"
+
+msgid "bond sandstone bricks"
+msgstr "fixer des briques de grès"
+
+msgid "bond stone bricks"
+msgstr "fixer des briques de pierre"
+
+msgid "bond tarstone bricks"
+msgstr "fixer des briques de bitume"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "ajouter du charbon à de l'agrégat pour fabriquer du bitume"
+
+msgid "find lux"
+msgstr "trouver du lux"
+
+msgid "find an eggcorn"
+msgstr "trouver un gland"
+
+msgid "dig up lux cobble"
+msgstr "miner de la pierre lux"
+
+msgid "observe a lux reaction"
+msgstr "observer une réaction lumineuse"
+
+msgid "observe lux criticality"
+msgstr "observer le seuil de lux"
+
+msgid "plant an eggcorn"
+msgstr "planter un gland"
+
+msgid "Eggcorn"
+msgstr "Gland"
+
+msgid "Gated Prism"
+msgstr "Prisme Commandé"
+
+msgid "Glued Gated Prism"
+msgstr "Prisme Commandé Collé"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Adobe Malléable Hashée"
+
+msgid "Horzy"
+msgstr "Horizontal"
+
+msgid "Horzy Adobe"
+msgstr "Adobe Horizontale"
+
+msgid "Hashy Tarstone"
+msgstr "Bitume Hashé"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Bitume Malléable Hashé"
+
+msgid "Hashy Pliant Stone"
+msgstr "Roche Malléable Hashée"
+
+msgid "Hashy Sandstone"
+msgstr "Grès Hashé"
+
+msgid "Hashy Stone"
+msgstr "Roche Hashée"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Grès Malléable Horizontal"
+
+msgid "Horzy Pliant Stone"
+msgstr "Roche Malléable Horizontale"
+
+msgid "Horzy Sandstone"
+msgstr "Grès Horizontal"
+
+msgid "Horzy Stone"
+msgstr "Roche Horizontal"
+
+msgid "Horzy Tarstone"
+msgstr "Bitume Horizontal"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Bitume Malléable Horizontal"
+
+msgid "Iceboxy"
+msgstr "Glacé"
+
+msgid "Iceboxy Adobe"
+msgstr "Adobe Glacée"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Adobe Malléable Glacée"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Roche Malléable Glacée"
+
+msgid "Iceboxy Sandstone"
+msgstr "Grès Glacé"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Bitume Malléable Glacé"
+
+msgid "Iceboxy Stone"
+msgstr "Roche Glacée"
+
+msgid "Iceboxy Tarstone"
+msgstr "Bitume Glacé"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Herminette de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Hachette de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Maillet de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Pioche de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Pic de Métal Recuit Infusé"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Râteau de Métal Recuit Infusé"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Hachette de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Maillet de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Pioche de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Pic de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Râteau de Métal Trempé Infusé"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Pelle de Métal Trempé Infusé"
+
+msgid "Lux Cobble"
+msgstr "Pierre de Lux"
+
+msgid "Pliant Sandstone"
+msgstr "Grès Malléable"
+
+msgid "Pliant Stone"
+msgstr "Roche Malléable"
+
+msgid "Pliant Tarstone"
+msgstr "Bitume Malléable"
+
+msgid "Render"
+msgstr "Chaux"
+
+msgid "Vermy"
+msgstr "Vermoulu"
+
+msgid "Vermy Adobe"
+msgstr "Adobe Vermoulue"
+
+msgid "Vermy Pliant Adobe"
+msgstr "Adobe Malléable Vermoulue"
+
+msgid "Vermy Pliant Stone"
+msgstr "Roche Malléable Vermoulue"
+
+msgid "Vermy Sandstone"
+msgstr "Grès Vermoulu"
+
+msgid "Vermy Stone"
+msgstr "Roche Vermoulu"
+
+msgid "Verty"
+msgstr "Vertical"
+
+msgid "Verty Adobe"
+msgstr "Adobe Verticale"
+
+msgid "Vermy Tarstone"
+msgstr "Bitume Vermoulu"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "Bitume Malléable Vermoulu"
+
+msgid "Verty Pliant Stone"
+msgstr "Roche Malléable Verticale"
+
+msgid "Verty Sandstone"
+msgstr "Grès Vertical"
+
+msgid "Verty Stone"
+msgstr "Roche Verticale"
+
+msgid "Verty Tarstone"
+msgstr "Bitume Vertical"
+
+msgid "Verty Pliant Tarstone"
+msgstr "Bitume Malléable Vertical"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Agrégat Bitumeux Humide"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Glyphe de Charbon Yit"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "Grès Malléable Vermoulu"
+
+msgid "Horzy Pliant Adobe"
+msgstr "Adobe Malléable Horizontale"
+
+msgid "Hashy Adobe"
+msgstr "Adobe Hashée"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Grès Malléable Hashé"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Pelle de Métal Recuit Infusé"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Herminette de Métal Trempé Infusé"

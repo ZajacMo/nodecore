@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, table
-    = nodecore, pairs, table
-local table_concat, table_sort
-    = table.concat, table.sort
+local ipairs, math, minetest, nodecore, pairs, table
+    = ipairs, math, minetest, nodecore, pairs, table
+local math_random, table_concat, table_sort
+    = math.random, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local donecache = {}
@@ -21,21 +21,46 @@ local function hintinit(player)
 end
 nodecore.register_on_joinplayer("join hint setup", hintinit)
 
+local function alertcheck(pname)
+	local dc = donecache[pname]
+	if not dc then return end
+	local mc = msgcache[pname]
+	if not mc then return end
+
+	local _, done = nodecore.hint_state(pname)
+	for _, v in pairs(done) do
+		if not dc[v.text] then
+			dc[v.text] = true
+			mc[v.text] = nodecore.gametime + 10
+		end
+	end
+end
 nodecore.register_on_discover(function(_, key, pname)
 		if not key then donecache[pname] = {} end
-		local dc = donecache[pname]
-		if not dc then return end
-		local mc = msgcache[pname]
-		if not mc then return end
-
-		local _, done = nodecore.hint_state(pname)
-		for _, v in pairs(done) do
-			if not dc[v.text] then
-				dc[v.text] = true
-				mc[v.text] = nodecore.gametime + 10
-			end
-		end
+		return alertcheck(pname)
 	end)
+
+do
+	local queue = {}
+	local function scan()
+		if #queue > 0 then
+			local pname = queue[#queue]
+			queue[#queue] = nil
+			local player = minetest.get_player_by_name(pname)
+			if player then alertcheck(pname) end
+			return minetest.after(0, scan)
+		else
+			return minetest.after(2 + math_random() * 3, function()
+					queue = {}
+					for _, p in ipairs(minetest.get_connected_players()) do
+						queue[#queue + 1] = p:get_player_name()
+					end
+					return minetest.after(0, scan)
+				end)
+		end
+	end
+	minetest.after(0, scan)
+end
 
 nodecore.register_playerstep({
 		label = "hint alerts",

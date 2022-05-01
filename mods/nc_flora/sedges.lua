@@ -26,10 +26,11 @@ local tilebase = modname .. "_sedge_color.png^(nc_terrain_grass_top.png^[mask:"
 
 local allsedges = {}
 for i = 1, 5 do
-	allsedges[modname .. ":sedge_" .. i] = i
-	allsedges[i] = modname .. ":sedge_" .. i
+	local sedgename = modname .. ":sedge_" .. i
+	allsedges[sedgename] = i
+	allsedges[i] = sedgename
 	local h = (i == 5) and (3/4) or (i / 8)
-	minetest.register_node(modname .. ":sedge_" .. i, {
+	minetest.register_node(sedgename, {
 			description = "Sedge",
 			drawtype = "plantlike",
 			waving = 1,
@@ -51,7 +52,8 @@ for i = 1, 5 do
 				flora_sedges = i,
 				flora_dry = 1,
 				flammable = 3,
-				attached_node = 1
+				attached_node = 1,
+				peat_grindable_item = 1
 			},
 			sounds = nodecore.sounds("nc_terrain_grassy"),
 			selection_box = nodecore.fixedbox(
@@ -60,25 +62,23 @@ for i = 1, 5 do
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
 			destroy_on_dig = 20,
-			on_place = function(stack, ...)
-				local old = stack:get_name()
+			after_place_node = function(pos)
+				local node = minetest.get_node(pos)
+				if node.name ~= sedgename then return end
 				local r = math_random(1, 31)
 				if r >= 16 then
-					stack:set_name(modname .. ":sedge_1")
+					node.name = modname .. ":sedge_1"
 				elseif r >= 8 then
-					stack:set_name(modname .. ":sedge_2")
+					node.name = modname .. ":sedge_2"
 				elseif r >= 4 then
-					stack:set_name(modname .. ":sedge_3")
+					node.name = modname .. ":sedge_3"
 				elseif r >= 2 then
-					stack:set_name(modname .. ":sedge_4")
+					node.name = modname .. ":sedge_4"
 				else
-					stack:set_name(modname .. ":sedge_5")
+					node.name = modname .. ":sedge_5"
 				end
-				stack = minetest.item_place(stack, ...)
-				if not stack:is_empty() then
-					stack:set_name(old)
-				end
-				return stack
+				if node.name == sedgename then return end
+				minetest.set_node(pos, node)
 			end
 		})
 
@@ -112,12 +112,14 @@ minetest.register_abm({
 		label = "sedge growth/death",
 		interval = 2,
 		chance = 250,
+		arealoaded = 1,
 		nodenames = {"group:flora_sedges"},
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			local bnode = minetest.get_node_or_nil(below)
 			if not bnode then return end
-			if bnode.name ~= grassname or not nodecore.grassable(pos) then
+			if bnode.name ~= grassname
+			or not nodecore.can_grass_grow_under(pos) then
 				return minetest.remove_node(pos)
 			end
 
@@ -132,3 +134,17 @@ minetest.register_abm({
 			end
 		end
 	})
+
+nodecore.register_on_peat_compost(function(pos)
+		if math_random(1, 10) ~= 1 then return end
+
+		if minetest.get_node(pos).name ~= grassname then return end
+
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		if not (nodecore.air_equivalent(above)
+			and nodecore.can_grass_grow_under(above)
+			and #nodecore.find_nodes_around(above, "group:moist", {2, 1, 2}) > 0)
+		then return end
+
+		nodecore.set_loud(above, {name = modname .. ":sedge_1"})
+	end)

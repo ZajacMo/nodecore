@@ -80,7 +80,7 @@ nodecore.register_playerstep({
 						})
 				end
 				newpos.y = newpos.y - 0.49
-				nodecore.log("action", string_format("player %q pushed out of"
+				nodecore.log("action", string_format("%s pushed out of"
 						.. " solid from %s to %s",
 						data.pname,
 						minetest.pos_to_string(pos),

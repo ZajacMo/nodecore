@@ -9,12 +9,43 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Improve lode ore hint-stains
+	- Make sure hint stone always indicates at least some real ore
+	- Generate ore veins in mapgen
+	- In post-gen, find ore, spread stone stains outward in a few
+	  random direction streaks
+
+- Full-stack rendering optimization
+	- Huge piles of cobble stacks cause significant framerate loss
+	- https://gitlab.com/sztest/nodecore/-/merge_requests/19
+	  a.k.a. full-stack-nodeboxes branch
+	- Actually all visinv entities building up in an area cause
+	  framerate loss, but most are impractical to address
+
 - Wicker baskets
 	- Limited alternative to full tote
 	- Made of cheaper materials (wicker, wood form)
 	- Can only carry wooden forms (must be unpacked on a flat surface)
 	- Very flammable, ejects all contents (nodes and stacks) upon
 	  ignition
+	- Make them only contain certain items, others (e.g. sand/ash)
+	  filter/leak through?
+	- Make them drop items periodically?
+
+- Clean up sky pummesses
+	- Make free-floating pumice randomly fall?  melt?  decay?
+	- Make pumice trigger chain melt reactions?
+	- Only if not already on the ground?
+
+- Aux-punch to take 1 item out of a stack?
+
+- Discovery Expansion
+	- Support for "hidden" hints that never show up as hidden/future, but
+	  only appear when completed.
+		- For bonus/hidden content like renewal recipes.
+	- Allow hints to be assigned IDs/groups, used as prereqs themselves.
+		- Would need a deferred/multipass system for testing.
+	- Maybe show hidden hints once all non-hidden ones are done?
 
 - Half hint completion from witnessing?
 	- Some hints are witness-only like leaching, you just get full
@@ -25,18 +56,12 @@ IDEAS: Possible future additions/improvements to the game
 	  let them keep track of the fact that they haven't figure it out
 	  themselves
 
-- Expand the concept of "placed tools" in crafting
-	- Things like presence of an anvil or use of a chisel
-
-- Should there be a way to pluck wilted flowers without destroying?
-	- Dig dirt below, override behavior of attached_node?
-	- Do not allow, force players to re-wilt other flowers in place?
-
 - Add "welcome" messages on login
 	- In the same spirit as the server version line
 	- Notify if NodeCore updated since last played
 	- Welcome new players?
 	- Warn on special conditions, e.g. world in stasis?
+		 - Add to /status?
 
 - Hint system "quest" lines?
 	- Series of hints specially marked.
@@ -47,10 +72,6 @@ IDEAS: Possible future additions/improvements to the game
 
 - Make infused tools not directly flammable, BUT lose durability when
   near igniters similar to water effect.
-
-- Lenses in inventory react to nearby light.
-	- Shine if facing an active lens within range.
-	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
 
 - Underground generated mazes, more compact than dungeons
 	- Made of harder stone
@@ -180,6 +201,8 @@ IDEAS: Possible future additions/improvements to the game
 	  for damage given a player and a stack.
 		- Check for hot potato.
 		- Check upon pickup for anti-lode-move-exploit.
+	- Reform rake recipes
+		- Maybe 2x adze -> tongs, 2x tongs -> rake?
 
 - Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 

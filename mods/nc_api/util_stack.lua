@@ -48,6 +48,20 @@ end
 
 local metakey = "ncitem"
 
+if (not minetest.is_singleplayer()) and nodecore.public_meta_fields
+and not nodecore.setting_bool(
+	"private_node_items",
+	false,
+	"Privatize items in node metadata",
+	[[By default, itemstacks are sent to clients as part of
+	mapblock data. If set to true, these are not sent anymore.
+	This may result in a minor reduction of network traffic,
+	but will make maps saved via "local map saving" far less
+	useful as those maps will not contain stored items.]]
+) then
+	nodecore.public_meta_fields[metakey] = true
+end
+
 function nodecore.stack_get(pos, meta)
 	meta = meta or minetest.get_meta(pos)
 	local str = meta:get_string(metakey)
@@ -76,6 +90,20 @@ local function update(pos, ...)
 	return ...
 end
 
+local function stacks_equal(a, b)
+	if a:get_name() ~= b:get_name() then return end
+	if a:get_count() ~= b:get_count() then return end
+	-- Item stack meta can only have fields, no inventory to worry about.
+	-- Cannot compare stacks as serialized strings because field order
+	-- may differ between equivalent stacks causing false mismatch.
+	a = a:get_meta():to_table().fields
+	b = b:get_meta():to_table().fields
+	for k, v in pairs(a) do if b[k] ~= v then return end end
+	for k, v in pairs(b) do if a[k] ~= v then return end end
+	return true
+end
+nodecore.stacks_equal = stacks_equal
+
 function nodecore.stack_set(pos, stack, player, node, def)
 	if player then
 		nodecore.log("action", string_format("%s sets stack %q at %s",
@@ -86,12 +114,12 @@ function nodecore.stack_set(pos, stack, player, node, def)
 	local meta = minetest.get_meta(pos)
 	stack = ItemStack(stack)
 	local old = nodecore.stack_get(pos, meta)
-	local stackstring = stack:to_string()
-	meta:set_string(metakey, stackstring)
-	if old:to_string() ~= stackstring then
+	meta:set_string(metakey, stack:to_string())
+	if not stacks_equal(old, stack) then
 		if def.on_stack_change then
 			def.on_stack_change(pos, node, stack, old)
 		end
+		nodecore.notify_node_update(pos, node)
 		nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
 	return update(pos)

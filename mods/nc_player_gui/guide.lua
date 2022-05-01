@@ -25,7 +25,6 @@ nodecore.register_inventory_tab({
 			"",
 			"- Crafting is done by building recipes in-world.",
 			"- Order and specific face of placement may matter for crafting.",
-			"- Some recipes use a 3x3 \"grid\", laid out flat on the ground.",
 			"- Larger recipes are usually more symmetrical.",
 			"- For larger recipes, the center item is usually placed last.",
 			"- Tools used as ingredients must be in very good condition."

@@ -13,7 +13,9 @@ local match_skip = {
 	excess = true,
 	wear = true,
 	stacked = true,
-	any = true
+	any = true,
+	empty = true,
+	stackany = true
 }
 
 function nodecore.match(thing, crit)
@@ -29,6 +31,14 @@ function nodecore.match(thing, crit)
 		return
 	end
 
+	-- Allow matches on stacks inside any node, not only
+	-- bare stack nodes.
+	if crit.stackany then
+		local subcrit = nodecore.underride({}, crit)
+		subcrit.stackany = nil
+		if nodecore.match(thing, subcrit) then return thing end
+	end
+
 	thing.count = thing.count or 1
 
 	thing = nodecore.underride({}, thing)
@@ -42,7 +52,8 @@ function nodecore.match(thing, crit)
 		thing = nodecore.underride(thing, minetest.get_node(thing))
 	end
 	local def = minetest.registered_items[thing.name]
-	if (not thing.stacked) and def and def.groups and def.groups.is_stack_only then
+	if crit.stackany or (not thing.stacked) and def and def.groups
+	and def.groups.is_stack_only then
 		local stack = thing.x and thing.y and thing.z and nodecore.stack_get(thing)
 		if stack and not stack:is_empty() then
 			thing.name = stack:get_name()
@@ -55,6 +66,8 @@ function nodecore.match(thing, crit)
 	if crit.stacked and not thing.stacked then return end
 	if crit.stacked == false and thing.stacked then return end
 
+	thing.name = thing.name and minetest.registered_aliases[thing.name] or thing.name
+
 	if crit.name and thing.name ~= crit.name then return end
 	if crit.param2 and thing.param2 ~= crit.param2 then return end
 	if crit.param and thing.param ~= crit.param then return end
@@ -63,7 +76,7 @@ function nodecore.match(thing, crit)
 	if crit.count == nil and thing.count ~= 1 then return end
 	if crit.wear then
 		if crit.wear < 1 then crit.wear = crit.wear * 65535 end
-		if thing.wear > crit.wear then return end
+		if thing.wear and (thing.wear > crit.wear) then return end
 	end
 
 	if crit.groups then
@@ -83,6 +96,11 @@ function nodecore.match(thing, crit)
 			if not def or def[k] ~= v then return end
 		end
 	end
+
+	-- Never match on a thing that also has a stack inside it, e.g. crafts on
+	-- shelfs/forms that are full.
+	if crit.empty and not (thing.stacked or nodecore.stack_get(thing)
+		:is_empty()) then return end
 
 	return thing
 end

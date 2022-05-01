@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local ipairs, math, minetest, nodecore
+    = ipairs, math, minetest, nodecore
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -49,16 +49,39 @@ nodecore.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
-		indexkeys = {modname .. ":leaves_loose"},
+		indexkeys = {"group:peat_grindable_item"},
 		nodes = {
 			{
-				match = {name = modname .. ":leaves_loose", count = 8},
+				match = {groups = {peat_grindable_item = true}, count = 8},
+				replace = modname .. ":peat"
+			}
+		}
+	})
+nodecore.register_craft({
+		label = "compress peat block",
+		action = "pummel",
+		toolgroups = {crumbly = 2},
+		indexkeys = {"group:peat_grindable_node"},
+		nodes = {
+			{
+				match = {groups = {peat_grindable_node = true}, count = 1},
 				replace = modname .. ":peat"
 			}
 		}
 	})
 
 local compostcost = 2500
+
+nodecore.register_on_peat_compost,
+nodecore.registered_on_peat_composts
+= nodecore.mkreg()
+
+local function compostdone(pos, node)
+	nodecore.set_loud(pos, node)
+	for _, f in ipairs(nodecore.registered_on_peat_composts) do f(pos) end
+	nodecore.witness(pos, "peat compost")
+	return false
+end
 
 nodecore.register_soaking_abm({
 		label = "peat compost",
@@ -69,16 +92,28 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end
 			minetest.get_meta(pos):from_table({})
-			if math_random(1, 100) == 1 and nodecore.is_full_sun(
+			if math_random(1, 20) == 1 and nodecore.is_full_sun(
 				{x = pos.x, y = pos.y + 1, z = pos.z}) then
-				nodecore.set_loud(pos, {name = "nc_terrain:dirt_with_grass"})
-				return
+				return compostdone(pos, {name = "nc_terrain:dirt_with_grass"})
 			end
-			nodecore.set_loud(pos, {name = modname .. ":humus"})
+			compostdone(pos, {name = modname .. ":humus"})
 			local found = nodecore.find_nodes_around(pos, {modname .. ":peat"})
 			if #found < 1 then return false end
 			nodecore.soaking_abm_push(nodecore.pickrand(found),
 				"compost", data.total - compostcost)
 			return false
+		end
+	})
+
+nodecore.register_craft({
+		label = "tickle peat",
+		action = "pummel",
+		toolgroups = {crumbly = 1},
+		nodes = {
+			{match = {name = modname .. ":peat", stacked = false}}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "compost")
+			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":humus")
 		end
 	})

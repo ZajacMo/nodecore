@@ -59,6 +59,7 @@ local function cookdone(pos, data)
 	local meta = minetest.get_meta(pos)
 	local recipe = data.recipe
 	meta:set_float(recipe.label, 0)
+	nodecore.dynamic_shade_add(pos, 1)
 	return playcookfx(pos, recipe.cookfx, "hiss", 80, 0.2)
 end
 
@@ -88,6 +89,7 @@ end
 nodecore.register_dnt({
 		name = dntname,
 		time = 1,
+		arealoaded = 1,
 		action = cookcheck
 	})
 
@@ -96,6 +98,7 @@ function nodecore.register_cook_abm(def)
 	def.label = def.label or "cook " .. minetest.write_json(def.nodenames)
 	def.interval = def.interval or 1
 	def.chance = def.chance or 1
+	def.arealoaded = def.arealoaded or 1
 	def.action = cookcheck
 	nodecore.group_expand(def.nodenames, function(k) cooknames[k] = true end)
 	minetest.register_abm(def)

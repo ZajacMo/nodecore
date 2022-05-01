@@ -50,3 +50,13 @@ nodecore.register_hint("breed a new flower variety",
 	"group:flower_mutant",
 	{"group:flower_living", "flower spread"}
 )
+
+nodecore.register_hint("pack sedges into thatch",
+	"pack thatch",
+	"inv:nc_flora:sedge_1"
+)
+
+nodecore.register_hint("pack dry rushes into wicker",
+	"pack wicker",
+	"nc_flora:rush_dry"
+)

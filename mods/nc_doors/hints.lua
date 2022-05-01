@@ -35,7 +35,7 @@ nodecore.register_hint("catapult an item with a hinged panel",
 
 nodecore.register_hint("propel hinged panel with focused light",
 	"door ablation",
-	{"nc_optics:lens_on", "group:door"}
+	{"group:optic_lens_emit", "group:door"}
 )
 
 nodecore.register_hint("place a node with a hinged panel",
@@ -43,7 +43,7 @@ nodecore.register_hint("place a node with a hinged panel",
 	"group:door"
 )
 
-nodecore.register_hint("complete a craft with a hinged panel",
+nodecore.register_hint("complete an assembly recipe with a hinged panel",
 	"witness:door place-craft",
 	"group:door"
 )

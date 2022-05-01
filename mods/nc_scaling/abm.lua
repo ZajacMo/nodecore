@@ -11,6 +11,7 @@ minetest.register_abm({
 		chance = 1,
 		nodenames = {"group:" .. modname},
 		ignore_stasis = true,
+		arealoaded = 1,
 		action = function(pos)
 			local data = minetest.get_meta(pos):get_string("data")
 			if (not data) or (data == "") then

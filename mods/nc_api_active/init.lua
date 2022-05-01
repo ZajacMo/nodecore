@@ -12,7 +12,9 @@ nodecore.register_limited_abm = function(...)
 end
 
 include("abmmux")
+include("abmdelay")
 include("abminvert")
+include("abmarea")
 include("stasis")
 include("dnts")
 include("aism")

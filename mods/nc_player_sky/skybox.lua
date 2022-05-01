@@ -20,11 +20,11 @@ for dark = 0, 255 do
 		base_color = color,
 		type = "skybox",
 		textures = {},
-		darken = "^[colorize:#000000:" .. dark,
-		clouds = false
+		clouds = false,
+		_darken = dark > 0 and "^[colorize:#000000:" .. dark or "",
 	}
 	for k, v in pairs(basetextures) do
-		skyboxes[dark].textures[k] = v .. skyboxes[dark].darken
+		skyboxes[dark].textures[k] = v .. skyboxes[dark]._darken
 	end
 end
 
@@ -69,7 +69,7 @@ nodecore.register_playerstep({
 				top = top .. ":" .. (123 + px) .. "," .. (123 + py)
 				.. "=" .. esc("nc_player_sky_star.png^[resize:11x11"
 					.. "^[opacity:" .. math_ceil(opac))
-				data.sky.textures[1] = top .. data.sky.darken
+				data.sky.textures[1] = top .. data.sky._darken
 			end
 
 			data.daynight = nodecore.get_depth_light(depth)

@@ -54,6 +54,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 100,
 		nodenames = {modname .. ":sponge_wet"},
+		arealoaded = 1,
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 			if nodecore.is_full_sun(above) and #findwater(pos) < 1 then
@@ -67,6 +68,7 @@ nodecore.register_aism({
 		label = "sponge stack sun dry",
 		interval = 1,
 		chance = 100,
+		arealoaded = 1,
 		itemnames = {modname .. ":sponge_wet"},
 		action = function(stack, data)
 			if data.player and (data.list ~= "main"

@@ -81,6 +81,7 @@ minetest.register_abm({
 		neighbors = {"air"},
 		interval = 2,
 		chance = 5,
+		arealoaded = 1,
 		action = function(pos)
 			if not reposeq then
 				reposeq = {}

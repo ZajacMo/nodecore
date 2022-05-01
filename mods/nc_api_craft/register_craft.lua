@@ -41,6 +41,12 @@ function nodecore.register_craft(recipe)
 	if not recipe.root or not recipe.root.match then
 		error "recipe.nodes must have a match for 0,0,0"
 	end
+	if recipe.action == "cook" then
+		local rm = recipe.root.match
+		if type(rm) == "string" then rm = {name = rm} end
+		rm.stackany = true
+		recipe.root.match = rm
+	end
 	if not recipe.label then
 		id = id + 1
 		recipe.label = "unnamed " .. recipe.action .. " " .. id

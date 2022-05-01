@@ -93,7 +93,8 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 					newnode = {name = basename}
 				end
 				nodecore.wear_wield(data.crafter, {snappy = 1}, 1)
-				return nodecore.set_loud(pos, newnode)
+				nodecore.set_loud(pos, newnode)
+				return nodecore.fallcheck(pos)
 			end
 		})
 

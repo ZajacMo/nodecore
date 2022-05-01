@@ -1,0 +1,565 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-04-25 21:02+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
+"nodecore/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.12.1-dev\n"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Active Lens"
+msgstr "Lente attiva"
+
+msgid "Annealed Lode"
+msgstr "Vena Ricotta"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Testa di Maglio di Vena Ricotta"
+
+msgid "Annealed Lode Mattock"
+msgstr "Piccone di Vena Ricotta"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Testa di Piccone di Vena Ricotta"
+
+msgid "Annealed Lode Pick"
+msgstr "Piccozza di Vena Ricotta"
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "Glowing Lode"
+msgstr "Vena Incandescente"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Testa di Piccozza di Vena Ricotta"
+
+msgid "Ash"
+msgstr "Cenere"
+
+msgid "Ash Lump"
+msgstr "Grumo di cenere"
+
+msgid "Active Prism"
+msgstr "Prisma attivo"
+
+msgid "Aggregate"
+msgstr "Aggregato"
+
+msgid "Annealed Lode Bar"
+msgstr "Barra di Vena Ricotta"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Accetta di Vena Ricotta"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Testa di Accetta di Vena Ricotta"
+
+msgid "Annealed Lode Mallet"
+msgstr "Maglio di Vena Ricotta"
+
+msgid "Sand"
+msgstr "Sabbia"
+
+msgid "activate a lens"
+msgstr "attiva una lente"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- Il gioco è progettato per essere impegnativo, a volte frustrante. NON "
+"ARRENDETEVI!"
+
+msgid "- There is NO inventory screen."
+msgstr "- Non c'è NESSUNA schermata da inventario."
+
+msgid "Air"
+msgstr "Aria"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr ""
+"- le \"Fornaci\" non esistono come oggetti: scopri la fusione a fiamma "
+"libera."
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+posa un qualunque oggetto per posare tutto."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Attenzione alle caverne ed ai precipizi bui; è tuo incarico tirartene "
+"fuori."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- I punti di arrampicata possono essere usati per arrampicarsi quando "
+"compaiono delle particelle nere."
+
+msgid "- DONE: @1"
+msgstr "- FATTO: @1"
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- Posa gli oggetti sul terreno per creare nodi catasta. Non decadono."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Le creazioni si fanno costruendo ricette nel mondo."
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr ""
+"- Sui nodi spiazzati ci si può arrampicare come sui punti di arrampicata."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Non usare le informazioni di debug F5; ti porteranno fuori strada!"
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Per picchiare, colpite un nodo ripetutamente SENZA scavare."
+
+msgid "@1 (@2)"
+msgstr ""
+
+msgid "Annealed Lode Prill"
+msgstr "Nucleo di Vena Ricotta"
+
+msgid "Loose Dirt"
+msgstr "Terra Sfusa"
+
+msgid "Tempered Lode Pick Head"
+msgstr "Testa di Piccozza di Vena Temprata"
+
+msgid "Torch"
+msgstr "Torcia"
+
+msgid "find lode ore"
+msgstr "trova vena minerale"
+
+msgid "write on a surface with a charcoal lump"
+msgstr "scrivi su una superficie con un grumo di carbone"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "lavora vena incandescente su una incudine di pietra"
+
+msgid "Burning Embers"
+msgstr "Braci Ardenti"
+
+msgid "Annealed Lode Adze"
+msgstr "Ascia di Vena Ricotta"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Testa di Pala di Vena Ricotta"
+
+msgid "Glowing Lode Cobble"
+msgstr "Ciottolato di Vena Incadescente"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Testa di Ascia di Vena Incandescente"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Testa di Pala di Vena Incandescente"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Piccone di Vena Temprata Infusa"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Rastrello di Vena Ricotta Infusa"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Pala di Vena Ricotta Infusa"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Accetta di Vena Temprata Infusa"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Maglio di Vena Temprata Infusa"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Rastrello di Vena Temprata Infusa"
+
+msgid "Glowing Lode Adze"
+msgstr "Ascia di Vena Incadescente"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Ascia di Vena Temprata Infusa"
+
+msgid "Glowing Lode Bar"
+msgstr "Barra di Vena Incandescente"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Maglio di Vena Ricotta Infusa"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Piccone di Vena Ricotta Infusa"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Testa di Maglio di Vena Incandescente"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Accetta di Vena Ricotta Infusa"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Piccozza di Vena Temprata Infusa"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Ascia di Vena Ricotta Infusa"
+
+msgid "Tempered Lode Frame"
+msgstr "Impalcato di Vena Temprata"
+
+msgid "assemble a lode adze"
+msgstr "assembla un'ascia di vena"
+
+msgid "Loose Lode Cobble"
+msgstr "Ciottolato Sfuso di Vena"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "Testa di Accetta di Vena Temprata"
+
+msgid "Tempered Lode Adze"
+msgstr "Ascia di Vena Temprata"
+
+msgid "Tempered Lode Bar"
+msgstr "Barra di Vena Temprata"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "Testa di Piccone di Vena Temprata"
+
+msgid "forge lode bars into a rod"
+msgstr "forgia barre di vena in un'asta"
+
+msgid "Tempered Lode Hatchet"
+msgstr "Accetta di Vena Temprata"
+
+msgid "forge lode prills into a tool head"
+msgstr "forgia nuclei di vena in una testa di attrezzo"
+
+msgid "Loose Gravel"
+msgstr "Ghiaia Sfusa"
+
+msgid "Loose Lux Cobble"
+msgstr "Ciottolato Sfuso di Lux"
+
+msgid "Loose Sand"
+msgstr "Sabbia Sfusa"
+
+msgid "temper a lode tool head"
+msgstr "tempra una testa di attrezzo di vena"
+
+msgid "Loose Cobble"
+msgstr "Ciottolato Sfuso"
+
+msgid "Loose Humus"
+msgstr "Humus Sfuso"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- Non riesci a scavare alberi o erba? Cerca bastoncini nelle chiome."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- I punti di arrampicata producono anche una debole luce; alza la gamma del "
+"monitor per vederla."
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 da Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Posa e raccogli gli oggetti per sistemare il tuo inventario."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Se una ricetta esiste, vedrai un effetto speciale di particelle."
+
+#, fuzzy
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr ""
+"- Gli oggetti raccolti cercheranno di andare nella posizione selezionata "
+"come prima cosa."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Se ci vogliono più di 5 secondi per scavare, non stai usando lo strumento "
+"giusto."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- I filoni possono essere nascosti, ma svelati da piccoli indizi nel terreno."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Per correre più veloce, cammina/nuota in avanti o arrampicati/nuota verso "
+"l'alto continuamente."
+
+msgid "Amalgamation"
+msgstr "Amalgama"
+
+msgid "Azure Rosette Flower"
+msgstr "Fiore a Rosetta Azzurro"
+
+msgid "Azure Bell Flower"
+msgstr "Fiore a Campana Azzurro"
+
+msgid "Azure Cluster Flower"
+msgstr "Fiore Composto Azzurro"
+
+msgid "Azure Cup Flower"
+msgstr "Fiore a Coppa Azzurro"
+
+msgid "Azure Star Flower"
+msgstr "Fiore a Stella Azzurro"
+
+msgid "- FUTURE: @1"
+msgstr "- FUTURI: @1"
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Per le ricette più grosse, l'elemento centrale è generalmente messo per "
+"ultimo."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+"- Tieni/ripeti il pulsante destro su mura/soffitti a mani nude per "
+"arrampicarti."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Incastrati senza speranza? Prova a chiedere nelle chatroom della comunità ("
+"scheda Informazioni)."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Le ricette più grandi sono generalmente più simmetriche."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Impara ad usare le stelle per la navigazione su grandi distanze."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- I nodi scavati senza lo strumento giusto non possono essere raccolti, solo "
+"spostati."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- L'ordine e la faccia specifica del piazzamento possono essere importanti "
+"nella creazione."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr ""
+"- Le ricette sono a base di tempo, colpire più velocemente non le accelera."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Alcune ricette richiedono che si \"picchi\" un nodo."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr ""
+"- Le cataste possono essere picchiate, il numero esatto di elementi può "
+"essere importante."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr ""
+"- Gli strumenti usati come ingredienti devono essere in condizioni molto "
+"buone."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Problemi ad accendere un fuoco? Prova a usare bastoni più lunghi, più esca."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- Oggetto impugnato, faccia mirata e nodi circostanti possono essere "
+"importanti."
+
+msgid "Annealed Lode Frame"
+msgstr "Impalcato di Vena Ricotta"
+
+msgid "Annealed Lode Ladder"
+msgstr "Scala di Vena Ricotta"
+
+msgid "Annealed Lode Rake"
+msgstr "Rastrello di Vena Ricotta"
+
+msgid "Annealed Lode Rod"
+msgstr "Asta di Vena Ricotta"
+
+msgid "Annealed Lode Spade"
+msgstr "Pala di Vena Ricotta"
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Non devi colpire troppo veloce (circa 1 al secondo)."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 scoperti, @2 disponibili, @3 futuri"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Ulteriori Mod Caricate: @1"
+
+msgid "Adobe Bricks"
+msgstr "Mattoni di Adobe"
+
+msgid "Adobe Mix"
+msgstr "Miscela di Adobe"
+
+msgid "Dirt"
+msgstr "Terra"
+
+msgid "Glowing Lode Ladder"
+msgstr "Scala di Vena Incandescente"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Testa di Piccone di Vena Incandescente"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Testa di Piccozza di Vena Incandescente"
+
+msgid "Glowing Lode Prill"
+msgstr "Nucleo di Vena Incandescente"
+
+msgid "Glowing Lode Rake"
+msgstr "Rastrello di Vena Incandescente"
+
+msgid "Glowing Lode Rod"
+msgstr "Asta di Vena Incandescente"
+
+msgid "Glowing Lode Frame"
+msgstr "Impalcato di Vena Incandescente"
+
+msgid "Grass"
+msgstr "Erba"
+
+msgid "Gravel"
+msgstr "Ghiaia"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Piccozza di Vena Ricotta Infusa"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Pala di Vena Temprata Infusa"
+
+msgid "Lode Cobble"
+msgstr "Ciottolato di Vena"
+
+msgid "Lode Crate"
+msgstr "Cassa di Vena"
+
+msgid "Lode Form"
+msgstr "Telaio di Vena"
+
+msgid "Inventory"
+msgstr "Inventario"
+
+msgid "Lode Ore"
+msgstr "Vena Minerale"
+
+msgid "Loose Amalgamation"
+msgstr "Amalgama Sfuso"
+
+msgid "Loose Leaves"
+msgstr "Foglie Sfuse"
+
+msgid "Sandstone"
+msgstr "Arenaria"
+
+msgid "Stick"
+msgstr "Bastoncino"
+
+msgid "Stone"
+msgstr "Pietra"
+
+msgid "Tempered Lode"
+msgstr "Vena Temprata"
+
+msgid "Tempered Lode Ladder"
+msgstr "Scala di Vena Temprata"
+
+msgid "Tempered Lode Mallet"
+msgstr "Maglio di Vena Temprata"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "Testa di Maglio di Vena Temprata"
+
+msgid "Tempered Lode Mattock"
+msgstr "Piccone di Vena Temprata"
+
+msgid "Tempered Lode Pick"
+msgstr "Piccozza di Vena Temprata"
+
+msgid "Tempered Lode Prill"
+msgstr "Nucleo di Vena Temprata"
+
+msgid "Tempered Lode Rake"
+msgstr "Rastrello di Vena Temprata"
+
+msgid "Tempered Lode Rod"
+msgstr "Asta di Vena Temprata"
+
+msgid "Tempered Lode Spade"
+msgstr "Pala di Vena Temprata"
+
+msgid "Tempered Lode Spade Head"
+msgstr "Testa di Pala di Vena Temprata"
+
+msgid "Wooden Frame"
+msgstr "Impalcato di Legno"
+
+msgid "Wooden Ladder"
+msgstr "Scala di Legno"
+
+msgid "anneal a lode cube"
+msgstr "ricuoci un cubo di vena"
+
+msgid "assemble a wooden frame from staves"
+msgstr "monta un impalcato di legno con bastoni"
+
+msgid "assemble a lode crate from form and bar"
+msgstr "assembla una cassa di vena da telaio e barra"
+
+msgid "assemble a lode rake"
+msgstr "assembla un rastrello di vena"
+
+msgid "assemble a lode tote handle"
+msgstr "assembla un manico di portaoggetti di vena"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "completa una ricetta di assemblaggio con un pannello incardinato"
+
+msgid "convert a wooden form to a frame"
+msgstr "trasforma un telaio di legno in un impalcato"
+
+msgid "convert a wooden frame to a form"
+msgstr "trasforma un impalcato di legno in un telaio"
+
+msgid "dig up lode ore"
+msgstr "scava vena minerale"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "forgia un impalcato di vena ricotta in un telaio"
+
+msgid "forge lode rods into a frame"
+msgstr "forgia aste di vena in un impalcato"
+
+msgid "forge a lode prill into a bar"
+msgstr "forgia un nucleo di vena in una barra"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "forgia un'asta di vena con una barra in una scala"
+
+msgid "lux-infuse a lode tool"
+msgstr "infondi lux in un attrezzo di vena"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "fondi metallo di vena da ciottolato di vena"
+
+msgid "temper a lode cube"
+msgstr "tempra un cubo di vena"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "lavora vena incandescente su una incudine di vena"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "salda insieme teste di piccozza e pala"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "lavora vena ricotta su una incudine di vena temprata"

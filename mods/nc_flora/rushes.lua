@@ -47,7 +47,8 @@ minetest.register_node(modname .. ":rush_dry", {
 			snappy = 1,
 			flammable = 2,
 			attached_node = 1,
-			flora_dry = 1
+			flora_dry = 1,
+			peat_grindable_item = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
 		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
@@ -98,6 +99,7 @@ minetest.register_abm({
 		label = "rush drying/spreading",
 		interval = 1,
 		chance = 50,
+		arealoaded = 2,
 		nodenames = {modname .. ":rush"},
 		action = function(pos)
 			local subst, below = rushcheck(pos)
@@ -108,13 +110,13 @@ minetest.register_abm({
 					})
 			end
 			if subst == true then return end
-			if math_random(1, 30) ~= 1 then return end
+			if math_random(1, 15) ~= 1 then return end
 			local pick = {
 				x = pos.x + math_random(-1, 1),
 				y = pos.y + math_random(-1, 1),
 				z = pos.z + math_random(-1, 1),
 			}
-			if not (nodecore.match(pick, {air_equivalent = true})
+			if not (nodecore.air_equivalent(pick)
 				and rushcheck(pick)) then return end
 			if math_random(1, 4) == 1 then
 				nodecore.set_loud(below, {name = subst})
@@ -131,6 +133,7 @@ nodecore.register_aism({
 		label = "rush stack dry",
 		interval = 1,
 		chance = 25,
+		arealoaded = 2,
 		itemnames = {modname .. ":rush"},
 		action = function(stack, data)
 			if data.toteslot then return end
@@ -150,3 +153,18 @@ nodecore.register_aism({
 			return stack
 		end
 	})
+
+nodecore.register_on_peat_compost(function(pos)
+		if math_random(1, 10) ~= 1 then return end
+
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		if not (nodecore.air_equivalent(above) and rushcheck(above)
+			and #nodecore.find_nodes_around(above, "group:flora_sedges", 1) >= 2
+			and #nodecore.find_nodes_around(above, "group:moist", 1) >= 2)
+		then return end
+
+		nodecore.set_loud(above, {
+				name = modname .. ":rush",
+				param2 = 4
+			})
+	end)

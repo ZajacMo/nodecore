@@ -1,0 +1,13 @@
+# textdomain: nc_api
+(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 Aaron Suen <warr1024@@gmail.com>
+- "Furnaces" are not a thing; discover smelting with open flames.=- «Піч» не є предметом; досліджуйте плавлення на відкритому вогні.
+- DONE: @1=- ГОТОВО: @1
+- If it takes more than 5 seconds to dig, you don't have the right tool.=- Якщо Ви копаєте більше ніж 5 секунд — у Вас неправильний інструмент.
+- Larger recipes are usually more symmetrical.=- Більші рецепти зазвичай симетричніші.
+About=Про гру
+Additional Mods Loaded: @1=Завантажено додаткові моди: @1
+Stick=Палиця
+Wooden Panel=Деревʼяна панель
+Wooden Plank=Дошка
+Wooden Rake=Деревʼяні граблі
+Wooden Spade=Деревʼяна лопата

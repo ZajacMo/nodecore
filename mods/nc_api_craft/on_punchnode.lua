@@ -3,12 +3,12 @@ local minetest, nodecore, vector
     = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local function pummelparticles(_, data)
+local function pumparticles(data, time, speed, qty)
 	local pointed = data.pointed
 	local nodedef = data.nodedef
 	local pname = data.pname
 
-	local stack = nodecore.stack_get(data.node)
+	local stack = nodecore.stack_get(data.pos)
 	if stack and not stack:is_empty() then
 		nodedef = minetest.registered_items[stack:get_name()] or nodedef
 	end
@@ -21,24 +21,27 @@ local function pummelparticles(_, data)
 	local p2 = {x = vel.z, y = vel.x, z = vel.y}
 	local s1 = vector.add(vector.add(mid, vector.multiply(p1, 0.5)), vector.multiply(p2, 0.5))
 	local s2 = vector.add(vector.add(mid, vector.multiply(p1, -0.5)), vector.multiply(p2, -0.5))
-	vel = vector.multiply(vel, 0.5)
+	vel = vector.multiply(vel, speed)
 
-	data.clearfx = nodecore.digparticles(nodedef, nodecore.underride(
-			nodecore.underride({}, data.recipe.pumparticles or {}),
-			{
-				amount = 8,
-				time = 1.5,
-				minpos = s1,
-				maxpos = s2,
-				minvel = vel,
-				maxvel = vel,
-				minexptime = 0.4,
-				maxexptime = 0.9,
-				minsize = 1,
-				maxsize = 5,
-				playername = pname
-			})
-	)
+	return function()
+		data.clearfx = nodecore.digparticles(nodedef, nodecore.underride(
+				nodecore.underride({}, data.recipe
+					and data.recipe.pumparticles or {}),
+				{
+					amount = qty,
+					time = time,
+					minpos = s1,
+					maxpos = s2,
+					minvel = vel,
+					maxvel = vel,
+					minexptime = 0.4,
+					maxexptime = 0.9,
+					minsize = 1,
+					maxsize = 5,
+					playername = pname
+				})
+		)
+	end
 end
 
 local pummeling = {}
@@ -55,6 +58,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}
+		if not def.pointable then return end
 
 		local now = minetest.get_us_time() / 1000000
 		local pum = {
@@ -68,8 +72,8 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 			start = now,
 			wield = puncher:get_wielded_item():to_string(),
 			count = 0,
-			inprogress = pummelparticles
 		}
+		pum.inprogress = pumparticles(pum, 1.5, 0.5, 8)
 
 		local old = pummeling[pname]
 		if old and old.clearfx then old.clearfx() end
@@ -94,7 +98,9 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 			return
 		end
 
+		local doneparticles = pumparticles(pum, 0.05, 1, 25)
 		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then
+			doneparticles()
 			pummeling[pname] = nil
 			return
 		end

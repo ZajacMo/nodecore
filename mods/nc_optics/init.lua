@@ -7,6 +7,7 @@ nodecore.amcoremod()
 
 include("api")
 include("glass")
+include("glued")
 include("lens")
 include("prism")
 include("cooking")

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, rawset, vector
-    = ItemStack, math, minetest, nodecore, rawset, vector
+local ItemStack, math, minetest, nodecore, rawset, tostring, vector
+    = ItemStack, math, minetest, nodecore, rawset, tostring, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -24,12 +24,14 @@ function nodecore.touchtip_stack(s, noqty)
 	local n = s:get_name()
 	local d = minetest.registered_items[n] or {}
 
-	local t = s:get_meta():get_string("description")
+	local sm = s:get_meta()
+	local t = sm:get_string("description")
 	t = t ~= "" and t or d.description or n
 
 	if not noqty then
-		local c = s:get_count()
-		if c > 1 then
+		local c = sm:get_string("count_meta")
+		c = c and c ~= "" and c or tostring(s:get_count())
+		if c ~= "1" then
 			t = nodecore.translate(countdesc,
 				nodecore.translate(t), c)
 		else

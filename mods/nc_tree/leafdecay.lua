@@ -7,6 +7,8 @@ local math_random
 
 local modname = minetest.get_current_modname()
 
+local hashpos = minetest.hash_node_position
+
 local queue = {}
 local qsize = 0
 local qmax = 100
@@ -20,6 +22,8 @@ local dirs = {
 	{x = -1, y = 0, z = 0},
 }
 
+nodecore.leaf_decay_forced = {}
+
 function nodecore.leaf_decay(pos, node)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
@@ -28,14 +32,29 @@ function nodecore.leaf_decay(pos, node)
 			node[k] = v
 		end
 	end
+
+	local poskey = hashpos(pos)
+	local forced = nodecore.leaf_decay_forced[poskey]
+	or minetest.get_meta(pos):get_string("leaf_decay_forced")
+	nodecore.leaf_decay_forced[poskey] = nil
+	forced = forced and forced ~= "" and minetest.deserialize(forced, true) or nil
+
 	local t = {}
-	for _, v in ipairs(nodecore.registered_leaf_drops) do
-		t = v(pos, node, t) or t
+	if forced then
+		if not forced[1] then forced = {forced} end
+		t = forced
+	else
+		for _, v in ipairs(nodecore.registered_leaf_drops) do
+			t = v(pos, node, t) or t
+		end
 	end
-	local p = nodecore.pickrand(t, function(x) return x.prob end)
+
+	local p = nodecore.pickrand(t, function(x) return x.prob or 1 end)
 	if not p then return end
+
 	minetest.set_node(pos, p)
 	if p.item then nodecore.item_eject(pos, p.item) end
+
 	for i = 1, #dirs do
 		local dp = vector.add(pos, dirs[i])
 		qsize = qsize + 1
@@ -48,13 +67,14 @@ function nodecore.leaf_decay(pos, node)
 			queue[qsize] = dp
 		end
 	end
+
 	return nodecore.fallcheck(pos)
 end
 
 local cache = {}
 
 local function check_decay(pos, node)
-	local hash = minetest.hash_node_position(pos)
+	local hash = hashpos(pos)
 	local found = cache[hash]
 	if found and minetest.get_node(found).name == found.name then return true end
 	return nodecore.scan_flood(pos, 5, function(p)
@@ -64,7 +84,7 @@ local function check_decay(pos, node)
 			or n == "ignore" then
 				while p.prev do
 					p.name = minetest.get_node(p).name
-					cache[minetest.hash_node_position(p.prev)] = p
+					cache[hashpos(p.prev)] = p
 					p = p.prev
 				end
 				return true
@@ -81,7 +101,8 @@ end
 local decaynames = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups and v.groups.leaf_decay then
+			if v.groups and v.groups.leaf_decay
+			and v.groups.leaf_decay > 0 then
 				decaynames[k] = true
 			end
 		end

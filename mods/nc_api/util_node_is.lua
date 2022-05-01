@@ -17,6 +17,7 @@ nodecore.buildable_to = defprop("buildable_to")
 nodecore.walkable = defprop("walkable")
 nodecore.climbable = defprop("climbable")
 nodecore.sunlight_propagates = defprop("sunlight_propagates")
+nodecore.air_equivalent = defprop("air_equivalent")
 
 local airpass_drawtypes = {
 	airlike = true,

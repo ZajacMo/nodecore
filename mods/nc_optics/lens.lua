@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, string, vector
+    = minetest, nodecore, string, vector
+local string_gsub
+    = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -49,8 +51,10 @@ local basedef = {
 		silica = 1,
 		silica_lens = 1,
 		optic_check = 1,
+		optic_lens = 1,
 		cracky = 3,
-		scaling_time = 125
+		scaling_time = 125,
+		optic_gluable = 1
 	},
 	silktouch = false,
 	drop = modname .. ":lens",
@@ -79,7 +83,7 @@ reg("_on", {
 			txr .. "^" .. pinp .. "^" .. pout
 		},
 		light_source = 1,
-		groups = {optic_source = 1},
+		groups = {optic_source = 1, optic_lens_emit = 1},
 		optic_source = function(_, node)
 			return {nodecore.facedirs[node.param2].k}
 		end
@@ -96,22 +100,21 @@ reg("_glow", {
 reg("_glow_start", {
 		description = "Shining Lens",
 		light_source = 1,
-		groups = {activates_lens = 1},
+		groups = {activates_lens = 1, lens_glow_start = 1},
 		tiles = {
 			txr .. "^" .. modname .. "_shine_side.png",
 			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
 			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
-		},
-		on_construct = function(pos) return nodecore.dnt_set(pos,
-			modname .. ":lens_warmup") end
+		}
 	})
 
 nodecore.register_dnt({
 		name = modname .. ":lens_warmup",
-		nodenames = {modname .. ":lens_glow_start"},
+		nodenames = {"group:lens_glow_start"},
 		time = 2,
+		autostart = true,
 		action = function(pos, node)
-			node.name = modname .. ":lens_glow"
+			node.name = string_gsub(node.name, "_start", "")
 			return nodecore.set_node(pos, node)
 		end
 	})
@@ -120,7 +123,8 @@ minetest.register_abm({
 		label = "lens fire start",
 		interval = 2,
 		chance = 2,
-		nodenames = {modname .. ":lens_on"},
+		nodenames = {"group:optic_lens_emit"},
+		action_delay = true,
 		action = function(pos, node)
 			local face = nodecore.facedirs[node.param2]
 			local out = vector.add(face.k, pos)
@@ -137,5 +141,37 @@ minetest.register_abm({
 						count = stack:get_count()
 					})
 			end
+		end
+	})
+
+local function getdir(v)
+	if (v.y * v.y) > (v.x * v.x + v.z * v.z) then
+		if v.y >= 0 then return {x = 0, y = 1, z = 0} end
+		return {x = 0, y = -1, z = 0}
+	elseif (v.x * v.x) > (v.z * v.z) then
+		if v.x >= 0 then return {x = 1, y = 0, z = 0} end
+		return {x = -1, y = 0, z = 0}
+	end
+	if v.z >= 0 then return {x = 0, y = 0, z = 1} end
+	return {x = 0, y = 0, z = -1}
+end
+
+nodecore.register_aism({
+		label = "lens light",
+		interval = 1,
+		chance = 1,
+		itemnames = {"group:optic_lens"},
+		action = function(stack, data)
+			if not data.player then return end
+			local nn = modname .. ":lens"
+			.. (nodecore.optic_scan_recv(
+					vector.round(data.pos),
+					getdir(data.player:get_look_dir()),
+					nil,
+					minetest.get_node)
+				and "_glow" or "")
+			if stack:get_name() == nn then return end
+			stack:set_name(nn)
+			return stack
 		end
 	})

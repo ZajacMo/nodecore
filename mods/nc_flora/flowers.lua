@@ -66,6 +66,7 @@ for shapeid = 1, #shapes do
 					flower_living = 1,
 					flammable = 1,
 					attached_node = 1,
+					peat_grindable_item = 1,
 					flower_mutant = (not mapgenrates[flowername(shapeid,
 							colorid)]) and 1 or nil
 				},
@@ -103,7 +104,8 @@ for shapeid = 1, #shapes do
 				flower_wilted = 1,
 				flammable = 1,
 				attached_node = 1,
-				flora_dry = 1
+				flora_dry = 1,
+				peat_grindable_item = 1
 			},
 			sounds = nodecore.sounds("nc_terrain_swishy"),
 			selection_box = {
@@ -136,7 +138,7 @@ for k, v in pairs(mapgenrates) do
 end
 
 local function flowerable(pos)
-	local grass = nodecore.grassable(pos)
+	local grass = nodecore.can_grass_grow_under(pos)
 	if not grass then return grass end
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 	local bnode = minetest.get_node_or_nil(below)
@@ -182,6 +184,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 100,
 		nodenames = {"group:flower_living"},
+		arealoaded = 2,
 		action = function(pos, node)
 			local function die()
 				local wilt = minetest.registered_items[node.name].flower_wilts_to
@@ -227,6 +230,7 @@ nodecore.register_aism({
 		label = "flower stack wilt",
 		interval = 1,
 		chance = 50,
+		arealoaded = 2,
 		itemnames = {"group:flower_living"},
 		action = function(stack, data)
 			if data.toteslot then return end
@@ -247,3 +251,20 @@ nodecore.register_aism({
 			return stack
 		end
 	})
+
+nodecore.register_on_peat_compost(function(pos)
+		if math_random(1, 100) ~= 1 then return end
+
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		if not (nodecore.air_equivalent(above)
+			and nodecore.is_full_sun(above)
+			and flowerable(above)
+			and #nodecore.find_nodes_around(above, "group:moist", {2, 2, 2}) > 0)
+		then return end
+
+		local stat, name = nodecore.pickrand(mapgenrates, function(v) return v.rate end)
+		nodecore.set_loud(above, {
+				name = name,
+				param2 = shapes[stat.shape].param2
+			})
+	end)

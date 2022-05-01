@@ -6,7 +6,12 @@ local ItemStack, minetest, nodecore, pairs, vector
 local presstoolcaps = {}
 minetest.after(0, function()
 		for name, def in pairs(minetest.registered_items) do
-			if def.tool_capabilities then
+			local ovrgrp = def.groups and def.groups.nc_doors_always_pummel
+			if ovrgrp and ovrgrp > 0 then
+				presstoolcaps[name] = def.tool_head_capabilities
+				and def.tool_head_capabilities.groupcaps
+				or def.tool_capabilities.groupcaps
+			elseif def.tool_capabilities then
 				presstoolcaps[name] = "dig"
 			elseif def.tool_head_capabilities then
 				presstoolcaps[name] = def.tool_head_capabilities.groupcaps
@@ -101,19 +106,35 @@ local function toolfx(toolpos, actpos)
 	toolfxqueue[hashpos(toolpos)] = actpos
 end
 
+local olddig = minetest.node_dig
+function minetest.node_dig(pos, node, digger, ...)
+	if not nodecore.machine_digging then
+		return olddig(pos, node, digger, ...)
+	end
+	local oldprot = minetest.is_protected
+	function minetest.is_protected(pos2, ...)
+		if vector.equals(pos, pos2) then return end
+		return oldprot(pos2, ...)
+	end
+	local function helper(...)
+		minetest.is_protected = oldprot
+		return ...
+	end
+	return helper(olddig(pos, node, digger, ...))
+end
+
 local function doitemeject(pos, data)
 	if data.pressdig then
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
 		minetest.dig_node(data.pressdig.pos)
-		nodecore.machine_digging = nil
-		nodecore.witness(pos, "door dig")
+		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door dig")
 		return
 	end
 	if data.presscommit then
 		toolfx(pos, data.presstarget)
 		data.presscommit()
-		nodecore.witness(pos, "door pummel")
+		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door pummel")
 		return
 	end
 
@@ -123,7 +144,7 @@ local function doitemeject(pos, data)
 	one:set_count(1)
 
 	if data.intostorebox then
-		nodecore.witness(pos, "door store")
+		nodecore.witness({pos, data.pointed.above, data.intostorebox}, "door store")
 		one = nodecore.stack_add(data.intostorebox, one)
 		nodecore.stack_sounds(data.intostorebox, "place")
 		if not one:is_empty() then return end
@@ -150,7 +171,7 @@ local function doitemeject(pos, data)
 		return minetest.remove_node(pos)
 	end
 	nodecore.stack_set(pos, stack)
-	return nodecore.witness(pos, "door catapult")
+	return nodecore.witness({pos, data.pointed.above}, "door catapult")
 end
 
 nodecore.register_craft({

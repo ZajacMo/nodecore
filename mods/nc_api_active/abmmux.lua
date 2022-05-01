@@ -89,6 +89,9 @@ if statinterval > 0 then
 	minetest.after(1, pcount)
 end
 
+local rawreg = {}
+nodecore.registered_abms_demux = rawreg
+
 local anonid = 1
 local function runaction(def, ...)
 	local start = minetest.get_us_time()
@@ -99,6 +102,7 @@ local function runaction(def, ...)
 end
 local oldreg = minetest.register_abm
 function minetest.register_abm(def)
+	rawreg[#rawreg + 1] = def
 	local rawkey = table_concat({
 			def.interval or 1,
 			def.chance or 1,
@@ -124,11 +128,12 @@ function minetest.register_abm(def)
 	if abmsdefined[muxkey] then return end
 	abmsdefined[muxkey] = true
 	local warned = {}
-	local function warnunused(nn)
+	local function warnunused(nn, pos)
 		if warned[nn] then return end
 		warned[nn] = true
-		return nodecore.log("warning", "no abm found for mux " .. rawkey
-			.. " node " .. nn)
+		return nodecore.log("warning", string_format(
+				"no abm found for mux %q node %s at %s",
+				rawkey, nn, minetest.pos_to_string(pos)))
 	end
 	return oldreg({
 			label = "mux abm for " .. rawkey,
@@ -143,7 +148,7 @@ function minetest.register_abm(def)
 				local oldname = node.name
 				local found = muxidx[muxkey .. oldname]
 				if not found then
-					warnunused(oldname)
+					warnunused(oldname, pos)
 					return totaltimeupdate(start)
 				end
 				runaction(found[1], pos, node, ...)

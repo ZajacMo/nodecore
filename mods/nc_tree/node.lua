@@ -77,6 +77,8 @@ local function fade(txr)
 	return txr .. "^[multiply:#a0a0a0^" .. txr
 end
 
+local hashpos = minetest.hash_node_position
+
 minetest.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
@@ -84,6 +86,7 @@ minetest.register_node(modname .. ":leaves", {
 		tiles = {fade(modname .. "_leaves.png")},
 		waving = 1,
 		air_pass = true,
+		silktouch = false,
 		groups = {
 			canopy = 1,
 			snappy = 1,
@@ -103,10 +106,17 @@ minetest.register_node(modname .. ":leaves", {
 				falling_repose = 1,
 				green = 1,
 				stack_as_node = 1,
-				leaf_decay = 0
+				leaf_decay = 0,
+				peat_grindable_item = 1
 			}
 		},
 		alternate_solid = {
+			preserve_metadata = function(pos, _, oldmeta)
+				if oldmeta.leaf_decay_forced then
+					nodecore.leaf_decay_forced[hashpos(pos)]
+					= oldmeta.leaf_decay_forced
+				end
+			end,
 			after_dig_node = function(...)
 				return nodecore.leaf_decay(...)
 			end,

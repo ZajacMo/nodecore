@@ -67,9 +67,11 @@ do
 		ticked = ticked + 1
 		if ticked < 5 then return minetest.after(0, regreport) end
 		local reg = "registered_"
+		local raw = "_raw"
 		local t = {}
 		for k, v in pairs(nodecore) do
-			if k:sub(1, #reg) == reg and type(v) == "table" then
+			if k:sub(1, #reg) == reg and k:sub(-#raw) ~= raw
+			and type(v) == "table" then
 				local qty = 0
 				for _ in pairs(v) do qty = qty + 1 end
 				t[#t + 1] = "#" .. k .. " = " .. qty
@@ -88,7 +90,6 @@ include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
 include("compat_nodealpha")
-include("compat_player_velocity")
 
 include("util_settings")
 include("util_misc")

@@ -8,28 +8,7 @@ local math_random, table_concat
 local modname = minetest.get_current_modname()
 
 local function growparticles(pos, rate, width)
-	local zero = {x = 0, y = 0, z = 0}
-	nodecore.digparticles(minetest.registered_items[modname .. ":leaves_bud"],
-		{
-			amount = rate,
-			time = 10,
-			minpos = {
-				x = pos.x - width,
-				y = pos.y + 33/64,
-				z = pos.z - width
-			},
-			maxpos = {
-				x = pos.x + width,
-				y = pos.y + 33/64,
-				z = pos.z + width
-			},
-			minvel = zero,
-			maxvel = zero,
-			minexptime = 0.25,
-			maxexptime = 1,
-			minsize = 3 * width,
-			maxsize = 9 * width,
-		})
+	nodecore.soaking_particles(pos, rate, 10, width, modname .. ":leaves_bud")
 end
 
 local sproutcost = 2000
@@ -38,9 +17,9 @@ nodecore.register_soaking_abm({
 		fieldname = "eggcorn",
 		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
+		arealoaded = 1,
 		soakrate = nodecore.tree_growth_rate,
 		soakcheck = function(data, pos)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total >= sproutcost then
 				nodecore.node_sound(pos, "dig")
 				nodecore.set_loud(pos, {name = modname .. ":root"})
@@ -77,9 +56,9 @@ nodecore.register_soaking_abm({
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
+		arealoaded = 1,
 		soakrate = nodecore.tree_trunk_growth_rate,
 		soakcheck = function(data, pos, node)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total < trunkcost then
 				return growparticles(pos, data.rate, 0.45)
 			end
@@ -131,12 +110,12 @@ nodecore.register_soaking_abm({
 		nodenames = {modname .. ":leaves_bud"},
 		fieldname = "leafgrow",
 		interval = 10,
+		arealoaded = 1,
 		soakrate = function(pos)
 			local rate = minetest.get_meta(pos):get_float("growrate") or 0
 			return rate and rate ~= 0 and rate or 10
 		end,
 		soakcheck = function(data, pos, node)
-			if nodecore.near_unloaded(pos) then return end
 			if data.total < leafcost then return end
 
 			nodecore.set_loud(pos, nodecore.calc_leaves(pos))
@@ -196,5 +175,45 @@ minetest.register_chatcommand("growtrees", {
 				end
 			end
 			return true, table_concat(grew, "\n")
+		end
+	})
+
+nodecore.register_craft({
+		label = "tickle eggcorn",
+		action = "pummel",
+		toolgroups = {crumbly = 1},
+		normal = {y = 1},
+		nodes = {
+			{match = {name = modname .. ":eggcorn_planted", stacked = false}}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "eggcorn")
+			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
+		end
+	})
+
+nodecore.register_craft({
+		label = "tickle tree trunk",
+		action = "pummel",
+		toolgroups = {snappy = 1},
+		normal = {y = 1},
+		nodes = {
+			{match = {name = modname .. ":tree_bud", stacked = false}}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "treegrow")
+			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
+		end
+	})
+
+nodecore.register_craft({
+		label = "tickle tree leaves",
+		action = "pummel",
+		toolgroups = {snappy = 1},
+		nodes = {
+			{match = {name = modname .. ":leaves_bud", stacked = false}}
+		},
+		after = function(pos)
+			nodecore.soaking_abm_tickle(pos, "leafgrow")
 		end
 	})

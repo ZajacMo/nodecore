@@ -31,6 +31,10 @@ minetest.register_node(modname .. ":stack", {
 			end
 			return minetest.remove_node(posfrom)
 		end,
+		can_item_fall_in = function(pos, _, stack)
+			if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
+			return true
+		end,
 		on_rightclick = function(pos, _, whom, stack, pointed)
 			if not nodecore.interact(whom) then return stack end
 

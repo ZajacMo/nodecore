@@ -10,10 +10,8 @@ local modname = minetest.get_current_modname()
 nodecore.register_craft({
 		label = "melt sand to glass",
 		action = "cook",
-		touchgroups = {
-			coolant = 0,
-			flame = 3
-		},
+		touchgroups = {flame = 3},
+		neargroups = {coolant = 0},
 		duration = 20,
 		cookfx = true,
 		indexkeys = {"group:sand"},
@@ -46,6 +44,8 @@ nodecore.register_craft({
 		action = "cook",
 		priority = -1,
 		duration = 120,
+		touchgroups = {flame = 0},
+		neargroups = {coolant = 0},
 		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
 			return not near(pos, {flow})
@@ -63,6 +63,8 @@ nodecore.register_craft({
 		label = "cool float glass",
 		action = "cook",
 		duration = 120,
+		touchgroups = {flame = 0},
+		neargroups = {coolant = 0},
 		cookfx = {smoke = true, hiss = true},
 		check = function(pos)
 			return not near(pos, {flow})
@@ -84,9 +86,10 @@ nodecore.register_craft({
 		label = "quench opaque glass",
 		action = "cook",
 		cookfx = true,
+		touchgroups = {flame = 0},
+		neargroups = {coolant = 1},
 		check = function(pos)
 			return (not near(pos, {flow}))
-			and nodecore.quenched(pos)
 		end,
 		indexkeys = {src},
 		nodes = {
@@ -100,9 +103,10 @@ nodecore.register_craft({
 		label = "quench crude glass",
 		action = "cook",
 		cookfx = true,
+		touchgroups = {flame = 0},
+		neargroups = {coolant = 1},
 		check = function(pos)
 			return near(pos, {flow})
-			and nodecore.quenched(pos)
 		end,
 		indexkeys = {src},
 		nodes = {
@@ -124,6 +128,7 @@ nodecore.register_fluidwandering(
 		minetest.set_node(pos, {name = modname .. ":glass_crude"})
 		nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
 		nodecore.smokefx(pos, 0.2, 80)
+		nodecore.dynamic_shade_add(pos, 1)
 		nodecore.fallcheck(pos)
 		return true
 	end

@@ -11,13 +11,14 @@ minetest.register_node(modname .. ":thatch", {
 		groups = {
 			snappy = 1,
 			flammable = 1,
-			fire_fuel = 4
+			fire_fuel = 4,
+			peat_grindable_node = 1
 		},
 		sounds = nodecore.sounds("nc_terrain_grassy")
 	})
 
 nodecore.register_craft({
-		label = "weave sedges into thatch",
+		label = "pack thatch",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
 		nodes = {
@@ -26,15 +27,4 @@ nodecore.register_craft({
 				replace = modname .. ":thatch"
 			}
 		},
-	})
-
-nodecore.register_craft({
-		label = "grind thatch into peat",
-		action = "pummel",
-		priority = -1,
-		toolgroups = {crumbly = 2},
-		nodes = {
-			{match = modname .. ":thatch",
-				replace = "nc_tree:peat"}
-		}
 	})

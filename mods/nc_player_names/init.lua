@@ -118,6 +118,7 @@ nodecore.register_globalstep("player names", function()
 						p.y = p.y + 1.25
 						nodecore.hud_set(p1, {
 								label = "pname:" .. n2,
+								group = "pname",
 								hud_elem_type = "waypoint",
 								world_pos = p,
 								name = n2,
@@ -129,6 +130,7 @@ nodecore.register_globalstep("player names", function()
 					else
 						nodecore.hud_set(p1, {
 								label = "pname:" .. n2,
+								group = "pname",
 								ttl = 0,
 								quick = true
 							})
@@ -143,6 +145,7 @@ nodecore.register_on_leaveplayer("leave clear names", function(player)
 		for _, peer in pairs(minetest.get_connected_players()) do
 			nodecore.hud_set(peer, {
 					label = "pname:" .. pname,
+					group = "pname",
 					ttl = 0,
 					quick = true
 				})

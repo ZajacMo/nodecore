@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string, table, type
-    = ipairs, minetest, nodecore, pairs, string, table, type
+local include, ipairs, minetest, nodecore, pairs, string, table, type
+    = include, ipairs, minetest, nodecore, pairs, string, table, type
 local string_format, string_match, table_sort
     = string.format, string.match, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -35,6 +35,11 @@ function nodecore.translate_inform(str)
 	end
 
 	return true
+end
+
+for _, v in pairs(include('pkgmeta')) do
+	nodecore.translate_inform(v(true))
+	nodecore.translate_inform(v(false))
 end
 
 function nodecore.translate(str, ...)

@@ -1,13 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table
-    = minetest, nodecore, pairs, table
-local table_remove
-    = table.remove
+local math, minetest, nodecore, pairs, table
+    = math, minetest, nodecore, pairs, table
+local math_random, table_remove
+    = math.random, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
+
+local function newttl()
+	return 30 + math_random() * 30
+end
 
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
@@ -86,49 +90,6 @@ nodecore.register_globalstep("player wield show check", function()
 		end
 	end)
 
-local entdef
-entdef = {
-	initial_properties = {
-		hp_max = 1,
-		physical = false,
-		collide_with_objects = false,
-		collisionbox = bbox(0),
-		selectionbox = bbox(0),
-		textures = {""},
-		pointable = false,
-		is_visible = false,
-		static_save = false,
-		glow = 0
-	},
-	on_activate = function(self)
-		self.on_step = entdef.on_step
-	end,
-	on_step = function(self)
-		local conf = self.conf
-		if not conf then return self.object:remove() end
-
-		local pdata = playerdata[conf.pname]
-		if pdata == nil then return self.object:remove() end
-		if not pdata then return self.object:set_properties(hidden) end
-
-		if not self.att then
-			self.att = true
-			return self.object:set_attach(pdata.player,
-				conf.bone, conf.apos, conf.arot)
-		end
-
-		local widx = pdata.widx
-		if conf.slot == widx then
-			return self.object:set_properties(selslot)
-		end
-
-		return self.object:set_properties(itemprops(
-				pdata.inv[conf.slot or widx]:get_name(),
-				not conf.slot))
-	end
-}
-minetest.register_entity(modname .. ":ent", entdef)
-
 local attq = {}
 local running
 local function pumpqueue()
@@ -148,6 +109,72 @@ local function pumpqueue()
 	local ent = obj:get_luaentity()
 	ent.conf = v
 end
+local function startqueue()
+	if running then return end
+	running = true
+	minetest.after(0, pumpqueue)
+end
+
+local entdef
+entdef = {
+	initial_properties = {
+		hp_max = 1,
+		physical = false,
+		collide_with_objects = false,
+		collisionbox = bbox(0),
+		selectionbox = bbox(0),
+		textures = {""},
+		pointable = false,
+		is_visible = false,
+		static_save = false,
+		glow = 0
+	},
+	on_activate = function(self)
+		self.on_step = entdef.on_step
+	end,
+	on_step = function(self, dtime)
+		local conf = self.conf
+		if not conf then return self.object:remove() end
+
+		local pdata = playerdata[conf.pname]
+		if pdata == nil then return self.object:remove() end
+		if not pdata then return self.object:set_properties(hidden) end
+
+		if not self.att then
+			self.att = true
+			self.object:set_attach(pdata.player,
+				conf.bone, conf.apos, conf.arot)
+		end
+
+		if conf.oldent then
+			conf.oldent:remove()
+			conf.oldent = nil
+		end
+
+		local ttl = self.ttl or newttl()
+		if ttl > 0 then
+			ttl = ttl - dtime
+			if ttl <= 0 then
+				local t = {}
+				for k, v in pairs(conf) do t[k] = v end
+				t.oldent = self.object
+				attq[#attq + 1] = t
+				startqueue()
+			end
+		end
+		self.ttl = ttl
+
+		local widx = pdata.widx
+		if conf.slot == widx then
+			return self.object:set_properties(selslot)
+		end
+
+		return self.object:set_properties(itemprops(
+				pdata.inv[conf.slot or widx]:get_name(),
+				not conf.slot))
+	end
+}
+minetest.register_entity(modname .. ":ent", entdef)
 
 nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		local pname = player:get_player_name()
@@ -189,8 +216,5 @@ nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		cslot(7, 1, 1, 0.05)
 		cslot(8, -1.75, 0, 0)
 
-		if not running then
-			running = true
-			minetest.after(0, pumpqueue)
-		end
+		startqueue()
 	end)

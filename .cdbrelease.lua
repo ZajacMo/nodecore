@@ -23,9 +23,6 @@ local tags = {
 	"pve",
 	"technology"
 }
-if not alpha then
-	tags[#tags + 1] = "featured"
-end
 
 local screenshots = {}
 if alpha then screenshots[1] = readbinary('.cdb-alpha.jpg') end
@@ -34,14 +31,16 @@ for i = 1, 5 do
 	screenshots[#screenshots + 1] = readbinary('.cdb-screen' .. i .. '.jpg')
 end
 
+local version = dofile("./mods/nc_api/version.lua")
+local pkgmeta = dofile("./mods/nc_api/pkgmeta.lua")
+
 return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
-	version = dofile("./mods/nc_api/version.lua"),
+	version = version,
 	type = "game",
-	title = "NodeCore" .. (alpha and " ALPHA" or ""),
-	short_description = (alpha
-		and "Early-access edition of NodeCore with latest features (and maybe bugs)"
-		or "Minetest's top original voxel game about emergent mechanics and exploration"),
+	title = pkgmeta.title(alpha),
+	short_description = pkgmeta.desc(alpha),
+	dev_state = alpha and "BETA" or "ACTIVELY_DEVELOPED",
 	tags = tags,
 	content_warnings = {},
 	license = "MIT",

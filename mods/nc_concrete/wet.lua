@@ -25,6 +25,7 @@ minetest.register_abm({
 			local wet = wetname(node.name)
 			if not wet then return end
 			nodecore.set_loud(pos, {name = wet})
+			nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 			nodecore.dnt_set(pos, "fluidwander_concrete")
 		end
 	})
@@ -103,6 +104,7 @@ nodecore.register_soaking_abm({
 		interval = 5,
 		nodenames = {"group:concrete_source"},
 		fieldname = "curing",
+		arealoaded = 1,
 		soakrate = function(pos)
 			if minetest.find_node_near(pos,
 				1, {"group:concrete_flow", "group:water"}) then
@@ -117,6 +119,8 @@ nodecore.register_soaking_abm({
 				return
 			end
 			local def = concdef(node.name)
+			nodecore.smokefx(pos, 0.05, 20)
+			nodecore.dynamic_shade_add(pos, 1)
 			nodecore.set_loud(pos, {name = def.to_molded})
 			return false
 		end

@@ -1,9 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore, pairs, string
+    = minetest, nodecore, pairs, string
+local string_gsub
+    = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.register_dirt_leaching(fromnode, tonode, rate)
+function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 	local waters = {}
 	minetest.after(0, function()
 			for k, v in pairs(minetest.registered_nodes) do
@@ -17,11 +19,13 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 			{x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 		).name]
 	end
+	local fieldname = "leach_" .. string_gsub(tonode, "%W+", "_")
 	nodecore.register_soaking_abm({
 			label = fromnode .. " leaching to " .. tonode,
-			fieldname = "leach",
+			fieldname = fieldname,
 			nodenames = {fromnode},
 			interval = 5,
+			arealoaded = 1,
 			quickcheck = function(pos)
 				return waterat(pos, 0, 1, 0)
 			end,
@@ -41,7 +45,34 @@ function nodecore.register_dirt_leaching(fromnode, tonode, rate)
 				return nodecore.fallcheck(pos)
 			end
 		})
+
+	nodecore.register_craft({
+			label = "tickle leach " .. fromnode,
+			action = "pummel",
+			toolgroups = {crumbly = 1},
+			normal = {y = 1},
+			indexkeys = {fromnode},
+			check = function(pos)
+				return waterat(pos, 0, 1, 0)
+			end,
+			nodes = {
+				{match = {name = recipematch, stacked = false}}
+			},
+			after = function(pos)
+				nodecore.soaking_abm_tickle(pos, fieldname)
+				nodecore.soaking_particles(pos, 25, 0.5, .45)
+			end
+		})
 end
 
-nodecore.register_dirt_leaching("group:dirt_raked", "nc_terrain:sand")
-nodecore.register_dirt_leaching("group:humus_raked", "nc_terrain:dirt", 3)
+nodecore.register_dirt_leaching(
+	"group:dirt_raked",
+	{groups = {dirt_raked = true}},
+	"nc_terrain:sand"
+)
+nodecore.register_dirt_leaching(
+	"group:humus_raked",
+	{groups = {humus_raked = true}},
+	"nc_terrain:dirt",
+	3
+)

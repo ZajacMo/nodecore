@@ -5,6 +5,13 @@ local math_floor, math_random, table_remove, table_sort
     = math.floor, math.random, table.remove, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
+-- item = "name" [required]
+-- - virtual item to use in hotbar for damage
+-- getqty(player) [required]
+-- - get the proportion (0.0-1.0) of the hotbar that should be damaged by this effect
+-- setqty(player, qty, reason) [recommended]
+-- - set the damaged proportion (0.0-1.0) of the hotbar
+
 nodecore.register_healthfx,
 nodecore.registered_healthfx
 = nodecore.mkreg()

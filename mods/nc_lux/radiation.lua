@@ -39,7 +39,15 @@ nodecore.register_virtual_item(irradiated, {
 
 nodecore.register_healthfx({
 		item = irradiated,
-		getqty = function(player) return radlevel(player) end
+		getqty = function(player) return radlevel(player) end,
+		setqty = function(player, qty)
+			if qty == 0 then
+				local _, setrate = radrate(player)
+				setrate(0)
+			end
+			local _, set = radlevel(player)
+			return set(qty)
+		end
 	})
 
 local rad_lut = {}
@@ -65,7 +73,7 @@ do
 					or (g.metallic and 1)
 					or ((v.liquidtype ~= "none" or g.water or g.moist) and 7/8)
 					or (g.cracky and 1 - 1 / (g.cracky + 2))
-					or (g.flammeble and (not g.fire_fuel) and rad_default.absorb)
+					or (g.flammable and (not g.fire_fuel) and rad_default.absorb)
 					or (v.walkable and 1/4)
 					or rad_default.absorb,
 
@@ -161,7 +169,8 @@ nodecore.register_playerstep({
 				data.unradtime = data.unradtime - use
 			end
 
-			if nodecore.player_can_take_damage(player) then
+			if nodecore.player_can_take_damage(player)
+			and nodecore.player_visible(player) then
 				data.radtime = (data.radtime or 0) + dtime
 				if data.radtime > 1 then data.radtime = 1 end
 				while data.radtime > 1/16 do
@@ -172,6 +181,8 @@ nodecore.register_playerstep({
 						rad = 1 - (1 - rad) * 31/32
 					end
 				end
+			else
+				rate = 0
 			end
 			setrate(rate)
 

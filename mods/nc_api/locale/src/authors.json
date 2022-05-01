@@ -1,0 +1,120 @@
+{
+	"since": {
+		"de": "2022-04-12T20:19:44.083643+02:00",
+		"ru": "2022-04-25T20:53:38.576810+02:00",
+		"pl": "2022-03-27T11:19:59.247928+02:00",
+		"uk": "2022-03-19T09:49:56.164313+01:00",
+		"el": "2022-03-19T02:03:25.191711+01:00",
+		"zh_Hans": "2022-03-27T05:19:46.987426+02:00",
+		"sk": "2022-03-30T22:24:30.066342+02:00",
+		"zh_Hant": "2022-04-30T07:29:23.749852+02:00",
+		"it": "2022-04-25T23:00:14.359351+02:00",
+		"fr": "2022-04-26T08:59:17.210597+02:00"
+	},
+	"user": {
+		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
+			"raw": {
+				"full_name": "Wuzzy",
+				"username": "Wuzzy"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/lesha.programmer/?format=json": {
+			"raw": {
+				"full_name": "Lesha Vel",
+				"username": "lesha.programmer"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Atrate/?format=json": {
+			"raw": {
+				"full_name": "Atrate",
+				"username": "Atrate"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/andmizyk/?format=json": {
+			"raw": {
+				"full_name": "Andrij Mizyk",
+				"username": "andmizyk"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/DeadManWalkingTO/?format=json": {
+			"raw": {
+				"full_name": "DeadManWalking",
+				"username": "DeadManWalkingTO"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/materia-cccp/?format=json": {
+			"raw": {
+				"full_name": "Gao Tiesuan",
+				"username": "materia-cccp"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/kuboid/?format=json": {
+			"raw": {
+				"full_name": "kuboid",
+				"username": "kuboid"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/pexauteau/?format=json": {
+			"raw": {
+				"full_name": "Pexauteau Santander",
+				"username": "pexauteau"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Warr1024/?format=json": {
+			"raw": {
+				"full_name": "Warr1024",
+				"username": "Warr1024"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Yic95/?format=json": {
+			"raw": {
+				"full_name": "Yic95",
+				"username": "Yic95"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Oblomov/?format=json": {
+			"raw": {
+				"full_name": "Giuseppe Bilotta",
+				"username": "Oblomov"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/3raven/?format=json": {
+			"raw": {
+				"full_name": "3raven",
+				"username": "3raven"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/Arsenicus/?format=json": {
+			"raw": {
+				"full_name": "Arsenicus",
+				"username": "Arsenicus"
+			},
+			"first": "2022",
+			"last": "2022"
+		}
+	}
+}

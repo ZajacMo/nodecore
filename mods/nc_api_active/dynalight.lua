@@ -64,18 +64,17 @@ nodecore.register_dnt({
 		nodenames = {"group:dynamic_light"},
 		ignore_stasis = true,
 		time = ttl,
+		autostart = true,
+		autostart_time = 0,
 		action = check_light
 	})
 
 -- Register dynamic light nodes
 
-local nodes = {}
-
 local function dynamic_light_node(level) return modname .. ":light" .. level end
 nodecore.dynamic_light_node = dynamic_light_node
 
 for level = 1, nodecore.light_sun - 1 do
-	if nodes[level] then return nodes[level] end
 	local name = dynamic_light_node(level)
 	local def = {
 		description = minetest.registered_nodes.air.description,
@@ -85,22 +84,12 @@ for level = 1, nodecore.light_sun - 1 do
 	}
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
 	minetest.register_node(":" .. name, def)
-	nodes[level] = name
 	canreplace[name] = level
 end
 
 minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 -- API for adding dynamic lights to world
-
-minetest.register_abm({
-		label = "dynamic light cleanup",
-		interval = 1,
-		chance = 1,
-		ignore_stasis = true,
-		nodenames = {"group:dynamic_light"},
-		action = check_light
-	})
 
 local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end
@@ -199,4 +188,36 @@ for _, name in pairs({"item", "falling_node"}) do
 	}
 	setmetatable(ndef, def)
 	minetest.register_entity(":__builtin:" .. name, ndef)
+end
+
+-- shade for light-scattering effect
+
+local shadenode = modname .. ":shade"
+
+minetest.register_node(shadenode, nodecore.underride({
+			description = minetest.registered_nodes.air.description,
+			air_equivalent = true,
+			sunlight_propagates = false
+		}, true_airlike))
+
+nodecore.register_dnt({
+		name = modname .. ":shadenode_check",
+		nodenames = {shadenode},
+		time = 4,
+		autostart = true,
+		action = function(pos)
+			return minetest.remove_node(pos)
+		end
+	})
+
+function nodecore.dynamic_shade_add(pos, above)
+	local name = minetest.get_node(pos).name
+	if canreplace[name] then
+		return minetest.set_node(pos, {name = shadenode})
+	end
+	if above and above > 0 then
+		return nodecore.dynamic_shade_add({
+				x = pos.x, y = pos.y + 1, z = pos.z
+			}, above - 1)
+	end
 end

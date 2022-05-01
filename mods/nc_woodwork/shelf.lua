@@ -76,26 +76,14 @@ minetest.register_node(modname .. ":shelf", {
 
 nodecore.register_craft({
 		label = "assemble wood shelf",
-		norotate = true,
-		indexkeys = {modname .. ":plank"},
+		action = "stackapply",
+		indexkeys = {modname .. ":form"},
+		wield = {name = modname .. ":plank"},
+		consumewield = 1,
 		nodes = {
-			{match = modname .. ":plank", replace = "air"},
-			{x = -1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = 1, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = -1, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = 1, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
-		}
-	})
-
-nodecore.register_craft({
-		label = "assemble wood shelf",
-		norotate = true,
-		indexkeys = {modname .. ":plank"},
-		nodes = {
-			{match = modname .. ":plank", replace = "air"},
-			{x = 0, z = -1, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = 0, z = 1, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = -1, z = 0, match = modname .. ":frame", replace = modname .. ":shelf"},
-			{x = 1, z = 0, match = modname .. ":frame", replace = modname .. ":shelf"},
+			{
+				match = {name = modname .. ":form", empty = true},
+				replace = modname .. ":shelf"
+			},
 		}
 	})

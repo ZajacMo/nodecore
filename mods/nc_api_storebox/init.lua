@@ -20,7 +20,7 @@ local function doplace(stack, clicker, pointed_thing, ...)
 		if ok then nodecore.node_sound(pointed_thing.above, "place") end
 		return left, ok, ...
 	end
-	return helper(minetest.item_place_node(stack, clicker, pointed_thing, ...))
+	return helper(minetest.item_place_node_or_stack(stack, clicker, pointed_thing, ...))
 end
 
 function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thing)
@@ -88,9 +88,12 @@ end
 function nodecore.storebox_can_item_fall_in(pos, node, stack)
 	if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
 	local def = node and minetest.registered_items[node.name] or {}
-	if def.storebox_access and (not def.storebox_access(
-			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
-				under = pos}, pos, node)) then return end
+	if def.storebox_access and ((not def.storebox_access(
+				{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
+					under = pos}, pos, node))
+		or (not def.storebox_access(
+				{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
+					under = pos}, pos, node))) then return end
 	return true
 end
 
@@ -109,9 +112,11 @@ function nodecore.storebox_check_item_fall_out(pos, node, stack)
 	nodecore.item_eject(pos, stack)
 	return true
 end
+
 nodecore.storebox_on_stack_change = function(...)
 	return nodecore.storebox_check_item_fall_out(...)
 end
+
 nodecore.storebox_on_falling_check = function(pos)
 	return nodecore.storebox_check_item_fall_out(pos,
 		minetest.get_node(pos), nodecore.stack_get(pos))

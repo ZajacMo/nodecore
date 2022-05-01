@@ -10,7 +10,8 @@ minetest.register_tool(modname .. ":stylus", {
 		tool_wears_to = "nc_tree:stick",
 		inventory_image = modname .. "_tool_stylus.png",
 		groups = {
-			flammable = 2
+			flammable = 2,
+			nc_doors_always_pummel = 1
 		},
 		tool_capabilities = nodecore.toolcaps({
 				scratchy = 3
@@ -89,6 +90,7 @@ nodecore.register_soaking_abm({
 		interval = 1,
 		nodenames = {"group:concrete_etchable"},
 		fieldname = "plycuring",
+		arealoaded = 1,
 		soakrate = function(pos)
 			if minetest.find_node_near(pos,
 				1, {"group:concrete_flow", "group:water"}) then
@@ -106,6 +108,8 @@ nodecore.register_soaking_abm({
 			if not (pattdef and etchdef) then return end
 			local curename = modname .. ":" .. etchdef.name .. "_" .. pattdef.name
 			if pattdef.blank then curename = etchdef.basename end
+			nodecore.smokefx(pos, 0.05, 20)
+			nodecore.dynamic_shade_add(pos, 1)
 			nodecore.set_loud(pos, {name = curename})
 			nodecore.witness(pos, "cure pliant concrete")
 			return false

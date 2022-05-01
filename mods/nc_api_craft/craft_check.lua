@@ -36,23 +36,59 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if rz ~= data.pointed.above.z - data.pointed.under.z then return end
 	end
 	for _, v in pairs(recipe.nodes) do
-		if v ~= recipe.root and v.match then
+		if v.match then
 			local p = rel(v.x, v.y, v.z)
 			if not nodecore.match(p, v.match) then return end
 		end
 	end
+	if recipe.heat then
+		data.heat = data.heat or minetest.get_node_heat(pos)
+		if recipe.heat > 0 then
+			if data.heat < recipe.heat then return end
+		elseif recipe.heat < 0 then
+			if data.heat >= 0 then return end
+		else
+			if data.heat ~= 0 then return end
+		end
+	end
 	if recipe.touchgroups then
-		local sum = {}
-		addgroups(sum, rel(1, 0, 0))
-		addgroups(sum, rel(-1, 0, 0))
-		addgroups(sum, rel(0, 1, 0))
-		addgroups(sum, rel(0, -1, 0))
-		addgroups(sum, rel(0, 0, 1))
-		addgroups(sum, rel(0, 0, -1))
-		if data.touchgroupmodify then
-			data.touchgroupmodify(sum)
+		local sum = data.touchgroups
+		if not sum then
+			sum = {}
+			addgroups(sum, rel(1, 0, 0))
+			addgroups(sum, rel(-1, 0, 0))
+			addgroups(sum, rel(0, 1, 0))
+			addgroups(sum, rel(0, -1, 0))
+			addgroups(sum, rel(0, 0, 1))
+			addgroups(sum, rel(0, 0, -1))
+			if data.touchgroupmodify then
+				data.touchgroupmodify(sum)
+			end
+			data.touchgroups = sum
 		end
 		for k, v in pairs(recipe.touchgroups) do
+			local w = sum[k] or 0
+			if v > 0 and w < v then return end
+			if v <= 0 and w > -v then return end
+		end
+	end
+	if recipe.neargroups then
+		local sum = data.neargroups
+		if not sum then
+			sum = {}
+			for dx = -1, 1 do
+				for dz = -1, 1 do
+					for dy = -1, 1 do
+						addgroups(sum, rel(dx, dy, dz))
+					end
+				end
+			end
+			if data.neargroupmodify then
+				data.neargroupmodify(sum)
+			end
+			data.neargroups = sum
+		end
+		for k, v in pairs(recipe.neargroups) do
 			local w = sum[k] or 0
 			if v > 0 and w < v then return end
 			if v <= 0 and w > -v then return end
@@ -108,8 +144,15 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 					nodecore.stack_set(p, ItemStack(""))
 				end
 				if r then
-					local n = minetest.get_node(p)
-					r.param2 = n.param2
+					if not r.param2 then
+						local rd = minetest.registered_nodes[r.name]
+						if rd and rd.paramtype2 == "facedir" then
+							r.param2 = math_random(0, 3)
+						else
+							local n = minetest.get_node(p)
+							r.param2 = n.param2
+						end
+					end
 					nodecore.set_loud(p, r)
 					nodecore.fallcheck(p)
 				end
@@ -134,11 +177,18 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		if data.after then data.after(pos, data) end
 		local discover = {recipe.action, recipe.label, data.discover, recipe.discover}
 		nodecore.player_discover(data.crafter, discover, "craft:")
-		if data.witness or recipe.witness then nodecore.witness(pos, discover) end
+		if data.witness or recipe.witness then
+			nodecore.witness(pos, discover)
+			for _, v in pairs(recipe.nodes) do
+				if v.x ~= 0 or v.y ~= 0 or v.z ~= 0 then
+					nodecore.witness(rel(v.x, v.y, v.z), discover)
+				end
+			end
+		end
 		local pname = data.crafter and data.crafter:get_player_name()
 		nodecore.log(pname and "action" or "info", (pname or "unknown")
-			.. " completed recipe \"" .. recipe.label .. "\" at " ..
-			minetest.pos_to_string(pos) .. " upon " .. node.name)
+			.. " crafts \"" .. recipe.label .. "\" at " ..
+			minetest.pos_to_string(pos))
 	end
 end
 

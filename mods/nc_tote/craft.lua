@@ -7,15 +7,15 @@ local modname = minetest.get_current_modname()
 
 nodecore.register_craft({
 		label = "craft tote handle",
-		norotate = true,
-		indexkeys = {"nc_woodwork:frame"},
+		action = "stackapply",
+		indexkeys = {"nc_lode:form"},
+		wield = {name = "nc_lode:frame_annealed"},
+		consumewield = 1,
 		nodes = {
-			{match = "nc_woodwork:frame", replace = "air"},
-			{y = -1, match = "nc_lode:block_annealed", replace = modname .. ":handle"},
-			{y = -1, x = 1, match = {groups = {totable = true}}},
-			{y = -1, x = -1, match = {groups = {totable = true}}},
-			{y = -1, z = 1, match = {groups = {totable = true}}},
-			{y = -1, z = -1, match = {groups = {totable = true}}},
+			{
+				match = {name = "nc_lode:form", empty = true},
+				replace = modname .. ":handle"
+			},
 		}
 	})
 
@@ -37,6 +37,6 @@ nodecore.register_craft({
 			}
 		},
 		items = {
-			{name = "nc_lode:prill_annealed 2", count = 4, scatter = 5}
+			{name = "nc_lode:bar_annealed 2", count = 4, scatter = 5}
 		}
 	})

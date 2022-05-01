@@ -1,0 +1,58 @@
+========================================================================
+ISSUES-RUMORS: Unconfirmed or difficult to reproduce heisenbugs
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Items landing on crate without fallin gin
+	- Oblomov: door pushing hatched head used to chop low grade
+	  coal into coal chunks and ash; lode crate under the
+	  to-be-chopped node; node gets chopped, some lumps end on the
+	  crate without falling in despite the fact that the crate is
+	  empty
+	- https://discord.com/channels/507234450615042048/507234451085066248/961722477229260832
+
+- Loose leaf nodes disappearing almost immediately after creation,
+  including from natural decay
+	- Reported by Kimapr in nodecore-ingame 2022-01-17
+	  14:55 -0500
+		looks like loose leaves vanish again
+		like it appeared for one millisecond and then it's
+		gone again
+		worst is that it only happens SOMETIMES
+	- Tested by Warr1024, not able to reproduce
+
+- Bug involving a player dropping all inventory into a narrow vertical
+  shaft (on VE-NC server) and having items cycle indefinitely without
+  settling to a steady state.
+	- Reported by talas on #nodecore 2022-10-22 11:17 -0500
+	- Witnessed by Warr1024 on VE-NC
+	- Items involved in cycle:
+		4 logs
+		1 loose dirt
+		1 ash lump
+		2 wooden picks
+		2 stone-tipped spades
+		8 eggcorns
+		27 loose cobble
+		2 wooden adzes
+		1 stone-tipped mallet
+		5 torches
+		19 planks
+		4 stone chips
+	- Possible repro by WintersKnight94, but requires mod
+	  #nodecore 2022-02-14 20:21 -0500
+		1) create a SP world with nc_nature or wc_naturae
+		2) find any two nodes that are "falling_node",
+		   "stack_as_node", and "walkable=false" such as leaves
+		   and loose shrubs, as long as they are different
+		   (won't become a single itemstack) 
+		3) dig a 2n deep hole
+		4) drop one and then the other into the hole
+		5) watch the fighting shrubbery
+

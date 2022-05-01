@@ -136,8 +136,8 @@ end
 
 local txr_bot = "nc_lode_annealed.png"
 local txr_sides = "(" .. txr_bot .. "^[mask:nc_tote_sides.png)"
-local txr_top = "nc_tree_tree_side.png^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
-local txr_handle = "nc_tree_tree_side.png^[transformR90"
+local txr_handle = txr_bot .. "^nc_tote_knurl.png"
+local txr_top = txr_handle .. "^[transformFX^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
 
 local function reg(suff, inner, def)
 	return minetest.register_node(modname .. ":handle" .. suff, nodecore.underride(def, {
@@ -165,6 +165,7 @@ local function reg(suff, inner, def)
 				on_ignite = tote_ignite,
 				after_dig_node = totedug,
 				on_place = toteplace,
+				on_place_node = toteplace,
 				drop = "",
 				sounds = nodecore.sounds("nc_lode_annealed")
 			}))

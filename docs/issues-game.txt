@@ -9,26 +9,50 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- CATCH UP HINT SYSTEM & RETEST
-	- Thatch, wicker
-	- Forms, wooden and lode
-	- Lode frames, ladders
-	- High-tier digging: grass, stone, tarstone
+- Brickmaking hints are too specific.
+	- Currently some hints tend to stay "future" because players
+	  must make the exact base form of adobe/sandstone/tarstone
+	  to enable them.
+	- Just give players hints for the process of brickmaking
+	  rather than pre-material?
+	- https://discord.com/channels/507234450615042048/507234451085066248/963498043708178522
 
-- Lode crates only come in annealed, while lode frames come in
-  all 3 tempers.  Which side of this should the form fall on,
-  and how do we make the "funneling" into one type reasonable?
+- /snuff should probably snuff torches too
+	- General snuffable/on_snuff API?
+	- Merge with growtrees for a general on_cheat API?
 
-- Shelf recipe (and any other 3x3 recipe) reform
-	- Fix shelf recipes
-		- Form + plank = shelf
-		- Form + glass = case
-	- Add lode forms
-		- Pummel form w/ glowing lode = crate
-		- Form w/ something (frame? staff?) = tote handle
-	- Rake recipes
-		- Based on user guesses, use only 3 rakes
-		- Maybe 2x adze -> tongs, 2x tongs -> rake?
+- Door crafting issues:
+	- Should tickling mechanic work with doors?
+
+- Detect and warn players about misuse of singlenode mapgen
+	- Mods can register if they're supporting singlenode.
+	- We can detect player "falling forever" by scanning down
+	  to find anything other than air before ignore.
+
+- Revert /mods changes
+	- Possibly list out add-on mods in About box in long form?
+		- Tree hierarchy?
+	- Add optional version API?
+
+- Instead of always displacing nodes upon falling node landing, should
+  check for diggability and if diggable, convert to drops.
+
+- Add subtle visual indicator opposite door hinge
+
+- Touch-damage is overused, should probably only apply to
+  obviously extremely hot things like embers and pumwater.
+	- Maybe add a pickup_damage/hotpotato group specifically
+	  for the hot potato functionality.
+
+- Re-examine chiseling recipes
+	- Bricks accept annealed chisels, which makes some sense
+	  from a game balance perspective (cosmetic-only = cheap)
+	  but less re: realism.
+	- Similarly doors all require tempered chisels, and maybe
+	  at least wooden doors should accept annealed.
+
+- Cannot catapult an item into a form from below.
+	- Is this actually important?
 
 - Thatch and wicker should probably have recycling recipes.
 
@@ -43,24 +67,10 @@ ISSUES-GAME: Gameplay-affecting issues
   and maybe these nodes should have distinct textures on all sides,
   like added roots.
 
-- Unconfirmed: bug involving a player dropping all inventory into
-  a narrow vertical shaft (on VE-NC server) and having items cycle
-  indefinitely without settling to a steady state.
-  https://discord.com/channels/507234450615042048/507234451085066248/901132356977578044
-
-- Soil leaching optimization
-	- Especially for dirt->sand stage
-	- Dirt and water are too common, can't anchor ABM to either
-	- Primary idea: require raked dirt
-	- Require raked humus for humus->dirt for consistency
-
 - Sponge Fixes
 	- Fix crappy sponge death mechanic
 		- Remove special treatment of glass case and glass nodes
 			- May need to find a new use-case for glass case?
-		- Use majority heuristic for sponge death in node form
-			- Death if dry nodes > 0 and >= wet nodes nearby
-			- Ignore sealing nodes
 	- Improve sponge colony growth shape
 		- Prevent tall vertical column growth seen on NCC by Kimapr
 		- Instead of just pushing out a sponge, floodfill to find colony
@@ -68,15 +78,10 @@ ISSUES-GAME: Gameplay-affecting issues
 		to grow from; maybe save candidate water spots during the flood
 		scan and grow non-locally to that?
 
-- Reduce the "lode gate" further
-	- Use chisels to make lenses/prisms?
-
 - Hint system:
 	- Split hint descriptions into "pre" and "post" parts.
 		- Undiscovered, show just "pre" part (1 stick + 4 adze)
 		- After, show both (1 stick + 4 adze => rake)
-	- Use crafting instead of inv/punch checks for "make" hints.
-		- Fixes hints completing on dungeon/multiplayer cases.
 	- Make all crafts/recipes trigger witnessing?
 	- Hide stylus hint until after mixed concrete
 
@@ -88,9 +93,18 @@ ISSUES-GAME: Gameplay-affecting issues
 - Doors should produce particles when digging or pummeling
 
 - Door press recipe limitations
+	- Node-placing recipes don't work with itemstacks
+		- Tool and torch making don't work
+		- We should be able to detect failed-catapulting for this
 	- Stackapply recipes
 		- Needed for automatic eggcorn planting
 	- Rakes don't work with door press
+		- Doesn't work consistently on nodes, only stacks
+		  (silk touch issues)
+		- Need a way to decide on sneak or regular dig:
+		  door tier?  direction?  rake type?
+		- Need a better API, possibly pass something for the
+		  "digger" param instead of machine_digging sidechannel
 
 - Health system slot bias should be a bit stronger
 
@@ -100,7 +114,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Stone softening rates feel off.
 	- Once first stage of stone softens, others follow really
-	  quicky (exponential runaway basically).
+	  quickly (exponential runaway basically).
 	- If you leave stone soaking for a while, it looks like it
 	  basically softens all or nothing.
 	- Can we smooth this out and make it less jarring?
@@ -114,7 +128,7 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Make door operation bredth-first queue-recursive for consistent
   operation and addressing timing conflicts.
-	  
+
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
@@ -122,14 +136,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Better name, appearance.
 		- Make it look like a tool instead of hand?
 		- Maybe some kind of force entity like a lighting bolt?
-
-- Rethink optic rotation
-	- Lock in place using forms?
-	- Require 2 right-clicks in a row, first one "unlocks",
-	  displays some particles/ent to show state?
-	- Intuitive rotation handles that turn node in specific dir?
-	- Right-clicking on specific edge of face pushes it?
-	- Use player controls (walk) to rotate?
 
 - Add a way to extend wandering generations
 	- For glass, heat sources
@@ -143,9 +149,6 @@ ISSUES-GAME: Gameplay-affecting issues
   etched ones.
 
 - Integrate YCTIWY into base game
-
-- Consider reverting burning item stack lossiness, make stacks
-  exactly conserve quantity when ignited?
 
 - Players losing run speed on damage would be simplified by checking for
   <max health instead of time of last damage.
@@ -205,7 +208,7 @@ ISSUES-GAME: Gameplay-affecting issues
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
 
-- Delay lens full brightess?
+- Delay lens full brightness?
 	- Propagate optic signals immediately
 	- Reach full brightness a few seconds later, to reduce map
 	  update work and prevent rapid strobes.

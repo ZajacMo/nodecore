@@ -45,37 +45,17 @@ local function register_tank(subname, desc, pane, recipeitem)
 			end
 		})
 
-	local craftlabel = "assemble " .. string_lower(desc) .. " glass case"
 	nodecore.register_craft({
-			label = craftlabel,
-			norotate = true,
-			indexkeys = {"nc_woodwork:frame"},
+			label = "assemble " .. string_lower(desc) .. " glass case",
+			action = "stackapply",
+			indexkeys = {"nc_woodwork:form"},
+			wield = {name = recipeitem},
+			consumewield = 1,
 			nodes = {
-				{match = "nc_woodwork:frame", replace = "air"},
-				{x = -1, z = -1, match = recipeitem, replace = tankname},
-				{x = 1, z = -1, match = recipeitem, replace = tankname},
-				{x = -1, z = 1, match = recipeitem, replace = tankname},
-				{x = 1, z = 1, match = recipeitem, replace = tankname},
-				{x = 0, z = -1, match = "nc_woodwork:staff", replace = "air"},
-				{x = 0, z = 1, match = "nc_woodwork:staff", replace = "air"},
-				{x = -1, z = 0, match = "nc_woodwork:staff", replace = "air"},
-				{x = 1, z = 0, match = "nc_woodwork:staff", replace = "air"},
-			}
-		})
-	nodecore.register_craft({
-			label = craftlabel,
-			norotate = true,
-			indexkeys = {"nc_woodwork:frame"},
-			nodes = {
-				{match = "nc_woodwork:frame", replace = "air"},
-				{x = 0, z = -1, match = recipeitem, replace = tankname},
-				{x = 0, z = 1, match = recipeitem, replace = tankname},
-				{x = -1, z = 0, match = recipeitem, replace = tankname},
-				{x = 1, z = 0, match = recipeitem, replace = tankname},
-				{x = -1, z = -1, match = "nc_woodwork:staff", replace = "air"},
-				{x = 1, z = 1, match = "nc_woodwork:staff", replace = "air"},
-				{x = -1, z = 1, match = "nc_woodwork:staff", replace = "air"},
-				{x = 1, z = -1, match = "nc_woodwork:staff", replace = "air"},
+				{
+					match = {name = "nc_woodwork:form", empty = true},
+					replace = tankname
+				},
 			}
 		})
 end

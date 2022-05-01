@@ -24,6 +24,8 @@ nodecore.register_dnt({
 		time = 2,
 		loop = true,
 		ignore_stasis = true,
+		autostart = true,
+		autostart_time = 0,
 		action = function(pos)
 			local pcg = PcgRandom(minetest.hash_node_position(pos))
 			local rng = function() return pcg:next() / 2 ^ 32 + 0.5 end
@@ -41,20 +43,4 @@ nodecore.register_dnt({
 					})
 			end
 		end
-	})
-
-nodecore.register_abm({
-		label = "smokegen",
-		nodenames = {genname},
-		interval = 1,
-		chance = 1,
-		ignore_stasis = true,
-		action = function(pos) return nodecore.dnt_set(pos, genname) end
-	})
-
-nodecore.register_lbm({
-		name = genname,
-		nodenames = {genname},
-		run_at_every_load = true,
-		action = function(pos) return nodecore.dnt_reset(pos, genname, 0.01) end
 	})

@@ -13,6 +13,7 @@ if nodecore.loaded_mods().nc_fire then
 			nodenames = {modname .. ":stack"},
 			neighbors = {"group:igniter"},
 			neighbors_invert = true,
+			action_delay = true,
 			action = function(pos)
 				local stack = nodecore.stack_get(pos)
 				return nodecore.fire_check_ignite(pos, {

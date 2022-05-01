@@ -6,20 +6,27 @@ local minetest, nodecore, pairs, vector
 local modname = minetest.get_current_modname()
 
 local dntname = modname .. ":ablation"
-local lenson = "nc_optics:lens_on"
 
 local hash = minetest.hash_node_position
 local cooldowns = {}
 
+local quick_doors = {}
+nodecore.group_expand("group:door", function(k) quick_doors[k] = true end)
+
 local function ablation(pos, node)
 	local key = hash(pos)
 	local cooldown = cooldowns[key] or 0
-	if cooldown > nodecore.gametime then return end
+	if cooldown > nodecore.gametime then
+		local delay = cooldown - nodecore.gametime
+		if delay < 0.001 then delay = 0.001 end
+		return nodecore.dnt_set(pos, dntname, delay)
+	end
 	cooldowns[key] = nodecore.gametime + 2
 
 	local face = nodecore.facedirs[node.param2]
 	local out = vector.add(face.k, pos)
 	local tn = minetest.get_node(out)
+	if not quick_doors[tn.name] then return end
 	if nodecore.operate_door(out, tn, face.k) then
 		local ppos = vector.add(vector.multiply(face.k, 0.5), pos)
 		local vel = vector.multiply(face.f, 0.5)
@@ -41,34 +48,25 @@ local function ablation(pos, node)
 				minexptime = 0.25,
 				maxexptime = 0.5
 			})
-		nodecore.witness(pos, "door ablation")
-		return nodecore.dnt_set(pos, dntname, 2)
+		nodecore.witness({pos, out}, "door ablation")
+		return nodecore.dnt_set(pos, dntname)
 	end
 end
 
 nodecore.register_dnt({
 		name = dntname,
-		nodenames = {lenson},
+		nodenames = {"group:optic_lens_emit"},
 		time = 2,
+		autostart = true,
+		autostart_time = 0,
 		action = ablation
-	})
-
-minetest.register_abm({
-		label = "door ablation",
-		interval = 2,
-		chance = 1,
-		nodenames = {lenson},
-		neighbors = {"group:door"},
-		action = function(pos)
-			return nodecore.dnt_set(pos, dntname, 2)
-		end
 	})
 
 local function doortrigger(doorpos)
 	for _, dir in pairs(nodecore.dirs()) do
 		local lenspos = vector.add(doorpos, dir)
 		local lensnode = minetest.get_node(lenspos)
-		if lensnode.name == lenson then
+		if minetest.get_item_group(lensnode.name, "optic_lens_emit") > 0 then
 			local face = nodecore.facedirs[lensnode.param2]
 			local out = vector.add(face.k, lenspos)
 			if vector.equals(doorpos, out) then

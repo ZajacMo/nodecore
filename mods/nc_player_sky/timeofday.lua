@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, string
-    = math, minetest, nodecore, string
+local math, minetest, nodecore, string, tonumber
+    = math, minetest, nodecore, string, tonumber
 local math_abs, string_format
     = math.abs, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -26,7 +26,7 @@ minetest.register_globalstep(function(dtime)
 		nextwarn = nextwarn - dtime
 		timer = timer - dtime
 		if timer > 0 then return end
-		timer = 4
+		timer = (tonumber(minetest.settings:get("time_send_interval")) or 5) - 0.25 - dtime
 		local curtime = minetest.get_timeofday()
 		if math_abs(curtime - fixedtime) > 0.001 then
 			warn(curtime)

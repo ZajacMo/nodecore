@@ -4,16 +4,21 @@
 # the log.
 nc_api_active_abm_stat_time (ABM Statistics Interval) float 300
 
+# Maximum amount of time in seconds that can be saved up between
+# soaking-tickle actions. Delay longer than this will not increase the
+# amount of soaking progress.
+nc_api_active_soaking_tickle_max_time (Max soaking tickle interval) float 600
+
 # Air friction coefficient for velocity-squared term. Used to adjust air
 # resistance for player and moving entities, especially tuning terminal
 # velocity. Lower terminal velocity may reduce players stopping on
 # onloaded chunks while falling on a busy/slow server.
 nc_api_air_friction (Air friction) float 0.0004
 
-# Enable/show the challenge system and all related interfaces. Disabling
+# Enable/show the discovery system and all related interfaces. Disabling
 # this may be useful on multiplayer servers if the players are all
-# experienced and the challenges are obtrusive or distracting.
-nc_api_hints_enable (Enable challenges) bool true
+# experienced and the discoveries are obtrusive or distracting.
+nc_api_hints_enable (Enable discovery system) bool true
 
 # Write out after startup (and possibly maintain while running) text
 # files to the world path containing template metadata for development
@@ -102,6 +107,10 @@ nc_api_rate_speed_pummel_charcoal_writing (Speed adjust > speed > pummel > charc
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
+nc_api_rate_speed_pummel_glue_optic (Speed adjust > speed > pummel > glue optic) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
 nc_api_rate_speed_pummel_rake_dirt (Speed adjust > speed > pummel > rake dirt) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
@@ -130,11 +139,11 @@ nc_api_rate_speed_soaking_eggcorn_sprout (Speed adjust > speed > soaking > eggco
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
-nc_api_rate_speed_soaking_group_dirt_raked_leaching_to_nc_terrain_sand_loose (Speed adjust > speed > soaking > group:dirt_raked leaching to nc_terrain:sand_loose) float 1
+nc_api_rate_speed_soaking_group_dirt_raked_leaching_to_nc_terrain_sand (Speed adjust > speed > soaking > group:dirt_raked leaching to nc_terrain:sand) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
-nc_api_rate_speed_soaking_group_humus_raked_leaching_to_nc_terrain_dirt_loose (Speed adjust > speed > soaking > group:humus_raked leaching to nc_terrain:dirt_loose) float 1
+nc_api_rate_speed_soaking_group_humus_raked_leaching_to_nc_terrain_dirt (Speed adjust > speed > soaking > group:humus_raked leaching to nc_terrain:dirt) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.

@@ -63,6 +63,7 @@ minetest.register_abm({
 		action = function(pos)
 			nodecore.sound_play("nc_api_craft_hiss", {gain = 0.25, pos = pos})
 			nodecore.smokefx(pos, 0.05, 20)
+			nodecore.dynamic_shade_add(pos, 1)
 			return nodecore.set_loud(pos, {name = amalgam})
 		end
 	})
@@ -72,6 +73,7 @@ minetest.register_abm({
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:amalgam"},
+		arealoaded = 1,
 		action = function(pos)
 			if nodecore.quenched(pos) then return end
 			return nodecore.set_loud(pos, {name = lavasrc})
@@ -82,6 +84,7 @@ nodecore.register_aism({
 		label = "amalgam stack melt",
 		interval = 1,
 		chance = 2,
+		arealoaded = 1,
 		itemnames = {"group:amalgam"},
 		action = function(stack, data)
 			if nodecore.quenched(data.pos) then return end
@@ -103,3 +106,19 @@ nodecore.register_aism({
 			end
 		end
 	})
+
+nodecore.register_falling_node_step(function(self)
+		if not (self.node and self.node.name) then return end
+		if minetest.get_item_group(self.node.name, "amalgam") <= 0 then return end
+
+		local pos = self.object:get_pos()
+
+		if (not pos)
+		or nodecore.quenched(pos)
+		or not nodecore.buildable_to(pos) then return end
+
+		nodecore.set_loud(pos, {name = lavasrc})
+		self.object:remove()
+
+		return true
+	end)

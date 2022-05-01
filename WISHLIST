@@ -34,12 +34,6 @@ to the project!
 		  requires awkward inputs to work around, and is a minefield for
 		  potential discrimination problems due to the difficulty of
 		  ensuring that all future input design takes this into account.
-		- TBD: Bone attachment axes invert if there is any animation on
-		  that bone/axis.  This is blocking the head pitching
-		  feature. (MTG #2547, but it's probably an engine bug)
-		- #9912: Engine should provide a standard way to make digparticles
-		  that doesn't depend on using [combine and knowing exact source
-		  texture size (breaks texturepacks).
 	- Internal/annoyance:
 		- #9934: This bug is causing us to maintain a workaround in
 		  NodeCore which is fragile and keeps breaking, leading to
@@ -59,9 +53,6 @@ to the project!
 	- Work on improving the nodecore wiki itself.
 
 - Improved versions of any art assets (sounds, textures, models).
-	- Yet another overhaul of the player model, this time to support
-	  headanim (animate head bone to show player pitch)
-	  https://github.com/LoneWolfHT/headanim/blob/master/init.lua
 	- All textures for base inclusion should be 16x (keep
 	  high-def textures to texture packs).  Note that textures
 	  larger than 16x are allowed (and already used) in the game

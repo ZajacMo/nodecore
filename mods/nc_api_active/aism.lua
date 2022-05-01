@@ -11,7 +11,8 @@ local math_random
 --- itemnames: {"mod:itemname", "group:name"}
 --- interval: integer,
 --- chance: integer,
---- action: function(stack, data) end
+--- action: function(stack, data) end,
+--- arealoaded: this distance around must be loaded
 -- Data:
 --- {pos, node}
 --- {player, inv, list, slot}
@@ -29,7 +30,9 @@ local aismidx = nodecore.item_matching_index(
 local function checkrun(def, stack, data)
 	if nodecore.stasis and not def.ignore_stasis then return end
 	if def.chance and def.chance > 1 and math_random(1, def.chance) ~= 1 then return end
-	if def.interval and def.interval > 1 and (minetest.get_gametime() % def.interval) ~= 0 then return end
+	if def.interval and def.interval > 1 and (minetest.get_gametime()
+		% def.interval) ~= 0 then return end
+	if def.arealoaded and nodecore.near_unloaded(data.pos, nil, def.arealoaded) then return end
 	stack = def.action(stack, data)
 	if stack and data.set then data.set(ItemStack(stack)) end
 end

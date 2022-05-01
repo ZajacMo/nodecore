@@ -23,6 +23,16 @@ nodecore.register_hint("assemble a wooden frame from staves",
 	{true, "nc_tree:stick", "nc_woodwork:staff"}
 )
 
+nodecore.register_hint("convert a wooden frame to a form",
+	"wooden frame to form",
+	{true, "nc_woodwork:frame"}
+)
+
+nodecore.register_hint("convert a wooden form to a frame",
+	"wooden form to frame",
+	{true, "nc_woodwork:form"}
+)
+
 nodecore.register_hint("split a tree trunk into planks",
 	"split tree to planks",
 	{true, "nc_woodwork:adze", "nc_woodwork:tool_hatchet"}
@@ -53,12 +63,12 @@ nodecore.register_hint("bash a plank into sticks",
 	{"nc_woodwork:plank", "toolcap:thumpy:3"}
 )
 
-nodecore.register_hint("assemble a wooden shelf from frames and planks",
+nodecore.register_hint("assemble a wooden shelf from a form and plank",
 	"assemble wood shelf",
-	{"nc_woodwork:plank", "nc_woodwork:frame"}
+	{"nc_woodwork:plank", "nc_woodwork:form"}
 )
 
-nodecore.register_hint("assemble a rake from adzes and a stick",
+nodecore.register_hint("assemble a rake from adzes and a staff",
 	"assemble rake",
 	"assemble wood adze"
 )

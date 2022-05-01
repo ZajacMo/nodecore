@@ -9,6 +9,43 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Need to standardize storage API between storeboxes and bare stacks
+	- Storebox API is a mess anyway and needs a lot of cleanup.
+
+- If DNTs are deferred due to either stasis or arealoaded, need to
+  set the timer re-firing to some sane future time.
+
+- Unified heat API?
+	- Unify quenching and heating
+	- Alternative to cooking w/ 3 flames, with 5 pumwaters
+	- Replace quenched, touchgroups, neargroups
+
+- Gametime handling improvements.
+	- Need to be robust in event of gametime resetting to zero,
+	  e.g. env_meta.txt corruption.
+	- Probably need to separate nodecore gametime entirely from
+	  minetest gametime.
+	- Always need to guard against the backward flow of time
+	  in normal gameplay circumstances, e.g. due to loss of
+	  meta files.
+		- Need to store backup in world dir next to
+		  env_meta.txt.
+		- Partial world resets (e.g. nuking map, keeping
+		  dais ex machina) should not reset time.
+	- Allow customizing time flow in vanilla:
+		- Time rate multipliers, default 1, for each of:
+			- Server offline (os.time() adjust)
+			- Server online but empty (no players online)
+			- Normal gameplay
+		- Probably need to track accumulators for each
+		  separately in mod storage and then add them together
+		  to get gametime.
+
+- Replace digparticles with "node" and maybe "node_tile" options for
+  particlespawners new in 5.3+
+	- N.B. the docs imply it only works for nodes, not items,
+	  so tool breakage particles may still require the logic.
+
 - Add AISM profiler similar to how ABM profiler already works
 
 - Optimize colony growth logic
@@ -24,15 +61,16 @@ ISSUES-CODE: Issues related to code quality and APIs
 			seed and has the metadata
 		- Transfer metadata to any face-touching sponge
 
-- Allow mods to affect game time flow
-	- Allow skipping forward through time
-	- For an offline mod for mobile SP to make gametime Track
-	  realtime even when world is offline
-
 - Recipe "rate adjust" is messed up.
 	- Make rate_adjust ONLY use config
 	- Add a speed adjustment for manual changes, e.g. when
 	  tool speed is used
+
+- Simpler version of the soaking API that uses an exponential random
+  distribution and mean time between events to determine if at least one
+  event happened
+	- Support cascading, i.e. pushing time into another event type
+	  for replacement nodes?
 
 - LookTips
 	- API needs an overhaul
@@ -49,6 +87,13 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Player skin API overhaul
 	- Pass a context object only
 	- Use player name, not player obj
+
+- Use set_local_animation again?
+	- Apparently it may make sense instead of handling every animation on the
+	  server side, to send sets of animations for the player based on context,
+	  e.g. swap between "swimup", "swimdown" and "standing/walking" sets and
+	  let the client handle the parts it can handle.
+	https://github.com/minetest/minetest_game/pull/2917/files#diff-bb0f88d32425a778a80208ad343f9e94880cba87893232410d8c0fba22295343R129
 
 - Update based on recentish engine sound improvements
 	- Improvements committed 2020-02-01
@@ -161,7 +206,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Easier recipe API:
 	- Use ascii art like ezschematic?
 	- Aliases like "sides"/"corners"?
-	- Make 3x3 recipes easier to define.
+	- Make larger/complex recipes easier to define.
 
 - API for recursing through embedded inventories, e.g. in totes.
 	- Lux reaction cannot sense other lux inside totes.

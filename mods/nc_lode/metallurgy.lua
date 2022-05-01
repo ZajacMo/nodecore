@@ -36,15 +36,15 @@ function nodecore.register_lode(shape, rawdef)
 					cracky = 3,
 					metallic = 1,
 					falling_node = temper.name == "hot" and 1 or nil,
-					["metal_temper_" .. temper.name] = 1
+					["lode_temper_" .. temper.name] = 1
 				},
-				["metal_temper_" .. temper.name] = true,
-				metal_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
-				metal_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
-				metal_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
+				["lode_temper_" .. temper.name] = true,
+				lode_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
+				lode_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
+				lode_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
 				sounds = nodecore.sounds("nc_lode_" .. temper.sound)
 			})
-		def.metal_temper_cool = (not def.metal_temper_hot) or nil
+		def.lode_temper_cool = (not def.lode_temper_hot) or nil
 		if not temper.glow then
 			def.light_source = nil
 		else
@@ -85,25 +85,25 @@ nodecore.register_lode("Block", {
 		type = "node",
 		description = "## Lode",
 		tiles = {modname .. "_#.png"},
-		groups = {metal_cube = 1},
+		groups = {lode_cube = 1},
 		light_source = 8,
 		crush_damage = 4
 	})
 
 nodecore.register_lode("Prill", {
 		type = "craft",
-		groups = {metal_prill = 1},
+		groups = {lode_prill = 1},
 		light_source = 1,
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_mask_prill.png",
 	})
 
-local function replacestack(pos, alt)
+local function replacestack(pos, temper)
 	local stack = nodecore.stack_get(pos)
 	if stack:is_empty() then stack = nil end
 	local node = minetest.get_node(pos)
 	local name = stack and stack:get_name() or node.name
 	local def = minetest.registered_items[name] or {}
-	alt = def["metal_alt_" .. alt]
+	local alt = def["lode_alt_" .. temper]
 	if not alt then return error("no " .. alt .. " alt for " .. name) end
 	if stack then
 		local repl = ItemStack(alt)
@@ -115,15 +115,17 @@ local function replacestack(pos, alt)
 		nodecore.set_node(pos, {name = alt})
 		nodecore.fallcheck(pos)
 	end
+	nodecore.witness(pos, "metallurgize " .. alt)
 end
 
 nodecore.register_craft({
 		label = "lode stack heating",
 		action = "cook",
 		touchgroups = {flame = 3},
+		neargroups = {coolant = 0},
 		duration = 30,
 		cookfx = true,
-		nodes = {{match = {metal_temper_cool = true, count = false}}},
+		nodes = {{match = {lode_temper_cool = true, count = false}}},
 		after = function(pos) return replacestack(pos, "hot") end
 	})
 
@@ -131,10 +133,11 @@ nodecore.register_craft({
 		label = "lode stack annealing",
 		action = "cook",
 		touchgroups = {flame = 0},
+		neargroups = {coolant = 0},
 		duration = 120,
 		priority = -1,
 		cookfx = {smoke = true, hiss = true},
-		nodes = {{match = {metal_temper_hot = true, count = false}}},
+		nodes = {{match = {lode_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "annealed") end
 	})
 
@@ -142,11 +145,9 @@ nodecore.register_craft({
 		label = "lode stack quenching",
 		action = "cook",
 		touchgroups = {flame = 0},
-		check = function(pos)
-			return nodecore.quenched(pos)
-		end,
+		neargroups = {coolant = 1},
 		cookfx = true,
-		nodes = {{match = {metal_temper_hot = true, count = false}}},
+		nodes = {{match = {lode_temper_hot = true, count = false}}},
 		after = function(pos) return replacestack(pos, "tempered") end
 	})
 
@@ -155,6 +156,7 @@ nodecore.register_craft({
 		label = "forge lode block",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
+		priority = 10,
 		indexkeys = {modname .. ":prill_hot"},
 		nodes = {
 			{

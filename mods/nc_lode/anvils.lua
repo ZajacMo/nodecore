@@ -29,6 +29,7 @@ minetest.register_abm({
 		nodenames = {cracked},
 		interval = 1,
 		chance = 1,
+		arealoaded = 1,
 		action = function(pos)
 			if nodecore.quenched(pos) or #nodecore.find_nodes_around(
 				pos, "group:flame", 1) < 1 then
@@ -37,28 +38,35 @@ minetest.register_abm({
 		end
 	})
 
+local function discoveranvil(data, tag)
+	if not (data and data.crafter) then return end
+	return nodecore.player_discover(data.crafter, tag)
+end
+
 local anvillogic = {
 	-- Tempered anvils can work hot or cold
-	["annealed/" .. modname .. ":block_tempered"] = true,
-	["hot/" .. modname .. ":block_tempered"] = true,
+	["annealed/" .. modname .. ":block_tempered"] = "anvil:cold/tempered",
+	["hot/" .. modname .. ":block_tempered"] = "anvil:hot/tempered",
 
 	-- Annealed anvils only work hot
-	["hot/" .. modname .. ":block_annealed"] = true,
+	["hot/" .. modname .. ":block_annealed"] = "anvil:hot/annealed",
 
 	-- Smooth stone turns into cracked stone and only works
 	-- as long as it remains cracked stone.
 	["hot/nc_terrain:stone"] = function(pos)
-		return function()
+		return function(data)
+			discoveranvil(data, "anvil:hot/stone")
 			nodecore.set_loud(pos, {name = cracked})
 		end
 	end,
-	["hot/" .. cracked] = true,
+	["hot/" .. cracked] = "anvil:hot/stone",
 }
 -- Hard stone is weakened probabilistically, but at half
 -- the rate for each layer of hardness.
 for i = 1, nodecore.hard_stone_strata do
 	anvillogic["hot/nc_terrain:hard_stone_" .. i] = function(pos)
-		return function()
+		return function(data)
+			discoveranvil(data, "anvil:hot/stone")
 			if math_random(1, 2 ^ i) ~= 1 then return end
 			nodecore.set_loud(pos, {name = (i == 1)
 					and "nc_terrain:stone"
@@ -99,13 +107,15 @@ function nodecore.register_lode_anvil_recipe(anvilpos, func)
 				local node = minetest.get_node(pos)
 				local logic = anvillogic[temper .. "/" .. node.name]
 				if not logic then return end
-				if logic == true then return true end
-				data.anvilcommit = logic(pos)
+				data.anvilcommit = type(logic) == "function"
+				and logic(pos)
+				or function(d) return discoveranvil(d, logic) end
 				return true
 			end,
 			recipe.check)
 		recipe.after = chain(function(_, data)
-				if data.anvilcommit then data.anvilcommit() end
+				if data.anvilcommit then data.anvilcommit(data) end
+				return nodecore.player_discover(data.crafter, "lode anvil")
 			end,
 			recipe.after)
 		nodecore.register_craft(recipe)

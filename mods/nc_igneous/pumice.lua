@@ -52,6 +52,7 @@ minetest.register_abm({
 		chance = 2,
 		nodenames = {pumname},
 		neighbors = {"group:lava"},
+		arealoaded = 1,
 		action = function(pos)
 			if math_random() < 0.95 and nodecore.quenched(pos) then return end
 			nodecore.set_loud(pos, {name = "nc_terrain:lava_flowing", param2 = 7})

@@ -1,9 +1,6 @@
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 
-msgid "+"
-msgstr "+"
-
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
 
@@ -42,6 +39,9 @@ msgstr "- Drop and pick up items to rearrange your inventory."
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Drop items onto ground to create stack nodes. They do not decay."
+
+msgid "- FUTURE: @1"
+msgstr "- FUTURE: @1"
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- For larger recipes, the center item is usually placed last."
@@ -88,9 +88,6 @@ msgstr "- Sneak+drop to count out single items from stack."
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- Some recipes require "pummeling" a node."
 
-msgid "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-msgstr "- Some recipes use a 3x3 "grid", laid out flat on the ground."
-
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
 
@@ -118,62 +115,14 @@ msgstr "- Wielded item, target face, and surrounding nodes may matter."
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- You do not have to punch very fast (about 1 per second)."
 
-msgid "@1 (100@2)"
-msgstr "@1 (100@2)"
-
-msgid "@1 (10@2)"
-msgstr "@1 (10@2)"
-
-msgid "@1 (2)"
-msgstr "@1 (2)"
-
-msgid "@1 (20@2)"
-msgstr "@1 (20@2)"
-
-msgid "@1 (3)"
-msgstr "@1 (3)"
-
-msgid "@1 (30@2)"
-msgstr "@1 (30@2)"
-
-msgid "@1 (4)"
-msgstr "@1 (4)"
-
-msgid "@1 (40@2)"
-msgstr "@1 (40@2)"
-
-msgid "@1 (5)"
-msgstr "@1 (5)"
-
-msgid "@1 (50@2)"
-msgstr "@1 (50@2)"
-
-msgid "@1 (6)"
-msgstr "@1 (6)"
-
-msgid "@1 (60@2)"
-msgstr "@1 (60@2)"
-
-msgid "@1 (7)"
-msgstr "@1 (7)"
-
-msgid "@1 (70@2)"
-msgstr "@1 (70@2)"
-
-msgid "@1 (8)"
-msgstr "@1 (8)"
-
-msgid "@1 (80@2)"
-msgstr "@1 (80@2)"
-
-msgid "@1 (9)"
-msgstr "@1 (9)"
-
-msgid "@1 (90@2)"
-msgstr "@1 (90@2)"
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
 
 msgid "@1 ....."
 msgstr "@1 ....."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 discovered, @2 available, @3 future"
 
 msgid "@1 |...."
 msgstr "@1 |...."
@@ -451,9 +400,6 @@ msgstr "CHEATS ENABLED"
 msgid "Cav Charcoal Glyph"
 msgstr "Cav Charcoal Glyph"
 
-msgid "Challenges"
-msgstr "Challenges"
-
 msgid "Charcoal"
 msgstr "Charcoal"
 
@@ -496,11 +442,17 @@ msgstr "Dirt"
 msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Discord: https://discord.gg/NNYeF6f"
 
+msgid "Discovery"
+msgstr "Discovery"
+
 msgid "Displaced Node"
 msgstr "Displaced Node"
 
 msgid "Dry Rush"
 msgstr "Dry Rush"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "Early-access edition of NodeCore with latest features (and maybe bugs)"
 
 msgid "Eggcorn"
 msgstr "Eggcorn"
@@ -570,6 +522,24 @@ msgstr "Glowing Lode Rod"
 
 msgid "Glowing Lode Spade Head"
 msgstr "Glowing Lode Spade Head"
+
+msgid "Glued Active Lens"
+msgstr "Glued Active Lens"
+
+msgid "Glued Active Prism"
+msgstr "Glued Active Prism"
+
+msgid "Glued Gated Prism"
+msgstr "Glued Gated Prism"
+
+msgid "Glued Lens"
+msgstr "Glued Lens"
+
+msgid "Glued Prism"
+msgstr "Glued Prism"
+
+msgid "Glued Shining Lens"
+msgstr "Glued Shining Lens"
 
 msgid "Grass"
 msgstr "Grass"
@@ -787,6 +757,9 @@ msgstr "Matrix: #nodecore:matrix.org"
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
 
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr "Minetest's top original voxel game about emergent mechanics and exploration"
+
 msgid "Molten Glass"
 msgstr "Molten Glass"
 
@@ -799,8 +772,8 @@ msgstr "Niz Charcoal Glyph"
 msgid "NodeCore"
 msgstr "NodeCore"
 
-msgid "Not all game content is covered by challenges. Explore!"
-msgstr "Not all game content is covered by challenges. Explore!"
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
 
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
@@ -867,9 +840,6 @@ msgstr "Pliant Tarstone"
 
 msgid "Prism"
 msgstr "Prism"
-
-msgid "Progress: @1 complete, @2 current, @3 future"
-msgstr "Progress: @1 complete, @2 current, @3 future"
 
 msgid "Prx Charcoal Glyph"
 msgstr "Prx Charcoal Glyph"
@@ -1038,6 +1008,9 @@ msgstr "Tempered Lode Spade Head"
 
 msgid "Thatch"
 msgstr "Thatch"
+
+msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
+msgstr "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
 
 msgid "Tips"
 msgstr "Tips"
@@ -1273,11 +1246,17 @@ msgstr "assemble a float glass case"
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
 
+msgid "assemble a lode crate from form and bar"
+msgstr "assemble a lode crate from form and bar"
+
 msgid "assemble a lode rake"
 msgstr "assemble a lode rake"
 
-msgid "assemble a rake from adzes and a stick"
-msgstr "assemble a rake from adzes and a stick"
+msgid "assemble a lode tote handle"
+msgstr "assemble a lode tote handle"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "assemble a rake from adzes and a staff"
 
 msgid "assemble a staff from sticks"
 msgstr "assemble a staff from sticks"
@@ -1291,17 +1270,14 @@ msgstr "assemble a wooden frame from staves"
 msgid "assemble a wooden ladder from sticks"
 msgstr "assemble a wooden ladder from sticks"
 
-msgid "assemble a wooden shelf from frames and planks"
-msgstr "assemble a wooden shelf from frames and planks"
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "assemble a wooden shelf from a form and plank"
 
 msgid "assemble a wooden tool"
 msgstr "assemble a wooden tool"
 
 msgid "assemble an adze out of sticks"
 msgstr "assemble an adze out of sticks"
-
-msgid "assemble an annealed lode tote handle"
-msgstr "assemble an annealed lode tote handle"
 
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
@@ -1333,9 +1309,6 @@ msgstr "carve wooden tool heads from planks"
 msgid "catapult an item with a hinged panel"
 msgstr "catapult an item with a hinged panel"
 
-msgid "challenge complete - @1"
-msgstr "challenge complete - @1"
-
 msgid "change a stylus pattern"
 msgstr "change a stylus pattern"
 
@@ -1366,14 +1339,20 @@ msgstr "chop chromatic glass into lenses"
 msgid "chop up charcoal"
 msgstr "chop up charcoal"
 
-msgid "complete a craft with a hinged panel"
-msgstr "complete a craft with a hinged panel"
-
 msgid "complete a pummel with a hinged panel and tool head"
 msgstr "complete a pummel with a hinged panel and tool head"
 
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "complete an assembly recipe with a hinged panel"
+
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
+
+msgid "convert a wooden form to a frame"
+msgstr "convert a wooden form to a frame"
+
+msgid "convert a wooden frame to a form"
+msgstr "convert a wooden frame to a form"
 
 msgid "cool molten glass into crude glass"
 msgstr "cool molten glass into crude glass"
@@ -1416,6 +1395,9 @@ msgstr "dig up lux cobble"
 
 msgid "dig up sand"
 msgstr "dig up sand"
+
+msgid "discovered - @1"
+msgstr "discovered - @1"
 
 msgid "drop all your items at once"
 msgstr "drop all your items at once"
@@ -1477,8 +1459,23 @@ msgstr "find pumice"
 msgid "find pumwater"
 msgstr "find pumwater"
 
+msgid "forge a lode prill into a bar"
+msgstr "forge a lode prill into a bar"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "forge a lode rod and bar into a ladder"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "forge an annealed lode frame into a form"
+
+msgid "forge lode bars into a rod"
+msgstr "forge lode bars into a rod"
+
 msgid "forge lode prills into a tool head"
 msgstr "forge lode prills into a tool head"
+
+msgid "forge lode rods into a frame"
+msgstr "forge lode rods into a frame"
 
 msgid "gate a prism"
 msgstr "gate a prism"
@@ -1486,8 +1483,8 @@ msgstr "gate a prism"
 msgid "go for a swim"
 msgstr "go for a swim"
 
-msgid "grind leaves into peat"
-msgstr "grind leaves into peat"
+msgid "grind dead plants into peat"
+msgstr "grind dead plants into peat"
 
 msgid "grow a flower on moist soil"
 msgstr "grow a flower on moist soil"
@@ -1497,12 +1494,6 @@ msgstr "grow a rush on moist soil"
 
 msgid "grow a sedge on moist grass"
 msgstr "grow a sedge on moist grass"
-
-msgid "hammer a lode prill into a bar"
-msgstr "hammer a lode prill into a bar"
-
-msgid "hammer lode bars into a rod"
-msgstr "hammer lode bars into a rod"
 
 msgid "harden stone"
 msgstr "harden stone"
@@ -1522,11 +1513,11 @@ msgstr "insert metal rod into a cobble panel"
 msgid "insert wooden pin into wooden panel"
 msgstr "insert wooden pin into wooden panel"
 
-msgid "leach dirt to sand"
-msgstr "leach dirt to sand"
+msgid "leach raked dirt to sand"
+msgstr "leach raked dirt to sand"
 
-msgid "leach humus to dirt"
-msgstr "leach humus to dirt"
+msgid "leach raked humus to dirt"
+msgstr "leach raked humus to dirt"
 
 msgid "light a torch"
 msgstr "light a torch"
@@ -1540,8 +1531,8 @@ msgstr "make fire by rubbing sticks together"
 msgid "melt down lode metal from lode cobble"
 msgstr "melt down lode metal from lode cobble"
 
-msgid "melt sand into glass"
-msgstr "melt sand into glass"
+msgid "melt sand into molten glass"
+msgstr "melt sand into molten glass"
 
 msgid "melt stone into pumwater"
 msgstr "melt stone into pumwater"
@@ -1570,8 +1561,14 @@ msgstr "observe a lux reaction"
 msgid "observe lux criticality"
 msgstr "observe lux criticality"
 
+msgid "pack dry rushes into wicker"
+msgstr "pack dry rushes into wicker"
+
 msgid "pack high-quality charcoal"
 msgstr "pack high-quality charcoal"
+
+msgid "pack sedges into thatch"
+msgstr "pack sedges into thatch"
 
 msgid "pack stone chips back into cobble"
 msgstr "pack stone chips back into cobble"
@@ -1642,14 +1639,14 @@ msgstr "set concrete to pliant"
 msgid "sinter glowing lode prills into a cube"
 msgstr "sinter glowing lode prills into a cube"
 
-msgid "solder lode rods into crates"
-msgstr "solder lode rods into crates"
-
 msgid "split a tree trunk into planks"
 msgstr "split a tree trunk into planks"
 
 msgid "squeeze out a sponge"
 msgstr "squeeze out a sponge"
+
+msgid "stick a lens/prism in place"
+msgstr "stick a lens/prism in place"
 
 msgid "temper a lode cube"
 msgstr "temper a lode cube"
