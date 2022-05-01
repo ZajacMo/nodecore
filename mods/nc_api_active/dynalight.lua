@@ -71,13 +71,10 @@ nodecore.register_dnt({
 
 -- Register dynamic light nodes
 
-local nodes = {}
-
 local function dynamic_light_node(level) return modname .. ":light" .. level end
 nodecore.dynamic_light_node = dynamic_light_node
 
 for level = 1, nodecore.light_sun - 1 do
-	if nodes[level] then return nodes[level] end
 	local name = dynamic_light_node(level)
 	local def = {
 		description = minetest.registered_nodes.air.description,
@@ -87,7 +84,6 @@ for level = 1, nodecore.light_sun - 1 do
 	}
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
 	minetest.register_node(":" .. name, def)
-	nodes[level] = name
 	canreplace[name] = level
 end
 
