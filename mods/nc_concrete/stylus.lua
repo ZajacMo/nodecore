@@ -72,12 +72,7 @@ nodecore.register_craft({
 			local setpref = modname .. ":" .. etchdef.name .. "_"
 
 			local wield = data.wield
-			if ((not wield) or wield:is_empty()) and data.presstoolpos then
-				wield = nodecore.stack_get(data.presstoolpos)
-			end
-			print(minetest.pos_to_string(data.presstoolpos) .. wield:to_string())
 			if (not wield) or wield:is_empty() then return end
-
 			local wieldpatt = wield:get_meta():get_string("pattern")
 			if wieldpatt and wieldpatt ~= "" and wieldpatt ~= pattdef.name then
 				nodecore.set_loud(pos, {name = setpref .. wieldpatt .. "_ply"})
