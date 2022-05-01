@@ -78,10 +78,6 @@ IDEAS: Possible future additions/improvements to the game
 - Make infused tools not directly flammable, BUT lose durability when
   near igniters similar to water effect.
 
-- Lenses in inventory react to nearby light.
-	- Shine if facing an active lens within range.
-	- Cast a distant flashlight beam if carrying a source (e.g. torch)?
-
 - Underground generated mazes, more compact than dungeons
 	- Made of harder stone
 	- Hide prizes like ores, treasures, etc.

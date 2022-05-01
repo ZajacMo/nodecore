@@ -51,6 +51,7 @@ local basedef = {
 		silica = 1,
 		silica_lens = 1,
 		optic_check = 1,
+		optic_lens = 1,
 		cracky = 3,
 		scaling_time = 125,
 		optic_gluable = 1
@@ -140,5 +141,37 @@ minetest.register_abm({
 						count = stack:get_count()
 					})
 			end
+		end
+	})
+
+local function getdir(v)
+	if (v.y * v.y) > (v.x * v.x + v.z * v.z) then
+		if v.y >= 0 then return {x = 0, y = 1, z = 0} end
+		return {x = 0, y = -1, z = 0}
+	elseif (v.x * v.x) > (v.z * v.z) then
+		if v.x >= 0 then return {x = 1, y = 0, z = 0} end
+		return {x = -1, y = 0, z = 0}
+	end
+	if v.z >= 0 then return {x = 0, y = 0, z = 1} end
+	return {x = 0, y = 0, z = -1}
+end
+
+nodecore.register_aism({
+		label = "lens light",
+		interval = 1,
+		chance = 1,
+		itemnames = {"group:optic_lens"},
+		action = function(stack, data)
+			if not data.player then return end
+			local nn = modname .. ":lens"
+			.. (nodecore.optic_scan_recv(
+					vector.round(data.pos),
+					getdir(data.player:get_look_dir()),
+					nil,
+					minetest.get_node)
+				and "_glow" or "")
+			if stack:get_name() == nn then return end
+			stack:set_name(nn)
+			return stack
 		end
 	})

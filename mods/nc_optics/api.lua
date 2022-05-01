@@ -117,6 +117,7 @@ local function scan_recv(pos, dir, max, getnode)
 		end
 	end
 end
+nodecore.optic_scan_recv = scan_recv
 
 local function optic_check(pos)
 	optic_queue[hashpos(pos)] = pos
