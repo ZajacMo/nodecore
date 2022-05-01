@@ -69,7 +69,7 @@ local function checktarget(data, stack)
 	end
 
 	-- Try to dig item
-	if caps.dig and def and def.groups
+	if caps and caps.dig and def and def.groups
 	and nodecore.tool_digs(stack, def.groups) then
 		data.pressdig = {
 			pos = target,
