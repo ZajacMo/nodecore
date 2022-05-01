@@ -98,13 +98,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- We should be able to detect failed-catapulting for this
 	- Stackapply recipes
 		- Needed for automatic eggcorn planting
-	- Rakes don't work with door press
-		- Doesn't work consistently on nodes, only stacks
-		  (silk touch issues)
-		- Need a way to decide on sneak or regular dig:
-		  door tier?  direction?  rake type?
-		- Need a better API, possibly pass something for the
-		  "digger" param instead of machine_digging sidechannel
 
 - Health system slot bias should be a bit stronger
 
