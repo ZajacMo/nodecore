@@ -21,6 +21,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 
 	nodecore.register_craft({
 			label = "chisel " .. name .. " bricks",
+			discover = "chisel bricks",
 			action = "pummel",
 			toolgroups = {thumpy = 3},
 			normal = {y = 1},
@@ -63,7 +64,10 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 			action = function(pos)
 				nodecore.set_loud(pos, {name = modname .. ":bricks_"
 						.. name .. "_bonded"})
-				nodecore.witness(pos, "bond " .. name .. " bricks")
+				nodecore.witness(pos, {
+						"bond " .. name .. " bricks",
+						"bond bricks"
+					})
 			end
 		})
 	nodecore.register_craft({
