@@ -189,3 +189,35 @@ for _, name in pairs({"item", "falling_node"}) do
 	setmetatable(ndef, def)
 	minetest.register_entity(":__builtin:" .. name, ndef)
 end
+
+-- shade for light-scattering effect
+
+local shadenode = modname .. ":shade"
+
+minetest.register_node(shadenode, nodecore.underride({
+			description = minetest.registered_nodes.air.description,
+			air_equivalent = true,
+			sunlight_propagates = false
+		}, true_airlike))
+
+nodecore.register_dnt({
+		name = modname .. ":shadenode_check",
+		nodenames = {shadenode},
+		time = 4,
+		autostart = true,
+		action = function(pos)
+			return minetest.remove_node(pos)
+		end
+	})
+
+function nodecore.dynamic_shade_add(pos, above)
+	local name = minetest.get_node(pos).name
+	if canreplace[name] then
+		return minetest.set_node(pos, {name = shadenode})
+	end
+	if above and above > 0 then
+		return nodecore.dynamic_shade_add({
+				x = pos.x, y = pos.y + 1, z = pos.z
+			}, above - 1)
+	end
+end

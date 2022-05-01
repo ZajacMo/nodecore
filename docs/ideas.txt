@@ -15,11 +15,6 @@ IDEAS: Possible future additions/improvements to the game
 	- In post-gen, find ore, spread stone stains outward in a few
 	  random direction streaks
 
-- Need a way to detect "curing/cooling" recipes, such as concrete
-  becoming pliant or glass cooling.
-	- Make a non-sunlight-propagates airlike node appear above
-	  for a couple seconds, corresponding to the smoke plume?
-
 - Full-stack rendering optimization
 	- Huge piles of cobble stacks cause significant framerate loss
 	- https://gitlab.com/sztest/nodecore/-/merge_requests/19
