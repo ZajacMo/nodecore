@@ -17,9 +17,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	  rather than pre-material?
 	- https://discord.com/channels/507234450615042048/507234451085066248/963498043708178522
 
-- Facedir nodes should get a random facedir (top-up, random cardinal
-  orientation) after crafting.
-
 - /snuff should probably snuff torches too
 	- General snuffable/on_snuff API?
 	- Merge with growtrees for a general on_cheat API?

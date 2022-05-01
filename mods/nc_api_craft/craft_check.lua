@@ -144,8 +144,15 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 					nodecore.stack_set(p, ItemStack(""))
 				end
 				if r then
-					local n = minetest.get_node(p)
-					r.param2 = n.param2
+					if not r.param2 then
+						local rd = minetest.registered_nodes[r.name]
+						if rd and rd.paramtype2 == "facedir" then
+							r.param2 = math_random(0, 3)
+						else
+							local n = minetest.get_node(p)
+							r.param2 = n.param2
+						end
+					end
 					nodecore.set_loud(p, r)
 					nodecore.fallcheck(p)
 				end
