@@ -85,11 +85,6 @@ IDEAS: Possible future additions/improvements to the game
 	- This breaks some game things like pummels
 	- Players should all be warned ... HUD?
 
-- Incorporate something like Kimapr's Tree Dance into the game?
-	- Some way for players to actively accelerate soaking mechanics
-	  and other very slow processes.
-	- A dance?  A craft?  An artificial item?  Changing builds?
-
 - More social particles
 	- On digging
 	- On pummel (don't just show to one player)
