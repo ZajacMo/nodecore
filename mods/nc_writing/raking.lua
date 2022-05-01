@@ -67,32 +67,33 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 			indexkeys = recipeidx,
 			nodes = {{match = recipematch}},
 			after = function(pos, data)
-				if not (data.crafter and data.crafter.getpos
-					and data.crafter.get_look_horizontal) then return end
+				local newnode = {
+					name = nexusname,
+					param2 = 0
+				}
 
-				local newnode
-				local ppos = data.crafter:get_pos()
-				ppos.y = pos.y
-				if vector.distance(pos, ppos) < 0.4 then
-					newnode = {
-						name = nexusname,
-						param2 = 0
-					}
-				else
-					local dir = data.crafter:get_look_horizontal()
-					while dir >= math_pi * 3/4 do dir = dir - math_pi end
-					dir = minetest.yaw_to_dir(dir + math_pi / 4)
-					newnode = {
-						name = linearname,
-						param2 = minetest.dir_to_facedir(dir)
-					}
+				if data.crafter and data.crafter.getpos
+				and data.crafter.get_look_horizontal then
+					local ppos = data.crafter:get_pos()
+					ppos.y = pos.y
+					if vector.distance(pos, ppos) >= 0.4 then
+						local dir = data.crafter:get_look_horizontal()
+						while dir >= math_pi * 3/4 do dir = dir - math_pi end
+						dir = minetest.yaw_to_dir(dir + math_pi / 4)
+						newnode = {
+							name = linearname,
+							param2 = minetest.dir_to_facedir(dir)
+						}
+					end
 				end
 
 				local node = data.node or minetest.get_node(pos)
 				if node.name == newnode.name and node.param2 == newnode.param2 then
 					newnode = {name = basename}
 				end
-				nodecore.wear_wield(data.crafter, {snappy = 1}, 1)
+				if data.crafter then
+					nodecore.wear_wield(data.crafter, {snappy = 1}, 1)
+				end
 				nodecore.set_loud(pos, newnode)
 				return nodecore.fallcheck(pos)
 			end

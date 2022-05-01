@@ -11,7 +11,7 @@ minetest.register_tool(modname .. ":stylus", {
 		inventory_image = modname .. "_tool_stylus.png",
 		groups = {
 			flammable = 2,
-			nc_doors_always_pummel = 1
+			nc_doors_pummel_first = 1
 		},
 		tool_capabilities = nodecore.toolcaps({
 				scratchy = 3
@@ -70,17 +70,24 @@ nodecore.register_craft({
 			local pattdef, etchdef = getdefs(minetest.get_node(pos))
 			if not (pattdef and etchdef) then return end
 			local setpref = modname .. ":" .. etchdef.name .. "_"
-			local wieldpatt = data.wield and data.wield:get_meta():get_string("pattern")
+
+			local wield = data.wield
+			if (not wield) or wield:is_empty() then return end
+			local wieldpatt = wield:get_meta():get_string("pattern")
 			if wieldpatt and wieldpatt ~= "" and wieldpatt ~= pattdef.name then
 				nodecore.set_loud(pos, {name = setpref .. wieldpatt .. "_ply"})
 				return
 			end
+
 			local nxpatt = pattdef.next.name
 			nodecore.set_loud(pos, {name = setpref .. nxpatt .. "_ply"})
-			if data.wield and data.crafter then
+			wield:get_meta():set_string("pattern", nxpatt)
+			if data.crafter then
 				nodecore.player_discover(data.crafter, "stylus train")
-				data.wield:get_meta():set_string("pattern", nxpatt)
 				data.crafter:set_wielded_item(data.wield)
+			elseif data.presstoolpos then
+				nodecore.witness(pos, "stylus train")
+				nodecore.stack_set(data.presstoolpos, wield)
 			end
 		end
 	})
