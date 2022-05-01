@@ -86,7 +86,6 @@ nodecore.register_craft({
 				nodecore.player_discover(data.crafter, "stylus train")
 				data.crafter:set_wielded_item(data.wield)
 			elseif data.presstoolpos then
-				print(wield:to_string())
 				nodecore.witness(pos, "stylus train")
 				nodecore.stack_set(data.presstoolpos, wield)
 			end
