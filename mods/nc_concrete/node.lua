@@ -76,12 +76,12 @@ nodecore.register_stone_bricks("adobe", "Adobe",
 	240, 120,
 	modname .. ":adobe",
 	{cracky = 1},
-	{cracky = 2}
+	{cracky = 2, nc_door_scuff_opacity = 16}
 )
 nodecore.register_stone_bricks("coalstone", "Tarstone",
 	"nc_terrain_stone.png^[colorize:#000000:160",
 	255, 160,
 	modname .. ":coalstone",
 	{cracky = 2},
-	{cracky = 3}
+	{cracky = 3, nc_door_scuff_opacity = 16}
 )

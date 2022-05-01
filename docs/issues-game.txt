@@ -13,23 +13,13 @@ ISSUES-GAME: Gameplay-affecting issues
 	- General snuffable/on_snuff API?
 	- Merge with growtrees for a general on_cheat API?
 
-- Door crafting issues:
-	- Should tickling mechanic work with doors?
-
 - Detect and warn players about misuse of singlenode mapgen
 	- Mods can register if they're supporting singlenode.
 	- We can detect player "falling forever" by scanning down
 	  to find anything other than air before ignore.
 
-- Revert /mods changes
-	- Possibly list out add-on mods in About box in long form?
-		- Tree hierarchy?
-	- Add optional version API?
-
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
-
-- Add subtle visual indicator opposite door hinge
 
 - Touch-damage is overused, should probably only apply to
   obviously extremely hot things like embers and pumwater.

@@ -89,7 +89,7 @@ nodecore.register_stone_bricks("stone", "Stone",
 	240, 120,
 	{groups = {smoothstone = true}},
 	{stone = 1, rock = 1, cracky = 2},
-	{cracky = 3}
+	{cracky = 3, nc_door_scuff_opacity = 24}
 )
 
 minetest.register_alias(modname .. ":bricks", modname .. ":bricks_stone")
