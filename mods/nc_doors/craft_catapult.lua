@@ -6,11 +6,16 @@ local ItemStack, minetest, nodecore, pairs, vector
 local presstoolcaps = {}
 minetest.after(0, function()
 		for name, def in pairs(minetest.registered_items) do
+			local caps
 			if def.tool_capabilities then
-				presstoolcaps[name] = {dig = true, groups = def.tool_capabilities.groupcaps}
+				caps = {dig = true, groups = def.tool_capabilities.groupcaps}
 			elseif def.tool_head_capabilities then
-				presstoolcaps[name] = {groups = def.tool_head_capabilities.groupcaps}
+				caps = {groups = def.tool_head_capabilities.groupcaps}
 			end
+			if minetest.get_item_group(name, "nc_doors_pummel_first") > 0 then
+				caps.pummelfirst = true
+			end
+			presstoolcaps[name] = caps
 		end
 	end)
 
@@ -61,9 +66,14 @@ local function checktarget(data, stack)
 			wield = stack,
 			toolgroupcaps = caps.groups
 		}
+
+		-- if pummelfirst doesn't find anything, can't find
+		-- anything on second pass
+		pummelcheck = function() end
+
 		return nodecore.craft_search(target, node, pumdata)
 	end
-	if minetest.get_item_group(stackname, "nc_doors_pummel_first") then
+	if caps and caps.pummelfirst then
 		data.presscommit = pummelcheck()
 		if data.presscommit then return data.presscommit end
 	end
