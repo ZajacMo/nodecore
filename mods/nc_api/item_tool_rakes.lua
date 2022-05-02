@@ -85,7 +85,7 @@ local function matching(_, na, pb, nb)
 end
 
 local function dorake(volume, check, pos, node, user, ...)
-	local sneak = user and user:get_player_control().sneak
+	local sneak = user and user:get_player_control().sneak or nodecore.machine_digging
 	local objpos = {}
 	for _, rel in ipairs(volume) do
 		local p = vector.add(pos, rel)
