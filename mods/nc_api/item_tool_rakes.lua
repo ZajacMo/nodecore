@@ -95,7 +95,13 @@ local function dorake(volume, check, pos, node, user, ...)
 			local allow = (rel.d > 0 or nil) and check(p, n, rel)
 			if allow == false then break end
 			if allow and ((not sneak) or matching(pos, node, p, n)) then
+				if nodecore.machine_digging then
+					nodecore.machine_digging.auxpos = p
+				end
 				minetest.node_dig(p, n, user, ...)
+				if nodecore.machine_digging then
+					nodecore.machine_digging.auxpos = nil
+				end
 				objpos[minetest.hash_node_position(p)] = true
 			end
 		end
