@@ -143,6 +143,7 @@ local function doitemeject(pos, data)
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
 		minetest.dig_node(data.pressdig.pos)
+		nodecore.machine_digging = nil
 		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door dig")
 		return
 	end
