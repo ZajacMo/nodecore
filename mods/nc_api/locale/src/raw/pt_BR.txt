@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2020-09-02 12:25+0000\n"
-"Last-Translator: Terifo <none@example.org>\n"
-"Language-Team: Portuguese (Brazil) <http://nodecore.mine.nu/trans/projects/"
-"nodecore/core/pt_BR/>\n"
+"PO-Revision-Date: 2022-05-04 12:48+0000\n"
+"Last-Translator: Ezilei Correia <ezilei@yahoo.com.br>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"minetest/nodecore/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.0.4\n"
+"X-Generator: Weblate 4.12.1\n"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 por Aaron Suen <war1024@@gmail.com>"
@@ -1105,3 +1105,101 @@ msgstr "Tijolos de Pedra Ligados"
 
 msgid "Blank"
 msgstr "Vazio(Em Branco)"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr "- Desconfie de cavernas/abismos escuros; você é responsável por sair."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Pontos de escalada também produzem luz muito fraca; aumentar a gama de "
+"exibição para ver."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- Pontos de escalada podem ser escalados assim que as partículas pretas "
+"aparecerem."
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Nós deslocados podem ser escalados como pontos de escalada."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Solte e pegue itens para reorganizar seu inventário."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Para receitas maiores, o item central geralmente é colocado por último."
+
+msgid "Azure Bell Flower"
+msgstr "Flor de Sino Azul"
+
+msgid "Black Bell Flower"
+msgstr "Flor Sino Preta"
+
+msgid "- FUTURE: @1"
+msgstr "- FUTURO: @1"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Irremediavelmente preso? Tente perguntar às salas de bate-papo da "
+"comunidade (Sobre a aba)."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Se demorar mais de 5 segundos para cavar, você não tem a ferramenta certa."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Aprenda a usar as estrelas para navegação de longa distância."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Nós escavados sem a ferramenta certa não podem ser pegos, apenas "
+"deslocados."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Para correr mais rápido, ande/nade para a frente ou suba/nade para cima "
+"continuamente."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr ""
+"- As ferramentas usadas como ingredientes devem estar em muito boas "
+"condições."
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 descoberto, @2 disponível, @3 futuro"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Adicionais Mods Carregados: @1"
+
+msgid "Adobe Bricks"
+msgstr "Tijolos Adobe"
+
+msgid "Annealed Lode Adze"
+msgstr "Enxó de Veio Mineral Recozido"
+
+msgid "Annealed Lode Rake"
+msgstr "Ancinho de Veio Mineral Recozido"
+
+msgid "Azure Cluster Flower"
+msgstr "Flor de Cacho Azul"
+
+msgid "Azure Cup Flower"
+msgstr "Flor de Copo Azul"
+
+msgid "Azure Rosette Flower"
+msgstr "Flor Roseta Azul"
+
+msgid "Azure Star Flower"
+msgstr "Flor Estrela Azul"
+
+msgid "Annealed Lode Frame"
+msgstr "Quadro de Veio Mineral Recozido"
+
+msgid "Annealed Lode Ladder"
+msgstr "Escada de Veio Mineral Recozida"

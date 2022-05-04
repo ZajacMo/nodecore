@@ -7,9 +7,10 @@
 		"el": "2022-03-19T02:03:25.191711+01:00",
 		"zh_Hans": "2022-03-27T05:19:46.987426+02:00",
 		"sk": "2022-03-30T22:24:30.066342+02:00",
-		"zh_Hant": "2022-04-30T07:29:23.749852+02:00",
+		"zh_Hant": "2022-05-03T16:36:33.574934+02:00",
 		"it": "2022-04-25T23:00:14.359351+02:00",
-		"fr": "2022-04-26T08:59:17.210597+02:00"
+		"fr": "2022-04-26T08:59:17.210597+02:00",
+		"pt_BR": "2022-05-04T00:33:58.762880+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -112,6 +113,14 @@
 			"raw": {
 				"full_name": "Arsenicus",
 				"username": "Arsenicus"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/ezileicorreia/?format=json": {
+			"raw": {
+				"full_name": "Ezilei Correia",
+				"username": "ezileicorreia"
 			},
 			"first": "2022",
 			"last": "2022"
