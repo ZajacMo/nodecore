@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-13 19:11+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2022-05-07 22:01+0000\n"
+"Last-Translator: kuboid <community@radtournetz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -1775,3 +1775,25 @@ msgstr "pflanze eine Eichel"
 
 msgid "quench molten glass into chromatic glass"
 msgstr "kühle Glasschmelze zu lichtbrechendem Glas"
+
+msgid "pack dry rushes into wicker"
+msgstr "flechte Binsen"
+
+msgid "- FUTURE: @1"
+msgstr "- IN ZUKUNFT: @1"
+
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr ""
+"Minetests wahrhaftes Voxelspiel über entwickelnde Mechaniken und Erforschung"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "Frühausgabe mit der neuesten Ausstattung (und evtl. Schnitzern)"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "vollende ein Baumuster mittels einer gelagerten Klappe"
+
+msgid "find deep stone strata"
+msgstr "entdecke Tiefengesteinsschichten"
+
+msgid "lux-infuse a lode tool"
+msgstr "beschichte ein Lode-Werkzeug mit Lux"
