@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-05-07 22:01+0000\n"
+"PO-Revision-Date: 2022-05-11 06:20+0000\n"
 "Last-Translator: kuboid <community@radtournetz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
@@ -774,11 +774,9 @@ msgstr "Veredelter Lodespaten"
 msgid "Tempered Lode Spade Head"
 msgstr "Veredelter Lodespatenkopf"
 
-#, fuzzy
 msgid "Thatch"
 msgstr "Stroh"
 
-#, fuzzy
 msgid "Tips"
 msgstr "Tipps"
 
@@ -1797,3 +1795,6 @@ msgstr "entdecke Tiefengesteinsschichten"
 
 msgid "lux-infuse a lode tool"
 msgstr "beschichte ein Lode-Werkzeug mit Lux"
+
+msgid "pack up a complete tote"
+msgstr "stelle eine komplette Tasche zusammen"
