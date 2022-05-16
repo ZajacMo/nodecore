@@ -25,9 +25,8 @@ local function toolhead(name, groups, prills)
 			bytemper = function(t, d)
 				if t.name == "tempered" then
 					d.tool_head_capabilities = toolcap(5)
-					else if t.name == "hot" then
-						d.tool_head_capabilities = toolcap(3)
-					end
+				elseif t.name == "hot" then
+					d.tool_head_capabilities = toolcap(3)
 				end
 			end
 		})
