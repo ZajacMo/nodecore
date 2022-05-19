@@ -15,6 +15,7 @@ do
 end
 
 minetest.register_entity(modname .. ":ent", {
+		description = "Mannequin",
 		initial_properties = {
 			visual = "mesh",
 			visual_size = {x = 0.9, y = 0.9, z = 0.9},

@@ -10,13 +10,12 @@ How To Use:
   minetest worlds are stored.
 - Run `make` in the world dir.
 - Enter the world (singleplayer or "host game"; either is fine).
-- Do NOT move the mouse or any other controls; keep your exact position
-  and looking angle.  If you mess up, leave and rejoin.
+- Stand still at the position where you first start, and try not to
+  move or press any controls.
 - Hide the chat (F2) and wait for on-screen messages to fade.
 - Select the "empty" hotbar slot #6.
 - Resize your window to the largest size possible, with a ~16:9 or
   ~16:10 aspect ratio.
-- Hold the zoom key (and no other key).
 - Capture an in-game screenshot (F12).
 
 ------------------------------------------------------------------------
