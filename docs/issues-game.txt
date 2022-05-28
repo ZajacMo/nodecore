@@ -9,6 +9,18 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Continuing issues with storebox fall-thru
+	- Items now refusing to fall from a form into a crate or
+	  case directly below.
+	- Prills dropping out of glowing lode spawn inside a
+	  storebox below, but this allows them to fall through
+	  the bottom (since they're already past colliding with
+	  the box and being absorbed)
+		- Maybe entities need to try to settle into a box
+		  if it WAS in the box's node space last tick but
+		  is below it now, and the box isn't open on
+		  the bottom.
+
 - /snuff should probably snuff torches too
 	- General snuffable/on_snuff API?
 	- Merge with growtrees for a general on_cheat API?
