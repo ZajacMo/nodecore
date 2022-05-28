@@ -45,8 +45,6 @@ nodecore.register_item_entity_step(function(self)
 		local pos = self.object:get_pos()
 		if not pos then return end
 
-		minetest.chat_send_all(minetest.pos_to_string(pos))
-
 		local curnode = minetest.get_node(pos)
 		if minetest.get_item_group(curnode.name, "dirt_loose") < 1 then
 			return
