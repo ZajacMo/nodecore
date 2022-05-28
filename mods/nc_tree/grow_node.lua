@@ -28,6 +28,36 @@ minetest.register_node(modname .. ":eggcorn", {
 		sounds = nodecore.sounds("nc_tree_corny")
 	})
 
+local function soilboost(pos, name)
+	local def = minetest.registered_items[name]
+	local soil = def.groups.soil or 0
+	if soil > 2 then
+		nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
+		nodecore.soaking_particles(pos, (soil - 2) * 10,
+			0.5, .45, modname .. ":leaves_bud")
+	end
+end
+nodecore.register_item_entity_step(function(self)
+		if self.itemstring ~= modname .. ":eggcorn" then
+			return
+		end
+
+		local pos = self.object:get_pos()
+		if not pos then return end
+
+		minetest.chat_send_all(minetest.pos_to_string(pos))
+
+		local curnode = minetest.get_node(pos)
+		if minetest.get_item_group(curnode.name, "dirt_loose") < 1 then
+			return
+		end
+
+		nodecore.set_loud(pos, {name = epname})
+		self.itemstring = ""
+		self.object:remove()
+
+		soilboost(pos, curnode.name)
+	end)
 nodecore.register_craft({
 		label = "eggcorn planting",
 		action = "stackapply",
@@ -36,13 +66,7 @@ nodecore.register_craft({
 		indexkeys = {modname .. ":eggcorn"},
 		nodes = {{match = modname .. ":eggcorn", replace = epname}},
 		after = function(pos, data)
-			local def = minetest.registered_items[data.wield:get_name()]
-			local soil = def.groups.soil or 0
-			if soil > 2 then
-				nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
-				nodecore.soaking_particles(pos, (soil - 2) * 10,
-					0.5, .45, modname .. ":leaves_bud")
-			end
+			soilboost(pos, data.wield:get_name())
 		end
 	})
 
