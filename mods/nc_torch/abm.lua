@@ -34,7 +34,7 @@ minetest.register_abm({
 	})
 
 local log2 = math_log(2)
-local function torchlife(expire)
+local function torchlife(expire, pos)
 	local max = nodecore.torch_life_stages
 	if expire <= nodecore.gametime then return max end
 	local life = (expire - nodecore.gametime) / nodecore.torch_life_base
@@ -42,7 +42,19 @@ local function torchlife(expire)
 	local stage = 1 - math_ceil(math_log(life) / log2)
 	if stage < 1 then return 1 end
 	if stage > max then return max end
+	if pos and (stage >= 2) then
+		nodecore.smokefx(pos, {
+				time = 1,
+				rate = (stage - 1) / 2,
+				scale = 0.25
+			})
+	end
 	return stage
+end
+
+local function snufffx(pos)
+	nodecore.smokeburst(pos, 3)
+	return nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 end
 
 minetest.register_abm({
@@ -55,10 +67,10 @@ minetest.register_abm({
 			if nodecore.quenched(pos) or nodecore.gametime > expire then
 				minetest.remove_node(pos)
 				minetest.add_item(pos, {name = "nc_fire:lump_ash"})
-				nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
+				snufffx(pos)
 				return
 			end
-			local nn = modname .. ":torch_lit_" .. torchlife(expire)
+			local nn = modname .. ":torch_lit_" .. torchlife(expire, pos)
 			if node.name ~= nn then
 				node.name = nn
 				return minetest.swap_node(pos, node)
@@ -70,12 +82,6 @@ nodecore.register_aism({
 		label = "torch stack interact",
 		itemnames = {"group:torch_lit"},
 		action = function(stack, data)
-			local expire = stack:get_meta():get_float("expire") or 0
-			if expire < nodecore.gametime then
-				nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = data.pos})
-				return "nc_fire:lump_ash"
-			end
-
 			local pos = data.pos
 			local player = data.player
 			local wield
@@ -85,14 +91,16 @@ nodecore.register_aism({
 				pos = vector.add(pos, vector.multiply(player:get_look_dir(), 0.5))
 			end
 
-			if nodecore.quenched(pos, data.node and 1 or 0.3) then
-				nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
+			local expire = stack:get_meta():get_float("expire") or 0
+			if (expire < nodecore.gametime)
+			or nodecore.quenched(pos, data.node and 1 or 0.3) then
+				snufffx(pos)
 				return "nc_fire:lump_ash"
 			end
 
 			if wield and math_random() < 0.1 then nodecore.fire_check_ignite(pos) end
 
-			local nn = modname .. ":torch_lit_" .. torchlife(expire)
+			local nn = modname .. ":torch_lit_" .. torchlife(expire, pos)
 			if stack:get_name() ~= nn then
 				stack:set_name(nn)
 				return stack

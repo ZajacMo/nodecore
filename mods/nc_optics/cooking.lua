@@ -127,7 +127,7 @@ nodecore.register_fluidwandering(
 		if gen < 16 or math_random(1, 2) == 1 then return end
 		minetest.set_node(pos, {name = modname .. ":glass_crude"})
 		nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
-		nodecore.smokefx(pos, 0.2, 80)
+		nodecore.smokeburst(pos)
 		nodecore.dynamic_shade_add(pos, 1)
 		nodecore.fallcheck(pos)
 		return true

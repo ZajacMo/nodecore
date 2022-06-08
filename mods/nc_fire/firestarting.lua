@@ -48,7 +48,7 @@ nodecore.register_craft({
 
 			local r = math_random(1, 4)
 			if r > fs then
-				nodecore.smokefx(pos, 1, 5 + fs - r)
+				nodecore.smokeburst(pos)
 				nodecore.sound_play("nc_api_toolbreak", {pos = pos, gain = 1})
 				return
 			end
