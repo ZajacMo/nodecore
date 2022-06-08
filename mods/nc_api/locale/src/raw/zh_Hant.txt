@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-05-04 12:48+0000\n"
+"PO-Revision-Date: 2022-05-31 04:17+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -527,3 +527,63 @@ msgstr "調溫一類鋼工具頭"
 
 msgid "throw an item really fast"
 msgstr "急速丟出物品"
+
+msgid "Stone-Tipped Stylus"
+msgstr "石尖刮刻筆"
+
+msgid "cut down a tree"
+msgstr "砍樹"
+
+msgid "drop all your items at once"
+msgstr "丟光身上的東西"
+
+msgid "light a torch"
+msgstr "點燃火把"
+
+msgid "melt sand into molten glass"
+msgstr "將沙融化成玻璃"
+
+msgid "drop an item"
+msgstr "丟東西"
+
+msgid "change a stylus pattern"
+msgstr "改變雕刻花紋"
+
+msgid "dig up dirt"
+msgstr "挖土"
+
+msgid "pack high-quality charcoal"
+msgstr "壓縮高品質碳"
+
+msgid "Sand"
+msgstr "沙"
+
+msgid "Water"
+msgstr "水"
+
+msgid "Wet Sponge"
+msgstr "溼海綿"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "用木棍與碳製作火把"
+
+msgid "dig leaves"
+msgstr "挖樹葉"
+
+msgid "dig up a tree stump"
+msgstr "挖起樹根"
+
+msgid "dig up cobble"
+msgstr "挖鵝卵石"
+
+msgid "dig up lode ore"
+msgstr "挖類鋼礦"
+
+msgid "dig up gravel"
+msgstr "挖礫石"
+
+msgid "dig up sand"
+msgstr "挖沙"
+
+msgid "hold your breath"
+msgstr "憋氣"

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-05-16 22:50+0000\n"
+"PO-Revision-Date: 2022-05-31 04:17+0000\n"
 "Last-Translator: Giuseppe Bilotta <giuseppe.bilotta@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/it/>\n"
@@ -15,7 +15,7 @@ msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
 msgid "Active Lens"
-msgstr "Lente attiva"
+msgstr "Lente Attiva"
 
 msgid "Annealed Lode"
 msgstr "Vena Ricotta"
@@ -48,7 +48,7 @@ msgid "Ash Lump"
 msgstr "Grumo di cenere"
 
 msgid "Active Prism"
-msgstr "Prisma attivo"
+msgstr "Prisma Attivo"
 
 msgid "Aggregate"
 msgstr "Aggregato"
@@ -123,7 +123,7 @@ msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
 msgstr "- Per picchiare, colpite un nodo ripetutamente SENZA scavare."
 
 msgid "@1 (@2)"
-msgstr ""
+msgstr "@1 (@2)"
 
 msgid "Annealed Lode Prill"
 msgstr "Nucleo di Vena Ricotta"
@@ -505,7 +505,7 @@ msgid "Wooden Frame"
 msgstr "Impalcato di Legno"
 
 msgid "Wooden Ladder"
-msgstr "Scala di Legno"
+msgstr "Scala a Pioli di Legno"
 
 msgid "anneal a lode cube"
 msgstr "ricuoci un cubo di vena"
@@ -566,3 +566,27 @@ msgstr "lavora vena ricotta su una incudine di vena temprata"
 
 msgid "find dry (loose) leaves"
 msgstr "trova foglie secche (sfuse)"
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "assembla una scala a pioli di legno da bastoncini"
