@@ -88,6 +88,9 @@ msgstr "- Sneak+drop to count out single items from stack."
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- Some recipes require "pummeling" a node."
 
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr "- Something seems tedious? Find better tech, subtle factors, or a better way."
+
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
 
@@ -1282,17 +1285,8 @@ msgstr "assemble an adze out of sticks"
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
 
-msgid "bond adobe bricks"
-msgstr "bond adobe bricks"
-
-msgid "bond sandstone bricks"
-msgstr "bond sandstone bricks"
-
 msgid "bond stone bricks"
 msgstr "bond stone bricks"
-
-msgid "bond tarstone bricks"
-msgstr "bond tarstone bricks"
 
 msgid "break cobble into chips"
 msgstr "break cobble into chips"
@@ -1321,17 +1315,8 @@ msgstr "chisel a hinge groove into a wooden plank"
 msgid "chisel a hinge groove into cobble"
 msgstr "chisel a hinge groove into cobble"
 
-msgid "chisel adobe bricks"
-msgstr "chisel adobe bricks"
-
-msgid "chisel sandstone bricks"
-msgstr "chisel sandstone bricks"
-
 msgid "chisel stone bricks"
 msgstr "chisel stone bricks"
-
-msgid "chisel tarstone bricks"
-msgstr "chisel tarstone bricks"
 
 msgid "chop chromatic glass into lenses"
 msgstr "chop chromatic glass into lenses"
