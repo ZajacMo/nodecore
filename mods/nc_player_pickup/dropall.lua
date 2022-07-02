@@ -23,7 +23,9 @@ end
 
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)
-	if not player then return olddrop(item, player, ...) end
+	if not (player and player:is_player()) then
+		return olddrop(item, player, ...)
+	end
 	nodecore.player_discover(player, "item_drop")
 	local pctl = player:get_player_control()
 	if pctl.aux1 then

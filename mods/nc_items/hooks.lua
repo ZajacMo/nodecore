@@ -99,6 +99,9 @@ minetest.item_place_node_or_stack = item_place_node_or_stack
 
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)
+	if not (player and player:is_player()) then
+		return olddrop(item, player, ...)
+	end
 	local oldadd = minetest.add_item
 	local function additem(pos, stack, ...)
 		nodecore.log("action", string_format("%s throws item %q at %s",

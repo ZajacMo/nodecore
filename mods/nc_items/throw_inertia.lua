@@ -16,7 +16,7 @@ end
 
 local old_drop = minetest.item_drop
 function minetest.item_drop(itemstack, dropper, ...)
-	if not dropper or not dropper:is_player() then
+	if not (dropper and dropper:is_player()) then
 		return old_drop(itemstack, dropper, ...)
 	end
 	local function helper(...)
