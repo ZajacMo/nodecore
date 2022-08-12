@@ -61,6 +61,8 @@ AFTER 5.5 EOS:
 
 - Remove get_sky_as_table compat hack in playerstep; always use table
   https://github.com/minetest/minetest/commit/44fc888bd64cc00836b0fea0666aa763b2565513
+- Remove the "F5 will mislead you" guide message since basic_debug
+  should be blocked starting in 5.6.
 
 AFTER 5.6 EOS:
 
