@@ -28,6 +28,7 @@
 - Sneak+aux+drop an item to drop all matching items.=- Sneak+aux+lâcher un objet pour lâcher tout les objets correspondants.
 - Sneak+drop to count out single items from stack.=- Sneak+drop pour compter tout les objets d'une pile.
 - Some recipes require "pummeling" a node.=- Certaines recettes nécessitent de "marteler" un bloc.
+- Something seems tedious? Find better tech, subtle factors, or a better way.=- Quelque chose semble pénible ? Trouver une meilleure technologie, des facteurs subtils, ou un meilleur moyen.
 - Stacks may be pummeled, exact item count may matter.=- Les piles peuvent être martelées, le nombre exact d'objets peu importer.
 - The game is challenging by design, sometimes frustrating. DON'T GIVE UP!=- Le jeu est volontairement conçu pour être exigeant, parfois frustrant. N'ABANDONNEZ PAS !
 - There is NO inventory screen.=- Il n'y a PAS d'écran d'inventaire.
@@ -38,7 +39,7 @@
 - Wielded item, target face, and surrounding nodes may matter.=- L'objet en main, la face pointée et les blocs autour peuvent être importants.
 - You do not have to punch very fast (about 1 per second).=- Vous ne devez pas frapper très vite (environ 1 fois par seconde).
 @1 discovered, @2 available, @3 future=@1 découvert(s), @2 disponible(s), @3 à venir
-About=A propos
+About=À propos
 Active Lens=Lentille Active
 Active Prism=Prisme Actif
 Additional Mods Loaded: @1=Mods Supplémentaires Chargés : @1

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-05-31 04:17+0000\n"
+"PO-Revision-Date: 2022-07-23 04:21+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -319,13 +319,13 @@ msgid "Annealed Lode Hatchet"
 msgstr "冷卻類鋼短斧"
 
 msgid "Annealed Lode Mallet"
-msgstr "冷卻類鋼錘"
+msgstr "冷卻類鋼鎚"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "冷卻類鋼短斧頭"
+msgstr "冷卻類鋼短斧 頭"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "冷卻類鋼錘頭"
+msgstr "冷卻類鋼鎚 頭"
 
 msgid "Annealed Lode Pick"
 msgstr "冷卻類鋼鎬"
@@ -334,13 +334,13 @@ msgid "Annealed Lode Spade"
 msgstr "冷卻類鋼鏟"
 
 msgid "Annealed Lode Spade Head"
-msgstr "冷卻類鋼鏟頭"
+msgstr "冷卻類鋼鏟 頭"
 
 msgid "Annealed Lode Pick Head"
-msgstr "冷卻類鋼鎬頭"
+msgstr "冷卻類鋼鎬 頭"
 
 msgid "Chromatic Glass"
-msgstr "速冷玻璃"
+msgstr "半透玻璃"
 
 msgid "Clear Glass"
 msgstr "清澈玻璃"
@@ -463,7 +463,7 @@ msgid "Wooden Adze"
 msgstr "木鋤"
 
 msgid "Wooden Hatchet Head"
-msgstr "木短斧頭"
+msgstr "木短斧 頭"
 
 msgid "Wooden Ladder"
 msgstr "木梯"
@@ -587,3 +587,66 @@ msgstr "挖沙"
 
 msgid "hold your breath"
 msgstr "憋氣"
+
+msgid "Annealed Lode Ladder"
+msgstr "冷卻類鋼梯"
+
+msgid "Tempered Lode Hatchet Head"
+msgstr "調溫類鋼短斧 頭"
+
+msgid "see a tree grow"
+msgstr "看見樹成長"
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr "- 遇到棘手問題時，發展科技，觀察細節原因，或尋找更好的方法。"
+
+msgid "Annealed Lode Bar"
+msgstr "冷卻類鋼條"
+
+msgid "Annealed Lode Mattock"
+msgstr "冷卻類鋼鶴嘴鋤"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "冷卻類鋼鶴嘴鋤 頭"
+
+msgid "Tempered Lode Hatchet"
+msgstr "調溫類鋼短斧"
+
+msgid "sinter glowing lode prills into a cube"
+msgstr "鍛造類鋼，使其成爲方塊"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "冷卻中的類鋼鎚 頭"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "降溫中的類鋼短斧 頭"
+
+msgid "assemble a stone-tipped stylus"
+msgstr "組裝石尖刮刻筆"
+
+msgid "Clear Glass Case"
+msgstr "透明玻璃槽"
+
+msgid "assemble a lode adze"
+msgstr "組裝一支類鋼鋤"
+
+msgid "assemble a lode rake"
+msgstr "組裝一支類鋼耙"
+
+msgid "break cobble into chips"
+msgstr "打碎鵝卵石，使它變石片"
+
+msgid "anneal a lode cube"
+msgstr "冷卻一個類鋼方塊"
+
+msgid "assemble a clear glass case"
+msgstr "組裝一個透明玻璃槽"
+
+msgid "activate a lens"
+msgstr "激發透鏡"
+
+msgid "activate a prism"
+msgstr "激發稜鏡"
+
+msgid "Burning Embers"
+msgstr "半燃燒高溫炭"

@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2021-06-17 17:03+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
-"Language-Team: Portuguese <http://nodecore.mine.nu/trans/projects/nodecore/"
-"core/pt/>\n"
+"PO-Revision-Date: 2022-08-05 15:17+0000\n"
+"Last-Translator: Kauã Maia <kaua.cousillas03@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/minetest/"
+"nodecore/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 por Aaron Suen <war1024@@gmail.com>"
@@ -651,3 +651,82 @@ msgstr ""
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Jogue itens no chão para criar pilhas de nós. Eles não desaparecem."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Pontos de escalada têm uma luz muito fraca; aumente o gama de exibição "
+"para enxergar lá."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- Pontos de escalada podem ser escalados assim que partículas negras "
+"aparecerem."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Não use as informações de debug do F5; você irá se perder!"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+"- Quando sem ferramentas, segure/repita o clique direito em paredes/tetos "
+"para escalar."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Largue e pegue itens novamente para organizar seu inventário."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Para receitas maiores, o item do meio é geralmente colocado por último."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Preso e desesperado? Tente pedir ajuda aos fóruns da comunidade (Aba "
+"sobre)."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Se demorar mais de 5 segundos pra cavar algo, você não tem a ferramenta "
+"certa."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr ""
+"- Ferramentas usadas como ingredientes devem estar em muito boas condições."
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Algo parece tedioso? Encontre melhor tecnologia, fatores sutis ou uma "
+"melhor maneira."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- O jogo é desafiador de propósito, às vezes frustrante. NÃO DESISTA!"
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Para correr mais rápido, caminhe/nade para frente, ou escale/nade para "
+"cima continuamente."
+
+msgid "- FUTURE: @1"
+msgstr "- FUTURO: @1"
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Receitas maiores são geralmente mais simétricas."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Aprenda a usar as estrelas para navegação à longa distância."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- Agache+aux+largue um item para largar todos os itens parecidos."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Minérios podem estar escondidos, mas revelados por dicas sutis no terreno."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Fique atento a cavernas escuras ou abismos; você é responsável por escapar "
+"de lá."
+
+msgid "- DONE: @1"
+msgstr "- FEITO: @1"
