@@ -1,0 +1,57 @@
+========================================================================
+ISSUES-DOCS: Issues related to media/assets, or visuals/effects
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Publish "base" texturepack to CDB
+	- Allows servers to use "server texturepacks" with impunity
+	  without breaking the basic principle of players having
+	  access to all texture options.
+
+- Sound check
+	- add some kind of falling sound (very low pitched dig noise)
+	  to falling nodes, to give players a chance to jump away from
+	  gravel "jumpscares"
+		- Maybe add very subtle ambiance and/or particles to
+		  falling nodes poised above non-walkables?
+	- check sound for quality; stick sounds have a lot of bass noise
+	- Increase the pitch variance?
+		- Especially for ambiance/wind?
+
+- Grass, sprouts, and stumps (maybe others) all reuse textures from
+  dirt, and from some sides are visually indistinguishable from
+  dirt, yet the player is somehow able to distinguish them via a
+  looktip (not even needing to touch/hear).  This feels inconsistent
+  and maybe these nodes should have distinct textures on all sides,
+  like added roots.
+
+- Doors should produce particles when digging or pummeling
+
+- Add a few smoke particles to fire?
+	- Make them different (smaller?) than cooking to differentiate.
+
+- Player nametag visual interpolation
+	- When player movement interpolation WORKS
+	  https://github.com/minetest/minetest/issues/12317
+	- Nametags can "lead" players due to jumping to destination
+	  immediatel with no interpolation
+	- Save previous pos, average with new pos
+
+- Fix damage falling damage "death" flash
+	- Player falling off a short/mid size cliff will get a damage
+	  sound, flash, camera shake.
+	- Player falling off a huge cliff (enough to "kill" them) only
+	  gets the sound.
+	- May need to do something different to calculate damage
+		- player:set_armor_groups({fall_damage_add_percent = -x})
+	- May need to heal and then re-hurt to trigger extra effects?
+		- Take full control of damage fx server-side?
+
+........................................................................
+========================================================================

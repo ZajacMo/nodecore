@@ -9,6 +9,43 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Rake recipe is a major problem
+	- Lots of players are getting caught up on it
+	- Replace recipe:
+		- Add "partial" rakes for 1, 2, and 3 tines.
+		- Using adze on handle makes partial rake.
+		- Using adze on partial rake upgrades it.
+		- Once a full rake is completed it works as normal.
+		- Partial rakes have rake functionality but break
+		  after a single use.
+			- Break into appropriate prills (lode)
+	- Hide rake recipe until later in the game?
+		- Maybe add a generic "# hints completed" qualifier?
+
+- Instead of always displacing nodes upon falling node landing, should
+  check for diggability and if diggable, convert to drops.
+	- If a mod adds a second loose-leaves-like node (falling,
+	  non-walkable, e.g. nc_nature loose shrub) then it and loose
+	  leaves in a narrow deep pit will constantly replace each
+	  other.
+
+- Cheats
+	- Add radius to /snuff, /ignite, /growtrees, etc
+	- Add a /soak cheat to push soaking?
+	- Add a /forest or /grove cheat to sprinkle trees around
+		- Like the flora redecorate
+		- Useful for servers with spawn tree attrition
+
+- There needs to be a way to detect bricks bonding
+	- Smoke puffs?
+	- Absorb something (e.g. flowing liquid) from its surroundings?
+
+- Emergency digging mechanic issues
+	- Players still confused by it.
+	- Because pumwater is pointable, if you're trapped with no way
+	  to get your head out of it, you can't emergency dig the
+	  container and free yourself.
+
 - Continuing issues with storebox fall-thru
 	- Items now refusing to fall from a form into a crate or
 	  case directly below.
@@ -30,9 +67,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- We can detect player "falling forever" by scanning down
 	  to find anything other than air before ignore.
 
-- Instead of always displacing nodes upon falling node landing, should
-  check for diggability and if diggable, convert to drops.
-
 - Touch-damage is overused, should probably only apply to
   obviously extremely hot things like embers and pumwater.
 	- Maybe add a pickup_damage/hotpotato group specifically
@@ -53,13 +87,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Do we really need stack_as_node for leaves, sticks, and a
   few other ordinary items anymore, or has our falling_node
   rework made that irrelevant now?
-
-- Grass, sprouts, and stumps (maybe others) all reuse textures from
-  dirt, and from some sides are visually indistinguishable from
-  dirt, yet the player is somehow able to distinguish them via a
-  looktip (not even needing to touch/hear).  This feels inconsistent
-  and maybe these nodes should have distinct textures on all sides,
-  like added roots.
 
 - Sponge Fixes
 	- Fix crappy sponge death mechanic
@@ -83,8 +110,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Sneak? Aux?
 	- Confirmation UI after completing recipe, e.g. floating ent
 	- Make all recipes include some pummel factor?
-
-- Doors should produce particles when digging or pummeling
 
 - Door press recipe limitations
 	- Node-placing recipes don't work with itemstacks
@@ -141,9 +166,6 @@ ISSUES-GAME: Gameplay-affecting issues
   <max health instead of time of last damage.
 	- Should lose farzoom when damaged too.
 
-- Should water/lava springs vary by depth?  Lava seems kind of laborious
-  to find right now.
-
 - We can reliably detect the zoom player control, make far-zoom only
   work while zooming, and add hints for it.
 
@@ -157,9 +179,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Should item ents experience more drag when in fluids?
 
 - Door-wheels do not affect attached glyphs...
-
-- Add a few smoke particles to fire?
-	- Make them different (smaller?) than cooking to differentiate.
 
 - Consider changing wet/dry stack splitting
 	- Currently, original stack remains in place, wetted/dried
@@ -194,13 +213,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Rework repose to be based on amount of loose material below, not
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
-
-- Delay lens full brightness?
-	- Propagate optic signals immediately
-	- Reach full brightness a few seconds later, to reduce map
-	  update work and prevent rapid strobes.
-	- Strobes can cause excess lighting recalcs and block
-	  transfers, and can cause seizure problems for users
 
 - Tote issues:
 	- Consider updating tote recipe.

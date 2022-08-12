@@ -1,0 +1,60 @@
+========================================================================
+HOPELESS: Problems that look like they might be unfixable
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+These are things that I would like to have fixed, but realistically
+probably can't do anything about.  SOME may also be specific engine
+issues referenced in WISHLIST, but others may be so fundamentally
+broken or unrealistic that they may not be worth pushing as an engine
+issue.
+
+- Variable step size consequences
+	- Instability of entity physics at large scale, i.e. cannot
+	  aim a catapult
+	- Optomechanic timing issues; I'm unwilling to sacrifice optic
+	  timing lockstep, but I can't enroll every other system in them.
+		- Doors are a possibility but would require refactoring
+		  out a "virtual node transaction" sort of object that
+		  could be hella complex.
+
+- ABM performance sucks
+	- The scheduler distributes work across time very poorly
+	- We really need the ability to control scheduling from lua
+		- C++ is too inflexible
+	- We need to be able to process in batches instead of only
+	  per-node dispatch
+	- neighbor check really could be made more specific,
+	  e.g. a mask to select which neighbors
+
+- Liquid issues
+	- Z-fighting against normal nodes; no way to both show inside
+	  surface against air AND avoid z-fighting.
+	- Multiple kinds of water don't "mix"
+
+- Can't do the sky navigation thing fully
+	- Client resource GC for computed textures could fix the memory
+	  leak issues
+	- Multi-layer skybox with "parallax" layers would allow me to
+	  move things around without building new textures (would be
+	  faster too)
+
+- Entity rendering performance is painful
+	- visinvs have an outsized impact on rendering perf, making
+	  large storage areas painfully slow
+	- would like to be able to make more nodes ents, like doors,
+	  for animations
+
+- LBM and node timer "leaks" can happen, necessitating a lot of ABMs
+	- If I could reliably discover the existence of nodes and
+	  ensure some process is pending for them, then I wouldn't
+	  need these.
+
+........................................................................
+========================================================================
