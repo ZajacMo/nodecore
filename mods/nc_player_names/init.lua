@@ -105,6 +105,10 @@ local function canseeface(p1, p2)
 	return true
 end
 
+-- Make it much easier for mods to customize player name HUDs by
+-- replacing this method.
+nodecore.player_nametag_hud_set = nodecore.hud_set
+
 -- On each global step, check all player visibility, and create/remove/update
 -- each player's HUDs accordingly.
 nodecore.register_globalstep("player names", function()
@@ -116,7 +120,7 @@ nodecore.register_globalstep("player names", function()
 					if canseeface(p1, p2) then
 						local p = p2:get_pos()
 						p.y = p.y + 1.25
-						nodecore.hud_set(p1, {
+						nodecore.player_nametag_hud_set(p1, {
 								label = "pname:" .. n2,
 								group = "pname",
 								hud_elem_type = "waypoint",
@@ -128,7 +132,7 @@ nodecore.register_globalstep("player names", function()
 								quick = true
 							})
 					else
-						nodecore.hud_set(p1, {
+						nodecore.player_nametag_hud_set(p1, {
 								label = "pname:" .. n2,
 								group = "pname",
 								ttl = 0,
@@ -143,7 +147,7 @@ nodecore.register_globalstep("player names", function()
 nodecore.register_on_leaveplayer("leave clear names", function(player)
 		local pname = player:get_player_name()
 		for _, peer in pairs(minetest.get_connected_players()) do
-			nodecore.hud_set(peer, {
+			nodecore.player_nametag_hud_set(peer, {
 					label = "pname:" .. pname,
 					group = "pname",
 					ttl = 0,
