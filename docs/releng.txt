@@ -63,6 +63,8 @@ AFTER 5.5 EOS:
   https://github.com/minetest/minetest/commit/44fc888bd64cc00836b0fea0666aa763b2565513
 - Remove the "F5 will mislead you" guide message since basic_debug
   should be blocked starting in 5.6.
+- We can start to use fancy particle spawner blending effects
+  e.g. allowing scaling particles to glow in the dark.
 
 AFTER 5.6 EOS:
 
