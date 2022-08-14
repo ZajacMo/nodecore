@@ -7,8 +7,15 @@ local math_floor, math_random, string_format
 
 local modname = minetest.get_current_modname()
 
-local optic_distance = 16
-local optic_speed = 12
+local optic_distance = nodecore.setting_float(modname .. "_optic_distance", 16,
+	"Optic beam distance", [[WARNING: FUNDAMENTAL CONSTANT. Maximum distance
+	from which an optic beam can be sensed by an optic node's input face.
+	Changing this may fundamentally alter the game, including making your
+	builds incompatible across hosts.]])
+local optic_speed = nodecore.setting_float(modname .. "_optic_speed", 12,
+	"Optic tick rate", [[WARNING: FUNDAMENTAL CONSTANT. Rate in Hz of
+	optic ticks. Changing this may fundamentally alter the game, including
+	making your builds incompatible across hosts.]])
 local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
 	"Optic tick limit", [[Maximum amount of time in seconds that may be
 	spent during a single server step to calculate optic state. Optics

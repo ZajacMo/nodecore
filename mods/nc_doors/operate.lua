@@ -3,6 +3,14 @@ local minetest, nodecore, pairs, vector
     = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
+
+local operate_squelch = nodecore.setting_float(modname .. "_operate_squelch", 0.5,
+	"Door operation squelch time", [[WARNING: FUNDAMENTAL CONSTANT. Time after
+	a door has been operated that further operations are "squelched"
+	(ignored/blocked). Changing this may fundamentally alter the game,
+	including making your builds incompatible across hosts.]])
+
 local hashpos = minetest.pos_to_string
 
 local function hingeaxis(pos, node)
@@ -120,8 +128,8 @@ function nodecore.operate_door(pos, node, dir)
 	local toset = {}
 	for k, v in pairs(found) do
 		toset[k] = {pos = v.pos, name = "air", param2 = 0}
-		squelch[k] = 0.5
-		squelch[v.str] = 0.5
+		squelch[k] = operate_squelch
+		squelch[v.str] = operate_squelch
 	end
 	for _, v in pairs(found) do
 		for i, xfd in pairs(nodecore.facedirs) do
