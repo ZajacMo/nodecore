@@ -631,3 +631,11 @@ function nodecore.meta_serializable(meta)
 	end
 	return meta
 end
+
+function nodecore.set_node_check(pos, node, old)
+	old = old or minetest.get_node(pos)
+	if node.name == old.name and (node.param == nil
+		or node.param == old.param) and (node.param2 == nil
+		or node.param2 == old.param2) then return end
+	return minetest.set_node(pos, node)
+end

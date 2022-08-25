@@ -78,7 +78,7 @@ for i = 1, 5 do
 					node.name = modname .. ":sedge_5"
 				end
 				if node.name == sedgename then return end
-				minetest.set_node(pos, node)
+				nodecore.set_node_check(pos, node)
 			end
 		})
 

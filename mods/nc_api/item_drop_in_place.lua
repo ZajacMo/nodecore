@@ -48,7 +48,7 @@ function minetest.node_dig(pos, node, digger, ...)
 				yielditem(pos, digger, ItemStack(def.drop_non_silktouch))
 			end
 
-			return minetest.set_node(pos, {
+			return nodecore.set_node(pos, {
 					name = def.drop_in_place.name,
 					param = def.drop_in_place.param or node.param,
 					param2 = def.drop_in_place.param2 or node.param2

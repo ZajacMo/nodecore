@@ -91,7 +91,7 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		end
 	end
 
-	minetest.set_node(pos, {name = modname .. ":stack"})
+	nodecore.set_node_check(pos, {name = modname .. ":stack"})
 	nodecore.stack_set(pos, stack, placer)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {

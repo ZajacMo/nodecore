@@ -93,7 +93,8 @@ minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end
-	local name = minetest.get_node(pos).name
+	local old = minetest.get_node(pos)
+	local name = old.name
 	local curlight = canreplace[name]
 	if not curlight then
 		if exact then return end
@@ -113,7 +114,7 @@ local function dynamic_light_add(pos, level, check, exact)
 		if ll and ll > level then return end
 	end
 	if curlight > level and not check_light(pos) then return end
-	if name ~= setname then minetest.set_node(pos, {name = setname}) end
+	if name ~= setname then nodecore.set_node_check(pos, {name = setname}, old) end
 	setup_light(pos, check)
 	return true
 end
@@ -211,9 +212,10 @@ nodecore.register_dnt({
 	})
 
 function nodecore.dynamic_shade_add(pos, above)
-	local name = minetest.get_node(pos).name
+	local old = minetest.get_node(pos)
+	local name = old.name
 	if canreplace[name] then
-		return minetest.set_node(pos, {name = shadenode})
+		return nodecore.set_node_check(pos, {name = shadenode}, old)
 	end
 	if above and above > 0 then
 		return nodecore.dynamic_shade_add({

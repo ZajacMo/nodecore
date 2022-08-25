@@ -57,7 +57,13 @@ nodecore.register_soaking_abm({
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
 		arealoaded = 1,
-		soakrate = nodecore.tree_trunk_growth_rate,
+		soakrate = function(pos, ...)
+			local v = nodecore.tree_trunk_growth_rate(pos, ...)
+			if v == false then
+				minetest.set_node(pos, {name = modname .. ":tree"})
+			end
+			return v
+		end,
 		soakcheck = function(data, pos, node)
 			if data.total < trunkcost then
 				return growparticles(pos, data.rate, 0.45)

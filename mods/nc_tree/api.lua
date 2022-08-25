@@ -59,7 +59,6 @@ function nodecore.tree_trunk_growth_rate(pos, node)
 		elseif node.name == modname .. ":root" then
 			return nodecore.tree_soil_rate(bpos)
 		elseif node.name ~= modname .. ":tree" then
-			minetest.set_node(pos, {name = modname .. ":tree"})
 			return false
 		end
 	end

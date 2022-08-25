@@ -90,9 +90,9 @@ function nodecore.fire_ignite(pos, node)
 	if fuel > nodecore.fire_max then fuel = nodecore.fire_max end
 	fuel = math_floor(fuel)
 	if fuel > 0 then
-		minetest.set_node(pos, {name = modname .. ":ember" .. fuel})
+		nodecore.set_node_check(pos, {name = modname .. ":ember" .. fuel})
 	else
-		minetest.set_node(pos, {name = modname .. ":fire"})
+		nodecore.set_node_check(pos, {name = modname .. ":fire"})
 	end
 
 	nodecore.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
@@ -124,13 +124,13 @@ local function snuff(cons, coal, pos, node, ember)
 	ember = ember - cons
 	if ember > 0 then
 		if coal then
-			minetest.set_node(pos, {name = modname .. ":coal" .. ember})
+			nodecore.set_node_check(pos, {name = modname .. ":coal" .. ember})
 			nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 		else
-			minetest.set_node(pos, {name = modname .. ":ember" .. ember})
+			nodecore.set_node_check(pos, {name = modname .. ":ember" .. ember})
 		end
 	else
-		minetest.set_node(pos, {name = modname .. ":ash"})
+		nodecore.set_node_check(pos, {name = modname .. ":ash"})
 		nodecore.sound_play("nc_fire_snuff", {gain = 1, pos = pos})
 	end
 	nodecore.fallcheck(pos)

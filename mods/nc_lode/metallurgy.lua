@@ -112,7 +112,7 @@ local function replacestack(pos, temper)
 		repl:set_count(qty * repl:get_count())
 		nodecore.stack_set(pos, repl)
 	else
-		nodecore.set_node(pos, {name = alt})
+		minetest.set_node(pos, {name = alt})
 		nodecore.fallcheck(pos)
 	end
 	nodecore.witness(pos, "metallurgize " .. alt)

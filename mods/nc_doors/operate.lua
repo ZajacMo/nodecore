@@ -24,15 +24,6 @@ local function hingeaxis(pos, node)
 	}
 end
 
-local function set_node(pos, node)
-	local exists = minetest.get_node(pos)
-	if exists.name ~= node.name
-	or exists.param ~= node.param
-	or exists.param2 ~= node.param2 then
-		return minetest.set_node(pos, node)
-	end
-end
-
 local squelch = {}
 nodecore.register_globalstep("door squelch", function(dtime)
 		for k, v in pairs(squelch) do
@@ -146,7 +137,7 @@ function nodecore.operate_door(pos, node, dir)
 	end
 
 	for _, v in pairs(toset) do
-		set_node(v.pos, v)
+		nodecore.set_node_check(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
 			local k = "sfx" .. hashpos(p)
