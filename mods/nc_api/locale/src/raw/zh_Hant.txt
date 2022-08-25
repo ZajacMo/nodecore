@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-07-23 04:21+0000\n"
+"PO-Revision-Date: 2022-08-24 14:17+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -45,7 +45,7 @@ msgid "- FUTURE: @1"
 msgstr "- 延伸：@1"
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
-msgstr "- 空手在牆或天花板上，按住或連點右鍵來攀爬。"
+msgstr "- 空手時，對牆或天花板按住／連點右鍵來攀爬。"
 
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- 如果配方存在，你會看到特殊粒子效果。"
@@ -57,7 +57,7 @@ msgid "- Recipes are time-based, punching faster does not speed up."
 msgstr "- 配方以時間為基準，打更快不加快製作。"
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
-msgstr "- 潛行時按輔助鍵丟物品會丟掉相符的物品。"
+msgstr "- 潛行時按輔助鍵丟物品會丟掉同樣的物品。"
 
 msgid "- There is NO inventory screen."
 msgstr "- 「沒有」物品欄檢視畫面。"
@@ -87,16 +87,16 @@ msgid "About"
 msgstr "關於"
 
 msgid "Active Lens"
-msgstr "激發的透鏡"
+msgstr "活化的透鏡"
 
 msgid "Active Prism"
-msgstr "激發的稜鏡"
+msgstr "活化的稜鏡"
 
 msgid "Additional Mods Loaded: @1"
 msgstr "已載入額外的模組： @1"
 
 msgid "Adobe Mix"
-msgstr "土胚半成品"
+msgstr "陶土"
 
 #, fuzzy
 msgid "Amalgamation"
@@ -175,7 +175,7 @@ msgid "Stump"
 msgstr "根"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
-msgstr "- 在地面上丟物品來形成方塊堆。它們永不腐爛。"
+msgstr "- 在地面上丟物品來形成方塊堆。它們永不變質。"
 
 msgid "- Do not use F5 debug info; it will mislead you!"
 msgstr "- 不要使用 F5 除錯訊息；它會誤導你！"
@@ -187,7 +187,7 @@ msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- 「熔爐」不是物品；用明火熔鍊。"
 
 msgid "- For larger recipes, the center item is usually placed last."
-msgstr "- 較大的合成配方中，中心物通常最後放置。"
+msgstr "- 在較大的合成配方中，中心物通常最後放置。"
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr "- 沒有進展？試著在社群聊天室發問（「關於」頁）。"
@@ -199,10 +199,10 @@ msgid "- Order and specific face of placement may matter for crafting."
 msgstr "- 順序與放置面可能影響製作。"
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
-msgstr "- 挖方塊超過 5 秒代表你使用了錯誤的工具。"
+msgstr "- 挖掘超過 5 秒代表你使用了錯誤的工具。"
 
 msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
-msgstr "- 錯誤的工具不能拾起除位移以外的方塊。"
+msgstr "- 錯誤的工具只能拾起位移的方塊。"
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- 拾起的物品會先嘗試進入選取的物品欄。"
@@ -223,7 +223,7 @@ msgid "@1 ||||."
 msgstr "@1 ||||."
 
 msgid "- Sneak+drop to count out single items from stack."
-msgstr "- 潛行時丟物品來從物品疊中丟出一個物品。"
+msgstr "- 潛行時丟物品會從物品疊中丟出一個物品。"
 
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- 堆疊可以被敲打，精確的數量可能影響。"
@@ -232,7 +232,7 @@ msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
 msgstr "- 生火有困難？試著使用更長的木棒與更多的可燃物。"
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "- 「敲打」是快速的打擊方塊而非挖掘。"
+msgstr "- 「敲打」是快速的打擊方塊，而非挖掘。"
 
 msgid "- Tools used as ingredients must be in very good condition."
 msgstr "- 被當成原料的工具狀態必須很好。"
@@ -262,7 +262,7 @@ msgid "Ash"
 msgstr "灰方塊"
 
 msgid "Charcoal Lump"
-msgstr "木炭"
+msgstr "木炭堆"
 
 msgid "Stone Chip"
 msgstr "石片"
@@ -271,7 +271,7 @@ msgid "Stone-Tipped Spade"
 msgstr "石頭木鏟"
 
 msgid "Ash Lump"
-msgstr "灰"
+msgstr "灰堆"
 
 msgid "CHEATS ENABLED"
 msgstr "作弊模式"
@@ -517,7 +517,7 @@ msgid "wet a concrete mix"
 msgstr "沾溼混凝土粉"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
-msgstr "有最新功能（也許）與錯誤的 Nodecore"
+msgstr "有最新功能與錯誤（也許）的 Nodecore"
 
 msgid "stick a lens/prism in place"
 msgstr "黏住透鏡或稜鏡"
@@ -598,7 +598,7 @@ msgid "see a tree grow"
 msgstr "看見樹成長"
 
 msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
-msgstr "- 遇到棘手問題時，發展科技，觀察細節原因，或尋找更好的方法。"
+msgstr "- 遇到棘手問題時，發展科技，觀察微小變因，或尋找更好的方法。"
 
 msgid "Annealed Lode Bar"
 msgstr "冷卻類鋼條"
@@ -616,7 +616,7 @@ msgid "sinter glowing lode prills into a cube"
 msgstr "鍛造類鋼，使其成爲方塊"
 
 msgid "Glowing Lode Mallet Head"
-msgstr "冷卻中的類鋼鎚 頭"
+msgstr "降溫中的類鋼鎚 頭"
 
 msgid "Glowing Lode Hatchet Head"
 msgstr "降溫中的類鋼短斧 頭"
@@ -649,4 +649,102 @@ msgid "activate a prism"
 msgstr "激發稜鏡"
 
 msgid "Burning Embers"
-msgstr "半燃燒高溫炭"
+msgstr "餘燼"
+
+msgid "Humus"
+msgstr "腐質土"
+
+msgid "Pummel"
+msgstr "敲打"
+
+msgid "Wet Adobe Mix"
+msgstr "溼陶土"
+
+msgid "Glowing Lode Pick Head"
+msgstr "降溫中的類鋼鎬 頭"
+
+msgid "Loose Humus"
+msgstr "鬆腐殖質土"
+
+msgid "Tempered Lode"
+msgstr "調溫類鋼"
+
+msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
+msgstr "發現提示系統只告訴你遊戲基本機制。更進階的內容，像警報與自動化系統，需要自己"
+"發明！"
+
+msgid "Glowing Lode Prill"
+msgstr "降溫中的類鋼粒"
+
+msgid "Glowing Lode Spade Head"
+msgstr "降溫中的類鋼鏟 頭"
+
+msgid "Peat"
+msgstr "泥炭土"
+
+msgid "Glowing Lode"
+msgstr "高溫的類鋼"
+
+msgid "Tempered Lode Adze"
+msgstr "調溫類鋼鋤"
+
+msgid "Tempered Lode Mallet"
+msgstr "調溫類鋼槌"
+
+msgid "Tempered Lode Mallet Head"
+msgstr "調溫類鋼槌 頭"
+
+msgid "Tempered Lode Pick"
+msgstr "調溫類鋼鎬"
+
+msgid "Tempered Lode Prill"
+msgstr "調溫類鋼粒"
+
+msgid "find lode ore"
+msgstr "找到類鋼礦"
+
+msgid "work annealed lode on a tempered lode anvil"
+msgstr "在調溫類鋼砧上敲打類鋼"
+
+msgid "Glowing Lode Cobble"
+msgstr "高溫類鋼鵝卵石"
+
+msgid "Tempered Lode Pick Head"
+msgstr "調溫類鋼鎬 頭"
+
+msgid "Glowing Lode Adze"
+msgstr "高溫類鋼鋤"
+
+msgid "Tempered Lode Spade Head"
+msgstr "調溫類鋼鏟 頭"
+
+msgid "Tempered Lode Rake"
+msgstr "調溫類鋼耙"
+
+msgid "Tempered Lode Spade"
+msgstr "調溫類鋼鏟"
+
+msgid "melt down lode metal from lode cobble"
+msgstr "自類剛礦中熔煉出類剛"
+
+msgid "work glowing lode on a stone anvil"
+msgstr "在石砧上敲打高溫類鋼"
+
+msgid "work glowing lode on a lode anvil"
+msgstr "在類鋼砧上敲打高溫類鋼"
+
+#, fuzzy
+msgid "Gated Prism"
+msgstr "失效的棱鏡"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "高溫類鋼槌 頭"
+
+msgid "Glued Active Lens"
+msgstr "上膠的活化透鏡"
+
+msgid "Glued Active Prism"
+msgstr "上膠的活化棱鏡"
+
+msgid "Glowing Lode Rake"
+msgstr "高溫類鋼耙"
