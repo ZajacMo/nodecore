@@ -86,10 +86,11 @@ end
 local function witness_core(pos, disc, maxdist)
 	maxdist = maxdist or 16
 	for _, player in pairs(minetest.get_connected_players()) do
-		local deferred = nodecore.player_discover_deferred(player, disc, "witness:")
-		if deferred then
-			local ppos = player:get_pos()
-			if vector.distance(ppos, pos) <= maxdist then
+		local ppos = player:get_pos()
+		if vector.distance(ppos, pos) <= maxdist then
+			local deferred = nodecore.player_discover_deferred(
+				player, disc, "witness:")
+			if deferred then
 				if canwitnessnow(player, pos) then
 					deferred()
 				else
