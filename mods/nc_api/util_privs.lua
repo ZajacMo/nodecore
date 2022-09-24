@@ -12,6 +12,16 @@ end
 
 local dirty
 local priv_cache = {}
+
+minetest.register_globalstep(function()
+		if dirty then
+
+			priv_cache = {}
+
+			dirty = false
+		end
+	end)
+
 function nodecore.get_player_privs_cached(player)
 	player = player_name(player)
 	if not player then return {} end
@@ -22,10 +32,6 @@ function nodecore.get_player_privs_cached(player)
 	dirty = true
 	return cached
 end
-
-minetest.register_globalstep(function()
-		if dirty then priv_cache = {} end
-	end)
 
 local oldset = minetest.set_player_privs
 function minetest.set_player_privs(player, ...)
