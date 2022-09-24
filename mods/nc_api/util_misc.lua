@@ -182,15 +182,21 @@ function nodecore.fixedbox(x, ...)
 	}}
 end
 
+local interact_cache = {}
 function nodecore.interact(player)
 	if not player then return end
 	if type(player) ~= "string" then
-		if not (player.is_player and player:is_player()) then
-			return true
-		end
-		player = player:get_player_name()
+		player = player.get_player_name and player:get_player_name()
 	end
-	return minetest.get_player_privs(player).interact
+	if type(player) ~= "string" then return end
+	local cached = interact_cache[player]
+	if cached and cached.time == nodecore.gametime then return cached.value end
+	cached = {
+		time = nodecore.gametime,
+		value = minetest.get_player_privs(player).interact
+	}
+	interact_cache[player] = cached
+	return cached.value
 end
 
 function nodecore.player_visible(player)
