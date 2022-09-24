@@ -47,7 +47,7 @@ nodecore.player_skin = nodecore.player_skin or function(player, options)
 
 	getcolors(name, layers)
 
-	local privs = options.privs or minetest.get_player_privs(
+	local privs = options.privs or nodecore.get_player_privs_cached(
 		options.privname or name)
 	if options.noarms or not privs.interact then
 		layers[#layers + 1] = modname .. "_no_interact.png"

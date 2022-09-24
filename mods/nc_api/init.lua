@@ -92,6 +92,7 @@ include("compat_legacyent")
 include("compat_nodealpha")
 
 include("util_settings")
+include("util_privs")
 include("util_misc")
 include("util_hookmeta")
 include("util_falling")
