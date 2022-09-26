@@ -101,7 +101,7 @@ local function pumpqueue()
 	if not player then return end
 
 	local pos = player:get_pos()
-	if not minetest.get_node_or_nil() then
+	if not minetest.get_node_or_nil(pos) then
 		attq[#attq + 1] = v
 		return
 	end
