@@ -100,12 +100,13 @@ local function pumpqueue()
 	local player = minetest.get_player_by_name(v.pname)
 	if not player then return end
 
-	if not minetest.get_node_or_nil(player:get_pos()) then
+	local pos = player:get_pos()
+	if not minetest.get_node_or_nil() then
 		attq[#attq + 1] = v
 		return
 	end
 
-	local obj = minetest.add_entity(v.pos, modname .. ":ent")
+	local obj = minetest.add_entity(pos, modname .. ":ent")
 	local ent = obj:get_luaentity()
 	ent.conf = v
 end
@@ -178,13 +179,11 @@ minetest.register_entity(modname .. ":ent", entdef)
 
 nodecore.register_on_joinplayer("join setup wieldview", function(player)
 		local pname = player:get_player_name()
-		local pos = player:get_pos()
 
 		local function addslot(n, b, x, y, z, rx, ry, rz)
 			attq[#attq + 1] = {
 				pname = pname,
 				slot = n,
-				pos = pos,
 				bone = b,
 				apos = {
 					x = x,
