@@ -57,7 +57,7 @@ local function dnt_timer(data)
 	end
 
 	if not nexttime then return end
-	if data.timer and (data.timer > now) and (nexttime > data.timer)
+	if data.timer and (data.timer > now) and (nexttime >= data.timer)
 	and (nexttime < data.timer + 1) then return end
 
 	local delay = nexttime - now
@@ -68,8 +68,8 @@ local function dnt_timer(data)
 	data_save(data)
 end
 
-local function dnt_execute(pos, data)
-	data = data or data_load(pos)
+local function dnt_execute(pos)
+	local data = data_load(pos)
 
 	local now = nodecore.gametime
 	local registered = nodecore.registered_dnts
@@ -132,9 +132,7 @@ function nodecore.dnt_reset(pos, name, time)
 	dnt_timer(data)
 end
 
-minetest.nodedef_default.on_timer = function(pos)
-	return dnt_execute(pos)
-end
+minetest.nodedef_default.on_timer = dnt_execute
 
 nodecore.register_on_register_item(function(_, def)
 		if def.on_timer then
