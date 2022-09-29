@@ -162,14 +162,13 @@ nodecore.register_aism({
 		chance = 1,
 		itemnames = {"group:optic_lens"},
 		action = function(stack, data)
-			if not data.player then return end
-			local nn = modname .. ":lens"
-			.. (nodecore.optic_scan_recv(
-					vector.round(data.pos),
-					getdir(data.player:get_look_dir()),
-					nil,
-					minetest.get_node)
-				and "_glow" or "")
+			local glow = data.player and
+			nodecore.optic_scan_recv(
+				vector.round(data.pos),
+				getdir(data.player:get_look_dir()),
+				nil,
+				minetest.get_node)
+			local nn = modname .. ":lens" .. (glow and "_glow" or "")
 			if stack:get_name() == nn then return end
 			stack:set_name(nn)
 			return stack
