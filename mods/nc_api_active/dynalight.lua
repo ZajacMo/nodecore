@@ -173,9 +173,8 @@ local function entlight(self, ...)
 		if not pos then return ... end
 		pos = vector.round(pos)
 		nodecore.dynamic_light_add(pos, src, function()
-				for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
-					if v == self.object then return true end
-				end
+				local curpos = self.object and self.object:get_pos()
+				return curpos and vector.equals(vector.round(curpos), pos)
 			end)
 	end
 	return ...
