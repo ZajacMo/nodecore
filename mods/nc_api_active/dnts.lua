@@ -56,9 +56,9 @@ local function dnt_timer(data)
 		if (not nexttime) or (v < nexttime) then nexttime = v end
 	end
 
-	if not nexttime then return end
+	if not nexttime then return data_save(data) end
 	if data.timer and (data.timer > now) and (nexttime >= data.timer)
-	and (nexttime < data.timer + 1) then return end
+	and (nexttime < data.timer + 1) then return data_save(data) end
 
 	local delay = nexttime - now
 	if delay < 0.001 then delay = 0.001 end
@@ -71,21 +71,20 @@ end
 local function dnt_execute(pos)
 	local data = data_load(pos)
 
+	data.timer = nil
+
 	local now = nodecore.gametime
 	local registered = nodecore.registered_dnts
 	local runnable = {}
 	local sched = data.sched
-	local dirty
 	for dntname, schedtime in pairs(sched) do
 		local def = registered[dntname]
 		if not def then
 			sched[dntname] = nil
-			dirty = true
 		elseif schedtime <= now and (def.ignore_stasis or not nodecore.stasis) then
 			runnable[def] = true
 			local newtime = def.loop and (now + def.time) or nil
 			sched[dntname] = newtime
-			dirty = true
 		end
 	end
 
@@ -101,7 +100,6 @@ local function dnt_execute(pos)
 		end
 	end
 
-	if dirty then data_save(data) end
 	dnt_timer(data)
 end
 
@@ -118,7 +116,6 @@ function nodecore.dnt_set(pos, name, time)
 	time = now + (time or nodecore.registered_dnts[name].time or 1)
 	if prev and prev >= now and prev <= time then return end
 	data.sched[name] = time
-	data_save(data)
 	dnt_timer(data)
 end
 
@@ -128,7 +125,6 @@ function nodecore.dnt_reset(pos, name, time)
 	time = nodecore.gametime + (time or nodecore.registered_dnts[name].time or 1)
 	if prev and prev == time then return end
 	data.sched[name] = time
-	data_save(data)
 	dnt_timer(data)
 end
 
