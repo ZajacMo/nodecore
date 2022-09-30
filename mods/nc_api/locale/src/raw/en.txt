@@ -46,8 +46,8 @@ msgstr "- FUTURE: @1"
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- For larger recipes, the center item is usually placed last."
 
-msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
-msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr "- Hopelessly stuck? Try asking the community chatrooms (About tab)."

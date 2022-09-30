@@ -11,7 +11,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Derrube itens no chão para criar pilhas de nodes. Eles não somem.
 - FUTURE: @1=- FUTURO: @1
 - For larger recipes, the center item is usually placed last.=- Para receitas maiores, o item central geralmente é colocado por último.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Segure/repita o clique direito em paredes/tetos para escalar com mãos nuas.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Irremediavelmente preso? Tente perguntar às salas de bate-papo da comunidade (Sobre a aba).
 - If a recipe exists, you will see a special particle effect.=- Se uma receita existe, você verá um efeito especial de partícula sair do node.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Se demorar mais de 5 segundos para cavar, você não tem a ferramenta certa.

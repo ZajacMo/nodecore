@@ -14,7 +14,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
 - FUTURE: @1=- БУДУЩЕЕ: @1
 - For larger recipes, the center item is usually placed last.=- Для больших рецептов центральный предмет обычно ставится последним.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Удерживайте/повторяйте щелчок правой кнопкой мыши на стенах/потолках, чтобы взобраться на них.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О программе»).
 - If a recipe exists, you will see a special particle effect.=- Если рецепт существует, вы увидите спец-эффект.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Если копание занимает более 5 секунд, значит вы копайте неправильным инструментом.

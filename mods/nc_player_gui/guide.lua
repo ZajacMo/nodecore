@@ -52,7 +52,7 @@ nodecore.register_inventory_tab({
 			"Player's Guide: Movement and Navigation",
 			"",
 			"- To run faster, walk/swim forward or climb/swim upward continuously.",
-			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
+			"- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.",
 			"- Climbing spots also produce very faint light; raise display gamma to see.",
 			"- Climbing spots may be climbed once black particles appear.",
 			"- Learn to use the stars for long distance navigation.",

@@ -14,7 +14,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- 将物品扔到地上，形成堆方块。堆方块不会腐烂。
 - FUTURE: @1=- 延伸：@1
 - For larger recipes, the center item is usually placed last.=- 在较大的合成模式中，中间的物品一般最后放置。
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- 空手時，對牆或天花板按住／連點右鍵來攀爬。
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- 沒有進展？試著在社群聊天室發問（「關於」頁）。
 - If a recipe exists, you will see a special particle effect.=- 如果配方存在，你會看到特殊粒子效果。
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- 挖掘超過 5 秒代表你使用了錯誤的工具。

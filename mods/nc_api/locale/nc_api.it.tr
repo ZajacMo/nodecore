@@ -14,7 +14,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Posa gli oggetti sul terreno per creare nodi catasta. Non decadono.
 - FUTURE: @1=- FUTURI: @1
 - For larger recipes, the center item is usually placed last.=- Per le ricette più grosse, l'elemento centrale è generalmente messo per ultimo.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Tieni/ripeti il pulsante destro su mura/soffitti a mani nude per arrampicarti.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Incastrati senza speranza? Prova a chiedere nelle chatroom della comunità (scheda Informazioni).
 - If a recipe exists, you will see a special particle effect.=- Se una ricetta esiste, vedrai un effetto speciale di particelle.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Se ci vogliono più di 5 secondi per scavare, non stai usando lo strumento giusto.

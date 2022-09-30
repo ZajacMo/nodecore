@@ -14,7 +14,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Lâcher des objets sur le sol pour créer des blocs piles d'objet. Elles ne se décomposent pas.
 - FUTURE: @1=- FUTUR : @1
 - For larger recipes, the center item is usually placed last.=- Pour les plus grandes recettes, l'objet central généralement placé en dernier.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Maintenir enfoncé/répéter le clic droit sur les murs/plafonds avec ses mains nues pour grimper.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Bloqué(e) sans aucun espoir ? Essayez de demander de l'aide dans les salons de discussion de la communauté (About tab).
 - If a recipe exists, you will see a special particle effect.=- Si une recette existe, vous verrez un effet spécial des particules.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Si miner prend plus de 5 secondes, c'est que vous n'utilisez pas le bon outil.

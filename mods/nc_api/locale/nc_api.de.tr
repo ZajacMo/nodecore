@@ -14,7 +14,6 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Wirf Gegenstände auf den Boden, um beständige Blockstapel zu erzeugen.
 - FUTURE: @1=- IN ZUKUNFT: @1
 - For larger recipes, the center item is usually placed last.=- Bei größeren Baumustern wird der mittlere Gegenstand für gewöhnlich zuletzt platziert.
-- Hold/repeat right-click on walls/ceilings barehanded to climb.=- Halte oder rechtsklicke wiederholt auf Wände/Decken um zu klettern.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Total aufgeschmissen? Frag doch die Gemeinde (im "Über"-Tab).
 - If a recipe exists, you will see a special particle effect.=- Wenn ein Baumuster existiert, wirst du einen speziellen Partikeleffekt sehen.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Wenn es mehr als 5 Sekunden zum Abbauen braucht, hast du nicht das richtige Werkzeug.
