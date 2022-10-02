@@ -21,6 +21,7 @@ ISSUES-GAME: Gameplay-affecting issues
 			- Break into appropriate prills (lode)
 	- Hide rake recipe until later in the game?
 		- Maybe add a generic "# hints completed" qualifier?
+		- Maybe add a number of hours played (non-idle) qualifier?
 
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
