@@ -12,7 +12,7 @@ end
 
 local priv_cache = {}
 
-local function invalidateon(method)
+local function invalidateafter(method)
 	local oldfunc = minetest[method]
 	minetest[method] = function(player, ...)
 		local function helper(...)
@@ -23,8 +23,17 @@ local function invalidateon(method)
 		return helper(oldfunc(player, ...))
 	end
 end
-invalidateon("set_privileges")
-invalidateon("remove_player_auth")
+invalidateafter("set_privileges")
+invalidateafter("remove_player_auth")
+
+local function invalidateon(event)
+	minetest["register_on_" .. event](function(player)
+			local name = player_name(player)
+			if name then priv_cache[name] = nil end
+		end)
+end
+invalidateon("joinplayer")
+invalidateon("leaveplayer")
 
 local oldreload = minetest.auth_reload
 function minetest.auth_reload(...)
@@ -34,11 +43,11 @@ end
 
 local oldget = minetest.get_player_privs
 function minetest.get_player_privs(player)
-	player = player_name(player)
-	if not player then return {} end
-	local cached = priv_cache[player]
+	local pname = player_name(player)
+	if not pname then return oldget(player) end
+	local cached = priv_cache[pname]
 	if cached then return cached end
-	cached = oldget(player)
-	priv_cache[player] = cached
+	cached = oldget(pname)
+	priv_cache[pname] = cached
 	return cached
 end
