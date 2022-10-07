@@ -55,7 +55,7 @@ nodecore.register_playerstep({
 		action = function(player, data, dtime)
 			local function reset() data.pushout = nil end
 
-			if nodecore.get_player_privs_cached(player).noclip
+			if minetest.get_player_privs(player).noclip
 			or nodecore.player_pushout_disable(player, data)
 			then return reset() end
 

@@ -39,7 +39,7 @@ local function gethint(player)
 
 	local found, done = nodecore.hint_state(pname)
 	local future
-	if nodecore.get_player_privs_cached(pname).debug then
+	if minetest.get_player_privs(pname).debug then
 		local seen = {}
 		for _, v in pairs(found) do seen[v] = true end
 		for _, v in pairs(done) do seen[v] = true end

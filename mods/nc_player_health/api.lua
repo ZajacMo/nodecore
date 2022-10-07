@@ -24,7 +24,7 @@ minetest.register_privilege("ncdqd", {
 
 function nodecore.player_can_take_damage(player)
 	return not player:get_armor_groups().immortal
-	and not nodecore.get_player_privs_cached(player).ncdqd
+	and not minetest.get_player_privs(player).ncdqd
 end
 
 function nodecore.register_virtual_item(name, def)

@@ -29,7 +29,7 @@ local function patchplayers()
 	function meta:set_pos(pos, ...)
 		if (not self) or (not self.is_player) or (not self:is_player())
 		or (not pos) or type(pos) ~= "table" or pos.keepinv
-		or nodecore.get_player_privs_cached(self)[keepname] then
+		or minetest.get_player_privs(self)[keepname] then
 			return setraw(self, pos, ...)
 		end
 		local old = self:get_pos()

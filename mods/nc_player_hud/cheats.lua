@@ -21,7 +21,7 @@ local cheats = {
 
 local function ischeating(player)
 	local cheating = false
-	local privs = nodecore.get_player_privs_cached(player:get_player_name())
+	local privs = minetest.get_player_privs(player:get_player_name())
 	if privs.interact then
 		cheating = cheating or not nodecore.player_can_take_damage(player)
 		cheating = cheating or not nodecore.player_visible(player)

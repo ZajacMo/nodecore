@@ -170,7 +170,7 @@ nodecore.register_playerstep({
 		label = "hint tab watch interact",
 		action = function(player, data)
 			local privs = {}
-			for k, v in pairs(nodecore.get_player_privs_cached(data.pname)) do
+			for k, v in pairs(minetest.get_player_privs(data.pname)) do
 				if v then privs[#privs + 1] = k end
 			end
 			table_sort(privs)
