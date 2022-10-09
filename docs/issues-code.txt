@@ -9,21 +9,6 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Standardize node-is logic
-	- Standardize mkreg with priority if def is table
-	- Standard last on_register_item hook to copy node props
-	  into groups
-	  	- Bit flags like walkable, climbable, sunlight
-		- Flag for each drawtype
-	- Standardize node-is logic
-		- Automatic dynamic indexing when property is baked
-		  in by higher-order function
-		- Support groups like sunlight_propagates and
-		  not_sunlight_propagates as overrides
-	- This will enable darkcore server to use true darkness by
-	  setting sunlight_propagates false on air, and then using
-	  the override group to make optics still work
-
 - Need to standardize storage API between storeboxes and bare stacks
 	- Storebox API is a mess anyway and needs a lot of cleanup.
 

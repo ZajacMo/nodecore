@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, type, vector
-    = math, minetest, nodecore, pairs, string, type, vector
+local error, math, minetest, nodecore, pairs, string, type, vector
+    = error, math, minetest, nodecore, pairs, string, type, vector
 local math_floor, math_random, string_format
     = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -50,8 +50,14 @@ minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			node_optic_checks[k] = v.optic_check or nil
 			node_optic_sources[k] = v.optic_source or nil
-			node_opaque[k] = (not v.sunlight_propagates) or nil
 			node_visinv[k] = v.groups and v.groups.visinv or nil
+
+			local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
+			local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
+			if (grp_t and grp_o) then
+				error("node cannot be BOTH optic_opaque and optic_transparent")
+			end
+			node_opaque[k] = grp_o or (not (grp_t or v.sunlight_propagates)) or nil
 		end
 	end)
 
