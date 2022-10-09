@@ -34,7 +34,8 @@ local function fluidmedium(pos)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_items[node.name]
 	if not def then return node.name end
-	if def.sunlight_propagates then return "CLEAR" end
+	if def.visible_fluid_medium then return def.visible_fluid_medium end
+	if def.sunlight_propagates then return "air" end
 	return def.liquid_alternative_source or node.name
 end
 
