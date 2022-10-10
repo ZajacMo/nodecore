@@ -95,10 +95,7 @@ local function rushcheck(pos)
 		return false
 	end
 
-	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-	if not (nodecore.air_equivalent(above)
-		and nodecore.can_grass_grow_under(above))
-	then return true end
+	if not nodecore.can_grass_grow_under(pos) then return true end
 
 	return subst, below
 end
