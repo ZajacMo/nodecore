@@ -127,6 +127,16 @@ local function lightsrc(stack)
 	return def.light_source or 0
 end
 
+local function player_wield_light_pos(player)
+	local pos = player:get_pos()
+	pos.y = pos.y + player:get_properties().eye_height
+	if player:get_player_control().up then
+		local ld = player:get_look_dir()
+		pos.x = pos.x + ld.x
+		pos.z = pos.z + ld.z
+	end
+	return vector.round(pos)
+end
 local function player_wield_light(player)
 	local glow = 0
 	local srcidx, srcstack
@@ -139,16 +149,13 @@ local function player_wield_light(player)
 		end
 	end
 	if glow < 1 then return end
-	local pos = player:get_pos()
-	pos.y = pos.y + player:get_properties().eye_height
-	pos = vector.round(pos)
+	local pos = player_wield_light_pos(player)
 	local pname = player:get_player_name()
 	return dynamic_light_add(pos, glow, function()
 			local pl = minetest.get_player_by_name(pname)
 			if not pl then return end
-			local pp = pl:get_pos()
-			pp.y = pp.y + pl:get_properties().eye_height
-			if not vector.equals(pos, vector.round(pp)) then return end
+			local pp = player_wield_light_pos(pl)
+			if not vector.equals(pos, pp) then return end
 			return pl:get_inventory():get_stack("main", srcidx)
 			:get_name() == srcstack
 		end)
