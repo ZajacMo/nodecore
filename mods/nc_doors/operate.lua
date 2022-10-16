@@ -171,28 +171,21 @@ local function operate_door_core(pos, node, dir)
 	return true
 end
 
-local door_operate_queue_run
-do
-	local running
-	door_operate_queue_run = function()
-		if running then return end
-		running = true
-		while #door_operate_queue > 0 do
-			local batch = door_operate_queue
-			door_operate_queue = {}
-			for i = #batch, 2, -1 do
-				local j = math_random(1, i)
-				batch[i], batch[j] = batch[j], batch[i]
-			end
-			for _, opts in ipairs(batch) do
-				operate_door_core(unpack(opts))
-			end
-		end
-		running = false
-	end
-end
-
+local running
 function nodecore.operate_door(...)
 	door_operate_queue[#door_operate_queue + 1] = {...}
-	door_operate_queue_run()
+	if running then return end
+	running = true
+	while #door_operate_queue > 0 do
+		local batch = door_operate_queue
+		door_operate_queue = {}
+		for i = #batch, 2, -1 do
+			local j = math_random(1, i)
+			batch[i], batch[j] = batch[j], batch[i]
+		end
+		for _, opts in ipairs(batch) do
+			operate_door_core(unpack(opts))
+		end
+	end
+	running = false
 end
