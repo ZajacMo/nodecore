@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ipairs, math, minetest, nodecore, pairs, unpack, vector
+    = ipairs, math, minetest, nodecore, pairs, unpack, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -33,7 +35,9 @@ nodecore.register_globalstep("door squelch", function(dtime)
 
 local is_door = {groups = {door = true}}
 
-function nodecore.operate_door(pos, node, dir)
+local door_operate_queue = {}
+
+local function operate_door_core(pos, node, dir)
 	local key = hashpos(pos)
 	if squelch[key] then return end
 
@@ -154,8 +158,34 @@ function nodecore.operate_door(pos, node, dir)
 		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir2, v.dir)
 	end
 	for _, v in pairs(toop) do
-		nodecore.operate_door(v.pos, nil, v.dir)
+		door_operate_queue[#door_operate_queue + 1] = {v.pos, nil, v.dir}
 		nodecore.door_push(v.pos, v.dir)
 	end
 	return true
+end
+
+local door_operate_queue_run
+do
+	local running
+	door_operate_queue_run = function()
+		if running then return end
+		running = true
+		while #door_operate_queue > 0 do
+			local batch = door_operate_queue
+			door_operate_queue = {}
+			for i = #batch, 2, -1 do
+				local j = math_random(1, i)
+				batch[i], batch[j] = batch[j], batch[i]
+			end
+			for _, opts in ipairs(batch) do
+				operate_door_core(unpack(opts))
+			end
+		end
+		running = false
+	end
+end
+
+function nodecore.operate_door(...)
+	door_operate_queue[#door_operate_queue + 1] = {...}
+	door_operate_queue_run()
 end

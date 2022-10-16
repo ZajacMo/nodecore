@@ -139,9 +139,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - A way to visualize the infusion rate effects would be nice
 	- Particles don't work due to semitransparent liquid
 
-- Make door operation bredth-first queue-recursive for consistent
-  operation and addressing timing conflicts.
-
 - Remove fullbright from admin hand.
 	- Separate fullbright priv.
 		- Also disable skybox/sunlight diminishing by depth?
