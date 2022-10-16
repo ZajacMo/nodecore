@@ -163,10 +163,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - We can reliably detect the zoom player control, make far-zoom only
   work while zooming, and add hints for it.
 
-- Door upward conveying is sort of useless right now; make it also
-  push objects outward, so this motion can be useful for upward
-  item transport?
-
 - Valleys mapgen rivers seem to rely on having an actual separate
   river water registration with a specific liquid range.
 

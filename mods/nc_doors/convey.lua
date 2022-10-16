@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, vector
-    = ipairs, math, minetest, nodecore, vector
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,6 +11,17 @@ local is_falling = {groups = {falling_node = true}}
 local queue = {}
 local queued = {}
 
+local vector_add = vector.add
+local function addkeep(a, b)
+	local t = vector_add(a, b)
+	for k, v in pairs(b) do
+		if t[k] == nil then
+			t[k] = v
+		end
+	end
+	return t
+end
+
 function nodecore.door_push(pos, ...)
 	local key = hashpos(pos)
 	if queued[key] then return end
@@ -19,7 +30,7 @@ function nodecore.door_push(pos, ...)
 	node.param = nil
 	local try = {}
 	for i, dir in ipairs({...}) do
-		try[i] = vector.add(pos, dir)
+		try[i] = addkeep(pos, dir)
 	end
 	queue[#queue + 1] = {
 		key = key,
@@ -43,7 +54,11 @@ local function tryprocess(item, retry)
 			meta.fields.tweenfrom = minetest.serialize(item.from)
 			minetest.get_meta(t):from_table(meta)
 			nodecore.visinv_update_ents(t)
-			nodecore.fallcheck(t)
+			if t.after then
+				nodecore.door_push(t, t.after)
+			else
+				nodecore.fallcheck(t)
+			end
 			local re = retry[hashpos(item.from)]
 			if not re then return end
 			for _, r in ipairs(re) do

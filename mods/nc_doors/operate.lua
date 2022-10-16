@@ -94,11 +94,13 @@ local function operate_door_core(pos, node, dir)
 		toop[k .. "l"] = {
 			pos = vector.add(v.pos, ffd.l),
 			dir = rotdir == "r" and ffd.k or ffd.f,
+			dir2 = rotdir == "r" and ffd.r or ffd.l,
 			from = v
 		}
 		toop[k .. "k"] = {
 			pos = vector.add(v.pos, ffd.k),
 			dir = rotdir == "r" and ffd.r or ffd.l,
+			dir2 = rotdir == "r" and ffd.k or ffd.f,
 			from = v
 		}
 	end
@@ -159,7 +161,12 @@ local function operate_door_core(pos, node, dir)
 	end
 	for _, v in pairs(toop) do
 		door_operate_queue[#door_operate_queue + 1] = {v.pos, nil, v.dir}
-		nodecore.door_push(v.pos, v.dir)
+		nodecore.door_push(v.pos, {
+				x = v.dir.x,
+				y = v.dir.y,
+				z = v.dir.z,
+				after = v.dir.y ~= 0 and v.dir2 or nil
+			})
 	end
 	return true
 end
