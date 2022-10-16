@@ -36,9 +36,11 @@ nodecore.register_globalstep("door squelch", function(dtime)
 local is_door = {groups = {door = true}}
 
 local door_operate_queue = {}
+local operate_success = {}
 
 local function operate_door_core(pos, node, dir)
 	local key = hashpos(pos)
+	operate_success[key] = nil
 	if squelch[key] then return end
 
 	node = node or minetest.get_node_or_nil(pos)
@@ -117,7 +119,8 @@ local function operate_door_core(pos, node, dir)
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
 			nodecore.sound_play("nc_doors_operate",
 				{pos = press.pos, gain = 0.5})
-			return true
+			operate_success[key] = true
+			return
 		end
 		return
 	end
@@ -168,13 +171,14 @@ local function operate_door_core(pos, node, dir)
 				after = v.dir.y ~= 0 and v.dir2 or nil
 			})
 	end
-	return true
+	operate_success[key] = true
 end
 
 local running
-function nodecore.operate_door(...)
-	door_operate_queue[#door_operate_queue + 1] = {...}
-	if running then return end
+function nodecore.operate_door(pos, ...)
+	door_operate_queue[#door_operate_queue + 1] = {pos, ...}
+	local key = hashpos(pos)
+	if running then return operate_success[key] end
 	running = true
 	while #door_operate_queue > 0 do
 		local batch = door_operate_queue
@@ -188,4 +192,5 @@ function nodecore.operate_door(...)
 		end
 	end
 	running = false
+	return operate_success[key]
 end
