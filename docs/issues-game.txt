@@ -37,10 +37,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Like the flora redecorate
 		- Useful for servers with spawn tree attrition
 
-- There needs to be a way to detect bricks bonding
-	- Smoke puffs?
-	- Absorb something (e.g. flowing liquid) from its surroundings?
-
 - Emergency digging mechanic issues
 	- Players still confused by it.
 	- Because pumwater is pointable, if you're trapped with no way
