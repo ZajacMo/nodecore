@@ -80,7 +80,10 @@ local function toteplace(stack, placer, pointed, ...)
 	inv = inv and (inv ~= "") and minetest.deserialize(inv)
 	if not inv then return minetest.item_place(stack, placer, pointed, ...) end
 
-	local commit = {{pos, {name = modname .. ":handle"}, {}}}
+	local commit = {{pos, {
+				name = modname .. ":handle",
+				param2 = minetest.dir_to_facedir(placer:get_look_dir())
+	}, {}}}
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
@@ -147,6 +150,7 @@ local function reg(suff, inner, def)
 				mesh = "nc_tote_handle.obj",
 				selection_box = nodecore.fixedbox(),
 				paramtype = "light",
+				paramtype2 = "facedir",
 				tiles = {
 					txr_sides,
 					txr_bot,
