@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local math, minetest, nodecore
+    = math, minetest, nodecore
+local math_floor
+    = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -73,4 +75,45 @@ nodecore.register_craft({
 			{name = "nc_lode:bar_annealed 2", count = 4, scatter = 5},
 			{name = "nc_optics:glass_crude", scatter = 5}
 		}
+	})
+
+local function soakrate(pos)
+	return (nodecore.lux_soak_rate(pos) or 0) - 30
+end
+local lvcharge = 1000
+local function soakgetname(data)
+	if data.total < 0 then data.total = 0 end
+	if data.total >= lvcharge * 8 then data.total = lvcharge * 8 - 1 end
+	print(data.total)
+	return modname .. ":lamp" .. math_floor(data.total / lvcharge)
+end
+
+nodecore.register_soaking_abm({
+		label = "lantern charge",
+		fieldname = "charge",
+		interval = 10,
+		arealoaded = 14,
+		nodenames = {"group:" .. modname},
+		soakrate = soakrate,
+		soakcheck = function(data, pos, node)
+			local newname = soakgetname(data)
+			if node.name == newname then return end
+			node.name = newname
+			nodecore.set_node(pos, node)
+		end
+	})
+nodecore.register_soaking_aism({
+		label = "lantern charge",
+		fieldname = "charge",
+		interval = 10,
+		arealoaded = 14,
+		itemnames = "group:" .. modname,
+		soakrate = function(_, aismdata)
+			local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
+			return soakrate(pos)
+		end,
+		soakcheck = function(data, stack)
+			stack:set_name(soakgetname(data))
+			return data.total, stack
+		end
 	})
