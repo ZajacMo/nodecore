@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, rawset, string, table
     = minetest, nodecore, pairs, rawset, string, table
-local string_format, table_concat, table_sort
-    = string.format, table.concat, table.sort
+local string_format, table_concat
+    = string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local muxdefs = {}
@@ -26,76 +26,12 @@ local muxidx = nodecore.item_matching_index(muxdefs,
 	function(n, i) return i.muxkey .. n end
 )
 
-local totaltime = 0
-local function totaltimeupdate(start)
-	totaltime = totaltime + (minetest.get_us_time() - start) / 1000000
-end
-local nodes = 0
-local actions = 0
-
-local statinterval = nodecore.setting_float(minetest.get_current_modname()
-	.. "_abm_stat_time", 300, "ABM Statistics Interval",
-	[[Time in seconds between ABM performance statistics being.
-	written to the log.]])
-if statinterval > 0 then
-	local players = 0
-	local started = minetest.get_us_time() / 1000000
-	local function statistics()
-		local now = minetest.get_us_time() / 1000000
-		local elapsed = now - started
-		started = now
-		if actions > 0 then
-			local rawtime = totaltime
-			local top = {}
-			for _, def in pairs(muxdefs) do
-				totaltime = totaltime - def.timeused
-				top[def.label] = def
-			end
-			top.overhead = {runcount = actions, timeused = totaltime}
-			local topkeys = {}
-			for k in pairs(top) do topkeys[#topkeys + 1] = k end
-			table_sort(topkeys, function(a, b)
-					return top[b].timeused < top[a].timeused
-				end)
-			while #topkeys > 20 do topkeys[#topkeys] = nil end
-			for i = 1, #topkeys do
-				topkeys[i] = string_format("%s*%d=%0.2f%%",
-					topkeys[i],
-					top[topkeys[i]].runcount,
-					top[topkeys[i]].timeused / rawtime * 100)
-			end
-			nodecore.log("info", string_format("ABM average"
-					.. " %0.2f actions for %0.2f nodes"
-					.. " with %0.2f players, %0.2f%% running, top: %s",
-					actions / elapsed, nodes / elapsed,
-					players / elapsed, rawtime / elapsed * 100,
-					table_concat(topkeys, "; ")))
-		end
-		for _, def in pairs(muxdefs) do
-			def.timeused = 0
-			def.runcount = 0
-		end
-		nodes = 0
-		actions = 0
-		players = 0
-		totaltime = 0
-		minetest.after(statinterval, statistics)
-	end
-	minetest.after(statinterval, statistics)
-	local function pcount()
-		players = players + #minetest.get_connected_players()
-		minetest.after(1, pcount)
-	end
-	minetest.after(1, pcount)
-end
-
 local rawreg = {}
 nodecore.registered_abms_demux = rawreg
 
 local anonid = 1
 local function runaction(def, ...)
 	local start = minetest.get_us_time()
-	actions = actions + 1
 	def.action(...)
 	def.runcount = def.runcount + 1
 	def.timeused = def.timeused + (minetest.get_us_time() - start) / 1000000
@@ -143,25 +79,17 @@ function minetest.register_abm(def)
 			neighbors = def.neighbors,
 			nodenames = {"group:abmmux_" .. muxkey},
 			action = function(pos, node, ...)
-				local start = minetest.get_us_time()
-				nodes = nodes + 1
 				local oldname = node.name
 				local found = muxidx[muxkey .. oldname]
 				if not found then
-					warnunused(oldname, pos)
-					return totaltimeupdate(start)
+					return warnunused(oldname, pos)
 				end
 				runaction(found[1], pos, node, ...)
-				if #found <= 1 then
-					return totaltimeupdate(start)
-				end
+				if #found <= 1 then return end
 				for i = 2, #found do
-					if minetest.get_node(pos).name ~= oldname then
-						return totaltimeupdate(start)
-					end
+					if minetest.get_node(pos).name ~= oldname then return end
 					runaction(found[i], pos, node, ...)
 				end
-				return totaltimeupdate(start)
 			end
 		})
 end
