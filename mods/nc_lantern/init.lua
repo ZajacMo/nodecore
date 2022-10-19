@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore
     = math, minetest, nodecore
-local math_floor
-    = math.floor
+local math_ceil, math_floor
+    = math.ceil, math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -33,7 +33,7 @@ local function reg(level)
 			groups = {
 				[modname] = level + 1,
 				snappy = 1,
-				lux_emit = level,
+				lux_emit = math_ceil(level / 2),
 			},
 			stack_max = 1,
 			light_source = level * 2,
@@ -77,15 +77,22 @@ nodecore.register_craft({
 		}
 	})
 
-local function soakrate(pos)
-	return (nodecore.lux_soak_rate(pos) or 0) - 30
+local charge_per_level = 1000
+local discharge_rate = 20
+
+local function soakrate(pos, node)
+	local wet
+	if node then
+		wet = nodecore.quenched(pos)
+	else
+		wet = minetest.get_item_group(node or minetest.get_node(pos), "moist") > 0
+	end
+	return (nodecore.lux_soak_rate(pos) or 0) - discharge_rate * (wet and 3 or 1)
 end
-local lvcharge = 1000
 local function soakgetname(data)
 	if data.total < 0 then data.total = 0 end
-	if data.total >= lvcharge * 8 then data.total = lvcharge * 8 - 1 end
-	print(data.total)
-	return modname .. ":lamp" .. math_floor(data.total / lvcharge)
+	if data.total >= charge_per_level * 8 then data.total = charge_per_level * 8 - 1 end
+	return modname .. ":lamp" .. math_floor(data.total / charge_per_level)
 end
 
 nodecore.register_soaking_abm({
