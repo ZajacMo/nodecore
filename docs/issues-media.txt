@@ -9,11 +9,6 @@ ISSUES-DOCS: Issues related to media/assets, or visuals/effects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Publish "base" texturepack to CDB
-	- Allows servers to use "server texturepacks" with impunity
-	  without breaking the basic principle of players having
-	  access to all texture options.
-
 - Sound check
 	- add some kind of falling sound (very low pitched dig noise)
 	  to falling nodes, to give players a chance to jump away from
