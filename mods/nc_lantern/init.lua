@@ -15,9 +15,7 @@ local function reg(level)
 	return minetest.register_node(modname .. ":lamp" .. level, {
 			description = "Lantern",
 			drawtype = "mesh",
-			visual_scale = nodecore.z_fight_ratio,
 			mesh = "nc_tote_handle.obj",
-			selection_box = nodecore.fixedbox(),
 			paramtype = "light",
 			tiles = {
 				txr_sides,
@@ -38,14 +36,7 @@ local function reg(level)
 			place_as_item = true,
 			stack_max = 1,
 			light_source = level * 2,
-			sounds = nodecore.sounds("nc_lode_annealed"),
-			preserve_metadata = function(_, _, oldmeta, drops)
-				drops[1]:get_meta():from_table({fields = oldmeta})
-			end,
-			after_place_node = function(pos, _, itemstack)
-				local meta = minetest.get_meta(pos)
-				meta:from_table(itemstack:get_meta():to_table())
-			end,
+			sounds = nodecore.sounds("nc_lode_annealed")
 		})
 end
 
