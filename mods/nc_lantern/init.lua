@@ -19,7 +19,6 @@ local function reg(level)
 			mesh = "nc_tote_handle.obj",
 			selection_box = nodecore.fixedbox(),
 			paramtype = "light",
-			paramtype2 = "facedir",
 			tiles = {
 				txr_sides,
 				txr_sides,
