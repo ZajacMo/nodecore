@@ -13,7 +13,7 @@ local txr_top = txr_handle .. "^[transformFX^[mask:nc_tote_top.png^[transformR90
 
 local function reg(level)
 	return minetest.register_node(modname .. ":lamp" .. level, {
-			description = "Lux Lantern",
+			description = "Lantern",
 			drawtype = "mesh",
 			visual_scale = nodecore.z_fight_ratio,
 			mesh = "nc_tote_handle.obj",
@@ -35,6 +35,8 @@ local function reg(level)
 				snappy = 1,
 				lux_emit = math_ceil(level / 2),
 			},
+			node_placement_prediction = "nc_items:stack",
+			place_as_item = true,
 			stack_max = 1,
 			light_source = level * 2,
 			sounds = nodecore.sounds("nc_lode_annealed"),
@@ -56,7 +58,10 @@ nodecore.register_craft({
 		indexkeys = {"nc_optics:glass_opaque"},
 		nodes = {
 			{match = "nc_optics:glass_opaque", replace = "air"},
-			{x = -1, match = "nc_tote:handle", replace = modname .. ":lamp0"},
+			{x = -1, match = "nc_tote:handle", replace = "air"},
+		},
+		items = {
+			{name = modname .. ":lamp0"}
 		}
 	})
 
@@ -77,38 +82,9 @@ nodecore.register_craft({
 		}
 	})
 
-local charge_per_level = 1000
-local discharge_rate = 20
+local charge_per_level = 500
+local discharge_rate = 30
 
-local function soakrate(pos, node)
-	local wet
-	if node then
-		wet = nodecore.quenched(pos)
-	else
-		wet = minetest.get_item_group(node or minetest.get_node(pos), "moist") > 0
-	end
-	return (nodecore.lux_soak_rate(pos) or 0) - discharge_rate * (wet and 3 or 1)
-end
-local function soakgetname(data)
-	if data.total < 0 then data.total = 0 end
-	if data.total >= charge_per_level * 8 then data.total = charge_per_level * 8 - 1 end
-	return modname .. ":lamp" .. math_floor(data.total / charge_per_level)
-end
-
-nodecore.register_soaking_abm({
-		label = "lantern charge",
-		fieldname = "charge",
-		interval = 10,
-		arealoaded = 14,
-		nodenames = {"group:" .. modname},
-		soakrate = soakrate,
-		soakcheck = function(data, pos, node)
-			local newname = soakgetname(data)
-			if node.name == newname then return end
-			node.name = newname
-			nodecore.set_node(pos, node)
-		end
-	})
 nodecore.register_soaking_aism({
 		label = "lantern charge",
 		fieldname = "charge",
@@ -117,10 +93,17 @@ nodecore.register_soaking_aism({
 		itemnames = "group:" .. modname,
 		soakrate = function(_, aismdata)
 			local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
-			return soakrate(pos)
+			local wet = minetest.get_item_group(minetest.get_node(pos), "moist") > 0
+			return (nodecore.lux_soak_rate(pos) or 0)
+			- discharge_rate * (wet and 3 or 1)
 		end,
 		soakcheck = function(data, stack)
-			stack:set_name(soakgetname(data))
+			if data.total < 0 then data.total = 0 end
+			if data.total >= charge_per_level * 8 then
+				data.total = charge_per_level * 8 - 1
+			end
+			stack:set_name(modname .. ":lamp" .. math_floor(
+					data.total / charge_per_level))
 			return data.total, stack
 		end
 	})
