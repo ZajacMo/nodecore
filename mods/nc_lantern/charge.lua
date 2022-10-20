@@ -8,7 +8,7 @@ local math_floor, string_format
 local modname = minetest.get_current_modname()
 
 local discharge_rate = 30
-local charge_per_level = discharge_rate * 300
+local charge_per_level = discharge_rate * 200
 local max_charge = charge_per_level * 8 - 1
 
 local waters = {}
@@ -49,7 +49,7 @@ nodecore.register_aism({
 		action = function(stack, data)
 			local pos = data.pos or data.player and data.player:get_pos()
 			local rate = (nodecore.lux_soak_rate(pos) or 0)
-			- discharge_rate * (iswet(pos) and 3 or 1)
+			- discharge_rate * (iswet(pos) and 2 or 1)
 
 			local oldname = stack:get_name()
 			local meta = stack:get_meta()
