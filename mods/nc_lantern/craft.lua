@@ -14,7 +14,7 @@ nodecore.register_craft({
 			{x = -1, match = "nc_tote:handle", replace = "air"},
 		},
 		items = {
-			{name = modname .. ":lamp0"}
+			{x = -1, name = modname .. ":lamp0"}
 		}
 	})
 
