@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, math, minetest, nodecore
+    = ItemStack, math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -83,7 +85,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	if stack:get_count() == 1 then
 		local def = minetest.registered_nodes[stack:get_name()]
 		if def and def.groups and def.groups.stack_as_node then
-			nodecore.set_loud(pos, {name = stack:get_name()})
+			local node = {name = stack:get_name()}
+			if def.paramtype2 == "facedir" then
+				node.param2 = math_random(0, 3)
+			end
+			nodecore.set_loud(pos, node)
 			if def.after_place_node then
 				def.after_place_node(pos, nil, stack)
 			end
