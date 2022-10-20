@@ -51,7 +51,8 @@ local function tryprocess(item, retry)
 			nodecore.fallcheck({x = item.from.x, y = item.from.y + 1, z = item.from.z})
 			nodecore.set_loud(t, node)
 			meta.fields = meta.fields or {}
-			meta.fields.tweenfrom = minetest.serialize(item.from)
+			meta.fields.tweenfrom = meta.fields.tweenfrom
+			or minetest.serialize(item.from)
 			minetest.get_meta(t):from_table(meta)
 			nodecore.visinv_update_ents(t)
 			if t.after then
