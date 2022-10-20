@@ -127,17 +127,16 @@ local function lightsrc(stack)
 	return def.light_source or 0
 end
 
-local function player_wield_light_pos(player)
+local function player_wield_light_pos(player, speed)
 	local pos = player:get_pos()
 	pos.y = pos.y + player:get_properties().eye_height
-	if player:get_player_control().up then
-		local ld = player:get_look_dir()
-		pos.x = pos.x + ld.x
-		pos.z = pos.z + ld.z
-	end
+	local ld = player:get_look_dir()
+	speed = player:get_player_control().up and speed or 0.5
+	pos.x = pos.x + ld.x * speed
+	pos.z = pos.z + ld.z * speed
 	return vector.round(pos)
 end
-local function player_wield_light(player)
+local function player_wield_light(player, data)
 	local glow = 0
 	local srcidx, srcstack
 	for idx, stack in pairs(player:get_inventory():get_list("main")) do
@@ -149,12 +148,13 @@ local function player_wield_light(player)
 		end
 	end
 	if glow < 1 then return end
-	local pos = player_wield_light_pos(player)
+	local speed = data and data.physics and data.physics.speed or 1
+	local pos = player_wield_light_pos(player, speed)
 	local pname = player:get_player_name()
 	return dynamic_light_add(pos, glow, function()
 			local pl = minetest.get_player_by_name(pname)
 			if not pl then return end
-			local pp = player_wield_light_pos(pl)
+			local pp = player_wield_light_pos(pl, speed)
 			if not vector.equals(pos, pp) then return end
 			return pl:get_inventory():get_stack("main", srcidx)
 			:get_name() == srcstack
@@ -163,9 +163,9 @@ end
 
 nodecore.register_playerstep({
 		label = "player wield light",
-		action = function(player)
+		action = function(player, data)
 			if nodecore.player_visible(player) then
-				return player_wield_light(player)
+				return player_wield_light(player, data)
 			end
 		end
 	})
