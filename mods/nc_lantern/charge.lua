@@ -41,6 +41,42 @@ local function getlevel(name)
 	return minetest.get_item_group(name, modname) - 1
 end
 
+local function chargecalc(pos, oldname, meta)
+	local rate = (nodecore.lux_soak_rate(pos) or 0)
+	- discharge_rate * (iswet(pos) and 2 or 1)
+
+	local oldrate = meta:get_float("rate")
+	local oldqty = meta:get_float("qty")
+	local oldtime = meta:get_float("time")
+
+	local now = nodecore.gametime
+	local qty = (oldtime == 0)
+	and (getlevel(oldname) * charge_per_level)
+	or (oldqty + oldrate * (now - oldtime))
+	if qty <= 0 then
+		qty = 0
+		if rate < 0 then rate = 0 end
+	end
+	if qty >= max_charge then
+		qty = max_charge
+		if rate > 0 then rate = 0 end
+	end
+	local level = math_floor(qty / charge_per_level)
+	local name = modname .. ":lamp" .. level
+
+	if name == oldname and floateq(rate, oldrate) then return end
+
+	nodecore.log("action", string_format("lantern level %s rate %s charge %s at %s",
+			floatrpt(getlevel(oldname), level),
+			floatrpt(oldrate, rate), floatrpt(oldqty, qty),
+			minetest.pos_to_string(pos, 0)))
+
+	meta:set_float("rate", rate)
+	meta:set_float("qty", qty)
+	meta:set_float("time", now)
+	return name
+end
+
 nodecore.register_aism({
 		label = "lantern charge",
 		interval = 2,
@@ -48,41 +84,23 @@ nodecore.register_aism({
 		itemnames = "group:" .. modname,
 		action = function(stack, data)
 			local pos = data.pos or data.player and data.player:get_pos()
-			local rate = (nodecore.lux_soak_rate(pos) or 0)
-			- discharge_rate * (iswet(pos) and 2 or 1)
-
-			local oldname = stack:get_name()
-			local meta = stack:get_meta()
-			local oldrate = meta:get_float("rate")
-			local oldqty = meta:get_float("qty")
-			local oldtime = meta:get_float("time")
-
-			local now = nodecore.gametime
-			local qty = (oldtime == 0)
-			and (getlevel(oldname) * charge_per_level)
-			or (oldqty + oldrate * (now - oldtime))
-			if qty <= 0 then
-				qty = 0
-				if rate < 0 then rate = 0 end
+			local name = chargecalc(pos, stack:get_name(), stack:get_meta())
+			if name then
+				stack:set_name(name)
+				return stack
 			end
-			if qty >= max_charge then
-				qty = max_charge
-				if rate > 0 then rate = 0 end
+		end
+	})
+nodecore.register_abm({
+		label = "lantern charge",
+		interval = 2,
+		arealoaded = 14,
+		nodenames = {"group:" .. modname},
+		action = function(pos, node)
+			local name = chargecalc(pos, node.name, minetest.get_meta(pos))
+			if name then
+				node.name = name
+				return minetest.swap_node(pos, node)
 			end
-			local level = math_floor(qty / charge_per_level)
-			local name = modname .. ":lamp" .. level
-
-			if name == oldname and floateq(rate, oldrate) then return end
-
-			nodecore.log("action", string_format("lantern level %s rate %s charge %s at %s",
-					floatrpt(getlevel(oldname), level),
-					floatrpt(oldrate, rate), floatrpt(oldqty, qty),
-					minetest.pos_to_string(pos, 0)))
-
-			stack:set_name(name)
-			meta:set_float("rate", rate)
-			meta:set_float("qty", qty)
-			meta:set_float("time", now)
-			return stack
 		end
 	})

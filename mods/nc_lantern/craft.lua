@@ -11,10 +11,7 @@ nodecore.register_craft({
 		indexkeys = {"nc_optics:glass_opaque"},
 		nodes = {
 			{match = "nc_optics:glass_opaque", replace = "air"},
-			{x = -1, match = "nc_tote:handle", replace = "air"},
-		},
-		items = {
-			{x = -1, name = modname .. ":lamp0"}
+			{x = -1, match = "nc_tote:handle", replace = modname .. ":lamp0"},
 		}
 	})
 
