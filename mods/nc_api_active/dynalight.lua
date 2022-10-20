@@ -229,3 +229,15 @@ function nodecore.dynamic_shade_add(pos, above)
 			}, above - 1)
 	end
 end
+
+-- When digging a node that emits light when placed, and would
+-- emit light when held, there can be a brief flicker of darkness
+-- when MT predicts the dug node is gone but the dynamic light
+-- hasn't been send to the player yet.
+
+nodecore.register_on_register_item(function(_, def)
+		if def.light_source and def.light_source > 0
+		and def.node_dig_prediction == nil then
+			def.node_dig_prediction = modname .. ":light" .. def.light_source
+		end
+	end)
