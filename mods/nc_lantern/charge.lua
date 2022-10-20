@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, tostring
-    = math, minetest, nodecore, tostring
+local math, minetest, nodecore
+    = math, minetest, nodecore
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -35,7 +35,6 @@ nodecore.register_aism({
 			or (oldqty + oldrate * (now - oldtime))
 			if qty < 0 then qty = 0 end
 			if qty > max_charge then qty = max_charge end
-			print(tostring(wet) .. qty)
 			local name = modname .. ":lamp" .. math_floor(qty / charge_per_level)
 
 			if name == oldname and rate == oldrate then return end
