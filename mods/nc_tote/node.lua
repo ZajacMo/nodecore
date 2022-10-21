@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, minetest, nodecore, pairs, type
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -82,7 +84,8 @@ local function toteplace(stack, placer, pointed, ...)
 
 	local commit = {{pos, {
 				name = modname .. ":handle",
-				param2 = minetest.dir_to_facedir(placer:get_look_dir())
+				param2 = placer and minetest.dir_to_facedir(placer:get_look_dir())
+				or math_random(0, 3)
 	}, {}}}
 	for _, v in ipairs(inv) do
 		if commit then
