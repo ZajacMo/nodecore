@@ -39,7 +39,7 @@ end
 
 local function totedug(pos, _, _, digger)
 	local drop = ItemStack(modname .. ":handle")
-	if not digger:get_player_control().sneak then
+	if not (digger and digger:get_player_control().sneak) then
 		local dump
 		for dx = -1, 1 do
 			for dz = -1, 1 do
