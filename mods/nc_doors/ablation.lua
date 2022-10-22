@@ -10,8 +10,7 @@ local dntname = modname .. ":ablation"
 local hash = minetest.hash_node_position
 local cooldowns = {}
 
-local quick_doors = {}
-nodecore.group_expand("group:door", function(k) quick_doors[k] = true end)
+local quick_doors = nodecore.group_expand("group:door", true)
 
 local function ablation(pos, node)
 	local key = hash(pos)
