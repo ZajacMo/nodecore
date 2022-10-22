@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string
-    = math, minetest, nodecore, pairs, string
+local math, minetest, nodecore, string
+    = math, minetest, nodecore, string
 local math_floor, string_format
     = math.floor, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -11,19 +11,16 @@ local discharge_rate = 30
 local charge_per_level = discharge_rate * 200
 local max_charge = charge_per_level * 8 - 1
 
-local waters = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
-			if v.groups and v.groups.water and v.groups.water > 0 then
-				waters[k] = true
-			end
-		end
-	end)
-local function iswater(pos) return waters[minetest.get_node(pos).name] end
-local function iswet(pos)
-	if iswater(pos) then return true end
-	local p = {x = pos.x, y = pos.y + 1, z = pos.z}
-	return iswater(p)
+local fluid_water = nodecore.group_expand("group:water", true)
+local fluid_flux = nodecore.group_expand("group:lux_fluid", true)
+local function influid(pos)
+	local n = minetest.get_node(pos).name
+	if fluid_water[n] then return fluid_water end
+	if fluid_flux[n] then return fluid_flux end
+	pos = {x = pos.x, y = pos.y + 1, z = pos.z}
+	n = minetest.get_node(pos).name
+	if fluid_water[n] then return fluid_water end
+	if fluid_flux[n] then return fluid_flux end
 end
 
 local function floateq(a, b)
@@ -34,7 +31,7 @@ local function floateq(a, b)
 end
 local function floatrpt(a, b)
 	if floateq(a, b) then return string_format("%0.2f", a) end
-	return string.format("%0.2f -> %0.2f", a, b)
+	return string_format("%0.2f -> %0.2f", a, b)
 end
 
 local function getlevel(name)
@@ -42,8 +39,10 @@ local function getlevel(name)
 end
 
 local function chargecalc(pos, oldname, meta)
+	local fluid = influid(pos)
 	local rate = (nodecore.lux_soak_rate(pos) or 0)
-	- discharge_rate * (iswet(pos) and 2 or 1)
+	- discharge_rate * ((fluid == fluid_water) and 2 or 1)
+	if rate < 0 and fluid == fluid_flux then rate = 0 end
 
 	local oldrate = meta:get_float("rate")
 	local oldqty = meta:get_float("qty")
