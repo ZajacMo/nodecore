@@ -154,8 +154,6 @@ ISSUES-GAME: Gameplay-affecting issues
   down to regular cobble, but it only works with the base node, not the
   etched ones.
 
-- Integrate YCTIWY into base game
-
 - Players losing run speed on damage would be simplified by checking for
   <max health instead of time of last damage.
 	- Should lose farzoom when damaged too.
