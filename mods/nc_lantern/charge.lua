@@ -11,8 +11,8 @@ local discharge_rate = 20
 local max_charge = discharge_rate * 3600
 local levels = 8
 local level_exp = 1.5
-
 local max_exp = max_charge ^ level_exp + 0.001
+local exp_per_level = max_exp / levels
 
 local fluid_water = nodecore.group_expand("group:water", true)
 local fluid_flux = nodecore.group_expand("group:lux_fluid", true)
@@ -53,7 +53,7 @@ local function chargecalc(pos, oldname, meta)
 
 	local now = nodecore.gametime
 	local qty = (oldtime == 0)
-	and ((getlevel(oldname) / levels * max_exp) ^ (1 / level_exp))
+	and ((getlevel(oldname) * exp_per_level) ^ (1 / level_exp))
 	or (oldqty + oldrate * (now - oldtime))
 	if qty <= 0 then
 		qty = 0
@@ -63,7 +63,7 @@ local function chargecalc(pos, oldname, meta)
 		qty = max_charge
 		if rate > 0 then rate = 0 end
 	end
-	local level = math_floor((qty ^ level_exp) / max_exp * levels)
+	local level = math_floor((qty ^ level_exp) / exp_per_level)
 	local name = modname .. ":lamp" .. level
 
 	if name == oldname and floateq(rate, oldrate) then return end
