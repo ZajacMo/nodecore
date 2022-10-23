@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, string, table, vector
-    = ItemStack, math, minetest, nodecore, pairs, string, table, vector
+local ItemStack, math, minetest, next, nodecore, pairs, string, table,
+      vector
+    = ItemStack, math, minetest, next, nodecore, pairs, string, table,
+      vector
 local math_pi, math_random, string_format, table_concat
     = math.pi, math.random, string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -49,8 +51,8 @@ drop = drop and minetest.deserialize(drop)
 drop = drop or {}
 
 local function savedb()
-	modstore:set_string("db", minetest.serialize(db))
-	return modstore:set_string("drop", minetest.serialize(drop))
+	modstore:set_string("db", next(db) and minetest.serialize(db) or "")
+	return modstore:set_string("drop", next(drop) and minetest.serialize(drop) or "")
 end
 
 if disabled then
@@ -320,7 +322,10 @@ nodecore.register_aism({
 ------------------------------------------------------------------------
 -- PLAYER HOOKS
 
+local recheck_timer = 0
+
 minetest.register_on_leaveplayer(function(player)
+		recheck_timer = 0
 		savestate(player)
 		return savedb()
 	end)
@@ -333,6 +338,7 @@ minetest.register_on_shutdown(function()
 	end)
 
 minetest.register_on_joinplayer(function(player)
+		recheck_timer = 0
 		local name = player:get_player_name()
 		local ent = db[name]
 		if (not ent) or (not ent.taken) then return end
@@ -389,11 +395,10 @@ function minetest.remove_player(name, ...)
 	return helper(oldremove(name, ...))
 end
 
-local timer = 0
 minetest.register_globalstep(function(dtime)
-		timer = timer - dtime
-		if timer > 0 then return end
-		timer = 3 + math_random() * 2
+		recheck_timer = recheck_timer - dtime
+		if recheck_timer > 0 then return end
+		recheck_timer = 3 + math_random() * 2
 
 		if not hidden then
 			for _, ent in pairs(minetest.luaentities) do
