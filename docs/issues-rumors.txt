@@ -65,3 +65,6 @@ ISSUES-RUMORS: Unconfirmed or difficult to reproduce heisenbugs
 - Make sure concrete curing is giving hints correctly
 	- During MultiDarkSamuses twitch stream @ 1:19:00
 	- Didn't get a hint for pliant curing, got it later?
+
+- A wooden plank appeared to have decayed in place of a scaling node;
+  could it be a problem with ABM muxing?
