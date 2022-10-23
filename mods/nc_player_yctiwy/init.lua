@@ -62,7 +62,7 @@ if disabled then
 		end
 	end
 	savedb()
-elseif not next(db) and not next(drop) then
+elseif not (next(db) or next(drop)) then
 	function nodecore.yctiwy_import(newdb, newdrop)
 		db = newdb
 		drop = newdrop
