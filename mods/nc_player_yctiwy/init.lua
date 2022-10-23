@@ -43,12 +43,12 @@ local modstore = minetest.get_mod_storage()
 local db = modstore:get_string("db")
 if db == "" then db = nil end
 db = db and minetest.deserialize(db)
-db = db or nodecore.import_yctiwy_db or {}
+db = db or {}
 
 local drop = modstore:get_string("drop")
 if drop == "" then drop = nil end
 drop = drop and minetest.deserialize(drop)
-drop = drop or nodecore.import_yctiwy_drop or {}
+drop = drop or {}
 
 local function savedb()
 	modstore:set_string("db", next(db) and minetest.serialize(db) or "")
@@ -62,6 +62,13 @@ if disabled then
 		end
 	end
 	savedb()
+elseif not next(db) and not next(drop) then
+	function nodecore.yctiwy_import(newdb, newdrop)
+		db = newdb
+		drop = newdrop
+		savedb()
+		nodecore.yctiwy_import = nil
+	end
 end
 
 local function savestate(player)
