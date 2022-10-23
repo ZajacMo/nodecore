@@ -5,6 +5,31 @@ local math_pi, math_random, string_format, table_concat
     = math.pi, math.random, string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
+local disabled = nodecore.setting_bool(
+	"yctiwy_disable",
+	false,
+	"Disable offline player inventory database",
+	[[By default, players' offline position and inventory is saved
+	for displaying offline "ghost" entities, which can be hidden
+	by a different setting, but even when hidden the database is
+	still kept up to date. Enabling this setting will completely
+	disable that database and purge all data, saving server
+	resources, but making ghosts not display when reenabled until
+	each player has joined again at least once.]]
+)
+
+local hidden = nodecore.setting_bool(
+	"yctiwy_hide",
+	false,
+	"Do not display offline player entities",
+	[[By default, players' offline "ghosts" and inventories are
+	displayed as entities. Enabling this option hides
+	those, reducing resource impact on both client and server,
+	but also preventing players from accessing offline player
+	inventories. The offline database is still maintained, in
+	case the entities are later reenabled.]]
+) or disabled
+
 ------------------------------------------------------------------------
 -- DATABASE
 
@@ -26,15 +51,23 @@ local function savedb()
 	return modstore:set_string("drop", minetest.serialize(drop))
 end
 
-local function savestate(player, taken)
-	if not nodecore.player_visible(player) then
+if disabled then
+	for k in pairs(db) do
+		if not db.taken then
+			db[k] = nil
+		end
+	end
+	savedb()
+end
+
+local function savestate(player)
+	if disabled or not nodecore.player_visible(player) then
 		db[player:get_player_name()] = nil
 		return
 	end
 	local ent = {
 		pos = player:get_pos(),
-		inv = {},
-		taken = taken
+		inv = {}
 	}
 	ent.pos.y = ent.pos.y + 1
 	local inv = player:get_inventory()
@@ -207,9 +240,6 @@ end
 -- MARKER ENTITY
 
 local function markertexture(pname)
-	-- XXX: new API, make required when released
-	if not nodecore.player_model_colors then return "nc_player_wield_slot.png" end
-
 	local colors = {nodecore.player_model_colors(pname)}
 	while #colors > 3 do colors[#colors] = nil end
 	for i = 1, #colors do
@@ -363,9 +393,11 @@ minetest.register_globalstep(function(dtime)
 		if timer > 0 then return end
 		timer = 3 + math_random() * 2
 
-		for _, ent in pairs(minetest.luaentities) do
-			if ent.yctiwy_check then
-				ent:yctiwy_check()
+		if not hidden then
+			for _, ent in pairs(minetest.luaentities) do
+				if ent.yctiwy_check then
+					ent:yctiwy_check()
+				end
 			end
 		end
 
@@ -376,15 +408,18 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		local existdb = {}
-		for _, ent in pairs(minetest.luaentities) do
-			if ent.is_yctiwy then
-				existdb[(ent.pname or "") .. ":" .. (ent.slot or "")] = true
+		if not hidden then
+
+			for _, ent in pairs(minetest.luaentities) do
+				if ent.is_yctiwy then
+					existdb[(ent.pname or "") .. ":" .. (ent.slot or "")] = true
+				end
 			end
 		end
 		for name, ent in pairs(db) do
 			if not minetest.player_exists(name) then
 				dropplayer(name, ent, true)
-			elseif not rollcall[name] then
+			elseif not (hidden or rollcall[name]) then
 				spawnmarker(name, ent, existdb)
 				spawninv(name, ent, existdb)
 			end
