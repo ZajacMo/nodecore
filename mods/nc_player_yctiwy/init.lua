@@ -54,8 +54,8 @@ local function savedb()
 end
 
 if disabled then
-	for k in pairs(db) do
-		if not db.taken then
+	for k, v in pairs(db) do
+		if not v.taken then
 			db[k] = nil
 		end
 	end
