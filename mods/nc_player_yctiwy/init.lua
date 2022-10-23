@@ -5,8 +5,10 @@ local math_pi, math_random, string_format, table_concat
     = math.pi, math.random, string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
+nodecore.amcoremod()
+
 local disabled = nodecore.setting_bool(
-	"yctiwy_disable",
+	"nc_yctiwy_disable",
 	false,
 	"Disable offline player inventory database",
 	[[By default, players' offline position and inventory is saved
@@ -19,7 +21,7 @@ local disabled = nodecore.setting_bool(
 )
 
 local hidden = nodecore.setting_bool(
-	"yctiwy_hide",
+	"nc_yctiwy_hide",
 	false,
 	"Do not display offline player entities",
 	[[By default, players' offline "ghosts" and inventories are

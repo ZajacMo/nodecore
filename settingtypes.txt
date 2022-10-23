@@ -275,3 +275,19 @@ nc_player_setup_stepdist (Push out of solid distance) float 5
 # The amount of time a player needs to be trapped in a solid node before
 # being pushed out.
 nc_player_setup_time (Push out of solid time) float 2
+
+# By default, players' offline position and inventory is saved for
+# displaying offline "ghost" entities, which can be hidden by a
+# different setting, but even when hidden the database is still kept up
+# to date. Enabling this setting will completely disable that database
+# and purge all data, saving server resources, but making ghosts not
+# display when reenabled until each player has joined again at least
+# once.
+nc_yctiwy_disable (Disable offline player inventory database) bool false
+
+# By default, players' offline "ghosts" and inventories are displayed as
+# entities. Enabling this option hides those, reducing resource impact
+# on both client and server, but also preventing players from accessing
+# offline player inventories. The offline database is still maintained,
+# in case the entities are later reenabled.
+nc_yctiwy_hide (Do not display offline player entities) bool false
