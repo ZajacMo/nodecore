@@ -37,6 +37,11 @@ issue.
 	- Z-fighting against normal nodes; no way to both show inside
 	  surface against air AND avoid z-fighting.
 	- Multiple kinds of water don't "mix"
+	- Because only nodes can produce light, dynamic lights require
+	  use of fake air-like nodes, and because liquids don't mix,
+	  I can't make fake water-like nodes for underwater dynamic
+	  lighting, thus all dynamic lights do NOT work at all
+	  underwater.
 
 - Can't do the sky navigation thing fully
 	- Client resource GC for computed textures could fix the memory

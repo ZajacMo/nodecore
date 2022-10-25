@@ -154,13 +154,6 @@ ISSUES-GAME: Gameplay-affecting issues
   down to regular cobble, but it only works with the base node, not the
   etched ones.
 
-- Players losing run speed on damage would be simplified by checking for
-  <max health instead of time of last damage.
-	- Should lose farzoom when damaged too.
-
-- We can reliably detect the zoom player control, make far-zoom only
-  work while zooming, and add hints for it.
-
 - Valleys mapgen rivers seem to rely on having an actual separate
   river water registration with a specific liquid range.
 
