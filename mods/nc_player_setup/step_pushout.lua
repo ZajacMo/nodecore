@@ -23,8 +23,8 @@ local function normalbox(box)
 end
 
 local function ispushout(def)
+	if def.liquidtype ~= "none" then return def.pointable end
 	if not def.walkable then return end
-	if def.liquidtype ~= "none" then return end
 	if def.groups and def.groups.is_stack_only then return end
 	return normalbox(def.collision_box)
 end
