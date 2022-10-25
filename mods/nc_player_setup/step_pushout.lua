@@ -56,6 +56,11 @@ nodecore.register_playerstep({
 		action = function(player, data, dtime)
 			local function reset() data.pushout = nil end
 
+			if data.control.up or data.control.down
+			or data.control.left or data.control.right
+			or data.control.sneak or data.control.jump
+			then return reset() end
+
 			if minetest.get_player_privs(player).noclip
 			or nodecore.player_pushout_disable(player, data)
 			then return reset() end
