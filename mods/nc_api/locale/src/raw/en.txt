@@ -451,6 +451,9 @@ msgstr "Discovery"
 msgid "Displaced Node"
 msgstr "Displaced Node"
 
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donate: https://liberapay.com/NodeCore"
+
 msgid "Dry Rush"
 msgstr "Dry Rush"
 
@@ -694,6 +697,9 @@ msgstr "Infused Tempered Lode Spade"
 msgid "Inventory"
 msgstr "Inventory"
 
+msgid "Lantern"
+msgstr "Lantern"
+
 msgid "Leaves"
 msgstr "Leaves"
 
@@ -780,6 +786,9 @@ msgstr "NodeCore ALPHA"
 
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
+
+msgid "Offline Player"
+msgstr "Offline Player"
 
 msgid "Orange Bell Flower"
 msgstr "Orange Bell Flower"
@@ -1246,6 +1255,9 @@ msgstr "assemble a clear glass case"
 msgid "assemble a float glass case"
 msgstr "assemble a float glass case"
 
+msgid "assemble a lantern from a tote handle"
+msgstr "assemble a lantern from a tote handle"
+
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
 
@@ -1305,6 +1317,9 @@ msgstr "catapult an item with a hinged panel"
 
 msgid "change a stylus pattern"
 msgstr "change a stylus pattern"
+
+msgid "charge a lantern"
+msgstr "charge a lantern"
 
 msgid "chip chromatic glass into prisms"
 msgstr "chip chromatic glass into prisms"
@@ -1461,6 +1476,9 @@ msgstr "forge lode prills into a tool head"
 
 msgid "forge lode rods into a frame"
 msgstr "forge lode rods into a frame"
+
+msgid "fully charge a lantern"
+msgstr "fully charge a lantern"
 
 msgid "gate a prism"
 msgstr "gate a prism"

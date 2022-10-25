@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-25 21:02+0000\n"
-"Last-Translator: Arsenicus <divided0303@gmail.com>\n"
+"PO-Revision-Date: 2022-10-10 19:51+0000\n"
+"Last-Translator: Nikita Epifanov <nikgreens@protonmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
 "Language: ru\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -1992,3 +1992,14 @@ msgstr "NodeCore АЛЬФА"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
 msgstr "Ранняя версия NodeCore с последними функциями (и, возможно, с ошибками)"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Удерживайте/повторяйте нажатие правой кнопкой мыши на стенах/потолках, "
+"чтобы создать места для лазания."
+
+#, fuzzy
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Что-то кажется утомительным? Найдите лучшую технику, более тонкие факторы "
+"или лучший способ."
