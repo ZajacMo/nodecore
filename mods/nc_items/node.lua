@@ -13,19 +13,12 @@ local bulkskey = "registered_" .. modname .. "_bulk_nodes"
 local bulks = nodecore[bulkskey] or {}
 nodecore[bulkskey] = bulks
 
-local function stack_bulk_check_nope(node)
-	if node.name == modname .. ":stack" then return end
-	return {name = modname .. ":stack"}
-end
-
 function nodecore.stack_bulk_check(pos, node, stack)
 	stack = stack or nodecore.stack_get(pos)
-	if stack:get_count() ~= stack:get_stack_max() then
-		return stack_bulk_check_nope(node)
-	end
 	local bulk = bulks[stack:get_name()]
-	if (not bulk) then
-		return stack_bulk_check_nope(node)
+	if (not bulk) or stack:get_count() ~= stack:get_stack_max() then
+		if node.name == modname .. ":stack" then return end
+		return {name = modname .. ":stack"}
 	end
 	if node and node.name == bulk then return end
 	local rot = (pos.x * 3 + pos.y * 5 + pos.z * 7) % 4
