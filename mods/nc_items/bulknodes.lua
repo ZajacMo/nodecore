@@ -20,14 +20,10 @@ local function register_full_stack(name, tiles)
 				drawtype = "mesh",
 				mesh = modname .. "_stack.obj",
 				tiles = tiles,
+				paramtype2 = "facedir",
 				groups = {
 					visinv_hidden = 1,
-				},
-				on_stack_update = function(pos, _, stack)
-					if stack:get_count() < stack:get_stack_max() then
-						return minetest.swap_node(pos, {name = modname .. ":stack"})
-					end
-				end
+				}
 			}, basedef))
 end
 
@@ -38,5 +34,16 @@ nodecore.register_on_register_item({
 				def.visinv_bulk_optimize = nil
 				register_full_stack(name, def.tiles)
 			end
+		end
+	})
+
+nodecore.register_lbm({
+		name = modname .. ":bulk_convert",
+		nodenames = {"group:is_stack_only"},
+		action = function(pos, node)
+			local nn = nodecore.stack_bulk_check(pos, node)
+			if not nn then return end
+			minetest.swap_node(pos, nn)
+			return nodecore.visinv_update_ents(pos)
 		end
 	})
