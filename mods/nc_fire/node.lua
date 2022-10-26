@@ -127,5 +127,6 @@ minetest.register_node(modname .. ":ash", {
 			crumbly = 1
 		},
 		crush_damage = 0.25,
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		visinv_bulk_optimize = true
 	})

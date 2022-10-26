@@ -139,6 +139,7 @@ local groups = {
 	totable = "nodes that can be packed up into a tote",
 	tote = "totes and tote handles",
 	visinv = "display nodecore.stack_get() stack as an entity in node",
+	visinv_hidden = "hide visinv ent; it's baked into the node model already",
 	water = "water, artificial water, or equivalent",
 	witness_opaque = "force things to be treated as opaque for hint witnessing",
 	witness_transparent = "force things to be treated as transparent for hint witnessing",

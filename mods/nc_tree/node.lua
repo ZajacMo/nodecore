@@ -108,7 +108,8 @@ minetest.register_node(modname .. ":leaves", {
 				stack_as_node = 1,
 				leaf_decay = 0,
 				peat_grindable_item = 1
-			}
+			},
+			visinv_bulk_optimize = true
 		},
 		alternate_solid = {
 			preserve_metadata = function(pos, _, oldmeta)

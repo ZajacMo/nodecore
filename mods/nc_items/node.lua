@@ -1,138 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, io, ipairs, math, minetest, nodecore, pairs, table
-    = ItemStack, io, ipairs, math, minetest, nodecore, pairs, table
-local io_open, math_random, table_concat, table_insert, table_sort
-    = io.open, math.random, table.concat, table.insert, table.sort
+local ItemStack, math, minetest, nodecore
+    = ItemStack, math, minetest, nodecore
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 nodecore.stack_node_sounds_except = {}
 
-local boxable_nodes = {}
-
-local function register_full_stack(name, tiles)
-	local stack_name = modname .. ":fullstack_" .. name:gsub(":", "__")
-	boxable_nodes[name] = stack_name
-	if not tiles then
-		minetest.register_node(stack_name, {})
-		return
-	end
-	minetest.register_node(":" .. stack_name, {
-			description = "",
-			drawtype = "mesh",
-			mesh = modname .. "_stack.obj",
-			tiles = tiles,
-			walkable = true,
-			selection_box = nodecore.fixedbox(
-				{-0.4, -0.5, -0.4, 0.4, 0.3, 0.4}
-			),
-			collision_box = nodecore.fixedbox(),
-			drop = {},
-			groups = {
-				snappy = 1,
-				falling_repose = 1,
-				is_stack_only = 1
-			},
-			paramtype = "light",
-			sunlight_propagates = true,
-			repose_drop = function(posfrom, posto)
-				local stack = nodecore.stack_get(posfrom)
-				if stack and not stack:is_empty() then
-					nodecore.item_eject(posto, stack)
-				end
-				return minetest.remove_node(posfrom)
-			end,
-			on_stack_unfill = function(pos)
-				minetest.swap_node(pos, {name = modname .. ":stack"})
-			end,
-			on_rightclick = function(pos, _, whom, stack, pointed)
-				if not nodecore.interact(whom) then return stack end
-
-				if whom and whom.get_wielded_item
-				and nodecore.craft_check(pos, minetest.get_node(pos), {
-						action = "stackapply",
-						crafter = whom,
-						pointed = pointed
-					}) then
-					return whom:get_wielded_item()
-				end
-
-				return nodecore.stack_add(pos, stack)
-			end,
-			on_construct = function(pos, ...)
-				local key = minetest.hash_node_position(pos)
-				minetest.after(0, function()
-						local except = nodecore.stack_node_sounds_except[key]
-						nodecore.stack_node_sounds_except[key] = nil
-						return except == true
-						or nodecore.stack_sounds(pos, "place", nil, except)
-					end)
-				return nodecore.visinv_on_construct(pos, ...)
-			end,
-			on_settle_item = function(pos, _, stack)
-				return nodecore.stack_add(pos, stack)
-			end,
-			on_falling_check = function(pos)
-				local stack = nodecore.stack_get(pos)
-				stack = nodecore.stack_settle({x = pos.x, y = pos.y - 1, z = pos.z}, stack)
-				if stack:is_empty() then
-					minetest.remove_node(pos)
-				else
-					nodecore.stack_set(pos, stack)
-				end
-				return false
-			end
-		})
-end
-
--- Registration happens in 2 passes:
--- * The first pass registers the node.
--- * The second pass sets the textures.
--- This is needed to avoid mod dependencies to every boxable node.
--- The server requires an additional restart after nodes are added
--- for those nodes to be added to the list of full-stackable nodes
-do
-	local file_name = minetest.get_worldpath() .. "/stackable_nodes.txt"
-	local myfile = io_open(file_name, "r")
-	local to_box = {}
-	if myfile then
-		while true do
-			local line = myfile:read()
-			if line then
-				table_insert(to_box, line)
-			else
-				break
-			end
-		end
-		myfile:close()
-	else
-		to_box = {"nc_terrain:cobble", "nc_terrain:stone", "nc_tree:log"}
-	end
-	for _, name in ipairs(to_box) do
-		register_full_stack(name)
-	end
-	minetest.register_on_mods_loaded(function()
-			for _, name in ipairs(to_box) do
-				local def = minetest.registered_nodes[name]
-				register_full_stack(name, def.tiles)
-			end
-			local nodes = {}
-			for name, def in pairs(minetest.registered_nodes) do
-				if def.drawtype == "normal" then
-					table_insert(nodes, name)
-				end
-			end
-			table_sort(nodes)
-			local str = table_concat(nodes, '\n')
-			if table_concat(to_box, '\n') ~= str then
-				minetest.log("warning", "The list of full-stackable nodes changed. Please restart the server again.")
-				local file = io.open(file_name, "w")
-				file:write(str)
-				file:close()
-			end
-		end)
-end
+local bulkskey = "registered_" .. modname .. "_bulk_nodes"
+local bulks = nodecore[bulkskey] or {}
+nodecore[bulkskey] = bulks
 
 minetest.register_node(modname .. ":stack", {
 		description = "",
@@ -162,10 +41,12 @@ minetest.register_node(modname .. ":stack", {
 			if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
 			return true
 		end,
-		on_stack_fill = function(pos, stack)
-			local box = boxable_nodes[stack:get_name()]
-			if box then
-				minetest.swap_node(pos, {name = box})
+		on_stack_change = function(pos, _, stack)
+			if stack:get_count() == stack:get_stack_max() then
+				local bulk = bulks[stack:get_name()]
+				if bulk then
+					return minetest.swap_node(pos, {name = bulk})
+				end
 			end
 		end,
 		on_rightclick = function(pos, _, whom, stack, pointed)
@@ -228,9 +109,9 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		end
 	end
 
-	local box_name = boxable_nodes[stack:get_name()]
-	if box_name and stack:get_count() >= stack:get_stack_max() then
-		minetest.set_node_check(pos, {name = box_name})
+	local bulk = bulks[stack:get_name()]
+	if bulk and stack:get_count() >= stack:get_stack_max() then
+		nodecore.set_node_check(pos, {name = bulk})
 	else
 		nodecore.set_node_check(pos, {name = modname .. ":stack"})
 	end

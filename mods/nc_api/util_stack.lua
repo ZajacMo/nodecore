@@ -85,13 +85,9 @@ function nodecore.stack_get_serial(metatable)
 	if inv and inv ~= "" then return ItemStack(inv) end
 end
 
-local function update(pos, def, item)
-	if def.on_stack_unfill and item:get_free_space() ~= 0 then
-		def.on_stack_unfill(pos, item)
-	elseif def.on_stack_fill and item:get_free_space() == 0 then
-		def.on_stack_fill(pos, item)
-	end
+local function update(pos, ...)
 	nodecore.visinv_update_ents(pos)
+	return ...
 end
 
 local function stacks_equal(a, b)
@@ -126,7 +122,7 @@ function nodecore.stack_set(pos, stack, player, node, def)
 		nodecore.notify_node_update(pos, node)
 		nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
-	update(pos, def, stack)
+	return update(pos)
 end
 
 function nodecore.stack_add(pos, stack, player, node, def)
@@ -155,8 +151,7 @@ function nodecore.stack_add(pos, stack, player, node, def)
 		end
 		nodecore.stack_sounds(pos, "place")
 	end
-	update(pos, def, item)
-	return left
+	return update(pos, left)
 end
 
 function nodecore.stack_giveto(pos, player, node, def)
