@@ -23,13 +23,14 @@ local function tooltip(name, group)
 			on_ignite = modname .. ":chip",
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
+	local woodmatch = {name = wood, wear = 0.05}
 	nodecore.register_craft({
 			label = "assemble " .. tool,
 			action = "stackapply",
 			wield = {name = modname .. ":chip"},
 			consumewield = 1,
 			indexkeys = {wood},
-			nodes = {{match = wood, replace = "air"}},
+			nodes = {{match = woodmatch, replace = "air"}},
 			items = {tool}
 		})
 end

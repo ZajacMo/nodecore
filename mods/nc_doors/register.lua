@@ -30,6 +30,10 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv)
 		tiles[v.idx] = tiles[v.idx] .. "^nc_doors_hinge_" .. v.part
 		.. "_base.png^[transform" .. v.tran
 	end
+	local scuff = "^(nc_doors_hinge_scuff.png^[opacity:"
+	.. (basedef.groups.nc_door_scuff_opacity or 64)
+	tiles[4] = tiles[4] .. scuff .. ")"
+	tiles[5] = tiles[5] .. scuff .. "^[transformR180)"
 
 	local spin = nodecore.node_spin_filtered(function(a, b)
 			return vector.equals(a.f, b.r)

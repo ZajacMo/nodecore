@@ -94,7 +94,7 @@ minetest.register_abm({
 			if snuff or not vents then return end
 			for i = 1, #vents do
 				if vents[i].q < 1 then
-					minetest.set_node(vents[i], {name = modname .. ":fire"})
+					nodecore.set_node_check(vents[i], {name = modname .. ":fire"})
 				end
 			end
 		end

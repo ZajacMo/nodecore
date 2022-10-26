@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, type
-    = ItemStack, ipairs, minetest, nodecore, pairs, type
+local ItemStack, ipairs, math, minetest, nodecore, pairs, type
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, type
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -37,7 +39,7 @@ end
 
 local function totedug(pos, _, _, digger)
 	local drop = ItemStack(modname .. ":handle")
-	if not digger:get_player_control().sneak then
+	if not (digger and digger:get_player_control().sneak) then
 		local dump
 		for dx = -1, 1 do
 			for dz = -1, 1 do
@@ -80,7 +82,11 @@ local function toteplace(stack, placer, pointed, ...)
 	inv = inv and (inv ~= "") and minetest.deserialize(inv)
 	if not inv then return minetest.item_place(stack, placer, pointed, ...) end
 
-	local commit = {{pos, {name = modname .. ":handle"}, {}}}
+	local commit = {{pos, {
+				name = modname .. ":handle",
+				param2 = placer and minetest.dir_to_facedir(placer:get_look_dir())
+				or math_random(0, 3)
+	}, {}}}
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
@@ -147,6 +153,7 @@ local function reg(suff, inner, def)
 				mesh = "nc_tote_handle.obj",
 				selection_box = nodecore.fixedbox(),
 				paramtype = "light",
+				paramtype2 = "facedir",
 				tiles = {
 					txr_sides,
 					txr_bot,

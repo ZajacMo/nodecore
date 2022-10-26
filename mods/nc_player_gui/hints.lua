@@ -14,7 +14,8 @@ local strings = {
 	.. " emergent systems and automation, you will have to"
 	.. " invent yourself!",
 	hint = "- @1",
-	done = "- DONE: @1"
+	done = "- DONE: @1",
+	future = "- FUTURE: @1"
 }
 
 for k, v in pairs(strings) do
@@ -37,6 +38,19 @@ local function gethint(player)
 	if cached and cached.time == now then return cached.found end
 
 	local found, done = nodecore.hint_state(pname)
+	local future
+	if minetest.get_player_privs(pname).debug then
+		local seen = {}
+		for _, v in pairs(found) do seen[v] = true end
+		for _, v in pairs(done) do seen[v] = true end
+		future = {}
+		for _, v in pairs(nodecore.hints) do
+			if not seen[v] then
+				future[#future + 1] = strings.future(v.text)
+			end
+		end
+		shuffle(future)
+	end
 	for k, v in pairs(found) do found[k] = strings.hint(v.text) end
 	shuffle(found)
 	for k, v in pairs(done) do done[k] = strings.done(v.text) end
@@ -51,6 +65,10 @@ local function gethint(player)
 	found[#found + 1] = strings.explore()
 	found[#found + 1] = ""
 	for i = 1, #done do found[#found + 1] = done[i] end
+	if future then
+		found[#found + 1] = ""
+		for i = 1, #future do found[#found + 1] = future[i] end
+	end
 
 	pcache[pname] = {time = now, found = found}
 	return found

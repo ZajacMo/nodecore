@@ -47,29 +47,3 @@ nodecore.register_hint("cure pliant concrete fully",
 	"cure pliant concrete",
 	"group:concrete_etchable"
 )
-
-nodecore.register_hint("chisel sandstone bricks",
-	"chisel sandstone bricks",
-	{modname .. ":sandstone", "group:chisel"}
-)
-nodecore.register_hint("chisel adobe bricks",
-	"chisel adobe bricks",
-	{modname .. ":adobe", "group:chisel"}
-)
-nodecore.register_hint("chisel tarstone bricks",
-	"chisel coalstone bricks",
-	{modname .. ":coalstone", "group:chisel"}
-)
-
-nodecore.register_hint("bond sandstone bricks",
-	"bond sandstone bricks",
-	"chisel sandstone bricks"
-)
-nodecore.register_hint("bond adobe bricks",
-	"bond adobe bricks",
-	"chisel adobe bricks"
-)
-nodecore.register_hint("bond tarstone bricks",
-	"bond coalstone bricks",
-	"chisel coalstone bricks"
-)

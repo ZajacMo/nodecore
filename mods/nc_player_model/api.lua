@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, table, tonumber, type
-    = math, minetest, nodecore, pairs, string, table, tonumber, type
+local math, minetest, nodecore, pairs, string, table, tonumber, type,
+      unpack
+    = math, minetest, nodecore, pairs, string, table, tonumber, type,
+      unpack
 local math_ceil, math_floor, math_pi, math_sin, string_format,
       string_sub, table_concat
     = math.ceil, math.floor, math.pi, math.sin, string.format,
@@ -9,33 +11,48 @@ local math_ceil, math_floor, math_pi, math_sin, string_format,
 
 local modname = minetest.get_current_modname()
 
-local function addcolor(id, value)
-	local theta = tonumber(value, 16) / 32768 * math_pi
+local colorscache = {}
+local function getcolor(hex)
+	local theta = tonumber(hex, 16) / 32768 * math_pi
 	local r = math_sin(theta + math_pi * 0/3) * 63 + 160
 	local g = math_sin(theta + math_pi * 2/3) * 63 + 160
 	local b = math_sin(theta + math_pi * 4/3) * 63 + 160
-	return string_format("(%s_color%d.png^[multiply:#%02x%02x%02x)",
-		modname, id, math_ceil(r), math_ceil(g), math_ceil(b))
+	return string_format("#%02x%02x%02x", math_ceil(r), math_ceil(g), math_ceil(b))
 end
+-- Returns unpacked, to prevent accidental cache poisoning
+local function player_model_colors(name)
+	local found = colorscache[name]
+	if found then return unpack(found) end
+	local hash = minetest.sha1(name)
+	found = {
+		getcolor(string_sub(hash, 1, 4)),
+		getcolor(string_sub(hash, 5, 8)),
+		getcolor(string_sub(hash, 9, 12)),
+		getcolor(string_sub(hash, 13, 16))
+	}
+	colorscache[name] = found
+	return unpack(found)
+end
+nodecore.player_model_colors = player_model_colors
 
-local colorcache = {}
+local colorizedcache = {}
 local function getcolors(name, layers)
 	if name == "singleplayer" then return end
 
-	local found = colorcache[name]
+	local found = colorizedcache[name]
 	if found then
 		layers[#layers + 1] = found
 		return
 	end
 
-	local hash = minetest.sha1(name)
-	found =
-	addcolor(1, string_sub(hash, 1, 4)) .. "^" ..
-	addcolor(2, string_sub(hash, 5, 8)) .. "^" ..
-	addcolor(3, string_sub(hash, 9, 12)) .. "^" ..
-	addcolor(4, string_sub(hash, 13, 16))
+	local colors = {player_model_colors(name)}
+	for i = 1, #colors do
+		colors[i] = string_format("(%s_color%d.png^[multiply:%s)",
+			modname, i, colors[i])
+	end
+	found = table_concat(colors, "^")
 
-	colorcache[name] = found
+	colorizedcache[name] = found
 	layers[#layers + 1] = found
 end
 
@@ -105,7 +122,7 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 		if mine then data.animcontrol_mine_exp = nodecore.gametime + 0.25 end
 		mine = mine or data.animcontrol_mine_exp and data.animcontrol_mine_exp >= nodecore.gametime
 	end
-	local aux = ctl.aux1
+	local aux = ctl.aux1 and not ctl.zoom
 	if data then
 		if aux then data.animcontrol_aux_exp = nodecore.gametime + 1 end
 		aux = aux or data.animcontrol_aux_exp and data.animcontrol_aux_exp >= nodecore.gametime

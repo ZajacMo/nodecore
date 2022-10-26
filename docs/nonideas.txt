@@ -113,5 +113,12 @@ NONIDEAS: Ideas already considered and rejected
 	  In theory this is not exclusive to music, but its prevalence
 	  in music already is a big problem.
 
+- Revert Item Stack Pickup Control
+	- Without this feature, it's very difficult to control which
+	  slot an item goes into, making it hard or impossible to pack
+	  the hotbar the way the player wants.
+	- Without this feature, it's difficult or impossible to split
+	  stacks and pick them up while keeping them split.
+
 ........................................................................
 ========================================================================

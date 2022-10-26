@@ -64,18 +64,17 @@ nodecore.register_dnt({
 		nodenames = {"group:dynamic_light"},
 		ignore_stasis = true,
 		time = ttl,
+		autostart = true,
+		autostart_time = 0,
 		action = check_light
 	})
 
 -- Register dynamic light nodes
 
-local nodes = {}
-
 local function dynamic_light_node(level) return modname .. ":light" .. level end
 nodecore.dynamic_light_node = dynamic_light_node
 
 for level = 1, nodecore.light_sun - 1 do
-	if nodes[level] then return nodes[level] end
 	local name = dynamic_light_node(level)
 	local def = {
 		description = minetest.registered_nodes.air.description,
@@ -85,7 +84,6 @@ for level = 1, nodecore.light_sun - 1 do
 	}
 	for k, v in pairs(true_airlike) do def[k] = def[k] or v end
 	minetest.register_node(":" .. name, def)
-	nodes[level] = name
 	canreplace[name] = level
 end
 
@@ -93,18 +91,10 @@ minetest.register_alias("nc_torch:wield_light", dynamic_light_node(8))
 
 -- API for adding dynamic lights to world
 
-minetest.register_abm({
-		label = "dynamic light cleanup",
-		interval = 1,
-		chance = 1,
-		ignore_stasis = true,
-		nodenames = {"group:dynamic_light"},
-		action = check_light
-	})
-
 local function dynamic_light_add(pos, level, check, exact)
 	if not pos then return end
-	local name = minetest.get_node(pos).name
+	local old = minetest.get_node(pos)
+	local name = old.name
 	local curlight = canreplace[name]
 	if not curlight then
 		if exact then return end
@@ -124,7 +114,7 @@ local function dynamic_light_add(pos, level, check, exact)
 		if ll and ll > level then return end
 	end
 	if curlight > level and not check_light(pos) then return end
-	if name ~= setname then minetest.set_node(pos, {name = setname}) end
+	if name ~= setname then nodecore.set_node_check(pos, {name = setname}, old) end
 	setup_light(pos, check)
 	return true
 end
@@ -137,7 +127,16 @@ local function lightsrc(stack)
 	return def.light_source or 0
 end
 
-local function player_wield_light(player)
+local function player_wield_light_pos(player, speed)
+	local pos = player:get_pos()
+	pos.y = pos.y + player:get_properties().eye_height
+	local ld = player:get_look_dir()
+	speed = player:get_player_control().up and speed or 0.5
+	pos.x = pos.x + ld.x * speed
+	pos.z = pos.z + ld.z * speed
+	return vector.round(pos)
+end
+local function player_wield_light(player, data)
 	local glow = 0
 	local srcidx, srcstack
 	for idx, stack in pairs(player:get_inventory():get_list("main")) do
@@ -149,16 +148,14 @@ local function player_wield_light(player)
 		end
 	end
 	if glow < 1 then return end
-	local pos = player:get_pos()
-	pos.y = pos.y + player:get_properties().eye_height
-	pos = vector.round(pos)
+	local speed = data and data.physics and data.physics.speed or 1
+	local pos = player_wield_light_pos(player, speed)
 	local pname = player:get_player_name()
 	return dynamic_light_add(pos, glow, function()
 			local pl = minetest.get_player_by_name(pname)
 			if not pl then return end
-			local pp = pl:get_pos()
-			pp.y = pp.y + pl:get_properties().eye_height
-			if not vector.equals(pos, vector.round(pp)) then return end
+			local pp = player_wield_light_pos(pl, speed)
+			if not vector.equals(pos, pp) then return end
 			return pl:get_inventory():get_stack("main", srcidx)
 			:get_name() == srcstack
 		end)
@@ -166,9 +163,9 @@ end
 
 nodecore.register_playerstep({
 		label = "player wield light",
-		action = function(player)
+		action = function(player, data)
 			if nodecore.player_visible(player) then
-				return player_wield_light(player)
+				return player_wield_light(player, data)
 			end
 		end
 	})
@@ -183,9 +180,8 @@ local function entlight(self, ...)
 		if not pos then return ... end
 		pos = vector.round(pos)
 		nodecore.dynamic_light_add(pos, src, function()
-				for _, v in pairs(nodecore.get_objects_at_pos(pos)) do
-					if v == self.object then return true end
-				end
+				local curpos = self.object and self.object:get_pos()
+				return curpos and vector.equals(vector.round(curpos), pos)
 			end)
 	end
 	return ...
@@ -200,3 +196,48 @@ for _, name in pairs({"item", "falling_node"}) do
 	setmetatable(ndef, def)
 	minetest.register_entity(":__builtin:" .. name, ndef)
 end
+
+-- shade for light-scattering effect
+
+local shadenode = modname .. ":shade"
+
+minetest.register_node(shadenode, nodecore.underride({
+			description = minetest.registered_nodes.air.description,
+			air_equivalent = true,
+			sunlight_propagates = false
+		}, true_airlike))
+
+nodecore.register_dnt({
+		name = modname .. ":shadenode_check",
+		nodenames = {shadenode},
+		time = 4,
+		autostart = true,
+		action = function(pos)
+			return minetest.remove_node(pos)
+		end
+	})
+
+function nodecore.dynamic_shade_add(pos, above)
+	local old = minetest.get_node(pos)
+	local name = old.name
+	if canreplace[name] then
+		return nodecore.set_node_check(pos, {name = shadenode}, old)
+	end
+	if above and above > 0 then
+		return nodecore.dynamic_shade_add({
+				x = pos.x, y = pos.y + 1, z = pos.z
+			}, above - 1)
+	end
+end
+
+-- When digging a node that emits light when placed, and would
+-- emit light when held, there can be a brief flicker of darkness
+-- when MT predicts the dug node is gone but the dynamic light
+-- hasn't been send to the player yet.
+
+nodecore.register_on_register_item(function(_, def)
+		if def.light_source and def.light_source > 0
+		and def.node_dig_prediction == nil then
+			def.node_dig_prediction = modname .. ":light" .. def.light_source
+		end
+	end)

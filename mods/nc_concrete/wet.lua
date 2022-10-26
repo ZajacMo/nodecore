@@ -119,6 +119,8 @@ nodecore.register_soaking_abm({
 				return
 			end
 			local def = concdef(node.name)
+			nodecore.smokeburst(pos)
+			nodecore.dynamic_shade_add(pos, 1)
 			nodecore.set_loud(pos, {name = def.to_molded})
 			return false
 		end

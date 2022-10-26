@@ -1,11 +1,28 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local error, math, minetest, nodecore, pairs, vector
+    = error, math, minetest, nodecore, pairs, vector
 local math_exp, math_floor, math_random, math_sqrt
     = math.exp, math.floor, math.random, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local maxdist = 8
+
+local node_radiant = {}
+local node_opaque = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			local d = v and v.groups and v.groups.damage_radiant
+			node_radiant[k] = d and d ~= 0 and d or nil
+
+			local grp_t = minetest.get_item_group(k, "radiant_transparent") ~= 0
+			local grp_o = minetest.get_item_group(k, "radiant_opaque") ~= 0
+			if (grp_t and grp_o) then
+				error("node cannot be BOTH radiant_opaque and radiant_transparent")
+			end
+			node_opaque[k] = grp_o or (not (grp_t
+					or nodecore.air_pass(k) or v.sunlight_propagates)) or nil
+		end
+	end)
 
 local function getdps(pos)
 	if nodecore.quenched(pos) then return 0 end
@@ -21,16 +38,14 @@ local function getdps(pos)
 
 	for pt in minetest.raycast(pos, vector.add(pos, rel), false, true) do
 		local p = pt.under
-		local n = minetest.get_node(p)
-		local def = minetest.registered_items[n.name]
-		local dps = def and def.groups and def.groups.damage_radiant
+		local n = minetest.get_node(p).name
+		local dps = node_radiant[n]
 		if dps and dps > 0 then
 			local r = vector.subtract(pos, p)
 			local dsqr = vector.dot(r, r) / 2 + 1
 			return dps / dsqr
 		end
-		if not (nodecore.air_pass(n) or def and def.sunlight_propagates)
-		then return 0 end
+		if node_opaque[n] then return 0 end
 	end
 	return 0
 end

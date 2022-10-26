@@ -51,6 +51,7 @@ local basedef = {
 		silica = 1,
 		silica_lens = 1,
 		optic_check = 1,
+		optic_lens = 1,
 		cracky = 3,
 		scaling_time = 125,
 		optic_gluable = 1
@@ -104,15 +105,14 @@ reg("_glow_start", {
 			txr .. "^" .. modname .. "_shine_side.png",
 			txr .. "^" .. modname .. "_shine_end.png^" .. pinp,
 			txr .. "^" .. modname .. "_shine_end.png^" .. pact,
-		},
-		on_construct = function(pos) return nodecore.dnt_set(pos,
-			modname .. ":lens_warmup") end
+		}
 	})
 
 nodecore.register_dnt({
 		name = modname .. ":lens_warmup",
 		nodenames = {"group:lens_glow_start"},
 		time = 2,
+		autostart = true,
 		action = function(pos, node)
 			node.name = string_gsub(node.name, "_start", "")
 			return nodecore.set_node(pos, node)
@@ -141,5 +141,36 @@ minetest.register_abm({
 						count = stack:get_count()
 					})
 			end
+		end
+	})
+
+local function getdir(v)
+	if (v.y * v.y) > (v.x * v.x + v.z * v.z) then
+		if v.y >= 0 then return {x = 0, y = 1, z = 0} end
+		return {x = 0, y = -1, z = 0}
+	elseif (v.x * v.x) > (v.z * v.z) then
+		if v.x >= 0 then return {x = 1, y = 0, z = 0} end
+		return {x = -1, y = 0, z = 0}
+	end
+	if v.z >= 0 then return {x = 0, y = 0, z = 1} end
+	return {x = 0, y = 0, z = -1}
+end
+
+nodecore.register_aism({
+		label = "lens light",
+		interval = 1,
+		chance = 1,
+		itemnames = {"group:optic_lens"},
+		action = function(stack, data)
+			local glow = data.player and
+			nodecore.optic_scan_recv(
+				vector.round(data.pos),
+				getdir(data.player:get_look_dir()),
+				nil,
+				minetest.get_node)
+			local nn = modname .. ":lens" .. (glow and "_glow" or "")
+			if stack:get_name() == nn then return end
+			stack:set_name(nn)
+			return stack
 		end
 	})

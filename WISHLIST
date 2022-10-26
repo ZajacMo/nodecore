@@ -41,6 +41,10 @@ to the project!
 		- #6963: If this is implemented, we may have a more efficient
 		  way to handle "visinv" nodes, i.e. stacks, storage boxes,
 		  and other container nodes.
+		- #12317: Not having consistent and known player movement
+		  interpolation behavior makes it hard to keep player
+		  nametags matched with the average player position instead
+		  of jumping ahead or lagging behind.
 
 - Help with documentation
 	- Improvements to the in-game guidance, esp. for onboarding new
@@ -74,6 +78,9 @@ to the project!
 	  videos and streams!
 	- Let the developers know if you have shared something about
 	  NodeCore, or would like guidance creating something to share.
+
+- Help fund to cover hosting costs:
+	https://liberapay.com/NodeCore
 
 ........................................................................
 ========================================================================

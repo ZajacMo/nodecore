@@ -22,7 +22,7 @@ Visit the Minetest ContentDB Listing (below) for more details.
 
 ------------------------------------------------------------------------
 
-NodeCore is (C)2018-2021 by Aaron Suen <warr1024@gmail.com>
+(C) by Aaron Suen <warr1024@gmail.com> (and other contributors)
 MIT License (http://www.opensource.org/licenses/MIT)
 See included LICENSE file for full details and credits
 
@@ -39,6 +39,9 @@ Chat Networks (all bridged):
 		#nodecore:matrix.org
 	IRC:
 		#nodecore on irc.libera.chat
+
+Donate:
+	https://liberapay.com/NodeCore
 
 Semi-Unofficial Wiki:
 	https://nodecore.mine.nu/

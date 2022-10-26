@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string, table
-    = ipairs, minetest, nodecore, pairs, string, table
-local string_format, table_concat, table_sort
-    = string.format, table.concat, table.sort
+local ipairs, minetest, nodecore, pairs, table
+    = ipairs, minetest, nodecore, pairs, table
+local table_concat, table_sort
+    = table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.coremods = {}
@@ -55,17 +55,3 @@ minetest.register_on_mods_loaded(function()
 		end
 		nodecore.added_mods_list = idx2str(idx)
 	end)
-
-local modcmd = minetest.registered_chatcommands.mods
-if modcmd then
-	minetest.override_chatcommand("mods", nodecore.underride({
-				func = function()
-					local mods = nodecore.added_mods_list
-					return true, string_format("%s(%s)%s%s",
-						nodecore.product,
-						nodecore.version or "DEV",
-						#mods > 0 and " + " or "",
-						mods)
-				end
-			}, modcmd))
-end

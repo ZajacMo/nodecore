@@ -1,7 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local ipairs, math, minetest, nodecore, pairs, unpack, vector
+    = ipairs, math, minetest, nodecore, pairs, unpack, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
+
+local modname = minetest.get_current_modname()
+
+local operate_squelch = nodecore.setting_float(modname .. "_operate_squelch", 0.5,
+	"Door operation squelch time", [[WARNING: FUNDAMENTAL CONSTANT. Time after
+	a door has been operated that further operations are "squelched"
+	(ignored/blocked). Changing this may fundamentally alter the game,
+	including making your builds incompatible across hosts.]])
 
 local hashpos = minetest.pos_to_string
 
@@ -16,15 +26,6 @@ local function hingeaxis(pos, node)
 	}
 end
 
-local function set_node(pos, node)
-	local exists = minetest.get_node(pos)
-	if exists.name ~= node.name
-	or exists.param ~= node.param
-	or exists.param2 ~= node.param2 then
-		return minetest.set_node(pos, node)
-	end
-end
-
 local squelch = {}
 nodecore.register_globalstep("door squelch", function(dtime)
 		for k, v in pairs(squelch) do
@@ -34,8 +35,12 @@ nodecore.register_globalstep("door squelch", function(dtime)
 
 local is_door = {groups = {door = true}}
 
-function nodecore.operate_door(pos, node, dir)
+local door_operate_queue = {}
+local operate_success = {}
+
+local function operate_door_core(pos, node, dir)
 	local key = hashpos(pos)
+	operate_success[key] = nil
 	if squelch[key] then return end
 
 	node = node or minetest.get_node_or_nil(pos)
@@ -91,11 +96,13 @@ function nodecore.operate_door(pos, node, dir)
 		toop[k .. "l"] = {
 			pos = vector.add(v.pos, ffd.l),
 			dir = rotdir == "r" and ffd.k or ffd.f,
+			dir2 = rotdir == "r" and ffd.r or ffd.l,
 			from = v
 		}
 		toop[k .. "k"] = {
 			pos = vector.add(v.pos, ffd.k),
 			dir = rotdir == "r" and ffd.r or ffd.l,
+			dir2 = rotdir == "r" and ffd.k or ffd.f,
 			from = v
 		}
 	end
@@ -112,7 +119,8 @@ function nodecore.operate_door(pos, node, dir)
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
 			nodecore.sound_play("nc_doors_operate",
 				{pos = press.pos, gain = 0.5})
-			return true
+			operate_success[key] = true
+			return
 		end
 		return
 	end
@@ -120,8 +128,8 @@ function nodecore.operate_door(pos, node, dir)
 	local toset = {}
 	for k, v in pairs(found) do
 		toset[k] = {pos = v.pos, name = "air", param2 = 0}
-		squelch[k] = 0.5
-		squelch[v.str] = 0.5
+		squelch[k] = operate_squelch
+		squelch[v.str] = operate_squelch
 	end
 	for _, v in pairs(found) do
 		for i, xfd in pairs(nodecore.facedirs) do
@@ -138,7 +146,7 @@ function nodecore.operate_door(pos, node, dir)
 	end
 
 	for _, v in pairs(toset) do
-		set_node(v.pos, v)
+		nodecore.set_node_check(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
 			local k = "sfx" .. hashpos(p)
@@ -155,8 +163,34 @@ function nodecore.operate_door(pos, node, dir)
 		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir2, v.dir)
 	end
 	for _, v in pairs(toop) do
-		nodecore.operate_door(v.pos, nil, v.dir)
-		nodecore.door_push(v.pos, v.dir)
+		door_operate_queue[#door_operate_queue + 1] = {v.pos, nil, v.dir}
+		nodecore.door_push(v.pos, {
+				x = v.dir.x,
+				y = v.dir.y,
+				z = v.dir.z,
+				after = v.dir.y ~= 0 and v.dir2 or nil
+			})
 	end
-	return true
+	operate_success[key] = true
+end
+
+local running
+function nodecore.operate_door(pos, ...)
+	door_operate_queue[#door_operate_queue + 1] = {pos, ...}
+	local key = hashpos(pos)
+	if running then return operate_success[key] end
+	running = true
+	while #door_operate_queue > 0 do
+		local batch = door_operate_queue
+		door_operate_queue = {}
+		for i = #batch, 2, -1 do
+			local j = math_random(1, i)
+			batch[i], batch[j] = batch[j], batch[i]
+		end
+		for _, opts in ipairs(batch) do
+			operate_door_core(unpack(opts))
+		end
+	end
+	running = false
+	return operate_success[key]
 end

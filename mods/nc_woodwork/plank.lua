@@ -12,7 +12,8 @@ minetest.register_node(plank, {
 		groups = {
 			choppy = 1,
 			flammable = 2,
-			fire_fuel = 5
+			fire_fuel = 5,
+			nc_door_scuff_opacity = 72
 		},
 		sounds = nodecore.sounds("nc_tree_woody")
 	})

@@ -53,9 +53,8 @@ minetest.register_abm({
 		action = function(pos)
 			for _, v in pairs(outdirs) do
 				local p = vector.add(pos, v)
-				if minetest.get_node(p).name ~= modname .. ":flux_source"
-				and nodecore.buildable_to(p) then
-					minetest.set_node(p, {name = modname .. ":flux_source"})
+				if nodecore.buildable_to(p) then
+					nodecore.set_node_check(p, {name = modname .. ":flux_source"})
 				end
 			end
 		end

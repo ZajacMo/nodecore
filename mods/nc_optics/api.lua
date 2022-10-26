@@ -1,16 +1,23 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, type, vector
-    = math, minetest, nodecore, pairs, string, type, vector
+local error, math, minetest, nodecore, pairs, string, type, vector
+    = error, math, minetest, nodecore, pairs, string, type, vector
 local math_floor, math_random, string_format
     = math.floor, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local optic_distance = 16
-local optic_speed = 12
+local optic_distance = nodecore.setting_float(modname .. "_optic_distance", 16,
+	"Optic beam distance", [[WARNING: FUNDAMENTAL CONSTANT. Maximum distance
+	from which an optic beam can be sensed by an optic node's input face.
+	Changing this may fundamentally alter the game, including making your
+	builds incompatible across hosts.]])
+local optic_speed = nodecore.setting_float(modname .. "_optic_speed", 12,
+	"Optic tick rate", [[WARNING: FUNDAMENTAL CONSTANT. Rate in Hz of
+	optic ticks. Changing this may fundamentally alter the game, including
+	making your builds incompatible across hosts.]])
 local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
-	"Optic tick limit", [[Maxiumum amount of time in seconds that may be
+	"Optic tick limit", [[Maximum amount of time in seconds that may be
 	spent during a single server step to calculate optic state. Optics
 	will be allowed to slow don to stay within this limit.]])
 local optic_interval = nodecore.setting_float(modname .. "_interval", 5,
@@ -43,8 +50,14 @@ minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			node_optic_checks[k] = v.optic_check or nil
 			node_optic_sources[k] = v.optic_source or nil
-			node_opaque[k] = (not v.sunlight_propagates) or nil
 			node_visinv[k] = v.groups and v.groups.visinv or nil
+
+			local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
+			local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
+			if (grp_t and grp_o) then
+				error("node cannot be BOTH optic_opaque and optic_transparent")
+			end
+			node_opaque[k] = grp_o or (not (grp_t or v.sunlight_propagates)) or nil
 		end
 	end)
 
@@ -67,6 +80,7 @@ local function scan(pos, dir, max, getnode, cbbs)
 	for _ = 1, max do
 		local o = p
 		p = vector.add(p, dir)
+
 		if cbbs and not vector.equals(mapblock(o), mapblock(p)) then
 			cbbs[#cbbs + 1] = {
 				pos = vector.add(o, vector.multiply(dir, 0.5)),
@@ -80,8 +94,20 @@ local function scan(pos, dir, max, getnode, cbbs)
 		end
 		local node = getnode(p)
 		if (not node) or node.name == "ignore" then return end
-		if node_opaque[node.name] then return p, node end
+		if node_opaque[node.name] and not node_visinv[node.name] then return p, node end
 		if node_visinv[node.name] then
+			if node_opaque[node.name] then
+				local def = minetest.registered_nodes[node.name] or {}
+				if not def.storebox_access then return p, node end
+				-- check that “light” can come in from the old position by checking for access
+				if not def.storebox_access(
+					{above = o, under = p}, p, {}) then return p, node end
+				-- check that “light” can go out: this should be checked after checking
+				-- if the content is opaque, but we're going to return the same p, node anyway
+				-- so it doesn't really matter
+				if not def.storebox_access(
+					{above = vector.add(p, dir), under = p}, p, {}) then return p, node end
+			end
 			local stack = nodecore.stack_get(p)
 			if node_opaque[stack:get_name()] then
 				return p, node
@@ -104,6 +130,7 @@ local function scan_recv(pos, dir, max, getnode)
 		end
 	end
 end
+nodecore.optic_scan_recv = scan_recv
 
 local function optic_check(pos)
 	optic_queue[hashpos(pos)] = pos
@@ -162,7 +189,7 @@ local function optic_commit(v)
 	nn.param = nn.param or node.param
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
-	if node.name ~= nn.name or node.param ~= nn.param or nn.param2 ~= nn.param2 then
+	if node.name ~= nn.name or node.param ~= nn.param or node.param2 ~= nn.param2 then
 		minetest.set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
@@ -281,11 +308,13 @@ do
 		end)
 end
 
-nodecore.register_on_nodeupdate(function(pos)
-		local t = dependency_index[hashpos(pos)]
-		if t then
-			for k in pairs(t) do
-				optic_check(unhash(k))
-			end
+local function optic_check_dependents(pos)
+	local t = dependency_index[hashpos(pos)]
+	if t then
+		for k in pairs(t) do
+			optic_check(unhash(k))
 		end
-	end)
+	end
+end
+nodecore.optic_check_dependents = optic_check_dependents
+nodecore.register_on_nodeupdate(optic_check_dependents)

@@ -59,6 +59,7 @@ local function cookdone(pos, data)
 	local meta = minetest.get_meta(pos)
 	local recipe = data.recipe
 	meta:set_float(recipe.label, 0)
+	nodecore.dynamic_shade_add(pos, 1)
 	return playcookfx(pos, recipe.cookfx, "hiss", 80, 0.2)
 end
 

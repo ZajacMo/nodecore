@@ -26,7 +26,8 @@ end
 local stratstone = {}
 local stratore = {}
 local oretile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_ore.png)"
-local stonetile = "(" .. modname .. "_ore.png^[mask:" .. modname .. "_mask_sign.png^[opacity:140)"
+local stonetile = "(nc_terrain_stone.png^[mask:" .. modname .. "_mask_sign.png)^("
+.. modname .. "_ore.png^[mask:" .. modname .. "_mask_sign.png^[opacity:140)"
 local stone = reg("Stone", {
 		description = "Stone",
 		tiles = {"nc_terrain_stone.png^" .. stonetile},

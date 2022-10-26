@@ -90,9 +90,13 @@ local function rushcheck(pos)
 	if not bnode then return end
 	local subst = rush_substrate[bnode.name]
 	if not subst then return false end
+
 	if #nodecore.find_nodes_around(pos, "group:moist", 2) < 1 then
 		return false
 	end
+
+	if not nodecore.can_grass_grow_under(pos) then return true end
+
 	return subst, below
 end
 minetest.register_abm({

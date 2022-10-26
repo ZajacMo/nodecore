@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, nodecore, type
     = ipairs, math, minetest, nodecore, type
-local math_random
-    = math.random
+local math_floor, math_random
+    = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local smoke_add, smoke_flush = nodecore.fairlimit(50)
@@ -11,25 +11,20 @@ local smoking = {}
 
 nodecore.register_globalstep("smoke queue", function()
 		for _, item in ipairs(smoke_flush()) do
-			local pos, qty, time = item.pos, item.qty, item.time
+			local pos, qty, time, scale = item.pos, item.qty, item.time, item.scale
 			local now = minetest.get_us_time() / 1000000
 			local key = minetest.hash_node_position(pos)
 			local old = smoking[key]
 			if old and now < old.exp then minetest.delete_particlespawner(old.id) end
-			if (not time) or (time <= 0) then
+			if qty <= 0 then
 				smoking[key] = nil
 				return
-			end
-			if type(qty) ~= "number" then qty = 1 end
-			if qty < 1 then
-				if math_random() > qty then return end
-				qty = 1
 			end
 			smoking[key] = {
 				id = minetest.add_particlespawner({
 						texture = "nc_api_craft_smoke.png",
 						collisiondetection = true,
-						amount = (qty or 2) * time,
+						amount = qty,
 						time = time,
 						minpos = {x = pos.x - 0.4, y = pos.y - 0.4, z = pos.z - 0.4},
 						maxpos = {x = pos.x + 0.4, y = pos.y + 0.4, z = pos.z + 0.4},
@@ -37,14 +32,37 @@ nodecore.register_globalstep("smoke queue", function()
 						maxvel = {x = 0.1, y = 0.7, z = 0.1},
 						minexptime = 1,
 						maxexptime = 5,
-						minsize = 1,
-						maxsize = 3
+						minsize = 1 * scale,
+						maxsize = 3 * scale
 					}),
 				exp = now + time
 			}
 		end
 	end)
 
-function nodecore.smokefx(pos, time, qty)
-	return smoke_add({pos = pos, time = time, qty = qty})
+local function smokefx(pos, opts, rate)
+	if type(opts) == "number" then
+		opts = {time = opts, rate = rate}
+	end
+	opts = nodecore.underride(opts or {}, {
+			time = 0,
+			rate = 0,
+			scale = 1
+		})
+	opts.pos = pos
+	if opts.time < 0.05 then opts.time = 0.05 end
+
+	local qty = opts.qty or (opts.rate * opts.time)
+	local intqty = math_floor(qty)
+	if (qty ~= intqty) and (math_random() <= (qty - intqty)) then
+		intqty = intqty + 1
+	end
+	opts.qty = intqty
+
+	return smoke_add(opts)
+end
+nodecore.smokefx = smokefx
+
+function nodecore.smokeburst(pos, qty)
+	return smokefx(pos, {qty = qty or 8})
 end

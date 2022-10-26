@@ -41,24 +41,31 @@ local function loaddb(p)
 end
 nodecore.get_player_discovered = loaddb
 
-local function discover(p, keys, prefix)
+local function discover_deferred(p, keys, prefix)
 	local db, player, pname, save = loaddb(p)
 	local new = {}
 	if not db then return end
 	for k in pairs(nodecore.flatkeys(keys)) do
 		k = (prefix or "") .. tostring(k)
 		if not db[k] then
-			db[k] = true
 			new[#new + 1] = k
 		end
 	end
 	if #new < 1 then return end
-	minetest.log("action", string_format("player %s discovers %q", pname,
-			table_concat(new, ", ")))
-	for _, cb in pairs(nodecore.registered_on_discovers) do
-		cb(player, new, pname, db)
+	return function()
+		for i = 1, #new do db[new[i]] = true end
+		minetest.log("action", string_format("player %s discovers %q", pname,
+				table_concat(new, ", ")))
+		for _, cb in pairs(nodecore.registered_on_discovers) do
+			cb(player, new, pname, db)
+		end
+		return save()
 	end
-	save()
+end
+nodecore.player_discover_deferred = discover_deferred
+local function discover(...)
+	local deferred = discover_deferred(...)
+	if deferred then return deferred() end
 end
 nodecore.player_discover = discover
 

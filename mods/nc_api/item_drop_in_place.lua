@@ -33,10 +33,9 @@ function minetest.node_dig(pos, node, digger, ...)
 			local tool = digger and digger:is_player()
 			and digger:get_wielded_item()
 			or nodecore.machine_digging
-			and vector.equals(nodecore.machine_digging.pos, pos)
+			and vector.equals(nodecore.machine_digging.auxpos
+				or nodecore.machine_digging.pos, pos)
 			and nodecore.machine_digging.tool
-
-			nodecore.machine_digging = nil
 
 			if def.silktouch and digger and nodecore.tool_digs(tool,
 				def.silktouch) then
@@ -49,7 +48,7 @@ function minetest.node_dig(pos, node, digger, ...)
 				yielditem(pos, digger, ItemStack(def.drop_non_silktouch))
 			end
 
-			return minetest.set_node(pos, {
+			return nodecore.set_node(pos, {
 					name = def.drop_in_place.name,
 					param = def.drop_in_place.param or node.param,
 					param2 = def.drop_in_place.param2 or node.param2

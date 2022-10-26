@@ -26,9 +26,8 @@ local function getlightcheck(rp, obj, src)
 		local def = minetest.registered_items[stack:get_name()] or {}
 		if (def.light_source or 0) ~= src then return end
 
-		for _, v in pairs(nodecore.get_objects_at_pos(rp)) do
-			if v == obj then return true end
-		end
+		local pos = obj:get_pos()
+		return pos and vector.equals(vector.round(pos), rp)
 	end
 end
 

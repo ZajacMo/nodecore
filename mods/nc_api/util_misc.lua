@@ -182,17 +182,6 @@ function nodecore.fixedbox(x, ...)
 	}}
 end
 
-function nodecore.interact(player)
-	if not player then return end
-	if type(player) ~= "string" then
-		if not (player.is_player and player:is_player()) then
-			return true
-		end
-		player = player:get_player_name()
-	end
-	return minetest.get_player_privs(player).interact
-end
-
 function nodecore.player_visible(player)
 	if type(player) == "string" then player = minetest.get_player_by_name(player) end
 	if not player then return end
@@ -630,4 +619,12 @@ function nodecore.meta_serializable(meta)
 		end
 	end
 	return meta
+end
+
+function nodecore.set_node_check(pos, node, old)
+	old = old or minetest.get_node(pos)
+	if node.name == old.name and (node.param == nil
+		or node.param == old.param) and (node.param2 == nil
+		or node.param2 == old.param2) then return end
+	return minetest.set_node(pos, node)
 end

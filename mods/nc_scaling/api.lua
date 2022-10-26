@@ -58,7 +58,7 @@ local function tryreplace(pos, newname, rootpos)
 		if ndef.groups[modname] < lv then return true end
 	end
 
-	minetest.set_node(pos, {name = newname})
+	nodecore.set_node_check(pos, {name = newname}, node)
 	minetest.get_meta(pos):set_string("data", minetest.serialize({
 				pos = rootpos,
 				node = minetest.get_node(rootpos).name

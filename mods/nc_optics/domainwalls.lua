@@ -51,6 +51,7 @@ nodecore.register_dnt({
 		time = 2,
 		loop = true,
 		ignore_stasis = true,
+		autostart = true,
 		nodenames = {"group:optic_source"},
 		action = function(pos, node)
 			local def = minetest.registered_nodes[node.name] or {}
@@ -63,16 +64,5 @@ nodecore.register_dnt({
 				nodecore.optic_scan(pos, dir, nil, get_node, cbbs)
 			end
 			for i = 1, #cbbs do processcbb(cbbs[i]) end
-		end
-	})
-
-minetest.register_abm({
-		label = modname .. ":cbbs",
-		interval = 2,
-		chance = 1,
-		ignore_stasis = true,
-		nodenames = {"group:optic_source"},
-		action = function(pos)
-			return nodecore.dnt_set(pos, modname .. ":cbbs", 2)
 		end
 	})

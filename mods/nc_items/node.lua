@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, io, ipairs, math, minetest, nodecore, pairs, table
+    = ItemStack, io, ipairs, math, minetest, nodecore, pairs, table
+local io_open, math_random, table_concat, table_insert, table_sort
+    = io.open, math.random, table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -41,7 +43,7 @@ local function register_full_stack(name, tiles)
 				end
 				return minetest.remove_node(posfrom)
 			end,
-			on_stack_unfill = function(pos, stack)
+			on_stack_unfill = function(pos)
 				minetest.swap_node(pos, {name = modname .. ":stack"})
 			end,
 			on_rightclick = function(pos, _, whom, stack, pointed)
@@ -88,47 +90,48 @@ end
 -- * The first pass registers the node.
 -- * The second pass sets the textures.
 -- This is needed to avoid mod dependencies to every boxable node.
--- The server requires an additional restart after nodes are added for those nodes to be added to the list of full-stackable nodes
+-- The server requires an additional restart after nodes are added
+-- for those nodes to be added to the list of full-stackable nodes
 do
 	local file_name = minetest.get_worldpath() .. "/stackable_nodes.txt"
-	local file = io.open(file_name, "r")
+	local myfile = io_open(file_name, "r")
 	local to_box = {}
-	if file then
+	if myfile then
 		while true do
-			local line = file:read()
+			local line = myfile:read()
 			if line then
-				table.insert(to_box, line)
+				table_insert(to_box, line)
 			else
 				break
 			end
 		end
-		file:close()
+		myfile:close()
 	else
-		to_box = { "nc_terrain:cobble", "nc_terrain:stone", "nc_tree:log", }
+		to_box = {"nc_terrain:cobble", "nc_terrain:stone", "nc_tree:log"}
 	end
 	for _, name in ipairs(to_box) do
 		register_full_stack(name)
 	end
 	minetest.register_on_mods_loaded(function()
-		for _, name in ipairs(to_box) do
-			local def = minetest.registered_nodes[name]
-			register_full_stack(name, def.tiles)
-		end
-		local nodes = {}
-		for name, def in pairs(minetest.registered_nodes) do
-			if def.drawtype == "normal" then
-				table.insert(nodes, name)
+			for _, name in ipairs(to_box) do
+				local def = minetest.registered_nodes[name]
+				register_full_stack(name, def.tiles)
 			end
-		end
-		table.sort(nodes)
-		local str = table.concat(nodes, '\n')
-		if table.concat(to_box, '\n') ~= str then
-			minetest.log("warning", "The list of full-stackable nodes changed. Please restart the server again.")
-			local file = io.open(file_name, "w")
-			file:write(str)
-			file:close()
-		end
-	end)
+			local nodes = {}
+			for name, def in pairs(minetest.registered_nodes) do
+				if def.drawtype == "normal" then
+					table_insert(nodes, name)
+				end
+			end
+			table_sort(nodes)
+			local str = table_concat(nodes, '\n')
+			if table_concat(to_box, '\n') ~= str then
+				minetest.log("warning", "The list of full-stackable nodes changed. Please restart the server again.")
+				local file = io.open(file_name, "w")
+				file:write(str)
+				file:close()
+			end
+		end)
 end
 
 minetest.register_node(modname .. ":stack", {
@@ -154,6 +157,10 @@ minetest.register_node(modname .. ":stack", {
 				nodecore.item_eject(posto, stack)
 			end
 			return minetest.remove_node(posfrom)
+		end,
+		can_item_fall_in = function(pos, _, stack)
+			if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
+			return true
 		end,
 		on_stack_fill = function(pos, stack)
 			local box = boxable_nodes[stack:get_name()]
@@ -209,7 +216,11 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 	if stack:get_count() == 1 then
 		local def = minetest.registered_nodes[stack:get_name()]
 		if def and def.groups and def.groups.stack_as_node then
-			nodecore.set_loud(pos, {name = stack:get_name()})
+			local node = {name = stack:get_name()}
+			if def.paramtype2 == "facedir" then
+				node.param2 = math_random(0, 3)
+			end
+			nodecore.set_loud(pos, node)
 			if def.after_place_node then
 				def.after_place_node(pos, nil, stack)
 			end
@@ -219,9 +230,9 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 
 	local box_name = boxable_nodes[stack:get_name()]
 	if box_name and stack:get_count() >= stack:get_stack_max() then
-		minetest.set_node(pos, {name = box_name})
+		minetest.set_node_check(pos, {name = box_name})
 	else
-		minetest.set_node(pos, {name = modname .. ":stack"})
+		nodecore.set_node_check(pos, {name = modname .. ":stack"})
 	end
 	nodecore.stack_set(pos, stack, placer)
 	if placer and pointed_thing then

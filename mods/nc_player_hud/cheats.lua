@@ -58,6 +58,7 @@ minetest.register_chatcommand("uncheat", {
 local function privcheck(player)
 	nodecore.hud_set(player, {
 			label = "cheats",
+			group = {},
 			hud_elem_type = "text",
 			position = {x = 0.5, y = 1},
 			text = ischeating(player) and cheatmsg or "",

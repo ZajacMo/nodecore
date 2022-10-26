@@ -52,7 +52,7 @@ nodecore.register_inventory_tab({
 			"Player's Guide: Movement and Navigation",
 			"",
 			"- To run faster, walk/swim forward or climb/swim upward continuously.",
-			"- Hold/repeat right-click on walls/ceilings barehanded to climb.",
+			"- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.",
 			"- Climbing spots also produce very faint light; raise display gamma to see.",
 			"- Climbing spots may be climbed once black particles appear.",
 			"- Learn to use the stars for long distance navigation.",
@@ -73,6 +73,7 @@ nodecore.register_inventory_tab({
 			"- Ores may be hidden, but revealed by subtle clues in terrain.",
 			"- \"Furnaces\" are not a thing; discover smelting with open flames.",
 			"- Trouble lighting a fire? Try using longer sticks, more tinder.",
+			"- Something seems tedious? Find better tech, subtle factors, or a better way.",
 			"- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!",
 			"- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 		}

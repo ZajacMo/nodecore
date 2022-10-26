@@ -171,6 +171,11 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	end
 end
 
+local ticklemax = nodecore.setting_float(minetest.get_current_modname()
+	.. "_soaking_tickle_max_time", 600, "Max soaking tickle interval",
+	[[Maximum amount of time in seconds that can be saved up between
+	soaking-tickle actions. Delay longer than this will not increase
+	the amount of soaking progress.]])
 local function ticklelog(pos, fieldname, qty)
 	nodecore.log("info", string_format("abm push "
 			.. (type(qty) == "number" and "%0.2f" or "%q")
@@ -194,7 +199,9 @@ function nodecore.soaking_abm_tickle(pos, fieldname)
 		tickletime = nodecore.gametime
 	end
 	meta:set_float(fieldname .. "tickle", nodecore.gametime)
-	local qty = ((nodecore.gametime - tickletime) ^ 0.5) * rate * 10
+	local diff = nodecore.gametime - tickletime
+	if diff > ticklemax then diff = ticklemax end
+	local qty = (diff ^ 0.5) * rate * 10
 	ticklelog(pos, fieldname, qty)
 	nodecore.soaking_abm_push(pos, fieldname, qty)
 	return qty

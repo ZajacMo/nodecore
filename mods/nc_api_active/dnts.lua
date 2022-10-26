@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local error, math, minetest, next, nodecore, pairs, string, vector
     = error, math, minetest, next, nodecore, pairs, string, vector
-local math_floor, string_format
-    = math.floor, string.format
+local math_floor, string_format, string_gsub
+    = math.floor, string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Active Block Modifiers, meet Delayed Node Triggers.
@@ -56,9 +56,9 @@ local function dnt_timer(data)
 		if (not nexttime) or (v < nexttime) then nexttime = v end
 	end
 
-	if not nexttime then return end
-	if data.timer and (data.timer > now) and (nexttime > data.timer)
-	and (nexttime < data.timer + 1) then return end
+	if not nexttime then return data_save(data) end
+	if data.timer and (data.timer > now) and (nexttime >= data.timer)
+	and (nexttime < data.timer + 1) then return data_save(data) end
 
 	local delay = nexttime - now
 	if delay < 0.001 then delay = 0.001 end
@@ -68,24 +68,23 @@ local function dnt_timer(data)
 	data_save(data)
 end
 
-local function dnt_execute(pos, data)
-	data = data or data_load(pos)
+local function dnt_execute(pos)
+	local data = data_load(pos)
+
+	data.timer = nil
 
 	local now = nodecore.gametime
 	local registered = nodecore.registered_dnts
 	local runnable = {}
 	local sched = data.sched
-	local dirty
 	for dntname, schedtime in pairs(sched) do
 		local def = registered[dntname]
 		if not def then
 			sched[dntname] = nil
-			dirty = true
 		elseif schedtime <= now and (def.ignore_stasis or not nodecore.stasis) then
 			runnable[def] = true
 			local newtime = def.loop and (now + def.time) or nil
 			sched[dntname] = newtime
-			dirty = true
 		end
 	end
 
@@ -101,7 +100,6 @@ local function dnt_execute(pos, data)
 		end
 	end
 
-	if dirty then data_save(data) end
 	dnt_timer(data)
 end
 
@@ -118,7 +116,6 @@ function nodecore.dnt_set(pos, name, time)
 	time = now + (time or nodecore.registered_dnts[name].time or 1)
 	if prev and prev >= now and prev <= time then return end
 	data.sched[name] = time
-	data_save(data)
 	dnt_timer(data)
 end
 
@@ -128,13 +125,10 @@ function nodecore.dnt_reset(pos, name, time)
 	time = nodecore.gametime + (time or nodecore.registered_dnts[name].time or 1)
 	if prev and prev == time then return end
 	data.sched[name] = time
-	data_save(data)
 	dnt_timer(data)
 end
 
-minetest.nodedef_default.on_timer = function(pos)
-	return dnt_execute(pos)
-end
+minetest.nodedef_default.on_timer = dnt_execute
 
 nodecore.register_on_register_item(function(_, def)
 		if def.on_timer then
@@ -144,18 +138,22 @@ nodecore.register_on_register_item(function(_, def)
 	end)
 
 local autostarts = {}
-local function dntregen(pos, node)
-	datacache[hash(pos)] = nil
-	local start = autostarts[node.name]
-	if start then
-		for def in pairs(start) do
-			nodecore.dnt_set(pos, def.name)
+local function dntregen(immediate)
+	return function(pos, node)
+		datacache[hash(pos)] = nil
+		local start = autostarts[node.name]
+		if start then
+			for def in pairs(start) do
+				nodecore.dnt_set(pos, def.name, immediate
+					and def.autostart_time or nil)
+			end
 		end
 	end
 end
-nodecore.register_on_nodeupdate(dntregen)
+nodecore.register_on_nodeupdate(dntregen(true))
 
 function nodecore.register_dnt(def)
+	local modname = minetest.get_current_modname()
 	if not def.name then return error("dnt name required") end
 	if not def.action then return error("dnt action required") end
 	if nodecore.registered_dnts[def.name] then
@@ -173,12 +171,19 @@ function nodecore.register_dnt(def)
 			end)
 		local abmtime = math_floor(def.time or 1)
 		if abmtime < 1 then abmtime = 1 end
+		local albmlabel = modname .. ":" .. string_gsub(def.name, "%W", "_")
 		minetest.register_abm({
-				label = "dnt regen: " .. def.name,
+				label = albmlabel,
 				interval = abmtime,
 				chance = 1,
 				nodenames = def.nodenames,
-				action = dntregen
+				action = dntregen()
+			})
+		minetest.register_lbm({
+				name = albmlabel,
+				run_at_every_load = true,
+				nodenames = def.nodenames,
+				action = dntregen(true)
 			})
 	end
 	nodecore.registered_dnts[def.name] = def

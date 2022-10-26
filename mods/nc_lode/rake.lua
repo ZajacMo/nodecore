@@ -49,7 +49,10 @@ nodecore.register_lode("rake", {
 				})
 			d.on_rake = mkonrake(d.tool_capabilities)
 		end,
-		groups = {rakey = 2},
+		groups = {
+			rakey = 2,
+			nc_doors_pummel_first = 1
+		},
 		tool_wears_to = modname .. ":prill_# 10"
 	})
 

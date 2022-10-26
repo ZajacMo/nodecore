@@ -6,16 +6,16 @@ local ItemStack, minetest, nodecore, pairs, vector
 local presstoolcaps = {}
 minetest.after(0, function()
 		for name, def in pairs(minetest.registered_items) do
-			local ovrgrp = def.groups and def.groups.nc_doors_always_pummel
-			if ovrgrp and ovrgrp > 0 then
-				presstoolcaps[name] = def.tool_head_capabilities
-				and def.tool_head_capabilities.groupcaps
-				or def.tool_capabilities.groupcaps
-			elseif def.tool_capabilities then
-				presstoolcaps[name] = "dig"
+			local caps
+			if def.tool_capabilities then
+				caps = {dig = true, groups = def.tool_capabilities.groupcaps}
 			elseif def.tool_head_capabilities then
-				presstoolcaps[name] = def.tool_head_capabilities.groupcaps
+				caps = {groups = def.tool_head_capabilities.groupcaps}
 			end
+			if minetest.get_item_group(name, "nc_doors_pummel_first") > 0 then
+				caps.pummelfirst = true
+			end
+			presstoolcaps[name] = caps
 		end
 	end)
 
@@ -47,13 +47,44 @@ local function checktarget(data, stack)
 		end
 	end
 
+	local stackname = stack:get_name()
+	local caps = presstoolcaps[stackname]
+	local function pummelcheck()
+		if not caps then return end
+		local pumdata = {
+			action = "pummel",
+			pos = target,
+			pointed = {
+				type = "node",
+				above = data.pointed.under,
+				under = target
+			},
+			node = node,
+			nodedef = def,
+			duration = 3600,
+			presstoolpos = data.pointed.under,
+			wield = stack,
+			toolgroupcaps = caps.groups
+		}
+
+		-- if pummelfirst doesn't find anything, can't find
+		-- anything on second pass
+		pummelcheck = function() end
+
+		return nodecore.craft_search(target, node, pumdata)
+	end
+	if caps and caps.pummelfirst then
+		data.presscommit = pummelcheck()
+		if data.presscommit then return data.presscommit end
+	end
+
 	-- Try to dig item
-	local caps = presstoolcaps[stack:get_name()]
-	if caps == "dig" and def and def.groups
+	if caps and caps.dig and def and def.groups
 	and nodecore.tool_digs(stack, def.groups) then
 		data.pressdig = {
 			pos = target,
-			tool = stack
+			tool = stack,
+			toolpos = data.pointed.under
 		}
 		return true
 	end
@@ -61,23 +92,8 @@ local function checktarget(data, stack)
 	-- Eject item as entity
 	if not def.walkable then return true end
 
-	if not caps then return end
-	local pumdata = {
-		action = "pummel",
-		pos = target,
-		pointed = {
-			type = "node",
-			above = data.pointed.under,
-			under = target
-		},
-		node = node,
-		nodedef = def,
-		duration = 3600,
-		toolgroupcaps = caps
-	}
-	local recipe = nodecore.craft_search(target, node, pumdata)
-	data.presscommit = recipe
-	return recipe
+	data.presscommit = pummelcheck()
+	return data.presscommit
 end
 
 local hashpos = minetest.hash_node_position
@@ -127,13 +143,14 @@ local function doitemeject(pos, data)
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
 		minetest.dig_node(data.pressdig.pos)
-		nodecore.witness(pos, "door dig")
+		nodecore.machine_digging = nil
+		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door dig")
 		return
 	end
 	if data.presscommit then
 		toolfx(pos, data.presstarget)
 		data.presscommit()
-		nodecore.witness(pos, "door pummel")
+		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door pummel")
 		return
 	end
 
@@ -143,7 +160,7 @@ local function doitemeject(pos, data)
 	one:set_count(1)
 
 	if data.intostorebox then
-		nodecore.witness(pos, "door store")
+		nodecore.witness({pos, data.pointed.above, data.intostorebox}, "door store")
 		one = nodecore.stack_add(data.intostorebox, one)
 		nodecore.stack_sounds(data.intostorebox, "place")
 		if not one:is_empty() then return end
@@ -170,7 +187,7 @@ local function doitemeject(pos, data)
 		return minetest.remove_node(pos)
 	end
 	nodecore.stack_set(pos, stack)
-	return nodecore.witness(pos, "door catapult")
+	return nodecore.witness({pos, data.pointed.above}, "door catapult")
 end
 
 nodecore.register_craft({

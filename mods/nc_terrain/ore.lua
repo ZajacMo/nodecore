@@ -41,13 +41,18 @@ local c_stones = {}
 for _, n in pairs(minetest.registered_nodes[modname .. ":stone"].strata) do
 	c_stones[minetest.get_content_id(n)] = true
 end
+local depthdoubledsqr = 128 * 128
+local factorlimit = 4
 local function regspring(label, node, rarity)
 	local c_node = minetest.get_content_id(node)
 	nodecore.register_mapgen_shared({
 			label = label,
 			func = function(minp, maxp, area, data, _, _, _, rng)
+				local factor = (1 + minp.y * minp.y / depthdoubledsqr)
+				if factor > factorlimit then factor = factorlimit end
 				local rawqty = rng() * (maxp.x - minp.x + 1)
 				* (maxp.z - minp.z + 1) * (maxp.y - minp.y + 1) / rarity
+				* factor
 				local qty = math_floor(rawqty)
 				if rng() < (rawqty - qty) then qty = qty + 1 end
 
@@ -64,6 +69,10 @@ local function regspring(label, node, rarity)
 						or data[idx - area.zstride] == c_air
 						or data[idx + area.zstride] == c_air)
 					then
+						nodecore.log("info", label .. " at "
+							.. minetest.pos_to_string({
+									x = x, y = y, z = z
+								}))
 						data[area:index(x, y, z)] = c_node
 						queue[#queue + 1] = {x = x, y = y, z = z}
 					end

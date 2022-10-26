@@ -40,11 +40,14 @@ msgstr "- Drop and pick up items to rearrange your inventory."
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Drop items onto ground to create stack nodes. They do not decay."
 
+msgid "- FUTURE: @1"
+msgstr "- FUTURE: @1"
+
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- For larger recipes, the center item is usually placed last."
 
-msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
-msgstr "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
@@ -84,6 +87,9 @@ msgstr "- Sneak+drop to count out single items from stack."
 
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- Some recipes require "pummeling" a node."
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr "- Something seems tedious? Find better tech, subtle factors, or a better way."
 
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr "- Stacks may be pummeled, exact item count may matter."
@@ -445,8 +451,14 @@ msgstr "Discovery"
 msgid "Displaced Node"
 msgstr "Displaced Node"
 
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donate: https://liberapay.com/NodeCore"
+
 msgid "Dry Rush"
 msgstr "Dry Rush"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "Early-access edition of NodeCore with latest features (and maybe bugs)"
 
 msgid "Eggcorn"
 msgstr "Eggcorn"
@@ -685,6 +697,9 @@ msgstr "Infused Tempered Lode Spade"
 msgid "Inventory"
 msgstr "Inventory"
 
+msgid "Lantern"
+msgstr "Lantern"
+
 msgid "Leaves"
 msgstr "Leaves"
 
@@ -751,6 +766,9 @@ msgstr "Matrix: #nodecore:matrix.org"
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
 
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr "Minetest's top original voxel game about emergent mechanics and exploration"
+
 msgid "Molten Glass"
 msgstr "Molten Glass"
 
@@ -763,8 +781,14 @@ msgstr "Niz Charcoal Glyph"
 msgid "NodeCore"
 msgstr "NodeCore"
 
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
+
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
+
+msgid "Offline Player"
+msgstr "Offline Player"
 
 msgid "Orange Bell Flower"
 msgstr "Orange Bell Flower"
@@ -1231,6 +1255,9 @@ msgstr "assemble a clear glass case"
 msgid "assemble a float glass case"
 msgstr "assemble a float glass case"
 
+msgid "assemble a lantern from a tote handle"
+msgstr "assemble a lantern from a tote handle"
+
 msgid "assemble a lode adze"
 msgstr "assemble a lode adze"
 
@@ -1270,17 +1297,8 @@ msgstr "assemble an adze out of sticks"
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
 
-msgid "bond adobe bricks"
-msgstr "bond adobe bricks"
-
-msgid "bond sandstone bricks"
-msgstr "bond sandstone bricks"
-
 msgid "bond stone bricks"
 msgstr "bond stone bricks"
-
-msgid "bond tarstone bricks"
-msgstr "bond tarstone bricks"
 
 msgid "break cobble into chips"
 msgstr "break cobble into chips"
@@ -1300,6 +1318,9 @@ msgstr "catapult an item with a hinged panel"
 msgid "change a stylus pattern"
 msgstr "change a stylus pattern"
 
+msgid "charge a lantern"
+msgstr "charge a lantern"
+
 msgid "chip chromatic glass into prisms"
 msgstr "chip chromatic glass into prisms"
 
@@ -1309,17 +1330,8 @@ msgstr "chisel a hinge groove into a wooden plank"
 msgid "chisel a hinge groove into cobble"
 msgstr "chisel a hinge groove into cobble"
 
-msgid "chisel adobe bricks"
-msgstr "chisel adobe bricks"
-
-msgid "chisel sandstone bricks"
-msgstr "chisel sandstone bricks"
-
 msgid "chisel stone bricks"
 msgstr "chisel stone bricks"
-
-msgid "chisel tarstone bricks"
-msgstr "chisel tarstone bricks"
 
 msgid "chop chromatic glass into lenses"
 msgstr "chop chromatic glass into lenses"
@@ -1327,11 +1339,11 @@ msgstr "chop chromatic glass into lenses"
 msgid "chop up charcoal"
 msgstr "chop up charcoal"
 
-msgid "complete a craft with a hinged panel"
-msgstr "complete a craft with a hinged panel"
-
 msgid "complete a pummel with a hinged panel and tool head"
 msgstr "complete a pummel with a hinged panel and tool head"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "complete an assembly recipe with a hinged panel"
 
 msgid "compress something with a hinged panel"
 msgstr "compress something with a hinged panel"
@@ -1464,6 +1476,9 @@ msgstr "forge lode prills into a tool head"
 
 msgid "forge lode rods into a frame"
 msgstr "forge lode rods into a frame"
+
+msgid "fully charge a lantern"
+msgstr "fully charge a lantern"
 
 msgid "gate a prism"
 msgstr "gate a prism"

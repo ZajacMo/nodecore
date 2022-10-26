@@ -29,11 +29,11 @@ nodecore.register_hint("put a stone tip onto a wooden tool",
 )
 
 nodecore.register_hint("chisel stone bricks",
-	"chisel stone bricks",
+	"chisel bricks",
 	{"group:smoothstone", "group:chisel"}
 )
 
 nodecore.register_hint("bond stone bricks",
-	"bond stone bricks",
-	"chisel stone bricks"
+	"bond bricks",
+	"chisel bricks"
 )

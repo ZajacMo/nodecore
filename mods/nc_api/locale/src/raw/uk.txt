@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-30 11:25+0200\n"
+"PO-Revision-Date: 2022-06-09 17:14+0000\n"
+"Last-Translator: Andrij Mizyk <andmiz@proton.me>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
+"nodecore/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13-dev\n"
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- DONE: @1"
+msgstr "- ГОТОВО: @1"
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Більші рецепти зазвичай симетричніші."
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "About"
+msgstr "Про гру"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Завантажено додаткові моди: @1"
+
+msgid "Adobe"
+msgstr ""
+
+msgid "Matrix: #nodecore:matrix.org"
+msgstr "Matrix: #nodecore:matrix.org"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Wooden Panel"
+msgstr "Деревʼяна панель"
+
+msgid "Wooden Plank"
+msgstr "Дошка"
+
+msgid "Wooden Rake"
+msgstr "Деревʼяні граблі"
+
+msgid "Wooden Spade"
+msgstr "Деревʼяна лопата"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- Якщо Ви копаєте більше ніж 5 секунд — у Вас неправильний інструмент."
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
+
+msgid "Stick"
+msgstr "Палиця"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- «Піч» не є предметом; досліджуйте плавлення на відкритому вогні."
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+кинути будь-який елемент, щоб кинути все."

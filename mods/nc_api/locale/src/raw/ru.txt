@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-09 18:19+0000\n"
-"Last-Translator: Walter Frost <divided0303@gmail.com>\n"
-"Language-Team: Russian <http://nodecore.mine.nu/trans/projects/nodecore/core/"
-"ru/>\n"
+"PO-Revision-Date: 2022-10-10 19:51+0000\n"
+"Last-Translator: Nikita Epifanov <nikgreens@protonmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
+"nodecore/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.6.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -215,8 +215,7 @@ msgstr ""
 "- Может руды и спрятаны, но их раскрывают тонкие подсказки на местности."
 
 msgid "- Order and specific face of placement may matter for crafting."
-msgstr ""
-"- Порядок и конкретное лицо размещения могут иметь значение для крафтинга."
+msgstr "- Порядок и конкретная грань могут иметь значение для крафтинга."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- Подобранные предметы пытаются поместиться в выделенный слот."
@@ -930,8 +929,8 @@ msgstr ""
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
-"- Если копание занимает более 5 секунд, значит, у вас нет подходящего "
-"инструмента."
+"- Если копание занимает более 5 секунд, значит вы копайте неправильным "
+"инструментом."
 
 msgid "Adobe Mix"
 msgstr "Саманная Смесь"
@@ -1132,7 +1131,7 @@ msgid "hold your breath"
 msgstr "задержите дыхание"
 
 msgid "scale an overhang"
-msgstr "взберитесь по навесу"
+msgstr "взберитесь по свесу"
 
 msgid "scale a wall"
 msgstr "взберитесь по стене"
@@ -1550,16 +1549,16 @@ msgstr "- Aux + сбросить любой предмет, чтобы сбро�
 
 msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
 msgstr ""
-"- Ноды, выкопанные без правильного инструмента, нельзя подобрать, их можно "
-"только смещать."
+"- Ноды, выкопанные без правильного инструмента, нельзя подобрать, по ним "
+"можно только лазить."
 
 msgid "- Tools used as ingredients must be in very good condition."
 msgstr ""
 "- Инструменты, используемые в качестве ингредиентов, должны быть в очень "
-"хорошем состоянии."
+"хорошем состоянии (не разу неиспользованными)."
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
-msgstr "- Красться + aux + выброс вещи, чтобы сбросить все подходящие предметы."
+msgstr "- Присесть + aux + выброс вещи, чтобы сбросить все подходящие предметы."
 
 msgid "CHEATS ENABLED"
 msgstr "ЧИТЫ ВКЛЮЧЕНЫ"
@@ -1580,7 +1579,7 @@ msgid "Black Bell Flower"
 msgstr "Черный Колокольчик"
 
 msgid "Black Rosette Flower"
-msgstr "Черный Розетка Цветок"
+msgstr "Черный Цветок Розы"
 
 msgid "Clear Glass Tank"
 msgstr "Прозрачный Стеклянный Резервуар"
@@ -1598,7 +1597,7 @@ msgid "Pink Bell Flower"
 msgstr "Розовый Колокольчик"
 
 msgid "Pink Rosette Flower"
-msgstr "Розовый Розетка Цветок"
+msgstr "Розовый Цветок Розы"
 
 msgid "Raked Gravel"
 msgstr "Разграбленный Гравий"
@@ -1625,7 +1624,7 @@ msgid "Wilted Star Flower"
 msgstr "Увядший Звездный Цветок"
 
 msgid "Yellow Rosette Flower"
-msgstr "Желтый Розеточный Цветок"
+msgstr "Желтый Цветок Розы"
 
 msgid "assemble a clear glass tank"
 msgstr "соберите прозрачный стеклянный резервуар"
@@ -1655,7 +1654,7 @@ msgid "Azure Cup Flower"
 msgstr "Лазурный Чашечный Цветок"
 
 msgid "Azure Rosette Flower"
-msgstr "Лазурный Розетка Цветок"
+msgstr "Лазурный Цветок Розы"
 
 msgid "Black Cluster Flower"
 msgstr "Черный Кластерный Цветок"
@@ -1676,7 +1675,7 @@ msgid "Blue Cup Flower"
 msgstr "Синий Чашечный Цветок"
 
 msgid "Blue Rosette Flower"
-msgstr "Синий Розетка Цветок"
+msgstr "Синий Цветок Розы"
 
 msgid "Blue Star Flower"
 msgstr "Синий Звездный Цветок"
@@ -1691,7 +1690,7 @@ msgid "Orange Cup Flower"
 msgstr "Оранжевый Чашечный Цветок"
 
 msgid "Orange Rosette Flower"
-msgstr "Оранжевый Розетка Цветок"
+msgstr "Оранжевый Цветок Розы"
 
 msgid "Orange Star Flower"
 msgstr "Оранжевый Звездный Цветок"
@@ -1715,7 +1714,7 @@ msgid "Red Cup Flower"
 msgstr "Красный Чашечный Цветок"
 
 msgid "Red Rosette Flower"
-msgstr "Красный Розетка Цветок"
+msgstr "Красный Цветок Розы"
 
 msgid "Red Star Flower"
 msgstr "Красный Звездный Цветок"
@@ -1727,7 +1726,7 @@ msgid "Sedge"
 msgstr "Осока"
 
 msgid "Violet Rosette Flower"
-msgstr "Фиолетовый Розетка Цветок"
+msgstr "Фиолетовый Цветок Розы"
 
 msgid "Violet Star Flower"
 msgstr "Фиолетовый Звездный Цветок"
@@ -1739,7 +1738,7 @@ msgid "White Cup Flower"
 msgstr "Белый Чашечный Цветок"
 
 msgid "White Rosette Flower"
-msgstr "Белый Розетка Цветок"
+msgstr "Белый Цветок Розы"
 
 msgid "White Star Flower"
 msgstr "Белый Звездный Цветок"
@@ -1751,7 +1750,7 @@ msgid "Wilted Cup Flower"
 msgstr "Увядший Чашечный Цветок"
 
 msgid "Wilted Rosette Flower"
-msgstr "Увядший Розетка Цветок"
+msgstr "Увядший Цветок Розы"
 
 msgid "Yellow Bell Flower"
 msgstr "Желтый Колокольчик"
@@ -1786,7 +1785,6 @@ msgstr "вырастите камыш на влажной почве"
 msgid "wilt a flower"
 msgstr "высушите цветок"
 
-#, fuzzy
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr ""
 "- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О "
@@ -1956,3 +1954,52 @@ msgstr "@1 обнаружено, @2 доступно, @3 в будущем"
 
 msgid "assemble a rake from adzes and a staff"
 msgstr "соберите грабли из тесла и посоха"
+
+msgid "Glued Lens"
+msgstr "Закрепленная Линза"
+
+msgid "Glued Shining Lens"
+msgstr "Закрепленная Сияющая Линза"
+
+msgid "Glued Prism"
+msgstr "Закрепленная Призма"
+
+msgid "Glued Active Lens"
+msgstr "Закрепленная Активная Линза"
+
+msgid "stick a lens/prism in place"
+msgstr "Закрепите Линзу/Призму на месте"
+
+msgid "Glued Active Prism"
+msgstr "Закрепленная Активная Призма"
+
+msgid "Glued Gated Prism"
+msgstr "Закрепленная Призма-Вентиль"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "завершите сборку предмета с помощью навесной панели"
+
+msgid "- FUTURE: @1"
+msgstr "- БУДУЩЕЕ: @1"
+
+msgid "Minetest's top original voxel game about emergent mechanics and exploration"
+msgstr ""
+"Лучшая оригинальная воксельная игра Minetest об эмерджентной механике и "
+"исследованиях"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore АЛЬФА"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "Ранняя версия NodeCore с последними функциями (и, возможно, с ошибками)"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Удерживайте/повторяйте нажатие правой кнопкой мыши на стенах/потолках, "
+"чтобы создать места для лазания."
+
+#, fuzzy
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Что-то кажется утомительным? Найдите лучшую технику, более тонкие факторы "
+"или лучший способ."

@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-30 20:35+0200\n"
+"PO-Revision-Date: 2022-03-31 21:08+0000\n"
+"Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/nodecore/"
+"sk/>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.12-dev\n"
+
+msgid "Annealed Lode Bar"
+msgstr "Tyč zo žíhaných žíl"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+pustiť akúkoľvek vec a upustíš všetko."
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- \"Pece\" nie sú zložité; objav tavenie pomocou otvoreného ohňa."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Dávaj si pozor na temé jaskyne/priepasti; zodpovedáš za to, že sa odtiaľ "
+"dostaneš von."
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr ""
+"- Nemôžeš rúbať stromy alebo zbierať trávu? Poobzeraj sa po paličkách pod "
+"prístreškom."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Vytváranie sa vykonáva skladaním receptov vo svete."
+
+msgid "- DONE: @1"
+msgstr "- HOTOVO: @1"
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr ""
+"- Po premiestnených kockách je možné liezť rovnako ako po oblastiach na "
+"šplhanie."
+
+msgid "- Do not use F5 debug info; it will mislead you!"
+msgstr "- Nepoužívaj klávesnicu pre ladenie F5; zmätie ťa!"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Upusti a zodvihni veci, aby si poupratoval svoj inventár."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- Upusti veci na zem a vytvoríš skladovaciu kocku. Nerozpadá sa."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- Pri väčších receptoch sa prostredná vec zvyčajne vkladá nakoniec."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to climb."
+msgstr ""
+"- Drž/opakuj pravý klik na steny/stropy s prázdnymi rukami aby si šplhal."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Ak recept existuje, uvidíš špeciálny efekt z čiastočiek."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- Ak kopanie trvá viac než 5 sekúnd, nepoužívaš ten správny nástroj."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- Zodvihnuté veci sa najprv snažia vtesnať do práve zvolenej pozície."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Väčšie recepty sú zvyčajne symetrickejšie."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- Usporiadanie a konkrétne strana (kocky) pri vložení môže mať vplyv pri "
+"vytváraní."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Rudy môžu byť ukryté, dajú sa však odhaliť vďaka jemným náznakom v teréne."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Recepty závisia od času, udierať rýchlejšie ti nepomôže."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "Zakrádanie+pustiť spočíta jednotlivú vec v kope."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Niektoré recepty vyžadujú \"tlčenie/búchanie\" na kocku."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- Na kopy možno tĺcť, na rovnakom počte vecí záleží."
+
+msgid "- There is NO inventory screen."
+msgstr "- Zobrazenie inventára neexistuje."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Pri tlčení, udieraj kocku opakovane, NEKOP."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Aby si bežal rýchlejšie, nepretržite kráčaj/plávaj vpred, alebo lez/plávaj "
+"dohora."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- Nástroje používané ako prísady musia byť vo veľmi dobrom stave."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- Prenosná vec, cieľová strana a okolité kocky sú dôležité."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Nemusíš udierať veľmi rýchlo (približne raz za sekundu)."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 objavené, @2 dostupné, @3 neskôr"
+
+msgid "Active Lens"
+msgstr "Aktívna šošovka"
+
+msgid "Active Prism"
+msgstr "Aktívny hranol"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Načítané Doplnkové modifikácie: @1"
+
+msgid "Adobe Bricks"
+msgstr "Tehly z Adobe"
+
+msgid "Aggregate"
+msgstr "Agregát"
+
+msgid "Amalgamation"
+msgstr "Amalgamácia"
+
+msgid "Annealed Lode"
+msgstr "Žíhané žily"
+
+msgid "Annealed Lode Frame"
+msgstr "Rám zo žíhaných žíl"
+
+msgid "Ash"
+msgstr "Popol"
+
+msgid "Ash Lump"
+msgstr "Hrudka popola"
+
+msgid "Azure Cluster Flower"
+msgstr "Kvet Azúrového strapca"
+
+msgid "Azure Cup Flower"
+msgstr "Kvet Azúrového pohára"
+
+msgid "Azure Rosette Flower"
+msgstr "Kvet Azúrovej ružice"
+
+msgid "Azure Star Flower"
+msgstr "Kvet Azúrovej hviezdy"
+
+msgid "Bindy"
+msgstr "Zväzok"
+
+msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-2021 od Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Oblasti na šplhanie tiež poskytujú veľmi slabé svetlo; zvýš gamma hodnotu "
+"obrazovky aby si lepšie videl."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- Oblasti na šplhanie budú schodné len čo sa objavia čierne čiastočky."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Si beznádejne zaseknutý? Opýtaj sa na komunitných četoch (Záložka About)."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Nauč sa používať hviezdy na orientáciu pri väčších vzdialenostiach."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Kocky vykopané nesprávnym nástrojom sa nedajú zodvihnúť, iba premiestniť."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- Zakrádanie+aux+pustiť vec odhodíš všetky rovnaké veci."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- Hra samotná je výzvou, niekedy skľučujúcou. NEVZDÁVAJ SA!"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- Máš problém založiť oheň? Skús použiť dlhšie paličky, viac podpalkov."
+
+msgid "Azure Bell Flower"
+msgstr "Kvet Azúrového zvončeka"

@@ -62,7 +62,8 @@ minetest.register_abm({
 		neighbors = {"group:coolant"},
 		action = function(pos)
 			nodecore.sound_play("nc_api_craft_hiss", {gain = 0.25, pos = pos})
-			nodecore.smokefx(pos, 0.05, 20)
+			nodecore.smokeburst(pos)
+			nodecore.dynamic_shade_add(pos, 1)
 			return nodecore.set_loud(pos, {name = amalgam})
 		end
 	})
