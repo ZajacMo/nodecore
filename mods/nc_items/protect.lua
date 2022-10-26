@@ -3,11 +3,10 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local stacks_only = nodecore.group_expand("group:is_stack_only", true)
 
 function nodecore.protection_exempt(pos)
-	local node = minetest.get_node(pos)
-	return node.name == modname .. ":stack"
+	return stacks_only[minetest.get_node(pos)]
 end
 
 minetest.after(0, function()

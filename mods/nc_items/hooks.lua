@@ -10,6 +10,8 @@ local string_format, string_gsub
 local modname = minetest.get_current_modname()
 local dntname = modname .. ":cookcheck"
 
+local stacks_only = nodecore.group_expand("group:is_stack_only", true)
+
 local nevermatch = {}
 local function nomatches(k)
 	local stack = ItemStack(k)
@@ -127,7 +129,7 @@ function minetest.item_drop(item, player, ...)
 			})
 
 		local function tryplace(p)
-			if minetest.get_node(p).name == modname .. ":stack" then
+			if stacks_only[minetest.get_node(p).name] then
 				stack = nodecore.stack_add(p, stack, player)
 				if stack:is_empty() then return dummyent end
 			end

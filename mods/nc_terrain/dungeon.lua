@@ -59,7 +59,10 @@ end
 -- REGISTER DUNGEON NODES, BIOME DEFAULTS
 
 local function regdungeon(name)
-	local def = nodecore.underride({groups = {dungeon_mapgen = 1}},
+	local def = nodecore.underride({
+			groups = {dungeon_mapgen = 1},
+			visinv_bulk_optimize = false,
+		},
 		minetest.registered_nodes[cobble])
 	def.mapgen = nil
 	return minetest.register_node(modname .. ":" .. name, def)

@@ -123,6 +123,8 @@ local function check_retry_add(key, val)
 	check_retry[key] = val
 end
 
+local visinv_hidden = nodecore.group_expand("group:visinv_hidden", true)
+
 nodecore.register_globalstep("visinv check", function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
@@ -138,15 +140,20 @@ nodecore.register_globalstep("visinv check", function()
 						if data.n then
 							objremove(ent)
 						else
-							itemcheck(ent)
-							data.n = true
+							if not visinv_hidden[minetest.get_node(data).name] then
+								itemcheck(ent)
+								data.n = true
+							else
+								objremove(ent)
+							end
 						end
 					end
 				end
 			end
 		end
 		for poskey, data in pairs(batch) do
-			if (not data.n) and (not nodecore.stack_get(data):is_empty()) then
+			if (not data.n) and (not nodecore.stack_get(data):is_empty())
+			and (not visinv_hidden[minetest.get_node(data).name]) then
 				local obj = minetest.add_entity(data, entname)
 				local ent = obj and obj:get_luaentity()
 				if ent then
