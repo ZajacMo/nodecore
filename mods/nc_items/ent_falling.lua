@@ -3,10 +3,10 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local stacks_only = nodecore.group_expand("group:is_stack_only", true)
 
 nodecore.register_falling_node_on_setnode(function(self, node, meta)
-		if not (node and node.name == modname .. ":stack") then return end
+		if not (node and stacks_only[node.name]) then return end
 		local stack = nodecore.stack_get_serial(meta)
 		if stack and not stack:is_empty() then
 			local pos = self.object:get_pos()
