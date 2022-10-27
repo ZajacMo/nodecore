@@ -56,7 +56,7 @@ local function txrcoal(num)
 	local name = txr("ash")
 	local base = math_floor(num / 2)
 	if base > 0 then
-		for i = base, 1, -1 do
+		for i = 1, base do
 			name = name .. "^" .. txr("coal_" .. i)
 		end
 	end
