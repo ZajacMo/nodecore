@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local error, minetest, nodecore
+    = error, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -9,17 +9,17 @@ local bulks = nodecore["registered_" .. modname .. "_bulk_nodes"]
 
 local basedef = minetest.registered_items[modname .. ":stack"]
 
-local function register_full_stack(name, tiles)
+local function register_full_stack(name, def)
 	local stack_name = modname .. ":bulk_" .. name:gsub("^:", ""):gsub(":", "__")
 	bulks[name] = stack_name
-	if not tiles then
-		minetest.register_node(stack_name, {})
-		return
+	if not def.tiles then
+		return error("visinv_bulk_optimize invalid on nodes without tiles")
 	end
 	minetest.register_node(":" .. stack_name, nodecore.underride({
 				drawtype = "mesh",
 				mesh = modname .. "_stack.obj",
-				tiles = tiles,
+				tiles = def.tiles,
+				use_texture_alpha = def.use_texture_alpha,
 				paramtype2 = "facedir",
 				groups = {
 					visinv_hidden = 1,
@@ -32,7 +32,7 @@ nodecore.register_on_register_item({
 		func = function(name, def)
 			if def.visinv_bulk_optimize then
 				def.visinv_bulk_optimize = nil
-				register_full_stack(name, def.tiles)
+				register_full_stack(name, def)
 			end
 		end
 	})
