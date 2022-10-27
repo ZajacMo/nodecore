@@ -9,6 +9,15 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Skip more entity<->entity<->node transition steps
+	- falling_node / item_entity conversions
+	- Instant settling on catapult for items ejected with
+	  downward component into a settlable space
+
+- Lantern brightness non-linearity
+	- level = ceil(4 * (1 + 2*arcsin(charge/50 - 1)/pi))
+	  (thanks to Oblomov)
+
 - Rake recipe is a major problem
 	- Lots of players are getting caught up on it
 	- Replace recipe:
@@ -23,25 +32,41 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Maybe add a generic "# hints completed" qualifier?
 		- Maybe add a number of hours played (non-idle) qualifier?
 
+- All flora should be radiation-sensitive.
+	- Currently only flowers, add sedges and rushes
+	- Should be at risk of harm during growth or spreading
+		- Rushes may dry out
+		- Sedges may be stunted, lose growth stages
+
+- Door placement convenience
+	- If player places a door panel against the face of another
+	  door panel (sneak+place) then match axis if possible.
+
 - Instead of always displacing nodes upon falling node landing, should
   check for diggability and if diggable, convert to drops.
 	- If a mod adds a second loose-leaves-like node (falling,
 	  non-walkable, e.g. nc_nature loose shrub) then it and loose
 	  leaves in a narrow deep pit will constantly replace each
 	  other.
+	- Possibly eject with some scattering.
+	- Sedges being displaced shouldn't be allowed.
 
 - Cheats
+	- Should these be spun off into a separate mod?
+	- Make /give lit torches work properly again
+		- If lit torch is missing meta, generate it as if
+		  for a freshly lit torch
 	- Add radius to /snuff, /ignite, /growtrees, etc
 	- Add a /soak cheat to push soaking?
 	- Add a /forest or /grove cheat to sprinkle trees around
 		- Like the flora redecorate
 		- Useful for servers with spawn tree attrition
+	- /snuff should probably snuff torches too
+		- General snuffable/on_snuff API?
+		- Merge with growtrees for a general on_cheat API?
 
 - Emergency digging mechanic issues
 	- Players still confused by it.
-	- Because pumwater is pointable, if you're trapped with no way
-	  to get your head out of it, you can't emergency dig the
-	  container and free yourself.
 
 - Continuing issues with storebox fall-thru
 	- Items now refusing to fall from a form into a crate or
@@ -54,10 +79,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		  if it WAS in the box's node space last tick but
 		  is below it now, and the box isn't open on
 		  the bottom.
-
-- /snuff should probably snuff torches too
-	- General snuffable/on_snuff API?
-	- Merge with growtrees for a general on_cheat API?
 
 - Detect and warn players about misuse of singlenode mapgen
 	- Mods can register if they're supporting singlenode.

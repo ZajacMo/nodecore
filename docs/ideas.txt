@@ -9,18 +9,21 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Should packed totes transmit light from items inside?
+	- Maybe at reduced intensity?
+	- Maybe need an on_get_light_source intelligent API for this
+	  or something...
+	- Need to make sure torches and lanterns properly run down
+	  while inside the tote and don't just "catch up" when unpacked
+
+- More nuanced infrared attenuation/scattering
+	- Float glass vs clear glass should have some differences
+
 - Improve lode ore hint-stains
 	- Make sure hint stone always indicates at least some real ore
 	- Generate ore veins in mapgen
 	- In post-gen, find ore, spread stone stains outward in a few
 	  random direction streaks
-
-- Full-stack rendering optimization
-	- Huge piles of cobble stacks cause significant framerate loss
-	- https://gitlab.com/sztest/nodecore/-/merge_requests/19
-	  a.k.a. full-stack-nodeboxes branch
-	- Actually all visinv entities building up in an area cause
-	  framerate loss, but most are impractical to address
 
 - Wicker baskets
 	- Limited alternative to full tote
@@ -226,6 +229,10 @@ IDEAS: Possible future additions/improvements to the game
 - Should tool appearance vary based on wear?
 	- Make "fresh" vs. "worn" tools (for purposes of their usability
 	  in crafts) have a distinct look?
+	- Move the wear stat out of normal wear and into metadata, so the bar
+	  graphs don't show.
+		- Would this require reworking the whole damage/uses system?
+	- Tools used in crafts will need to be groups instead of item names.
 
 - Tree sap
 	- Stumps with air above exude, become dry stumps.
