@@ -106,6 +106,8 @@ local function walkspeed(player, anim)
 	return t
 end
 
+local wave_cooldown = 1.2
+
 nodecore.player_anim = nodecore.player_anim or function(player, data)
 	local hp = player:get_hp()
 	if hp <= 0 then
@@ -129,12 +131,16 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 	end
 
 	if not nodecore.player_swimming(player) then
+		if walk or mine then data.anim_wave_time = nodecore.gametime + wave_cooldown end
 		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
 		if walk then return walkspeed(player, nodecore.player_anim_data.walk) end
 		if mine then return nodecore.player_anim_data.mine end
-		if aux then return nodecore.player_anim_data.wave end
+		if aux and not (data.anim_wave_time and data.anim_wave_time > nodecore.gametime) then
+			return nodecore.player_anim_data.wave
+		end
 		return nodecore.player_anim_data.stand
 	end
+	data.anim_wave_time = nodecore.gametime + wave_cooldown
 
 	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine) end
 	if not (walk or ctl.jump or ctl.sneak or (ctl.left or ctl.right)
