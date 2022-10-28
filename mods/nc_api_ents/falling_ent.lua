@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, vector
-    = ipairs, minetest, nodecore, pairs, vector
+local ItemStack, ipairs, minetest, nodecore, pairs, vector
+    = ItemStack, ipairs, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_falling_node_step,
@@ -19,10 +19,14 @@ local data_load, data_save = nodecore.entity_staticdata_helpers({
 		setvel = true
 	})
 
+local hand = ItemStack("")
 local function displace_check(pos)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
 	if def and def.buildable_to then return end
+	if def and def.diggable and nodecore.tool_digs(hand, def.groups) then
+		minetest.dig_node(pos)
+	end
 	for rel in nodecore.settlescan() do
 		local p = vector.add(pos, rel)
 		if nodecore.buildable_to(p) then
