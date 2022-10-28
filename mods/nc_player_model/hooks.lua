@@ -12,10 +12,23 @@ local pitch_max = 60
 local pitch_min = -15
 local pitch_precision = 1
 
+local item_drop_times = {}
+
+local olddrop = minetest.item_drop
+function minetest.item_drop(item, player, ...)
+	if player then item_drop_times[player:get_player_name()] = nodecore.gametime end
+	return olddrop(item, player, ...)
+end
+nodecore.register_on_leaveplayer(function(player)
+		item_drop_times[player:get_player_name()] = nil
+	end)
+
 nodecore.register_playerstep({
 		label = "player model visuals",
 		action = function(player, data)
 			if data.properties.visual_size.x <= 0 then return end
+
+			data.item_drop_time = item_drop_times[player:get_player_name()]
 
 			local props = nodecore.player_visuals_base(player, data)
 

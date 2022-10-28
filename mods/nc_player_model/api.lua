@@ -123,6 +123,7 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 	if data then
 		if mine then data.animcontrol_mine_exp = nodecore.gametime + 0.25 end
 		mine = mine or data.animcontrol_mine_exp and data.animcontrol_mine_exp >= nodecore.gametime
+		or data.item_drop_time and data.item_drop_time > nodecore.gametime - 0.25
 	end
 	local aux = ctl.aux1 and not ctl.zoom
 	if data then
@@ -131,16 +132,19 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 	end
 
 	if not nodecore.player_swimming(player) then
-		if walk or mine then data.anim_wave_time = nodecore.gametime + wave_cooldown end
+		if data and (walk or mine) then
+			data.anim_wave_time = nodecore.gametime + wave_cooldown
+		end
 		if walk and mine then return walkspeed(player, nodecore.player_anim_data.walk_mine) end
 		if walk then return walkspeed(player, nodecore.player_anim_data.walk) end
 		if mine then return nodecore.player_anim_data.mine end
-		if aux and not (data.anim_wave_time and data.anim_wave_time > nodecore.gametime) then
+		if aux and not (data and data.anim_wave_time
+			and data.anim_wave_time > nodecore.gametime) then
 			return nodecore.player_anim_data.wave
 		end
 		return nodecore.player_anim_data.stand
 	end
-	data.anim_wave_time = nodecore.gametime + wave_cooldown
+	if data then data.anim_wave_time = nodecore.gametime + wave_cooldown end
 
 	if mine then return walkspeed(player, nodecore.player_anim_data.swim_mine) end
 	if not (walk or ctl.jump or ctl.sneak or (ctl.left or ctl.right)
