@@ -1,18 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
 local math, minetest, nodecore, string
     = math, minetest, nodecore, string
-local math_floor, string_format
-    = math.floor, string.format
+local math_asin, math_ceil, math_pi, math_sin, string_format
+    = math.asin, math.ceil, math.pi, math.sin, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 local discharge_rate = 20
-local max_charge = discharge_rate * 3600
-local levels = 8
-local level_exp = 1.5
-local max_exp = max_charge ^ level_exp + 0.001
-local exp_per_level = max_exp / levels
+local max_charge = discharge_rate * 2400
+
+local function charge_to_level(charge)
+	local i = math_ceil(4 * (1 + 2 * math_asin(charge * 2 / max_charge - 1) / math_pi))
+	return i > 7 and 7 or i
+end
+local function level_to_charge(level)
+	return (math_sin((level / 4 - 1) / 2 * math_pi) / 2 + 0.5) * max_charge
+end
 
 local fluid_water = nodecore.group_expand("group:water", true)
 local fluid_flux = nodecore.group_expand("group:lux_fluid", true)
@@ -53,7 +57,7 @@ local function chargecalc(pos, oldname, meta)
 
 	local now = nodecore.gametime
 	local qty = (oldtime == 0)
-	and ((getlevel(oldname) * exp_per_level) ^ (1 / level_exp))
+	and level_to_charge(getlevel(oldname))
 	or (oldqty + oldrate * (now - oldtime))
 	if qty <= 0 then
 		qty = 0
@@ -63,7 +67,7 @@ local function chargecalc(pos, oldname, meta)
 		qty = max_charge
 		if rate > 0 then rate = 0 end
 	end
-	local level = math_floor((qty ^ level_exp) / exp_per_level)
+	local level = charge_to_level(qty)
 	local name = modname .. ":lamp" .. level
 
 	if name == oldname and floateq(rate, oldrate) then return end
