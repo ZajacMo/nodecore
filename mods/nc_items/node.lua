@@ -9,6 +9,22 @@ local modname = minetest.get_current_modname()
 
 nodecore.stack_node_sounds_except = {}
 
+local bulkskey = "registered_" .. modname .. "_bulk_nodes"
+local bulks = nodecore[bulkskey] or {}
+nodecore[bulkskey] = bulks
+
+function nodecore.stack_bulk_check(pos, node, stack)
+	stack = stack or nodecore.stack_get(pos)
+	local bulk = bulks[stack:get_name()]
+	if (not bulk) or stack:get_count() ~= stack:get_stack_max() then
+		if node.name == modname .. ":stack" then return end
+		return {name = modname .. ":stack"}
+	end
+	if node and node.name == bulk then return end
+	local rot = (pos.x * 3 + pos.y * 5 + pos.z * 7) % 4
+	return {name = bulk, param2 = rot}
+end
+
 minetest.register_node(modname .. ":stack", {
 		description = "",
 		drawtype = "airlike",
@@ -36,6 +52,10 @@ minetest.register_node(modname .. ":stack", {
 		can_item_fall_in = function(pos, _, stack)
 			if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
 			return true
+		end,
+		on_stack_change = function(pos, node, stack)
+			local nn = nodecore.stack_bulk_check(pos, node, stack)
+			if nn then return minetest.swap_node(pos, nn) end
 		end,
 		on_rightclick = function(pos, _, whom, stack, pointed)
 			if not nodecore.interact(whom) then return stack end
@@ -97,7 +117,8 @@ function nodecore.place_stack(pos, stack, placer, pointed_thing)
 		end
 	end
 
-	nodecore.set_node_check(pos, {name = modname .. ":stack"})
+	local nn = nodecore.stack_bulk_check(pos, minetest.get_node(pos), stack)
+	if nn then nodecore.set_node(pos, nn) end
 	nodecore.stack_set(pos, stack, placer)
 	if placer and pointed_thing then
 		nodecore.craft_check(pos, {name = stack:get_name()}, {

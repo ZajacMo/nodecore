@@ -14,6 +14,7 @@
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
 - FUTURE: @1=- БУДУЩЕЕ: @1
 - For larger recipes, the center item is usually placed last.=- Для больших рецептов центральный предмет обычно ставится последним.
+- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Удерживайте/повторяйте нажатие правой кнопкой мыши на стенах/потолках, чтобы создать места для лазания.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О программе»).
 - If a recipe exists, you will see a special particle effect.=- Если рецепт существует, вы увидите спец-эффект.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Если копание занимает более 5 секунд, значит вы копайте неправильным инструментом.
@@ -27,6 +28,7 @@
 - Sneak+aux+drop an item to drop all matching items.=- Присесть + aux + выброс вещи, чтобы сбросить все подходящие предметы.
 - Sneak+drop to count out single items from stack.=- Присесть+бросок чтобы отсчитывать отдельные предметы из стака.
 - Some recipes require "pummeling" a node.=- Некоторые рецепты требуют "избивать" ноду.
+- Something seems tedious? Find better tech, subtle factors, or a better way.=- Что-то кажется утомительным? Найдите лучшую технику, более тонкие факторы или лучший способ.
 - Stacks may be pummeled, exact item count may matter.=- Стаки тоже могут быть избиты, количество предметов может иметь значение.
 - The game is challenging by design, sometimes frustrating. DON'T GIVE UP!=- Игра сложная по задумке, иногда разочаровывает. НЕ СДАВАЙТЕСЬ!
 - There is NO inventory screen.=- Экрана инвентаря НЕТ.

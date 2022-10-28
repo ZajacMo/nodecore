@@ -108,7 +108,8 @@ minetest.register_node(modname .. ":leaves", {
 				stack_as_node = 1,
 				leaf_decay = 0,
 				peat_grindable_item = 1
-			}
+			},
+			visinv_bulk_optimize = true
 		},
 		alternate_solid = {
 			preserve_metadata = function(pos, _, oldmeta)
@@ -123,6 +124,7 @@ minetest.register_node(modname .. ":leaves", {
 			node_dig_prediction = "air"
 		},
 		no_repack = true,
+		use_texture_alpha = "clip",
 		sounds = nodecore.sounds("nc_terrain_swishy")
 	})
 nodecore.register_leaf_drops(function(_, _, list)

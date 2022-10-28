@@ -22,26 +22,27 @@ local function normalbox(box)
 	and box[4] == 0.5 and box[5] == 0.5 and box[6] == 0.5
 end
 
-local function ispushout(def)
+local function ispushout(def, head)
+	if def.liquidtype ~= "none" then return head and def.pointable end
 	if not def.walkable then return end
-	if def.liquidtype ~= "none" then return end
 	if def.groups and def.groups.is_stack_only then return end
 	return normalbox(def.collision_box)
 end
 
-local solids = {}
+local headsolids = {}
+local footsolids = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
-			if ispushout(v) then
-				solids[k] = true
-			end
+			headsolids[k] = ispushout(v, true) or nil
+			footsolids[k] = ispushout(v, false) or nil
 		end
-		solids.ignore = nil
+		headsolids.ignore = nil
+		footsolids.ignore = nil
 	end)
 
 local function isroom(pos)
-	return not (solids[minetest.get_node(pos).name]
-		or solids[minetest.get_node({
+	return not (footsolids[minetest.get_node(pos).name]
+		or headsolids[minetest.get_node({
 				x = pos.x,
 				y = pos.y + 1,
 				z = pos.z
@@ -54,6 +55,11 @@ nodecore.register_playerstep({
 		label = "push player out of solids",
 		action = function(player, data, dtime)
 			local function reset() data.pushout = nil end
+
+			if data.control.up or data.control.down
+			or data.control.left or data.control.right
+			or data.control.sneak or data.control.jump
+			then return reset() end
 
 			if minetest.get_player_privs(player).noclip
 			or nodecore.player_pushout_disable(player, data)

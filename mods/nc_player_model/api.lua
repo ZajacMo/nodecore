@@ -122,7 +122,7 @@ nodecore.player_anim = nodecore.player_anim or function(player, data)
 		if mine then data.animcontrol_mine_exp = nodecore.gametime + 0.25 end
 		mine = mine or data.animcontrol_mine_exp and data.animcontrol_mine_exp >= nodecore.gametime
 	end
-	local aux = ctl.aux1
+	local aux = ctl.aux1 and not ctl.zoom
 	if data then
 		if aux then data.animcontrol_aux_exp = nodecore.gametime + 1 end
 		aux = aux or data.animcontrol_aux_exp and data.animcontrol_aux_exp >= nodecore.gametime

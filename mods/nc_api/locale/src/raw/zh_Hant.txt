@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2022-08-24 14:17+0000\n"
+"PO-Revision-Date: 2022-10-02 13:17+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -733,7 +733,6 @@ msgstr "在石砧上敲打高溫類鋼"
 msgid "work glowing lode on a lode anvil"
 msgstr "在類鋼砧上敲打高溫類鋼"
 
-#, fuzzy
 msgid "Gated Prism"
 msgstr "失效的棱鏡"
 
@@ -748,3 +747,93 @@ msgstr "上膠的活化棱鏡"
 
 msgid "Glowing Lode Rake"
 msgstr "高溫類鋼耙"
+
+msgid "Glued Prism"
+msgstr "上膠的棱鏡"
+
+msgid "plant an eggcorn"
+msgstr "種下種子"
+
+msgid "Glued Lens"
+msgstr "上膠的透鏡"
+
+msgid "Tips"
+msgstr "訣竅"
+
+msgid "find charcoal"
+msgstr "發現木炭"
+
+msgid "find dry (loose) leaves"
+msgstr "發現落葉"
+
+msgid "Glowing Lode Frame"
+msgstr "高溫類鋼框"
+
+msgid "Glued Shining Lens"
+msgstr "上膠的發光透鏡"
+
+msgid "Prism"
+msgstr "棱鏡"
+
+msgid "Tempered Lode Ladder"
+msgstr "調溫類鋼梯"
+
+msgid "Tempered Lode Mattock Head"
+msgstr "調溫類鋼鶴嘴鋤 頭"
+
+msgid "Annealed Lode Rod"
+msgstr "冷卻類鋼棒"
+
+msgid "Glowing Lode Bar"
+msgstr "高溫類鋼條"
+
+msgid "Glued Gated Prism"
+msgstr "上膠的失效棱鏡"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
+
+msgid "Shining Lens"
+msgstr "發光棱鏡"
+
+msgid "Tempered Lode Bar"
+msgstr "調溫類鋼條"
+
+msgid "Tempered Lode Frame"
+msgstr "調溫類鋼框"
+
+msgid "Tempered Lode Mattock"
+msgstr "調溫類鋼鶴嘴鋤"
+
+msgid "Tempered Lode Rod"
+msgstr "調溫類鋼棒"
+
+msgid "find a stick"
+msgstr "發現木棒"
+
+msgid "find an eggcorn"
+msgstr "發現種子"
+
+msgid "find ash"
+msgstr "發現灰"
+
+msgid "gate a prism"
+msgstr "使棱鏡失效"
+
+msgid "go for a swim"
+msgstr "外出游泳"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "harvest a sponge"
+msgstr "採收海綿"
+
+msgid "Glowing Lode Ladder"
+msgstr "高溫類鋼梯"
+
+msgid "Glowing Lode Rod"
+msgstr "高溫類鋼棒"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr "要創造攀爬點，空手對牆或天花板按住右鍵。"

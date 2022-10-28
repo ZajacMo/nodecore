@@ -70,7 +70,8 @@ regterrain({
 		},
 		drop_in_place = modname .. ":cobble",
 		strata = strata,
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		visinv_bulk_optimize = true
 	})
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
@@ -87,7 +88,8 @@ for i = 1, nodecore.hard_stone_strata do
 			},
 			drop_in_place = modname .. ((i > 1)
 				and (":hard_stone_" .. (i - 1)) or ":stone"),
-			sounds = nodecore.sounds("nc_terrain_stony")
+			sounds = nodecore.sounds("nc_terrain_stony"),
+			visinv_bulk_optimize = false
 		})
 	strata[i + 1] = modname .. ":hard_stone_" .. i
 end
@@ -121,7 +123,8 @@ regterrain({
 			sounds = nodecore.sounds("nc_terrain_chompy")
 		},
 		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		visinv_bulk_optimize = true
 	})
 
 for _, v in ipairs({
@@ -162,7 +165,8 @@ regterrain({
 			grassable = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_crunchy")
+		sounds = nodecore.sounds("nc_terrain_crunchy"),
+		visinv_bulk_optimize = true
 	})
 regterrain({
 		name = "dirt_with_grass",
@@ -200,7 +204,8 @@ regterrain({
 			falling_node = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_chompy")
+		sounds = nodecore.sounds("nc_terrain_chompy"),
+		visinv_bulk_optimize = true
 	})
 regterrain({
 		description = "Sand",
@@ -220,7 +225,8 @@ regterrain({
 			"desert_sand"
 		},
 		crush_damage = 0.5,
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		visinv_bulk_optimize = true
 	})
 
 local function anim(name, len)

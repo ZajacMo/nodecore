@@ -10,10 +10,10 @@ if not nodecore.infodump() then return end
 local faces = {
 	"top",
 	"bottom",
-	"left",
 	"right",
-	"front",
-	"back"
+	"left",
+	"back",
+	"front"
 }
 
 local function tilize(tiles, max)

@@ -56,7 +56,7 @@ local function txrcoal(num)
 	local name = txr("ash")
 	local base = math_floor(num / 2)
 	if base > 0 then
-		for i = base, 1, -1 do
+		for i = 1, base do
 			name = name .. "^" .. txr("coal_" .. i)
 		end
 	end
@@ -127,5 +127,6 @@ minetest.register_node(modname .. ":ash", {
 			crumbly = 1
 		},
 		crush_damage = 0.25,
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		visinv_bulk_optimize = true
 	})

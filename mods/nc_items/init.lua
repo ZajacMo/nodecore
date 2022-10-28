@@ -6,6 +6,7 @@ local include, nodecore
 nodecore.amcoremod()
 
 include('node')
+include('bulknodes')
 include('ent_item')
 include('ent_falling')
 include('hooks')

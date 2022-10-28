@@ -3,14 +3,12 @@ local minetest, nodecore
     = minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 if nodecore.loaded_mods().nc_fire then
 	minetest.register_abm({
 			label = "flammable stack ignite",
 			interval = 5,
 			chance = 1,
-			nodenames = {modname .. ":stack"},
+			nodenames = {"group:is_stack_only"},
 			neighbors = {"group:igniter"},
 			neighbors_invert = true,
 			action_delay = true,
