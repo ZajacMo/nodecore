@@ -185,13 +185,6 @@ ISSUES-CODE: Issues related to code quality and APIs
   modified copy of another definition, e.g. for planted eggcorns copying
   dirt, door panels copying original materials, etc.
 
-- Need to find a way to make AISMs work with falling_node.
-	- Create ItemStack, run hooks, try to convert back to node
-	  (assume node and item meta map 1:1) and if it fails then
-	  spawn an item_ent.
-	- Need this for amalgamation remelting.
-	- Would it make sense to unify the item and falling_node ents?
-
 - Unify sponge growth logic so it can be used for mapgen, to ensure
   that spawned sponges match naturally-grown ones?
 

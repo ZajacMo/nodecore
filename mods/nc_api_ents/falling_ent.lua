@@ -126,3 +126,34 @@ minetest.register_entity(":__builtin:falling_node", {
 			end
 		end
 	})
+
+nodecore.register_falling_node_step(function(self, dtime)
+		if not (self.node and self.node.name) then return end
+
+		local pos = self.object:get_pos()
+		if not pos then return end
+
+		self.aismtime = (self.aismtime or 0) + dtime
+		if self.aismtime < 1 then return end
+		self.aismtime = self.aismtime - 1
+
+		local istack = ItemStack(self.node.name)
+		istack:get_meta():from_table(self.meta)
+
+		local sdata = {
+			pos = pos,
+			fallingent = self,
+			set = function(s)
+				local name = s:get_name()
+				if minetest.registered_nodes[name] then
+					self.node.name = name
+					self.meta = s:get_meta():to_table()
+				else
+					local ent = minetest.add_item(pos, s)
+					if ent then ent:set_velocity(self.object:get_velocity()) end
+				end
+				return self.object:remove()
+			end
+		}
+		nodecore.aism_check_stack(istack, sdata)
+	end)
