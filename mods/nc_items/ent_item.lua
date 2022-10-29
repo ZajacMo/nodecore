@@ -5,14 +5,7 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local stackonly = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
-			if v.groups and v.groups.is_stack_only then
-				stackonly[k] = true
-			end
-		end
-	end)
+local stackonly = nodecore.group_expand("group:is_stack_only", true)
 
 local function nuke(self)
 	self.itemstring = ""
