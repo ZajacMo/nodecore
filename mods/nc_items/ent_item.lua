@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
+local ItemStack, ipairs, math, minetest, nodecore, vector
+    = ItemStack, ipairs, math, minetest, nodecore, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -13,6 +13,7 @@ local function nuke(self)
 	return true
 end
 
+local hand = ItemStack("")
 nodecore.register_item_entity_on_settle(function(self, pos)
 		local curnode = minetest.get_node(pos)
 		if curnode.name == "ignore" then return end
@@ -47,16 +48,26 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			else
 				boxes[#boxes + 1] = p
 			end
-			if nodecore.buildable_to(p) and (p.y >= nodecore.map_limit_min)
-			and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
-				or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z})) then
-				nodecore.place_stack(p, item)
-				minetest.get_meta(p):set_string("tweenfrom",
-					minetest.serialize(self.object:get_pos()))
-				return nuke(self)
+			if ((p.y >= nodecore.map_limit_min)
+				and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
+					or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z}))) then
+				if not nodecore.buildable_to(p) then
+					local node = minetest.get_node(p)
+					local def = minetest.registered_nodes[node.name]
+					if def and (not def.walkable) and def.diggable
+					and nodecore.tool_digs(hand, def.groups) then
+						minetest.dig_node(p)
+					end
+				end
+				if nodecore.buildable_to(p) then
+					nodecore.place_stack(p, item)
+					minetest.get_meta(p):set_string("tweenfrom",
+						minetest.serialize(self.object:get_pos()))
+					return nuke(self)
+				end
 			end
 		end
-		for _, p in pairs(boxes) do
+		for _, p in ipairs(boxes) do
 			item = nodecore.stack_add(p, item)
 			if item:is_empty() then return nuke(self) end
 		end
