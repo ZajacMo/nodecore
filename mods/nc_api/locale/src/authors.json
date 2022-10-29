@@ -11,7 +11,8 @@
 		"it": "2022-05-29T16:02:27.462325+02:00",
 		"fr": "2022-07-19T23:58:40.607242+02:00",
 		"pt_BR": "2022-08-13T22:05:50.714046+02:00",
-		"pt": "2022-08-04T17:00:43.113022+02:00"
+		"pt": "2022-08-04T17:00:43.113022+02:00",
+		"es": "2022-10-28T00:33:52.831731+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -154,6 +155,14 @@
 			"raw": {
 				"full_name": "Nikita Epifanov",
 				"username": "Nikets"
+			},
+			"first": "2022",
+			"last": "2022"
+		},
+		"https://hosted.weblate.org/api/users/eduardo.957/?format=json": {
+			"raw": {
+				"full_name": "William",
+				"username": "eduardo.957"
 			},
 			"first": "2022",
 			"last": "2022"

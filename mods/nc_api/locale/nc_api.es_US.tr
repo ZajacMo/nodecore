@@ -8,6 +8,7 @@
 - Do not use F5 debug info; it will mislead you!=- No uses las opciones de debug (F5); ¡te confundirán!
 - Drop and pick up items to rearrange your inventory.=- Tira y agarra los ítems para reorganizar tu inventario.
 - Drop items onto ground to create stack nodes. They do not decay.=- Tira los ítems en el suelo para crear stacks de nodos. No desaparecen.
+- FUTURE: @1=- FUTURO: @1
 - For larger recipes, the center item is usually placed last.=- En crafteos grandes, generalmente el ítem del centro se agrega último.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- ¿Trabado sin avanzar? Prueba preguntando en los chatrooms de la comunidad (About tab).
 - If a recipe exists, you will see a special particle effect.=- Si un crafteo existe, verás efectos de partículas especiales.
