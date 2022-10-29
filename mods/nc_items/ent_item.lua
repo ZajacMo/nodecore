@@ -38,8 +38,28 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
+		local function placeat(p)
+			nodecore.place_stack(p, item)
+			minetest.get_meta(p):set_string("tweenfrom",
+				minetest.serialize(self.object:get_pos()))
+			return nuke(self)
+		end
+
 		local itemname = item:get_name()
+		local function trydig(p)
+			local node = minetest.get_node(p)
+			if node.name ~= itemname then
+				local def = minetest.registered_nodes[node.name]
+				if def and (not def.walkable) and def.diggable
+				and nodecore.tool_digs(hand, def.groups) then
+					minetest.dig_node(p)
+					return placeat(p)
+				end
+			end
+		end
+
 		local boxes = {}
+		local digs = {}
 		for rel in nodecore.settlescan() do
 			local p = vector.add(pos, rel)
 			local n = minetest.get_node(p)
@@ -52,27 +72,21 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			if ((p.y >= nodecore.map_limit_min)
 				and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
 					or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z}))) then
-				if not nodecore.buildable_to(p) then
-					local node = minetest.get_node(p)
-					if node.name ~= itemname then
-						local def = minetest.registered_nodes[node.name]
-						if def and (not def.walkable) and def.diggable
-						and nodecore.tool_digs(hand, def.groups) then
-							minetest.dig_node(p)
-						end
-					end
-				end
 				if nodecore.buildable_to(p) then
-					nodecore.place_stack(p, item)
-					minetest.get_meta(p):set_string("tweenfrom",
-						minetest.serialize(self.object:get_pos()))
-					return nuke(self)
+					return placeat(p)
+				elseif rel.x == 0 and rel.z == 0 and math_random(1, 10) == 1 then
+					if trydig(p) then return true end
+				else
+					digs[#digs + 1] = p
 				end
 			end
 		end
 		for _, p in ipairs(boxes) do
 			item = nodecore.stack_add(p, item)
 			if item:is_empty() then return nuke(self) end
+		end
+		for _, p in ipairs(digs) do
+			if trydig(p) then return true end
 		end
 		self.itemstring = item:to_string()
 	end)
