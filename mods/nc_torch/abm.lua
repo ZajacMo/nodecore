@@ -63,7 +63,7 @@ minetest.register_abm({
 		chance = 1,
 		nodenames = {"group:torch_lit"},
 		action = function(pos, node)
-			local expire = minetest.get_meta(pos):get_float("expire") or 0
+			local expire = nodecore.get_torch_expire(minetest.get_meta(pos), node.name)
 			if nodecore.quenched(pos) or nodecore.gametime > expire then
 				minetest.remove_node(pos)
 				minetest.add_item(pos, {name = "nc_fire:lump_ash"})
@@ -91,7 +91,7 @@ nodecore.register_aism({
 				pos = vector.add(pos, vector.multiply(player:get_look_dir(), 0.5))
 			end
 
-			local expire = stack:get_meta():get_float("expire") or 0
+			local expire, dirty = nodecore.get_torch_expire(stack:get_meta(), stack:get_name())
 			if (expire < nodecore.gametime)
 			or nodecore.quenched(pos, data.node and 1 or 0.3) then
 				snufffx(pos)
@@ -103,6 +103,8 @@ nodecore.register_aism({
 			local nn = modname .. ":torch_lit_" .. torchlife(expire, pos)
 			if stack:get_name() ~= nn then
 				stack:set_name(nn)
+				return stack
+			elseif dirty then
 				return stack
 			end
 		end

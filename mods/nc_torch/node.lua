@@ -1,11 +1,29 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, string, tonumber
+    = minetest, nodecore, string, tonumber
+local string_sub
+    = string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
 nodecore.torch_life_base = 120
+function nodecore.get_torch_expire(meta, name)
+	local expire = meta:get_float("expire") or 0
+	if expire > 0 then return expire end
+	local ttl = nodecore.torch_life_base
+	* (nodecore.boxmuller() * 0.1 + 1)
+	if name then
+		local id = tonumber(string_sub(name, -1))
+		if id and id > 1 then
+			ttl = ttl * 0.5 ^ (id - 1)
+		end
+	end
+	expire = nodecore.gametime + ttl
+	meta:set_float("expire", expire)
+	return expire, true
+end
+
 minetest.register_node(modname .. ":torch", {
 		description = "Torch",
 		drawtype = "mesh",
@@ -32,10 +50,8 @@ minetest.register_node(modname .. ":torch", {
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos, node)
 			minetest.set_node(pos, {name = modname .. ":torch_lit"})
+			nodecore.get_torch_expire(minetest.get_meta(pos))
 			nodecore.sound_play("nc_fire_ignite", {gain = 1, pos = pos})
-			local expire = nodecore.gametime + nodecore.torch_life_base
-			* (nodecore.boxmuller() * 0.1 + 1)
-			minetest.get_meta(pos):set_float("expire", expire)
 			if node and node.count and node.count > 1 then
 				nodecore.item_disperse(pos, node.name, node.count - 1)
 			end
