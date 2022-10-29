@@ -5,19 +5,24 @@ local minetest, nodecore, pairs
 
 local cheatmsg = nodecore.translate("CHEATS ENABLED")
 
-local cheats = {
+local interact_cheats = {
 	fly = true,
-	bring = true,
 	teleport = true,
 	pulverize = true,
 	noclip = true,
 	fast = true,
 	ncdqd = true,
-	give = true,
-	["debug"] = true,
-	basic_debug = true,
 	keepinv = true
 }
+
+local always_cheats = {
+	bring = true,
+	give = true,
+	["debug"] = true,
+	basic_debug = true
+}
+
+for k in pairs(always_cheats) do interact_cheats[k] = true end
 
 local function ischeating(player)
 	local cheating = false
@@ -25,7 +30,9 @@ local function ischeating(player)
 	if privs.interact then
 		cheating = cheating or not nodecore.player_can_take_damage(player)
 		cheating = cheating or not nodecore.player_visible(player)
-		for k in pairs(cheats) do cheating = cheating or privs[k] end
+		for k in pairs(interact_cheats) do cheating = cheating or privs[k] end
+	else
+		for k in pairs(always_cheats) do cheating = cheating or privs[k] end
 	end
 	return cheating
 end
@@ -36,7 +43,7 @@ minetest.register_chatcommand("uncheat", {
 		func = function(name)
 			local privs = minetest.get_player_privs(name)
 			local qty = 0
-			for k in pairs(cheats) do
+			for k in pairs(interact_cheats) do
 				if privs[k] then qty = qty + 1 end
 				privs[k] = nil
 			end
