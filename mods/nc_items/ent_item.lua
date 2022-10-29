@@ -38,6 +38,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 		if self.nextscan and nodecore.gametime < self.nextscan then return end
 		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
 
+		local itemname = item:get_name()
 		local boxes = {}
 		for rel in nodecore.settlescan() do
 			local p = vector.add(pos, rel)
@@ -53,10 +54,12 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 					or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z}))) then
 				if not nodecore.buildable_to(p) then
 					local node = minetest.get_node(p)
-					local def = minetest.registered_nodes[node.name]
-					if def and (not def.walkable) and def.diggable
-					and nodecore.tool_digs(hand, def.groups) then
-						minetest.dig_node(p)
+					if node.name ~= itemname then
+						local def = minetest.registered_nodes[node.name]
+						if def and (not def.walkable) and def.diggable
+						and nodecore.tool_digs(hand, def.groups) then
+							minetest.dig_node(p)
+						end
 					end
 				end
 				if nodecore.buildable_to(p) then

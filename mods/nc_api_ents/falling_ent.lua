@@ -24,7 +24,8 @@ local function displace_check(pos)
 	local node = minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
 	if def and def.buildable_to then return end
-	if def and def.diggable and nodecore.tool_digs(hand, def.groups) then
+	if def and def.diggable and def.drop ~= nil and def.drop ~= node.name
+	and nodecore.tool_digs(hand, def.groups) then
 		minetest.dig_node(pos)
 	end
 	for rel in nodecore.settlescan() do
