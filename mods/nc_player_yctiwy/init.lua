@@ -387,6 +387,7 @@ end
 
 local function dropplayer(name, ent, skipsave)
 	ent = ent or db[name]
+	if not ent then return end
 	ent.pname = name
 	drop[#drop + 1] = ent
 	db[name] = nil
