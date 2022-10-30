@@ -388,6 +388,8 @@ IDEAS: Possible future additions/improvements to the game
 	  that are saved in worlddir
 	- If mod is removed, items are replaced with their fallbacks
 	  by the game to avoid unknown_nodes.
+	- More complex items can register ingredients for "uncrafting"
+	  and automatic recycling; could work recursively.
 
 ........................................................................
 ========================================================================

@@ -141,3 +141,5 @@ include("item_dig_destroy")
 
 include("item_groupdump")
 include("item_tiledump")
+
+include("setup_serverversion")
