@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore
-    = error, minetest, nodecore
+local error, minetest, nodecore, pairs, type
+    = error, minetest, nodecore, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -15,10 +15,17 @@ local function register_full_stack(name, def)
 	if not def.tiles then
 		return error("visinv_bulk_optimize invalid on nodes without tiles")
 	end
+	local tiles = {}
+	for k, v in pairs(def.tiles) do
+		tiles[k] = {
+			name = type(v) == "string" and v or v.name,
+			backface_culling = true
+		}
+	end
 	minetest.register_node(":" .. stack_name, nodecore.underride({
 				drawtype = "mesh",
 				mesh = modname .. "_stack.obj",
-				tiles = def.tiles,
+				tiles = tiles,
 				use_texture_alpha = def.use_texture_alpha,
 				paramtype2 = "facedir",
 				groups = {
