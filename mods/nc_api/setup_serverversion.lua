@@ -8,7 +8,7 @@ local os_time
 local modname = minetest.get_current_modname()
 local modstore = minetest.get_mod_storage()
 
-local updated = "NodeCore Updated: @1 -> @2"
+local updated = "NodeCore updated from @1 to @2"
 nodecore.translate_inform(updated)
 
 local verkey = modname .. "_version"
