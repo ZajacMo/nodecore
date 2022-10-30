@@ -67,8 +67,7 @@ nodecore.player_skin = nodecore.player_skin or function(player, options)
 	local privs = options.privs or minetest.get_player_privs(
 		options.privname or name)
 	if options.noarms or not privs.interact then
-		layers[#layers + 1] = modname .. "_no_interact.png"
-		layers[#layers + 1] = "[makealpha:254,0,253"
+		layers[#layers + 1] = "[mask:" .. modname .. "_no_interact.png"
 	end
 	if options.nomouth or not privs.shout then
 		layers[#layers + 1] = modname .. "_no_shout.png"
