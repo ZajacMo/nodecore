@@ -784,6 +784,9 @@ msgstr "NodeCore"
 msgid "NodeCore ALPHA"
 msgstr "NodeCore ALPHA"
 
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore updated from @1 to @2"
+
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
 
