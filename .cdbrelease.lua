@@ -24,9 +24,7 @@ local tags = {
 	"technology"
 }
 
-local screenshots = {}
-if alpha then screenshots[1] = readbinary('.cdb-alpha.jpg') end
-screenshots[#screenshots + 1] = readbinary('.cdb-release.jpg')
+local screenshots = {readbinary(alpha and '.cdb-alpha.jpg' or '.cdb-release.jpg')}
 for i = 1, 5 do
 	screenshots[#screenshots + 1] = readbinary('.cdb-screen' .. i .. '.jpg')
 end
