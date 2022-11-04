@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local include, ipairs, minetest, nodecore, pairs, string, table, type
     = include, ipairs, minetest, nodecore, pairs, string, table, type
-local string_format, string_match, table_sort
-    = string.format, string.match, table.sort
+local string_format, string_match, table_concat, table_sort
+    = string.format, string.match, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -60,12 +60,18 @@ if nodecore.infodump() then
 			for k in pairs(strings) do keys[#keys + 1] = k end
 			table_sort(keys)
 
-			local data = "# textdomain: " .. modname .. "\n"
+			local trdata = {"# textdomain: " .. modname}
+			local podata = {}
 			for _, k in ipairs(keys) do
-				data = data .. k .. "=" .. "\n"
+				trdata[#trdata + 1] = k .. "=" .. "\n"
+				podata[#podata + 1] = "msgid \"" .. k .. "\"\nmsgstr \"" .. k .. "\"\n"
 			end
 
-			local p = minetest.get_worldpath() .. "/" .. modname .. ".template.tr"
-			return minetest.safe_file_write(p, data)
+			minetest.safe_file_write(
+				minetest.get_worldpath() .. "/" .. modname .. ".template.tr",
+				table_concat(trdata, "\n"))
+			minetest.safe_file_write(
+				minetest.get_worldpath() .. "/" .. modname .. ".template.po",
+				table_concat(podata, "\n"))
 		end)
 end
