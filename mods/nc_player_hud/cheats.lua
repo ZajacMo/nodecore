@@ -26,13 +26,20 @@ for k in pairs(always_cheats) do interact_cheats[k] = true end
 
 local function ischeating(player)
 	local cheating = false
-	local privs = minetest.get_player_privs(player:get_player_name())
+	local pname = player:get_player_name()
+	local privs = minetest.get_player_privs(pname)
 	if privs.interact then
 		cheating = cheating or not nodecore.player_can_take_damage(player)
 		cheating = cheating or not nodecore.player_visible(player)
 		for k in pairs(interact_cheats) do cheating = cheating or privs[k] end
 	else
 		for k in pairs(always_cheats) do cheating = cheating or privs[k] end
+	end
+	if not cheating then
+		local pinfo = minetest.get_player_information(pname)
+		if pinfo and pinfo.protocol_version < 40 then
+			cheating = true -- basic_debug not honored
+		end
 	end
 	return cheating
 end
@@ -56,8 +63,8 @@ minetest.register_chatcommand("uncheat", {
 			if player and ischeating(player) then
 				minetest.chat_send_player(name, "Unable to remove"
 					.. " all cheats; may be caused by 3rd party mods,"
-					.. " player admin status, or settings (e.g."
-					.. " enable_damage)")
+					.. " player admin status, settings (e.g."
+					.. " enable_damage), or outdated software")
 			end
 		end
 	})
