@@ -53,9 +53,13 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Cheats
 	- Should these be spun off into a separate mod?
-	- Make /give lit torches work properly again
-		- If lit torch is missing meta, generate it as if
-		  for a freshly lit torch
+		- Maybe a separate mod within the game so they
+		  are still standard and don't require a separate
+		  installation.
+	- Rename the admin hand tool again.
+	- Remove fullbright from admin hand.
+	- Separate command to set a minimum player dynamic light.
+	- Priv to disable skybox/sunlight diminishing by depth?
 	- Add radius to /snuff, /ignite, /growtrees, etc
 	- Add a /soak cheat to push soaking?
 	- Add a /forest or /grove cheat to sprinkle trees around
@@ -155,14 +159,6 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - A way to visualize the infusion rate effects would be nice
 	- Particles don't work due to semitransparent liquid
-
-- Remove fullbright from admin hand.
-	- Separate fullbright priv.
-		- Also disable skybox/sunlight diminishing by depth?
-	- The hand could use a bit of an overhaul too.
-		- Better name, appearance.
-		- Make it look like a tool instead of hand?
-		- Maybe some kind of force entity like a lighting bolt?
 
 - Add a way to extend wandering generations
 	- For glass, heat sources
