@@ -12,6 +12,7 @@ minetest.register_node(supername, nodecore.underride({
 			description = "HAND OF POWER",
 			light_source = 14,
 			tiles = {"[combine:1x1^[noalpha^[colorize:#ffffff:255"},
+			inventory_image = modname .. "_admintool.png",
 			tool_capabilities = nodecore.toolcaps({
 					uses = 0,
 					cracky = 100,
