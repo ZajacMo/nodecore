@@ -7,6 +7,7 @@ players.*
 players
 groups.txt
 nc_api.template.tr
+nc_api.template.po
 texturepack_override.template.txt
 world.mt
 settingtypes.txt

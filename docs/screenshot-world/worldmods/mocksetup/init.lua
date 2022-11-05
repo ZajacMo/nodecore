@@ -93,7 +93,9 @@ end
 
 nodecore.register_playerstep({
 		label = "mock hud/fov clear",
-		action = function(player)
+		action = function(player, data)
+			data.properties.visual_size = {x = 0, y = 0}
+
 			nodecore.hud_set(player, {label = "cheats", ttl = 0})
 			nodecore.hud_set(player, {label = "hintcomplete", ttl = 0})
 
