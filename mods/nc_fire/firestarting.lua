@@ -73,6 +73,6 @@ nodecore.register_craft({
 
 			nodecore.fire_ignite(pos)
 			return nodecore.firestick_spark_ignite(pos,
-				math_random(1, 4) > fs)
+				math_random(1, 4) <= fs)
 		end
 	})
