@@ -152,8 +152,8 @@ nodecore.register_falling_node_step(function(self, dtime)
 				else
 					local ent = minetest.add_item(pos, s)
 					if ent then ent:set_velocity(self.object:get_velocity()) end
+					return self.object:remove()
 				end
-				return self.object:remove()
 			end
 		}
 		nodecore.aism_check_stack(istack, sdata)
