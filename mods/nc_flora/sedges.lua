@@ -146,5 +146,5 @@ nodecore.register_on_peat_compost(function(pos)
 			and #nodecore.find_nodes_around(above, "group:moist", {2, 1, 2}) > 0)
 		then return end
 
-		nodecore.set_loud(above, {name = modname .. ":sedge_1"})
+		nodecore.set_loud(above, {name = modname .. ":sedge_1", param2 = 2})
 	end)
