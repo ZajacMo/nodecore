@@ -229,14 +229,27 @@ end
 
 function nodecore.consume_wield(player, qty)
 	local wielded = player:get_wielded_item()
-	if wielded then
+	if wielded and qty and qty > 0 then
 		local wdef = wielded:get_definition()
-		if wdef.stack_max > 1 and qty then
+		if wdef and wdef.stack_max > 1 then
 			local have = wielded:get_count() - qty
 			if have <= 0 then
 				wielded = ItemStack("")
 			else
 				wielded:set_count(have)
+			end
+		elseif wdef and wdef.type == "tool" then
+			local uses = 1
+			local caps = wielded:get_tool_capabilities()
+			for _, v in pairs(caps and caps.groupcaps or {}) do
+				if v.uses > uses then uses = v.uses end
+			end
+			local wear = wielded:get_wear()
+			wear = wear + (65535 / uses) * (1 + nodecore.boxmuller() * 0.05)
+			if wear > 65536 then
+				wielded = ItemStack("")
+			else
+				wielded:set_wear(wear)
 			end
 		end
 		return player:set_wielded_item(wielded)

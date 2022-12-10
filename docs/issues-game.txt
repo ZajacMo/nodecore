@@ -32,6 +32,9 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Maybe add a generic "# hints completed" qualifier?
 		- Maybe add a number of hours played (non-idle) qualifier?
 
+- Stylus is probably worth hiding too until player has
+  made pliant concrete.
+
 - All flora should be radiation-sensitive.
 	- Currently only flowers, add sedges and rushes
 	- Should be at risk of harm during growth or spreading
