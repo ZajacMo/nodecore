@@ -67,7 +67,8 @@ nodecore.register_aism({
 		interval = 1,
 		chance = 1,
 		itemnames = {modname .. ":tree"},
-		action = function(stack)
+		action = function(stack, data)
+			if data.fallingent then return end
 			stack:set_name(modname .. ":log")
 			return stack
 		end
