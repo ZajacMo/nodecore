@@ -65,6 +65,8 @@ AFTER 5.5 EOS:
   should be blocked starting in 5.6.
 - We can start to use fancy particle spawner blending effects
   e.g. allowing scaling particles to glow in the dark.
+- We can start using fancy new particlespawners with attractors and such.
+- We can switch consume_wield to use add_wear_by_uses instead of random hack.
 
 AFTER 5.6 EOS:
 
