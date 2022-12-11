@@ -50,7 +50,7 @@ hand.on_place = function(stack, player, pointed, ...)
 	if groups.scaling_time then
 		timecost = timecost * groups.scaling_time / 100
 	else
-		if def.climbable then timecost = timecost * 0.25 end
+		if def and def.climbable then timecost = timecost * 0.25 end
 		if groups.cobbley then timecost = timecost * 0.75 end
 		if groups.falling_node then timecost = timecost * 1.2 end
 	end
