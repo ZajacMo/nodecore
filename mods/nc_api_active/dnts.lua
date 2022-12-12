@@ -57,7 +57,7 @@ local function dnt_timer(data)
 	end
 
 	if not nexttime then return data_save(data) end
-	if data.timer and (data.timer > now) and (nexttime >= data.timer)
+	if data.timer and (data.timer > now) and (nexttime > data.timer)
 	and (nexttime < data.timer + 1) then return data_save(data) end
 
 	local delay = nexttime - now
