@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, string, vector
+    = minetest, nodecore, string, vector
+local string_gsub
+    = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -47,7 +49,7 @@ for i = 1, #nodecore.writing_glyphs do
 				local raw = nodecore.touchtip_node(under, nil, player)
 				if raw and vector.equals(vector.subtract(under, pos),
 					nodecore.facedirs[node.param2].b) then
-					return desc .. raw
+					return desc .. string_gsub(raw, "^ +", "")
 				end
 				return raw
 			end,
