@@ -67,6 +67,7 @@ AFTER 5.5 EOS:
   e.g. allowing scaling particles to glow in the dark.
 - We can start using fancy new particlespawners with attractors and such.
 - We can switch consume_wield to use add_wear_by_uses instead of random hack.
+- Remove compat_modstore.
 
 AFTER 5.6 EOS:
 
