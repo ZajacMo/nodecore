@@ -52,6 +52,14 @@ local function ablation(pos, node)
 	end
 end
 
+nodecore.register_on_nodeupdate(function(pos)
+		local key = hash(pos)
+		local cd = cooldowns[key]
+		if cd and cd > nodecore.gametime + 1 then
+			cooldowns[key] = nodecore.gametime + 1
+		end
+	end)
+
 nodecore.register_dnt({
 		name = dntname,
 		nodenames = {"group:optic_lens_emit"},
