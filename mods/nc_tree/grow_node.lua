@@ -94,6 +94,7 @@ local epdef = nodecore.underride({
 		special_tiles = {modname .. "_eggcorn_planted.png"},
 		drop = ldname,
 		no_self_repack = true,
+		paramtype = "light",
 		groups = {grassable = 0}
 	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
