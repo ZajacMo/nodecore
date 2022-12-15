@@ -142,7 +142,6 @@ nodecore.register_soaking_abm({
 				local j = math_random(1, i)
 				growdirs[i], growdirs[j] = growdirs[j], growdirs[i]
 			end
-			local spawned = {}
 			for _, rel in ipairs(growdirs) do
 				local dest = vector.add(pos, rel)
 				local node = minetest.get_node(dest)
@@ -151,13 +150,11 @@ nodecore.register_soaking_abm({
 					node = minetest.get_node(below)
 					if node.name == living or sand[node.name] then
 						nodecore.set_loud(dest, {name = living})
-						spawned[#spawned + 1] = dest
 						if dest.y <= pos.y and math_random(1, 2) == 1 then
 							nodecore.soaking_abm_push(dest,
 								"spongegrow", data.total - realcost)
-							return false
 						end
-						return
+						return false
 					end
 				end
 			end
