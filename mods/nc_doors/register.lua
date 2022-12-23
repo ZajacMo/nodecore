@@ -123,15 +123,18 @@ end
 nodecore.register_door("nc_woodwork", "plank", "Wooden", "nc_woodwork:staff", 2)
 nodecore.register_door("nc_terrain", "cobble", "Cobble", "nc_lode:rod_tempered", 3)
 
-for k, v in pairs(minetest.registered_nodes) do
-	if v.groups and v.groups.stone_bricks == 2
-	and not (v.groups.door or v.groups.door_panel) then
-		nodecore.register_door(
-			k:gsub(":.*", ""),
-			k:gsub(".*:", ""),
-			v.description:gsub("Bricks", "Brick"),
-			"nc_lode:rod_tempered",
-			4
-		)
-	end
-end
+nodecore.register_on_register_item({
+		retroactive = true,
+		func = function(name, def)
+			if def.groups and def.groups.stone_bricks == 2
+			and not (def.groups.door or def.groups.door_panel) then
+				nodecore.register_door(
+					name:gsub(":.*", ""),
+					name:gsub(".*:", ""),
+					def.description:gsub("Bricks", "Brick"),
+					"nc_lode:rod_tempered",
+					4
+				)
+			end
+		end
+	})
