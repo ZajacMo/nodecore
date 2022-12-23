@@ -5,8 +5,6 @@ local string_gsub
     = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
 local modname = minetest.get_current_modname()
 
 local nodepref = modname .. ":glyph"

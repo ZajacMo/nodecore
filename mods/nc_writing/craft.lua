@@ -5,8 +5,6 @@ local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
-
 local modname = minetest.get_current_modname()
 
 local nodepref = modname .. ":glyph"
