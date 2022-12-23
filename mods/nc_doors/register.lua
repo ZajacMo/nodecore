@@ -19,9 +19,9 @@ local tilemods = {
 	{idx = 6, part = "side", tran = "R180"}
 }
 
-function nodecore.register_door(basemod, basenode, desc, pin, lv)
+function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 	local basefull = basemod .. ":" .. basenode
-	local basedef = minetest.registered_nodes[basefull]
+	basedef = basedef or minetest.registered_nodes[basefull]
 
 	local tiles = nodecore.underride({}, basedef.tiles)
 	while #tiles < 6 do tiles[#tiles + 1] = tiles[#tiles] end
@@ -133,7 +133,8 @@ nodecore.register_on_register_item({
 					name:gsub(".*:", ""),
 					def.description:gsub("Bricks", "Brick"),
 					"nc_lode:rod_tempered",
-					4
+					4,
+					def
 				)
 			end
 		end
