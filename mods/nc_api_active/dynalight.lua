@@ -210,7 +210,7 @@ minetest.register_node(shadenode, nodecore.underride({
 nodecore.register_dnt({
 		name = modname .. ":shadenode_check",
 		nodenames = {shadenode},
-		time = 4,
+		time = 1,
 		autostart = true,
 		action = function(pos)
 			return minetest.remove_node(pos)
