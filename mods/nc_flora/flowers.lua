@@ -181,7 +181,7 @@ end
 
 minetest.register_abm({
 		label = "flowers wilting/growing",
-		interval = 1,
+		interval = 2,
 		chance = 100,
 		nodenames = {"group:flower_living"},
 		arealoaded = 2,
