@@ -229,9 +229,6 @@ regterrain({
 		visinv_bulk_optimize = true
 	})
 
-local water_alpha = "^[opacity:192"
-local water_alpha_gray = "^[opacity:160"
-
 local function anim(name, len)
 	return {
 		name = name,
@@ -244,19 +241,24 @@ local function anim(name, len)
 		backface_culling = false
 	}
 end
-local function gray(suff)
-	local t = modname .. "_water" .. suff .. ".png"
-	local g = modname .. "_water_gray" .. suff .. ".png"
-	return t .. "^(" .. g .. "^[opacity:64)" .. water_alpha_gray
+
+local function watertile(flow, gray)
+	local suff = flow and "_flow" or ""
+
+	local t = modname .. "_water" .. suff .. ".png^[noalpha"
+	if not gray then return t .. "^[opacity:192" end
+
+	return t .. "^(" .. modname .. "_water_gray" .. suff
+	.. ".png^[opacity:64)^[opacity:160"
 end
 
 regliquid({
 		description = "Water",
 		mapgen = {"water_source"},
-		tiles = {anim(modname .. "_water.png" .. water_alpha, 4)},
+		tiles = {anim(watertile(), 4)},
 		special_tiles = {
-			anim(modname .. "_water_flow.png" .. water_alpha, 4),
-			anim(modname .. "_water_flow.png" .. water_alpha, 4)
+			anim(watertile(true), 4),
+			anim(watertile(true), 4)
 		},
 		use_texture_alpha = "blend",
 		paramtype = "light",
@@ -275,10 +277,10 @@ regliquid({
 		name = "river_water",
 		description = "Water",
 		mapgen = {"river_water_source"},
-		tiles = {anim(modname .. "_water.png" .. water_alpha, 4)},
+		tiles = {anim(watertile(), 4)},
 		special_tiles = {
-			anim(modname .. "_water_flow.png" .. water_alpha, 4),
-			anim(modname .. "_water_flow.png" .. water_alpha, 4)
+			anim(watertile(true), 4),
+			anim(watertile(true), 4)
 		},
 		use_texture_alpha = "blend",
 		paramtype = "light",
@@ -297,10 +299,10 @@ regliquid({
 regliquid({
 		name = "water_gray",
 		description = "Water",
-		tiles = {anim(gray(""), 4)},
+		tiles = {anim(watertile(nil, true), 4)},
 		special_tiles = {
-			anim(gray("_flow"), 4),
-			anim(gray("_flow"), 4)
+			anim(watertile(true, true), 4),
+			anim(watertile(true, true), 4)
 		},
 		use_texture_alpha = "blend",
 		paramtype = "light",
