@@ -246,7 +246,7 @@ local function watertile(flow, gray)
 	local suff = flow and "_flow" or ""
 
 	local t = modname .. "_water" .. suff .. ".png^[noalpha"
-	if not gray then return t .. "^[opacity:192" end
+	if not gray then return t .. "^[opacity:180" end
 
 	return t .. "^(" .. modname .. "_water_gray" .. suff
 	.. ".png^[opacity:64)^[opacity:160"
