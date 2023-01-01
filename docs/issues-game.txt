@@ -45,15 +45,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- If player places a door panel against the face of another
 	  door panel (sneak+place) then match axis if possible.
 
-- Instead of always displacing nodes upon falling node landing, should
-  check for diggability and if diggable, convert to drops.
-	- If a mod adds a second loose-leaves-like node (falling,
-	  non-walkable, e.g. nc_nature loose shrub) then it and loose
-	  leaves in a narrow deep pit will constantly replace each
-	  other.
-	- Possibly eject with some scattering.
-	- Sedges being displaced shouldn't be allowed.
-
 - Cheats
 	- Should these be spun off into a separate mod?
 		- Maybe a separate mod within the game so they
