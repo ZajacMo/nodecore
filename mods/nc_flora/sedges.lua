@@ -65,17 +65,15 @@ for i = 1, 5 do
 			after_place_node = function(pos)
 				local node = minetest.get_node(pos)
 				if node.name ~= sedgename then return end
-				local r = math_random(1, 31)
-				if r >= 16 then
+				local r = math_random(1, 15)
+				if r >= 8 then
 					node.name = modname .. ":sedge_1"
-				elseif r >= 8 then
-					node.name = modname .. ":sedge_2"
 				elseif r >= 4 then
-					node.name = modname .. ":sedge_3"
+					node.name = modname .. ":sedge_2"
 				elseif r >= 2 then
-					node.name = modname .. ":sedge_4"
+					node.name = modname .. ":sedge_3"
 				else
-					node.name = modname .. ":sedge_5"
+					node.name = modname .. ":sedge_4"
 				end
 				if node.name == sedgename then return end
 				nodecore.set_node_check(pos, node)
