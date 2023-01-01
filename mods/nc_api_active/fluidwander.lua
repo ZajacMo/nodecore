@@ -14,10 +14,10 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 	movedist = movedist or 2
 	scandist = scandist or 8
 	local function movesrc(pos, np, node, flowname, gen)
+		minetest.set_node(pos, {name = flowname, param2 = 7})
 		minetest.set_node(np, node)
 		minetest.get_meta(np):set_int("fluidgen_" .. name, gen + 1)
-		minetest.set_node(pos, {name = flowname, param2 = 7})
-		nodecore.dnt_set(pos, "fluidwander_" .. name)
+		nodecore.dnt_set(np, "fluidwander_" .. name)
 	end
 	return function(pos, node)
 		local meta = minetest.get_meta(pos)
