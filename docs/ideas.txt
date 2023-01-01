@@ -112,10 +112,6 @@ IDEAS: Possible future additions/improvements to the game
 		- Source of special materials like ash? Cheaper peat?
 		- Upconvert dirt to humus nearby?
 
-- A pure white concrete material?
-	- Use crude glass for recipe?  Flow wet concrete into crude
-	  glass from above?
-
 - Magnets or other items to help find metal, especially locating
   lost valuable tools, totes, etc?
 

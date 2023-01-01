@@ -29,6 +29,18 @@ minetest.register_node(modname .. ":adobe", {
 		sounds = nodecore.sounds("nc_terrain_stony")
 	})
 
+minetest.register_node(modname .. ":cloudstone", {
+		description = "Cloudstone",
+		tiles = {modname .. "_cloudstone.png"},
+		groups = {
+			cracky = 1,
+			cloudstone = 1
+		},
+		drop_in_place = "nc_optics:glass_crude",
+		crush_damage = 1,
+		sounds = nodecore.sounds("nc_terrain_stony")
+	})
+
 local coaldef = minetest.registered_nodes["nc_fire:coal8"]
 local coalparticles = coaldef and function(pos)
 	if nodecore.silktouch_digging then return end
@@ -82,6 +94,13 @@ nodecore.register_stone_bricks("coalstone", "Tarstone",
 	"nc_terrain_stone.png^[colorize:#000000:160",
 	255, 160,
 	modname .. ":coalstone",
+	{cracky = 2},
+	{cracky = 3, nc_door_scuff_opacity = 16}
+)
+nodecore.register_stone_bricks("cloudstone", "Cloudstone",
+	modname .. "_cloudstone.png",
+	128, 64,
+	modname .. ":cloudstone",
 	{cracky = 2},
 	{cracky = 3, nc_door_scuff_opacity = 16}
 )

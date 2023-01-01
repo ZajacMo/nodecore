@@ -31,8 +31,9 @@ end
 local function patttile(etch, patt)
 	if patt.blank then return function(...) return ... end end
 	return function(t)
-		return t .. "^(" .. patt.pattern_tile .. "^[opacity:"
-		.. (etch.pattern_opacity or 64) .. ")"
+		return t .. "^(" .. patt.pattern_tile
+		.. (etch.pattern_invert and "^[invert:rgb" or "")
+		.. "^[opacity:" .. (etch.pattern_opacity or 64) .. ")"
 	end
 end
 

@@ -6,6 +6,8 @@ local ItemStack, minetest, nodecore
 local modname = minetest.get_current_modname()
 local localpref = modname .. ":" .. modname:gsub("^nc_", "") .. "_"
 
+------------------------------------------------------------------------
+
 nodecore.register_concrete_etchable({
 		basename = "nc_terrain:stone",
 		pliant = {
@@ -29,6 +31,8 @@ nodecore.register_concrete({
 	})
 minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
 minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
+
+------------------------------------------------------------------------
 
 nodecore.register_concrete_etchable({
 		basename = modname .. ":sandstone",
@@ -55,6 +59,8 @@ nodecore.register_concrete({
 		to_molded = localpref .. "sandstone_blank_ply"
 	})
 
+------------------------------------------------------------------------
+
 nodecore.register_concrete_etchable({
 		basename = modname .. ":adobe",
 		pattern_opacity = 56,
@@ -80,6 +86,8 @@ nodecore.register_concrete({
 		to_molded = localpref .. "adobe_blank_ply"
 	})
 
+------------------------------------------------------------------------
+
 nodecore.register_concrete_etchable({
 		basename = modname .. ":coalstone",
 		pattern_opacity = 40,
@@ -104,6 +112,35 @@ nodecore.register_concrete({
 		to_washed = "nc_terrain:gravel",
 		to_molded = localpref .. "coalstone_blank_ply"
 	})
+
+------------------------------------------------------------------------
+
+nodecore.register_concrete_etchable({
+		basename = modname .. ":cloudstone",
+		pattern_opacity = 32,
+		pattern_invert = true,
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			drop_in_place = modname .. ":cloudmix_wet_source",
+			silktouch = false
+		}
+	})
+nodecore.register_concrete({
+		name = "cloudmix",
+		description = "Cloudy Mix",
+		tile_powder = modname .. "_cloudstone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
+		tile_wet = modname .. "_cloudstone.png^(nc_fire_ash.png^("
+		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)",
+		sound = "nc_terrain_crunchy",
+		groups_powder = {crumbly = 1},
+		swim_color = {r = 210, g = 210, b = 210},
+		craft_from_keys = {"nc_optics:glass_crude"},
+		craft_from = {"nc_optics:glass_crude"},
+		to_crude = "nc_terrain:dirt",
+		to_washed = "nc_terrain:dirt",
+		to_molded = localpref .. "cloudstone_blank_ply"
+	})
+------------------------------------------------------------------------
 
 do
 	local aggwet = modname .. ":aggregate_wet_source"
