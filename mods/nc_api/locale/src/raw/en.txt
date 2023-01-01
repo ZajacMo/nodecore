@@ -250,8 +250,14 @@ msgstr "Bindy"
 msgid "Bindy Adobe"
 msgstr "Bindy Adobe"
 
+msgid "Bindy Cloudstone"
+msgstr "Bindy Cloudstone"
+
 msgid "Bindy Pliant Adobe"
 msgstr "Bindy Pliant Adobe"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Bindy Pliant Cloudstone"
 
 msgid "Bindy Pliant Sandstone"
 msgstr "Bindy Pliant Sandstone"
@@ -313,6 +319,15 @@ msgstr "Bonded Adobe Brick Panel"
 msgid "Bonded Adobe Bricks"
 msgstr "Bonded Adobe Bricks"
 
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "Bonded Cloudstone Brick Hinged Panel"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "Bonded Cloudstone Brick Panel"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "Bonded Cloudstone Bricks"
+
 msgid "Bonded Sandstone Brick Hinged Panel"
 msgstr "Bonded Sandstone Brick Hinged Panel"
 
@@ -346,8 +361,14 @@ msgstr "Boxy"
 msgid "Boxy Adobe"
 msgstr "Boxy Adobe"
 
+msgid "Boxy Cloudstone"
+msgstr "Boxy Cloudstone"
+
 msgid "Boxy Pliant Adobe"
 msgstr "Boxy Pliant Adobe"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "Boxy Pliant Cloudstone"
 
 msgid "Boxy Pliant Sandstone"
 msgstr "Boxy Pliant Sandstone"
@@ -373,8 +394,14 @@ msgstr "Bricky"
 msgid "Bricky Adobe"
 msgstr "Bricky Adobe"
 
+msgid "Bricky Cloudstone"
+msgstr "Bricky Cloudstone"
+
 msgid "Bricky Pliant Adobe"
 msgstr "Bricky Pliant Adobe"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "Bricky Pliant Cloudstone"
 
 msgid "Bricky Pliant Sandstone"
 msgstr "Bricky Pliant Sandstone"
@@ -418,6 +445,15 @@ msgstr "Clear Glass"
 msgid "Clear Glass Case"
 msgstr "Clear Glass Case"
 
+msgid "Cloudstone"
+msgstr "Cloudstone"
+
+msgid "Cloudstone Bricks"
+msgstr "Cloudstone Bricks"
+
+msgid "Cloudy Mix"
+msgstr "Cloudy Mix"
+
 msgid "Cobble"
 msgstr "Cobble"
 
@@ -450,9 +486,6 @@ msgstr "Discovery"
 
 msgid "Displaced Node"
 msgstr "Displaced Node"
-
-msgid "Donate: https://liberapay.com/NodeCore"
-msgstr "Donate: https://liberapay.com/NodeCore"
 
 msgid "Dry Rush"
 msgstr "Dry Rush"
@@ -571,8 +604,14 @@ msgstr "Hashy"
 msgid "Hashy Adobe"
 msgstr "Hashy Adobe"
 
+msgid "Hashy Cloudstone"
+msgstr "Hashy Cloudstone"
+
 msgid "Hashy Pliant Adobe"
 msgstr "Hashy Pliant Adobe"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "Hashy Pliant Cloudstone"
 
 msgid "Hashy Pliant Sandstone"
 msgstr "Hashy Pliant Sandstone"
@@ -598,8 +637,14 @@ msgstr "Horzy"
 msgid "Horzy Adobe"
 msgstr "Horzy Adobe"
 
+msgid "Horzy Cloudstone"
+msgstr "Horzy Cloudstone"
+
 msgid "Horzy Pliant Adobe"
 msgstr "Horzy Pliant Adobe"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "Horzy Pliant Cloudstone"
 
 msgid "Horzy Pliant Sandstone"
 msgstr "Horzy Pliant Sandstone"
@@ -631,8 +676,14 @@ msgstr "Iceboxy"
 msgid "Iceboxy Adobe"
 msgstr "Iceboxy Adobe"
 
+msgid "Iceboxy Cloudstone"
+msgstr "Iceboxy Cloudstone"
+
 msgid "Iceboxy Pliant Adobe"
 msgstr "Iceboxy Pliant Adobe"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "Iceboxy Pliant Cloudstone"
 
 msgid "Iceboxy Pliant Sandstone"
 msgstr "Iceboxy Pliant Sandstone"
@@ -844,6 +895,9 @@ msgstr "Player's Guide: Tips and Guidance"
 msgid "Pliant Adobe"
 msgstr "Pliant Adobe"
 
+msgid "Pliant Cloudstone"
+msgstr "Pliant Cloudstone"
+
 msgid "Pliant Sandstone"
 msgstr "Pliant Sandstone"
 
@@ -1051,8 +1105,14 @@ msgstr "Vermy"
 msgid "Vermy Adobe"
 msgstr "Vermy Adobe"
 
+msgid "Vermy Cloudstone"
+msgstr "Vermy Cloudstone"
+
 msgid "Vermy Pliant Adobe"
 msgstr "Vermy Pliant Adobe"
+
+msgid "Vermy Pliant Cloudstone"
+msgstr "Vermy Pliant Cloudstone"
 
 msgid "Vermy Pliant Sandstone"
 msgstr "Vermy Pliant Sandstone"
@@ -1078,8 +1138,14 @@ msgstr "Verty"
 msgid "Verty Adobe"
 msgstr "Verty Adobe"
 
+msgid "Verty Cloudstone"
+msgstr "Verty Cloudstone"
+
 msgid "Verty Pliant Adobe"
 msgstr "Verty Pliant Adobe"
+
+msgid "Verty Pliant Cloudstone"
+msgstr "Verty Pliant Cloudstone"
 
 msgid "Verty Pliant Sandstone"
 msgstr "Verty Pliant Sandstone"
@@ -1122,6 +1188,9 @@ msgstr "Wet Adobe Mix"
 
 msgid "Wet Aggregate"
 msgstr "Wet Aggregate"
+
+msgid "Wet Cloudy Mix"
+msgstr "Wet Cloudy Mix"
 
 msgid "Wet Render"
 msgstr "Wet Render"
@@ -1542,6 +1611,9 @@ msgstr "melt sand into molten glass"
 
 msgid "melt stone into pumwater"
 msgstr "melt stone into pumwater"
+
+msgid "mix crude glass into ash to make cloudy mix"
+msgstr "mix crude glass into ash to make cloudy mix"
 
 msgid "mix dirt into ash to make adobe mix"
 msgstr "mix dirt into ash to make adobe mix"
