@@ -34,7 +34,10 @@ nodecore.register_hint("add coal to aggregate to make tarstone",
 	"craft:" .. modname .. ":coalaggregate",
 	{"nc_fire:lump_coal", modname .. ":aggregate"}
 )
-
+nodecore.register_hint("mix crude glass into ash to make cloudy mix",
+	"mix cloudmix",
+	{"nc_optics:glass_crude", "nc_fire:ash"}
+)
 nodecore.register_hint("wet a concrete mix",
 	"group:concrete_wet",
 	"group:concrete_powder"
