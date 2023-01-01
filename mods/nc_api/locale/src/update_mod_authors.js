@@ -83,8 +83,15 @@ const done = async () => {
 	const license = (await fsp.readFile(licensefile))
 		.toString()
 		.split('\n');
+	let transection;
 	for(let i = 0; i < license.length; i++) {
 		const line = license[i];
+
+		if(/^Translat/.test(line))
+			transection = true;
+		if(!transection)
+			continue;
+
 		if(/^Portions/.test(line)) {
 			const m = line.match(/<([^>]+)>/);
 			if(m && lines[m[1]]) {

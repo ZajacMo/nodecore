@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-05-11 06:20+0000\n"
+"PO-Revision-Date: 2022-11-15 15:47+0000\n"
 "Last-Translator: kuboid <community@radtournetz.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
@@ -9,11 +9,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
-"- Wirf Gegenstände auf den Boden, um beständige Blockstapel zu erzeugen."
+"- Wirf Gegenstände aufeinander auf den Boden, sie bilden Stapel, die nicht "
+"mit der Zeit verschwinden."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
@@ -43,7 +44,7 @@ msgstr ""
 msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
 msgstr ""
 "- Blöcke, die nicht mit dem richtigen Werkzeug abgebaut wurden, können nicht "
-"aufgehoben, sondern nur verschoben werden."
+"aufgehoben sondern nur verschoben werden."
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr "- Erze mögen versteckt sein, aber das umgebende Gelände gibt Hinweise."
@@ -133,8 +134,7 @@ msgstr ""
 
 msgid "- Can't dig trees or grass? Search for sticks in the canopy."
 msgstr ""
-"- Nicht in der Lage Bäume oder Gras abzubauen? Suche Stöcke in den "
-"Baumkronen."
+"- Du kannst keine Bäume oder Gras abzubauen? Suche Stöcke in den Baumkronen."
 
 msgid "- Order and specific face of placement may matter for crafting."
 msgstr ""
@@ -147,7 +147,7 @@ msgstr ""
 "umzuordnen."
 
 msgid "- Crafting is done by building recipes in-world."
-msgstr "- Werken funktioniert, indem man Baumuster in der Welt aufbaut."
+msgstr "- Werken funktioniert, indem man Baumuster in der Welt auslegt."
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
@@ -233,7 +233,7 @@ msgstr "Holzleiter"
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
-"- Hüte dich vor dunklen Höhlen oder Kluften; du musst selbst wieder "
+"- Hüte dich vor dunklen Höhlen oder Schluchten; du musst selbst wieder "
 "herausfinden."
 
 msgid "Annealed Lode Mallet"
@@ -396,7 +396,7 @@ msgid "Annealed Lode Pick Head"
 msgstr "Geglühter Lodepickelkopf"
 
 msgid "Annealed Lode Rake"
-msgstr "Geglühter Lodeharke"
+msgstr "Geglühte Lodeharke"
 
 msgid "Annealed Lode Rod"
 msgstr "Geglühte Lodestange"
@@ -460,7 +460,7 @@ msgid "DEVELOPMENT VERSION"
 msgstr "ENTWICKLER-VERSION"
 
 msgid "Dirt"
-msgstr "Dreck"
+msgstr "Erde"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Discord: https://discord.gg/NNYeF6f"
@@ -856,7 +856,7 @@ msgid "Wooden Mallet Head"
 msgstr "Holzhammerkopf"
 
 msgid "Wooden Panel"
-msgstr "Holzplatte"
+msgstr "Holzklappe"
 
 msgid "Wooden Pick"
 msgstr "Holzpickel"
@@ -1667,7 +1667,7 @@ msgid "assemble a wooden shelf from a form and plank"
 msgstr "setze ein Holzregal aus einer Form und einer Planke zusammen"
 
 msgid "chip chromatic glass into prisms"
-msgstr "Prismen aus chromatischem Glas herstellen"
+msgstr "Stelle Prismen aus chromatischem Glas her"
 
 msgid "find an eggcorn"
 msgstr "finde eine Eichel"
@@ -1685,7 +1685,7 @@ msgid "leach raked dirt to sand"
 msgstr "wasche geharkten Dreck zu Sand aus"
 
 msgid "leach raked humus to dirt"
-msgstr "wasche geharkten Humus zu Dreck aus"
+msgstr "wasche geharkten Humus zu Erde aus"
 
 msgid "Bonded Adobe Brick Panel"
 msgstr "gebundene Lehmziegelklappe"
@@ -1798,3 +1798,46 @@ msgstr "beschichte ein Lode-Werkzeug mit Lux"
 
 msgid "pack up a complete tote"
 msgstr "stelle eine komplette Tasche zusammen"
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- erscheint etwas mühsam? Erfinde Technik, nützliche Einflüsse oder finde "
+"einen einfacheren Weg."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Rechtsklick auf Wände/Decken halten oder wiederholen mit bloßer Hand um "
+"Kletterstellen zu erzeugen."
+
+msgid "Lantern"
+msgstr "Laterne"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Spenden: https://liberapay.com/NodeCore"
+
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore aktualisiert von @1 auf @2"
+
+msgid "Offline Player"
+msgstr "Offline-Spieler"
+
+msgid "assemble a lantern from a tote handle"
+msgstr "Baue eine Laterne aus einem Taschengriff"
+
+msgid "charge a lantern"
+msgstr "Befülle eine Laterne"
+
+#, fuzzy
+msgid "find pumwater"
+msgstr "Finde Pumwasser"
+
+#, fuzzy
+msgid "observe lux criticality"
+msgstr "beobachte Lux in kritischem Zustand"
+
+msgid "fully charge a lantern"
+msgstr "fülle eine Laterne vollständig"
+
+#, fuzzy
+msgid "melt stone into pumwater"
+msgstr "schmilz Stein in Pumwasser"

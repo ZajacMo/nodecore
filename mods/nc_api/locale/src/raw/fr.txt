@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-07-20 22:17+0000\n"
+"PO-Revision-Date: 2022-11-09 20:49+0000\n"
 "Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -479,7 +479,7 @@ msgid "cut down a tree"
 msgstr "couper un arbre"
 
 msgid "chip chromatic glass into prisms"
-msgstr "couper du verre chromatique en prismes"
+msgstr "découper du verre chromatique en prismes"
 
 msgid "chisel a hinge groove into a wooden plank"
 msgstr "ciseler une charnière dans une planche en bois"
@@ -1746,3 +1746,29 @@ msgid "- Something seems tedious? Find better tech, subtle factors, or a better 
 msgstr ""
 "- Quelque chose semble pénible ? Trouver une meilleure technologie, des "
 "facteurs subtils, ou un meilleur moyen."
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Dons : https://liberapay.com/NodeCore"
+
+msgid "Lantern"
+msgstr "Lanterne"
+
+msgid "charge a lantern"
+msgstr "charger une lanterne"
+
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore s'est mis à jour de la version @1 à @2"
+
+msgid "Offline Player"
+msgstr "Joueur hors ligne"
+
+msgid "assemble a lantern from a tote handle"
+msgstr "assembler une lanterne à partir d'une poignée de sac"
+
+msgid "fully charge a lantern"
+msgstr "charger entièrement une lanterne"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Maintenir/Répéter le clic droit sur les murs/plafonds à mains nues pour "
+"créer une prise d'escalade."
