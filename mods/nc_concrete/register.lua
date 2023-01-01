@@ -135,7 +135,7 @@ nodecore.register_concrete({
 		groups_powder = {crumbly = 1},
 		swim_color = {r = 210, g = 210, b = 210},
 		craft_from_keys = {"nc_optics:glass_crude"},
-		craft_from = {"nc_optics:glass_crude"},
+		craft_from = "nc_optics:glass_crude",
 		to_crude = "nc_terrain:dirt",
 		to_washed = "nc_terrain:dirt",
 		to_molded = localpref .. "cloudstone_blank_ply"
