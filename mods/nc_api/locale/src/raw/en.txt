@@ -1612,8 +1612,8 @@ msgstr "melt sand into molten glass"
 msgid "melt stone into pumwater"
 msgstr "melt stone into pumwater"
 
-msgid "mix crude glass into ash to make cloudy mix"
-msgstr "mix crude glass into ash to make cloudy mix"
+msgid "mix crude glass into ash to make spackling"
+msgstr "mix crude glass into ash to make spackling"
 
 msgid "mix dirt into ash to make adobe mix"
 msgstr "mix dirt into ash to make adobe mix"
