@@ -127,7 +127,7 @@ nodecore.register_concrete_etchable({
 	})
 nodecore.register_concrete({
 		name = "cloudmix",
-		description = "Cloudy Mix",
+		description = "Spackling",
 		tile_powder = modname .. "_cloudstone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
 		tile_wet = modname .. "_cloudstone.png^(nc_fire_ash.png^("
 		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)",

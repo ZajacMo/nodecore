@@ -451,9 +451,6 @@ msgstr "Cloudstone"
 msgid "Cloudstone Bricks"
 msgstr "Cloudstone Bricks"
 
-msgid "Cloudy Mix"
-msgstr "Cloudy Mix"
-
 msgid "Cobble"
 msgstr "Cobble"
 
@@ -976,6 +973,9 @@ msgstr "See included LICENSE file for full details and credits"
 msgid "Shining Lens"
 msgstr "Shining Lens"
 
+msgid "Spackling"
+msgstr "Spackling"
+
 msgid "Sponge"
 msgstr "Sponge"
 
@@ -1189,11 +1189,11 @@ msgstr "Wet Adobe Mix"
 msgid "Wet Aggregate"
 msgstr "Wet Aggregate"
 
-msgid "Wet Cloudy Mix"
-msgstr "Wet Cloudy Mix"
-
 msgid "Wet Render"
 msgstr "Wet Render"
+
+msgid "Wet Spackling"
+msgstr "Wet Spackling"
 
 msgid "Wet Sponge"
 msgstr "Wet Sponge"
