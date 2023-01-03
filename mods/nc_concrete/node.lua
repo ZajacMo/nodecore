@@ -108,7 +108,7 @@ nodecore.register_stone_bricks("cloudstone", "Cloudstone",
 	{cracky = 2},
 	{
 		cracky = 3,
-		nc_door_scuff_opacity = 128,
+		nc_door_scuff_opacity = 96,
 		door_operate_sound_volume = 25
 	}
 )
