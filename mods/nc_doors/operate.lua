@@ -38,6 +38,17 @@ local is_door = {groups = {door = true}}
 local door_operate_queue = {}
 local operate_success = {}
 
+local function door_operate_sound(pos, node)
+	node = node or minetest.get_node(pos)
+	local def = minetest.registered_nodes[node.name]
+	local vol = def and def.groups and def.groups.door_operate_sound_volume
+
+	local gain = 0.5
+	if vol and vol > 0 then gain = gain * vol / 100 end
+	nodecore.sound_play("nc_doors_operate",
+		{pos = pos, gain = gain})
+end
+
 local function operate_door_core(pos, node, dir)
 	local key = hashpos(pos)
 	operate_success[key] = nil
@@ -117,8 +128,7 @@ local function operate_door_core(pos, node, dir)
 			axis = hinge
 		}
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
-			nodecore.sound_play("nc_doors_operate",
-				{pos = press.pos, gain = 0.5})
+			door_operate_sound(press.pos)
 			operate_success[key] = true
 			return
 		end
@@ -152,8 +162,7 @@ local function operate_door_core(pos, node, dir)
 			local k = "sfx" .. hashpos(p)
 			if not squelch[k] then
 				squelch[k] = 0
-				nodecore.sound_play("nc_doors_operate",
-					{pos = v.pos, gain = 0.5})
+				door_operate_sound(v.pos)
 			end
 		else
 			nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})

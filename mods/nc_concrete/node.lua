@@ -95,12 +95,20 @@ nodecore.register_stone_bricks("coalstone", "Tarstone",
 	255, 160,
 	modname .. ":coalstone",
 	{cracky = 2},
-	{cracky = 3, nc_door_scuff_opacity = 16}
+	{
+		cracky = 3,
+		nc_door_scuff_opacity = 16,
+		door_operate_sound_volume = 150
+	}
 )
 nodecore.register_stone_bricks("cloudstone", "Cloudstone",
 	modname .. "_cloudstone.png",
 	128, 64,
 	modname .. ":cloudstone",
 	{cracky = 2},
-	{cracky = 3, nc_door_scuff_opacity = 16}
+	{
+		cracky = 3,
+		nc_door_scuff_opacity = 128,
+		door_operate_sound_volume = 25
+	}
 )
