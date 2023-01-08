@@ -18,6 +18,20 @@ minetest.register_node(plank, {
 		sounds = nodecore.sounds("nc_tree_woody")
 	})
 
+local function backstop(pos, dir, depth)
+	if depth <= 0 then return end
+	pos = vector.add(pos, dir)
+	if nodecore.buildable_to(pos) then return end
+	if nodecore.node_group("falling_node", pos) then
+		return backstop(pos, dir, depth - 1)
+	end
+	return true
+end
+
+local function check_backstop(pos, data)
+	return backstop(pos, vector.subtract(data.pointed.under, data.pointed.above), 4)
+end
+
 local function splitrecipe(choppy, normaly)
 	nodecore.register_craft({
 			label = "split tree to planks",
@@ -40,20 +54,16 @@ end
 splitrecipe(1, 1)
 splitrecipe(4, -1)
 
-local function bashrecipe(thumpy, normaly)
-	nodecore.register_craft({
-			label = "bash planks to sticks",
-			action = "pummel",
-			toolgroups = {thumpy = thumpy},
-			normal = {y = normaly},
-			indexkeys = {plank},
-			nodes = {
-				{match = plank, replace = "air"}
-			},
-			items = {
-				{name = "nc_tree:stick 2", count = 4, scatter = 5}
-			}
-		})
-end
-bashrecipe(3, 1)
-bashrecipe(5, -1)
+nodecore.register_craft({
+		label = "bash planks to sticks",
+		action = "pummel",
+		toolgroups = {thumpy = 3},
+		check = check_backstop,
+		indexkeys = {plank},
+		nodes = {
+			{match = plank, replace = "air"}
+		},
+		items = {
+			{name = "nc_tree:stick 2", count = 4, scatter = 5}
+		}
+	})
