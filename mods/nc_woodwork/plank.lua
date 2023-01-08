@@ -32,16 +32,47 @@ local function check_backstop(pos, data)
 	return backstop(pos, vector.subtract(data.pointed.under, data.pointed.above), 4)
 end
 
-local function splitrecipe(choppy, normaly)
+local function check_x(_, data)
+	local x = nodecore.facedirs[data.node.param2].t.x
+	return x == 1 or x == -1
+end
+
+local function check_y(_, data)
+	local y = nodecore.facedirs[data.node.param2].t.y
+	return y == 1 or y == -1
+end
+
+local function check_z(_, data)
+	local z = nodecore.facedirs[data.node.param2].t.z
+	return z == 1 or z == -1
+end
+
+local function check_x_with_backstop(pos, data)
+	return check_x(pos, data) and check_backstop(pos, data)
+end
+
+local function check_y_with_backstop(pos, data)
+	return check_y(pos, data) and check_backstop(pos, data)
+end
+
+local function check_z_with_backstop(pos, data)
+	return check_z(pos, data) and check_backstop(pos, data)
+end
+
+local function check_downwards(pos, data)
+	if not check_y(pos, data) then return end
+	pos = vector.add(pos, vector.subtract(data.pointed.under, data.pointed.above))
+	if nodecore.buildable_to(pos) then return end
+	return true
+end
+
+local function split_recipe(choppy, normal, check)
 	nodecore.register_craft({
 			label = "split tree to planks",
 			action = "pummel",
 			toolgroups = {choppy = choppy},
-			normal = {y = normaly},
-			check = function(_, data)
-				local y = nodecore.facedirs[data.node.param2].t.y
-				return y == 1 or y == -1
-			end,
+			normal = normal,
+			check = check,
 			indexkeys = {"group:log"},
 			nodes = {
 				{match = {groups = {log = true}}, replace = "air"}
@@ -51,8 +82,20 @@ local function splitrecipe(choppy, normaly)
 			}
 		})
 end
-splitrecipe(1, 1)
-splitrecipe(4, -1)
+
+split_recipe(1, {x =  1}, check_x_with_backstop)
+split_recipe(1, {x = -1}, check_x_with_backstop)
+split_recipe(1, {y =  1}, check_downwards)
+split_recipe(1, {y = -1}, check_y_with_backstop)
+split_recipe(1, {z =  1}, check_z_with_backstop)
+split_recipe(1, {z = -1}, check_z_with_backstop)
+
+split_recipe(4, {x =  1}, check_x)
+split_recipe(4, {x = -1}, check_x)
+split_recipe(4, {y =  1}, check_y)
+split_recipe(4, {y = -1}, check_y)
+split_recipe(4, {z =  1}, check_z)
+split_recipe(4, {z = -1}, check_z)
 
 nodecore.register_craft({
 		label = "bash planks to sticks",
