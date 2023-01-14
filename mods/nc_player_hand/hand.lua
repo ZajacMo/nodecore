@@ -45,11 +45,9 @@ minetest.register_node(modname .. ":hand", {
 		node_placement_prediction = "",
 		paramtype = "light",
 		on_punch = minetest.remove_node,
-		on_use = function() return "" end,
-		on_drop = function() return "" end,
-		on_place = function() return "" end,
-		wield_no_anim_mine = true,
-		wield_no_anim_place = true,
+		on_use = function() return ItemStack("") end,
+		on_drop = function() return ItemStack("") end,
+		on_place = function() return ItemStack("") end,
 	})
 
 nodecore.register_aism({
