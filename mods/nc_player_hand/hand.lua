@@ -44,7 +44,19 @@ minetest.register_node(modname .. ":hand", {
 		stack_max = 1,
 		node_placement_prediction = "",
 		paramtype = "light",
-		on_punch = minetest.remove_node
+		on_punch = minetest.remove_node,
+		on_use = function() end,
+		on_drop = function(stack) return stack end,
+		on_place = function(stack) return stack end,
+		wield_no_anim_mine = true,
+		wield_no_anim_place = true,
+	})
+
+nodecore.register_lbm({
+		name = minetest.get_current_modname() .. ":cleanup",
+		run_at_every_load = true,
+		nodenames = {modname .. ":hand"},
+		action = function(pos) return minetest.remove_node(pos) end
 	})
 
 nodecore.register_on_joinplayer("join set hand", function(player)
