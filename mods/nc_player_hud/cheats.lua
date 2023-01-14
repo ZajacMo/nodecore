@@ -24,6 +24,7 @@ local always_cheats = {
 
 for k in pairs(always_cheats) do interact_cheats[k] = true end
 
+local cheatitems = nodecore.group_expand("group:cheat", true)
 local function ischeating(player)
 	local cheating = false
 	local pname = player:get_player_name()
@@ -41,6 +42,17 @@ local function ischeating(player)
 			cheating = true -- basic_debug not honored
 		end
 	end
+	if not cheating then
+		for _, list in pairs(player:get_inventory():get_lists()) do
+			for _, stack in pairs(list) do
+				if cheatitems[stack:get_name()] then
+					cheating = true
+					break
+				end
+			end
+			if cheating then break end
+		end
+	end
 	return cheating
 end
 
@@ -55,11 +67,24 @@ minetest.register_chatcommand("uncheat", {
 				privs[k] = nil
 			end
 			minetest.set_player_privs(name, privs)
+
+			local player = minetest.get_player_by_name(name)
+			if player then
+				local inv = player:get_inventory()
+				for lname, list in pairs(inv:get_lists()) do
+					for slot, stack in pairs(list) do
+						if cheatitems[stack:get_name()] then
+							inv:set_stack(lname, slot, "")
+							qty = qty + stack:get_count()
+						end
+					end
+				end
+			end
+
 			minetest.chat_send_player(name,
 				qty > 0 and ("Removed " .. qty .. " cheat(s)")
 				or "No active cheats found")
 
-			local player = minetest.get_player_by_name(name)
 			if player and ischeating(player) then
 				minetest.chat_send_player(name, "Unable to remove"
 					.. " all cheats; may be caused by 3rd party mods,"

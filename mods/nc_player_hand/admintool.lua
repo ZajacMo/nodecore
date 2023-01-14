@@ -21,6 +21,7 @@ local superdef = nodecore.underride({
 				snappy = 100,
 				thumpy = 100
 			}),
+		groups = {cheat = 1},
 		virtual_item = true,
 		on_drop = function() return ItemStack("") end,
 		on_place = function() end

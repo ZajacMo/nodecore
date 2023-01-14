@@ -29,6 +29,7 @@ local groups = {
 	attached_node = "built-in: drops as item if node below is removed",
 	canopy = "leaves or equivalent",
 	charcoal = "(specific) nc_fire coal nodes",
+	cheat = "having posession of this item represents a form of cheat (e.g. admin tool)",
 	chisel = "metal shaft that can be used as a chisel with a mallet",
 	choppy = "dig group: hatchets and adzes",
 	cloudstone = "(specific) concrete cloudstone",

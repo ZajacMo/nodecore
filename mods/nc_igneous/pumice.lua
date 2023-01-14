@@ -16,7 +16,8 @@ pumdef = {
 	groups = {
 		snappy = 2,
 		cracky = 2,
-		stack_as_node = 1
+		stack_as_node = 1,
+		cheat = 1
 	},
 	drop = "",
 	destroy_on_dig = true,
