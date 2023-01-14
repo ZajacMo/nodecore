@@ -112,7 +112,8 @@ minetest.register_node(modname .. ":tree_bud", {
 			flammable = 12,
 			fire_fuel = 6,
 			falling_node = 1,
-			scaling_time = 80
+			scaling_time = 80,
+			leaf_decay_support = 1
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_tree_woody"),
@@ -137,7 +138,8 @@ minetest.register_node(modname .. ":leaves_bud", {
 			fire_fuel = 2,
 			green = 4,
 			scaling_time = 90,
-			leaf_decay = 1
+			leaf_decay = 1,
+			leaf_decay_transmit = 1
 		},
 		treeable_to = true,
 		drop = "",

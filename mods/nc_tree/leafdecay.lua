@@ -5,8 +5,6 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
 local hashpos = minetest.hash_node_position
 
 local queue = {}
@@ -73,15 +71,15 @@ end
 
 local cache = {}
 
+local leaf_decay_support = nodecore.group_expand("group:leaf_decay_support", true)
+local leaf_decay_transmit = nodecore.group_expand("group:leaf_decay_transmit", true)
 local function check_decay(pos, node)
 	local hash = hashpos(pos)
 	local found = cache[hash]
 	if found and minetest.get_node(found).name == found.name then return true end
 	return nodecore.scan_flood(pos, 5, function(p)
 			local n = minetest.get_node(p).name
-			if n == modname .. ":tree"
-			or n == modname .. ":tree_bud"
-			or n == "ignore" then
+			if n == "ignore" or leaf_decay_support[n] then
 				while p.prev do
 					p.name = minetest.get_node(p).name
 					cache[hashpos(p.prev)] = p
@@ -89,10 +87,7 @@ local function check_decay(pos, node)
 				end
 				return true
 			end
-			if n == modname .. ":leaves"
-			or n == modname .. ":leaves_bud" then
-				return
-			end
+			if leaf_decay_transmit[n] then return end
 			return false
 		end
 	) or nodecore.leaf_decay(pos, node)
