@@ -55,7 +55,10 @@ nodecore.register_aism({
 		interval = 1,
 		chance = 1,
 		itemnames = {modname .. ":hand"},
-		action = function() return ItemStack("") end
+		action = function(_, data)
+			if data.player and data.list == "hand" then return end
+			return ItemStack("")
+		end
 	})
 nodecore.register_lbm({
 		name = modname .. ":cleanup",
