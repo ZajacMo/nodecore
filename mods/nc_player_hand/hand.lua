@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local ItemStack, math, minetest, nodecore, pairs
+    = ItemStack, math, minetest, nodecore, pairs
 local math_pow
     = math.pow
 -- LUALOCALS > ---------------------------------------------------------
@@ -45,15 +45,22 @@ minetest.register_node(modname .. ":hand", {
 		node_placement_prediction = "",
 		paramtype = "light",
 		on_punch = minetest.remove_node,
-		on_use = function() end,
-		on_drop = function(stack) return stack end,
-		on_place = function(stack) return stack end,
+		on_use = function() return "" end,
+		on_drop = function() return "" end,
+		on_place = function() return "" end,
 		wield_no_anim_mine = true,
 		wield_no_anim_place = true,
 	})
 
+nodecore.register_aism({
+		label = "clean up misplaced player hands",
+		interval = 1,
+		chance = 1,
+		itemnames = {modname .. ":hand"},
+		action = function() return ItemStack("") end
+	})
 nodecore.register_lbm({
-		name = minetest.get_current_modname() .. ":cleanup",
+		name = modname .. ":cleanup",
 		run_at_every_load = true,
 		nodenames = {modname .. ":hand"},
 		action = function(pos) return minetest.remove_node(pos) end
