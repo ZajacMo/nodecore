@@ -154,6 +154,9 @@ msgstr "Active Prism"
 msgid "Additional Mods Loaded: @1"
 msgstr "Additional Mods Loaded: @1"
 
+msgid "Admin Tool"
+msgstr "Admin Tool"
+
 msgid "Adobe"
 msgstr "Adobe"
 
@@ -591,9 +594,6 @@ msgstr "Growing Leaves"
 
 msgid "Growing Tree Trunk"
 msgstr "Growing Tree Trunk"
-
-msgid "HAND OF POWER"
-msgstr "HAND OF POWER"
 
 msgid "Hashy"
 msgstr "Hashy"
