@@ -1561,14 +1561,14 @@ msgstr "go for a swim"
 msgid "grind dead plants into peat"
 msgstr "grind dead plants into peat"
 
-msgid "grow a flower on moist soil"
-msgstr "grow a flower on moist soil"
+msgid "grow a flower on soil near moisture"
+msgstr "grow a flower on soil near moisture"
 
-msgid "grow a rush on moist soil"
-msgstr "grow a rush on moist soil"
+msgid "grow a rush on soil near moisture"
+msgstr "grow a rush on soil near moisture"
 
-msgid "grow a sedge on moist grass"
-msgstr "grow a sedge on moist grass"
+msgid "grow a sedge on grass near moisture"
+msgstr "grow a sedge on grass near moisture"
 
 msgid "harden stone"
 msgstr "harden stone"
