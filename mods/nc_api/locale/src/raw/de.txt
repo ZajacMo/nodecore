@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-15 15:47+0000\n"
-"Last-Translator: kuboid <community@radtournetz.de>\n"
+"PO-Revision-Date: 2023-01-19 01:09+0000\n"
+"Last-Translator: Thisaccountis42 <thisemailis42@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -1841,3 +1841,72 @@ msgstr "fülle eine Laterne vollständig"
 #, fuzzy
 msgid "melt stone into pumwater"
 msgstr "schmilz Stein in Pumwasser"
+
+msgid "Horzy Cloudstone"
+msgstr "Queriger Wolkenstein"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "Queriger Weicher Wolkenstein"
+
+msgid "Iceboxy Cloudstone"
+msgstr "Verschachtelter Wolkenstein"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "Verschachtelter Weicher Wolkenstein"
+
+msgid "Pliant Cloudstone"
+msgstr "Weicher Wolkenstein"
+
+msgid "Bindy Cloudstone"
+msgstr "Bündiger Wolkenstein"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Bündiger Weicher Wolkenstein"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "gebundene gelagerte Wolkensteinziegelklappe"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "gebundene Wolkensteinziegel"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "gebundene Wolkensteinziegelklappe"
+
+msgid "Boxy Cloudstone"
+msgstr "Kastiger Wolkenstein"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "Kastiger Weicher Wolkenstein"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "Mauriger Weigher Wolkenstein"
+
+msgid "Cloudstone"
+msgstr "Wolkenstein"
+
+msgid "Cloudstone Bricks"
+msgstr "Wolkensteinziegel"
+
+msgid "Vermy Cloudstone"
+msgstr "Wirrer Wolkenstein"
+
+msgid "Vermy Pliant Cloudstone"
+msgstr "Wirrer Weicher Wolkenstein"
+
+msgid "Verty Cloudstone"
+msgstr "Hochiger Wolkenstein"
+
+msgid "quench pumwater to amalgamation"
+msgstr "kühle Pumwasser zu Legierung"
+
+msgid "Bricky Cloudstone"
+msgstr "Mauriger Wolkenstein"
+
+msgid "Verty Pliant Cloudstone"
+msgstr "Hochiger Weicher Wolkenstein"
+
+msgid "Hashy Cloudstone"
+msgstr "Krauser Wolkenstein"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "Krauser Weicher Wolkenstein"

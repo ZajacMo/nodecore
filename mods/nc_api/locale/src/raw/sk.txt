@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-30 20:35+0200\n"
-"PO-Revision-Date: 2022-03-31 21:08+0000\n"
+"PO-Revision-Date: 2023-01-19 01:09+0000\n"
 "Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/nodecore/"
 "sk/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid "Annealed Lode Bar"
 msgstr "Tyč zo žíhaných žíl"
@@ -194,3 +194,280 @@ msgstr "- Máš problém založiť oheň? Skús použiť dlhšie paličky, viac 
 
 msgid "Azure Bell Flower"
 msgstr "Kvet Azúrového zvončeka"
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Zdá sa ti to nudné? Nájdi lepšie technológiu, ľahšie podmienky, alebo "
+"lepší spôsob."
+
+msgid "Bindy Sandstone"
+msgstr "Spojovací pieskovec"
+
+msgid "Bindy Stone"
+msgstr "Spojovací kameň"
+
+msgid "Bindy Tarstone"
+msgstr "Spojovací dechtový kameň"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Závesný panel z viazanej nepálenej tehly"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Panel z viazanej nepálenej tehly"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Panel z viazanej tehly dechtového kameňa"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Viazané tehly dechtového kameňa"
+
+msgid "Inventory"
+msgstr "Inventár"
+
+msgid "Black Cup Flower"
+msgstr "Kvet čiernej silfie"
+
+msgid "Black Rosette Flower"
+msgstr "Kvet čiernej ružičky"
+
+msgid "Black Star Flower"
+msgstr "Kvet čiernej hviezdy"
+
+msgid "Bonded Stone Bricks"
+msgstr "Viazaná kamenná tehla"
+
+msgid "Cobble Panel"
+msgstr "Panel z okruhliaka"
+
+msgid "Crafting"
+msgstr "Vytváranie"
+
+msgid "Crude Glass"
+msgstr "Hrubé sklo"
+
+msgid "Dirt"
+msgstr "Hlina"
+
+msgid "Cracked Stone"
+msgstr "Puknutý kameň"
+
+msgid "Fire"
+msgstr "Oheň"
+
+msgid "Lantern"
+msgstr "Lampáš"
+
+msgid "About"
+msgstr "O"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Krabicový poddajný dechtový kameň"
+
+msgid "Boxy Sandstone"
+msgstr "Krabicový pieskovec"
+
+msgid "Boxy Stone"
+msgstr "Krabicový kameň"
+
+msgid "Bricky Tarstone"
+msgstr "Tehlový dechtový kameň"
+
+msgid "Bricky Stone"
+msgstr "Tehlový kameň"
+
+msgid "Burning Embers"
+msgstr "Horiace uhlíky"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Poddajná viazacia nepálená tehla"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Poddajný spojovací pieskovec"
+
+msgid "Displaced Node"
+msgstr "Premeistnená kocka"
+
+msgid "Discovery"
+msgstr "Objavy"
+
+msgid "Dry Rush"
+msgstr "Suchá trstina"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Podrž/opakuj pravým tlačítkom myši na steny/stropy s prázdnou rukou a "
+"vytvor miesto na šplhanie."
+
+msgid "Annealed Lode Hatchet"
+msgstr "Sekerka zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Hlava sekerky zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Ladder"
+msgstr "Rebrík zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Mallet"
+msgstr "Kladivo zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Mattock"
+msgstr "Čakan zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Hlava čakana zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Pick"
+msgstr "Krompáč zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Prill"
+msgstr "Prill zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Rake"
+msgstr "Hrable zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Rod"
+msgstr "Udica zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Spade"
+msgstr "Rýľ zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Hlava rýľa zo žíhanej rudnej žily"
+
+msgid "Bindy Adobe"
+msgstr "Viazacia nepálená tehla"
+
+msgid "Bindy Pliant Stone"
+msgstr "Poddajný spojovací kameň"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Poddajný spojovací dechtový kameň"
+
+msgid "Black Bell Flower"
+msgstr "Kvet čierneho zvončeka"
+
+msgid "Black Cluster Flower"
+msgstr "Kvet čierneho strapca"
+
+msgid "Blank"
+msgstr "Čistý"
+
+msgid "Blue Bell Flower"
+msgstr "Kvet hyacinty"
+
+msgid "Blue Cluster Flower"
+msgstr "Kvet modrého strapca"
+
+msgid "Blue Cup Flower"
+msgstr "Kvet modrej sylfie"
+
+msgid "Blue Rosette Flower"
+msgstr "Kvet modrej ružičky"
+
+msgid "Blue Star Flower"
+msgstr "Kvet modrej hviezdy"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Závesný panel z viazanej tehly pieskovca"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Panel z viazanej tehly pieskovca"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Viazané tehly pieskovca"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Závesný panel z viazanej kamennej tehly"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Panel z viazanej kamennej tehly"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Závesný panel z viazanej tehly dechtového kameňa"
+
+msgid "Boxy"
+msgstr "Krabicový"
+
+msgid "Boxy Adobe"
+msgstr "Krabicová nepálená tehla"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Krabicová poddajná nepálená tehla"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Krabicový poddajný pieskovec"
+
+msgid "Boxy Tarstone"
+msgstr "Krabicový dechtový kameň"
+
+msgid "Bricky"
+msgstr "Tehlový"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Tehlová poddajná nepálená tehla"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Tehlový poddajný pieskovec"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Tehlový poddajný dechtový kameň"
+
+msgid "CHEATS ENABLED"
+msgstr "PODVÁDZANIE POVOLENÉ"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Jaskynný uhoľný glyf"
+
+msgid "Charcoal"
+msgstr "Drevené uhlie"
+
+msgid "Charcoal Lump"
+msgstr "Hruda dreveného uhlia"
+
+msgid "Chromatic Glass"
+msgstr "Chromatické sklo"
+
+msgid "Clear Glass"
+msgstr "Číre sklo"
+
+msgid "Clear Glass Case"
+msgstr "Kufrík z číreho skla"
+
+msgid "Cobble"
+msgstr "Okruhliak"
+
+msgid "Cobble Hinged Panel"
+msgstr "Závesný panel z okruhliaka"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERZIA VO VÝVOJI"
+
+msgid "Eggcorn"
+msgstr "Vaječná kukurica"
+
+msgid "Float Glass"
+msgstr "Plavené sklo"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Hlava krompáča zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Adze"
+msgstr "Topor zo žíhanej rudnej žily"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Hlava kladiva zo žíhanej rudnej žily"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Viazané nepálené tehly"
+
+msgid "Bricky Pliant Stone"
+msgstr "Tehlový poddajný kameň"
+
+msgid "Bricky Sandstone"
+msgstr "Tehlový pieskovec"
+
+msgid "Boxy Pliant Stone"
+msgstr "Krabicový poddajný kameň"
+
+msgid "Bricky Adobe"
+msgstr "Tehlovä nepálená tehla"
