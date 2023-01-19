@@ -56,7 +56,7 @@ function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 				return waterat(pos, 0, 1, 0)
 			end,
 			nodes = {
-				{match = {name = recipematch, stacked = false}}
+				{match = recipematch}
 			},
 			after = function(pos)
 				nodecore.soaking_abm_tickle(pos, fieldname)
@@ -67,12 +67,12 @@ end
 
 nodecore.register_dirt_leaching(
 	"group:dirt_raked",
-	{groups = {dirt_raked = true}},
+	{groups = {dirt_raked = true}, stacked = false},
 	"nc_terrain:sand"
 )
 nodecore.register_dirt_leaching(
 	"group:humus_raked",
-	{groups = {humus_raked = true}},
+	{groups = {humus_raked = true}, stacked = false},
 	"nc_terrain:dirt",
 	3
 )
