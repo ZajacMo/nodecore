@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 local dntname = modname .. ":ablation"
 
-local hash = minetest.hash_node_position
+local hash = minetest.pos_to_string
 local cooldowns = {}
 
 local quick_doors = nodecore.group_expand("group:door", true)
