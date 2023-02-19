@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-01-19 01:09+0000\n"
+"PO-Revision-Date: 2023-02-19 14:22+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -60,10 +60,10 @@ msgid "- Sneak+aux+drop an item to drop all matching items."
 msgstr "- 潛行時按輔助鍵丟物品會丟掉同樣的物品。"
 
 msgid "- There is NO inventory screen."
-msgstr "- 「沒有」物品欄檢視畫面。"
+msgstr "- 「沒有」物品欄畫面。"
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
-msgstr "- 持續的走／跑／游／爬會愈來愈快。"
+msgstr "- 持續地向前／向上移動會愈來愈快。"
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr "- 環繞的物品、面向與環繞的方塊可能影響。"
@@ -193,7 +193,7 @@ msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr "- 沒有進展？試著在社群聊天室發問（「關於」頁）。"
 
 msgid "- Larger recipes are usually more symmetrical."
-msgstr "- 較大的合成配方通常較為對稱。"
+msgstr "- 較大的配方通常較為對稱。"
 
 msgid "- Order and specific face of placement may matter for crafting."
 msgstr "- 順序與放置面可能影響製作。"
@@ -235,7 +235,7 @@ msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
 msgstr "- 「敲打」是快速的打擊方塊，而非挖掘。"
 
 msgid "- Tools used as ingredients must be in very good condition."
-msgstr "- 被當成原料的工具狀態必須很好。"
+msgstr "- 被當成原料的工具必須接近全新。"
 
 msgid "@1 |||||"
 msgstr "@1 |||||"
@@ -343,7 +343,7 @@ msgid "Chromatic Glass"
 msgstr "半透玻璃"
 
 msgid "Clear Glass"
-msgstr "清澈玻璃"
+msgstr "透明玻璃"
 
 msgid "Dirt"
 msgstr "土"
@@ -652,7 +652,7 @@ msgid "Burning Embers"
 msgstr "餘燼"
 
 msgid "Humus"
-msgstr "腐質土"
+msgstr "腐殖質"
 
 msgid "Pummel"
 msgstr "敲打"
@@ -664,7 +664,7 @@ msgid "Glowing Lode Pick Head"
 msgstr "降溫中的類鋼鎬 頭"
 
 msgid "Loose Humus"
-msgstr "鬆腐殖質土"
+msgstr "鬆腐殖質"
 
 msgid "Tempered Lode"
 msgstr "調溫類鋼"
@@ -683,7 +683,7 @@ msgid "Peat"
 msgstr "泥炭土"
 
 msgid "Glowing Lode"
-msgstr "高溫的類鋼"
+msgstr "高溫類鋼"
 
 msgid "Tempered Lode Adze"
 msgstr "調溫類鋼鋤"
@@ -843,3 +843,60 @@ msgstr "Discord: https://discord.gg/NNYeF6f"
 
 msgid "Admin Tool"
 msgstr "管理者工具"
+
+msgid "Lode Form"
+msgstr "類鋼成形框"
+
+msgid "run at full speed"
+msgstr "全速衝刺"
+
+msgid "Raked Gravel"
+msgstr "耙過的礫石"
+
+msgid "Raked Humus"
+msgstr "耙過的腐殖質"
+
+msgid "weaken stone by soaking"
+msgstr "泡水弱化石頭"
+
+msgid "weld glowing lode pick and spade heads together"
+msgstr "將高溫的鎬跟鏟頭接在一起"
+
+msgid "rake humus"
+msgstr "耙腐殖質"
+
+msgid "rake gravel"
+msgstr "耙礫石"
+
+msgid "Loose Amalgamation"
+msgstr "鬆混合物"
+
+msgid "Raked Dirt"
+msgstr "耙過的土"
+
+msgid "Raked Sand"
+msgstr "耙過的沙"
+
+msgid "ferment peat into humus"
+msgstr "把泥炭土發酵成腐殖質"
+
+msgid "pack stone chips back into cobble"
+msgstr "把一些石片敲打成鵝卵石"
+
+msgid "navigate by touch in darkness"
+msgstr "黑暗中摸物前進"
+
+msgid "rake dirt"
+msgstr "耙土"
+
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore 已從 @1 更新至 @2"
+
+msgid "rake sand"
+msgstr "耙沙"
+
+msgid "produce light from a lens"
+msgstr "用透鏡製造光明"
+
+msgid "mold molten glass into clear glass"
+msgstr "把熔融玻璃塑造成透明玻璃"

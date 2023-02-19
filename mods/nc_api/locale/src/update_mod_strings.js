@@ -5,6 +5,11 @@ const fsp = require('fs')
 	.promises;
 const db = {};
 
+const codemap = {
+	zh_Hans: 'zh_CN',
+	zh_Hant: 'zh_TW',
+};
+
 const ifmatch = (str, rx, func) => {
 	const m = str.match(rx);
 	if(m) return func(m);
@@ -60,7 +65,7 @@ const done = async () => {
 				.sort()
 				.join('');
 			if(body)
-				await fsp.writeFile(`../nc_api.${code}.tr`,
+				await fsp.writeFile(`../nc_api.${codemap[code] || code}.tr`,
 					`# textdomain: nc_api\n${body}`);
 		}
 };
