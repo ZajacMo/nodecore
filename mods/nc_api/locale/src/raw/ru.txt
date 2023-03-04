@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-12-28 22:47+0000\n"
+"PO-Revision-Date: 2023-03-04 01:17+0000\n"
 "Last-Translator: Arsenicus <divided0303@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -2024,3 +2024,22 @@ msgstr "соберите фонарь из ручки сумки"
 
 msgid "charge a lantern"
 msgstr "зарядите фонарь"
+
+#, fuzzy
+msgid "Admin Tool"
+msgstr "Инструмент администратора"
+
+msgid "Wet Spackling"
+msgstr "Мокрая шпаклевка"
+
+msgid "mix crude glass into ash to make spackling"
+msgstr "смешайте сырое стекло с золой, чтобы сделать шпаклевку"
+
+msgid "grow a flower on soil near moisture"
+msgstr "вырастите цветок на почве рядом с влагой"
+
+msgid "grow a rush on soil near moisture"
+msgstr "вырастите тростник на почве рядом с влагой"
+
+msgid "grow a sedge on grass near moisture"
+msgstr "вырастите осоку на траве рядом с влагой"

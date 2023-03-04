@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-02-19 14:22+0000\n"
+"PO-Revision-Date: 2023-02-21 14:38+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -900,3 +900,18 @@ msgstr "用透鏡製造光明"
 
 msgid "mold molten glass into clear glass"
 msgstr "把熔融玻璃塑造成透明玻璃"
+
+msgid "find a sedge"
+msgstr "找到莎草"
+
+msgid "Sedge"
+msgstr "莎草"
+
+msgid "Thatch"
+msgstr "草蓆"
+
+msgid "pack sedges into thatch"
+msgstr "把莎草敲打成草蓆"
+
+msgid "grow a sedge on grass near moisture"
+msgstr "在草地或潮濕地培養莎草"
