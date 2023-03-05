@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -29,56 +29,56 @@ local function backstop(pos, dir, depth)
 end
 
 local function check_backstop(pos, data)
-    local dir = vector.subtract(data.pointed.under, data.pointed.above)
-    if dir.y == -1 then
-	    if nodecore.buildable_to(vector.add(pos, dir)) then return end
-	    return true
-    else return backstop(pos, dir, 4)
-    end
+	local dir = vector.subtract(data.pointed.under, data.pointed.above)
+	if dir.y == -1 then
+		if nodecore.buildable_to(vector.add(pos, dir)) then return end
+		return true
+	else return backstop(pos, dir, 4)
+	end
 end
 
 local function split_recipe(choppy, backstop)
-    for _, dir in pairs(nodecore.dirs()) do
-	    nodecore.register_craft({
-			    label = "split tree to planks",
-			    action = "pummel",
-			    toolgroups = {choppy = choppy},
-			    normal = dir,
-			    check = function(pos, data)
-                    return (vector.equals(dir, nodecore.facedirs[data.node.param2].t)
-                        or vector.equals(dir, nodecore.facedirs[data.node.param2].b))
-                        and (not backstop or check_backstop(pos, data))
-                end,
-			    indexkeys = {"group:log"},
-			    nodes = {
-				    {match = {groups = {log = true}}, replace = "air"}
-			    },
-			    items = {
-				    {name = plank, count = 4, scatter = 5}
-			    }
-		})
-    end
+	for _, dir in pairs(nodecore.dirs()) do
+		nodecore.register_craft({
+				label = "split tree to planks",
+				action = "pummel",
+				toolgroups = {choppy = choppy},
+				normal = dir,
+				check = function(pos, data)
+					return (vector.equals(dir, nodecore.facedirs[data.node.param2].t)
+						or vector.equals(dir, nodecore.facedirs[data.node.param2].b))
+					and (not backstop or check_backstop(pos, data))
+				end,
+				indexkeys = {"group:log"},
+				nodes = {
+					{match = {groups = {log = true}}, replace = "air"}
+				},
+				items = {
+					{name = plank, count = 4, scatter = 5}
+				}
+			})
+	end
 end
 
 split_recipe(1, true)
 split_recipe(4, false)
 
 local function bash_recipe(thumpy, backstop)
-    nodecore.register_craft({
-		label = "bash planks to sticks",
-		action = "pummel",
-		toolgroups = {thumpy = thumpy},
-		check = function (pos, data)
-            return not backstop or check_backstop(pos, data)
-        end,
-		indexkeys = {plank},
-		nodes = {
-			{match = plank, replace = "air"}
-		},
-		items = {
-			{name = "nc_tree:stick 2", count = 4, scatter = 5}
-		}
-	})
+	nodecore.register_craft({
+			label = "bash planks to sticks",
+			action = "pummel",
+			toolgroups = {thumpy = thumpy},
+			check = function(pos, data)
+				return not backstop or check_backstop(pos, data)
+			end,
+			indexkeys = {plank},
+			nodes = {
+				{match = plank, replace = "air"}
+			},
+			items = {
+				{name = "nc_tree:stick 2", count = 4, scatter = 5}
+			}
+		})
 end
 
 bash_recipe(3, true)
