@@ -58,7 +58,7 @@ nodecore.register_craft({
 		indexkeys = "group:optic_gluable",
 		duration = 2,
 		nodes = {{
-				match = {groups = {optic_gluable = true}}, stacked = false
+				match = {groups = {optic_gluable = true}, stacked = false}
 		}},
 		after = function(pos, data)
 			data.node.name = data.node.name .. suff
