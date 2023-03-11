@@ -13,5 +13,5 @@ function nodecore.get_player_privs_cached(...)
 end
 
 function nodecore.interact(player)
-	return minetest.get_player_privs(player).interact
+	return not player or minetest.get_player_privs(player).interact
 end
