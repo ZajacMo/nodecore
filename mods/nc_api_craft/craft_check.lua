@@ -222,9 +222,16 @@ local craftidx, rebuildidx = nodecore.item_matching_index(
 )
 
 do
+	local dirty
 	local oldreg = nodecore.register_craft
 	local function rebuildhelper(...)
-		rebuildidx()
+		if not dirty then
+			dirty = true
+			minetest.after(0, function()
+					dirty = nil
+					rebuildidx()
+				end)
+		end
 		return ...
 	end
 	function nodecore.register_craft(...)
