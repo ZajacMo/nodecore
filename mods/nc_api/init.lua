@@ -22,7 +22,7 @@ end
 rawset(_G, "include", include)
 
 nodecore.product = "NodeCore"
-nodecore.version = include("version")
+nodecore.version, nodecore.releasedate = include("version")
 
 local function callguard(n, t, k, v)
 	if type(v) ~= "function" then return v end
