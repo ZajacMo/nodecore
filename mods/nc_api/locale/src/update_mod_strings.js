@@ -6,6 +6,7 @@ const fsp = require('fs')
 const db = {};
 
 const codemap = {
+	lzh: 'zh',
 	zh_Hans: 'zh_CN',
 	zh_Hant: 'zh_TW',
 };

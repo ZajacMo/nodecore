@@ -1,5 +1,5 @@
-msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
-msgstr "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- "Furnaces" are not a thing; discover smelting with open flames."
