@@ -28,6 +28,8 @@ local about = {
 	"Discord: https://discord.gg/NNYeF6f",
 	"Matrix: #nodecore:matrix.org",
 	"IRC: #nodecore @@ irc.libera.chat",
+	"",
+	"Donate: https://liberapay.com/NodeCore",
 }
 
 local modfmt = "Additional Mods Loaded: @1"
