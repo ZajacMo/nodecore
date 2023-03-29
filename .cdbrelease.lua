@@ -49,6 +49,7 @@ return {
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issue_tracker = "https://discord.gg/NNYeF6f",
+	donate_url = "https://liberapay.com/NodeCore",
 	forums = 24857,
 	maintainers = {"Warr1024"},
 	screenshots = screenshots
