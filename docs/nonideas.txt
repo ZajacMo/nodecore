@@ -97,6 +97,12 @@ NONIDEAS: Ideas already considered and rejected
 	- Bed-like structures can be made out of existing nodes. Purely
 	  decorative elements that are not fungible do not fit the
 	  game's design.
+	- See "copying from other games" above.
+
+- Flint and Steel
+	- Firemaking is supposed to start out difficult, and only get
+	  easier as you develop non-trivial new technology.
+	- See "copying from other games" above.
 
 - Music
 	- Minetest engine only technically supports music, but it

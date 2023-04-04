@@ -9,6 +9,12 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Items landing on crate without falling in
+	- Place a lode form on top of a lode crate
+	- Place node above lode form
+	- Door-dig the node above
+	- It falls into form, but STAYS instead of falling into crate
+
 - Skip more entity<->entity<->node transition steps
 	- falling_node / item_entity conversions
 	- Instant settling on catapult for items ejected with
