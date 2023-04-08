@@ -1,11 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
-local math_floor, math_random, table_insert
-    = math.floor, math.random, table.insert
+local ipairs, math, minetest, nodecore, pairs, string, table
+    = ipairs, math, minetest, nodecore, pairs, string, table
+local math_floor, math_random, string_sub, table_insert, table_sort
+    = math.floor, math.random, string.sub, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
+local modname = minetest.get_current_modname()
 local pcache = {}
+local ordercache = {}
 
 local strings = {
 	progress = "@1 discovered, @2 available, @3 future",
@@ -23,11 +25,42 @@ for k, v in pairs(strings) do
 	strings[k] = function(...) return nodecore.translate(v, ...) end
 end
 
-local function shuffle(t)
-	for i = #t, 2, -1 do
-		local j = math_random(1, i)
-		t[i], t[j] = t[j], t[i]
+local function sort_by_time(pname, pmeta, tbl, suff)
+	local ordering = ordercache[pname .. "|" .. suff]
+	local metakey = modname .. "_hintsort_" .. suff
+	if not ordering then
+		local raw = pmeta:get_string(metakey)
+		ordering = raw and raw ~= "" and minetest.deserialize(raw) or {}
+		ordercache[pname] = ordering
 	end
+
+	local keys = {}
+	local revkeys = {}
+	for _, s in ipairs(tbl) do
+		local k = string_sub(minetest.sha1(s), 1, 8)
+		keys[s] = k
+		revkeys[k] = s
+	end
+
+	local dirty
+	for _, v in ipairs(tbl) do
+		if not ordering[keys[v]] then
+			ordering[keys[v]] = nodecore.gametime - math_random() / 1000
+			dirty = true
+		end
+	end
+	local t = {}
+	for k in pairs(ordering) do t[#t + 1] = k end
+	for _, k in ipairs(t) do
+		if not revkeys[k] then
+			ordering[k] = nil
+			dirty = true
+		end
+	end
+
+	if dirty then pmeta:set_string(metakey, minetest.serialize(ordering)) end
+
+	table_sort(tbl, function(a, b) return ordering[keys[a]] > ordering[keys[b]] end)
 end
 
 local function gethint(player)
@@ -39,6 +72,7 @@ local function gethint(player)
 
 	local found, done = nodecore.hint_state(pname)
 	local future
+	local pmeta = player:get_meta()
 	if minetest.get_player_privs(pname).debug then
 		local seen = {}
 		for _, v in pairs(found) do seen[v] = true end
@@ -49,12 +83,12 @@ local function gethint(player)
 				future[#future + 1] = strings.future(v.text)
 			end
 		end
-		shuffle(future)
+		sort_by_time(pname, pmeta, future, "future")
 	end
 	for k, v in pairs(found) do found[k] = strings.hint(v.text) end
-	shuffle(found)
 	for k, v in pairs(done) do done[k] = strings.done(v.text) end
-	shuffle(done)
+	sort_by_time(pname, pmeta, found, "found")
+	sort_by_time(pname, pmeta, done, "done")
 
 	local prog = #found
 	local left = #(nodecore.hints) - prog - #done
