@@ -9,6 +9,9 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Standardize some node metadata publishing
+	- Colors.txt for minetest mapper from node registrations
+
 - Need to standardize storage API between storeboxes and bare stacks
 	- Storebox API is a mess anyway and needs a lot of cleanup.
 

@@ -395,6 +395,7 @@ IDEAS: Possible future additions/improvements to the game
 	  by the game to avoid unknown_nodes.
 	- More complex items can register ingredients for "uncrafting"
 	  and automatic recycling; could work recursively.
+		- Eject multiple things as items like skyrealm items.
 
 ........................................................................
 ========================================================================

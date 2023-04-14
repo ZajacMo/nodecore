@@ -9,6 +9,16 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Setup dynamic light ranging for clients that support it.
+	- https://github.com/x2048/dynamic_exposure
+
+- Move some ABMs into soaking API:
+	- Sedges growing
+	- Lava melting stone
+	- Hardening/softening stone
+
+- Move sedge growing abm into soaking.
+
 - Items landing on crate without falling in
 	- Place a lode form on top of a lode crate
 	- Place node above lode form
