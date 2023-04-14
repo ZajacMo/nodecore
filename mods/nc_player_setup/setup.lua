@@ -24,6 +24,16 @@ nodecore.register_on_joinplayer("join setup inv", function(player)
 					0.3
 				}
 			})
+		player:set_lighting({
+				exposure = {
+					luminance_min = -6,
+					luminance_max = -2,
+					exposure_correction = 0,
+					speed_dark_bright = 500,
+					speed_bright_dark = 500,
+					center_weight_power = 1
+				}
+			})
 	end)
 
 minetest.register_allow_player_inventory_action(function(_, action)
