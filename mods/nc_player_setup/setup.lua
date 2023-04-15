@@ -27,7 +27,7 @@ nodecore.register_on_joinplayer("join setup inv", function(player)
 		player:set_lighting({
 				exposure = {
 					luminance_min = -6,
-					luminance_max = -2,
+					luminance_max = -2.5,
 					exposure_correction = 0,
 					speed_dark_bright = 500,
 					speed_bright_dark = 500,
