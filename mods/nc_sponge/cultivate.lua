@@ -70,6 +70,7 @@ local function spongesurvive(data)
 		return notdry(data.pos)
 	end
 end
+nodecore.spongesurvive = spongesurvive
 
 nodecore.register_dnt({
 		name = modname .. ":spongedie",
