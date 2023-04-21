@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2023-04-09 15:49+0000\n"
+"Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -103,7 +103,7 @@ msgid "Amalgamation"
 msgstr "混合物"
 
 msgid "Cobble"
-msgstr "鵝卵石"
+msgstr "石"
 
 msgid "Displaced Node"
 msgstr "位移的方塊"
@@ -118,7 +118,7 @@ msgid "Gravel"
 msgstr "礫石"
 
 msgid "Growing Tree Trunk"
-msgstr "生長中的樹幹"
+msgstr "樹幹生長點"
 
 msgid "HAND OF POWER"
 msgstr "力量之手"
@@ -139,7 +139,7 @@ msgid "Log"
 msgstr "原木"
 
 msgid "Loose Cobble"
-msgstr "鬆鵝卵石"
+msgstr "鬆石"
 
 msgid "Loose Sand"
 msgstr "散沙"
@@ -154,13 +154,13 @@ msgid "Movement"
 msgstr "移動"
 
 msgid "Stone Bricks"
-msgstr "石磚方塊"
+msgstr "石磚塊"
 
 msgid "Stone-Tipped Hatchet"
-msgstr "石頭木短斧"
+msgstr "石尖木短斧"
 
 msgid "Stone-Tipped Mallet"
-msgstr "石頭木槌"
+msgstr "石尖木槌"
 
 msgid "Sprout"
 msgstr "芽"
@@ -169,7 +169,7 @@ msgid "Sponge"
 msgstr "海綿"
 
 msgid "Stone-Tipped Pick"
-msgstr "石頭木鎬"
+msgstr "石尖木鎬"
 
 msgid "Stump"
 msgstr "根"
@@ -247,7 +247,7 @@ msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 個發現、 @2 個可發現、 @3 個延伸"
 
 msgid "Adobe Bricks"
-msgstr "土胚磚方塊"
+msgstr "土胚磚塊"
 
 msgid "Adobe"
 msgstr "土胚方塊"
@@ -256,10 +256,10 @@ msgid "Aggregate"
 msgstr "小石料"
 
 msgid "Charcoal"
-msgstr "木炭方塊"
+msgstr "木炭塊"
 
 msgid "Ash"
-msgstr "灰方塊"
+msgstr "灰塊"
 
 msgid "Charcoal Lump"
 msgstr "木炭堆"
@@ -268,7 +268,7 @@ msgid "Stone Chip"
 msgstr "石片"
 
 msgid "Stone-Tipped Spade"
-msgstr "石頭木鏟"
+msgstr "石尖木鏟"
 
 msgid "Ash Lump"
 msgstr "灰堆"
@@ -280,7 +280,7 @@ msgid "Grass"
 msgstr "草地"
 
 msgid "Growing Leaves"
-msgstr "生長中的樹葉"
+msgstr "樹葉生長點"
 
 msgid "Living Sponge"
 msgstr "活海綿"
@@ -292,7 +292,7 @@ msgid "NodeCore"
 msgstr "NodeCore"
 
 msgid "Stone"
-msgstr "石"
+msgstr "岩"
 
 msgid "Loose Dirt"
 msgstr "散土"
@@ -373,7 +373,7 @@ msgid "Annealed Lode Prill"
 msgstr "冷卻類鋼粒"
 
 msgid "Lode Cobble"
-msgstr "類鋼鵝卵石"
+msgstr "類鋼石"
 
 msgid "Player's Guide: Movement and Navigation"
 msgstr "玩家指南：移動與探索"
@@ -394,7 +394,7 @@ msgid "Sandstone"
 msgstr "砂岩"
 
 msgid "Sandstone Bricks"
-msgstr "砂岩磚方塊"
+msgstr "砂岩磚塊"
 
 msgid "See included LICENSE file for full details and credits"
 msgstr "查看內建的 LICENSE 檔案取得全部細節與 credits"
@@ -406,7 +406,7 @@ msgid "Tree Trunk"
 msgstr "樹幹"
 
 msgid "Loose Lode Cobble"
-msgstr "鬆類鋼鵝卵石"
+msgstr "鬆類鋼石"
 
 msgid "Minetest's top original voxel game about emergent mechanics and exploration"
 msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制"
@@ -454,7 +454,7 @@ msgid "Wooden Hatchet"
 msgstr "木短斧"
 
 msgid "assemble a wooden tool"
-msgstr "組裝一木製工具"
+msgstr "組裝木製工具"
 
 msgid "assemble an adze out of sticks"
 msgstr "由木棒組裝木鋤"
@@ -490,7 +490,7 @@ msgid "Wooden Spade Head"
 msgstr "木鏟頭"
 
 msgid "assemble a wooden shelf from a form and plank"
-msgstr "由一木成型框與一木材組成一木儲物架"
+msgstr "由木成型框與木材組成木儲物架"
 
 msgid "assemble a wooden ladder from sticks"
 msgstr "由木棒組裝木梯"
@@ -517,7 +517,7 @@ msgid "wet a concrete mix"
 msgstr "沾溼混凝土粉"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
-msgstr "有最新功能與錯誤（也許）的 Nodecore"
+msgstr "有最新功能但可能出錯的 Nodecore"
 
 msgid "stick a lens/prism in place"
 msgstr "黏住透鏡或稜鏡"
@@ -574,7 +574,7 @@ msgid "dig up a tree stump"
 msgstr "挖起樹根"
 
 msgid "dig up cobble"
-msgstr "挖鵝卵石"
+msgstr "挖石頭"
 
 msgid "dig up lode ore"
 msgstr "挖類鋼礦"
@@ -634,7 +634,7 @@ msgid "assemble a lode rake"
 msgstr "組裝一支類鋼耙"
 
 msgid "break cobble into chips"
-msgstr "打碎鵝卵石，使它變石片"
+msgstr "打碎石頭，使它變石片"
 
 msgid "anneal a lode cube"
 msgstr "冷卻一個類鋼方塊"
@@ -707,7 +707,7 @@ msgid "work annealed lode on a tempered lode anvil"
 msgstr "在調溫類鋼砧上敲打類鋼"
 
 msgid "Glowing Lode Cobble"
-msgstr "高溫類鋼鵝卵石"
+msgstr "高溫類鋼石"
 
 msgid "Tempered Lode Pick Head"
 msgstr "調溫類鋼鎬 頭"
@@ -725,7 +725,7 @@ msgid "Tempered Lode Spade"
 msgstr "調溫類鋼鏟"
 
 msgid "melt down lode metal from lode cobble"
-msgstr "自類剛礦中熔煉出類剛"
+msgstr "從類剛礦中熔煉出類鋼"
 
 msgid "work glowing lode on a stone anvil"
 msgstr "在石砧上敲打高溫類鋼"
@@ -881,7 +881,7 @@ msgid "ferment peat into humus"
 msgstr "把泥炭土發酵成腐殖質"
 
 msgid "pack stone chips back into cobble"
-msgstr "把一些石片敲打成鵝卵石"
+msgstr "把一些石片敲打成石頭"
 
 msgid "navigate by touch in darkness"
 msgstr "黑暗中摸物前進"
