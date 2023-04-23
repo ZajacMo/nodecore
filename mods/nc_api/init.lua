@@ -42,16 +42,6 @@ setmetatable(nodecore, {
 		end
 	})
 
-minetest.register_on_mods_loaded(function()
-		for _, n in pairs(minetest.get_modnames()) do
-			if n == "default" then
-				error(nodecore.product
-					.. " cannot be loaded on top of another game!")
-				error()
-			end
-		end
-	end)
-
 local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
 function nodecore.log(level, ...)
 	if not level or not levels[level] then error("invalid log level " .. tostring(level)) end
