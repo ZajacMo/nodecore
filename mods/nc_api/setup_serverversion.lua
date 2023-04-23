@@ -37,7 +37,7 @@ local function announce(depth)
 	end
 	local text = vercomp(modstore)
 	if not text then return end
-	nodecore.log("warning", text)
+	nodecore.log("warning", minetest.get_translated_string(minetest.settings:get("language") or "", text))
 	return minetest.chat_send_all(text)
 end
 announce(5)
