@@ -187,7 +187,7 @@ minetest.register_chatcommand("growtrees", {
 nodecore.register_craft({
 		label = "tickle eggcorn",
 		action = "pummel",
-		toolgroups = {crumbly = 1},
+		toolgroups = {cuddly = 1},
 		normal = {y = 1},
 		nodes = {
 			{match = {name = modname .. ":eggcorn_planted", stacked = false}}
@@ -201,7 +201,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "tickle tree trunk",
 		action = "pummel",
-		toolgroups = {snappy = 1},
+		toolgroups = {cuddly = 1},
 		normal = {y = 1},
 		nodes = {
 			{match = {name = modname .. ":tree_bud", stacked = false}}
@@ -215,7 +215,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "tickle tree leaves",
 		action = "pummel",
-		toolgroups = {snappy = 1},
+		toolgroups = {cuddly = 1},
 		nodes = {
 			{match = {name = modname .. ":leaves_bud", stacked = false}}
 		},

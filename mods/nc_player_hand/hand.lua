@@ -11,7 +11,8 @@ local toolcaps = nodecore.toolcaps({
 		uses = 0,
 		crumbly = 1,
 		snappy = 1,
-		thumpy = 1
+		thumpy = 1,
+		cuddly = 3
 	})
 local gcaps = toolcaps.groupcaps
 for k, v in pairs(nodecore.tool_basetimes) do

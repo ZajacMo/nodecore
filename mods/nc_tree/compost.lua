@@ -108,7 +108,7 @@ nodecore.register_soaking_abm({
 nodecore.register_craft({
 		label = "tickle peat",
 		action = "pummel",
-		toolgroups = {crumbly = 1},
+		toolgroups = {cuddly = 1},
 		nodes = {
 			{match = {name = modname .. ":peat", stacked = false}}
 		},

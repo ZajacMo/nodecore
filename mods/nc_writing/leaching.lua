@@ -49,7 +49,7 @@ function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 	nodecore.register_craft({
 			label = "tickle leach " .. fromnode,
 			action = "pummel",
-			toolgroups = {crumbly = 1},
+			toolgroups = {cuddly = 1},
 			normal = {y = 1},
 			indexkeys = {fromnode},
 			check = function(pos)

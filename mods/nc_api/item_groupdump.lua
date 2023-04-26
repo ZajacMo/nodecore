@@ -45,6 +45,7 @@ local groups = {
 	coolant = "quenches nearby heated things",
 	cracky = "dig group: picks and mattocks",
 	crumbly = "dig group: spades, mattocks, and adzes",
+	cuddly = "dig group: ONLY player hands",
 	damage_radiant = "amount of radiant heat emitted that damages players slowly",
 	damage_touch = "damage to deal player when punching or trying to pick up",
 	dirt = "(specific) nc_terrain dirt and loose dirt",
