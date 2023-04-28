@@ -48,6 +48,46 @@ end
 regconv("frame", "form")
 regconv("form", "frame")
 
+local braced = "nc_tree_tree_side.png^[mask:nc_woodwork_form_braced.png"
+
+minetest.register_node(modname .. ":form_braced", {
+		description = "Braced Wooden Form",
+		tiles = {braced},
+		selection_box = nodecore.fixedbox(),
+		collision_box = nodecore.fixedbox(),
+		groups = {
+			choppy = 1,
+			flammable = 2,
+			fire_fuel = 1,
+			totable = 1,
+			storebox = 1,
+			visinv = 1
+		},
+		paramtype = "light",
+		sunlight_propagates = true,
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		storebox_access = function() return true end,
+		on_ignite = function(pos)
+			if minetest.get_node(pos).name == modname .. ":form_braced" then
+				return nodecore.stack_get(pos)
+			end
+		end
+	})
+
+nodecore.register_craft({
+		label = "assemble braced wood form",
+		action = "stackapply",
+		indexkeys = {modname .. ":form"},
+		wield = {name = "nc_tree:stick"},
+		consumewield = 1,
+		nodes = {
+			{
+				match = {name = modname .. ":form", empty = true},
+				replace = modname .. ":form_braced"
+			},
+		}
+	})
+
 local plank = modname .. "_plank.png^(" .. bark .. ")"
 
 minetest.register_node(modname .. ":shelf", {
