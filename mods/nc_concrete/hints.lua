@@ -7,7 +7,7 @@ local modname = minetest.get_current_modname()
 
 nodecore.register_hint("assemble a stone-tipped stylus",
 	"assemble stylus",
-	{"nc_tree:stick", "nc_stonework:chip"}
+	{"nc_tree:stick", "nc_stonework:chip", "group:concrete_etchable"}
 )
 nodecore.register_hint("etch pliant concrete with a stylus",
 	"stylus etch",

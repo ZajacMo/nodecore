@@ -9,6 +9,10 @@ ISSUES-DOCS: Issues related to media/assets, or visuals/effects
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- There are a few dark pixels in the stone texture that form a pattern
+  that is starting to get on my nerves; can they be homogenized a bit
+  more?
+
 - Sound check
 	- add some kind of falling sound (very low pitched dig noise)
 	  to falling nodes, to give players a chance to jump away from

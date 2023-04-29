@@ -9,6 +9,18 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Incorporate some existing mods:
+	- ncbells can mostly already go in as it is
+		- Green wanted to fix some sound quality issues
+		- Would be nice to have a way to control volume
+			- Material of stick, door tier?
+			- Attach lode things like rods, frames, cubes to bottom?
+	- ZipRunes are de facto essential on servers anyway
+		- Using charcoal doesn't feel quite right though
+		- Maybe something involving glass?
+		- Take advantage of the fact that the player is
+		  dreamlike/noncorporeal to not sacrifice realism here
+
 - Leaping sparks/podobos from lava
 	- Rarely triggered by pumwater, with per-node cooldown.
 	- Require at least one pum neighbor
