@@ -48,6 +48,7 @@ local groups = {
 	cuddly = "dig group: ONLY player hands",
 	damage_radiant = "amount of radiant heat emitted that damages players slowly",
 	damage_touch = "damage to deal player when punching or trying to pick up",
+	damage_pickup = "damage to deal player when trying to pick up",
 	dirt = "(specific) nc_terrain dirt and loose dirt",
 	dirt_loose = "(specific) nc_terrain loose dirt",
 	dirt_raked = "(specific) raked nc_terrain dirt",

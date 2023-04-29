@@ -216,7 +216,9 @@ nodecore.register_on_node_drops(function(pos, _, who, drops)
 		local stack = nodecore.stack_get(pos)
 		if stack and not stack:is_empty() then
 			local def = stack:get_definition()
-			local dmg = def and def.groups and def.groups.damage_touch
+			local grps = def and def.groups
+			local dmg = grps.damage_pickup
+			if (dmg or 0) == 0 then dmg = def.groups.damage_touch end
 			if who and dmg and dmg > 0 then
 				nodecore.addphealth(who, -dmg, "hot pickup")
 				nodecore.item_eject(pos, stack, 0.001)
