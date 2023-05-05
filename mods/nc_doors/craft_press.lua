@@ -101,7 +101,7 @@ nodecore.register_craft({
 
 			local def = stack:get_definition()
 			if def and def.type == "node"
-			and not def.groups.place_as_item then
+			and not def.place_as_item then
 				data[checkedstack] = stack
 				return true
 			end
