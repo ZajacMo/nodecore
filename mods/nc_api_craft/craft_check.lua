@@ -116,6 +116,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		local dur = data.duration
 		if type(dur) == "function" then dur = dur(pos, data) end
 		if not dur or dur < mindur then
+			if recipe.inprogress then recipe.inprogress(pos, data) end
 			if data.inprogress then data.inprogress(pos, data) end
 			return false
 		end
