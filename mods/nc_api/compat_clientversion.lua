@@ -3,8 +3,8 @@ local minetest
     = minetest
 -- LUALOCALS > ---------------------------------------------------------
 
-local minproto = 39
-local minrelease = "5.2"
+local minproto = 41
+local minrelease = "5.6"
 
 local rejected = {}
 

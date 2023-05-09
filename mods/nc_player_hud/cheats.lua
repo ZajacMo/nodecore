@@ -37,12 +37,6 @@ local function ischeating(player)
 		for k in pairs(always_cheats) do cheating = cheating or privs[k] end
 	end
 	if not cheating then
-		local pinfo = minetest.get_player_information(pname)
-		if pinfo and pinfo.protocol_version < 40 then
-			cheating = true -- basic_debug not honored
-		end
-	end
-	if not cheating then
 		for _, list in pairs(player:get_inventory():get_lists()) do
 			for _, stack in pairs(list) do
 				if cheatitems[stack:get_name()] then
