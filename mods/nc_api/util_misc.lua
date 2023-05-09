@@ -244,12 +244,11 @@ function nodecore.consume_wield(player, qty)
 			for _, v in pairs(caps and caps.groupcaps or {}) do
 				if v.uses > uses then uses = v.uses end
 			end
-			local wear = wielded:get_wear()
-			wear = wear + (65535 / uses) * (1 + nodecore.boxmuller() * 0.05)
-			if wear > 65536 then
-				wielded = ItemStack("")
-			else
-				wielded:set_wear(wear)
+			wielded:add_wear_by_uses(uses)
+			if wielded:get_count() <= 0 and wdef.sound
+			and wdef.sound.breaks then
+				nodecore.sound_play(wdef.sound.breaks,
+					{object = player, gain = 0.5})
 			end
 		end
 		return player:set_wielded_item(wielded)
