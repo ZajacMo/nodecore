@@ -102,22 +102,24 @@ function nodecore.register_lode_anvil_recipe(anvilpos, func)
 	end
 	for _, temper in ipairs({"hot", "annealed"}) do
 		local recipe = func(temper)
-		recipe.check = chain(function(_, data)
-				local pos = data.rel(anvilx, anvily, anvilz)
-				local node = minetest.get_node(pos)
-				local logic = anvillogic[temper .. "/" .. node.name]
-				if not logic then return end
-				data.anvilcommit = type(logic) == "function"
-				and logic(pos)
-				or function(d) return discoveranvil(d, logic) end
-				return true
-			end,
-			recipe.check)
-		recipe.after = chain(function(_, data)
-				if data.anvilcommit then data.anvilcommit(data) end
-				return nodecore.player_discover(data.crafter, "lode anvil")
-			end,
-			recipe.after)
-		nodecore.register_craft(recipe)
+		if recipe then
+			recipe.check = chain(function(_, data)
+					local pos = data.rel(anvilx, anvily, anvilz)
+					local node = minetest.get_node(pos)
+					local logic = anvillogic[temper .. "/" .. node.name]
+					if not logic then return end
+					data.anvilcommit = type(logic) == "function"
+					and logic(pos)
+					or function(d) return discoveranvil(d, logic) end
+					return true
+				end,
+				recipe.check)
+			recipe.after = chain(function(_, data)
+					if data.anvilcommit then data.anvilcommit(data) end
+					return nodecore.player_discover(data.crafter, "lode anvil")
+				end,
+				recipe.after)
+			nodecore.register_craft(recipe)
+		end
 	end
 end
