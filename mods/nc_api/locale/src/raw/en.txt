@@ -31,9 +31,6 @@ msgstr "- DONE: @1"
 msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr "- Displaced nodes can be climbed through like climbing spots."
 
-msgid "- Do not use F5 debug info; it will mislead you!"
-msgstr "- Do not use F5 debug info; it will mislead you!"
-
 msgid "- Drop and pick up items to rearrange your inventory."
 msgstr "- Drop and pick up items to rearrange your inventory."
 
@@ -126,6 +123,9 @@ msgstr "@1 ....."
 
 msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 discovered, @2 available, @3 future"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 rejected. (protocol version @2)"
 
 msgid "@1 |...."
 msgstr "@1 |...."
@@ -391,6 +391,9 @@ msgstr "Boxy Stone"
 msgid "Boxy Tarstone"
 msgstr "Boxy Tarstone"
 
+msgid "Braced Wooden Form"
+msgstr "Braced Wooden Form"
+
 msgid "Bricky"
 msgstr "Bricky"
 
@@ -486,6 +489,9 @@ msgstr "Discovery"
 
 msgid "Displaced Node"
 msgstr "Displaced Node"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donate: https://liberapay.com/NodeCore"
 
 msgid "Dry Rush"
 msgstr "Dry Rush"
@@ -1132,6 +1138,9 @@ msgstr "Vermy Stone"
 msgid "Vermy Tarstone"
 msgstr "Vermy Tarstone"
 
+msgid "Version @1 or higher is required."
+msgstr "Version @1 or higher is required."
+
 msgid "Verty"
 msgstr "Verty"
 
@@ -1306,6 +1315,9 @@ msgstr "Yellow Star Flower"
 msgid "Yit Charcoal Glyph"
 msgstr "Yit Charcoal Glyph"
 
+msgid "Your Minetest version is outdated, please update!"
+msgstr "Your Minetest version is outdated, please update!"
+
 msgid "Zin Charcoal Glyph"
 msgstr "Zin Charcoal Glyph"
 
@@ -1371,6 +1383,9 @@ msgstr "bash a plank into sticks"
 
 msgid "bond stone bricks"
 msgstr "bond stone bricks"
+
+msgid "brace a wooden form with a stick"
+msgstr "brace a wooden form with a stick"
 
 msgid "break cobble into chips"
 msgstr "break cobble into chips"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-19 20:50+0000\n"
-"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"PO-Revision-Date: 2023-05-06 22:47+0000\n"
+"Last-Translator: Thisaccountis42 <thisemailis42@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -1934,3 +1934,11 @@ msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+#, fuzzy
+msgid "Spackling"
+msgstr "Spachtelmasse"
+
+#, fuzzy
+msgid "Wet Spackling"
+msgstr "Nasse Spachtelmasse"

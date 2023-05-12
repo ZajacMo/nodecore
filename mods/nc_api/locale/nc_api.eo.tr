@@ -4,7 +4,6 @@
 - Can't dig trees or grass? Search for sticks in the canopy.=- Ĉu ne povas fosi arbojn aŭ herbojn? Serĉu bastonojn en la baldakeno.
 - Crafting is done by building recipes in-world.=- Kreado estas farita per konstruado de receptoj en la mondo.
 - DONE: @1=- FARITA: @1
-- Do not use F5 debug info; it will mislead you!=- Ne uzu F5-elpurigajn informojn; ĝi erarigos vin!
 - Drop items onto ground to create stack nodes. They do not decay.=- Faligu erojn sur la teron por krei stakajn nodojn. Ili ne kadukiĝas.
 - If a recipe exists, you will see a special particle effect.=- Se recepto ekzistas, vi vidos specialan partiklan efikon.
 - Items picked up try to fit into the current selected slot first.=- Eroj reprenitaj unue penas enigi la nunan elektitan fendon.

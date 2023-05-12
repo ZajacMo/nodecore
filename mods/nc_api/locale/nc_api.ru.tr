@@ -9,7 +9,6 @@
 - Crafting is done by building recipes in-world.=- Крафтинг совершается постройкой рецептов в мире.
 - DONE: @1=- ЗАВЕРШЕНО: @1
 - Displaced nodes can be climbed through like climbing spots.=- Смещенные ноды можно преодолевать как места для лазания.
-- Do not use F5 debug info; it will mislead you!=- Не используйте отладочную информацию F5; Она введет вас в заблуждение!
 - Drop and pick up items to rearrange your inventory.=- Бросьте и соберите предметы, чтобы переставить инвентарь.
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
 - FUTURE: @1=- БУДУЩЕЕ: @1
@@ -142,6 +141,7 @@ DEVELOPMENT VERSION=ВЕРСИЯ ДЛЯ РАЗРАБОТКИ
 Dirt=Грязь
 Discovery=Открытие
 Displaced Node=Смещенная Нода
+Donate: https://liberapay.com/NodeCore=Пожертвовать: https://liberapay.com/NodeCore
 Dry Rush=Сухой Камыш
 Early-access edition of NodeCore with latest features (and maybe bugs)=Ранняя версия NodeCore с последними функциями (и, возможно, с ошибками)
 Eggcorn=Яйцезерно

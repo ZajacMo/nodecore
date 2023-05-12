@@ -9,7 +9,6 @@
 - Crafting is done by building recipes in-world.=- 在世界中建造合成模式来合成物品。
 - DONE: @1=- 完成: @1
 - Displaced nodes can be climbed through like climbing spots.=- 移位的节点可以像攀登点一样被爬过去。
-- Do not use F5 debug info; it will mislead you!=- 不要使用F5调试信息，会误导你的！
 - Drop and pick up items to rearrange your inventory.=- 丢弃然后拿起物品来重排你的背包。
 - Drop items onto ground to create stack nodes. They do not decay.=- 将物品扔到地上，形成堆方块。堆方块不会腐烂。
 - FUTURE: @1=- 延伸：@1

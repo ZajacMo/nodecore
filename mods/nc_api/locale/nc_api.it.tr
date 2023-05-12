@@ -9,7 +9,6 @@
 - Crafting is done by building recipes in-world.=- Le creazioni si fanno costruendo ricette nel mondo.
 - DONE: @1=- FATTO: @1
 - Displaced nodes can be climbed through like climbing spots.=- Sui nodi spiazzati ci si può arrampicare come sui punti di arrampicata.
-- Do not use F5 debug info; it will mislead you!=- Non usare le informazioni di debug F5; ti porteranno fuori strada!
 - Drop and pick up items to rearrange your inventory.=- Posa e raccogli gli oggetti per sistemare il tuo inventario.
 - Drop items onto ground to create stack nodes. They do not decay.=- Posa gli oggetti sul terreno per creare nodi catasta. Non decadono.
 - FUTURE: @1=- FUTURI: @1

@@ -7,7 +7,6 @@
 - Climbing spots may be climbed once black particles appear.=- Pontos de escalada podem ser escalados assim que as partículas pretas aparecerem.
 - Crafting is done by building recipes in-world.=- A Criação de Itens é feita construindo as receitas pelo mundo.
 - Displaced nodes can be climbed through like climbing spots.=- Nós deslocados podem ser escalados como pontos de escalada.
-- Do not use F5 debug info; it will mislead you!=- Não use as informações de debug do F5; Apenas irão lhe confundir!
 - Drop and pick up items to rearrange your inventory.=- Solte e pegue itens para reorganizar seu inventário.
 - Drop items onto ground to create stack nodes. They do not decay.=- Derrube itens no chão para criar pilhas de nodes. Eles não somem.
 - FUTURE: @1=- FUTURO: @1

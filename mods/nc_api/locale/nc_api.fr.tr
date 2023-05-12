@@ -9,7 +9,6 @@
 - Crafting is done by building recipes in-world.=- La fabrication se fait en construisant les recettes dans le monde nodecore.
 - DONE: @1=- FAIT : @1
 - Displaced nodes can be climbed through like climbing spots.=- Les blocs déplacés peuvent être escaladés comme points d'escalade.
-- Do not use F5 debug info; it will mislead you!=- Ne pas utiliser les informations de débogage F5 ; cela risque de vous induire en erreur !
 - Drop and pick up items to rearrange your inventory.=- Lâcher et récupérer des objets pour réarranger votre inventaire.
 - Drop items onto ground to create stack nodes. They do not decay.=- Lâcher des objets sur le sol pour créer des blocs piles d'objet. Elles ne se décomposent pas.
 - FUTURE: @1=- FUTUR : @1
@@ -142,6 +141,7 @@ Dirt=Terre
 Discord: https://discord.gg/NNYeF6f=Discord : https://discord.gg/NNYeF6f
 Discovery=Découverte
 Displaced Node=Bloc Déplacé
+Donate: https://liberapay.com/NodeCore=Dons : https://liberapay.com/NodeCore
 Dry Rush=Jonc Séché
 Early-access edition of NodeCore with latest features (and maybe bugs)=Édition anticipée de NodeCore avec les dernières fonctionnalités (et peut-être des bugs)
 Eggcorn=Gland
