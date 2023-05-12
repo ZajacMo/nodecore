@@ -75,7 +75,6 @@ end
 
 for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
 
-include("compat_clientversion")
 include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
@@ -133,3 +132,4 @@ include("item_groupdump")
 include("item_tiledump")
 
 include("setup_serverversion")
+include("setup_clientversion")
