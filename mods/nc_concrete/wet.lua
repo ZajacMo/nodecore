@@ -16,11 +16,13 @@ local function wetname(name)
 end
 
 function nodecore.concrete_wet_node(pos, node)
+	node = node or minetest.get_node(pos)
 	local wet = wetname(node.name)
 	if not wet then return end
 	nodecore.set_loud(pos, {name = wet})
 	nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 	nodecore.dnt_set(pos, "fluidwander_concrete")
+	return true
 end
 
 minetest.register_abm({
