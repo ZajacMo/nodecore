@@ -169,7 +169,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 					v.name, v.scatter, v.count, v.velocity)
 			end
 		end
-		if recipe.consumewield then
+		if recipe.consumewield and data.crafter then
 			nodecore.consume_wield(data.crafter, recipe.consumewield)
 		elseif recipe.toolgroups and recipe.toolwear and data.crafter then
 			nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
