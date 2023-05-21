@@ -77,7 +77,7 @@ function nodecore.fire_ignite(pos, node)
 		local ign = def.on_ignite
 		if type(ign) == "function" then
 			ign = ign(pos, node)
-			if ign == true then return end
+			if ign == true then return true end
 		end
 		burneject(pos, ign)
 	end
@@ -99,6 +99,16 @@ function nodecore.fire_ignite(pos, node)
 	nodecore.sound_play("nc_fire_flamy", {gain = 3, pos = pos})
 	nodecore.fallcheck(pos)
 	return true
+end
+
+function nodecore.fire_on_ignite_plantlike_rooted(replace)
+	if type(replace) == "string" then replace = {name = replace} end
+	return function(pos)
+		minetest.set_node(pos, replace)
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		nodecore.fire_ignite(above)
+		return true
+	end
 end
 
 function nodecore.fire_check_ignite(pos, node, force, ...)
