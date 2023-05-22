@@ -33,7 +33,9 @@ function nodecore.toolcaps(opts)
 				times[n] = tt
 			end
 			local calcuse = 5 * math_pow(3, lv) * opts.uses
-			if opts.uses > 0 and calcuse < 1 then calcuse = 1 end
+			local umin = opts.usesmin or 1
+			if umin < 1 then umin = 1 end
+			if opts.uses > 0 and calcuse < umin then calcuse = umin end
 			gcaps[gn] = {
 				times = times,
 				uses = calcuse
