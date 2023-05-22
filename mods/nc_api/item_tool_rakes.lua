@@ -86,6 +86,7 @@ end
 
 local function dorake(volume, check, pos, node, user, ...)
 	local sneak = user and user:get_player_control().sneak or nodecore.machine_digging
+	local wield = user and user:get_wielded_item():get_name()
 	local objpos = {}
 	for _, rel in ipairs(volume) do
 		local p = vector.add(pos, rel)
@@ -98,6 +99,7 @@ local function dorake(volume, check, pos, node, user, ...)
 				if nodecore.machine_digging then
 					nodecore.machine_digging.auxpos = p
 				end
+				if (user and user:get_wielded_item():get_name()) ~= wield then break end
 				minetest.node_dig(p, n, user, ...)
 				if nodecore.machine_digging then
 					nodecore.machine_digging.auxpos = nil
