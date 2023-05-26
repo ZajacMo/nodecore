@@ -87,9 +87,14 @@ nodecore.register_leaf_drops(function(_, node, list)
 	end)
 
 local ldname = "nc_terrain:dirt_loose"
+local diag = 2 ^ 0.5 / 32
 local epdef = nodecore.underride({
 		description = "Sprout",
 		drawtype = "plantlike_rooted",
+		selection_box = nodecore.fixedbox(
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+			{-diag, 0.5, -diag, diag, 10/16, diag}
+		),
 		falling_visual = ldname,
 		special_tiles = {modname .. "_eggcorn_planted.png"},
 		drop = ldname,
