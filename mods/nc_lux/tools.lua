@@ -15,7 +15,7 @@ local function mktool(tshape, buffs)
 				inventory_image = orig.inventory_image .. "^(" .. modname
 				.. "_base.png^[mask:" .. modname
 				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
-				.. ".png^[opacity:80])",
+				.. ".png^[opacity:80)",
 				tool_wears_to = orig.name,
 				glow = 1
 			}, orig)
@@ -41,7 +41,7 @@ local function mktool(tshape, buffs)
 				inventory_image = orig.inventory_image .. "^(" .. modname
 				.. "_base.png^[mask:" .. modname
 				.. "_infuse_mask.png^[mask:nc_lode_" .. tshape
-				.. ".png^[opacity:120])",
+				.. ".png^[opacity:120)",
 				tool_capabilities = boosttc,
 				glow = 2,
 				light_source = 1,
