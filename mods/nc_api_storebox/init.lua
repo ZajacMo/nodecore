@@ -20,7 +20,7 @@ local function doplace(stack, clicker, pointed_thing, ...)
 		if ok then nodecore.node_sound(pointed_thing.above, "place") end
 		return left, ok, ...
 	end
-	return helper(minetest.item_place_node_or_stack(stack, clicker, pointed_thing, ...))
+	return helper(nodecore.item_place_node_or_stack(stack, clicker, pointed_thing, ...))
 end
 
 function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thing)

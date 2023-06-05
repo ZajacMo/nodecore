@@ -26,7 +26,7 @@ local function displace_check(pos)
 	if def and def.buildable_to then return end
 	if def and def.diggable and def.drop ~= nil and def.drop ~= node.name
 	and nodecore.tool_digs(hand, def.groups) then
-		minetest.dig_node(pos)
+		nodecore.protection_bypass(minetest.dig_node, pos)
 	end
 	for rel in nodecore.settlescan() do
 		local p = vector.add(pos, rel)
@@ -97,7 +97,7 @@ minetest.register_entity(":__builtin:falling_node", {
 				local node = minetest.get_node(below)
 				local def = minetest.registered_nodes[node.name] or {}
 				if def.groups and def.groups.is_stack_only then
-					minetest.dig_node(below)
+					nodecore.protection_bypass(minetest.dig_node, below)
 					return
 				end
 

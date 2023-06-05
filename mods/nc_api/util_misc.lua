@@ -616,6 +616,16 @@ function nodecore.protection_test(pos, player)
 	end
 end
 
+function nodecore.protection_bypass(func, ...)
+	local oldprot = minetest.is_protected
+	local function helper(...)
+		minetest.is_protected = oldprot
+		return ...
+	end
+	function minetest.is_protected() end
+	return helper(func(...))
+end
+
 function nodecore.meta_serializable(meta)
 	local mt = type(meta)
 	if mt == "table" or mt == "userdata" then

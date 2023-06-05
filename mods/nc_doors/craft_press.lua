@@ -133,7 +133,7 @@ nodecore.register_craft({
 			if def and def.on_place_node then
 				stack = def.on_place_node(stack, nil, pt) or stack
 			else
-				stack = minetest.item_place_node(stack, nil, pt)
+				stack = nodecore.protection_bypass(minetest.item_place_node, stack, nil, pt)
 			end
 			nodecore.node_sound(pos, "place")
 			nodecore.witness({pos, data.pointed.above}, "door placement")
