@@ -54,6 +54,7 @@ local accessdirs = nodecore.dirs()
 local function sealed_or_notdry(nodename, pos)
 	local def = minetest.registered_nodes[nodename]
 	if def and def.groups and def.groups.storebox_sealed and def.groups.storebox_sealed > 0 then
+		if not pos then return true end
 		for i = 1, #accessdirs do
 			local pt = {
 				type = "node",
