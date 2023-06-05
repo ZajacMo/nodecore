@@ -145,6 +145,7 @@ local groups = {
 	stone = "variants of smooth stone, including ones with inclusions (ore)",
 	stone_bricks = "smooth stone that's been chiseled into bricks",
 	storebox = "storage containers (e.g. shelves, cases, crates)",
+	storebox_sealed = "storage container that's airtight (sponges) if open sides covered",
 	support_falling = "falling_nodes can rest on it even if not walkable",
 	thumpy = "dig group: mallets and hand",
 	torch_lit = "(specific) lit torches, subject to various events/timers",
