@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
+"PO-Revision-Date: 2023-06-05 03:51+0000\n"
 "Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -2046,3 +2046,12 @@ msgstr "вырастите осоку на траве рядом с влагой
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 Аарон Суэн <warr1024@@gmail.com>"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 отклонено. (версия протокола @2)"
+
+msgid "Version @1 or higher is required."
+msgstr "Требуется версия @1 или выше."
+
+msgid "Your Minetest version is outdated, please update!"
+msgstr "Ваша версия Minetest устарела, пожалуйста, обновите!"
