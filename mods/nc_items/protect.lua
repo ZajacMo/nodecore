@@ -6,7 +6,7 @@ local minetest, nodecore
 local stacks_only = nodecore.group_expand("group:is_stack_only", true)
 
 function nodecore.protection_exempt(pos)
-	return stacks_only[minetest.get_node(pos)]
+	return stacks_only[minetest.get_node(pos).name]
 end
 
 minetest.after(0, function()
