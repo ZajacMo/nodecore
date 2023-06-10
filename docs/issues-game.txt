@@ -73,7 +73,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Remove fullbright from admin hand.
 	- Separate command to set a minimum player dynamic light.
 	- Priv to disable skybox/sunlight diminishing by depth?
-	- Add radius to /snuff, /ignite, /growtrees, etc
 	- Add a /soak cheat to push soaking?
 	- Add a /forest or /grove cheat to sprinkle trees around
 		- Like the flora redecorate

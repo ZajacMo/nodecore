@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      vector
+local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, type, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, type, vector
 local math_floor, math_pow, math_random, string_format
     = math.floor, math.pow, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -174,11 +174,15 @@ end
 minetest.register_chatcommand("ignite", {
 		description = "Set fire to all nearby flammables",
 		privs = {["debug"] = true},
-		func = function(pname)
+		params = "[radius]",
+		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable", 5)) do
+			param = tonumber(param) or 5
+			if param < 0 then param = 0 end
+			if param > 79 then param = 79 end
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable", param)) do
 				nodecore.fire_check_ignite(p, nil, true)
 			end
 		end
@@ -186,11 +190,15 @@ minetest.register_chatcommand("ignite", {
 minetest.register_chatcommand("snuff", {
 		description = "Extinguish all nearby embers",
 		privs = {["debug"] = true},
-		func = function(pname)
+		params = "[radius]",
+		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos, "group:ember", 5)) do
+			param = tonumber(param) or 5
+			if param < 0 then param = 0 end
+			if param > 79 then param = 79 end
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:ember", param)) do
 				snuff(0, true, p)
 			end
 			for _, p in pairs(nodecore.find_nodes_around(pos, modname .. ":fire", 5)) do
