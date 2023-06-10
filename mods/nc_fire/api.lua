@@ -69,6 +69,7 @@ local function burneject(pos, stack)
 end
 
 function nodecore.fire_ignite(pos, node)
+	if nodecore.fire_quell then return end
 	node = node or minetest.get_node(pos)
 	nodecore.log("action", string_format("ignite %s at %s", node.name,
 			minetest.pos_to_string(pos)))
@@ -102,6 +103,7 @@ function nodecore.fire_ignite(pos, node)
 end
 
 function nodecore.fire_on_ignite_plantlike_rooted(replace)
+	if nodecore.fire_quell then return end
 	if type(replace) == "string" then replace = {name = replace} end
 	return function(pos)
 		minetest.set_node(pos, replace)
@@ -112,6 +114,8 @@ function nodecore.fire_on_ignite_plantlike_rooted(replace)
 end
 
 function nodecore.fire_check_ignite(pos, node, force, ...)
+	if nodecore.fire_quell then return end
+
 	if not force then
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}
@@ -158,7 +162,7 @@ function nodecore.fire_check_expend(pos, node)
 end
 
 local function snuffcheck(pos, node)
-	if nodecore.quenched(pos) then return true end
+	if nodecore.fire_quell or nodecore.quenched(pos) then return true end
 	local vents = nodecore.fire_vents(pos, node)
 	if not vents then return end
 	if #vents < 1 then return true end
