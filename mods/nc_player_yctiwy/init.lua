@@ -91,6 +91,39 @@ local function savestate(player)
 end
 
 ------------------------------------------------------------------------
+-- TELEPORT COMMAND
+
+local teleport = minetest.registered_chatcommands.teleport
+if teleport and teleport.func then
+	local cannot = nodecore.translate("Cannot teleport an offline player.")
+	local oldfunc = teleport.func
+	teleport.func = function(caller, ...)
+		local oldget = minetest.get_player_by_name
+		local function helper(...)
+			minetest.get_player_by_name = oldget
+			return ...
+		end
+		function minetest.get_player_by_name(name, ...)
+			local player = oldget(name, ...)
+			if player then return player end
+			local s = db[name]
+			if s and s.pos then
+				return {
+					get_pos = function() return s.pos end,
+					set_pos = function()
+						minetest.after(0, function()
+								return minetest.chat_send_player(caller, cannot)
+							end)
+					end,
+					get_attach = function() end,
+				}
+			end
+		end
+		return helper(oldfunc(caller, ...))
+	end
+end
+
+------------------------------------------------------------------------
 -- MISC/UTILITY/COMMON
 
 local function areaunloaded(pos)
