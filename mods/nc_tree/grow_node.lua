@@ -95,7 +95,7 @@ local epdef = nodecore.underride({
 		drop = ldname,
 		no_self_repack = true,
 		paramtype = "light",
-		groups = {grassable = 0, flammable = 35},
+		groups = {grassable = 0, flammable = 35, cheat = 1},
 		on_ignite = nodecore.fire_on_ignite_plantlike_rooted(ldname)
 	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
@@ -140,7 +140,8 @@ minetest.register_node(modname .. ":leaves_bud", {
 			green = 4,
 			scaling_time = 90,
 			leaf_decay = 1,
-			leaf_decay_transmit = 1
+			leaf_decay_transmit = 1,
+			cheat = 1
 		},
 		treeable_to = true,
 		drop = "",

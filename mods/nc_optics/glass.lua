@@ -111,7 +111,8 @@ local moltdef = {
 		silica = 1,
 		silica_molten = 1,
 		damage_touch = 1,
-		damage_radiant = 3
+		damage_radiant = 3,
+		cheat = 1
 	},
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",

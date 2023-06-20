@@ -38,7 +38,8 @@ for i = 1, #nodecore.writing_glyphs do
 			pointable = false,
 			groups = {
 				flammable = 1,
-				alpha_glyph = 1
+				alpha_glyph = 1,
+				cheat = 1
 			},
 			drop = coallump,
 			floodable = true,

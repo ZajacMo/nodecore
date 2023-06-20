@@ -30,7 +30,8 @@ minetest.register_node(modname .. ":fire", {
 			stack_as_node = 1,
 			damage_touch = 1,
 			damage_radiant = 1,
-			flame_ambiance = 1
+			flame_ambiance = 1,
+			cheat = 1
 		},
 		stack_max = 1,
 		damage_per_second = 1,
@@ -108,7 +109,8 @@ for num = 1, nodecore.fire_max do
 				falling_node = 1,
 				stack_as_node = 1,
 				damage_touch = 1,
-				damage_radiant = 3
+				damage_radiant = 3,
+				cheat = 1
 			},
 			stack_max = 1,
 			drop = "",
