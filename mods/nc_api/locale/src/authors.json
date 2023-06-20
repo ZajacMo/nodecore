@@ -15,7 +15,8 @@
 		"es": "2023-03-27T20:44:00.463645+02:00",
 		"eo": "2023-03-27T20:43:37.958443+02:00",
 		"es_US": "2023-03-27T20:44:23.937666+02:00",
-		"lzh": "2023-03-27T20:47:11.223249+02:00"
+		"lzh": "2023-03-27T20:47:11.223249+02:00",
+		"tok": "2023-06-17T22:33:06.754723+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -190,6 +191,14 @@
 			"raw": {
 				"full_name": "Julien Maulny",
 				"username": "alcalyn"
+			},
+			"first": "2023",
+			"last": "2023"
+		},
+		"https://hosted.weblate.org/api/users/ElonSatoshi/?format=json": {
+			"raw": {
+				"full_name": "ElonSatoshi",
+				"username": "ElonSatoshi"
 			},
 			"first": "2023",
 			"last": "2023"

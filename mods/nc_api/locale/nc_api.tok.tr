@@ -1,0 +1,17 @@
+# textdomain: nc_api
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=tenpo sike suno nanpa 2018-@1 la jan Aaron Suen <warr1024@@gmail.com> li pali li lawa e ijo ni
+- "Furnaces" are not a thing; discover smelting with open flames.=- ona li ken ala pali e poki seli. o kama sona e nasin seli kepeken seli open.
+- Aux+drop any item to drop everything.=- Aux + drop o kama ala jo e ijo wan la o kama ala jo e ijo ali
+- Be wary of dark caves/chasms; you are responsible for getting yourself out.=- sina jo ala e nasin pi pali suno la o tawa ala lon lupa ma pimeja! sina lon lupa ma pimeja la, sina taso li ken kama sona e nasin weka.
+- Can't dig trees or grass? Search for sticks in the canopy.=- sina ken ala pakala e kasi e ma kasi la o alasa e palisa mute lon lipu kasi.
+- Climbing spots also produce very faint light; raise display gamma to see.=- kepeken pi tawa sewi sinpin li pana lili e suno. sina ken ala lukin e suno lili ni la o suli e suno pi ilo sitelen tawa kepeken nimi ante ni: "gamma".
+- Climbing spots may be climbed once black particles appear.=- sinpin li pana e pipi lili pimeja mute la sina ken tawa sewi e sinpin.
+- Crafting is done by building recipes in-world.=- nasin pali ale li lon ma.
+- DONE: @1=- pini: @1
+- Drop and pick up items to rearrange your inventory.=- sina wile ante e nasin pi ijo sina la o weka o kama jo e ijo sina.
+- Drop items onto ground to create stack nodes. They do not decay.=- sina weka e ijo mute la ijo mute li lon ma li kama kulupu. tenpo kama la kulupu pi ijo mute li kama weka ala.
+- FUTURE: @1=- tenpo kama la: @1
+- For larger recipes, the center item is usually placed last.=- nasin pi pali ijo li suli la o pana e ijo pini lon insa.
+- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- palisa luka teje sina li tawa lon nena teje li tawa mute anu awen la sina pali e kepeken sewi sinpin.
+- If a recipe exists, you will see a special particle effect.=- leko li pana pipi lili la nasin pi pali ijo o pali
+- If it takes more than 5 seconds to dig, you don't have the right tool.=- tenpo mute la leko li pakala ala la ilo sina li ike tawa leko ni

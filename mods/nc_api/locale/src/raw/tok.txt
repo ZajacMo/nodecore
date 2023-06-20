@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-17 21:37+0200\n"
+"PO-Revision-Date: 2023-06-18 01:16+0000\n"
+"Last-Translator: ElonSatoshi <elonsatoshi@riseup.net>\n"
+"Language-Team: Toki Pona <https://hosted.weblate.org/projects/minetest/"
+"nodecore/tok/>\n"
+"Language: tok\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.18.1\n"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr ""
+"tenpo sike suno nanpa 2018-@1 la jan Aaron Suen <warr1024@@gmail.com> li "
+"pali li lawa e ijo ni"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr ""
+"- ona li ken ala pali e poki seli. o kama sona e nasin seli kepeken seli "
+"open."
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr ""
+"- sina ken ala pakala e kasi e ma kasi la o alasa e palisa mute lon lipu "
+"kasi."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr ""
+"- sinpin li pana e pipi lili pimeja mute la sina ken tawa sewi e sinpin."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- kepeken pi tawa sewi sinpin li pana lili e suno. sina ken ala lukin e suno "
+"lili ni la o suli e suno pi ilo sitelen tawa kepeken nimi ante ni: \"gamma\"."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr ""
+"- sina weka e ijo mute la ijo mute li lon ma li kama kulupu. tenpo kama la "
+"kulupu pi ijo mute li kama weka ala."
+
+#, fuzzy
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- nasin pi pali ijo li suli la o pana e ijo pini lon insa."
+
+#, fuzzy
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- sina wile ante e nasin pi ijo sina la o weka o kama jo e ijo sina."
+
+#, fuzzy
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- palisa luka teje sina li tawa lon nena teje li tawa mute anu awen la sina "
+"pali e kepeken sewi sinpin."
+
+#, fuzzy
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- leko li pana pipi lili la nasin pi pali ijo o pali"
+
+msgid "- @1"
+msgstr "- @1"
+
+#, fuzzy
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux + drop o kama ala jo e ijo wan la o kama ala jo e ijo ali"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- sina jo ala e nasin pi pali suno la o tawa ala lon lupa ma pimeja! sina "
+"lon lupa ma pimeja la, sina taso li ken kama sona e nasin weka."
+
+#, fuzzy
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- nasin pali ale li lon ma."
+
+#, fuzzy
+msgid "- DONE: @1"
+msgstr "- pini: @1"
+
+#, fuzzy
+msgid "- FUTURE: @1"
+msgstr "- tenpo kama la: @1"
+
+#, fuzzy
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- tenpo mute la leko li pakala ala la ilo sina li ike tawa leko ni"
