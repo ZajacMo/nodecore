@@ -7,7 +7,7 @@ local function wieldsound(player, idx, gain)
 	if nodecore.player_visible(player) then
 		local n = player:get_inventory():get_stack("main", idx):get_name()
 		local def = minetest.registered_items[n]
-		if def and def.sounds then
+		if def and def.sounds and def.sounds.dig then
 			local t = {}
 			for k, v in pairs(def.sounds.dig) do t[k] = v end
 			t.object = player
