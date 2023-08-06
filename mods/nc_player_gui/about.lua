@@ -26,7 +26,7 @@ local about = {
 	"GitLab: https://gitlab.com/sztest/nodecore",
 	"",
 	"Discord: https://discord.gg/NNYeF6f",
-	"Matrix: #nodecore:matrix.org",
+	"Matrix: #+nodecore:matrix.org",
 	"IRC: #nodecore @@ irc.libera.chat",
 	"",
 	"Donate: https://liberapay.com/NodeCore",
