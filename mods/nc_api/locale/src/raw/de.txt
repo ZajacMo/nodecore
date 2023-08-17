@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-06 22:47+0000\n"
-"Last-Translator: Thisaccountis42 <thisemailis42@gmail.com>\n"
+"PO-Revision-Date: 2023-08-17 16:20+0000\n"
+"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -1942,3 +1942,12 @@ msgstr "Spachtelmasse"
 #, fuzzy
 msgid "Wet Spackling"
 msgstr "Nasse Spachtelmasse"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 abgelehnt. (Protokollversion @2)"
+
+msgid "Version @1 or higher is required."
+msgstr "Version @1 oder höher benötigt."
+
+msgid "Your Minetest version is outdated, please update!"
+msgstr "Ihre Minetestversion ist veraltet, bitte aktualisieren!"
