@@ -69,6 +69,7 @@ local function tryprocess(item, retry)
 					queued[r.key] = true
 				end
 			end
+			return
 		end
 	end
 	for _, t in ipairs(item.try) do
