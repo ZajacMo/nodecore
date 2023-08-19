@@ -125,7 +125,21 @@ nodecore.register_craft({
 			if def and def.on_place_node then
 				stack = def.on_place_node(stack, nil, pt) or stack
 			else
-				stack = nodecore.protection_bypass(minetest.item_place_node, stack, nil, pt)
+				local param2 = 0
+				if def.paramtype2 == "facedir" then
+					local dir = vector.subtract(pt.under, pt.above)
+					for k, v in pairs(nodecore.facedirs) do
+						if vector.equals(v.b, dir) then
+							param2 = k
+							break
+						end
+					end
+				elseif def.paramtype2 == "4dir" then
+					local dir = vector.subtract(pt.under, pt.above)
+					param2 = minetest.dir_to_fourdir(dir)
+				end
+				stack = nodecore.protection_bypass(minetest.item_place_node,
+					stack, nil, pt, param2)
 			end
 			nodecore.node_sound(pos, "place")
 			nodecore.witness({pos, data.pointed.above}, "door placement")
