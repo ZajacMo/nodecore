@@ -3,15 +3,7 @@ local ipairs, minetest, nodecore, pairs, vector
     = ipairs, minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local function backstop(pos, dir, depth)
-	if depth <= 0 then return end
-	pos = vector.add(pos, dir)
-	if nodecore.buildable_to(pos) then return end
-	if nodecore.node_group("falling_node", pos) then
-		return backstop(pos, dir, depth - 1)
-	end
-	return true
-end
+local backstop = nodecore.node_backstop
 
 local done = {}
 local function pressify(rc)
