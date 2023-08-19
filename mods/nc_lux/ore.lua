@@ -77,6 +77,7 @@ for i = 1, nodecore.hard_stone_strata do
 			light_source = 1,
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
+			silktouch = false,
 			sounds = nodecore.sounds("nc_terrain_stony")
 		})
 end

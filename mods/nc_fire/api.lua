@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, string, type,
-      vector
+local ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, type, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, string,
+      tonumber, type, vector
 local math_floor, math_pow, math_random, string_format
     = math.floor, math.pow, math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -69,6 +69,7 @@ local function burneject(pos, stack)
 end
 
 function nodecore.fire_ignite(pos, node)
+	if nodecore.fire_quell then return end
 	node = node or minetest.get_node(pos)
 	nodecore.log("action", string_format("ignite %s at %s", node.name,
 			minetest.pos_to_string(pos)))
@@ -77,7 +78,7 @@ function nodecore.fire_ignite(pos, node)
 		local ign = def.on_ignite
 		if type(ign) == "function" then
 			ign = ign(pos, node)
-			if ign == true then return end
+			if ign == true then return true end
 		end
 		burneject(pos, ign)
 	end
@@ -101,7 +102,20 @@ function nodecore.fire_ignite(pos, node)
 	return true
 end
 
+function nodecore.fire_on_ignite_plantlike_rooted(replace)
+	if nodecore.fire_quell then return end
+	if type(replace) == "string" then replace = {name = replace} end
+	return function(pos)
+		minetest.set_node(pos, replace)
+		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+		nodecore.fire_ignite(above)
+		return true
+	end
+end
+
 function nodecore.fire_check_ignite(pos, node, force, ...)
+	if nodecore.fire_quell then return end
+
 	if not force then
 		node = node or minetest.get_node(pos)
 		local def = minetest.registered_items[node.name] or {}
@@ -148,7 +162,7 @@ function nodecore.fire_check_expend(pos, node)
 end
 
 local function snuffcheck(pos, node)
-	if nodecore.quenched(pos) then return true end
+	if nodecore.fire_quell or nodecore.quenched(pos) then return true end
 	local vents = nodecore.fire_vents(pos, node)
 	if not vents then return end
 	if #vents < 1 then return true end
@@ -164,11 +178,15 @@ end
 minetest.register_chatcommand("ignite", {
 		description = "Set fire to all nearby flammables",
 		privs = {["debug"] = true},
-		func = function(pname)
+		params = "[radius]",
+		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable", 5)) do
+			param = tonumber(param) or 5
+			if param < 0 then param = 0 end
+			if param > 79 then param = 79 end
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:flammable", param)) do
 				nodecore.fire_check_ignite(p, nil, true)
 			end
 		end
@@ -176,11 +194,15 @@ minetest.register_chatcommand("ignite", {
 minetest.register_chatcommand("snuff", {
 		description = "Extinguish all nearby embers",
 		privs = {["debug"] = true},
-		func = function(pname)
+		params = "[radius]",
+		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
-			for _, p in pairs(nodecore.find_nodes_around(pos, "group:ember", 5)) do
+			param = tonumber(param) or 5
+			if param < 0 then param = 0 end
+			if param > 79 then param = 79 end
+			for _, p in pairs(nodecore.find_nodes_around(pos, "group:ember", param)) do
 				snuff(0, true, p)
 			end
 			for _, p in pairs(nodecore.find_nodes_around(pos, modname .. ":fire", 5)) do

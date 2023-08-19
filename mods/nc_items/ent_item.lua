@@ -52,7 +52,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 				local def = minetest.registered_nodes[node.name]
 				if def and (not def.walkable) and def.diggable
 				and nodecore.tool_digs(hand, def.groups) then
-					minetest.dig_node(p)
+					nodecore.protection_bypass(minetest.dig_node, p)
 					return placeat(p)
 				end
 			end

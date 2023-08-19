@@ -1,9 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local minetest, nodecore, pairs, table
+    = minetest, nodecore, pairs, table
+local table_concat
+    = table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local cheatmsg = nodecore.translate("CHEATS ENABLED")
+local stasismsg = nodecore.translate("WORLD FROZEN")
+local quellmsg = nodecore.translate("FIRE QUELLED")
 
 local interact_cheats = {
 	fly = true,
@@ -35,12 +39,6 @@ local function ischeating(player)
 		for k in pairs(interact_cheats) do cheating = cheating or privs[k] end
 	else
 		for k in pairs(always_cheats) do cheating = cheating or privs[k] end
-	end
-	if not cheating then
-		local pinfo = minetest.get_player_information(pname)
-		if pinfo and pinfo.protocol_version < 40 then
-			cheating = true -- basic_debug not honored
-		end
 	end
 	if not cheating then
 		for _, list in pairs(player:get_inventory():get_lists()) do
@@ -95,12 +93,16 @@ minetest.register_chatcommand("uncheat", {
 	})
 
 local function privcheck(player)
+	local parts = {}
+	if ischeating(player) then parts[#parts + 1] = cheatmsg end
+	if nodecore.fire_quell then parts[#parts + 1] = quellmsg end
+	if nodecore.stasis then parts[#parts + 1] = stasismsg end
 	nodecore.hud_set(player, {
 			label = "cheats",
 			group = {},
 			hud_elem_type = "text",
 			position = {x = 0.5, y = 1},
-			text = ischeating(player) and cheatmsg or "",
+			text = table_concat(parts, " | "),
 			number = 0xFF00C0,
 			alignment = {x = 0, y = -1},
 			offset = {x = 0, y = -4}
@@ -120,8 +122,20 @@ minetest.register_on_joinplayer(function(player)
 		return privcheck_delay(player:get_player_name())
 	end)
 
-nodecore.interval(2, function()
-		for _, player in pairs(minetest.get_connected_players()) do
-			privcheck(player)
-		end
+local function checkall()
+	for _, player in pairs(minetest.get_connected_players()) do
+		privcheck(player)
+	end
+end
+nodecore.interval(2, checkall)
+
+local oldflags = {}
+minetest.register_globalstep(function()
+		if nodecore.stasis == oldflags.stasis
+		and nodecore.fire_quell == oldflags.fire_quell
+		then return end
+
+		oldflags.stasis = nodecore.stasis
+		oldflags.fire_quell = nodecore.fire_quell
+		return checkall()
 	end)

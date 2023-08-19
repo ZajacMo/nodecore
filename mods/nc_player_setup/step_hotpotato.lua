@@ -14,7 +14,10 @@ nodecore.register_playerstep({
 				local s = inv:get_stack("main", i)
 				local n = not s:is_empty() and s:get_name()
 				n = n and minetest.registered_items[n]
-				n = n and n.groups and n.groups.damage_touch
+				n = n and n.groups and n.groups.damage_pickup
+				if (n or 0) == 0 then
+					n = n and n.groups and n.groups.damage_touch
+				end
 				if n and n > 0 then
 					hurt = hurt + n
 					inv:set_stack("main", i, "")

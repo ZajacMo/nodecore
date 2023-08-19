@@ -11,7 +11,8 @@ local basetimes = {
 	choppy = 2,
 	crumbly = 0.5,
 	snappy = 0.4,
-	scratchy = 2
+	scratchy = 2,
+	cuddly = 2
 }
 nodecore.tool_basetimes = basetimes
 
@@ -31,9 +32,13 @@ function nodecore.toolcaps(opts)
 				if tt < 0.25 then tt = 0.25 end
 				times[n] = tt
 			end
+			local calcuse = 5 * math_pow(3, lv) * opts.uses
+			local umin = opts.usesmin or 1
+			if umin < 1 then umin = 1 end
+			if opts.uses > 0 and calcuse < umin then calcuse = umin end
 			gcaps[gn] = {
 				times = times,
-				uses = 5 * math_pow(3, lv) * opts.uses
+				uses = calcuse
 			}
 		end
 	end

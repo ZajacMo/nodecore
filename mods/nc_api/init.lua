@@ -22,7 +22,7 @@ end
 rawset(_G, "include", include)
 
 nodecore.product = "NodeCore"
-nodecore.version = include("version")
+nodecore.version, nodecore.releasedate = include("version")
 
 local function callguard(n, t, k, v)
 	if type(v) ~= "function" then return v end
@@ -41,16 +41,6 @@ setmetatable(nodecore, {
 			rawset(nodecore, k, callguard("nodecore", t, k, v))
 		end
 	})
-
-minetest.register_on_mods_loaded(function()
-		for _, n in pairs(minetest.get_modnames()) do
-			if n == "default" then
-				error(nodecore.product
-					.. " cannot be loaded on top of another game!")
-				error()
-			end
-		end
-	end)
 
 local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
 function nodecore.log(level, ...)
@@ -85,14 +75,11 @@ end
 
 for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
 
-include("compat_modstore")
-include("compat_clientversion")
 include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
 include("compat_nodealpha")
 include("compat_authcache")
-include("compat_soundpos")
 
 include("util_settings")
 include("util_privs")
@@ -126,6 +113,7 @@ include("mapgen_shared")
 include("item_on_register")
 include("item_diggable")
 include("item_drop_in_place")
+include("item_dig_drops")
 include("item_oldnames")
 include("item_tool_break")
 include("item_tool_sounds")
@@ -144,3 +132,4 @@ include("item_groupdump")
 include("item_tiledump")
 
 include("setup_serverversion")
+include("setup_clientversion")

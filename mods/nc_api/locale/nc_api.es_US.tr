@@ -1,11 +1,10 @@
 # textdomain: nc_api
-(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 por Aaron Suen <warr1024@@gmail.com>
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 por Aaron Suen <warr1024@@gmail.com>
 - "Furnaces" are not a thing; discover smelting with open flames.=- No hay hornos en Nodecore; fundir con llamas abiertas.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- Sé precavido de las cuevas oscuras; eres responsable de volver tú mismo.
 - Can't dig trees or grass? Search for sticks in the canopy.=- ¿No puedes cavar tierra o talar árboles? Busca palos por el entorno.
 - Crafting is done by building recipes in-world.=- El crafteo se realiza construyendo en el mundo.
 - DONE: @1=- LISTO: @1
-- Do not use F5 debug info; it will mislead you!=- No uses las opciones de debug (F5); ¡te confundirán!
 - Drop and pick up items to rearrange your inventory.=- Tira y agarra los ítems para reorganizar tu inventario.
 - Drop items onto ground to create stack nodes. They do not decay.=- Tira los ítems en el suelo para crear stacks de nodos. No desaparecen.
 - FUTURE: @1=- FUTURO: @1

@@ -121,28 +121,11 @@ local function toolfx(toolpos, actpos)
 	toolfxqueue[hashpos(toolpos)] = actpos
 end
 
-local olddig = minetest.node_dig
-function minetest.node_dig(pos, node, digger, ...)
-	if not nodecore.machine_digging then
-		return olddig(pos, node, digger, ...)
-	end
-	local oldprot = minetest.is_protected
-	function minetest.is_protected(pos2, ...)
-		if vector.equals(pos, pos2) then return end
-		return oldprot(pos2, ...)
-	end
-	local function helper(...)
-		minetest.is_protected = oldprot
-		return ...
-	end
-	return helper(olddig(pos, node, digger, ...))
-end
-
 local function doitemeject(pos, data)
 	if data.pressdig then
 		toolfx(pos, data.presstarget)
 		nodecore.machine_digging = data.pressdig
-		minetest.dig_node(data.pressdig.pos)
+		nodecore.protection_bypass(minetest.dig_node, data.pressdig.pos)
 		nodecore.machine_digging = nil
 		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door dig")
 		return

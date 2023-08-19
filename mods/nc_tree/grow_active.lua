@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
+local math, minetest, nodecore, pairs, table, tonumber
+    = math, minetest, nodecore, pairs, table, tonumber
 local math_random, table_concat
     = math.random, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -164,14 +164,18 @@ local growtreedata = {
 minetest.register_chatcommand("growtrees", {
 		description = "Accelerate growth of nearby trees",
 		privs = {["debug"] = true},
-		func = function(pname)
+		params = "[radius]",
+		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
 			local spec = {}
 			for k in pairs(growtreedata) do spec[#spec + 1] = k end
 			local grew = {}
-			for _, p in pairs(nodecore.find_nodes_around(pos, spec, 5)) do
+			param = tonumber(param) or 5
+			if param < 0 then param = 0 end
+			if param > 79 then param = 79 end
+			for _, p in pairs(nodecore.find_nodes_around(pos, spec, param)) do
 				local nn = minetest.get_node(p).name
 				local data = growtreedata[nn]
 				local r = data.r(p)
@@ -187,7 +191,7 @@ minetest.register_chatcommand("growtrees", {
 nodecore.register_craft({
 		label = "tickle eggcorn",
 		action = "pummel",
-		toolgroups = {crumbly = 1},
+		toolgroups = {cuddly = 1},
 		normal = {y = 1},
 		nodes = {
 			{match = {name = modname .. ":eggcorn_planted", stacked = false}}
@@ -201,7 +205,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "tickle tree trunk",
 		action = "pummel",
-		toolgroups = {snappy = 1},
+		toolgroups = {cuddly = 1},
 		normal = {y = 1},
 		nodes = {
 			{match = {name = modname .. ":tree_bud", stacked = false}}
@@ -215,7 +219,7 @@ nodecore.register_craft({
 nodecore.register_craft({
 		label = "tickle tree leaves",
 		action = "pummel",
-		toolgroups = {snappy = 1},
+		toolgroups = {cuddly = 1},
 		nodes = {
 			{match = {name = modname .. ":leaves_bud", stacked = false}}
 		},

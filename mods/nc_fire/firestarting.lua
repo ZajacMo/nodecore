@@ -61,6 +61,7 @@ nodecore.register_craft({
 		},
 		consumewield = 1,
 		duration = 5,
+		check = function() return not nodecore.fire_quell end,
 		before = function(pos, data)
 			local fs = minetest.get_item_group(data.node.name, "firestick")
 			* minetest.get_item_group(ItemStack(data.wield):get_name(), "firestick")

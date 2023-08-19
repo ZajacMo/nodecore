@@ -101,7 +101,7 @@ nodecore.register_craft({
 
 			local def = stack:get_definition()
 			if def and def.type == "node"
-			and not def.groups.place_as_item then
+			and not def.place_as_item then
 				data[checkedstack] = stack
 				return true
 			end
@@ -133,7 +133,7 @@ nodecore.register_craft({
 			if def and def.on_place_node then
 				stack = def.on_place_node(stack, nil, pt) or stack
 			else
-				stack = minetest.item_place_node(stack, nil, pt)
+				stack = nodecore.protection_bypass(minetest.item_place_node, stack, nil, pt)
 			end
 			nodecore.node_sound(pos, "place")
 			nodecore.witness({pos, data.pointed.above}, "door placement")

@@ -72,7 +72,8 @@ for i = 1, nodecore.hard_stone_strata do
 				lodey = 1,
 				cracky = i + 2,
 				hard_stone = i
-			}
+			},
+			silktouch = false,
 		})
 end
 

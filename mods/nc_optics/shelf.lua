@@ -30,7 +30,8 @@ local function register_tank(subname, desc, pane, recipeitem)
 				visinv = 1,
 				storebox = 1,
 				totable = 1,
-				scaling_time = 200
+				scaling_time = 200,
+				storebox_sealed = 1
 			},
 			paramtype = "light",
 			sunlight_propagates = true,

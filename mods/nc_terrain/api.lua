@@ -38,16 +38,23 @@ local function rmwater(pos)
 	return minetest.set_node(pos, {name = graywaterflow, param2 = 7})
 end
 function nodecore.artificial_water_check(pos)
-	local data = graywatercache[minetest.hash_node_position(pos)]
+	local cachekey = minetest.hash_node_position(pos)
+	local data = graywatercache[cachekey]
 	if not data then
 		data = minetest.get_meta(pos):get_string(modname)
 		data = data and data ~= "" and minetest.deserialize(data)
+		graywatercache[cachekey] = data
 	end
 	if not data then return rmwater(pos) end
 
 	if data.recheck and nodecore.gametime < data.recheck then
 		return nodecore.dnt_set(pos, graywatersrc, data.recheck - nodecore.gametime)
 	end
+
+	if nodecore.near_unloaded(pos, nil, 3) then
+		return nodecore.dnt_set(pos, graywatersrc, 1 + math_random())
+	end
+
 	if data.expire and nodecore.gametime >= data.expire then
 		return rmwater(pos)
 	end

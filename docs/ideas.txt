@@ -9,6 +9,34 @@ IDEAS: Possible future additions/improvements to the game
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Incorporate some existing mods:
+	- ncbells can mostly already go in as it is
+		- Green wanted to fix some sound quality issues
+		- Would be nice to have a way to control volume
+			- Material of stick, door tier?
+			- Attach lode things like rods, frames, cubes to bottom?
+	- ZipRunes are de facto essential on servers anyway
+		- Using charcoal doesn't feel quite right though
+		- Maybe something involving glass?
+		- Take advantage of the fact that the player is
+		  dreamlike/noncorporeal to not sacrifice realism here
+
+- Leaping sparks/podobos from lava
+	- Rarely triggered by pumwater, with per-node cooldown.
+	- Require at least one pum neighbor
+		- Small controlled setups like skyblocks don't have unfair surprises
+	- Chance of happening is reduced by nearby pum (check a random nearby node, if pum, cancel)
+		- This compensates for naturally increased rate of large pum lakes
+	- If it does happen, pick 2+ random nearby nodes and trigger them, to cause a chain reaction
+		- Though large lakes dont erupt as often, it's more spectacular
+	- Hookable/overridable so mods can add effects; include chain reaction generation in callback
+		- Especially for WinterCore Vulcan mod
+	- Make chain reaction ones shoot higher?
+	- Make them bounce if they land on solids?
+	- Set fires where they touch.
+	- Possibly knock stone loose and cause cave-ins?  Displacing
+		lava lakes upward would be pretty dramatic.
+
 - Should packed totes transmit light from items inside?
 	- Maybe at reduced intensity?
 	- Maybe need an on_get_light_source intelligent API for this
@@ -259,13 +287,6 @@ IDEAS: Possible future additions/improvements to the game
 
 - Threats
 	- Visceral
-		- Leaping sparks/podobos from lava
-			- Only where multiple source nodes are adjacent (lava lakes)
-			  to be nicer to managed builds and skyblocks.
-			- They fly ballistically, maybe bounce, and set fires where
-			  they land.
-			- Possibly knock stone loose and cause cave-ins?  Displacing
-			  lava lakes upward would be pretty dramatic.
 		- Flammable/toxic gas?
 		- Monsters: stone-lurkers, mimics.
 			- Complex multi-node mimic that eats tools you try to dig it with,
@@ -386,6 +407,7 @@ IDEAS: Possible future additions/improvements to the game
 	  by the game to avoid unknown_nodes.
 	- More complex items can register ingredients for "uncrafting"
 	  and automatic recycling; could work recursively.
+		- Eject multiple things as items like skyrealm items.
 
 ........................................................................
 ========================================================================

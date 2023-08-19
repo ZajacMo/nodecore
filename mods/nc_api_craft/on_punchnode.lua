@@ -60,6 +60,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 		local def = minetest.registered_items[node.name] or {}
 		if not def.pointable then return end
 
+		local wield = puncher:get_wielded_item()
 		local now = minetest.get_us_time() / 1000000
 		local pum = {
 			action = "pummel",
@@ -70,7 +71,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 			node = node,
 			nodedef = def,
 			start = now,
-			wield = puncher:get_wielded_item():to_string(),
+			wield = wield:get_name() .. " " .. wield:get_count(),
 			count = 0,
 		}
 		pum.inprogress = pumparticles(pum, 1.5, 0.5, 8)

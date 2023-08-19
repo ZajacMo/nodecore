@@ -1,5 +1,5 @@
 # textdomain: nc_api
-(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>=(C)2018-2021 Аарон Суэн <warr1024@@gmail.com>
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 Аарон Суэн <warr1024@@gmail.com>
 - "Furnaces" are not a thing; discover smelting with open flames.=- "Печек" тут нет; откройте для себя плавку открытым огнём.
 - Aux+drop any item to drop everything.=- Aux + сбросить любой предмет, чтобы сбросить все.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- Остерегайтесь темных пещер / пропастей; вы несете ответственность за то, чтобы выбраться отсюда.
@@ -9,7 +9,6 @@
 - Crafting is done by building recipes in-world.=- Крафтинг совершается постройкой рецептов в мире.
 - DONE: @1=- ЗАВЕРШЕНО: @1
 - Displaced nodes can be climbed through like climbing spots.=- Смещенные ноды можно преодолевать как места для лазания.
-- Do not use F5 debug info; it will mislead you!=- Не используйте отладочную информацию F5; Она введет вас в заблуждение!
 - Drop and pick up items to rearrange your inventory.=- Бросьте и соберите предметы, чтобы переставить инвентарь.
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
 - FUTURE: @1=- БУДУЩЕЕ: @1
@@ -39,6 +38,7 @@
 - Wielded item, target face, and surrounding nodes may matter.=- Предмет в руках, целевая грань и окружающие ноды могут иметь значение.
 - You do not have to punch very fast (about 1 per second).=- Ударять нужно не так часто (около 1 удара в секунду).
 @1 discovered, @2 available, @3 future=@1 обнаружено, @2 доступно, @3 в будущем
+@1 rejected. (protocol version @2)=@1 отклонено. (версия протокола @2)
 About=Об игре
 Active Lens=Активная Линза
 Active Prism=Активная Призма
@@ -142,6 +142,7 @@ DEVELOPMENT VERSION=ВЕРСИЯ ДЛЯ РАЗРАБОТКИ
 Dirt=Грязь
 Discovery=Открытие
 Displaced Node=Смещенная Нода
+Donate: https://liberapay.com/NodeCore=Пожертвовать: https://liberapay.com/NodeCore
 Dry Rush=Сухой Камыш
 Early-access edition of NodeCore with latest features (and maybe bugs)=Ранняя версия NodeCore с последними функциями (и, возможно, с ошибками)
 Eggcorn=Яйцезерно
@@ -343,6 +344,7 @@ Vermy Sandstone=Рыхлый Песчаник
 Vermy Stone=Рыхлый Камень
 Vermy Tarstone=Рыхлый Смолиной Камень
 Vermy=Рыхлая
+Version @1 or higher is required.=Требуется версия @1 или выше.
 Verty Adobe=Вертик Саман
 Verty Pliant Adobe=Вертик Мягкий Саман
 Verty Pliant Sandstone=Вертик Мягкий Песчаник
@@ -399,6 +401,7 @@ Yellow Cup Flower=Желтый Чашечный Цветок
 Yellow Rosette Flower=Желтый Цветок Розы
 Yellow Star Flower=Желтый Звездный Цветок
 Yit Charcoal Glyph=Йит Глиф из угля
+Your Minetest version is outdated, please update!=Ваша версия Minetest устарела, пожалуйста, обновите!
 Zin Charcoal Glyph=Зин Глиф из угля
 activate a lens=активируйте линзу
 activate a prism=активируйте призму

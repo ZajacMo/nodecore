@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-30 20:35+0200\n"
-"PO-Revision-Date: 2023-01-19 01:09+0000\n"
+"PO-Revision-Date: 2023-05-06 22:47+0000\n"
 "Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/nodecore/"
 "sk/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid "Annealed Lode Bar"
 msgstr "Tyč zo žíhaných žíl"
@@ -471,3 +471,15 @@ msgstr "Krabicový poddajný kameň"
 
 msgid "Bricky Adobe"
 msgstr "Tehlovä nepálená tehla"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 od Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- FUTURE: @1"
+msgstr "- BUDÚCE: @1"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "Admin Tool"
+msgstr "Nástroj správcu"

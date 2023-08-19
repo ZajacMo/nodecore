@@ -10,7 +10,11 @@ function nodecore.register_on_register_item(def)
 	if type(def) == "function" then def = {func = def} end
 	regs[#regs + 1] = def
 	if def.retroactive then
+		local snapshot = {}
 		for name, itemdef in pairs(minetest.registered_items) do
+			snapshot[name] = itemdef
+		end
+		for name, itemdef in pairs(snapshot) do
 			local t = {}
 			setmetatable(t, {
 					__index = itemdef,

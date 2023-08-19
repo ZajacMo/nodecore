@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-09 20:49+0000\n"
-"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"PO-Revision-Date: 2023-03-27 18:47+0000\n"
+"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
 "Language: fr\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -1772,3 +1772,9 @@ msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing
 msgstr ""
 "- Maintenir/Répéter le clic droit sur les murs/plafonds à mains nues pour "
 "créer une prise d'escalade."
+
+msgid "Admin Tool"
+msgstr "Outil d'administration"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 par Aaron Suen <warr1024@@gmail.com>"

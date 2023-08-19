@@ -21,7 +21,6 @@ do
 		raillike = true,
 		nodebox = true,
 		mesh = true,
-		plantlike_rooted = true
 	}
 	minetest.after(0, function()
 			for name, def in pairs(minetest.registered_nodes) do

@@ -15,18 +15,24 @@ local function wetname(name)
 	return def and (def .. "_wet_source")
 end
 
+function nodecore.concrete_wet_node(pos, node)
+	node = node or minetest.get_node(pos)
+	local wet = wetname(node.name)
+	if not wet then return end
+	nodecore.set_loud(pos, {name = wet})
+	nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
+	nodecore.dnt_set(pos, "fluidwander_concrete")
+	return true
+end
+
 minetest.register_abm({
 		label = "concrete wet",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:concrete_powder"},
 		neighbors = {"group:water"},
-		action = function(pos, node)
-			local wet = wetname(node.name)
-			if not wet then return end
-			nodecore.set_loud(pos, {name = wet})
-			nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
-			nodecore.dnt_set(pos, "fluidwander_concrete")
+		action = function(...)
+			return nodecore.concrete_wet_node(...)
 		end
 	})
 

@@ -10,9 +10,9 @@ local modname = minetest.get_current_modname()
 nodecore.register_leaf_drops, nodecore.registered_leaf_drops
 = nodecore.mkreg()
 
-function nodecore.tree_soil_rate(pos)
-	local d = 1
-	local w = 1
+function nodecore.tree_soil_rate(pos, d, w)
+	d = d or 1
+	w = w or 1
 	nodecore.scan_flood(pos, 3, function(p, r)
 			if r < 1 then return end
 			local nn = minetest.get_node(p).name

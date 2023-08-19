@@ -1,24 +1,32 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local minetest, nodecore, string
+    = minetest, nodecore, string
+local string_format
+    = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local minproto = 39
-local minrelease = "5.2"
+local minproto = 41
+local minrelease = "5.6"
 
 local rejected = {}
+
+local kickmsg = string_format("\n\n%s\n%s",
+	nodecore.translate("Your Minetest version is outdated, please update!"),
+	nodecore.translate("Version @1 or higher is required.", minrelease))
+
+local announce = "@1 rejected. (protocol version @2)"
+nodecore.translate_inform(announce)
 
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		local pinfo = minetest.get_player_information(pname)
 		if (not pinfo) or (pinfo.protocol_version < minproto) then
 			rejected[pname] = true
-			minetest.kick_player(pname, "Outdated client, "
-				.. minrelease .. " required")
+			minetest.kick_player(pname, kickmsg)
 			return minetest.after(0, function()
-					return minetest.chat_send_all("*** " .. pname
-						.. " rejected. (protocol version "
-						.. (pinfo and pinfo.protocol_version or "unknown") .. ")")
+					return minetest.chat_send_all("*** "
+						.. nodecore.translate(announce, pname,
+							pinfo and pinfo.protocol_version or "unknown"))
 				end)
 		else
 			rejected[pname] = nil

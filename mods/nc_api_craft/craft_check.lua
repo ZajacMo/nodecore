@@ -116,6 +116,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 		local dur = data.duration
 		if type(dur) == "function" then dur = dur(pos, data) end
 		if not dur or dur < mindur then
+			if recipe.inprogress then recipe.inprogress(pos, data) end
 			if data.inprogress then data.inprogress(pos, data) end
 			return false
 		end
@@ -168,7 +169,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 					v.name, v.scatter, v.count, v.velocity)
 			end
 		end
-		if recipe.consumewield then
+		if recipe.consumewield and data.crafter then
 			nodecore.consume_wield(data.crafter, recipe.consumewield)
 		elseif recipe.toolgroups and recipe.toolwear and data.crafter then
 			nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
@@ -222,9 +223,16 @@ local craftidx, rebuildidx = nodecore.item_matching_index(
 )
 
 do
+	local dirty
 	local oldreg = nodecore.register_craft
 	local function rebuildhelper(...)
-		rebuildidx()
+		if not dirty then
+			dirty = true
+			minetest.after(0, function()
+					dirty = nil
+					rebuildidx()
+				end)
+		end
 		return ...
 	end
 	function nodecore.register_craft(...)

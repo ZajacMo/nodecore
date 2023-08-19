@@ -269,7 +269,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 2,
 		drop = "",
-		groups = {coolant = 1, water = 2, moist = 2},
+		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
@@ -292,7 +292,7 @@ regliquid({
 		drowning = 2,
 		liquid_range = 2,
 		drop = "",
-		groups = {coolant = 1, water = 2, moist = 2},
+		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
@@ -313,7 +313,7 @@ regliquid({
 		buildable_to = true,
 		drowning = 2,
 		drop = "",
-		groups = {coolant = 1, water = 2, moist = 2},
+		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 91, g = 97, b = 103},
 		sounds = nodecore.sounds("nc_terrain_watery")
 	})
@@ -339,7 +339,8 @@ regliquid({
 			igniter = 1,
 			lava = 2,
 			damage_touch = 1,
-			damage_radiant = 8
+			damage_radiant = 8,
+			cheat = 1
 		},
 		post_effect_color = {a = 240, r = 255, g = 64, b = 0},
 		sounds = nodecore.sounds("nc_terrain_bubbly")

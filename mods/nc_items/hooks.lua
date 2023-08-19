@@ -78,6 +78,7 @@ local item_place_node_or_stack = function(itemstack, placer, pointed_thing, para
 	end
 	return itemstack
 end
+nodecore.item_place_node_or_stack = item_place_node_or_stack
 
 -- placement on right click: place the item as a node or stack as appropriate,
 -- unless the destination has an on_rightclick override and the player is not sneak-placing,
@@ -96,8 +97,6 @@ function minetest.item_place(itemstack, placer, pointed_thing, param2)
 	end
 	return item_place_node_or_stack(itemstack, placer, pointed_thing, param2)
 end
-
-minetest.item_place_node_or_stack = item_place_node_or_stack
 
 local olddrop = minetest.item_drop
 function minetest.item_drop(item, player, ...)

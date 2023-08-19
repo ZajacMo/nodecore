@@ -30,3 +30,20 @@ nodecore.register_craft({
 			}
 		},
 	})
+
+nodecore.register_craft({
+		label = "unpack wicker",
+		action = "pummel",
+		wield = {groups = {rakey = true}},
+		duration = 2,
+		consumewield = 1,
+		nodes = {
+			{
+				match = modname .. ":wicker",
+				replace = "air"
+			}
+		},
+		items = {
+			{name = "nc_flora:rush_dry 2", count = 4, scatter = 5}
+		}
+	})

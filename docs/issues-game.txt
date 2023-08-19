@@ -9,6 +9,28 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Move some ABMs into soaking API:
+	- Sedges growing
+	- Lava melting stone
+	- Hardening/softening stone
+
+- Move sedge growing abm into soaking.
+
+- Continuing issues with storebox fall-thru
+	- Items now refusing to fall from a form into a crate or
+	  case directly below.
+		- This is a side effect of logic to prevent items from falling
+		  OUT the bottom of lode crates that are suspended above air
+		  and will not be simple to fix.
+	- Prills dropping out of glowing lode spawn inside a
+	  storebox below, but this allows them to fall through
+	  the bottom (since they're already past colliding with
+	  the box and being absorbed)
+		- Maybe entities need to try to settle into a box
+		  if it WAS in the box's node space last tick but
+		  is below it now, and the box isn't open on
+		  the bottom.
+
 - Skip more entity<->entity<->node transition steps
 	- falling_node / item_entity conversions
 	- Instant settling on catapult for items ejected with
@@ -32,9 +54,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Maybe add a generic "# hints completed" qualifier?
 		- Maybe add a number of hours played (non-idle) qualifier?
 
-- Stylus is probably worth hiding too until player has
-  made pliant concrete.
-
 - All flora should be radiation-sensitive.
 	- Currently only flowers, add sedges and rushes
 	- Should be at risk of harm during growth or spreading
@@ -54,7 +73,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Remove fullbright from admin hand.
 	- Separate command to set a minimum player dynamic light.
 	- Priv to disable skybox/sunlight diminishing by depth?
-	- Add radius to /snuff, /ignite, /growtrees, etc
 	- Add a /soak cheat to push soaking?
 	- Add a /forest or /grove cheat to sprinkle trees around
 		- Like the flora redecorate
@@ -66,27 +84,10 @@ ISSUES-GAME: Gameplay-affecting issues
 - Emergency digging mechanic issues
 	- Players still confused by it.
 
-- Continuing issues with storebox fall-thru
-	- Items now refusing to fall from a form into a crate or
-	  case directly below.
-	- Prills dropping out of glowing lode spawn inside a
-	  storebox below, but this allows them to fall through
-	  the bottom (since they're already past colliding with
-	  the box and being absorbed)
-		- Maybe entities need to try to settle into a box
-		  if it WAS in the box's node space last tick but
-		  is below it now, and the box isn't open on
-		  the bottom.
-
 - Detect and warn players about misuse of singlenode mapgen
 	- Mods can register if they're supporting singlenode.
 	- We can detect player "falling forever" by scanning down
 	  to find anything other than air before ignore.
-
-- Touch-damage is overused, should probably only apply to
-  obviously extremely hot things like embers and pumwater.
-	- Maybe add a pickup_damage/hotpotato group specifically
-	  for the hot potato functionality.
 
 - Re-examine chiseling recipes
 	- Bricks accept annealed chisels, which makes some sense
@@ -167,8 +168,6 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Valleys mapgen rivers seem to rely on having an actual separate
   river water registration with a specific liquid range.
-
-- Should item ents experience more drag when in fluids?
 
 - Door-wheels do not affect attached glyphs...
 

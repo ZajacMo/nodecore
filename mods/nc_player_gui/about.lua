@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local minetest, nodecore, string, tonumber
+    = minetest, nodecore, string, tonumber
+local string_sub
+    = string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
 local nct = nodecore.translate
@@ -9,10 +11,14 @@ local version = nodecore.version
 version = version and (nct("Version") .. " " .. version)
 or nct("DEVELOPMENT VERSION")
 
+local year = nodecore.releasedate
+year = year and tonumber(string_sub(year, 1, 4))
+if (not year) or (year < 2023) then year = 2023 end
+
 local about = {
 	nct(nodecore.product) .. " - " .. version,
 	"",
-	"(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>",
+	nodecore.translate("(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>", year),
 	"MIT License (http://www.opensource.org/licenses/MIT)",
 	"See included LICENSE file for full details and credits",
 	"",
@@ -20,8 +26,10 @@ local about = {
 	"GitLab: https://gitlab.com/sztest/nodecore",
 	"",
 	"Discord: https://discord.gg/NNYeF6f",
-	"Matrix: #nodecore:matrix.org",
+	"Matrix: #+nodecore:matrix.org",
 	"IRC: #nodecore @@ irc.libera.chat",
+	"",
+	"Donate: https://liberapay.com/NodeCore",
 }
 
 local modfmt = "Additional Mods Loaded: @1"

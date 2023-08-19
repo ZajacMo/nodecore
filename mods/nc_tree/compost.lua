@@ -88,7 +88,9 @@ nodecore.register_soaking_abm({
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		interval = 10,
-		soakrate = nodecore.tree_soil_rate,
+		soakrate = function(pos)
+			return nodecore.tree_soil_rate(pos, 0, 1)
+		end,
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end
 			minetest.get_meta(pos):from_table({})
@@ -108,7 +110,7 @@ nodecore.register_soaking_abm({
 nodecore.register_craft({
 		label = "tickle peat",
 		action = "pummel",
-		toolgroups = {crumbly = 1},
+		toolgroups = {cuddly = 1},
 		nodes = {
 			{match = {name = modname .. ":peat", stacked = false}}
 		},

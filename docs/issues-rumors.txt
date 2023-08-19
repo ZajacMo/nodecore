@@ -9,13 +9,9 @@ ISSUES-RUMORS: Unconfirmed or difficult to reproduce heisenbugs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Items landing on crate without falling in
-	- Oblomov: door pushing hatched head used to chop low grade
-	  coal into coal chunks and ash; lode crate under the
-	  to-be-chopped node; node gets chopped, some lumps end on the
-	  crate without falling in despite the fact that the crate is
-	  empty
-	- https://discord.com/channels/507234450615042048/507234451085066248/961722477229260832
+- Kimapr: lux cobble seems to have broken dig prediction
+  (predicts to air instead of loose cobble)
+	- https://discord.com/channels/507234450615042048/713203991923916840/1086705013998506015
 
 - Loose leaf nodes disappearing almost immediately after creation,
   including from natural decay

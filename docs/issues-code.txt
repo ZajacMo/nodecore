@@ -9,11 +9,22 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Standardize some node metadata publishing
+	- Colors.txt for minetest mapper from node registrations
+
 - Need to standardize storage API between storeboxes and bare stacks
 	- Storebox API is a mess anyway and needs a lot of cleanup.
 
 - If DNTs are deferred due to either stasis or arealoaded, need to
   set the timer re-firing to some sane future time.
+
+- Vector reform: use actual vector.new instead of manual table
+  construction everywhere possible.
+
+- Consider modernizing translation pipeline
+	- Use JSON instead of po format for easier parsing?
+	- Follow Piranesi Restoration Project as an example.
+	- https://discord.com/channels/369122544273588224/369123175583186964/1037043979209936896
 
 - Unified heat API?
 	- Unify quenching and heating
@@ -105,6 +116,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 - Expand stackapply recipes
 	- Allow them to work with non-stacks?
 		- Hook into item_place
+	- Honor normal and other attributes?
 	- Work for mixing coal into wet concrete?
 	- Make stickcraft recipes work in tight spaces?
 		- Simulate node placement for place recipes?

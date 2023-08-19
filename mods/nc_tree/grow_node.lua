@@ -90,12 +90,13 @@ local ldname = "nc_terrain:dirt_loose"
 local epdef = nodecore.underride({
 		description = "Sprout",
 		drawtype = "plantlike_rooted",
-		falling_visual = "nc_terrain:dirt_loose",
+		falling_visual = ldname,
 		special_tiles = {modname .. "_eggcorn_planted.png"},
 		drop = ldname,
 		no_self_repack = true,
 		paramtype = "light",
-		groups = {grassable = 0}
+		groups = {grassable = 0, flammable = 35, cheat = 1},
+		on_ignite = nodecore.fire_on_ignite_plantlike_rooted(ldname)
 	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
 minetest.register_node(epname, epdef)
@@ -139,7 +140,8 @@ minetest.register_node(modname .. ":leaves_bud", {
 			green = 4,
 			scaling_time = 90,
 			leaf_decay = 1,
-			leaf_decay_transmit = 1
+			leaf_decay_transmit = 1,
+			cheat = 1
 		},
 		treeable_to = true,
 		drop = "",

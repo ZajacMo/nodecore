@@ -1,4 +1,5 @@
 # textdomain: nc_api
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 por Aaron Suen <war1024@@gmail.com>
 - "Furnaces" are not a thing; discover smelting with open flames.=-"Fornalhas" não existem; descubra como cozinhar com chamas à céu aberto.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- Desconfie de cavernas/abismos escuros; você é responsável por sair.
 - Can't dig trees or grass? Search for sticks in the canopy.=- Não consegue quebrar árvores ou cavar? Procure por gravetos na cobertura.
@@ -6,7 +7,6 @@
 - Climbing spots may be climbed once black particles appear.=- Pontos de escalada podem ser escalados assim que as partículas pretas aparecerem.
 - Crafting is done by building recipes in-world.=- A Criação de Itens é feita construindo as receitas pelo mundo.
 - Displaced nodes can be climbed through like climbing spots.=- Nós deslocados podem ser escalados como pontos de escalada.
-- Do not use F5 debug info; it will mislead you!=- Não use as informações de debug do F5; Apenas irão lhe confundir!
 - Drop and pick up items to rearrange your inventory.=- Solte e pegue itens para reorganizar seu inventário.
 - Drop items onto ground to create stack nodes. They do not decay.=- Derrube itens no chão para criar pilhas de nodes. Eles não somem.
 - FUTURE: @1=- FUTURO: @1

@@ -5,6 +5,7 @@ local include, nodecore
 
 nodecore.amcoremod()
 
+include("quell")
 include("api")
 include("node")
 include("lumps")

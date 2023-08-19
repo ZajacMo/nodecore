@@ -49,7 +49,7 @@ function nodecore.register_lode(shape, rawdef)
 			def.light_source = nil
 		else
 			def.groups.falling_node = 1
-			def.groups.damage_touch = 1
+			def.groups.damage_pickup = 1
 			def.groups.damage_radiant = 1
 		end
 

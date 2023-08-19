@@ -94,19 +94,7 @@ local function step_player(player, dtime)
 	local orig_phys = clone(data.physics)
 	data.properties = player:get_properties()
 	local orig_props = clone(data.properties)
-	if minetest.features.get_sky_as_table then
-		data.sky = player:get_sky(true)
-	else
-		local b, t, x, c = player:get_sky()
-		local s = player:get_sky_color()
-		data.sky = {
-			base_color = b,
-			type = t,
-			textures = x,
-			clouds = c,
-			sky_color = s
-		}
-	end
+	data.sky = player:get_sky(true)
 	local orig_sky = clone(data.sky)
 	data.daynight = player:get_day_night_ratio()
 	local orig_daynight = clone(data.daynight)
