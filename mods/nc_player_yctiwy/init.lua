@@ -302,7 +302,6 @@ local function markertexture(pname)
 	end
 	local age = minetest.get_gametime() - (db[pname] or {seen = 0}).seen
 	local decay = math_floor(240 * (1 - 0.5 ^ (age / halflife)))
-	print(string_format("%s age=%d decay=%d", pname, age, decay))
 	return string_format("%s^(%s_marker_1.png^%s_marker_2.png^%s_marker_3.png"
 		.. "^[multiply:#a0a0a0^[opacity:%d)",
 		table_concat(colors, "^"), modname, modname, modname, decay)
