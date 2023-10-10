@@ -92,6 +92,7 @@ local function coolto(pos, stack, tempername)
 	if not def then return end
 	local alt = def["lode_alt_" .. tempername]
 	if not alt then return end
+	nodecore.witness(pos, "metallurgize " .. alt)
 	nodecore.playcookfx(pos, true, "hiss", 80, 0.2)
 	stack:set_name(alt)
 	return stack
