@@ -46,6 +46,8 @@ local function canwitnessnow(player, pos)
 	local ppos = player:get_pos()
 	ppos.y = ppos.y + player:get_properties().eye_height
 
+	if vector.distance(ppos, pos) < 0.5 then return true end
+
 	local look = player:get_look_dir()
 	local targ = vector.normalize(vector.subtract(pos, ppos))
 	if vector.angle(look, targ) > math_pi / 8 then return end
