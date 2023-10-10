@@ -220,6 +220,13 @@ nodecore.register_on_node_drops(function(pos, _, who, drops)
 			local dmg = grps.damage_pickup
 			if (dmg or 0) == 0 then dmg = def.groups.damage_touch end
 			if who and dmg and dmg > 0 then
+				local wield = who:get_wielded_item()
+				local wdef = wield and minetest.registered_items[wield:get_name()]
+				local ovr = wdef and wdef.on_item_hotpotato
+				local widx = ovr and who:get_wield_index()
+				if ovr and ovr(who, widx, wield, widx, stack, dmg) then dmg = 0 end
+			end
+			if who and dmg and dmg > 0 then
 				nodecore.addphealth(who, -dmg, "hot pickup")
 				nodecore.item_eject(pos, stack, 0.001)
 			else
