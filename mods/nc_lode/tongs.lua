@@ -46,43 +46,42 @@ nodecore.register_lode("tongs", {
 		end
 	})
 
--- nodecore.register_craft({
--- label = "anvil making lode tongs",
--- action = "pummel",
--- toolgroups = {thumpy = 3},
--- indexkeys = {modname .. ":bar_annealed"},
--- nodes = {
--- {
--- match = {name = modname .. ":bar_annealed"},
--- replace = "air"
--- },
--- {
--- y = -1,
--- match = {name = modname .. ":rod_annealed"},
--- replace = "air"
--- },
--- {
--- y = -2,
--- match = modname .. ":block_tempered"
--- }
--- },
--- items = {
--- modname .. ":adze_annealed"
--- }
--- })
--- nodecore.register_craft({
--- label = "recycle lode adze",
--- action = "pummel",
--- toolgroups = {choppy = 3},
--- indexkeys = {modname .. ":adze_hot"},
--- nodes = {
--- {
--- match = modname .. ":adze_hot",
--- replace = "air"
--- }
--- },
--- items = {
--- {name = modname .. ":bar_hot"},
--- {name = modname .. ":rod_hot"}
--- }
--- })
+nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
+		return {
+			label = "anvil making lode tongs",
+			action = "pummel",
+			toolgroups = {thumpy = 3},
+			indexkeys = {modname .. ":adze_" .. temper},
+			nodes = {
+				{
+					match = {name = modname .. ":adze_" .. temper},
+					replace = "air"
+				},
+				{
+					x = 1,
+					match = {name = modname .. ":adze_" .. temper},
+					replace = "air"
+				}
+			},
+			items = {{
+					x = 1,
+					name = modname .. ":tongs_" .. temper
+			}}
+		}
+	end)
+nodecore.register_craft({
+		label = "recycle lode tongs",
+		action = "pummel",
+		toolgroups = {choppy = 3},
+		indexkeys = {modname .. ":tongs_hot"},
+		nodes = {
+			{
+				match = modname .. ":tongs_hot",
+				replace = "air"
+			}
+		},
+		items = {
+			{name = modname .. ":bar_hot", count = 2},
+			{name = modname .. ":rod_hot", count = 2}
+		}
+	})
