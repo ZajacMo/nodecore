@@ -3,8 +3,8 @@ local ItemStack, math, minetest, next, nodecore, pairs, string, table,
       vector
     = ItemStack, math, minetest, next, nodecore, pairs, string, table,
       vector
-local math_pi, math_random, string_format, table_concat
-    = math.pi, math.random, string.format, table.concat
+local math_floor, math_pi, math_random, string_format, table_concat
+    = math.floor, math.pi, math.random, string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
@@ -33,6 +33,16 @@ local hidden = nodecore.setting_bool(
 	inventories. The offline database is still maintained, in
 	case the entities are later reenabled.]]
 ) or disabled
+
+local halflife = nodecore.setting_float(
+	"nc_yctiwy_halflife",
+	30,
+	"Half-life of marker decay",
+	[[YCTIWY markers show visible "decay" as players are
+	continuously offline for long periods of time. This is
+	the number of days that it takes for half of the
+	remaining color to bleed out of the marker.]]
+) * 86400
 
 ------------------------------------------------------------------------
 -- DATABASE
@@ -290,7 +300,12 @@ local function markertexture(pname)
 		colors[i] = string_format("(%s_marker_%d.png^[multiply:%s)",
 			modname, i, colors[i])
 	end
-	return table_concat(colors, "^")
+	local age = minetest.get_gametime() - (db[pname] or {seen = 0}).seen
+	local decay = math_floor(240 * (1 - 0.5 ^ (age / halflife)))
+	print(string_format("%s age=%d decay=%d", pname, age, decay))
+	return string_format("%s^(%s_marker_1.png^%s_marker_2.png^%s_marker_3.png"
+		.. "^[multiply:#a0a0a0^[opacity:%d)",
+		table_concat(colors, "^"), modname, modname, modname, decay)
 end
 
 minetest.register_entity(modname .. ":marker", {
