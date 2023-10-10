@@ -32,6 +32,7 @@ local function playcookfx(pos, cookfx, sound, smokeqty, smoketime)
 		nodecore.smokefx(pos, smoketime, smokeqty)
 	end
 end
+nodecore.playcookfx = playcookfx
 
 local function inprogress(pos, data)
 	local meta = minetest.get_meta(data.node)

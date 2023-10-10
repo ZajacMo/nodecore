@@ -7,7 +7,7 @@ local math_floor, math_random
 
 local modname = minetest.get_current_modname()
 
-local tongs_holdable = nodecore.group_expand("group:lode_temper_hot", true)
+local hotlode = nodecore.group_expand("group:lode_temper_hot", true)
 
 nodecore.register_lode("tongs", {
 		type = "tool",
@@ -25,11 +25,12 @@ nodecore.register_lode("tongs", {
 
 			def.on_item_hotpotato = function(player, myslot, mystack, itemslot, itemstack, dtime)
 				-- only works on glowing lode things
-				if not tongs_holdable[itemstack:get_name()] then return end
+				if not hotlode[itemstack:get_name()] then return end
 
 				-- item must be adjacent to tongs in inventory
 				if myslot > itemslot + 1 or myslot < itemslot - 1 then return end
 
+				-- Apply tool wear/breakage.
 				local dwear = wrate * (dtime or 3)
 				dwear = math_floor(dwear) + (math_random() < (dwear - math_floor(dwear))
 					and 1 or 0)
@@ -84,4 +85,36 @@ nodecore.register_craft({
 			{name = modname .. ":bar_hot", count = 2},
 			{name = modname .. ":rod_hot", count = 2}
 		}
+	})
+
+local function coolto(pos, stack, tempername)
+	local def = minetest.registered_items[stack:get_name()]
+	if not def then return end
+	local alt = def["lode_alt_" .. tempername]
+	if not alt then return end
+	nodecore.playcookfx(pos, true, "hiss", 80, 0.2)
+	stack:set_name(alt)
+	return stack
+end
+
+nodecore.register_aism({
+		label = "tong-carried lode cooling",
+		itemnames = {"group:lode_temper_hot"},
+		action = function(stack, data)
+			-- Don't conflict with cooking ABMs already operating on stack nodes
+			if data.node then return end
+
+			if nodecore.quenched(data.pos) then
+				return coolto(data.pos, stack, "tempered")
+			end
+
+			local meta = stack:get_meta()
+			local time = (meta:get_float("~annealtime") or 0) + 1
+			if time >= 60 then
+				return coolto(data.pos, stack, "annealed")
+			end
+			nodecore.playcookfx(data.pos, {smoke = true}, "", 2, 1)
+			meta:set_float("~annealtime", time)
+			return stack
+		end
 	})

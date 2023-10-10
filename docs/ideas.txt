@@ -207,25 +207,6 @@ IDEAS: Possible future additions/improvements to the game
 	- Footsteps?
 	- Can be used as a BUD
 
-- Lode tongs?
-	- Craft from bars/rods (or lode adzes?).
-	- Add an API to hot potato
-		- Scan for all hot potato items and produce a list of slot->bool
-		- If any items found with an on_hot_potato callback, pass them
-		  that list (and player, inv, etc) to be modified.
-	- If slot is marked "safe" then no hot potato if items are in
-	  a slot adjacent to tongs.
-	- If slot is not marked safe, mark it safe if tongs or any tool
-	  are wielded item.
-	- Unmark safe any slots that don't contain hot things after
-	  hot potato check.
-	- Will probably need to unify damage_touch into an API that checks
-	  for damage given a player and a stack.
-		- Check for hot potato.
-		- Check upon pickup for anti-lode-move-exploit.
-	- Reform rake recipes
-		- Maybe 2x adze -> tongs, 2x tongs -> rake?
-
 - Lux/lode ore in already-partly-dug cobble form in mapgen/ore?
 
 - Dungeon loot
