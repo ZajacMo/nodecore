@@ -9,6 +9,12 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- YCTIWY customizability:
+	- Hook to customizer marker texture
+	- Hook to customize looktips for marker, slot ents
+	- Display actual offline time in looktip
+		- Setting to disable this?
+
 - Deprecate air_equivalent property and move to a group
 	- This is probably going to be deprecated by the engine
 
