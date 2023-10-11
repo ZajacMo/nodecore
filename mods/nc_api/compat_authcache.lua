@@ -23,7 +23,7 @@ local function invalidateafter(method)
 		return helper(oldfunc(player, ...))
 	end
 end
-invalidateafter("set_privileges")
+invalidateafter("set_player_privs")
 invalidateafter("remove_player_auth")
 
 local function invalidateon(event)
