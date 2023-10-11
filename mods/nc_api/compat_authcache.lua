@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, type
-    = minetest, type
+local minetest, pairs, type
+    = minetest, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function player_name(player)
@@ -41,13 +41,19 @@ function minetest.auth_reload(...)
 	return oldreload(...)
 end
 
+local function clone(tbl)
+	local t = {}
+	for k, v in pairs(tbl) do t[k] = v end
+	return t
+end
+
 local oldget = minetest.get_player_privs
 function minetest.get_player_privs(player)
 	local pname = player_name(player)
 	if not pname then return oldget(player) end
 	local cached = priv_cache[pname]
-	if cached then return cached end
+	if cached then return clone(cached) end
 	cached = oldget(pname)
 	priv_cache[pname] = cached
-	return cached
+	return clone(cached)
 end
