@@ -109,12 +109,13 @@ nodecore.register_aism({
 			end
 
 			local meta = stack:get_meta()
-			local time = (meta:get_float("~annealtime") or 0) + 1
-			if time >= 60 then
+			local exp = meta:get_float("annealtime") or 0
+			if exp > 0 and exp <= nodecore.gametime then
 				return coolto(data.pos, stack, "annealed")
+			elseif exp <= 0 then
+				meta:set_float("annealtime", nodecore.gametime + 60)
 			end
 			nodecore.playcookfx(data.pos, {smoke = true}, "", 2, 1)
-			meta:set_float("~annealtime", time)
 			return stack
 		end
 	})
