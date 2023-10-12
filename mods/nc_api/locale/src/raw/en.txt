@@ -226,6 +226,9 @@ msgstr "Annealed Lode Spade"
 msgid "Annealed Lode Spade Head"
 msgstr "Annealed Lode Spade Head"
 
+msgid "Annealed Lode Tongs"
+msgstr "Annealed Lode Tongs"
+
 msgid "Ash"
 msgstr "Ash"
 
@@ -433,6 +436,9 @@ msgstr "Burning Embers"
 msgid "CHEATS ENABLED"
 msgstr "CHEATS ENABLED"
 
+msgid "Cannot teleport an offline player."
+msgstr "Cannot teleport an offline player."
+
 msgid "Cav Charcoal Glyph"
 msgstr "Cav Charcoal Glyph"
 
@@ -502,6 +508,9 @@ msgstr "Early-access edition of NodeCore with latest features (and maybe bugs)"
 msgid "Eggcorn"
 msgstr "Eggcorn"
 
+msgid "FIRE QUELLED"
+msgstr "FIRE QUELLED"
+
 msgid "Fire"
 msgstr "Fire"
 
@@ -567,6 +576,9 @@ msgstr "Glowing Lode Rod"
 
 msgid "Glowing Lode Spade Head"
 msgstr "Glowing Lode Spade Head"
+
+msgid "Glowing Lode Tongs"
+msgstr "Glowing Lode Tongs"
 
 msgid "Glued Active Lens"
 msgstr "Glued Active Lens"
@@ -814,8 +826,8 @@ msgstr "Lux Cobble"
 msgid "MIT License (http://www.opensource.org/licenses/MIT)"
 msgstr "MIT License (http://www.opensource.org/licenses/MIT)"
 
-msgid "Matrix: #nodecore:matrix.org"
-msgstr "Matrix: #nodecore:matrix.org"
+msgid "Matrix: #+nodecore:matrix.org"
+msgstr "Matrix: #+nodecore:matrix.org"
 
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
@@ -843,6 +855,21 @@ msgstr "NodeCore updated from @1 to @2"
 
 msgid "Odo Charcoal Glyph"
 msgstr "Odo Charcoal Glyph"
+
+msgid "Offline @1 day(s)"
+msgstr "Offline @1 day(s)"
+
+msgid "Offline @1 hour(s)"
+msgstr "Offline @1 hour(s)"
+
+msgid "Offline @1 minute(s)"
+msgstr "Offline @1 minute(s)"
+
+msgid "Offline @1 week(s)"
+msgstr "Offline @1 week(s)"
+
+msgid "Offline @1 year(s)"
+msgstr "Offline @1 year(s)"
 
 msgid "Offline Player"
 msgstr "Offline Player"
@@ -1081,6 +1108,9 @@ msgstr "Tempered Lode Spade"
 msgid "Tempered Lode Spade Head"
 msgstr "Tempered Lode Spade Head"
 
+msgid "Tempered Lode Tongs"
+msgstr "Tempered Lode Tongs"
+
 msgid "Thatch"
 msgstr "Thatch"
 
@@ -1188,6 +1218,9 @@ msgstr "Violet Rosette Flower"
 
 msgid "Violet Star Flower"
 msgstr "Violet Star Flower"
+
+msgid "WORLD FROZEN"
+msgstr "WORLD FROZEN"
 
 msgid "Water"
 msgstr "Water"
@@ -1377,6 +1410,9 @@ msgstr "assemble a wooden tool"
 
 msgid "assemble an adze out of sticks"
 msgstr "assemble an adze out of sticks"
+
+msgid "assemble lode tongs"
+msgstr "assemble lode tongs"
 
 msgid "bash a plank into sticks"
 msgstr "bash a plank into sticks"
