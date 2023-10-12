@@ -34,6 +34,15 @@ local hidden = nodecore.setting_bool(
 	case the entities are later reenabled.]]
 ) or disabled
 
+local notime = nodecore.setting_bool(
+	"nc_yctiwy_notime",
+	false,
+	"Do not display time player has been offline",
+	[[By default, players' offline "ghosts" display information
+	about how long the player has been offline (in in-game time).
+	Enabling this option hides this information.]]
+) or disabled
+
 local halflife = nodecore.setting_float(
 	"nc_yctiwy_halflife",
 	30,
@@ -41,7 +50,8 @@ local halflife = nodecore.setting_float(
 	[[YCTIWY markers show visible "decay" as players are
 	continuously offline for long periods of time. This is
 	the number of days that it takes for half of the
-	remaining color to bleed out of the marker.]]
+	remaining color to bleed out of the marker. Setting it
+	to <= 0 disables decay.]]
 ) * 86400
 
 ------------------------------------------------------------------------
@@ -154,9 +164,33 @@ end
 
 local function box(n) return {-n, -n, -n, n, n, n} end
 
-local desctitle = nodecore.translate("Offline Player")
-local function getdesc(pname, stack)
-	local d = desctitle .. "\n" .. nodecore.notranslate(pname)
+local descs = {
+	unk = "Offline Player",
+	min = "Offline @1 minute(s)",
+	hr = "Offline @1 hour(s)",
+	day = "Offline @1 day(s)",
+	week = "Offline @1 week(s)",
+	year = "Offline @1 year(s)",
+}
+for _, v in pairs(descs) do nodecore.translate_inform(v) end
+
+local function agedesc(t)
+	if notime or (not t) or t < 0 then return nodecore.translate(descs.unk) end
+	t = math_floor(t / 60)
+	if t < 120 then return nodecore.translate(descs.min, t) end
+	t = math_floor(t / 60)
+	if t < 72 then return nodecore.translate(descs.hr, t) end
+	t = math_floor(t / 24)
+	if t < 28 then return nodecore.translate(descs.day, t) end
+	t = math_floor(t / 7)
+	if t < 52 then return nodecore.translate(descs.week, t) end
+	t = math_floor(t / 52.1429)
+	return nodecore.translate(descs.year, t)
+end
+
+local function getdesc(pname, dbentry, stack)
+	local d = agedesc(dbentry.seen and nodecore.gametime - dbentry.seen)
+	.. "\n" .. nodecore.notranslate(pname)
 	if stack then return d .. "\n" .. nodecore.touchtip_stack(stack) end
 	return d
 end
@@ -214,7 +248,7 @@ minetest.register_entity(modname .. ":slotent", {
 			self.rotating = self.rotating or (math_random(1, 2) == 1) and 0.1 or -0.1
 			props.automatic_rotate = self.rotating
 			self.object:set_properties(props)
-			self.description = getdesc(self.pname, stack)
+			self.description = getdesc(self.pname, ent, stack)
 		end,
 		on_punch = function(self, puncher)
 			local ent = db[self.pname]
@@ -301,7 +335,7 @@ local function markertexture(pname)
 			modname, i, colors[i])
 	end
 	local age = minetest.get_gametime() - (db[pname] or {seen = 0}).seen
-	local decay = math_floor(240 * (1 - 0.5 ^ (age / halflife)))
+	local decay = (halflife <= 0) and 0 or math_floor(240 * (1 - 0.5 ^ (age / halflife)))
 	return string_format("%s^(%s_marker_1.png^%s_marker_2.png^%s_marker_3.png"
 		.. "^[multiply:#a0a0a0^[opacity:%d)",
 		table_concat(colors, "^"), modname, modname, modname, decay)
@@ -323,6 +357,7 @@ minetest.register_entity(modname .. ":marker", {
 				return self.object:remove()
 			end
 			self.object:set_properties({textures = {markertexture(self.pname)}})
+			self.description = getdesc(self.pname, db[self.pname])
 		end,
 		on_punch = function(self)
 			self.object:set_properties({pointable = false})
@@ -348,7 +383,7 @@ local function spawnmarker(name, entry, existdb)
 	if not entry then return end
 
 	spawnentity(entry.pos, "marker", {
-			description = getdesc(name),
+			description = getdesc(name, entry),
 			pname = name
 		})
 end

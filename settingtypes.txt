@@ -127,6 +127,14 @@ nc_api_rate_speed_pummel_stick_fire_starting (Speed adjust > speed > pummel > st
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
+nc_api_rate_speed_pummel_unpack_thatch (Speed adjust > speed > pummel > unpack thatch) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
+nc_api_rate_speed_pummel_unpack_wicker (Speed adjust > speed > pummel > unpack wicker) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
 nc_api_rate_speed_soaking (Speed adjust > speed > soaking) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
@@ -192,6 +200,10 @@ nc_api_rate_speed_tool_cracky (Speed adjust > speed > tool > cracky) float 1
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
 nc_api_rate_speed_tool_crumbly (Speed adjust > speed > tool > crumbly) float 1
+
+# Speed adjustment ratio, multiplied by all parent ratios. Intended for
+# custom servers and special sub-game types only.
+nc_api_rate_speed_tool_cuddly (Speed adjust > speed > tool > cuddly) float 1
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.
@@ -285,9 +297,20 @@ nc_player_setup_time (Push out of solid time) float 2
 # once.
 nc_yctiwy_disable (Disable offline player inventory database) bool false
 
+# YCTIWY markers show visible "decay" as players are continuously
+# offline for long periods of time. This is the number of days that it
+# takes for half of the remaining color to bleed out of the marker.
+# Setting it to <= 0 disables decay.
+nc_yctiwy_halflife (Half-life of marker decay) float 30
+
 # By default, players' offline "ghosts" and inventories are displayed as
 # entities. Enabling this option hides those, reducing resource impact
 # on both client and server, but also preventing players from accessing
 # offline player inventories. The offline database is still maintained,
 # in case the entities are later reenabled.
 nc_yctiwy_hide (Do not display offline player entities) bool false
+
+# By default, players' offline "ghosts" display information about how
+# long the player has been offline (in in-game time). Enabling this
+# option hides this information.
+nc_yctiwy_notime (Do not display time player has been offline) bool false
