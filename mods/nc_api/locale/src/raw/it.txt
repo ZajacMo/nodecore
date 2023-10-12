@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2023-10-12 23:35+0000\n"
+"Last-Translator: Filippo Alfieri <fire.alpha.t@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/it/>\n"
 "Language: it\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
@@ -274,11 +274,10 @@ msgstr "- Posa e raccogli gli oggetti per sistemare il tuo inventario."
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- Se una ricetta esiste, vedrai un effetto speciale di particelle."
 
-#, fuzzy
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
-"- Gli oggetti raccolti cercheranno di andare nella posizione selezionata "
-"come prima cosa."
+"- Gli oggetti raccolti cercheranno di andare nella casella selezionata come "
+"prima cosa."
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
@@ -593,3 +592,27 @@ msgstr "assembla una scala a pioli di legno da bastoncini"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 da Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Qualcosa ti sembra noioso? Trova tecnologie migliori, aspetti non "
+"considerati, o un modo migliore."
+
+msgid "Admin Tool"
+msgstr "Strumento Amministratore"
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr ""
+"- Furtivo + Speciale + Getta via un oggetto per gettare via tutti gli "
+"oggetti corrispondenti."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Tieni premuto/premi ripetutamente il tasto destro a mani vuote per creare "
+"punti di arrampicata."
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 rifiutato. (versione protocollo @2)"
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Furtivo + Getta via per prelevare un singolo oggetto da una pila."

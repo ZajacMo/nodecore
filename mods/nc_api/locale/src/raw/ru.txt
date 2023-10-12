@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-05 03:51+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2023-10-03 05:02+0000\n"
+"Last-Translator: Астафьев Сергей <Sotis-Oph@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
 "Language: ru\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 msgid "Grass"
 msgstr "Трава"
@@ -588,7 +588,7 @@ msgid "Wooden Hinged Panel"
 msgstr "Прикрепленная Деревянная Панель"
 
 msgid "Wooden Ladder"
-msgstr "Деревянная Лестница"
+msgstr "Деревянная лестница"
 
 msgid "Wooden Mallet"
 msgstr "Деревянная Колотилка"
@@ -1998,11 +1998,10 @@ msgstr ""
 "- Удерживайте/повторяйте нажатие правой кнопкой мыши на стенах/потолках, "
 "чтобы создать места для лазания."
 
-#, fuzzy
 msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
 msgstr ""
-"- Что-то кажется утомительным? Найдите лучшую технику, более тонкие факторы "
-"или лучший способ."
+"- Что-то кажется утомительным? Найдите более совершенную технику, более "
+"тонкие факторы или лучший способ."
 
 msgid "NodeCore updated from @1 to @2"
 msgstr "NodeCore обновлен с @1 до @2"
@@ -2025,7 +2024,6 @@ msgstr "соберите фонарь из ручки сумки"
 msgid "charge a lantern"
 msgstr "зарядите фонарь"
 
-#, fuzzy
 msgid "Admin Tool"
 msgstr "Инструмент администратора"
 
@@ -2055,3 +2053,78 @@ msgstr "Требуется версия @1 или выше."
 
 msgid "Your Minetest version is outdated, please update!"
 msgstr "Ваша версия Minetest устарела, пожалуйста, обновите!"
+
+msgid "Verty Cloudstone"
+msgstr "Вертик Облачный камень"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "Скреплённые кирпичи из облачного камня"
+
+msgid "Pliant Cloudstone"
+msgstr "Мягкий облачный камень"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Завязанный мягкий облачный камень"
+
+msgid "brace a wooden form with a stick"
+msgstr "скрепите деревянную форму палочкой"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "Коробчатый мягкий облачный камень"
+
+msgid "Bindy Cloudstone"
+msgstr "Завязанный облачный камень"
+
+msgid "Vermy Pliant Cloudstone"
+msgstr "Рыхлый мягкий облачный камень"
+
+msgid "Hashy Cloudstone"
+msgstr "Решёточный облачный камень"
+
+msgid "Boxy Cloudstone"
+msgstr "Коробчатый облачный камень"
+
+msgid "Spackling"
+msgstr "Шпаклевка"
+
+msgid "Bricky Cloudstone"
+msgstr "Кирпичный облачный камень"
+
+msgid "Vermy Cloudstone"
+msgstr "Рыхлый облачный камень"
+
+msgid "Cloudstone Bricks"
+msgstr "Кирпичи облачного камня"
+
+msgid "Cloudstone"
+msgstr "Облачный камень"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "Скреплённая кирпичная панель из облачного камня"
+
+msgid "Braced Wooden Form"
+msgstr "Укрепленная деревянная форма"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "Кирпичный мягкий облачный камень"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "Гориз мягкий облачный камень"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "Ледяная коробка мягкого облачного камня"
+
+msgid "Verty Pliant Cloudstone"
+msgstr "Вертик Мягкий облачный камень"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "Скреплённая навесная панель из кирпича облачного камня"
+
+msgid "Horzy Cloudstone"
+msgstr "Гориз облачный камень"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "Решёточный мягкий облачный камень"
+
+msgid "Iceboxy Cloudstone"
+msgstr "Ледяная коробка облачного камня"

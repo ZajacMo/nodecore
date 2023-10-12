@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-04-09 15:49+0000\n"
+"PO-Revision-Date: 2023-08-21 09:52+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -613,13 +613,13 @@ msgid "Tempered Lode Hatchet"
 msgstr "調溫類鋼短斧"
 
 msgid "sinter glowing lode prills into a cube"
-msgstr "鍛造類鋼，使其成爲方塊"
+msgstr "鍛造紅熱的類鋼，使其成為方塊"
 
 msgid "Glowing Lode Mallet Head"
-msgstr "降溫中的類鋼鎚 頭"
+msgstr "紅熱的類鋼鎚 頭"
 
 msgid "Glowing Lode Hatchet Head"
-msgstr "降溫中的類鋼短斧 頭"
+msgstr "紅熱的類鋼短斧 頭"
 
 msgid "assemble a stone-tipped stylus"
 msgstr "組裝石尖刮刻筆"
@@ -661,7 +661,7 @@ msgid "Wet Adobe Mix"
 msgstr "溼陶土"
 
 msgid "Glowing Lode Pick Head"
-msgstr "降溫中的類鋼鎬 頭"
+msgstr "紅熱的類鋼鎬 頭"
 
 msgid "Loose Humus"
 msgstr "鬆腐殖質"
@@ -674,16 +674,16 @@ msgstr "發現提示系統只告訴你遊戲基本機制。更進階的內容，
 "發明！"
 
 msgid "Glowing Lode Prill"
-msgstr "降溫中的類鋼粒"
+msgstr "紅熱的類鋼粒"
 
 msgid "Glowing Lode Spade Head"
-msgstr "降溫中的類鋼鏟 頭"
+msgstr "紅熱的類鋼鏟 頭"
 
 msgid "Peat"
 msgstr "泥炭土"
 
 msgid "Glowing Lode"
-msgstr "高溫類鋼"
+msgstr "紅熱的類鋼"
 
 msgid "Tempered Lode Adze"
 msgstr "調溫類鋼鋤"
@@ -707,13 +707,13 @@ msgid "work annealed lode on a tempered lode anvil"
 msgstr "在調溫類鋼砧上敲打類鋼"
 
 msgid "Glowing Lode Cobble"
-msgstr "高溫類鋼石"
+msgstr "紅熱的類鋼石"
 
 msgid "Tempered Lode Pick Head"
 msgstr "調溫類鋼鎬 頭"
 
 msgid "Glowing Lode Adze"
-msgstr "高溫類鋼鋤"
+msgstr "紅熱的類鋼鋤"
 
 msgid "Tempered Lode Spade Head"
 msgstr "調溫類鋼鏟 頭"
@@ -728,16 +728,16 @@ msgid "melt down lode metal from lode cobble"
 msgstr "從類剛礦中熔煉出類鋼"
 
 msgid "work glowing lode on a stone anvil"
-msgstr "在石砧上敲打高溫類鋼"
+msgstr "在石砧上敲打紅熱的類鋼"
 
 msgid "work glowing lode on a lode anvil"
-msgstr "在類鋼砧上敲打高溫類鋼"
+msgstr "在類鋼砧上敲打紅熱的類鋼"
 
 msgid "Gated Prism"
 msgstr "失效的棱鏡"
 
 msgid "Glowing Lode Mattock Head"
-msgstr "高溫類鋼槌 頭"
+msgstr "紅熱的類鋼槌 頭"
 
 msgid "Glued Active Lens"
 msgstr "上膠的活化透鏡"
@@ -746,7 +746,7 @@ msgid "Glued Active Prism"
 msgstr "上膠的活化棱鏡"
 
 msgid "Glowing Lode Rake"
-msgstr "高溫類鋼耙"
+msgstr "紅熱的類鋼耙"
 
 msgid "Glued Prism"
 msgstr "上膠的棱鏡"
@@ -767,7 +767,7 @@ msgid "find dry (loose) leaves"
 msgstr "發現落葉"
 
 msgid "Glowing Lode Frame"
-msgstr "高溫類鋼框"
+msgstr "紅熱的類鋼框"
 
 msgid "Glued Shining Lens"
 msgstr "上膠的發光透鏡"
@@ -785,7 +785,7 @@ msgid "Annealed Lode Rod"
 msgstr "冷卻類鋼棒"
 
 msgid "Glowing Lode Bar"
-msgstr "高溫類鋼條"
+msgstr "紅熱的類鋼條"
 
 msgid "Glued Gated Prism"
 msgstr "上膠的失效棱鏡"
@@ -830,10 +830,10 @@ msgid "harvest a sponge"
 msgstr "採收海綿"
 
 msgid "Glowing Lode Ladder"
-msgstr "高溫類鋼梯"
+msgstr "紅熱的類鋼梯"
 
 msgid "Glowing Lode Rod"
-msgstr "高溫類鋼棒"
+msgstr "紅熱的類鋼棒"
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
 msgstr "要創造攀爬點，空手對牆或天花板按住右鍵。"
@@ -860,7 +860,7 @@ msgid "weaken stone by soaking"
 msgstr "泡水弱化石頭"
 
 msgid "weld glowing lode pick and spade heads together"
-msgstr "將高溫的鎬跟鏟頭接在一起"
+msgstr "將紅熱的的鎬頭跟鏟頭接在一起"
 
 msgid "rake humus"
 msgstr "耙腐殖質"
@@ -918,3 +918,6 @@ msgstr "在草地或潮濕地培養莎草"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1，作者為 Aaron Suen <warr1024@@gmail.com>"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donate: https://liberapay.com/NodeCore"
