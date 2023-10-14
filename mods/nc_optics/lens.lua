@@ -39,7 +39,7 @@ local basedef = {
 	drawtype = "mesh",
 	mesh = "nc_optics_lens.obj",
 	selection_box = nodecore.fixedbox(
-		{-7/16, -7/16, -3/8, 7/16, 7/16, 3/8}
+		{-7/16, -7/16, -7/16, 7/16, 7/16, 7/16}
 	),
 	tiles = {
 		txr,
