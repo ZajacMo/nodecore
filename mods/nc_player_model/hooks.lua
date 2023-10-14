@@ -41,8 +41,7 @@ nodecore.register_playerstep({
 				local now = minetest.get_us_time() / 1000000
 				if (not data.skincalctime) or (now >= data.skincalctime + 2) then
 					data.skincalctime = now
-					local t = nodecore.player_skin(player, data)
-					props.textures = {t}
+					props.textures = {nodecore.player_skin(player, data)}
 				end
 			end
 
