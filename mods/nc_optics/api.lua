@@ -175,14 +175,14 @@ end
 local function optic_immediate(pos)
 	local trans = {}
 	optic_process(trans, pos)
-	local node
 	for _, v in pairs(trans) do
 		if vector.equals(v.pos, pos) then
-			node = node or minetest.get_node(pos)
+			local node = minetest.get_node(pos)
 			if v.nn ~= node.name then
 				node.name = v.nn
 				nodecore.set_node(pos, node)
 			end
+			break
 		end
 	end
 	return optic_check(pos)
