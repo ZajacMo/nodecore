@@ -177,7 +177,7 @@ local function optic_immediate(pos)
 	optic_process(trans, pos)
 	for _, v in pairs(trans) do
 		if vector.equals(v.pos, pos) then
-			local node = minetest.get_node(pos)
+			local node = get_node(pos)
 			if v.nn ~= node.name then
 				node.name = v.nn
 				nodecore.set_node(pos, node)
