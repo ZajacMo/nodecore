@@ -75,3 +75,5 @@ if nodecore.infodump() then
 				table_concat(podata, "\n"))
 		end)
 end
+
+nodecore.translated_stats = include("translated")

@@ -1633,6 +1633,9 @@ msgstr "hold your breath"
 msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
 
+msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
+msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
+
 msgid "insert metal rod into a cobble panel"
 msgstr "insert metal rod into a cobble panel"
 
@@ -1809,4 +1812,7 @@ msgstr "work glowing lode on a stone anvil"
 
 msgid "write on a surface with a charcoal lump"
 msgstr "write on a surface with a charcoal lump"
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "~ @1% translated to your language (@2)"
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-08-21 09:52+0000\n"
+"PO-Revision-Date: 2023-10-23 08:03+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -921,3 +921,18 @@ msgstr "(C)2018-@1，作者為 Aaron Suen <warr1024@@gmail.com>"
 
 msgid "Donate: https://liberapay.com/NodeCore"
 msgstr "Donate: https://liberapay.com/NodeCore"
+
+msgid "Offline @1 year(s)"
+msgstr "已下線 @1 年"
+
+msgid "Offline @1 hour(s)"
+msgstr "已下線 @1 小時"
+
+msgid "Offline @1 week(s)"
+msgstr "已下線 @1 周"
+
+msgid "Offline @1 minute(s)"
+msgstr "已下線 @1 分鐘"
+
+msgid "Offline @1 day(s)"
+msgstr "已下線 @1 天"

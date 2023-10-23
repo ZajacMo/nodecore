@@ -56,19 +56,23 @@ const done = async () => {
 	for(let { gen, spec } of langpairs)
 		db[spec] = Object.assign({}, db[gen], db[spec]);
 
+	const stats = { en: Object.keys(db.en).length };
 	for(let [code, data] of Object.entries(db))
 		if(code !== 'en') {
-			const body = Object.keys(data)
-				.sort()
+			const ents = Object.keys(data)
 				.map(k => [k, data[k]])
 				.filter(([k, v]) => k !== v)
 				.map(([k, v]) => `${k}=${v}\n`)
-				.sort()
-				.join('');
+				.sort();
+			stats[code] = ents.length;
+			const body = ents.join('');
 			if(body)
 				await fsp.writeFile(`../nc_api.${codemap[code] || code}.tr`,
 					`# textdomain: nc_api\n${body}`);
 		}
+	await fsp.writeFile('../../translated.lua', `return {\n${
+		Object.keys(stats).sort().map(k => `\t${k} = ${stats[k]},\n`).join('')
+	}}\n`);
 };
 
 module.exports = { onlang, done };
