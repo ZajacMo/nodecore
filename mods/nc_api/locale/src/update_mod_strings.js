@@ -64,7 +64,7 @@ const done = async () => {
 				.filter(([k, v]) => k !== v)
 				.map(([k, v]) => `${k}=${v}\n`)
 				.sort();
-			stats[code] = ents.length;
+			stats[code] = Object.keys(data).length;
 			const body = ents.join('');
 			if(body)
 				await fsp.writeFile(`../nc_api.${codemap[code] || code}.tr`,
