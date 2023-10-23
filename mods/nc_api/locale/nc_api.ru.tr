@@ -39,7 +39,7 @@
 - You do not have to punch very fast (about 1 per second).=- Ударять нужно не так часто (около 1 удара в секунду).
 @1 discovered, @2 available, @3 future=@1 обнаружено, @2 доступно, @3 в будущем
 @1 rejected. (protocol version @2)=@1 отклонено. (версия протокола @2)
-About=Об игре
+About=Подробнее
 Active Lens=Активная Линза
 Active Prism=Активная Призма
 Additional Mods Loaded: @1=Загружено дополнительных модов: @1
@@ -590,3 +590,4 @@ work annealed lode on a tempered lode anvil=обработайте отожже�
 work glowing lode on a lode anvil=обработайте раскалённую жилу на наковальне из металла
 work glowing lode on a stone anvil=обработайте раскалённую жилу на наковальне из камня
 write on a surface with a charcoal lump=напишите углем на поверхности
+~ @1% translated to your language (@2)=~ @1% переведён на ваш язык (@2)

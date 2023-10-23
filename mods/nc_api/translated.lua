@@ -12,7 +12,7 @@ return {
 	pl = 1,
 	pt = 262,
 	pt_BR = 262,
-	ru = 604,
+	ru = 606,
 	sk = 147,
 	tok = 17,
 	uk = 25,

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-23 12:25+0000\n"
+"PO-Revision-Date: 2023-10-23 23:52+0000\n"
 "Last-Translator: Ярослав Рукавицын <skybuilderoffical@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/ru/>\n"
@@ -172,7 +172,7 @@ msgid "Active Lens"
 msgstr "Активная Линза"
 
 msgid "About"
-msgstr "Об игре"
+msgstr "Подробнее"
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Ударять нужно не так часто (около 1 удара в секунду)."
@@ -2167,3 +2167,9 @@ msgstr "Закаленные щипцы для добычи полезных и�
 
 msgid "Glowing Lode Tongs"
 msgstr "Раскаленные щипцы для добычи полезных ископаемых"
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "~ @1% переведён на ваш язык (@2)"
+
+msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
+msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
