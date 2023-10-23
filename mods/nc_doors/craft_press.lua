@@ -128,8 +128,10 @@ nodecore.register_craft({
 				local param2 = 0
 				if def.paramtype2 == "facedir" then
 					local dir = vector.subtract(pt.under, pt.above)
+					local key = def.on_place == minetest.rotate_node
+					and "b" or "k"
 					for k, v in pairs(nodecore.facedirs) do
-						if vector.equals(v.b, dir) then
+						if vector.equals(v[key], dir) then
 							param2 = k
 							break
 						end
