@@ -68,7 +68,8 @@ local basedef = {
 	on_rightclick = nodecore.node_spin_filtered(function(a, b)
 			return vector.equals(a.f, b.f)
 		end),
-	sounds = nodecore.sounds("nc_optics_glassy")
+	sounds = nodecore.sounds("nc_optics_glassy"),
+	nc_optic_family = "lens",
 }
 
 local function reg(suff, def)

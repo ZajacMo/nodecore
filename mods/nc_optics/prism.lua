@@ -59,7 +59,8 @@ local basedef = {
 			return vector.equals(a.f, b.r)
 			and vector.equals(a.r, b.f)
 		end),
-	sounds = nodecore.sounds("nc_optics_glassy")
+	sounds = nodecore.sounds("nc_optics_glassy"),
+	nc_optic_family = "prism",
 }
 
 local function reg(suff, def)

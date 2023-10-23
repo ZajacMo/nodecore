@@ -207,6 +207,15 @@ local function optic_commit(v)
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
 	if node.name ~= nn.name or node.param ~= nn.param or node.param2 ~= nn.param2 then
+		local odef = minetest.registered_nodes[node.name] or {}
+		local ndef = minetest.registered_nodes[nn.name] or {}
+		if odef.nc_optic_family ~= ndef.nc_optic_family then
+			nodecore.log("warning", string_format(
+					"optic_commit tried to replace %s with %s at %s",
+					node.name, nn.name, minetest.pos_to_string(v.pos)))
+			return
+		end
+
 		minetest.set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
