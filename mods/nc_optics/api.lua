@@ -144,7 +144,7 @@ local function optic_trigger(start, dir, max)
 	end
 end
 
-local function optic_process(trans, pos)
+local function optic_process(trans, pos, defer)
 	local node = get_node(pos)
 	if node.name == "ignore" then return end
 
@@ -161,7 +161,7 @@ local function optic_process(trans, pos)
 		local recv = function(dir, max)
 			return scan_recv(pos, dir, max, getnode)
 		end
-		local nn = check(pos, node, recv, getnode)
+		local nn = check(pos, node, recv, getnode, defer)
 		if (not ignored) and nn then
 			trans[hashpos(pos)] = {
 				pos = pos,
@@ -172,9 +172,20 @@ local function optic_process(trans, pos)
 	end
 end
 
+local mkdefer = function()
+	local list = {}
+	return function(f)
+		list[#list + 1] = f
+	end,
+	function()
+		for i = 1, #list do (list[i])() end
+	end
+end
+
 local function optic_immediate(pos)
 	local trans = {}
-	optic_process(trans, pos)
+	local defer, finish = mkdefer()
+	optic_process(trans, pos, defer)
 	for _, v in pairs(trans) do
 		if vector.equals(v.pos, pos) then
 			local node = get_node(pos)
@@ -185,6 +196,7 @@ local function optic_immediate(pos)
 			break
 		end
 	end
+	finish()
 	return optic_check(pos)
 end
 nodecore.optic_immediate = optic_immediate
@@ -299,13 +311,14 @@ do
 		end
 
 		local trans = {}
+		local defer, finish = mkdefer()
 		for _, pos in pairs(batch) do
-			optic_process(trans, pos)
+			optic_process(trans, pos, defer)
 		end
-
 		for _, v in pairs(trans) do
 			optic_commit(v)
 		end
+		finish()
 	end
 end
 

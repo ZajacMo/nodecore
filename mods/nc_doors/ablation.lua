@@ -69,7 +69,7 @@ nodecore.register_dnt({
 		action = ablation
 	})
 
-local function doortrigger(doorpos)
+local function doortrigger(doorpos, _, _, _, defer)
 	for _, dir in pairs(nodecore.dirs()) do
 		local lenspos = vector.add(doorpos, dir)
 		local lensnode = minetest.get_node(lenspos)
@@ -77,7 +77,10 @@ local function doortrigger(doorpos)
 			local face = nodecore.facedirs[lensnode.param2]
 			local out = vector.add(face.k, lenspos)
 			if vector.equals(doorpos, out) then
-				return ablation(lenspos, minetest.get_node(lenspos))
+				defer(function()
+						return ablation(lenspos,
+							minetest.get_node(lenspos))
+					end)
 			end
 		end
 	end
