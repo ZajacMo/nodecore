@@ -1,6 +1,7 @@
 # textdomain: nc_api
 (C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 por Aaron Suen <warr1024@@gmail.com>
-- "Furnaces" are not a thing; discover smelting with open flames.=- No hay hornos en Nodecore; fundir con llamas abiertas.
+- "Furnaces" are not a thing; discover smelting with open flames.=- Los "hornos" no existen; Descubre la fundición con llamas abiertas.
+- Aux+drop any item to drop everything.=- Aux+soltar cualquier item para soltar todo.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- Sé precavido de las cuevas oscuras; eres responsable de volver tú mismo.
 - Can't dig trees or grass? Search for sticks in the canopy.=- ¿No puedes cavar tierra o talar árboles? Busca palos por el entorno.
 - Crafting is done by building recipes in-world.=- El crafteo se realiza construyendo en el mundo.

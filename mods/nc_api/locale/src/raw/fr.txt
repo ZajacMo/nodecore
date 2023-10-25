@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2023-10-24 19:03+0000\n"
+"Last-Translator: Lemente <crafted.by.lemente@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
 "Language: fr\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -1778,3 +1778,15 @@ msgstr "Outil d'administration"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 par Aaron Suen <warr1024@@gmail.com>"
+
+msgid "Cannot teleport an offline player."
+msgstr "Impossible de téléporter un joueur hors-ligne."
+
+msgid "Version @1 or higher is required."
+msgstr "Version @1 ou supérieure requise."
+
+msgid "Your Minetest version is outdated, please update!"
+msgstr "Votre version de Minetest est dépassée, veuillez mettre à jour !"
+
+msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
+msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
