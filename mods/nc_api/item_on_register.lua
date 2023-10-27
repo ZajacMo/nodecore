@@ -29,8 +29,9 @@ end
 
 local oldreg = minetest.register_item
 function minetest.register_item(name, def, ...)
+	local canonical_name = name:gsub("^:", "")
 	for _, v in ipairs(nodecore.registered_on_register_item) do
-		local x = v.func(name, def, ...)
+		local x = v.func(canonical_name, def, ...)
 		if x then return x end
 	end
 	return oldreg(name, def, ...)
