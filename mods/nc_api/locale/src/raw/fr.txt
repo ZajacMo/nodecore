@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-24 19:03+0000\n"
-"Last-Translator: Lemente <crafted.by.lemente@gmail.com>\n"
+"PO-Revision-Date: 2023-10-27 00:09+0000\n"
+"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
 "Language: fr\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -1790,3 +1790,43 @@ msgstr "Votre version de Minetest est dépassée, veuillez mettre à jour !"
 
 msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
 msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
+
+msgid "Annealed Lode Tongs"
+msgstr "Pinces en métal recuit"
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "~ @1% traduit dans votre langue (@2)"
+
+msgid "FIRE QUELLED"
+msgstr "FEU ÉTOUFFÉ"
+
+msgid "assemble lode tongs"
+msgstr "assembler les pinces en métal"
+
+#, fuzzy
+msgid "WORLD FROZEN"
+msgstr "MONDE FIGÉ"
+
+msgid "Spackling"
+msgstr "Enduit"
+
+msgid "Wet Spackling"
+msgstr "Enduit Humide"
+
+msgid "grow a flower on soil near moisture"
+msgstr "faîtes pousser des fleurs sur de la terre près de la moisissure"
+
+msgid "grow a rush on soil near moisture"
+msgstr "faîtes pousser des joncs sur de la terre près de la moisissure"
+
+msgid "mix crude glass into ash to make spackling"
+msgstr "mélanger du verre creux dans de la cendre pour faire de l'enduit."
+
+msgid "Glowing Lode Tongs"
+msgstr "Pinces de métal brillant"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 rejeté. (version du protocole @2)"
+
+msgid "grow a sedge on grass near moisture"
+msgstr "faîtes pousser de la laîche sur de l'herbe près de la moisissure"

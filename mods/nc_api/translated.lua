@@ -5,7 +5,7 @@ return {
 	eo = 76,
 	es = 166,
 	es_US = 166,
-	fr = 562,
+	fr = 575,
 	ia = 0,
 	it = 184,
 	lzh = 1,
