@@ -10,7 +10,7 @@ local bulks = nodecore["registered_" .. modname .. "_bulk_nodes"]
 local basedef = minetest.registered_items[modname .. ":stack"]
 
 local function register_full_stack(name, def)
-	local stack_name = modname .. ":bulk_" .. name:gsub("^:", ""):gsub(":", "__")
+	local stack_name = modname .. ":bulk_" .. name:gsub(":", "__")
 	bulks[name] = stack_name
 	if not def.tiles then
 		return error("visinv_bulk_optimize invalid on nodes without tiles")
