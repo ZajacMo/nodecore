@@ -9,6 +9,45 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Consider merging copygirl's extended rotation
+	- https://git.mcft.net/copygirl/nc_extended_rotating
+	- Unlicense, (probably) does not need to be cleanroomed
+	- The early design sounded a bit questionable, but it seems like
+	  in practice it actually works well
+		- Too confusing to "plan" rotations?  It allows enough
+		  different axes that that's not much of an issue.
+		- Too much precise control necessary?  Seems like it's
+		  not much of an issue and we could allow something like
+		  aux+rightclick to override and go with the old "just
+		  cycle them all" system.
+	- The "highly buried optic" use-case seems to be a likely non
+	  issue.  It seems like it would work fine with simply-buried
+	  optics (we can access one whole face)
+
+- Consider merging a limited version of "extended placement"
+	- https://content.minetest.net/packages/gamefreq0/extended_placement/
+	- MIT for code, only cleanroom the media
+	- Could be very valuable for cases like "place past the side of
+	  my bridge" for skyblock without falling off due to lagspikes.
+	- Would need to limit some cases, e.g. building below an existing
+	  node, to prevent cheesing skyrealm
+	- Adds another "precision control" requirement that would need
+	  to be bypassable.
+
+- Add an "options" screen to player GUI
+	- The ability to toggle some things, ideally just simple on/off
+	  to start with.
+	- Mods can register additional options to go in there
+	- To use for things like:
+		- Advanced placement/rotation options based on whether
+		  player has enough precision control
+		- Pummel assistance: punch twice in rapid enough succession
+		  and then stare at the same spot to complete pummel, for
+		  players with hand mobility issues
+		- Visual subtitles (currently languishing in a side branch
+		  due to how disruptive/distracting they would be if unable
+		  to turn them off)
+	
 - Allow some nodes to pseudorandomly choose from equivalent rotations
   instead of always picking the first one.
 	- For optics, but probably not for doors.
