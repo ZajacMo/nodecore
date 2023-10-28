@@ -53,7 +53,12 @@ end
 local accessdirs = nodecore.dirs()
 local function sealed_or_notdry(nodename, pos)
 	local def = minetest.registered_nodes[nodename]
-	if def and def.groups and def.groups.storebox_sealed and def.groups.storebox_sealed > 0 then
+
+	if def and def.groups and def.groups.storebox_sealed_always
+	and def.groups.storebox_sealed_always > 0 then return true end
+
+	if def and def.groups and def.groups.storebox_sealed
+	and def.groups.storebox_sealed > 0 then
 		if not pos then return true end
 		for i = 1, #accessdirs do
 			local pt = {
@@ -68,10 +73,12 @@ local function sealed_or_notdry(nodename, pos)
 		end
 		return true
 	end
+
 	if not pos then return end
 	for _, d in pairs(alldirs) do
 		if not notdry(vector.add(pos, d)) then return end
 	end
+
 	return true
 end
 
