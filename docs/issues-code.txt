@@ -15,8 +15,25 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Display actual offline time in looktip
 		- Setting to disable this?
 
+- on_node_moved callback
+	- For mods that allow movement of nodes in space
+	- Hook into it to move private ephemeral metadata like cooldowns
+	  or cached meta along with the nodes
+	- copygirl's contraptions mod
+		- especially if it eventually should move
+		  contained machines with it
+
 - Deprecate air_equivalent property and move to a group
 	- This is probably going to be deprecated by the engine
+
+- Would be nice to finally have a universal "active thing modifier" that
+  combines ABMs and AISMs instead of having to have both.
+	- Could also maybe try to use DNTs, e.g. have a single DNT
+	  patrol ABM for everything and every other interaction would
+	  be node timer managed?
+
+- Might be nice to have a lode_tongs_carryable group
+	- Independent of lode_temper_hot
 
 - Standardize some node metadata publishing
 	- Colors.txt for minetest mapper from node registrations
