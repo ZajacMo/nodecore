@@ -103,6 +103,7 @@ local groups = {
 	lux_emit = "things that emit lux radiation that irradiates players over time",
 	lux_fluid = "(specific) lux source and flowing liquids",
 	lux_hot = "lux cobble in a moderately excited but still subcritical state",
+	lux_rock = "lux rock in smooth-stone or cobble form (for ore hints)",
 	lux_tool = "infused lode tools",
 	metallic = "made of metal, efficiently absorbs lux radiation",
 	moist = "water or other source of moisture esp. for plant cultivation",

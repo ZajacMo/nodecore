@@ -4,13 +4,13 @@ local nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_hint("find lux",
-	"group:lux_emit",
+	"group:lux_rock",
 	"toolcap:cracky:2"
 )
 
 nodecore.register_hint("dig up lux cobble",
 	"inv:group:lux_cobble",
-	{"group:lux_emit", "toolcap:cracky:2"}
+	{"group:lux_rock", "toolcap:cracky:2"}
 )
 
 nodecore.register_hint("observe a lux reaction",

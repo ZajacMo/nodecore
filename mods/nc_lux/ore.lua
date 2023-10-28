@@ -19,6 +19,7 @@ for i = 1, 8 do
 			groups = {
 				rock = 1,
 				lux_cobble = 1,
+				lux_rock = 1,
 				lux_emit = i * 2,
 				cracky = 1,
 				cobbley = 1,
@@ -51,6 +52,7 @@ minetest.register_node(modname .. ":stone", {
 		groups = {
 			rock = 1,
 			stone = 1,
+			lux_rock = 1,
 			lux_emit = 1,
 			cracky = 2
 		},
@@ -69,6 +71,7 @@ for i = 1, nodecore.hard_stone_strata do
 			tiles = {nodecore.hard_stone_tile(i)},
 			groups = {
 				rock = i,
+				lux_rock = 1,
 				lux_emit = 1,
 				cracky = i + 2,
 				stone = i + 1,
