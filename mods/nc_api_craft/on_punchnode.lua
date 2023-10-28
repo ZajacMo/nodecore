@@ -71,7 +71,8 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 			node = node,
 			nodedef = def,
 			start = now,
-			wield = wield:get_name() .. " " .. wield:get_count(),
+			wield = wield,
+			wield_stripped = wield:get_name() .. " " .. wield:get_count(),
 			count = 0,
 		}
 		pum.inprogress = pumparticles(pum, 1.5, 0.5, 8)
@@ -83,7 +84,7 @@ nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, poin
 		if old and hash(old.pos) == hash(pum.pos)
 		and hash(old.pointed.above) == hash(pum.pointed.above)
 		and hash(old.pointed.under) == hash(pum.pointed.under)
-		and pum.wield == old.wield
+		and pum.wield_stripped == old.wield_stripped
 		and old.last >= (now - 3)
 		then pum = old end
 
