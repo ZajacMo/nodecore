@@ -39,6 +39,9 @@ IDEAS: Possible future additions/improvements to the game
 	- Add an "options" screen to player GUI
 		- The ability to toggle some things, ideally just simple on/off
 		to start with.
+			- Maybe dropdown/enum is the ideal control to use (e.g.
+			  for things that offer finite modes that aren't
+			  easily composable from independent yes/no choices)
 		- Mods can register additional options to go in there
 		- To use for things like:
 			- Advanced placement/rotation options based on whether

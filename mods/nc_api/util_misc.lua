@@ -289,6 +289,7 @@ function nodecore.quenched(pos, r)
 end
 
 function nodecore.node_spin_custom(...)
+	nodecore.log("warning", "deprecated nodecore.node_spin_custom(...)")
 	local arr = {...}
 	arr[0] = false
 	local lut = {}
@@ -316,6 +317,7 @@ function nodecore.node_spin_custom(...)
 	end
 end
 function nodecore.node_spin_filtered(func)
+	nodecore.log("warning", "deprecated nodecore.node_spin_filtered(...)")
 	local rots = {}
 	for i = 0, 23 do
 		local f = nodecore.facedirs[i]

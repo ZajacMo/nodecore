@@ -65,9 +65,10 @@ local basedef = {
 	optic_check = lens_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	on_rightclick = nodecore.node_spin_filtered(function(a, b)
+	spindata = nodecore.spin_filter_facedirs(function(a, b)
 			return vector.equals(a.f, b.f)
 		end),
+	on_rightclick = nodecore.spin_node_cycle,
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "lens",
 }

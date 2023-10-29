@@ -35,7 +35,7 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 	tiles[4] = tiles[4] .. scuff .. ")"
 	tiles[5] = tiles[5] .. scuff .. "^[transformR180)"
 
-	local spin = nodecore.node_spin_filtered(function(a, b)
+	local spindata = nodecore.spin_filter_facedirs(function(a, b)
 			return vector.equals(a.f, b.r)
 			and vector.equals(a.r, b.f)
 		end)
@@ -49,11 +49,13 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 			paramtype2 = "facedir",
 			silktouch = false,
 			groups = groups,
+			spindata = spindata,
 			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
 				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)
 				if (not stack) or (stack:get_name() ~= pin) then
-					return spin(pos, node, clicker, stack, pointed, ...)
+					return nodecore.spin_node_cycle(pos, node,
+						clicker, stack, pointed, ...)
 				end
 				local fd = node and node.param2 or 0
 				fd = nodecore.facedirs[fd]
