@@ -49,6 +49,14 @@ local function door_operate_sound(pos, node)
 		{pos = pos, gain = gain})
 end
 
+local function facedir(node)
+	local p2 = node.param2 or 0
+	local def = minetest.registered_nodes[node.name]
+	local data = def and def.spindata
+	p2 = data and data.equiv[p2] or p2
+	return nodecore.facedirs[p2]
+end
+
 local function operate_door_core(pos, node, dir)
 	local key = hashpos(pos)
 	operate_success[key] = nil
@@ -57,7 +65,7 @@ local function operate_door_core(pos, node, dir)
 	node = node or minetest.get_node_or_nil(pos)
 	if (not node) or (not nodecore.match(node, is_door)) then return end
 
-	local fd = nodecore.facedirs[node.param2 or 0]
+	local fd = facedir(node)
 	local rotdir
 	if vector.equals(dir, fd.k) or vector.equals(dir, fd.r) then
 		rotdir = "r"
@@ -79,7 +87,7 @@ local function operate_door_core(pos, node, dir)
 	local press
 	local toop = {}
 	for k, v in pairs(found) do
-		local ffd = nodecore.facedirs[v.node.param2 or 0]
+		local ffd = facedir(v.node)
 		v.dir = ffd[rotdir]
 		v.dir2 = rotdir == "r" and ffd.k or ffd.l
 		local to = vector.add(v.pos, v.dir)
