@@ -24,7 +24,8 @@ minetest.register_node(modname .. ":rush", {
 			snappy = 1,
 			flora = 1,
 			flammable = 3,
-			attached_node = 1
+			attached_node = 1,
+			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
 		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
@@ -48,7 +49,8 @@ minetest.register_node(modname .. ":rush_dry", {
 			flammable = 2,
 			attached_node = 1,
 			flora_dry = 1,
-			peat_grindable_item = 1
+			peat_grindable_item = 1,
+			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
 		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})

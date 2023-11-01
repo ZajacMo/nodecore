@@ -45,7 +45,8 @@ minetest.register_node(modname .. ":torch", {
 			falling_repose = 1,
 			flammable = 1,
 			firestick = 3,
-			stack_as_node = 1
+			stack_as_node = 1,
+			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_tree_sticky"),
 		on_ignite = function(pos, node)
@@ -105,7 +106,8 @@ for i = 1, nodecore.torch_life_stages do
 				falling_repose = 1,
 				stack_as_node = 1,
 				torch_lit = 1,
-				flame_ambiance = 1
+				flame_ambiance = 1,
+				optic_opaque = 1,
 			},
 			stack_max = 1,
 			sounds = nodecore.sounds("nc_tree_sticky"),

@@ -26,7 +26,8 @@ minetest.register_node(modname .. ":ladder", {
 			snappy = 1,
 			flammable = 2,
 			fire_fuel = 1,
-			falling_node = 1
+			falling_node = 1,
+			optic_opaque = 1,
 		},
 		crush_damage = 0.25,
 		paramtype = "light",
@@ -64,6 +65,7 @@ minetest.register_node(modname .. ":frame", {
 			snappy = 1,
 			flammable = 2,
 			fire_fuel = 1,
+			optic_opaque = 1,
 		},
 		paramtype = "light",
 		climbable = true,

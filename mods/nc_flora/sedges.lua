@@ -53,7 +53,8 @@ for i = 1, 5 do
 				flora_dry = 1,
 				flammable = 3,
 				attached_node = 1,
-				peat_grindable_item = 1
+				peat_grindable_item = 1,
+				optic_opaque = i == 5 and 1 or nil,
 			},
 			sounds = nodecore.sounds("nc_terrain_grassy"),
 			selection_box = nodecore.fixedbox(
