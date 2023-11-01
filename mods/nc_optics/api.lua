@@ -48,7 +48,7 @@ local node_opaque = {}
 local node_visinv = {}
 local node_storebox_access = {}
 minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+		for k, v in pairs(minetest.registered_items) do
 			node_optic_checks[k] = v.optic_check or nil
 			node_optic_sources[k] = v.optic_source or nil
 			node_visinv[k] = v.groups and v.groups.visinv or nil
