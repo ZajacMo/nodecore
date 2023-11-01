@@ -15,16 +15,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Exercise all 24 rotations and ensure all code paths work for them.
 	- Subtle texture variation, may affect texturepacks as well.
 
-- Would be nice to have a standard control for "pick up one item".
-	- Aux+punch a visinv stack?
-
-- When using the "drop" key pointing at a visinv/storebox, try to add
-  the items into the storage unit (if allowed) instead of placing
-  against the side.
-	- Do we want to still have a way to place a stack against
-	  a storebox but not inside?  Can't use aux/sneak for this
-	  because those already have defined meanings.
-
 - Move some ABMs into soaking API:
 	- Sedges growing
 	- Lava melting stone

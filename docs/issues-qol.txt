@@ -1,0 +1,29 @@
+========================================================================
+ISSUES-QOL: Potential quality-of-life improvements
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- Would be nice to have a standard control for "pick up one item".
+	- Aux+punch a visinv stack?
+
+- Smart optics placement
+	- "full" smart placement didn't work, but maybe limited might?
+	- If a lens is placed AGAINST another lens, orient them
+	  tip-to-tip and back-to-back
+	- Makes lens chains eaiser to assemble
+
+- When using the "drop" key pointing at a visinv/storebox, try to add
+  the items into the storage unit (if allowed) instead of placing
+  against the side.
+	- Do we want to still have a way to place a stack against
+	  a storebox but not inside?  Can't use aux/sneak for this
+	  because those already have defined meanings.
+
+........................................................................
+========================================================================

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, unpack, vector
-    = ipairs, math, minetest, nodecore, pairs, unpack, vector
+local ipairs, math, minetest, nodecore, pairs, vector
+    = ipairs, math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -192,8 +192,8 @@ local function operate_door_core(pos, node, dir)
 end
 
 local running
-function nodecore.operate_door(pos, ...)
-	door_operate_queue[#door_operate_queue + 1] = {pos, ...}
+function nodecore.operate_door(pos, node, dir)
+	door_operate_queue[#door_operate_queue + 1] = {pos, node, dir}
 	local key = hashpos(pos)
 	if running then return operate_success[key] end
 	running = true
@@ -205,7 +205,7 @@ function nodecore.operate_door(pos, ...)
 			batch[i], batch[j] = batch[j], batch[i]
 		end
 		for _, opts in ipairs(batch) do
-			operate_door_core(unpack(opts))
+			operate_door_core(opts[1], opts[2], opts[3])
 		end
 	end
 	running = false
