@@ -177,7 +177,7 @@ end
 
 minetest.register_chatcommand("ignite", {
 		description = "Set fire to all nearby flammables",
-		privs = {["debug"] = true},
+		privs = {server = true},
 		params = "[radius]",
 		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
@@ -193,7 +193,7 @@ minetest.register_chatcommand("ignite", {
 	})
 minetest.register_chatcommand("snuff", {
 		description = "Extinguish all nearby embers",
-		privs = {["debug"] = true},
+		privs = {server = true},
 		params = "[radius]",
 		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)

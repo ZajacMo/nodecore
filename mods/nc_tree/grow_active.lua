@@ -163,7 +163,7 @@ local growtreedata = {
 }
 minetest.register_chatcommand("growtrees", {
 		description = "Accelerate growth of nearby trees",
-		privs = {["debug"] = true},
+		privs = {server = true},
 		params = "[radius]",
 		func = function(pname, param)
 			local player = minetest.get_player_by_name(pname)
