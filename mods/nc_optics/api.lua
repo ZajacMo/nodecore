@@ -46,11 +46,13 @@ local node_optic_checks = {}
 local node_optic_sources = {}
 local node_opaque = {}
 local node_visinv = {}
+local node_storebox_access = {}
 minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+		for k, v in pairs(minetest.registered_items) do
 			node_optic_checks[k] = v.optic_check or nil
 			node_optic_sources[k] = v.optic_source or nil
 			node_visinv[k] = v.groups and v.groups.visinv or nil
+			node_storebox_access[k] = v.storebox_access or nil
 
 			local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
 			local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
@@ -97,16 +99,14 @@ local function scan(pos, dir, max, getnode, cbbs)
 		if node_opaque[node.name] and not node_visinv[node.name] then return p, node end
 		if node_visinv[node.name] then
 			if node_opaque[node.name] then
-				local def = minetest.registered_nodes[node.name] or {}
-				if not def.storebox_access then return p, node end
+				local acc = node_storebox_access[node.name]
+				if not acc then return p, node end
 				-- check that “light” can come in from the old position by checking for access
-				if not def.storebox_access(
-					{above = o, under = p}, p, {}) then return p, node end
+				if not acc({above = o, under = p}, p, {}) then return p, node end
 				-- check that “light” can go out: this should be checked after checking
 				-- if the content is opaque, but we're going to return the same p, node anyway
 				-- so it doesn't really matter
-				if not def.storebox_access(
-					{above = vector.add(p, dir), under = p}, p, {}) then return p, node end
+				if not acc({above = vector.add(p, dir), under = p}, p, {}) then return p, node end
 			end
 			local stack = nodecore.stack_get(p)
 			if node_opaque[stack:get_name()] then

@@ -22,7 +22,8 @@ minetest.register_node(modname .. ":stick", {
 			snappy = 1,
 			flammable = 2,
 			falling_repose = 1,
-			stack_as_node = 1
+			stack_as_node = 1,
+			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_tree_sticky")
 	})

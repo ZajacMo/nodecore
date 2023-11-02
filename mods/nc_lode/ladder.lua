@@ -28,6 +28,7 @@ nodecore.register_lode("Ladder", {
 		groups = {
 			falling_node = 1,
 			chisel = 2,
+			optic_opaque = 1,
 		},
 		climbable = true
 	})
@@ -90,6 +91,9 @@ nodecore.register_lode("Frame", {
 		tiles = {modname .. "_#.png"},
 		light_source = 2,
 		crush_damage = 4,
+		groups = {
+			optic_opaque = 1,
+		},
 		paramtype = "light",
 		sunlight_propagates = true,
 		climbable = true
