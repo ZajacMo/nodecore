@@ -85,6 +85,16 @@ local function lazy_raycast(player)
 	end
 end
 
+local player_last_active = {}
+minetest.register_on_chat_message(function(pname)
+		player_last_active[pname] = nodecore.gametime
+	end)
+function nodecore.player_idle(pname)
+	if type(pname) ~= "string" then pname = pname:get_player_name() end
+	local active = player_last_active[pname] or nodecore.gametime
+	return nodecore.gametime - active
+end
+
 local cache = {}
 local function step_player(player, dtime)
 	local pname = player:get_player_name()
@@ -102,7 +112,18 @@ local function step_player(player, dtime)
 	local orig_anim = clone(data.animation)
 	data.hud_flags = player:hud_get_flags()
 	local orig_hud = clone(data.hud_flags)
-	data.control = player:get_player_control()
+	local newcontrol = player:get_player_control()
+	local state = {
+		pos = player:get_pos(),
+		look = player:get_look_dir(),
+		widx = player:get_wield_index()
+	}
+	if mismatch(data.control, newcontrol)
+	or mismatch(data.state, state) then
+		player_last_active[pname] = nodecore.gametime
+	end
+	data.state = state
+	data.control = newcontrol
 	for _, def in pairs(steps) do
 		def.action(player, data, dtime)
 	end
@@ -131,5 +152,7 @@ minetest.register_on_joinplayer(function(player)
 		step_player(player, 0)
 	end)
 minetest.register_on_leaveplayer(function(player)
-		cache[player:get_player_name()] = nil
+		local pname = player:get_player_name()
+		cache[pname] = nil
+		player_last_active[pname] = nil
 	end)
