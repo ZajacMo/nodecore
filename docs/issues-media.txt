@@ -39,7 +39,7 @@ ISSUES-DOCS: Issues related to media/assets, or visuals/effects
 	- When player movement interpolation WORKS
 	  https://github.com/minetest/minetest/issues/12317
 	- Nametags can "lead" players due to jumping to destination
-	  immediatel with no interpolation
+	  immediately with no interpolation
 	- Save previous pos, average with new pos
 
 - Fix damage falling damage "death" flash

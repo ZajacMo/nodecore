@@ -8,7 +8,39 @@ ISSUES-GAME: Gameplay-affecting issues
       #  #####   #    #     #    #       #       #####        #
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
-	
+
+- Tong-carried hot lode metadata combining issue
+	- Combine when falling out of lode ore (probably shouldn't
+	  because they're losing cooling metadata) but don't combine
+	  when moved by tongs (annoying that they don't).
+	- We probably want the ability to combine (or ignore) certain
+	  metadata for merging stacks, to make the tongs thing go away.
+	- We may want to overhaul cooking to make annealing recipes
+	  combine more sensibly.
+		- Run cooking/cooling in AISMs?
+		- Store state info in itemstack meta instead of
+		  container node meta?
+
+- Change zoom controls so it doesn't require use of sneak/aux
+	- Prevent players from feeling the need to use "aux=down"
+	  option just to allow farzoom while swimming
+	- We can detect the actual zoom key now (I think) so base
+	  it just on holding zoom while not moving
+	- Have some grace period at normal zoom before activating
+	  to give players a chance to use the "light" zoom level
+	  for screenshots before heavy zoom kicks in
+
+- Door press recipe limitations
+	- Node-placing recipes don't work with itemstacks
+		- Tool and torch making don't work
+		- We should be able to detect failed-catapulting for this
+	- Stackapply recipes
+		- Needed for automatic eggcorn planting
+
+- Crosshair still not fully synced with looktip: node
+  name visible due to punching nodes still does not
+  solidify the crosshair in darkness.
+
 - Allow some nodes to pseudorandomly choose from equivalent rotations
   instead of always picking the first one.
 	- For optics, but probably not for doors.
@@ -19,8 +51,6 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Sedges growing
 	- Lava melting stone
 	- Hardening/softening stone
-
-- Move sedge growing abm into soaking.
 
 - Continuing issues with storebox fall-thru
 	- Items now refusing to fall from a form into a crate or
@@ -66,10 +96,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Rushes may dry out
 		- Sedges may be stunted, lose growth stages
 
-- Door placement convenience
-	- If player places a door panel against the face of another
-	  door panel (sneak+place) then match axis if possible.
-
 - Cheats
 	- Should these be spun off into a separate mod?
 		- Maybe a separate mod within the game so they
@@ -90,11 +116,6 @@ ISSUES-GAME: Gameplay-affecting issues
 - Emergency digging mechanic issues
 	- Players still confused by it.
 
-- Detect and warn players about misuse of singlenode mapgen
-	- Mods can register if they're supporting singlenode.
-	- We can detect player "falling forever" by scanning down
-	  to find anything other than air before ignore.
-
 - Re-examine chiseling recipes
 	- Bricks accept annealed chisels, which makes some sense
 	  from a game balance perspective (cosmetic-only = cheap)
@@ -104,8 +125,6 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Cannot catapult an item into a form from below.
 	- Is this actually important?
-
-- Thatch and wicker should probably have recycling recipes.
 
 - Do we really need stack_as_node for leaves, sticks, and a
   few other ordinary items anymore, or has our falling_node
@@ -128,18 +147,15 @@ ISSUES-GAME: Gameplay-affecting issues
 		- After, show both (1 stick + 4 adze => rake)
 	- Make all crafts/recipes trigger witnessing?
 	- Hide stylus hint until after mixed concrete
+	- Hide rake hint until player reaches a certain point in the game
+		- Maybe "total discovery" score threshold?
+		- Hide it behind discovering something that REQUIRES rake
+		  like thatch or wicker?
 
 - Make a way to prevent crafting on place
 	- Sneak? Aux?
 	- Confirmation UI after completing recipe, e.g. floating ent
 	- Make all recipes include some pummel factor?
-
-- Door press recipe limitations
-	- Node-placing recipes don't work with itemstacks
-		- Tool and torch making don't work
-		- We should be able to detect failed-catapulting for this
-	- Stackapply recipes
-		- Needed for automatic eggcorn planting
 
 - Health system slot bias should be a bit stronger
 
@@ -211,10 +227,8 @@ ISSUES-GAME: Gameplay-affecting issues
 	  amount of distance available to fall?  repose only needs to have a
 	  particular angle as measured on flat land?
 
-- Tote issues:
-	- Consider updating tote recipe.
-	- Totes should do face-connected search for totables; don't pick up
-	  shelves only touching via a corner.
+- Totes should do face-connected search for totables; don't pick up
+  shelves only touching via a corner.
 
 - Flammables should respond via AISM when bathed in fire or igniting
   liquids like molten glass or rock.

@@ -1,0 +1,45 @@
+========================================================================
+ISSUES-APIS: Issues with code interfaces driven by mod needs
+------------------------------------------------------------------------
+
+  ####   #####    ####      #    #       ######  #####    ####
+ #       #    #  #    #     #    #       #       #    #  #
+  ####   #    #  #    #     #    #       #####   #    #   ####
+      #  #####   #    #     #    #       #       #####        #
+ #    #  #       #    #     #    #       #       #   #   #    #
+  ####   #        ####      #    ######  ######  #    #   ####
+
+- YCTIWY customizability:
+	- Hook to customizer marker texture
+	- Hook to customize looktips for marker, slot ents
+	- Display actual offline time in looktip
+		- Setting to disable this?
+
+- on_node_moved callback
+	- For mods that allow movement of nodes in space
+	- Hook into it to move private ephemeral metadata like cooldowns
+	  or cached meta along with the nodes
+	- copygirl's contraptions mod
+		- especially if it eventually should move
+		  contained machines with it
+
+- Player skin API overhaul
+	- Pass a context object only
+	- Use player name, not player obj
+
+- Might be nice to have a lode_tongs_carryable group
+	- Independent of lode_temper_hot
+
+- Make door pusheability customizable
+	- door_can_push or door_cannot_push groups/flags or something.
+	- Allow override of standard falling_node check.
+
+- Items should get some custom multipliers for visual size
+	- In particular, when wielded in a player's hand
+	- Inventory slots are somewhat less useful but could be
+	  included for completeness.
+	- Could also apply for stack nodes, falling_node, and
+	  item entities.
+
+........................................................................
+========================================================================

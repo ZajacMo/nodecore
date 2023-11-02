@@ -18,12 +18,26 @@ ISSUES-QOL: Potential quality-of-life improvements
 	  tip-to-tip and back-to-back
 	- Makes lens chains eaiser to assemble
 
+- Door placement convenience
+	- If player places a door panel against the face of another
+	  door panel (sneak+place) then match axis if possible.
+	
 - When using the "drop" key pointing at a visinv/storebox, try to add
   the items into the storage unit (if allowed) instead of placing
   against the side.
 	- Do we want to still have a way to place a stack against
 	  a storebox but not inside?  Can't use aux/sneak for this
 	  because those already have defined meanings.
+
+- Detect and warn players about misuse of singlenode mapgen
+	- Mods can register if they're supporting singlenode.
+	- We can detect player "falling forever" by scanning down
+	  to find anything other than air before ignore.
+
+- It would be nice to detect and warn players of excess lag somehow
+	- Some kind of icon (snail)?
+	- A "surround" HUD like breath/heat/rad?
+	- A warning over the hotbar like stasis/quell/cheats?
 
 ........................................................................
 ========================================================================

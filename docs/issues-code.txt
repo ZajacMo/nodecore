@@ -1,5 +1,5 @@
 ========================================================================
-ISSUES-CODE: Issues related to code quality and APIs
+ISSUES-CODE: Issues related to code quality and maintainability
 ------------------------------------------------------------------------
 
   ####   #####    ####      #    #       ######  #####    ####
@@ -9,20 +9,6 @@ ISSUES-CODE: Issues related to code quality and APIs
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- YCTIWY customizability:
-	- Hook to customizer marker texture
-	- Hook to customize looktips for marker, slot ents
-	- Display actual offline time in looktip
-		- Setting to disable this?
-
-- on_node_moved callback
-	- For mods that allow movement of nodes in space
-	- Hook into it to move private ephemeral metadata like cooldowns
-	  or cached meta along with the nodes
-	- copygirl's contraptions mod
-		- especially if it eventually should move
-		  contained machines with it
-
 - Deprecate air_equivalent property and move to a group
 	- This is probably going to be deprecated by the engine
 
@@ -31,9 +17,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Could also maybe try to use DNTs, e.g. have a single DNT
 	  patrol ABM for everything and every other interaction would
 	  be node timer managed?
-
-- Might be nice to have a lode_tongs_carryable group
-	- Independent of lode_temper_hot
 
 - Standardize some node metadata publishing
 	- Colors.txt for minetest mapper from node registrations
@@ -54,7 +37,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Unified heat API?
 	- Unify quenching and heating
-	- Alternative to cooking w/ 3 flames, with 5 pumwaters
 	- Replace quenched, touchgroups, neargroups
 
 - Gametime handling improvements.
@@ -83,7 +65,7 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- N.B. the docs imply it only works for nodes, not items,
 	  so tool breakage particles may still require the logic.
 
-- Optimize colony growth logic
+- Optimize sponge colony growth logic
 	- For each sponge found, push into a queue
 	- Process queue on step:
 		- Skip all "seen" sponges
@@ -101,11 +83,15 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Add a speed adjustment for manual changes, e.g. when
 	  tool speed is used
 
-- Simpler version of the soaking API that uses an exponential random
-  distribution and mean time between events to determine if at least one
-  event happened
-	- Support cascading, i.e. pushing time into another event type
-	  for replacement nodes?
+- Soaking API improvmements
+	- Simpler version of the soaking API that uses an exponential random
+	  distribution and mean time between events to determine if at least one
+	  event happened
+		- Support cascading, i.e. pushing time into another event type
+		for replacement nodes?
+	- Better altnernative based on lantern charging that reduces
+	  metadata churn (only update meta if we cross some threshold instead
+	  of every check)
 
 - LookTips
 	- API needs an overhaul
@@ -113,15 +99,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		- Simplify calling, maybe pass data table
 		- Unify between node/itemdefs, entdefs, etc.
 	- Update mods depending on touchtips
-	- Fix glyph handling to be face-specific instead of
-	  always naming the glyph if above, even if wrong face
-	- Crosshair still not fully synced with looktip: node
-	  name visible due to punching nodes still does not
-	  solidify the crosshair in darkness.
-
-- Player skin API overhaul
-	- Pass a context object only
-	- Use player name, not player obj
 
 - Use set_local_animation again?
 	- Apparently it may make sense instead of handling every animation on the
@@ -137,8 +114,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Remove NC's "social sounds" feature for dig/place
 	  https://github.com/minetest/minetest/commit/c10e18859
 
-- Convert more things to autostart DNTs?
-
 - Expand stackapply recipes
 	- Allow them to work with non-stacks?
 		- Hook into item_place
@@ -147,8 +122,16 @@ ISSUES-CODE: Issues related to code quality and APIs
 	- Make stickcraft recipes work in tight spaces?
 		- Simulate node placement for place recipes?
 
-- Anywhere we are using explicit names or lists of names in game, we
-  should probably try registering groups to allow future expansion
+- General Architectural Audit
+	- Convert more things to autostart DNTs?
+	- Anywhere we are using explicit names or lists of names in game, we
+	  should probably try registering groups to allow future expansion
+	- Transactional api ref localization
+		- For certain large computations, like an optic processing, it may be
+		  worthwhile to capture some often-repeated functions like minetest.get_node
+		  as locals.
+		- May need to test performance on a non-JIT build, where this is expected
+		  to have a larger impact, since JIT probably optimizes the difference away.
 
 - Unify the "node destruction particles" system.  Allow complex options,
   like alternative node def, particle def, disable on silk touch.
@@ -166,25 +149,14 @@ ISSUES-CODE: Issues related to code quality and APIs
 
 - Automate uploading translation source strings?
 
-- Test nc_wield with items that have their own visual scale.
-
 - Flammability ABM ordering.  Always do extinguish check after ignite
   checks or vice versa, so suboptimal firestarting is consistent
-
-- Make door pusheability customizable
-	- door_can_push or door_cannot_push groups/flags or something.
-	- Allow override of standard falling_node check.
 
 - Overhaul player health to work entirely virtual
 	- Raise max up a lot to make room for fine grained falling
 	  damage so we can raise threshold
 	- Consider falling damage add percent to all nodes?
 	- Add API for doing fake damage effect using set hp
-
-- Allow optics pending transaction to be flushed early
-	- Optics interacting with doors are out of sync
-	- May need to commit the optic state immediately when triggering
-	  doors so they get the correct current state.
 
 - Consider full eversion of event handlers
 	- Disallow (or automatically convert) traditional single-handlers
@@ -200,13 +172,6 @@ ISSUES-CODE: Issues related to code quality and APIs
 		  register for things not yet defined, and allow later registration
 		  of the registration definition that will pick up those missed.
 	- Define order for inv tabs
-
-- Transactional api ref localization
-	- For certain large computations, like an optic processing, it may be
-	  worthwhile to capture some often-repeated functions like minetest.get_node
-	  as locals.
-	- May need to test performance on a non-JIT build, where this is expected
-	  to have a larger impact, since JIT probably optimizes the difference away.
 
 - Some time-integral processes are not resetting when prereqs removed
 	- Cooking resumes instead of resetting when fire removed.
