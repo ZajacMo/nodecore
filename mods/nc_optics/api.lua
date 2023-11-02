@@ -49,17 +49,20 @@ local node_visinv = {}
 local node_storebox_access = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_items) do
-			node_optic_checks[k] = v.optic_check or nil
-			node_optic_sources[k] = v.optic_source or nil
-			node_visinv[k] = v.groups and v.groups.visinv or nil
-			node_storebox_access[k] = v.storebox_access or nil
+			if k ~= "" then
+				node_optic_checks[k] = v.optic_check or nil
+				node_optic_sources[k] = v.optic_source or nil
+				node_visinv[k] = v.groups and v.groups.visinv or nil
+				node_storebox_access[k] = v.storebox_access or nil
 
-			local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
-			local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
-			if (grp_t and grp_o) then
-				error("node cannot be BOTH optic_opaque and optic_transparent")
+				local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
+				local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
+				if (grp_t and grp_o) then
+					error("node cannot be BOTH optic_opaque and optic_transparent")
+				end
+				node_opaque[k] = grp_o or (not
+					(grp_t or v.sunlight_propagates)) or nil
 			end
-			node_opaque[k] = grp_o or (not (grp_t or v.sunlight_propagates)) or nil
 		end
 	end)
 
