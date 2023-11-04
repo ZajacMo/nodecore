@@ -7,6 +7,7 @@ local idsupport = {}
 local idfalling = {}
 
 local c_air = minetest.get_content_id("air")
+local c_stone = minetest.get_content_id("nc_terrain:stone")
 
 local function initdata()
 	initdata = function() end
@@ -29,11 +30,17 @@ nodecore.register_mapgen_shared({
 			for z = minp.z, maxp.z do
 				for x = minp.x, maxp.x do
 					local offs = ai(area, x, minp.y, z)
-					local support
+					local support = false
 					for _ = minp.y, maxp.y do
 						local d = data[offs]
 						if (not support) and idfalling[d] then
-							data[offs] = c_air
+							if support == false then
+								-- false at bottom, nil above
+								data[offs] = c_stone
+								support = true
+							else
+								data[offs] = c_air
+							end
 						else
 							support = idsupport[d]
 						end
