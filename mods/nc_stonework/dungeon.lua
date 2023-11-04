@@ -25,9 +25,11 @@ nodecore.register_dungeongen({
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 			local bnode = minetest.get_node(below)
 			local bdef = minetest.registered_nodes[bnode.name] or {}
-			return minetest.set_node(pos, {name = (rng(1, 10) <=
-						(bdef.walkable and 9 or 2)
-						and profile.brick
-						or profile.bonded)})
+			if bdef.walkable then
+				return minetest.set_node(pos, {name = (rng(1, 10) <= 9)
+						and profile.brick or profile.bonded})
+			end
+			return minetest.set_node(pos, {name = (rng(1, 10) <= 3)
+					and profile.bonded or "air"})
 		end
 	})
