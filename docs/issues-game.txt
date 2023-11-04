@@ -9,6 +9,16 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Tree trunks not connected to a root still support leaves
+	- Hard to trigger in vanilla, but mods with large trees
+	  can make it easier to happen.
+	- We should probably periodically check the trunks and
+	  trace downward to look for a stump, and if we don't
+	  find one, mark the trunk as unusable, including all
+	  connected trunks.
+	- Trunks marked as unusuable are ignored for leaf decay
+	  checks.
+
 - Tong-carried hot lode metadata combining issue
 	- Combine when falling out of lode ore (probably shouldn't
 	  because they're losing cooling metadata) but don't combine
