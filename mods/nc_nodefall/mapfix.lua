@@ -3,12 +3,10 @@ local minetest, nodecore, pairs
     = minetest, nodecore, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local transform = {
-	["nc_terrain:gravel"] = "nc_terrain:cobble",
-	["nc_terrain:sand"] = "nc_concrete:sandstone",
-}
 local idsupport = {}
-local idxform = {}
+local idfalling = {}
+
+local c_air = minetest.get_content_id("air")
 
 local function initdata()
 	initdata = function() end
@@ -16,11 +14,8 @@ local function initdata()
 		if v.walkable and not v.buildable_to then
 			idsupport[minetest.get_content_id(k)] = true
 		end
-		if transform[k] then
-			idxform[minetest.get_content_id(k)]
-			= minetest.registered_nodes[transform[k]]
-			and minetest.get_content_id(transform[k])
-			or nil
+		if ((v.groups or {}).falling_node or 0) > 0 then
+			idfalling[minetest.get_content_id(k)] = true
 		end
 	end
 end
@@ -37,14 +32,11 @@ nodecore.register_mapgen_shared({
 					local support
 					for _ = minp.y, maxp.y do
 						local d = data[offs]
-						if not support then
-							local xf = idxform[d]
-							if xf then
-								d = xf
-								data[offs] = d
-							end
+						if (not support) and idfalling[d] then
+							data[offs] = c_air
+						else
+							support = idsupport[d]
 						end
-						support = idsupport[d]
 						offs = offs + ystride
 					end
 				end
