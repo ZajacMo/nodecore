@@ -6,11 +6,11 @@ local minetest, nodecore, pairs, vector
 local max_time_per_step = 0.05
 local max_entities = 50
 
-local fallinto = {}
+local fallthru = {}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			if v.buildable_to or not v.walkable then
-				fallinto[k] = true
+				fallthru[k] = true
 			end
 		end
 	end)
@@ -36,7 +36,7 @@ minetest.register_globalstep(function()
 			local bpos = vector.offset(pos, 0, -1, 0)
 			if not pending[hash(bpos)] then
 				local bnode = minetest.get_node(bpos)
-				if fallinto[bnode.name] then
+				if fallthru[bnode.name] then
 					minetest.check_for_falling(pos)
 					if toomanyents() then break end
 				end

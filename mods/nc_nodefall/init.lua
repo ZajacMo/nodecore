@@ -5,5 +5,6 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("damage")
+include("mapfix")
 include("unsuspend")
+include("damage")
