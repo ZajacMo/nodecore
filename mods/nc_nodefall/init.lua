@@ -5,5 +5,4 @@ local include, nodecore
 
 nodecore.amcoremod()
 
-include("disturb")
 include("damage")
