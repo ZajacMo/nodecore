@@ -9,6 +9,14 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Node fall signals are not carried upward past unloaded block bounds
+	- Builtin falling_node code propagates a "node below you just
+	  fell, check if you should fall" signal, especially upwards.
+	- If it hits an unloaded mapblock, the signal is just lost.
+	- Instead it should be saved and deferred, and then realized
+	  as soon as the mapblock is loaded later.
+		- Maybe an LBM against all group:falling_node?
+
 - Tong-carried hot lode metadata combining issue
 	- Combine when falling out of lode ore (probably shouldn't
 	  because they're losing cooling metadata) but don't combine

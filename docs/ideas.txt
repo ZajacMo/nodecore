@@ -59,6 +59,16 @@ IDEAS: Possible future additions/improvements to the game
 		invisible in old versions (graceful fallback).
 		- An icon for each sound type.
 
+- Remove cave-ins and make falling nodes always immediately fall.
+	- Cave-ins are one of the more disliked features of the game (jumpscares)
+	  and don't seem to add much to gameplay, and the disturbance checks are
+	  complex.
+	- Instead, just prevent falling stuff on mapgen (look for falling_nodes
+	  above air/liquid and replace them with something non-falling).
+	- Then we can use an LBM/ABM combo to just run continuous falling node
+	  checks throughout the game to ensure that no falling nodes are left
+	  temporarily suspended.
+
 - Incorporate some existing mods:
 	- ncbells can mostly already go in as it is
 		- Green wanted to fix some sound quality issues
