@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-12 14:44+0000\n"
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2023-11-04 02:32+0000\n"
+"Last-Translator: Terifo <terifo1590@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/minetest/"
 "nodecore/pt/>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 msgid "(C)2018-2019 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2019 por Aaron Suen <war1024@@gmail.com>"
@@ -24,7 +24,9 @@ msgid "- Drop items onto ground to create stack nodes.  They do not decay."
 msgstr "- Solte itens no chão para criar um node de itens amontoados. Eles não desaparecem."
 
 msgid "- If a recipe exists, you will see a special particle effect."
-msgstr "- Se uma receita existe, você verá um efeito especial de partícula sair do node."
+msgstr ""
+"- Se uma receita existe, você verá um efeito especial de partícula sair do "
+"nó."
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr "- Os itens pegados são primeiramente armazenados no espaço atualmente selecionado."
@@ -39,19 +41,23 @@ msgid "- Sneak+drop to count out single items from stack."
 msgstr "- Use os comandos de agachar e soltar juntos para soltar um só item."
 
 msgid "- Some recipes require "pummeling" a node."
-msgstr "- Algumas receitas necessitam que você "esmurre" um node."
+msgstr "- Algumas receitas necessitam que você bata em um nó/bloco."
 
 msgid "- Stacks may be pummeled, exact item count may matter."
-msgstr "- Amontoados de itens podem ser esmurrados, pode ser que precise de uma quantidade exata do item."
+msgstr ""
+"- Você pode bater em um amontoado(stack) de nós, porém a quantidade exata de "
+"nós pode importar."
 
 msgid "- There is NO inventory screen."
 msgstr "- NÃO EXISTE tela de inventário."
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "- Para esmurrar, bata num node repetidamente, SEM QUEBRÁ-LO."
+msgstr "- Para bater, soque um nó repetidamente, SEM QUEBRÁ-LO."
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
-msgstr "- O item segurado, a face do objeto alvo e os nodes ao redor podem importar durante a criação de algo."
+msgstr ""
+"- O item segurado, a face do objeto alvo e os nós ao redor podem importar "
+"durante a criação de algo."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Você não precisa bater muito rápido(basta 1 batida por segundo)."
@@ -225,55 +231,55 @@ msgid "Active Prism"
 msgstr "Prisma Ativo"
 
 msgid "Aggregate"
-msgstr "Agregar"
+msgstr "Agregado"
 
 msgid "Air"
 msgstr "Ar"
 
 msgid "Annealed Lode"
-msgstr "Veio Mineral Recozido"
+msgstr "Veio Temperado"
 
 msgid "Annealed Lode Bar"
-msgstr "Barra de Veio Mineral Recozida"
+msgstr "Barra de Veio Temperado"
 
 msgid "Annealed Lode Hatchet"
-msgstr "Machado de Veio Mineral Recozida"
+msgstr "Machado de Veio Temperado"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "Cabeça de Machado de Veio Mineral Recozida"
+msgstr "Cabeça de Machado de Veio Temperado"
 
 msgid "Annealed Lode Mallet"
-msgstr "Marreta de Veio Mineral Recozida"
+msgstr "Marreta de Veio Temperado"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "Cabeça de Marreta de Veio Mineral Recozida"
+msgstr "Cabeça de Marreta de Veio Temperado"
 
 msgid "Annealed Lode Mattock"
-msgstr "Enxada de Veio Mineral Recozida"
+msgstr "Enxada de Veio Temperado"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "Cabeça de Enxada de Veio Mineral Recozida"
+msgstr "Cabeça de Enxada de Veio Temperado"
 
 msgid "Annealed Lode Pick"
-msgstr "Picareta de Veio Mineral Recozida"
+msgstr "Picareta de Veio Temperado"
 
 msgid "Annealed Lode Pick Head"
-msgstr "Cabeça de Picareta de Veio Mineral Recozida"
+msgstr "Cabeça de Picareta de Veio Temperado"
 
 msgid "Annealed Lode Prill"
-msgstr "Lascas de Veio Mineral Recozida"
+msgstr "Lascas de Veio Temperado"
 
 msgid "Annealed Lode Rod"
-msgstr "Vara de Veio Mineral Recozida"
+msgstr "Vara de Veio Temperado"
 
 msgid "Annealed Lode Spade"
-msgstr "Pá de Veio Mineral Recozida"
+msgstr "Pá de Veio Temperado"
 
 msgid "Annealed Lode Spade Head"
-msgstr "Cabeça de Pá de Veio Mineral Recozida"
+msgstr "Cabeça de Pá de Veio Temperado"
 
 msgid "Ash"
-msgstr "Cinza"
+msgstr "Cinzas"
 
 msgid "Ash Lump"
 msgstr "Nódulo de Cinzas"
@@ -438,7 +444,7 @@ msgid "Player's Guide: Inventory Management"
 msgstr "Guia do Jogador: Gerenciamento de Inventário"
 
 msgid "Player's Guide: Pummeling Recipes"
-msgstr "Guia do Jogador: Receitas por Esmurrada"
+msgstr "Guia do Jogador: Receitas feitas Batendo"
 
 msgid "Prism"
 msgstr "Prisma"
@@ -447,7 +453,7 @@ msgid "Progress: @1 complete, @2 current, @3 future"
 msgstr "Progresso: @1 completo(s), @2 atual(is), @3 futuro(s)"
 
 msgid "Pummel"
-msgstr "Esmurrar"
+msgstr "Bater"
 
 msgid "Sand"
 msgstr "Areia"
@@ -642,12 +648,13 @@ msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 por Aaron Suen <war1024@@gmail.com>"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "- Não existem \"Fornos\"; descubra derretimento em chamas abertas."
+msgstr ""
+"- Não existem \"Fornos\"; aprenda a derreter com chamas/fogo ao ar livre."
 
 msgid "- Can't dig trees or grass? Search for sticks in the canopy."
 msgstr ""
-"- Não consegue cavar madeira ou terra? Procure por palitos nas copas das "
-"arvores."
+"- Não consegue quebrar madeira ou cavar terra? Procure por gravetos nas "
+"copas das arvores."
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr "- Jogue itens no chão para criar pilhas de nós. Eles não desaparecem."
@@ -662,8 +669,7 @@ msgstr ""
 
 msgid "- Climbing spots may be climbed once black particles appear."
 msgstr ""
-"- Pontos de escalada podem ser escalados assim que partículas negras "
-"aparecerem."
+"- Pontos de escalada podem ser escalados quando partículas negras aparecerem."
 
 msgid "- Do not use F5 debug info; it will mislead you!"
 msgstr "- Não use as informações de debug do F5; você irá se perder!"
@@ -678,7 +684,7 @@ msgstr "- Largue e pegue itens novamente para organizar seu inventário."
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
-"- Para receitas maiores, o item do meio é geralmente colocado por último."
+"- Para receitas maiores, o item central geralmente é colocado por último."
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr ""
@@ -687,8 +693,8 @@ msgstr ""
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
-"- Se demorar mais de 5 segundos pra cavar algo, você não tem a ferramenta "
-"certa."
+"- Se demorar mais de 5 segundos pra cavar algo, você não está utilizando a "
+"ferramenta certa."
 
 msgid "- Tools used as ingredients must be in very good condition."
 msgstr ""
@@ -696,16 +702,16 @@ msgstr ""
 
 msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
 msgstr ""
-"- Algo parece tedioso? Encontre melhor tecnologia, fatores sutis ou uma "
-"melhor maneira."
+"- Alguma tarefa parece tediosa? Procure uma tecnologia mais avançada, "
+"detalhes sutis ou uma forma melhor de realizá-la."
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 msgstr "- O jogo é desafiador de propósito, às vezes frustrante. NÃO DESISTA!"
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr ""
-"- Para correr mais rápido, caminhe/nade para frente, ou escale/nade para "
-"cima continuamente."
+"- Para movimentar-se mais rápido, caminhe/nade para frente, ou escale/nade "
+"para cima continuamente."
 
 msgid "- FUTURE: @1"
 msgstr "- FUTURO: @1"
@@ -721,7 +727,8 @@ msgstr "- Agache+aux+largue um item para largar todos os itens parecidos."
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr ""
-"- Minérios podem estar escondidos, mas revelados por dicas sutis no terreno."
+"- Minérios podem estar escondidos, mas podem ser revelados a partir de dicas "
+"sutis no terreno."
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
@@ -733,3 +740,102 @@ msgstr "- FEITO: @1"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 por Aaron Suen <war1024@@gmail.com>"
+
+msgid "Annealed Lode Rake"
+msgstr "Ancinho de Veio Temperado"
+
+msgid "Amalgamation"
+msgstr "Amálgamação"
+
+msgid "Azure Bell Flower"
+msgstr "Flor Sininho Azul"
+
+msgid "complete a pummel with a hinged panel and tool head"
+msgstr "Bata num nó usando um painel articulado e uma cabeça de ferramenta"
+
+msgid "Azure Star Flower"
+msgstr "Flor Estrela Azul"
+
+msgid "@1 (@2)"
+msgstr "@1(@2)"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Tendo problemas para acender um fogo? Tente usar gravetos mais longos, "
+"mais secos."
+
+msgid "Azure Cluster Flower"
+msgstr "Florescência de Flores Azuis"
+
+msgid "Annealed Lode Adze"
+msgstr "Enxó de Veio Temperado"
+
+msgid "Annealed Lode Tongs"
+msgstr "Pinça de Veio Temperado"
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "Admin Tool"
+msgstr "Ferramenta de Administrador"
+
+msgid "Adobe Mix"
+msgstr "Mistura de Adobe"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Nós quebrados com a ferramenta errada não podem ser pegados, apenas "
+"deslocados."
+
+msgid "Azure Cup Flower"
+msgstr "Flor Azul em Formato de Copo"
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "Annealed Lode Frame"
+msgstr "Moldura de Veio Temperado"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux + soltar em qualquer item para soltar/dropar tudo."
+
+msgid "Adobe Bricks"
+msgstr "Tijolos de Adobe"
+
+msgid "Azure Rosette Flower"
+msgstr "Flor Roseta Azul"
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "Annealed Lode Ladder"
+msgstr "Escada de Veio Temperado"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Segure/repita \"clique-direito\" em paredes/tetos com as mãos naus para "
+"criar pontos de escalada."
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Mods Adicionais Carregados: @1"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 rejeitado. (versão do protocolo @2)"
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Nós/blocos deslocados podem ser escalados, como pontos de escalada."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 descoberto(s) , @2 disponível(eis), @3 a descobrir"
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
