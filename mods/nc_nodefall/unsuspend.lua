@@ -35,8 +35,10 @@ minetest.register_globalstep(function()
 		for k, pos in pairs(pending) do
 			local bpos = vector.offset(pos, 0, -1, 0)
 			if not pending[hash(bpos)] then
-				local bnode = minetest.get_node(bpos)
-				if fallthru[bnode.name] then
+				local bnode = minetest.get_node_or_nil(bpos)
+				if bnode and fallthru[bnode.name] then
+					nodecore.log("action", "falling node unsuspend at "
+						.. minetest.pos_to_string(pos))
 					minetest.check_for_falling(pos)
 					if toomanyents() then break end
 				end
