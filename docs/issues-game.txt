@@ -9,6 +9,16 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Mapgen fix for falling nodes is not 100% correct.
+	- Tracing it, it seems like some map modifications are
+	  made after our mapgen_shared hooks run, causing us to
+	  assume some gravel will be supported below when that
+	  gravel later gets undercut.
+	- This may not be much of a problem if the unsuspend
+	  logic is reliable enough, but it does put some added
+	  stress on the engine when these mapblocks get loaded
+	  and then need to immediately spawn entities.
+
 - Tree trunks not connected to a root still support leaves
 	- Hard to trigger in vanilla, but mods with large trees
 	  can make it easier to happen.
