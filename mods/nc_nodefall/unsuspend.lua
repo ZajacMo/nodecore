@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local math, minetest, next, nodecore, pairs, vector
+    = math, minetest, next, nodecore, pairs, vector
+local math_random
+    = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local max_time_per_step = 0.05
@@ -17,6 +19,7 @@ minetest.after(0, function()
 
 local hash = minetest.hash_node_position
 local pending = {}
+local function pend(pos) pending[hash(pos)] = pos end
 
 local function toomanyents()
 	local entqty = 0
@@ -28,28 +31,42 @@ local function toomanyents()
 	end
 end
 
+local batch = {}
+local batchpos = 1
+
 minetest.register_globalstep(function()
 		if toomanyents() then return end
 		local stop = minetest.get_us_time() + max_time_per_step * 1000000
-		local done = {}
-		for k, pos in pairs(pending) do
+		if batchpos > #batch and (#batch > 0 or next(pending)) then
+			batch = {}
+			for _, v in pairs(pending) do batch[#batch + 1] = v end
+			for i = #batch, 2, -1 do
+				local j = math_random(1, i)
+				local x = batch[i]
+				batch[i] = batch[j]
+				batch[j] = x
+			end
+			batchpos = 1
+			pending = {}
+		end
+		while batchpos <= #batch do
+			local pos = batch[batchpos]
 			local bpos = vector.offset(pos, 0, -1, 0)
 			if not pending[hash(bpos)] then
 				local bnode = minetest.get_node_or_nil(bpos)
-				if bnode and fallthru[bnode.name] then
+				if not bnode then
+					pend(pos)
+				elseif fallthru[bnode.name] then
 					nodecore.log("action", "falling node unsuspend at "
 						.. minetest.pos_to_string(pos))
 					minetest.check_for_falling(pos)
 					if toomanyents() then break end
 				end
 			end
-			done[#done + 1] = k
+			batchpos = batchpos + 1
 			if minetest.get_us_time() >= stop then break end
 		end
-		for i = 1, #done do pending[done[i]] = nil end
 	end)
-
-local function pend(pos) pending[hash(pos)] = pos end
 
 nodecore.register_lbm({
 		name = minetest.get_current_modname() .. ":unsuspend",
