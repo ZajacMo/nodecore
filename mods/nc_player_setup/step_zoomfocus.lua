@@ -11,13 +11,15 @@ nodecore.register_playerstep({
 		label = "zoom focus",
 		action = function(_, data)
 			local ctl = data.control
-			local focusing = ctl.zoom and (ctl.aux1 or ctl.sneak)
+			local focusing = ctl.zoom and (not ctl.sneak) and (not ctl.aux1)
 			and (not ctl.jump) and (not ctl.up) and (not ctl.down)
 			and (not ctl.left) and (not ctl.right)
 			local zoom = zoom_base
 			if focusing and data.zoomfocus then
+				local zoomqty = nodecore.gametime - data.zoomfocus - 2
+				if zoomqty < 0 then zoomqty = 0 end
 				zoom = zoom_base - zoom_base * zoom_ratio * (1 - 1 /
-					((nodecore.gametime - data.zoomfocus) / zoom_time + 1))
+					(zoomqty / zoom_time + 1))
 			else
 				data.zoomfocus = nodecore.gametime
 			end

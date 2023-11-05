@@ -41,15 +41,6 @@ ISSUES-GAME: Gameplay-affecting issues
 		- Store state info in itemstack meta instead of
 		  container node meta?
 
-- Change zoom controls so it doesn't require use of sneak/aux
-	- Prevent players from feeling the need to use "aux=down"
-	  option just to allow farzoom while swimming
-	- We can detect the actual zoom key now (I think) so base
-	  it just on holding zoom while not moving
-	- Have some grace period at normal zoom before activating
-	  to give players a chance to use the "light" zoom level
-	  for screenshots before heavy zoom kicks in
-
 - Door press recipe limitations
 	- Node-placing recipes don't work with itemstacks
 		- Tool and torch making don't work
