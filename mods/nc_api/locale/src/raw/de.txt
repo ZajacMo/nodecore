@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-08-17 16:20+0000\n"
-"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"PO-Revision-Date: 2023-11-09 04:16+0000\n"
+"Last-Translator: Thisaccountis42 <thisemailis42@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -1951,3 +1951,33 @@ msgstr "Version @1 oder höher benötigt."
 
 msgid "Your Minetest version is outdated, please update!"
 msgstr "Ihre Minetestversion ist veraltet, bitte aktualisieren!"
+
+msgid "Offline @1 year(s)"
+msgstr "Offline @1 Jahr(e)"
+
+msgid "Offline @1 hour(s)"
+msgstr "Offline @1 Stunde(n)"
+
+msgid "Annealed Lode Tongs"
+msgstr "Geglühte Lodezange"
+
+msgid "Offline @1 week(s)"
+msgstr "Offline @1 Woche(n)"
+
+msgid "Offline @1 minute(s)"
+msgstr "Offline @1 Minute(n)"
+
+msgid "assemble lode tongs"
+msgstr "baue eine Lodezange"
+
+msgid "WORLD FROZEN"
+msgstr "WELT GEFROREN"
+
+msgid "Offline @1 day(s)"
+msgstr "Offline @1 Tag(e)"
+
+msgid "Tempered Lode Tongs"
+msgstr "Veredelter Lodezange"
+
+msgid "Glowing Lode Tongs"
+msgstr "Glühende Lodezange"
