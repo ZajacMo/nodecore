@@ -58,6 +58,12 @@ local function regetched(basenode, etch, patt)
 		.. "Pliant " .. basenode.description
 		def.pattern_def = patt
 		def.etch_def = etch
+		if def.paramtype2 == "4dir" then
+			def.on_rightclick = function(pos, node)
+				node.param2 = (node.param2 + 1) % 4
+				nodecore.set_loud(pos, node)
+			end
+		end
 		minetest.register_node(":" .. plyname, def)
 	end
 	if not patt.blank then
