@@ -37,6 +37,11 @@ local function patttile(etch, patt)
 	end
 end
 
+local function defaultgroup(def, group)
+	def.groups = def.groups or {}
+	def.groups[group] = def.groups[group] or 1
+end
+
 local function regetched(basenode, etch, patt)
 	basenode = nodecore.underride({}, basenode)
 	basenode.alternate_loose = nil
@@ -58,6 +63,11 @@ local function regetched(basenode, etch, patt)
 		.. "Pliant " .. basenode.description
 		def.pattern_def = patt
 		def.etch_def = etch
+		def.groups = def.groups or {}
+		if not patt.blank then
+			defaultgroup(def, modname .. "_pattern_" .. patt.name)
+		end
+		defaultgroup(def, modname .. "_pliant")
 		if def.paramtype2 == "4dir" then
 			def.on_rightclick = function(pos, node)
 				node.param2 = (node.param2 + 1) % 4
@@ -80,6 +90,10 @@ local function regetched(basenode, etch, patt)
 			.. basenode.description
 			def.pattern_def = patt
 			def.etch_def = etch
+			if not patt.blank then
+				defaultgroup(def, modname .. "_pattern_" .. patt.name)
+			end
+			defaultgroup(def, modname .. "_etched")
 			minetest.register_node(":" .. pattname, def)
 		end
 	end
