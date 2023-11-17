@@ -17,6 +17,10 @@ to the project!
 		  pickpocketing, being the lower priority feature, got cut;
 		  fixing this could feasibly allow both to coexist.
 	- Minor game-breakers:
+		- #14011: Major performance and efficiency problem, which
+		  creates lagspikes (non-smooth optic animations) but at the
+		  same time makes up to 80% of the system performance not
+		  available for ABM-powered transformations.
 		- #9377: This causes some annoyances when handling lux tools,
 		  and makes a certain mechanic blatant when it's intended to be
 		  subtle.

@@ -24,15 +24,6 @@ issue.
 		  out a "virtual node transaction" sort of object that
 		  could be hella complex.
 
-- ABM performance sucks
-	- The scheduler distributes work across time very poorly
-	- We really need the ability to control scheduling from lua
-		- C++ is too inflexible
-	- We need to be able to process in batches instead of only
-	  per-node dispatch
-	- neighbor check really could be made more specific,
-	  e.g. a mask to select which neighbors
-
 - Liquid issues
 	- Z-fighting against normal nodes; no way to both show inside
 	  surface against air AND avoid z-fighting.
