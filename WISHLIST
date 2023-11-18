@@ -31,13 +31,6 @@ to the project!
 		  low, instead it causes players/ents to be invisible even when
 		  terrain is loaded and visible, causing distant player activity
 		  to look like poltergeists.
-	- Blocking new features:
-		- #11404: Desktop/mobile controls lack parity, so certain input
-		  combinations (like sneak+punch) cannot be used for things that
-		  are gameplay-essential.  This limits input expressivity and
-		  requires awkward inputs to work around, and is a minefield for
-		  potential discrimination problems due to the difficulty of
-		  ensuring that all future input design takes this into account.
 	- Internal/annoyance:
 		- #9934: This bug is causing us to maintain a workaround in
 		  NodeCore which is fragile and keeps breaking, leading to
