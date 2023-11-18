@@ -53,23 +53,6 @@ to the project!
 	  servers, etc.
 	- Work on improving the nodecore wiki itself.
 
-- Improved versions of any art assets (sounds, textures, models).
-	- All textures for base inclusion should be 16x (keep
-	  high-def textures to texture packs).  Note that textures
-	  larger than 16x are allowed (and already used) in the game
-	  for textures that "spill over" into neighoring spaces, but
-	  the spatial resolution of 16 pixels per node is maintained.
-	- It must be practical to maintain a consistent style for
-	  other assets, including future related ones, or the content
-	  being reworked should be mature and stable, independent of
-	  other content areas, and the new textures should mesh
-	  reasonably well with the existing style.
-	- Alternatively, publish your mods, texturepacks, or soundpacks
-	  directly to the community, via ContentDB.
-	- Replacements for nodeboxes and meshes that render faster (i.e.
-	  better FPS preservation when tons of them are around) on most
-	  or all systems are wanted.
-
 - Publicity and player content:
 	- Help spread NodeCore!  Share your experiences, screenshots,
 	  videos and streams!
