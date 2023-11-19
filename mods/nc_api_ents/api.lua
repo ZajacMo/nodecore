@@ -185,7 +185,7 @@ function nodecore.entity_settle_recurse(pos)
 			end
 			p.y = p.y + 1
 		end
-		ent:settle_check()
+		ent:settle_check(0)
 		if collides(p) then
 			blocked[hash_node_position(p)] = true
 			yqinsertall(queue, bypos, p)
@@ -208,7 +208,7 @@ local function groundpos(moveresult)
 end
 
 function nodecore.entity_settle_check(on_settle, isnode)
-	return function(self, _, moveresult)
+	return function(self, dtime, moveresult)
 		local pos = groundpos(moveresult) or self.object:get_pos()
 		if not pos then return end
 		if pos.y < nodecore.map_limit_min then
@@ -219,11 +219,22 @@ function nodecore.entity_settle_check(on_settle, isnode)
 			self.object:set_velocity(vel)
 		end
 
-		if self.settle_oldpos and vector.distance(self.settle_oldpos, pos) < 1/16 then
+		-- If stuck in place, we might be stuck on a corner/edge overhanging
+		-- air; jitter the x/z position to try to settle on the node that's
+		-- caught us. We might also be stuck for some other reason; in that
+		-- case, keep increasing the check distance over time, and try to
+		-- tunnel out into a place we can settle.
+		if self.settle_oldpos and vector.distance(self.settle_oldpos, pos)
+		< 1/4 * dtime then
+			self.settle_stucktime = (self.settle_stucktime or 0) + dtime
+			local stuck = self.settle_stucktime / 5
+			if stuck > 64 then stuck = 64 end
 			local csize = self.collidesize or 0.5
-			pos.x = pos.x + (math_random() * 2 - 1) * csize
-			pos.z = pos.z + (math_random() * 2 - 1) * csize
+			pos.x = pos.x + (math_random() * 2 - 1) * (csize + stuck)
+			pos.z = pos.z + (math_random() * 2 - 1) * (csize + stuck)
+			pos.y = pos.y - math_random() * stuck
 		else
+			self.settle_stucktime = 0
 			self.settle_oldpos = pos
 		end
 
