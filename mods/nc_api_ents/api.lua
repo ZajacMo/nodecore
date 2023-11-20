@@ -227,7 +227,8 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		if self.settle_oldpos and vector.distance(self.settle_oldpos, pos)
 		< 1/4 * dtime then
 			self.settle_stucktime = (self.settle_stucktime or 0) + dtime
-			local stuck = self.settle_stucktime / 5
+			local stuck = self.settle_stucktime / 5 - 2
+			if stuck < 0 then stuck = 0 end
 			if stuck > 64 then stuck = 64 end
 			local csize = self.collidesize or 0.5
 			pos.x = pos.x + (math_random() * 2 - 1) * (csize + stuck)
