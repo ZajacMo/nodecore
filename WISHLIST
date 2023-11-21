@@ -24,6 +24,10 @@ to the project!
 		  digging, causing significant annoyance for high-RTT network
 		  players, with no viable workaround.
 	- Minor game-breakers:
+		- #13483: This causes us to have to maintain a workaround that
+		  creates noise when a player joins who has the wrong protocol
+		  version, and prevents us from filtering public servers from
+		  ineligible users on the public server list.
 		- #9377: This causes some annoyances when handling lux tools,
 		  and makes a certain mechanic blatant when it's intended to be
 		  subtle.
@@ -45,6 +49,10 @@ to the project!
 		  interpolation behavior makes it hard to keep player
 		  nametags matched with the average player position instead
 		  of jumping ahead or lagging behind.
+		- #10171: Cosmetic appearance of liquids (e.g. pumwater) on
+		  top of glass when viewed from below.
+		- #3069: Rendering performance impact with tools/craftitems,
+		  especially with higher-res texture packs.
 
 - Help with documentation
 	- Improvements to the in-game guidance, esp. for onboarding new
