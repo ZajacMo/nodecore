@@ -136,7 +136,7 @@ local function operate_door_core(pos, node, dir)
 			axis = hinge
 		}
 		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
-			door_operate_sound(press.pos)
+			door_operate_sound(data.pointed.above)
 			operate_success[key] = true
 			return
 		end
