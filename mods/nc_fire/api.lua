@@ -93,7 +93,7 @@ function nodecore.fire_ignite(pos, node)
 	if fuel > 0 then
 		nodecore.set_node_check(pos, {name = modname .. ":ember" .. fuel})
 	else
-		nodecore.set_node_check(pos, {name = modname .. ":fire"})
+		nodecore.set_node_check(pos, {name = modname .. ":fire_burst"})
 	end
 
 	nodecore.sound_play("nc_fire_ignite", {gain = 1, pos = pos})

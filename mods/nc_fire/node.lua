@@ -1,47 +1,62 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local ipairs, math, minetest, nodecore
+    = ipairs, math, minetest, nodecore
 local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-minetest.register_node(modname .. ":fire", {
-		description = "Fire",
-		drawtype = "firelike",
-		visual_scale = 1.5,
-		tiles = {
-			{
-				name = "nc_fire_fire.png",
-				animation = {
-					["type"] = "vertical_frames",
-					aspect_w = 24,
-					aspect_h = 24,
-					length = 0.6
+-- "fire" is a flame node sustained by nearby fuel.
+-- "fire_burst" is a small self-contained burst of flame from its
+-- own internal fuel that goes out after a set time.
+for _, name in ipairs({":fire", ":fire_burst"}) do
+	minetest.register_node(modname .. name, {
+			description = "Fire",
+			drawtype = "firelike",
+			visual_scale = 1.5,
+			tiles = {
+				{
+					name = "nc_fire_fire.png",
+					animation = {
+						["type"] = "vertical_frames",
+						aspect_w = 24,
+						aspect_h = 24,
+						length = 0.6
+					}
 				}
-			}
-		},
-		paramtype = "light",
-		light_source = 12,
-		groups = {
-			igniter = 1,
-			flame = 1,
-			stack_as_node = 1,
-			damage_touch = 1,
-			damage_radiant = 1,
-			flame_ambiance = 1,
-			cheat = 1
-		},
-		stack_max = 1,
-		damage_per_second = 1,
-		sunlight_propagates = true,
-		floodable = true,
-		walkable = false,
-		touchthru = true,
-		pointable = false,
-		buildable_to = true,
-		drop = ""
+			},
+			paramtype = "light",
+			light_source = 12,
+			groups = {
+				igniter = 1,
+				flame = 1,
+				stack_as_node = 1,
+				damage_touch = 1,
+				damage_radiant = 1,
+				flame_ambiance = 1,
+				cheat = 1
+			},
+			stack_max = 1,
+			damage_per_second = 1,
+			sunlight_propagates = true,
+			floodable = true,
+			walkable = false,
+			touchthru = true,
+			pointable = false,
+			buildable_to = true,
+			drop = ""
+		})
+end
+
+nodecore.register_dnt({
+		name = modname .. ":fire_burst",
+		nodenames = {modname .. ":fire_burst"},
+		time = 2,
+		autostart = true,
+		action = function(pos)
+			return minetest.remove_node(pos)
+		end
 	})
 
 local function txr(name, opaq)

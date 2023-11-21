@@ -16,11 +16,14 @@ to the project!
 		- #10304: Causes looktips to conflict with pickpocketing, so
 		  pickpocketing, being the lower priority feature, got cut;
 		  fixing this could feasibly allow both to coexist.
-	- Minor game-breakers:
 		- #14011: Major performance and efficiency problem, which
 		  creates lagspikes (non-smooth optic animations) but at the
 		  same time makes up to 80% of the system performance not
 		  available for ABM-powered transformations.
+		- #14024: Causes wrong nodes to be predicted when silk-touch
+		  digging, causing significant annoyance for high-RTT network
+		  players, with no viable workaround.
+	- Minor game-breakers:
 		- #9377: This causes some annoyances when handling lux tools,
 		  and makes a certain mechanic blatant when it's intended to be
 		  subtle.
