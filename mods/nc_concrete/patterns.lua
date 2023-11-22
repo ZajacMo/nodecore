@@ -39,7 +39,9 @@ end
 
 local function defaultgroup(def, group)
 	local groups = {}
-	for k, v in pairs(def.groups) do groups[k] = v end
+	if def.groups then
+		for k, v in pairs(def.groups) do groups[k] = v end
+	end
 	groups[group] = groups[group] or 1
 	def.groups = groups
 end
@@ -65,7 +67,6 @@ local function regetched(basenode, etch, patt)
 		.. "Pliant " .. basenode.description
 		def.pattern_def = patt
 		def.etch_def = etch
-		def.groups = def.groups or {}
 		if not patt.blank then
 			defaultgroup(def, modname .. "_pattern_" .. patt.name)
 		end

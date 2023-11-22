@@ -22,11 +22,28 @@ for k, v in pairs(minetest) do
 	end
 end
 
+local function deepcopy(src, mapping)
+	if type(src) ~= "table" then return src end
+
+	mapping = mapping or {}
+	local found = mapping[src]
+	if found then return found end
+
+	local t = {}
+	mapping[src] = t
+	for k, v in pairs(src) do
+		t[k] = deepcopy(v, mapping)
+	end
+
+	return t
+end
+nodecore.deepcopy = deepcopy
+
 local function underride(t, u, u2, ...)
 	if u2 then underride(u, u2, ...) end
 	for k, v in pairs(u) do
 		if t[k] == nil then
-			t[k] = v
+			t[k] = deepcopy(v)
 		elseif type(t[k]) == "table" and type(v) == "table" then
 			underride(t[k], v)
 		end
@@ -482,16 +499,6 @@ function nodecore.player_swimming(player)
 	end
 	return player_was_swimming[pname]
 end
-
-local function deepcopy(x)
-	if type(x) == "table" then
-		local t = {}
-		for k, v in pairs(x) do t[k] = deepcopy(v) end
-		return t
-	end
-	return x
-end
-nodecore.deepcopy = deepcopy
 
 local function mismatch(a, b, exact)
 	if type(a) == "table" then
