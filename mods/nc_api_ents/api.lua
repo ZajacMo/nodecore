@@ -73,13 +73,15 @@ end
 
 local area_unloaded = {}
 
-local function collides(pos)
+local function collides(pos, ignorewalkable)
 	if pos.y < nodecore.map_limit_min then return {name = "ignore"} end
 	local node = minetest.get_node_or_nil(pos)
 	if not node then return area_unloaded end
 	local def = minetest.registered_nodes[node.name]
 	if not def then return node end
-	if def.walkable or def.groups and def.groups.support_falling then return node end
+	if (def.walkable and not ignorewalkable)
+	or ((def.groups and def.groups.support_falling or 0) > 0)
+	then return node end
 end
 
 local oldcheck = minetest.check_single_for_falling
@@ -240,8 +242,8 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		end
 
 		local yvel = self.object:get_velocity().y
-		local coll = (isnode or self.not_rising and yvel == 0)
-		and collides({x = pos.x, y = pos.y - 0.75, z = pos.z})
+		local coll = collides({x = pos.x, y = pos.y - 0.75, z = pos.z},
+			(not isnode) and not (self.not_rising and yvel == 0))
 		self.not_rising = yvel <= 0
 		if not coll then
 			if self.setvel then

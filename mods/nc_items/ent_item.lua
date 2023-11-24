@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, vector
-    = ItemStack, ipairs, math, minetest, nodecore, vector
+local ItemStack, ipairs, math, minetest, nodecore, pairs, vector
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,6 +12,15 @@ local function nuke(self)
 	self.object:remove()
 	return true
 end
+
+local can_settle_on = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_nodes) do
+			if v.walkable or (v.groups and v.groups.support_falling or 0) > 0 then
+				can_settle_on[k] = true
+			end
+		end
+	end)
 
 local hand = ItemStack("")
 nodecore.register_item_entity_on_settle(function(self, pos)
@@ -71,7 +80,9 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			end
 			if ((p.y >= nodecore.map_limit_min)
 				and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
-					or nodecore.walkable({x = p.x, y = p.y - 1, z = p.z}))) then
+					or can_settle_on[minetest.get_node(
+						{x = p.x, y = p.y - 1, z = p.z})
+					.name])) then
 				if nodecore.buildable_to(p) then
 					return placeat(p)
 				elseif rel.x == 0 and rel.z == 0 and math_random(1, 10) == 1 then
