@@ -4,12 +4,16 @@
 - Aux+drop any item to drop everything.=- Aux+soltar cualquier item para soltar todo.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- Sé precavido de las cuevas oscuras; eres responsable de volver tú mismo.
 - Can't dig trees or grass? Search for sticks in the canopy.=- ¿No puedes cavar tierra o talar árboles? Busca palos por el entorno.
+- Climbing spots also produce very faint light; raise display gamma to see.=- Los puntos de accesso a escalar también producen una luz muy tenue; sube el gamma de la pantalla para ver lo mejor.
+- Climbing spots may be climbed once black particles appear.=- Puedes escalar los puntos de accesso una vez que las partículas negras apparecen.
 - Crafting is done by building recipes in-world.=- El crafteo se realiza construyendo en el mundo.
 - DONE: @1=- LISTO: @1
+- Displaced nodes can be climbed through like climbing spots.=- Los nodos desplazados se pueden escalar como si fueran puntos de accesso a escalar.
 - Drop and pick up items to rearrange your inventory.=- Tira y agarra los ítems para reorganizar tu inventario.
 - Drop items onto ground to create stack nodes. They do not decay.=- Tira los ítems en el suelo para crear stacks de nodos. No desaparecen.
 - FUTURE: @1=- FUTURO: @1
 - For larger recipes, the center item is usually placed last.=- En crafteos grandes, generalmente el ítem del centro se agrega último.
+- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Sostenga/repita el right-click en las paredes/techos con tu mano vacía para crear puntos de accesso a escalar.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- ¿Trabado sin avanzar? Prueba preguntando en los chatrooms de la comunidad (About tab).
 - If a recipe exists, you will see a special particle effect.=- Si un crafteo existe, verás efectos de partículas especiales.
 - If it takes more than 5 seconds to dig, you don't have the right tool.=- Si te lleva más de 5 segundos picar, no tienes la herramienta adecuada.
