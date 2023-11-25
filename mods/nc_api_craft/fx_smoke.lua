@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, type
-    = ipairs, math, minetest, nodecore, type
+local ipairs, math, minetest, nodecore, pairs, type
+    = ipairs, math, minetest, nodecore, pairs, type
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -8,6 +8,17 @@ local math_floor, math_random
 local smoke_add, smoke_flush = nodecore.fairlimit(50)
 
 local smoking = {}
+
+nodecore.interval(60, function()
+		local del = {}
+		local now = minetest.get_us_time() / 1000000
+		for k, v in pairs(smoking) do
+			if v.expo < now then
+				del[#del + 1] = k
+			end
+		end
+		for i = 1, #del do smoking[del[i]] = nil end
+	end)
 
 nodecore.register_globalstep("smoke queue", function()
 		for _, item in ipairs(smoke_flush()) do
