@@ -106,7 +106,7 @@ nodecore.register_soaking_abm({
 			local found = nodecore.find_nodes_around(pos, "group:igniter", 1)
 			return #found + 1
 		end,
-		soakcheck = function(data, pos)
+		soakcheck = function(data, pos, node)
 			if data.total < 100 then
 				nodecore.smokefx(pos, 1, data.rate)
 				return
@@ -117,7 +117,7 @@ nodecore.register_soaking_abm({
 			if pattdef.blank then curename = etchdef.basename end
 			nodecore.smokeburst(pos)
 			nodecore.dynamic_shade_add(pos, 1)
-			nodecore.set_loud(pos, {name = curename})
+			nodecore.set_loud(pos, {name = curename, param2 = node.param21})
 			nodecore.witness(pos, "cure pliant concrete")
 			return false
 		end
