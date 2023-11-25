@@ -39,6 +39,11 @@ to the project!
 		  terrain is loaded and visible, causing distant player activity
 		  to look like poltergeists.
 	- Internal/annoyance:
+		- #8541: The default control layout on Android is not very good
+		  for NodeCore, having been mostly optimized for a different
+		  game; it would be nice to be able to offer better controls
+		  without having to distribute a custom engine like Rollerozxa
+		  does.
 		- #9934: This bug is causing us to maintain a workaround in
 		  NodeCore which is fragile and keeps breaking, leading to
 		  significant network load for some clients.
