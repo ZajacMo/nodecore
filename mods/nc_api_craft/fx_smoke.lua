@@ -66,3 +66,10 @@ nodecore.smokefx = smokefx
 function nodecore.smokeburst(pos, qty)
 	return smokefx(pos, {qty = qty or 8})
 end
+
+function nodecore.smokeclear(pos)
+	local old = smoking[minetest.hash_node_position(pos)]
+	if not old then return end
+	local now = minetest.get_us_time() / 1000000
+	if now < old.exp then return minetest.delete_particlespawner(old.id) end
+end
