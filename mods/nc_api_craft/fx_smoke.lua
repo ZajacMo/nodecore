@@ -13,7 +13,7 @@ nodecore.interval(60, function()
 		local del = {}
 		local now = minetest.get_us_time() / 1000000
 		for k, v in pairs(smoking) do
-			if v.expo < now then
+			if v.exp < now then
 				del[#del + 1] = k
 			end
 		end
