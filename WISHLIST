@@ -39,6 +39,9 @@ to the project!
 		  terrain is loaded and visible, causing distant player activity
 		  to look like poltergeists.
 	- Internal/annoyance:
+		- #14044: This causes us to have to maintain a workaround
+		  that makes us not fully API-compatible with MT upstream
+		  and may trip up mods that rely on undocumented behavior.
 		- #8541: The default control layout on Android is not very good
 		  for NodeCore, having been mostly optimized for a different
 		  game; it would be nice to be able to offer better controls
