@@ -123,7 +123,7 @@ nodecore.register_soaking_abm({
 			if pattdef.blank then curename = etchdef.basename end
 			nodecore.smokeburst(pos)
 			nodecore.dynamic_shade_add(pos, 1)
-			nodecore.set_loud(pos, {name = curename, param2 = node.param21})
+			nodecore.set_loud(pos, {name = curename, param2 = node.param2})
 			nodecore.witness(pos, "cure pliant concrete")
 			return false
 		end
