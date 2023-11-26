@@ -75,7 +75,13 @@ nodecore.register_craft({
 			if (not wield) or wield:is_empty() then return end
 			local wieldpatt = wield:get_meta():get_string("pattern")
 			if wieldpatt and wieldpatt ~= "" and wieldpatt ~= pattdef.name then
-				nodecore.set_loud(pos, {name = setpref .. wieldpatt .. "_ply"})
+				local node = {name = setpref .. wieldpatt .. "_ply"}
+				if minetest.registered_nodes[node.name].paramtype2 == "4dir"
+				and data.crafter then
+					node.param2 = minetest.dir_to_fourdir(
+						data.crafter:get_look_dir())
+				end
+				nodecore.set_loud(pos, node)
 				return
 			end
 
