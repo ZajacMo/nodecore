@@ -235,7 +235,7 @@ function nodecore.entity_settle_check(on_settle, isnode)
 			local csize = self.collidesize or 0.5
 			pos.x = pos.x + (math_random() * 2 - 1) * (csize + stuck)
 			pos.z = pos.z + (math_random() * 2 - 1) * (csize + stuck)
-			pos.y = pos.y - math_random() * stuck
+			pos.y = pos.y - (math_random() - 0.25) * stuck
 		else
 			self.settle_stucktime = 0
 			self.settle_oldpos = pos
