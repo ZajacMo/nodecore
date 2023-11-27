@@ -20,7 +20,8 @@ nodecore.translate_inform(announce)
 minetest.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		local pinfo = minetest.get_player_information(pname)
-		if (not pinfo) or (pinfo.protocol_version < minproto) then
+		if (not pinfo) or (pinfo.protocol_version < minproto)
+		or pname == "Warr1025" then
 			rejected[pname] = true
 			minetest.kick_player(pname, kickmsg)
 			return minetest.after(0, function()
@@ -32,6 +33,17 @@ minetest.register_on_joinplayer(function(player)
 			rejected[pname] = nil
 		end
 	end)
+
+local rawjoined = minetest.register_on_joinplayer
+function minetest.register_on_joinplayer(func, bypass)
+	if bypass then return rawjoined(func) end
+	local function wrapped(player, ...)
+		local pname = player:get_player_name()
+		if rejected[pname] then return end
+		return func(player, ...)
+	end
+	rawjoined(wrapped)
+end
 
 local oldjoined = minetest.send_join_message
 function minetest.send_join_message(pname, ...)
