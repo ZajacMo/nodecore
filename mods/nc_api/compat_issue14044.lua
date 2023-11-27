@@ -50,7 +50,12 @@ local function createpool(poolname)
 		return id
 	end
 
-	return upsert, remove
+	local function extract(resource)
+		if type(resource) ~= "table" then return resource end
+		return resource.id or nil
+	end
+
+	return upsert, remove, extract
 end
 
 do
@@ -70,7 +75,7 @@ do
 end
 
 do
-	local upsert, remove = createpool("sound")
+	local upsert, remove, extract = createpool("sound")
 
 	local oldcreate = minetest.sound_play
 	function minetest.sound_play(...)
@@ -82,5 +87,12 @@ do
 		local id = remove(resource)
 		if not id then return end
 		return oldstop(id, ...)
+	end
+
+	local oldfade = minetest.sound_fade
+	function minetest.sound_fade(resource, ...)
+		local id = extract(resource)
+		if not id then return end
+		return oldfade(id, ...)
 	end
 end
