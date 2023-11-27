@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, string
-    = minetest, nodecore, string
+local minetest, nodecore, string, type
+    = minetest, nodecore, string, type
 local string_format
     = string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,6 +9,12 @@ local minproto = 41
 local minrelease = "5.6"
 
 local rejected = {}
+
+function nodecore.player_rejected(player)
+	local pname = type(player) == "string" and player
+	or player:get_player_name()
+	return rejected[pname]
+end
 
 local kickmsg = string_format("\n\n%s\n%s",
 	nodecore.translate("Your Minetest version is outdated, please update!"),
@@ -33,17 +39,6 @@ minetest.register_on_joinplayer(function(player)
 			rejected[pname] = nil
 		end
 	end)
-
-local rawjoined = minetest.register_on_joinplayer
-function minetest.register_on_joinplayer(func, bypass)
-	if bypass then return rawjoined(func) end
-	local function wrapped(player, ...)
-		local pname = player:get_player_name()
-		if rejected[pname] then return end
-		return func(player, ...)
-	end
-	rawjoined(wrapped)
-end
 
 local oldjoined = minetest.send_join_message
 function minetest.send_join_message(pname, ...)

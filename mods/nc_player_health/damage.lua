@@ -65,6 +65,7 @@ nodecore.register_playerstep({
 	})
 
 local function setmax(player)
+	if nodecore.player_rejected(player) then return end
 	player:set_properties({hp_max = 8})
 end
 nodecore.register_on_joinplayer("set max health on join", setmax)
