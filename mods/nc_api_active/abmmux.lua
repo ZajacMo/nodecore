@@ -1,21 +1,33 @@
 -- LUALOCALS < ---------------------------------------------------------
 local minetest, nodecore, pairs, rawset, string, table
     = minetest, nodecore, pairs, rawset, string, table
-local string_format, table_concat
-    = string.format, table.concat
+local string_format, string_sub, table_concat
+    = string.format, string.sub, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local muxdefs = {}
 local abmsdefined = {}
 
+local prefix = "abmmux_"
+
+local function fixgroups(name, def)
+	local groups = {}
+	for k, v in pairs(def.groups or {}) do
+		if v ~= 0 and string_sub(k, 1, #prefix) ~= prefix then
+			groups[k] = v
+		end
+	end
+	for _, mux in pairs(muxdefs) do
+		if nodecore.would_match(name, def, mux.nodenames) then
+			groups[prefix .. mux.muxkey] = 1
+		end
+	end
+	return groups
+end
+
 nodecore.register_on_register_item(function(name, def)
 		if def.type == "node" then
-			for _, mux in pairs(muxdefs) do
-				if (not (def.groups and def.groups[mux.muxkey]))
-				and nodecore.would_match(name, def, mux.nodenames) then
-					rawset(def.groups, "abmmux_" .. mux.muxkey, 1)
-				end
-			end
+			rawset(def, "groups", fixgroups(name, def))
 		end
 	end)
 
@@ -56,10 +68,7 @@ function minetest.register_abm(def)
 	end
 	muxdefs[#muxdefs + 1] = def
 	for k, v in pairs(minetest.registered_nodes) do
-		if (not v.groups[muxkey]) and nodecore.would_match(k, v, def.nodenames) then
-			rawset(v.groups, "abmmux_" .. muxkey, 1)
-			minetest.override_item(k, {groups = v.groups})
-		end
+		minetest.override_item(k, {groups = fixgroups(k, v)})
 	end
 	if abmsdefined[muxkey] then return end
 	abmsdefined[muxkey] = true
@@ -77,7 +86,7 @@ function minetest.register_abm(def)
 			chance = def.chance,
 			catchup = def.catchup,
 			neighbors = def.neighbors,
-			nodenames = {"group:abmmux_" .. muxkey},
+			nodenames = {"group:" .. prefix .. muxkey},
 			action = function(pos, node, ...)
 				local oldname = node.name
 				local found = muxidx[muxkey .. oldname]
