@@ -60,7 +60,7 @@ minetest.register_globalstep(function()
 					local node = minetest.get_node(pos)
 					if node.name ~= bnode.name then
 						nodecore.log("action",
-							"falling node unsuspend at "
+							node.name .. " unsuspend at "
 							.. minetest.pos_to_string(pos))
 						minetest.check_for_falling(pos)
 						if toomanyents() then break end
