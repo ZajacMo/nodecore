@@ -9,6 +9,8 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Totes should honor on_rightclick handlers in on_place.
+
 - Need to try to address issues with items settling in pum pools.
 	- Dropping in amalgam can cause arbitrary tunneling which
 	  can cause huge disasters.
