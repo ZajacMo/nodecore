@@ -9,6 +9,30 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Need to try to address issues with items settling in pum pools.
+	- Dropping in amalgam can cause arbitrary tunneling which
+	  can cause huge disasters.
+	- Maybe displace the pum sources, and have them travel
+	  recursively through the pum pool until they find an open
+	  space, to create space for the item.
+	- POSSIBLE FIX: allow items to ask a node to displace itself
+	  to make room, the way the "trydig" thing works in
+	  nc_items item_ent.
+	- If we have to recursively search for where the liquid goes
+	  then we may want to do this only at the spot the item is
+	  and not everywhere it's settle-checking
+	- It may make sense to spawn an entity to track the liquid
+	  node being displaced so it can wander around and try to
+	  settle over multiple ticks.
+
+- Mapgenned trees and grown trees are not statistically identical.
+	- Because grown trees have overlapping folliage branches,
+	  they tend to have fewer missing corners than schematic
+	  trees.
+	- This is not good for anarchy play and disguising bases.
+	- It's not good for the "mapgen should look like natural
+	  gameplay steady-state" rule.
+
 - Mapgen fix for falling nodes is not 100% correct.
 	- Tracing it, it seems like some map modifications are
 	  made after our mapgen_shared hooks run, causing us to
