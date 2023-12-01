@@ -81,6 +81,7 @@ include("compat_legacyent")
 include("compat_nodealpha")
 include("compat_authcache")
 include("compat_issue14044")
+include("compat_teleportfix")
 
 include("util_settings")
 include("util_privs")
