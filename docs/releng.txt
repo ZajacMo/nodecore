@@ -60,6 +60,7 @@ NEW MT RELEASE PROCESS
 AFTER 5.6 EOS:
 
 AFTER 5.7 EOS:
+	- Remove compat_14044 workaround, if it's been fixed upstream.
 
 ........................................................................
 ========================================================================
