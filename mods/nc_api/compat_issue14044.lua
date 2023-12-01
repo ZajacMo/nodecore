@@ -8,6 +8,8 @@ local string_format
 local function createpool(poolname)
 	local pool = {}
 
+	local disabled
+
 	local reused = 0
 	local inserted = 0
 	local removed = 0
@@ -16,15 +18,17 @@ local function createpool(poolname)
 		nodecore.log("info", string_format(
 				"%s resource pool: %d inserted, %d reused, %d removed",
 				poolname, inserted, reused, removed))
-		inserted = 0
-		reused = 0
-		removed = 0
+		if inserted >= 1000 and reused == 0 then
+			disabled = true
+			pool = {}
+			return
+		end
 		minetest.after(60, rpt)
 	end
 	minetest.after(60, rpt)
 
 	local function upsert(id, ...)
-		if not id then return id, ... end
+		if disabled or not id then return id, ... end
 		local found = pool[id]
 		if found then
 			found.id = nil
