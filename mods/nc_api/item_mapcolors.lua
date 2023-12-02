@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, math, minetest, nodecore, pairs, string, table, type
-    = io, math, minetest, nodecore, pairs, string, table, type
+local io, math, minetest, next, nodecore, pairs, string, table, type
+    = io, math, minetest, next, nodecore, pairs, string, table, type
 local io_open, math_floor, string_gsub, table_concat, table_sort
     = io.open, math.floor, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-if not nodecore.infodump() then return end
+local writefile = nodecore.infodump()
 
 local function sortedpairs(tbl)
 	local keys = {}
@@ -47,6 +47,7 @@ local function heuristic(v)
 end
 
 minetest.after(0, function()
+		local missing = {}
 		local lines = {}
 		local lastmod
 		for k, v in sortedpairs(minetest.registered_nodes) do
@@ -64,11 +65,21 @@ minetest.after(0, function()
 					.. " " .. g .. " " .. b .. ((a < 255)
 						and (" " .. a) or "")
 				else
-					lines[#lines + 1] = "# MISSING: " .. k
+					lines[#lines + 1] = "# MISSING/INVALID: " .. k
+					missing[mod] = (missing[mod] or 0) + 1
 				end
 			end
 		end
-		local f = io_open(minetest.get_worldpath() .. "/mapcolors.txt", "wb")
-		f:write(table_concat(lines, "\n"))
-		f:close()
+		if writefile then
+			local f = io_open(minetest.get_worldpath() .. "/mapcolors.txt", "wb")
+			f:write(table_concat(lines, "\n"))
+			f:close()
+		end
+		if next(missing) then
+			local warn = {"node definitions missing/invalid mapcolor:"}
+			for k, v in sortedpairs(missing) do
+				warn[#warn + 1] = k .. "(" .. v .. ")"
+			end
+			nodecore.log("warning", table_concat(warn, " "))
+		end
 	end)
