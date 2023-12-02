@@ -56,6 +56,8 @@ nodecore.register_playerstep({
 		action = function(player, data, dtime)
 			local function reset() data.pushout = nil end
 
+			if player:get_attach() then return reset() end
+
 			if data.control.up or data.control.down
 			or data.control.left or data.control.right
 			or data.control.sneak or data.control.jump

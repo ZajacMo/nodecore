@@ -37,6 +37,7 @@ local function check(player, pname, pdata)
 		playerdata[pname] = nil
 		return
 	end
+	if player:get_attach() then return end
 	local age = now() - pdata.stamp
 	if age < teleport_retry_interval then return end
 	local pos = player:get_pos()
