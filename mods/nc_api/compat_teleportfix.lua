@@ -21,9 +21,6 @@ local min_teleport_dist = 2
 ------------------------------------------------------------------------
 
 local playerdata = {}
-minetest.register_on_leaveplayer(function(player, timed_out)
-		if not timed_out then playerdata[player:get_player_name()] = nil end
-	end)
 
 local function now() return minetest.get_us_time() / 1000000 end
 local pstr = function(v) return minetest.pos_to_string(v, 0) end
