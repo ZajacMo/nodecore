@@ -52,6 +52,15 @@ local function getdefs(node)
 	return def.pattern_def, def.etch_def
 end
 
+local function setply(pos, nodename, player)
+	local node = {name = nodename}
+	if minetest.registered_nodes[node.name].paramtype2 == "4dir"
+	and player then
+		node.param2 = minetest.dir_to_fourdir(
+			player:get_look_dir())
+	end
+	nodecore.set_loud(pos, node)
+end
 nodecore.register_craft({
 		label = "stylus etch",
 		action = "pummel",
@@ -71,18 +80,12 @@ nodecore.register_craft({
 			if (not wield) or wield:is_empty() then return end
 			local wieldpatt = wield:get_meta():get_string("pattern")
 			if wieldpatt and wieldpatt ~= "" and wieldpatt ~= pattdef.name then
-				local node = {name = setpref .. wieldpatt .. "_ply"}
-				if minetest.registered_nodes[node.name].paramtype2 == "4dir"
-				and data.crafter then
-					node.param2 = minetest.dir_to_fourdir(
-						data.crafter:get_look_dir())
-				end
-				nodecore.set_loud(pos, node)
+				setply(pos, setpref .. wieldpatt .. "_ply", data.crafter)
 				return
 			end
 
 			local nxpatt = pattdef.next.name
-			nodecore.set_loud(pos, {name = setpref .. nxpatt .. "_ply"})
+			setply(pos, setpref .. nxpatt .. "_ply", data.crafter)
 			wield:get_meta():set_string("pattern", nxpatt)
 			if data.crafter then
 				nodecore.player_discover(data.crafter, "stylus train")
