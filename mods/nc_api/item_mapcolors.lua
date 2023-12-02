@@ -67,7 +67,7 @@ minetest.after(0, function()
 					.. " " .. g .. " " .. b .. ((a < 255)
 						and (" " .. a) or "")
 				else
-					lines[#lines + 1] = "# MISSING/INVALID: " .. k
+					lines[#lines + 1] = "#--- MISSING/INVALID: " .. k
 					missing[mod] = (missing[mod] or 0) + 1
 				end
 			end
