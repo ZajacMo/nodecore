@@ -20,7 +20,8 @@ minetest.register_node(modname .. ":root", {
 			scaling_time = 80
 		},
 		drop = "nc_tree:stick 8",
-		sounds = nodecore.sounds("nc_tree_woody")
+		sounds = nodecore.sounds("nc_tree_woody"),
+		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
 minetest.register_node(modname .. ":log", {
@@ -39,7 +40,8 @@ minetest.register_node(modname .. ":log", {
 		},
 		sounds = nodecore.sounds("nc_tree_woody"),
 		paramtype2 = "facedir",
-		on_place = minetest.rotate_node
+		on_place = minetest.rotate_node,
+		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
 minetest.register_node(modname .. ":tree", {
@@ -60,7 +62,8 @@ minetest.register_node(modname .. ":tree", {
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_tree_woody"),
-		drop = modname .. ":log"
+		drop = modname .. ":log",
+		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
 nodecore.register_aism({
@@ -112,7 +115,8 @@ minetest.register_node(modname .. ":leaves", {
 				leaf_decay = 0,
 				peat_grindable_item = 1
 			},
-			visinv_bulk_optimize = true
+			visinv_bulk_optimize = true,
+			mapcolor = {r = 65, g = 64, b = 5},
 		},
 		alternate_solid = {
 			preserve_metadata = function(pos, _, oldmeta)
@@ -124,7 +128,8 @@ minetest.register_node(modname .. ":leaves", {
 			after_dig_node = function(...)
 				return nodecore.leaf_decay(...)
 			end,
-			node_dig_prediction = "air"
+			node_dig_prediction = "air",
+			mapcolor = {r = 56, g = 91, b = 9},
 		},
 		no_repack = true,
 		use_texture_alpha = "clip",

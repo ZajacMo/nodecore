@@ -15,7 +15,8 @@ minetest.register_node(plank, {
 			fire_fuel = 5,
 			nc_door_scuff_opacity = 72
 		},
-		sounds = nodecore.sounds("nc_tree_woody")
+		sounds = nodecore.sounds("nc_tree_woody"),
+		mapcolor = {r = 180, g = 144, b = 89},
 	})
 
 local function split_recipe(choppy, subcheck)

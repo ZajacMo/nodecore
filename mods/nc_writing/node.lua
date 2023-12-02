@@ -59,6 +59,7 @@ for i = 1, #nodecore.writing_glyphs do
 					return true
 				end
 				return false
-			end
+			end,
+			mapcolor = {r = 8, g = 8, b = 8, a = 32},
 		})
 end

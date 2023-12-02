@@ -28,7 +28,8 @@ minetest.register_node(modname .. ":form", {
 			if minetest.get_node(pos).name == modname .. ":form" then
 				return nodecore.stack_get(pos)
 			end
-		end
+		end,
+		mapcolor = {r = 79, g = 54, b = 31, a = 128},
 	})
 
 local function regconv(from, to)
@@ -71,7 +72,8 @@ minetest.register_node(modname .. ":form_braced", {
 			if minetest.get_node(pos).name == modname .. ":form_braced" then
 				return nodecore.stack_get(pos)
 			end
-		end
+		end,
+		mapcolor = {r = 79, g = 54, b = 31, a = 128},
 	})
 
 nodecore.register_craft({
@@ -111,7 +113,8 @@ minetest.register_node(modname .. ":shelf", {
 			if minetest.get_node(pos).name == modname .. ":shelf" then
 				return nodecore.stack_get(pos)
 			end
-		end
+		end,
+		mapcolor = {r = 77, g = 50, b = 25},
 	})
 
 nodecore.register_craft({

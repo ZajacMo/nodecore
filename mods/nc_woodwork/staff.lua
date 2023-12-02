@@ -25,7 +25,8 @@ minetest.register_node(modname .. ":staff", {
 			falling_repose = 2,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_craft({

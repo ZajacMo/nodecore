@@ -33,7 +33,8 @@ minetest.register_node(modname .. ":ladder", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		climbable = true,
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		mapcolor = {r = 79, g = 54, b = 31, a = 64},
 
 	})
 
@@ -70,7 +71,8 @@ minetest.register_node(modname .. ":frame", {
 		paramtype = "light",
 		climbable = true,
 		sunlight_propagates = true,
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		mapcolor = {r = 79, g = 54, b = 31, a = 128},
 	})
 
 nodecore.register_craft({

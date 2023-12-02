@@ -25,7 +25,8 @@ minetest.register_node(modname .. ":stick", {
 			stack_as_node = 1,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_leaf_drops(function(_, node, list)
