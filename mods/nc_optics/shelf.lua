@@ -10,7 +10,7 @@ local modname = minetest.get_current_modname()
 local txr_frame = modname .. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
 .. modname .. "_tank_mask.png)"
 
-local function register_tank(subname, desc, pane, recipeitem)
+local function register_tank(subname, desc, pane, recipeitem, alpha)
 	local tankname = modname .. ":" .. subname
 	minetest.register_node(tankname, {
 			description = desc .. " Glass Case",
@@ -43,7 +43,8 @@ local function register_tank(subname, desc, pane, recipeitem)
 					return {modname .. ":glass_crude", nodecore.stack_get(pos)}
 				end
 				return modname .. ":glass_crude"
-			end
+			end,
+			mapcolor = {r = 255, g = 255, b = 255, a = alpha},
 		})
 
 	nodecore.register_craft({
@@ -61,5 +62,5 @@ local function register_tank(subname, desc, pane, recipeitem)
 		})
 end
 
-register_tank("shelf", "Clear", modname .. "_glass_glare.png^", modname .. ":glass")
-register_tank("shelf_float", "Float", "", modname .. ":glass_float")
+register_tank("shelf", "Clear", modname .. "_glass_glare.png^", modname .. ":glass", 128)
+register_tank("shelf_float", "Float", "", modname .. ":glass_float", 80)

@@ -44,6 +44,8 @@ local function heuristic(v)
 	if v.drawtype == "airlike" then
 		return 0, 0, 0, 0
 	end
+	local r, g, b, a = extractcolor(v.post_effect_color)
+	if a and a ~= 0 then return r, g, b, a end
 end
 
 minetest.after(0, function()

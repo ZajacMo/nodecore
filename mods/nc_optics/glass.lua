@@ -20,7 +20,8 @@ minetest.register_node(modname .. ":glass", {
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_optics_glassy")
+		sounds = nodecore.sounds("nc_optics_glassy"),
+		mapcolor = {r = 255, g = 255, b = 255, a = 64},
 	})
 
 minetest.register_node(modname .. ":glass_opaque", {
@@ -32,7 +33,8 @@ minetest.register_node(modname .. ":glass_opaque", {
 			scaling_time = 300
 		},
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_optics_glassy")
+		sounds = nodecore.sounds("nc_optics_glassy"),
+		mapcolor = {r = 139, g = 187, b = 212},
 	})
 
 minetest.register_node(modname .. ":glass_crude", {
@@ -49,7 +51,8 @@ minetest.register_node(modname .. ":glass_crude", {
 			crumbly = 2,
 			scaling_time = 150
 		},
-		sounds = nodecore.sounds("nc_terrain_crunchy")
+		sounds = nodecore.sounds("nc_terrain_crunchy"),
+		mapcolor = {r = 255, g = 255, b = 255, a = 128},
 	})
 
 minetest.register_node(modname .. ":glass_float", {
@@ -67,7 +70,8 @@ minetest.register_node(modname .. ":glass_float", {
 			cracky = 3,
 			scaling_time = 300
 		},
-		sounds = nodecore.sounds("nc_optics_glassy")
+		sounds = nodecore.sounds("nc_optics_glassy"),
+		mapcolor = {r = 255, g = 255, b = 255, a = 16},
 	})
 
 local function anim(name, len)
@@ -117,7 +121,8 @@ local moltdef = {
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",
-	sounds = nodecore.sounds("nc_terrain_bubbly")
+	sounds = nodecore.sounds("nc_terrain_bubbly"),
+	mapcolor = {r = 238, g = 76, b = 0},
 }
 
 minetest.register_node(modname .. ":glass_hot_source",
