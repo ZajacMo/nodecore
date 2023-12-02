@@ -3,6 +3,9 @@ local minetest, pairs, type
     = minetest, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
+if minetest.features._hotfix_auth_cache then return end
+minetest.features._hotfix_auth_cache = true
+
 local function player_name(player)
 	if not player then return end
 	if type(player) == "string" then return player end

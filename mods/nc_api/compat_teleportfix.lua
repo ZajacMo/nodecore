@@ -5,6 +5,9 @@ local string_format
     = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
+if minetest.features._hotfix_teleport_retry then return end
+minetest.features._hotfix_teleport_retry = true
+
 -- How fast the player is likely able to move under their own
 -- power or other game mechanics
 local max_likely_speed = 50
