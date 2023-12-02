@@ -111,6 +111,7 @@ local mudgroups = {
 }
 local function buildpatterns()
 	for _, patt in pairs(nodecore.registered_concrete_patterns) do
+		nodecore.translate_inform(patt.description)
 		patt.name = patt.name or string_gsub(string_lower(patt.description),
 			"%W", "_")
 		patt.pattern_tile = patt.pattern_tile or string_gsub(

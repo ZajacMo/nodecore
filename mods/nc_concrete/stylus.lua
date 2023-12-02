@@ -30,10 +30,6 @@ minetest.register_tool(modname .. ":stylus", {
 		end
 	})
 
-for _, patt in pairs(nodecore.registered_concrete_patterns) do
-	nodecore.translate_inform(patt.description)
-end
-
 nodecore.register_craft({
 		label = "assemble stylus",
 		normal = {y = 1},
