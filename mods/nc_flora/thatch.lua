@@ -14,7 +14,8 @@ minetest.register_node(modname .. ":thatch", {
 			fire_fuel = 4,
 			peat_grindable_node = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_grassy")
+		sounds = nodecore.sounds("nc_terrain_grassy"),
+		mapcolor = {r = 132, g = 135, b = 87},
 	})
 
 nodecore.register_craft({

@@ -78,7 +78,8 @@ for i = 1, 5 do
 				end
 				if node.name == sedgename then return end
 				nodecore.set_node_check(pos, node)
-			end
+			end,
+			mapcolor = {r = 80, g = 106, b = 50, a = 128},
 		})
 
 	minetest.register_decoration({

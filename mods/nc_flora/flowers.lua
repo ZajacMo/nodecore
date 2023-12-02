@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, string
-    = ipairs, math, minetest, nodecore, pairs, string
-local math_abs, math_random, string_format
-    = math.abs, math.random, string.format
+local ipairs, math, minetest, nodecore, pairs, string, tonumber
+    = ipairs, math, minetest, nodecore, pairs, string, tonumber
+local math_abs, math_random, string_format, string_sub
+    = math.abs, math.random, string.format, string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -26,6 +26,12 @@ local colors = {
 	{name = "Violet", color = "5900b2"},
 	{name = "Black", color = "202020"},
 }
+
+for _, c in ipairs(colors) do
+	c.r = tonumber(string_sub(c.color, 1, 2), 16)
+	c.g = tonumber(string_sub(c.color, 3, 4), 16)
+	c.b = tonumber(string_sub(c.color, 5, 6), 16)
+end
 
 local function flowername(shapeid, colorid)
 	return string_format("%s:flower_%d_%d", modname, shapeid, colorid)
@@ -80,6 +86,7 @@ for shapeid = 1, #shapes do
 					fixed = {-shape.size, -0.5, -shape.size,
 						shape.size, 4/16, shape.size},
 				},
+				mapcolor = color
 			})
 	end
 	local dry = string_format("%s_flower_color_dry.png^(nc_terrain_grass_top.png"
@@ -116,7 +123,8 @@ for shapeid = 1, #shapes do
 					shape.size, 4/16, shape.size},
 			},
 			drop = "",
-			destroy_on_dig = 100
+			destroy_on_dig = 100,
+			mapcolor = {r = 123, g = 122, b = 100, a = 64},
 		})
 end
 

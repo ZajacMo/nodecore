@@ -19,7 +19,8 @@ minetest.register_node(modname .. ":sponge", {
 			sponge = 1
 		},
 		air_pass = true,
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		mapcolor = {r = 194, g = 182, b = 0},
 	})
 
 minetest.register_node(modname .. ":sponge_wet", {
@@ -34,7 +35,8 @@ minetest.register_node(modname .. ":sponge_wet", {
 			moist = 1,
 			sponge = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		mapcolor = {r = 142, g = 133, b = 188},
 	})
 
 local base = (nodecore.tmod(modname .. ".png")
@@ -80,5 +82,6 @@ minetest.register_node(modname .. ":sponge_living", {
 			moist = 1,
 			sponge = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		mapcolor = {r = 142, g = 133, b = 188},
 	})

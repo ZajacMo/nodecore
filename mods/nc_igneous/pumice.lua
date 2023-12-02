@@ -23,6 +23,7 @@ pumdef = {
 	destroy_on_dig = true,
 	silktouch = false,
 	sounds = nodecore.sounds("nc_optics_glassy", nil, 0.8),
+	mapcolor = {r = 79, g = 79, b = 79},
 }
 minetest.register_node(pumname, pumdef)
 
