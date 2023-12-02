@@ -14,7 +14,8 @@ minetest.register_node(modname .. ":sandstone", {
 		},
 		drop_in_place = "nc_terrain:sand",
 		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 160, g = 161, b = 89},
 	})
 
 minetest.register_node(modname .. ":adobe", {
@@ -26,7 +27,8 @@ minetest.register_node(modname .. ":adobe", {
 		},
 		drop_in_place = "nc_terrain:dirt",
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 57, g = 43, b = 28},
 	})
 
 minetest.register_node(modname .. ":cloudstone", {
@@ -38,7 +40,8 @@ minetest.register_node(modname .. ":cloudstone", {
 		},
 		drop_in_place = "nc_optics:glass_crude",
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 220, g = 220, b = 220},
 	})
 
 local coaldef = minetest.registered_nodes["nc_fire:coal8"]
@@ -73,7 +76,8 @@ minetest.register_node(modname .. ":coalstone", {
 		drop_in_place = "nc_terrain:cobble",
 		crush_damage = 2,
 		sounds = nodecore.sounds("nc_terrain_stony"),
-		after_dig_node = coalparticles
+		after_dig_node = coalparticles,
+		mapcolor = {r = 32, g = 32, b = 32},
 	})
 
 nodecore.register_stone_bricks("sandstone", "Sandstone",
@@ -81,14 +85,16 @@ nodecore.register_stone_bricks("sandstone", "Sandstone",
 	192, 96,
 	modname .. ":sandstone",
 	{cracky = 1},
-	{cracky = 2}
+	{cracky = 2},
+	{r = 160, g = 161, b = 89}
 )
 nodecore.register_stone_bricks("adobe", "Adobe",
 	modname .. "_adobe.png",
 	240, 120,
 	modname .. ":adobe",
 	{cracky = 1},
-	{cracky = 2, nc_door_scuff_opacity = 16}
+	{cracky = 2, nc_door_scuff_opacity = 16},
+	{r = 57, g = 43, b = 28}
 )
 nodecore.register_stone_bricks("coalstone", "Tarstone",
 	"nc_terrain_stone.png^[colorize:#000000:160",
@@ -99,7 +105,8 @@ nodecore.register_stone_bricks("coalstone", "Tarstone",
 		cracky = 3,
 		nc_door_scuff_opacity = 16,
 		door_operate_sound_volume = 150
-	}
+	},
+	{r = 32, g = 32, b = 32}
 )
 nodecore.register_stone_bricks("cloudstone", "Cloudstone",
 	modname .. "_cloudstone.png",
@@ -110,5 +117,6 @@ nodecore.register_stone_bricks("cloudstone", "Cloudstone",
 		cracky = 3,
 		nc_door_scuff_opacity = 96,
 		door_operate_sound_volume = 25
-	}
+	},
+	{r = 220, g = 220, b = 220}
 )
