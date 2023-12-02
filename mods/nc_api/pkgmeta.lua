@@ -5,6 +5,6 @@ return {
 	desc = function(alpha)
 		return alpha
 		and "Early-access edition of NodeCore with latest features (and maybe bugs)"
-		or "Minetest's top original voxel game about emergent mechanics and exploration"
+		or "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
 	end
 }
