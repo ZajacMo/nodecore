@@ -76,6 +76,7 @@ end
 for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
 
 include("hotfix_authcache")
+include("hotfix_fixhack")
 include("hotfix_teleportfix")
 
 include("compat_creative")
