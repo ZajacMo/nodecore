@@ -52,6 +52,7 @@ minetest.register_node(amalgam, {
 		},
 		crush_damage = 2,
 		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 238, g = 76, b = 0},
 	})
 
 minetest.register_abm({

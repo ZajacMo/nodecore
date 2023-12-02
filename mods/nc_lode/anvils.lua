@@ -21,6 +21,7 @@ minetest.register_node(cracked, {
 			rock = 1,
 		},
 		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 
 -- Cracked stone remains only as long as hot, converts down to cobble.

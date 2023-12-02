@@ -10,17 +10,20 @@ local tempers = {
 		name = "hot",
 		desc = "Glowing",
 		sound = "annealed",
-		glow = true
+		glow = true,
+		mapcolor = {r = 131, g = 23, b = 18},
 	},
 	{
 		name = "annealed",
 		desc = "Annealed",
-		sound = "annealed"
+		sound = "annealed",
+		mapcolor = {r = 47, g = 36, b = 32},
 	},
 	{
 		name = "tempered",
 		desc = "Tempered",
-		sound = "tempered"
+		sound = "tempered",
+		mapcolor = {r = 57, g = 39, b = 35},
 	}
 }
 
@@ -42,7 +45,8 @@ function nodecore.register_lode(shape, rawdef)
 				lode_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				lode_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				lode_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
-				sounds = nodecore.sounds("nc_lode_" .. temper.sound)
+				sounds = nodecore.sounds("nc_lode_" .. temper.sound),
+				mapcolor = temper.mapcolor,
 			})
 		def.lode_temper_cool = (not def.lode_temper_hot) or nil
 		if not temper.glow then

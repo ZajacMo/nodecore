@@ -25,7 +25,8 @@ minetest.register_node(modname .. ":eggcorn", {
 		},
 		node_placement_prediction = "nc_items:stack",
 		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_corny")
+		sounds = nodecore.sounds("nc_tree_corny"),
+		mapcolor = {a = 0},
 	})
 
 local function soilboost(pos, name)
@@ -118,7 +119,8 @@ minetest.register_node(modname .. ":tree_bud", {
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_tree_woody"),
-		drop_in_place = modname .. ":tree"
+		drop_in_place = modname .. ":tree",
+		mapcolor = {r = 62, g = 90, b = 9},
 	})
 
 local function fade(txr)
@@ -153,5 +155,6 @@ minetest.register_node(modname .. ":leaves_bud", {
 		leaf_decay_as = {
 			name = modname .. ":leaves",
 			param2 = 0
-		}
+		},
+		mapcolor = {r = 56, g = 91, b = 9},
 	})

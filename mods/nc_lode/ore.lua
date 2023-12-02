@@ -37,14 +37,16 @@ local stone = reg("Stone", {
 			stone = 1,
 			smoothstone = 1
 		},
-		strata = stratstone
+		strata = stratstone,
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 stratstone[1] = stone
 local ore = reg("Ore", {
 		tiles = {"nc_terrain_stone.png^" .. oretile},
 		drop_in_place = modname .. ":cobble",
 		groups = {stone = 1},
-		strata = stratore
+		strata = stratore,
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 stratore[1] = ore
 for i = 1, nodecore.hard_stone_strata do
@@ -60,7 +62,8 @@ for i = 1, nodecore.hard_stone_strata do
 				cracky = i + 2,
 				hard_stone = i
 			},
-			silktouch = false
+			silktouch = false,
+			mapcolor = {r = 72, g = 72, b = 72},
 		})
 	stratore[i + 1] = reg("Ore_" .. i, {
 			description = "Lode Ore",
@@ -74,6 +77,7 @@ for i = 1, nodecore.hard_stone_strata do
 				hard_stone = i
 			},
 			silktouch = false,
+			mapcolor = {r = 72, g = 72, b = 72},
 		})
 end
 
@@ -95,7 +99,8 @@ reg("Cobble", {
 				falling_repose = 3
 			},
 			sounds = nodecore.sounds("nc_terrain_chompy")
-		}
+		},
+		mapcolor = {r = 67, g = 43, b = 32},
 	})
 
 reg("cobble_hot", {
@@ -114,7 +119,8 @@ reg("cobble_hot", {
 			damage_touch = 1,
 			damage_radiant = 1
 		},
-		stack_max = 1
+		stack_max = 1,
+		mapcolor = {r = 65, g = 65, b = 65},
 	})
 
 local oreid = 0

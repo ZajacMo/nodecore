@@ -27,7 +27,8 @@ minetest.register_node(modname .. ":humus", {
 			}
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_crunchy")
+		sounds = nodecore.sounds("nc_terrain_crunchy"),
+		mapcolor = {r = 68, g = 43, b = 15},
 	})
 
 minetest.register_node(modname .. ":peat", {
@@ -42,7 +43,8 @@ minetest.register_node(modname .. ":peat", {
 			green = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nodecore.sounds("nc_terrain_swishy"),
+		mapcolor = {r = 68, g = 43, b = 15},
 	})
 
 nodecore.register_craft({

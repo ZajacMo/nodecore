@@ -71,6 +71,7 @@ local basedef = {
 	on_rightclick = nodecore.spin_node_cycle,
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "lens",
+	mapcolor = {r = 139, g = 187, b = 212},
 }
 
 local function reg(suff, def)

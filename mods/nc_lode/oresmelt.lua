@@ -18,7 +18,7 @@ nodecore.register_craft({
 				match = {groups = {lode_cobble = true}},
 				replace = modname .. ":cobble_hot"
 			}
-		}
+		},
 	})
 
 minetest.register_abm({

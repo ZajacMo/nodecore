@@ -16,7 +16,8 @@ minetest.register_node(modname .. ":wicker", {
 			peat_grindable_node = 1
 		},
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nodecore.sounds("nc_tree_sticky"),
+		mapcolor = {r = 81, g = 63, b = 45, a = 208},
 	})
 
 nodecore.register_craft({

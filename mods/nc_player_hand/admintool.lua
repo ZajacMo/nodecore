@@ -24,7 +24,8 @@ local superdef = nodecore.underride({
 		groups = {cheat = 1},
 		virtual_item = true,
 		on_drop = function() return ItemStack("") end,
-		on_place = function() end
+		on_place = function() end,
+		mapcolor = {a = 0},
 	}, minetest.registered_nodes[modname .. ":hand"])
 superdef.on_use = nil
 minetest.register_node(supername, superdef)

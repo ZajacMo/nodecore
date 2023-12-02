@@ -28,7 +28,8 @@ minetest.register_node(modname .. ":rush", {
 			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
+		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
+		mapcolor = {r = 69, g = 86, b = 23, a = 128},
 	})
 
 minetest.register_node(modname .. ":rush_dry", {
@@ -53,7 +54,8 @@ minetest.register_node(modname .. ":rush_dry", {
 			optic_opaque = 1,
 		},
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8})
+		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
+		mapcolor = {r = 79, g = 74, b = 25, a = 128},
 	})
 
 minetest.register_decoration({

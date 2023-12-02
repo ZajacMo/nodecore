@@ -20,7 +20,8 @@ nodecore.register_lode("Bar", {
 			falling_repose = 1,
 			chisel = 1,
 			optic_opaque = 1,
-		}
+		},
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_lode_anvil_recipe(-1, function(temper)
@@ -77,7 +78,8 @@ nodecore.register_lode("Rod", {
 			falling_repose = 2,
 			chisel = 2,
 			optic_opaque = 1,
-		}
+		},
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_lode_anvil_recipe(-2, function(temper)

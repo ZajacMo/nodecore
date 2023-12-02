@@ -71,7 +71,8 @@ regterrain({
 		drop_in_place = modname .. ":cobble",
 		strata = strata,
 		sounds = nodecore.sounds("nc_terrain_stony"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 strata[1] = modname .. ":stone"
 for i = 1, nodecore.hard_stone_strata do
@@ -89,7 +90,8 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":hard_stone_" .. (i - 1)) or ":stone"),
 			sounds = nodecore.sounds("nc_terrain_stony"),
-			visinv_bulk_optimize = false
+			visinv_bulk_optimize = false,
+			mapcolor = {r = 72, g = 72, b = 72},
 		})
 	strata[i + 1] = modname .. ":hard_stone_" .. i
 end
@@ -124,7 +126,8 @@ regterrain({
 		},
 		crush_damage = 2,
 		sounds = nodecore.sounds("nc_terrain_stony"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 
 for _, v in ipairs({
@@ -166,7 +169,8 @@ regterrain({
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_terrain_crunchy"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 78, g = 50, b = 26},
 	})
 regterrain({
 		name = "dirt_with_grass",
@@ -188,7 +192,8 @@ regterrain({
 			grass = 1
 		},
 		drop_in_place = modname .. ":dirt",
-		sounds = nodecore.sounds("nc_terrain_grassy")
+		sounds = nodecore.sounds("nc_terrain_grassy"),
+		mapcolor = {r = 39, g = 98, b = 15},
 	})
 regterrain({
 		description = "Gravel",
@@ -205,7 +210,8 @@ regterrain({
 		},
 		crush_damage = 1,
 		sounds = nodecore.sounds("nc_terrain_chompy"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 65, g = 65, b = 65},
 	})
 regterrain({
 		description = "Sand",
@@ -226,7 +232,8 @@ regterrain({
 		},
 		crush_damage = 0.5,
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 159, g = 160, b = 90},
 	})
 
 local function anim(name, len)
@@ -271,7 +278,8 @@ regliquid({
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
-		sounds = nodecore.sounds("nc_terrain_watery")
+		sounds = nodecore.sounds("nc_terrain_watery"),
+		mapcolor = {r = 0, g = 29, b = 174, a = 128},
 	})
 regliquid({
 		name = "river_water",
@@ -294,7 +302,8 @@ regliquid({
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 30, g = 76, b = 90},
-		sounds = nodecore.sounds("nc_terrain_watery")
+		sounds = nodecore.sounds("nc_terrain_watery"),
+		mapcolor = {r = 0, g = 29, b = 174, a = 128},
 	})
 regliquid({
 		name = "water_gray",
@@ -315,7 +324,8 @@ regliquid({
 		drop = "",
 		groups = {coolant = 1, water = 2, moist = 2, cheat = 1},
 		post_effect_color = {a = 103, r = 91, g = 97, b = 103},
-		sounds = nodecore.sounds("nc_terrain_watery")
+		sounds = nodecore.sounds("nc_terrain_watery"),
+		mapcolor = {r = 0, g = 29, b = 174, a = 128},
 	})
 
 regliquid({
@@ -343,5 +353,6 @@ regliquid({
 			cheat = 1
 		},
 		post_effect_color = {a = 240, r = 255, g = 64, b = 0},
-		sounds = nodecore.sounds("nc_terrain_bubbly")
+		sounds = nodecore.sounds("nc_terrain_bubbly"),
+		mapcolor = {r = 238, g = 76, b = 0},
 	})

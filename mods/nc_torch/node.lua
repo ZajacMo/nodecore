@@ -57,7 +57,8 @@ minetest.register_node(modname .. ":torch", {
 				nodecore.item_disperse(pos, node.name, node.count - 1)
 			end
 			return true
-		end
+		end,
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_craft({
@@ -120,7 +121,8 @@ for i = 1, nodecore.torch_life_stages do
 			node_dig_prediction = nodecore.dynamic_light_node(8 - i),
 			after_destruct = function(pos)
 				nodecore.dynamic_light_add(pos, 8 - i)
-			end
+			end,
+			mapcolor = {a = 0},
 		})
 end
 minetest.register_alias(modname .. ":torch_lit", modname .. ":torch_lit_1")

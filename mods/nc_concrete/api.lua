@@ -26,6 +26,7 @@ function nodecore.register_concrete(def)
 				groups = def.groups_powder,
 				crush_damage = 1,
 				sounds = nodecore.sounds(def.sound),
+				mapcolor = def.mapcolor,
 				concrete_def = def
 			})
 	end
@@ -46,6 +47,7 @@ function nodecore.register_concrete(def)
 			post_effect_color = def.swim_color,
 			groups = def.groups_wet,
 			sounds = nodecore.sounds(def.sound),
+			mapcolor = def.mapcolor,
 			concrete_def = def
 		}
 		minetest.register_node(":" .. basename .. "_wet_source", nodecore.underride({

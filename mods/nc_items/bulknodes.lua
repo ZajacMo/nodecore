@@ -30,7 +30,8 @@ local function register_full_stack(name, def)
 				paramtype2 = "facedir",
 				groups = {
 					visinv_hidden = 1,
-				}
+				},
+				mapcolor = {a = 0},
 			}, basedef))
 end
 

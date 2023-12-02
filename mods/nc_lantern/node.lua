@@ -11,6 +11,14 @@ local txr_sides = "(nc_lode_annealed.png^[mask:nc_tote_sides.png)"
 local txr_handle = "(nc_lode_annealed.png^nc_tote_knurl.png)"
 local txr_top = txr_handle .. "^[transformFX^[mask:nc_tote_top.png^[transformR90^" .. txr_sides
 
+local function rampcolor(r1, g1, b1, r2, g2, b2, q)
+	return {
+		r = r1 * (1 - q) + r2 * q,
+		g = g1 * (1 - q) + g2 * q,
+		b = b1 * (1 - q) + b2 * q,
+	}
+end
+
 local function reg(level)
 	return minetest.register_node(modname .. ":lamp" .. level, {
 			description = "Lantern",
@@ -48,6 +56,7 @@ local function reg(level)
 				local meta = minetest.get_meta(pos)
 				meta:from_table(itemstack:get_meta():to_table())
 			end,
+			mapcolor = rampcolor(162, 202, 222, 242, 236, 172, level / 7)
 		})
 end
 

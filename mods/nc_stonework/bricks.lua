@@ -5,7 +5,8 @@ local minetest, nodecore
 
 local modname = minetest.get_current_modname()
 
-function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, madefrom, groups, bonded)
+function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
+		madefrom, groups, bonded, mapcolor)
 	groups = nodecore.underride(groups, {
 			stone_bricks = 1,
 			falling_node = 1
@@ -16,7 +17,8 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 				.. alpha .. ")"},
 			groups = groups,
 			crush_damage = 2,
-			sounds = nodecore.sounds("nc_terrain_stony")
+			sounds = nodecore.sounds("nc_terrain_stony"),
+			mapcolor = mapcolor,
 		})
 
 	nodecore.register_craft({
@@ -51,7 +53,8 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha, made
 				.. bondalpha .. ")"},
 			groups = bonded,
 			crush_damage = 2,
-			sounds = nodecore.sounds("nc_terrain_stony")
+			sounds = nodecore.sounds("nc_terrain_stony"),
+			mapcolor = mapcolor,
 		})
 
 	minetest.register_abm({
@@ -89,7 +92,8 @@ nodecore.register_stone_bricks("stone", "Stone",
 	240, 120,
 	{groups = {smoothstone = true}},
 	{stone = 1, rock = 1, cracky = 2},
-	{cracky = 3, nc_door_scuff_opacity = 24}
+	{cracky = 3, nc_door_scuff_opacity = 24},
+	{r = 72, g = 72, b = 72}
 )
 
 minetest.register_alias(modname .. ":bricks", modname .. ":bricks_stone")

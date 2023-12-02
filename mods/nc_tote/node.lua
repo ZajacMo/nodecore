@@ -174,7 +174,8 @@ local function reg(suff, inner, def)
 				on_place = toteplace,
 				on_place_node = toteplace,
 				drop = "",
-				sounds = nodecore.sounds("nc_lode_annealed")
+				sounds = nodecore.sounds("nc_lode_annealed"),
+				mapcolor = {r = 47, g = 36, b = 32},
 			}))
 end
 reg("", "[combine:1x1", {

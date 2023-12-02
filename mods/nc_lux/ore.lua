@@ -7,6 +7,14 @@ local math_floor, math_pow
 
 local modname = minetest.get_current_modname()
 
+local function rampcolor(r1, g1, b1, r2, g2, b2, q)
+	return {
+		r = r1 * (1 - q) + r2 * q,
+		g = g1 * (1 - q) + g2 * q,
+		b = b1 * (1 - q) + b2 * q,
+	}
+end
+
 for i = 1, 8 do
 	minetest.register_node(modname .. ":cobble" .. i, {
 			description = "Lux Cobble",
@@ -40,7 +48,8 @@ for i = 1, 8 do
 			},
 			crush_damage = 2,
 			sounds = nodecore.sounds("nc_terrain_stony"),
-			light_source = i + 1
+			light_source = i + 1,
+			mapcolor = rampcolor(72, 72, 72, 252, 241, 143, i / 12),
 		})
 end
 
@@ -59,7 +68,8 @@ minetest.register_node(modname .. ":stone", {
 		silktouch = false,
 		light_source = 1,
 		drop_in_place = modname .. ":cobble1",
-		sounds = nodecore.sounds("nc_terrain_stony")
+		sounds = nodecore.sounds("nc_terrain_stony"),
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 strata[1] = modname .. ":stone"
 
@@ -81,7 +91,8 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			silktouch = false,
-			sounds = nodecore.sounds("nc_terrain_stony")
+			sounds = nodecore.sounds("nc_terrain_stony"),
+			mapcolor = {r = 72, g = 72, b = 72},
 		})
 end
 

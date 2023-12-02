@@ -27,7 +27,8 @@ nodecore.register_concrete({
 		craft_from = {groups = {gravel = true}},
 		to_crude = "nc_terrain:cobble",
 		to_washed = "nc_terrain:gravel",
-		to_molded = modname .. ":terrain_stone_blank_ply"
+		to_molded = modname .. ":terrain_stone_blank_ply",
+		mapcolor = {r = 65, g = 65, b = 65},
 	})
 minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
 minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
@@ -56,7 +57,8 @@ nodecore.register_concrete({
 		craft_from = {groups = {sand = true}},
 		to_crude = "nc_terrain:sand",
 		to_washed = "nc_terrain:sand",
-		to_molded = localpref .. "sandstone_blank_ply"
+		to_molded = localpref .. "sandstone_blank_ply",
+		mapcolor = {r = 159, g = 160, b = 90},
 	})
 
 ------------------------------------------------------------------------
@@ -83,7 +85,8 @@ nodecore.register_concrete({
 		craft_from = {groups = {dirt = true}},
 		to_crude = "nc_terrain:dirt",
 		to_washed = "nc_terrain:dirt",
-		to_molded = localpref .. "adobe_blank_ply"
+		to_molded = localpref .. "adobe_blank_ply",
+		mapcolor = {r = 78, g = 50, b = 26},
 	})
 
 ------------------------------------------------------------------------
@@ -110,7 +113,8 @@ nodecore.register_concrete({
 		swim_color = {r = 16, g = 16, b = 16},
 		to_crude = "nc_terrain:cobble",
 		to_washed = "nc_terrain:gravel",
-		to_molded = localpref .. "coalstone_blank_ply"
+		to_molded = localpref .. "coalstone_blank_ply",
+		mapcolor = {r = 72, g = 72, b = 72},
 	})
 
 ------------------------------------------------------------------------
@@ -138,7 +142,8 @@ nodecore.register_concrete({
 		craft_from = "nc_optics:glass_crude",
 		to_crude = "nc_optics:glass_crude",
 		to_washed = "nc_optics:glass_crude",
-		to_molded = localpref .. "cloudstone_blank_ply"
+		to_molded = localpref .. "cloudstone_blank_ply",
+		mapcolor = {r = 220, g = 220, b = 220},
 	})
 ------------------------------------------------------------------------
 
