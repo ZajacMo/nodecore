@@ -490,6 +490,9 @@ msgstr "Dirt"
 msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Discord: https://discord.gg/NNYeF6f"
 
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+
 msgid "Discovery"
 msgstr "Discovery"
 
@@ -831,9 +834,6 @@ msgstr "Matrix: #+nodecore:matrix.org"
 
 msgid "Mew Charcoal Glyph"
 msgstr "Mew Charcoal Glyph"
-
-msgid "Minetest's top original voxel game about emergent mechanics and exploration"
-msgstr "Minetest's top original voxel game about emergent mechanics and exploration"
 
 msgid "Molten Glass"
 msgstr "Molten Glass"
