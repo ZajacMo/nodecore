@@ -93,7 +93,8 @@ minetest.register_node(modname .. ":stack", {
 				nodecore.stack_set(pos, stack)
 			end
 			return false
-		end
+		end,
+		mapcolor = {a = 0},
 	})
 
 function nodecore.place_stack(pos, stack, placer, pointed_thing)

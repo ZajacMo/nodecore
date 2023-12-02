@@ -45,7 +45,8 @@ for _, name in ipairs({":fire", ":fire_burst"}) do
 			touchthru = true,
 			pointable = false,
 			buildable_to = true,
-			drop = ""
+			drop = "",
+			mapcolor = {r = 244, g = 182, b = 94, a = 160},
 		})
 end
 
@@ -83,6 +84,14 @@ local function txrcoal(num)
 	return name
 end
 
+local function rampcolor(r1, g1, b1, r2, g2, b2, q)
+	return {
+		r = r1 * (1 - q) + r2 * q,
+		g = g1 * (1 - q) + g2 * q,
+		b = b1 * (1 - q) + b2 * q,
+	}
+end
+
 for num = 1, nodecore.fire_max do
 	minetest.register_node(modname .. ":coal" .. num, {
 			description = "Charcoal",
@@ -95,7 +104,8 @@ for num = 1, nodecore.fire_max do
 				charcoal = num
 			},
 			crush_damage = 1,
-			sounds = nodecore.sounds("nc_terrain_crunchy")
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			mapcolor = rampcolor(158, 158, 158, 32, 32, 32, num / nodecore.fire_max),
 		})
 end
 
@@ -130,7 +140,9 @@ for num = 1, nodecore.fire_max do
 			stack_max = 1,
 			drop = "",
 			crush_damage = 1,
-			sounds = nodecore.sounds("nc_terrain_crunchy")
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			mapcolor = rampcolor(158, 158, 158, 244, 182, 94, num / nodecore.fire_max),
+
 		})
 end
 minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
@@ -145,5 +157,6 @@ minetest.register_node(modname .. ":ash", {
 		},
 		crush_damage = 0.25,
 		sounds = nodecore.sounds("nc_terrain_swishy"),
-		visinv_bulk_optimize = true
+		visinv_bulk_optimize = true,
+		mapcolor = {r = 158, g = 158, b = 158},
 	})

@@ -49,6 +49,7 @@ minetest.register_node(modname .. ":hand", {
 		on_use = function() return ItemStack("") end,
 		on_drop = function() return ItemStack("") end,
 		on_place = function() return ItemStack("") end,
+		mapcolor = {a = 0},
 	})
 
 nodecore.register_aism({
