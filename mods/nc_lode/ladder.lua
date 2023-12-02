@@ -30,7 +30,8 @@ nodecore.register_lode("Ladder", {
 			chisel = 2,
 			optic_opaque = 1,
 		},
-		climbable = true
+		climbable = true,
+		mapcolor = {a = 32},
 	})
 
 nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
@@ -96,7 +97,8 @@ nodecore.register_lode("Frame", {
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
-		climbable = true
+		climbable = true,
+		mapcolor = {a = 64},
 	})
 
 nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)

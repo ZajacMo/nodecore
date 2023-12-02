@@ -22,7 +22,8 @@ minetest.register_node(modname .. ":form", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_lode_annealed"),
-		storebox_access = function() return true end
+		storebox_access = function() return true end,
+		mapcolor = {r = 47, g = 36, b = 32, a = 64},
 	})
 
 local function regconv(from, to)
@@ -71,7 +72,8 @@ minetest.register_node(modname .. ":shelf", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		sounds = nodecore.sounds("nc_lode_annealed"),
-		storebox_access = function(pt) return pt.above.y >= pt.under.y end
+		storebox_access = function(pt) return pt.above.y >= pt.under.y end,
+		mapcolor = {r = 47, g = 36, b = 32, a = 192},
 	})
 
 nodecore.register_craft({
