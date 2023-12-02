@@ -78,7 +78,6 @@ for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
 include("compat_creative")
 include("compat_issue10127")
 include("compat_legacyent")
-include("compat_nodealpha")
 include("compat_authcache")
 include("compat_issue14044")
 include("compat_teleportfix")
