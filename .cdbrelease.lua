@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local dofile
-    = dofile
+local dofile, pairs, string, table
+    = dofile, pairs, string, table
+local string_format, table_concat, table_sort
+    = string.format, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
 -- luacheck: push
@@ -32,6 +34,23 @@ end
 local version = dofile("./mods/nc_api/version.lua")
 local pkgmeta = dofile("./mods/nc_api/pkgmeta.lua")
 
+local weblate = "https://hosted.weblate.org/projects/minetest/nodecore/"
+local transtext = {}
+local translated = dofile("./mods/nc_api/translated.lua")
+local langs = dofile("./.cdb-langs.lua")
+for k, v in pairs(translated) do
+	if k ~= "en" then
+		local n = langs[k]
+		n = n and (n.l or n.en) or k
+		transtext[#transtext + 1] = v == translated.en
+		and string_format("[%s](%s%s/)✔", n, weblate, k)
+		or string_format("[%s](%s%s/)(%d%%)",
+			n, weblate, k, v / translated.en * 100)
+	end
+end
+table_sort(transtext)
+transtext = "\n\n" .. table_concat(transtext, " — ")
+
 return {
 	pkg = alpha and "nodecore_alpha" or "nodecore",
 	version = version,
@@ -45,7 +64,7 @@ return {
 	media_license = "MIT",
 	long_description = readtext('.cdb-header.md') .. "\n\n"
 	.. (alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'))
-	.. "\n\n" .. readtext('.cdb-footer.md'),
+	.. "\n\n" .. readtext('.cdb-footer.md') .. transtext,
 	repo = "https://gitlab.com/sztest/nodecore",
 	website = "https://nodecore.mine.nu",
 	issue_tracker = "https://discord.gg/NNYeF6f",
