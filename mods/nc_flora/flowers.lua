@@ -31,6 +31,7 @@ for _, c in ipairs(colors) do
 	c.r = tonumber(string_sub(c.color, 1, 2), 16)
 	c.g = tonumber(string_sub(c.color, 3, 4), 16)
 	c.b = tonumber(string_sub(c.color, 5, 6), 16)
+	c.a = 64
 end
 
 local function flowername(shapeid, colorid)
