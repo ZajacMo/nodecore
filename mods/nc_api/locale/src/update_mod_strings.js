@@ -47,6 +47,13 @@ const done = async () => {
 				if(!en[k])
 					delete v[k];
 
+	const stats = { en: Object.keys(db.en).length };
+	for(let [code, data] of Object.entries(db))
+		stats[code] = Object.keys(data).length;
+	await fsp.writeFile('../../translated.lua', `return {\n${
+		Object.keys(stats).sort().map(k => `\t${k} = ${stats[k]},\n`).join('')
+	}}\n`);
+
 	// Share strings between related languages
 	const langpairs = Object.keys(db)
 		.map(k => ({ spec: k, gen: k.replace(/_.*/, '') }))
@@ -56,7 +63,6 @@ const done = async () => {
 	for(let { gen, spec } of langpairs)
 		db[spec] = Object.assign({}, db[gen], db[spec]);
 
-	const stats = { en: Object.keys(db.en).length };
 	for(let [code, data] of Object.entries(db))
 		if(code !== 'en') {
 			const ents = Object.keys(data)
@@ -64,15 +70,11 @@ const done = async () => {
 				.filter(([k, v]) => k !== v)
 				.map(([k, v]) => `${k}=${v}\n`)
 				.sort();
-			stats[code] = Object.keys(data).length;
 			const body = ents.join('');
 			if(body)
 				await fsp.writeFile(`../nc_api.${codemap[code] || code}.tr`,
 					`# textdomain: nc_api\n${body}`);
 		}
-	await fsp.writeFile('../../translated.lua', `return {\n${
-		Object.keys(stats).sort().map(k => `\t${k} = ${stats[k]},\n`).join('')
-	}}\n`);
 };
 
 module.exports = { onlang, done };
