@@ -5,7 +5,7 @@ local io_open, table_concat, table_insert, table_sort
     = io.open, table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-if not nodecore.infodump() then return end
+if not nodecore.infodump("tile") then return end
 
 local faces = {
 	"top",
@@ -96,4 +96,5 @@ minetest.after(0, function()
 		local f = io_open(minetest.get_worldpath() .. "/texturepack_override.template.txt", "wb")
 		f:write(table_concat(ents, "\n\n"))
 		f:close()
+		nodecore.log("info", "dumped texturepack_override.template.txt")
 	end)

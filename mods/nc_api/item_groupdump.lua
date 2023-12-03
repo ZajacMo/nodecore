@@ -5,7 +5,7 @@ local io_open, string_format, string_gsub, table_concat, table_sort
     = io.open, string.format, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-if not nodecore.infodump() then return end
+if not nodecore.infodump("group") then return end
 
 --[[--
 
@@ -186,6 +186,7 @@ local function dumpfile()
 	local f = io_open(minetest.get_worldpath() .. "/groups.txt", "wb")
 	f:write(table_concat(sorted, "\n"))
 	f:close()
+	nodecore.log("info", "dumped groups.txt")
 end
 
 dumpqueued = true

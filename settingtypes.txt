@@ -19,7 +19,27 @@ nc_api_hints_enable (Enable discovery system) bool true
 # Write out after startup (and possibly maintain while running) text
 # files to the world path containing template metadata for development
 # use.
-nc_api_infodump (Write info dumps to world path) bool false
+nc_api_infodump (Write info dump to world path - ALL) bool false
+
+# Write out after startup (and possibly maintain while running) text
+# files to the world path containing template metadata for development
+# use.
+nc_api_infodump_group (Write info dump to world path - group) bool false
+
+# Write out after startup (and possibly maintain while running) text
+# files to the world path containing template metadata for development
+# use.
+nc_api_infodump_mapcolor (Write info dump to world path - mapcolor) bool false
+
+# Write out after startup (and possibly maintain while running) text
+# files to the world path containing template metadata for development
+# use.
+nc_api_infodump_setting (Write info dump to world path - setting) bool false
+
+# Write out after startup (and possibly maintain while running) text
+# files to the world path containing template metadata for development
+# use.
+nc_api_infodump_tile (Write info dump to world path - tile) bool false
 
 # Speed adjustment ratio, multiplied by all parent ratios. Intended for
 # custom servers and special sub-game types only.

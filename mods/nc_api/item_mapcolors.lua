@@ -5,7 +5,7 @@ local io_open, math_floor, string_gsub, table_concat, table_sort
     = io.open, math.floor, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local writefile = nodecore.infodump()
+local writefile = nodecore.infodump("mapcolor")
 
 local function sortedpairs(tbl)
 	local keys = {}
@@ -76,6 +76,7 @@ minetest.after(0, function()
 			local f = io_open(minetest.get_worldpath() .. "/mapcolors.txt", "wb")
 			f:write(table_concat(lines, "\n"))
 			f:close()
+			nodecore.log("info", "dumped mapcolors.txt")
 		end
 		if next(missing) then
 			local warn = {"node definitions missing/invalid mapcolor:"}

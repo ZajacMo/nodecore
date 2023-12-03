@@ -48,19 +48,23 @@ end
 
 ------------------------------------------------------------------------
 
-function nodecore.infodump()
-	return nodecore.setting_bool(
-		minetest.get_current_modname() .. "_infodump",
+local function prefstr(str, pref)
+	return str and (pref .. str) or ""
+end
+function nodecore.infodump(sub)
+	local set = nodecore.setting_bool(
+		minetest.get_current_modname() .. "_infodump" .. prefstr(sub, "_"),
 		false,
-		"Write info dumps to world path",
+		"Write info dump to world path - " .. (sub or "ALL"),
 		[[Write out after startup (and possibly maintain while running)
 		text files to the world path containing template metadata for
 		development use.]]
 	)
+	if set or not sub then return set end
+	return nodecore.infodump()
 end
-nodecore.infodump() -- for startup settingtypes.txt
 
-if nodecore.infodump() then
+if nodecore.infodump("setting") then
 	minetest.register_globalstep(function()
 			if not known_dirty then return end
 			known_dirty = nil
@@ -91,6 +95,7 @@ if nodecore.infodump() then
 			end
 
 			local p = minetest.get_worldpath() .. "/settingtypes.txt"
-			return minetest.safe_file_write(p, dump)
+			minetest.safe_file_write(p, dump)
+			return nodecore.log("info", "dumped settingtypes.txt")
 		end)
 end
