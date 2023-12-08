@@ -76,4 +76,4 @@ nodecore.register_hint("assemble a wooden shelf from a form and plank",
 nodecore.register_hint("assemble a rake from adzes and a staff",
 	"assemble rake",
 	"assemble wood adze"
-)
+).hide = true

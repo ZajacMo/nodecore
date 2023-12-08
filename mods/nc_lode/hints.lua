@@ -114,7 +114,7 @@ nodecore.register_hint("assemble a lode adze",
 nodecore.register_hint("assemble a lode rake",
 	"assemble lode rake",
 	"anvil making lode adze"
-)
+).hide = true
 
 nodecore.register_hint("assemble lode tongs",
 	"anvil making lode tongs",
