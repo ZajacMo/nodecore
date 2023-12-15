@@ -333,18 +333,17 @@ do
 			local starttime = microtime()
 			local exp = starttime + optic_tick_limit * 1000000
 			local starttotal = total
-			while total > 1 do
+			while total >= 1 do
 				optic_check_pump()
-				if microtime() >= exp then
-					nodecore.log("warning", string_format("optics stopped"
-							.. " after running %d cycle(s) in %0.3fs"
-							.. ", behind %0.2f",
+				total = total - 1
+				if microtime() >= exp and total >= 1 then
+					nodecore.log("warning", string_format("optics overbudget"
+							.. " after %d cycle(s) in %0.3fs"
+							.. ", losing %0.2f cycle(s)",
 							starttotal - total,
 							(microtime() - starttime) / 1000000,
 							total))
 					total = 0
-				else
-					total = total - 1
 				end
 			end
 		end)
