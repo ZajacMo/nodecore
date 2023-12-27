@@ -109,11 +109,14 @@ local function toolfx(toolpos, actpos)
 					if target then
 						local obj = ent.object
 						local pos = obj:get_pos()
-						obj:set_pos(vector.add(target,
-								vector.subtract(pos, ent.pos)))
-						minetest.after(0.1, function()
-								obj:move_to(pos)
-							end)
+						if pos then
+							obj:set_pos(vector.add(target,
+									vector.subtract(pos,
+										ent.pos)))
+							minetest.after(0.1, function()
+									obj:move_to(pos)
+								end)
+						end
 					end
 				end
 				toolfxqueue = nil

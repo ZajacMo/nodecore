@@ -11,6 +11,8 @@ to the project!
 
 - Help (PRs and/or advocacy) with Minetest engine issues:
 	- Major game-breakers:
+		- #14112: Requires us to maintain a massive workaround for
+		  mods that want to use teleport functionality sanely.
 		- #11531: Prevents some effects from being usable, especially
 		  a fancy skybox with extended navigation capabilities.
 		- #10304: Causes looktips to conflict with pickpocketing, so
