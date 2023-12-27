@@ -27,6 +27,7 @@ nodecore.register_lode("Ladder", {
 		sunlight_propagates = true,
 		groups = {
 			falling_node = 1,
+			falling_mapgen_ignore = 1,
 			chisel = 2,
 			optic_opaque = 1,
 		},

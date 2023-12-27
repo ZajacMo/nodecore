@@ -39,6 +39,8 @@ function nodecore.register_lode(shape, rawdef)
 					cracky = 3,
 					metallic = 1,
 					falling_node = temper.name == "hot" and 1 or nil,
+					falling_mapgen_ignore = temper.name == "hot"
+					and 1 or nil,
 					["lode_temper_" .. temper.name] = 1
 				},
 				["lode_temper_" .. temper.name] = true,
@@ -53,6 +55,7 @@ function nodecore.register_lode(shape, rawdef)
 			def.light_source = nil
 		else
 			def.groups.falling_node = 1
+			def.groups.falling_mapgen_ignore = 1
 			def.groups.damage_pickup = 1
 			def.groups.damage_radiant = 1
 		end

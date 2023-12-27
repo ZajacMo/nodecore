@@ -15,7 +15,8 @@ local function initdata()
 		if v.walkable and not v.buildable_to then
 			idsupport[minetest.get_content_id(k)] = true
 		end
-		if ((v.groups or {}).falling_node or 0) > 0 then
+		if ((v.groups or {}).falling_node or 0) > 0
+		and ((v.groups or {}).falling_mapgen_ignore or 0) <= 0 then
 			idfalling[minetest.get_content_id(k)] = true
 		end
 	end

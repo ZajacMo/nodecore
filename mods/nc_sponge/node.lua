@@ -32,6 +32,7 @@ minetest.register_node(modname .. ":sponge_wet", {
 			crumbly = 2,
 			coolant = 1,
 			falling_node = 1,
+			falling_mapgen_ignore = 1,
 			moist = 1,
 			sponge = 1
 		},

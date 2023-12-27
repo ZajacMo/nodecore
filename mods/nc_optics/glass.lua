@@ -48,6 +48,7 @@ minetest.register_node(modname .. ":glass_crude", {
 		groups = {
 			silica = 1,
 			falling_node = 1,
+			falling_mapgen_ignore = 1,
 			crumbly = 2,
 			scaling_time = 150
 		},

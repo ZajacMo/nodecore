@@ -47,6 +47,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
 	bonded = nodecore.underride(bonded, groups)
 	bonded.stone_bricks = 2
 	bonded.falling_node = nil
+	bonded.falling_mapgen_ignore = nil
 	minetest.register_node(":" .. modname .. ":bricks_" .. name .. "_bonded", {
 			description = "Bonded " .. desc .. " Bricks",
 			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:"

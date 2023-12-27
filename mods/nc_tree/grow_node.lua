@@ -114,6 +114,7 @@ minetest.register_node(modname .. ":tree_bud", {
 			flammable = 12,
 			fire_fuel = 6,
 			falling_node = 1,
+			falling_mapgen_ignore = 1,
 			scaling_time = 80,
 			leaf_decay_support = 1
 		},

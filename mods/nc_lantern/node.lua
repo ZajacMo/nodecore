@@ -45,6 +45,7 @@ local function reg(level)
 				lux_emit = math_ceil(level / 2),
 				stack_as_node = 1,
 				falling_node = 1,
+				falling_mapgen_ignore = 1,
 			},
 			stack_max = 1,
 			light_source = level * 2,

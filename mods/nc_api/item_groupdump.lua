@@ -59,6 +59,7 @@ local groups = {
 	dynamic_light = "light level of invisible dynamic lights from nc_api_active",
 	ember = "(specific) fuel level of burning nc_fire embers",
 	falling_node = "built-in: falls as a node if not supported below",
+	falling_mapgen_ignore = "falling nodes that are ignored by mapgen falling node removal",
 	falling_repose = "angle of repose for falling nodes, higher is steeper",
 	fire_fuel = "for flammable nodes, convert into ember of this grade (1-8)",
 	firestick = "can be rubbed against another firestick to make fire; success rate factor",
