@@ -106,17 +106,14 @@ local function toolfx(toolpos, actpos)
 				for _, ent in pairs(minetest.luaentities) do
 					local target = ent.is_stack and ent.poskey
 					and toolfxqueue[ent.poskey]
-					if target then
+					if target and ent.homepos then
 						local obj = ent.object
-						local pos = obj:get_pos()
-						if pos then
-							obj:set_pos(vector.add(target,
-									vector.subtract(pos,
-										ent.pos)))
-							minetest.after(0.1, function()
-									obj:move_to(pos)
-								end)
-						end
+						obj:set_pos(vector.add(target,
+								vector.subtract(ent.homepos,
+									ent.pos)))
+						minetest.after(0.1, function()
+								obj:move_to(ent.homepos)
+							end)
 					end
 				end
 				toolfxqueue = nil

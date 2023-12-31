@@ -82,6 +82,7 @@ local function itemcheck(self)
 		y = rp.y + scale - 31/64,
 		z = rp.z
 	}
+	self.homepos = op
 
 	if tweenfrom then
 		nodemeta:set_string("tweenfrom", "")
