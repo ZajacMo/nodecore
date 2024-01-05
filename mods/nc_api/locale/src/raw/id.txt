@@ -1,0 +1,1031 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 11:53+0200\n"
+"PO-Revision-Date: 2024-01-05 14:21+0000\n"
+"Last-Translator: JUST PLAYING <aryadhisuma@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
+"nodecore/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.4-dev\n"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Tempat pendakian juga menghasilkan cahaya yang sangat redup; naikkan "
+"'display gamma' untuk melihat."
+
+msgid "Pumwater"
+msgstr "Air Pompa"
+
+msgid "Horzy Pliant Stone"
+msgstr "Horzy Batu Liat"
+
+msgid "Annealed Lode"
+msgstr "Lode Anil"
+
+msgid "Iceboxy Stone"
+msgstr "Kotak Es Batu"
+
+msgid "Annealed Lode Rake"
+msgstr "Rake Lode Anil"
+
+msgid "Amalgamation"
+msgstr "Penggabungan"
+
+msgid "Infused Tempered Lode Pick"
+msgstr "Pick Lode Marah Resap"
+
+msgid "Raked Sand"
+msgstr "Pasir Garuk"
+
+msgid "Azure Bell Flower"
+msgstr "Bunga Lonceng Azure"
+
+msgid "Infused Tempered Lode Mattock"
+msgstr "Mattock Lode Marah Resap"
+
+msgid "About"
+msgstr "Tentang"
+
+msgid "Sandstone"
+msgstr "Batu Pasir"
+
+msgid "Growing Leaves"
+msgstr "Daun Tumbuh"
+
+msgid "Annealed Lode Mattock"
+msgstr "Mattock Lode Anil"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "Hashy Batu Tar Liat"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "Rake Lode Anil Resap"
+
+msgid "Peat"
+msgstr "Gambut"
+
+msgid "Hashy Tarstone"
+msgstr "Hashy Batu Tar"
+
+msgid "Glowing Lode Adze"
+msgstr "Adze Lode Bercahaya"
+
+msgid "- DONE: @1"
+msgstr "- SELESAI: @1"
+
+msgid "Sand"
+msgstr "Pasir"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Mengikat Batu Pasir Liat"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Kepala Sekop Lode Anil"
+
+msgid "Bindy Pliant Stone"
+msgstr "Mengikat Batu Liat"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "Hashy Batu Pasir Liat"
+
+msgid "Dry Rush"
+msgstr "Tanaman Kering"
+
+msgid "Loose Cobble"
+msgstr "Batu Bulat Longgar"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "Kotak Es Adobe Liat"
+
+msgid "Bricky Stone"
+msgstr "Bricky Batu"
+
+msgid "Loose Lux Cobble"
+msgstr "Batu Bulat Longgar Mewah"
+
+msgid "Stone"
+msgstr "Batu"
+
+msgid "NodeCore"
+msgstr "NodeCore"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Kepala Kapak Lode Anil"
+
+msgid "Horzy"
+msgstr "Horzy"
+
+msgid "Offline @1 year(s)"
+msgstr "Offline @1 tahun(s)"
+
+msgid "Pliant Adobe"
+msgstr "Adobe Liat"
+
+msgid "Torch"
+msgstr "Obor"
+
+msgid "Hashy Stone"
+msgstr "Hashy Batu"
+
+msgid "Blue Bell Flower"
+msgstr "Bunga Lonceng Biru"
+
+msgid "Flux"
+msgstr "Aliran"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALPHA"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "Bata Batu Awan Berikat"
+
+msgid "Clear Glass Case"
+msgstr "Kotak Kaca Bening"
+
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr ""
+"Temukan dan ciptakan dunia kubus, pola, dan abstraksi yang nyata dan tidak "
+"simpatik."
+
+msgid "Ash"
+msgstr "Abu"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "Kotak Batu Tar Liat"
+
+msgid "Loose Amalgamation"
+msgstr "Penggabungan Longgar"
+
+msgid "Pliant Cloudstone"
+msgstr "Batu Awan Liat"
+
+msgid "Bricky Adobe"
+msgstr "Bricky Adobe"
+
+msgid "Offline @1 hour(s)"
+msgstr "Offline @1 jam(s)"
+
+msgid "Azure Star Flower"
+msgstr "Bunga Bintang Azure"
+
+msgid "Float Glass Case"
+msgstr "Kotak Kaca Apung"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "Bricky Batu Pasir Liat"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Mesin Terbang Arang Mew"
+
+msgid "Matrix: #+nodecore:matrix.org"
+msgstr "Matriks: #+nodecore:matrix.org"
+
+msgid "Boxy Adobe"
+msgstr "Kotak Adobe"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Panduan Pemain: Tips dan Bimbingan"
+
+msgid "Active Lens"
+msgstr "Lensa Aktif"
+
+msgid "Lens"
+msgstr "Lensa"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- Kesulitan menyalakan api? Coba gunakan tongkat yang lebih panjang, lebih "
+"banyak tinder."
+
+msgid "Azure Cluster Flower"
+msgstr "Bunga Cluster Azure"
+
+msgid "Boxy Sandstone"
+msgstr "Kotak Batu Pasir"
+
+msgid "Annealed Lode Adze"
+msgstr "Lode Anil Adze"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- Tidak bisa menggali pohon atau rumput? Cari tongkat di kanopi."
+
+msgid "Prx Charcoal Glyph"
+msgstr "Mesin Terbang Arang Prx"
+
+msgid "Bricky Pliant Stone"
+msgstr "Bricky Batu Liat"
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Untuk berlari lebih cepat, berjalan/berenang ke depan atau memanjat/"
+"berenang ke atas terus menerus."
+
+msgid "Bonded Stone Bricks"
+msgstr "Bata Batu Berikat"
+
+msgid "Iceboxy Adobe"
+msgstr "Kotak Es Adobe"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Mengikat Batu Awan Liat"
+
+msgid "Lode Form"
+msgstr "Lode Bentuk"
+
+msgid "Loose Dirt"
+msgstr "Tanah Longgar"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Kepala Mattock Lode Bercahaya"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Panel Bata Batu Tar Berikat"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Mesin Terbang Arang Geq"
+
+msgid "Cannot teleport an offline player."
+msgstr "Tidak dapat menteleportasi pemain offline."
+
+msgid "Annealed Lode Tongs"
+msgstr "Penjepit Lode Anil"
+
+msgid "Bricky"
+msgstr "Bricky"
+
+msgid "Float Glass"
+msgstr "Kaca Apung"
+
+msgid "Eggcorn"
+msgstr "Jagung Telur"
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- Alat yang digunakan sebagai bahan harus dalam keadaan sangat baik."
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Kepala Palu Lode Anil"
+
+msgid "Adobe"
+msgstr "Adobe"
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- Sepertinya ada yang membosankan? Temukan teknologi yang lebih baik, faktor "
+"halus, atau cara yang lebih baik."
+
+msgid "Horzy Pliant Adobe"
+msgstr "Horzy Adobe Liat"
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "Stick"
+msgstr "Tongkat"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Kapak Lode Anil"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Panel Bata Batu Berikat"
+
+msgid "Black Star Flower"
+msgstr "Bunga Bintang Hitam"
+
+msgid "Log"
+msgstr "Batang Kayu"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "Kotak Es Batu Tar Liat"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Waspada terhadap gua/jurang yang gelap; Anda bertanggung jawab untuk "
+"mengeluarkan diri anda sendiri."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Untuk memukul, pukul node berulang kali, TANPA menggali."
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Panduan Pemain: Resep Memukul"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Mengikat Batu Tar Liat"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Panel Bata Adobe Berikat"
+
+msgid "Admin Tool"
+msgstr "Alat Admin"
+
+msgid "- FUTURE: @1"
+msgstr "- MASA DEPAN: @1"
+
+msgid "Offline @1 week(s)"
+msgstr "Offline @1 minggu(s)"
+
+msgid "FIRE QUELLED"
+msgstr "API PADAM"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Bata Adobe Berikat"
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- Resep berukuran besar biasanya lebih simetris."
+
+msgid "Raked Gravel"
+msgstr "Kerikil Garuk"
+
+msgid "Cobble Panel"
+msgstr "Panel Batu Bulat"
+
+msgid "Iceboxy Tarstone"
+msgstr "Kotak Es Batu Tar"
+
+msgid "Raked Humus"
+msgstr "Humus Garuk"
+
+msgid "Pink Star Flower"
+msgstr "Bunga Bintang Merah Muda"
+
+msgid "Hashy Pliant Adobe"
+msgstr "Hashy Adobe Liat"
+
+msgid "Crafting"
+msgstr "Kerajinan"
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- Resep berdasarkan waktu, meninju lebih cepat tidak mempercepat."
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "Kotak Batu Awan Liat"
+
+msgid "Blue Rosette Flower"
+msgstr "Bunga Roset Biru"
+
+msgid "Bindy Cloudstone"
+msgstr "Mengikat Batu Awan"
+
+msgid "Adobe Mix"
+msgstr "Campuran Adobe"
+
+msgid "Boxy Pliant Adobe"
+msgstr "Kotak Adobe Liat"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "Clear Glass"
+msgstr "Kaca Bening"
+
+msgid "Orange Cup Flower"
+msgstr "Bunga Piala Jeruk"
+
+msgid "Blue Star Flower"
+msgstr "Bunga Bintang Biru"
+
+msgid "Annealed Lode Pick"
+msgstr "Pick Lode Anil"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donasi: https://liberapay.com/NodeCore"
+
+msgid "Cobble"
+msgstr "Batu Bulat"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Kepala Sekop Lode Bercahaya"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 oleh Aaron Suen <warr1024@@gmail.com>"
+
+msgid "Glued Active Prism"
+msgstr "Prisma Aktif Terpaku"
+
+msgid "Orange Bell Flower"
+msgstr "Bunga Lonceng Oranye"
+
+msgid "Active Prism"
+msgstr "Prisma Aktif"
+
+msgid "Offline @1 minute(s)"
+msgstr "Offline @1 menit(s)"
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Node yang digali tanpa alat yang tepat tidak dapat diambil, hanya dapat "
+"dipindahkan saja."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr ""
+"- Jatuhkan item ke tanah untuk membuat node tumpukan. Mereka tidak membusuk."
+
+msgid "Horzy Stone"
+msgstr "Horzy Batu"
+
+msgid "Charcoal"
+msgstr "Arang"
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- Tumpukan dapat dipukul, jumlah item yang tepat mungkin penting."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- Titik pendakian mungkin akan naik setelah partikel hitam muncul."
+
+msgid "Glowing Lode"
+msgstr "Lode Bercahaya"
+
+msgid "Loose Gravel"
+msgstr "Kerikil Longgar"
+
+msgid "Glowing Lode Rake"
+msgstr "Rake Lode Bercahaya"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
+
+msgid "Hashy Cloudstone"
+msgstr "Hashy Batu Awan"
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- Urutan dan tampilan penempatan yang spesifik mungkin penting untuk "
+"kerajinan."
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "Lisensi MIT (http://www.opensource.org/licenses/MIT)"
+
+msgid "Azure Cup Flower"
+msgstr "Bunga Piala Azure"
+
+msgid "Annealed Lode Spade"
+msgstr "Sekop Lode Anil"
+
+msgid "Boxy Cloudstone"
+msgstr "Kotak Batu Awan"
+
+msgid "Pink Cup Flower"
+msgstr "Bunga Piala Merah Muda"
+
+msgid "Living Sponge"
+msgstr "Spons Hidup"
+
+msgid "Blank"
+msgstr "Kosong"
+
+msgid "Lode Ore"
+msgstr "Lode Bijih"
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- Belajar menggunakan bintang untuk navigasi jarak jauh."
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Kepala Palu Lode Bercahaya"
+
+msgid "Horzy Sandstone"
+msgstr "Horzy Batu Pasir"
+
+msgid "Boxy Tarstone"
+msgstr "Kotak Batu Tar"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "Kotak Batu Pasir Liat"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- Terjebak tanpa harapan? Coba tanyakan pada ruang obrolan komunitas (tab "
+"Tentang(About))."
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Panel Berengsel Bata Adobe Berikat"
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr ""
+"- Menyelinap+aux+menjatuhkan item untuk menjatuhkan semua item yang cocok."
+
+msgid "Hashy"
+msgstr "Hashy"
+
+msgid "Bindy Tarstone"
+msgstr "Mengikat Batu Tar"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERSI PENGEMBANGAN"
+
+msgid "Cobble Hinged Panel"
+msgstr "Panel Berengsel Batu Bulat"
+
+msgid "Iceboxy Sandstone"
+msgstr "Kotak Es Batu Pasir"
+
+msgid "Gravel"
+msgstr "Kerikil"
+
+msgid "Pumice"
+msgstr "Batu apung"
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "Growing Tree Trunk"
+msgstr "Batang Pohon Tumbuh"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Mesin Terbang Arang Odo"
+
+msgid "Boxy"
+msgstr "Kotak"
+
+msgid "Glued Shining Lens"
+msgstr "Lensa Bersinar Terpaku"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "Kotak Es Batu Pasir Liat"
+
+msgid "Boxy Stone"
+msgstr "Kotak Batu"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Jika penggalian membutuhkan waktu lebih dari 5 detik, Anda tidak memiliki "
+"alat yang tepat."
+
+msgid "Bricky Cloudstone"
+msgstr "Bricky Batu Awan"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Mengikat Adobe Liat"
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr ""
+"- Item yang diambil coba masuk ke dalam slot yang dipilih saat ini terlebih "
+"dahulu."
+
+msgid "Crude Glass"
+msgstr "Kaca Mentah"
+
+msgid "Orange Star Flower"
+msgstr "Bunga Bintang Oranye"
+
+msgid "Prism"
+msgstr "Prisma"
+
+msgid "Grass"
+msgstr "Rumput"
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- Item yang digunakan, wajah target, dan node di sekitarnya mungkin penting."
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "Mattock Lode Anil Resap"
+
+msgid "Graveled Adze"
+msgstr "Kapak Kerikil"
+
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore diperbarui dari @1 ke @2"
+
+msgid "Pink Cluster Flower"
+msgstr "Bunga Cluster Merah Muda"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Mesin Terbang Arang Fot"
+
+msgid "Bricky Pliant Adobe"
+msgstr "Bricky Adobe Liat"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Panduan Pemain: Manajemen Inventaris"
+
+msgid "Annealed Lode Frame"
+msgstr "Bingkai Lode Anil"
+
+msgid "Dirt"
+msgstr "Tanah"
+
+msgid "Bricky Tarstone"
+msgstr "Bricky Batu Tar"
+
+msgid "Glowing Lode Rod"
+msgstr "Batang Lode Bercahaya"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+jatuhkan item apa pun untuk menjatuhkan semuanya."
+
+msgid "Glued Lens"
+msgstr "Lensa Terpaku"
+
+msgid "Loose Lode Cobble"
+msgstr "Lode Batu Bulat Longgar"
+
+msgid "Pink Rosette Flower"
+msgstr "Bunga Roset Merah Muda"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "Sekop Lode Anil Resap"
+
+msgid "Pliant Stone"
+msgstr "Batu Liat"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "Horzy Batu Pasir Liat"
+
+msgid "Fire"
+msgstr "Api"
+
+msgid "Infused Tempered Lode Hatchet"
+msgstr "Kapak Lode Marah Resap"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "Kotak Es Batu Liat"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "Horzy Batu Tar Liat"
+
+msgid "Raked Dirt"
+msgstr "Tanah Garuk"
+
+msgid "Annealed Lode Bar"
+msgstr "Bar Lode Anil"
+
+msgid "Offline @1 day(s)"
+msgstr "Offline @1 hari(s)"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "Perselisihan(Discord): https://discord.gg/NNYeF6f"
+
+msgid "Adobe Bricks"
+msgstr "Bata Adobe"
+
+msgid "- There is NO inventory screen."
+msgstr "- TIDAK ada layar inventaris."
+
+msgid "Azure Rosette Flower"
+msgstr "Bunga Roset Azure"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "Pick Lode Anil Resap"
+
+msgid "Inventory"
+msgstr "Inventaris"
+
+msgid "Glued Gated Prism"
+msgstr "Prisma Berpagar Terpaku"
+
+msgid "Cloudstone Bricks"
+msgstr "Bata Batu Awan"
+
+msgid "Cracked Stone"
+msgstr "Batu Retak"
+
+msgid "Blue Cup Flower"
+msgstr "Bunga Piala Biru"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Burning Embers"
+msgstr "Bara Terbakar"
+
+msgid "Glued Prism"
+msgstr "Prisma Terpaku"
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Jika ada resep, Anda akan melihat efek partikel khusus."
+
+msgid "Aggregate"
+msgstr "Agregat"
+
+msgid "Cloudstone"
+msgstr "Batu Awan"
+
+msgid "Displaced Node"
+msgstr "Node yang Dipindahkan"
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Panel Berengsel Bata Batu Tar Berikat"
+
+msgid "Gated Prism"
+msgstr "Prisma Berpagar"
+
+msgid "Annealed Lode Ladder"
+msgstr "Tangga Lode Anil"
+
+msgid "Leaves"
+msgstr "Daun"
+
+msgid "Pink Bell Flower"
+msgstr "Bunga Lonceng Merah Muda"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Kepala Mattock Lode Anil"
+
+msgid "Loose Sand"
+msgstr "Pasir Longgar"
+
+msgid "Black Cup Flower"
+msgstr "Bunga Piala Hitam"
+
+msgid "Horzy Tarstone"
+msgstr "Horzy Batu Tar"
+
+msgid "Offline Player"
+msgstr "Pemain Offline"
+
+msgid "Orange Cluster Flower"
+msgstr "Bunga Tandan Oranye"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- Tahan/ulangi klik kanan pada dinding/langit-langit dengan tangan kosong "
+"untuk membuat titik pendakian."
+
+msgid "Bricky Pliant Tarstone"
+msgstr "Bricky Batu Tar Liat"
+
+msgid "Boxy Pliant Stone"
+msgstr "Kotak Batu Liat"
+
+msgid "Annealed Lode Rod"
+msgstr "Batang Lode Anil"
+
+msgid "Lux Cobble"
+msgstr "Baru Bulat Mewah"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Panel Bata Batu Pasir Berikat"
+
+msgid "Glowing Lode Frame"
+msgstr "Bingkai Lode Bercahaya"
+
+msgid "Loose Leaves"
+msgstr "Daun Longgar"
+
+msgid "Pummel"
+msgstr "Memukul"
+
+msgid "Infused Tempered Lode Spade"
+msgstr "Sekop Lode Marah Resap"
+
+msgid "Hashy Pliant Stone"
+msgstr "Hashy Batu Liat"
+
+msgid "Glowing Lode Ladder"
+msgstr "Tangga Lode Bercahaya"
+
+msgid "Glowing Lode Tongs"
+msgstr "Penjepit Lode Bercahaya"
+
+msgid "Lit Torch"
+msgstr "Obor Menyala"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Mod Tambahan Dimuat: @1"
+
+msgid "Chromatic Glass"
+msgstr "Kaca Berwarna"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "Panel Bata Batu Awan Berikat"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 ditolak. (versi protokol @2)"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Kepala Pick Lode Bercahaya"
+
+msgid "Bricky Sandstone"
+msgstr "Bricky Batu Pasir"
+
+msgid "Black Rosette Flower"
+msgstr "Bunga Roset Hitam"
+
+msgid "Horzy Adobe"
+msgstr "Horzy Adobe"
+
+msgid "Lode Cobble"
+msgstr "Lode Batu Bulat"
+
+msgid "Bindy"
+msgstr "Mengikat"
+
+msgid "Lantern"
+msgstr "Lentera"
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- Node yang dipindahkan dapat dipanjat seperti titik pendakian."
+
+msgid "Braced Wooden Form"
+msgstr "Bentuk Kayu yang Diperkuat"
+
+msgid "Player's Guide: Crafting"
+msgstr "Panduan Pemain: Kerajinan"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "Martil Lode Anil Resap"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Kepala Kapak Lode Bercahaya"
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 ditemukan, @2 tersedia, @3 di masa mendatang"
+
+msgid "Black Bell Flower"
+msgstr "Bunga Lonceng Hitam"
+
+msgid "Pliant Tarstone"
+msgstr "Batu Tar Liat"
+
+msgid "Humus"
+msgstr "Humus"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "Bricky Batu Awan Liat"
+
+msgid "Orange Rosette Flower"
+msgstr "Bunga Roset Oranye"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr ""
+"- \"Tungku\" bukanlah suatu benda; temukan peleburan dengan api terbuka."
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "Horzy Batu Awan Liat"
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- Kerajinan dilakukan dengan membuat resep di dunia."
+
+msgid "Discovery"
+msgstr "Penemuan"
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr ""
+"- Untuk resep berukuran besar, item tengah biasanya ditempatkan terakhir."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Menyelinap+jatuhkan untuk menghitung satu item dari tumpukan."
+
+msgid "Glowing Lode Bar"
+msgstr "Bar Lode Bercahaya"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "Kotak Es Batu Awan Liat"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "NodeCore edisi akses awal dengan fitur terbaru (dan mungkin bug)"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- Desain game ini menantang, terkadang membuat frustrasi. JANGAN MENYERAH!"
+
+msgid "Infused Tempered Lode Mallet"
+msgstr "Martil Lode Marah Resap"
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Bijih mungkin tersembunyi, tetapi terungkap melalui petunjuk halus di "
+"medan."
+
+msgid "Movement"
+msgstr "Gerakan"
+
+msgid "Black Cluster Flower"
+msgstr "Bunga Tandan Hitam"
+
+msgid "Loose Humus"
+msgstr "Humus Longgar"
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "Glued Active Lens"
+msgstr "Lensa Aktif Terpaku"
+
+msgid "Pliant Sandstone"
+msgstr "Batu Pasir Liat"
+
+msgid "Lode Crate"
+msgstr "Lode Peti"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "Panduan Pemain: Gerakan dan Navigasi"
+
+msgid "Bindy Sandstone"
+msgstr "Mengikat Batu Pasir"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Mesin Terbang Arang Qeg"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Kepala Pick Lode Anil"
+
+msgid "Charcoal Lump"
+msgstr "Gumpalan Arang"
+
+msgid "Ash Lump"
+msgstr "Gumpalan Abu"
+
+msgid "Annealed Lode Prill"
+msgstr "Pril Lode Anil"
+
+msgid "Glowing Lode Cobble"
+msgstr "Batu Lode Bercahaya"
+
+msgid "Hashy Adobe"
+msgstr "Hashy Adobe"
+
+msgid "Hashy Sandstone"
+msgstr "Hashy Batu Pasir"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Panel Berengsel Bata Batu Berikat"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Mesin Terbang Arang Niz"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Panel Berengsel Bata Batu Pasir Berikat"
+
+msgid "Bindy Stone"
+msgstr "Mengikat Batu"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Bata Batu Tar Berikat"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- Jatuhkan dan ambil item untuk mengatur ulang inventaris Anda."
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Bata Batu Pasir Berikat"
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- Anda tidak perlu memukul terlalu cepat (sekitar 1 pukulan per detik)."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Beberapa resep mengharuskan \"memukul\" sebuah node."
+
+msgid "Glowing Lode Prill"
+msgstr "Pril Lode Bercahaya"
+
+msgid "Molten Glass"
+msgstr "Kaca Cair"
+
+msgid "Infused Tempered Lode Adze"
+msgstr "Adze Lode Marah Resap"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "Panel Berengsel Bata Batu Awan Berikat"
+
+msgid "Horzy Cloudstone"
+msgstr "Horzy Batu Awan"
+
+msgid "Bindy Adobe"
+msgstr "Mengikat Adobe"
+
+msgid "Annealed Lode Mallet"
+msgstr "Palu Lode Anil"
+
+msgid "Iceboxy"
+msgstr "Kotak Es"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Mesin Terbang Arang Cav"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "Hashy Batu Awan Liat"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "Adze Lode Anil Resap"
+
+msgid "Blue Cluster Flower"
+msgstr "Bunga Gugus Biru"
+
+msgid "CHEATS ENABLED"
+msgstr "CHEAT DIAKTIFKAN"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "Kapak Lode Anil Resap"
+
+msgid "Iceboxy Cloudstone"
+msgstr "Kotak Es Batu Awan"
+
+msgid "Infused Tempered Lode Rake"
+msgstr "Rake Lode Marah Resap"

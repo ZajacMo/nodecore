@@ -1,0 +1,19 @@
+# textdomain: nc_api
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 Aaron Suen-től <warr1024@@gmail.com>
+- "Furnaces" are not a thing; discover smelting with open flames.=- "Kemencék" itt nincenek; fedezd fel a nyilt lángal való olvasztást.
+- Aux+drop any item to drop everything.=- Aux+eldobással mindent eldobsz.
+- Be wary of dark caves/chasms; you are responsible for getting yourself out.=- vigyázz a sötét bányákkal/szakadékokkal; te nekd kell magadat kijuttatnod onnan.
+- Can't dig trees or grass? Search for sticks in the canopy.=- nem tudsz fákat, bokrokat kiütni? keress botokat a lombkoronában.
+- Climbing spots also produce very faint light; raise display gamma to see.=- a mászópontok egy nagyon gyenge fényt adnak ki; emeld feljebb a Gammát, hogy lásd.
+- Climbing spots may be climbed once black particles appear.=- a mászópontok akkor mászhatók, amint fekete részecskék lebegnek körülöttük.
+- Crafting is done by building recipes in-world.=- a kraftoláshoz meg kell építened a recepted a valóságban.
+- DONE: @1=- KÉSZ: @1
+- Displaced nodes can be climbed through like climbing spots.=- félrerakott blokkok megmászhatók, úgy mint a mászópontok.
+- Drop and pick up items to rearrange your inventory.=- dobd el, majd vedd fel a tárgyakat az átrendezésükhöz.
+- Drop items onto ground to create stack nodes. They do not decay.=- Dobj el több tárgyat a csoportosításukhoz. nem tünnek el.
+- FUTURE: @1=- JÖVŐ: @1
+- For larger recipes, the center item is usually placed last.=- Nagyobb recepteknél a középső tárgyat sokás utoljára rakni.
+- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- tartsd nyomva/nyomogasd a jobb egérgombot puszta kézzel falon vagy plafonon mászópontok készítéséhez.
+- Hopelessly stuck? Try asking the community chatrooms (About tab).=- Reménytelenül elakadtál? kérdezz a közösségi szobákban (Névjegy fül).
+- If a recipe exists, you will see a special particle effect.=- ha létezik a recept, speciális részecskéket fogsz látni.
+- If it takes more than 5 seconds to dig, you don't have the right tool.=- ha több, mint 5 másodperc kiütni, lehet nemj ó tárgyal próbálod.

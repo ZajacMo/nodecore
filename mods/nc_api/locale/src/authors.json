@@ -1,7 +1,7 @@
 {
 	"since": {
 		"de": "2023-11-08T07:36:29.353837+01:00",
-		"ru": "2023-10-02T05:16:32.038582+02:00",
+		"ru": "2023-12-19T20:04:10.175410+01:00",
 		"pl": "2022-03-27T11:19:59.247928+02:00",
 		"uk": "2023-03-27T20:46:39.083714+02:00",
 		"el": "2023-03-27T20:43:15.883336+02:00",
@@ -16,7 +16,9 @@
 		"eo": "2023-03-27T20:43:37.958443+02:00",
 		"es_US": "2023-03-27T20:44:23.937666+02:00",
 		"lzh": "2023-03-27T20:47:11.223249+02:00",
-		"tok": "2023-06-17T22:33:06.754723+02:00"
+		"tok": "2023-06-17T22:33:06.754723+02:00",
+		"hu": "2024-01-01T12:30:37.299699+01:00",
+		"id": "2024-01-04T15:09:58.895570+01:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -256,6 +258,33 @@
 			},
 			"first": "2023",
 			"last": "2023"
+		},
+		"https://hosted.weblate.org/api/users/sotis.oph/?format=json": {
+			"raw": {
+				"id": 74342,
+				"full_name": "sotis.oph",
+				"username": "sotis.oph"
+			},
+			"first": "2023",
+			"last": "2023"
+		},
+		"https://hosted.weblate.org/api/users/Unacceptium/?format=json": {
+			"raw": {
+				"id": 75988,
+				"full_name": "Unacceptium",
+				"username": "Unacceptium"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/JPlay/?format=json": {
+			"raw": {
+				"id": 76244,
+				"full_name": "JUST PLAYING",
+				"username": "JPlay"
+			},
+			"first": "2024",
+			"last": "2024"
 		}
 	}
 }
