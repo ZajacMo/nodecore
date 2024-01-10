@@ -1,0 +1,499 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-09 10:15+0200\n"
+"PO-Revision-Date: 2024-01-10 13:46+0000\n"
+"Last-Translator: dog <dog808657@gmail.com>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/minetest/nodecore/"
+"ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.4-dev\n"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- 나무나 풀을 부술 수 없나요? 나무에서 막대기를 찾아보세요."
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- \"화로\" 는 물건이 아닙니다; 불로 제련하는 법을 발견하세요."
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+놓기로 모든 아이템을 떨어뜨리세요."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- 아이템을 놓고 다시 집어 인벤토리를 정리하세요."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- 떨어진 아이템들은 스택 노드가 됩니다. 사라지지 않습니다."
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr "- 맨손으로 벽이나 천장에 좌클릭을 반복/홀드 하면 등반 지점이 생깁니다."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- 도움이 필요하신가요? 커뮤니티에 도움을 요청하세요 (정보 탭)."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- 부수는데 5초 이상 걸린다면, 그걸 부수는데 적절한 도구가 없는 것입니다."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- 집어든 아이템은 먼저 현재 선택된 슬롯으로 들어가려고 합니다."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- 큰 레시피들은 보통 대칭적입니다."
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr "- 적절한 도구 없이 부서진 노드는 집어들수 없고, 아이템이 됩니다."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- 레시피는 시간에 따릅니다. 더 많이 클릭한다고 더 빨리 되지는 않습니다."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- 웅크리기+aux+놓기 로 일치하는 모든 아이템을 떨어뜨립니다."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- 웅크리기+놓기로 하나의 아이템만 떨어뜨립니다."
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr "- 지루한가요? 더 나은 기술을 찾거나, 미묘한 차이를 찾거나, 무언가를 하는 더 "
+"나은 방법을 찾으세요."
+
+msgid "- There is NO inventory screen."
+msgstr "- 인벤토리는 없습니다."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- 스택 노드 역시 두드려질 수 있고, 아이템의 개수가 영향을 끼칠수 있습니다."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- 두드리기 위해서, 노드를 부수지 말고, 반복적으로 주먹질하세요."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- 조합의 재료로 사용될 도구는 좋은 상태여야 합니다."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- 불을 피우는 것이 힘든가요? 더 긴 막대기나, 더 많은 불쏘시개를 사용하세요."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- 사용한 아이템이나 대상의 방향이나, 주변의 노드들이 영향을 끼칠수 있습니다."
+
+msgid "Admin Tool"
+msgstr "관리자 도구"
+
+msgid "Adobe"
+msgstr "어도비"
+
+msgid "Adobe Bricks"
+msgstr "어도비 벽돌"
+
+msgid "Adobe Mix"
+msgstr "어도비 혼합물"
+
+msgid "Aggregate"
+msgstr "집합채"
+
+msgid "Amalgamation"
+msgstr "융합"
+
+msgid "Annealed Lode"
+msgstr "단련된 금속"
+
+msgid "Annealed Lode Bar"
+msgstr "단련된 금속 주괴"
+
+msgid "Annealed Lode Adze"
+msgstr "단련된 금속 까뀌"
+
+msgid "Annealed Lode Frame"
+msgstr "단련된 금속 프레임"
+
+msgid "Annealed Lode Hatchet"
+msgstr "단련된 금속 자귀"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "단련된 금속 자귀 머리"
+
+msgid "Annealed Lode Ladder"
+msgstr "단련된 금속 사다리"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "단련된 금속 망치 머리"
+
+msgid "Annealed Lode Mattock"
+msgstr "단련된 금속 마토크"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "단련된 금속 마토크 머리"
+
+msgid "Annealed Lode Pick"
+msgstr "단련된 금속 곡괭이"
+
+msgid "Annealed Lode Prill"
+msgstr "단련된 금속 프릴"
+
+msgid "Annealed Lode Rake"
+msgstr "단련된 금속 갈퀴"
+
+msgid "Annealed Lode Rod"
+msgstr "단련된 금속 봉"
+
+msgid "Annealed Lode Spade"
+msgstr "단련된 금속 삽"
+
+msgid "Annealed Lode Spade Head"
+msgstr "단련된 금속 삽 머리"
+
+msgid "Ash"
+msgstr "재"
+
+msgid "Ash Lump"
+msgstr "재 덩어리"
+
+msgid "Azure Cluster Flower"
+msgstr "아주르 클러스터 플라워"
+
+msgid "Azure Cup Flower"
+msgstr "아주르 컵 플라워"
+
+msgid "Azure Rosette Flower"
+msgstr "아주르 로제트 플라워"
+
+msgid "Azure Star Flower"
+msgstr "아주르 스타 플라워"
+
+msgid "Bindy Adobe"
+msgstr "묶인 어도비"
+
+msgid "Bindy Cloudstone"
+msgstr "묶인 클라우드스톤"
+
+msgid "Bindy Pliant Adobe"
+msgstr "묶인 유연한 어도비"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "묶인 유연한 클라우드스톤"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "묶인 유연한 샌드스톤"
+
+msgid "Bindy Sandstone"
+msgstr "묶인 샌드스톤"
+
+msgid "Bindy Stone"
+msgstr "묶인 돌"
+
+msgid "Black Bell Flower"
+msgstr "블랙 벨 플라워"
+
+msgid "Black Cluster Flower"
+msgstr "블랙 클러스터 플라워"
+
+msgid "Black Cup Flower"
+msgstr "블랙 컵 플라워"
+
+msgid "Black Rosette Flower"
+msgstr "블랙 로제트 플라워"
+
+msgid "Black Star Flower"
+msgstr "블랙 스타 플라워"
+
+msgid "Blank"
+msgstr "비어있음"
+
+msgid "Blue Cup Flower"
+msgstr "블루 컵 플라워"
+
+msgid "Blue Rosette Flower"
+msgstr "블루 로제트 플라워"
+
+msgid "Blue Star Flower"
+msgstr "블루 스타 플라워"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "접합된 어도비 벽돌 힌치 패널"
+
+msgid "Bonded Adobe Bricks"
+msgstr "접합된 어도비 벽돌"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "접합된 클라우드스톤 벽돌 힌치 패널"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "접합된 샌드스톤 벽돌 패널"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "접합된 샌드스톤 벽돌"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "접합된 돌 벽돌 힌치 패널"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "접합된 돌 벽돌 패널"
+
+msgid "Bonded Stone Bricks"
+msgstr "접합된 돌 벽돌"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "접합된 타르스톤 벽돌 패널"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "접합된 타르스톤 벽돌"
+
+msgid "Boxy Adobe"
+msgstr "상자형 어도비"
+
+msgid "Boxy Cloudstone"
+msgstr "상자형 클라우드스톤"
+
+msgid "Boxy Pliant Adobe"
+msgstr "상자형 유연한 어도비"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "상자형 유연한 샌드스톤"
+
+msgid "Boxy Sandstone"
+msgstr "상자형 샌드스톤"
+
+msgid "Boxy Stone"
+msgstr "상자형 돌"
+
+msgid "Boxy Tarstone"
+msgstr "상자형 타르스톤"
+
+msgid "Braced Wooden Form"
+msgstr "보강된 나무 조직"
+
+msgid "Bricky"
+msgstr "벽돌형"
+
+msgid "Bricky Cloudstone"
+msgstr "벽돌형 클라우드스톤"
+
+msgid "Bricky Pliant Adobe"
+msgstr "벽돌형 유연한 어도비"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "벽돌형 유연한 클라우드스톤"
+
+msgid "Bricky Pliant Stone"
+msgstr "벽돌형 유연한 돌"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "벽돌형 유연한 타르스톤"
+
+msgid "Bricky Sandstone"
+msgstr "벽돌형 샌드스톤"
+
+msgid "Burning Embers"
+msgstr "불타는 불씨"
+
+msgid "Cav Charcoal Glyph"
+msgstr "캐브 목탄 글리프"
+
+msgid "Clear Glass"
+msgstr "투명한 유리"
+
+msgid "Clear Glass Case"
+msgstr "투명한 유리 케이스"
+
+msgid "Cloudstone"
+msgstr "클라우드 스톤"
+
+msgid "Cloudstone Bricks"
+msgstr "클라우드스톤 벽돌"
+
+msgid "Cobble"
+msgstr "조약돌"
+
+msgid "Cobble Hinged Panel"
+msgstr "조약돌 힌치 패널"
+
+msgid "Cobble Panel"
+msgstr "조약돌 패널"
+
+msgid "Cracked Stone"
+msgstr "금간 돌"
+
+msgid "Crude Glass"
+msgstr "거친 유리"
+
+msgid "Crafting"
+msgstr "제조"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "디스코드: https://discord.gg/NNYeF6f"
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- 일부 레시피는 노드를 \"두드리는\" 것이 필요합니다."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr "- 어두운 동굴이나 틈새를 조심하세요; 당신은 다시 되돌아올 책임이 있습니다."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- 조합은 레시피를 세계 안에서 구축하는 것으로 행해집니다."
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr "- 또 등반 지점은 아주 약한 빛을 내뿜습니다; 보이지 않는다면 디스플레이 "
+"감마를 올려보십시오."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- 검은 입자가 나타나면 등반 지점을 사용할 수 있습니다."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- 큰 레시피들에서, 가운데 아이템은 보통 마지막에 놓입니다."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- 만약 레시피가 존재한다면, 특별한 입자 효과를 볼수 있습니다."
+
+msgid "- Learn to use the stars for long distance navigation."
+msgstr "- 별들을 이용해 먼 거리를 여행하는 법을 배우세요."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- 순서나 아이템이 향한 방향은 조합에 영향을 끼칠 수 있습니다."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "- 광석은 숨겨져 있지만, 미묘한 단서를 통해 찾을 수 있습니다."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- 이 게임은 도전적이게 디자인 되어서, 가끔 좌절감을 일으킬수 있습니다. "
+"그러니 포기하지 마세요!"
+
+msgid "- Displaced nodes can be climbed through like climbing spots."
+msgstr "- 떨어진 노드는 등반 지점처럼 이용할수 있습니다."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr "- 더 빠르게 이동하려먼, 계속해서 앞으로 걷거나/수영하거나, 위로 "
+"등반하거나/수영하세요."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- 빠르게 칠 필요는 없습니다 (1초에 한번 정도)."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 발견됨, @2 발견 가능, @3 숨겨짐"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 거부됨. (프로토콜 버전 @2)"
+
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "About"
+msgstr "정보"
+
+msgid "Active Lens"
+msgstr "활성화된 렌즈"
+
+msgid "Active Prism"
+msgstr "활성화된 프리즘"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "추가 모드 로드됨: @1"
+
+msgid "Annealed Lode Mallet"
+msgstr "단련된 금속 망치"
+
+msgid "Annealed Lode Pick Head"
+msgstr "단련된 금속 곡괭이 머리"
+
+msgid "Annealed Lode Tongs"
+msgstr "단련된 금속 집게"
+
+msgid "Azure Bell Flower"
+msgstr "아주르 벨 플라워"
+
+msgid "Bindy"
+msgstr "묶인"
+
+msgid "Bindy Pliant Stone"
+msgstr "묶인 유연한 돌"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "묶인 유연한 타르스톤"
+
+msgid "Bindy Tarstone"
+msgstr "묶인 타르스톤"
+
+msgid "Blue Bell Flower"
+msgstr "블루 벨 플라워"
+
+msgid "Blue Cluster Flower"
+msgstr "블루 클러스터 플라워"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "접합된 어도비 벽돌 패널"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "상자형 유연한 클라우드스톤"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "상자형 유연한 타르스톤"
+
+msgid "Boxy Pliant Stone"
+msgstr "상자형 유연한 돌"
+
+msgid "Bricky Adobe"
+msgstr "벽돌형 어도비"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "벽돌형 유연한 샌드스톤"
+
+msgid "Bricky Stone"
+msgstr "벽돌형 돌"
+
+msgid "Bricky Tarstone"
+msgstr "벽돌형 타르스톤"
+
+msgid "CHEATS ENABLED"
+msgstr "채팅 활성화"
+
+msgid "Cannot teleport an offline player."
+msgstr "오프라인 상태의 플레이어에게 텔레포트 할수 없습니다."
+
+msgid "Charcoal"
+msgstr "목탄"
+
+msgid "Charcoal Lump"
+msgstr "목탄 덩어리"
+
+msgid "Chromatic Glass"
+msgstr "염색된 유리"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "개발 버젼"
+
+msgid "Dirt"
+msgstr "흙"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "접합된 샌드스톤 벽돌 힌치 패널"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "접합된 클라우드스톤 벽돌 패널"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "접합된 클라우드스톤 벽돌"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "접합된 타르스톤 벽돌 힌치 패널"
+
+msgid "Boxy"
+msgstr "상자형"

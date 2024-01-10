@@ -10,6 +10,7 @@ return {
 	ia = 0,
 	id = 328,
 	it = 184,
+	ko = 160,
 	lzh = 1,
 	pl = 1,
 	pt = 176,
