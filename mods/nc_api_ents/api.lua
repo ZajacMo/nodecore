@@ -21,6 +21,31 @@ function minetest.spawn_falling_node(pos, node, meta)
 	return false
 end
 
+local visible_stackmeta = {
+	inventory_image = true,
+	inventory_overlay = true,
+	wield_image = true,
+	wield_overlay = true,
+	wield_scale = true,
+	color = true,
+	palette_index = true,
+}
+
+local function stack_tostring_clean(stack)
+	-- Do not send metadata that does not affect stack visuals to the client
+	stack = ItemStack(stack)
+	local meta = stack:get_meta():to_table()
+	for key, _ in pairs(meta.fields) do
+		if not visible_stackmeta[key] then
+			meta.fields[key] = nil
+		end
+	end
+	stack:get_meta():from_table(meta)
+	stack:set_count(1)
+	stack:set_wear(0)
+	return stack:to_string()
+end
+
 function nodecore.stackentprops(stack, yaw, rotate, ss)
 	local props = {
 		hp_max = 1,
@@ -38,7 +63,7 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 	if stack then
 		if type(stack) == "string" then stack = ItemStack(stack) end
 		props.is_visible = not stack:is_empty()
-		props.textures[1] = stack:get_name()
+		props.wield_item = stack_tostring_clean(stack)
 
 		local ratio = stack:get_count() / stack:get_stack_max()
 		if ratio > 1 then ratio = 1 end
