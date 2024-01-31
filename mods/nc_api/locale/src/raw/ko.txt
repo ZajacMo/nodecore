@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-09 10:15+0200\n"
-"PO-Revision-Date: 2024-01-10 13:46+0000\n"
+"PO-Revision-Date: 2024-01-12 10:06+0000\n"
 "Last-Translator: dog <dog808657@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/minetest/nodecore/"
 "ko/>\n"
@@ -97,37 +97,37 @@ msgid "Amalgamation"
 msgstr "융합"
 
 msgid "Annealed Lode"
-msgstr "단련된 금속"
+msgstr "어닐링된 금속"
 
 msgid "Annealed Lode Bar"
-msgstr "단련된 금속 주괴"
+msgstr "어닐링된 금속 주괴"
 
 msgid "Annealed Lode Adze"
-msgstr "단련된 금속 까뀌"
+msgstr "어닐링된 금속 괭이"
 
 msgid "Annealed Lode Frame"
-msgstr "단련된 금속 프레임"
+msgstr "어닐링된 금속 프레임"
 
 msgid "Annealed Lode Hatchet"
-msgstr "단련된 금속 자귀"
+msgstr "어닐링된 금속 도끼"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "단련된 금속 자귀 머리"
+msgstr "어닐링된 금속 도끼 머리"
 
 msgid "Annealed Lode Ladder"
-msgstr "단련된 금속 사다리"
+msgstr "어닐링된 금속 사다리"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "단련된 금속 망치 머리"
+msgstr "어닐링된 금속 망치 머리"
 
 msgid "Annealed Lode Mattock"
-msgstr "단련된 금속 마토크"
+msgstr "어닐링된 금속 매톡"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "단련된 금속 마토크 머리"
+msgstr "어닐링된 금속 매톡 머리"
 
 msgid "Annealed Lode Pick"
-msgstr "단련된 금속 곡괭이"
+msgstr "어닐링된 금속 곡괭이"
 
 msgid "Annealed Lode Prill"
 msgstr "단련된 금속 프릴"
@@ -289,7 +289,7 @@ msgid "Burning Embers"
 msgstr "불타는 불씨"
 
 msgid "Cav Charcoal Glyph"
-msgstr "캐브 목탄 글리프"
+msgstr "Cav 목탄 글리프"
 
 msgid "Clear Glass"
 msgstr "투명한 유리"
@@ -322,7 +322,7 @@ msgid "Crafting"
 msgstr "제조"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
-msgstr "디스코드: https://discord.gg/NNYeF6f"
+msgstr "Discord: https://discord.gg/NNYeF6f"
 
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- 일부 레시피는 노드를 \"두드리는\" 것이 필요합니다."
@@ -409,10 +409,10 @@ msgid "Additional Mods Loaded: @1"
 msgstr "추가 모드 로드됨: @1"
 
 msgid "Annealed Lode Mallet"
-msgstr "단련된 금속 망치"
+msgstr "어닐링된 금속 망치"
 
 msgid "Annealed Lode Pick Head"
-msgstr "단련된 금속 곡괭이 머리"
+msgstr "어닐링된 금속 곡괭이 머리"
 
 msgid "Annealed Lode Tongs"
 msgstr "단련된 금속 집게"
@@ -478,7 +478,7 @@ msgid "Chromatic Glass"
 msgstr "염색된 유리"
 
 msgid "DEVELOPMENT VERSION"
-msgstr "개발 버젼"
+msgstr "개발 버전"
 
 msgid "Dirt"
 msgstr "흙"
@@ -497,3 +497,256 @@ msgstr "접합된 타르스톤 벽돌 힌치 패널"
 
 msgid "Boxy"
 msgstr "상자형"
+
+msgid "Discovery"
+msgstr "발견"
+
+msgid "Displaced Node"
+msgstr "떨어진 노드"
+
+msgid "Dry Rush"
+msgstr "드라이 러쉬"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr "최신 기능을(아마 버그도) 가진 노드코어의 얼리 엑세스 에디션"
+
+msgid "Eggcorn"
+msgstr "에그콘"
+
+msgid "FIRE QUELLED"
+msgstr "불 진압됨"
+
+msgid "Fire"
+msgstr "불"
+
+msgid "Float Glass"
+msgstr "공중 유리"
+
+msgid "Float Glass Case"
+msgstr "공중 유리 케이스"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Fot 목탄 글리프"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "기부: https://liberapay.com/NodeCore"
+
+msgid "Gated Prism"
+msgstr "게이트 프리즘"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Geq 목탄 글리프"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "GitLab: https://gitlab.com/sztest/nodecore"
+
+msgid "Glowing Lode"
+msgstr "빛나는 금속"
+
+msgid "Glowing Lode Adze"
+msgstr "빛나는 금속 까뀌"
+
+msgid "Glowing Lode Bar"
+msgstr "빛나는 금속 주괴"
+
+msgid "Glowing Lode Cobble"
+msgstr "빛나는 금속 더미"
+
+msgid "Glowing Lode Frame"
+msgstr "빛나는 금속 프레임"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "빛나는 금속 자귀 머리"
+
+msgid "Glowing Lode Ladder"
+msgstr "빛나는 금속 사다리"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "빛나는 금속 망치 머리"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "빛나는 금속 마토크 머리"
+
+msgid "Glowing Lode Pick Head"
+msgstr "빛나는 금속 곡괭이 머리"
+
+msgid "Glowing Lode Prill"
+msgstr "빛나는 금속 프릴"
+
+msgid "Glowing Lode Rake"
+msgstr "빛나는 금속 갈퀴"
+
+msgid "Glowing Lode Tongs"
+msgstr "빛나는 금속 집게"
+
+msgid "Glued Active Lens"
+msgstr "접착된 활성화된 렌즈"
+
+msgid "Glued Active Prism"
+msgstr "접착된 활성화된 프리즘"
+
+msgid "Glued Lens"
+msgstr "접착된 렌즈"
+
+msgid "Glued Shining Lens"
+msgstr "접착된 반짝이는 렌즈"
+
+msgid "Grass"
+msgstr "풀"
+
+msgid "Gravel"
+msgstr "자갈"
+
+msgid "Graveled Adze"
+msgstr "자갈 붙은 까뀌"
+
+msgid "Growing Tree Trunk"
+msgstr "자라나는 통나무"
+
+msgid "Hashy"
+msgstr "격자형"
+
+msgid "Hashy Adobe"
+msgstr "격자형 어도비"
+
+msgid "Hashy Pliant Adobe"
+msgstr "격자형 유연한 어도비"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "격자형 유연한 클라우드스톤"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "격자형 유연한 샌드스톤"
+
+msgid "Hashy Sandstone"
+msgstr "격자형 샌드스톤"
+
+msgid "Hashy Tarstone"
+msgstr "격자형 타르스톤"
+
+msgid "Horzy"
+msgstr "어색한"
+
+msgid "Horzy Adobe"
+msgstr "어색한 어도비"
+
+msgid "Horzy Cloudstone"
+msgstr "어색한 클라우드스톤"
+
+msgid "Horzy Pliant Adobe"
+msgstr "어색한 유연한 어도비"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "어색한 유연한 클라우드스톤"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "어색한 유연한 샌드스톤"
+
+msgid "Horzy Pliant Stone"
+msgstr "어색한 유연한 돌"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "어색한 유연한 타르스톤"
+
+msgid "Horzy Stone"
+msgstr "어색한 돌"
+
+msgid "Humus"
+msgstr "부식"
+
+msgid "Iceboxy"
+msgstr "얼음상자형"
+
+msgid "Iceboxy Adobe"
+msgstr "얼음상자형 어도비"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "얼음상자형 유연한 어도비"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "얼음상자형 유연한 돌"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "얼음상자형 유연한 타르스톤"
+
+msgid "Iceboxy Stone"
+msgstr "얼음상자형 돌"
+
+msgid "Iceboxy Tarstone"
+msgstr "얼음상자형 타르스톤"
+
+msgid "Infused Annealed Lode Mallet"
+msgstr "주입된 단련된 금속 망치"
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr "주입된 어닐링된 금속 자귀"
+
+msgid "Infused Annealed Lode Adze"
+msgstr "주입된 어닐링된 금속 까뀌"
+
+msgid "Infused Annealed Lode Rake"
+msgstr "주입된 단련된 금속 갈퀴"
+
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr "큐브와 패턴들 그리고 추상적인 것들로 이루어진 초현실적이고 동정심 없는 "
+"세계에서 탐구하고 발명해 보세요."
+
+msgid "Flux"
+msgstr "플럭스"
+
+msgid "Glowing Lode Rod"
+msgstr "빛나는 금속 봉"
+
+msgid "Glowing Lode Spade Head"
+msgstr "빛나는 금속 삽 머리"
+
+msgid "Glued Gated Prism"
+msgstr "접착된 게이트 프리즘"
+
+msgid "Glued Prism"
+msgstr "접착된 프리즘"
+
+msgid "Growing Leaves"
+msgstr "자라나는 잎"
+
+msgid "Hashy Cloudstone"
+msgstr "격자형 클라우드스톤"
+
+msgid "Hashy Pliant Stone"
+msgstr "격자형 유연한 돌"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "격자형 유연한 타르스톤"
+
+msgid "Hashy Stone"
+msgstr "격자형 돌"
+
+msgid "Horzy Sandstone"
+msgstr "어색한 샌드스톤"
+
+msgid "Horzy Tarstone"
+msgstr "어색한 타르스톤"
+
+msgid "IRC: #nodecore @@ irc.libera.chat"
+msgstr "IRC: #nodecore @@ irc.libera.chat"
+
+msgid "Iceboxy Cloudstone"
+msgstr "얼음상자형 클라우드스톤"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "얼음상자형 유연한 클라우드스톤"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "얼음상자형 유연한 샌드스톤"
+
+msgid "Iceboxy Sandstone"
+msgstr "얼음상자형 샌드스톤"
+
+msgid "Infused Annealed Lode Pick"
+msgstr "주입된 단련된 금속 곡괭이"
+
+msgid "Infused Annealed Lode Mattock"
+msgstr "주입된 단련된 금속 마토크"
+
+msgid "Infused Annealed Lode Spade"
+msgstr "주입된 단련된 금속 삽"
