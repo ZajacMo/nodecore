@@ -448,6 +448,7 @@ minetest.register_on_joinplayer(function(player)
 -- TIMER
 
 local function dumpinv(ent)
+	if nodecore.stasis then return end
 	if areaunloaded(ent.pos) then return end
 	for k, v in pairs(ent.inv) do
 		if not (ent.taken and ent.taken[k]) then
@@ -468,6 +469,7 @@ local function dumpinv(ent)
 end
 
 local function dropplayer(name, ent, skipsave)
+	if nodecore.stasis then return end
 	ent = ent or db[name]
 	if not ent then return end
 	ent.pname = name
@@ -506,7 +508,6 @@ minetest.register_globalstep(function(dtime)
 
 		local existdb = {}
 		if not hidden then
-
 			for _, ent in pairs(minetest.luaentities) do
 				if ent.is_yctiwy then
 					existdb[(ent.pname or "") .. ":" .. (ent.slot or "")] = true
@@ -525,10 +526,8 @@ minetest.register_globalstep(function(dtime)
 		local batch = drop
 		drop = {}
 		for _, ent in pairs(batch) do
-			if areaunloaded(ent.pos) then
+			if not dumpinv(ent) then
 				drop[#drop + 1] = ent
-			else
-				if not dumpinv(ent) then drop[#drop + 1] = ent end
 			end
 		end
 
