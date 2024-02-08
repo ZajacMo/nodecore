@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-27 05:07+0200\n"
-"PO-Revision-Date: 2023-03-27 18:47+0000\n"
-"Last-Translator: Warr1024 <warr1024@gmail.com>\n"
+"PO-Revision-Date: 2024-02-06 04:40+0000\n"
+"Last-Translator: yue weikai <send52@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 msgid "- @1"
 msgstr "- @1"
@@ -61,3 +61,24 @@ msgstr "- 将物品扔到地上，形成堆方块。堆方块不会腐烂。"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 作者 Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr "- 徒手按住/重复右键点击墙壁/天花板，创建攀爬点。"
+
+msgid "- FUTURE: @1"
+msgstr "- 未来: @1"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- 卡住了？试着问一下我们社区的聊天室吧（关于选项卡）."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- 如果存在配方，您将看到特殊的粒子效果。"
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr "- 如果都用了5秒多还没挖完，那你就得试试别的工具了."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- 拾取的物品会尽量先放入当前选定的物品栏中。"
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- 更好的方法通常更适合."

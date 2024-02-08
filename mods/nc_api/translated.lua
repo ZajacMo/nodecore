@@ -19,7 +19,7 @@ return {
 	ru = 606,
 	sk = 147,
 	tok = 17,
-	uk = 25,
-	zh_Hans = 14,
+	uk = 606,
+	zh_Hans = 21,
 	zh_Hant = 301,
 }
