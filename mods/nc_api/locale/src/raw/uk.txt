@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-30 11:25+0200\n"
-"PO-Revision-Date: 2024-02-08 00:01+0000\n"
+"PO-Revision-Date: 2024-02-09 03:32+0000\n"
 "Last-Translator: Leo <resistancelion@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/uk/>\n"
@@ -241,7 +241,7 @@ msgstr ""
 
 msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
 msgstr ""
-"- Важко розпалити вогнище? Спробуйте використати довші палиці, більше скіп."
+"- Важко розпалити вогнище? Спробуйте використати довші палиці, більше лучини."
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr ""
@@ -263,7 +263,6 @@ msgstr "Накінечник Лопати з Обпаленого Магнети
 msgid "Annealed Lode Tongs"
 msgstr "Лещата з Обпаленого Магнетиту"
 
-#, fuzzy
 msgid "Azure Cup Flower"
 msgstr "Лазуровий Чашецвіт"
 
@@ -294,7 +293,7 @@ msgid "Annealed Lode Adze"
 msgstr "Тесло з Обпаленого Магнетиту"
 
 msgid "Annealed Lode Bar"
-msgstr "Злиток Обпаленого Магнетиту"
+msgstr "Обпалений Магнетитовий Злиток"
 
 msgid "Annealed Lode Hatchet Head"
 msgstr "Накінечник Бартки з Обпаленого Магнетиту"
@@ -330,7 +329,7 @@ msgid "Ash Lump"
 msgstr "Грудка Золи"
 
 msgid "Azure Bell Flower"
-msgstr "Лазуровий Пролісок"
+msgstr "Лазуровий Дзвіночок"
 
 msgid "Azure Cluster Flower"
 msgstr "Лазурова Волошка"
@@ -363,7 +362,7 @@ msgid "Glued Prism"
 msgstr "Приклеєна Призма"
 
 msgid "Infused Annealed Lode Mallet"
-msgstr "Киянка з Литого Обпаленого Магнетиту"
+msgstr "Заряджена Киянка з Обпаленого Магнетиту"
 
 msgid "Lode Ore"
 msgstr "Магнетитова Руда"
@@ -387,19 +386,19 @@ msgid "Stone-Tipped Pick"
 msgstr "Кайло з Камінним Покриттям"
 
 msgid "Tempered Lode Frame"
-msgstr "Каркас з Загартованого Магнетиту"
+msgstr "Гартований Каркас з Магнетиту"
 
 msgid "Tempered Lode Hatchet"
-msgstr "Бартка з Загартованого Магнетиту"
+msgstr "Гартована Бартка з Магнетиту"
 
 msgid "Tempered Lode Hatchet Head"
-msgstr "Накінечник Бартки з Загартованого Магнетиту"
+msgstr "Гартований Накінечник Бартки з Магнетиту"
 
 msgid "Tempered Lode Ladder"
-msgstr "Драбина з Загартованого Магнетиту"
+msgstr "Гартована Драбина з Магнетиту"
 
 msgid "Tempered Lode Mallet"
-msgstr "Киянка з Загартованого Магнетиту"
+msgstr "Гартована Киянка з Магнетиту"
 
 msgid "Vermy Stone"
 msgstr "Пухкий Камінь"
@@ -414,7 +413,7 @@ msgid "Vermy Pliant Tarstone"
 msgstr "Пухкий Сирий Асфальтит"
 
 msgid "Wilted Bell Flower"
-msgstr "Зів'ялмй Пролісок"
+msgstr "Зів'ялмй Дзвіночок"
 
 msgid "Your Minetest version is outdated, please update!"
 msgstr "Ваша версія Minetest застаріла, будь ласка, оновіться!"
@@ -473,7 +472,7 @@ msgid "Float Glass"
 msgstr "Гладке Скло"
 
 msgid "Float Glass Case"
-msgstr "Рама з Гладкого Скла"
+msgstr "Коробка з Гладкого Скла"
 
 msgid "Fire"
 msgstr "Вогонь"
@@ -597,25 +596,25 @@ msgid "Iceboxy Tarstone"
 msgstr "Замерзлий Асфальтит"
 
 msgid "Infused Annealed Lode Adze"
-msgstr "Тесло з Литого Обпаленого Магнетиту"
+msgstr "Заряджене Тесло з Обпаленого Магнетиту"
 
 msgid "Infused Annealed Lode Hatchet"
-msgstr "Бартка з Литого Обпаленого Магнетиту"
+msgstr "Заряджена Бартка з Обпаленого Магнетиту"
 
 msgid "Infused Annealed Lode Pick"
-msgstr "Кайло з Литого Обпаленого Магнетиту"
+msgstr "Заряджене Кайло з Обпаленого Магнетиту"
 
 msgid "Infused Tempered Lode Adze"
-msgstr "Тесло з Литого Загартованого Магнетиту"
+msgstr "Заряджене Тесло з Гартованого Магнетиту"
 
 msgid "Infused Tempered Lode Hatchet"
-msgstr "Бартка з Литого Загартованого Магнетиту"
+msgstr "Заряджена Бартка з Гартованого Магнетиту"
 
 msgid "Infused Tempered Lode Mallet"
-msgstr "Киянка з Литого Загартованого Магнетиту"
+msgstr "Заряджена Киянка з Гартованого Магнетиту"
 
 msgid "Infused Annealed Lode Rake"
-msgstr "Граблі з Литого Обпаленого Магнетиту"
+msgstr "Заряджені Граблі з Обпаленого Магнетиту"
 
 msgid "Inventory"
 msgstr "Інвентар"
@@ -636,13 +635,13 @@ msgid "Lode Form"
 msgstr "Магнетитова Форма"
 
 msgid "Infused Tempered Lode Mattock"
-msgstr "Сапа з Литого Загартованого Магнетиту"
+msgstr "Заряджена Сапа з Гартованого Магнетиту"
 
 msgid "Infused Tempered Lode Pick"
-msgstr "Кайло з Литого Загартованого Магнетиту"
+msgstr "Заряджене Кайло з Гартованого Магнетиту"
 
 msgid "Infused Tempered Lode Spade"
-msgstr "Лопата з Литого Загартованого Магнетиту"
+msgstr "Заряджена Лопата з Гартованого Магнетиту"
 
 msgid "Log"
 msgstr "Колода"
@@ -732,13 +731,13 @@ msgid "Red Star Flower"
 msgstr "Червоний Зорецвіт"
 
 msgid "Tempered Lode Spade"
-msgstr "Лопата з Загартованого Магнетиту"
+msgstr "Гартована Лопата з Магнетиту"
 
 msgid "Verty Pliant Tarstone"
 msgstr "Доземий Сирий Асфальтит"
 
 msgid "Tempered Lode Spade Head"
-msgstr "Накінечник Лопати з Загартованого Магнетиту"
+msgstr "Гартований Накінечник Лопати з Магнетиту"
 
 msgid "Wooden Mallet Head"
 msgstr "Дерев'яний Накінечник Киянки"
@@ -765,13 +764,13 @@ msgid "dig up a tree stump"
 msgstr "вирити пеньок"
 
 msgid "Black Bell Flower"
-msgstr "Чорний Пролісок"
+msgstr "Чорний Дзвіночок"
 
 msgid "Black Cluster Flower"
 msgstr "Чорна Волошка"
 
 msgid "Clear Glass Case"
-msgstr "Рама з Чистого Скла"
+msgstr "Скляна Коробка"
 
 msgid "Cobble"
 msgstr "Кругляк"
@@ -789,7 +788,7 @@ msgid "harden stone"
 msgstr "затвердити камінь"
 
 msgid "Glowing Lode Rod"
-msgstr "Стрижень Сяючого Магнетиту"
+msgstr "Сяючий Магнетитовий Стрижень"
 
 msgid "Glued Active Lens"
 msgstr "Приклеєна Активна Лінза"
@@ -846,10 +845,10 @@ msgid "Horzy Stone"
 msgstr "Поземий Камінь"
 
 msgid "Infused Annealed Lode Spade"
-msgstr "Лопата з Литого Обпаленого Магнетиту"
+msgstr "Заряджена Лопата з Обпаленого Магнетиту"
 
 msgid "Infused Tempered Lode Rake"
-msgstr "Граблі з Литого Загартованого Магнетиту"
+msgstr "Заряджені Граблі з Гартованого Магнетиту"
 
 msgid "Spackling"
 msgstr "Шпаклівка"
@@ -911,7 +910,6 @@ msgstr "Пухкий Сирий Хмарокамінь"
 msgid "Wet Render"
 msgstr "Вологий Вапняк"
 
-#, fuzzy
 msgid "Wilted Cup Flower"
 msgstr "Зів'ялий Чашецвіт"
 
@@ -932,7 +930,7 @@ msgid "anneal a lode cube"
 msgstr "обпалити куб магнетиту"
 
 msgid "assemble a float glass case"
-msgstr "зібрати раму з гладкого скла"
+msgstr "зібрати коробку з гладкого скла"
 
 msgid "assemble a lantern from a tote handle"
 msgstr "зібрати ліхтар з рукоятки торби"
@@ -1001,10 +999,10 @@ msgid "Tempered Lode"
 msgstr "Загартований Магнетит"
 
 msgid "Tempered Lode Adze"
-msgstr "Тесло з Загартованого Магнетиту"
+msgstr "Загартоване Тесло з Магнетиту"
 
 msgid "Tempered Lode Rod"
-msgstr "Стрижень Загартованого Магнетиту"
+msgstr "Загартований Магнетитовий Стрижень"
 
 msgid "Wet Adobe Mix"
 msgstr "Волога Суміш Саману"
@@ -1013,7 +1011,7 @@ msgid "Wet Aggregate"
 msgstr "Вологий Агрегат"
 
 msgid "Yellow Bell Flower"
-msgstr "Жовтий Пролісок"
+msgstr "Жовтий Дзвіночок"
 
 msgid "assemble a rake from adzes and a staff"
 msgstr "зібрати граблі з тесел і скіпи"
@@ -1115,7 +1113,7 @@ msgid "Lode Cobble"
 msgstr "Магнетитовий Кругляк"
 
 msgid "Infused Annealed Lode Mattock"
-msgstr "Сапа з Литого Обпаленого Магнетиту"
+msgstr "Заряджена Сапа з Обпаленого Магнетиту"
 
 msgid "Loose Leaves"
 msgstr "Сипке Листя"
@@ -1148,7 +1146,6 @@ msgstr "Пемзовода"
 msgid "Raked Sand"
 msgstr "Зграблений Пісок"
 
-#, fuzzy
 msgid "Red Cup Flower"
 msgstr "Червоний Чашецвіт"
 
@@ -1183,16 +1180,16 @@ msgid "Glued Active Prism"
 msgstr "Приклеєна Активна Призма"
 
 msgid "Tempered Lode Mattock"
-msgstr "Сапа з Загартованого Магнетиту"
+msgstr "Гартована Сапа з Магнетиту"
 
 msgid "Tempered Lode Mattock Head"
-msgstr "Накінечник Сапи з Загартованого Магнетиту"
+msgstr "Гартований Накінечник Сапи з Магнетиту"
 
 msgid "Tempered Lode Pick Head"
-msgstr "Накінечник Кайла з Загартованого Магнетиту"
+msgstr "Гартований Накінечник Кайла з Магнетиту"
 
 msgid "Tempered Lode Pick"
-msgstr "Кайло з Загартованого Магнетиту"
+msgstr "Гартоване Кайло з Магнетиту"
 
 msgid "Tempered Lode Prill"
 msgstr "Кусень Загартованого Магнетиту"
@@ -1228,9 +1225,8 @@ msgid "Verty Sandstone"
 msgstr "Доземий Пісковик"
 
 msgid "Violet Bell Flower"
-msgstr "Пурпуровий Пролісок"
+msgstr "Пурпуровий Дзвіночок"
 
-#, fuzzy
 msgid "Violet Cup Flower"
 msgstr "Пурпуровий Чашецвіт"
 
@@ -1272,7 +1268,7 @@ msgid "activate a prism"
 msgstr "активувати призму"
 
 msgid "assemble a clear glass case"
-msgstr "зібрати раму з чистого скла"
+msgstr "зібрати коробку з чистого скла"
 
 msgid "assemble a lode crate from form and bar"
 msgstr "зібрати магнетитовий ящик з форми і злитку"
@@ -1523,7 +1519,7 @@ msgid "Blank"
 msgstr "Заготовка"
 
 msgid "Blue Bell Flower"
-msgstr "Синій Пролісок"
+msgstr "Синій Дзвіночок"
 
 msgid "Black Rosette Flower"
 msgstr "Чорна Розетка"
@@ -1657,9 +1653,8 @@ msgid "Offline Player"
 msgstr "Оффлайн-Гравець"
 
 msgid "Orange Bell Flower"
-msgstr "Помаранчевий Пролісок"
+msgstr "Помаранчевий Дзвіночок"
 
-#, fuzzy
 msgid "Orange Cup Flower"
 msgstr "Помаранчевий Чашецвіт"
 
@@ -1670,7 +1665,7 @@ msgid "Orange Star Flower"
 msgstr "Помаранчевий Зорецвіт"
 
 msgid "Pink Bell Flower"
-msgstr "Рожевий Пролісок"
+msgstr "Рожевий Дзвіночок"
 
 msgid "Player's Guide: Crafting"
 msgstr "Керівництво Гравця: Майстрування"
@@ -1697,7 +1692,7 @@ msgid "Raked Humus"
 msgstr "Зграблений Гумус"
 
 msgid "Red Bell Flower"
-msgstr "Червоний Пролісок"
+msgstr "Червоний Дзвіночок"
 
 msgid "Red Cluster Flower"
 msgstr "Червона Волошка"
@@ -1724,10 +1719,10 @@ msgid "Sprout"
 msgstr "Саджанець"
 
 msgid "Tempered Lode Bar"
-msgstr "Злиток Загартованого Магнетиту"
+msgstr "Загартований Магнетитовий Злиток"
 
 msgid "Tempered Lode Mallet Head"
-msgstr "Накінечник Киянки з Загартованого Магнетиту"
+msgstr "Гартований Накінечник Киянки з Магнетиту"
 
 msgid "Pliant Adobe"
 msgstr "Сирий Саман"
@@ -1742,10 +1737,10 @@ msgid "Staff"
 msgstr "Скипа"
 
 msgid "Tempered Lode Rake"
-msgstr "Граблі з Загартованого Магнетиту"
+msgstr "Гартовані Граблі з Магнетиту"
 
 msgid "Tempered Lode Tongs"
-msgstr "Лещата з Загартованого Магнетиту"
+msgstr "Загартовані Магнетитові Лещата"
 
 #, fuzzy
 msgid "Tof Charcoal Glyph"
@@ -1788,12 +1783,11 @@ msgid "Wet Tarry Aggregate"
 msgstr "Вологий Бітумний Агрегат"
 
 msgid "White Bell Flower"
-msgstr "Білий Пролісок"
+msgstr "Білий Дзвіночок"
 
 msgid "White Cluster Flower"
 msgstr "Біла Волошка"
 
-#, fuzzy
 msgid "White Cup Flower"
 msgstr "Білий Чашецвіт"
 
@@ -1815,7 +1809,6 @@ msgstr "Дерев'яне Тесло"
 msgid "Yellow Cluster Flower"
 msgstr "Жовта Волошка"
 
-#, fuzzy
 msgid "Yellow Cup Flower"
 msgstr "Жовтий Чашецвіт"
 
