@@ -9,6 +9,8 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Teleportation regression needs to support player:add_pos now.
+
 - Deprecate air_equivalent property and move to a group
 	- This is probably going to be deprecated by the engine
 

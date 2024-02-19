@@ -62,5 +62,11 @@ AFTER 5.6 EOS:
 AFTER 5.7 EOS:
 	- Remove compat_14044 workaround, if it's been fixed upstream.
 
+AFTER 5.8 EOS:
+	- hud_elem_type renamed to type
+	- set_bone_position -> set_bone_override
+	- Check https://github.com/minetest/minetest/pull/14353
+	- Check https://github.com/minetest/minetest/pull/14343
+
 ........................................................................
 ========================================================================
