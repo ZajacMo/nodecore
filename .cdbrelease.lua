@@ -26,9 +26,9 @@ local tags = {
 	"technology"
 }
 
-local screenshots = {readbinary(alpha and '.cdb-alpha.jpg' or '.cdb-release.jpg')}
+local screenshots = {readbinary(alpha and '.cdb-alpha.webp' or '.cdb-release.webp')}
 for i = 1, 5 do
-	screenshots[#screenshots + 1] = readbinary('.cdb-screen' .. i .. '.jpg')
+	screenshots[#screenshots + 1] = readbinary('.cdb-screen' .. i .. '.webp')
 end
 
 local version = dofile("./mods/nc_api/version.lua")
