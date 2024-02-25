@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-30 11:25+0200\n"
-"PO-Revision-Date: 2024-02-09 03:32+0000\n"
+"PO-Revision-Date: 2024-02-15 00:25+0000\n"
 "Last-Translator: Leo <resistancelion@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/uk/>\n"
@@ -96,7 +96,7 @@ msgid "- "Furnaces" are not a thing; discover smelting with open flames."
 msgstr "- «Печей» не існує; ознайомтесь з плавленням на відкритих вогнищах."
 
 msgid "- Aux+drop any item to drop everything."
-msgstr "- Aux+кинути будь-який предмет, щоб викинути все."
+msgstr "- Прискор.+кинути будь-який предмет, щоб викинути все."
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 Aaron Suen <warr1024@@gmail.com>"
@@ -123,8 +123,7 @@ msgstr "Відмовлено @1. (версія протоколу @2)"
 
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr ""
-"- Набори можуть бути відлупцьовані, кількість елементів у них може мати "
-"значення."
+"- Груди можуть бути відлупцьовані, кількість речей у них може мати значення."
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
 msgstr "- Гра задумана бути складною і іноді спантеличуючою. НЕ ЗДАВАЙТЕСЬ!"
@@ -154,7 +153,7 @@ msgstr "- Майстрування виконується шляхом обро�
 
 msgid "- Drop and pick up items to rearrange your inventory."
 msgstr ""
-"- Викиньте та підніміть елементи у іншу кишеню, щоб перерозподілити інвентар."
+"- Викиньте та підніміть речі у іншу кишеню, щоб перерозподілити інвентар."
 
 msgid "- If a recipe exists, you will see a special particle effect."
 msgstr "- Якщо рецепт існує, ви побачите спеціальний ефект з частинок."
@@ -192,8 +191,7 @@ msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr "- Можна збиратися по зміщених \"вузлах\" так само як і по виступах."
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
-msgstr ""
-"- Викиньте елементи на землю, щоб створили вузол набору. Вони не зникають."
+msgstr "- Викиньте речі на землю, щоб створили груду вузла. Вони не зникають."
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
@@ -201,8 +199,8 @@ msgstr ""
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
-"- Підібрані елементи будуть розміщені в найближчу вільну кишеню, або в руку "
-"якщо вільна."
+"- Підібрані речі будуть розміщені в найближчу вільну кишеню, або в руку якщо "
+"вільна."
 
 msgid "- Learn to use the stars for long distance navigation."
 msgstr "- Навчіться використовувати зірки для навігації на далекі відстані."
@@ -222,8 +220,7 @@ msgstr ""
 "вкладка Про гру)."
 
 msgid "- Sneak+drop to count out single items from stack."
-msgstr ""
-"- Натисніть крастися+викинути, щоб відрахувати окремі елементи з набору."
+msgstr "- Натисніть крастися+викинути, щоб відрахувати окремі речі з груди."
 
 msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
 msgstr ""
@@ -232,7 +229,7 @@ msgstr ""
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
 msgstr ""
-"- Щоб відлупцювати, стукайте \"вузол\" повторювано. БЕЗ ВИКОПУВАННЯ ЙОГО."
+"- Щоб відлупцювати, стукайте \"вузол\" повторювано. БЕЗ ВИДОБУВАННЯ ЙОГО."
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr ""
@@ -277,8 +274,8 @@ msgstr "- Деякі рецепти потребують лупцювання \"
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
 msgstr ""
-"- Натисніть крастися+прискор.+викинути елемент, щоб викинути усі елементи "
-"одного виду."
+"- Натисніть крастися+прискор.+викинути річ, щоб викинути усі речі одного "
+"виду."
 
 msgid "Amalgamation"
 msgstr "Амальгамація"
@@ -356,7 +353,7 @@ msgid "Cobble Panel"
 msgstr "Панель з Кругляка"
 
 msgid "Discovery"
-msgstr "Відкриття"
+msgstr "Дослідження"
 
 msgid "Glued Prism"
 msgstr "Приклеєна Призма"
@@ -401,16 +398,16 @@ msgid "Tempered Lode Mallet"
 msgstr "Гартована Киянка з Магнетиту"
 
 msgid "Vermy Stone"
-msgstr "Пухкий Камінь"
+msgstr "Хробачний Камінь"
 
 msgid "Vermy Tarstone"
-msgstr "Пухкий Асфальтит"
+msgstr "Хробачний Асфальтит"
 
 msgid "Version @1 or higher is required."
 msgstr "Потребує версію @1 чи вище."
 
 msgid "Vermy Pliant Tarstone"
-msgstr "Пухкий Сирий Асфальтит"
+msgstr "Сирий Хробачний Асфальтит"
 
 msgid "Wilted Bell Flower"
 msgstr "Зів'ялмй Дзвіночок"
@@ -458,7 +455,7 @@ msgid "hold your breath"
 msgstr "затримати подих"
 
 msgid "rake dirt"
-msgstr "програблити багнюку"
+msgstr "програблити ґрунт"
 
 msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
 msgstr ""
@@ -494,16 +491,14 @@ msgstr "ПОЖЕЖУ ЗАТУШЕНО"
 msgid "Flux"
 msgstr "Потік"
 
-#, fuzzy
 msgid "Fot Charcoal Glyph"
-msgstr "Вугільний Ієрогліф \"Фот\""
+msgstr "Вугляний Ієрогліф \"Фот\""
 
 msgid "Gated Prism"
 msgstr "Логічна Призма"
 
-#, fuzzy
 msgid "Geq Charcoal Glyph"
-msgstr "Вугільний Ієрогліф \"Гек\""
+msgstr "Вугляний Ієрогліф \"Гек\""
 
 msgid "Glowing Lode Mattock Head"
 msgstr "Накінечник Сапи з Сяючого Магнетиту"
@@ -536,28 +531,28 @@ msgid "Growing Tree Trunk"
 msgstr "Ростуче Стебло Дерева"
 
 msgid "Hashy"
-msgstr "Посічений"
+msgstr "Сітчаста"
 
 msgid "Hashy Cloudstone"
-msgstr "Посічений Хмарокамінь"
+msgstr "Сітчастий Хмарокамінь"
 
 msgid "Hashy Pliant Adobe"
-msgstr "Посічений Сирий Саман"
+msgstr "Сітчастий Сирий Саман"
 
 msgid "Hashy Pliant Cloudstone"
-msgstr "Посічений Сирий Хмарокамінь"
+msgstr "Сітчастий Сирий Хмарокамінь"
 
 msgid "Hashy Stone"
-msgstr "Посічений Камінь"
+msgstr "Сітчастий Камінь"
 
 msgid "Hashy Tarstone"
-msgstr "Посічений Асфальтит"
+msgstr "Сітчастий Асфальтит"
 
 msgid "Hashy Pliant Stone"
-msgstr "Посічений Сирий Камінь"
+msgstr "Сітчастий Сирий Камінь"
 
 msgid "Hashy Pliant Tarstone"
-msgstr "Посічений Сирий Асфальтит"
+msgstr "Сітчастий Сирий Асфальтит"
 
 msgid "Horzy Pliant Cloudstone"
 msgstr "Поземий Сирий Хмарокамінь"
@@ -653,7 +648,7 @@ msgid "Loose Cobble"
 msgstr "Сипкий Кругляк"
 
 msgid "Loose Dirt"
-msgstr "Сипке Багно"
+msgstr "Сипкий Ґрунт"
 
 msgid "Loose Gravel"
 msgstr "Сипкий Гравій"
@@ -683,13 +678,13 @@ msgid "Bonded Adobe Brick Panel"
 msgstr "Скріплена Панель з Саманної Цегли"
 
 msgid "Boxy Pliant Sandstone"
-msgstr "Квадратний Гнучкий Пісковик"
+msgstr "Квадратний Сирий Пісковик"
 
 msgid "Tips"
 msgstr "Поради"
 
 msgid "Vermy Sandstone"
-msgstr "Пухкий Пісковик"
+msgstr "Хробачний Пісковик"
 
 msgid "Wicker"
 msgstr "Тин"
@@ -698,10 +693,10 @@ msgid "change a stylus pattern"
 msgstr "змінити шаблон штифта"
 
 msgid "Bindy Adobe"
-msgstr "В'яжучий Саман"
+msgstr "Ромбічний Саман"
 
 msgid "Bindy Pliant Adobe"
-msgstr "В'яжучий Сирий Саман"
+msgstr "Ромбічний Сирий Саман"
 
 msgid "Blue Rosette Flower"
 msgstr "Синя Розетка"
@@ -794,7 +789,7 @@ msgid "Glued Active Lens"
 msgstr "Приклеєна Активна Лінза"
 
 msgid "Graveled Adze"
-msgstr "Тесло Покрите Гравієм"
+msgstr "Зю Покрита Гравієм"
 
 msgid "Stone-Tipped Spade"
 msgstr "Лопата з Камінним Покриттям"
@@ -815,7 +810,7 @@ msgid "cool molten glass into crude glass"
 msgstr "вилити розплавлене скло у грубе скло"
 
 msgid "craft a torch from staff and coal lump"
-msgstr "змайструвати вуглескіпу з скіпи та грудки вуглю"
+msgstr "змайструвати вуглескип з скіпи та грудки вуглю"
 
 msgid "dig up lode ore"
 msgstr "добути магнетитову руду"
@@ -854,7 +849,7 @@ msgid "Spackling"
 msgstr "Шпаклівка"
 
 msgid "Bindy Pliant Cloudstone"
-msgstr "В'яжучий Сирий Хмарокамінь"
+msgstr "Ромбічний Сирий Хмарокамінь"
 
 msgid "Bricky Cloudstone"
 msgstr "Цеглистий Хмарокамінь"
@@ -863,7 +858,7 @@ msgid "Bricky Pliant Cloudstone"
 msgstr "Цеглистий Сирий Хмарокамінь"
 
 msgid "Boxy Pliant Cloudstone"
-msgstr "Квадратний Гнучкий Хмарокамінь"
+msgstr "Квадратний Сирий Хмарокамінь"
 
 msgid "Glowing Lode Frame"
 msgstr "Каркас з Сяючого Магнетиту"
@@ -899,13 +894,13 @@ msgid "Tote (@1 / @2)"
 msgstr "Торба (@1 / @2)"
 
 msgid "Vermy Cloudstone"
-msgstr "Пухкий Хмарокамінь"
+msgstr "Хробачний Хмарокамінь"
 
 msgid "Water"
 msgstr "Вода"
 
 msgid "Vermy Pliant Cloudstone"
-msgstr "Пухкий Сирий Хмарокамінь"
+msgstr "Сирий Хробачний Хмарокамінь"
 
 msgid "Wet Render"
 msgstr "Вологий Вапняк"
@@ -916,7 +911,6 @@ msgstr "Зів'ялий Чашецвіт"
 msgid "Wooden Mallet"
 msgstr "Дерев'яна Киянка"
 
-#, fuzzy
 msgid "Zin Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Зін\""
 
@@ -1032,7 +1026,7 @@ msgid "forge lode prills into a tool head"
 msgstr "викувати накінечник інструмента з магнетитових кусенів"
 
 msgid "leach raked dirt to sand"
-msgstr "вимити зграблене багно у пісок"
+msgstr "вимити зграблений ґрунт у пісок"
 
 msgid "place a node with a hinged panel"
 msgstr "поставити \"вузол\" за допомогою навісної панелі"
@@ -1056,7 +1050,7 @@ msgid "Boxy Cloudstone"
 msgstr "Квадратний Хмарокамінь"
 
 msgid "Boxy Pliant Adobe"
-msgstr "Квадратний Гнучкий Саман"
+msgstr "Квадратний Сирий Саман"
 
 msgid "Glowing Lode Ladder"
 msgstr "Драбина з Сяючого Магнетиту"
@@ -1071,7 +1065,7 @@ msgid "Bonded Sandstone Brick Panel"
 msgstr "Скрпілена Панель з Пісковикової Цегли"
 
 msgid "Boxy Pliant Stone"
-msgstr "Квадратний Гнучкий Камінь"
+msgstr "Квадратний Сирий Камінь"
 
 msgid "Bricky Sandstone"
 msgstr "Цеглистий Пісковик"
@@ -1086,10 +1080,10 @@ msgid "Charcoal"
 msgstr "Деревне Вугілля"
 
 msgid "Hashy Adobe"
-msgstr "Посічений Саман"
+msgstr "Сітчастий Саман"
 
 msgid "Hashy Sandstone"
-msgstr "Посічений Пісковик"
+msgstr "Сітчастий Пісковик"
 
 msgid "Horzy"
 msgstr "Поземий"
@@ -1121,7 +1115,6 @@ msgstr "Сипке Листя"
 msgid "Loose Lode Cobble"
 msgstr "Сипкий Магнетитовий Кругляк"
 
-#, fuzzy
 msgid "Mew Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Мью\""
 
@@ -1204,13 +1197,13 @@ msgstr ""
 "доведеться винаходити самотужки!"
 
 msgid "Torch"
-msgstr "Вуглескипа"
+msgstr "Вуглескип"
 
 msgid "Tree Trunk"
 msgstr "Стебло Дерева"
 
 msgid "Vermy Pliant Stone"
-msgstr "Пухкий Сирий Камінь"
+msgstr "Сирий Хробачний Камінь"
 
 msgid "Verty Pliant Cloudstone"
 msgstr "Доземий Сирий Хмарокамінь"
@@ -1260,7 +1253,6 @@ msgstr "Дерев'яна Полиця"
 msgid "Wooden Spade Head"
 msgstr "Дерев'яний Накінечник Лопати"
 
-#, fuzzy
 msgid "Xrp Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Ксарп\""
 
@@ -1280,7 +1272,7 @@ msgid "assemble a lode tote handle"
 msgstr "зібрати магнетитову ручку торби"
 
 msgid "assemble a staff from sticks"
-msgstr "зібрати скіпу з палиць"
+msgstr "зібрати скипу з палиць"
 
 msgid "assemble a wooden ladder from sticks"
 msgstr "зібрати дерев'яну драбину з палиць"
@@ -1296,7 +1288,7 @@ msgid "complete an assembly recipe with a hinged panel"
 msgstr "завершити збирання рецепту за допомогою навісної панелі"
 
 msgid "Bindy Pliant Tarstone"
-msgstr "В'яжучий Сирий Асфальтит"
+msgstr "Ромбічний Сирий Асфальтит"
 
 msgid "put a gravel tip on a wooden adze"
 msgstr "нанести гравієве покриття на тесло"
@@ -1308,7 +1300,7 @@ msgid "Bricky Pliant Sandstone"
 msgstr "Цеглистий Сирий Пісковик"
 
 msgid "Hashy Pliant Sandstone"
-msgstr "Посічений Сирий Пісковик"
+msgstr "Сітчастий Сирий Пісковик"
 
 msgid "Bricky Pliant Stone"
 msgstr "Цеглистий Сирий Камінь"
@@ -1409,9 +1401,8 @@ msgstr "обробити сяючий магнетити на камінному
 msgid "navigate by touch in darkness"
 msgstr "знавігуюватись у темряві за допомогою доторків"
 
-#, fuzzy
 msgid "Cav Charcoal Glyph"
-msgstr "Вугляний Ієрогліф \"Кау\""
+msgstr "Вугляний Ієрогліф \"Кав\""
 
 msgid "write on a surface with a charcoal lump"
 msgstr "написати на поверхні за допомогою вугільної грудки"
@@ -1426,20 +1417,17 @@ msgid "pick a sedge"
 msgstr "підібрати солому"
 
 msgid "leach raked humus to dirt"
-msgstr "вимити зграблений гумус у багно"
+msgstr "вимити зграблений гумус у ґрунт"
 
 msgid "Wooden Pick Head"
 msgstr "Дерев'яний накінечник Кайла"
 
-#, fuzzy
 msgid "Prx Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Пракс\""
 
-#, fuzzy
 msgid "Qeg Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Квег\""
 
-#, fuzzy
 msgid "Yit Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Йіт\""
 
@@ -1447,7 +1435,7 @@ msgid "cycle through all charcoal glyphs"
 msgstr "переглянути усі вугільні ієрогліфи"
 
 msgid "Bindy"
-msgstr "В'яжучий"
+msgstr "Ромбічний"
 
 msgid "insert wooden pin into wooden panel"
 msgstr "вставити дерев'яний штифт в дерев'яну панель"
@@ -1462,7 +1450,7 @@ msgid "mix crude glass into ash to make spackling"
 msgstr "вмішати грубе скло в золу щоб зробити шпаклівку"
 
 msgid "mix dirt into ash to make adobe mix"
-msgstr "вмішати багно в золу щоб зробити суміш саману"
+msgstr "вмішати ґрунт в золу, щоб зробити суміш саману"
 
 msgid "mix sand into ash to make render"
 msgstr "вмішати пісок в золу щоб зробити вапняк"
@@ -1501,16 +1489,16 @@ msgid "~ @1% translated to your language (@2)"
 msgstr "~ @1% відсотків перекладено вашою мовою (@2)"
 
 msgid "Bindy Cloudstone"
-msgstr "В'яжучий Хмарокамінь"
+msgstr "Ромбічний Хмарокамінь"
 
 msgid "Bindy Sandstone"
-msgstr "В'яжучий Пісковик"
+msgstr "Ромбічний Пісковик"
 
 msgid "Bindy Pliant Sandstone"
-msgstr "В'яжучий Сирий Пісковик"
+msgstr "Ромбічний Сирий Пісковик"
 
 msgid "Bindy Pliant Stone"
-msgstr "В'яжучий Сирий Камінь"
+msgstr "Ромбічний Сирий Камінь"
 
 msgid "Black Star Flower"
 msgstr "Чорний Зорецвіт"
@@ -1525,10 +1513,10 @@ msgid "Black Rosette Flower"
 msgstr "Чорна Розетка"
 
 msgid "Bindy Stone"
-msgstr "В'яжучий Камінь"
+msgstr "Ромбічний Камінь"
 
 msgid "Bindy Tarstone"
-msgstr "В'яжучий Асфальтит"
+msgstr "Ромбічний Асфальтит"
 
 msgid "Black Cup Flower"
 msgstr "Чорний Чашецвіт"
@@ -1567,7 +1555,7 @@ msgid "Boxy Adobe"
 msgstr "Квадратний Саман"
 
 msgid "Boxy Pliant Tarstone"
-msgstr "Квадратний Гнучкий Асфальтит"
+msgstr "Квадратний Сирий Асфальтит"
 
 msgid "Boxy Sandstone"
 msgstr "Квадратний Пісковик"
@@ -1588,7 +1576,7 @@ msgid "CHEATS ENABLED"
 msgstr "ЧІТ-КОДИ ВВІМКНЕНІ"
 
 msgid "Dirt"
-msgstr "Багно"
+msgstr "Ґрунт"
 
 msgid "Cloudstone"
 msgstr "Хмарокамінь"
@@ -1623,14 +1611,12 @@ msgstr "Розплавлене Скло"
 msgid "Movement"
 msgstr "Пересування"
 
-#, fuzzy
 msgid "Niz Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Ніз\""
 
 msgid "NodeCore ALPHA"
 msgstr "NodeCore АЛЬФА"
 
-#, fuzzy
 msgid "Odo Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Одо\""
 
@@ -1683,7 +1669,7 @@ msgid "Sand"
 msgstr "Пісок"
 
 msgid "Raked Dirt"
-msgstr "Зграблене Багно"
+msgstr "Зграблений Ґрунт"
 
 msgid "Raked Gravel"
 msgstr "Зграблений Гравій"
@@ -1742,7 +1728,6 @@ msgstr "Гартовані Граблі з Магнетиту"
 msgid "Tempered Lode Tongs"
 msgstr "Загартовані Магнетитові Лещата"
 
-#, fuzzy
 msgid "Tof Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Тоф\""
 
@@ -1750,10 +1735,10 @@ msgid "Tote Handle"
 msgstr "Рукоятка Торби"
 
 msgid "Vermy"
-msgstr "Пухкий"
+msgstr "Хробачний"
 
 msgid "Vermy Adobe"
-msgstr "Пухкий Саман"
+msgstr "Хробачний Саман"
 
 msgid "Verty"
 msgstr "Доземий"
@@ -1804,7 +1789,7 @@ msgid "Wilted Star Flower"
 msgstr "Зів'ялий Зорецвіт"
 
 msgid "Wooden Adze"
-msgstr "Дерев'яне Тесло"
+msgstr "Дерев'яна Зю"
 
 msgid "Yellow Cluster Flower"
 msgstr "Жовта Волошка"
@@ -1837,10 +1822,10 @@ msgid "chop up charcoal"
 msgstr "нарубити деревного вугілля"
 
 msgid "Vermy Pliant Adobe"
-msgstr "Пухкий Сирий Саман"
+msgstr "Хробачний Сирий Саман"
 
 msgid "Vermy Pliant Sandstone"
-msgstr "Пухкий Сирий Пісковик"
+msgstr "Сирий Хробачний Пісковик"
 
 msgid "Verty Pliant Adobe"
 msgstr "Доземий Сирий Саман"
@@ -1852,7 +1837,7 @@ msgid "Verty Pliant Stone"
 msgstr "Доземий Сирий Камінь"
 
 msgid "dig up dirt"
-msgstr "накопати багна"
+msgstr "накопати ґрунту"
 
 msgid "dig up gravel"
 msgstr "набрати гравію"
@@ -1870,7 +1855,7 @@ msgid "dig up cobble"
 msgstr "здобути кругляк"
 
 msgid "discovered - @1"
-msgstr "відкрито - @1"
+msgstr "Досліджено - @1"
 
 msgid "find an eggcorn"
 msgstr "знайти яйцегорох"
