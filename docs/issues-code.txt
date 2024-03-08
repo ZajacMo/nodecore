@@ -9,6 +9,8 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Need to handle minetest.features.hud_def_type_field
+
 - Teleportation regression needs to support player:add_pos now.
 
 - Deprecate air_equivalent property and move to a group
