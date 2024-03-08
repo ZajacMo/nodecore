@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-04 11:53+0200\n"
-"PO-Revision-Date: 2024-01-05 14:21+0000\n"
+"PO-Revision-Date: 2024-03-08 01:01+0000\n"
 "Last-Translator: JUST PLAYING <aryadhisuma@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/id/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr ""
@@ -1029,3 +1029,36 @@ msgstr "Kotak Es Batu Awan"
 
 msgid "Infused Tempered Lode Rake"
 msgstr "Rake Lode Marah Resap"
+
+msgid "Staff"
+msgstr "Tongkat Panjang"
+
+msgid "assemble an adze out of sticks"
+msgstr "merakit adze dari sebuah tongkat"
+
+msgid "assemble a rake from adzes and a staff"
+msgstr "rakit penggaruk dari adze dan sebuah tongkat panjang"
+
+msgid "make fire by rubbing sticks together"
+msgstr "membuat api dengan menggosokkan dua tongkat secara bersamaan"
+
+msgid "stick a lens/prism in place"
+msgstr "tempelkan lensa/prisma pada tempatnya"
+
+msgid "bash a plank into sticks"
+msgstr "hancurkan sebuah papan menjadi tongkat"
+
+msgid "find a stick"
+msgstr "menemukan tongkat"
+
+msgid "brace a wooden form with a stick"
+msgstr "menguatkan bentuk kayu dengan tongkat"
+
+msgid "assemble a wooden ladder from sticks"
+msgstr "merakit sebuah tangga kayu dari tongkat"
+
+msgid "assemble a staff from sticks"
+msgstr "rakit tongkat panjang dari tongkat"
+
+msgid "craft a torch from staff and coal lump"
+msgstr "buat obor dari tongkat panjang dan gumpalan batu bara"

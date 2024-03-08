@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-30 11:25+0200\n"
-"PO-Revision-Date: 2024-02-15 00:25+0000\n"
+"PO-Revision-Date: 2024-02-27 13:02+0000\n"
 "Last-Translator: Leo <resistancelion@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/uk/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid "@1 ||..."
 msgstr "@1 ||..."
@@ -138,7 +138,7 @@ msgid "Annealed Lode"
 msgstr "Обпалений Магнетит"
 
 msgid "Annealed Lode Mattock"
-msgstr "Сапа з Обпаленого Магнетиту"
+msgstr "Обпалене Кайлотесло з Магнетиту"
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
@@ -174,7 +174,7 @@ msgid "Annealed Lode Frame"
 msgstr "Каркас з Обпаленого Магнетиту"
 
 msgid "Annealed Lode Hatchet"
-msgstr "Бартка з Обпаленого Магнетиту"
+msgstr "Обпалена Бартка з Магнетиту"
 
 msgid "Azure Rosette Flower"
 msgstr "Лазурова Розетка"
@@ -252,13 +252,13 @@ msgid "Adobe Bricks"
 msgstr "Саманна Цегла"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "Накінечник Сапи з Обпаленого Магнетиту"
+msgstr "Обпалений Накінечник Кайлотесла з Магнетиту"
 
 msgid "Annealed Lode Spade Head"
-msgstr "Накінечник Лопати з Обпаленого Магнетиту"
+msgstr "Обпалений Накінечник Лопати з Магнетиту"
 
 msgid "Annealed Lode Tongs"
-msgstr "Лещата з Обпаленого Магнетиту"
+msgstr "Обпалені Лещата з Магнетиту"
 
 msgid "Azure Cup Flower"
 msgstr "Лазуровий Чашецвіт"
@@ -281,43 +281,43 @@ msgid "Amalgamation"
 msgstr "Амальгамація"
 
 msgid "Annealed Lode Mallet"
-msgstr "Киянка з Обпаленого Магнетиту"
+msgstr "Обпалена Киянка з Магнетиту"
 
 msgid "Admin Tool"
 msgstr "Засоби Адміністратора"
 
 msgid "Annealed Lode Adze"
-msgstr "Тесло з Обпаленого Магнетиту"
+msgstr "Обпалене Тесло з Магнетиту"
 
 msgid "Annealed Lode Bar"
 msgstr "Обпалений Магнетитовий Злиток"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "Накінечник Бартки з Обпаленого Магнетиту"
+msgstr "Обпалений Накінечник Бартки з Магнетиту"
 
 msgid "Annealed Lode Ladder"
-msgstr "Драбина з Обпаленого Магнетиту"
+msgstr "Обпалена Драбина з Магнетиту"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "Накінечник Киянки з Обпаленого Магнетиту"
+msgstr "Обпалений Накінечник Киянки з Магнетиту"
 
 msgid "Annealed Lode Pick"
-msgstr "Кайло з Обпаленого Магнетиту"
+msgstr "Обпалене Кайло з Магнетиту"
 
 msgid "Annealed Lode Pick Head"
-msgstr "Накінечник Кайла з Обпаленого Магнетиту"
+msgstr "Обпалений Накінечник Кайла з Магнетиту"
 
 msgid "Annealed Lode Prill"
-msgstr "Кусень Обпаленого Магнетиту"
+msgstr "Обпалений Кусень Магнетиту"
 
 msgid "Annealed Lode Rake"
-msgstr "Граблі з Обпаленого Магнетиту"
+msgstr "Обпалені Граблі з Магнетиту"
 
 msgid "Annealed Lode Rod"
-msgstr "Стрижень з Обпаленого Магнетиту"
+msgstr "Обпалений Стрижень з Магнетиту"
 
 msgid "Annealed Lode Spade"
-msgstr "Лопата з Обпаленого Магнетиту"
+msgstr "Обпалена Лопата з Магнетиту"
 
 msgid "Ash"
 msgstr "Зола"
@@ -359,7 +359,7 @@ msgid "Glued Prism"
 msgstr "Приклеєна Призма"
 
 msgid "Infused Annealed Lode Mallet"
-msgstr "Заряджена Киянка з Обпаленого Магнетиту"
+msgstr "Обпалена Магнитна Киянка"
 
 msgid "Lode Ore"
 msgstr "Магнетитова Руда"
@@ -501,16 +501,16 @@ msgid "Geq Charcoal Glyph"
 msgstr "Вугляний Ієрогліф \"Гек\""
 
 msgid "Glowing Lode Mattock Head"
-msgstr "Накінечник Сапи з Сяючого Магнетиту"
+msgstr "Розпечений Накінечник Кайлатесла з Магнетиту"
 
 msgid "Glowing Lode Mallet Head"
-msgstr "Накінечник Киянки з Сяючого Магнетиту"
+msgstr "Розпечений Накінечник Киянки з Магнетиту"
 
 msgid "Glowing Lode Spade Head"
-msgstr "Накінечник Лопати з Сяючого Магнетиту"
+msgstr "Розпечений Накінечник Лопати з Магнетиту"
 
 msgid "Glowing Lode Tongs"
-msgstr "Лещата з Сяючого Магнетиту"
+msgstr "Розпечені Лещата з Магнетиту"
 
 msgid "Glued Gated Prism"
 msgstr "Приклеєна Логічна Призма"
@@ -591,25 +591,25 @@ msgid "Iceboxy Tarstone"
 msgstr "Замерзлий Асфальтит"
 
 msgid "Infused Annealed Lode Adze"
-msgstr "Заряджене Тесло з Обпаленого Магнетиту"
+msgstr "Обпалене Магнитне Тесло"
 
 msgid "Infused Annealed Lode Hatchet"
-msgstr "Заряджена Бартка з Обпаленого Магнетиту"
+msgstr "Обпалена Магнитна Бартка"
 
 msgid "Infused Annealed Lode Pick"
-msgstr "Заряджене Кайло з Обпаленого Магнетиту"
+msgstr "Обпалене Магнитне Кайло"
 
 msgid "Infused Tempered Lode Adze"
-msgstr "Заряджене Тесло з Гартованого Магнетиту"
+msgstr "Магнитне Гартоване Тесло"
 
 msgid "Infused Tempered Lode Hatchet"
-msgstr "Заряджена Бартка з Гартованого Магнетиту"
+msgstr "Магнитна Гартована Бартка"
 
 msgid "Infused Tempered Lode Mallet"
-msgstr "Заряджена Киянка з Гартованого Магнетиту"
+msgstr "Магнитна Гартована Киянка"
 
 msgid "Infused Annealed Lode Rake"
-msgstr "Заряджені Граблі з Обпаленого Магнетиту"
+msgstr "Обпалені Магнитні Граблі"
 
 msgid "Inventory"
 msgstr "Інвентар"
@@ -630,13 +630,13 @@ msgid "Lode Form"
 msgstr "Магнетитова Форма"
 
 msgid "Infused Tempered Lode Mattock"
-msgstr "Заряджена Сапа з Гартованого Магнетиту"
+msgstr "Магнитне Гартоване Кайлотесло"
 
 msgid "Infused Tempered Lode Pick"
-msgstr "Заряджене Кайло з Гартованого Магнетиту"
+msgstr "Магнитне Гартоване Кайло"
 
 msgid "Infused Tempered Lode Spade"
-msgstr "Заряджена Лопата з Гартованого Магнетиту"
+msgstr "Магнитна Гартована Лопата"
 
 msgid "Log"
 msgstr "Колода"
@@ -708,7 +708,7 @@ msgid "Bonded Stone Brick Hinged Panel"
 msgstr "Скріплена Навісна Панель з Камінної Цегли"
 
 msgid "Glowing Lode"
-msgstr "Сяючий Магнетит"
+msgstr "Розпечений Магнетит"
 
 msgid "Iceboxy Pliant Stone"
 msgstr "Замерзлий Сирий Камінь"
@@ -783,7 +783,7 @@ msgid "harden stone"
 msgstr "затвердити камінь"
 
 msgid "Glowing Lode Rod"
-msgstr "Сяючий Магнетитовий Стрижень"
+msgstr "Розпечений Магнетитовий Стрижень"
 
 msgid "Glued Active Lens"
 msgstr "Приклеєна Активна Лінза"
@@ -840,10 +840,10 @@ msgid "Horzy Stone"
 msgstr "Поземий Камінь"
 
 msgid "Infused Annealed Lode Spade"
-msgstr "Заряджена Лопата з Обпаленого Магнетиту"
+msgstr "Обпалена Магнитна Лопата"
 
 msgid "Infused Tempered Lode Rake"
-msgstr "Заряджені Граблі з Гартованого Магнетиту"
+msgstr "Магнитні Гартовані Граблі"
 
 msgid "Spackling"
 msgstr "Шпаклівка"
@@ -861,16 +861,16 @@ msgid "Boxy Pliant Cloudstone"
 msgstr "Квадратний Сирий Хмарокамінь"
 
 msgid "Glowing Lode Frame"
-msgstr "Каркас з Сяючого Магнетиту"
+msgstr "Ррзпечений Каркас з Магнетиту"
 
 msgid "Glowing Lode Cobble"
-msgstr "Кругляк Сяючого Магнетиту"
+msgstr "Ррзпечений Магнетитовий Кругляк"
 
 msgid "Glowing Lode Prill"
-msgstr "Кусень Сяючого Магнетиту"
+msgstr "Розпечений Кусень Магнетиту"
 
 msgid "Glowing Lode Pick Head"
-msgstr "Накінечник Кайла з Сяючого Магнетиту"
+msgstr "Розпечений Накінечник Кайла з Магнетиту"
 
 msgid "Horzy Pliant Adobe"
 msgstr "Поземий Сирий Саман"
@@ -1053,7 +1053,7 @@ msgid "Boxy Pliant Adobe"
 msgstr "Квадратний Сирий Саман"
 
 msgid "Glowing Lode Ladder"
-msgstr "Драбина з Сяючого Магнетиту"
+msgstr "Розпечена Драбина з Магнетиту"
 
 msgid "Blue Star Flower"
 msgstr "Синій Зорецвіт"
@@ -1107,7 +1107,7 @@ msgid "Lode Cobble"
 msgstr "Магнетитовий Кругляк"
 
 msgid "Infused Annealed Lode Mattock"
-msgstr "Заряджена Сапа з Обпаленого Магнетиту"
+msgstr "Обпалене Магнитне Кайлотесло"
 
 msgid "Loose Leaves"
 msgstr "Сипке Листя"
@@ -1155,28 +1155,28 @@ msgid "Donate: https://liberapay.com/NodeCore"
 msgstr "Підтримати: https://liberapay.com/NodeCore"
 
 msgid "Glowing Lode Adze"
-msgstr "Тесло з Сяючого Магнетиту"
+msgstr "Розпечене Тесло з Магнетиту"
 
 msgid "Glowing Lode Hatchet Head"
-msgstr "Накінечник Бартки з Сяючого Магнетиту"
+msgstr "Розпечений Накінечник Бартки з Магнетиту"
 
 msgid "Gravel"
 msgstr "Гравій"
 
 msgid "Glowing Lode Rake"
-msgstr "Граблі з Сяючого Магнетиту"
+msgstr "Розпечені Граблі з Магнетиту"
 
 msgid "Glowing Lode Bar"
-msgstr "Злиток Сяючого Магнетиту"
+msgstr "Розпечений Злиток Магнетиту"
 
 msgid "Glued Active Prism"
 msgstr "Приклеєна Активна Призма"
 
 msgid "Tempered Lode Mattock"
-msgstr "Гартована Сапа з Магнетиту"
+msgstr "Гартоване Кайлотесло з Магнетиту"
 
 msgid "Tempered Lode Mattock Head"
-msgstr "Гартований Накінечник Сапи з Магнетиту"
+msgstr "Гартований Накінечник Кайлотесла з Магнетиту"
 
 msgid "Tempered Lode Pick Head"
 msgstr "Гартований Накінечник Кайла з Магнетиту"
@@ -1378,7 +1378,7 @@ msgid "rotate a charcoal glyph"
 msgstr "обернути вугляний ієрогліф"
 
 msgid "sinter glowing lode prills into a cube"
-msgstr "упакувати кусені сяючого магнетиту у куб"
+msgstr "упакувати розпечені кусені магнетиту у куб"
 
 msgid "squeeze out a sponge"
 msgstr "вичавити губку"
@@ -1387,16 +1387,16 @@ msgid "temper a lode cube"
 msgstr "загартувати магнетитовий куб"
 
 msgid "weld glowing lode pick and spade heads together"
-msgstr "зплавити накінечники кайла та лопати з сяючого магнетиту разом"
+msgstr "зплавити розпечені накінечники кайла та лопати з магнетиту разом"
 
 msgid "work glowing lode on a lode anvil"
-msgstr "обробити сяючий магнетит на магнетитовому ковадлі"
+msgstr "обробити розпечений магнетит на магнетитовому ковадлі"
 
 msgid "work annealed lode on a tempered lode anvil"
 msgstr "обробити обпалений магнетит на ковадлі з загартованого"
 
 msgid "work glowing lode on a stone anvil"
-msgstr "обробити сяючий магнетити на камінному ковадлі"
+msgstr "обробити розпечений магнетит на камінному ковадлі"
 
 msgid "navigate by touch in darkness"
 msgstr "знавігуюватись у темряві за допомогою доторків"
