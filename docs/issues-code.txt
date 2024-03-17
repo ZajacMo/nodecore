@@ -9,6 +9,13 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Make totes build descriptions with full/slots dynamically
+	- Don't overwrite the description field.
+		- Fixes stale data translation warnings.
+		- Allows custom descriptions from other mods.
+	- Store slot/full count as integers?
+	- Compute from meta and cache indexed by to_string?
+
 - Need to handle minetest.features.hud_def_type_field
 
 - Teleportation regression needs to support player:add_pos now.

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-07 00:36+0200\n"
-"PO-Revision-Date: 2024-03-08 01:01+0000\n"
-"Last-Translator: ElonSatoshi <elonsatoshi@riseup.net>\n"
+"PO-Revision-Date: 2024-03-16 00:23+0000\n"
+"Last-Translator: Indigo Ray <indigoray98@gmail.com>\n"
 "Language-Team: Lojban <https://hosted.weblate.org/projects/minetest/nodecore/"
 "jbo/>\n"
 "Language: jbo\n"
@@ -18,3 +18,30 @@ msgid "- Can't dig trees or grass? Search for sticks in the canopy."
 msgstr ""
 "- .i ganai na cumki fa lo nu crepu lo tricu .a lo srasu dertu gi sisku tu'a "
 "lo grana le'i tricu pezli"
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr "e'u ko capyju'i lo manku kevna .i do fuzme lonu do rivbi"
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "lonu cpare lo cpare se zvati cu cumki lonu loi xekri spisa cu cpixa"
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "lonu zbasu cu fasnu ta'i lonu galfi lo vanbi"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "falpu'i je tolpu'i lo se ponse ja'e lonu galfi lo se porsi be ra"
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr ""
+"e'u ko falpu'i lo se ponse lo loldi ja'e lonu zbasu lo gunma bliku .i ri na "
+"ka'e canci"
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "lo barda se zbasu zo'u lo midju dacti cu na'o romoi lo se punji"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "no toknu bliku cu zasti .i e'u ko troci tu'a lo fagri"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"lo cpare se zvati cu mutce kandi te gusni .i e'u ko zengau fi la'oi gamma"
