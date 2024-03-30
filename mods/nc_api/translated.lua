@@ -12,7 +12,7 @@ return {
 	it = 184,
 	jbo = 9,
 	ko = 244,
-	lzh = 1,
+	zh = 1,
 	nb_NO = 0,
 	pl = 1,
 	pt = 176,
@@ -21,6 +21,6 @@ return {
 	sk = 147,
 	tok = 17,
 	uk = 606,
-	zh_Hans = 21,
-	zh_Hant = 301,
+	zh_CN = 22,
+	zh_TW = 301,
 }

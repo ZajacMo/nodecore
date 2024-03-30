@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-04 11:53+0200\n"
-"PO-Revision-Date: 2024-03-09 08:18+0000\n"
-"Last-Translator: JUST PLAYING <aryadhisuma@gmail.com>\n"
+"PO-Revision-Date: 2024-03-29 15:47+0000\n"
+"Last-Translator: Just Playing <aryadhisuma@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/id/>\n"
 "Language: id\n"
@@ -16,29 +16,29 @@ msgstr ""
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr ""
-"- Tempat pendakian juga menghasilkan cahaya yang sangat redup; naikkan "
-"'display gamma' untuk melihat."
+"- Tempat pendakian juga menghasilkan cahaya yang sangat redup, Naikkan "
+"'gamma' untuk melihat."
 
 msgid "Pumwater"
 msgstr "Cairan Batu"
 
 msgid "Horzy Pliant Stone"
-msgstr "Batu Horzi Liat"
+msgstr "Batu Horzi Lunak"
 
 msgid "Annealed Lode"
-msgstr "Lode Anil"
+msgstr "Logam Lemah"
 
 msgid "Iceboxy Stone"
-msgstr "Batu Kotak Es"
+msgstr "Batu Esbox"
 
 msgid "Annealed Lode Rake"
-msgstr "Penggaruk Lode Anil"
+msgstr "Penggaruk Logam Lemah"
 
 msgid "Amalgamation"
 msgstr "Campuran"
 
 msgid "Infused Tempered Lode Pick"
-msgstr "Beliung Lode Keras Infus"
+msgstr "Beliung Logam Keras Infus"
 
 msgid "Raked Sand"
 msgstr "Pasir Garuk"
@@ -47,7 +47,7 @@ msgid "Azure Bell Flower"
 msgstr "Bunga Bell Biru Muda"
 
 msgid "Infused Tempered Lode Mattock"
-msgstr "Cangkul Lode Keras Infus"
+msgstr "Cangkul Logam Keras Infus"
 
 msgid "About"
 msgstr "Tentang"
@@ -59,16 +59,16 @@ msgid "Growing Leaves"
 msgstr "Daun Tumbuh"
 
 msgid "Annealed Lode Mattock"
-msgstr "Cangkul Lode Anil"
+msgstr "Cangkul Logam Lemah"
 
 msgid "Hashy Pliant Tarstone"
-msgstr "Batu Tar Hasy Liat"
+msgstr "Batu Tar Hasy Lunak"
 
 msgid "- @1"
 msgstr "- @1"
 
 msgid "Infused Annealed Lode Rake"
-msgstr "Penggaruk Lode Anil Infus"
+msgstr "Penggaruk Logam Lemah Infus"
 
 msgid "Peat"
 msgstr "Gambut"
@@ -77,7 +77,7 @@ msgid "Hashy Tarstone"
 msgstr "Batu Tar Hasy"
 
 msgid "Glowing Lode Adze"
-msgstr "Adze Lode Cahaya"
+msgstr "Pahat Logam Bercahaya"
 
 msgid "- DONE: @1"
 msgstr "- SELESAI: @1"
@@ -86,28 +86,28 @@ msgid "Sand"
 msgstr "Pasir"
 
 msgid "Bindy Pliant Sandstone"
-msgstr "Batu Pasir Bindi Liat"
+msgstr "Batu Pasir Bindi Lunak"
 
 msgid "Annealed Lode Spade Head"
-msgstr "Kepala Sekop Lode Anil"
+msgstr "Kepala Sekop Logam Lemah"
 
 msgid "Bindy Pliant Stone"
-msgstr "Batu Bindi Liat"
+msgstr "Batu Bindi Lunak"
 
 msgid "Hashy Pliant Sandstone"
-msgstr "Batu Pasir Hasy Liat"
+msgstr "Batu Pasir Hasy Lunak"
 
 msgid "Dry Rush"
-msgstr "Kumbuh Kering"
+msgstr "Rumput Silongga Kering"
 
 msgid "Loose Cobble"
 msgstr "Batu Bulat Gembur"
 
 msgid "Iceboxy Pliant Adobe"
-msgstr "Batu Jemuran Kotak Es Liat"
+msgstr "Tanah Liat Esbox Lunak"
 
 msgid "Bricky Stone"
-msgstr "Bata Batu"
+msgstr "Batu Brik"
 
 msgid "Loose Lux Cobble"
 msgstr "Batu Bulat Lus Gembur"
@@ -119,7 +119,7 @@ msgid "NodeCore"
 msgstr "NodeCore(Indonesia)"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "Kepala Kapak Lode Anil"
+msgstr "Kepala Kapak Logam Lemah"
 
 msgid "Horzy"
 msgstr "Horzi"
@@ -128,7 +128,7 @@ msgid "Offline @1 year(s)"
 msgstr "Offline @1 tahun(s)"
 
 msgid "Pliant Adobe"
-msgstr "Batu Jemuran Liat"
+msgstr "Tanah Liat Lunak"
 
 msgid "Torch"
 msgstr "Obor"
@@ -146,7 +146,7 @@ msgid "NodeCore ALPHA"
 msgstr "NodeCore ALPHA(Indonesia)"
 
 msgid "Bonded Cloudstone Bricks"
-msgstr "Batu Bata Awan Ikat"
+msgstr "Batu Bata Awan Terikat"
 
 msgid "Clear Glass Case"
 msgstr "Rak Kaca Bening"
@@ -160,16 +160,16 @@ msgid "Ash"
 msgstr "Abu"
 
 msgid "Boxy Pliant Tarstone"
-msgstr "Batu Tar Kotak Liat"
+msgstr "Batu Tar Box Lunak"
 
 msgid "Loose Amalgamation"
 msgstr "Campuran Gembur"
 
 msgid "Pliant Cloudstone"
-msgstr "Batu Awan Liat"
+msgstr "Batu Awan Lunak"
 
 msgid "Bricky Adobe"
-msgstr "Batu Jemuran Bata"
+msgstr "Tanah Liat Brik"
 
 msgid "Offline @1 hour(s)"
 msgstr "Offline @1 jam(s)"
@@ -181,7 +181,7 @@ msgid "Float Glass Case"
 msgstr "Rak Kaca Apung"
 
 msgid "Bricky Pliant Sandstone"
-msgstr "Batu Pasir Bata Liat"
+msgstr "Batu Pasir Brik Lunak"
 
 msgid "Mew Charcoal Glyph"
 msgstr "Tulisan Arang Mew"
@@ -190,7 +190,7 @@ msgid "Matrix: #+nodecore:matrix.org"
 msgstr "Matrix(NodeCore): #+nodecore:matrix.org"
 
 msgid "Boxy Adobe"
-msgstr "Batu Jemuran Kotak"
+msgstr "Tanah Liat Box"
 
 msgid "Player's Guide: Tips and Guidance"
 msgstr "Panduan Pemain: Tip dan Bimbingan"
@@ -213,19 +213,19 @@ msgid "Azure Cluster Flower"
 msgstr "Bunga Cluster Biru Muda"
 
 msgid "Boxy Sandstone"
-msgstr "Batu Pasir Kotak"
+msgstr "Batu Pasir Box"
 
 msgid "Annealed Lode Adze"
-msgstr "Adze Lode Anil"
+msgstr "Pahat Logam Lemah"
 
 msgid "- Can't dig trees or grass? Search for sticks in the canopy."
-msgstr "- Tidak bisa menggali pohon atau rumput? Cari tongkat di kanopi."
+msgstr "- Tidak bisa menggali pohon atau rumput? Cari tongkat di dedaunan."
 
 msgid "Prx Charcoal Glyph"
 msgstr "Tulisan Arang Prx"
 
 msgid "Bricky Pliant Stone"
-msgstr "Bata Batu Liat"
+msgstr "Batu Brik Lunak"
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr ""
@@ -233,25 +233,25 @@ msgstr ""
 "berenang ke atas terus menerus."
 
 msgid "Bonded Stone Bricks"
-msgstr "Batu Bata Ikat"
+msgstr "Batu Bata Terikat"
 
 msgid "Iceboxy Adobe"
-msgstr "Batu Jemuran Kotak Es"
+msgstr "Tanah Liat Esbox"
 
 msgid "Bindy Pliant Cloudstone"
-msgstr "Batu Awan Bindi Liat"
+msgstr "Batu Awan Bindi Lunak"
 
 msgid "Lode Form"
-msgstr "Kerangka Lode"
+msgstr "Kerangka Logam"
 
 msgid "Loose Dirt"
 msgstr "Tanah Gembur"
 
 msgid "Glowing Lode Mattock Head"
-msgstr "Kepala Cangkul Lode Cahaya"
+msgstr "Kepala Cangkul Logam Bercahaya"
 
 msgid "Bonded Tarstone Brick Panel"
-msgstr "Panel Batu Bata Tar Ikat"
+msgstr "Panel Batu Bata Tar Terikat"
 
 msgid "Geq Charcoal Glyph"
 msgstr "Tulisan Arang Geq"
@@ -260,10 +260,10 @@ msgid "Cannot teleport an offline player."
 msgstr "Tidak dapat teleportasi pemain offline."
 
 msgid "Annealed Lode Tongs"
-msgstr "Penjepit Lode Anil"
+msgstr "Penjepit Logam Lemah"
 
 msgid "Bricky"
-msgstr "Bata"
+msgstr "Brik"
 
 msgid "Float Glass"
 msgstr "Kaca Apung"
@@ -275,10 +275,10 @@ msgid "- Tools used as ingredients must be in very good condition."
 msgstr "- Alat yang digunakan sebagai bahan harus dalam keadaan sangat baik."
 
 msgid "Annealed Lode Mallet Head"
-msgstr "Kepala Palu Lode Anil"
+msgstr "Kepala Palu Logam Lemah"
 
 msgid "Adobe"
-msgstr "Batu Jemuran"
+msgstr "Tanah Liat"
 
 msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
 msgstr ""
@@ -286,7 +286,7 @@ msgstr ""
 "halus, atau cara yang lebih baik."
 
 msgid "Horzy Pliant Adobe"
-msgstr "Batu Jemuran Horzi Liat"
+msgstr "Tanah Liat Horzi Lunak"
 
 msgid "@1 |||||"
 msgstr "@1 +++++"
@@ -295,10 +295,10 @@ msgid "Stick"
 msgstr "Tongkat"
 
 msgid "Annealed Lode Hatchet"
-msgstr "Kapak Lode Anil"
+msgstr "Kapak Logam Lemah"
 
 msgid "Bonded Stone Brick Panel"
-msgstr "Panel Batu Bata Ikat"
+msgstr "Panel Batu Bata Terikat"
 
 msgid "Black Star Flower"
 msgstr "Bunga Star Hitam"
@@ -307,11 +307,11 @@ msgid "Log"
 msgstr "Batang"
 
 msgid "Iceboxy Pliant Tarstone"
-msgstr "Batu Tar Kotak Es Liat"
+msgstr "Batu Tar Esbox Lunak"
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
-"- Waspada terhadap gua/jurang yang gelap; Anda bertanggung jawab untuk "
+"- Waspada terhadap gua/jurang yang gelap, Anda bertanggung jawab untuk "
 "mengeluarkan diri anda sendiri."
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
@@ -321,10 +321,10 @@ msgid "Player's Guide: Pummeling Recipes"
 msgstr "Panduan Pemain: Resep Memukul"
 
 msgid "Bindy Pliant Tarstone"
-msgstr "Batu Tar Bindi Liat"
+msgstr "Batu Tar Bindi Lunak"
 
 msgid "Bonded Adobe Brick Panel"
-msgstr "Panel Batu Bata Jemuran Ikat"
+msgstr "Panel Batu Bata Tanah Liat Terikat"
 
 msgid "Admin Tool"
 msgstr "Alat Admin"
@@ -339,7 +339,7 @@ msgid "FIRE QUELLED"
 msgstr "API PADAM"
 
 msgid "Bonded Adobe Bricks"
-msgstr "Batu Bata Jemuran Ikat"
+msgstr "Batu Bata Tanah Liat Terikat"
 
 msgid "- Larger recipes are usually more symmetrical."
 msgstr "- Resep berukuran besar biasanya lebih simetris."
@@ -351,7 +351,7 @@ msgid "Cobble Panel"
 msgstr "Panel Batu Bulat"
 
 msgid "Iceboxy Tarstone"
-msgstr "Batu Tar Kotak Es"
+msgstr "Batu Tar Esbox"
 
 msgid "Raked Humus"
 msgstr "Pupuk Garuk"
@@ -360,7 +360,7 @@ msgid "Pink Star Flower"
 msgstr "Bunga Star Merah Muda"
 
 msgid "Hashy Pliant Adobe"
-msgstr "Batu Jemuran Hasy Liat"
+msgstr "Tanah Liat Hasy Lunak"
 
 msgid "Crafting"
 msgstr "Kerajinan"
@@ -369,7 +369,7 @@ msgid "- Recipes are time-based, punching faster does not speed up."
 msgstr "- Resep berdasarkan waktu, meninju lebih cepat tidak mempercepat."
 
 msgid "Boxy Pliant Cloudstone"
-msgstr "Batu Awan Kotak Liat"
+msgstr "Batu Awan Box Lunak"
 
 msgid "Blue Rosette Flower"
 msgstr "Bunga Rosette Biru"
@@ -378,10 +378,10 @@ msgid "Bindy Cloudstone"
 msgstr "Batu Awan Bindi"
 
 msgid "Adobe Mix"
-msgstr "Campuran Batu Jemuran"
+msgstr "Campuran Tanah Liat"
 
 msgid "Boxy Pliant Adobe"
-msgstr "Batu Jemuran Kotak Liat"
+msgstr "Tanah Liat Box Lunak"
 
 msgid "@1 ....."
 msgstr "@1 ....."
@@ -396,7 +396,7 @@ msgid "Blue Star Flower"
 msgstr "Bunga Star Biru"
 
 msgid "Annealed Lode Pick"
-msgstr "Beliung Lode Anil"
+msgstr "Beliung Logam Lemah"
 
 msgid "Donate: https://liberapay.com/NodeCore"
 msgstr "Donasi(NodeCore): https://liberapay.com/NodeCore"
@@ -405,7 +405,7 @@ msgid "Cobble"
 msgstr "Batu Bulat"
 
 msgid "Glowing Lode Spade Head"
-msgstr "Kepala Sekop Lode Cahaya"
+msgstr "Kepala Sekop Logam Bercahaya"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 oleh Aaron Suen <warr1024@@gmail.com>"
@@ -444,13 +444,13 @@ msgid "- Climbing spots may be climbed once black particles appear."
 msgstr "- Titik pendakian mungkin akan naik setelah partikel hitam muncul."
 
 msgid "Glowing Lode"
-msgstr "Lode Cahaya"
+msgstr "Logam Bercahaya"
 
 msgid "Loose Gravel"
 msgstr "Kerikil Gembur"
 
 msgid "Glowing Lode Rake"
-msgstr "Penggaruk Lode Cahaya"
+msgstr "Penggaruk Logam Bercahaya"
 
 msgid "IRC: #nodecore @@ irc.libera.chat"
 msgstr "IRC(NodeCore): #nodecore @@ irc.libera.chat"
@@ -470,10 +470,10 @@ msgid "Azure Cup Flower"
 msgstr "Bunga Cup Biru Muda"
 
 msgid "Annealed Lode Spade"
-msgstr "Sekop Lode Anil"
+msgstr "Sekop Logam Lemah"
 
 msgid "Boxy Cloudstone"
-msgstr "Batu Awan Kotak"
+msgstr "Batu Awan Box"
 
 msgid "Pink Cup Flower"
 msgstr "Bunga Cup Merah Muda"
@@ -485,30 +485,30 @@ msgid "Blank"
 msgstr "Kosong"
 
 msgid "Lode Ore"
-msgstr "Bijih Lode"
+msgstr "Bijih Logam"
 
 msgid "- Learn to use the stars for long distance navigation."
 msgstr "- Belajar menggunakan bintang untuk navigasi jarak jauh."
 
 msgid "Glowing Lode Mallet Head"
-msgstr "Kepala Palu Lode Cahaya"
+msgstr "Kepala Palu Logam Bercahaya"
 
 msgid "Horzy Sandstone"
 msgstr "Batu Pasir Horzi"
 
 msgid "Boxy Tarstone"
-msgstr "Batu Tar Kotak"
+msgstr "Batu Tar Box"
 
 msgid "Boxy Pliant Sandstone"
-msgstr "Batu Pasir Kotak Liat"
+msgstr "Batu Pasir Box Lunak"
 
 msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
 msgstr ""
-"- Terjebak tanpa harapan? Coba tanyakan pada ruang obrolan komunitas (tab "
-"pada Tentang(About))."
+"- Terjebak tanpa harapan? Coba tanyakan pada ruang obrolan komunitas (lihat "
+"di 'Tentang')."
 
 msgid "Bonded Adobe Brick Hinged Panel"
-msgstr "Panel Engsel Batu Bata Jemuran Ikat"
+msgstr "Panel Engsel Batu Bata Tanah Liat Terikat"
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
 msgstr "- Jongkok+aux+jatuhkan item untuk menjatuhkan semua item yang cocok."
@@ -526,7 +526,7 @@ msgid "Cobble Hinged Panel"
 msgstr "Panel Engsel Batu Bulat"
 
 msgid "Iceboxy Sandstone"
-msgstr "Batu Pasir Kotak Es"
+msgstr "Batu Pasir Esbox"
 
 msgid "Gravel"
 msgstr "Kerikil"
@@ -544,16 +544,16 @@ msgid "Odo Charcoal Glyph"
 msgstr "Tulisan Arang Odo"
 
 msgid "Boxy"
-msgstr "Kotak"
+msgstr "Box"
 
 msgid "Glued Shining Lens"
 msgstr "Lensa Sinar Rekat"
 
 msgid "Iceboxy Pliant Sandstone"
-msgstr "Batu Pasir Kotak Es Liat"
+msgstr "Batu Pasir Esbox Lunak"
 
 msgid "Boxy Stone"
-msgstr "Batu Kotak"
+msgstr "Batu Box"
 
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr ""
@@ -561,10 +561,10 @@ msgstr ""
 "alat yang tepat."
 
 msgid "Bricky Cloudstone"
-msgstr "Batu Awan Bata"
+msgstr "Batu Awan Brik"
 
 msgid "Bindy Pliant Adobe"
-msgstr "Batu Jemuran Bindi Liat"
+msgstr "Tanah Liat Bindi Lunak"
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
@@ -588,10 +588,10 @@ msgstr ""
 "- Item yang digunakan, wajah target, dan node di sekitarnya mungkin penting."
 
 msgid "Infused Annealed Lode Mattock"
-msgstr "Cangkul Lode Anil Infus"
+msgstr "Cangkul Logam Lemah Infus"
 
 msgid "Graveled Adze"
-msgstr "Kapak Kerikil"
+msgstr "Pahat Kerikil"
 
 msgid "NodeCore updated from @1 to @2"
 msgstr "NodeCore diperbarui dari @1 ke @2"
@@ -603,22 +603,22 @@ msgid "Fot Charcoal Glyph"
 msgstr "Tulisan Arang Fot"
 
 msgid "Bricky Pliant Adobe"
-msgstr "Batu Jemuran Bata Liat"
+msgstr "Tanah Liat Brik Lunak"
 
 msgid "Player's Guide: Inventory Management"
 msgstr "Panduan Pemain: Manajemen Inventaris"
 
 msgid "Annealed Lode Frame"
-msgstr "Bingkai Lode Anil"
+msgstr "Bingkai Logam Lemah"
 
 msgid "Dirt"
 msgstr "Tanah"
 
 msgid "Bricky Tarstone"
-msgstr "Batu Tar Bata"
+msgstr "Batu Tar Brik"
 
 msgid "Glowing Lode Rod"
-msgstr "Tongkat Lode Cahaya"
+msgstr "Tongkat Logam Bercahaya"
 
 msgid "- Aux+drop any item to drop everything."
 msgstr "- Aux+jatuhkan item apa pun untuk menjatuhkan semuanya."
@@ -627,37 +627,37 @@ msgid "Glued Lens"
 msgstr "Lensa Rekat"
 
 msgid "Loose Lode Cobble"
-msgstr "Batu Bulat Lode Gembur"
+msgstr "Batu Bulat Logam Gembur"
 
 msgid "Pink Rosette Flower"
 msgstr "Bunga Rosette Merah Muda"
 
 msgid "Infused Annealed Lode Spade"
-msgstr "Sekop Lode Anil Infus"
+msgstr "Sekop Logam Lemah Infus"
 
 msgid "Pliant Stone"
-msgstr "Batu Liat"
+msgstr "Batu Lunak"
 
 msgid "Horzy Pliant Sandstone"
-msgstr "Batu Pasir Horzi Liat"
+msgstr "Batu Pasir Horzi Lunak"
 
 msgid "Fire"
 msgstr "Api"
 
 msgid "Infused Tempered Lode Hatchet"
-msgstr "Kapak Lode Keras Infus"
+msgstr "Kapak Logam Keras Infus"
 
 msgid "Iceboxy Pliant Stone"
-msgstr "Batu Kotak Es Liat"
+msgstr "Batu Esbox Lunak"
 
 msgid "Horzy Pliant Tarstone"
-msgstr "Batu Tar Horzi Liat"
+msgstr "Batu Tar Horzi Lunak"
 
 msgid "Raked Dirt"
 msgstr "Tanah Garuk"
 
 msgid "Annealed Lode Bar"
-msgstr "Batang Lode Anil"
+msgstr "Batang Logam Lemah"
 
 msgid "Offline @1 day(s)"
 msgstr "Offline @1 hari(s)"
@@ -666,7 +666,7 @@ msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Perselisihan(Discord): https://discord.gg/NNYeF6f"
 
 msgid "Adobe Bricks"
-msgstr "Batu Bata Jemuran"
+msgstr "Batu Bata Tanah Liat"
 
 msgid "- There is NO inventory screen."
 msgstr "- TIDAK ada layar inventaris."
@@ -675,7 +675,7 @@ msgid "Azure Rosette Flower"
 msgstr "Bunga Rosette Biru Muda"
 
 msgid "Infused Annealed Lode Pick"
-msgstr "Beliung Lode Anil Infus"
+msgstr "Beliung Logam Lemah Infus"
 
 msgid "Inventory"
 msgstr "Inventaris"
@@ -717,13 +717,13 @@ msgid "@1 |...."
 msgstr "@1 +...."
 
 msgid "Bonded Tarstone Brick Hinged Panel"
-msgstr "Panel Engsel Batu Bata Tar Ikat"
+msgstr "Panel Engsel Batu Bata Tar Terikat"
 
 msgid "Gated Prism"
 msgstr "Prisma Pagar"
 
 msgid "Annealed Lode Ladder"
-msgstr "Tangga Lode Anil"
+msgstr "Tangga Logam Lemah"
 
 msgid "Leaves"
 msgstr "Daun"
@@ -732,7 +732,7 @@ msgid "Pink Bell Flower"
 msgstr "Bunga Bell Merah Muda"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "Kepala Cangkul Lode Anil"
+msgstr "Kepala Cangkul Logam Lemah"
 
 msgid "Loose Sand"
 msgstr "Pasir Gembur"
@@ -755,22 +755,22 @@ msgstr ""
 "untuk membuat titik pendakian."
 
 msgid "Bricky Pliant Tarstone"
-msgstr "Batu Tar Bata Liat"
+msgstr "Batu Tar Brik Lunak"
 
 msgid "Boxy Pliant Stone"
-msgstr "Batu Kotak Liat"
+msgstr "Batu Box Lunak"
 
 msgid "Annealed Lode Rod"
-msgstr "Tongkat Lode Anil"
+msgstr "Tongkat Logam Lemah"
 
 msgid "Lux Cobble"
 msgstr "Batu Bulat Lus"
 
 msgid "Bonded Sandstone Brick Panel"
-msgstr "Panel Batu Bata Pasir Ikat"
+msgstr "Panel Batu Bata Pasir Terikat"
 
 msgid "Glowing Lode Frame"
-msgstr "Bingkai Lode Cahaya"
+msgstr "Bingkai Logam Bercahaya"
 
 msgid "Loose Leaves"
 msgstr "Daun Gembur"
@@ -779,19 +779,19 @@ msgid "Pummel"
 msgstr "Memukul"
 
 msgid "Infused Tempered Lode Spade"
-msgstr "Sekop Lode Keras Infus"
+msgstr "Sekop Logam Keras Infus"
 
 msgid "Hashy Pliant Stone"
-msgstr "Batu Hasy Liat"
+msgstr "Batu Hasy Lunak"
 
 msgid "Glowing Lode Ladder"
-msgstr "Tangga Lode Cahaya"
+msgstr "Tangga Logam Bercahaya"
 
 msgid "Glowing Lode Tongs"
-msgstr "Penjepit Lode Cahaya"
+msgstr "Penjepit Logam Bercahaya"
 
 msgid "Lit Torch"
-msgstr "Obor Nyala"
+msgstr "Obor Menyala"
 
 msgid "Additional Mods Loaded: @1"
 msgstr "Mod Tambahan Dimuat: @1"
@@ -800,25 +800,25 @@ msgid "Chromatic Glass"
 msgstr "Kaca Kromatik"
 
 msgid "Bonded Cloudstone Brick Panel"
-msgstr "Panel Batu Bata Awan Ikat"
+msgstr "Panel Batu Bata Awan Terikat"
 
 msgid "@1 rejected. (protocol version @2)"
 msgstr "@1 Ditolak. (versi protokol @2)"
 
 msgid "Glowing Lode Pick Head"
-msgstr "Kepala Beliung Lode Cahaya"
+msgstr "Kepala Beliung Logam Bercahaya"
 
 msgid "Bricky Sandstone"
-msgstr "Batu Pasir Bata"
+msgstr "Batu Pasir Brik"
 
 msgid "Black Rosette Flower"
 msgstr "Bunga Rosette Hitam"
 
 msgid "Horzy Adobe"
-msgstr "Batu Jemuran Horzi"
+msgstr "Tanah Liat Horzi"
 
 msgid "Lode Cobble"
-msgstr "Batu Bulat Lode"
+msgstr "Batu Bulat Logam"
 
 msgid "Bindy"
 msgstr "Bindi"
@@ -839,10 +839,10 @@ msgid "Player's Guide: Crafting"
 msgstr "Panduan Pemain: Kerajinan"
 
 msgid "Infused Annealed Lode Mallet"
-msgstr "Palu Lode Anil Infus"
+msgstr "Palu Logam Lemah Infus"
 
 msgid "Glowing Lode Hatchet Head"
-msgstr "Kepala Kapak Lode Cahaya"
+msgstr "Kepala Kapak Logam Bercahaya"
 
 msgid "@1 discovered, @2 available, @3 future"
 msgstr "@1 Ditemukan, @2 Tersedia, @3 di Masa Mendatang"
@@ -851,22 +851,22 @@ msgid "Black Bell Flower"
 msgstr "Bunga Bell Hitam"
 
 msgid "Pliant Tarstone"
-msgstr "Batu Tar Liat"
+msgstr "Batu Tar Lunak"
 
 msgid "Humus"
 msgstr "Pupuk"
 
 msgid "Bricky Pliant Cloudstone"
-msgstr "Batu Awan Bata Liat"
+msgstr "Batu Awan Brik Lunak"
 
 msgid "Orange Rosette Flower"
 msgstr "Bunga Rosette Oranye"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "- 'Tungku' bukanlah suatu benda; temukan peleburan dengan api terbuka."
+msgstr "- 'Tungku' bukanlah suatu benda, temukan peleburan dengan api terbuka."
 
 msgid "Horzy Pliant Cloudstone"
-msgstr "Batu Awan Horzi Liat"
+msgstr "Batu Awan Horzi Lunak"
 
 msgid "- Crafting is done by building recipes in-world."
 msgstr "- Kerajinan dilakukan dengan membuat resep di dalam dunia."
@@ -882,10 +882,10 @@ msgid "- Sneak+drop to count out single items from stack."
 msgstr "- Jongkok+jatuhkan untuk menghitung satu item dari tumpukan."
 
 msgid "Glowing Lode Bar"
-msgstr "Batang Lode Cahaya"
+msgstr "Batang Logam Bercahaya"
 
 msgid "Iceboxy Pliant Cloudstone"
-msgstr "Batu Awan Kotak Es Liat"
+msgstr "Batu Awan Esbox Lunak"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
 msgstr "NodeCore edisi akses awal dengan fitur terbaru (dan mungkin bug)"
@@ -895,7 +895,7 @@ msgstr ""
 "- Desain game ini menantang, terkadang membuat frustrasi. JANGAN MENYERAH!"
 
 msgid "Infused Tempered Lode Mallet"
-msgstr "Palu Lode Keras Infus"
+msgstr "Palu Logam Keras Infus"
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
 msgstr ""
@@ -918,10 +918,10 @@ msgid "Glued Active Lens"
 msgstr "Lensa Aktif Rekat"
 
 msgid "Pliant Sandstone"
-msgstr "Batu Pasir Liat"
+msgstr "Batu Pasir Lunak"
 
 msgid "Lode Crate"
-msgstr "Rak Lode"
+msgstr "Rak Logam"
 
 msgid "Player's Guide: Movement and Navigation"
 msgstr "Panduan Pemain: Gerakan dan Navigasi"
@@ -933,7 +933,7 @@ msgid "Qeg Charcoal Glyph"
 msgstr "Tulisan Arang Qeg"
 
 msgid "Annealed Lode Pick Head"
-msgstr "Kepala Beliung Lode Anil"
+msgstr "Kepala Beliung Logam Lemah"
 
 msgid "Charcoal Lump"
 msgstr "Gumpalan Arang"
@@ -942,37 +942,37 @@ msgid "Ash Lump"
 msgstr "Gumpalan Abu"
 
 msgid "Annealed Lode Prill"
-msgstr "Gumpalan Lode Anil"
+msgstr "Butiran Logam Lemah"
 
 msgid "Glowing Lode Cobble"
-msgstr "Batu Bulat Lode Cahaya"
+msgstr "Batu Bulat Logam Bercahaya"
 
 msgid "Hashy Adobe"
-msgstr "Batu Jemuran Hasy"
+msgstr "Tanah Liat Hasy"
 
 msgid "Hashy Sandstone"
 msgstr "Batu Pasir Hasy"
 
 msgid "Bonded Stone Brick Hinged Panel"
-msgstr "Panel Engsel Batu Bata Ikat"
+msgstr "Panel Engsel Batu Bata Terikat"
 
 msgid "Niz Charcoal Glyph"
 msgstr "Tulisan Arang Niz"
 
 msgid "Bonded Sandstone Brick Hinged Panel"
-msgstr "Panel Engsel Batu Bata Pasir Ikat"
+msgstr "Panel Engsel Batu Bata Pasir Terikat"
 
 msgid "Bindy Stone"
 msgstr "Batu Bindi"
 
 msgid "Bonded Tarstone Bricks"
-msgstr "Batu Bata Tar Ikat"
+msgstr "Batu Bata Tar Terikat"
 
 msgid "- Drop and pick up items to rearrange your inventory."
 msgstr "- Jatuhkan dan ambil item untuk mengatur ulang inventaris Anda."
 
 msgid "Bonded Sandstone Bricks"
-msgstr "Batu Bata Pasir Ikat"
+msgstr "Batu Bata Pasir Terikat"
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Anda tidak perlu memukul terlalu cepat (sekitar 1 pukulan per detik)."
@@ -981,37 +981,37 @@ msgid "- Some recipes require "pummeling" a node."
 msgstr "- Beberapa resep mengharuskan \"memukul\" sebuah node."
 
 msgid "Glowing Lode Prill"
-msgstr "Gumpalan Lode Cahaya"
+msgstr "Butiran Logam Bercahaya"
 
 msgid "Molten Glass"
 msgstr "Cairan Kaca"
 
 msgid "Infused Tempered Lode Adze"
-msgstr "Adze Lode Keras Infus"
+msgstr "Pahat Logam Keras Infus"
 
 msgid "Bonded Cloudstone Brick Hinged Panel"
-msgstr "Panel Engsel Batu Bata Awan Ikat"
+msgstr "Panel Engsel Batu Bata Awan Terikat"
 
 msgid "Horzy Cloudstone"
 msgstr "Batu Awan Horzi"
 
 msgid "Bindy Adobe"
-msgstr "Batu Jemuran Bindi"
+msgstr "Tanah Liat Bindi"
 
 msgid "Annealed Lode Mallet"
-msgstr "Palu Lode Anil"
+msgstr "Palu Logam Lemah"
 
 msgid "Iceboxy"
-msgstr "Kotak Es"
+msgstr "Esbox"
 
 msgid "Cav Charcoal Glyph"
 msgstr "Tulisan Arang Cav"
 
 msgid "Hashy Pliant Cloudstone"
-msgstr "Batu Awan Hasy Liat"
+msgstr "Batu Awan Hasy Lunak"
 
 msgid "Infused Annealed Lode Adze"
-msgstr "Adze Lode Anil Infus"
+msgstr "Pahat Logam Lemah Infus"
 
 msgid "Blue Cluster Flower"
 msgstr "Bunga Cluster Biru"
@@ -1020,22 +1020,22 @@ msgid "CHEATS ENABLED"
 msgstr "CHEAT DIAKTIFKAN"
 
 msgid "Infused Annealed Lode Hatchet"
-msgstr "Kapak Lode Anil Infus"
+msgstr "Kapak Logam Lemah Infus"
 
 msgid "Iceboxy Cloudstone"
-msgstr "Batu Awan Kotak Es"
+msgstr "Batu Awan Esbox"
 
 msgid "Infused Tempered Lode Rake"
-msgstr "Penggaruk Lode Keras Infus"
+msgstr "Penggaruk Logam Keras Infus"
 
 msgid "Staff"
 msgstr "Tongkat Panjang"
 
 msgid "assemble an adze out of sticks"
-msgstr "Merakit Adze dari Tongkat"
+msgstr "Merakit Pahat dari Tongkat"
 
 msgid "assemble a rake from adzes and a staff"
-msgstr "Merakit Penggaruk dari Adze dan Tongkat Panjang"
+msgstr "Merakit Penggaruk dari Pahat dan Tongkat Panjang"
 
 msgid "make fire by rubbing sticks together"
 msgstr "Membuat Api dengan menggosokkan dua Tongkat secara bersamaan"
@@ -1062,7 +1062,7 @@ msgid "craft a torch from staff and coal lump"
 msgstr "Membuat Obor dari Tongkat Panjang dan Gumpalan Batu Bara"
 
 msgid "Sedge"
-msgstr "Sedimen"
+msgstr "Rumput Teki"
 
 msgid "Red Bell Flower"
 msgstr "Bunga Bell Merah"
@@ -1077,10 +1077,10 @@ msgid "Red Star Flower"
 msgstr "Bunga Star Merah"
 
 msgid "Render"
-msgstr "Render"
+msgstr "Plester"
 
 msgid "Rush"
-msgstr "Kumbuh"
+msgstr "Rumput Silongga"
 
 msgid "Sandstone Bricks"
 msgstr "Batu Bata Pasir"
@@ -1149,58 +1149,58 @@ msgid "Vermy"
 msgstr "Vermi"
 
 msgid "Vermy Adobe"
-msgstr "Batu Jemuran Vermi"
+msgstr "Tanah Liat Vermi"
 
 msgid "Vermy Cloudstone"
 msgstr "Batu Awan Vermi"
 
 msgid "Vermy Pliant Adobe"
-msgstr "Batu Jemuran Vermi Liat"
+msgstr "Tanah Liat Vermi Lunak"
 
 msgid "Vermy Pliant Cloudstone"
-msgstr "Batu Awan Vermi Liat"
+msgstr "Batu Awan Vermi Lunak"
 
 msgid "Vermy Pliant Sandstone"
-msgstr "Batu Pasir Vermi Liat"
+msgstr "Batu Pasir Vermi Lunak"
 
 msgid "Vermy Pliant Stone"
-msgstr "Batu Vermi Liat"
+msgstr "Batu Vermi Lunak"
 
 msgid "Vermy Pliant Tarstone"
-msgstr "Batu Tar Vermi Liat"
+msgstr "Batu Tar Vermi Lunak"
 
 msgid "Verty"
 msgstr "Verti"
 
 msgid "Verty Adobe"
-msgstr "Batu Jemuran Verti"
+msgstr "Tanah Liat Verti"
 
 msgid "Verty Cloudstone"
 msgstr "Batu Awan Verti"
 
 msgid "Tempered Lode"
-msgstr "Lode Keras"
+msgstr "Logam Keras"
 
 msgid "Tempered Lode Hatchet"
-msgstr "Kapak Lode Keras"
+msgstr "Kapak Logam Keras"
 
 msgid "Tempered Lode Hatchet Head"
-msgstr "Kepala Kapak Lode Keras"
+msgstr "Kepala Kapak Logam Keras"
 
 msgid "Tempered Lode Ladder"
-msgstr "Tangga Lode Keras"
+msgstr "Tangga Logam Keras"
 
 msgid "Tempered Lode Mallet"
-msgstr "Palu Lode Keras"
+msgstr "Palu Logam Keras"
 
 msgid "Tempered Lode Mallet Head"
-msgstr "Kepala Palu Lode Keras"
+msgstr "Kepala Palu Logam Keras"
 
 msgid "Tempered Lode Mattock"
-msgstr "Cangkul Lode Keras"
+msgstr "Cangkul Logam Keras"
 
 msgid "Tempered Lode Mattock Head"
-msgstr "Kepala Cangkul Lode Keras"
+msgstr "Kepala Cangkul Logam Keras"
 
 msgid "Violet Star Flower"
 msgstr "Bunga Star Ungu"
@@ -1245,13 +1245,13 @@ msgid "Yellow Cup Flower"
 msgstr "Bunga Cup Kuning"
 
 msgid "Verty Pliant Adobe"
-msgstr "Batu Jemuran Verti Liat"
+msgstr "Tanah Liat Verti Lunak"
 
 msgid "Verty Pliant Cloudstone"
-msgstr "Batu Awan Verti Liat"
+msgstr "Batu Awan Verti Lunak"
 
 msgid "Verty Pliant Tarstone"
-msgstr "Batu Tar Verti Liat"
+msgstr "Batu Tar Verti Lunak"
 
 msgid "Verty Sandstone"
 msgstr "Batu Pasir Verti"
@@ -1263,13 +1263,13 @@ msgid "Verty Tarstone"
 msgstr "Batu Tar Verti"
 
 msgid "Wet Adobe Mix"
-msgstr "Campuran Batu Jemuran Basah"
+msgstr "Campuran Tanah Liat Basah"
 
 msgid "Wet Aggregate"
 msgstr "Agregat Basah"
 
 msgid "Wet Render"
-msgstr "Render Basah"
+msgstr "Plester Basah"
 
 msgid "Wet Spackling"
 msgstr "Campuran Batu Awan Basah"
@@ -1278,13 +1278,13 @@ msgid "Wet Sponge"
 msgstr "Spons Basah"
 
 msgid "Wet Tarry Aggregate"
-msgstr "Agregat Teri Basah"
+msgstr "Campuran Agregat Basah"
 
 msgid "Wicker"
 msgstr "Anyaman"
 
 msgid "Wooden Adze"
-msgstr "Adze Kayu"
+msgstr "Pahat Kayu"
 
 msgid "Wooden Form"
 msgstr "Kerangka Kayu"
@@ -1329,7 +1329,7 @@ msgid "add coal to aggregate to make tarstone"
 msgstr "Tambahkan Batu Bara ke Agregat untuk membuat Batu Tar"
 
 msgid "anneal a lode cube"
-msgstr "Anilkan kubus lode"
+msgstr "Melunakkan kubus Logam"
 
 msgid "cut down a tree"
 msgstr "Menebang Pohon"
@@ -1344,7 +1344,7 @@ msgid "find a flower"
 msgstr "Menemukan Bunga"
 
 msgid "find a sedge"
-msgstr "Menemukan Sedimen"
+msgstr "Menemukan Rumput Teki"
 
 msgid "find a sponge"
 msgstr "Menemukan Spons"
@@ -1362,7 +1362,7 @@ msgid "find charcoal"
 msgstr "Menemukan Arang"
 
 msgid "grow a sedge on grass near moisture"
-msgstr "Menumbuhkan Sedimen pada Rumput disekitar tempat lembab"
+msgstr "Menumbuhkan Rumput Teki pada Rumput disekitar tempat lembab"
 
 msgid "leach raked dirt to sand"
 msgstr "Bersihkan Tanah Garuk untuk menjadi Pasir"
@@ -1374,13 +1374,13 @@ msgid "grow a flower on soil near moisture"
 msgstr "Menumbuhkan Bunga pada tempat yang lembab"
 
 msgid "mix dirt into ash to make adobe mix"
-msgstr "Mencampurkan Tanah ke Abu untuk membuat Campuran Batu Jemuran"
+msgstr "Mencampurkan Tanah ke Abu untuk membuat Campuran Tanah Liat"
 
 msgid "pick a sedge"
-msgstr "Mengambil Sedimen"
+msgstr "Mengambil Rumput Teki"
 
 msgid "pack sedges into thatch"
-msgstr "Membungkus Sedimen ke Jerami"
+msgstr "Membungkus Rumput Teki ke Jerami"
 
 msgid "rake dirt"
 msgstr "Tanah Garuk"
@@ -1395,10 +1395,10 @@ msgid "wilt a flower"
 msgstr "Bunga Layu"
 
 msgid "work annealed lode on a tempered lode anvil"
-msgstr "Mengerjakan Lode Anil pada Meja Tempa yang dikeraskan"
+msgstr "Mengerjakan Logam Lunak pada Meja Tempa yang dikeraskan"
 
 msgid "find a rush"
-msgstr "Menemukan Kumbuh"
+msgstr "Menemukan Rumput Silongga"
 
 msgid "find an eggcorn"
 msgstr "Menemukan Biji"
@@ -1434,40 +1434,40 @@ msgid "Stump"
 msgstr "Bonggol Kayu"
 
 msgid "Tempered Lode Adze"
-msgstr "Adze Lode Keras"
+msgstr "Pahat Logam Keras"
 
 msgid "Tempered Lode Pick Head"
-msgstr "Kepala Beliung Lode Keras"
+msgstr "Kepala Beliung Logam Keras"
 
 msgid "Tempered Lode Spade Head"
-msgstr "Kepala Sekop Lode Keras"
+msgstr "Kepala Sekop Logam Keras"
 
 msgid "Tempered Lode Bar"
-msgstr "Batang Lode Keras"
+msgstr "Batang Logam Keras"
 
 msgid "Tempered Lode Pick"
-msgstr "Beliung Lode Keras"
+msgstr "Beliung Logam Keras"
 
 msgid "Tempered Lode Prill"
-msgstr "Gumpalan Lode Keras"
+msgstr "Butiran Logam Keras"
 
 msgid "Tempered Lode Frame"
-msgstr "Bingkai Lode Keras"
+msgstr "Bingkai Logam Keras"
 
 msgid "Tempered Lode Rake"
-msgstr "Penggaruk Lode Keras"
+msgstr "Penggaruk Logam Keras"
 
 msgid "Tempered Lode Tongs"
-msgstr "Penjepit Lode Keras"
+msgstr "Penjepit Logam Keras"
 
 msgid "Tempered Lode Spade"
-msgstr "Sekop Lode Keras"
+msgstr "Sekop Logam Keras"
 
 msgid "Vermy Sandstone"
 msgstr "Batu Pasir Vermi"
 
 msgid "Verty Pliant Sandstone"
-msgstr "Batu Pasir Verti Liat"
+msgstr "Batu Pasir Verti Lunak"
 
 msgid "WORLD FROZEN"
 msgstr "DUNIA BEKU"
@@ -1491,7 +1491,7 @@ msgid "Vermy Stone"
 msgstr "Batu Vermi"
 
 msgid "Verty Pliant Stone"
-msgstr "Batu Verti Liat"
+msgstr "Batu Verti Lunak"
 
 msgid "Wooden Hinged Panel"
 msgstr "Panel Engsel Kayu"
@@ -1527,7 +1527,7 @@ msgid "Wooden Panel"
 msgstr "Panel Kayu"
 
 msgid "Tempered Lode Rod"
-msgstr "Tongkat Lode Keras"
+msgstr "Tongkat Logam Keras"
 
 msgid "assemble a clear glass case"
 msgstr "Merakit Rak Kaca Bening"
@@ -1539,16 +1539,16 @@ msgid "assemble a lantern from a tote handle"
 msgstr "Merakit Lentera dari Tas"
 
 msgid "assemble a lode adze"
-msgstr "Merakit Adze Lode"
+msgstr "Merakit Pahat Logam"
 
 msgid "assemble a lode crate from form and bar"
-msgstr "Merakit Rak Lode dari Kerangka dan Tongkat"
+msgstr "Merakit Rak Logam dari Kerangka dan Tongkat"
 
 msgid "assemble a lode rake"
-msgstr "Merakit Penggaruk Lode"
+msgstr "Merakit Penggaruk Logam"
 
 msgid "assemble a lode tote handle"
-msgstr "Merakit Tas Lode"
+msgstr "Merakit Tas Logam"
 
 msgid "assemble a stone-tipped stylus"
 msgstr "Merakit Peralatan Batu"
@@ -1560,7 +1560,7 @@ msgid "assemble a wooden tool"
 msgstr "Merakit Peralatan Kayu"
 
 msgid "assemble lode tongs"
-msgstr "Merakit Penjepit Lode"
+msgstr "Merakit Penjepit Logam"
 
 msgid "bond stone bricks"
 msgstr "Mengikat Batu Bata"
@@ -1623,7 +1623,7 @@ msgid "dig up gravel"
 msgstr "Menggali Kerikil"
 
 msgid "dig up lode ore"
-msgstr "Menggali Bijih Lode"
+msgstr "Menggali Bijih Logam"
 
 msgid "dig up lux cobble"
 msgstr "Menggali Batu Bulat Lus"
@@ -1641,7 +1641,7 @@ msgid "drop an item"
 msgstr "Jatuhkan Item"
 
 msgid "dry out a rush"
-msgstr "Mengeringkan Kumbuh"
+msgstr "Mengeringkan Rumput Silongga"
 
 msgid "dry out a sponge"
 msgstr "Mengeringkan Spons"
@@ -1650,7 +1650,7 @@ msgid "ferment peat into humus"
 msgstr "Memfermentasi Gambut menjadi Pupuk"
 
 msgid "find lode ore"
-msgstr "Menemukan Bijih Lode"
+msgstr "Menemukan Bijih Logam"
 
 msgid "find lux"
 msgstr "Menemukan Lus"
@@ -1662,25 +1662,25 @@ msgid "find pumwater"
 msgstr "Menemukan Cairan Batu"
 
 msgid "forge a lode prill into a bar"
-msgstr "Menempa Gumpalan Lode menjadi Batang"
+msgstr "Menempa Butiran Logam menjadi Batang"
 
 msgid "forge a lode rod and bar into a ladder"
-msgstr "Menempa Tongkat Lode dan Batang menjadi Tangga"
+msgstr "Menempa Tongkat Logam dan Batang menjadi Tangga"
 
 msgid "forge an annealed lode frame into a form"
-msgstr "Menempa Bingkai Lode Anil menjadi Kerangka"
+msgstr "Menempa Bingkai Logam Lemah menjadi Kerangka"
 
 msgid "forge lode bars into a rod"
-msgstr "Menempa Batang Lode menjadi Tongkat"
+msgstr "Menempa Batang Logam menjadi Tongkat"
 
 msgid "forge lode prills into a tool head"
-msgstr "Menempa Gumpalan Lode menjadi Kepala Alat"
+msgstr "Menempa Butiran Logam menjadi Kepala Alat"
 
 msgid "forge lode rods into a frame"
-msgstr "Menempa Tongkat Lode menjadi Bingkai"
+msgstr "Menempa Tongkat Logam menjadi Bingkai"
 
 msgid "etch pliant concrete with a stylus"
-msgstr "Mensketsa Beton Liat dengan pola Stilus"
+msgstr "Mensketsa Beton Lunak dengan pola Stilus"
 
 msgid "fully charge a lantern"
 msgstr "Mengisi penuh Lentera"
@@ -1695,7 +1695,7 @@ msgid "grind dead plants into peat"
 msgstr "Menggiling Tanaman Mati menjadi Gambut"
 
 msgid "grow a rush on soil near moisture"
-msgstr "Menumbuhkan Kumbuh disekitar tempat lembab"
+msgstr "Menumbuhkan Rumput Silongga disekitar tempat lembab"
 
 msgid "harden stone"
 msgstr "Mengeraskan Batu"
@@ -1722,10 +1722,10 @@ msgid "light a torch"
 msgstr "Menyalakan Obor"
 
 msgid "lux-infuse a lode tool"
-msgstr "Infus-lus Alat Lode"
+msgstr "Infus-lus Alat Logam"
 
 msgid "melt down lode metal from lode cobble"
-msgstr "Melelehkan Logam Lode dari Batu Lode"
+msgstr "Melelehkan Mineral Logam dari Batu Logam"
 
 msgid "melt sand into molten glass"
 msgstr "Melelehkan Pasir menjadi Cairan Kaca"
@@ -1740,7 +1740,7 @@ msgid "mix gravel into ash to make aggregate"
 msgstr "Mencampurkan Kerikil ke Abu untuk membuat Agregat"
 
 msgid "mix sand into ash to make render"
-msgstr "Mencampurkan Pasir ke Abu untuk membuat Render"
+msgstr "Mencampurkan Pasir ke Abu untuk membuat Plester"
 
 msgid "mold molten glass into clear glass"
 msgstr "Mencetak Cairan Kaca menjadi Kaca Bening"
@@ -1758,7 +1758,7 @@ msgid "observe lux criticality"
 msgstr "Mengobservasi kekritisan Lus"
 
 msgid "pack dry rushes into wicker"
-msgstr "Membungkus Kumbuh Kering ke Anyaman"
+msgstr "Membungkus Rumput Silongga Kering ke Anyaman"
 
 msgid "pack high-quality charcoal"
 msgstr "Membungkus Arang berkualitas tinggi"
@@ -1785,7 +1785,7 @@ msgid "push an item into a storage box with a hinged panel"
 msgstr "Mendorong Item ke Kotak Penyimpanan dengan Panel Engsel"
 
 msgid "put a gravel tip on a wooden adze"
-msgstr "Menaruh Kerikil pada Adze Kayu"
+msgstr "Menaruh Kerikil pada Pahat Kayu"
 
 msgid "put a stone tip onto a wooden tool"
 msgstr "Menaruh Serpihan Batu ke Peralatan Kayu"
@@ -1815,19 +1815,19 @@ msgid "scale an overhang"
 msgstr "Menskalakan Gantungan"
 
 msgid "set concrete to pliant"
-msgstr "Mengatur Beton ke Liat"
+msgstr "Mengatur Beton ke Lunak"
 
 msgid "sinter glowing lode prills into a cube"
-msgstr "Pemadatan Gumpalan Lode Cahaya ke dalam kubus"
+msgstr "Pemadatan Butiran Logam Bercahaya ke dalam kubus"
 
 msgid "squeeze out a sponge"
 msgstr "Memeras Spons"
 
 msgid "temper a lode cube"
-msgstr "Mengeraskan Kubus Lode"
+msgstr "Mengeraskan Kubus Logam"
 
 msgid "temper a lode tool head"
-msgstr "Mengeraskan Kepala Peralatan Lode"
+msgstr "Mengeraskan Kepala Peralatan Logam"
 
 msgid "throw an item really fast"
 msgstr "Melemparkan Item dengan sangat cepat"
@@ -1836,16 +1836,16 @@ msgid "weaken stone by soaking"
 msgstr "Melemahkan Batu dengan Merendamnya"
 
 msgid "weld glowing lode pick and spade heads together"
-msgstr "Memegang Beliung Lode Cahaya dan Kepala Sekop secara bersamaan"
+msgstr "Memegang Beliung Logam Bercahaya dan Kepala Sekop secara bersamaan"
 
 msgid "wet a concrete mix"
 msgstr "Membasahi Campuran Beton"
 
 msgid "work glowing lode on a lode anvil"
-msgstr "Mengerjakan Lode Cahaya pada Meja Tempa Lode"
+msgstr "Mengerjakan Logam Bercahaya pada Meja Tempa Logam"
 
 msgid "work glowing lode on a stone anvil"
-msgstr "Mengerjakan Lode Cahaya pada Meja Tempa Batu"
+msgstr "Mengerjakan Logam Bercahaya pada Meja Tempa Batu"
 
 msgid "write on a surface with a charcoal lump"
 msgstr "Menulis pada permukaan dengan Gumpalan Arang"
@@ -1854,7 +1854,7 @@ msgid "charge a lantern"
 msgstr "Mengisi Lentera"
 
 msgid "cure pliant concrete fully"
-msgstr "Menyembuhkan Beton Liat sepenuhnya"
+msgstr "Menyembuhkan Beton Lunak sepenuhnya"
 
 msgid "break cobble into chips"
 msgstr "Menghancurkan Batu Bulat menjadi Serpihan"

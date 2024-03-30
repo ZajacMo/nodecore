@@ -51,7 +51,7 @@ const done = async () => {
 	for(let [code, data] of Object.entries(db))
 		stats[code] = Object.keys(data).length;
 	await fsp.writeFile('../../translated.lua', `return {\n${
-		Object.keys(stats).sort().map(k => `\t${k} = ${stats[k]},\n`).join('')
+		Object.keys(stats).sort().map(k => `\t${codemap[k] || k} = ${stats[k]},\n`).join('')
 	}}\n`);
 
 	// Share strings between related languages
