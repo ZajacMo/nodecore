@@ -21,6 +21,6 @@ return {
 	sk = 147,
 	tok = 17,
 	uk = 606,
-	zh_CN = 22,
+	zh_CN = 62,
 	zh_TW = 301,
 }

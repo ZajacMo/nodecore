@@ -38,6 +38,7 @@
 - Wielded item, target face, and surrounding nodes may matter.=- 環繞的物品、面向與環繞的方塊可能影響。
 - You do not have to punch very fast (about 1 per second).=- 你不必打得很快（約一秒一次）。
 @1 discovered, @2 available, @3 future=@1 個發現、 @2 個可發現、 @3 個延伸
+@1 rejected. (protocol version @2)=@1 拒绝。（协议版本 @2）
 About=關於
 Active Lens=活化的透鏡
 Active Prism=活化的稜鏡
@@ -281,7 +282,9 @@ throw an item really fast=急速丟出物品
 weaken stone by soaking=泡水弱化石頭
 weld glowing lode pick and spade heads together=將紅熱的的鎬頭跟鏟頭接在一起
 wet a concrete mix=沾溼混凝土粉
+wilt a flower=让一朵花凋零
 work annealed lode on a tempered lode anvil=在調溫類鋼砧上敲打類鋼
 work glowing lode on a lode anvil=在類鋼砧上敲打紅熱的類鋼
 work glowing lode on a stone anvil=在石砧上敲打紅熱的類鋼
 write on a surface with a charcoal lump=用木炭寫字
+~ @1% translated to your language (@2)=～@1%翻译成你的语言（@2）
