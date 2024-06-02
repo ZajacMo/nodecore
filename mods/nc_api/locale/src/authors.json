@@ -1,14 +1,14 @@
 {
 	"since": {
 		"de": "2024-02-19T19:55:25.226222+01:00",
-		"ru": "2024-04-18T16:18:14.852724+02:00",
-		"pl": "2022-03-27T11:19:59.247928+02:00",
+		"ru": "2024-05-09T07:19:28.256208+02:00",
+		"pl": "2024-04-21T17:08:07.175450+02:00",
 		"uk": "2024-02-26T06:03:12.812981+01:00",
 		"el": "2023-03-27T20:43:15.883336+02:00",
 		"zh_Hans": "2024-04-17T15:55:32.883300+02:00",
 		"sk": "2023-05-05T22:30:26.309472+02:00",
-		"zh_Hant": "2023-10-22T09:37:21.365270+02:00",
-		"it": "2023-10-12T12:00:21.252516+02:00",
+		"zh_Hant": "2024-05-18T17:39:21.844122+02:00",
+		"it": "2024-06-01T23:28:20.618091+02:00",
 		"fr": "2023-10-26T20:48:20.567147+02:00",
 		"pt_BR": "2023-11-03T02:19:43.807415+01:00",
 		"pt": "2023-11-03T03:07:11.003948+01:00",
@@ -20,7 +20,8 @@
 		"hu": "2024-01-01T12:30:37.299699+01:00",
 		"id": "2024-04-06T04:54:20.201363+02:00",
 		"ko": "2024-01-11T10:40:08.159202+01:00",
-		"jbo": "2024-03-16T00:05:19.199882+01:00"
+		"jbo": "2024-03-16T00:05:19.199882+01:00",
+		"ar": "2024-05-20T12:36:57.741512+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -101,7 +102,7 @@
 				"username": "Yic95"
 			},
 			"first": "2022",
-			"last": "2023"
+			"last": "2024"
 		},
 		"https://hosted.weblate.org/api/users/Oblomov/?format=json": {
 			"raw": {
@@ -109,7 +110,7 @@
 				"username": "Oblomov"
 			},
 			"first": "2022",
-			"last": "2022"
+			"last": "2024"
 		},
 		"https://hosted.weblate.org/api/users/3raven/?format=json": {
 			"raw": {
@@ -347,6 +348,24 @@
 				"id": 83404,
 				"full_name": "孙鑫然",
 				"username": "The_Knight"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/bohopicasso/?format=json": {
+			"raw": {
+				"id": 36572,
+				"full_name": "Mateusz Malinowski",
+				"username": "bohopicasso"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/jamilmohamadalhoseen/?format=json": {
+			"raw": {
+				"id": 83871,
+				"full_name": "Jamil Mohamad Alhussein",
+				"username": "jamilmohamadalhoseen"
 			},
 			"first": "2024",
 			"last": "2024"

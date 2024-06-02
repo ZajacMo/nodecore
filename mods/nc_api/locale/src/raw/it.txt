@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-12 23:35+0000\n"
-"Last-Translator: Filippo Alfieri <fire.alpha.t@gmail.com>\n"
+"PO-Revision-Date: 2024-06-01 22:51+0000\n"
+"Last-Translator: Giuseppe Bilotta <giuseppe.bilotta@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/it/>\n"
 "Language: it\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
@@ -258,7 +258,7 @@ msgid "Loose Humus"
 msgstr "Humus Sfuso"
 
 msgid "- Can't dig trees or grass? Search for sticks in the canopy."
-msgstr "- Non riesci a scavare alberi o erba? Cerca bastoncini nelle chiome."
+msgstr "- Non riesci a scavare alberi o erba? Cerca legnetti nelle chiome."
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr ""
@@ -303,7 +303,7 @@ msgid "Azure Bell Flower"
 msgstr "Fiore a Campana Azzurro"
 
 msgid "Azure Cluster Flower"
-msgstr "Fiore Composto Azzurro"
+msgstr "Fiore a Grappolo Azzurro"
 
 msgid "Azure Cup Flower"
 msgstr "Fiore a Coppa Azzurro"
@@ -462,7 +462,7 @@ msgid "Sandstone"
 msgstr "Arenaria"
 
 msgid "Stick"
-msgstr "Bastoncino"
+msgstr "Legnetto"
 
 msgid "Stone"
 msgstr "Pietra"
@@ -588,7 +588,7 @@ msgid "Adobe"
 msgstr "Adobe"
 
 msgid "assemble a wooden ladder from sticks"
-msgstr "assembla una scala a pioli di legno da bastoncini"
+msgstr "assembla una scala a pioli di legno da legnetti"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1 da Aaron Suen <warr1024@@gmail.com>"
@@ -616,3 +616,315 @@ msgstr "@1 rifiutato. (versione protocollo @2)"
 
 msgid "- Sneak+drop to count out single items from stack."
 msgstr "- Furtivo + Getta via per prelevare un singolo oggetto da una pila."
+
+msgid "Orange Rosette Flower"
+msgstr "Fiore a Rosetta Arancione"
+
+msgid "Red Rosette Flower"
+msgstr "Fiore a Rosetta Rosso"
+
+msgid "Violet Cup Flower"
+msgstr "Fiore a Coppa Viola"
+
+msgid "Yellow Rosette Flower"
+msgstr "Fiore a Rosetta Giallo"
+
+msgid "bash a plank into sticks"
+msgstr "sfonda un'asse in legnetti"
+
+msgid "activate a prism"
+msgstr "attiva un prisma"
+
+msgid "make fire by rubbing sticks together"
+msgstr "fai un fuoco strofinando legnetti tra di loro"
+
+msgid "Blue Bell Flower"
+msgstr "Fiore a Campana Blu"
+
+msgid "Red Cluster Flower"
+msgstr "Fiore a Grappolo Rosso"
+
+msgid "Pink Bell Flower"
+msgstr "Fiore a Campana Rosa"
+
+msgid "Black Star Flower"
+msgstr "Fiore a Stella Nero"
+
+msgid "Blue Cluster Flower"
+msgstr "Fiore a Grappolo Blu"
+
+msgid "Red Cup Flower"
+msgstr "Fiore a Coppa Rosso"
+
+msgid "Red Star Flower"
+msgstr "Fiore a Stella Rosso"
+
+msgid "Wilted Star Flower"
+msgstr "Fiore a Stella Appassito"
+
+msgid "Yellow Bell Flower"
+msgstr "Fiore a Campana Giallo"
+
+msgid "pack stone chips back into cobble"
+msgstr "compatta schegge per riottenere del ciottolato"
+
+msgid "Violet Rosette Flower"
+msgstr "Fiore a Rosetta Viola"
+
+msgid "Braced Wooden Form"
+msgstr "Telaio di Legno Rinforzato"
+
+msgid "brace a wooden form with a stick"
+msgstr "rinforza un telaio con un legnetto"
+
+msgid "Wet Tarry Aggregate"
+msgstr "Aggregato Bituminoso Umido"
+
+msgid "rake gravel"
+msgstr "rastrella ghiaia"
+
+msgid "Eggcorn"
+msgstr "Ghiandovolo"
+
+msgid "Graveled Adze"
+msgstr "Ascia Inghiaiata"
+
+msgid "Lux Cobble"
+msgstr "Ciottolato di Lux"
+
+msgid "Charcoal"
+msgstr "Carbone"
+
+msgid "Charcoal Lump"
+msgstr "Grumo di Carbone"
+
+msgid "Float Glass Case"
+msgstr "Cassa di Vetro Float"
+
+msgid "Orange Cluster Flower"
+msgstr "Fiore a Grappolo Arancione"
+
+msgid "Violet Star Flower"
+msgstr "Fiore a Stella Viola"
+
+msgid "Yellow Cup Flower"
+msgstr "Fiore a Coppa Giallo"
+
+msgid "wilt a flower"
+msgstr "fai appassire un fiore"
+
+msgid "White Cluster Flower"
+msgstr "Fiore a Grappolo Bianco"
+
+msgid "Yellow Star Flower"
+msgstr "Fiore a Stella Giallo"
+
+msgid "Blue Cup Flower"
+msgstr "Fiore a Coppa Blu"
+
+msgid "Blue Rosette Flower"
+msgstr "Fiore a Rosetta Blu"
+
+msgid "Blue Star Flower"
+msgstr "Fiore a Stella Blu"
+
+msgid "White Cup Flower"
+msgstr "Fiore a Coppa Bianco"
+
+msgid "Wilted Rosette Flower"
+msgstr "Fiore a Rosetta Appassito"
+
+msgid "Wilted Bell Flower"
+msgstr "Fiore a Campana Appassito"
+
+msgid "assemble a clear glass case"
+msgstr "assembla una cassa di vetro trasparente"
+
+msgid "find a flower"
+msgstr "trova un fiore"
+
+msgid "Cobble Hinged Panel"
+msgstr "Pannello di Ciottolato Incernierato"
+
+msgid "Pink Cluster Flower"
+msgstr "Fiore a Grappolo Rosa"
+
+msgid "Pink Cup Flower"
+msgstr "Fiore a Coppa Rosa"
+
+msgid "Pink Rosette Flower"
+msgstr "Fiore a Rosetta Rosa"
+
+msgid "Pink Star Flower"
+msgstr "Fiore a Stella Rosa"
+
+msgid "Violet Bell Flower"
+msgstr "Fiore a Campana Viola"
+
+msgid "Wilted Cluster Flower"
+msgstr "Fiore a Grappolo Appassito"
+
+msgid "assemble a staff from sticks"
+msgstr "costruisci un bastone con dei legnetti"
+
+msgid "find a stick"
+msgstr "trova un legnetto"
+
+msgid "stick a lens/prism in place"
+msgstr "incolla una lente/prisma sul posto"
+
+msgid "Orange Bell Flower"
+msgstr "Fiore a Campana Arancione"
+
+msgid "Orange Cup Flower"
+msgstr "Fiore a Coppa Arancione"
+
+msgid "Red Bell Flower"
+msgstr "Fiore a Campana Rosso"
+
+msgid "White Bell Flower"
+msgstr "Fiore a Campana Bianco"
+
+msgid "Wilted Cup Flower"
+msgstr "Fiore a Coppa Appassito"
+
+msgid "Wooden Shelf"
+msgstr "Scaffale di Legno"
+
+msgid "Yellow Cluster Flower"
+msgstr "Fiore a Grappolo Giallo"
+
+msgid "plant an eggcorn"
+msgstr "pianta un ghiandovolo"
+
+msgid "Black Rosette Flower"
+msgstr "Fiore a Rosetta Nero"
+
+msgid "Annealed Lode Tongs"
+msgstr "Pinze di Vena Ricotta"
+
+msgid "Black Bell Flower"
+msgstr "Fiore a Campana Nero"
+
+msgid "Black Cluster Flower"
+msgstr "Fiore a Grappolo Nero"
+
+msgid "Black Cup Flower"
+msgstr "Fiore a Coppa Nero"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Glifo di Carbone Cav"
+
+msgid "Cobble"
+msgstr "Ciottolato"
+
+msgid "Cobble Panel"
+msgstr "Pannello di Ciottolato"
+
+msgid "Clear Glass Case"
+msgstr "Cassa di Vetro Trasparente"
+
+msgid "Orange Star Flower"
+msgstr "Fiore a Stella Arancione"
+
+msgid "assemble an adze out of sticks"
+msgstr "assembla un'ascia con dei legnetti"
+
+msgid "White Rosette Flower"
+msgstr "Fiore a Rosetta Bianco"
+
+msgid "White Star Flower"
+msgstr "Fiore a Stella Bianco"
+
+msgid "break cobble into chips"
+msgstr "spezza il ciottolato in schegge"
+
+msgid "Violet Cluster Flower"
+msgstr "Fiore a Grappolo Viola"
+
+msgid "Wooden Form"
+msgstr "Telaio di Legno"
+
+msgid "assemble a wooden shelf from a form and plank"
+msgstr "assembla uno scaffale di legno da un telaio e un asse"
+
+msgid "assemble a float glass case"
+msgstr "assembla una cassa di vetro float"
+
+msgid "Wet Aggregate"
+msgstr "Aggregato Umido"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "aggiungi carbone a dell'aggregato per creare roccia bituminosa"
+
+msgid "find an eggcorn"
+msgstr "trova un ghiandovolo"
+
+msgid "rotate a charcoal glyph"
+msgstr "ruota un glifo di carbone"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Glifo di Carbone Fot"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Glifo di Carbone Mew"
+
+msgid "Bindy Pliant Stone"
+msgstr "Roccia Malleabile A Fasce"
+
+msgid "Bindy Sandstone"
+msgstr "Arenaria A Fasce"
+
+msgid "Bindy Stone"
+msgstr "Roccia A Fasce"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "Roccia Bituminosa Malleabile A Fasce"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Glifo di Carbone Geq"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Glifo di Carbone Zin"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Glifo di Carbone Yit"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "Arenaria Malleabile A Fasce"
+
+msgid "Bindy"
+msgstr "A Fasce"
+
+msgid "Bindy Adobe"
+msgstr "Adobe A Fasce"
+
+msgid "Bindy Pliant Adobe"
+msgstr "Adobe Malleabile A Fasce"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Glifo di Carbone Tof"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Glifo di Carbone Prx"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Roccianube Malleabile A Fasce"
+
+msgid "Bindy Cloudstone"
+msgstr "Roccianube A Fasce"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Glifo di Carbone Niz"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Glifo di Carbone Odo"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Glifo di Carbone Qeg"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Glifo di Carbone Xrp"
+
+msgid "cycle through all charcoal glyphs"
+msgstr "completa il ciclo dei glifi di carbone"

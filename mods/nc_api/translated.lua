@@ -1,4 +1,5 @@
 return {
+	ar = 24,
 	de = 594,
 	el = 8,
 	en = 606,
@@ -9,12 +10,12 @@ return {
 	hu = 19,
 	ia = 0,
 	id = 606,
-	it = 184,
+	it = 288,
 	jbo = 9,
 	ko = 244,
 	zh = 1,
 	nb_NO = 0,
-	pl = 1,
+	pl = 3,
 	pt = 176,
 	pt_BR = 259,
 	ru = 606,
@@ -22,5 +23,5 @@ return {
 	tok = 17,
 	uk = 606,
 	zh_CN = 62,
-	zh_TW = 301,
+	zh_TW = 319,
 }

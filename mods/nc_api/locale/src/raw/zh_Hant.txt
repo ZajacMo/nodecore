@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2023-10-23 08:03+0000\n"
+"PO-Revision-Date: 2024-05-19 16:01+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -310,34 +310,34 @@ msgid "Staff"
 msgstr "木棍"
 
 msgid "Annealed Lode"
-msgstr "冷卻類鋼"
+msgstr "冷類鋼"
 
 msgid "Annealed Lode Adze"
-msgstr "冷卻類鋼鋤"
+msgstr "冷類鋼鋤"
 
 msgid "Annealed Lode Hatchet"
-msgstr "冷卻類鋼短斧"
+msgstr "冷類鋼短斧"
 
 msgid "Annealed Lode Mallet"
-msgstr "冷卻類鋼鎚"
+msgstr "冷類鋼鎚"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "冷卻類鋼短斧 頭"
+msgstr "冷類鋼短斧 頭"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "冷卻類鋼鎚 頭"
+msgstr "冷類鋼鎚 頭"
 
 msgid "Annealed Lode Pick"
-msgstr "冷卻類鋼鎬"
+msgstr "冷類鋼鎬"
 
 msgid "Annealed Lode Spade"
-msgstr "冷卻類鋼鏟"
+msgstr "冷類鋼鏟"
 
 msgid "Annealed Lode Spade Head"
-msgstr "冷卻類鋼鏟 頭"
+msgstr "冷類鋼鏟 頭"
 
 msgid "Annealed Lode Pick Head"
-msgstr "冷卻類鋼鎬 頭"
+msgstr "冷類鋼鎬 頭"
 
 msgid "Chromatic Glass"
 msgstr "半透玻璃"
@@ -358,7 +358,7 @@ msgid "Player's Guide: Crafting"
 msgstr "玩家指南：製作"
 
 msgid "Annealed Lode Rake"
-msgstr "冷卻類鋼耙"
+msgstr "冷類鋼耙"
 
 msgid "Crafting"
 msgstr "製作"
@@ -370,7 +370,7 @@ msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
 msgid "Annealed Lode Prill"
-msgstr "冷卻類鋼粒"
+msgstr "冷類鋼粒"
 
 msgid "Lode Cobble"
 msgstr "類鋼石"
@@ -412,7 +412,7 @@ msgid "Minetest's top original voxel game about emergent mechanics and explorati
 msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制"
 
 msgid "Annealed Lode Frame"
-msgstr "冷卻類鋼框"
+msgstr "冷類鋼框"
 
 msgid "Wooden Frame"
 msgstr "木框"
@@ -433,7 +433,7 @@ msgid "Wooden Mallet"
 msgstr "木槌"
 
 msgid "put a stone tip onto a wooden tool"
-msgstr "在木製工具上放置一石片"
+msgstr "在木製工具上放置石片"
 
 msgid "carve wooden tool heads from planks"
 msgstr "把木材削成木工具頭"
@@ -589,7 +589,7 @@ msgid "hold your breath"
 msgstr "憋氣"
 
 msgid "Annealed Lode Ladder"
-msgstr "冷卻類鋼梯"
+msgstr "冷類鋼梯"
 
 msgid "Tempered Lode Hatchet Head"
 msgstr "調溫類鋼短斧 頭"
@@ -601,13 +601,13 @@ msgid "- Something seems tedious? Find better tech, subtle factors, or a better 
 msgstr "- 遇到棘手問題時，發展科技，觀察微小變因，或尋找更好的方法。"
 
 msgid "Annealed Lode Bar"
-msgstr "冷卻類鋼條"
+msgstr "冷類鋼條"
 
 msgid "Annealed Lode Mattock"
-msgstr "冷卻類鋼鶴嘴鋤"
+msgstr "冷類鋼雙頭鎬"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "冷卻類鋼鶴嘴鋤 頭"
+msgstr "冷類鋼雙頭鎬 頭"
 
 msgid "Tempered Lode Hatchet"
 msgstr "調溫類鋼短斧"
@@ -782,7 +782,7 @@ msgid "Tempered Lode Mattock Head"
 msgstr "調溫類鋼鶴嘴鋤 頭"
 
 msgid "Annealed Lode Rod"
-msgstr "冷卻類鋼棒"
+msgstr "冷類鋼棒"
 
 msgid "Glowing Lode Bar"
 msgstr "紅熱的類鋼條"
@@ -881,7 +881,7 @@ msgid "ferment peat into humus"
 msgstr "把泥炭土發酵成腐殖質"
 
 msgid "pack stone chips back into cobble"
-msgstr "把一些石片敲打成石頭"
+msgstr "把一些石片敲製成石頭"
 
 msgid "navigate by touch in darkness"
 msgstr "黑暗中摸物前進"
@@ -936,3 +936,57 @@ msgstr "已下線 @1 分鐘"
 
 msgid "Offline @1 day(s)"
 msgstr "已下線 @1 天"
+
+msgid "Black Cluster Flower"
+msgstr "黑花叢"
+
+msgid "Pink Cluster Flower"
+msgstr "粉紅花叢"
+
+msgid "dry out a rush"
+msgstr "風乾燈心草"
+
+msgid "Glowing Lode Tongs"
+msgstr "紅熱的類鋼夾"
+
+msgid "Azure Cluster Flower"
+msgstr "靛藍花叢"
+
+msgid "Dry Rush"
+msgstr "乾燈心草"
+
+msgid "Yellow Cluster Flower"
+msgstr "黄花叢"
+
+msgid "Violet Cluster Flower"
+msgstr "紫花叢"
+
+msgid "Rush"
+msgstr "燈心草"
+
+msgid "find a rush"
+msgstr "發現燈心草"
+
+msgid "grow a rush on soil near moisture"
+msgstr "在溼潤的土壤上種植燈心草"
+
+msgid "White Cluster Flower"
+msgstr "白花叢"
+
+msgid "Wilted Cluster Flower"
+msgstr "枯花叢"
+
+msgid "Annealed Lode Tongs"
+msgstr "冷類鋼夾"
+
+msgid "Blue Cluster Flower"
+msgstr "藍花叢"
+
+msgid "Orange Cluster Flower"
+msgstr "橙花叢"
+
+msgid "Red Cluster Flower"
+msgstr "紅花叢"
+
+msgid "melt stone into pumwater"
+msgstr "把岩石熔成石漿"
