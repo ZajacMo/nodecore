@@ -57,7 +57,7 @@ nodecore.register_craft({
 		label = "lode ore quenching",
 		action = "cook",
 		touchgroups = {flame = 0},
-		neargroups = {coolant = 0},
+		neargroups = {coolant = 1},
 		cookfx = true,
 		indexkeys = {modname .. ":cobble_hot"},
 		nodes = {
