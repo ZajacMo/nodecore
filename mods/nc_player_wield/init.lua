@@ -47,30 +47,18 @@ local emptyslot = {
 	glow = 0
 }
 
-local function calcprops(itemname, iswield)
+local function itemprops(stack, iswield)
+	local itemname = stack:get_name()
+
 	local def = minetest.registered_items[itemname]
 	if def and def.virtual_item then return hidden end
-	if itemname == "" then return iswield and hidden or emptyslot end
-	local size = iswield and (def and def.type == "tool" and size_w_tool
-		or size_w_item) or (itemname == "" and size_slot) or size_item
-	return {
-		is_visible = true,
-		visual_size = size,
-		visual = "wielditem",
-		textures = {itemname},
-		glow = def and (def.light_source or def.glow or 0)
-	}
-end
 
-local propcache_item = {}
-local propcache_wield = {}
-local function itemprops(itemname, iswield)
-	local cache = iswield and propcache_wield or propcache_item
-	local found = cache[itemname]
-	if found then return found end
-	found = calcprops(itemname, iswield)
-	cache[itemname] = found
-	return found
+	if itemname == "" then return iswield and hidden or emptyslot end
+
+	local props = nodecore.stackentprops(stack)
+	props.visual_size = iswield and (def and def.type == "tool" and size_w_tool
+		or size_w_item) or (itemname == "" and size_slot) or size_item
+	return props
 end
 
 local playerdata = {}
@@ -171,7 +159,7 @@ entdef = {
 		end
 
 		return self.object:set_properties(itemprops(
-				pdata.inv[conf.slot or widx]:get_name(),
+				pdata.inv[conf.slot or widx],
 				not conf.slot))
 	end
 }
