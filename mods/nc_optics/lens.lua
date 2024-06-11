@@ -72,6 +72,7 @@ local basedef = {
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "lens",
 	stackfamily = modname .. ":lens",
+	drop_as = modname .. ":lens",
 	mapcolor = {r = 139, g = 187, b = 212},
 }
 
