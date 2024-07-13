@@ -10,7 +10,7 @@ return {
 	hu = 19,
 	ia = 0,
 	id = 606,
-	it = 288,
+	it = 606,
 	jbo = 9,
 	ko = 244,
 	zh = 1,
@@ -23,5 +23,5 @@ return {
 	tok = 17,
 	uk = 606,
 	zh_CN = 62,
-	zh_TW = 319,
+	zh_TW = 555,
 }

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2024-05-19 16:01+0000\n"
+"PO-Revision-Date: 2024-07-13 03:44+0000\n"
 "Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -54,13 +54,13 @@ msgid "- Learn to use the stars for long distance navigation."
 msgstr "- 學會觀星來長途移動。"
 
 msgid "- Recipes are time-based, punching faster does not speed up."
-msgstr "- 配方以時間為基準，打更快不加快製作。"
+msgstr "- 配方以時間為基準，高速敲打並不加快製作。"
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
 msgstr "- 潛行時按輔助鍵丟物品會丟掉同樣的物品。"
 
 msgid "- There is NO inventory screen."
-msgstr "- 「沒有」物品欄畫面。"
+msgstr "- 畫面下方的快捷欄「就是」你的背包。"
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr "- 持續地向前／向上移動會愈來愈快。"
@@ -69,7 +69,7 @@ msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr "- 環繞的物品、面向與環繞的方塊可能影響。"
 
 msgid "- You do not have to punch very fast (about 1 per second)."
-msgstr "- 你不必打得很快（約一秒一次）。"
+msgstr "- 你不必打得很快（每秒 1 次即可）。"
 
 msgid "@1 ....."
 msgstr "@1 ....."
@@ -96,11 +96,10 @@ msgid "Additional Mods Loaded: @1"
 msgstr "已載入額外的模組： @1"
 
 msgid "Adobe Mix"
-msgstr "陶土"
+msgstr "陶土粉"
 
-#, fuzzy
 msgid "Amalgamation"
-msgstr "混合物"
+msgstr "石漿岩"
 
 msgid "Cobble"
 msgstr "石"
@@ -109,7 +108,7 @@ msgid "Displaced Node"
 msgstr "位移的方塊"
 
 msgid "Eggcorn"
-msgstr "種子"
+msgstr "樹蛋"
 
 msgid "Fire"
 msgstr "火"
@@ -211,13 +210,13 @@ msgid "- Displaced nodes can be climbed through like climbing spots."
 msgstr "- 位移的方塊也可爬上。"
 
 msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
-msgstr "- 礦石可能隱藏，地勢有微小線索。"
+msgstr "- 礦石可能隱藏自我，地勢有微小線索。"
 
 msgid "- Some recipes require "pummeling" a node."
 msgstr "- 有些配方需要「敲打」方塊。"
 
 msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
-msgstr "- 這個遊戲被刻意設計的很有挑戰性，有時令人挫折。不 要 放 棄 ！"
+msgstr "- 這遊戲很難。感到挫折時，不 要 放 棄 ！"
 
 msgid "@1 ||||."
 msgstr "@1 ||||."
@@ -226,10 +225,10 @@ msgid "- Sneak+drop to count out single items from stack."
 msgstr "- 潛行時丟物品會從物品疊中丟出一個物品。"
 
 msgid "- Stacks may be pummeled, exact item count may matter."
-msgstr "- 堆疊可以被敲打，精確的數量可能影響。"
+msgstr "- 堆疊可以被敲打，數量可能有影響。"
 
 msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
-msgstr "- 生火有困難？試著使用更長的木棒與更多的可燃物。"
+msgstr "- 生火有困難？試著使用更長的木棍與更多的可燃物。"
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
 msgstr "- 「敲打」是快速的打擊方塊，而非挖掘。"
@@ -244,16 +243,16 @@ msgid "@1 (@2)"
 msgstr "@1 (@2)"
 
 msgid "@1 discovered, @2 available, @3 future"
-msgstr "@1 個發現、 @2 個可發現、 @3 個延伸"
+msgstr "@1 個已發現、 @2 個可發現、 @3 個延伸"
 
 msgid "Adobe Bricks"
-msgstr "土胚磚塊"
+msgstr "陶土磚塊"
 
 msgid "Adobe"
-msgstr "土胚方塊"
+msgstr "陶土方塊"
 
 msgid "Aggregate"
-msgstr "小石料"
+msgstr "水泥粉"
 
 msgid "Charcoal"
 msgstr "木炭塊"
@@ -310,40 +309,40 @@ msgid "Staff"
 msgstr "木棍"
 
 msgid "Annealed Lode"
-msgstr "冷類鋼"
+msgstr "軟的紫鋼"
 
 msgid "Annealed Lode Adze"
-msgstr "冷類鋼鋤"
+msgstr "軟的紫鋼鋤"
 
 msgid "Annealed Lode Hatchet"
-msgstr "冷類鋼短斧"
+msgstr "軟的紫鋼短斧"
 
 msgid "Annealed Lode Mallet"
-msgstr "冷類鋼鎚"
+msgstr "軟的紫鋼鎚"
 
 msgid "Annealed Lode Hatchet Head"
-msgstr "冷類鋼短斧 頭"
+msgstr "軟的紫鋼短斧 頭"
 
 msgid "Annealed Lode Mallet Head"
-msgstr "冷類鋼鎚 頭"
+msgstr "軟的紫鋼鎚 頭"
 
 msgid "Annealed Lode Pick"
-msgstr "冷類鋼鎬"
+msgstr "軟的紫鋼鎬"
 
 msgid "Annealed Lode Spade"
-msgstr "冷類鋼鏟"
+msgstr "軟的紫鋼鏟"
 
 msgid "Annealed Lode Spade Head"
-msgstr "冷類鋼鏟 頭"
+msgstr "軟的紫鋼鏟 頭"
 
 msgid "Annealed Lode Pick Head"
-msgstr "冷類鋼鎬 頭"
+msgstr "軟的紫鋼鎬 頭"
 
 msgid "Chromatic Glass"
-msgstr "半透玻璃"
+msgstr "多色玻璃"
 
 msgid "Clear Glass"
-msgstr "透明玻璃"
+msgstr "清澈玻璃"
 
 msgid "Dirt"
 msgstr "土"
@@ -352,13 +351,13 @@ msgid "Discovery"
 msgstr "發現"
 
 msgid "Lode Ore"
-msgstr "類鋼礦"
+msgstr "紫鋼礦"
 
 msgid "Player's Guide: Crafting"
 msgstr "玩家指南：製作"
 
 msgid "Annealed Lode Rake"
-msgstr "冷類鋼耙"
+msgstr "軟的紫鋼耙"
 
 msgid "Crafting"
 msgstr "製作"
@@ -370,10 +369,10 @@ msgid "GitLab: https://gitlab.com/sztest/nodecore"
 msgstr "GitLab: https://gitlab.com/sztest/nodecore"
 
 msgid "Annealed Lode Prill"
-msgstr "冷類鋼粒"
+msgstr "軟的紫鋼粒"
 
 msgid "Lode Cobble"
-msgstr "類鋼石"
+msgstr "紫鋼石"
 
 msgid "Player's Guide: Movement and Navigation"
 msgstr "玩家指南：移動與探索"
@@ -406,13 +405,13 @@ msgid "Tree Trunk"
 msgstr "樹幹"
 
 msgid "Loose Lode Cobble"
-msgstr "鬆類鋼石"
+msgstr "鬆紫鋼石"
 
 msgid "Minetest's top original voxel game about emergent mechanics and exploration"
 msgstr "最好的 Minetest 原創方塊遊戲，有關探索自然出現的遊戲機制"
 
 msgid "Annealed Lode Frame"
-msgstr "冷類鋼框"
+msgstr "軟的紫鋼框"
 
 msgid "Wooden Frame"
 msgstr "木框"
@@ -421,13 +420,13 @@ msgid "assemble a wooden frame from staves"
 msgstr "用一些木棍製作木框"
 
 msgid "convert a wooden frame to a form"
-msgstr "由木框製作成型框"
+msgstr "用木框製作木空框"
 
 msgid "Crude Glass"
 msgstr "粗糙玻璃"
 
 msgid "Wooden Form"
-msgstr "木成型框"
+msgstr "木空框"
 
 msgid "Wooden Mallet"
 msgstr "木槌"
@@ -490,7 +489,7 @@ msgid "Wooden Spade Head"
 msgstr "木鏟頭"
 
 msgid "assemble a wooden shelf from a form and plank"
-msgstr "由木成型框與木材組成木儲物架"
+msgstr "把木空框與木材組成木儲物架"
 
 msgid "assemble a wooden ladder from sticks"
 msgstr "由木棒組裝木梯"
@@ -499,10 +498,10 @@ msgid "carve a wooden plank completely"
 msgstr "完整地把木材削成木棒"
 
 msgid "convert a wooden form to a frame"
-msgstr "由木成型框製作木框"
+msgstr "用木空框製作木框"
 
 msgid "temper a lode cube"
-msgstr "調溫類鋼方塊"
+msgstr "調溫紫鋼方塊使其硬化"
 
 msgid "split a tree trunk into planks"
 msgstr "分原木為木材"
@@ -514,7 +513,7 @@ msgid "squeeze out a sponge"
 msgstr "擰海綿"
 
 msgid "wet a concrete mix"
-msgstr "沾溼混凝土粉"
+msgstr "沾溼灰料"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
 msgstr "有最新功能但可能出錯的 Nodecore"
@@ -523,7 +522,7 @@ msgid "stick a lens/prism in place"
 msgstr "黏住透鏡或稜鏡"
 
 msgid "temper a lode tool head"
-msgstr "調溫一類鋼工具頭"
+msgstr "調溫紫鋼工具頭"
 
 msgid "throw an item really fast"
 msgstr "急速丟出物品"
@@ -577,7 +576,7 @@ msgid "dig up cobble"
 msgstr "挖石頭"
 
 msgid "dig up lode ore"
-msgstr "挖類鋼礦"
+msgstr "挖紫鋼礦"
 
 msgid "dig up gravel"
 msgstr "挖礫石"
@@ -589,10 +588,10 @@ msgid "hold your breath"
 msgstr "憋氣"
 
 msgid "Annealed Lode Ladder"
-msgstr "冷類鋼梯"
+msgstr "軟的紫鋼梯"
 
 msgid "Tempered Lode Hatchet Head"
-msgstr "調溫類鋼短斧 頭"
+msgstr "鋼硬的紫鋼短斧 頭"
 
 msgid "see a tree grow"
 msgstr "看見樹成長"
@@ -601,46 +600,46 @@ msgid "- Something seems tedious? Find better tech, subtle factors, or a better 
 msgstr "- 遇到棘手問題時，發展科技，觀察微小變因，或尋找更好的方法。"
 
 msgid "Annealed Lode Bar"
-msgstr "冷類鋼條"
+msgstr "軟的紫鋼棒"
 
 msgid "Annealed Lode Mattock"
-msgstr "冷類鋼雙頭鎬"
+msgstr "軟的紫鋼雙頭鎬"
 
 msgid "Annealed Lode Mattock Head"
-msgstr "冷類鋼雙頭鎬 頭"
+msgstr "軟的紫鋼雙頭鎬 頭"
 
 msgid "Tempered Lode Hatchet"
-msgstr "調溫類鋼短斧"
+msgstr "鋼硬的紫鋼短斧"
 
 msgid "sinter glowing lode prills into a cube"
-msgstr "鍛造紅熱的類鋼，使其成為方塊"
+msgstr "鍛造紅熱的紫鋼，使其成為方塊"
 
 msgid "Glowing Lode Mallet Head"
-msgstr "紅熱的類鋼鎚 頭"
+msgstr "紅熱的紫鋼鎚 頭"
 
 msgid "Glowing Lode Hatchet Head"
-msgstr "紅熱的類鋼短斧 頭"
+msgstr "紅熱的紫鋼短斧 頭"
 
 msgid "assemble a stone-tipped stylus"
 msgstr "組裝石尖刮刻筆"
 
 msgid "Clear Glass Case"
-msgstr "透明玻璃槽"
+msgstr "清澈玻璃槽"
 
 msgid "assemble a lode adze"
-msgstr "組裝一支類鋼鋤"
+msgstr "組裝類鋼鋤"
 
 msgid "assemble a lode rake"
-msgstr "組裝一支類鋼耙"
+msgstr "組裝一支紫鋼耙"
 
 msgid "break cobble into chips"
 msgstr "打碎石頭，使它變石片"
 
 msgid "anneal a lode cube"
-msgstr "冷卻一個類鋼方塊"
+msgstr "放涼紫鋼方塊"
 
 msgid "assemble a clear glass case"
-msgstr "組裝一個透明玻璃槽"
+msgstr "組裝一個清澈玻璃槽"
 
 msgid "activate a lens"
 msgstr "激發透鏡"
@@ -652,7 +651,7 @@ msgid "Burning Embers"
 msgstr "餘燼"
 
 msgid "Humus"
-msgstr "腐殖質"
+msgstr "培養土"
 
 msgid "Pummel"
 msgstr "敲打"
@@ -661,83 +660,83 @@ msgid "Wet Adobe Mix"
 msgstr "溼陶土"
 
 msgid "Glowing Lode Pick Head"
-msgstr "紅熱的類鋼鎬 頭"
+msgstr "紅熱的紫鋼鎬 頭"
 
 msgid "Loose Humus"
-msgstr "鬆腐殖質"
+msgstr "鬆培養土"
 
 msgid "Tempered Lode"
-msgstr "調溫類鋼"
+msgstr "鋼硬的紫鋼"
 
 msgid "The discovery system only alerts you to the existence of some basic game mechanics. More advanced content, such as emergent systems and automation, you will have to invent yourself!"
-msgstr "發現提示系統只告訴你遊戲基本機制。更進階的內容，像警報與自動化系統，需要自己"
-"發明！"
+msgstr "發現提示系統只告訴你遊戲基本機制。更進階的內容，像重要的規律與自動化系統，需"
+"要自己研究！"
 
 msgid "Glowing Lode Prill"
-msgstr "紅熱的類鋼粒"
+msgstr "紅熱的紫鋼粒"
 
 msgid "Glowing Lode Spade Head"
-msgstr "紅熱的類鋼鏟 頭"
+msgstr "紅熱的紫鋼鏟 頭"
 
 msgid "Peat"
 msgstr "泥炭土"
 
 msgid "Glowing Lode"
-msgstr "紅熱的類鋼"
+msgstr "紅熱的紫鋼"
 
 msgid "Tempered Lode Adze"
-msgstr "調溫類鋼鋤"
+msgstr "鋼硬的紫鋼鋤"
 
 msgid "Tempered Lode Mallet"
-msgstr "調溫類鋼槌"
+msgstr "鋼硬的紫鋼槌"
 
 msgid "Tempered Lode Mallet Head"
-msgstr "調溫類鋼槌 頭"
+msgstr "鋼硬的紫鋼槌 頭"
 
 msgid "Tempered Lode Pick"
-msgstr "調溫類鋼鎬"
+msgstr "調溫紫鋼鎬"
 
 msgid "Tempered Lode Prill"
-msgstr "調溫類鋼粒"
+msgstr "調溫紫鋼粒"
 
 msgid "find lode ore"
-msgstr "找到類鋼礦"
+msgstr "找到紫鋼礦"
 
 msgid "work annealed lode on a tempered lode anvil"
-msgstr "在調溫類鋼砧上敲打類鋼"
+msgstr "在鋼硬的紫鋼砧上敲打軟的紫鋼"
 
 msgid "Glowing Lode Cobble"
-msgstr "紅熱的類鋼石"
+msgstr "紅熱的紫鋼石"
 
 msgid "Tempered Lode Pick Head"
-msgstr "調溫類鋼鎬 頭"
+msgstr "調溫紫鋼鎬 頭"
 
 msgid "Glowing Lode Adze"
-msgstr "紅熱的類鋼鋤"
+msgstr "紅熱的紫鋼鋤"
 
 msgid "Tempered Lode Spade Head"
-msgstr "調溫類鋼鏟 頭"
+msgstr "鋼硬的紫鋼鏟 頭"
 
 msgid "Tempered Lode Rake"
-msgstr "調溫類鋼耙"
+msgstr "鋼硬的紫鋼耙"
 
 msgid "Tempered Lode Spade"
-msgstr "調溫類鋼鏟"
+msgstr "鋼硬的紫鋼鏟"
 
 msgid "melt down lode metal from lode cobble"
-msgstr "從類剛礦中熔煉出類鋼"
+msgstr "從紫鋼礦中熔煉出類鋼"
 
 msgid "work glowing lode on a stone anvil"
-msgstr "在石砧上敲打紅熱的類鋼"
+msgstr "在石砧上敲打紅熱的紫鋼"
 
 msgid "work glowing lode on a lode anvil"
-msgstr "在類鋼砧上敲打紅熱的類鋼"
+msgstr "在紫鋼砧上敲打紅熱的紫鋼"
 
 msgid "Gated Prism"
 msgstr "失效的棱鏡"
 
 msgid "Glowing Lode Mattock Head"
-msgstr "紅熱的類鋼槌 頭"
+msgstr "紅熱的紫鋼槌 頭"
 
 msgid "Glued Active Lens"
 msgstr "上膠的活化透鏡"
@@ -746,13 +745,13 @@ msgid "Glued Active Prism"
 msgstr "上膠的活化棱鏡"
 
 msgid "Glowing Lode Rake"
-msgstr "紅熱的類鋼耙"
+msgstr "紅熱的紫鋼耙"
 
 msgid "Glued Prism"
 msgstr "上膠的棱鏡"
 
 msgid "plant an eggcorn"
-msgstr "種下種子"
+msgstr "種下樹蛋"
 
 msgid "Glued Lens"
 msgstr "上膠的透鏡"
@@ -764,10 +763,10 @@ msgid "find charcoal"
 msgstr "發現木炭"
 
 msgid "find dry (loose) leaves"
-msgstr "發現落葉"
+msgstr "找到乾落葉"
 
 msgid "Glowing Lode Frame"
-msgstr "紅熱的類鋼框"
+msgstr "紅熱的紫鋼框"
 
 msgid "Glued Shining Lens"
 msgstr "上膠的發光透鏡"
@@ -776,16 +775,16 @@ msgid "Prism"
 msgstr "稜鏡"
 
 msgid "Tempered Lode Ladder"
-msgstr "調溫類鋼梯"
+msgstr "鋼硬的紫鋼梯"
 
 msgid "Tempered Lode Mattock Head"
-msgstr "調溫類鋼鶴嘴鋤 頭"
+msgstr "鋼硬的紫鋼鶴嘴鋤 頭"
 
 msgid "Annealed Lode Rod"
-msgstr "冷類鋼棒"
+msgstr "軟的紫鋼棒"
 
 msgid "Glowing Lode Bar"
-msgstr "紅熱的類鋼條"
+msgstr "紅熱的紫鋼條"
 
 msgid "Glued Gated Prism"
 msgstr "上膠的失效棱鏡"
@@ -797,22 +796,22 @@ msgid "Shining Lens"
 msgstr "發光棱鏡"
 
 msgid "Tempered Lode Bar"
-msgstr "調溫類鋼條"
+msgstr "鋼硬的紫鋼條"
 
 msgid "Tempered Lode Frame"
-msgstr "調溫類鋼框"
+msgstr "鋼硬的紫鋼框"
 
 msgid "Tempered Lode Mattock"
-msgstr "調溫類鋼鶴嘴鋤"
+msgstr "鋼硬的紫鋼鶴嘴鋤"
 
 msgid "Tempered Lode Rod"
-msgstr "調溫類鋼棒"
+msgstr "鋼硬的紫鋼棒"
 
 msgid "find a stick"
 msgstr "發現木棒"
 
 msgid "find an eggcorn"
-msgstr "發現種子"
+msgstr "發現樹蛋"
 
 msgid "find ash"
 msgstr "發現灰"
@@ -830,13 +829,13 @@ msgid "harvest a sponge"
 msgstr "採收海綿"
 
 msgid "Glowing Lode Ladder"
-msgstr "紅熱的類鋼梯"
+msgstr "紅熱的紫鋼梯"
 
 msgid "Glowing Lode Rod"
-msgstr "紅熱的類鋼棒"
+msgstr "紅熱的紫鋼棒"
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
-msgstr "要創造攀爬點，空手對牆或天花板按住右鍵。"
+msgstr "空手對牆或天花板按住右鍵來創造攀爬點。"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Discord: https://discord.gg/NNYeF6f"
@@ -845,7 +844,7 @@ msgid "Admin Tool"
 msgstr "管理者工具"
 
 msgid "Lode Form"
-msgstr "類鋼成形框"
+msgstr "紫鋼空框"
 
 msgid "run at full speed"
 msgstr "全速衝刺"
@@ -854,13 +853,13 @@ msgid "Raked Gravel"
 msgstr "耙過的礫石"
 
 msgid "Raked Humus"
-msgstr "耙過的腐殖質"
+msgstr "耙過的培養土"
 
 msgid "weaken stone by soaking"
 msgstr "泡水弱化石頭"
 
 msgid "weld glowing lode pick and spade heads together"
-msgstr "將紅熱的的鎬頭跟鏟頭接在一起"
+msgstr "將紅熱的鎬頭跟鏟頭接在一起"
 
 msgid "rake humus"
 msgstr "耙腐殖質"
@@ -869,7 +868,7 @@ msgid "rake gravel"
 msgstr "耙礫石"
 
 msgid "Loose Amalgamation"
-msgstr "鬆混合物"
+msgstr "鬆石漿岩"
 
 msgid "Raked Dirt"
 msgstr "耙過的土"
@@ -899,7 +898,7 @@ msgid "produce light from a lens"
 msgstr "用透鏡製造光明"
 
 msgid "mold molten glass into clear glass"
-msgstr "把熔融玻璃塑造成透明玻璃"
+msgstr "把熔融玻璃塑成透明玻璃"
 
 msgid "find a sedge"
 msgstr "找到莎草"
@@ -920,7 +919,7 @@ msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-@1，作者為 Aaron Suen <warr1024@@gmail.com>"
 
 msgid "Donate: https://liberapay.com/NodeCore"
-msgstr "Donate: https://liberapay.com/NodeCore"
+msgstr "捐贈：https://liberapay.com/NodeCore"
 
 msgid "Offline @1 year(s)"
 msgstr "已下線 @1 年"
@@ -947,7 +946,7 @@ msgid "dry out a rush"
 msgstr "風乾燈心草"
 
 msgid "Glowing Lode Tongs"
-msgstr "紅熱的類鋼夾"
+msgstr "紅熱的紫鋼夾"
 
 msgid "Azure Cluster Flower"
 msgstr "靛藍花叢"
@@ -977,7 +976,7 @@ msgid "Wilted Cluster Flower"
 msgstr "枯花叢"
 
 msgid "Annealed Lode Tongs"
-msgstr "冷類鋼夾"
+msgstr "軟的紫鋼夾"
 
 msgid "Blue Cluster Flower"
 msgstr "藍花叢"
@@ -990,3 +989,711 @@ msgstr "紅花叢"
 
 msgid "melt stone into pumwater"
 msgstr "把岩石熔成石漿"
+
+msgid "Pink Bell Flower"
+msgstr "粉紅鐘花"
+
+msgid "Pink Star Flower"
+msgstr "粉紅花星"
+
+msgid "Black Cup Flower"
+msgstr "黑盆花"
+
+msgid "Black Rosette Flower"
+msgstr "黑層花"
+
+msgid "Black Star Flower"
+msgstr "黑花星"
+
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr "在抽像、奇特而冷酷的世界內尋找規律。"
+
+msgid "Float Glass"
+msgstr "透明玻璃"
+
+msgid "Orange Star Flower"
+msgstr "橙花星"
+
+msgid "Orange Cup Flower"
+msgstr "橙盆花"
+
+msgid "Wilted Bell Flower"
+msgstr "枯鐘花"
+
+msgid "Red Cup Flower"
+msgstr "紅盆花"
+
+msgid "Yellow Cup Flower"
+msgstr "黄盆花"
+
+msgid "Blue Cup Flower"
+msgstr "藍盆花"
+
+msgid "Violet Rosette Flower"
+msgstr "紫層花"
+
+msgid "Violet Cup Flower"
+msgstr "紫盆花"
+
+msgid "Violet Star Flower"
+msgstr "紫花星"
+
+msgid "White Bell Flower"
+msgstr "白鐘花"
+
+msgid "White Rosette Flower"
+msgstr "白層花"
+
+msgid "White Cup Flower"
+msgstr "白盆花"
+
+msgid "White Star Flower"
+msgstr "白花星"
+
+msgid "Orange Bell Flower"
+msgstr "橙鐘花"
+
+msgid "Yellow Star Flower"
+msgstr "黄花星"
+
+msgid "chip chromatic glass into prisms"
+msgstr "把多色玻璃敲成棱鏡"
+
+msgid "mold molten glass into float glass"
+msgstr "把熔融玻璃塑成透明玻璃"
+
+msgid "Azure Bell Flower"
+msgstr "靛藍鐘花"
+
+msgid "Azure Cup Flower"
+msgstr "靛藍盆花"
+
+msgid "Azure Star Flower"
+msgstr "靛藍花星"
+
+msgid "Black Bell Flower"
+msgstr "黑鐘花"
+
+msgid "Blue Rosette Flower"
+msgstr "藍層花"
+
+msgid "Blue Bell Flower"
+msgstr "藍鐘花"
+
+msgid "Blue Star Flower"
+msgstr "藍花星"
+
+msgid "Flux"
+msgstr "光石流"
+
+msgid "Red Rosette Flower"
+msgstr "紅層花"
+
+msgid "Pink Cup Flower"
+msgstr "粉紅盆花"
+
+msgid "Red Star Flower"
+msgstr "紅花星"
+
+msgid "Spackling"
+msgstr "玻璃沙"
+
+msgid "Wilted Cup Flower"
+msgstr "枯盆花"
+
+msgid "Violet Bell Flower"
+msgstr "紫鐘花"
+
+msgid "Yellow Bell Flower"
+msgstr "黄鐘花"
+
+msgid "Wilted Star Flower"
+msgstr "枯花星"
+
+msgid "Tempered Lode Tongs"
+msgstr "鋼硬的紫鋼夾"
+
+msgid "assemble a float glass case"
+msgstr "組裝一個透明玻璃槽"
+
+msgid "cool molten glass into crude glass"
+msgstr "讓熔融玻璃冷卻為粗糙玻璃"
+
+msgid "brace a wooden form with a stick"
+msgstr "用木棒加固木空框"
+
+msgid "mix crude glass into ash to make spackling"
+msgstr "把粗糙玻璃與灰混合成玻璃沙"
+
+msgid "Azure Rosette Flower"
+msgstr "靛藍層花"
+
+msgid "Orange Rosette Flower"
+msgstr "橙層花"
+
+msgid "Pink Rosette Flower"
+msgstr "粉紅層花"
+
+msgid "Wilted Rosette Flower"
+msgstr "枯層花"
+
+msgid "chop chromatic glass into lenses"
+msgstr "把多色玻璃切成透鏡"
+
+msgid "Float Glass Case"
+msgstr "透明玻璃槽"
+
+msgid "Braced Wooden Form"
+msgstr "加固的空框"
+
+msgid "Red Bell Flower"
+msgstr "紅鐘花"
+
+msgid "Yellow Rosette Flower"
+msgstr "黃層花"
+
+msgid "quench molten glass into chromatic glass"
+msgstr "把熔融玻璃水冷為多色玻璃"
+
+msgid "Wet Spackling"
+msgstr "溼玻璃沙"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "已拒絕 @1。（栛定版本：@2）"
+
+msgid "Bricky Adobe"
+msgstr "磚紋陶土方塊"
+
+msgid "Horzy Pliant Adobe"
+msgstr "軟橫紋陶土方塊"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Odo 炭符"
+
+msgid "Offline Player"
+msgstr "下線的玩家"
+
+msgid "Tote Handle"
+msgstr "手提箱提把"
+
+msgid "Bindy"
+msgstr "斜雙框紋"
+
+msgid "Bricky Sandstone"
+msgstr "磚紋沙岩"
+
+msgid "Horzy Pliant Stone"
+msgstr "濕軟橫紋岩"
+
+msgid "Iceboxy Pliant Adobe"
+msgstr "軟冰框紋陶土方塊"
+
+msgid "Iceboxy Adobe"
+msgstr "冰框紋陶土方塊"
+
+msgid "Lode Crate"
+msgstr "紫鋼包裹"
+
+msgid "Pliant Tarstone"
+msgstr "濕軟黑岩"
+
+msgid "Vermy Tarstone"
+msgstr "多形紋黑岩"
+
+msgid "Verty Tarstone"
+msgstr "豎紋黑岩"
+
+msgid "bash a plank into sticks"
+msgstr "把木材砸成木棒"
+
+msgid "discovered - @1"
+msgstr "發現 - @1"
+
+msgid "FIRE QUELLED"
+msgstr "火不蔓延"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Fot 炭符"
+
+msgid "Graveled Adze"
+msgstr "石尖木鋤"
+
+msgid "Hashy Pliant Adobe"
+msgstr "軟棋盤紋陶土方塊"
+
+msgid "Hashy Cloudstone"
+msgstr "棋盤紋雲石"
+
+msgid "Hashy"
+msgstr "棋盤紋"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "濕軟棋盤紋雲石"
+
+msgid "Hashy Pliant Sandstone"
+msgstr "濕軟棋盤紋沙岩"
+
+msgid "Hashy Pliant Stone"
+msgstr "濕軟棋盤紋岩"
+
+msgid "Hashy Pliant Tarstone"
+msgstr "濕軟棋盤紋黑岩"
+
+msgid "Hashy Sandstone"
+msgstr "棋盤紋沙岩"
+
+msgid "Hashy Stone"
+msgstr "棋盤紋岩"
+
+msgid "Hashy Tarstone"
+msgstr "棋盤紋黑岩"
+
+msgid "Horzy"
+msgstr "橫紋"
+
+msgid "Horzy Adobe"
+msgstr "橫紋陶土方塊"
+
+msgid "Horzy Cloudstone"
+msgstr "橫紋雲石"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "濕軟橫紋雲石"
+
+msgid "Horzy Pliant Sandstone"
+msgstr "濕軟橫紋沙岩"
+
+msgid "Horzy Pliant Tarstone"
+msgstr "濕軟橫紋黑岩"
+
+msgid "Horzy Sandstone"
+msgstr "橫紋沙岩"
+
+msgid "Horzy Stone"
+msgstr "橫紋岩"
+
+msgid "Horzy Tarstone"
+msgstr "橫紋黑岩"
+
+msgid "Iceboxy Pliant Tarstone"
+msgstr "濕軟冰框紋黑岩"
+
+msgid "Iceboxy Stone"
+msgstr "冰框紋岩"
+
+msgid "Iceboxy Tarstone"
+msgstr "冰框紋黑岩"
+
+msgid "Lantern"
+msgstr "燈籠"
+
+msgid "Loose Lux Cobble"
+msgstr "鬆光石"
+
+msgid "Lux Cobble"
+msgstr "光石"
+
+msgid "Matrix: #+nodecore:matrix.org"
+msgstr "Matrix: #+nodecore:matrix.org"
+
+msgid "Bindy Pliant Stone"
+msgstr "濕軟斜雙框紋岩"
+
+msgid "Boxy"
+msgstr "雙框紋"
+
+msgid "Boxy Adobe"
+msgstr "雙框紋陶土"
+
+msgid "Iceboxy"
+msgstr "冰框紋"
+
+msgid "Iceboxy Pliant Sandstone"
+msgstr "濕軟冰框紋沙岩"
+
+msgid "Iceboxy Pliant Stone"
+msgstr "濕軟冰框紋岩"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Mew 炭符"
+
+msgid "Pliant Stone"
+msgstr "濕軟岩塊"
+
+msgid "Pliant Sandstone"
+msgstr "濕軟沙岩"
+
+msgid "Tarstone Bricks"
+msgstr "黑石磚塊"
+
+msgid "find lux"
+msgstr "找到光石"
+
+msgid "harden stone"
+msgstr "硬化岩石"
+
+msgid "Hashy Adobe"
+msgstr "棋盤紋陶土方塊"
+
+msgid "Iceboxy Sandstone"
+msgstr "冰框紋沙岩"
+
+msgid "Tof Charcoal Glyph"
+msgstr "Tof 炭符"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Geq 炭符"
+
+msgid "Boxy Pliant Stone"
+msgstr "濕軟雙框紋岩"
+
+msgid "Boxy Pliant Tarstone"
+msgstr "濕軟雙框紋黑岩"
+
+msgid "Boxy Sandstone"
+msgstr "雙框紋沙岩"
+
+msgid "Boxy Tarstone"
+msgstr "雙框紋黑岩"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "濕軟磚紋雲石"
+
+msgid "Bricky"
+msgstr "磚紋"
+
+msgid "Bricky Tarstone"
+msgstr "磚紋黑岩"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "濕軟冰框紋雲石"
+
+msgid "Iceboxy Cloudstone"
+msgstr "冰框紋雲石"
+
+msgid "Vermy Pliant Cloudstone"
+msgstr "濕軟多形紋雲石"
+
+msgid "Vermy Cloudstone"
+msgstr "多形紋雲石"
+
+msgid "bond stone bricks"
+msgstr "疊合石磚"
+
+msgid "chop up charcoal"
+msgstr "砍木炭"
+
+msgid "make fire by rubbing sticks together"
+msgstr "磨擦木棒生火"
+
+msgid "pack up a complete tote"
+msgstr "把手提箱塞滿物品"
+
+msgid "Verty Pliant Sandstone"
+msgstr "濕軟豎紋沙岩"
+
+msgid "Zin Charcoal Glyph"
+msgstr "Zin 炭符"
+
+msgid "charge a lantern"
+msgstr "為燈籠加燃料"
+
+msgid "find pumwater"
+msgstr "找到石漿"
+
+msgid "mix gravel into ash to make aggregate"
+msgstr "混合礫石與灰磈製成水泥粉"
+
+msgid "Boxy Pliant Sandstone"
+msgstr "濕軟雙框紋沙岩"
+
+msgid "pick a sedge"
+msgstr "拔莎草"
+
+msgid "observe a lux reaction"
+msgstr "見證光石反應"
+
+msgid "leach raked dirt to sand"
+msgstr "把耙過的土沖刷成沙"
+
+msgid "put a gravel tip on a wooden adze"
+msgstr "為木鋤加上礫石尖"
+
+msgid "quench pumwater to amalgamation"
+msgstr "把石漿水冷成石漿岩"
+
+msgid "set concrete to pliant"
+msgstr "讓灰料硬化"
+
+msgid "rotate a charcoal glyph"
+msgstr "旋轉炭符"
+
+msgid "wilt a flower"
+msgstr "風乾花"
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "你的語言（@2）翻譯進度：約 @1%"
+
+msgid "Blank"
+msgstr "無花紋"
+
+msgid "Bindy Cloudstone"
+msgstr "斜雙框紋雲石"
+
+msgid "Bindy Adobe"
+msgstr "斜雙框紋陶土方塊"
+
+msgid "Bindy Pliant Adobe"
+msgstr "軟斜雙框紋陶土方塊"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "濕軟斜雙框紋雲石"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "濕軟斜雙框紋黑岩"
+
+msgid "Bindy Sandstone"
+msgstr "斜雙框紋沙岩"
+
+msgid "Bindy Stone"
+msgstr "斜雙框紋岩"
+
+msgid "Boxy Pliant Adobe"
+msgstr "軟雙框紋陶土"
+
+msgid "Bricky Pliant Adobe"
+msgstr "軟磚紋陶土方塊"
+
+msgid "Boxy Cloudstone"
+msgstr "雙框紋雲石"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "濕軟雙框紋雲石"
+
+msgid "Boxy Stone"
+msgstr "雙框紋岩"
+
+msgid "Bricky Pliant Sandstone"
+msgstr "濕軟磚紋沙岩"
+
+msgid "Bricky Pliant Stone"
+msgstr "濕軟磚紋岩"
+
+msgid "Bricky Pliant Tarstone"
+msgstr "濕軟磚紋黑岩"
+
+msgid "Cloudstone Bricks"
+msgstr "雲石磚磈"
+
+msgid "Cav Charcoal Glyph"
+msgstr "Cav 炭符"
+
+msgid "Pliant Cloudstone"
+msgstr "濕軟雲石"
+
+msgid "Tarstone"
+msgstr "黑石"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Niz 炭符"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Prx 炭符"
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Qeg 炭符"
+
+msgid "Pumwater"
+msgstr "石漿"
+
+msgid "Pliant Adobe"
+msgstr "軟陶土"
+
+msgid "Render"
+msgstr "雲石粉"
+
+msgid "Verty Adobe"
+msgstr "豎紋陶土方塊"
+
+msgid "Verty Pliant Adobe"
+msgstr "軟豎紋陶土方塊"
+
+msgid "Verty Stone"
+msgstr "豎紋岩塊"
+
+msgid "Verty Sandstone"
+msgstr "豎紋沙岩"
+
+msgid "Verty Pliant Tarstone"
+msgstr "濕軟豎紋黑岩"
+
+msgid "Verty Pliant Stone"
+msgstr "濕軟豎紋岩"
+
+msgid "Verty Pliant Cloudstone"
+msgstr "濕軟豎紋雲石"
+
+msgid "Vermy Pliant Sandstone"
+msgstr "濕軟多形紋沙岩"
+
+msgid "Vermy Pliant Stone"
+msgstr "濕軟多形紋岩"
+
+msgid "Vermy Pliant Tarstone"
+msgstr "濕軟多形紋黑岩"
+
+msgid "Vermy Sandstone"
+msgstr "多形紋沙岩"
+
+msgid "Vermy Stone"
+msgstr "多形紋岩"
+
+msgid "Wet Aggregate"
+msgstr "濕水泥"
+
+msgid "Wet Tarry Aggregate"
+msgstr "濕黑水泥"
+
+msgid "WORLD FROZEN"
+msgstr "世界暫停"
+
+msgid "Vermy Adobe"
+msgstr "多形紋陶土方塊"
+
+msgid "Vermy Pliant Adobe"
+msgstr "軟多形紋陶土方塊"
+
+msgid "Tote (@1 / @2)"
+msgstr "手提箱 (@1 / @2)"
+
+msgid "Verty"
+msgstr "豎紋"
+
+msgid "Xrp Charcoal Glyph"
+msgstr "Xrp 炭符"
+
+msgid "Version @1 or higher is required."
+msgstr "需要 @1 或更高的版本。"
+
+msgid "Wet Render"
+msgstr "濕雲石粉"
+
+msgid "Your Minetest version is outdated, please update!"
+msgstr "你的 Minetest 版本太舊了，請更新！"
+
+msgid "Wicker"
+msgstr "草框"
+
+msgid "assemble a lode crate from form and bar"
+msgstr "用紫鋼空框與紫鋼棒組裝紫鋼包裹"
+
+msgid "assemble lode tongs"
+msgstr "組裝紫鋼夾"
+
+msgid "forge a lode rod and bar into a ladder"
+msgstr "把紫鋼棍與紫鋼棒敲成紫鋼梯"
+
+msgid "chisel stone bricks"
+msgstr "鑿石磚"
+
+msgid "add coal to aggregate to make tarstone"
+msgstr "把木炭加到水泥中裝成黑岩"
+
+msgid "cure pliant concrete fully"
+msgstr "把灰料完全晾乾"
+
+msgid "etch pliant concrete with a stylus"
+msgstr "在未乾透的灰料上雕刻"
+
+msgid "assemble a lantern from a tote handle"
+msgstr "用手提箱提把組裝燈籠"
+
+msgid "cycle through all charcoal glyphs"
+msgstr "書寫所有炭符"
+
+msgid "dry out a sponge"
+msgstr "晾乾海棉"
+
+msgid "find a sponge"
+msgstr "找到海棉"
+
+msgid "dig up lux cobble"
+msgstr "挖光石"
+
+msgid "forge an annealed lode frame into a form"
+msgstr "把軟的紫鋼框敲成紫鋼空框"
+
+msgid "forge lode bars into a rod"
+msgstr "把兩個紫鋼棒敲成紫鋼棍"
+
+msgid "forge lode rods into a frame"
+msgstr "把紫鋼棍敲成紫鋼框"
+
+msgid "mix dirt into ash to make adobe mix"
+msgstr "混合灰塊與土以製成陶土粉"
+
+msgid "fully charge a lantern"
+msgstr "把燈籠加滿燃料"
+
+msgid "observe lux criticality"
+msgstr "認真觀察光石"
+
+msgid "pack dry rushes into wicker"
+msgstr "把乾燈心草編織成草框"
+
+msgid "mix sand into ash to make render"
+msgstr "把沙子與灰塊混合成雲石粉"
+
+msgid "forge a lode prill into a bar"
+msgstr "把紫鋼粒敲成紫鋼棒"
+
+msgid "forge lode prills into a tool head"
+msgstr "把數個紫鋼粒敲成工具頭"
+
+msgid "grow a flower on soil near moisture"
+msgstr "在水旁的土種花"
+
+msgid "Bindy Tarstone"
+msgstr "斜雙框紋黑岩"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "濕軟斜雙框紋沙岩"
+
+msgid "Bricky Cloudstone"
+msgstr "磚紋雲石"
+
+msgid "Bricky Stone"
+msgstr "磚紋沙岩"
+
+msgid "Cloudstone"
+msgstr "雲石"
+
+msgid "Cracked Stone"
+msgstr "裂岩"
+
+msgid "Verty Cloudstone"
+msgstr "豎紋雲石"
+
+msgid "Vermy"
+msgstr "多形紋"
+
+msgid "assemble a lode tote handle"
+msgstr "組裝紫鋼手提箱提把"
+
+msgid "Yit Charcoal Glyph"
+msgstr "Yit 炭符"
+
+msgid "Cannot teleport an offline player."
+msgstr "無法傳送下線的玩家。"
+
+msgid "find a flower"
+msgstr "找到花"
+
+msgid "scale a wall"
+msgstr "攀岩壁"
+
+msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
+msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
+
+msgid "scale an overhang"
+msgstr "攀岩頂"
