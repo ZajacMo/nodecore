@@ -86,7 +86,7 @@ local function patchplayers()
 			return raw_set_pos(self, pos, ...)
 		end
 		local exp = dist / max_likely_speed
-		if exp > 60 then exp = max_track_expire end
+		if exp > max_track_expire then exp = max_track_expire end
 		nodecore.log("action", string_format("teleport tracking for %s"
 				.. " from %s to %s, for %.3f s",
 				pname, pstr(old), pstr(pos), exp))
