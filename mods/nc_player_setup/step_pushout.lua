@@ -40,13 +40,24 @@ minetest.after(0, function()
 		footsolids.ignore = nil
 	end)
 
+local function isroomcheck(pos, solids)
+	local nodename = minetest.get_node(pos).name
+	if nodename == "ignore" then
+		-- Ignores outside the map should push the player back toward
+		-- the map area. Ignores inside the map are not yet loaded and we
+		-- shouldn't push the player around until we find out what they are.
+		return not nodecore.within_map_limits(pos)
+	end
+	return solids[nodename]
+end
+
 local function isroom(pos)
-	return not (footsolids[minetest.get_node(pos).name]
-		or headsolids[minetest.get_node({
+	return not (isroomcheck(pos, footsolids)
+		or isroomcheck({
 				x = pos.x,
 				y = pos.y + 1,
 				z = pos.z
-			}).name])
+			}, headsolids))
 end
 
 nodecore.player_pushout_disable = nodecore.player_pushout_disable or function() end
