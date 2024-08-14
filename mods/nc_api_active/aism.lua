@@ -21,11 +21,28 @@ nodecore.register_aism,
 nodecore.registered_aisms
 = nodecore.mkreg()
 
-local aismidx = nodecore.item_matching_index(
+local aismidx, idxrebuild = nodecore.item_matching_index(
 	nodecore.registered_aisms,
 	function(i) return i.itemnames end,
 	"register_aism"
 )
+
+do
+	local pending
+	local oldreg = nodecore.register_aism
+	local function helper(...)
+		if pending then return ... end
+		pending = true
+		minetest.after(0, function()
+				pending = nil
+				return idxrebuild()
+			end)
+		return ...
+	end
+	nodecore.register_aism = function(...)
+		return helper(oldreg(...))
+	end
+end
 
 local function checkrun(def, stack, data)
 	if nodecore.stasis and not def.ignore_stasis then return end
