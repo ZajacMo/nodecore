@@ -5,8 +5,8 @@ local string_format
     = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local minproto = 41
-local minrelease = "5.6"
+local minproto = 43
+local minrelease = "5.8"
 
 local rejected = {}
 

@@ -57,13 +57,7 @@ NEW MT RELEASE PROCESS
 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-AFTER 5.6 EOS:
-
-AFTER 5.7 EOS:
-	- Remove compat_14044 workaround, if it's been fixed upstream.
-
 AFTER 5.8 EOS:
-	- Remove hud_elem_type hack, use only type
 	- Remove set_bone_position hack, use only set_bone_override
 	- Check https://github.com/minetest/minetest/pull/14353
 	- Check https://github.com/minetest/minetest/pull/14343
