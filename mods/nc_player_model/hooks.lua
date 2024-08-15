@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
-local math_abs, math_deg
-    = math.abs, math.deg
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
+local math_abs, math_deg, math_pi
+    = math.abs, math.deg, math.pi
 -- LUALOCALS > ---------------------------------------------------------
 
 local frame_blend = 0.1
@@ -22,6 +22,20 @@ end
 nodecore.register_on_leaveplayer(function(player)
 		item_drop_times[player:get_player_name()] = nil
 	end)
+
+local function boneprop(vec)
+	return {vec = vec, absolute = false, interpolation = 0.5}
+end
+local function setbonepos(player, bone, pos, rot)
+	if player.set_bone_override then
+		rot = vector.multiply(rot, math_pi / 180)
+		return player:set_bone_override(bone, {
+				position = boneprop(pos),
+				rotation = boneprop(rot),
+			})
+	end
+	return player:set_bone_position(bone, pos, rot)
+end
 
 nodecore.register_playerstep({
 		label = "player model visuals",
@@ -60,7 +74,7 @@ nodecore.register_playerstep({
 			if not (data.headpitch and math_abs(data.headpitch - pitch)
 				< pitch_precision) then
 				data.headpitch = pitch
-				player:set_bone_position("Head",
+				setbonepos(player, "Head",
 					{x = 0, y = 1/2, z = -pitch / 45},
 					{x = pitch, y = 0, z = 0}
 				)
