@@ -70,6 +70,12 @@ local function hud_params(player, def)
 	end
 	if not player then return error("missing player") end
 
+	def = copytbl(def)
+	local elemtype = def.hud_elem_type or def.type
+	local hdtf = minetest.features.hud_def_type_field
+	def.hud_elem_type = (not hdtf) and elemtype or nil
+	def.type = hdtf and elemtype or nil
+
 	return player, pname, def
 end
 local function hud_set(player, def)
