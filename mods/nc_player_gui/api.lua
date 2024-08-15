@@ -129,7 +129,7 @@ nodecore.register_on_joinplayer("join set inv formspec", nodecore.inventory_form
 
 nodecore.register_on_player_receive_fields("player inv formspec returned",
 	function(player, formname, fields)
-		if formname == "" or formname == modname then
+		if formname == "" then
 			local tab
 			for i = 1, #nodecore.registered_inventory_tabs do
 				if fields["tab" .. i] then
@@ -137,11 +137,7 @@ nodecore.register_on_player_receive_fields("player inv formspec returned",
 					break
 				end
 			end
-			if tab then
-				nodecore.inventory_tab_set(player, tab)
-				return minetest.show_formspec(player:get_player_name(),
-					modname, nodecore.inventory_formspec_update(player))
-			end
+			if tab then nodecore.inventory_tab_set(player, tab) end
 			nodecore.inventory_formspec_update(player)
 		end
 	end)
