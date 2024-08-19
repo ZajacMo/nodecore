@@ -19,6 +19,52 @@ for _, v in pairs(nodecore.dirs()) do
 	end
 end
 
+local checkflow
+do
+	local src = modname .. ":flux_source"
+	local flow = modname .. ":flux_flowing"
+	local hashpos = minetest.hash_node_position
+	local cache = {}
+	checkflow = function(pos, nextpos, ...)
+		local nn = minetest.get_node(pos).name
+		if nn == src then return 1 end
+		if nn ~= flow then return end
+		if nextpos then return checkflow(nextpos, ...) end
+		local d = cache[hashpos(pos)]
+		return d and d + 1
+	end
+	minetest.register_abm({
+			label = "trace flux sources",
+			chance = 2,
+			interval = 1,
+			nodenames = {flow},
+			action = function(pos)
+				local d = checkflow({x = pos.x, y = pos.y + 1, z = pos.z})
+				if d then cache[hashpos(pos)] = d return end
+				d = checkflow(
+					{x = pos.x - 1, y = pos.y, z = pos.z},
+					{x = pos.x - 1, y = pos.y + 1, z = pos.z}
+				)
+				local e = checkflow(
+					{x = pos.x + 1, y = pos.y, z = pos.z},
+					{x = pos.x + 1, y = pos.y + 1, z = pos.z}
+				)
+				d = (d and e and d < e and d or e) or d or e
+				e = checkflow(
+					{x = pos.x, y = pos.y, z = pos.z - 1},
+					{x = pos.x, y = pos.y + 1, z = pos.z - 1}
+				)
+				d = (d and e and d < e and d or e) or d or e
+				e = checkflow(
+					{x = pos.x, y = pos.y, z = pos.z + 1},
+					{x = pos.x, y = pos.y + 1, z = pos.z + 1}
+				)
+				d = (d and e and d < e and d or e) or d or e
+				cache[hashpos(pos)] = d
+			end
+		})
+end
+
 function nodecore.lux_soak_rate(pos)
 	local above = vector.add(pos, {x = 0, y = 1, z = 0})
 	if not isfluid(above) then return false end
@@ -27,13 +73,12 @@ function nodecore.lux_soak_rate(pos)
 		if isfluid(vector.add(pos, v)) then qty = qty + 1 end
 	end
 
-	local dist = nodecore.scan_flood(above, 14, function(p, d)
-			if p.dir and p.dir.y < 0 then return false end
-			local nn = minetest.get_node(p).name
-			if nn == modname .. ":flux_source" then return d end
-			if nn ~= modname .. ":flux_flowing" then return false end
-		end)
-	if not dist then return false end
+	local nn = minetest.get_node(above).name
+	if nn == modname .. ":flux_source" then return qty * 20 end
+	if nn ~= modname .. ":flux_flowing" then return false end
+	local dist = checkflow(above)
+	if not dist then return end -- cache may not be filled
+	if dist > 14 then return false end
 
 	return qty * 20 / math_pow(2, dist / 2)
 end
