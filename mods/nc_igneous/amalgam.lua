@@ -8,12 +8,12 @@ local modname = minetest.get_current_modname()
 local cob = ""
 local loose = ""
 for i = 0, 31 do
-	cob = cob .. ":0," .. (i * 16) .. "=nc_terrain_cobble.png"
-	loose = loose .. ":0," .. (i * 16) .. "=nc_api_loose.png"
+	cob = cob .. ":0," .. (i * 16) .. "=(nc_terrain_cobble.png\\^[resize\\:16x16)"
+	loose = loose .. ":0," .. (i * 16) .. "=(nc_api_loose.png\\^[resize\\:16x16)"
 end
 local function tile(suff)
 	return {
-		name = "[combine:16x512:0,0=nc_terrain_lava.png" .. cob .. suff,
+		name = "[combine:16x512:0,0=nc_terrain_lava.png\\^[resize\\:16x512" .. cob .. suff,
 		animation = {
 			["type"] = "vertical_frames",
 			aspect_w = 16,

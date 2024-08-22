@@ -89,7 +89,7 @@ end
 
 local animglass = ""
 for i = 0, 31 do
-	animglass = animglass .. ":0," .. (i * 16) .. "=nc_optics_glass_sparkle.png"
+	animglass = animglass .. ":0," .. (i * 16) .. "=(nc_optics_glass_sparkle.png\\^[resize\\:16x16)"
 end
 animglass = "^[resize:16x512^[multiply:#c06000^([combine:16x512"
 .. animglass .. "^[multiply:#ffc080)"
