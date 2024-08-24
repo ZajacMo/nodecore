@@ -23,15 +23,12 @@ nodecore.register_on_leaveplayer(function(player)
 		item_drop_times[player:get_player_name()] = nil
 	end)
 
-local function boneprop(vec)
-	return {vec = vec, absolute = false, interpolation = 0.5}
-end
 local function setbonepos(player, bone, pos, rot)
 	if player.set_bone_override then
 		rot = vector.multiply(rot, math_pi / 180)
 		return player:set_bone_override(bone, {
-				position = boneprop(pos),
-				rotation = boneprop(rot),
+				position = {vec = pos},
+				rotation = {vec = rot},
 			})
 	end
 	return player:set_bone_position(bone, pos, rot)
