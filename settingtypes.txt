@@ -11,6 +11,14 @@ nc_api_active_soaking_tickle_max_time (Max soaking tickle interval) float 600
 # onloaded chunks while falling on a busy/slow server.
 nc_api_air_friction (Air friction) float 0.0004
 
+# Players with outdated client versions cannot be rejected by game/mod
+# code before allowing them to join, so we have to allow them to join,
+# and then kick them. We suppress the normal join/leave messages to cut
+# down on noise. Enabling this option produces a single short
+# announcement about player rejections, as these "partial" joins may
+# have privacy implications.
+nc_api_client_version_announce (Announce players kicked due to client version) bool false
+
 # Enable/show the discovery system and all related interfaces. Disabling
 # this may be useful on multiplayer servers if the players are all
 # experienced and the discoveries are obtrusive or distracting.
