@@ -31,6 +31,7 @@ local function setbonepos(player, bone, pos, rot)
 				rotation = {vec = rot},
 			})
 	end
+	pos.y = pos.y + 1/2 -- was necessary in some older version
 	return player:set_bone_position(bone, pos, rot)
 end
 
@@ -72,7 +73,7 @@ nodecore.register_playerstep({
 				< pitch_precision) then
 				data.headpitch = pitch
 				setbonepos(player, "Head",
-					{x = 0, y = 1/2, z = -pitch / 45},
+					{x = 0, y = 0, z = -pitch / 45},
 					{x = pitch, y = 0, z = 0}
 				)
 			end
