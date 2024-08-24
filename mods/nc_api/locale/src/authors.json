@@ -1,13 +1,13 @@
 {
 	"since": {
-		"de": "2024-02-19T19:55:25.226222+01:00",
+		"de": "2024-08-01T14:59:44.165233+02:00",
 		"ru": "2024-07-06T11:50:17.581595+02:00",
 		"pl": "2024-04-21T17:08:07.175450+02:00",
 		"uk": "2024-02-26T06:03:12.812981+01:00",
 		"el": "2023-03-27T20:43:15.883336+02:00",
-		"zh_Hans": "2024-04-17T15:55:32.883300+02:00",
+		"zh_Hans": "2024-08-24T07:31:48.895522+02:00",
 		"sk": "2023-05-05T22:30:26.309472+02:00",
-		"zh_Hant": "2024-07-12T17:24:18.322278+02:00",
+		"zh_Hant": "2024-08-19T10:59:03.324071+02:00",
 		"it": "2024-06-03T23:48:42.990538+02:00",
 		"fr": "2023-10-26T20:48:20.567147+02:00",
 		"pt_BR": "2023-11-03T02:19:43.807415+01:00",
@@ -21,7 +21,7 @@
 		"id": "2024-04-06T04:54:20.201363+02:00",
 		"ko": "2024-01-11T10:40:08.159202+01:00",
 		"jbo": "2024-03-16T00:05:19.199882+01:00",
-		"ar": "2024-05-20T12:36:57.741512+02:00"
+		"ar": "2024-07-28T11:49:13.255651+02:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -366,6 +366,33 @@
 				"id": 83871,
 				"full_name": "Jamil Mohamad Alhussein",
 				"username": "jamilmohamadalhoseen"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/thereisnoanderson/?format=json": {
+			"raw": {
+				"id": 89638,
+				"full_name": "thereisno anderson",
+				"username": "thereisnoanderson"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/minitob/?format=json": {
+			"raw": {
+				"id": 92365,
+				"full_name": "minitob-qwq",
+				"username": "minitob"
+			},
+			"first": "2024",
+			"last": "2024"
+		},
+		"https://hosted.weblate.org/api/users/hugoalh/?format=json": {
+			"raw": {
+				"id": 54566,
+				"full_name": "hugoalh",
+				"username": "hugoalh"
 			},
 			"first": "2024",
 			"last": "2024"

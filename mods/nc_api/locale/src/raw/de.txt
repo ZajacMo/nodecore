@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-20 00:16+0000\n"
-"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"PO-Revision-Date: 2024-08-02 11:09+0000\n"
+"Last-Translator: thereisno anderson <thereisnoanderson@users.noreply.hosted."
+"weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
@@ -224,9 +225,8 @@ msgstr "Feuchter Schwamm"
 msgid "Water"
 msgstr "Wasser"
 
-#, fuzzy
 msgid "Amalgamation"
-msgstr "Legierung"
+msgstr "Amalgamierung"
 
 msgid "Wooden Ladder"
 msgstr "Holzleiter"
@@ -1981,3 +1981,20 @@ msgstr "Veredelter Lodezange"
 
 msgid "Glowing Lode Tongs"
 msgstr "Glühende Lodezange"
+
+#, fuzzy
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr ""
+"Entdecke and erfinde eine surreale, unsympathische Welt aus Würfeln, Mustern "
+"und Abstraktionen."
+
+#, fuzzy
+msgid "FIRE QUELLED"
+msgstr "FEUER GESTOPPT"
+
+msgid "Matrix: #+nodecore:matrix.org"
+msgstr "Matrix: #+nodecore:matrix.org"
+
+#, fuzzy
+msgid "Cannot teleport an offline player."
+msgstr "Spieler die offline sind können nicht teleportiert werden."

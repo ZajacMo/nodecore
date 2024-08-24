@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2024-07-13 03:44+0000\n"
-"Last-Translator: Yic95 <0Luke.Luke0@gmail.com>\n"
+"PO-Revision-Date: 2024-08-20 09:09+0000\n"
+"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "minetest/nodecore/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.7\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -183,7 +183,7 @@ msgid "- Drop and pick up items to rearrange your inventory."
 msgstr "- 丟掉再拾起物品來重整物品欄。"
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "- 「熔爐」不是物品；用明火熔鍊。"
+msgstr "- 「熔爐」不是單一物品；用明火熔鍊。"
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr "- 在較大的合成配方中，中心物通常最後放置。"
@@ -516,7 +516,7 @@ msgid "wet a concrete mix"
 msgstr "沾溼灰料"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
-msgstr "有最新功能但可能出錯的 Nodecore"
+msgstr "有最新內容但可能出錯的 Nodecore"
 
 msgid "stick a lens/prism in place"
 msgstr "黏住透鏡或稜鏡"
@@ -781,10 +781,10 @@ msgid "Tempered Lode Mattock Head"
 msgstr "鋼硬的紫鋼鶴嘴鋤 頭"
 
 msgid "Annealed Lode Rod"
-msgstr "軟的紫鋼棒"
+msgstr "軟的紫鋼棍"
 
 msgid "Glowing Lode Bar"
-msgstr "紅熱的紫鋼條"
+msgstr "紅熱的紫鋼棒"
 
 msgid "Glued Gated Prism"
 msgstr "上膠的失效棱鏡"
@@ -796,7 +796,7 @@ msgid "Shining Lens"
 msgstr "發光棱鏡"
 
 msgid "Tempered Lode Bar"
-msgstr "鋼硬的紫鋼條"
+msgstr "鋼硬的紫鋼棒"
 
 msgid "Tempered Lode Frame"
 msgstr "鋼硬的紫鋼框"
@@ -805,7 +805,7 @@ msgid "Tempered Lode Mattock"
 msgstr "鋼硬的紫鋼鶴嘴鋤"
 
 msgid "Tempered Lode Rod"
-msgstr "鋼硬的紫鋼棒"
+msgstr "鋼硬的紫鋼棍"
 
 msgid "find a stick"
 msgstr "發現木棒"
@@ -832,10 +832,10 @@ msgid "Glowing Lode Ladder"
 msgstr "紅熱的紫鋼梯"
 
 msgid "Glowing Lode Rod"
-msgstr "紅熱的紫鋼棒"
+msgstr "紅熱的紫鋼棍"
 
 msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
-msgstr "空手對牆或天花板按住右鍵來創造攀爬點。"
+msgstr "- 空手對牆或天花板按住右鍵來創造攀爬點。"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
 msgstr "Discord: https://discord.gg/NNYeF6f"
@@ -994,7 +994,7 @@ msgid "Pink Bell Flower"
 msgstr "粉紅鐘花"
 
 msgid "Pink Star Flower"
-msgstr "粉紅花星"
+msgstr "粉紅星花"
 
 msgid "Black Cup Flower"
 msgstr "黑盆花"
@@ -1003,7 +1003,7 @@ msgid "Black Rosette Flower"
 msgstr "黑層花"
 
 msgid "Black Star Flower"
-msgstr "黑花星"
+msgstr "黑星花"
 
 msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
 msgstr "在抽像、奇特而冷酷的世界內尋找規律。"
@@ -1012,7 +1012,7 @@ msgid "Float Glass"
 msgstr "透明玻璃"
 
 msgid "Orange Star Flower"
-msgstr "橙花星"
+msgstr "橙星花"
 
 msgid "Orange Cup Flower"
 msgstr "橙盆花"
@@ -1036,7 +1036,7 @@ msgid "Violet Cup Flower"
 msgstr "紫盆花"
 
 msgid "Violet Star Flower"
-msgstr "紫花星"
+msgstr "紫星花"
 
 msgid "White Bell Flower"
 msgstr "白鐘花"
@@ -1048,13 +1048,13 @@ msgid "White Cup Flower"
 msgstr "白盆花"
 
 msgid "White Star Flower"
-msgstr "白花星"
+msgstr "白星花"
 
 msgid "Orange Bell Flower"
 msgstr "橙鐘花"
 
 msgid "Yellow Star Flower"
-msgstr "黄花星"
+msgstr "黄星花"
 
 msgid "chip chromatic glass into prisms"
 msgstr "把多色玻璃敲成棱鏡"
@@ -1069,7 +1069,7 @@ msgid "Azure Cup Flower"
 msgstr "靛藍盆花"
 
 msgid "Azure Star Flower"
-msgstr "靛藍花星"
+msgstr "靛藍星花"
 
 msgid "Black Bell Flower"
 msgstr "黑鐘花"
@@ -1081,7 +1081,7 @@ msgid "Blue Bell Flower"
 msgstr "藍鐘花"
 
 msgid "Blue Star Flower"
-msgstr "藍花星"
+msgstr "藍星花"
 
 msgid "Flux"
 msgstr "光石流"
@@ -1093,7 +1093,7 @@ msgid "Pink Cup Flower"
 msgstr "粉紅盆花"
 
 msgid "Red Star Flower"
-msgstr "紅花星"
+msgstr "紅星花"
 
 msgid "Spackling"
 msgstr "玻璃沙"
@@ -1108,7 +1108,7 @@ msgid "Yellow Bell Flower"
 msgstr "黄鐘花"
 
 msgid "Wilted Star Flower"
-msgstr "枯花星"
+msgstr "枯星花"
 
 msgid "Tempered Lode Tongs"
 msgstr "鋼硬的紫鋼夾"
@@ -1624,10 +1624,10 @@ msgid "forge an annealed lode frame into a form"
 msgstr "把軟的紫鋼框敲成紫鋼空框"
 
 msgid "forge lode bars into a rod"
-msgstr "把兩個紫鋼棒敲成紫鋼棍"
+msgstr "把兩枝紫鋼棒敲成紫鋼棍"
 
 msgid "forge lode rods into a frame"
-msgstr "把紫鋼棍敲成紫鋼框"
+msgstr "把兩支紫鋼棍敲成紫鋼框"
 
 msgid "mix dirt into ash to make adobe mix"
 msgstr "混合灰塊與土以製成陶土粉"
@@ -1697,3 +1697,51 @@ msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
 
 msgid "scale an overhang"
 msgstr "攀岩頂"
+
+msgid "insert wooden pin into wooden panel"
+msgstr "把木條插入沒有轉軸的轉磈"
+
+msgid "propel hinged panel with focused light"
+msgstr "用光束驅動轉塊"
+
+msgid "compress something with a hinged panel"
+msgstr "用轉塊壓縮物品"
+
+msgid "Wooden Hinged Panel"
+msgstr "木轉磈"
+
+msgid "push an item into a storage box with a hinged panel"
+msgstr "用轉磈將物品推入容器內"
+
+msgid "insert metal rod into a cobble panel"
+msgstr "把紫鋼條插入沒有轉軸的轉磈"
+
+msgid "place a node with a hinged panel"
+msgstr "用轉磈放置節點"
+
+msgid "Cobble Panel"
+msgstr "無軸石轉磈"
+
+msgid "Cobble Hinged Panel"
+msgstr "石轉磈"
+
+msgid "Wooden Panel"
+msgstr "無軸木轉磈"
+
+msgid "dig a node with a hinged panel and tool"
+msgstr "用轉磈與工具頭挖節點"
+
+msgid "complete an assembly recipe with a hinged panel"
+msgstr "只用轉磈製做物品"
+
+msgid "complete a pummel with a hinged panel and tool head"
+msgstr "用轉磈和工具頭敲打物品"
+
+msgid "catapult an item with a hinged panel"
+msgstr "用轉磈投出物品"
+
+msgid "find pumice"
+msgstr "尋找浮石"
+
+msgid "Pumice"
+msgstr "浮石"

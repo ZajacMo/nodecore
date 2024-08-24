@@ -1,4 +1,5 @@
 # textdomain: nc_api
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 من قبل Aaron Suen <warr1024@@gmail.com>
 - "Furnaces" are not a thing; discover smelting with open flames.=- "الأفران" ليست شيئًا؛ اكتشف الصهر باللهب المكشوف.
 - Aux+drop any item to drop everything.=- Aux+drop أي عنصر لإسقاط كل شيء.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- كن حذرًا من الكهوف/الفجوات المظلمة؛ أنت مسؤول عن إخراج نفسك.
@@ -22,3 +23,30 @@
 - Nodes dug without the right tool cannot be picked up, only displaced.=- لا يمكن التقاط العقد المحفورة بدون الأداة المناسبة، بل يتم إزاحتها فقط.
 - Order and specific face of placement may matter for crafting.=- قد يكون الترتيب والوجه المحدد للموضع مهمًا للصناعة.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- قد تكون الخامات مخفية، ولكن يتم الكشف عنها من خلال أدلة خفية في التضاريس.
+- Recipes are time-based, punching faster does not speed up.=- تعتمد الوصفات على الوقت، فالضغط بشكل أسرع لا يؤدي إلى تسريع العملية.
+- Sneak+aux+drop an item to drop all matching items.=-Sneak+Aux+أسقط عنصرًا لإسقاط جميع العناصر المطابقة.
+- Sneak+drop to count out single items from stack.=- التسلل + الإسقاط لاستبعاد العناصر الفردية من المكدس.
+- Some recipes require "pummeling" a node.=- تتطلب بعض الوصفات "ضرب" العقدة.
+- Something seems tedious? Find better tech, subtle factors, or a better way.=- هل يبدو الأمر مملًا؟ ابحث عن تقنية أفضل أو عوامل دقيقة أو طريقة أفضل.
+- Stacks may be pummeled, exact item count may matter.=- يمكنك ضرب المكدسات، وقد يكون عدد العناصر الدقيق في المكدسة مهمًا.
+- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!=- اللعبة صعبة من حيث التصميم، ومحبطة في بعض الأحيان. لا تستسلم!
+- There is NO inventory screen.=- لا توجد شاشة لعرض العناصر.
+- To pummel, punch a node repeatedly, WITHOUT digging.=- لضرب العقدة، ألكم العقدة مرارا وتكرارا، دون حفرها.
+- To run faster, walk/swim forward or climb/swim upward continuously.=- للركض بشكل أسرع، قم بالمشي/السباحة إلى الأمام أو التسلق/السباحة إلى الأعلى بشكل مستمر.
+- Tools used as ingredients must be in very good condition.=- يجب أن تكون الأدوات المستخدمة كمكونات في حالة جيدة جدًا.
+- Trouble lighting a fire? Try using longer sticks, more tinder.=- هل تواجه مشكلة في إشعال النار؟ حاول استخدام أعواد أطول وكميات أكبر من الفتائل.
+- Wielded item, target face, and surrounding nodes may matter.=- قد يكون للعنصر المستخدم، والوجه المستهدف، والعقد المحيطة به أهمية.
+- You do not have to punch very fast (about 1 per second).=- لا يتعين عليك أن تضرب بسرعة كبيرة (حوالي ضربة واحدة في الثانية).
+@1 discovered, @2 available, @3 future=1@ تم اكتشافه، 2@ متاح، 3@ مستقبلي
+@1 rejected. (protocol version @2)=‎@1 تم رفضه. (نسخة البروتوكول ‎@2)
+@1 |....=‎@1 |....
+@1 ||...=‎@1 ||...
+@1 |||..=‎@1 |||..
+@1 ||||.=‎@1 ||||.
+@1 |||||=‎@1 |||||
+About=عن
+Active Lens=عدسة نشطة
+Active Prism=المنشور النشط
+Additional Mods Loaded: @1=تم تحميل التعديلات الإضافية: ‎@1
+Admin Tool=أداة الأدمن
+Adobe=أدوبي

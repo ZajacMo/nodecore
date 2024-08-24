@@ -1,6 +1,6 @@
 return {
-	ar = 24,
-	de = 594,
+	ar = 54,
+	de = 598,
 	el = 8,
 	en = 606,
 	eo = 76,
@@ -22,6 +22,6 @@ return {
 	sk = 147,
 	tok = 17,
 	uk = 606,
-	zh_CN = 62,
-	zh_TW = 555,
+	zh_CN = 65,
+	zh_TW = 571,
 }
