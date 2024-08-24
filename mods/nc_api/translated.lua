@@ -1,5 +1,4 @@
 return {
-	ar = 54,
 	de = 598,
 	el = 8,
 	en = 606,

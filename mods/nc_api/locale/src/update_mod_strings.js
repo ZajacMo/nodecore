@@ -9,6 +9,16 @@ const codemap = {
 	lzh: 'zh',
 	zh_Hans: 'zh_CN',
 	zh_Hant: 'zh_TW',
+
+	// Languages unsupported by Minetest itself, see
+	// src/unsupported_language_list.txt in MT src
+	ar: false,
+	dv: false,
+	he: false,
+	hi: false,
+	kn: false,
+	ms_Arab: false,
+	th: false,
 };
 
 const ifmatch = (str, rx, func) => {
@@ -49,7 +59,8 @@ const done = async () => {
 
 	const stats = { en: Object.keys(db.en).length };
 	for(let [code, data] of Object.entries(db))
-		stats[code] = Object.keys(data).length;
+		if(codemap[code] !== false)
+			stats[code] = Object.keys(data).length;
 	await fsp.writeFile('../../translated.lua', `return {\n${
 		Object.keys(stats).sort().map(k => `\t${codemap[k] || k} = ${stats[k]},\n`).join('')
 	}}\n`);
@@ -64,7 +75,7 @@ const done = async () => {
 		db[spec] = Object.assign({}, db[gen], db[spec]);
 
 	for(let [code, data] of Object.entries(db))
-		if(code !== 'en') {
+		if(code !== 'en' && codemap[code] !== false) {
 			const ents = Object.keys(data)
 				.map(k => [k, data[k]])
 				.filter(([k, v]) => k !== v)
