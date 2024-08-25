@@ -70,7 +70,7 @@ minetest.after(0, function()
 				end
 				if t.special_tiles then
 					for i, st in pairs(t.special_tiles) do
-						writeln(tn .. " special_" .. i .. " " .. st)
+						writeln(tn .. " special" .. i .. " " .. st)
 					end
 				end
 				if noblank(t.inventory_image) then
