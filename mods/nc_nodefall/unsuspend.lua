@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, next, nodecore, pairs, vector
-    = math, minetest, next, nodecore, pairs, vector
+local math, minetest, next, nodecore, pairs
+    = math, minetest, next, nodecore, pairs
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -51,7 +51,7 @@ minetest.register_globalstep(function()
 		end
 		while batchpos <= #batch do
 			local pos = batch[batchpos]
-			local bpos = vector.offset(pos, 0, -1, 0)
+			local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if not pending[hash(bpos)] then
 				local bnode = minetest.get_node_or_nil(bpos)
 				if not bnode then

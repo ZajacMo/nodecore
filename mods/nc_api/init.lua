@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
 -- SKIP: include nodecore
-local dofile, error, ipairs, minetest, pairs, rawget, rawset,
-      setmetatable, table, tostring, type
-    = dofile, error, ipairs, minetest, pairs, rawget, rawset,
-      setmetatable, table, tostring, type
+local dofile, error, ipairs, minetest, pairs, rawget, rawset, table,
+      tostring, type
+    = dofile, error, ipairs, minetest, pairs, rawget, rawset, table,
+      tostring, type
 local table_concat, table_insert, table_sort
     = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -23,24 +23,6 @@ rawset(_G, "include", include)
 
 nodecore.product = "NodeCore"
 nodecore.version, nodecore.releasedate = include("version")
-
-local function callguard(n, t, k, v)
-	if type(v) ~= "function" then return v end
-	return function(first, ...)
-		if first == t then
-			error("called " .. n .. ":" .. k .. "() instead of " .. n .. "." .. k .. "()")
-		end
-		return v(first, ...)
-	end
-end
-for k, v in pairs(minetest) do
-	minetest[k] = callguard("minetest", minetest, k, v)
-end
-setmetatable(nodecore, {
-		__newindex = function(t, k, v)
-			rawset(nodecore, k, callguard("nodecore", t, k, v))
-		end
-	})
 
 local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
 function nodecore.log(level, ...)

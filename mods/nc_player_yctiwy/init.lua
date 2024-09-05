@@ -70,9 +70,20 @@ if drop == "" then drop = nil end
 drop = drop and minetest.deserialize(drop)
 drop = drop or {}
 
-local function savedb()
-	modstore:set_string("db", next(db) and minetest.serialize(db) or "")
-	return modstore:set_string("drop", next(drop) and minetest.serialize(drop) or "")
+local savedb
+do
+	local pending
+	savedb = function()
+		if pending then return end
+		pending = true
+		minetest.after(2, function()
+				pending = nil
+				modstore:set_string("db",
+					next(db) and minetest.serialize(db) or "")
+				return modstore:set_string("drop", next(drop)
+					and minetest.serialize(drop) or "")
+			end)
+	end
 end
 
 if disabled then
