@@ -19,13 +19,17 @@ minetest.register_entity(entname, {
 			is_visible = false,
 			collide_with_objects = false,
 			static_save = false
-		},
-		age = 0,
-		on_step = function(self, dtime)
-			self.age = self.age + dtime
-			if self.age > 60 then return self.object:remove() end
-		end
+		}
 	})
+
+nodecore.interval(10, function()
+		local cutoff = (nodecore.gametime or 0) - 60
+		for _, ent in pairs(minetest.luaentities) do
+			if ent.name == entname and ent.born <= cutoff then
+				ent.object:remove()
+			end
+		end
+	end)
 
 local function dsqr(a, b)
 	local v = vector.subtract(a, b)
@@ -37,10 +41,11 @@ do
 	local reused = 0
 	local created = 0
 	function poolent(pos)
+		local cutoff = nodecore.gametime - 5.5
 		local bestent
 		local bestd
 		for _, ent in pairs(minetest.luaentities) do
-			if ent.name == entname and ent.age >= 5.5 then
+			if ent.name == entname and ent.born <= cutoff then
 				local op = ent.object:get_pos()
 				if op then
 					local d = dsqr(pos, op)
@@ -54,11 +59,13 @@ do
 		if bestent then
 			reused = reused + 1
 			bestent.object:set_pos(pos)
-			bestent.age = 0
+			bestent.born = nodecore.gametime
 			return bestent.object
 		end
 		created = created + 1
-		return minetest.add_entity(pos, entname)
+		local obj = minetest.add_entity(pos, entname)
+		if not obj then return end
+		obj:get_luaentity().born = nodecore.gametime
 	end
 	nodecore.interval(300, function()
 			nodecore.log("info", string_format("%s reused %d created %d",
@@ -93,14 +100,16 @@ local function check(pos, done, srcs)
 			z = pos.z + math_random() * 64 - 32,
 		}
 		local ent = poolent(sp)
-		ent:set_velocity(vector.multiply(vector.normalize(
-					vector.subtract(np, sp)), 4 * math_random()))
-		nodecore.sound_play("nc_envsound_air", {
-				pos = sp,
-				object = ent,
-				gain = nodecore.windiness(sp.y) / 100,
-				max_hear_distance = 64
-			})
+		if ent then
+			ent:set_velocity(vector.multiply(vector.normalize(
+						vector.subtract(np, sp)), 4 * math_random()))
+			nodecore.sound_play("nc_envsound_air", {
+					pos = sp,
+					object = ent,
+					gain = nodecore.windiness(sp.y) / 100,
+					max_hear_distance = 64
+				})
+		end
 	elseif nodecore.get_node_light(sp) < 4 then
 		nodecore.sound_play("nc_envsound_drip", {
 				pos = sp,
