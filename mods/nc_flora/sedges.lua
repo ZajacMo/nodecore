@@ -101,12 +101,22 @@ for i = 1, 5 do
 
 end
 
-nodecore.register_on_nodeupdate(function(pos, node)
-		if node.name == "nc_terrain:dirt_with_grass" then return end
-		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		node = minetest.get_node(above)
-		if allsedges[node.name] then return minetest.remove_node(above) end
-	end)
+nodecore.register_on_nodeupdate({
+		ignore = {
+			stack_set = true,
+			add_node = true,
+			place_node = true,
+			add_node_level = true,
+			liquid_transformed = true,
+		},
+		getnode = true,
+		function(pos, node)
+			if node.name == "nc_terrain:dirt_with_grass" then return end
+			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
+			node = minetest.get_node(above)
+			if allsedges[node.name] then return minetest.remove_node(above) end
+		end
+	})
 
 minetest.register_abm({
 		label = "sedge growth/death",

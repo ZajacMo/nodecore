@@ -105,6 +105,15 @@ function nodecore.register_cook_abm(def)
 	minetest.register_abm(def)
 end
 
-nodecore.register_on_nodeupdate(function(pos, node)
-		if cooknames[node.name] then cookcheck(pos, node) end
-	end)
+nodecore.register_on_nodeupdate({
+		ignore = {
+			remove_node = true,
+			dig_node = true,
+			add_node_level = true,
+			liquid_transformed = true,
+		},
+		getnode = true,
+		func = function(pos, node)
+			if cooknames[node.name] then cookcheck(pos, node) end
+		end
+	})

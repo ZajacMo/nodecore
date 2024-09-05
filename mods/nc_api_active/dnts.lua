@@ -150,7 +150,17 @@ local function dntregen(immediate)
 		end
 	end
 end
-nodecore.register_on_nodeupdate(dntregen(true))
+nodecore.register_on_nodeupdate({
+		ignore = {
+			stack_set = true,
+			remove_node = true,
+			dig_node = true,
+			add_node_level = true,
+			liquid_transformed = true,
+		},
+		getnode = true,
+		func = dntregen(true),
+	})
 
 function nodecore.register_dnt(def)
 	local modname = minetest.get_current_modname()

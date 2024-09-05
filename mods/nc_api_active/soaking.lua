@@ -7,9 +7,17 @@ local math_floor, math_sqrt, string_format
 
 local metacache = {}
 
-nodecore.register_on_nodeupdate(function(pos)
-		metacache[minetest.hash_node_position(pos)] = nil
-	end)
+nodecore.register_on_nodeupdate({
+		ignore = {
+			stack_set = true,
+			swap_node = true,
+			add_node_level = true,
+			liquid_transformed = true,
+		},
+		func = function(pos)
+			metacache[minetest.hash_node_position(pos)] = nil
+		end
+	})
 
 local function metaget(meta, def, nodekey)
 	local fn = def.fieldname

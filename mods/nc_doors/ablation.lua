@@ -52,13 +52,22 @@ local function ablation(pos, node)
 	end
 end
 
-nodecore.register_on_nodeupdate(function(pos)
-		local key = hash(pos)
-		local cd = cooldowns[key]
-		if cd and cd > nodecore.gametime + 1 then
-			cooldowns[key] = nodecore.gametime + 1
+nodecore.register_on_nodeupdate({
+		ignore = {
+			stack_set = true,
+			remove_node = true,
+			dig_node = true,
+			add_node_level = true,
+			liquid_transformed = true,
+		},
+		func = function(pos)
+			local key = hash(pos)
+			local cd = cooldowns[key]
+			if cd and cd > nodecore.gametime + 1 then
+				cooldowns[key] = nodecore.gametime + 1
+			end
 		end
-	end)
+	})
 
 nodecore.register_dnt({
 		name = dntname,
