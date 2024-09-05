@@ -143,7 +143,7 @@ local function step_player(player, dtime)
 	cache[pname] = data
 end
 
-nodecore.register_globalstep("player steps", function(dtime)
+nodecore.register_globalstep(function(dtime)
 		for _, player in pairs(minetest.get_connected_players()) do
 			step_player(player, dtime)
 		end

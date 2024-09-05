@@ -18,7 +18,7 @@ local function solid(pos)
 end
 
 local hurttime = {}
-nodecore.register_on_player_hpchange("lose speed on hurt", function(player, hp)
+nodecore.register_on_player_hpchange(function(player, hp)
 		if hp >= 0 then return end
 		if not nodecore.player_can_take_damage(player) then return end
 		hurttime[player:get_player_name()] = nodecore.gametime

@@ -39,7 +39,7 @@ end
 local mapperlin
 minetest.after(0, function() mapperlin = minetest.get_perlin(0, 1, 0, 1) end)
 
-nodecore.register_on_generated("mapgen shared", function(minp, maxp)
+nodecore.register_on_generated(function(minp, maxp)
 		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})

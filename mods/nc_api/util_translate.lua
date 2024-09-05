@@ -52,7 +52,7 @@ function nodecore.notranslate(str)
 end
 
 if nodecore.infodump() then
-	nodecore.register_globalstep("translate templates", function()
+	nodecore.register_globalstep(function()
 			if not strings_dirty then return end
 			strings_dirty = nil
 

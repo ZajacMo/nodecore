@@ -46,12 +46,12 @@ end
 
 local pummeling = {}
 
-nodecore.register_on_dignode("dig pummel reset", function(_, _, digger)
+nodecore.register_on_dignode(function(_, _, digger)
 		if not (digger and digger:is_player()) then return end
 		pummeling[digger:get_player_name()] = nil
 	end)
 
-nodecore.register_on_punchnode("pummel check", function(pos, node, puncher, pointed)
+nodecore.register_on_punchnode(function(pos, node, puncher, pointed)
 		if (not puncher:is_player()) or puncher:get_player_control().sneak then return end
 		local pname = puncher:get_player_name()
 		if not nodecore.interact(pname) then return end

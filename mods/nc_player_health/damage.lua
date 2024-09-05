@@ -5,7 +5,7 @@ local minetest, nodecore
 
 local hurtcache = {}
 
-nodecore.register_on_player_hpchange("damage modifier", function(player, hp)
+nodecore.register_on_player_hpchange(function(player, hp)
 		local orig = player:get_hp()
 		if not nodecore.player_can_take_damage(player) then
 			return orig
@@ -34,7 +34,7 @@ nodecore.register_on_player_hpchange("damage modifier", function(player, hp)
 	true
 )
 
-nodecore.register_on_dieplayer("player virtual 0 health", function(player)
+nodecore.register_on_dieplayer(function(player)
 		nodecore.setphealth(player, 0, "on_dieplayer")
 	end)
 
@@ -68,5 +68,5 @@ local function setmax(player)
 	if nodecore.player_rejected(player) then return end
 	player:set_properties({hp_max = 8})
 end
-nodecore.register_on_joinplayer("set max health on join", setmax)
-nodecore.register_on_newplayer("set max health on new", setmax)
+nodecore.register_on_joinplayer(setmax)
+nodecore.register_on_newplayer(setmax)

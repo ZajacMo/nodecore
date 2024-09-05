@@ -19,7 +19,7 @@ local function hintinit(player)
 	donecache[pname] = t
 	msgcache[pname] = {}
 end
-nodecore.register_on_joinplayer("join hint setup", hintinit)
+nodecore.register_on_joinplayer(hintinit)
 
 local function alertcheck(pname)
 	local dc = donecache[pname]

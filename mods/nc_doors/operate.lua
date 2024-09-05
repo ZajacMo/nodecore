@@ -27,7 +27,7 @@ local function hingeaxis(pos, node)
 end
 
 local squelch = {}
-nodecore.register_globalstep("door squelch", function(dtime)
+nodecore.register_globalstep(function(dtime)
 		for k, v in pairs(squelch) do
 			squelch[k] = (v > dtime) and (v - dtime) or nil
 		end

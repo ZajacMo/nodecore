@@ -126,7 +126,7 @@ end
 
 local visinv_hidden = nodecore.group_expand("group:visinv_hidden", true)
 
-nodecore.register_globalstep("visinv check", function()
+nodecore.register_globalstep(function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
 		check_queue = {}

@@ -16,7 +16,7 @@ local function nodeface(pt)
 			pt.under, pt.above), 0.5)
 end
 
-nodecore.register_on_punchnode("touchtip on punch", function(_, _, player, pt)
+nodecore.register_on_punchnode(function(_, _, player, pt)
 		if not player then return end
 		local pname = player:get_player_name()
 		if not pname then return end

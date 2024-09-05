@@ -30,7 +30,7 @@ nodecore.register_playerstep({
 		end
 	})
 
-nodecore.register_on_joinplayer("touchtip wield reset", function(player)
+nodecore.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		wields[pname] = nil
 	end)

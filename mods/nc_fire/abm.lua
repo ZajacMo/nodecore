@@ -9,7 +9,7 @@ local modname = minetest.get_current_modname()
 
 local sparks_add, sparks_flush = nodecore.fairlimit(50)
 
-nodecore.register_globalstep("fire sparks", function()
+nodecore.register_globalstep(function()
 		for _, pos in ipairs(sparks_flush()) do
 			minetest.after(math_random(), function()
 					minetest.add_particlespawner({

@@ -20,7 +20,7 @@ nodecore.interval(60, function()
 		for i = 1, #del do smoking[del[i]] = nil end
 	end)
 
-nodecore.register_globalstep("smoke queue", function()
+nodecore.register_globalstep(function()
 		for _, item in ipairs(smoke_flush()) do
 			local pos, qty, time, scale = item.pos, item.qty, item.time, item.scale
 			local now = minetest.get_us_time() / 1000000

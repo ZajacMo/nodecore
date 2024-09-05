@@ -62,7 +62,7 @@ local function itemprops(stack, iswield)
 end
 
 local playerdata = {}
-nodecore.register_globalstep("player wield show check", function()
+nodecore.register_globalstep(function()
 		playerdata = {}
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
@@ -165,7 +165,7 @@ entdef = {
 }
 minetest.register_entity(modname .. ":ent", entdef)
 
-nodecore.register_on_joinplayer("join setup wieldview", function(player)
+nodecore.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 
 		local function addslot(n, b, x, y, z, rx, ry, rz)

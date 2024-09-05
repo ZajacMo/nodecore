@@ -5,7 +5,7 @@ local minetest, nodecore, pairs, vector
 
 local cache = {}
 
-nodecore.register_globalstep("scaling", function()
+nodecore.register_globalstep(function()
 		local keep = {}
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()

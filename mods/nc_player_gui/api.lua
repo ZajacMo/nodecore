@@ -125,10 +125,9 @@ function nodecore.inventory_formspec_update(player)
 	return str
 end
 
-nodecore.register_on_joinplayer("join set inv formspec", nodecore.inventory_formspec_update)
+nodecore.register_on_joinplayer(nodecore.inventory_formspec_update)
 
-nodecore.register_on_player_receive_fields("player inv formspec returned",
-	function(player, formname, fields)
+nodecore.register_on_player_receive_fields(function(player, formname, fields)
 		if formname == "" then
 			local tab
 			for i = 1, #nodecore.registered_inventory_tabs do

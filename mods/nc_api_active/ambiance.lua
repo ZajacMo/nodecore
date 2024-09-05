@@ -12,8 +12,7 @@ local function ambiance_core(def, getpos)
 	local queue = {}
 	local total = 0
 
-	nodecore.register_globalstep("ambiance_core " .. (def.label or "unlabeled"),
-		function()
+	nodecore.register_globalstep(function()
 			if #queue < 1 then return end
 
 			for i = 1, #queue do

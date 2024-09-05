@@ -328,7 +328,7 @@ end
 do
 	local tick = 1 / optic_speed
 	local total = 0
-	nodecore.register_globalstep("optic tick", function(dtime)
+	nodecore.register_globalstep(function(dtime)
 			total = total + dtime / tick
 			local starttime = microtime()
 			local exp = starttime + optic_tick_limit * 1000000

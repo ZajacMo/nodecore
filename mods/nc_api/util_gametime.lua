@@ -39,7 +39,7 @@ function nodecore.gametime_adjust(name, value, reset)
 	return value
 end
 
-nodecore.register_globalstep("gametime", function(dtime)
+nodecore.register_globalstep(function(dtime)
 		local mtt = minetest.get_gametime()
 		local nct = nodecore.gametime
 		for _, v in pairs(adjusts) do mtt = mtt + v end

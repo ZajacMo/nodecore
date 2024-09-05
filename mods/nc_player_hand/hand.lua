@@ -69,7 +69,7 @@ nodecore.register_lbm({
 		action = function(pos) return minetest.remove_node(pos) end
 	})
 
-nodecore.register_on_joinplayer("join set hand", function(player)
+nodecore.register_on_joinplayer(function(player)
 		local inv = player:get_inventory()
 		inv:set_size("hand", 1)
 		inv:set_stack("hand", 1, modname .. ":hand")

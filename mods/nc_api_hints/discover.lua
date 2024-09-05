@@ -73,7 +73,7 @@ nodecore.player_discover = discover
 -- PLAYER EVENTS
 
 local function reghook(func, stat, pwhom, npos, ppos)
-	return func("stat hook", function(...)
+	return func(function(...)
 			local t = {...}
 			local whom = t[pwhom]
 			if not (whom and whom:is_player()) then return end
@@ -102,7 +102,7 @@ local function unpackreason(reason)
 	return reason.type or "?"
 end
 
-nodecore.register_on_player_hpchange("hurt/heal stats", function(whom, change, reason)
+nodecore.register_on_player_hpchange(function(whom, change, reason)
 		if change < 0 then
 			return discover(whom, "hurt:" .. unpackreason(reason))
 		else
@@ -110,11 +110,11 @@ nodecore.register_on_player_hpchange("hurt/heal stats", function(whom, change, r
 		end
 	end)
 
-nodecore.register_on_cheat("cheat stats", function(player, reason)
+nodecore.register_on_cheat(function(player, reason)
 		discover(player, "cheat: " .. unpackreason(reason))
 	end)
 
-nodecore.register_on_chat_message("chat message stats", function(name, msg)
+nodecore.register_on_chat_message(function(name, msg)
 		discover(name, "chat:" .. ((msg:sub(1, 1) == "/") and "command" or "message"))
 	end)
 

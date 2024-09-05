@@ -12,7 +12,7 @@ local coallump = "nc_fire:lump_coal"
 
 local skip = {}
 
-nodecore.register_on_punchnode("charcoal writing check", function(pos, node, puncher, pointed)
+nodecore.register_on_punchnode(function(pos, node, puncher, pointed)
 		if skip[minetest.hash_node_position(pos)] == nodecore.gametime then return end
 		if (not puncher) or (not puncher:is_player()) then return end
 

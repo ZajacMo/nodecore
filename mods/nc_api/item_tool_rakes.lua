@@ -121,7 +121,7 @@ end
 
 local rakelock = {}
 
-nodecore.register_on_dignode("rake handling", function(pos, node, user, ...)
+nodecore.register_on_dignode(function(pos, node, user, ...)
 		local nowraking = lastraking
 		if not nowraking then return end
 		lastraking = nil
