@@ -18,8 +18,12 @@ minetest.after(0, function()
 	end)
 
 local hash = minetest.hash_node_position
+
 local pending = {}
-local function pend(pos) pending[hash(pos)] = pos end
+local function pend(pos)
+	if not pos.hash then pos.hash = hash(pos) end
+	pending[pos.hash] = pos
+end
 
 local function toomanyents()
 	local entqty = 0
@@ -34,6 +38,24 @@ end
 local batch = {}
 local batchpos = 1
 
+local defer
+do
+	local deferred
+	defer = function(pos)
+		if not deferred then
+			deferred = {}
+			minetest.after(2, function()
+					for k, v in pairs(deferred) do
+						pending[k] = v
+					end
+					deferred = nil
+				end)
+		end
+		if not pos.hash then pos.hash = hash(pos) end
+		deferred[pos.hash] = pos
+	end
+end
+
 minetest.register_globalstep(function()
 		if toomanyents() then return end
 		local stop = minetest.get_us_time() + max_time_per_step * 1000000
@@ -42,9 +64,7 @@ minetest.register_globalstep(function()
 			for _, v in pairs(pending) do batch[#batch + 1] = v end
 			for i = #batch, 2, -1 do
 				local j = math_random(1, i)
-				local x = batch[i]
-				batch[i] = batch[j]
-				batch[j] = x
+				batch[i], batch[j] = batch[j], batch[i]
 			end
 			batchpos = 1
 			pending = {}
@@ -55,7 +75,7 @@ minetest.register_globalstep(function()
 			if not pending[hash(bpos)] then
 				local bnode = minetest.get_node_or_nil(bpos)
 				if not bnode then
-					pend(pos)
+					defer(pos)
 				elseif fallthru[bnode.name] then
 					local node = minetest.get_node(pos)
 					if node.name ~= bnode.name then
