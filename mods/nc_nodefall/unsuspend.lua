@@ -44,7 +44,7 @@ do
 	defer = function(pos)
 		if not deferred then
 			deferred = {}
-			minetest.after(2, function()
+			minetest.after(5, function()
 					for k, v in pairs(deferred) do
 						pending[k] = v
 					end
@@ -75,7 +75,9 @@ minetest.register_globalstep(function()
 			if not pending[hash(bpos)] then
 				local bnode = minetest.get_node_or_nil(bpos)
 				if not bnode then
-					defer(pos)
+					if minetest.get_node_or_nil(pos) then
+						defer(pos)
+					end
 				elseif fallthru[bnode.name] then
 					local node = minetest.get_node(pos)
 					if node.name ~= bnode.name then
