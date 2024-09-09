@@ -43,18 +43,9 @@ local function visinv_update_ents(pos)
 end
 nodecore.visinv_update_ents = visinv_update_ents
 
-local visinv_ents = {}
-local function objremove(ent, obj)
-	visinv_ents[ent] = nil
-	return (obj or ent.object):remove()
-end
-
 local function itemcheck(self)
 	local obj = self.object
-	if not (obj and obj:get_pos()) then
-		visinv_ents[self] = nil
-		return
-	end
+	if not (obj and obj:get_pos()) then return end
 
 	local rp = self.pos
 	local nodemeta = minetest.get_meta(rp)
@@ -66,7 +57,7 @@ local function itemcheck(self)
 	if (not tweenfrom) and self.stackstring == sstr then return end
 	self.stackstring = sstr
 
-	if stack:is_empty() then return objremove(self, obj) end
+	if stack:is_empty() then return self.object:remove() end
 
 	local def = minetest.registered_items[stack:get_name()] or {}
 	local src = def.light_source or 0
@@ -132,33 +123,41 @@ nodecore.register_globalstep(function()
 		check_queue = {}
 		check_queue_dirty = nil
 
-		for ent in pairs(visinv_ents) do
-			if (ent.name == entname) and (not ent.gone) then
-				local key = ent.poskey
-				if key then
-					local data = batch[key]
-					if data then
-						if data.n then
-							objremove(ent)
+		local allents = {}
+		for _, ent in pairs(minetest.luaentities) do
+			if ent.name == entname then
+				allents[#allents + 1] = ent
+			end
+		end
+		for i = 1, #allents do
+			local ent = allents[i]
+			local key = ent.poskey
+			if key then
+				local data = batch[key]
+				if data then
+					-- XXX: The meaning of data.n has been lost in time, and it
+					-- may be part of a past optimization that was removed, and
+					-- possibly should be removed itself.
+					if data.n then
+						ent.object:remove()
+					else
+						if not visinv_hidden[minetest.get_node(data).name] then
+							itemcheck(ent)
+							data.n = true
 						else
-							if not visinv_hidden[minetest.get_node(data).name] then
-								itemcheck(ent)
-								data.n = true
-							else
-								objremove(ent)
-							end
+							ent.object:remove()
 						end
 					end
 				end
 			end
 		end
+
 		for poskey, data in pairs(batch) do
 			if (not data.n) and (not nodecore.stack_get(data):is_empty())
 			and (not visinv_hidden[minetest.get_node(data).name]) then
 				local obj = minetest.add_entity(data, entname)
 				local ent = obj and obj:get_luaentity()
 				if ent then
-					visinv_ents[ent] = true
 					ent.is_stack = true
 					ent.poskey = poskey
 					ent.pos = unhash(poskey)
