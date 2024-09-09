@@ -129,18 +129,13 @@ nodecore.register_globalstep(function()
 				if key then
 					local data = batch[key]
 					if data then
-						-- XXX: The meaning of data.n has been lost in time, and it
-						-- may be part of a past optimization that was removed, and
-						-- possibly should be removed itself.
-						if data.n then
-							ent.object:remove()
+						if data.entexists then
+							ent.object:remove() -- duplicate
+						elseif not visinv_hidden[minetest.get_node(data).name] then
+							itemcheck(ent)
+							data.entexists = true
 						else
-							if not visinv_hidden[minetest.get_node(data).name] then
-								itemcheck(ent)
-								data.n = true
-							else
-								ent.object:remove()
-							end
+							ent.object:remove()
 						end
 					end
 				end
@@ -148,7 +143,7 @@ nodecore.register_globalstep(function()
 		end
 
 		for poskey, data in pairs(batch) do
-			if (not data.n) and (not nodecore.stack_get(data):is_empty())
+			if (not data.entexists) and (not nodecore.stack_get(data):is_empty())
 			and (not visinv_hidden[minetest.get_node(data).name]) then
 				local obj = minetest.add_entity(data, entname)
 				local ent = obj and obj:get_luaentity()
