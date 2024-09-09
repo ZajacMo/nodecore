@@ -123,29 +123,24 @@ nodecore.register_globalstep(function()
 		check_queue = {}
 		check_queue_dirty = nil
 
-		local allents = {}
 		for _, ent in pairs(minetest.luaentities) do
 			if ent.name == entname then
-				allents[#allents + 1] = ent
-			end
-		end
-		for i = 1, #allents do
-			local ent = allents[i]
-			local key = ent.poskey
-			if key then
-				local data = batch[key]
-				if data then
-					-- XXX: The meaning of data.n has been lost in time, and it
-					-- may be part of a past optimization that was removed, and
-					-- possibly should be removed itself.
-					if data.n then
-						ent.object:remove()
-					else
-						if not visinv_hidden[minetest.get_node(data).name] then
-							itemcheck(ent)
-							data.n = true
-						else
+				local key = ent.poskey
+				if key then
+					local data = batch[key]
+					if data then
+						-- XXX: The meaning of data.n has been lost in time, and it
+						-- may be part of a past optimization that was removed, and
+						-- possibly should be removed itself.
+						if data.n then
 							ent.object:remove()
+						else
+							if not visinv_hidden[minetest.get_node(data).name] then
+								itemcheck(ent)
+								data.n = true
+							else
+								ent.object:remove()
+							end
 						end
 					end
 				end
