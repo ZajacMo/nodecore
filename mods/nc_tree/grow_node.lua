@@ -22,6 +22,7 @@ minetest.register_node(modname .. ":eggcorn", {
 			snappy = 1,
 			flammable = 3,
 			attached_node = 1,
+			peat_grindable_item = 1,
 		},
 		node_placement_prediction = "nc_items:stack",
 		place_as_item = true,
