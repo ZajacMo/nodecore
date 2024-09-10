@@ -5,7 +5,7 @@ local nodecore
 
 nodecore.register_ambiance({
 		label = "water source ambiance",
-		nodenames = {"nc_terrain:water_source", "nc_terrain:water_gray_source"},
+		nodenames = {"nc_terrain:water_source", "nc_terrain:water_gray_source", "nc_terrain:river_water_source"},
 		neighbors = {"air"},
 		interval = 1,
 		chance = 1000,
@@ -14,7 +14,7 @@ nodecore.register_ambiance({
 	})
 nodecore.register_ambiance({
 		label = "water flow ambiance",
-		nodenames = {"nc_terrain:water_flowing", "nc_terrain:water_gray_flowing"},
+		nodenames = {"nc_terrain:water_flowing", "nc_terrain:water_gray_flowing", "nc_terrain:river_water_flowing"},
 		neighbors = {"air"},
 		interval = 1,
 		chance = 50,
