@@ -123,12 +123,12 @@ minetest.register_abm({
 				return minetest.remove_node(pos)
 			end
 
-			if #nodecore.find_nodes_around(pos, "group:moist", {2, 1, 2}) < 1
-			then return end
-
 			local lv = allsedges[node.name]
 			local grow = lv and allsedges[lv + 1]
 			if grow then
+				if #nodecore.find_nodes_around(pos, "group:moist", {2, 1, 2}) < 1
+				then return end
+
 				nodecore.set_loud(pos, {name = grow, param2 = 2})
 				return nodecore.witness(pos, "sedge growth")
 			end
