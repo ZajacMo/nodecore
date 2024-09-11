@@ -96,7 +96,6 @@ minetest.register_globalstep(function()
 
 nodecore.register_lbm({
 		name = minetest.get_current_modname() .. ":unsuspend",
-		run_at_every_load = true,
 		nodenames = {"group:falling_node"},
 		action = pend
 	})
