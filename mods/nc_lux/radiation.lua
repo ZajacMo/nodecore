@@ -172,14 +172,14 @@ nodecore.register_playerstep({
 			if nodecore.player_can_take_damage(player)
 			and nodecore.player_visible(player) then
 				data.radtime = (data.radtime or 0) + dtime
-				if data.radtime > 1 then data.radtime = 1 end
-				while data.radtime > 1/16 do
-					data.radtime = data.radtime - 1/16
+				if data.radtime > 1/4 then
 					local inrate = (nodescan(player) + itemscan(player)) / 256
-					rate = (rate or 0) * 0.99 + inrate * 0.01
+					local p = math.pow(0.99, data.radtime * 16)
+					rate = (rate or 0) * p + inrate * (1 - p)
 					if inrate > 0 and math_random() < inrate then
 						rad = 1 - (1 - rad) * 31/32
 					end
+					data.radtime = 0
 				end
 			else
 				rate = 0
