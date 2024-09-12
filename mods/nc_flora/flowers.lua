@@ -268,7 +268,7 @@ nodecore.register_on_peat_compost(function(pos)
 
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
 		if not (nodecore.air_equivalent(above)
-			and nodecore.is_full_sun(above)
+			and nodecore.is_max_light(above)
 			and flowerable(above)
 			and #nodecore.find_nodes_around(above, "group:moist", {2, 2, 2}) > 0)
 		then return end

@@ -57,7 +57,7 @@ minetest.register_abm({
 		arealoaded = 1,
 		action = function(pos)
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if nodecore.is_full_sun(above) and #findwater(pos) < 1 then
+			if nodecore.is_max_light(above) and #findwater(pos) < 1 then
 				nodecore.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = pos})
 				return minetest.set_node(pos, {name = modname .. ":sponge"})
 			end
@@ -73,7 +73,7 @@ nodecore.register_aism({
 		action = function(stack, data)
 			if data.player and (data.list ~= "main"
 				or data.slot ~= data.player:get_wield_index()) then return end
-			if data.pos and nodecore.is_full_sun(data.pos)
+			if data.pos and nodecore.is_max_light(data.pos)
 			and #findwater(data.pos) < 1 then
 				nodecore.sound_play("nc_api_craft_hiss", {gain = 0.02, pos = data.pos})
 				local taken = stack:take_item(1)

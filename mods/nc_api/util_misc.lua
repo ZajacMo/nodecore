@@ -451,6 +451,10 @@ function nodecore.is_full_sun(pos)
 	return pos.y >= 0 and minetest.get_node_light(pos, 0.5) == nodecore.light_sun
 end
 
+function nodecore.is_max_light(pos)
+	return nodecore.is_full_sun(pos) or minetest.get_node_light(pos, 0) >= 11
+end
+
 function nodecore.get_node_light(pos)
 	local artificial = minetest.get_node_light(pos, 0)
 	if not artificial then return end
