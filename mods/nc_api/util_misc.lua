@@ -452,7 +452,9 @@ function nodecore.is_full_sun(pos)
 end
 
 function nodecore.is_max_light(pos)
-	return nodecore.is_full_sun(pos) or minetest.get_node_light(pos, 0) >= 11
+	if nodecore.is_full_sun(pos) then return true end
+	local ll = minetest.get_node_light(pos, 0)
+	return ll and ll >= 11
 end
 
 function nodecore.get_node_light(pos)
