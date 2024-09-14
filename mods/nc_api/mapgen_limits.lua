@@ -28,9 +28,11 @@ function nodecore.within_map_limits(pos)
 	and pos.z <= max
 end
 
-function nodecore.near_unloaded(pos, node, dist)
+local function near_mapblock_state(pos, dist, func)
 	pos = vector.floor(pos)
-	if not (node or minetest.get_node_or_nil(pos)) then return true end
+
+	-- Optimistic check for the center first
+	if func(pos) then return true end
 
 	if (not dist) or (dist < 1) then return end
 	dist = math_floor(dist)
@@ -62,7 +64,7 @@ function nodecore.near_unloaded(pos, node, dist)
 			pos.y = y
 			for x = xmin, xmax, step do
 				pos.x = x
-				if not minetest.get_node_or_nil(pos) then return true end
+				if func(pos) then return true end
 			end
 		end
 	end
@@ -77,8 +79,22 @@ function nodecore.near_unloaded(pos, node, dist)
 			pos.y = y
 			for x = xmin, xmax, 16 do
 				pos.x = x
-				if not minetest.get_node_or_nil(pos) then return true end
+				if func(pos) then return true end
 			end
 		end
 	end
+end
+nodecore.near_mapblock_state = near_mapblock_state
+
+function nodecore.near_unloaded(pos, node, dist)
+	if node and node.name and node.name ~= "ignore" then return end
+	return near_mapblock_state(pos, dist, function(p)
+			return not minetest.get_node_or_nil(p)
+		end)
+end
+
+function nodecore.near_inactive(pos, _, dist)
+	return near_mapblock_state(pos, dist, function(p)
+			return not minetest.compare_block_status(p, "active")
+		end)
 end

@@ -51,7 +51,7 @@ function nodecore.artificial_water_check(pos)
 		return nodecore.dnt_set(pos, graywatersrc, data.recheck - nodecore.gametime)
 	end
 
-	if nodecore.near_unloaded(pos, nil, 3) then
+	if nodecore.near_inactive(pos, nil, 3) then
 		return nodecore.dnt_set(pos, graywatersrc, 1 + math_random())
 	end
 
