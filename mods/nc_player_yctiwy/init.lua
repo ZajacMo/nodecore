@@ -158,19 +158,7 @@ end
 -- MISC/UTILITY/COMMON
 
 local function areaunloaded(pos)
-	local basepos = vector.floor(pos)
-	if minetest.get_node(pos).name == "ignore" then return true end
-	for dx = -1, 1, 2 do
-		for dy = -1, 1, 2 do
-			for dz = -1, 1, 2 do
-				if minetest.get_node({
-						x = basepos.x + dx,
-						y = basepos.y + dy,
-						z = basepos.z + dz
-					}).name == "ignore" then return true end
-			end
-		end
-	end
+	return nodecore.near_inactive(pos, nil, 1)
 end
 
 local function box(n) return {-n, -n, -n, n, n, n} end
