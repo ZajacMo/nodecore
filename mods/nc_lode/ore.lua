@@ -161,15 +161,10 @@ regore(ore, {
 		clust_size = 2,
 		clust_scarcity = 8 * 8 * 8,
 	})
-regore(stone, {
-		y_max = 32,
-		clust_num_ores = 4,
-		clust_size = 3,
-		clust_scarcity = 2 * 2 * 2,
-	})
 
 local c_ore = minetest.get_content_id(ore)
 local c_lodestone = minetest.get_content_id(stone)
+local c_rawstone = minetest.get_content_id("nc_terrain:stone")
 local getstoneids = nodecore.memoize(function()
 		local stoneids = {}
 		local stratadata = nodecore.stratadata()
@@ -186,9 +181,43 @@ local getstoneids = nodecore.memoize(function()
 		return stoneids
 	end)
 
+local function raycast(rng, data, area, ai, x, y, z, minp, maxp)
+	while rng(1, 2) == 1 do
+		local dx = rng() * 2 - 1
+		local dy = rng() / 2 - 1/4
+		local dz = rng() * 2 - 1
+		local l = ((dx * dx) + (dy * dy) + (dz * dz)) ^ 0.5
+		dx = dx / l
+		dy = dy / l
+		dz = dz / l
+		local nx = x
+		local ny = y
+		local nz = z
+		while rng(1, 16) ~= 1 do
+			nx = nx + dx
+			ny = ny + dy
+			nz = nz + dz
+			local rx = math_floor(nx)
+			local ry = math_floor(ny)
+			local rz = math_floor(nz)
+			if rx < minp.x or rx > maxp.x
+			or ry < minp.y or ry > maxp.y
+			or rz < minp.z or rz > maxp.z
+			then break end
+			local o = ai(area, rx, ry, rz)
+			local d = data[o]
+			if d == c_rawstone then
+				data[o] = c_lodestone
+			elseif d ~= c_lodestone and d ~= c_ore then
+				break
+			end
+		end
+	end
+end
+
 nodecore.register_mapgen_shared({
 		label = "lode exposure",
-		func = function(minp, maxp, area, data)
+		func = function(minp, maxp, area, data, _, _, _, rng)
 			local stoneids = getstoneids()
 
 			local ai = area.index
@@ -210,11 +239,15 @@ nodecore.register_mapgen_shared({
 							or (not stoneids[data[i + area.ystride]])
 							or (not stoneids[data[i - area.zstride]])
 							or (not stoneids[data[i + area.zstride]])
-							then data[i] = c_lodestone
+							then
+								data[i] = c_lodestone
+							else
+								raycast(rng, data, area, ai,
+									x, y, z, minp, maxp)
+							end
 						end
 					end
 				end
 			end
 		end
-	end
-})
+	})
