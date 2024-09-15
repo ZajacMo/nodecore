@@ -46,14 +46,14 @@ do
 									nodecore.facedirs[chkp2],
 									tofd
 								) then
-									lut[key] = top2
+									lut[key] = chkp2 ~= fromp2 and chkp2 or false
 									break
 								end
 							end
 							break
 						end
 					end
-					if lut[key] then break end
+					if lut[key] ~= nil then break end
 				end
 			end
 		end
