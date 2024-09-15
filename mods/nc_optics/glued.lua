@@ -47,7 +47,7 @@ nodecore.register_on_register_item(function(name, def)
 				tiles = tiles
 			}, def)
 		gluedef.nc_optic_family = def.nc_optic_family .. "_glued"
-		gluedef.spindata = nil
+		gluedef.nc_rotations = nil
 		gluedef.on_rightclick = nil
 		minetest.register_item(gluedname, gluedef)
 	end)

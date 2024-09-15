@@ -33,7 +33,17 @@ do
 		return vector.equals(x, vz) and vector_equals(a, b) or vector_equals(x, c)
 	end
 	function nodecore.rotation_filter(equiv_func)
-		local lut = {}
+		local equiv = {}
+		for i = 0, 23 do
+			local fdi = nodecore.facedirs[i]
+			for j = 0, i do
+				if i == j or equiv_func(fdi, nodecore.facedirs[j]) then
+					equiv[i] = j
+					break
+				end
+			end
+		end
+		local lut = {equiv = equiv}
 		for _, dir in ipairs(nodecore.dirs()) do
 			for fromp2 = 0, 23 do
 				local fromfd = nodecore.facedirs[fromp2]
@@ -44,15 +54,9 @@ do
 						if rotcheck(fromfd.t, tofd.t, dir)
 						and rotcheck(fromfd.f, tofd.f, dir)
 						then
-							for chkp2 = 0, top2 do
-								if chkp2 == top2 or equiv_func(
-									nodecore.facedirs[chkp2],
-									tofd
-								) then
-									lut[key] = chkp2 ~= fromp2 and chkp2 or false
-									break
-								end
-							end
+							local np2 = equiv[top2]
+							if np2 == fromp2 then np2 = false end
+							lut[key] = np2
 							break
 						end
 					end

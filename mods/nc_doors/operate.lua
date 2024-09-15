@@ -52,7 +52,7 @@ end
 local function facedir(node)
 	local p2 = node.param2 or 0
 	local def = minetest.registered_nodes[node.name]
-	local data = def and def.spindata
+	local data = def and def.nc_rotations
 	p2 = data and data.equiv[p2] or p2
 	return nodecore.facedirs[p2]
 end
