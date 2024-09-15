@@ -5,6 +5,9 @@ local table_concat
     = table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
+local rotation_center_ratio = 1/5
+nodecore.rotation_center_ratio = rotation_center_ratio
+
 local vec_to_dir = nodecore.vector_to_dir
 
 local vector_add = vector.add
@@ -97,9 +100,9 @@ function nodecore.rotation_compute(player, pointed_thing)
 	cdata.param2 = lut[rotkey(cdata.vector, node.param2)]
 
 	if cdata.param2
-	and facerel.x > -1/4 and facerel.x < 1/4
-	and facerel.y > -1/4 and facerel.y < 1/4
-	and facerel.z > -1/4 and facerel.z < 1/4
+	and facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
+	and facerel.y > -rotation_center_ratio and facerel.y < rotation_center_ratio
+	and facerel.z > -rotation_center_ratio and facerel.z < rotation_center_ratio
 	then return pos, node, cdata end
 
 	local rotdir = vec_to_dir(facerel)
