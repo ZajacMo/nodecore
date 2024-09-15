@@ -9,6 +9,25 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Most HUDs lack z-index
+	- Looktips obscured by new rotation HUDs probably shouldn't be
+
+- Make tongs extensible
+	- Instead of checking for known glowing lode, use groups
+	- A group for tong-able
+	- A group to control wear rate
+	- Move existing load stuff into groups
+
+- New Rotation System Issues
+	- Enroll writing system
+	- Fallback behavior when a direction is unavailable makes no
+	  sense.
+		- Can cause a hotspot to change meaning as rotating
+		- Intended for writing rotations
+		- Should we go back to defining only 3D or 2D and not
+		  trying to support both with 1 method?
+			- May make sense with dots anyway
+
 - Totes should honor on_rightclick handlers in on_place.
 
 - Need to try to address issues with items settling in pum pools.

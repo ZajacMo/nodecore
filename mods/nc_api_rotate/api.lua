@@ -78,7 +78,7 @@ local function getcheck(pname, pos, group)
 	if not (grps and (grps[group] or 0) > 0) then return end
 	local rots = def.nc_rotations
 	if not rots then return end
-	return pos, node, rots
+	return pos, node, rots, def
 end
 
 function nodecore.rotation_compute(player, pointed_thing)
@@ -88,9 +88,9 @@ function nodecore.rotation_compute(player, pointed_thing)
 
 	if not nodecore.interact(player) then return end
 	local pname = player:get_player_name()
-	local pos, node, lut = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
+	local pos, node, lut, def = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
 	if not pos then
-		pos, node, lut = getcheck(pname, pointed_thing.under, "nc_api_rotate_under")
+		pos, node, lut, def = getcheck(pname, pointed_thing.under, "nc_api_rotate_under")
 		if not pos then return end
 	end
 
@@ -108,7 +108,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 	and facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
 	and facerel.y > -rotation_center_ratio and facerel.y < rotation_center_ratio
 	and facerel.z > -rotation_center_ratio and facerel.z < rotation_center_ratio
-	then return pos, node, cdata end
+	then return pos, node, cdata, def end
 
 	local rotdir = vec_to_dir(facerel)
 	local rdata = {
@@ -118,9 +118,9 @@ function nodecore.rotation_compute(player, pointed_thing)
 		rotdir = rotdir,
 	}
 	rdata.param2 = lut[rotkey(rdata.vector, node.param2)]
-	if rdata.param2 then return pos, node, rdata end
+	if rdata.param2 then return pos, node, rdata, def end
 
-	if cdata.param2 then return pos, node, cdata end
+	if cdata.param2 then return pos, node, cdata, def end
 end
 
 local function raycast(player)
@@ -148,11 +148,18 @@ function nodecore.rotation_apply(player, pointed_thing)
 		and pt.under and vector_equals(pt.under, pointed_thing.under))
 	then return end
 
-	local pos, node, rotdata = nodecore.rotation_compute(player, pt)
+	local pos, node, rotdata, def = nodecore.rotation_compute(player, pt)
 	if not rotdata then return end
 
+	if player:is_player() then
+		nodecore.log("action", player:get_player_name() .. " rotates "
+			.. node.name .. " at " .. minetest.pos_to_string(pos)
+			.. " from param2 " .. node.param2 .. " to " .. rotdata.param2)
+	end
 	node.param2 = rotdata.param2
-	nodecore.set_loud(pos, node)
+	minetest.swap_node(pos, node)
+	nodecore.node_sound(pos, "place")
+	if def.on_nc_rotate then def.on_nc_rotate(pos, node) end
 end
 
 function nodecore.rotation_on_rightclick(_, _, clicker, _, pointed)
