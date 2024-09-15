@@ -86,6 +86,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 		and pointed_thing.intersection_point
 		and pointed_thing.intersection_normal) then return end
 
+	if not nodecore.interact(player) then return end
 	local pname = player:get_player_name()
 	local pos, node, lut = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
 	if not pos then
