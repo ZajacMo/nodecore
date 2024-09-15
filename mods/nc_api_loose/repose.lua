@@ -12,6 +12,7 @@ an "angle of repose."
 --]]
 
 function nodecore.falling_repose_drop(posfrom, posto, node)
+	nodecore.node_sound(posfrom, "fall")
 	minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
 	minetest.remove_node(posfrom)
 	posfrom.y = posfrom.y + 1
