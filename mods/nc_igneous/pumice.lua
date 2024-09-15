@@ -100,13 +100,27 @@ local function checkbridge(pos, dx, dy, dz)
 	and checksupport(vector.offset(pos, -dx, -dy, -dz))
 end
 
+local max_entities = 50
+local estimated_falling_ents = 0
+minetest.register_globalstep(function()
+		estimated_falling_ents = 0
+		for _, ent in pairs(minetest.luaentities) do
+			if ent.name == "__builtin:falling_node" then
+				estimated_falling_ents = estimated_falling_ents + 1
+				if estimated_falling_ents >= max_entities then return end
+			end
+		end
+	end)
+
 minetest.register_abm({
 		label = "pumice collapse",
-		interval = 10,
-		chance = 10,
+		interval = 1,
+		chance = 100,
 		nodenames = {pumname},
 		arealoaded = 1,
 		action = function(pos, node)
+			if estimated_falling_ents >= max_entities then return end
+
 			local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if not nodecore.buildable_to(bpos) then return end
 
@@ -122,6 +136,8 @@ minetest.register_abm({
 			if e ~= false and w ~= false and checkbridge(pos, 2, 0, 0)
 			or n ~= false and s ~= false and checkbridge(pos, 0, 0, 2)
 			then return end
+
+			estimated_falling_ents = estimated_falling_ents + 1
 
 			nodecore.node_sound(pos, "fall")
 			minetest.spawn_falling_node(pos, node, minetest.get_meta(pos))
