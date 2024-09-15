@@ -60,7 +60,6 @@ local basedef = {
 		scaling_time = 125,
 		optic_gluable = 1,
 		nc_api_rotate_under = 1,
-		nc_api_rotate_3d = 1,
 	},
 	silktouch = false,
 	drop = modname .. ":lens",

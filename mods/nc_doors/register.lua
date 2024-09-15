@@ -44,7 +44,6 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 	local groups = nodecore.underride({
 			door_panel = lv,
 			nc_api_rotate_under = 1,
-			nc_api_rotate_3d = 1,
 		}, basedef.groups)
 	local paneldef = nodecore.underride({}, {
 			name = modname .. ":panel_" .. basenode,
