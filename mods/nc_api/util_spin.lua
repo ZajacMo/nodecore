@@ -4,6 +4,7 @@ local minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 function nodecore.spin_filter_facedirs(func)
+	minetest.log("warning", "deprecated nodecore.spin_filter_facedirs; use nc_player_rotate")
 	local allowed = {}
 	local equiv = {}
 	for i = 0, 23 do
@@ -37,6 +38,7 @@ function nodecore.spin_filter_facedirs(func)
 end
 
 function nodecore.spin_node_cycle(pos, node, clicker, itemstack)
+	minetest.log("warning", "deprecated nodecore.spin_node_cycle; use nc_player_rotate")
 	if nodecore.protection_test(pos, clicker) then return end
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_items[node.name] or {}

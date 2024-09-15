@@ -35,13 +35,17 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 	tiles[4] = tiles[4] .. scuff .. ")"
 	tiles[5] = tiles[5] .. scuff .. "^[transformR180)"
 
-	local spindata = nodecore.spin_filter_facedirs(function(a, b)
+	local nc_rotations = nodecore.rotation_filter(function(a, b)
 			return vector.equals(a.f, b.r)
 			and vector.equals(a.r, b.f)
 		end)
 
 	local doorname = modname .. ":door_" .. basenode
-	local groups = nodecore.underride({door_panel = lv}, basedef.groups)
+	local groups = nodecore.underride({
+			door_panel = lv,
+			nc_api_rotate_under = 1,
+			nc_api_rotate_3d = 1,
+		}, basedef.groups)
 	local paneldef = nodecore.underride({}, {
 			name = modname .. ":panel_" .. basenode,
 			description = (desc or basedef.description) .. " Panel",
@@ -49,13 +53,12 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 			paramtype2 = "facedir",
 			silktouch = false,
 			groups = groups,
-			spindata = spindata,
-			on_rightclick = function(pos, node, clicker, stack, pointed, ...)
+			nc_rotations = nc_rotations,
+			on_rightclick = function(pos, node, clicker, stack, pointed)
 				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)
 				if (not stack) or (stack:get_name() ~= pin) then
-					return nodecore.spin_node_cycle(pos, node,
-						clicker, stack, pointed, ...)
+					return nodecore.rotation_apply(clicker, pointed)
 				end
 				local fd = node and node.param2 or 0
 				fd = nodecore.facedirs[fd]

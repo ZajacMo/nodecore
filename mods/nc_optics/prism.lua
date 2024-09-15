@@ -25,6 +25,11 @@ local pina = modname .. "_port_wide_act.png"
 local shin = modname .. "_shine_end.png"
 local dark = modname .. "_port_input.png"
 
+local nc_rotations = nodecore.rotation_filter(function(a, b)
+		return vector.equals(a.f, b.r)
+		and vector.equals(a.r, b.f)
+	end)
+
 local basedef = {
 	description = "Prism",
 	drawtype = "mesh",
@@ -44,7 +49,9 @@ local basedef = {
 		cracky = 3,
 		silica_prism = 1,
 		scaling_time = 125,
-		optic_gluable = 1
+		optic_gluable = 1,
+		nc_api_rotate_under = 1,
+		nc_api_rotate_3d = 1,
 	},
 	silktouch = false,
 	drop = modname .. ":prism",
@@ -55,11 +62,8 @@ local basedef = {
 	optic_check = prism_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	spindata = nodecore.spin_filter_facedirs(function(a, b)
-			return vector.equals(a.f, b.r)
-			and vector.equals(a.r, b.f)
-		end),
-	on_rightclick = nodecore.spin_node_cycle,
+	nc_rotations = nc_rotations,
+	on_rightclick = nodecore.rotation_on_rightclick,
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "prism",
 	mapcolor = {r = 139, g = 187, b = 212},

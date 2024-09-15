@@ -128,6 +128,17 @@ function nodecore.dirs()
 	}
 end
 
+function nodecore.vector_to_dir(p)
+	local ax = math_abs(p.x)
+	local ay = math_abs(p.y)
+	local az = math_abs(p.z)
+	return ay > ax and ay > az
+	and vector.new(0, p.y < 0 and -1 or 1, 0)
+	or ax > az
+	and vector.new(p.x < 0 and -1 or 1, 0, 0)
+	or vector.new(0, 0, p.z < 0 and -1 or 1)
+end
+
 function nodecore.pickrand(tbl, weight, rng)
 	weight = weight or function() end
 	local t = {}
