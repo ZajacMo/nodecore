@@ -42,7 +42,7 @@ minetest.register_node(modname .. ":stack", {
 		},
 		paramtype = "light",
 		sunlight_propagates = true,
-		repose_drop = function(posfrom, posto)
+		repose_drop = function(posfrom, _, posto)
 			local stack = nodecore.stack_get(posfrom)
 			if stack and not stack:is_empty() then
 				nodecore.item_eject(posto, stack)
