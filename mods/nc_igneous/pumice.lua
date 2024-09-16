@@ -21,6 +21,7 @@ pumdef = {
 		pumice = 1,
 	},
 	drop = "",
+	crush_damage = 1,
 	destroy_on_dig = true,
 	silktouch = false,
 	sounds = nodecore.sounds("nc_optics_glassy", nil, 0.8),
