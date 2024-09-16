@@ -88,7 +88,10 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 		.. "_mask.png^[transform" .. v.tran .. ")"
 	end
 
-	groups = nodecore.underride({door = lv}, basedef.groups)
+	groups = nodecore.underride({
+			door = lv,
+			nc_api_rotate_under = 0,
+		}, basedef.groups)
 	local doordef = nodecore.underride({
 			name = doorname,
 			description = (desc or basedef.description) .. " Hinged Panel",
