@@ -185,3 +185,32 @@ do
 			self.itemstring = stack:to_string()
 		end)
 end
+
+------------------------------------------------------------------------
+
+nodecore.register_concrete_etchable({
+		basename = "nc_igneous:pumice",
+		pliant_opacity = 40,
+		pattern_opacity = 80,
+		pliant = {
+			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			drop_in_place = modname .. ":pumpowder_wet_source",
+			silktouch = false
+		}
+	})
+nodecore.register_concrete({
+		description = "Pumpowder",
+		description_wet = "Pumslush",
+		tile_powder = "nc_igneous_pumice.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
+		tile_wet = "nc_igneous_pumice.png^(nc_fire_ash.png^("
+		.. "nc_terrain_gravel.png^[opacity:128)^[mask:nc_concrete_mask.png)",
+		sound = "nc_terrain_swishy",
+		groups_powder = {crumbly = 1},
+		swim_color = {r = 59, g = 59, b = 59},
+		craft_from_keys = {"group:pumice"},
+		craft_from = {groups = {pumice = true}},
+		to_crude = "nc_igneous:pumice",
+		to_washed = "nc_igneous:pumice",
+		to_molded = "nc_igneous:pumice",
+		mapcolor = {r = 66, g = 66, b = 66},
+	})

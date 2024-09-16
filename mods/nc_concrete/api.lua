@@ -33,7 +33,7 @@ function nodecore.register_concrete(def)
 
 	if def.register_wet ~= false then
 		local wetdef = {
-			description = "Wet " .. def.description,
+			description = def.description_wet or ("Wet " .. def.description),
 			tiles = {def.tile_wet},
 			special_tiles = {def.tile_wet, def.tile_wet},
 			paramtype = "light",
