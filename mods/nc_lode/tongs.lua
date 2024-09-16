@@ -1,13 +1,30 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore
-    = ItemStack, math, minetest, nodecore
+local ItemStack, math, minetest, nodecore, pairs
+    = ItemStack, math, minetest, nodecore, pairs
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
 
-local hotlode = nodecore.group_expand("group:lode_temper_hot", true)
+nodecore.register_on_register_item({
+		retroactive = true,
+		func = function(_, def)
+			if def.groups and def.groups.lode_temper_hot
+			and def.groups.lode_temper_hot > 0 then
+				def.groups.tongs_pickup = def.groups.tongs_pickup or 1
+			end
+		end
+	})
+
+local tongs_pickup = {}
+minetest.after(0, function()
+		for k, v in pairs(minetest.registered_items) do
+			if v.groups and v.groups.tongs_pickup then
+				tongs_pickup[k] = ((v.groups.tongs_wear_add_percent or 0) + 100) / 100
+			end
+		end
+	end)
 
 nodecore.register_lode("tongs", {
 		type = "tool",
@@ -25,13 +42,14 @@ nodecore.register_lode("tongs", {
 
 			def.on_item_hotpotato = function(player, myslot, mystack, itemslot, itemstack, dtime)
 				-- only works on glowing lode things
-				if not hotlode[itemstack:get_name()] then return end
+				local wearmult = tongs_pickup[itemstack:get_name()]
+				if not wearmult then return end
 
 				-- item must be adjacent to tongs in inventory
 				if myslot > itemslot + 1 or myslot < itemslot - 1 then return end
 
 				-- Apply tool wear/breakage.
-				local dwear = wrate * (dtime or 3)
+				local dwear = wearmult * wrate * (dtime or 3)
 				dwear = math_floor(dwear) + (math_random() < (dwear - math_floor(dwear))
 					and 1 or 0)
 				local oldname = mystack:get_name()
