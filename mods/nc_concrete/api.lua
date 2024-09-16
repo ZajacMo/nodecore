@@ -87,6 +87,7 @@ function nodecore.register_concrete(def)
 				},
 				before = function(pos)
 					nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
+					return nodecore.fall_force(pos)
 				end
 			})
 		nodecore.register_craft({

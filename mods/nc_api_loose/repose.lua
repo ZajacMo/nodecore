@@ -11,14 +11,6 @@ from below, but if there is a sufficient drop off the sides, so simulate
 an "angle of repose."
 --]]
 
-function nodecore.falling_repose_drop(posfrom, posto, node)
-	nodecore.node_sound(posfrom, "fall")
-	minetest.spawn_falling_node(posto, node, minetest.get_meta(posfrom))
-	minetest.remove_node(posfrom)
-	posfrom.y = posfrom.y + 1
-	return nodecore.fallcheck(posfrom)
-end
-
 nodecore.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 
@@ -26,7 +18,7 @@ nodecore.register_on_register_item(function(_, def)
 
 		if def.groups.falling_repose then def.groups.falling_node = 1 end
 
-		def.repose_drop = def.repose_drop or nodecore.falling_repose_drop
+		def.repose_drop = def.repose_drop or nodecore.fall_force
 	end)
 
 local function check_empty(pos, dx, dy, dz)
@@ -65,7 +57,7 @@ function nodecore.falling_repose_check(pos)
 	if minetest.check_single_for_falling(pos) then return end
 	local open, node, def = nodecore.falling_repose_positions(pos)
 	if not open then return end
-	return def.repose_drop(pos, open[math_random(1, #open)], node)
+	return def.repose_drop(pos, node, open[math_random(1, #open)])
 end
 
 local reposeq

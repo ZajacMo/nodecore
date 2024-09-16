@@ -138,11 +138,6 @@ minetest.register_abm({
 			then return end
 
 			estimated_falling_ents = estimated_falling_ents + 1
-
-			nodecore.node_sound(pos, "fall")
-			minetest.spawn_falling_node(pos, node, minetest.get_meta(pos))
-			minetest.remove_node(pos)
-			pos.y = pos.y + 1
-			return nodecore.fallcheck(pos)
+			return nodecore.fall_force(pos, node)
 		end
 	})

@@ -18,3 +18,11 @@ function nodecore.fallcheck(pos)
 	pos = vector.round(pos)
 	queue[minetest.hash_node_position(pos)] = pos
 end
+
+function nodecore.fall_force(pos, node, spawnat)
+	nodecore.node_sound(pos, "fall")
+	node = node or minetest.get_node(pos)
+	minetest.spawn_falling_node(spawnat or pos, node, minetest.get_meta(pos))
+	minetest.remove_node(pos)
+	return nodecore.fallcheck(vector.offset(pos, 0, 1, 0))
+end

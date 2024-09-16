@@ -23,6 +23,11 @@ local function destroyparticles(name, def, pos)
 		})
 end
 
+function nodecore.node_destroy_effect(pos, node)
+	node = node or minetest.get_node(pos)
+	return destroyparticles(node.name, nil, pos)
+end
+
 nodecore.register_on_register_item(function(name, def)
 		if def.destroy_on_dig then
 			def.after_dig_node = def.after_dig_node or function(pos)
