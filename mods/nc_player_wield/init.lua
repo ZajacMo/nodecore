@@ -1,17 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
-local math_random, table_remove
-    = math.random, table.remove
+local minetest, nodecore, pairs, vector
+    = minetest, nodecore, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.amcoremod()
 
 local modname = minetest.get_current_modname()
 
-local function newttl()
-	return 30 + math_random() * 30
-end
+------------------------------------------------------------------------
+-- Slot Appearance
 
 for _, n in pairs({"slot", "sel"}) do
 	minetest.register_craftitem(modname .. ":" .. n, {
@@ -48,6 +45,8 @@ local emptyslot = {
 }
 
 local function itemprops(stack, iswield)
+	if not stack then return selslot end
+
 	local itemname = stack:get_name()
 
 	local def = minetest.registered_items[itemname]
@@ -61,147 +60,109 @@ local function itemprops(stack, iswield)
 	return props
 end
 
-local playerdata = {}
+------------------------------------------------------------------------
+-- Entity Definition
+
+local entname = modname .. ":ent"
+minetest.register_entity(entname, {
+		initial_properties = {
+			hp_max = 1,
+			physical = false,
+			collide_with_objects = false,
+			collisionbox = bbox(0),
+			selectionbox = bbox(0),
+			textures = {""},
+			pointable = false,
+			is_visible = false,
+			static_save = false,
+			glow = 0
+		}
+	})
+
+------------------------------------------------------------------------
+-- Attachment configuration
+
+local attachconfig = {}
+do
+	local function addslot(n, b, x, y, z, rx, ry, rz)
+		attachconfig[n] = {
+			bone = b,
+			apos = vector.new(x, y, z),
+			arot = vector.new(rx or 0, ry or 180, rz or 0),
+		}
+	end
+
+	local function cslot(n, x, y, z)
+		return addslot(n, "Bandolier", x * 0.8,
+			2 + y * 1.6,
+			-0.25 + z)
+	end
+
+	cslot(1, 1.75, 0, 0)
+	cslot(2, -1, 1, 0.05)
+	cslot(3, 1, 2, 0.1)
+	cslot(4, -1.75, 3, 0.02)
+	cslot(5, 1.75, 3, 0.02)
+	cslot(6, -1, 2, 0.1)
+	cslot(7, 1, 1, 0.05)
+	cslot(8, -1.75, 0, 0)
+
+	addslot(0, "Arm_Right", 0, 7, 2, -90, 200, 90)
+end
+
+------------------------------------------------------------------------
+-- Globalstep Sync
+
+local function setitem(ent, slot)
+	local itemstring = slot.item and slot.item:to_string()
+	if ent.itemstring ~= itemstring then
+		ent.object:set_properties(itemprops(slot.item, slot.i == 0))
+		ent.itemstring = itemstring
+	end
+end
+
 nodecore.register_globalstep(function()
-		playerdata = {}
+		local slots = {}
 		for _, player in pairs(minetest.get_connected_players()) do
 			local pname = player:get_player_name()
 			if nodecore.interact(pname) and nodecore.player_visible(pname) then
-				playerdata[pname] = {
+				local widx = player:get_wield_index()
+				local inv = player:get_inventory():get_list("main")
+				for i = 1, 8 do
+					slots[pname .. ":" .. i] = {
+						i = i,
+						item = i ~= widx and inv[i],
+						player = player,
+					}
+				end
+				slots[pname .. ":0"] = {
+					i = 0,
+					item = inv[widx],
 					player = player,
-					inv = player:get_inventory():get_list("main"),
-					widx = player:get_wield_index()
 				}
-			else
-				playerdata[pname] = false
 			end
 		end
-	end)
 
-local attq = {}
-local running
-local function pumpqueue()
-	local v = table_remove(attq, 1)
-	if not v then running = nil return end
-	minetest.after(0, pumpqueue)
-
-	local player = minetest.get_player_by_name(v.pname)
-	if not player then return end
-
-	local pos = player:get_pos()
-	if not minetest.get_node_or_nil(pos) then
-		attq[#attq + 1] = v
-		return
-	end
-
-	local obj = minetest.add_entity(pos, modname .. ":ent")
-	local ent = obj:get_luaentity()
-	ent.conf = v
-end
-local function startqueue()
-	if running then return end
-	running = true
-	minetest.after(0, pumpqueue)
-end
-
-local entdef
-entdef = {
-	initial_properties = {
-		hp_max = 1,
-		physical = false,
-		collide_with_objects = false,
-		collisionbox = bbox(0),
-		selectionbox = bbox(0),
-		textures = {""},
-		pointable = false,
-		is_visible = false,
-		static_save = false,
-		glow = 0
-	},
-	on_activate = function(self)
-		self.on_step = entdef.on_step
-	end,
-	on_step = function(self, dtime)
-		local conf = self.conf
-		if not conf then return self.object:remove() end
-
-		local pdata = playerdata[conf.pname]
-		if pdata == nil then return self.object:remove() end
-		if not pdata then return self.object:set_properties(hidden) end
-
-		if not self.att then
-			self.att = true
-			self.object:set_attach(pdata.player,
-				conf.bone, conf.apos, conf.arot)
-		end
-
-		if conf.oldent then
-			conf.oldent:remove()
-			conf.oldent = nil
-		end
-
-		local ttl = self.ttl or newttl()
-		if ttl > 0 then
-			ttl = ttl - dtime
-			if ttl <= 0 then
-				local t = {}
-				for k, v in pairs(conf) do t[k] = v end
-				t.oldent = self.object
-				attq[#attq + 1] = t
-				startqueue()
+		for _, ent in pairs(minetest.luaentities) do
+			if ent.name == entname then
+				local found = slots[ent.slotkey]
+				if found then
+					setitem(ent, found)
+					slots[ent.slotkey] = nil
+				else
+					ent.object:remove()
+				end
 			end
 		end
-		self.ttl = ttl
 
-		local widx = pdata.widx
-		if conf.slot == widx then
-			return self.object:set_properties(selslot)
+		for k, v in pairs(slots) do
+			local obj = minetest.add_entity(v.player:get_pos(), entname)
+			if obj then
+				local ent = obj:get_luaentity()
+				ent.slotkey = k
+				local conf = attachconfig[v.i]
+				obj:set_attach(v.player, conf.bone, conf.apos, conf.arot)
+				setitem(ent, v)
+			end
 		end
-
-		return self.object:set_properties(itemprops(
-				pdata.inv[conf.slot or widx],
-				not conf.slot))
-	end
-}
-minetest.register_entity(modname .. ":ent", entdef)
-
-nodecore.register_on_joinplayer(function(player)
-		local pname = player:get_player_name()
-
-		local function addslot(n, b, x, y, z, rx, ry, rz)
-			attq[#attq + 1] = {
-				pname = pname,
-				slot = n,
-				bone = b,
-				apos = {
-					x = x,
-					y = y,
-					z = z
-				},
-				arot = {
-					x = rx or 0,
-					y = ry or 180,
-					z = rz or 0
-				}
-			}
-		end
-
-		addslot(nil, "Arm_Right", 0, 7, 2, -90, 200, 90)
-
-		local function cslot(n, x, y, z)
-			return addslot(n, "Bandolier", x * 0.8,
-				2 + y * 1.6,
-				-0.25 + z)
-		end
-
-		cslot(1, 1.75, 0, 0)
-		cslot(2, -1, 1, 0.05)
-		cslot(3, 1, 2, 0.1)
-		cslot(4, -1.75, 3, 0.02)
-		cslot(5, 1.75, 3, 0.02)
-		cslot(6, -1, 2, 0.1)
-		cslot(7, 1, 1, 0.05)
-		cslot(8, -1.75, 0, 0)
-
-		startqueue()
 	end)

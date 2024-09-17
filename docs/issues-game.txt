@@ -9,16 +9,6 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
-- Wield entities can probably be fixed.
-	- It looks like they are getting unloaded for some reason.
-	- We can't assume that entities created at join time can
-	  continue to self-manage independently.
-	- We probably want to get rid of on_step and make them
-	  step "inside out" like visinvs and YCTIWY.
-		- Scrape player inventories
-		- Walk ents and update or remove as needed
-		- Walk inventory and add any not already existing
-
 - Pumice support heuristic probably needs a bit of work.
 	- Look at the "has air" heuristics for sponges/grass
 	- We might want other drawtypes, like glasslike or allfaces
