@@ -9,6 +9,11 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Combine nodefall unsuspend and pumice decay falling
+	- General API that makes a thing fall if a certain check is
+	  made, unless there are already too many falling entities
+	- Incorporate the deferred retry queue too?
+
 - Make totes build descriptions with full/slots dynamically
 	- Don't overwrite the description field.
 		- Fixes stale data translation warnings.

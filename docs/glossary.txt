@@ -54,6 +54,10 @@ Cav:
 	meaningless and derived from some of the latin characters that
 	the glyph can be used to represent.
 
+Chromatic Glass:
+
+Cloudstone:
+
 Eggcorn:
 	NodeCore name for a tree seed.  Derived from a misnomer for
 	an acorn that gave rise to a linguistic term.
@@ -110,6 +114,8 @@ Iceboxy:
 	This pattern resembles a square box with a four-pointed
 	pattern contained inside it.
 
+Infused:
+
 Leach:
 	Dissolving substances out of something, specifically removing
 	organic material from soil to leave behind sediments.
@@ -145,6 +151,10 @@ Prx:
 	meaningless and derived from some of the latin characters that
 	the glyph can be used to represent.
 
+Pumpowder:
+
+Pumslush:
+
 Pumwater:
 	Molten rock (magma or lava).  The name is derived from a pun:
 	what you get when you melt pumice.
@@ -174,6 +184,8 @@ Sneak:
 	off (defined by engine) and various overrides in NodeCore like
 	inspecting shelf contents without taking items, preventing
 	rotation on right-click, rake selectivity, etc.
+
+Spackling:
 
 Tarstone:
 	A darkened, tarry-looking stone made from stone dyed with

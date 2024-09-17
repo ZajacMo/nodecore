@@ -9,14 +9,23 @@ ISSUES-GAME: Gameplay-affecting issues
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Wield entities can probably be fixed.
+	- It looks like they are getting unloaded for some reason.
+	- We can't assume that entities created at join time can
+	  continue to self-manage independently.
+	- We probably want to get rid of on_step and make them
+	  step "inside out" like visinvs and YCTIWY.
+		- Scrape player inventories
+		- Walk ents and update or remove as needed
+		- Walk inventory and add any not already existing
+
+- Pumice support heuristic probably needs a bit of work.
+	- Look at the "has air" heuristics for sponges/grass
+	- We might want other drawtypes, like glasslike or allfaces
+	- Factor in "slippery" heuristic used in scaling speed?
+
 - Most HUDs lack z-index
 	- Looktips obscured by new rotation HUDs probably shouldn't be
-
-- Make tongs extensible
-	- Instead of checking for known glowing lode, use groups
-	- A group for tong-able
-	- A group to control wear rate
-	- Move existing load stuff into groups
 
 - New Rotation System Issues
 	- Enroll writing system
@@ -124,6 +133,8 @@ ISSUES-GAME: Gameplay-affecting issues
 		  the bottom.
 
 - Skip more entity<->entity<->node transition steps
+	- N.B. this can have GAMEPLAY impact, like tripping
+	  sensor beams!
 	- falling_node / item_entity conversions
 	- Instant settling on catapult for items ejected with
 	  downward component into a settlable space
@@ -145,6 +156,9 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Hide rake recipe until later in the game?
 		- Maybe add a generic "# hints completed" qualifier?
 		- Maybe add a number of hours played (non-idle) qualifier?
+	- Consider adding a "rake head"
+		- In particular, "collect with rake" vs "raking"
+		  (e.g. sand) recipes can be chosen explicitly
 
 - All flora should be radiation-sensitive.
 	- Currently only flowers, add sedges and rushes
@@ -171,6 +185,9 @@ ISSUES-GAME: Gameplay-affecting issues
 
 - Emergency digging mechanic issues
 	- Players still confused by it.
+	- Still underperforms as a practical means of escape.
+	- Maybe repeatedly scaling a surface will allow a player to
+	  attempt to tunnel through it, jumping in a certain distance?
 
 - Re-examine chiseling recipes
 	- Bricks accept annealed chisels, which makes some sense
@@ -201,6 +218,10 @@ ISSUES-GAME: Gameplay-affecting issues
 	- Split hint descriptions into "pre" and "post" parts.
 		- Undiscovered, show just "pre" part (1 stick + 4 adze)
 		- After, show both (1 stick + 4 adze => rake)
+	- Hint "tiers"
+		- Beginner hints are very "guidey"
+		- Intermediate hints are about what they are now
+		- Advanced hints are more teasers
 	- Make all crafts/recipes trigger witnessing?
 	- Hide stylus hint until after mixed concrete
 	- Hide rake hint until player reaches a certain point in the game

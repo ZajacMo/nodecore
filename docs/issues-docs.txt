@@ -9,6 +9,8 @@ ISSUES-DOCS: Issues related to documentation
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Finish filling out the glossary.
+
 - Add a credits file with more extensive/specific credits, including
   non-copyrightable contributions to core project...?
 
