@@ -59,17 +59,16 @@ drop = drop or {}
 
 local savedb
 do
-	local pending
+	local saved = {}
+	local function sersave(key, t)
+		local str = next(t) and minetest.serialize(t) or ""
+		if saved[key] == str then return end
+		modstore:set_string(key, str)
+		saved[key] = str
+	end
 	savedb = function()
-		if pending then return end
-		pending = true
-		minetest.after(2, function()
-				pending = nil
-				modstore:set_string("db",
-					next(db) and minetest.serialize(db) or "")
-				return modstore:set_string("drop", next(drop)
-					and minetest.serialize(drop) or "")
-			end)
+		sersave("db", db)
+		return sersave("drop", drop)
 	end
 end
 
