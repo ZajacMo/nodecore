@@ -3,9 +3,9 @@ local nodecore
     = nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
-local zoom_base = 60 * nodecore.rate_adjustment("zoom", "base")
-local zoom_ratio = 1 - 1 / (4 * nodecore.rate_adjustment("zoom", "ratio"))
-local zoom_time = 2 * nodecore.rate_adjustment("zoom", "time")
+local zoom_base = 60
+local zoom_ratio = 3/4
+local zoom_time = 2
 
 nodecore.register_playerstep({
 		label = "zoom focus",

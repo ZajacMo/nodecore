@@ -94,11 +94,6 @@ ISSUES-CODE: Issues related to code quality and maintainability
 			seed and has the metadata
 		- Transfer metadata to any face-touching sponge
 
-- Recipe "rate adjust" is messed up.
-	- Make rate_adjust ONLY use config
-	- Add a speed adjustment for manual changes, e.g. when
-	  tool speed is used
-
 - Soaking API improvmements
 	- Simpler version of the soaking API that uses an exponential random
 	  distribution and mean time between events to determine if at least one

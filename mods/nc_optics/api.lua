@@ -7,32 +7,25 @@ local math_floor, math_random, string_format
 
 local modname = minetest.get_current_modname()
 
-local optic_distance = nodecore.setting_float(modname .. "_optic_distance", 16,
-	"Optic beam distance", [[WARNING: FUNDAMENTAL CONSTANT. Maximum distance
-	from which an optic beam can be sensed by an optic node's input face.
-	Changing this may fundamentally alter the game, including making your
-	builds incompatible across hosts.]])
-local optic_speed = nodecore.setting_float(modname .. "_optic_speed", 12,
-	"Optic tick rate", [[WARNING: FUNDAMENTAL CONSTANT. Rate in Hz of
-	optic ticks. Changing this may fundamentally alter the game, including
-	making your builds incompatible across hosts.]])
+local optic_distance = 16
+local optic_speed = 12
 local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
-	"Optic tick limit", [[Maximum amount of time in seconds that may be
+	"Optics - tick limit", [[Maximum amount of time in seconds that may be
 	spent during a single server step to calculate optic state. Optics
 	will be allowed to slow don to stay within this limit.]])
 local optic_interval = nodecore.setting_float(modname .. "_interval", 5,
-	"Optic check interval", [[ABM interval for periodically pushing
+	"Optics - check interval", [[ABM interval for periodically pushing
 	optics into the "passive" queue.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])
 local optic_passive_max = nodecore.setting_float(modname .. "_passive_max", 25,
-	"Optic check passive max", [[The maximum number of optics that can be
+	"Optics - check passive max", [[The maximum number of optics that can be
 	queued in a single pass for "passive" checks to run; pending passive
 	checks will be included to fill up remaining spaces up to this total.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])
 local optic_passive_min = nodecore.setting_float(modname .. "_passive_min", 5,
-	"Optic check passive min", [[The minimum number of "passive" optic
+	"Optics - check passive min", [[The minimum number of "passive" optic
 	checks that are run each cycle, overriding the max if needed.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])

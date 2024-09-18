@@ -11,7 +11,7 @@ local modname = minetest.get_current_modname()
 
 -- Maximum distance at which custom nametags are visible.
 local distance = nodecore.setting_float(modname .. "_distance", 16,
-	"Max player nametag distance", [[The maximum distance in nodes
+	"Nametags - max distance", [[The maximum distance in nodes
 	that other players' nametags will be visible under optimum
 	conditions.]])
 

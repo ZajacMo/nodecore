@@ -9,45 +9,32 @@ local math_floor, math_pi, math_random, string_format, table_concat
 
 nodecore.amcoremod()
 
-local disabled = nodecore.setting_bool(
-	"nc_yctiwy_disable",
-	false,
-	"Disable offline player inventory database",
-	[[By default, players' offline position and inventory is saved
-	for displaying offline "ghost" entities, which can be hidden
-	by a different setting, but even when hidden the database is
-	still kept up to date. Enabling this setting will completely
-	disable that database and purge all data, saving server
-	resources, but making ghosts not display when reenabled until
-	each player has joined again at least once.]]
-)
-
 local hidden = nodecore.setting_bool(
 	"nc_yctiwy_hide",
 	false,
-	"Do not display offline player entities",
+	"Offline Players - hide entities",
 	[[By default, players' offline "ghosts" and inventories are
 	displayed as entities. Enabling this option hides
 	those, reducing resource impact on both client and server,
 	but also preventing players from accessing offline player
 	inventories. The offline database is still maintained, in
 	case the entities are later reenabled.]]
-) or disabled
+)
 
 local notime = nodecore.setting_bool(
 	"nc_yctiwy_notime",
 	false,
-	"Do not display time player has been offline",
+	"Offline Players - hide offline time",
 	[[By default, players' offline "ghosts" display information
 	about how long the player has been offline (in in-game time).
 	Enabling this option hides this information.]]
-) or disabled
+)
 
 local halflife = nodecore.setting_float(
 	"nc_yctiwy_halflife",
 	30,
-	"Half-life of marker decay",
-	[[YCTIWY markers show visible "decay" as players are
+	"Offline Players - marker decay half-life",
+	[[Offline player markers show visible "decay" as players are
 	continuously offline for long periods of time. This is
 	the number of days that it takes for half of the
 	remaining color to bleed out of the marker. Setting it
@@ -86,14 +73,7 @@ do
 	end
 end
 
-if disabled then
-	for k, v in pairs(db) do
-		if not v.taken then
-			db[k] = nil
-		end
-	end
-	savedb()
-elseif not (next(db) or next(drop)) then
+if not (next(db) or next(drop)) then
 	function nodecore.yctiwy_import(newdb, newdrop)
 		db = newdb
 		drop = newdrop
@@ -103,7 +83,7 @@ elseif not (next(db) or next(drop)) then
 end
 
 local function savestate(player)
-	if disabled or not nodecore.player_visible(player) then
+	if not nodecore.player_visible(player) then
 		db[player:get_player_name()] = nil
 		return
 	end

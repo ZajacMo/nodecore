@@ -5,13 +5,8 @@ local math_random, string_format
     = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-local mintime = nodecore.setting_float(modname .. "_time", 2,
-	"Push out of solid time", [[The amount of time a player
-	needs to be trapped in a solid node before being pushed out.]])
-local stepdist = nodecore.setting_float(modname .. "_stepdist", 5,
-	"Push out of solid distance", [[The maximum distance in
-	nodes that a player will be pushed out of solids.]])
+local mintime = 2
+local stepdist = 16
 
 local function normalbox(box)
 	if not box then return true end

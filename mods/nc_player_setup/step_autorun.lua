@@ -5,10 +5,10 @@ local math_pi, math_sin
     = math.pi, math.sin
 -- LUALOCALS > ---------------------------------------------------------
 
-local autorun_walkspeed = 1.25 * nodecore.rate_adjustment("autorun", "walkspeed")
-local autorun_walktime = 2 * nodecore.rate_adjustment("autorun", "walktime")
-local autorun_acceltime = 4 * nodecore.rate_adjustment("autorun", "acceltime")
-local autorun_ratio = 2 * nodecore.rate_adjustment("autorun", "ratio")
+local autorun_walkspeed = 1.25
+local autorun_walktime = 2
+local autorun_acceltime = 4
+local autorun_ratio = 2
 
 local function solid(pos)
 	local node = minetest.get_node(pos)

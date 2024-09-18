@@ -6,7 +6,7 @@ local minetest, nodecore, type, vector
 local modname = minetest.get_current_modname()
 
 local looktip_after = nodecore.setting_float(modname .. "_looktip_time", 0.4,
-	"LookTip Delay Time", [[The number of seconds a player must be
+	"LookTips - delay time", [[The number of seconds a player must be
 	standing still, or focused on one node face, to trigger a LookTip.]])
 
 local touched_faces = {}

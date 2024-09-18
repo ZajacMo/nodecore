@@ -82,7 +82,6 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 		end
 	end
 
-	local rateadj = nodecore.rate_adjustment("speed", "soaking", def.label)
 	def.action = function(...)
 		local nodekey = getnodekey(...)
 		local meta = getmeta(...)
@@ -109,7 +108,7 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 			rate = rate or 0
 			local ticks = 1 + math_floor((now - start) / def.soakinterval)
 			delta = def.soakrand(rate, ticks)
-			total = total + delta * rateadj
+			total = total + delta
 			start = start + ticks * def.soakinterval
 		end
 
@@ -179,11 +178,7 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	end
 end
 
-local ticklemax = nodecore.setting_float(minetest.get_current_modname()
-	.. "_soaking_tickle_max_time", 600, "Max soaking tickle interval",
-	[[Maximum amount of time in seconds that can be saved up between
-	soaking-tickle actions. Delay longer than this will not increase
-	the amount of soaking progress.]])
+local ticklemax = 600
 local function ticklelog(pos, fieldname, qty)
 	nodecore.log("info", string_format("abm push "
 			.. (type(qty) == "number" and "%0.2f" or "%q")

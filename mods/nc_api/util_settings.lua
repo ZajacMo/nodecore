@@ -55,7 +55,7 @@ function nodecore.infodump(sub)
 	local set = nodecore.setting_bool(
 		minetest.get_current_modname() .. "_infodump" .. prefstr(sub, "_"),
 		false,
-		"Write info dump to world path - " .. (sub or "ALL"),
+		"Developer info export - " .. (sub or "ALL"),
 		[[Write out after startup (and possibly maintain while running)
 		text files to the world path containing template metadata for
 		development use.]]

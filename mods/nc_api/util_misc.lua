@@ -1,17 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, PcgRandom, error, ipairs, math, minetest, next,
-      nodecore, pairs, string, tostring, type, vector
+      nodecore, pairs, string, type, vector
     = ItemStack, PcgRandom, error, ipairs, math, minetest, next,
-      nodecore, pairs, string, tostring, type, vector
+      nodecore, pairs, string, type, vector
 local math_abs, math_cos, math_floor, math_log, math_pi, math_pow,
-      math_random, math_sin, math_sqrt, string_format, string_gsub,
-      string_lower, string_sub
+      math_random, math_sin, math_sqrt, string_format, string_sub
     = math.abs, math.cos, math.floor, math.log, math.pi, math.pow,
-      math.random, math.sin, math.sqrt, string.format, string.gsub,
-      string.lower, string.sub
+      math.random, math.sin, math.sqrt, string.format, string.sub
 -- LUALOCALS > ---------------------------------------------------------
-
-local modname = minetest.get_current_modname()
 
 for k, v in pairs(minetest) do
 	if type(v) == "function" then
@@ -316,26 +312,6 @@ function nodecore.quenched(pos, r)
 	return (qty > 0) and qty or nil
 end
 
-local function scrubkey(s)
-	return string_lower(string_gsub(tostring(s), "%W+", "_"))
-end
-
-function nodecore.rate_adjustment(...)
-	local rate = 1
-	local key = modname .. "_rate"
-	local name = ""
-	for _, k in ipairs({...}) do
-		if not k then break end
-		key = key .. "_" .. scrubkey(k)
-		name = name .. " > " .. k
-		local adj = nodecore.setting_float(key, 1, "Speed adjust" .. name,
-			[[Speed adjustment ratio, multiplied by all parent ratios.
-			Intended for custom servers and special sub-game types only.]])
-		if adj then rate = rate * adj end
-	end
-	return rate
-end
-
 function nodecore.obstructed(minpos, maxpos)
 	if not maxpos then
 		maxpos = {x = minpos.x + 0.5, y = minpos.y + 0.5, z = minpos.z + 0.5}
@@ -357,13 +333,8 @@ function nodecore.obstructed(minpos, maxpos)
 	end
 end
 
-local gravity = nodecore.setting_float("movement_gravity", 9.81)
-local friction = nodecore.setting_float(modname .. "_air_friction", 0.0004,
-	"Air friction", [[Air friction coefficient for velocity-squared
-	term. Used to adjust air resistance for player and moving entities,
-	especially tuning terminal velocity. Lower terminal velocity may
-	reduce players stopping on onloaded chunks while falling on a
-	busy/slow server.]])
+local gravity = 9.81
+local friction = 0.0004
 
 local function air_accel_factor(v)
 	local q = (friction * v * v) * 2 - 1

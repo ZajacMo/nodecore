@@ -5,14 +5,7 @@ local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
-
-local operate_squelch = nodecore.setting_float(modname .. "_operate_squelch", 0.5,
-	"Door operation squelch time", [[WARNING: FUNDAMENTAL CONSTANT. Time after
-	a door has been operated that further operations are "squelched"
-	(ignored/blocked). Changing this may fundamentally alter the game,
-	including making your builds incompatible across hosts.]])
-
+local operate_squelch = 0.5
 local hashpos = minetest.pos_to_string
 
 local function hingeaxis(pos, node)
