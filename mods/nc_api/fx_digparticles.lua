@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
-local math_ceil, math_random
-    = math.ceil, math.random
+local math, minetest, nodecore, pairs, table, vector
+    = math, minetest, nodecore, pairs, table, vector
+local math_ceil, table_shuffle
+    = math.ceil, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local getcoord
@@ -17,12 +17,7 @@ do
 	local pos = size + 1
 	getcoord = function()
 		if pos > size then
-			for i = size, 2, -1 do
-				local j = math_random(1, i)
-				local x = coords[i]
-				coords[i] = coords[j]
-				coords[j] = x
-			end
+			table_shuffle(coords)
 			pos = 1
 		end
 		pos = pos + 1

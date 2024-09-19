@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local ipairs, minetest, nodecore, pairs, table, vector
+    = ipairs, minetest, nodecore, pairs, table, vector
+local table_shuffle
+    = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local operate_squelch = 0.5
@@ -193,10 +193,7 @@ function nodecore.operate_door(pos, node, dir)
 	while #door_operate_queue > 0 do
 		local batch = door_operate_queue
 		door_operate_queue = {}
-		for i = #batch, 2, -1 do
-			local j = math_random(1, i)
-			batch[i], batch[j] = batch[j], batch[i]
-		end
+		table_shuffle(batch)
 		for _, opts in ipairs(batch) do
 			operate_door_core(opts[1], opts[2], opts[3])
 		end

@@ -1,6 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ItemStack, ipairs, minetest, nodecore, pairs, table, vector
     = ItemStack, ipairs, minetest, nodecore, pairs, table, vector
+local table_shuffle
+    = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_falling_node_step,
@@ -55,7 +57,6 @@ local fallopendirs = {
 	vector.new(0, 0, 1),
 	vector.new(0, 0, -1)
 }
-local table_shuffle = table.shuffle
 
 minetest.register_entity(":__builtin:falling_node", {
 		initial_properties = {

@@ -1,8 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, string, type, vector
-    = error, math, minetest, nodecore, pairs, string, type, vector
-local math_floor, math_random, string_format
-    = math.floor, math.random, string.format
+local error, math, minetest, nodecore, pairs, string, table, type,
+      vector
+    = error, math, minetest, nodecore, pairs, string, table, type,
+      vector
+local math_floor, string_format, table_shuffle
+    = math.floor, string.format, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -290,12 +292,7 @@ do
 		if #passive_queue > 0 then
 			passive_batch = passive_queue
 			passive_queue = {}
-			for i = 1, #passive_batch do
-				local j = math_random(1, #passive_batch)
-				local t = passive_batch[i]
-				passive_batch[i] = passive_batch[j]
-				passive_batch[j] = t
-			end
+			table_shuffle(passive_batch)
 		end
 		local max = optic_passive_max - #batch
 		if max < optic_passive_min then max = optic_passive_min end

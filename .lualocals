@@ -8,3 +8,4 @@ include
 SecureRandom
 PcgRandom
 profiler
+table.shuffle

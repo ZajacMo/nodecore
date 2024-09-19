@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
-local math_random, math_sqrt
-    = math.random, math.sqrt
+local ipairs, math, minetest, nodecore, pairs, table, vector
+    = ipairs, math, minetest, nodecore, pairs, table, vector
+local math_random, math_sqrt, table_shuffle
+    = math.random, math.sqrt, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -160,10 +160,7 @@ nodecore.register_soaking_abm({
 			local realcost = basecost * math_sqrt(count)
 			if data.total < realcost then return end
 
-			for i = #growdirs, 2, -1 do
-				local j = math_random(1, i)
-				growdirs[i], growdirs[j] = growdirs[j], growdirs[i]
-			end
+			table_shuffle(growdirs)
 			for _, rel in ipairs(growdirs) do
 				local dest = vector.add(pos, rel)
 				local node = minetest.get_node(dest)

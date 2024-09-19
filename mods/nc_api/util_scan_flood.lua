@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, table
-    = ipairs, math, minetest, nodecore, pairs, table
-local math_random, table_insert
-    = math.random, table.insert
+local ipairs, minetest, nodecore, pairs, table
+    = ipairs, minetest, nodecore, pairs, table
+local table_insert, table_shuffle
+    = table.insert, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local dirs = nodecore.dirs()
@@ -33,10 +33,7 @@ function nodecore.scan_flood(pos, range, func)
 			end
 		end
 		if #nxt < 1 then break end
-		for i = #nxt, 2, -1 do
-			local j = math_random(1, i)
-			nxt[i], nxt[j] = nxt[j], nxt[i]
-		end
+		table_shuffle(nxt)
 		q = nxt
 	end
 end

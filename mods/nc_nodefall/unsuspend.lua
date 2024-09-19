@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, next, nodecore, pairs
-    = math, minetest, next, nodecore, pairs
-local math_random
-    = math.random
+local minetest, next, nodecore, pairs, table
+    = minetest, next, nodecore, pairs, table
+local table_shuffle
+    = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local max_time_per_step = 0.05
@@ -62,10 +62,7 @@ minetest.register_globalstep(function()
 		if batchpos > #batch and (#batch > 0 or next(pending)) then
 			batch = {}
 			for _, v in pairs(pending) do batch[#batch + 1] = v end
-			for i = #batch, 2, -1 do
-				local j = math_random(1, i)
-				batch[i], batch[j] = batch[j], batch[i]
-			end
+			table_shuffle(batch)
 			batchpos = 1
 			pending = {}
 		end

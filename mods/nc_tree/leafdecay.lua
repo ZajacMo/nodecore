@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
-local math_random
-    = math.random
+local ipairs, math, minetest, nodecore, pairs, table, vector
+    = ipairs, math, minetest, nodecore, pairs, table, vector
+local math_random, table_shuffle
+    = math.random, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local hashpos = minetest.hash_node_position
@@ -108,14 +108,7 @@ minetest.register_globalstep(function()
 		local batch = queue
 		queue = {}
 		qsize = 0
-		for i = #batch, 2, -1 do
-			local j = math_random(1, i)
-			if j ~= i then
-				local tmp = batch[i]
-				batch[j] = batch[i]
-				batch[i] = tmp
-			end
-		end
+		table_shuffle(batch)
 		for i = 1, #batch do
 			local pos = batch[i]
 			local node = minetest.get_node(pos)
