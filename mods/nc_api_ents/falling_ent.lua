@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, vector
-    = ItemStack, ipairs, minetest, nodecore, pairs, vector
+local ItemStack, ipairs, minetest, nodecore, pairs, table, vector
+    = ItemStack, ipairs, minetest, nodecore, pairs, table, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 nodecore.register_falling_node_step,
@@ -44,6 +44,18 @@ local function displace_check(pos)
 		minetest.add_item(pos, item)
 	end
 end
+
+local function fallopencheck(pos)
+	return nodecore.buildable_to(pos)
+	and nodecore.buildable_to(vector.offset(pos, 0, -1, 0))
+end
+local fallopendirs = {
+	vector.new(1, 0, 0),
+	vector.new(-1, 0, 0),
+	vector.new(0, 0, 1),
+	vector.new(0, 0, -1)
+}
+local table_shuffle = table.shuffle
 
 minetest.register_entity(":__builtin:falling_node", {
 		initial_properties = {
@@ -96,9 +108,21 @@ minetest.register_entity(":__builtin:falling_node", {
 				local below = {x = pos.x, y = pos.y - 1, z = pos.z}
 				local node = minetest.get_node(below)
 				local def = minetest.registered_nodes[node.name] or {}
+				local selfdef = minetest.registered_nodes[self.node.name] or {}
 				if def.groups and def.groups.is_stack_only then
-					nodecore.protection_bypass(minetest.dig_node, below)
-					return
+					if selfdef.walkable ~= false then
+						nodecore.protection_bypass(minetest.dig_node, below)
+						return
+					else
+						table_shuffle(fallopendirs)
+						for _, dir in ipairs(fallopendirs) do
+							local p = vector.add(pos, dir)
+							if fallopencheck(p) then
+								self.object:set_pos(p)
+								return
+							end
+						end
+					end
 				end
 
 				displace_check(pos)

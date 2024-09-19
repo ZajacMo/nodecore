@@ -7,7 +7,8 @@ globals = {
 	"include",
 	"SecureRandom",
 	"PcgRandom",
-	"profiler"
+	"profiler",
+	"table.shuffle"
 }
 color = false
 quiet = 1
