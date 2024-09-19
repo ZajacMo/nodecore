@@ -25,11 +25,6 @@ local pina = modname .. "_port_wide_act.png"
 local shin = modname .. "_shine_end.png"
 local dark = modname .. "_port_input.png"
 
-local nc_rotations = nodecore.rotation_filter(function(a, b)
-		return vector.equals(a.f, b.r)
-		and vector.equals(a.r, b.f)
-	end)
-
 local basedef = {
 	description = "Prism",
 	drawtype = "mesh",
@@ -61,7 +56,10 @@ local basedef = {
 	optic_check = prism_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	nc_rotations = nc_rotations,
+	nc_param2_equivalent = function(a, b)
+		return vector.equals(a.f, b.r)
+		and vector.equals(a.r, b.f)
+	end,
 	on_rightclick = nodecore.rotation_on_rightclick,
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "prism",

@@ -34,10 +34,6 @@ local pact = modname .. "_port_active.png"
 local pout = modname .. "_port_output.png"
 local pinp = modname .. "_port_input.png"
 
-local nc_rotations = nodecore.rotation_filter(function(a, b)
-		return vector.equals(a.f, b.f)
-	end)
-
 local basedef = {
 	description = "Lens",
 	drawtype = "mesh",
@@ -70,7 +66,9 @@ local basedef = {
 	optic_check = lens_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	nc_rotations = nc_rotations,
+	nc_param2_equivalent = function(a, b)
+		return vector.equals(a.f, b.f)
+	end,
 	on_rightclick = nodecore.rotation_on_rightclick,
 	sounds = nodecore.sounds("nc_optics_glassy"),
 	nc_optic_family = "lens",

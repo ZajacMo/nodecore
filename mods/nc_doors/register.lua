@@ -35,11 +35,6 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 	tiles[4] = tiles[4] .. scuff .. ")"
 	tiles[5] = tiles[5] .. scuff .. "^[transformR180)"
 
-	local nc_rotations = nodecore.rotation_filter(function(a, b)
-			return vector.equals(a.f, b.r)
-			and vector.equals(a.r, b.f)
-		end)
-
 	local doorname = modname .. ":door_" .. basenode
 	local groups = nodecore.underride({
 			door_panel = lv,
@@ -52,7 +47,10 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 			paramtype2 = "facedir",
 			silktouch = false,
 			groups = groups,
-			nc_rotations = nc_rotations,
+			nc_param2_equivalent = function(a, b)
+				return vector.equals(a.f, b.r)
+				and vector.equals(a.r, b.f)
+			end,
 			on_rightclick = function(pos, node, clicker, stack, pointed)
 				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)

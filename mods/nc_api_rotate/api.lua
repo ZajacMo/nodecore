@@ -26,45 +26,30 @@ local function rotkey(v, param2)
 		}, ":")
 end
 
+local rotation_lut = {}
 do
 	local vz = vector.zero()
 	local function rotcheck(a, b, c)
 		local x = vector_cross(a, b)
 		return vector.equals(x, vz) and vector_equals(a, b) or vector_equals(x, c)
 	end
-	function nodecore.rotation_filter(equiv_func)
-		local equiv = {}
-		for i = 0, 23 do
-			local fdi = nodecore.facedirs[i]
-			for j = 0, i do
-				if i == j or equiv_func(fdi, nodecore.facedirs[j]) then
-					equiv[i] = j
-					break
-				end
-			end
-		end
-		local lut = {equiv = equiv}
-		for _, dir in ipairs(nodecore.dirs()) do
-			for fromp2 = 0, 23 do
-				local fromfd = nodecore.facedirs[fromp2]
-				local key = rotkey(dir, fromp2)
-				for top2 = 0, 23 do
-					if fromp2 ~= top2 then
-						local tofd = nodecore.facedirs[top2]
-						if rotcheck(fromfd.t, tofd.t, dir)
-						and rotcheck(fromfd.f, tofd.f, dir)
-						then
-							local np2 = equiv[top2]
-							if np2 == fromp2 then np2 = false end
-							lut[key] = np2
-							break
-						end
+	for _, dir in ipairs(nodecore.dirs()) do
+		for fromp2 = 0, 23 do
+			local fromfd = nodecore.facedirs[fromp2]
+			local key = rotkey(dir, fromp2)
+			for top2 = 0, 23 do
+				if fromp2 ~= top2 then
+					local tofd = nodecore.facedirs[top2]
+					if rotcheck(fromfd.t, tofd.t, dir)
+					and rotcheck(fromfd.f, tofd.f, dir)
+					then
+						rotation_lut[key] = top2
+						break
 					end
-					if lut[key] ~= nil then break end
 				end
+				if rotation_lut[key] ~= nil then break end
 			end
 		end
-		return lut
 	end
 end
 
@@ -76,9 +61,7 @@ local function getcheck(pname, pos, group)
 	if not def then return end
 	local grps = def.groups
 	if not (grps and (grps[group] or 0) > 0) then return end
-	local rots = def.nc_rotations
-	if not rots then return end
-	return pos, node, rots, def
+	return pos, node, def
 end
 
 function nodecore.rotation_compute(player, pointed_thing)
@@ -88,10 +71,20 @@ function nodecore.rotation_compute(player, pointed_thing)
 
 	if not nodecore.interact(player) then return end
 	local pname = player:get_player_name()
-	local pos, node, lut, def = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
+	local pos, node, def = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
 	if not pos then
-		pos, node, lut, def = getcheck(pname, pointed_thing.under, "nc_api_rotate_under")
+		pos, node, def = getcheck(pname, pointed_thing.under, "nc_api_rotate_under")
 		if not pos then return end
+	end
+
+	local function setparam2(data)
+		local computed = nodecore.param2_canonical({
+				name = node.name,
+				param2 = rotation_lut[rotkey(data.vector, node.param2)]
+			})
+		if computed.param2 ~= node.param2 then
+			data.param2 = computed.param2
+		end
 	end
 
 	local facectr = vector_multiply(vector_add(pointed_thing.above, pointed_thing.under), 0.5)
@@ -102,7 +95,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 		facectr = facectr,
 		facerel = facerel,
 	}
-	cdata.param2 = lut[rotkey(cdata.vector, node.param2)]
+	setparam2(cdata)
 
 	if cdata.param2
 	and facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
@@ -117,7 +110,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 		facerel = facerel,
 		rotdir = rotdir,
 	}
-	rdata.param2 = lut[rotkey(rdata.vector, node.param2)]
+	setparam2(rdata)
 	if rdata.param2 then return pos, node, rdata, def end
 
 	if cdata.param2 then return pos, node, cdata, def end

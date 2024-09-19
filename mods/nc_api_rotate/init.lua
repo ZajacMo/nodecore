@@ -5,5 +5,6 @@ local include, nodecore
 
 nodecore.amcoremod()
 
+include("autofix")
 include("api")
 include("hud")
