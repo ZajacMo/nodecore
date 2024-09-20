@@ -97,8 +97,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 	}
 	setparam2(cdata)
 
-	if cdata.param2
-	and facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
+	if facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
 	and facerel.y > -rotation_center_ratio and facerel.y < rotation_center_ratio
 	and facerel.z > -rotation_center_ratio and facerel.z < rotation_center_ratio
 	then return pos, node, cdata, def end
@@ -111,9 +110,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 		rotdir = rotdir,
 	}
 	setparam2(rdata)
-	if rdata.param2 then return pos, node, rdata, def end
-
-	if cdata.param2 then return pos, node, cdata, def end
+	return pos, node, rdata, def
 end
 
 local function raycast(player)
@@ -142,7 +139,7 @@ function nodecore.rotation_apply(player, pointed_thing)
 	then return end
 
 	local pos, node, rotdata, def = nodecore.rotation_compute(player, pt)
-	if not rotdata then return end
+	if not (rotdata and rotdata.param2) then return end
 
 	if player:is_player() then
 		nodecore.log("action", player:get_player_name() .. " rotates "

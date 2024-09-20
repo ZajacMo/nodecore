@@ -75,6 +75,8 @@ nodecore.register_playerstep({
 			local _, _, rot = nodecore.rotation_compute(player, pt)
 			if not rot then
 				huddots(player)
+			end
+			if not (rot and rot.param2) then
 				return nodecore.hud_set(player, {
 						label = modname,
 						ttl = 0,
