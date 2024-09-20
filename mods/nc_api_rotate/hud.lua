@@ -70,6 +70,15 @@ end
 nodecore.register_playerstep({
 		label = "rotation scan",
 		action = function(player, data)
+			if player:get_player_control().sneak then
+				huddots(player)
+				return nodecore.hud_set(player, {
+						label = modname,
+						ttl = 0,
+						quick = true
+					})
+			end
+
 			local pt = data.raycast()
 
 			local _, _, rot = nodecore.rotation_compute(player, pt)
