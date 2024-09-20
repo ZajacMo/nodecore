@@ -90,8 +90,7 @@ local function toteplace(stack, placer, pointed, ...)
 	for _, v in ipairs(inv) do
 		if commit then
 			local p = {x = pos.x + v.x, y = pos.y, z = pos.z + v.z}
-			if (not nodecore.buildable_to(p)) or nodecore.obstructed(p)
-			or protected(p, placer) then
+			if (not nodecore.buildable_to(p)) or protected(p, placer) then
 				commit = nil
 			else
 				commit[#commit + 1] = {p, v.n, v.m}

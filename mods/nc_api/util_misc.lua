@@ -312,27 +312,6 @@ function nodecore.quenched(pos, r)
 	return (qty > 0) and qty or nil
 end
 
-function nodecore.obstructed(minpos, maxpos)
-	if not maxpos then
-		maxpos = {x = minpos.x + 0.5, y = minpos.y + 0.5, z = minpos.z + 0.5}
-		minpos = {x = minpos.x - 0.5, y = minpos.y - 0.5, z = minpos.z - 0.5}
-	end
-	local avgpos = vector.multiply(vector.add(minpos, maxpos), 0.5)
-	local radius = 4 + vector.distance(minpos, maxpos) / 2
-	for _, obj in pairs(minetest.get_objects_inside_radius(avgpos, radius)) do
-		local op = obj:get_pos()
-		local props = obj:get_properties()
-		local cb = props.collisionbox
-		if props.static_save
-		and maxpos.x > op.x + cb[1] and minpos.x < op.x + cb[4]
-		and maxpos.y > op.y + cb[2] and minpos.y < op.y + cb[5]
-		and maxpos.z > op.z + cb[3] and minpos.z < op.z + cb[6]
-		and obj.get_luaentity and obj:get_luaentity() then
-			return obj
-		end
-	end
-end
-
 local gravity = 9.81
 local friction = 0.0004
 
@@ -359,20 +338,6 @@ function nodecore.grav_air_accel_ent(obj)
 	local new = nodecore.grav_air_accel(obj:get_velocity())
 	if vector.equals(cur, new) then return end
 	return obj:set_acceleration(new)
-end
-
-function nodecore.get_objects_at_pos(pos)
-	pos = vector.round(pos)
-	local t = {}
-	-- get_objects_inside_radius just loops over these and does a euclidian
-	-- distance check anyway, which we can skip
-	for _, obj in pairs(minetest.object_refs) do
-		local p = obj:get_pos()
-		if p and vector.equals(vector.round(p), pos) then
-			t[#t + 1] = obj
-		end
-	end
-	return t
 end
 
 function nodecore.get_depth_light(y, qty)

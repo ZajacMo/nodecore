@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs
-    = ItemStack, minetest, nodecore, pairs
+local ItemStack, ipairs, minetest, nodecore
+    = ItemStack, ipairs, minetest, nodecore
 -- LUALOCALS > ---------------------------------------------------------
 
 local function getcrushdamage(name, alreadyloose)
@@ -32,9 +32,13 @@ local function maketick(mult, getname, oldtick)
 			return oldtick(self, dtime, ...)
 		end
 		local q = v * v * dtime * self.crush_damage * mult
-		for _, o in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-			if o:is_player() then
-				nodecore.addphealth(o, -q, {
+		for _, player in ipairs(minetest.get_connected_players()) do
+			local ppos = player:get_pos()
+			if ppos.x <= pos.x + 1 and ppos.x >= pos.x - 1
+			and ppos.z <= pos.z + 1 and ppos.z >= pos.z - 1
+			and ppos.y <= pos.y + 0.5 and ppos.y >= pos.y - 2.5
+			then
+				nodecore.addphealth(player, -q, {
 						nc_type = "crushing",
 						entity = self
 					})

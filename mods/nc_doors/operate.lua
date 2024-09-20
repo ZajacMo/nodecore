@@ -96,8 +96,6 @@ local function operate_door_core(pos, node, dir)
 			}
 		end
 
-		if nodecore.obstructed(to) then return end
-
 		local str = hashpos(to)
 		if squelch[str] then return end
 
