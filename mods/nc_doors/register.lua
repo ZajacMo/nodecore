@@ -51,6 +51,9 @@ function nodecore.register_door(basemod, basenode, desc, pin, lv, basedef)
 				return vector.equals(a.f, b.r)
 				and vector.equals(a.r, b.f)
 			end,
+			nc_rotate_allow = function(_, _, clicker)
+				return clicker:get_wielded_item():get_name() ~= pin
+			end,
 			on_rightclick = function(pos, node, clicker, stack, pointed)
 				if nodecore.protection_test(pos, clicker) then return end
 				stack = stack and ItemStack(stack)

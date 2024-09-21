@@ -53,7 +53,7 @@ do
 	end
 end
 
-local function getcheck(pname, pos, group)
+local function getcheck(pname, pos, group, player, pointed)
 	if minetest.is_protected(pos, pname) then return end
 	local node = minetest.get_node_or_nil(pos)
 	if not node then return end
@@ -61,6 +61,8 @@ local function getcheck(pname, pos, group)
 	if not def then return end
 	local grps = def.groups
 	if not (grps and (grps[group] or 0) > 0) then return end
+	if def.nc_rotate_allow and not def.nc_rotate_allow(pos, node, player, pointed)
+	then return end
 	return pos, node, def
 end
 
@@ -69,11 +71,13 @@ function nodecore.rotation_compute(player, pointed_thing)
 		and pointed_thing.intersection_point
 		and pointed_thing.intersection_normal) then return end
 
-	if not nodecore.interact(player) then return end
+	if not (player and nodecore.interact(player)) then return end
 	local pname = player:get_player_name()
-	local pos, node, def = getcheck(pname, pointed_thing.above, "nc_api_rotate_above")
+	local pos, node, def = getcheck(pname, pointed_thing.above,
+		"nc_api_rotate_above", player, pointed_thing)
 	if not pos then
-		pos, node, def = getcheck(pname, pointed_thing.under, "nc_api_rotate_under")
+		pos, node, def = getcheck(pname, pointed_thing.under,
+			"nc_api_rotate_under", player, pointed_thing)
 		if not pos then return end
 	end
 
