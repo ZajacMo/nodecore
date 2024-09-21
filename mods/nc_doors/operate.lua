@@ -58,7 +58,8 @@ local function operate_door_core(pos, node, dir)
 	node = node or minetest.get_node_or_nil(pos)
 	if (not node) or (not nodecore.match(node, is_door)) then return end
 
-	local fd = facedir(node)
+	node = nodecore.param2_canonical(node)
+	local fd = nodecore.facedirs[node.param2]
 	local rotdir
 	if vector.equals(dir, fd.k) or vector.equals(dir, fd.r) then
 		rotdir = "r"
