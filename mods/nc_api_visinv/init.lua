@@ -43,18 +43,20 @@ local function visinv_update_ents(pos)
 end
 nodecore.visinv_update_ents = visinv_update_ents
 
+local tweenfrom = {}
+function nodecore.visinv_tween_from(nodepos, frompos)
+	tweenfrom[hash(vector.round(nodepos))] = frompos
+end
+
 local function itemcheck(self)
 	local obj = self.object
 	if not (obj and obj:get_pos()) then return end
 
 	local rp = self.pos
-	local nodemeta = minetest.get_meta(rp)
-	local tweenfrom = minetest.deserialize(nodemeta:get_string("tweenfrom"))
-
+	local tf = tweenfrom[self.poskey]
 	local stack = nodecore.stack_get(rp)
-
 	local sstr = stack:to_string()
-	if (not tweenfrom) and self.stackstring == sstr then return end
+	if (not tf) and self.stackstring == sstr then return end
 	self.stackstring = sstr
 
 	if stack:is_empty() then return self.object:remove() end
@@ -75,9 +77,9 @@ local function itemcheck(self)
 	}
 	self.homepos = op
 
-	if tweenfrom then
-		nodemeta:set_string("tweenfrom", "")
-		obj:set_pos(tweenfrom)
+	if tf then
+		tweenfrom[self.poskey] = nil
+		obj:set_pos(tf)
 		obj:move_to(op)
 	elseif not vector.equals(obj:get_pos(), op) then
 		obj:set_pos(op)

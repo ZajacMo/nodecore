@@ -49,8 +49,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 
 		local function placeat(p)
 			nodecore.place_stack(p, item)
-			minetest.get_meta(p):set_string("tweenfrom",
-				minetest.serialize(self.object:get_pos()))
+			nodecore.visinv_tween_from(p, self.object:get_pos())
 			return nuke(self)
 		end
 

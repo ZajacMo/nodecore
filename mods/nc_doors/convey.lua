@@ -50,10 +50,8 @@ local function tryprocess(item, retry)
 			minetest.remove_node(item.from)
 			nodecore.fallcheck({x = item.from.x, y = item.from.y + 1, z = item.from.z})
 			nodecore.set_loud(t, node)
-			meta.fields = meta.fields or {}
-			meta.fields.tweenfrom = meta.fields.tweenfrom
-			or minetest.serialize(item.from)
 			minetest.get_meta(t):from_table(meta)
+			nodecore.visinv_tween_from(t, item.from)
 			nodecore.visinv_update_ents(t)
 			if t.after then
 				nodecore.door_push(t, t.after)
