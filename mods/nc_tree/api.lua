@@ -35,13 +35,13 @@ end
 
 function nodecore.tree_growth_rate(pos)
 	local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-	if minetest.get_node(above).name ~= "air" then return end
+	if not nodecore.air_equivalent(above) then return end
 	local ll = nodecore.get_node_light(above)
 	if (not ll) or (ll < 8) then return end
 	for y = 2, 5 do
 		local p = {x = pos.x, y = pos.y + y, z = pos.z}
-		local nn = minetest.get_node(p).name
-		if nn ~= "air" and nn ~= modname .. ":leaves" then return end
+		if not (nodecore.air_equivalent(p) or minetest.get_node(p).name
+			== modname .. ":leaves") then return end
 	end
 	return nodecore.tree_soil_rate(pos) * math_sqrt((ll - 7) / 8)
 end
