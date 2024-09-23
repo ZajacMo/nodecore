@@ -97,7 +97,7 @@ local epdef = nodecore.underride({
 		drop = ldname,
 		no_self_repack = true,
 		paramtype = "light",
-		groups = {grassable = 0, flammable = 35, cheat = 1},
+		groups = {grassable = 0, loose_repack = 0, flammable = 35, cheat = 1},
 		on_ignite = nodecore.fire_on_ignite_plantlike_rooted(ldname)
 	}, minetest.registered_items[ldname] or {})
 epdef.groups.soil = nil
