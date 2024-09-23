@@ -46,10 +46,8 @@ local function metaset_core(meta, def, cached, fieldbase, value)
 	cached[fieldbase] = value
 	local fn = def.fieldname .. fieldbase
 	if value then
-		print("meta set " .. fn .. " = " .. value)
 		return meta:set_float(fn, value)
 	else
-		print("meta unset " .. fn)
 		return meta:set_string(fn, "")
 	end
 end
