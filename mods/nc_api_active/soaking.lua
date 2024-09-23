@@ -24,12 +24,14 @@ local function metaget(meta, def, nodekey)
 	local cached = nodekey and metacache[nodekey]
 	local inner = cached and cached[fn]
 	if inner then return inner end
-	inner = {
-		qty = meta:get_float(fn .. "qty"),
-		time = meta:get_float(fn .. "time")
-	}
-	if inner.qty == 0 then inner.qty = nil end
-	if inner.time == 0 then inner.time = nil end
+	inner = {}
+	local function loadvalue(k)
+		local n = meta:get_float(fn .. k)
+		inner[k] = n ~= 0 and n or nil
+	end
+	loadvalue("qty")
+	loadvalue("time")
+	loadvalue("rate")
 	if nodekey then
 		cached = cached or {}
 		cached[fn] = inner
@@ -38,26 +40,25 @@ local function metaget(meta, def, nodekey)
 	return inner
 end
 
-local function metaset_core(meta, field, value)
+local function metaset_core(meta, def, cached, fieldbase, value)
+	if value == 0 then value = nil end
+	if cached[fieldbase] == value then return end
+	cached[fieldbase] = value
+	local fn = def.fieldname .. fieldbase
 	if value then
-		return meta:set_float(field, value)
+		print("meta set " .. fn .. " = " .. value)
+		return meta:set_float(fn, value)
 	else
-		return meta:set_string(field, "")
+		print("meta unset " .. fn)
+		return meta:set_string(fn, "")
 	end
 end
 
-local function metaset(meta, def, nodekey, qty, time)
+local function metaset(meta, def, nodekey, qty, time, rate)
 	local cached = metaget(meta, def, nodekey)
-	if qty == 0 then qty = nil end
-	if cached.qty ~= qty then
-		metaset_core(meta, def.fieldname .. "qty", qty)
-		cached.qty = qty
-	end
-	if time == 0 then time = nil end
-	if cached.time ~= time then
-		metaset_core(meta, def.fieldname .. "time", time)
-		cached.time = time
-	end
+	metaset_core(meta, def, cached, "qty", qty)
+	metaset_core(meta, def, cached, "time", time)
+	metaset_core(meta, def, cached, "rate", rate)
 end
 
 local function soaking_core(def, reg, getmeta, getnodekey)
@@ -95,6 +96,7 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 		local metadata = metaget(meta, def, nodekey)
 		local total = metadata.qty or 0
 		local start = metadata.time
+		local oldrate = metadata.rate or 0
 		start = start and start ~= 0 and start or now
 
 		local rate = 0
@@ -107,7 +109,7 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 			end
 			rate = rate or 0
 			local ticks = 1 + math_floor((now - start) / def.soakinterval)
-			delta = def.soakrand(rate, ticks)
+			delta = oldrate and oldrate > 0 and def.soakrand(oldrate, ticks) or 0
 			total = total + delta
 			start = start + ticks * def.soakinterval
 		end
@@ -117,9 +119,13 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 				metaset(meta, def, nodekey)
 				return ...
 			end
-			metaset(meta, def, nodekey,
-				set and type(set) == "number" and set or total,
-				start)
+			if type(set) ~= "number" then set = total end
+			if set ~= total or rate ~= oldrate then
+				metaset(meta, def, nodekey,
+					set or total,
+					start,
+					rate)
+			end
 			return ...
 		end
 		return helper(def.soakcheck({
@@ -161,7 +167,9 @@ function nodecore.soaking_abm_push(pos, fieldname, qty)
 	local meta = minetest.get_meta(pos)
 	local nodekey = minetest.hash_node_position(vector.round(pos))
 	local data = metaget(meta, abm, nodekey)
-	metaset(meta, abm, nodekey, (data.qty or 0) + qty, data.time or nodecore.gametime)
+	metaset(meta, abm, nodekey, (data.qty or 0) + qty,
+		data.time or nodecore.gametime,
+		data.rate)
 
 	local func = abm.action
 	if pending then
