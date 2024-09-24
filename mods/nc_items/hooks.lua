@@ -42,7 +42,7 @@ nodecore.register_dnt({
 			end
 			nodecore.craft_check(pos, node, data)
 			if not data.progressing then
-				return minetest.get_meta(pos):set_string(modname, "")
+				nodecore.craft_cooking_reset_meta(pos)
 			else
 				return nodecore.dnt_set(pos, dntname, 1 + math_random())
 			end

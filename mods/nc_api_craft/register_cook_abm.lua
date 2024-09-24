@@ -76,12 +76,20 @@ nodecore.craft_cooking_data = mkdata
 
 local dntname = modname .. ":cookcheck"
 
+local function resetcook(pos)
+	local meta = minetest.get_meta(pos)
+	if meta:get_string(modname) ~= "" then
+		return meta:set_string(modname, "")
+	end
+end
+nodecore.craft_cooking_reset_meta = resetcook
+
 local function cookcheck(pos, node)
 	node = node or minetest.get_node(pos)
 	local data = mkdata()
 	nodecore.craft_check(pos, node, data)
 	if not data.progressing then
-		return minetest.get_meta(pos):set_string(modname, "")
+		resetcook(pos)
 	else
 		return nodecore.dnt_set(pos, dntname)
 	end
