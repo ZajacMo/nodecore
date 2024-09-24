@@ -82,6 +82,7 @@ include("util_ezschematic")
 include("util_gametime")
 include("util_settlescan")
 include("util_texturemod")
+include("util_spawn")
 include("match")
 
 include("fx_digparticles")

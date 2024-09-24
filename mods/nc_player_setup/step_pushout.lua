@@ -57,6 +57,11 @@ end
 
 nodecore.player_pushout_disable = nodecore.player_pushout_disable or function() end
 
+local function bias(n)
+	return n + ((n > 0) and math_random(-stepdist - 1, stepdist - 1)
+		or math_random(-stepdist + 1, stepdist + 1))
+end
+
 nodecore.register_playerstep({
 		label = "push player out of solids",
 		action = function(player, data, dtime)
@@ -110,14 +115,14 @@ nodecore.register_playerstep({
 					return pushto(p)
 				end
 			end
-			local function bias(n)
-				return n + ((n > 0) and math_random(-stepdist - 1, stepdist - 1)
-					or math_random(-stepdist + 1, stepdist + 1))
-			end
-			return pushto({
-					x = bias(pos.x),
-					y = bias(pos.y),
-					z = bias(pos.z)
-				})
+
+			local spawn = nodecore.spawn_point()
+			local rel = vector.subtract(pos, spawn)
+			rel = {
+				x = bias(rel.x),
+				y = bias(rel.y),
+				z = bias(rel.z)
+			}
+			return pushto(vector.add(rel, spawn))
 		end
 	})
