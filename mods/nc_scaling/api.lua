@@ -68,7 +68,7 @@ local function tryreplace(pos, newname, rootpos)
 	return true
 end
 
-function nodecore.scaling_apply(pointed)
+function nodecore.scaling_apply(pointed) -- (pointed, player) for tunnel.lua
 	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
 	local pos = pointed.above
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then

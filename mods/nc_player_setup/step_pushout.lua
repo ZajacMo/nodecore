@@ -55,6 +55,8 @@ local function isroom(pos)
 			}, headsolids))
 end
 
+nodecore.room_for_player = isroom
+
 nodecore.player_pushout_disable = nodecore.player_pushout_disable or function() end
 
 local function bias(n)

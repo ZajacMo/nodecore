@@ -20,12 +20,9 @@ local function expandkey(k)
 			end
 			if def.tool_capabilities and def.tool_capabilities.groupcaps then
 				for gn, gv in pairs(def.tool_capabilities.groupcaps) do
-					for gt, gtv in pairs(gv.times or {}) do
-						if gtv <= 4 then
-							keys[pref .. "toolcap:" .. gn] = true
-							keys[pref .. "toolcap:" .. gn
-							.. ":" .. gt] = true
-						end
+					for gt in pairs(gv.times or {}) do
+						keys[pref .. "toolcap:" .. gn] = true
+						keys[pref .. "toolcap:" .. gn .. ":" .. gt] = true
 					end
 				end
 			end

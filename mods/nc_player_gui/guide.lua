@@ -14,7 +14,7 @@ nodecore.register_inventory_tab({
 			"- Aux+drop any item to drop everything.",
 			"- Sneak+aux+drop an item to drop all matching items.",
 			"- Items picked up try to fit into the current selected slot first.",
-			"- Drop and pick up items to rearrange your inventory."
+			"- Drop and pick up items to rearrange your inventory.",
 		}
 	})
 
@@ -27,7 +27,7 @@ nodecore.register_inventory_tab({
 			"- Order and specific face of placement may matter for crafting.",
 			"- Larger recipes are usually more symmetrical.",
 			"- For larger recipes, the center item is usually placed last.",
-			"- Tools used as ingredients must be in very good condition."
+			"- Tools used as ingredients must be in very good condition.",
 		}
 	})
 
@@ -42,7 +42,7 @@ nodecore.register_inventory_tab({
 			"- Recipes are time-based, punching faster does not speed up.",
 			"- Wielded item, target face, and surrounding nodes may matter.",
 			"- Stacks may be pummeled, exact item count may matter.",
-			"- If a recipe exists, you will see a special particle effect."
+			"- If a recipe exists, you will see a special particle effect.",
 		}
 	})
 
@@ -53,13 +53,12 @@ nodecore.register_inventory_tab({
 			"",
 			"- To run faster, walk/swim forward or climb/swim upward continuously.",
 			"- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.",
+			"- Continuing long enough allows you to phase through solid matter.",
 			"- Climbing spots also produce very faint light; raise display gamma to see.",
 			"- Climbing spots may be climbed once black particles appear.",
-			"- Learn to use the stars for long distance navigation.",
+			"- Pay attention to the stars for long distance navigation.",
 			"- Be wary of dark caves/chasms; you are responsible for getting yourself out.",
-			"- If it takes more than 5 seconds to dig, you don't have the right tool.",
-			"- Nodes dug without the right tool cannot be picked up, only displaced.",
-			"- Displaced nodes can be climbed through like climbing spots."
+			"- Stuck in something solid? Stand still and you will eventually teleport out.",
 		}
 	})
 

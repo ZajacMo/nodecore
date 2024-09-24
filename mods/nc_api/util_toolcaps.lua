@@ -57,8 +57,7 @@ function nodecore.toolspeed(what, groups)
 	return t
 end
 function nodecore.tool_digs(what, groups)
-	local s = nodecore.toolspeed(what, groups)
-	return s and s <= 4
+	return nodecore.toolspeed(what, groups)
 end
 
 function nodecore.toolheadspeed(what, groups)
@@ -70,6 +69,5 @@ function nodecore.toolheadspeed(what, groups)
 		}, groups)
 end
 function nodecore.tool_head_digs(what, groups)
-	local s = nodecore.toolheadspeed(what, groups)
-	return s and s <= 4
+	return nodecore.toolheadspeed(what, groups)
 end
