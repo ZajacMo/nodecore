@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
+local math, minetest, nodecore, pairs, vector
+    = math, minetest, nodecore, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -48,32 +48,16 @@ function nodecore.visinv_tween_from(nodepos, frompos)
 	tweenfrom[hash(vector.round(nodepos))] = frompos
 end
 
-local stackcache = {}
-nodecore.register_on_nodeupdate({
-		ignore = {
-			add_node_level = true,
-			liquid_transformed = true,
-		},
-		getnode = false,
-		func = function(pos)
-			stackcache[hash(pos)] = nil
-		end
-	})
-
 local function itemcheck(self)
 	local obj = self.object
 	if not (obj and obj:get_pos()) then return end
 
-	local tf = tweenfrom[self.poskey]
 	local rp = self.pos
-	local sstr = stackcache[self.poskey]
-	if not sstr then
-		sstr = nodecore.stack_get(rp):to_string()
-		stackcache[self.poskey] = sstr
-	end
+	local tf = tweenfrom[self.poskey]
+	local stack = nodecore.stack_get(rp)
+	local sstr = stack:to_string()
 	if (not tf) and self.stackstring == sstr then return end
 	self.stackstring = sstr
-	local stack = ItemStack(sstr)
 
 	if stack:is_empty() then return self.object:remove() end
 
