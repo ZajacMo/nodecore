@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, setmetatable,
+local ItemStack, ipairs, math, minetest, nodecore, pairs, setmetatable,
       string, type, unpack, vector
-    = ItemStack, ipairs, minetest, nodecore, pairs, setmetatable,
+    = ItemStack, ipairs, math, minetest, nodecore, pairs, setmetatable,
       string, type, unpack, vector
-local string_format, string_gsub
-    = string.format, string.gsub
+local math_random, string_format, string_gsub
+    = math.random, string.format, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -44,7 +44,7 @@ nodecore.register_dnt({
 			if not data.progressing then
 				return minetest.get_meta(pos):set_string(modname, "")
 			else
-				return nodecore.dnt_set(pos, dntname)
+				return nodecore.dnt_set(pos, dntname, 1 + math_random())
 			end
 		end
 	})
@@ -56,7 +56,7 @@ minetest.register_abm({
 		chance = 1,
 		action = function(pos)
 			if nevermatch[nodecore.stack_get(pos):get_name()] then return end
-			return nodecore.dnt_set(pos, dntname)
+			return nodecore.dnt_set(pos, dntname, 1 + math_random())
 		end
 	})
 
