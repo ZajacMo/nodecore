@@ -5,6 +5,11 @@ local getmetatable, minetest, nodecore, pairs
 
 local modname = minetest.get_current_modname()
 
+-- It was suggested to do this universally in
+-- https://github.com/minetest/minetest/issues/10127
+-- but abandoned due to compat concerns, which
+-- don't apply to NodeCore.
+
 local publicfields = {
 	formspec = true,
 	infotext = true

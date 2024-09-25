@@ -62,7 +62,7 @@ include("hotfix_fixhack")
 include("hotfix_teleportfix")
 
 include("compat_creative")
-include("compat_issue10127")
+include("compat_privmeta")
 include("compat_legacyent")
 
 include("util_settings")
