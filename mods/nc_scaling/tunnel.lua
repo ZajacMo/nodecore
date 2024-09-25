@@ -1,17 +1,25 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, vector
-    = nodecore, vector
+local minetest, nodecore, vector
+    = minetest, nodecore, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local repeat_count = 4
+local modname = minetest.get_current_modname()
+
+local repeat_count = 4 -- +1 to place initial scaling node
 local max_depth = 5
 
 local cache = {}
+
+local snodes = nodecore.group_expand("group:" .. modname, true)
 
 local oldapply = nodecore.scaling_apply
 function nodecore.scaling_apply(pointed, player, ...)
 	if not player then return oldapply(pointed, player, ...) end
 	local pname = player.get_player_name and player:get_player_name()
+	if not snodes[minetest.get_node(pointed.above).name] then
+		cache[pname] = nil
+		return oldapply(pointed, player, ...)
+	end
 	local found = cache[pname]
 	local qty = (found and vector.equals(found.above, pointed.above)
 		and vector.equals(found.under, pointed.under) and found.qty or 0) + 1
