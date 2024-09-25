@@ -19,11 +19,11 @@ nodecore.public_meta_fields = publicfields
 local function hook(meta)
 	for k, v in pairs(meta) do
 		if k:sub(1, 4) == "set_" then
-			meta[k] = function(data, name, ...)
-				if not publicfields[name] then
+			meta[k] = function(data, name, val, ...)
+				if val ~= "" and not publicfields[name] then
 					data:mark_as_private(name)
 				end
-				return v(data, name, ...)
+				return v(data, name, val, ...)
 			end
 			nodecore.log("info", modname .. " auto-privatized meta " .. k)
 		end
