@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, table, vector
-    = ipairs, math, minetest, nodecore, pairs, table, vector
+local ipairs, math, minetest, next, nodecore, pairs, table, vector
+    = ipairs, math, minetest, next, nodecore, pairs, table, vector
 local math_random, math_sqrt, table_shuffle
     = math.random, math.sqrt, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
@@ -136,6 +136,15 @@ for _, p in pairs(nodecore.dirs()) do
 	if p.y >= 0 then growdirs[#growdirs + 1] = p end
 end
 
+local hashpos = minetest.hash_node_position
+
+-- Sponge colonies may only grow one node per pass; keep track of positions
+-- of sponges that were already checked to avoid doing the floodfill check
+-- for each one, which would lead to O(n^2) complexity.
+local spongeskip = {}
+minetest.register_globalstep(function() if next(spongeskip) then spongeskip = {} end end)
+
+local maxdist = 6
 local basecost = 2000
 nodecore.register_soaking_abm({
 		label = "sponge grow",
@@ -148,11 +157,45 @@ nodecore.register_soaking_abm({
 		soakcheck = function(data, pos)
 			if data.total < basecost then return end
 
+			if spongeskip[hashpos(pos)] then return end
+
+			local waternear = {}
+
+			local minx = pos.x
+			local maxx = pos.x
+			local miny = pos.y
+			local maxy = pos.y
+			local minz = pos.z
+			local maxz = pos.z
 			local count = 0
-			if nodecore.scan_flood(pos, 6,
+			if nodecore.scan_flood(pos, maxdist,
 				function(p, d)
-					if d >= 6 then return true end
-					if minetest.get_node(p).name ~= living then return false end
+					if d >= maxdist then return true end
+					if p.x < minx then
+						minx = p.x
+						if maxx - minx > maxdist then return true end
+					elseif p.x > maxx then
+						maxx = p.x
+						if maxx - minx > maxdist then return true end
+					end
+					if p.y < miny then
+						miny = p.y
+						if maxy - miny > maxdist then return true end
+					elseif p.y > maxy then
+						maxy = p.y
+						if maxy - miny > maxdist then return true end
+					end
+					if p.z < minz then
+						minz = p.z
+						if maxz - minz > maxdist then return true end
+					elseif p.z > maxz then
+						maxz = p.z
+						if maxz - minz > maxdist then return true end
+					end
+					local nn = minetest.get_node(p).name
+					if water[nn] then waternear[#waternear + 1] = p end
+					if nn ~= living then return false end
+					spongeskip[hashpos(p)] = true
 					count = count + 1
 					if count >= 20 then return true end
 				end
@@ -160,21 +203,17 @@ nodecore.register_soaking_abm({
 			local realcost = basecost * math_sqrt(count)
 			if data.total < realcost then return end
 
-			table_shuffle(growdirs)
-			for _, rel in ipairs(growdirs) do
-				local dest = vector.add(pos, rel)
-				local node = minetest.get_node(dest)
-				if water[node.name] then
-					local below = {x = dest.x, y = dest.y - 1, z = dest.z}
-					node = minetest.get_node(below)
-					if node.name == living or sand[node.name] then
-						nodecore.set_loud(dest, {name = living})
-						if dest.y <= pos.y and math_random(1, 2) == 1 then
-							nodecore.soaking_abm_push(dest,
-								"spongegrow", data.total - realcost)
-						end
-						return false
+			table_shuffle(waternear)
+			for _, dest in ipairs(waternear) do
+				local below = {x = dest.x, y = dest.y - 1, z = dest.z}
+				local node = minetest.get_node(below)
+				if node.name == living or sand[node.name] then
+					nodecore.set_loud(dest, {name = living})
+					if dest.y <= pos.y and math_random(1, 2) == 1 then
+						nodecore.soaking_abm_push(dest,
+							"spongegrow", data.total - realcost)
 					end
+					return false
 				end
 			end
 			return false
