@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
 local ipairs, math, minetest, next, nodecore, pairs, table, vector
     = ipairs, math, minetest, next, nodecore, pairs, table, vector
-local math_random, math_sqrt, table_shuffle
-    = math.random, math.sqrt, table.shuffle
+local math_sqrt, table_shuffle
+    = math.sqrt, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local modname = minetest.get_current_modname()
@@ -209,11 +209,7 @@ nodecore.register_soaking_abm({
 				local node = minetest.get_node(below)
 				if node.name == living or sand[node.name] then
 					nodecore.set_loud(dest, {name = living})
-					if dest.y <= pos.y and math_random(1, 2) == 1 then
-						nodecore.soaking_abm_push(dest,
-							"spongegrow", data.total - realcost)
-					end
-					return false
+					return data.total - realcost
 				end
 			end
 			return false
