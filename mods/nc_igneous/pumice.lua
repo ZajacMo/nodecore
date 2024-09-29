@@ -72,9 +72,17 @@ minetest.register_abm({
 
 local pumices = {ignore = true}
 local supports = {ignore = true}
+local directsupports = {ignore = true}
 minetest.after(0, function()
 		for k, v in pairs(minetest.registered_nodes) do
 			local grp = v.groups or {}
+			if (not v.buildable_to) or
+			v.liquid_move_physics or
+			v.liquid_move_physics == nil and
+			v.liquidtype ~= "none"
+			then
+				directsupports[k] = true
+			end
 			if (grp.pumice or 0) > 0 then
 				pumices[k] = true
 			elseif (grp.pumice_no_support or 0) <= 0 then
@@ -82,6 +90,7 @@ minetest.after(0, function()
 				or (grp.falling_node or 0) <= 0
 				and v.drawtype == "normal" then
 					supports[k] = true
+					directsupports[k] = true
 				end
 			end
 		end
@@ -123,7 +132,8 @@ minetest.register_abm({
 			if estimated_falling_ents >= max_entities then return end
 
 			local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
-			if not nodecore.buildable_to(bpos) then return end
+			local bnode = minetest.get_node(bpos)
+			if directsupports[bnode.name] then return end
 
 			local e = checksupport({x = pos.x + 1, y = pos.y, z = pos.z})
 			if e then return end
