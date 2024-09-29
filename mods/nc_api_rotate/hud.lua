@@ -42,7 +42,7 @@ nodecore.register_playerstep({
 						ttl = 0,
 					})
 			end
-			huddots(player, rot.facectr, pt.intersection_normal)
+			huddots(player, rot.facectr, pt.intersection_normal, rot.boxscale)
 
 			if not rot.rotdir then
 				return nodecore.hud_set(player, {

@@ -32,8 +32,8 @@ do
 	end
 end
 
-function nodecore.rotation_hud_dots(player, pos, ptnorm)
-	local list = pos and ptnorm and dots[hashpos(ptnorm)]
+function nodecore.rotation_hud_dots(player, pos, ptnorm, scale)
+	local list = pos and ptnorm and scale and dots[hashpos(ptnorm)]
 	if list then
 		for i = 1, #list do
 			nodecore.hud_set(player, {
@@ -41,7 +41,7 @@ function nodecore.rotation_hud_dots(player, pos, ptnorm)
 					hud_elem_type = "image_waypoint",
 					text = "nc_api_rotate_huddot.png",
 					scale = {x = 1, y = 1},
-					world_pos = vector.add(pos, list[i]),
+					world_pos = vector.add(pos, vector.multiply(list[i], scale)),
 					precision = 0,
 				})
 		end

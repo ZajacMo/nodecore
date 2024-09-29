@@ -80,6 +80,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 			"nc_api_rotate_under", player, pointed_thing)
 		if not pos then return end
 	end
+	local boxscale = def.nc_api_rotate_box_scale or 1
 
 	local function setparam2(data)
 		local computed = nodecore.param2_canonical({
@@ -91,19 +92,24 @@ function nodecore.rotation_compute(player, pointed_thing)
 		end
 	end
 
-	local facectr = vector_multiply(vector_add(pointed_thing.above, pointed_thing.under), 0.5)
+	local facectr = vector_add(
+		vector.multiply(pointed_thing.under, (2 - boxscale) / 2),
+		vector.multiply(pointed_thing.above, boxscale / 2)
+	)
 	local facerel = vector_subtract(pointed_thing.intersection_point, facectr)
 
 	local cdata = {
 		vector = pointed_thing.intersection_normal,
 		facectr = facectr,
 		facerel = facerel,
+		boxscale = boxscale,
 	}
 	setparam2(cdata)
 
-	if facerel.x > -rotation_center_ratio and facerel.x < rotation_center_ratio
-	and facerel.y > -rotation_center_ratio and facerel.y < rotation_center_ratio
-	and facerel.z > -rotation_center_ratio and facerel.z < rotation_center_ratio
+	local cratio = rotation_center_ratio * boxscale
+	if facerel.x > -cratio and facerel.x < cratio
+	and facerel.y > -cratio and facerel.y < cratio
+	and facerel.z > -cratio and facerel.z < cratio
 	then return pos, node, cdata, def end
 
 	local rotdir = vec_to_dir(facerel)
@@ -112,6 +118,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 		facectr = facectr,
 		facerel = facerel,
 		rotdir = rotdir,
+		boxscale = boxscale,
 	}
 	setparam2(rdata)
 	return pos, node, rdata, def
