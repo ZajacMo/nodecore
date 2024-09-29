@@ -12,6 +12,7 @@ local wetdef = {
 	use_texture_alpha = "blend",
 	paramtype = "light",
 	liquid_viscosity = 0,
+	liquid_move_physics = false,
 	liquid_renewable = false,
 	liquid_range = 2,
 	liquid_alternative_flowing = modname .. ":flux_flowing",
