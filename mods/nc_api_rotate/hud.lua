@@ -10,6 +10,7 @@ nodecore.amcoremod()
 local modname = minetest.get_current_modname()
 
 local vec_to_dir = nodecore.vector_to_dir
+local huddots = nodecore.rotation_hud_dots
 
 local transform_by_scrkey = {
 	["0-1"] = "I",
@@ -17,55 +18,6 @@ local transform_by_scrkey = {
 	["01"] = "R180",
 	["-10"] = "R90",
 }
-
-local rotation_center_ratio = nodecore.rotation_center_ratio
-local function huddots(player, pos, ptnorm)
-	if not pos then
-		for idx = 1, 8 do
-			nodecore.hud_set(player, {
-					label = modname .. "_dot" .. idx,
-					ttl = 0,
-					quick = true
-				})
-		end
-		return
-	end
-	local idx = 0
-	local dirs = nodecore.dirs()
-	for m = 1, #dirs do
-		local a = dirs[m]
-		if vector.dot(ptnorm, a) == 0 then
-			for n = 1, m - 1 do
-				local b = dirs[n]
-				if vector.dot(ptnorm, b) == 0
-				and vector.dot(a, b) == 0 then
-					idx = idx + 1
-					nodecore.hud_set(player, {
-							label = modname .. "_dot" .. idx,
-							hud_elem_type = "image_waypoint",
-							text = "nc_api_rotate_huddot.png",
-							scale = {x = 1, y = 1},
-							world_pos = vector.add(pos, vector.multiply(
-									vector.add(a, b), rotation_center_ratio)),
-							precision = 0,
-							quick = true
-						})
-					idx = idx + 1
-					nodecore.hud_set(player, {
-							label = modname .. "_dot" .. idx,
-							hud_elem_type = "image_waypoint",
-							text = "nc_api_rotate_huddot.png",
-							scale = {x = 1, y = 1},
-							world_pos = vector.add(pos, vector.multiply(
-									vector.add(a, b), 1/2)),
-							precision = 0,
-							quick = true
-						})
-				end
-			end
-		end
-	end
-end
 
 nodecore.register_playerstep({
 		label = "rotation scan",
@@ -75,7 +27,6 @@ nodecore.register_playerstep({
 				return nodecore.hud_set(player, {
 						label = modname,
 						ttl = 0,
-						quick = true
 					})
 			end
 
@@ -89,7 +40,6 @@ nodecore.register_playerstep({
 				return nodecore.hud_set(player, {
 						label = modname,
 						ttl = 0,
-						quick = true
 					})
 			end
 			huddots(player, rot.facectr, pt.intersection_normal)
@@ -102,7 +52,6 @@ nodecore.register_playerstep({
 						scale = {x = 1, y = 1},
 						world_pos = rot.facectr,
 						precision = 0,
-						quick = true
 					})
 			end
 
@@ -132,7 +81,6 @@ nodecore.register_playerstep({
 					world_pos = vector.add(rot.facectr,
 						vector.multiply(rot.rotdir, 0.4)),
 					precision = 0,
-					quick = true
 				})
 		end
 	})

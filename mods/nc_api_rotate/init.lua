@@ -7,4 +7,5 @@ nodecore.amcoremod()
 
 include("autofix")
 include("api")
+include("dots")
 include("hud")
