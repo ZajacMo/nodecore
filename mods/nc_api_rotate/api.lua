@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, table, vector
-    = ipairs, minetest, nodecore, table, vector
-local table_concat
-    = table.concat
+local ipairs, minetest, nodecore, pairs, string, table, type, vector
+    = ipairs, minetest, nodecore, pairs, string, table, type, vector
+local string_format, table_concat
+    = string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
 local rotation_center_ratio = 1/5
@@ -15,6 +15,63 @@ local vector_multiply = vector.multiply
 local vector_subtract = vector.subtract
 local vector_cross = vector.cross
 local vector_equals = vector.equals
+
+local boxscales = {}
+do
+	local function warn(k, sel, msg)
+		return minetest.log("warning", string_format(
+				"nc_api_rotatable node %q issue %q with box: %s", k, msg,
+				sel ~= nil and minetest.serialize(sel) or "nil"))
+	end
+	local function selboxcheck(k, sel)
+		if not sel then
+			warn(k, sel, "undefined")
+			return 1
+		end
+		local t = sel["type"]
+		if t == "regular" then return 1 end
+		if t ~= "fixed" then
+			warn(k, sel, "not normal or fixed")
+			return 1
+		end
+		local f = sel.fixed
+		if (not f) or type(f) ~= "table" then
+			warn(k, sel, "invalid fixed def")
+			return 1
+		end
+		if #f ~= 1 then
+			warn(k, sel, "#cuboids != 1")
+			return 1
+		end
+		if type(f[1]) ~= "table" or #(f[1]) ~= 6 then
+			warn(k, sel, "invalid cuboid")
+			return 1
+		end
+		local n = f[1][1]
+		if type(n) ~= "number" then
+			warn(k, sel, "invalid dimension")
+			return 1
+		end
+		if f[1][2] ~= n or f[1][3] ~= n
+		or f[1][4] ~= -n or f[1][5] ~= -n or f[1][6] ~= -n then
+			warn(k, sel, "non-symmetrical")
+			return 1
+		end
+		return -n * 2
+	end
+	minetest.after(0, function()
+			for k, v in pairs(minetest.registered_nodes) do
+				if v.groups then
+					local a = v.groups.nc_api_rotate_above
+					local u = v.groups.nc_api_rotate_under
+					if a and a > 0 or u and u > 0 then
+						boxscales[k] = selboxcheck(k,
+							v.selection_box)
+					end
+				end
+			end
+		end)
+end
 
 local function rotkey(v, param2)
 	return table_concat({
@@ -80,7 +137,7 @@ function nodecore.rotation_compute(player, pointed_thing)
 			"nc_api_rotate_under", player, pointed_thing)
 		if not pos then return end
 	end
-	local boxscale = def.nc_api_rotate_box_scale or 1
+	local boxscale = boxscales[node.name] or 1
 
 	local function setparam2(data)
 		local computed = nodecore.param2_canonical({

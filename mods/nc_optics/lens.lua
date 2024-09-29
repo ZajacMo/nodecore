@@ -57,7 +57,6 @@ local basedef = {
 		optic_gluable = 1,
 		nc_api_rotate_under = 1,
 	},
-	nc_api_rotate_box_scale = 7/8,
 	silktouch = false,
 	drop = modname .. ":lens",
 	on_construct = nodecore.optic_check,
