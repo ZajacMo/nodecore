@@ -82,7 +82,8 @@ minetest.register_globalstep(function()
 							node.name .. " unsuspend at "
 							.. minetest.pos_to_string(pos))
 						minetest.check_for_falling(pos)
-						if toomanyents() then break end
+						if minetest.get_node(pos).name ~= node.name
+						and toomanyents() then break end
 					end
 				end
 			end
