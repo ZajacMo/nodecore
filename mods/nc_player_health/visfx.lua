@@ -26,7 +26,7 @@ nodecore.register_playerstep({
 			data.phealth_fx_setto = cur
 			return player:set_lighting({
 					bloom = {
-						intensity = cur,
+						intensity = cur * 0.8,
 						strength_factor = 1/8,
 						radius = cur * 8,
 					}
