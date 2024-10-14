@@ -22,10 +22,13 @@
 - Learn to use the stars for long distance navigation.=- Aprende a usar las estrellas para la navegación a larga distancia.
 - Nodes dug without the right tool cannot be picked up, only displaced.=- Los nodos picados sin la herramienta adecuada no se agarrarán, desaparecerán.
 - Order and specific face of placement may matter for crafting.=- El orden y la posición de los nodos pueden imporatar en los crafteos.
+- Ores may be hidden, but revealed by subtle clues in terrain.=- Los minerales pueden estar ocultos, pero se revelan por pistas sutiles en el terreno.
 - Recipes are time-based, punching faster does not speed up.=- Los crafteos se basan en el tiempo, golpear más rápido no los acelerarán.
 - Sneak+aux+drop an item to drop all matching items.=- Agacharse+AUX+tirar un ítem tirará todos los ítems del mismo tipo.
 - Sneak+drop to count out single items from stack.=- Agacharse+tirar para tirar ítem por ítem de un stack.
 - Some recipes require "pummeling" a node.=- Algunos craftos necesitan "pummelear" un nodo.
+- Something seems tedious? Find better tech, subtle factors, or a better way.=- ¿Algo te parece tedioso? Busca mejor tecnología, factores sutiles o una mejor manera de hacerlo.
+- Stacks may be pummeled, exact item count may matter.=- Los montones pueden ser golpeados. Una cantidad exacta de objetos puede ser importante.
 - The game is challenging by design, sometimes frustrating. DON'T GIVE UP!=- El juego es desafiante por diseño, incluso frustrante. ¡NO-TE-RINDAS!
 - There is NO inventory screen.=- NO hay interfaz de inventario.
 - To pummel, punch a node repeatedly, WITHOUT digging.=- Para "pummelear", golpea un nodo repetidamente SIN picarlo.
@@ -38,6 +41,8 @@
 About=Sobre Nodecore
 Active Lens=Lente activo
 Active Prism=Prisma Activo
+Additional Mods Loaded: @1=Mods adicionales cargados: @1
+Adobe Bricks=Ladrillos de adobe
 Adobe Mix=Mezcla de Adobe
 Aggregate=Conglomerado
 Amalgamation=Amalgamación
@@ -164,3 +169,4 @@ Wooden Spade=Pala de Madera
 Xrp Charcoal Glyph=Glifo de Carbón Vegetal llamado "Xrp"
 Yit Charcoal Glyph=Glifo de Carbón Vegetal llamado "Yit"
 Zin Charcoal Glyph=Glifo de Carbón Vegetal llamado "Zin"
+~ @1% translated to your language (@2)=~ @1% traducido a tu idioma (@2)

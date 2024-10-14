@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 00:25+0200\n"
-"PO-Revision-Date: 2023-11-23 01:09+0000\n"
-"Last-Translator: capitalthree <alexbobp@gmail.com>\n"
+"PO-Revision-Date: 2024-10-14 21:50+0000\n"
+"Last-Translator: Jorge Rodríguez <mr.jrodriguez05@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "nodecore/es/>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2.1-rc\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid "- FUTURE: @1"
 msgstr "- FUTURO: @1"
@@ -34,7 +34,7 @@ msgid "- Drop and pick up items to rearrange your inventory."
 msgstr "- Suelta y recoge objetos para reorganizar tu inventario."
 
 msgid "- Larger recipes are usually more symmetrical."
-msgstr "- Los recipientes grandes usualmente son más simétricos."
+msgstr "- Los planos más grandes usualmente son más simétricos."
 
 msgid "- There is NO inventory screen."
 msgstr "- NO hay pantalla de inventario."
@@ -95,3 +95,102 @@ msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
 "- Para planos más grandes, en general, el objeto de en medio se coloca al "
 "final."
+
+msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
+msgstr ""
+"- Si te toma más de 5 segundos excavar, es porque no tienes la herramienta "
+"adecuada."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr ""
+"- Los objetos que recojas se colocarán primero en la ranura que tengas "
+"seleccionada."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- Si un plano existe, verás un efecto de partículas especial."
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "~ @1% traducido a tu idioma (@2)"
+
+msgid "- Nodes dug without the right tool cannot be picked up, only displaced."
+msgstr ""
+"- Los nodos excavados sin la herramienta adecuada no se pueden recoger, solo "
+"se desplazan."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr ""
+"- Los planos tienen un determinado tiempo de fabricación. Golpear más rápido "
+"no hará que sea más rápido."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- Agachar+soltar para sacar un solo objeto de un montón."
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- Algunos planos requieren \"golpear\" un nodo."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr ""
+"- El objeto que tengas en la mano, el lado del nodo al que apuntas y los "
+"nodos cercanos pueden ser importantes."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- Agachar+aux+soltar un objeto para soltar todos los objetos iguales."
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"- ¿Algo te parece tedioso? Busca mejor tecnología, factores sutiles o una "
+"mejor manera de hacerlo."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr ""
+"- Los montones pueden ser golpeados. Una cantidad exacta de objetos puede "
+"ser importante."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr ""
+"- Este juego se diseñó para ser desafiante, a veces frustrante. ¡NO TE "
+"RINDAS!"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- ¿No sabes qué hacer? Intenta preguntar en los chats de la comunidad ("
+"pestaña 'Acerca de')."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr ""
+"- El orden y la orientación específica al colocar un nodo pueden ser "
+"importantes al fabricar."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- Para golpear, pégale a un nodo repetidamente, SIN excavar."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr ""
+"- Los minerales pueden estar ocultos, pero se revelan por pistas sutiles en "
+"el terreno."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr ""
+"- Para correr más rápido, camina/nada hacia adelante o escala/nada hacia "
+"arriba continuamente."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- No tienes que golpear muy rápido (cerca de 1 click por segundo)."
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "Mods adicionales cargados: @1"
+
+msgid "Adobe Bricks"
+msgstr "Ladrillos de adobe"
+
+msgid "Adobe Mix"
+msgstr "Mezcla de adobe"
+
+msgid "Aggregate"
+msgstr "Conglomerado"
+
+msgid "Amalgamation"
+msgstr "Amalgama"
