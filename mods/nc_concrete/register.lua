@@ -188,16 +188,6 @@ end
 
 ------------------------------------------------------------------------
 
-nc.register_concrete_etchable({
-		basename = "nc_igneous:pumice",
-		pliant_opacity = 40,
-		pattern_opacity = 80,
-		pliant = {
-			sounds = nc.sounds("nc_terrain_crunchy"),
-			drop_in_place = modname .. ":pumpowder_wet_source",
-			silktouch = false
-		}
-	})
 nc.register_concrete({
 		description = "Pumpowder",
 		description_wet = "Pumslush",
