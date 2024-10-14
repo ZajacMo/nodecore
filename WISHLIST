@@ -9,7 +9,7 @@ to the project!
 - Translations:
 	- https://nodecore.mine.nu/trans/projects/nodecore/core/
 
-- Help (PRs and/or advocacy) with Minetest engine issues:
+- Help (PRs and/or advocacy) with engine issues:
 	- Major game-breakers:
 		- #14112: Requires us to maintain a massive workaround for
 		  mods that want to use teleport functionality sanely.

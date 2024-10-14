@@ -19,7 +19,7 @@ Anneal / Annealed:
 Aux:
 	a.k.a. "Aux1"
 	a.k.a. "Special" in some places before MT 5.5
-	An input key that can be bound in the minetest "Change Keys"
+	An input key that can be bound in the engine "Change Keys"
 	settings menu.  It can be a different key for each user, so the
 	name of the specific key cannot be used.
 	In minetest_game this is mostly used for sprinting but in
@@ -174,7 +174,7 @@ Scale / Scaling:
 	Used in NodeCore in the sense of "climbing."
 
 Sneak:
-	An input key that can be bound in the minetest "Change Keys"
+	An input key that can be bound in the engine "Change Keys"
 	settings menu.  It can be a different key for each user, so the
 	name of the specific key cannot be used.
 	This is sometimes called "shift" because that's a very

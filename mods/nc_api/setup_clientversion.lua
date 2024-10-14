@@ -17,7 +17,7 @@ function nc.player_rejected(player)
 end
 
 local kickmsg = string_format("\n\n%s\n%s",
-	nc.translate("Your Minetest version is outdated, please update!"),
+	nc.translate("Your client version is outdated, please update!"),
 	nc.translate("Version @1 or higher is required.", minrelease))
 
 local announcetext = "@1 rejected. (protocol version @2)"

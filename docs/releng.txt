@@ -30,7 +30,7 @@ as it happens.
 ENGINE/FORK POLICY
 ------------------
 
-NodeCore is only designed to fully support the official minetest.net
+NodeCore is only designed to fully support the official luanti.net
 game engine at this time, on all supported desktop and mobile
 platforms.
 

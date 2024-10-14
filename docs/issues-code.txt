@@ -21,7 +21,7 @@ ISSUES-CODE: Issues related to code quality and maintainability
 	- Store slot/full count as integers?
 	- Compute from meta and cache indexed by to_string?
 
-- Need to handle minetest.features.hud_def_type_field
+- Need to handle core.features.hud_def_type_field
 
 - Teleportation regression needs to support player:add_pos now.
 
@@ -33,9 +33,6 @@ ISSUES-CODE: Issues related to code quality and maintainability
 	- Could also maybe try to use DNTs, e.g. have a single DNT
 	  patrol ABM for everything and every other interaction would
 	  be node timer managed?
-
-- Standardize some node metadata publishing
-	- Colors.txt for minetest mapper from node registrations
 
 - Need to standardize storage API between storeboxes and bare stacks
 	- Storebox API is a mess anyway and needs a lot of cleanup.
@@ -59,7 +56,7 @@ ISSUES-CODE: Issues related to code quality and maintainability
 	- Need to be robust in event of gametime resetting to zero,
 	  e.g. env_meta.txt corruption.
 	- Probably need to separate nodecore gametime entirely from
-	  minetest gametime.
+	  engine gametime.
 	- Always need to guard against the backward flow of time
 	  in normal gameplay circumstances, e.g. due to loss of
 	  meta files.
@@ -139,7 +136,7 @@ ISSUES-CODE: Issues related to code quality and maintainability
 	  should probably try registering groups to allow future expansion
 	- Transactional api ref localization
 		- For certain large computations, like an optic processing, it may be
-		  worthwhile to capture some often-repeated functions like minetest.get_node
+		  worthwhile to capture some often-repeated functions like core.get_node
 		  as locals.
 		- May need to test performance on a non-JIT build, where this is expected
 		  to have a larger impact, since JIT probably optimizes the difference away.
