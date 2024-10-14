@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- Oblasti na šplhanie budú schodné len čo sa objavia čierne čiastočky.
 - Crafting is done by building recipes in-world.=- Vytváranie sa vykonáva skladaním receptov vo svete.
 - DONE: @1=- HOTOVO: @1
-- Displaced nodes can be climbed through like climbing spots.=- Po premiestnených kockách je možné liezť rovnako ako po oblastiach na šplhanie.
 - Drop and pick up items to rearrange your inventory.=- Upusti a zodvihni veci, aby si poupratoval svoj inventár.
 - Drop items onto ground to create stack nodes. They do not decay.=- Upusti veci na zem a vytvoríš skladovaciu kocku. Nerozpadá sa.
 - FUTURE: @1=- BUDÚCE: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Podrž/opakuj pravým tlačítkom myši na steny/stropy s prázdnou rukou a vytvor miesto na šplhanie.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Si beznádejne zaseknutý? Opýtaj sa na komunitných četoch (Záložka About).
 - If a recipe exists, you will see a special particle effect.=- Ak recept existuje, uvidíš špeciálny efekt z čiastočiek.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Ak kopanie trvá viac než 5 sekúnd, nepoužívaš ten správny nástroj.
 - Items picked up try to fit into the current selected slot first.=- Zodvihnuté veci sa najprv snažia vtesnať do práve zvolenej pozície.
 - Larger recipes are usually more symmetrical.=- Väčšie recepty sú zvyčajne symetrickejšie.
-- Learn to use the stars for long distance navigation.=- Nauč sa používať hviezdy na orientáciu pri väčších vzdialenostiach.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- Kocky vykopané nesprávnym nástrojom sa nedajú zodvihnúť, iba premiestniť.
 - Order and specific face of placement may matter for crafting.=- Usporiadanie a konkrétne strana (kocky) pri vložení môže mať vplyv pri vytváraní.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Rudy môžu byť ukryté, dajú sa však odhaliť vďaka jemným náznakom v teréne.
 - Recipes are time-based, punching faster does not speed up.=- Recepty závisia od času, udierať rýchlejšie ti nepomôže.

@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- Titik pendakian mungkin akan naik setelah partikel hitam muncul.
 - Crafting is done by building recipes in-world.=- Kerajinan dilakukan dengan membuat resep di dalam dunia.
 - DONE: @1=- SELESAI: @1
-- Displaced nodes can be climbed through like climbing spots.=- Simpul yang dipindahkan dapat dipanjat seperti titik pendakian.
 - Drop and pick up items to rearrange your inventory.=- Jatuhkan dan ambil item untuk mengatur ulang inventaris Anda.
 - Drop items onto ground to create stack nodes. They do not decay.=- Jatuhkan item ke tanah untuk membuat tumpukan simpul. Mereka tidak membusuk.
 - FUTURE: @1=- MASA DEPAN: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Tahan/ulangi klik kanan pada dinding/langit-langit dengan tangan kosong untuk membuat titik pendakian.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Terjebak tanpa harapan? Coba tanyakan pada ruang obrolan komunitas (lihat di 'Tentang').
 - If a recipe exists, you will see a special particle effect.=- Jika ada resep, Anda akan melihat efek partikel khusus.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Jika penggalian membutuhkan waktu lebih dari 5 detik, Anda tidak memiliki alat yang tepat.
 - Items picked up try to fit into the current selected slot first.=- Jika ingin mengambil item, cobalah untuk memilih slot yang diinginkan terlebih dahulu.
 - Larger recipes are usually more symmetrical.=- Resep berukuran besar biasanya lebih simetris.
-- Learn to use the stars for long distance navigation.=- Belajar menggunakan bintang untuk navigasi jarak jauh.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- Simpul yang digali tanpa alat yang tepat tidak dapat diambil, hanya dapat dipindahkan saja.
 - Order and specific face of placement may matter for crafting.=- Urutan dan tampilan penempatan yang spesifik mungkin penting untuk kerajinan.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Bijih mungkin tersembunyi, tetapi terungkap melalui petunjuk halus di medan bebatuan.
 - Recipes are time-based, punching faster does not speed up.=- Resep berdasarkan waktu, 'memukul' lebih cepat tidak mempercepat.
@@ -446,7 +442,6 @@ Yellow Cup Flower=Bunga Cup Kuning
 Yellow Rosette Flower=Bunga Rosette Kuning
 Yellow Star Flower=Bunga Star Kuning
 Yit Charcoal Glyph=Tulisan Arang Yit
-Your Minetest version is outdated, please update!=Versi Minetest Anda sudah usang, harap perbarui ke versi yang terbaru!
 Zin Charcoal Glyph=Tulisan Arang Zin
 activate a lens=Mengaktifkan Lensa
 activate a prism=Mengaktifkan Prisma

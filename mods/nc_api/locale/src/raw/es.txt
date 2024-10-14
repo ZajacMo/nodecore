@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 00:25+0200\n"
-"PO-Revision-Date: 2024-10-14 21:50+0000\n"
+"PO-Revision-Date: 2024-10-14 22:57+0000\n"
 "Last-Translator: Jorge Rodríguez <mr.jrodriguez05@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "nodecore/es/>\n"
@@ -194,3 +194,9 @@ msgstr "Conglomerado"
 
 msgid "Amalgamation"
 msgstr "Amalgama"
+
+msgid "Annealed Lode"
+msgstr "Veta recocida"
+
+msgid "Annealed Lode Adze"
+msgstr "Achuela de veta recocida"

@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- По местам для лазанья можно взбираться после появления черных частиц.
 - Crafting is done by building recipes in-world.=- Крафтинг совершается постройкой рецептов в мире.
 - DONE: @1=- ЗАВЕРШЕНО: @1
-- Displaced nodes can be climbed through like climbing spots.=- Смещенные ноды можно преодолевать как места для лазания.
 - Drop and pick up items to rearrange your inventory.=- Бросьте и соберите предметы, чтобы переставить инвентарь.
 - Drop items onto ground to create stack nodes. They do not decay.=- Бросайте вещи на землю чтобы создать стак-ноды. Они не исчезают.
 - FUTURE: @1=- БУДУЩЕЕ: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Удерживайте/повторяйте нажатие правой кнопкой мыши на стенах/потолках, чтобы создать места для лазания.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Безнадежно застрял? Попробуйте спросить в чатах сообщества (вкладка «О программе»).
 - If a recipe exists, you will see a special particle effect.=- Если рецепт существует, вы увидите специальный эффект частиц.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Если копание занимает более 5 секунд, значит вы копайте неправильным инструментом.
 - Items picked up try to fit into the current selected slot first.=- Подобранные предметы пытаются поместиться в выделенный слот.
 - Larger recipes are usually more symmetrical.=- Большие рецепты обычно более симметричны.
-- Learn to use the stars for long distance navigation.=- Научитесь использовать звезды для навигации на большие расстояния.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- Ноды, выкопанные без правильного инструмента, нельзя подобрать, по ним можно только лазить.
 - Order and specific face of placement may matter for crafting.=- Порядок и конкретная грань могут иметь значение для крафтинга.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Может руды и спрятаны, но их раскрывают тонкие подсказки на местности.
 - Recipes are time-based, punching faster does not speed up.=- Рецепты зависят от времени, учащенные удары ничего не ускоряют.
@@ -437,7 +433,6 @@ Yellow Cup Flower=Желтый Чашечный Цветок
 Yellow Rosette Flower=Желтый Цветок Розы
 Yellow Star Flower=Желтый Звездный Цветок
 Yit Charcoal Glyph=Йит Глиф из угля
-Your Minetest version is outdated, please update!=Ваша версия Minetest устарела, пожалуйста, обновите!
 Zin Charcoal Glyph=Зин Глиф из угля
 activate a lens=активируйте линзу
 activate a prism=активируйте призму

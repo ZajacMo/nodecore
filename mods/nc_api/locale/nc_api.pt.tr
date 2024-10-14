@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- Pontos de escalada podem ser escalados quando partículas negras aparecerem.
 - Crafting is done by building recipes in-world.=- A Criação de itens é feita construindo as receitas pelo mundo.
 - DONE: @1=- FEITO: @1
-- Displaced nodes can be climbed through like climbing spots.=- Nós/blocos deslocados podem ser escalados, como pontos de escalada.
 - Drop and pick up items to rearrange your inventory.=- Largue e pegue itens novamente para organizar seu inventário.
 - Drop items onto ground to create stack nodes. They do not decay.=- Jogue itens no chão para criar pilhas de nós. Eles não desaparecem.
 - FUTURE: @1=- FUTURO: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Segure/repita "clique-direito" em paredes/tetos com as mãos naus para criar pontos de escalada.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Preso e desesperado? Tente pedir ajuda aos fóruns da comunidade (Aba sobre).
 - If a recipe exists, you will see a special particle effect.=- Se uma receita existe, você verá um efeito especial de partícula sair do nó.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Se demorar mais de 5 segundos pra cavar algo, você não está utilizando a ferramenta certa.
 - Items picked up try to fit into the current selected slot first.=- Os itens pegados são primeiramente armazenados no espaço atualmente selecionado.
 - Larger recipes are usually more symmetrical.=- Receitas maiores são geralmente mais simétricas.
-- Learn to use the stars for long distance navigation.=- Aprenda a usar as estrelas para navegação à longa distância.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- Nós quebrados com a ferramenta errada não podem ser pegados, apenas deslocados.
 - Order and specific face of placement may matter for crafting.=- A ordem e a face em que os itens são colocados pode importar no processo de criação.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Minérios podem estar escondidos, mas podem ser revelados a partir de dicas sutis no terreno.
 - Recipes are time-based, punching faster does not speed up.=- Receitas são cronometradas, bater mais forte não afetará a velocidade delas.

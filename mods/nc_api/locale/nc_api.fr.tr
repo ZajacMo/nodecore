@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- Les sites d'escalade peuvent être escaladés lorsque des particules noires apparaissent.
 - Crafting is done by building recipes in-world.=- La fabrication se fait en construisant les recettes dans le monde nodecore.
 - DONE: @1=- FAIT : @1
-- Displaced nodes can be climbed through like climbing spots.=- Les blocs déplacés peuvent être escaladés comme points d'escalade.
 - Drop and pick up items to rearrange your inventory.=- Lâcher et récupérer des objets pour réarranger votre inventaire.
 - Drop items onto ground to create stack nodes. They do not decay.=- Lâcher des objets sur le sol pour créer des blocs piles d'objet. Elles ne se décomposent pas.
 - FUTURE: @1=- FUTUR : @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Maintenir/Répéter le clic droit sur les murs/plafonds à mains nues pour créer une prise d'escalade.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Bloqué(e) sans aucun espoir ? Essayez de demander de l'aide dans les salons de discussion de la communauté (About tab).
 - If a recipe exists, you will see a special particle effect.=- Si une recette existe, vous verrez un effet spécial des particules.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Si miner prend plus de 5 secondes, c'est que vous n'utilisez pas le bon outil.
 - Items picked up try to fit into the current selected slot first.=- Les objets ramassés essaient de remplir l'emplacement d'inventaire sélectionné en premier d'abord.
 - Larger recipes are usually more symmetrical.=- Les recettes les plus grandes sont habituellement plus symétriques.
-- Learn to use the stars for long distance navigation.=- Apprenez à utiliser les étoiles pour la navigation longue distance.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- Les blocs minés avec le mauvais outil ne peuvent pas être ramassés, seulement déplacés.
 - Order and specific face of placement may matter for crafting.=- L'ordre et la face de placement peuvent être important pour la fabrication.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Le minerai peut être caché, mais détectable par de subtils indices dans le terrain.
 - Recipes are time-based, punching faster does not speed up.=- Les recettes sont basées sur le temps, cliquer plus rapidement ne les accélère pas.
@@ -436,7 +432,6 @@ Yellow Cup Flower=Campanule jaune
 Yellow Rosette Flower=Rosier jaune
 Yellow Star Flower=Bourrache jaune
 Yit Charcoal Glyph=Glyphe de Charbon Yit
-Your Minetest version is outdated, please update!=Votre version de Minetest est dépassée, veuillez mettre à jour !
 Zin Charcoal Glyph=Glyphe de Charbon Zin
 activate a lens=activer une lentille
 activate a prism=activer un prisme

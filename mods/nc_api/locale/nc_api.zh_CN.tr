@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- 出现黑色颗粒，就可以爬上攀登点。
 - Crafting is done by building recipes in-world.=- 在世界中建造合成模式来合成物品。
 - DONE: @1=- 完成: @1
-- Displaced nodes can be climbed through like climbing spots.=- 移位的节点可以像攀登点一样被爬过去。
 - Drop and pick up items to rearrange your inventory.=- 丢弃然后拿起物品来重排你的背包。
 - Drop items onto ground to create stack nodes. They do not decay.=- 将物品扔到地上，形成堆方块。堆方块不会腐烂。
 - FUTURE: @1=- 未来: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- 徒手按住/重复右键点击墙壁/天花板，创建攀爬点。
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- 卡住了？试着问一下我们社区的聊天室吧（关于选项卡）.
 - If a recipe exists, you will see a special particle effect.=- 如果存在配方，您将看到特殊的粒子效果。
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- 如果都用了5秒多还没挖完，那你就得试试别的工具了.
 - Items picked up try to fit into the current selected slot first.=- 拾取的物品会尽量先放入当前选定的物品栏中。
 - Larger recipes are usually more symmetrical.=- 更好的方法通常更适合.
-- Learn to use the stars for long distance navigation.=- 学会使用星星进行远距离导航。
-- Nodes dug without the right tool cannot be picked up, only displaced.=-挖掘方块没有正确的工具不能获得物品，只能破坏并且不会掉落。
 - Order and specific face of placement may matter for crafting.=- 特定的顺序和放置方向对合成来说很重要。
 - Ores may be hidden, but revealed by subtle clues in terrain.=- 矿石可能不会是裸露的，但位置会被地形的细微线索所揭示。
 - Recipes are time-based, punching faster does not speed up.=配方取决于时间，更快的节奏并不会加速制作。
@@ -408,7 +404,6 @@ Yellow Cup Flower=黄盆花
 Yellow Rosette Flower=黃層花
 Yellow Star Flower=黄星花
 Yit Charcoal Glyph=Yit 炭符
-Your Minetest version is outdated, please update!=你的 Minetest 版本太舊了，請更新！
 Zin Charcoal Glyph=Zin 炭符
 activate a lens=激發透鏡
 activate a prism=激發稜鏡

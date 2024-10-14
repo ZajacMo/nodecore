@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- a mászópontok akkor mászhatók, amint fekete részecskék lebegnek körülöttük.
 - Crafting is done by building recipes in-world.=- a kraftoláshoz meg kell építened a recepted a valóságban.
 - DONE: @1=- KÉSZ: @1
-- Displaced nodes can be climbed through like climbing spots.=- félrerakott blokkok megmászhatók, úgy mint a mászópontok.
 - Drop and pick up items to rearrange your inventory.=- dobd el, majd vedd fel a tárgyakat az átrendezésükhöz.
 - Drop items onto ground to create stack nodes. They do not decay.=- Dobj el több tárgyat a csoportosításukhoz. nem tünnek el.
 - FUTURE: @1=- JÖVŐ: @1
@@ -16,4 +15,3 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- tartsd nyomva/nyomogasd a jobb egérgombot puszta kézzel falon vagy plafonon mászópontok készítéséhez.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Reménytelenül elakadtál? kérdezz a közösségi szobákban (Névjegy fül).
 - If a recipe exists, you will see a special particle effect.=- ha létezik a recept, speciális részecskéket fogsz látni.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- ha több, mint 5 másodperc kiütni, lehet nemj ó tárgyal próbálod.

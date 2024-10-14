@@ -31,7 +31,7 @@ local about = {
 	"MIT License (http://www.opensource.org/licenses/MIT)",
 	"See included LICENSE file for full details and credits",
 	"",
-	"https://content.core.net/packages/Warr1024/nodecore/",
+	"https://content.minetest.net/packages/Warr1024/nodecore/",
 	"GitLab: https://gitlab.com/sztest/nodecore",
 	"",
 	"https://hosted.weblate.org/projects/minetest/nodecore/",

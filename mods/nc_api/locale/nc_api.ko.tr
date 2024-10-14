@@ -7,7 +7,6 @@
 - Climbing spots may be climbed once black particles appear.=- 검은 입자가 나타나면 등반 지점을 사용할 수 있습니다.
 - Crafting is done by building recipes in-world.=- 조합은 레시피를 세계 안에서 건축하는 것으로 행해집니다.
 - DONE: @1=- 완료: @1
-- Displaced nodes can be climbed through like climbing spots.=- 분리된 노드는 등반 지점처럼 이용할수 있습니다.
 - Drop and pick up items to rearrange your inventory.=- 아이템을 놓고 다시 집어 인벤토리를 정리하세요.
 - Drop items onto ground to create stack nodes. They do not decay.=- 떨어진 아이템들은 스택 노드가 됩니다. 사라지지 않습니다.
 - FUTURE: @1=- 숨겨짐: @1
@@ -15,11 +14,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- 맨손으로 벽이나 천장에 좌클릭을 반복/홀드 하면 등반 지점이 생깁니다.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- 도움이 필요하신가요? 커뮤니티에 도움을 요청하세요 (정보 탭).
 - If a recipe exists, you will see a special particle effect.=- 만약 레시피가 존재한다면, 특별한 입자 효과를 볼수 있습니다.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- 부수는데 5초 이상 걸린다면, 그걸 부수는데 적절한 도구가 없는 것입니다.
 - Items picked up try to fit into the current selected slot first.=- 집어든 아이템은 먼저 현재 선택된 슬롯으로 들어가려고 합니다.
 - Larger recipes are usually more symmetrical.=- 큰 레시피들은 보통 대칭적입니다.
-- Learn to use the stars for long distance navigation.=- 별들을 이용해 먼 거리를 여행하는 법을 배우세요.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- 적절한 도구 없이 부서진 노드는 집어들수 없고, 분리 됩니다.
 - Order and specific face of placement may matter for crafting.=- 순서나 아이템이 향한 방향은 조합에 영향을 끼칠 수 있습니다.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- 광석은 숨겨져 있지만, 미묘한 단서를 통해 찾을 수 있습니다.
 - Recipes are time-based, punching faster does not speed up.=- 레시피는 시간에 기반합니다. 더 많이 클릭한다고 더 빨리 되지는 않습니다.
@@ -434,7 +430,6 @@ Yellow Cup Flower=노란 잔꽃
 Yellow Rosette Flower=노란 원꽃
 Yellow Star Flower=노란 별꽃
 Yit Charcoal Glyph=Yit 목탄 글리프
-Your Minetest version is outdated, please update!=이 Minetest 버전은 오래되었습니다, 업데이트 하세요!
 Zin Charcoal Glyph=Zin 목탄 글리프
 activate a lens=렌즈 활성화하기
 activate a prism=프리즘 활성화하기
