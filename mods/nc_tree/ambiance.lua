@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "tree leaves ambiance",
 		nodenames = {"nc_tree:leaves"},
 		neigbors = {"air"},
@@ -13,8 +13,8 @@ nodecore.register_ambiance({
 		check = function(pos)
 			pos.y = pos.y + 1
 			if pos.y <= 0 then return end
-			return minetest.get_node(pos).name == "air"
-			and nodecore.is_full_sun(pos)
-			and {gain = nodecore.windiness(pos.y) / 20}
+			return core.get_node(pos).name == "air"
+			and nc.is_full_sun(pos)
+			and {gain = nc.windiness(pos.y) / 20}
 		end
 	})

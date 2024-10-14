@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs, type
-    = minetest, pairs, type
+local core, pairs, type
+    = core, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-if minetest.features._hotfix_auth_cache then return end
-minetest.features._hotfix_auth_cache = true
+if core.features._hotfix_auth_cache then return end
+core.features._hotfix_auth_cache = true
 
 local function player_name(player)
 	if not player then return end
@@ -16,8 +16,8 @@ end
 local priv_cache = {}
 
 local function invalidateafter(method)
-	local oldfunc = minetest[method]
-	minetest[method] = function(player, ...)
+	local oldfunc = core[method]
+	core[method] = function(player, ...)
 		local function helper(...)
 			local name = player_name(player)
 			if name then priv_cache[name] = nil end
@@ -30,7 +30,7 @@ invalidateafter("set_player_privs")
 invalidateafter("remove_player_auth")
 
 local function invalidateon(event)
-	minetest["register_on_" .. event](function(player)
+	core["register_on_" .. event](function(player)
 			local name = player_name(player)
 			if name then priv_cache[name] = nil end
 		end)
@@ -38,8 +38,8 @@ end
 invalidateon("joinplayer")
 invalidateon("leaveplayer")
 
-local oldreload = minetest.auth_reload
-function minetest.auth_reload(...)
+local oldreload = core.auth_reload
+function core.auth_reload(...)
 	priv_cache = {}
 	return oldreload(...)
 end
@@ -50,8 +50,8 @@ local function clone(tbl)
 	return t
 end
 
-local oldget = minetest.get_player_privs
-function minetest.get_player_privs(player)
+local oldget = core.get_player_privs
+function core.get_player_privs(player)
 	local pname = player_name(player)
 	if not pname then return oldget(player) end
 	local cached = priv_cache[pname]

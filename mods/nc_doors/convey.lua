@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
+local core, ipairs, math, nc, pairs, vector
+    = core, ipairs, math, nc, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local hashpos = minetest.pos_to_string
+local hashpos = core.pos_to_string
 local is_falling = {groups = {falling_node = true}}
 
 local queue = {}
@@ -22,11 +22,11 @@ local function addkeep(a, b)
 	return t
 end
 
-function nodecore.door_push(pos, ...)
+function nc.door_push(pos, ...)
 	local key = hashpos(pos)
 	if queued[key] then return end
-	local node = minetest.get_node(pos)
-	if not nodecore.match(node, is_falling) then return end
+	local node = core.get_node(pos)
+	if not nc.match(node, is_falling) then return end
 	node.param = nil
 	local try = {}
 	for i, dir in ipairs({...}) do
@@ -42,21 +42,21 @@ function nodecore.door_push(pos, ...)
 end
 
 local function tryprocess(item, retry)
-	local node = minetest.get_node(item.from)
-	if not nodecore.match(node, is_falling) then return end
+	local node = core.get_node(item.from)
+	if not nc.match(node, is_falling) then return end
 	for _, t in ipairs(item.try) do
-		if nodecore.buildable_to(t) then
-			local meta = minetest.get_meta(item.from):to_table()
-			minetest.remove_node(item.from)
-			nodecore.fallcheck({x = item.from.x, y = item.from.y + 1, z = item.from.z})
-			nodecore.set_loud(t, node)
-			minetest.get_meta(t):from_table(meta)
-			nodecore.visinv_tween_from(t, item.from)
-			nodecore.visinv_update_ents(t)
+		if nc.buildable_to(t) then
+			local meta = core.get_meta(item.from):to_table()
+			core.remove_node(item.from)
+			nc.fallcheck({x = item.from.x, y = item.from.y + 1, z = item.from.z})
+			nc.set_loud(t, node)
+			core.get_meta(t):from_table(meta)
+			nc.visinv_tween_from(t, item.from)
+			nc.visinv_update_ents(t)
 			if t.after then
-				nodecore.door_push(t, t.after)
+				nc.door_push(t, t.after)
 			else
-				nodecore.fallcheck(t)
+				nc.fallcheck(t)
 			end
 			local re = retry[hashpos(item.from)]
 			if not re then return end
@@ -81,7 +81,7 @@ local function tryprocess(item, retry)
 	end
 end
 
-minetest.register_globalstep(function()
+core.register_globalstep(function()
 		local retry = {}
 		local i = 1
 		while i <= #queue do

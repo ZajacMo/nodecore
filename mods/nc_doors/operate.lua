@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table, vector
-    = ipairs, minetest, nodecore, pairs, table, vector
+local core, ipairs, nc, pairs, table, vector
+    = core, ipairs, nc, pairs, table, vector
 local table_shuffle
     = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
 local operate_squelch = 0.5
-local hashpos = minetest.pos_to_string
+local hashpos = core.pos_to_string
 
 local function hingeaxis(pos, node)
 	local fd = node and node.param2 or 0
-	fd = nodecore.facedirs[fd]
+	fd = nc.facedirs[fd]
 	fd = vector.multiply(vector.add(fd.f, fd.r), 0.5)
 	return {
 		x = fd.x == 0 and 0 or pos.x + fd.x,
@@ -20,7 +20,7 @@ local function hingeaxis(pos, node)
 end
 
 local squelch = {}
-nodecore.register_globalstep(function(dtime)
+nc.register_globalstep(function(dtime)
 		for k, v in pairs(squelch) do
 			squelch[k] = (v > dtime) and (v - dtime) or nil
 		end
@@ -32,22 +32,22 @@ local door_operate_queue = {}
 local operate_success = {}
 
 local function door_operate_sound(pos, node)
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+	node = node or core.get_node(pos)
+	local def = core.registered_nodes[node.name]
 	local vol = def and def.groups and def.groups.door_operate_sound_volume
 
 	local gain = 0.5
 	if vol and vol > 0 then gain = gain * vol / 100 end
-	nodecore.sound_play("nc_doors_operate",
+	nc.sound_play("nc_doors_operate",
 		{pos = pos, gain = gain})
 end
 
 local function facedir(node)
 	local p2 = node.param2 or 0
-	local def = minetest.registered_nodes[node.name]
+	local def = core.registered_nodes[node.name]
 	local data = def and def.nc_rotations
 	p2 = data and data.equiv[p2] or p2
-	return nodecore.facedirs[p2]
+	return nc.facedirs[p2]
 end
 
 local function operate_door_core(pos, node, dir)
@@ -55,11 +55,11 @@ local function operate_door_core(pos, node, dir)
 	operate_success[key] = nil
 	if squelch[key] then return end
 
-	node = node or minetest.get_node_or_nil(pos)
-	if (not node) or (not nodecore.match(node, is_door)) then return end
+	node = node or core.get_node_or_nil(pos)
+	if (not node) or (not nc.match(node, is_door)) then return end
 
-	node = nodecore.param2_canonical(node)
-	local fd = nodecore.facedirs[node.param2]
+	node = nc.param2_canonical(node)
+	local fd = nc.facedirs[node.param2]
 	local rotdir
 	if vector.equals(dir, fd.k) or vector.equals(dir, fd.r) then
 		rotdir = "r"
@@ -69,10 +69,10 @@ local function operate_door_core(pos, node, dir)
 
 	local found = {}
 	local hinge = hingeaxis(pos, node)
-	if nodecore.scan_flood(pos, 128, function(p)
-			local n = minetest.get_node_or_nil(p)
+	if nc.scan_flood(pos, 128, function(p)
+			local n = core.get_node_or_nil(p)
 			if not n then return true end
-			if (not nodecore.match(n, is_door))
+			if (not nc.match(n, is_door))
 			or (not vector.equals(hingeaxis(p, n), hinge)) then return false end
 			found[hashpos(p)] = {pos = p, node = n}
 		end
@@ -87,7 +87,7 @@ local function operate_door_core(pos, node, dir)
 		local to = vector.add(v.pos, v.dir)
 
 		if (not found[hashpos(to)])
-		and (not nodecore.buildable_to(to))
+		and (not nc.buildable_to(to))
 		then
 			if press then return end
 			press = {
@@ -127,7 +127,7 @@ local function operate_door_core(pos, node, dir)
 			},
 			axis = hinge
 		}
-		if nodecore.craft_check(press.pos, minetest.get_node(press.pos), data) then
+		if nc.craft_check(press.pos, core.get_node(press.pos), data) then
 			door_operate_sound(data.pointed.above)
 			operate_success[key] = true
 			return
@@ -142,7 +142,7 @@ local function operate_door_core(pos, node, dir)
 		squelch[v.str] = operate_squelch
 	end
 	for _, v in pairs(found) do
-		for i, xfd in pairs(nodecore.facedirs) do
+		for i, xfd in pairs(nc.facedirs) do
 			if vector.equals(xfd.t, v.fd.t)
 			and vector.equals(xfd.r, rotdir == "r" and v.fd.f or v.fd.k) then
 				toset[hashpos(v.to)] = {
@@ -156,7 +156,7 @@ local function operate_door_core(pos, node, dir)
 	end
 
 	for _, v in pairs(toset) do
-		nodecore.set_node_check(v.pos, v)
+		nc.set_node_check(v.pos, v)
 		if v.name ~= "air" then
 			local p = vector.round(vector.multiply(v.pos, 0.25))
 			local k = "sfx" .. hashpos(p)
@@ -165,15 +165,15 @@ local function operate_door_core(pos, node, dir)
 				door_operate_sound(v.pos)
 			end
 		else
-			nodecore.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
+			nc.fallcheck({x = pos.x, y = pos.y + 1, z = pos.z})
 		end
 	end
 	for _, v in pairs(found) do
-		nodecore.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir2, v.dir)
+		nc.door_push({x = v.pos.x, y = v.pos.y + 1, z = v.pos.z}, v.dir2, v.dir)
 	end
 	for _, v in pairs(toop) do
 		door_operate_queue[#door_operate_queue + 1] = {v.pos, nil, v.dir}
-		nodecore.door_push(v.pos, {
+		nc.door_push(v.pos, {
 				x = v.dir.x,
 				y = v.dir.y,
 				z = v.dir.z,
@@ -184,7 +184,7 @@ local function operate_door_core(pos, node, dir)
 end
 
 local running
-function nodecore.operate_door(pos, node, dir)
+function nc.operate_door(pos, node, dir)
 	door_operate_queue[#door_operate_queue + 1] = {pos, node, dir}
 	local key = hashpos(pos)
 	if running then return operate_success[key] end

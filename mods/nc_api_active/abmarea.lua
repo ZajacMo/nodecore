@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local oldreg = minetest.register_abm
-function minetest.register_abm(def)
+local oldreg = core.register_abm
+function core.register_abm(def)
 	if def.arealoaded then
 		local dist = def.arealoaded
 		local oldact = def.action
 		def.action = function(pos, node, ...)
-			if nodecore.near_unloaded(pos, node, dist) then return end
+			if nc.near_unloaded(pos, node, dist) then return end
 			return oldact(pos, node, ...)
 		end
 	end

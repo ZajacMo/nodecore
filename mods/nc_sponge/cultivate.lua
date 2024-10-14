@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, next, nodecore, pairs, table, vector
-    = ipairs, math, minetest, next, nodecore, pairs, table, vector
+local core, ipairs, math, nc, next, pairs, table, vector
+    = core, ipairs, math, nc, next, pairs, table, vector
 local math_sqrt, table_shuffle
     = math.sqrt, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-local alldirs = nodecore.dirs()
+local alldirs = nc.dirs()
 
 local living = modname .. ":sponge_living"
 local wet = modname .. ":sponge_wet"
@@ -22,8 +22,8 @@ local drydrawtypes = {
 	mesh = true,
 	allfaces_optional = true
 }
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
+core.after(0, function()
+		for k, v in pairs(core.registered_items) do
 			if v["type"] == "node" and v.groups.water then
 				water[k] = true
 			end
@@ -40,19 +40,19 @@ minetest.after(0, function()
 	end)
 
 local function notdry(pos)
-	local node = minetest.get_node_or_nil(pos)
+	local node = core.get_node_or_nil(pos)
 	if not node then return true end
 	if not dryitems[node.name] then return true end
-	local def = minetest.registered_items[node.name]
+	local def = core.registered_items[node.name]
 	if def and def.groups.is_stack_only then
-		local stack = nodecore.stack_get(pos)
-		return minetest.get_item_group(stack:get_name(), "moist") > 0
+		local stack = nc.stack_get(pos)
+		return core.get_item_group(stack:get_name(), "moist") > 0
 	end
 end
 
-local accessdirs = nodecore.dirs()
+local accessdirs = nc.dirs()
 local function sealed_or_notdry(nodename, pos)
-	local def = minetest.registered_nodes[nodename]
+	local def = core.registered_nodes[nodename]
 
 	if def and def.groups and def.groups.storebox_sealed_always
 	and def.groups.storebox_sealed_always > 0 then return true end
@@ -91,20 +91,20 @@ local function spongesurvive(data)
 		return notdry(data.pos)
 	end
 end
-nodecore.spongesurvive = spongesurvive
+nc.spongesurvive = spongesurvive
 
-nodecore.register_dnt({
+nc.register_dnt({
 		name = modname .. ":spongedie",
 		nodenames = {living},
 		time = 2,
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
-				nodecore.set_loud(pos, {name = wet})
-				return nodecore.fallcheck(pos)
+				nc.set_loud(pos, {name = wet})
+				return nc.fallcheck(pos)
 			end
 		end
 	})
-minetest.register_abm({
+core.register_abm({
 		label = "sponge death",
 		interval = 2,
 		chance = 5,
@@ -112,12 +112,12 @@ minetest.register_abm({
 		arealoaded = 1,
 		action = function(pos, node)
 			if not spongesurvive({pos = pos, node = node}) then
-				nodecore.dnt_set(pos, modname .. ":spongedie")
+				nc.dnt_set(pos, modname .. ":spongedie")
 			end
 		end
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "sponge stack death",
 		interval = 2,
 		chance = 1,
@@ -125,28 +125,28 @@ nodecore.register_aism({
 		itemnames = {living},
 		action = function(stack, data)
 			if spongesurvive(data) then return end
-			nodecore.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
+			nc.sound_play("nc_terrain_swishy", {gain = 1, pos = data.pos})
 			stack:set_name(wet)
 			return stack
 		end
 	})
 
 local growdirs = {}
-for _, p in pairs(nodecore.dirs()) do
+for _, p in pairs(nc.dirs()) do
 	if p.y >= 0 then growdirs[#growdirs + 1] = p end
 end
 
-local hashpos = minetest.hash_node_position
+local hashpos = core.hash_node_position
 
 -- Sponge colonies may only grow one node per pass; keep track of positions
 -- of sponges that were already checked to avoid doing the floodfill check
 -- for each one, which would lead to O(n^2) complexity.
 local spongeskip = {}
-minetest.register_globalstep(function() if next(spongeskip) then spongeskip = {} end end)
+core.register_globalstep(function() if next(spongeskip) then spongeskip = {} end end)
 
 local maxdist = 6
 local basecost = 2000
-nodecore.register_soaking_abm({
+nc.register_soaking_abm({
 		label = "sponge grow",
 		fieldname = "spongegrow",
 		nodenames = {living},
@@ -168,7 +168,7 @@ nodecore.register_soaking_abm({
 			local minz = pos.z
 			local maxz = pos.z
 			local count = 0
-			if nodecore.scan_flood(pos, maxdist,
+			if nc.scan_flood(pos, maxdist,
 				function(p, d)
 					if d >= maxdist then return true end
 					if p.x < minx then
@@ -192,7 +192,7 @@ nodecore.register_soaking_abm({
 						maxz = p.z
 						if maxz - minz > maxdist then return true end
 					end
-					local nn = minetest.get_node(p).name
+					local nn = core.get_node(p).name
 					if water[nn] then waternear[#waternear + 1] = p end
 					if nn ~= living then return false end
 					spongeskip[hashpos(p)] = true
@@ -206,9 +206,9 @@ nodecore.register_soaking_abm({
 			table_shuffle(waternear)
 			for _, dest in ipairs(waternear) do
 				local below = {x = dest.x, y = dest.y - 1, z = dest.z}
-				local node = minetest.get_node(below)
+				local node = core.get_node(below)
 				if node.name == living or sand[node.name] then
-					nodecore.set_loud(dest, {name = living})
+					nc.set_loud(dest, {name = living})
 					return data.total - realcost
 				end
 			end

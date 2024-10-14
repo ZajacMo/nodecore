@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, ipairs, minetest, nodecore, pairs, table, tostring, type
-    = io, ipairs, minetest, nodecore, pairs, table, tostring, type
+local core, io, ipairs, nc, pairs, table, tostring, type
+    = core, io, ipairs, nc, pairs, table, tostring, type
 local io_open, table_concat, table_insert, table_sort
     = io.open, table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-if not nodecore.infodump("tile") then return end
+if not nc.infodump("tile") then return end
 
 local faces = {
 	"top",
@@ -18,7 +18,7 @@ local faces = {
 
 local function tilize(tiles, max)
 	if not tiles then return end
-	tiles = minetest.deserialize(minetest.serialize(tiles))
+	tiles = core.deserialize(core.serialize(tiles))
 	if not tiles then return end
 	for k2, v2 in pairs(tiles) do
 		tiles[k2] = (type(v2) == "table" and v2.name or v2.image) or v2
@@ -30,11 +30,11 @@ local function tilize(tiles, max)
 	return tiles
 end
 
-minetest.after(0, function()
+core.after(0, function()
 		local function noblank(s) return s and tostring(s):match("%S") and tostring(s) or nil end
 
 		local data = {}
-		for k, v in pairs(minetest.registered_items) do
+		for k, v in pairs(core.registered_items) do
 			local key = noblank(v.description) or k
 			key = key:gsub("%W+", "_"):lower()
 			data[key] = data[key] or {}
@@ -93,8 +93,8 @@ minetest.after(0, function()
 		end
 		table_sort(ents)
 
-		local f = io_open(minetest.get_worldpath() .. "/texturepack_override.template.txt", "wb")
+		local f = io_open(core.get_worldpath() .. "/texturepack_override.template.txt", "wb")
 		f:write(table_concat(ents, "\n\n"))
 		f:close()
-		nodecore.log("info", "dumped texturepack_override.template.txt")
+		nc.log("info", "dumped texturepack_override.template.txt")
 	end)

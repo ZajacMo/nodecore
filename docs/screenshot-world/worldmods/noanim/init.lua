@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, rawset, type
-    = minetest, nodecore, pairs, rawset, type
+local core, nc, pairs, rawset, type
+    = core, nc, pairs, rawset, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function noanim(t)
@@ -12,12 +12,12 @@ local function noanim(t)
 	return t
 end
 
-for _, v in pairs(minetest.registered_nodes) do
+for _, v in pairs(core.registered_nodes) do
 	noanim(v.tiles)
 	noanim(v.special_tiles)
 end
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		noanim(def.tiles)
 		noanim(def.special_tiles)
 	end)

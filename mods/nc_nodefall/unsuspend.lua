@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, next, nodecore, pairs, table
-    = minetest, next, nodecore, pairs, table
+local core, nc, next, pairs, table
+    = core, nc, next, pairs, table
 local table_shuffle
     = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,15 +9,15 @@ local max_time_per_step = 0.05
 local max_entities = 50
 
 local fallthru = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.buildable_to or not v.walkable then
 				fallthru[k] = true
 			end
 		end
 	end)
 
-local hash = minetest.hash_node_position
+local hash = core.hash_node_position
 
 local pending = {}
 local function pend(pos)
@@ -27,7 +27,7 @@ end
 
 local function toomanyents()
 	local entqty = 0
-	for _, ent in pairs(minetest.luaentities) do
+	for _, ent in pairs(core.luaentities) do
 		if ent.name == "__builtin:falling_node" then
 			entqty = entqty + 1
 			if entqty > max_entities then return true end
@@ -44,7 +44,7 @@ do
 	defer = function(pos)
 		if not deferred then
 			deferred = {}
-			minetest.after(5, function()
+			core.after(5, function()
 					for k, v in pairs(deferred) do
 						pending[k] = v
 					end
@@ -56,9 +56,9 @@ do
 	end
 end
 
-minetest.register_globalstep(function()
+core.register_globalstep(function()
 		if toomanyents() then return end
-		local stop = minetest.get_us_time() + max_time_per_step * 1000000
+		local stop = core.get_us_time() + max_time_per_step * 1000000
 		if batchpos > #batch and (#batch > 0 or next(pending)) then
 			batch = {}
 			for _, v in pairs(pending) do batch[#batch + 1] = v end
@@ -70,37 +70,37 @@ minetest.register_globalstep(function()
 			local pos = batch[batchpos]
 			local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
 			if not pending[hash(bpos)] then
-				local bnode = minetest.get_node_or_nil(bpos)
+				local bnode = core.get_node_or_nil(bpos)
 				if not bnode then
-					if minetest.get_node_or_nil(pos) then
+					if core.get_node_or_nil(pos) then
 						defer(pos)
 					end
 				elseif fallthru[bnode.name] then
-					local node = minetest.get_node(pos)
+					local node = core.get_node(pos)
 					if node.name ~= bnode.name then
-						nodecore.log("action",
+						nc.log("action",
 							node.name .. " unsuspend at "
-							.. minetest.pos_to_string(pos))
-						minetest.check_for_falling(pos)
-						if minetest.get_node(pos).name ~= node.name
+							.. core.pos_to_string(pos))
+						core.check_for_falling(pos)
+						if core.get_node(pos).name ~= node.name
 						and toomanyents() then break end
 					end
 				end
 			end
 			batchpos = batchpos + 1
-			if minetest.get_us_time() >= stop then break end
+			if core.get_us_time() >= stop then break end
 		end
 	end)
 
-nodecore.register_lbm({
-		name = minetest.get_current_modname() .. ":unsuspend",
+nc.register_lbm({
+		name = core.get_current_modname() .. ":unsuspend",
 		run_at_every_load = true,
 		nodenames = {"group:falling_node"},
 		action = pend
 	})
 
-minetest.register_abm({
-		label = minetest.get_current_modname() .. ":unsuspend",
+core.register_abm({
+		label = core.get_current_modname() .. ":unsuspend",
 		nodenames = {"group:falling_node"},
 		interval = 10,
 		chance = 10,

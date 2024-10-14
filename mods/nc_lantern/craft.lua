@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble lantern",
 		normal = {x = 1},
 		indexkeys = {"nc_optics:glass_opaque"},
@@ -15,7 +15,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "break apart lantern",
 		action = "pummel",
 		toolgroups = {choppy = 5},

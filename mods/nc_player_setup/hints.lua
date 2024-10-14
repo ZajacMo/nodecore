@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint(
+nc.register_hint(
 	"run at full speed",
 	"autorun"
 )

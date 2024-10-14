@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "footsteps",
 		action = function(player, data)
 			data.properties.makes_footstep_sound
-			= nodecore.player_visible(player)
+			= nc.player_visible(player)
 			and not data.control.sneak
 		end
 	})

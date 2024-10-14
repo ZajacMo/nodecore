@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, vector
-    = nodecore, pairs, vector
+local nc, pairs, vector
+    = nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local alldirs = {}
-for _, v in pairs(nodecore.dirs()) do
+for _, v in pairs(nc.dirs()) do
 	alldirs[v.n] = v
 end
 
@@ -55,4 +55,4 @@ for k, t in pairs(facedirs) do
 	t.k = vector.multiply(t.f, -1)
 end
 
-nodecore.facedirs = facedirs
+nc.facedirs = facedirs

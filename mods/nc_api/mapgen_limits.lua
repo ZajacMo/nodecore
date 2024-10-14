@@ -1,25 +1,25 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, string, tonumber, vector
-    = math, minetest, nodecore, string, tonumber, vector
+local core, math, nc, string, tonumber, vector
+    = core, math, nc, string, tonumber, vector
 local math_floor, string_format
     = math.floor, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local limit = tonumber(minetest.get_mapgen_setting("mapgen_limit")) or 31000
+local limit = tonumber(core.get_mapgen_setting("mapgen_limit")) or 31000
 
-local chunksize = tonumber(minetest.get_mapgen_setting("chunksize")) or 5
+local chunksize = tonumber(core.get_mapgen_setting("chunksize")) or 5
 chunksize = chunksize * 16
 local limitchunks = math_floor(limit / chunksize)
 
 local min = (-limitchunks + 0.5) * chunksize + 7.5
-nodecore.map_limit_min = min
+nc.map_limit_min = min
 local max = (limitchunks - 0.5) * chunksize + 7.5
-nodecore.map_limit_max = max
+nc.map_limit_max = max
 
-nodecore.log("info", string_format("mapgen limit: %d, chunk: %d, bounds: %0.1f to %0.1f",
-		limit, chunksize, nodecore.map_limit_min, nodecore.map_limit_max))
+nc.log("info", string_format("mapgen limit: %d, chunk: %d, bounds: %0.1f to %0.1f",
+		limit, chunksize, nc.map_limit_min, nc.map_limit_max))
 
-function nodecore.within_map_limits(pos)
+function nc.within_map_limits(pos)
 	return pos.x >= min
 	and pos.y >= min
 	and pos.z >= min
@@ -84,17 +84,17 @@ local function near_mapblock_state(pos, dist, func)
 		end
 	end
 end
-nodecore.near_mapblock_state = near_mapblock_state
+nc.near_mapblock_state = near_mapblock_state
 
-function nodecore.near_unloaded(pos, node, dist)
+function nc.near_unloaded(pos, node, dist)
 	if node and node.name and node.name ~= "ignore" then return end
 	return near_mapblock_state(pos, dist, function(p)
-			return not minetest.get_node_or_nil(p)
+			return not core.get_node_or_nil(p)
 		end)
 end
 
-function nodecore.near_inactive(pos, _, dist)
+function nc.near_inactive(pos, _, dist)
 	return near_mapblock_state(pos, dist, function(p)
-			return not minetest.compare_block_status(p, "active")
+			return not core.compare_block_status(p, "active")
 		end)
 end

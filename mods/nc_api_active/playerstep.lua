@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, type, unpack, vector
-    = math, minetest, nodecore, pairs, table, type, unpack, vector
+local core, math, nc, pairs, table, type, unpack, vector
+    = core, math, nc, pairs, table, type, unpack, vector
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local steps = {}
-nodecore.registered_playersteps = steps
+nc.registered_playersteps = steps
 
 local counters = {}
-function nodecore.register_playerstep(def)
+function nc.register_playerstep(def)
 	local label = def.label
 	if not label then
-		label = minetest.get_current_modname()
+		label = core.get_current_modname()
 		local i = (counters[label] or 0) + 1
 		counters[label] = i
 		label = label .. ":" .. i
@@ -44,7 +44,7 @@ local function clone(x)
 	return x
 end
 
-local mismatch = nodecore.prop_mismatch
+local mismatch = nc.prop_mismatch
 
 local function setdelta(cur, old)
 	if not cur then return end
@@ -68,12 +68,12 @@ local function lazy_raycast(player)
 		local pos = player:get_pos()
 		pos.y = pos.y + player:get_properties().eye_height
 		local look = player:get_look_dir()
-		local wield = minetest.registered_items[player
+		local wield = core.registered_items[player
 		:get_wielded_item():get_name()]
 		local range = wield and wield.range or default_range
 		local target = vector.add(pos, vector.multiply(look, range))
 
-		for pt in minetest.raycast(pos, target, true, false) do
+		for pt in core.raycast(pos, target, true, false) do
 			if pt.type == "object" or pt.ref ~= player
 			or pt.ref:get_attach() ~= player then
 				saved = pt
@@ -86,13 +86,13 @@ local function lazy_raycast(player)
 end
 
 local player_last_active = {}
-minetest.register_on_chat_message(function(pname)
-		player_last_active[pname] = nodecore.gametime
+core.register_on_chat_message(function(pname)
+		player_last_active[pname] = nc.gametime
 	end)
-function nodecore.player_idle(pname)
+function nc.player_idle(pname)
 	if type(pname) ~= "string" then pname = pname:get_player_name() end
-	local active = player_last_active[pname] or nodecore.gametime
-	return nodecore.gametime - active
+	local active = player_last_active[pname] or nc.gametime
+	return nc.gametime - active
 end
 
 local cache = {}
@@ -120,7 +120,7 @@ local function step_player(player, dtime)
 	}
 	if mismatch(data.control, newcontrol)
 	or mismatch(data.state, state) then
-		player_last_active[pname] = nodecore.gametime
+		player_last_active[pname] = nc.gametime
 	end
 	data.state = state
 	data.control = newcontrol
@@ -143,15 +143,15 @@ local function step_player(player, dtime)
 	cache[pname] = data
 end
 
-nodecore.register_globalstep(function(dtime)
-		for _, player in pairs(minetest.get_connected_players()) do
+nc.register_globalstep(function(dtime)
+		for _, player in pairs(core.get_connected_players()) do
 			step_player(player, dtime)
 		end
 	end)
-minetest.register_on_joinplayer(function(player)
+core.register_on_joinplayer(function(player)
 		step_player(player, 0)
 	end)
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 		local pname = player:get_player_name()
 		cache[pname] = nil
 		player_last_active[pname] = nil

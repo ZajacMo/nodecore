@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string, type
-    = minetest, nodecore, pairs, string, type
+local core, nc, pairs, string, type
+    = core, nc, pairs, string, type
 local string_sub
     = string.sub
 -- LUALOCALS > ---------------------------------------------------------
@@ -8,14 +8,14 @@ local string_sub
 local suff = "_glued"
 local overlay = "^nc_optics_glued.png"
 
-nodecore.register_on_register_item(function(name, def)
+nc.register_on_register_item(function(name, def)
 		if not (def.groups and def.groups.optic_gluable
 			and def.groups.optic_gluable > 0) then return end
 
 		if string_sub(name, -#suff) == suff then return end
 
 		local gluedname = name .. suff
-		if minetest.registered_items[gluedname] then return end
+		if core.registered_items[gluedname] then return end
 
 		local oldcheck = def.optic_check
 		local optic_check = oldcheck and function(pos, node, ...)
@@ -35,10 +35,10 @@ nodecore.register_on_register_item(function(name, def)
 			if type(v) == "string" then
 				tiles[k] = v .. overlay
 			else
-				tiles[k] = nodecore.underride({name = v.name .. overlay}, v)
+				tiles[k] = nc.underride({name = v.name .. overlay}, v)
 			end
 		end
-		local gluedef = nodecore.underride({
+		local gluedef = nc.underride({
 				description = "Glued " .. def.description,
 				groups = {
 					optic_gluable = 0,
@@ -49,10 +49,10 @@ nodecore.register_on_register_item(function(name, def)
 			}, def)
 		gluedef.nc_optic_family = def.nc_optic_family .. "_glued"
 		gluedef.on_rightclick = nil
-		minetest.register_item(gluedname, gluedef)
+		core.register_item(gluedname, gluedef)
 	end)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "glue optic",
 		action = "pummel",
 		wield = {name = "nc_tree:eggcorn"},
@@ -64,6 +64,6 @@ nodecore.register_craft({
 		}},
 		after = function(pos, data)
 			data.node.name = data.node.name .. suff
-			return minetest.swap_node(pos, data.node)
+			return core.swap_node(pos, data.node)
 		end
 	})

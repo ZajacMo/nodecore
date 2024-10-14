@@ -1,19 +1,20 @@
 -- LUALOCALS < ---------------------------------------------------------
--- SKIP: include nodecore
-local dofile, error, ipairs, minetest, pairs, rawget, rawset, table,
+-- SKIP: include nc
+local core, dofile, error, ipairs, pairs, rawget, rawset, table,
       tostring, type
-    = dofile, error, ipairs, minetest, pairs, rawget, rawset, table,
+    = core, dofile, error, ipairs, pairs, rawget, rawset, table,
       tostring, type
 local table_concat, table_insert, table_sort
     = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local nodecore = rawget(_G, "nodecore") or {}
-rawset(_G, "nodecore", nodecore)
+local nc = rawget(_G, "nc") or rawget(_G, "nodecore") or {}
+rawset(_G, "nc", nc)
+rawset(_G, "nodecore", nc)
 
 local include = rawget(_G, "include") or function(...)
 	local parts = {...}
-	table_insert(parts, 1, minetest.get_modpath(minetest.get_current_modname()))
+	table_insert(parts, 1, core.get_modpath(core.get_current_modname()))
 	if parts[#parts]:sub(-4) ~= ".lua" then
 		parts[#parts] = parts[#parts] .. ".lua"
 	end
@@ -21,27 +22,27 @@ local include = rawget(_G, "include") or function(...)
 end
 rawset(_G, "include", include)
 
-nodecore.product = "NodeCore"
-nodecore.version, nodecore.releasedate = include("version")
+nc.product = "NodeCore"
+nc.version, nc.releasedate = include("version")
 
 local levels = {none = true, error = true, warning = true, action = true, info = true, verbose = true}
-function nodecore.log(level, ...)
+function nc.log(level, ...)
 	if not level or not levels[level] then error("invalid log level " .. tostring(level)) end
-	return minetest.log(level, ...)
+	return core.log(level, ...)
 end
 
-nodecore.log("info", nodecore.product .. (nodecore.version and (" Version " .. nodecore.version)
+nc.log("info", nc.product .. (nc.version and (" Version " .. nc.version)
 		or " DEVELOPMENT VERSION"))
 
 do
 	local ticked = 0
 	local function regreport()
 		ticked = ticked + 1
-		if ticked < 5 then return minetest.after(0, regreport) end
+		if ticked < 5 then return core.after(0, regreport) end
 		local reg = "registered_"
 		local raw = "_raw"
 		local t = {}
-		for k, v in pairs(nodecore) do
+		for k, v in pairs(nc) do
 			if k:sub(1, #reg) == reg and k:sub(-#raw) ~= raw
 			and type(v) == "table" then
 				local qty = 0
@@ -50,12 +51,12 @@ do
 			end
 		end
 		table_sort(t)
-		for _, x in ipairs(t) do nodecore.log("info", x) end
+		for _, x in ipairs(t) do nc.log("info", x) end
 	end
-	minetest.after(0, regreport)
+	core.after(0, regreport)
 end
 
-for k, v in pairs(minetest) do nodecore[k .. "_raw"] = v end
+for k, v in pairs(core) do nc[k .. "_raw"] = v end
 
 include("hotfix_authcache")
 include("hotfix_fixhack")

@@ -1,20 +1,20 @@
 -- LUALOCALS < ---------------------------------------------------------
-local VoxelArea, ipairs, math, minetest, nodecore, table
-    = VoxelArea, ipairs, math, minetest, nodecore, table
+local VoxelArea, core, ipairs, math, nc, table
+    = VoxelArea, core, ipairs, math, nc, table
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local mapgens = {}
-nodecore.registered_mapgen_shared = mapgens
+nc.registered_mapgen_shared = mapgens
 
-local singlenode = minetest.get_mapgen_setting("mg_name") == "singlenode"
+local singlenode = core.get_mapgen_setting("mg_name") == "singlenode"
 
 local counters = {}
-function nodecore.register_mapgen_shared(def)
+function nc.register_mapgen_shared(def)
 	local label = def.label
 	if not label then
-		label = minetest.get_current_modname()
+		label = core.get_current_modname()
 		local i = (counters[label] or 0) + 1
 		counters[label] = i
 		label = label .. ":" .. i
@@ -37,14 +37,14 @@ function nodecore.register_mapgen_shared(def)
 end
 
 local mapperlin
-minetest.after(0, function() mapperlin = minetest.get_perlin(0, 1, 0, 1) end)
+core.after(0, function() mapperlin = core.get_perlin(0, 1, 0, 1) end)
 
-nodecore.register_on_generated(function(minp, maxp)
-		local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+nc.register_on_generated(function(minp, maxp)
+		local vm, emin, emax = core.get_mapgen_object("voxelmanip")
 		local data = vm:get_data()
 		local area = VoxelArea:new({MinEdge = emin, MaxEdge = emax})
 
-		local rng = nodecore.seeded_rng(mapperlin:get_3d(minp))
+		local rng = nc.seeded_rng(mapperlin:get_3d(minp))
 
 		for _, def in ipairs(mapgens) do
 			local en = def.enabled

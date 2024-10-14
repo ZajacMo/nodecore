@@ -1,57 +1,55 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, string, table, type,
-      vector
-    = error, math, minetest, nodecore, pairs, string, table, type,
-      vector
+local core, error, math, nc, pairs, string, table, type, vector
+    = core, error, math, nc, pairs, string, table, type, vector
 local math_floor, string_format, table_shuffle
     = math.floor, string.format, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local optic_distance = 16
 local optic_speed = 12
-local optic_tick_limit = nodecore.setting_float(modname .. "_tick_limit", 0.2,
+local optic_tick_limit = nc.setting_float(modname .. "_tick_limit", 0.2,
 	"Optics - tick limit", [[Maximum amount of time in seconds that may be
 	spent during a single server step to calculate optic state. Optics
 	will be allowed to slow don to stay within this limit.]])
-local optic_interval = nodecore.setting_float(modname .. "_interval", 5,
+local optic_interval = nc.setting_float(modname .. "_interval", 5,
 	"Optics - check interval", [[ABM interval for periodically pushing
 	optics into the "passive" queue.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])
-local optic_passive_max = nodecore.setting_float(modname .. "_passive_max", 25,
+local optic_passive_max = nc.setting_float(modname .. "_passive_max", 25,
 	"Optics - check passive max", [[The maximum number of optics that can be
 	queued in a single pass for "passive" checks to run; pending passive
 	checks will be included to fill up remaining spaces up to this total.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])
-local optic_passive_min = nodecore.setting_float(modname .. "_passive_min", 5,
+local optic_passive_min = nc.setting_float(modname .. "_passive_min", 5,
 	"Optics - check passive min", [[The minimum number of "passive" optic
 	checks that are run each cycle, overriding the max if needed.
 	Passive checks are used to catch optics in an inconsistent state, e.g.
 	that missed their change event.]])
 
-local microtime = minetest.get_us_time
-local hashpos = minetest.hash_node_position
-local unhash = minetest.get_position_from_hash
-local get_node = minetest.get_node
+local microtime = core.get_us_time
+local hashpos = core.hash_node_position
+local unhash = core.get_position_from_hash
+local get_node = core.get_node
 
 local node_optic_checks = {}
 local node_optic_sources = {}
 local node_opaque = {}
 local node_visinv = {}
 local node_storebox_access = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
+core.after(0, function()
+		for k, v in pairs(core.registered_items) do
 			if k ~= "" then
 				node_optic_checks[k] = v.optic_check or nil
 				node_optic_sources[k] = v.optic_source or nil
 				node_visinv[k] = v.groups and v.groups.visinv or nil
 				node_storebox_access[k] = v.storebox_access or nil
 
-				local grp_t = minetest.get_item_group(k, "optic_transparent") ~= 0
-				local grp_o = minetest.get_item_group(k, "optic_opaque") ~= 0
+				local grp_t = core.get_item_group(k, "optic_transparent") ~= 0
+				local grp_o = core.get_item_group(k, "optic_opaque") ~= 0
 				if (grp_t and grp_o) then
 					error("node cannot be BOTH optic_opaque and optic_transparent")
 				end
@@ -106,14 +104,14 @@ local function scan(pos, dir, max, getnode, cbbs)
 				-- so it doesn't really matter
 				if not acc({above = vector.add(p, dir), under = p}, p, {}) then return p, node end
 			end
-			local stack = nodecore.stack_get(p)
+			local stack = nc.stack_get(p)
 			if node_opaque[stack:get_name()] then
 				return p, node
 			end
 		end
 	end
 end
-nodecore.optic_scan = scan
+nc.optic_scan = scan
 
 local function scan_recv(pos, dir, max, getnode)
 	local hit, node = scan(pos, dir, max, getnode)
@@ -128,12 +126,12 @@ local function scan_recv(pos, dir, max, getnode)
 		end
 	end
 end
-nodecore.optic_scan_recv = scan_recv
+nc.optic_scan_recv = scan_recv
 
 local function optic_check(pos)
 	optic_queue[hashpos(pos)] = pos
 end
-nodecore.optic_check = optic_check
+nc.optic_check = optic_check
 
 local function optic_trigger(start, dir, max)
 	local pos, node = scan(start, dir, max, get_node)
@@ -189,7 +187,7 @@ local function optic_immediate(pos)
 			local node = get_node(pos)
 			if v.nn ~= node.name then
 				node.name = v.nn
-				nodecore.set_node(pos, node)
+				nc.set_node(pos, node)
 			end
 			break
 		end
@@ -197,7 +195,7 @@ local function optic_immediate(pos)
 	finish()
 	return optic_check(pos)
 end
-nodecore.optic_immediate = optic_immediate
+nc.optic_immediate = optic_immediate
 
 local function optic_commit(v)
 	local node = get_node(v.pos)
@@ -217,16 +215,16 @@ local function optic_commit(v)
 	nn.param2 = nn.param2 or node.param2
 	local vhash = hashpos(v.pos)
 	if node.name ~= nn.name or node.param ~= nn.param or node.param2 ~= nn.param2 then
-		local odef = minetest.registered_nodes[node.name] or {}
-		local ndef = minetest.registered_nodes[nn.name] or {}
+		local odef = core.registered_nodes[node.name] or {}
+		local ndef = core.registered_nodes[nn.name] or {}
 		if odef.nc_optic_family ~= ndef.nc_optic_family then
-			nodecore.log("warning", string_format(
+			nc.log("warning", string_format(
 					"optic_commit tried to replace %s with %s at %s",
-					node.name, nn.name, minetest.pos_to_string(v.pos)))
+					node.name, nn.name, core.pos_to_string(v.pos)))
 			return
 		end
 
-		minetest.set_node(v.pos, nn)
+		core.set_node(v.pos, nn)
 		local src = node_optic_sources[nn.name]
 		src = src and src(v.pos, nn)
 		local newidx = {}
@@ -261,7 +259,7 @@ local function optic_commit(v)
 	end
 end
 
-minetest.register_abm({
+core.register_abm({
 		label = "optic check",
 		interval = optic_interval,
 		chance = 1,
@@ -270,7 +268,7 @@ minetest.register_abm({
 			passive_queue[#passive_queue + 1] = pos
 		end
 	})
-nodecore.register_lbm({
+nc.register_lbm({
 		name = modname .. ":optic_check",
 		run_at_every_load = true,
 		nodenames = {"group:optic_check"},
@@ -284,7 +282,7 @@ do
 		local batch = optic_queue
 		optic_queue = {}
 
-		if nodecore.stasis then
+		if nc.stasis then
 			passive_queue = {}
 			return
 		end
@@ -318,7 +316,7 @@ end
 do
 	local tick = 1 / optic_speed
 	local total = 0
-	nodecore.register_globalstep(function(dtime)
+	nc.register_globalstep(function(dtime)
 			total = total + dtime / tick
 			local starttime = microtime()
 			local exp = starttime + optic_tick_limit * 1000000
@@ -327,7 +325,7 @@ do
 				optic_check_pump()
 				total = total - 1
 				if microtime() >= exp and total >= 1 then
-					nodecore.log("warning", string_format("optics overbudget"
+					nc.log("warning", string_format("optics overbudget"
 							.. " after %d cycle(s) in %0.3fs"
 							.. ", losing %0.2f cycle(s)",
 							starttotal - total,
@@ -347,5 +345,5 @@ local function optic_check_dependents(pos)
 		end
 	end
 end
-nodecore.optic_check_dependents = optic_check_dependents
-nodecore.register_on_nodeupdate({func = optic_check_dependents})
+nc.optic_check_dependents = optic_check_dependents
+nc.register_on_nodeupdate({func = optic_check_dependents})

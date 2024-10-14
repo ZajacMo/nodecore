@@ -1,15 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, next, nodecore, pairs, string, table,
-      vector
-    = ItemStack, math, minetest, next, nodecore, pairs, string, table,
-      vector
+local ItemStack, core, math, nc, next, pairs, string, table, vector
+    = ItemStack, core, math, nc, next, pairs, string, table, vector
 local math_floor, math_pi, math_random, string_format, table_concat
     = math.floor, math.pi, math.random, string.format, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-local hidden = nodecore.setting_bool(
+local hidden = nc.setting_bool(
 	"nc_yctiwy_hide",
 	false,
 	"Offline Players - hide entities",
@@ -21,7 +19,7 @@ local hidden = nodecore.setting_bool(
 	case the entities are later reenabled.]]
 )
 
-local notime = nodecore.setting_bool(
+local notime = nc.setting_bool(
 	"nc_yctiwy_notime",
 	false,
 	"Offline Players - hide offline time",
@@ -30,7 +28,7 @@ local notime = nodecore.setting_bool(
 	Enabling this option hides this information.]]
 )
 
-local halflife = nodecore.setting_float(
+local halflife = nc.setting_float(
 	"nc_yctiwy_halflife",
 	30,
 	"Offline Players - marker decay half-life",
@@ -44,24 +42,24 @@ local halflife = nodecore.setting_float(
 ------------------------------------------------------------------------
 -- DATABASE
 
-local modname = minetest.get_current_modname()
-local modstore = minetest.get_mod_storage()
+local modname = core.get_current_modname()
+local modstore = core.get_mod_storage()
 
 local db = modstore:get_string("db")
 if db == "" then db = nil end
-db = db and minetest.deserialize(db)
+db = db and core.deserialize(db)
 db = db or {}
 
 local drop = modstore:get_string("drop")
 if drop == "" then drop = nil end
-drop = drop and minetest.deserialize(drop)
+drop = drop and core.deserialize(drop)
 drop = drop or {}
 
 local savedb
 do
 	local saved = {}
 	local function sersave(key, t)
-		local str = next(t) and minetest.serialize(t) or ""
+		local str = next(t) and core.serialize(t) or ""
 		if saved[key] == str then return end
 		modstore:set_string(key, str)
 		saved[key] = str
@@ -73,16 +71,16 @@ do
 end
 
 if not (next(db) or next(drop)) then
-	function nodecore.yctiwy_import(newdb, newdrop)
+	function nc.yctiwy_import(newdb, newdrop)
 		db = newdb
 		drop = newdrop
 		savedb()
-		nodecore.yctiwy_import = nil
+		nc.yctiwy_import = nil
 	end
 end
 
 local function savestate(player)
-	if not nodecore.player_visible(player) then
+	if not nc.player_visible(player) then
 		db[player:get_player_name()] = nil
 		return
 	end
@@ -96,24 +94,24 @@ local function savestate(player)
 		local stack = inv:get_stack("main", i)
 		ent.inv[i] = stack:to_string()
 	end
-	ent.seen = minetest.get_gametime()
+	ent.seen = core.get_gametime()
 	db[player:get_player_name()] = ent
 end
 
 ------------------------------------------------------------------------
 -- TELEPORT COMMAND
 
-local teleport = minetest.registered_chatcommands.teleport
+local teleport = core.registered_chatcommands.teleport
 if teleport and teleport.func then
-	local cannot = nodecore.translate("Cannot teleport an offline player.")
+	local cannot = nc.translate("Cannot teleport an offline player.")
 	local oldfunc = teleport.func
 	teleport.func = function(caller, ...)
-		local oldget = minetest.get_player_by_name
+		local oldget = core.get_player_by_name
 		local function helper(...)
-			minetest.get_player_by_name = oldget
+			core.get_player_by_name = oldget
 			return ...
 		end
-		function minetest.get_player_by_name(name, ...)
+		function core.get_player_by_name(name, ...)
 			local player = oldget(name, ...)
 			if player then return player end
 			local s = db[name]
@@ -121,8 +119,8 @@ if teleport and teleport.func then
 				return {
 					get_pos = function() return s.pos end,
 					set_pos = function()
-						minetest.after(0, function()
-								return minetest.chat_send_player(caller, cannot)
+						core.after(0, function()
+								return core.chat_send_player(caller, cannot)
 							end)
 					end,
 					get_attach = function() end,
@@ -137,7 +135,7 @@ end
 -- MISC/UTILITY/COMMON
 
 local function areaunloaded(pos)
-	return nodecore.near_inactive(pos, nil, 1)
+	return nc.near_inactive(pos, nil, 1)
 end
 
 local function box(n) return {-n, -n, -n, n, n, n} end
@@ -150,36 +148,36 @@ local descs = {
 	week = "Offline @1 week(s)",
 	year = "Offline @1 year(s)",
 }
-for _, v in pairs(descs) do nodecore.translate_inform(v) end
+for _, v in pairs(descs) do nc.translate_inform(v) end
 
 local function agedesc(t)
-	if notime or (not t) or t < 0 then return nodecore.translate(descs.unk) end
+	if notime or (not t) or t < 0 then return nc.translate(descs.unk) end
 	t = math_floor(t / 60)
-	if t < 120 then return nodecore.translate(descs.min, t) end
+	if t < 120 then return nc.translate(descs.min, t) end
 	t = math_floor(t / 60)
-	if t < 72 then return nodecore.translate(descs.hr, t) end
+	if t < 72 then return nc.translate(descs.hr, t) end
 	t = math_floor(t / 24)
-	if t < 28 then return nodecore.translate(descs.day, t) end
+	if t < 28 then return nc.translate(descs.day, t) end
 	t = math_floor(t / 7)
-	if t < 52 then return nodecore.translate(descs.week, t) end
+	if t < 52 then return nc.translate(descs.week, t) end
 	t = math_floor(t / 52.1429)
-	return nodecore.translate(descs.year, t)
+	return nc.translate(descs.year, t)
 end
 
 local function getdesc(pname, dbentry, stack)
-	local d = agedesc(dbentry.seen and nodecore.gametime - dbentry.seen)
-	.. "\n" .. nodecore.notranslate(pname)
-	if stack then return d .. "\n" .. nodecore.touchtip_stack(stack) end
+	local d = agedesc(dbentry.seen and nc.gametime - dbentry.seen)
+	.. "\n" .. nc.notranslate(pname)
+	if stack then return d .. "\n" .. nc.touchtip_stack(stack) end
 	return d
 end
 
 local function spawnentity(pos, subname, values)
 	if areaunloaded(pos) then return end
-	local o = minetest.add_entity(pos, modname .. ":" .. subname)
+	local o = core.add_entity(pos, modname .. ":" .. subname)
 	o = o and o:get_luaentity()
 	if not o then return end
-	nodecore.log("info", modname .. ": spawned " .. subname .. " at "
-		.. minetest.pos_to_string(pos, 2) .. (values.pname
+	nc.log("info", modname .. ": spawned " .. subname .. " at "
+		.. core.pos_to_string(pos, 2) .. (values.pname
 			and (" for " .. values.pname) or ""))
 	for k, v in pairs(values) do o[k] = v end
 	return o:yctiwy_check()
@@ -191,7 +189,7 @@ local function entrystack(entry, slot)
 	local stack = entry.inv and entry.inv[slot]
 	if (not stack) or (stack == "") then return end
 	stack = ItemStack(stack)
-	local def = minetest.registered_items[stack:get_name()]
+	local def = core.registered_items[stack:get_name()]
 	if (not def) or def.virtual_item then return end
 	return stack
 end
@@ -201,19 +199,19 @@ end
 
 local thiefdata = {}
 
-minetest.register_entity(modname .. ":slotent", {
-		initial_properties = nodecore.stackentprops(),
+core.register_entity(modname .. ":slotent", {
+		initial_properties = nc.stackentprops(),
 		is_yctiwy = true,
 		slot = 1,
 		loose = 0,
 		yctiwy_check = function(self)
 			local ent = db[self.pname]
-			if minetest.get_player_by_name(self.pname) then
+			if core.get_player_by_name(self.pname) then
 				return self.object:remove()
 			end
 			local stack = entrystack(ent, self.slot)
 			if not stack then return self.object:remove() end
-			local props = nodecore.stackentprops(stack)
+			local props = nc.stackentprops(stack)
 			props.visual_size.x = props.visual_size.x / 2
 			props.visual_size.y = props.visual_size.y / 2
 			if props.is_visible then
@@ -235,31 +233,31 @@ minetest.register_entity(modname .. ":slotent", {
 			if not punchname then return end
 			local state = thiefdata[punchname]
 			if state and (state.target ~= self.pname or state.slot ~= self.slot
-				or state.exp < nodecore.gametime) then state = nil end
+				or state.exp < nc.gametime) then state = nil end
 			state = state or {
 				target = self.pname,
 				slot = self.slot,
-				final = nodecore.gametime + 2
+				final = nc.gametime + 2
 			}
-			state.exp = nodecore.gametime + 2
+			state.exp = nc.gametime + 2
 			thiefdata[punchname] = state
-			if nodecore.gametime < state.final then return end
+			if nc.gametime < state.final then return end
 
 			local stack = entrystack(ent, self.slot)
 			if not stack then return end
 
 			local function steallog(desc)
-				nodecore.log("action", string_format(
+				nc.log("action", string_format(
 						"%s: %q %s %q slot %d item %q at %s",
 						modname, puncher:get_player_name(), desc,
 						self.pname, self.slot, stack:to_string(),
-						minetest.pos_to_string(ent.pos, 0)))
+						core.pos_to_string(ent.pos, 0)))
 			end
 			local rp = vector.round(ent.pos)
-			if minetest.is_protected(rp, punchname) and
-			not minetest.is_protected(rp, self.pname) then
+			if core.is_protected(rp, punchname) and
+			not core.is_protected(rp, self.pname) then
 				steallog("attempts to steal")
-				minetest.record_protection_violation(rp, punchname)
+				core.record_protection_violation(rp, punchname)
 				return
 			end
 			steallog("steals")
@@ -269,7 +267,7 @@ minetest.register_entity(modname .. ":slotent", {
 			savedb()
 			stack = puncher:get_inventory():add_item("main", stack)
 			if not stack:is_empty() then
-				nodecore.item_eject(self.object:get_pos(), stack)
+				nc.item_eject(self.object:get_pos(), stack)
 			end
 			return self.object:remove()
 		end
@@ -306,20 +304,20 @@ end
 -- MARKER ENTITY
 
 local function markertexture(pname)
-	local colors = {nodecore.player_model_colors(pname)}
+	local colors = {nc.player_model_colors(pname)}
 	while #colors > 3 do colors[#colors] = nil end
 	for i = 1, #colors do
 		colors[i] = string_format("(%s_marker_%d.png^[multiply:%s)",
 			modname, i, colors[i])
 	end
-	local age = minetest.get_gametime() - (db[pname] or {seen = 0}).seen
+	local age = core.get_gametime() - (db[pname] or {seen = 0}).seen
 	local decay = (halflife <= 0) and 0 or math_floor(240 * (1 - 0.5 ^ (age / halflife)))
 	return string_format("%s^(%s_marker_1.png^%s_marker_2.png^%s_marker_3.png"
 		.. "^[multiply:#a0a0a0^[opacity:%d)",
 		table_concat(colors, "^"), modname, modname, modname, decay)
 end
 
-minetest.register_entity(modname .. ":marker", {
+core.register_entity(modname .. ":marker", {
 		initial_properties = {
 			visual = "sprite",
 			textures = {"nc_player_wield_slot.png"},
@@ -330,8 +328,8 @@ minetest.register_entity(modname .. ":marker", {
 		},
 		is_yctiwy = true,
 		yctiwy_check = function(self)
-			if (not self.pname) or minetest.get_player_by_name(self.pname)
-			or (not minetest.player_exists(self.pname)) or (not db[self.pname]) then
+			if (not self.pname) or core.get_player_by_name(self.pname)
+			or (not core.player_exists(self.pname)) or (not db[self.pname]) then
 				return self.object:remove()
 			end
 			self.object:set_properties({textures = {markertexture(self.pname)}})
@@ -370,19 +368,19 @@ end
 -- STOLEN ITEMS
 
 local takenitem = modname .. ":taken"
-nodecore.register_virtual_item(takenitem, {
+nc.register_virtual_item(takenitem, {
 		description = "",
 		inventory_image = "[combine:1x1",
 		hotbar_type = "yctiwy_taken",
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		itemnames = takenitem,
 		interval = 1,
 		chance = 1,
 		action = function(stack)
 			local exp = stack:get_meta():get_float("exp") or 0
-			if exp < nodecore.gametime then return "" end
+			if exp < nc.gametime then return "" end
 		end
 	})
 
@@ -391,31 +389,31 @@ nodecore.register_aism({
 
 local recheck_timer = 0
 
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 		recheck_timer = 0
 		savestate(player)
 		return savedb()
 	end)
 
-minetest.register_on_shutdown(function()
-		for _, pl in pairs(minetest.get_connected_players()) do
+core.register_on_shutdown(function()
+		for _, pl in pairs(core.get_connected_players()) do
 			savestate(pl)
 		end
 		return savedb()
 	end)
 
-minetest.register_on_joinplayer(function(player)
+core.register_on_joinplayer(function(player)
 		recheck_timer = 0
 		local name = player:get_player_name()
 		local ent = db[name]
 		if (not ent) or (not ent.taken) then return end
 		local inv = player:get_inventory()
 		local takestack = ItemStack(takenitem)
-		takestack:get_meta():set_float("exp", nodecore.gametime + 4)
+		takestack:get_meta():set_float("exp", nc.gametime + 4)
 		for k in pairs(ent.taken) do
 			inv:set_stack("main", k, takestack)
 		end
-		for _, o in pairs(minetest.luaentities) do
+		for _, o in pairs(core.luaentities) do
 			if o and o.is_yctiwy and o.pname == name then
 				o.object:remove()
 			end
@@ -426,16 +424,16 @@ minetest.register_on_joinplayer(function(player)
 -- TIMER
 
 local function dumpinv(ent)
-	if nodecore.stasis then return end
+	if nc.stasis then return end
 	if areaunloaded(ent.pos) then return end
 	for k, v in pairs(ent.inv) do
 		if not (ent.taken and ent.taken[k]) then
 			local stack = ItemStack(v)
 			if not stack:is_empty() then
-				if minetest.add_item(ent.pos, stack) then
-					minetest.log(string_format("%s: deleted player %q"
+				if core.add_item(ent.pos, stack) then
+					core.log(string_format("%s: deleted player %q"
 							.. " drops slot %d item %q at %s",
-							modname, ent.pname, k, stack:to_string(), minetest.pos_to_string(ent.pos, 0)))
+							modname, ent.pname, k, stack:to_string(), core.pos_to_string(ent.pos, 0)))
 					ent.inv[k] = ""
 				else
 					return
@@ -447,7 +445,7 @@ local function dumpinv(ent)
 end
 
 local function dropplayer(name, ent, skipsave)
-	if nodecore.stasis then return end
+	if nc.stasis then return end
 	ent = ent or db[name]
 	if not ent then return end
 	ent.pname = name
@@ -456,8 +454,8 @@ local function dropplayer(name, ent, skipsave)
 	return skipsave or savedb()
 end
 
-local oldremove = minetest.remove_player
-function minetest.remove_player(name, ...)
+local oldremove = core.remove_player
+function core.remove_player(name, ...)
 	local function helper(...)
 		dropplayer(name)
 		return ...
@@ -465,13 +463,13 @@ function minetest.remove_player(name, ...)
 	return helper(oldremove(name, ...))
 end
 
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 		recheck_timer = recheck_timer - dtime
 		if recheck_timer > 0 then return end
 		recheck_timer = 3 + math_random() * 2
 
 		if not hidden then
-			for _, ent in pairs(minetest.luaentities) do
+			for _, ent in pairs(core.luaentities) do
 				if ent.yctiwy_check then
 					ent:yctiwy_check()
 				end
@@ -479,21 +477,21 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		local rollcall = {}
-		for _, pl in pairs(minetest.get_connected_players()) do
+		for _, pl in pairs(core.get_connected_players()) do
 			rollcall[pl:get_player_name()] = true
 			savestate(pl)
 		end
 
 		local existdb = {}
 		if not hidden then
-			for _, ent in pairs(minetest.luaentities) do
+			for _, ent in pairs(core.luaentities) do
 				if ent.is_yctiwy then
 					existdb[(ent.pname or "") .. ":" .. (ent.slot or "")] = true
 				end
 			end
 		end
 		for name, ent in pairs(db) do
-			if not minetest.player_exists(name) then
+			if not core.player_exists(name) then
 				dropplayer(name, ent, true)
 			elseif not (hidden or rollcall[name]) then
 				spawnmarker(name, ent, existdb)

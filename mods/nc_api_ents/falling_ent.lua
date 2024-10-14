@@ -1,19 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore, pairs, table, vector
-    = ItemStack, ipairs, minetest, nodecore, pairs, table, vector
+local ItemStack, core, ipairs, nc, pairs, table, vector
+    = ItemStack, core, ipairs, nc, pairs, table, vector
 local table_shuffle
     = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_falling_node_step,
-nodecore.registered_falling_node_steps
-= nodecore.mkreg()
+nc.register_falling_node_step,
+nc.registered_falling_node_steps
+= nc.mkreg()
 
-nodecore.register_falling_node_on_setnode,
-nodecore.registered_falling_node_on_setnodes
-= nodecore.mkreg()
+nc.register_falling_node_on_setnode,
+nc.registered_falling_node_on_setnodes
+= nc.mkreg()
 
-local data_load, data_save = nodecore.entity_staticdata_helpers({
+local data_load, data_save = nc.entity_staticdata_helpers({
 		maxy = true,
 		node = true,
 		meta = true,
@@ -23,33 +23,33 @@ local data_load, data_save = nodecore.entity_staticdata_helpers({
 
 local hand = ItemStack("")
 local function displace_check(pos)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+	local node = core.get_node(pos)
+	local def = core.registered_nodes[node.name]
 	if def and def.buildable_to then return end
 	if def and def.diggable and def.drop ~= nil and def.drop ~= node.name
-	and nodecore.tool_digs(hand, def.groups) then
-		nodecore.protection_bypass(minetest.dig_node, pos)
+	and nc.tool_digs(hand, def.groups) then
+		nc.protection_bypass(core.dig_node, pos)
 	end
-	for rel in nodecore.settlescan() do
+	for rel in nc.settlescan() do
 		local p = vector.add(pos, rel)
-		if nodecore.buildable_to(p) then
-			nodecore.set_loud(p, node)
-			minetest.get_meta(p):from_table(
-				minetest.get_meta(pos):to_table()
+		if nc.buildable_to(p) then
+			nc.set_loud(p, node)
+			core.get_meta(p):from_table(
+				core.get_meta(pos):to_table()
 			)
-			nodecore.remove_node(pos)
-			return nodecore.fallcheck(p)
+			nc.remove_node(pos)
+			return nc.fallcheck(p)
 		end
 	end
-	local drops = minetest.get_node_drops(pos, "")
+	local drops = core.get_node_drops(pos, "")
 	for _, item in pairs(drops) do
-		minetest.add_item(pos, item)
+		core.add_item(pos, item)
 	end
 end
 
 local function fallopencheck(pos)
-	return nodecore.buildable_to(pos)
-	and nodecore.buildable_to(vector.offset(pos, 0, -1, 0))
+	return nc.buildable_to(pos)
+	and nc.buildable_to(vector.offset(pos, 0, -1, 0))
 end
 local fallopendirs = {
 	vector.new(1, 0, 0),
@@ -58,7 +58,7 @@ local fallopendirs = {
 	vector.new(0, 0, -1)
 }
 
-minetest.register_entity(":__builtin:falling_node", {
+core.register_entity(":__builtin:falling_node", {
 		initial_properties = {
 			visual = "wielditem",
 			visual_size = {x = 2/3, y = 2/3},
@@ -74,7 +74,7 @@ minetest.register_entity(":__builtin:falling_node", {
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
-			nodecore.entity_update_maxy(self)
+			nc.entity_update_maxy(self)
 			data_load(self, data)
 		end,
 
@@ -83,7 +83,7 @@ minetest.register_entity(":__builtin:falling_node", {
 
 			self.node = node
 			self.represents_item = self.node and self.node.name
-			local def = minetest.registered_items[node.name]
+			local def = core.registered_items[node.name]
 			if def.falling_replacement then
 				self.node.name = def.falling_replacement
 			end
@@ -92,14 +92,14 @@ minetest.register_entity(":__builtin:falling_node", {
 					textures = {def and def.falling_visual or node.name},
 				})
 
-			self.meta = nodecore.meta_serializable(meta)
+			self.meta = nc.meta_serializable(meta)
 
-			for _, func in ipairs(nodecore.registered_falling_node_on_setnodes) do
+			for _, func in ipairs(nc.registered_falling_node_on_setnodes) do
 				if func(self, node, meta) == true then return end
 			end
 		end,
 
-		settle_check = nodecore.entity_settle_check(function(self, pos, collides)
+		settle_check = nc.entity_settle_check(function(self, pos, collides)
 				if collides(pos) then
 					pos.y = pos.y + 1
 					self.object:set_pos(pos)
@@ -107,12 +107,12 @@ minetest.register_entity(":__builtin:falling_node", {
 				end
 
 				local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-				local node = minetest.get_node(below)
-				local def = minetest.registered_nodes[node.name] or {}
-				local selfdef = minetest.registered_nodes[self.node.name] or {}
+				local node = core.get_node(below)
+				local def = core.registered_nodes[node.name] or {}
+				local selfdef = core.registered_nodes[self.node.name] or {}
 				if def.groups and def.groups.is_stack_only then
 					if selfdef.walkable ~= false then
-						nodecore.protection_bypass(minetest.dig_node, below)
+						nc.protection_bypass(core.dig_node, below)
 						return
 					else
 						table_shuffle(fallopendirs)
@@ -128,9 +128,9 @@ minetest.register_entity(":__builtin:falling_node", {
 
 				displace_check(pos)
 
-				nodecore.set_loud(pos, self.node)
+				nc.set_loud(pos, self.node)
 				if self.meta then
-					minetest.get_meta(pos):from_table(self.meta)
+					core.get_meta(pos):from_table(self.meta)
 				end
 				self.object:remove()
 
@@ -144,16 +144,16 @@ minetest.register_entity(":__builtin:falling_node", {
 
 		on_step = function(self, ...)
 			if not self.node then return self.object:remove() end
-			nodecore.entity_update_maxy(self)
+			nc.entity_update_maxy(self)
 			if self:settle_check(...) then return end
 
-			for _, func in ipairs(nodecore.registered_falling_node_steps) do
+			for _, func in ipairs(nc.registered_falling_node_steps) do
 				if func(self, ...) == true then return end
 			end
 		end
 	})
 
-nodecore.register_falling_node_step(function(self, dtime)
+nc.register_falling_node_step(function(self, dtime)
 		if not (self.node and self.node.name) then return end
 
 		local pos = self.object:get_pos()
@@ -171,15 +171,15 @@ nodecore.register_falling_node_step(function(self, dtime)
 			fallingent = self,
 			set = function(s)
 				local name = s:get_name()
-				if minetest.registered_nodes[name] then
+				if core.registered_nodes[name] then
 					self.node.name = name
 					self.meta = s:get_meta():to_table()
 				else
-					local ent = minetest.add_item(pos, s)
+					local ent = core.add_item(pos, s)
 					if ent then ent:set_velocity(self.object:get_velocity()) end
 					return self.object:remove()
 				end
 			end
 		}
-		nodecore.aism_check_stack(istack, sdata)
+		nc.aism_check_stack(istack, sdata)
 	end)

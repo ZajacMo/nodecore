@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, setmetatable, string, tostring
-    = nodecore, pairs, setmetatable, string, tostring
+local nc, pairs, setmetatable, string, tostring
+    = nc, pairs, setmetatable, string, tostring
 local string_find, string_gsub
     = string.find, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
@@ -8,7 +8,7 @@ local string_find, string_gsub
 local tmod = {}
 local tmeta = {}
 setmetatable(tmod, tmeta)
-nodecore.tmod = tmod
+nc.tmod = tmod
 
 function tmod:new(img)
 	local obj = {img = img}

@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local core, math, nc, pairs
+    = core, math, nc, pairs
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":rush", {
+core.register_node(modname .. ":rush", {
 		description = "Rush",
 		drawtype = "plantlike",
 		waving = 1,
@@ -27,12 +27,12 @@ minetest.register_node(modname .. ":rush", {
 			attached_node = 1,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
+		sounds = nc.sounds("nc_terrain_swishy"),
+		selection_box = nc.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
 		mapcolor = {r = 69, g = 86, b = 23, a = 128},
 	})
 
-minetest.register_node(modname .. ":rush_dry", {
+core.register_node(modname .. ":rush_dry", {
 		description = "Dry Rush",
 		drawtype = "plantlike",
 		waving = 1,
@@ -53,12 +53,12 @@ minetest.register_node(modname .. ":rush_dry", {
 			peat_grindable_item = 1,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_terrain_swishy"),
-		selection_box = nodecore.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
+		sounds = nc.sounds("nc_terrain_swishy"),
+		selection_box = nc.fixedbox({-3/8, -1/2, -3/8, 3/8, 1/4, 3/8}),
 		mapcolor = {r = 79, g = 74, b = 25, a = 128},
 	})
 
-minetest.register_decoration({
+core.register_decoration({
 		name = modname .. ":rush",
 		deco_type = "simple",
 		place_on = {"group:soil", "group:sand"},
@@ -80,8 +80,8 @@ minetest.register_decoration({
 	})
 
 local rush_substrate = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.groups and v.groups.soil or v.groups.sand then
 				rush_substrate[k] = v.soil_degrades_to or true
 			end
@@ -90,20 +90,20 @@ minetest.after(0, function()
 
 local function rushcheck(pos)
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	local bnode = minetest.get_node_or_nil(below)
+	local bnode = core.get_node_or_nil(below)
 	if not bnode then return end
 	local subst = rush_substrate[bnode.name]
 	if not subst then return false end
 
-	if #nodecore.find_nodes_around(pos, "group:moist", 2) < 1 then
+	if #nc.find_nodes_around(pos, "group:moist", 2) < 1 then
 		return false
 	end
 
-	if not nodecore.can_grass_grow_under(pos) then return true end
+	if not nc.can_grass_grow_under(pos) then return true end
 
 	return subst, below
 end
-minetest.register_abm({
+core.register_abm({
 		label = "rush drying/spreading",
 		interval = 1,
 		chance = 50,
@@ -112,7 +112,7 @@ minetest.register_abm({
 		action = function(pos)
 			local subst, below = rushcheck(pos)
 			if subst == false then
-				return nodecore.set_loud(pos, {
+				return nc.set_loud(pos, {
 						name = modname .. ":rush_dry",
 						param2 = 4
 					})
@@ -124,20 +124,20 @@ minetest.register_abm({
 				y = pos.y + math_random(-1, 1),
 				z = pos.z + math_random(-1, 1),
 			}
-			if not (nodecore.air_equivalent(pick)
+			if not (nc.air_equivalent(pick)
 				and rushcheck(pick)) then return end
 			if math_random(1, 4) == 1 then
-				nodecore.set_loud(below, {name = subst})
+				nc.set_loud(below, {name = subst})
 			end
-			nodecore.set_loud(pick, {
+			nc.set_loud(pick, {
 					name = modname .. ":rush",
 					param2 = 4
 				})
-			return nodecore.witness(pick, "rush spread")
+			return nc.witness(pick, "rush spread")
 		end
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "rush stack dry",
 		interval = 1,
 		chance = 25,
@@ -149,29 +149,29 @@ nodecore.register_aism({
 				local inv = data.player:get_inventory()
 				for i = 1, inv:get_size(data.list) do
 					local item = inv:get_stack(data.list, i):get_name()
-					if minetest.get_item_group(item, "moist") > 0 then return end
+					if core.get_item_group(item, "moist") > 0 then return end
 				end
 			end
-			if #nodecore.find_nodes_around(data.pos, "group:moist", 2) > 0 then return end
-			nodecore.sound_play("nc_terrain_swishy", {pos = data.pos})
+			if #nc.find_nodes_around(data.pos, "group:moist", 2) > 0 then return end
+			nc.sound_play("nc_terrain_swishy", {pos = data.pos})
 			local taken = stack:take_item(1)
 			taken:set_name(modname .. ":rush_dry")
 			if data.inv then taken = data.inv:add_item("main", taken) end
-			if not taken:is_empty() then nodecore.item_eject(data.pos, taken) end
+			if not taken:is_empty() then nc.item_eject(data.pos, taken) end
 			return stack
 		end
 	})
 
-nodecore.register_on_peat_compost(function(pos)
+nc.register_on_peat_compost(function(pos)
 		if math_random(1, 10) ~= 1 then return end
 
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		if not (nodecore.air_equivalent(above) and rushcheck(above)
-			and #nodecore.find_nodes_around(above, "group:flora_sedges", 1) >= 2
-			and #nodecore.find_nodes_around(above, "group:moist", 1) >= 2)
+		if not (nc.air_equivalent(above) and rushcheck(above)
+			and #nc.find_nodes_around(above, "group:flora_sedges", 1) >= 2
+			and #nc.find_nodes_around(above, "group:moist", 1) >= 2)
 		then return end
 
-		nodecore.set_loud(above, {
+		nc.set_loud(above, {
 				name = modname .. ":rush",
 				param2 = 4
 			})

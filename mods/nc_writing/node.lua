@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, string, vector
-    = minetest, nodecore, string, vector
+local core, nc, string, vector
+    = core, nc, string, vector
 local string_gsub
     = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local nodepref = modname .. ":glyph"
 local coallump = "nc_fire:lump_coal"
 
-for i = 1, #nodecore.writing_glyphs do
-	local glyph = nodecore.writing_glyphs[i]
+for i = 1, #nc.writing_glyphs do
+	local glyph = nc.writing_glyphs[i]
 	local desc = glyph.name .. " Charcoal Glyph"
 
 	local tile = glyph.flipped
@@ -19,7 +19,7 @@ for i = 1, #nodecore.writing_glyphs do
 	or (modname .. "_glyph_" .. glyph.name:lower() .. ".png")
 	tile = "nc_fire_coal_4.png^[mask:" .. tile
 
-	minetest.register_node(nodepref .. i, {
+	core.register_node(nodepref .. i, {
 			description = desc,
 			tiles = {
 				tile,
@@ -27,7 +27,7 @@ for i = 1, #nodecore.writing_glyphs do
 			},
 			use_texture_alpha = "clip",
 			drawtype = "nodebox",
-			node_box = nodecore.fixedbox(
+			node_box = nc.fixedbox(
 				{-0.5, -15/32, -0.5, 0.5, -14/32, 0.5}
 			),
 			paramtype = "light",
@@ -43,19 +43,19 @@ for i = 1, #nodecore.writing_glyphs do
 			},
 			drop = coallump,
 			floodable = true,
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			sounds = nc.sounds("nc_terrain_crunchy"),
 			on_node_touchthru = function(pos, node, under, player)
-				local raw = nodecore.touchtip_node(under, nil, player)
+				local raw = nc.touchtip_node(under, nil, player)
 				if raw and vector.equals(vector.subtract(under, pos),
-					nodecore.facedirs[node.param2].b) then
+					nc.facedirs[node.param2].b) then
 					return desc .. string_gsub(raw, "^ +", "")
 				end
 				return raw
 			end,
 			on_falling_check = function(pos, node)
-				local dp = vector.add(pos, nodecore.facedirs[node.param2].b)
-				if not nodecore.writing_writable(dp, nil, true) then
-					minetest.remove_node(pos)
+				local dp = vector.add(pos, nc.facedirs[node.param2].b)
+				if not nc.writing_writable(dp, nil, true) then
+					core.remove_node(pos)
 					return true
 				end
 				return false

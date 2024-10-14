@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs
-    = ItemStack, minetest, nodecore, pairs
+local ItemStack, core, nc, pairs
+    = ItemStack, core, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "Packed Tote AISMs",
 		interval = 1,
 		chance = 1,
@@ -11,7 +11,7 @@ nodecore.register_aism({
 		action = function(stack, data)
 			local stackmeta = stack:get_meta()
 			local raw = stackmeta:get_string("carrying")
-			local inv = raw and (raw ~= "") and minetest.deserialize(raw)
+			local inv = raw and (raw ~= "") and core.deserialize(raw)
 			if not inv then return end
 
 			local dirty
@@ -33,7 +33,7 @@ nodecore.register_aism({
 								end
 							end
 						}
-						nodecore.aism_check_stack(istack, sdata)
+						nc.aism_check_stack(istack, sdata)
 					end
 				end
 				-- Legacy format
@@ -52,14 +52,14 @@ nodecore.register_aism({
 									dirty = true
 								end
 							}
-							nodecore.aism_check_stack(istack, sdata)
+							nc.aism_check_stack(istack, sdata)
 						end
 					end
 				end
 			end
 			if not dirty then return end
 
-			stackmeta:set_string("carrying", minetest.serialize(inv))
+			stackmeta:set_string("carrying", core.serialize(inv))
 			return stack
 		end
 	})

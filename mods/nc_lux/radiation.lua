@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, setmetatable, vector
-    = math, minetest, nodecore, pairs, setmetatable, vector
+local core, math, nc, pairs, setmetatable, vector
+    = core, math, nc, pairs, setmetatable, vector
 local math_cos, math_floor, math_log, math_pi, math_pow, math_random,
       math_sin, math_sqrt
     = math.cos, math.floor, math.log, math.pi, math.pow, math.random,
       math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function metastat(metakey)
 	local statcache = {}
@@ -31,13 +31,13 @@ local radlevel = metastat("rad")
 local radrate = metastat("radrate")
 
 local irradiated = modname .. ":irradiated"
-nodecore.register_virtual_item(irradiated, {
+nc.register_virtual_item(irradiated, {
 		description = "",
 		inventory_image = "[combine:1x1",
 		hotbar_type = "burn",
 	})
 
-nodecore.register_healthfx({
+nc.register_healthfx({
 		item = irradiated,
 		getqty = function(player) return radlevel(player) end,
 		setqty = function(player, qty)
@@ -61,8 +61,8 @@ do
 			end
 		}
 	)
-	minetest.after(0, function()
-			for k, v in pairs(minetest.registered_items) do
+	core.after(0, function()
+			for k, v in pairs(core.registered_items) do
 				local g = v.groups or {}
 				local rad = {
 					stack = g.visinv,
@@ -109,14 +109,14 @@ local function nodescan(player)
 	pos.y = pos.y + player:get_properties().eye_height
 	local dir
 	while true do
-		local nn = minetest.get_node(pos).name
+		local nn = core.get_node(pos).name
 		if nn == "ignore" then break end
 		local rad = rad_lut[nn]
 		if rad.emit then emit = emit + rad.emit end
 		if math_random() < rad.absorb then break end
 		if math_random() < rad.scatter then dir = randdir() end
 		if rad.stack then
-			local stack = nodecore.stack_get(pos)
+			local stack = nc.stack_get(pos)
 			rad = (not stack:is_empty()) and rad_lut[stack:get_name()]
 			if rad then
 				if rad.emit then emit = emit + rad.emit end
@@ -148,7 +148,7 @@ end
 
 local base = 1.25
 local logbase = math_log(base)
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "lux rad scan",
 		action = function(player, data, dtime)
 			local rad, setrad = radlevel(player)
@@ -157,7 +157,7 @@ nodecore.register_playerstep({
 			data.unradtime = (data.unradtime or 0) + dtime
 			if data.unradtime > 1 then
 				local pos = player:get_pos()
-				local stand = minetest.registered_items[minetest.get_node({
+				local stand = core.registered_items[core.get_node({
 						x = pos.x + math_random() - 0.5,
 						y = pos.y + math_random() * 2 - 0.5,
 						z = pos.z + math_random() - 0.5,
@@ -169,8 +169,8 @@ nodecore.register_playerstep({
 				data.unradtime = data.unradtime - use
 			end
 
-			if nodecore.player_can_take_damage(player)
-			and nodecore.player_visible(player) then
+			if nc.player_can_take_damage(player)
+			and nc.player_visible(player) then
 				data.radtime = (data.radtime or 0) + dtime
 				if data.radtime > 1/4 then
 					local inrate = (nodescan(player) + itemscan(player)) / 256
@@ -197,7 +197,7 @@ nodecore.register_playerstep({
 				if o > 0 then img = modname .. "_radhud.png"
 					if o < 255 then img = img .. "^[opacity:" .. o end
 				end
-				nodecore.hud_set(player, {
+				nc.hud_set(player, {
 						label = "radiation",
 						hud_elem_type = "image",
 						position = {x = 0.5, y = 0.5},

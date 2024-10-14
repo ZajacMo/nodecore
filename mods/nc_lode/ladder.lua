@@ -1,25 +1,25 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local lt = 1/16
 local lw = 3/16
 local ll = 1/2
 local lf = 1/8
 
-nodecore.register_lode("Ladder", {
+nc.register_lode("Ladder", {
 		["type"] = "node",
 		description = "## Lode Ladder",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
+		node_box = nc.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-lw, -lt, -lt, lw, lt, lt},
 			{-lt, -lt, -lw, lt, lt, lw}
 		),
-		selection_box = nodecore.fixedbox(-lw, -ll, -lw, lw, ll, lw),
+		selection_box = nc.fixedbox(-lw, -ll, -lw, lw, ll, lw),
 		tiles = {modname .. "_#.png"},
 		light_source = 2,
 		crush_damage = 3,
@@ -35,7 +35,7 @@ nodecore.register_lode("Ladder", {
 		mapcolor = {a = 32},
 	})
 
-nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
+nc.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 		return {
 			label = "anvil making lode ladder",
 			action = "pummel",
@@ -59,7 +59,7 @@ nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 		}
 	end)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode ladder",
 		action = "pummel",
 		toolgroups = {choppy = 3},
@@ -76,16 +76,16 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_lode("Frame", {
+nc.register_lode("Frame", {
 		["type"] = "node",
 		description = "## Lode Frame",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
+		node_box = nc.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-ll, -lt, -lt, ll, lt, lt},
 			{-lt, -lt, -ll, lt, lt, ll}
 		),
-		selection_box = nodecore.fixedbox(
+		selection_box = nc.fixedbox(
 			{-lf, -ll, -lf, lf, ll, lf},
 			{-ll, -lf, -lf, ll, lf, lf},
 			{-lf, -lf, -ll, lf, lf, ll}
@@ -102,7 +102,7 @@ nodecore.register_lode("Frame", {
 		mapcolor = {a = 64},
 	})
 
-nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
+nc.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 		return {
 			label = "anvil making lode frame",
 			action = "pummel",
@@ -126,7 +126,7 @@ nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 		}
 	end)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode frame",
 		action = "pummel",
 		toolgroups = {choppy = 3},

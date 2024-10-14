@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, string, tonumber
-    = ipairs, math, minetest, nodecore, pairs, string, tonumber
+local core, ipairs, math, nc, pairs, string, tonumber
+    = core, ipairs, math, nc, pairs, string, tonumber
 local math_abs, math_random, string_format, string_sub
     = math.abs, math.random, string.format, string.sub
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local shapes = {
 	{name = "Bell", size = 1/4},
@@ -54,7 +54,7 @@ for shapeid = 1, #shapes do
 			.. "^[mask:%s_grass_mask.png)^[mask:%s_flower_%d_base.png"
 			.. "^(%s_flower_%d_top.png^[multiply:#%s)", modname, modname,
 			modname, shapeid, modname, shapeid, color.color)
-		minetest.register_node(flowername(shapeid, colorid),
+		core.register_node(flowername(shapeid, colorid),
 			{
 				description = color.name .. " " .. shape.name .. " Flower",
 				drawtype = 'plantlike',
@@ -81,7 +81,7 @@ for shapeid = 1, #shapes do
 				nc_flower_shape = shapeid,
 				nc_flower_color = colorid,
 				flower_wilts_to = flowername(shapeid, 0),
-				sounds = nodecore.sounds("nc_terrain_swishy"),
+				sounds = nc.sounds("nc_terrain_swishy"),
 				selection_box = {
 					type = "fixed",
 					fixed = {-shape.size, -0.5, -shape.size,
@@ -94,7 +94,7 @@ for shapeid = 1, #shapes do
 		.. "^[mask:%s_grass_mask.png)^[mask:%s_flower_%d_base.png"
 		.. "^(%s_flower_%d_top.png^[multiply:#7b7a64)", modname, modname,
 		modname, shapeid, modname, shapeid)
-	minetest.register_node(flowername(shapeid, 0),
+	core.register_node(flowername(shapeid, 0),
 		{
 			description = "Wilted " .. shape.name .. " Flower",
 			drawtype = 'plantlike',
@@ -117,7 +117,7 @@ for shapeid = 1, #shapes do
 				peat_grindable_item = 1,
 				optic_opaque = 1,
 			},
-			sounds = nodecore.sounds("nc_terrain_swishy"),
+			sounds = nc.sounds("nc_terrain_swishy"),
 			selection_box = {
 				type = "fixed",
 				fixed = {-shape.size, -0.5, -shape.size,
@@ -130,7 +130,7 @@ for shapeid = 1, #shapes do
 end
 
 for k, v in pairs(mapgenrates) do
-	minetest.register_decoration({
+	core.register_decoration({
 			name = k,
 			deco_type = "simple",
 			place_on = {"nc_terrain:dirt_with_grass"},
@@ -149,12 +149,12 @@ for k, v in pairs(mapgenrates) do
 end
 
 local function flowerable(pos)
-	local grass = nodecore.can_grass_grow_under(pos)
+	local grass = nc.can_grass_grow_under(pos)
 	if not grass then return grass end
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	local bnode = minetest.get_node_or_nil(below)
+	local bnode = core.get_node_or_nil(below)
 	if not bnode then return end
-	local def = minetest.registered_nodes[bnode.name]
+	local def = core.registered_nodes[bnode.name]
 	local grp = def and def.groups or {}
 	if grp.grass and grp.grass > 0 then return end
 	if not (grp.soil and grp.soil > 0) then return false end
@@ -162,14 +162,14 @@ local function flowerable(pos)
 end
 
 local function getvariation(basenode, peers, key, max, mutate)
-	local basedef = minetest.registered_items[basenode.name]
+	local basedef = core.registered_items[basenode.name]
 	local baseval = basedef and basedef[key]
 	if not baseval then return end
 	local maxdiff = 0
 	local up
 	local down
 	for _, p in ipairs(peers) do
-		local def = minetest.registered_items[minetest.get_node(p).name]
+		local def = core.registered_items[core.get_node(p).name]
 		local val = def and def[key]
 		if val then
 			local diff = math_abs(val - baseval)
@@ -190,7 +190,7 @@ local function getvariation(basenode, peers, key, max, mutate)
 	return baseval
 end
 
-minetest.register_abm({
+core.register_abm({
 		label = "flowers wilting/growing",
 		interval = 2,
 		chance = 100,
@@ -198,20 +198,20 @@ minetest.register_abm({
 		arealoaded = 2,
 		action = function(pos, node)
 			local function die()
-				local wilt = minetest.registered_items[node.name].flower_wilts_to
+				local wilt = core.registered_items[node.name].flower_wilts_to
 				if not wilt then return end
-				return nodecore.set_loud(pos, {name = wilt})
+				return nc.set_loud(pos, {name = wilt})
 			end
 
 			local soil = flowerable(pos)
 			if soil == false then return die() end
 			if (not soil) or (math_random(1, 5) > soil)
-			or #nodecore.find_nodes_around(pos, "group:moist", 2) < 1
+			or #nc.find_nodes_around(pos, "group:moist", 2) < 1
 			then return end
 
 			local rads = 0
-			for _, p in ipairs(nodecore.find_nodes_around(pos, "group:lux_emit", 2)) do
-				rads = rads + minetest.get_item_group(minetest.get_node(p).name, "lux_emit")
+			for _, p in ipairs(nc.find_nodes_around(pos, "group:lux_emit", 2)) do
+				rads = rads + core.get_item_group(core.get_node(p).name, "lux_emit")
 			end
 			if math_random(1, 100) < rads then return die() end
 
@@ -220,24 +220,24 @@ minetest.register_abm({
 				y = pos.y + math_random(-1, 1),
 				z = pos.z + math_random(-2, 2)
 			}
-			if not (nodecore.buildable_to(grow) and flowerable(grow)) then return end
+			if not (nc.buildable_to(grow) and flowerable(grow)) then return end
 
 			local mutate = 1 + rads * rads / 20
-			local peers = nodecore.find_nodes_around(grow, "group:flower_living", {2, 1, 2})
+			local peers = nc.find_nodes_around(grow, "group:flower_living", {2, 1, 2})
 			local shape = getvariation(node, peers, "nc_flower_shape", #shapes, mutate)
 			if not shape then return die() end
 			local color = getvariation(node, peers, "nc_flower_color", #colors, mutate)
 			if not color then return die() end
 
-			nodecore.set_loud(grow, {
+			nc.set_loud(grow, {
 					name = flowername(shape, color),
 					param2 = shapes[shape].param2
 				})
-			return nodecore.witness(grow, "flower spread")
+			return nc.witness(grow, "flower spread")
 		end
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "flower stack wilt",
 		interval = 1,
 		chance = 50,
@@ -245,36 +245,36 @@ nodecore.register_aism({
 		itemnames = {"group:flower_living"},
 		action = function(stack, data)
 			if data.toteslot then return end
-			local shapeid = minetest.registered_items[stack:get_name()].nc_flower_shape
+			local shapeid = core.registered_items[stack:get_name()].nc_flower_shape
 			if data.player and data.list then
 				local inv = data.player:get_inventory()
 				for i = 1, inv:get_size(data.list) do
 					local item = inv:get_stack(data.list, i):get_name()
-					if minetest.get_item_group(item, "moist") > 0 then return end
+					if core.get_item_group(item, "moist") > 0 then return end
 				end
 			end
-			if #nodecore.find_nodes_around(data.pos, "group:moist", 2) > 0 then return end
-			nodecore.sound_play("nc_terrain_swishy", {pos = data.pos})
+			if #nc.find_nodes_around(data.pos, "group:moist", 2) > 0 then return end
+			nc.sound_play("nc_terrain_swishy", {pos = data.pos})
 			local taken = stack:take_item(1)
 			taken:set_name(flowername(shapeid, 0))
 			if data.inv then taken = data.inv:add_item("main", taken) end
-			if not taken:is_empty() then nodecore.item_eject(data.pos, taken) end
+			if not taken:is_empty() then nc.item_eject(data.pos, taken) end
 			return stack
 		end
 	})
 
-nodecore.register_on_peat_compost(function(pos)
+nc.register_on_peat_compost(function(pos)
 		if math_random(1, 100) ~= 1 then return end
 
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		if not (nodecore.air_equivalent(above)
-			and nodecore.is_max_light(above)
+		if not (nc.air_equivalent(above)
+			and nc.is_max_light(above)
 			and flowerable(above)
-			and #nodecore.find_nodes_around(above, "group:moist", {2, 2, 2}) > 0)
+			and #nc.find_nodes_around(above, "group:moist", {2, 2, 2}) > 0)
 		then return end
 
-		local stat, name = nodecore.pickrand(mapgenrates, function(v) return v.rate end)
-		nodecore.set_loud(above, {
+		local stat, name = nc.pickrand(mapgenrates, function(v) return v.rate end)
+		nc.set_loud(above, {
 				name = name,
 				param2 = shapes[stat.shape].param2
 			})

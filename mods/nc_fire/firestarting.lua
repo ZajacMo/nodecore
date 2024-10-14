@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, vector
-    = ItemStack, math, minetest, nodecore, vector
+local ItemStack, core, math, nc, vector
+    = ItemStack, core, math, nc, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -25,8 +25,8 @@ local firedirs = {
 	{x = 0, y = -1, z = 0},
 }
 
-function nodecore.firestick_spark_ignite(pos, ignite)
-	minetest.add_particlespawner({
+function nc.firestick_spark_ignite(pos, ignite)
+	core.add_particlespawner({
 			amount = 50,
 			time = 0.02,
 			minpos = {x = pos.x, y = pos.y - 0.25, z = pos.z},
@@ -46,10 +46,10 @@ function nodecore.firestick_spark_ignite(pos, ignite)
 
 	if not ignite then return end
 	local dir = firedirs[math_random(1, #firedirs)]
-	return nodecore.fire_check_ignite(vector.add(pos, dir))
+	return nc.fire_check_ignite(vector.add(pos, dir))
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "stick fire starting",
 		action = "pummel",
 		wield = {
@@ -61,19 +61,19 @@ nodecore.register_craft({
 		},
 		consumewield = 1,
 		duration = 5,
-		check = function() return not nodecore.fire_quell end,
+		check = function() return not nc.fire_quell end,
 		before = function(pos, data)
-			local fs = minetest.get_item_group(data.node.name, "firestick")
-			* minetest.get_item_group(ItemStack(data.wield):get_name(), "firestick")
+			local fs = core.get_item_group(data.node.name, "firestick")
+			* core.get_item_group(ItemStack(data.wield):get_name(), "firestick")
 
 			if math_random(1, 4) > fs then
-				nodecore.smokeburst(pos)
-				nodecore.sound_play("nc_api_toolbreak", {pos = pos, gain = 1})
+				nc.smokeburst(pos)
+				nc.sound_play("nc_api_toolbreak", {pos = pos, gain = 1})
 				return
 			end
 
-			nodecore.fire_ignite(pos)
-			return nodecore.firestick_spark_ignite(pos,
+			nc.fire_ignite(pos)
+			return nc.firestick_spark_ignite(pos,
 				math_random(1, 4) <= fs)
 		end
 	})

@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-function nodecore.register_concrete(def)
-	def = nodecore.underride(def, {
+function nc.register_concrete(def)
+	def = nc.underride(def, {
 			name = def.description:lower():gsub("%W", "_"),
 			groups_powder = {
 				falling_node = 1,
@@ -20,12 +20,12 @@ function nodecore.register_concrete(def)
 	def.basename = basename
 
 	if def.register_dry ~= false then
-		minetest.register_node(":" .. basename, {
+		core.register_node(":" .. basename, {
 				description = def.description,
 				tiles = {def.tile_powder},
 				groups = def.groups_powder,
 				crush_damage = 1,
-				sounds = nodecore.sounds(def.sound),
+				sounds = nc.sounds(def.sound),
 				mapcolor = def.mapcolor,
 				concrete_def = def
 			})
@@ -46,15 +46,15 @@ function nodecore.register_concrete(def)
 			drowning = 2,
 			post_effect_color = def.swim_color,
 			groups = def.groups_wet,
-			sounds = nodecore.sounds(def.sound),
+			sounds = nc.sounds(def.sound),
 			mapcolor = def.mapcolor,
 			concrete_def = def
 		}
-		minetest.register_node(":" .. basename .. "_wet_source", nodecore.underride({
+		core.register_node(":" .. basename .. "_wet_source", nc.underride({
 					liquidtype = "source",
 					groups = {concrete_source = 1}
 				}, wetdef))
-		minetest.register_node(":" .. basename .. "_wet_flowing", nodecore.underride({
+		core.register_node(":" .. basename .. "_wet_flowing", nc.underride({
 					drawtype = "flowingliquid",
 					liquidtype = "flowing",
 					paramtype2 = "flowingliquid",
@@ -63,7 +63,7 @@ function nodecore.register_concrete(def)
 	end
 
 	if def.craft_mix ~= false then
-		nodecore.register_craft({
+		nc.register_craft({
 				label = "mix " .. def.name .. " (fail)",
 				action = "pummel",
 				priority = 2,
@@ -86,11 +86,11 @@ function nodecore.register_concrete(def)
 					}
 				},
 				before = function(pos)
-					nodecore.item_disperse(pos, "nc_fire:lump_ash", 8)
-					return nodecore.fall_force(pos)
+					nc.item_disperse(pos, "nc_fire:lump_ash", 8)
+					return nc.fall_force(pos)
 				end
 			})
-		nodecore.register_craft({
+		nc.register_craft({
 				label = "mix " .. def.name,
 				action = "pummel",
 				priority = 1,

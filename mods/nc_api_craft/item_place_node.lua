@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local old_place = minetest.item_place_node
-function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
-	local old_add = minetest.add_node
-	minetest.add_node = function(pos, node, ...)
+local old_place = core.item_place_node
+function core.item_place_node(itemstack, placer, pointed_thing, ...)
+	local old_add = core.add_node
+	core.add_node = function(pos, node, ...)
 		local function helper2(...)
-			nodecore.craft_check(pos, node, nodecore.underride({
+			nc.craft_check(pos, node, nc.underride({
 						action = "place",
 						crafter = placer,
 						pointed = pointed_thing
@@ -18,7 +18,7 @@ function minetest.item_place_node(itemstack, placer, pointed_thing, ...)
 		return helper2(old_add(pos, node, ...))
 	end
 	local function helper(...)
-		minetest.add_node = old_add
+		core.add_node = old_add
 		return ...
 	end
 	return helper(old_place(itemstack, placer, pointed_thing, ...))

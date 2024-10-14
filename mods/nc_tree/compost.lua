@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore
-    = ipairs, math, minetest, nodecore
+local core, ipairs, math, nc
+    = core, ipairs, math, nc
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":humus", {
+core.register_node(modname .. ":humus", {
 		description = "Humus",
 		tiles = {modname .. "_humus.png"},
 		groups = {
@@ -27,11 +27,11 @@ minetest.register_node(modname .. ":humus", {
 			}
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_crunchy"),
+		sounds = nc.sounds("nc_terrain_crunchy"),
 		mapcolor = {r = 68, g = 43, b = 15},
 	})
 
-minetest.register_node(modname .. ":peat", {
+core.register_node(modname .. ":peat", {
 		description = "Peat",
 		tiles = {modname .. "_humus.png^" .. modname .. "_peat.png^nc_api_loose.png"},
 		groups = {
@@ -43,11 +43,11 @@ minetest.register_node(modname .. ":peat", {
 			green = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_swishy"),
+		sounds = nc.sounds("nc_terrain_swishy"),
 		mapcolor = {r = 68, g = 43, b = 15},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
@@ -59,7 +59,7 @@ nodecore.register_craft({
 			}
 		}
 	})
-nodecore.register_craft({
+nc.register_craft({
 		label = "compress peat block",
 		action = "pummel",
 		toolgroups = {crumbly = 2},
@@ -74,42 +74,42 @@ nodecore.register_craft({
 
 local compostcost = 2500
 
-nodecore.register_on_peat_compost,
-nodecore.registered_on_peat_composts
-= nodecore.mkreg()
+nc.register_on_peat_compost,
+nc.registered_on_peat_composts
+= nc.mkreg()
 
 local function compostdone(pos, node)
-	nodecore.set_loud(pos, node)
-	for _, f in ipairs(nodecore.registered_on_peat_composts) do f(pos) end
-	nodecore.witness(pos, "peat compost")
+	nc.set_loud(pos, node)
+	for _, f in ipairs(nc.registered_on_peat_composts) do f(pos) end
+	nc.witness(pos, "peat compost")
 	return false
 end
 
-nodecore.register_soaking_abm({
+nc.register_soaking_abm({
 		label = "peat compost",
 		fieldname = "compost",
 		nodenames = {modname .. ":peat"},
 		interval = 10,
 		soakrate = function(pos)
-			return nodecore.tree_soil_rate(pos, 0, 1)
+			return nc.tree_soil_rate(pos, 0, 1)
 		end,
 		soakcheck = function(data, pos)
 			if data.total < compostcost then return end
-			minetest.get_meta(pos):from_table({})
-			if math_random(1, 20) == 1 and nodecore.is_full_sun(
+			core.get_meta(pos):from_table({})
+			if math_random(1, 20) == 1 and nc.is_full_sun(
 				{x = pos.x, y = pos.y + 1, z = pos.z}) then
 				return compostdone(pos, {name = "nc_terrain:dirt_with_grass"})
 			end
 			compostdone(pos, {name = modname .. ":humus"})
-			local found = nodecore.find_nodes_around(pos, {modname .. ":peat"})
+			local found = nc.find_nodes_around(pos, {modname .. ":peat"})
 			if #found < 1 then return false end
-			nodecore.soaking_abm_push(nodecore.pickrand(found),
+			nc.soaking_abm_push(nc.pickrand(found),
 				"compost", data.total - compostcost)
 			return false
 		end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "tickle peat",
 		action = "pummel",
 		toolgroups = {cuddly = 1},
@@ -117,7 +117,7 @@ nodecore.register_craft({
 			{match = {name = modname .. ":peat", stacked = false}}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "compost")
-			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":humus")
+			nc.soaking_abm_tickle(pos, "compost")
+			nc.soaking_particles(pos, 25, 0.5, .45, modname .. ":humus")
 		end
 	})

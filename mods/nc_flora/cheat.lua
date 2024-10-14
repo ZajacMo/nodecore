@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, tonumber, type, vector
-    = minetest, nodecore, pairs, tonumber, type, vector
+local core, nc, pairs, tonumber, type, vector
+    = core, nc, pairs, tonumber, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local alldecor = {}
-minetest.after(0, function()
-		for _, dec in pairs(minetest.registered_decorations) do
+core.after(0, function()
+		for _, dec in pairs(core.registered_decorations) do
 			if dec.deco_type == "simple" and dec.place_on
 			and dec.decoration and dec.noise_params then
 				alldecor[#alldecor + 1] = dec
@@ -14,8 +14,8 @@ minetest.after(0, function()
 	end)
 
 local function generate(pick, pos)
-	local found = nodecore.pickrand(
-		minetest.find_nodes_in_area_under_air({
+	local found = nc.pickrand(
+		core.find_nodes_in_area_under_air({
 				x = pos.x,
 				y = pos.y + 50,
 				z = pos.z
@@ -28,14 +28,14 @@ local function generate(pick, pos)
 	if not found then return end
 
 	found.y = found.y + 1
-	if not nodecore.air_equivalent(found) then return end
+	if not nc.air_equivalent(found) then return end
 
-	if found and pick.spawn_by and #nodecore.find_nodes_around(
+	if found and pick.spawn_by and #nc.find_nodes_around(
 		found, pick.spawn_by) < 1 then return end
 
-	return nodecore.set_loud(found, {
+	return nc.set_loud(found, {
 			name = type(pick.decoration) == "table"
-			and nodecore.pickrand(pick.decoration)
+			and nc.pickrand(pick.decoration)
 			or pick.decoration,
 			param2 = pick.param2
 		})
@@ -45,14 +45,14 @@ local function decorate(pos, qty, dist)
 	local seen = {}
 	for _ = 1, qty do
 		local p = vector.round({
-				x = pos.x + nodecore.boxmuller() * dist,
+				x = pos.x + nc.boxmuller() * dist,
 				y = pos.y,
-				z = pos.z + nodecore.boxmuller() * dist,
+				z = pos.z + nc.boxmuller() * dist,
 			})
-		local hash = minetest.hash_node_position(p)
+		local hash = core.hash_node_position(p)
 		if not seen[hash] then
 			seen[hash] = true
-			local pick = nodecore.pickrand(alldecor, function(dec)
+			local pick = nc.pickrand(alldecor, function(dec)
 					return dec.noise_params.scale
 					+ dec.noise_params.offset
 				end)
@@ -61,12 +61,12 @@ local function decorate(pos, qty, dist)
 	end
 end
 
-minetest.register_chatcommand("redecorate", {
+core.register_chatcommand("redecorate", {
 		description = "spawn mapgen decorations in area",
 		privs = {give = true},
 		params = "[qty] [dist]",
 		func = function(name, param)
-			local player = minetest.get_player_by_name(name)
+			local player = core.get_player_by_name(name)
 			if not player then return false, "must be online" end
 			local pos = player:get_pos()
 			if not pos then return false, "must be online" end

@@ -1,19 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local core, nc, pairs
+    = core, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local function wieldsound(player, idx, gain)
-	if nodecore.player_visible(player) then
+	if nc.player_visible(player) then
 		local n = player:get_inventory():get_stack("main", idx):get_name()
-		local def = minetest.registered_items[n]
+		local def = core.registered_items[n]
 		if def and def.sounds and def.sounds.dig then
 			local t = {}
 			for k, v in pairs(def.sounds.dig) do t[k] = v end
 			t.object = player
 			t.gain = gain or 1
 			if player:get_player_control().sneak then t.gain = t.gain / 4 end
-			return function() nodecore.sound_play(t.name, t) end
+			return function() nc.sound_play(t.name, t) end
 		end
 	end
 	return function() end
@@ -21,7 +21,7 @@ end
 
 local wields = {}
 local pending = {}
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "wield sounds",
 		action = function(player, data, dtime)
 			local pname = data.pname

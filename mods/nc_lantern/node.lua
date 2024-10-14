@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local txr_sides = "(nc_lode_annealed.png^[mask:nc_tote_sides.png)"
 local txr_handle = "(nc_lode_annealed.png^nc_tote_knurl.png)"
@@ -20,10 +20,10 @@ local function rampcolor(r1, g1, b1, r2, g2, b2, q)
 end
 
 local function reg(level)
-	return minetest.register_node(modname .. ":lamp" .. level, {
+	return core.register_node(modname .. ":lamp" .. level, {
 			description = "Lantern",
 			drawtype = "mesh",
-			visual_scale = nodecore.z_fight_ratio,
+			visual_scale = nc.z_fight_ratio,
 			mesh = "nc_tote_handle.obj",
 			paramtype = "light",
 			paramtype2 = "facedir",
@@ -49,12 +49,12 @@ local function reg(level)
 			},
 			stack_max = 1,
 			light_source = level * 2,
-			sounds = nodecore.sounds("nc_lode_annealed"),
+			sounds = nc.sounds("nc_lode_annealed"),
 			preserve_metadata = function(_, _, oldmeta, drops)
 				drops[1]:get_meta():from_table({fields = oldmeta})
 			end,
 			after_place_node = function(pos, _, itemstack)
-				local meta = minetest.get_meta(pos)
+				local meta = core.get_meta(pos)
 				meta:from_table(itemstack:get_meta():to_table())
 			end,
 			mapcolor = rampcolor(162, 202, 222, 242, 236, 172, level / 7)

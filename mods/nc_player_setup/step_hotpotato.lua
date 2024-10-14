@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore
-    = ipairs, minetest, nodecore
+local core, ipairs, nc
+    = core, ipairs, nc
 -- LUALOCALS > ---------------------------------------------------------
 
 -- Any item in inventory can prevent hotpotato ejection if
@@ -17,10 +17,10 @@ local ipairs, minetest, nodecore
 --
 -- return truthy to prevent ejection / damage.
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "hot potatoes",
 		action = function(player, data, dtime)
-			if nodecore.stasis then return end
+			if nc.stasis then return end
 			local inv = player:get_inventory()
 			local hurt = 0
 			local throw = {}
@@ -28,7 +28,7 @@ nodecore.register_playerstep({
 			for i = 1, inv:get_size("main") do
 				local s = inv:get_stack("main", i)
 				local n = not s:is_empty() and s:get_name()
-				local def = n and minetest.registered_items[n]
+				local def = n and core.registered_items[n]
 				n = def and def.groups and def.groups.damage_pickup
 				if (n or 0) == 0 then
 					n = n and n.groups and n.groups.damage_touch
@@ -61,12 +61,12 @@ nodecore.register_playerstep({
 					if not skip then
 						hurt = hurt + v[3]
 						inv:set_stack("main", v[1], "")
-						local obj = minetest.add_item(pos, v[2])
+						local obj = core.add_item(pos, v[2])
 						obj:set_velocity(dir)
 						obj:get_luaentity().dropped_by = data.pname
 					end
 				end
 			end
-			if hurt > 0 then nodecore.addphealth(player, -hurt, "hotpotato") end
+			if hurt > 0 then nc.addphealth(player, -hurt, "hotpotato") end
 		end
 	})

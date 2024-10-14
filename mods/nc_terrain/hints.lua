@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
 local function dug(n)
@@ -10,31 +10,31 @@ local function dug(n)
 	}
 end
 
-nodecore.register_hint("dig up dirt",
+nc.register_hint("dig up dirt",
 	dug("dirt"),
 	"toolcap:crumbly:2"
 )
 
-nodecore.register_hint("dig up gravel",
+nc.register_hint("dig up gravel",
 	dug("gravel"),
 	"toolcap:crumbly:2"
 )
 
-nodecore.register_hint("dig up sand",
+nc.register_hint("dig up sand",
 	dug("sand")
 )
 
-nodecore.register_hint("dig up cobble",
+nc.register_hint("dig up cobble",
 	dug("cobble"),
 	"toolcap:cracky:2"
 )
 
-nodecore.register_hint("find deep stone strata",
+nc.register_hint("find deep stone strata",
 	"group:hard_stone",
 	dug("cobble")
 )
 
-nodecore.register_hint("find pumwater",
+nc.register_hint("find pumwater",
 	{true, "group:lava"},
 	"nc_terrain:cobble_loose"
 )

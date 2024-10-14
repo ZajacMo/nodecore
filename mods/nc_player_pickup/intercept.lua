@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, nodecore, setmetatable
-    = getmetatable, minetest, nodecore, setmetatable
+local core, getmetatable, nc, setmetatable
+    = core, getmetatable, nc, setmetatable
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local invplayer = {}
 setmetatable(invplayer, {__mode = "k"})
@@ -24,12 +24,12 @@ local function wrapinv(inv, player)
 		end
 		local found = invplayer[self]
 		if found then
-			return helper(nodecore.give_item(found, stack, listname, self))
+			return helper(nc.give_item(found, stack, listname, self))
 		else
 			return helper(oldadd(self, listname, stack, ...))
 		end
 	end
-	nodecore.log("info", modname .. " inventory:add_item hooked")
+	nc.log("info", modname .. " inventory:add_item hooked")
 	wrapinv = function(i, p)
 		if i then invplayer[i] = p end
 		return i
@@ -38,9 +38,9 @@ local function wrapinv(inv, player)
 end
 
 local function patchplayers()
-	local player = (minetest.get_connected_players())[1]
+	local player = (core.get_connected_players())[1]
 	if not player then
-		return minetest.after(0, patchplayers)
+		return core.after(0, patchplayers)
 	end
 
 	local meta = getmetatable(player)
@@ -51,6 +51,6 @@ local function patchplayers()
 	function meta:get_inventory(...)
 		return wrapinv(getraw(self, ...), self)
 	end
-	nodecore.log("info", modname .. " player:get_inventory hooked")
+	nc.log("info", modname .. " player:get_inventory hooked")
 end
-minetest.after(0, patchplayers)
+core.after(0, patchplayers)

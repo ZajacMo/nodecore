@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table
-    = ipairs, minetest, nodecore, pairs, table
+local core, ipairs, nc, pairs, table
+    = core, ipairs, nc, pairs, table
 local table_concat, table_sort
     = table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.coremods = {}
+nc.coremods = {}
 
-function nodecore.amcoremod(v)
-	nodecore.coremods[minetest.get_current_modname()] = (v == nil) or v
+function nc.amcoremod(v)
+	nc.coremods[core.get_current_modname()] = (v == nil) or v
 end
-nodecore.amcoremod()
+nc.amcoremod()
 
 local function idx2str(idx, key)
 	local parts = {}
@@ -40,10 +40,10 @@ local function idx2str(idx, key)
 	return table_concat(parts, ", "), #parts > 1
 end
 
-minetest.register_on_mods_loaded(function()
+core.register_on_mods_loaded(function()
 		local idx = {}
-		for _, n in pairs(minetest.get_modnames()) do
-			if not nodecore.coremods[n] then
+		for _, n in pairs(core.get_modnames()) do
+			if not nc.coremods[n] then
 				local parts = n:split("_")
 				local nav = idx
 				for _, p in ipairs(parts) do
@@ -53,5 +53,5 @@ minetest.register_on_mods_loaded(function()
 				nav[true] = true
 			end
 		end
-		nodecore.added_mods_list = idx2str(idx)
+		nc.added_mods_list = idx2str(idx)
 	end)

@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.spin_filter_facedirs(func)
-	minetest.log("warning", "deprecated nodecore.spin_filter_facedirs; use nc_player_rotate")
+function nc.spin_filter_facedirs(func)
+	core.log("warning", "deprecated nc.spin_filter_facedirs; use nc_player_rotate")
 	local allowed = {}
 	local equiv = {}
 	for i = 0, 23 do
-		local f = nodecore.facedirs[i]
+		local f = nc.facedirs[i]
 		local hit
 		for j = 1, #allowed do
 			if not hit then
-				local o = nodecore.facedirs[allowed[j]]
+				local o = nc.facedirs[allowed[j]]
 				hit = func(f, o)
 				if hit then equiv[i] = allowed[j] end
 			end
@@ -37,22 +37,22 @@ function nodecore.spin_filter_facedirs(func)
 	}
 end
 
-function nodecore.spin_node_cycle(pos, node, clicker, itemstack)
-	minetest.log("warning", "deprecated nodecore.spin_node_cycle; use nc_player_rotate")
-	if nodecore.protection_test(pos, clicker) then return end
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
+function nc.spin_node_cycle(pos, node, clicker, itemstack)
+	core.log("warning", "deprecated nc.spin_node_cycle; use nc_player_rotate")
+	if nc.protection_test(pos, clicker) then return end
+	node = node or core.get_node(pos)
+	local def = core.registered_items[node.name] or {}
 	local data = def.spindata
 	if not data then return end
 	node.param2 = data.cycle[node.param2] or data.cycle[false]
 	if clicker:is_player() then
-		nodecore.log("action", clicker:get_player_name() .. " spins "
-			.. node.name .. " at " .. minetest.pos_to_string(pos)
+		nc.log("action", clicker:get_player_name() .. " spins "
+			.. node.name .. " at " .. core.pos_to_string(pos)
 			.. " to param2 " .. node.param2 .. " ("
 			.. data.qty .. " total)")
 	end
-	minetest.swap_node(pos, node)
-	nodecore.node_sound(pos, "place")
+	core.swap_node(pos, node)
+	nc.node_sound(pos, "place")
 	if def.on_spin then def.on_spin(pos, node) end
 	return itemstack
 end

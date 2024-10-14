@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local core
+    = core
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local nodename = modname .. ":displaced"
-minetest.register_node(nodename, {
+core.register_node(nodename, {
 		description = "Displaced Node",
 		drawtype = "airlike",
 		paramtype = "light",
@@ -22,20 +22,20 @@ minetest.register_node(nodename, {
 		light_source = 1,
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "displaced node restore",
 		interval = 1,
 		chance = 1,
 		nodenames = {nodename},
 		ignore_stasis = true,
 		action = function(pos)
-			local meta = minetest.get_meta(pos)
-			local node = minetest.deserialize(meta:get_string("dnode"))
+			local meta = core.get_meta(pos)
+			local node = core.deserialize(meta:get_string("dnode"))
 			if not (node and node.name) then
-				return minetest.remove_node(pos)
+				return core.remove_node(pos)
 			end
-			local dmeta = minetest.deserialize(meta:get_string("dmeta"))
-			minetest.set_node(pos, node)
-			if dmeta then minetest.get_meta(pos):from_table(dmeta) end
+			local dmeta = core.deserialize(meta:get_string("dmeta"))
+			core.set_node(pos, node)
+			if dmeta then core.get_meta(pos):from_table(dmeta) end
 		end
 	})

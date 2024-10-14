@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local core, nc, vector
+    = core, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local item_last_added
 
-local old_add = minetest.add_item
-function minetest.add_item(...)
+local old_add = core.add_item
+function core.add_item(...)
 	local function helper(obj, ...)
 		item_last_added = obj
 		return obj, ...
@@ -14,8 +14,8 @@ function minetest.add_item(...)
 	return helper(old_add(...))
 end
 
-local old_drop = minetest.item_drop
-function minetest.item_drop(itemstack, dropper, ...)
+local old_drop = core.item_drop
+function core.item_drop(itemstack, dropper, ...)
 	if not (dropper and dropper:is_player()) then
 		return old_drop(itemstack, dropper, ...)
 	end
@@ -25,7 +25,7 @@ function minetest.item_drop(itemstack, dropper, ...)
 			local speed = vector.length(item_last_added:get_velocity())
 			local disc = {}
 			for i = 1, speed do disc["item_drop_speed_" .. i] = true end
-			nodecore.player_discover(dropper, disc)
+			nc.player_discover(dropper, disc)
 		end
 		return ...
 	end

@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, table
-    = minetest, nodecore, pairs, table
+local core, nc, pairs, table
+    = core, nc, pairs, table
 local table_concat
     = table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
-local cheatmsg = nodecore.translate("CHEATS ENABLED")
-local stasismsg = nodecore.translate("WORLD FROZEN")
-local quellmsg = nodecore.translate("FIRE QUELLED")
+local cheatmsg = nc.translate("CHEATS ENABLED")
+local stasismsg = nc.translate("WORLD FROZEN")
+local quellmsg = nc.translate("FIRE QUELLED")
 
 local interact_cheats = {
 	fly = true,
@@ -28,14 +28,14 @@ local always_cheats = {
 
 for k in pairs(always_cheats) do interact_cheats[k] = true end
 
-local cheatitems = nodecore.group_expand("group:cheat", true)
+local cheatitems = nc.group_expand("group:cheat", true)
 local function ischeating(player)
 	local cheating = false
 	local pname = player:get_player_name()
-	local privs = minetest.get_player_privs(pname)
+	local privs = core.get_player_privs(pname)
 	if privs.interact then
-		cheating = cheating or not nodecore.player_can_take_damage(player)
-		cheating = cheating or not nodecore.player_visible(player)
+		cheating = cheating or not nc.player_can_take_damage(player)
+		cheating = cheating or not nc.player_visible(player)
 		for k in pairs(interact_cheats) do cheating = cheating or privs[k] end
 	else
 		for k in pairs(always_cheats) do cheating = cheating or privs[k] end
@@ -54,19 +54,19 @@ local function ischeating(player)
 	return cheating
 end
 
-minetest.register_chatcommand("uncheat", {
+core.register_chatcommand("uncheat", {
 		description = "Turns off cheat privs",
 		privs = {privs = true},
 		func = function(name)
-			local privs = minetest.get_player_privs(name)
+			local privs = core.get_player_privs(name)
 			local qty = 0
 			for k in pairs(interact_cheats) do
 				if privs[k] then qty = qty + 1 end
 				privs[k] = nil
 			end
-			minetest.set_player_privs(name, privs)
+			core.set_player_privs(name, privs)
 
-			local player = minetest.get_player_by_name(name)
+			local player = core.get_player_by_name(name)
 			if player then
 				local inv = player:get_inventory()
 				for lname, list in pairs(inv:get_lists()) do
@@ -79,12 +79,12 @@ minetest.register_chatcommand("uncheat", {
 				end
 			end
 
-			minetest.chat_send_player(name,
+			core.chat_send_player(name,
 				qty > 0 and ("Removed " .. qty .. " cheat(s)")
 				or "No active cheats found")
 
 			if player and ischeating(player) then
-				minetest.chat_send_player(name, "Unable to remove"
+				core.chat_send_player(name, "Unable to remove"
 					.. " all cheats; may be caused by 3rd party mods,"
 					.. " player admin status, settings (e.g."
 					.. " enable_damage), or outdated software")
@@ -95,9 +95,9 @@ minetest.register_chatcommand("uncheat", {
 local function privcheck(player)
 	local parts = {}
 	if ischeating(player) then parts[#parts + 1] = cheatmsg end
-	if nodecore.fire_quell then parts[#parts + 1] = quellmsg end
-	if nodecore.stasis then parts[#parts + 1] = stasismsg end
-	nodecore.hud_set(player, {
+	if nc.fire_quell then parts[#parts + 1] = quellmsg end
+	if nc.stasis then parts[#parts + 1] = stasismsg end
+	nc.hud_set(player, {
 			label = "cheats",
 			group = {},
 			hud_elem_type = "text",
@@ -110,32 +110,32 @@ local function privcheck(player)
 end
 
 local function privcheck_delay(name)
-	minetest.after(0, function()
-			local player = minetest.get_player_by_name(name)
+	core.after(0, function()
+			local player = core.get_player_by_name(name)
 			return player and privcheck(player)
 		end)
 end
 
-minetest.register_on_priv_grant(privcheck_delay)
-minetest.register_on_priv_revoke(privcheck_delay)
-minetest.register_on_joinplayer(function(player)
+core.register_on_priv_grant(privcheck_delay)
+core.register_on_priv_revoke(privcheck_delay)
+core.register_on_joinplayer(function(player)
 		return privcheck_delay(player:get_player_name())
 	end)
 
 local function checkall()
-	for _, player in pairs(minetest.get_connected_players()) do
+	for _, player in pairs(core.get_connected_players()) do
 		privcheck(player)
 	end
 end
-nodecore.interval(2, checkall)
+nc.interval(2, checkall)
 
 local oldflags = {}
-minetest.register_globalstep(function()
-		if nodecore.stasis == oldflags.stasis
-		and nodecore.fire_quell == oldflags.fire_quell
+core.register_globalstep(function()
+		if nc.stasis == oldflags.stasis
+		and nc.fire_quell == oldflags.fire_quell
 		then return end
 
-		oldflags.stasis = nodecore.stasis
-		oldflags.fire_quell = nodecore.fire_quell
+		oldflags.stasis = nc.stasis
+		oldflags.fire_quell = nc.fire_quell
 		return checkall()
 	end)

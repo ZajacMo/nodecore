@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":wicker", {
+core.register_node(modname .. ":wicker", {
 		description = "Wicker",
 		drawtype = "glasslike",
 		tiles = {modname .. "_wicker.png"},
@@ -16,11 +16,11 @@ minetest.register_node(modname .. ":wicker", {
 			peat_grindable_node = 1
 		},
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nc.sounds("nc_tree_sticky"),
 		mapcolor = {r = 81, g = 63, b = 45, a = 208},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "pack wicker",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
@@ -32,7 +32,7 @@ nodecore.register_craft({
 		},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "unpack wicker",
 		action = "pummel",
 		wield = {groups = {rakey = true}},

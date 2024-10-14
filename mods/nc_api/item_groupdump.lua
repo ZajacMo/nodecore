@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local io, minetest, nodecore, pairs, setmetatable, string, table
-    = io, minetest, nodecore, pairs, setmetatable, string, table
+local core, io, nc, pairs, setmetatable, string, table
+    = core, io, nc, pairs, setmetatable, string, table
 local io_open, string_format, string_gsub, table_concat, table_sort
     = io.open, string.format, string.gsub, table.concat, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-if not nodecore.infodump("group") then return end
+if not nc.infodump("group") then return end
 
 --[[--
 
@@ -172,7 +172,7 @@ local groups = {
 	torch_lit = "(specific) lit torches, subject to various events/timers",
 	totable = "nodes that can be packed up into a tote",
 	tote = "totes and tote handles",
-	visinv = "display nodecore.stack_get() stack as an entity in node",
+	visinv = "display nc.stack_get() stack as an entity in node",
 	visinv_hidden = "hide visinv ent; it's baked into the node model already",
 	water = "water, artificial water, or equivalent",
 	witness_opaque = "force things to be treated as opaque for hint witnessing",
@@ -192,31 +192,31 @@ local function dumpfile()
 			~= "" and string_format("[% q]", k) or k) .. " = "
 		.. string_format("%q", groups[k]) .. ","
 	end
-	local f = io_open(minetest.get_worldpath() .. "/groups.txt", "wb")
+	local f = io_open(core.get_worldpath() .. "/groups.txt", "wb")
 	f:write(table_concat(sorted, "\n"))
 	f:close()
-	nodecore.log("info", "dumped groups.txt")
+	nc.log("info", "dumped groups.txt")
 end
 
 dumpqueued = true
-minetest.after(0, dumpfile)
+core.after(0, dumpfile)
 
 local function learngroup(name)
 	if groups[name] then return end
 	groups[name] = ""
 	if dumpqueued then return end
 	dumpqueued = true
-	minetest.after(0, dumpfile)
+	core.after(0, dumpfile)
 end
 
-local oldgetgroup = minetest.get_item_group
-function minetest.get_item_group(name, group, ...)
+local oldgetgroup = core.get_item_group
+function core.get_item_group(name, group, ...)
 	learngroup(group)
 	return oldgetgroup(name, group, ...)
 end
 
-minetest.after(0, function()
-		for _, def in pairs(minetest.registered_items) do
+core.after(0, function()
+		for _, def in pairs(core.registered_items) do
 			for k in pairs(def.groups) do
 				groups[k] = groups[k] or ""
 			end

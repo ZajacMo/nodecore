@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
+local ItemStack, core, math, nc, pairs, vector
+    = ItemStack, core, math, nc, pairs, vector
 local math_ceil, math_exp, math_log
     = math.ceil, math.exp, math.log
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.after(0, function()
+core.after(0, function()
 		local convert = {}
 		local charge = {}
 
@@ -13,11 +13,11 @@ minetest.after(0, function()
 		local unboost = {}
 
 		local function altcheck(k, v, t, f)
-			if v[f] and v[f] ~= k and minetest.registered_items[v[f]] then
+			if v[f] and v[f] ~= k and core.registered_items[v[f]] then
 				t[k] = v[f]
 			end
 		end
-		for k, v in pairs(minetest.registered_items) do
+		for k, v in pairs(core.registered_items) do
 			altcheck(k, v, convert, "alternative_lux_infused")
 			altcheck(k, v, boost, "alternative_lux_boosted")
 			altcheck(k, v, unboost, "alternative_lux_unboosted")
@@ -36,7 +36,7 @@ minetest.after(0, function()
 		local allboost = listjoin(boost, unboost)
 
 		local ratefactor = 20000
-		nodecore.register_soaking_aism({
+		nc.register_soaking_aism({
 				label = "lux infuse",
 				fieldname = "infuse",
 				interval = 2,
@@ -47,7 +47,7 @@ minetest.after(0, function()
 					if (not charge[name]) and (not convert[name]) then return false end
 
 					local pos = aismdata.pos or aismdata.player and aismdata.player:get_pos()
-					return nodecore.lux_soak_rate(pos)
+					return nc.lux_soak_rate(pos)
 				end,
 				soakcheck = function(data, stack)
 					local name = stack:get_name()
@@ -67,7 +67,7 @@ minetest.after(0, function()
 				end
 			})
 
-		nodecore.register_aism({
+		nc.register_aism({
 				label = "lux boost",
 				interval = 2,
 				chance = 1,
@@ -75,7 +75,7 @@ minetest.after(0, function()
 				itemnames = allboost,
 				action = function(stack, data)
 					local name = stack:get_name()
-					local need = #nodecore.find_nodes_around(data.pos, "group:lux_fluid", 2) > 0
+					local need = #nc.find_nodes_around(data.pos, "group:lux_fluid", 2) > 0
 					local newname = (need and boost or unboost)[name] or name
 					if newname == name then return end
 					stack:set_name(newname)
@@ -84,14 +84,14 @@ minetest.after(0, function()
 			})
 	end)
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "lux diffuse in water",
 		interval = 2,
 		chance = 1,
 		itemnames = {"group:lux_tool"},
 		action = function(stack, data)
 			if not data.pos then return end
-			local qty = #nodecore.find_nodes_around(data.pos, "group:water")
+			local qty = #nc.find_nodes_around(data.pos, "group:water")
 			if qty < 1 then return end
 			if data.player then
 				qty = qty * (1 + vector.length(

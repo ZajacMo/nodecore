@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, error, minetest, nodecore, pairs, type
-    = ItemStack, error, minetest, nodecore, pairs, type
+local ItemStack, core, error, nc, pairs, type
+    = ItemStack, core, error, nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local tempers = {
 	{
@@ -27,12 +27,12 @@ local tempers = {
 	}
 }
 
-function nodecore.register_lode(shape, rawdef)
+function nc.register_lode(shape, rawdef)
 	rawdef.groups = rawdef.groups or {}
 	for _, temper in pairs(tempers) do
-		local def = nodecore.underride({}, rawdef)
-		def.groups = nodecore.underride({}, def.groups)
-		def = nodecore.underride(def, {
+		local def = nc.underride({}, rawdef)
+		def.groups = nc.underride({}, def.groups)
+		def = nc.underride(def, {
 				description = temper.desc .. " Lode " .. shape,
 				name = (shape .. "_" .. temper.name):lower():gsub(" ", "_"),
 				groups = {
@@ -47,7 +47,7 @@ function nodecore.register_lode(shape, rawdef)
 				lode_alt_hot = modname .. ":" .. shape:lower() .. "_hot",
 				lode_alt_annealed = modname .. ":" .. shape:lower() .. "_annealed",
 				lode_alt_tempered = modname .. ":" .. shape:lower() .. "_tempered",
-				sounds = nodecore.sounds("nc_lode_" .. temper.sound),
+				sounds = nc.sounds("nc_lode_" .. temper.sound),
 				mapcolor = temper.mapcolor,
 			})
 		def.lode_temper_cool = (not def.lode_temper_hot) or nil
@@ -77,9 +77,9 @@ function nodecore.register_lode(shape, rawdef)
 
 		if not def.skip_register then
 			local fullname = modname .. ":" .. def.name
-			minetest.register_item(fullname, def)
+			core.register_item(fullname, def)
 			if def.type == "node" then
-				nodecore.register_cook_abm({
+				nc.register_cook_abm({
 						nodenames = {fullname},
 						neighbors = (not temper.glow) and {"group:flame"} or nil
 					})
@@ -88,7 +88,7 @@ function nodecore.register_lode(shape, rawdef)
 	end
 end
 
-nodecore.register_lode("Block", {
+nc.register_lode("Block", {
 		type = "node",
 		description = "## Lode",
 		tiles = {modname .. "_#.png"},
@@ -97,7 +97,7 @@ nodecore.register_lode("Block", {
 		crush_damage = 4
 	})
 
-nodecore.register_lode("Prill", {
+nc.register_lode("Prill", {
 		type = "craft",
 		groups = {lode_prill = 1},
 		light_source = 1,
@@ -105,11 +105,11 @@ nodecore.register_lode("Prill", {
 	})
 
 local function replacestack(pos, temper)
-	local stack = nodecore.stack_get(pos)
+	local stack = nc.stack_get(pos)
 	if stack:is_empty() then stack = nil end
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local name = stack and stack:get_name() or node.name
-	local def = minetest.registered_items[name] or {}
+	local def = core.registered_items[name] or {}
 	local alt = def["lode_alt_" .. temper]
 	if not alt then return error("no " .. alt .. " alt for " .. name) end
 	if stack then
@@ -117,15 +117,15 @@ local function replacestack(pos, temper)
 		local qty = stack:get_count()
 		if qty == 0 then qty = 1 end
 		repl:set_count(qty * repl:get_count())
-		nodecore.stack_set(pos, repl)
+		nc.stack_set(pos, repl)
 	else
-		minetest.set_node(pos, {name = alt})
-		nodecore.fallcheck(pos)
+		core.set_node(pos, {name = alt})
+		nc.fallcheck(pos)
 	end
-	nodecore.witness(pos, "metallurgize " .. alt)
+	nc.witness(pos, "metallurgize " .. alt)
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "lode stack heating",
 		action = "cook",
 		touchgroups = {flame = 3},
@@ -136,7 +136,7 @@ nodecore.register_craft({
 		after = function(pos) return replacestack(pos, "hot") end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "lode stack annealing",
 		action = "cook",
 		touchgroups = {flame = 0},
@@ -148,7 +148,7 @@ nodecore.register_craft({
 		after = function(pos) return replacestack(pos, "annealed") end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "lode stack quenching",
 		action = "cook",
 		touchgroups = {flame = 0},
@@ -159,7 +159,7 @@ nodecore.register_craft({
 	})
 
 -- Because of how massive they are, forging a block is a hot-working process.
-nodecore.register_craft({
+nc.register_craft({
 		label = "forge lode block",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
@@ -177,7 +177,7 @@ nodecore.register_craft({
 	})
 
 -- Blocks can be chopped back into prills using only hardened tools.
-nodecore.register_craft({
+nc.register_craft({
 		label = "break apart lode block",
 		action = "pummel",
 		toolgroups = {choppy = 5},

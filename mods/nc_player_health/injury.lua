@@ -1,23 +1,23 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local injured = modname .. ":injured"
-nodecore.register_virtual_item(injured, {
+nc.register_virtual_item(injured, {
 		description = "",
 		inventory_image = "[combine:1x1",
 		hotbar_type = "injury",
 	})
 
-nodecore.register_healthfx({
+nc.register_healthfx({
 		item = injured,
 		getqty = function(player)
-			return 1 - nodecore.getphealth(player) / 8
+			return 1 - nc.getphealth(player) / 8
 		end,
 		setqty = function(player, qty, ...)
-			return nodecore.setphealth(player, (1 - qty) * 8, ...)
+			return nc.setphealth(player, (1 - qty) * 8, ...)
 		end
 	})

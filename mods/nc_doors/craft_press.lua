@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, vector
-    = ipairs, minetest, nodecore, pairs, vector
+local core, ipairs, nc, pairs, vector
+    = core, ipairs, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local backstop = nodecore.node_backstop
+local backstop = nc.node_backstop
 
 local done = {}
 local function pressify(rc)
@@ -27,26 +27,26 @@ local function pressify(rc)
 		if not backstop(pos, vector.subtract(data.pointed.under,
 				data.pointed.above), 4) then return end
 
-		local g = nodecore.node_group("door", data.pointed.above) or 0
+		local g = nc.node_group("door", data.pointed.above) or 0
 		if g < thumpy then return end
 
 		if oldcheck then return oldcheck(pos, data) end
 		return true
 	end
 
-	nodecore.register_craft(nr)
+	nc.register_craft(nr)
 end
 
-minetest.after(0, function()
+core.after(0, function()
 		local t = {}
-		for _, v in ipairs(nodecore.registered_recipes) do t[#t + 1] = v end
-		minetest.after(0, function()
+		for _, v in ipairs(nc.registered_recipes) do t[#t + 1] = v end
+		core.after(0, function()
 				for _, v in ipairs(t) do pressify(v) end
 			end)
 	end)
 
-local oldreg = nodecore.register_craft
-nodecore.register_craft = function(def, ...)
+local oldreg = nc.register_craft
+nc.register_craft = function(def, ...)
 	local function helper(...)
 		pressify(def)
 		return ...
@@ -54,7 +54,7 @@ nodecore.register_craft = function(def, ...)
 	return helper(oldreg(def, ...))
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		action = "press",
 		label = "press node craft",
 		priority = -1,
@@ -65,8 +65,8 @@ nodecore.register_craft({
 			return true
 		end,
 		after = function(pos, data)
-			return nodecore.craft_check(pos,
-				minetest.get_node(pos),
+			return nc.craft_check(pos,
+				core.get_node(pos),
 				{
 					action = "place",
 					pointed = data.pointed,
@@ -78,7 +78,7 @@ nodecore.register_craft({
 
 local checkedstack = {}
 local recipefound = {}
-nodecore.register_craft({
+nc.register_craft({
 		action = "press",
 		label = "press place stack",
 		priority = 1,
@@ -87,7 +87,7 @@ nodecore.register_craft({
 			if not backstop(pos, vector.subtract(data.pointed.under,
 					data.pointed.above), 4) then return end
 
-			local stack = nodecore.stack_get(pos)
+			local stack = nc.stack_get(pos)
 			if not stack or stack:is_empty() or stack:get_count() ~= 1
 			then return end
 
@@ -98,8 +98,8 @@ nodecore.register_craft({
 				return true
 			end
 
-			data[recipefound] = nodecore.craft_search(pos,
-				minetest.get_node(pos),
+			data[recipefound] = nc.craft_search(pos,
+				core.get_node(pos),
 				{
 					action = "place",
 					pointed = data.pointed,
@@ -114,7 +114,7 @@ nodecore.register_craft({
 			end
 			local stack = data[checkedstack]
 			if not stack then return end
-			minetest.remove_node(pos)
+			core.remove_node(pos)
 			local pt = {}
 			for k, v in pairs(data.pointed) do pt[k] = v end
 			pt.craftdata = {
@@ -128,9 +128,9 @@ nodecore.register_craft({
 				local param2 = 0
 				if def.paramtype2 == "facedir" then
 					local dir = vector.subtract(pt.under, pt.above)
-					local key = def.on_place == minetest.rotate_node
+					local key = def.on_place == core.rotate_node
 					and "b" or "k"
-					for k, v in pairs(nodecore.facedirs) do
+					for k, v in pairs(nc.facedirs) do
 						if vector.equals(v[key], dir) then
 							param2 = k
 							break
@@ -138,15 +138,15 @@ nodecore.register_craft({
 					end
 				elseif def.paramtype2 == "4dir" then
 					local dir = vector.subtract(pt.under, pt.above)
-					param2 = minetest.dir_to_fourdir(dir)
+					param2 = core.dir_to_fourdir(dir)
 				end
-				stack = nodecore.protection_bypass(minetest.item_place_node,
+				stack = nc.protection_bypass(core.item_place_node,
 					stack, nil, pt, param2)
 			end
-			nodecore.node_sound(pos, "place")
-			nodecore.witness({pos, data.pointed.above}, "door placement")
+			nc.node_sound(pos, "place")
+			nc.witness({pos, data.pointed.above}, "door placement")
 			if not stack:is_empty() then
-				nodecore.item_eject(pos, stack)
+				nc.item_eject(pos, stack)
 			end
 		end
 	})

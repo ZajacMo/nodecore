@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "craft tote handle",
 		action = "stackapply",
 		indexkeys = {"nc_lode:form"},
@@ -19,13 +19,13 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "break apart tote",
 		action = "pummel",
 		toolgroups = {choppy = 5},
 		check = function(pos, data)
 			if data.node.name == modname .. ":handle" then return true end
-			local stack = nodecore.stack_get(pos)
+			local stack = nc.stack_get(pos)
 			if stack:get_name() ~= modname .. ":handle" then return end
 			return (stack:get_meta():get_string("carrying") or "") == ""
 		end,

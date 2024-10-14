@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, type
-    = nodecore, pairs, type
+local nc, pairs, type
+    = nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local diggroups = {
@@ -10,7 +10,7 @@ local diggroups = {
 	snappy = true
 }
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.diggable ~= nil then return end
 
 		if def.pointable == false then

@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, string
-    = math, minetest, nodecore, string
+local core, math, nc, string
+    = core, math, nc, string
 local math_asin, math_ceil, math_pi, math_sin, string_format
     = math.asin, math.ceil, math.pi, math.sin, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local discharge_rate = 20
 local max_charge = discharge_rate * 2400
@@ -18,14 +18,14 @@ local function level_to_charge(level)
 	return (math_sin((level / 4 - 1) / 2 * math_pi) / 2 + 0.5) * max_charge
 end
 
-local fluid_water = nodecore.group_expand("group:water", true)
-local fluid_flux = nodecore.group_expand("group:lux_fluid", true)
+local fluid_water = nc.group_expand("group:water", true)
+local fluid_flux = nc.group_expand("group:lux_fluid", true)
 local function influid(pos)
-	local n = minetest.get_node(pos).name
+	local n = core.get_node(pos).name
 	if fluid_water[n] then return fluid_water end
 	if fluid_flux[n] then return fluid_flux end
 	pos = {x = pos.x, y = pos.y + 1, z = pos.z}
-	n = minetest.get_node(pos).name
+	n = core.get_node(pos).name
 	if fluid_water[n] then return fluid_water end
 	if fluid_flux[n] then return fluid_flux end
 end
@@ -42,12 +42,12 @@ local function floatrpt(a, b)
 end
 
 local function getlevel(name)
-	return minetest.get_item_group(name, modname) - 1
+	return core.get_item_group(name, modname) - 1
 end
 
 local function chargecalc(pos, oldname, meta)
 	local fluid = influid(pos)
-	local rate = (nodecore.lux_soak_rate(pos) or 0)
+	local rate = (nc.lux_soak_rate(pos) or 0)
 	- discharge_rate * ((fluid == fluid_water) and 2 or 1)
 	if rate < 0 and fluid == fluid_flux then rate = 0 end
 
@@ -55,7 +55,7 @@ local function chargecalc(pos, oldname, meta)
 	local oldqty = meta:get_float("qty")
 	local oldtime = meta:get_float("time")
 
-	local now = nodecore.gametime
+	local now = nc.gametime
 	local qty = (oldtime == 0)
 	and level_to_charge(getlevel(oldname))
 	or (oldqty + oldrate * (now - oldtime))
@@ -72,10 +72,10 @@ local function chargecalc(pos, oldname, meta)
 
 	if name == oldname and floateq(rate, oldrate) then return end
 
-	nodecore.log("action", string_format("lantern level %s rate %s charge %s at %s",
+	nc.log("action", string_format("lantern level %s rate %s charge %s at %s",
 			floatrpt(getlevel(oldname), level),
 			floatrpt(oldrate, rate), floatrpt(oldqty, qty),
-			minetest.pos_to_string(pos, 0)))
+			core.pos_to_string(pos, 0)))
 
 	meta:set_float("rate", rate)
 	meta:set_float("qty", qty)
@@ -83,7 +83,7 @@ local function chargecalc(pos, oldname, meta)
 	return name
 end
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "lantern charge",
 		interval = 2,
 		arealoaded = 14,
@@ -97,16 +97,16 @@ nodecore.register_aism({
 			end
 		end
 	})
-nodecore.register_abm({
+nc.register_abm({
 		label = "lantern charge",
 		interval = 2,
 		arealoaded = 14,
 		nodenames = {"group:" .. modname},
 		action = function(pos, node)
-			local name = chargecalc(pos, node.name, minetest.get_meta(pos))
+			local name = chargecalc(pos, node.name, core.get_meta(pos))
 			if name then
 				node.name = name
-				return minetest.swap_node(pos, node)
+				return core.swap_node(pos, node)
 			end
 		end
 	})

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, vector
-    = math, minetest, nodecore, pairs, table, vector
+local core, math, nc, pairs, table, vector
+    = core, math, nc, pairs, table, vector
 local math_ceil, table_shuffle
     = math.ceil, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
@@ -25,11 +25,11 @@ do
 	end
 end
 
-function nodecore.digparticles(nodedef, partdef)
+function nc.digparticles(nodedef, partdef)
 	if partdef.forcetexture then
 		partdef.texture = partdef.forcetexture
-		local id = minetest.add_particlespawner(partdef)
-		return function() minetest.delete_particlespawner(id) end
+		local id = core.add_particlespawner(partdef)
+		return function() core.delete_particlespawner(id) end
 	end
 
 	local img = {}
@@ -40,8 +40,8 @@ function nodecore.digparticles(nodedef, partdef)
 	elseif nodedef.inventory_image then
 		img[1] = nodedef.inventory_image
 	end
-	if #img < 1 then return nodecore.log("warning", "no pummel tile images found!") end
-	img = nodecore.pickrand(img)
+	if #img < 1 then return nc.log("warning", "no pummel tile images found!") end
+	img = nc.pickrand(img)
 	if img.name then img = img.name end
 
 	partdef.amount = partdef.amount and math_ceil(partdef.amount / 4) or 4
@@ -50,25 +50,25 @@ function nodecore.digparticles(nodedef, partdef)
 	for _ = 1, 4 do
 		partdef.texture = img .. "^[resize:16x16^[mask:[combine\\:16x16\\:"
 		.. getcoord() .. "=nc_api_pummel.png"
-		t[#t + 1] = minetest.add_particlespawner(partdef)
+		t[#t + 1] = core.add_particlespawner(partdef)
 	end
 	return function()
 		for _, v in pairs(t) do
-			minetest.delete_particlespawner(v)
+			core.delete_particlespawner(v)
 		end
 	end
 end
 
-function nodecore.toolbreakparticles(player, wielddef, amount)
+function nc.toolbreakparticles(player, wielddef, amount)
 	local pos = player:get_pos()
 	if not pos then return end
-	wielddef = wielddef or minetest.registered_items[player:get_wielded_item():get_name()]
+	wielddef = wielddef or core.registered_items[player:get_wielded_item():get_name()]
 	if not wielddef then return end
 	pos.y = pos.y + player:get_properties().eye_height - 0.1
 	local look = player:get_look_dir()
 	pos = vector.add(pos, vector.multiply(look, 0.5))
 	local look2 = vector.multiply(look, 2)
-	return nodecore.digparticles(wielddef, {
+	return nc.digparticles(wielddef, {
 			time = 0.05,
 			amount = amount,
 			minpos = pos,

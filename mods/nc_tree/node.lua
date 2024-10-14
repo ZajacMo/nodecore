@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":root", {
+core.register_node(modname .. ":root", {
 		description = "Stump",
 		tiles = {
 			modname .. "_tree_top.png",
@@ -20,11 +20,11 @@ minetest.register_node(modname .. ":root", {
 			scaling_time = 80
 		},
 		drop = "nc_tree:stick 8",
-		sounds = nodecore.sounds("nc_tree_woody"),
+		sounds = nc.sounds("nc_tree_woody"),
 		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
-minetest.register_node(modname .. ":log", {
+core.register_node(modname .. ":log", {
 		description = "Log",
 		tiles = {
 			modname .. "_tree_top.png",
@@ -38,13 +38,13 @@ minetest.register_node(modname .. ":log", {
 			log = 1,
 			scaling_time = 75
 		},
-		sounds = nodecore.sounds("nc_tree_woody"),
+		sounds = nc.sounds("nc_tree_woody"),
 		paramtype2 = "facedir",
-		on_place = minetest.rotate_node,
+		on_place = core.rotate_node,
 		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
-minetest.register_node(modname .. ":tree", {
+core.register_node(modname .. ":tree", {
 		description = "Tree Trunk",
 		tiles = {
 			modname .. "_tree_top.png",
@@ -62,12 +62,12 @@ minetest.register_node(modname .. ":tree", {
 			leaf_decay_support = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_tree_woody"),
+		sounds = nc.sounds("nc_tree_woody"),
 		drop = modname .. ":log",
 		mapcolor = {r = 161, g = 124, b = 79},
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "tree trunk convert",
 		interval = 1,
 		chance = 1,
@@ -83,9 +83,9 @@ local function fade(txr)
 	return txr .. "^[multiply:#a0a0a0^" .. txr
 end
 
-local hashpos = minetest.hash_node_position
+local hashpos = core.hash_node_position
 
-minetest.register_node(modname .. ":leaves", {
+core.register_node(modname .. ":leaves", {
 		description = "Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
@@ -122,21 +122,21 @@ minetest.register_node(modname .. ":leaves", {
 		alternate_solid = {
 			preserve_metadata = function(pos, _, oldmeta)
 				if oldmeta.leaf_decay_forced then
-					nodecore.leaf_decay_forced[hashpos(pos)]
+					nc.leaf_decay_forced[hashpos(pos)]
 					= oldmeta.leaf_decay_forced
 				end
 			end,
 			after_dig_node = function(...)
-				return nodecore.leaf_decay(...)
+				return nc.leaf_decay(...)
 			end,
 			node_dig_prediction = "air",
 			mapcolor = {r = 56, g = 91, b = 9},
 		},
 		no_repack = true,
 		use_texture_alpha = "clip",
-		sounds = nodecore.sounds("nc_terrain_swishy")
+		sounds = nc.sounds("nc_terrain_swishy")
 	})
-nodecore.register_leaf_drops(function(_, _, list)
+nc.register_leaf_drops(function(_, _, list)
 		list[#list + 1] = {name = modname .. ":leaves_loose", prob = 0.5}
 		list[#list + 1] = {name = "air"}
 	end)

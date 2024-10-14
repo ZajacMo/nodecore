@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 for i = 1, 8 do
-	minetest.register_ore({
+	core.register_ore({
 			name = "lava blob " .. i,
 			ore_type = "blob",
 			ore = "nc_terrain:lava_source",
@@ -28,10 +28,10 @@ for i = 1, 8 do
 		})
 end
 
-local c_lava = minetest.get_content_id("nc_terrain:lava_source")
-local c_stone = minetest.get_content_id("nc_terrain:stone")
-local c_air = minetest.get_content_id("air")
-nodecore.register_mapgen_shared({
+local c_lava = core.get_content_id("nc_terrain:lava_source")
+local c_stone = core.get_content_id("nc_terrain:stone")
+local c_air = core.get_content_id("air")
+nc.register_mapgen_shared({
 		label = "lava lake clearance",
 		func = function(minp, maxp, area, data, _, _, _, rng)
 			local ai = area.index

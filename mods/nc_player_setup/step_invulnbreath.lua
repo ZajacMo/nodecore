@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "invulnerable breath",
 		action = function(player, data)
-			if (not nodecore.player_can_take_damage(player))
+			if (not nc.player_can_take_damage(player))
 			and player:get_breath() < data.properties.breath_max then
 				player:set_breath(data.properties.breath_max)
 			end

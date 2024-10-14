@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, string, vector
-    = math, minetest, nodecore, string, vector
+local core, math, nc, string, vector
+    = core, math, nc, string, vector
 local math_pi, string_gsub, string_lower
     = math.pi, string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx)
+function nc.register_raked(basename, desc, opacity, recipematch, recipeidx)
 	local name = string_gsub(string_lower(desc), "%W", "_")
-	local basedef = minetest.registered_items[basename] or {}
+	local basedef = core.registered_items[basename] or {}
 	local commondef = {
 		description = "Raked " .. desc,
 		paramtype2 = "facedir",
@@ -23,15 +23,15 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 			and (basedef.groups.soil + 2) or nil
 		},
 		on_door_conveyed = function(pos)
-			return minetest.set_node(pos, {name = basename})
+			return core.set_node(pos, {name = basename})
 		end,
 		on_falling_node_crush = function(pos)
-			return minetest.set_node(pos, {name = basename})
+			return core.set_node(pos, {name = basename})
 		end
 	}
 	local linearname = modname .. ":" .. name .. "_raked"
-	minetest.register_node(linearname,
-		nodecore.underride({
+	core.register_node(linearname,
+		nc.underride({
 				tiles = {
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_linear.png^[opacity:" .. opacity .. ")",
@@ -40,15 +40,15 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 					.. "_raking_side.png^[opacity:" .. opacity .. ")"
 				},
 				on_place = function(itemstack, placer, pointed_thing)
-					return minetest.rotate_and_place(
+					return core.rotate_and_place(
 						itemstack, placer, pointed_thing,
 						false, {force_floor = true})
 				end
 			}, commondef, basedef))
 
 	local nexusname = modname .. ":" .. name .. "_raked_nexus"
-	minetest.register_node(nexusname,
-		nodecore.underride({
+	core.register_node(nexusname,
+		nc.underride({
 				tiles = {
 					basedef.tiles[1] .. "^(" .. modname
 					.. "_raking_nexus.png^[opacity:" .. opacity .. ")",
@@ -58,7 +58,7 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 				}
 			}, commondef, basedef))
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "rake " .. name,
 			action = "pummel",
 			wield = {groups = {rakey = true}},
@@ -79,27 +79,27 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 					if vector.distance(pos, ppos) >= 0.4 then
 						local dir = data.crafter:get_look_horizontal()
 						while dir >= math_pi * 3/4 do dir = dir - math_pi end
-						dir = minetest.yaw_to_dir(dir + math_pi / 4)
+						dir = core.yaw_to_dir(dir + math_pi / 4)
 						newnode = {
 							name = linearname,
-							param2 = minetest.dir_to_facedir(dir)
+							param2 = core.dir_to_facedir(dir)
 						}
 					end
 				end
 
-				local node = data.node or minetest.get_node(pos)
+				local node = data.node or core.get_node(pos)
 				if node.name == newnode.name and node.param2 == newnode.param2 then
 					newnode = {name = basename}
 				end
 				if data.crafter then
-					nodecore.wear_wield(data.crafter, {snappy = 1}, 1)
+					nc.wear_wield(data.crafter, {snappy = 1}, 1)
 				end
-				nodecore.set_loud(pos, newnode)
-				return nodecore.fallcheck(pos)
+				nc.set_loud(pos, newnode)
+				return nc.fallcheck(pos)
 			end
 		})
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "un-rake " .. name,
 			action = "pummel",
 			toolgroups = {thumpy = 1},
@@ -112,15 +112,15 @@ function nodecore.register_raked(basename, desc, opacity, recipematch, recipeidx
 		})
 end
 
-nodecore.register_raked("nc_terrain:sand", "Sand", 96,
+nc.register_raked("nc_terrain:sand", "Sand", 96,
 	{groups = {sand = true, falling_repose = false}},
 	{"group:sand"})
-nodecore.register_raked("nc_terrain:gravel", "Gravel", 160,
+nc.register_raked("nc_terrain:gravel", "Gravel", 160,
 	{groups = {gravel = true, falling_repose = false}},
 	{"group:gravel"})
-nodecore.register_raked("nc_terrain:dirt", "Dirt", 108,
+nc.register_raked("nc_terrain:dirt", "Dirt", 108,
 	{groups = {dirt = true, falling_repose = false}},
 	{"group:dirt"})
-nodecore.register_raked("nc_tree:humus", "Humus", 116,
+nc.register_raked("nc_tree:humus", "Humus", 116,
 	{groups = {humus = true, falling_repose = false}},
 	{"group:humus"})

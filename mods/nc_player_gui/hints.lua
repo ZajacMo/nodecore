@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, string, table
-    = ipairs, math, minetest, nodecore, pairs, string, table
+local core, ipairs, math, nc, pairs, string, table
+    = core, ipairs, math, nc, pairs, string, table
 local math_floor, math_random, string_sub, table_insert, table_sort
     = math.floor, math.random, string.sub, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 local pcache = {}
 local ordercache = {}
 
@@ -21,8 +21,8 @@ local strings = {
 }
 
 for k, v in pairs(strings) do
-	nodecore.translate_inform(v)
-	strings[k] = function(...) return nodecore.translate(v, ...) end
+	nc.translate_inform(v)
+	strings[k] = function(...) return nc.translate(v, ...) end
 end
 
 local function sort_by_time(pname, pmeta, tbl, suff)
@@ -30,14 +30,14 @@ local function sort_by_time(pname, pmeta, tbl, suff)
 	local metakey = modname .. "_hintsort_" .. suff
 	if not ordering then
 		local raw = pmeta:get_string(metakey)
-		ordering = raw and raw ~= "" and minetest.deserialize(raw) or {}
+		ordering = raw and raw ~= "" and core.deserialize(raw) or {}
 		ordercache[pname] = ordering
 	end
 
 	local keys = {}
 	local revkeys = {}
 	for _, s in ipairs(tbl) do
-		local k = string_sub(minetest.sha1(s), 1, 8)
+		local k = string_sub(core.sha1(s), 1, 8)
 		keys[s] = k
 		revkeys[k] = s
 	end
@@ -45,7 +45,7 @@ local function sort_by_time(pname, pmeta, tbl, suff)
 	local dirty
 	for _, v in ipairs(tbl) do
 		if not ordering[keys[v]] then
-			ordering[keys[v]] = nodecore.gametime - math_random() / 1000
+			ordering[keys[v]] = nc.gametime - math_random() / 1000
 			dirty = true
 		end
 	end
@@ -58,7 +58,7 @@ local function sort_by_time(pname, pmeta, tbl, suff)
 		end
 	end
 
-	if dirty then pmeta:set_string(metakey, minetest.serialize(ordering)) end
+	if dirty then pmeta:set_string(metakey, core.serialize(ordering)) end
 
 	table_sort(tbl, function(a, b) return ordering[keys[a]] > ordering[keys[b]] end)
 end
@@ -66,19 +66,19 @@ end
 local function gethint(player)
 	local pname = player:get_player_name()
 
-	local now = math_floor(minetest.get_us_time() / 1000000)
+	local now = math_floor(core.get_us_time() / 1000000)
 	local cached = pcache[pname]
 	if cached and cached.time == now then return cached.found end
 
-	local found, done = nodecore.hint_state(pname)
+	local found, done = nc.hint_state(pname)
 	local future
 	local pmeta = player:get_meta()
-	if minetest.get_player_privs(pname).debug then
+	if core.get_player_privs(pname).debug then
 		local seen = {}
 		for _, v in pairs(found) do seen[v] = true end
 		for _, v in pairs(done) do seen[v] = true end
 		future = {}
-		for _, v in pairs(nodecore.hints) do
+		for _, v in pairs(nc.hints) do
 			if not seen[v] then
 				future[#future + 1] = strings.future(v.text)
 			end
@@ -91,7 +91,7 @@ local function gethint(player)
 	sort_by_time(pname, pmeta, done, "done")
 
 	local prog = #found
-	local left = #(nodecore.hints) - prog - #done
+	local left = #(nc.hints) - prog - #done
 
 	table_insert(found, 1, "")
 	table_insert(found, 1, strings.progress(#done, prog, left))
@@ -116,16 +116,16 @@ end
 local mytab = {
 	title = "Discovery",
 	visible = function(_, player)
-		return nodecore.interact(player)
-		and not nodecore.hints_disabled()
+		return nc.interact(player)
+		and not nc.hints_disabled()
 		or false
 	end,
 	content = gethint,
 	on_discover = clearcache,
 	on_privchange = clearcache
 }
-nodecore.register_inventory_tab(mytab)
+nc.register_inventory_tab(mytab)
 
-nodecore.register_on_discover(function(player)
-		return nodecore.inventory_notify(player, "discover")
+nc.register_on_discover(function(player)
+		return nc.inventory_notify(player, "discover")
 	end)

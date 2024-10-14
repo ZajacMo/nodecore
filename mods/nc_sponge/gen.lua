@@ -1,22 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local maxy = -8
 local miny = maxy - 8
 
-local c_sand = minetest.get_content_id("nc_terrain:sand")
-local c_water = minetest.get_content_id("nc_terrain:water_source")
-local c_sponge = minetest.get_content_id(modname .. ":sponge_living")
+local c_sand = core.get_content_id("nc_terrain:sand")
+local c_water = core.get_content_id("nc_terrain:water_source")
+local c_sponge = core.get_content_id(modname .. ":sponge_living")
 
 local function spawn(area, data, x, y, z, rng)
 	local total = 0
-	nodecore.scan_flood({x = x, y = y, z = z}, 5, function(p)
+	nc.scan_flood({x = x, y = y, z = z}, 5, function(p)
 			if rng() < 0.01 then return true end
 			if p.y > y and rng() > 0.1 then return false end
 			local idx = area:index(p.x, p.y - 1, p.z)
@@ -29,7 +29,7 @@ local function spawn(area, data, x, y, z, rng)
 		end)
 end
 
-nodecore.register_mapgen_shared({
+nc.register_mapgen_shared({
 		label = "sponges",
 		func = function(minp, maxp, area, data, _, _, _, rng)
 			if minp.y > maxy or maxp.y < miny then return end

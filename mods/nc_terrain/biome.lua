@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local core
+    = core
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_biome({
+core.register_biome({
 		name = "unknown",
 		node_top = modname .. ":dirt_with_grass",
 		depth_top = 1,
@@ -19,7 +19,7 @@ minetest.register_biome({
 		humidity_point = 0,
 	})
 
-minetest.register_biome({
+core.register_biome({
 		name = "seabed",
 		node_top = modname .. ":sand",
 		depth_top = 1,
@@ -33,7 +33,7 @@ minetest.register_biome({
 		humidity_point = 0,
 	})
 
-minetest.register_biome({
+core.register_biome({
 		name = "deep",
 		depth_top = 0,
 		depth_filler = 0,

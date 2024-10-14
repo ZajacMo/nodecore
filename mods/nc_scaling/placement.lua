@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local core, nc, pairs, vector
+    = core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local cache = {}
 
-nodecore.register_globalstep(function()
+nc.register_globalstep(function()
 		local keep = {}
-		for _, player in pairs(minetest.get_connected_players()) do
+		for _, player in pairs(core.get_connected_players()) do
 			local pname = player:get_player_name()
 			keep[pname] = player:get_wielded_item():is_empty()
 			and not player:get_player_control().LMB
@@ -18,22 +18,22 @@ nodecore.register_globalstep(function()
 	end)
 
 local hand = {}
-for k, v in pairs(minetest.registered_items[""]) do hand[k] = v end
+for k, v in pairs(core.registered_items[""]) do hand[k] = v end
 hand.on_place = function(stack, player, pointed, ...)
-	if pointed.type ~= "node" then return minetest.item_place(stack, player, pointed, ...) end
+	if pointed.type ~= "node" then return core.item_place(stack, player, pointed, ...) end
 
 	local pname = player and player.get_player_name and player:get_player_name()
-	if not pname then return minetest.item_place(stack, player, pointed, ...) end
+	if not pname then return core.item_place(stack, player, pointed, ...) end
 
-	local node = minetest.get_node(pointed.under)
-	local def = minetest.registered_nodes[node.name]
+	local node = core.get_node(pointed.under)
+	local def = core.registered_nodes[node.name]
 	local groups = def and def.groups or {}
 	if not player:get_player_control().sneak and def and def.on_rightclick
 	and not groups.always_scalable then
-		return minetest.item_place(stack, player, pointed, ...)
+		return core.item_place(stack, player, pointed, ...)
 	end
 
-	local now = minetest.get_us_time() / 1000000
+	local now = core.get_us_time() / 1000000
 	local resetto = {
 		pointed = pointed,
 		start = now,
@@ -56,15 +56,15 @@ hand.on_place = function(stack, player, pointed, ...)
 	end
 	if now < stats.start + timecost then
 		if now >= stats.start + 1 then
-			if nodecore.dynamic_light_add(pointed.above,
-				nodecore.scaling_light_level,
+			if nc.dynamic_light_add(pointed.above,
+				nc.scaling_light_level,
 				function()
-					player = minetest.get_player_by_name(pname)
-					return player and nodecore.scaling_closenough(
+					player = core.get_player_by_name(pname)
+					return player and nc.scaling_closenough(
 						pointed.above, player)
 				end
 			) then
-				nodecore.player_discover(player, "craft:scaling light")
+				nc.player_discover(player, "craft:scaling light")
 			end
 		end
 		return
@@ -75,14 +75,14 @@ hand.on_place = function(stack, player, pointed, ...)
 	if def and def.on_scaling and def.on_scaling(stats,
 		stack, player, pointed, node, ...) then return end
 
-	if nodecore.scaling_apply(pointed, player) then
-		nodecore.player_discover(player, "craft:scaling dy="
+	if nc.scaling_apply(pointed, player) then
+		nc.player_discover(player, "craft:scaling dy="
 			.. (pointed.under.y - pointed.above.y))
-		return nodecore.scaling_particles(pointed.above, {
+		return nc.scaling_particles(pointed.above, {
 				time = 0.1,
 				amount = 40,
 				minexptime = 0.02
 			})
 	end
 end
-minetest.register_item(":", hand)
+core.register_item(":", hand)

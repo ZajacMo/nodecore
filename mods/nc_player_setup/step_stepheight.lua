@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "stepheight",
 		action = function(_, data)
 			data.properties.stepheight = data.control.sneak and 0.001 or 1.05

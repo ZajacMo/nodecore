@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, string, type, vector
-    = math, minetest, nodecore, pairs, string, type, vector
+local core, math, nc, pairs, string, type, vector
+    = core, math, nc, pairs, string, type, vector
 local math_random, string_format
     = math.random, string.format
 -- LUALOCALS > ---------------------------------------------------------
@@ -26,8 +26,8 @@ end
 
 local headsolids = {}
 local footsolids = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			headsolids[k] = ispushout(v, true) or nil
 			footsolids[k] = ispushout(v, false) or nil
 		end
@@ -36,12 +36,12 @@ minetest.after(0, function()
 	end)
 
 local function isroomcheck(pos, solids)
-	local nodename = minetest.get_node(pos).name
+	local nodename = core.get_node(pos).name
 	if nodename == "ignore" then
 		-- Ignores outside the map should push the player back toward
 		-- the map area. Ignores inside the map are not yet loaded and we
 		-- shouldn't push the player around until we find out what they are.
-		return not nodecore.within_map_limits(pos)
+		return not nc.within_map_limits(pos)
 	end
 	return solids[nodename]
 end
@@ -55,16 +55,16 @@ local function isroom(pos)
 			}, headsolids))
 end
 
-nodecore.room_for_player = isroom
+nc.room_for_player = isroom
 
-nodecore.player_pushout_disable = nodecore.player_pushout_disable or function() end
+nc.player_pushout_disable = nc.player_pushout_disable or function() end
 
 local function bias(n)
 	return n + ((n > 0) and math_random(-stepdist - 1, stepdist - 1)
 		or math_random(-stepdist + 1, stepdist + 1))
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "push player out of solids",
 		action = function(player, data, dtime)
 			local function reset() data.pushout = nil end
@@ -76,8 +76,8 @@ nodecore.register_playerstep({
 			or data.control.sneak or data.control.jump
 			then return reset() end
 
-			if minetest.get_player_privs(player).noclip
-			or nodecore.player_pushout_disable(player, data)
+			if core.get_player_privs(player).noclip
+			or nc.player_pushout_disable(player, data)
 			then return reset() end
 
 			local pos = vector.round(player:get_pos())
@@ -96,29 +96,29 @@ nodecore.register_playerstep({
 			local function pushto(newpos)
 				local dist = vector.distance(pos, newpos)
 				if dist > 1 then
-					nodecore.addphealth(player, -dist + 1, {
+					nc.addphealth(player, -dist + 1, {
 							nc_type = "pushout"
 						})
 				end
 				newpos.y = newpos.y - 0.49
-				nodecore.log("action", string_format("%s pushed out of"
+				nc.log("action", string_format("%s pushed out of"
 						.. " solid from %s to %s",
 						data.pname,
-						minetest.pos_to_string(pos),
-						minetest.pos_to_string(newpos)))
+						core.pos_to_string(pos),
+						core.pos_to_string(newpos)))
 				newpos.keepinv = true
 				player:set_pos(newpos)
 				return reset()
 			end
 
-			for rel in nodecore.settlescan() do
+			for rel in nc.settlescan() do
 				local p = vector.add(pos, rel)
 				if isroom(p) then
 					return pushto(p)
 				end
 			end
 
-			local spawn = nodecore.spawn_point()
+			local spawn = nc.spawn_point()
 			local rel = vector.subtract(pos, spawn)
 			rel = {
 				x = bias(rel.x),

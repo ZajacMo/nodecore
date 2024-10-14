@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, nodecore, pairs, table, type
-    = error, math, nodecore, pairs, table, type
+local error, math, nc, pairs, table, type
+    = error, math, nc, pairs, table, type
 local math_floor, table_insert
     = math.floor, table.insert
 -- LUALOCALS > ---------------------------------------------------------
 
 local registered_recipes = {}
-nodecore.registered_recipes = registered_recipes
+nc.registered_recipes = registered_recipes
 
 local id = 0
 
@@ -15,7 +15,7 @@ local witnessable = {
 	press = true
 }
 
-function nodecore.register_craft(recipe)
+function nc.register_craft(recipe)
 	recipe.action = recipe.action or "place"
 	if recipe.witness == nil then
 		recipe.witness = witnessable[recipe.action]

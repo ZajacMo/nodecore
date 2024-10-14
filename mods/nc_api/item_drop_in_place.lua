@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, type, vector
-    = ItemStack, minetest, nodecore, pairs, type, vector
+local ItemStack, core, nc, pairs, type, vector
+    = ItemStack, core, nc, pairs, type, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 --[[
@@ -13,33 +13,33 @@ local function yielditem(pos, digger, stack)
 		stack = digger:get_inventory():add_item("main", stack)
 	end
 	if stack:is_empty() then return end
-	return nodecore.item_eject(pos, stack)
+	return nc.item_eject(pos, stack)
 end
 
-local olddig = minetest.node_dig
-function minetest.node_dig(pos, node, digger, ...)
-	local def = node and node.name and minetest.registered_nodes[node.name]
+local olddig = core.node_dig
+function core.node_dig(pos, node, digger, ...)
+	local def = node and node.name and core.registered_nodes[node.name]
 	if def and def.drop_in_place then
-		local oldrm = minetest.remove_node
+		local oldrm = core.remove_node
 		local function helper(...)
-			minetest.remove_node = oldrm
-			nodecore.silktouch_digging = nil
+			core.remove_node = oldrm
+			nc.silktouch_digging = nil
 			return ...
 		end
-		function minetest.remove_node(p2, ...)
+		function core.remove_node(p2, ...)
 			if not vector.equals(pos, p2) then return oldrm(p2, ...) end
-			minetest.remove_node = oldrm
+			core.remove_node = oldrm
 
 			local tool = digger and digger:is_player()
 			and digger:get_wielded_item()
-			or nodecore.machine_digging
-			and vector.equals(nodecore.machine_digging.auxpos
-				or nodecore.machine_digging.pos, pos)
-			and nodecore.machine_digging.tool
+			or nc.machine_digging
+			and vector.equals(nc.machine_digging.auxpos
+				or nc.machine_digging.pos, pos)
+			and nc.machine_digging.tool
 
-			if def.silktouch and digger and nodecore.tool_digs(tool,
+			if def.silktouch and digger and nc.tool_digs(tool,
 				def.silktouch) then
-				nodecore.silktouch_digging = true
+				nc.silktouch_digging = true
 				yielditem(pos, digger, ItemStack(def.silktouch_as or node.name))
 				return oldrm(p2, ...)
 			end
@@ -48,7 +48,7 @@ function minetest.node_dig(pos, node, digger, ...)
 				yielditem(pos, digger, ItemStack(def.drop_non_silktouch))
 			end
 
-			return nodecore.set_node(pos, {
+			return nc.set_node(pos, {
 					name = def.drop_in_place.name,
 					param = def.drop_in_place.param or node.param,
 					param2 = def.drop_in_place.param2 or node.param2
@@ -59,7 +59,7 @@ function minetest.node_dig(pos, node, digger, ...)
 	return olddig(pos, node, digger, ...)
 end
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type ~= "node" or not def.drop_in_place then return end
 
 		if type(def.drop_in_place) ~= "table" then

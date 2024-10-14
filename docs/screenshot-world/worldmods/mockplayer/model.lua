@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local core, nc, pairs, vector
+    = core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local anims = {}
 do
@@ -14,7 +14,7 @@ do
 	end
 end
 
-minetest.register_entity(modname .. ":ent", {
+core.register_entity(modname .. ":ent", {
 		description = "Mannequin",
 		initial_properties = {
 			visual = "mesh",
@@ -25,21 +25,21 @@ minetest.register_entity(modname .. ":ent", {
 			physical = true
 		},
 		get_staticdata = function(self)
-			return minetest.serialize(self.data)
+			return core.serialize(self.data)
 		end,
 		on_activate = function(self, data)
-			self.data = data and minetest.deserialize(data) or {}
+			self.data = data and core.deserialize(data) or {}
 			local obj = self.object
 			local pos = obj:get_pos()
 			local skinopts = {
-				playername = minetest.pos_to_string(pos) .. 2,
+				playername = core.pos_to_string(pos) .. 2,
 				privs = {interact = true, shout = true}
 			}
-			obj:set_properties({textures = {nodecore.player_skin(nil, skinopts)}})
+			obj:set_properties({textures = {nc.player_skin(nil, skinopts)}})
 			obj:set_acceleration({x = 0, y = -10, z = 0})
 			local anim = self.data.anim or 0
 			obj:set_animation({x = anim, y = anim}, 1)
-			nodecore.mock_player_wieldview(self)
+			nc.mock_player_wieldview(self)
 		end,
 		on_punch = function(self, whom)
 			if not whom then return end
@@ -64,13 +64,13 @@ minetest.register_entity(modname .. ":ent", {
 				for k, v in pairs(self.data.wield.inv) do
 					self.data.wield.inv[k] = v:get_name()
 				end
-				nodecore.mock_player_wieldview(self)
+				nc.mock_player_wieldview(self)
 				return
 			end
 			local pos = obj:get_pos()
 			if not pos then return end
 			local dir = vector.direction(pos, whom:get_pos())
-			obj:set_yaw(minetest.dir_to_yaw(dir))
+			obj:set_yaw(core.dir_to_yaw(dir))
 			local anim = anims[self.data.anim or 0]
 			self.data.anim = anim
 			obj:set_animation({x = anim, y = anim}, 1)

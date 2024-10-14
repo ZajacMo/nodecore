@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("go for a swim",
+nc.register_hint("go for a swim",
 	{true,
 		"anim_swim_up",
 		"anim_swim_down",

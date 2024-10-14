@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-local adzecaps = nodecore.toolcaps({
+local adzecaps = nc.toolcaps({
 		choppy = 1,
 		crumbly = 2
 	})
 adzecaps.groupcaps.crumbly.uses = adzecaps.groupcaps.choppy.uses
 
-minetest.register_tool(modname .. ":adze", {
+core.register_tool(modname .. ":adze", {
 		description = "Wooden Adze",
 		inventory_image = modname .. "_adze.png",
 		groups = {
@@ -19,10 +19,10 @@ minetest.register_tool(modname .. ":adze", {
 			flammable = 2
 		},
 		tool_capabilities = adzecaps,
-		sounds = nodecore.sounds("nc_tree_sticky")
+		sounds = nc.sounds("nc_tree_sticky")
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble wood adze",
 		normal = {y = 1},
 		indexkeys = {"nc_tree:stick"},

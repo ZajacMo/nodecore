@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string
-    = ipairs, minetest, nodecore, pairs, string
+local core, ipairs, nc, pairs, string
+    = core, ipairs, nc, pairs, string
 local string_gsub, string_match, string_sub
     = string.gsub, string.match, string.sub
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,7 +12,7 @@ local function expandkey(k)
 
 	keys = {}
 	keys[k] = true
-	for name, def in pairs(minetest.registered_items) do
+	for name, def in pairs(core.registered_items) do
 		if string_sub(k, -#name) == name then
 			local pref = string_sub(k, 1, #k - #name)
 			for g in pairs(def.groups or {}) do
@@ -45,8 +45,8 @@ local function expandkey(k)
 	return t
 end
 
-function nodecore.hint_state(pspec)
-	local rawdb, player, pname = nodecore.get_player_discovered(pspec)
+function nc.hint_state(pspec)
+	local rawdb, player, pname = nc.get_player_discovered(pspec)
 	if not rawdb then return {}, {} end
 
 	local db = {}
@@ -58,7 +58,7 @@ function nodecore.hint_state(pspec)
 	local done = {}
 	local found = {}
 	local future = {}
-	for _, hint in ipairs(nodecore.hints) do
+	for _, hint in ipairs(nc.hints) do
 		if hint.goal(db, pname, player) then
 			done[#done + 1] = hint
 		elseif (not hint.hide) then

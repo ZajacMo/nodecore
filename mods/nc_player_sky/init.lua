@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, pairs, string, vector
-    = math, nodecore, pairs, string, vector
+local math, nc, pairs, string, vector
+    = math, nc, pairs, string, vector
 local math_ceil, math_floor, math_log, string_gsub
     = math.ceil, math.floor, math.log, string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
 local basetextures = {}
 for i = 1, 6 do
@@ -33,12 +33,12 @@ end
 local function esc(t) return string_gsub(string_gsub(t, "%^", "\\^"), ":", "\\:") end
 
 local posscale = 128 / math_log(32768)
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "skybox/sunlight",
 		action = function(player, data)
 			local depth = math_floor(player:get_pos().y + 0.5)
 
-			local rawdll = nodecore.get_depth_light(depth, 1)
+			local rawdll = nc.get_depth_light(depth, 1)
 			local dark = 255 - math_ceil(255 * rawdll)
 			data.sky = {}
 			for k, v in pairs(skyboxes[dark]) do
@@ -52,7 +52,7 @@ nodecore.register_playerstep({
 			local top = basetextures[1]
 			top = "[combine:256x256:0,0=" .. esc("(" .. top .. ")^[resize:256x256")
 
-			local pos = vector.subtract(player:get_pos(), nodecore.spawn_point())
+			local pos = vector.subtract(player:get_pos(), nc.spawn_point())
 			pos.y = 0
 			local dist = vector.length(pos)
 			local log = math_log(dist + 1) * posscale
@@ -68,11 +68,11 @@ nodecore.register_playerstep({
 				data.sky.textures[1] = top .. data.sky._darken
 			end
 
-			data.daynight = nodecore.get_depth_light(depth)
+			data.daynight = nc.get_depth_light(depth)
 		end
 	})
 
-nodecore.register_on_joinplayer(function(player)
+nc.register_on_joinplayer(function(player)
 		for k in pairs({set_sun = true, set_moon = true, set_stars = true}) do
 			if player[k] then
 				player[k](player, {visible = false, sunrise_visible = false})

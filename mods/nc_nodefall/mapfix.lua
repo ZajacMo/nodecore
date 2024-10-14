@@ -1,28 +1,28 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local core, nc, pairs
+    = core, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local idsupport = {}
 local idfalling = {}
 
-local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("nc_terrain:stone")
+local c_air = core.get_content_id("air")
+local c_stone = core.get_content_id("nc_terrain:stone")
 
 local function initdata()
 	initdata = function() end
-	for k, v in pairs(minetest.registered_nodes) do
+	for k, v in pairs(core.registered_nodes) do
 		if v.walkable and not v.buildable_to then
-			idsupport[minetest.get_content_id(k)] = true
+			idsupport[core.get_content_id(k)] = true
 		end
 		if ((v.groups or {}).falling_node or 0) > 0
 		and ((v.groups or {}).falling_mapgen_ignore or 0) <= 0 then
-			idfalling[minetest.get_content_id(k)] = true
+			idfalling[core.get_content_id(k)] = true
 		end
 	end
 end
 
-nodecore.register_mapgen_shared({
+nc.register_mapgen_shared({
 		label = "falling node mapgen fix",
 		func = function(minp, maxp, area, data)
 			initdata()

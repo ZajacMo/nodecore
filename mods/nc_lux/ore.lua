@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_floor, math_pow
     = math.floor, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function rampcolor(r1, g1, b1, r2, g2, b2, q)
 	return {
@@ -16,7 +16,7 @@ local function rampcolor(r1, g1, b1, r2, g2, b2, q)
 end
 
 for i = 1, 8 do
-	minetest.register_node(modname .. ":cobble" .. i, {
+	core.register_node(modname .. ":cobble" .. i, {
 			description = "Lux Cobble",
 			tiles = {
 				"nc_terrain_gravel.png^((" .. modname .. "_base.png^[mask:"
@@ -44,17 +44,17 @@ for i = 1, 8 do
 					falling_repose = 3,
 				},
 				drop = modname .. ":cobble1_loose",
-				sounds = nodecore.sounds("nc_terrain_chompy")
+				sounds = nc.sounds("nc_terrain_chompy")
 			},
 			crush_damage = 2,
-			sounds = nodecore.sounds("nc_terrain_stony"),
+			sounds = nc.sounds("nc_terrain_stony"),
 			light_source = i + 1,
 			mapcolor = rampcolor(72, 72, 72, 252, 241, 143, i / 12),
 		})
 end
 
 local strata = {}
-minetest.register_node(modname .. ":stone", {
+core.register_node(modname .. ":stone", {
 		description = "Stone",
 		tiles = {"nc_terrain_stone.png"},
 		strata = strata,
@@ -68,17 +68,17 @@ minetest.register_node(modname .. ":stone", {
 		silktouch = false,
 		light_source = 1,
 		drop_in_place = modname .. ":cobble1",
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		mapcolor = {r = 72, g = 72, b = 72},
 	})
 strata[1] = modname .. ":stone"
 
-for i = 1, nodecore.hard_stone_strata do
+for i = 1, nc.hard_stone_strata do
 	local n = modname .. ":stone_" .. i
 	strata[i + 1] = n
-	minetest.register_node(n, {
+	core.register_node(n, {
 			description = "Stone",
-			tiles = {nodecore.hard_stone_tile(i)},
+			tiles = {nc.hard_stone_tile(i)},
 			groups = {
 				rock = i,
 				lux_rock = 1,
@@ -91,7 +91,7 @@ for i = 1, nodecore.hard_stone_strata do
 			drop_in_place = modname .. ((i > 1)
 				and (":stone_" .. (i - 1)) or ":stone"),
 			silktouch = false,
-			sounds = nodecore.sounds("nc_terrain_stony"),
+			sounds = nc.sounds("nc_terrain_stony"),
 			mapcolor = {r = 72, g = 72, b = 72},
 		})
 end
@@ -99,7 +99,7 @@ end
 local oreid = 0
 local function regore(def)
 	oreid = oreid + 1
-	return minetest.register_ore(nodecore.underride(def, {
+	return core.register_ore(nc.underride(def, {
 				name = modname .. oreid,
 				ore_type = "scatter",
 				ore = modname .. ":stone",

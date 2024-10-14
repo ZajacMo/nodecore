@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "melt sand to glass",
 		action = "cook",
 		touchgroups = {flame = 3},
@@ -22,11 +22,11 @@ nodecore.register_craft({
 			}
 		},
 		after = function(pos)
-			nodecore.dnt_set(pos, "fluidwander_glass")
+			nc.dnt_set(pos, "fluidwander_glass")
 		end
 	})
 
-nodecore.register_cook_abm({
+nc.register_cook_abm({
 		nodenames = {"group:sand"},
 		neighbors = {"group:flame"},
 		neighbors_invert = true
@@ -36,10 +36,10 @@ local src = modname .. ":glass_hot_source"
 local flow = modname .. ":glass_hot_flowing"
 
 local function near(pos, crit)
-	return #nodecore.find_nodes_around(pos, crit, {1, 1, 1}, {1, 0, 1}) > 0
+	return #nc.find_nodes_around(pos, crit, {1, 1, 1}, {1, 0, 1}) > 0
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "cool clear glass",
 		action = "cook",
 		priority = -1,
@@ -59,7 +59,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "cool float glass",
 		action = "cook",
 		duration = 120,
@@ -82,7 +82,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "quench opaque glass",
 		action = "cook",
 		cookfx = true,
@@ -99,7 +99,7 @@ nodecore.register_craft({
 			}
 		}
 	})
-nodecore.register_craft({
+nc.register_craft({
 		label = "quench crude glass",
 		action = "cook",
 		cookfx = true,
@@ -117,19 +117,19 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_cook_abm({nodenames = {src}})
+nc.register_cook_abm({nodenames = {src}})
 
-nodecore.register_fluidwandering(
+nc.register_fluidwandering(
 	"glass",
 	{src},
 	2,
 	function(pos, _, gen)
 		if gen < 16 or math_random(1, 2) == 1 then return end
-		minetest.set_node(pos, {name = modname .. ":glass_crude"})
-		nodecore.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
-		nodecore.smokeburst(pos)
-		nodecore.dynamic_shade_add(pos, 1)
-		nodecore.fallcheck(pos)
+		core.set_node(pos, {name = modname .. ":glass_crude"})
+		nc.sound_play("nc_api_craft_hiss", {gain = 1, pos = pos})
+		nc.smokeburst(pos)
+		nc.dynamic_shade_add(pos, 1)
+		nc.fallcheck(pos)
 		return true
 	end
 )

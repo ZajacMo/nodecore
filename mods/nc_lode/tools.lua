@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, type
-    = ipairs, minetest, nodecore, pairs, type
+local core, ipairs, nc, pairs, type
+    = core, ipairs, nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function toolhead(name, groups, prills)
 	local n = name:lower()
@@ -12,10 +12,10 @@ local function toolhead(name, groups, prills)
 	local function toolcap(nn)
 		local t = {}
 		for _, k in ipairs(groups) do t[k] = nn end
-		return nodecore.toolcaps(t)
+		return nc.toolcaps(t)
 	end
 
-	nodecore.register_lode("toolhead_" .. n, {
+	nc.register_lode("toolhead_" .. n, {
 			type = "craft",
 			description = "## Lode " .. name .. " Head",
 			inventory_image = modname .. "_#.png^[mask:" ..
@@ -31,7 +31,7 @@ local function toolhead(name, groups, prills)
 			end
 		})
 
-	nodecore.register_lode("tool_" .. n, {
+	nc.register_lode("tool_" .. n, {
 			type = "tool",
 			description = "## Lode " .. name,
 			inventory_image = modname .. "_tool_handle.png^(" ..
@@ -52,7 +52,7 @@ local function toolhead(name, groups, prills)
 		})
 
 	for _, t in pairs({"annealed", "tempered"}) do
-		nodecore.register_craft({
+		nc.register_craft({
 				label = "assemble lode " .. n,
 				normal = {y = 1},
 				indexkeys = {modname .. ":toolhead_" .. n .. "_" .. t},
@@ -74,7 +74,7 @@ toolhead("Hatchet", "choppy", 2)
 toolhead("Pick", "cracky", 1)
 
 local function forge(from, fromqty, to, prills)
-	return nodecore.register_lode_anvil_recipe(-1, function(temper)
+	return nc.register_lode_anvil_recipe(-1, function(temper)
 			return {
 				label = "forge lode " .. (to or "prills"),
 				action = "pummel",
@@ -109,7 +109,7 @@ forge("toolhead_pick", nil, nil, 1)
 
 toolhead("Mattock", {"cracky", "crumbly"}, 3)
 local function mattock(a, b)
-	return nodecore.register_craft({
+	return nc.register_craft({
 			label = "assemble lode mattock head",
 			action = "pummel",
 			toolgroups = {thumpy = 3},

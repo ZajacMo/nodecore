@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, pairs, type
-    = minetest, pairs, type
+local core, pairs, type
+    = core, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local oldreg = minetest.register_item
-function minetest.register_item(name, def, ...)
+local oldreg = core.register_item
+function core.register_item(name, def, ...)
 	if def.backface_culling == nil or not def.tiles then
 		return oldreg(name, def, ...)
 	end

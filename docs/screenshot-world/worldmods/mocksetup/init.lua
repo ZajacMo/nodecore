@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, vector
-    = ItemStack, math, minetest, nodecore, pairs, vector
+local ItemStack, core, math, nc, pairs, vector
+    = ItemStack, core, math, nc, pairs, vector
 local math_abs, math_pi
     = math.abs, math.pi
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname();
+local modname = core.get_current_modname();
 
 local setinv = {
 	{"nc_stonework:tool_pick", 1, 0.7},
@@ -20,9 +20,9 @@ local setinv = {
 
 for _, v in pairs(setinv) do
 	local n = modname .. ":" .. v[1]:gsub(":", "_")
-	if not minetest.registered_items[n] then
-		local def = minetest.registered_items[v[1]]
-		minetest.register_item(n, {
+	if not core.registered_items[n] then
+		local def = core.registered_items[v[1]]
+		core.register_item(n, {
 				["type"] = def["type"],
 				tiles = def.tiles,
 				inventory_image = v[4] or def.inventory_image,
@@ -37,14 +37,14 @@ end
 
 local startpos = {x = -112.4, y = 4.55, z = -91.8}
 
-nodecore.register_on_joinplayer(function(player)
+nc.register_on_joinplayer(function(player)
 		return player:set_pos(startpos)
 	end)
 
 local function enable_setup(player, ppos)
 	local n = player:get_player_name()
 
-	local r = minetest.get_player_privs(n)
+	local r = core.get_player_privs(n)
 	r.fly = true
 	r.fast = true
 	r.noclip = true
@@ -56,7 +56,7 @@ local function enable_setup(player, ppos)
 	r.keepinv = true
 	r.ncdqd = true
 	r.teleport = true
-	minetest.set_player_privs(n, r)
+	core.set_player_privs(n, r)
 
 	if math_abs(ppos.x - startpos.x) >= 0.001
 	or math_abs(ppos.z - startpos.z) >= 0.001 then
@@ -65,7 +65,7 @@ local function enable_setup(player, ppos)
 	player:set_look_horizontal(163.8 * math_pi / 180)
 	player:set_look_vertical(9 * math_pi / 180)
 
-	nodecore.hud_set(player, {label = "crosshair", ttl = 0})
+	nc.hud_set(player, {label = "crosshair", ttl = 0})
 	player:set_fov(60)
 
 	local inv = player:get_inventory()
@@ -91,13 +91,13 @@ local function disable_setup(player)
 	end
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "mock hud/fov clear",
 		action = function(player, data)
 			data.properties.visual_size = {x = 0, y = 0}
 
-			nodecore.hud_set(player, {label = "cheats", ttl = 0})
-			nodecore.hud_set(player, {label = "hintcomplete", ttl = 0})
+			nc.hud_set(player, {label = "cheats", ttl = 0})
+			nc.hud_set(player, {label = "hintcomplete", ttl = 0})
 
 			local ppos = player:get_pos()
 			if vector.distance(ppos, startpos) <= 1

@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_inventory_tab({
+nc.register_inventory_tab({
 		title = "Inventory",
 		content = {
 			"Player's Guide: Inventory Management",
@@ -18,7 +18,7 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-nodecore.register_inventory_tab({
+nc.register_inventory_tab({
 		title = "Crafting",
 		content = {
 			"Player's Guide: Crafting",
@@ -31,7 +31,7 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-nodecore.register_inventory_tab({
+nc.register_inventory_tab({
 		title = "Pummel",
 		content = {
 			"Player's Guide: Pummeling Recipes",
@@ -46,7 +46,7 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-nodecore.register_inventory_tab({
+nc.register_inventory_tab({
 		title = "Movement",
 		content = {
 			"Player's Guide: Movement and Navigation",
@@ -62,7 +62,7 @@ nodecore.register_inventory_tab({
 		}
 	})
 
-nodecore.register_inventory_tab({
+nc.register_inventory_tab({
 		title = "Tips",
 		content = {
 			"Player's Guide: Tips and Guidance",

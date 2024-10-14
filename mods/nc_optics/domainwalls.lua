@@ -1,21 +1,21 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, vector
-    = ipairs, minetest, nodecore, pairs, vector
+local core, ipairs, nc, pairs, vector
+    = core, ipairs, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local active = {}
 
 local function particles(item, player)
-	local key = player:get_player_name() .. minetest.pos_to_string(item.pos, 1)
-	.. minetest.pos_to_string(item.plane)
+	local key = player:get_player_name() .. core.pos_to_string(item.pos, 1)
+	.. core.pos_to_string(item.plane)
 	local found = active[key]
-	local now = minetest.get_us_time() / 1000000
+	local now = core.get_us_time() / 1000000
 	if found and found.exp > now then return end
 	found = {
 		exp = now + 2,
-		id = minetest.add_particlespawner({
+		id = core.add_particlespawner({
 				amount = 5,
 				time = 2,
 				minpos = vector.add(item.pos,
@@ -36,7 +36,7 @@ local function particles(item, player)
 end
 
 local function processcbb(item)
-	for _, player in ipairs(minetest.get_connected_players()) do
+	for _, player in ipairs(core.get_connected_players()) do
 		local pos = player:get_pos()
 		local diff = pos and vector.subtract(pos, item.pos)
 		if diff and vector.dot(diff, diff) < 64 then
@@ -45,8 +45,8 @@ local function processcbb(item)
 	end
 end
 
-local get_node = minetest.get_node
-nodecore.register_dnt({
+local get_node = core.get_node
+nc.register_dnt({
 		name = modname .. ":cbbs",
 		time = 2,
 		loop = true,
@@ -54,14 +54,14 @@ nodecore.register_dnt({
 		autostart = true,
 		nodenames = {"group:optic_source"},
 		action = function(pos, node)
-			local def = minetest.registered_nodes[node.name] or {}
+			local def = core.registered_nodes[node.name] or {}
 			local src = def.optic_source
 			if not src then return end
 			src = src(pos, node)
 			if not src then return end
 			local cbbs = {}
 			for _, dir in pairs(src) do
-				nodecore.optic_scan(pos, dir, nil, get_node, cbbs)
+				nc.optic_scan(pos, dir, nil, get_node, cbbs)
 			end
 			for i = 1, #cbbs do processcbb(cbbs[i]) end
 		end

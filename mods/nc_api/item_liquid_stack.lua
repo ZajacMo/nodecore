@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.liquidtype and def.liquidtype ~= "none" then
 			def.groups = def.groups or {}
 			def.groups.stack_as_node = def.groups.stack_as_node or 1

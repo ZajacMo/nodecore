@@ -1,22 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_craftitem(modname .. ":lump_ash", {
+core.register_craftitem(modname .. ":lump_ash", {
 		description = "Ash Lump",
 		inventory_image = modname .. "_ash.png^[mask:" .. modname .. "_lump.png",
-		sounds = nodecore.sounds("nc_terrain_crunchy")
+		sounds = nc.sounds("nc_terrain_crunchy")
 	})
-minetest.register_craftitem(modname .. ":lump_coal", {
+core.register_craftitem(modname .. ":lump_coal", {
 		description = "Charcoal Lump",
 		inventory_image = modname .. "_coal_4.png^[mask:" .. modname .. "_lump.png",
 		groups = {flammable = 1},
-		sounds = nodecore.sounds("nc_terrain_crunchy")
+		sounds = nc.sounds("nc_terrain_crunchy")
 	})
 
 local function split(items, name, qty)
@@ -29,12 +29,12 @@ local function split(items, name, qty)
 		items[#items + 1] = {name = name, count = qty, scatter = 5}
 	end
 end
-for num = 0, nodecore.fire_max do
+for num = 0, nc.fire_max do
 	local items = {}
 	split(items, modname .. ":lump_coal", num)
-	split(items, modname .. ":lump_ash", nodecore.fire_max - num)
+	split(items, modname .. ":lump_ash", nc.fire_max - num)
 	local name = modname .. ((num == 0) and ":ash" or (":coal" .. num))
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "chop " .. name,
 			action = "pummel",
 			toolgroups = {choppy = 1},
@@ -46,7 +46,7 @@ for num = 0, nodecore.fire_max do
 		})
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "compress ash block",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
@@ -58,7 +58,7 @@ nodecore.register_craft({
 			}
 		}
 	})
-nodecore.register_craft({
+nc.register_craft({
 		label = "compress coal block",
 		action = "pummel",
 		toolgroups = {thumpy = 2},

@@ -1,8 +1,8 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("hold your breath",
+nc.register_hint("hold your breath",
 	"breath_3"
 )

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local core, math, nc, pairs, vector
+    = core, math, nc, pairs, vector
 local math_abs, math_deg, math_pi
     = math.abs, math.deg, math.pi
 -- LUALOCALS > ---------------------------------------------------------
@@ -14,12 +14,12 @@ local pitch_precision = 1
 
 local item_drop_times = {}
 
-local olddrop = minetest.item_drop
-function minetest.item_drop(item, player, ...)
-	if player then item_drop_times[player:get_player_name()] = nodecore.gametime end
+local olddrop = core.item_drop
+function core.item_drop(item, player, ...)
+	if player then item_drop_times[player:get_player_name()] = nc.gametime end
 	return olddrop(item, player, ...)
 end
-nodecore.register_on_leaveplayer(function(player)
+nc.register_on_leaveplayer(function(player)
 		item_drop_times[player:get_player_name()] = nil
 	end)
 
@@ -37,14 +37,14 @@ local function setbonepos(player, bone, pos, rot)
 	return player:set_bone_position(bone, pos, rot)
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "player model visuals",
 		action = function(player, data)
 			if data.properties.visual_size.x <= 0 then return end
 
 			data.item_drop_time = item_drop_times[player:get_player_name()]
 
-			local props = nodecore.player_visuals_base(player, data)
+			local props = nc.player_visuals_base(player, data)
 
 			-- Skin can be set preemptively by visuals_base; if so, then will
 			-- not be modified here.
@@ -52,18 +52,18 @@ nodecore.register_playerstep({
 				-- Recheck skin only every couple seconds to avoid
 				-- interfering with animations if skin includes continuous
 				-- effects.
-				local now = minetest.get_us_time() / 1000000
+				local now = core.get_us_time() / 1000000
 				if (not data.skincalctime) or (now >= data.skincalctime + 2) then
 					data.skincalctime = now
-					props.textures = {nodecore.player_skin(player, data)}
+					props.textures = {nc.player_skin(player, data)}
 				end
 			end
 
 			for k, v in pairs(props) do data.properties[k] = v end
 
-			local anim = nodecore.player_anim(player, data)
+			local anim = nc.player_anim(player, data)
 			if anim.name then
-				nodecore.player_discover(player, "anim_" .. anim.name)
+				nc.player_discover(player, "anim_" .. anim.name)
 			end
 			data.animation = {{x = anim.x, y = anim.y}, anim.speed, frame_blend}
 

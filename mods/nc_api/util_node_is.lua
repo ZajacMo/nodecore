@@ -1,23 +1,23 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, type
-    = minetest, nodecore, type
+local core, nc, type
+    = core, nc, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local function defprop(prop)
 	return function(thing)
 		local name = type(thing) == "string" and thing or thing.name
-		or minetest.get_node(thing).name
+		or core.get_node(thing).name
 		if name == "ignore" then return end
-		local def = minetest.registered_items[name] or {}
+		local def = core.registered_items[name] or {}
 		return def[prop]
 	end
 end
 
-nodecore.buildable_to = defprop("buildable_to")
-nodecore.walkable = defprop("walkable")
-nodecore.climbable = defprop("climbable")
-nodecore.sunlight_propagates = defprop("sunlight_propagates")
-nodecore.air_equivalent = defprop("air_equivalent")
+nc.buildable_to = defprop("buildable_to")
+nc.walkable = defprop("walkable")
+nc.climbable = defprop("climbable")
+nc.sunlight_propagates = defprop("sunlight_propagates")
+nc.air_equivalent = defprop("air_equivalent")
 
 local airpass_drawtypes = {
 	airlike = true,
@@ -30,10 +30,10 @@ local airpass_drawtypes = {
 	mesh = true,
 	plantlike = true
 }
-function nodecore.air_pass(thing)
+function nc.air_pass(thing)
 	local name = type(thing) == "string" and thing or thing.name
-	or minetest.get_node(thing).name
-	local def = minetest.registered_items[name] or {}
+	or core.get_node(thing).name
+	local def = core.registered_items[name] or {}
 	if def.air_pass ~= nil then return def.air_pass end
 	return airpass_drawtypes[def.drawtype or false] or false
 end

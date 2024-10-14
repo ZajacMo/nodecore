@@ -1,21 +1,21 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, type
-    = error, math, minetest, nodecore, pairs, type
+local core, error, math, nc, pairs, type
+    = core, error, math, nc, pairs, type
 local math_abs
     = math.abs
 -- LUALOCALS > ---------------------------------------------------------
 
-local modstore = minetest.get_mod_storage()
+local modstore = core.get_mod_storage()
 local metakey = "gametime_adjust"
 local raw = modstore:get_string(metakey)
-local adjusts = raw and raw ~= "" and minetest.deserialize(raw, true) or {}
+local adjusts = raw and raw ~= "" and core.deserialize(raw, true) or {}
 
 local dirty
 
 -- name: key to identify adjustment
 -- value: value to add to time
 -- reset: if true, reset adjustment to this value offset, otherwise add
-function nodecore.gametime_adjust(name, value, reset)
+function nc.gametime_adjust(name, value, reset)
 	local old = adjusts[name] or 0
 	if not value then return old end
 
@@ -29,8 +29,8 @@ function nodecore.gametime_adjust(name, value, reset)
 		error("time cannot be adjusted backwards")
 	end
 
-	if nodecore.gametime then
-		nodecore.gametime = nodecore.gametime + value
+	if nc.gametime then
+		nc.gametime = nc.gametime + value
 	end
 
 	adjusts[name] = value
@@ -39,23 +39,23 @@ function nodecore.gametime_adjust(name, value, reset)
 	return value
 end
 
-nodecore.register_globalstep(function(dtime)
-		local mtt = minetest.get_gametime()
-		local nct = nodecore.gametime
+nc.register_globalstep(function(dtime)
+		local mtt = core.get_gametime()
+		local nct = nc.gametime
 		for _, v in pairs(adjusts) do mtt = mtt + v end
 		if not nct then
-			nodecore.log("info", "nodecore.gametime: init to " .. mtt)
+			nc.log("info", "nc.gametime: init to " .. mtt)
 			nct = mtt
 		end
 		nct = nct + dtime
 		if math_abs(nct - mtt) >= 2 then
-			nodecore.log("warning", "nodecore.gametime: excess drift; nct="
+			nc.log("warning", "nc.gametime: excess drift; nct="
 				.. nct .. ", mtt=" .. mtt)
 			nct = mtt
 		end
-		nodecore.gametime = nct
+		nc.gametime = nct
 		if dirty then
-			modstore:set_string(metakey, minetest.serialize(adjusts))
+			modstore:set_string(metakey, core.serialize(adjusts))
 			dirty = nil
 		end
 	end)

@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, ipairs, minetest, nodecore, pairs, string, table
-    = error, ipairs, minetest, nodecore, pairs, string, table
+local core, error, ipairs, nc, pairs, string, table
+    = core, error, ipairs, nc, pairs, string, table
 local string_format, table_sort
     = string.format, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.ezschematic(key, yslices, init)
+function nc.ezschematic(key, yslices, init)
 	local totals = {}
 	local size = {}
 	local data = {}
@@ -33,12 +33,12 @@ function nodecore.ezschematic(key, yslices, init)
 	for k in pairs(totals) do keys[#keys + 1] = k end
 	table_sort(keys, function(a, b) return totals[a] > totals[b] end)
 	local report = string_format("ezschematic %s %dx%dx%d",
-		minetest.get_current_modname() or "runtime",
+		core.get_current_modname() or "runtime",
 		#yslices[1][1], #yslices, #yslices[1])
 	for _, k in ipairs(keys) do
 		report = string_format("%s, %d %s", report, totals[k], k)
 	end
-	nodecore.log("info", report)
+	nc.log("info", report)
 
-	return minetest.register_schematic(init)
+	return core.register_schematic(init)
 end

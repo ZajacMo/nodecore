@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, nodecore, pairs, type
-    = getmetatable, minetest, nodecore, pairs, type
+local core, getmetatable, nc, pairs, type
+    = core, getmetatable, nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local mismatch = nodecore.prop_mismatch
+local mismatch = nc.prop_mismatch
 
 local old_set_props
 
@@ -25,7 +25,7 @@ local function set_properties_compare(obj, def)
 end
 
 local function tryhook()
-	for _, v in pairs(minetest.object_refs) do
+	for _, v in pairs(core.object_refs) do
 		local mt = v and getmetatable(v)
 		if mt and mt.set_properties then
 			old_set_props = mt.set_properties
@@ -33,12 +33,12 @@ local function tryhook()
 			return
 		end
 	end
-	return minetest.after(0, tryhook)
+	return core.after(0, tryhook)
 end
 tryhook()
 
-function nodecore.ent_prop_set(obj, def)
-	nodecore.log("warning", "nodecore.ent_prop_set() is now deprecated;"
+function nc.ent_prop_set(obj, def)
+	nc.log("warning", "nc.ent_prop_set() is now deprecated;"
 		.. " just use object:set_properties(), which has been patched")
 	return obj:set_properties(def)
 end

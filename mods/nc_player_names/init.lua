@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local core, math, nc, pairs
+    = core, math, nc, pairs
 local math_sqrt
     = math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 -- Maximum distance at which custom nametags are visible.
-local distance = nodecore.setting_float(modname .. "_distance", 16,
+local distance = nc.setting_float(modname .. "_distance", 16,
 	"Nametags - max distance", [[The maximum distance in nodes
 	that other players' nametags will be visible under optimum
 	conditions.]])
@@ -20,7 +20,7 @@ local distance = nodecore.setting_float(modname .. "_distance", 16,
 
 -- On player joining, disable the built-in nametag by setting its
 -- text to whitespace and color to transparent.
-nodecore.register_on_joinplayer(function(player)
+nc.register_on_joinplayer(function(player)
 		player:set_nametag_attributes({
 				text = " ",
 				color = {a = 0, r = 0, g = 0, b = 0}
@@ -31,8 +31,8 @@ nodecore.register_on_joinplayer(function(player)
 -- GLOBAL TICK HUD MANAGEMENT
 
 local function fluidmedium(pos)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_items[node.name]
+	local node = core.get_node(pos)
+	local def = core.registered_items[node.name]
 	if not def then return node.name end
 	if def.visible_fluid_medium then return def.visible_fluid_medium end
 	if def.sunlight_propagates then return "air" end
@@ -44,7 +44,7 @@ end
 local function canseeface(p1, p2)
 	if p1:get_hp() <= 0 or p2:get_hp() <= 0 then return end
 	if p1:get_attach() or p2:get_attach() then return end
-	if not nodecore.player_visible(p2) then return end
+	if not nc.player_visible(p2) then return end
 
 	-- Players must be within max distance of one another,
 	-- determined by light level, but not too close.
@@ -57,9 +57,9 @@ local function canseeface(p1, p2)
 	local dz = o1.z - o2.z
 	local dsqr = (dx * dx + dy * dy + dz * dz)
 	if dsqr < 1 then return end
-	local ll = nodecore.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
+	local ll = nc.get_node_light({x = o2.x, y = o2.y + e2, z = o2.z})
 	if not ll then return end
-	local ld = (ll / nodecore.light_sun * distance)
+	local ld = (ll / nc.light_sun * distance)
 	if dsqr > (ld * ld) then return end
 
 	-- Make sure players' eyes are inside the same fluid.
@@ -71,7 +71,7 @@ local function canseeface(p1, p2)
 
 	-- Check for line of sight from approximate eye level
 	-- of one player to the other.
-	for pt in minetest.raycast(o1, o2, true, true) do
+	for pt in core.raycast(o1, o2, true, true) do
 		if pt.type == "node" then
 			if fluidmedium(pt.under) ~= f1 then return end
 		elseif pt.type == "object" then
@@ -83,7 +83,7 @@ local function canseeface(p1, p2)
 
 	-- Players must be facing each other; cannot identify another
 	-- player's face when their back is turned. Note that
-	-- minetest models don't show pitch, so ignore the y component.
+	-- Player models don't show pitch, so ignore the y component.
 
 	-- Compute normalized 2d vector from one player to another.
 	local d = dx * dx + dz * dz
@@ -108,12 +108,12 @@ end
 
 -- Make it much easier for mods to customize player name HUDs by
 -- replacing this method.
-nodecore.player_nametag_hud_set = nodecore.hud_set
+nc.player_nametag_hud_set = nc.hud_set
 
 -- On each global step, check all player visibility, and create/remove/update
 -- each player's HUDs accordingly.
-nodecore.register_globalstep(function()
-		local conn = minetest.get_connected_players()
+nc.register_globalstep(function()
+		local conn = core.get_connected_players()
 		for _, p1 in pairs(conn) do
 			for _, p2 in pairs(conn) do
 				if p2 ~= p1 then
@@ -121,7 +121,7 @@ nodecore.register_globalstep(function()
 					if canseeface(p1, p2) then
 						local p = p2:get_pos()
 						p.y = p.y + 1.25
-						nodecore.player_nametag_hud_set(p1, {
+						nc.player_nametag_hud_set(p1, {
 								label = "pname:" .. n2,
 								group = "pname",
 								hud_elem_type = "waypoint",
@@ -133,7 +133,7 @@ nodecore.register_globalstep(function()
 								quick = true
 							})
 					else
-						nodecore.player_nametag_hud_set(p1, {
+						nc.player_nametag_hud_set(p1, {
 								label = "pname:" .. n2,
 								group = "pname",
 								ttl = 0,
@@ -145,10 +145,10 @@ nodecore.register_globalstep(function()
 		end
 	end)
 
-nodecore.register_on_leaveplayer(function(player)
+nc.register_on_leaveplayer(function(player)
 		local pname = player:get_player_name()
-		for _, peer in pairs(minetest.get_connected_players()) do
-			nodecore.player_nametag_hud_set(peer, {
+		for _, peer in pairs(core.get_connected_players()) do
+			nc.player_nametag_hud_set(peer, {
 					label = "pname:" .. pname,
 					group = "pname",
 					ttl = 0,

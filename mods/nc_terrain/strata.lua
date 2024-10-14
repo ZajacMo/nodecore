@@ -1,42 +1,42 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, ipairs, math, minetest, nodecore, pairs
-    = error, ipairs, math, minetest, nodecore, pairs
+local core, error, ipairs, math, nc, pairs
+    = core, error, ipairs, math, nc, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local thickness = 128
 
-nodecore.stratadata = nodecore.memoize(function()
+nc.stratadata = nc.memoize(function()
 		local data = {}
 		data.stratbyid = {}
 		data.altsbyid = {}
-		for k, v in pairs(minetest.registered_nodes) do
+		for k, v in pairs(core.registered_nodes) do
 			if v.strata then
 				local sn
 				for s, n in ipairs(v.strata) do
 					if n == k then sn = s end
 				end
 				if not sn then error(k .. " not found in own strata") end
-				local cid = minetest.get_content_id(k)
+				local cid = core.get_content_id(k)
 				data.stratbyid[cid] = sn
 				data.altsbyid[cid] = {}
 				for s, n in ipairs(v.strata) do
-					data.altsbyid[cid][s] = minetest.get_content_id(n)
+					data.altsbyid[cid][s] = core.get_content_id(n)
 				end
 			end
 		end
 		return data
 	end)
 
-nodecore.register_mapgen_shared({
+nc.register_mapgen_shared({
 		label = "stone strata",
 		func = function(minp, maxp, area, data, _, _, _, rng)
 			if minp.y > -64 then return end
 
 			local ai = area.index
-			local t = nodecore.hard_stone_strata
-			local sd = nodecore.stratadata()
+			local t = nc.hard_stone_strata
+			local sd = nc.stratadata()
 			local byid = sd.stratbyid
 			local alts = sd.altsbyid
 

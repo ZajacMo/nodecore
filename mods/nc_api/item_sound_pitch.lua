@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs
-    = nodecore, pairs
+local nc, pairs
+    = nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
 local soundadj = {
@@ -17,7 +17,7 @@ local toolgroups = {
 	scratchy = true
 }
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 		local grp = def.groups
 		if not grp then return end

@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local core, nc, pairs
+    = core, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local xyz = function(n) return {x = n, y = n, z = n} end
 local size_w_item = xyz(0.2)
@@ -18,7 +18,7 @@ local selslot = {is_visible = true, visual_size = size_slot, textures = {"nc_pla
 local emptyslot = {is_visible = true, visual_size = size_slot, textures = {"nc_player_wield:slot"}}
 
 local function calcprops(itemname, iswield)
-	local def = minetest.registered_items[itemname]
+	local def = core.registered_items[itemname]
 	if def and def.virtual_item then return hidden end
 	if itemname == "" then return iswield and hidden or emptyslot end
 	return {
@@ -83,20 +83,20 @@ entdef = {
 				not conf.slot))
 	end
 }
-minetest.register_entity(entname, entdef)
+core.register_entity(entname, entdef)
 
-function nodecore.mock_player_wieldview(ent)
+function nc.mock_player_wieldview(ent)
 	local pos = ent.object:get_pos()
 	if not pos then return end
 
-	for _, wv in pairs(minetest.luaentities) do
+	for _, wv in pairs(core.luaentities) do
 		if wv.name == entname and wv.conf.ent == ent then
 			wv.object:remove()
 		end
 	end
 
 	local function addslot(n, b, x, y, z, rx, ry, rz)
-		local obj = minetest.add_entity(pos, entname)
+		local obj = core.add_entity(pos, entname)
 		obj:get_luaentity().conf = {
 			ent = ent,
 			slot = n,

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore
-    = math, nodecore
+local math, nc
+    = math, nc
 local math_abs
     = math.abs
 -- LUALOCALS > ---------------------------------------------------------
@@ -13,11 +13,11 @@ local function clamp(x)
 	return x
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "health visual effects",
 		action = function(player, data, dtime)
 			local old = data.phealth_fx_old or 0
-			local new = clamp(1 - nodecore.getphealth(player) / 8)
+			local new = clamp(1 - nc.getphealth(player) / 8)
 			new = clamp(new ^ 0.5)
 			local blend = 0.5 ^ dtime
 			local cur = old * blend + new * (1 - blend)

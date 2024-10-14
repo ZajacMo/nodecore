@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":thatch", {
+core.register_node(modname .. ":thatch", {
 		description = "Thatch",
 		tiles = {modname .. "_thatch.png"},
 		groups = {
@@ -14,11 +14,11 @@ minetest.register_node(modname .. ":thatch", {
 			fire_fuel = 4,
 			peat_grindable_node = 1
 		},
-		sounds = nodecore.sounds("nc_terrain_grassy"),
+		sounds = nc.sounds("nc_terrain_grassy"),
 		mapcolor = {r = 132, g = 135, b = 87},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "pack thatch",
 		action = "pummel",
 		toolgroups = {thumpy = 1},
@@ -30,7 +30,7 @@ nodecore.register_craft({
 		},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "unpack thatch",
 		action = "pummel",
 		wield = {groups = {rakey = true}},

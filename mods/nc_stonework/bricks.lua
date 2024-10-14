@@ -1,27 +1,27 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
+function nc.register_stone_bricks(name, desc, tile, alpha, bondalpha,
 		madefrom, groups, bonded, mapcolor)
-	groups = nodecore.underride(groups, {
+	groups = nc.underride(groups, {
 			stone_bricks = 1,
 			falling_node = 1
 		})
-	minetest.register_node(":" .. modname .. ":bricks_" .. name, {
+	core.register_node(":" .. modname .. ":bricks_" .. name, {
 			description = desc .. " Bricks",
 			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:"
 				.. alpha .. ")"},
 			groups = groups,
 			crush_damage = 2,
-			sounds = nodecore.sounds("nc_terrain_stony"),
+			sounds = nc.sounds("nc_terrain_stony"),
 			mapcolor = mapcolor,
 		})
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "chisel " .. name .. " bricks",
 			discover = "chisel bricks",
 			action = "pummel",
@@ -44,21 +44,21 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
 			}
 		})
 
-	bonded = nodecore.underride(bonded, groups)
+	bonded = nc.underride(bonded, groups)
 	bonded.stone_bricks = 2
 	bonded.falling_node = nil
 	bonded.falling_mapgen_ignore = nil
-	minetest.register_node(":" .. modname .. ":bricks_" .. name .. "_bonded", {
+	core.register_node(":" .. modname .. ":bricks_" .. name .. "_bonded", {
 			description = "Bonded " .. desc .. " Bricks",
 			tiles = {tile .. "^(" .. modname .. "_bricks.png^[opacity:"
 				.. bondalpha .. ")"},
 			groups = bonded,
 			crush_damage = 2,
-			sounds = nodecore.sounds("nc_terrain_stony"),
+			sounds = nc.sounds("nc_terrain_stony"),
 			mapcolor = mapcolor,
 		})
 
-	minetest.register_abm({
+	core.register_abm({
 			label = "bond " .. name .. " bricks",
 			nodenames = {modname .. ":bricks_" .. name},
 			neighbors = {"group:concrete_wet"},
@@ -66,15 +66,15 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
 			interval = 1,
 			chance = 2,
 			action = function(pos)
-				nodecore.set_loud(pos, {name = modname .. ":bricks_"
+				nc.set_loud(pos, {name = modname .. ":bricks_"
 						.. name .. "_bonded"})
-				nodecore.witness(pos, {
+				nc.witness(pos, {
 						"bond " .. name .. " bricks",
 						"bond bricks"
 					})
 			end
 		})
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "unbond " .. name .. " bricks",
 			action = "pummel",
 			toolgroups = {cracky = 4},
@@ -88,7 +88,7 @@ function nodecore.register_stone_bricks(name, desc, tile, alpha, bondalpha,
 		})
 end
 
-nodecore.register_stone_bricks("stone", "Stone",
+nc.register_stone_bricks("stone", "Stone",
 	"nc_terrain_stone.png",
 	240, 120,
 	{groups = {smoothstone = true}},
@@ -97,5 +97,5 @@ nodecore.register_stone_bricks("stone", "Stone",
 	{r = 72, g = 72, b = 72}
 )
 
-minetest.register_alias(modname .. ":bricks", modname .. ":bricks_stone")
-minetest.register_alias(modname .. ":bricks_bonded", modname .. ":bricks_stone_bonded")
+core.register_alias(modname .. ":bricks", modname .. ":bricks_stone")
+core.register_alias(modname .. ":bricks_bonded", modname .. ":bricks_stone_bonded")

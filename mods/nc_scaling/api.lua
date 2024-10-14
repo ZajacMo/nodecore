@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, vector
-    = ItemStack, minetest, nodecore, pairs, vector
+local ItemStack, core, nc, pairs, vector
+    = ItemStack, core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.scaling_light_level = 2
+nc.scaling_light_level = 2
 
-function nodecore.scaling_particles(pos, def)
-	def = nodecore.underride(def or {}, {
+function nc.scaling_particles(pos, def)
+	def = nc.underride(def or {}, {
 			texture = modname .. "_particle.png",
 			collisiondetection = false,
 			amount = 5,
@@ -22,53 +22,53 @@ function nodecore.scaling_particles(pos, def)
 			minsize = 0.3,
 			maxsize = 0.35
 		})
-	for _, player in pairs(minetest.get_connected_players()) do
+	for _, player in pairs(core.get_connected_players()) do
 		local pp = player:get_pos()
 		pp.y = pp.y + 1
 		if vector.distance(pos, pp) then
 			local t = {}
 			for k, v in pairs(def) do t[k] = v end
 			t.playername = player:get_player_name()
-			minetest.add_particlespawner(t)
+			core.add_particlespawner(t)
 		end
 	end
 end
 
 local function issolid(pos, node)
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+	node = node or core.get_node(pos)
+	local def = core.registered_nodes[node.name]
 	if not def or not def.walkable then return end
 	if def.groups and (not def.groups.falling_node) then
 		return {pos = pos, node = node}
 	end
-	if nodecore.tool_digs(ItemStack(""), def.groups) then return end
+	if nc.tool_digs(ItemStack(""), def.groups) then return end
 	return {pos = pos, node = node}
 end
 
 local function tryreplace(pos, newname, rootpos)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+	local node = core.get_node(pos)
+	local def = core.registered_nodes[node.name]
 	if not (def and def.buildable_to and def.air_equivalent) then return end
 
 	newname = modname .. ":" .. newname
 
 	local lv = def.groups and def.groups[modname]
 	if lv then
-		local ndef = minetest.registered_nodes[newname]
+		local ndef = core.registered_nodes[newname]
 		if ndef.groups[modname] < lv then return true end
 	end
 
-	nodecore.set_node_check(pos, {name = newname}, node)
-	minetest.get_meta(pos):set_string("data", minetest.serialize({
+	nc.set_node_check(pos, {name = newname}, node)
+	core.get_meta(pos):set_string("data", core.serialize({
 				pos = rootpos,
-				node = minetest.get_node(rootpos).name
+				node = core.get_node(rootpos).name
 			}))
-	nodecore.scaling_particles(pos)
+	nc.scaling_particles(pos)
 
 	return true
 end
 
-function nodecore.scaling_apply(pointed) -- (pointed, player) for tunnel.lua
+function nc.scaling_apply(pointed) -- (pointed, player) for tunnel.lua
 	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
 	local pos = pointed.above
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then
@@ -96,7 +96,7 @@ function nodecore.scaling_apply(pointed) -- (pointed, player) for tunnel.lua
 	end
 end
 
-function nodecore.scaling_closenough(pos, player)
+function nc.scaling_closenough(pos, player)
 	local pp = player:get_pos()
 	pp.y = pp.y + 1
 	return vector.distance(pos, pp) <= 5
