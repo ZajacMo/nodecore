@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-17 21:37+0200\n"
-"PO-Revision-Date: 2023-06-18 01:16+0000\n"
-"Last-Translator: ElonSatoshi <elonsatoshi@riseup.net>\n"
+"PO-Revision-Date: 2024-10-20 15:12+0000\n"
+"Last-Translator: MeepyMeeper123 <meepymeeper3@gmail.com>\n"
 "Language-Team: Toki Pona <https://hosted.weblate.org/projects/minetest/"
 "nodecore/tok/>\n"
 "Language: tok\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18.1\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
 msgstr ""
@@ -57,16 +57,14 @@ msgstr ""
 "- palisa luka teje sina li tawa lon nena teje li tawa mute anu awen la sina "
 "pali e kepeken sewi sinpin."
 
-#, fuzzy
 msgid "- If a recipe exists, you will see a special particle effect."
-msgstr "- leko li pana pipi lili la nasin pi pali ijo o pali"
+msgstr "nasin pali li lon la leko li pana e pipi lili."
 
 msgid "- @1"
 msgstr "- @1"
 
-#, fuzzy
 msgid "- Aux+drop any item to drop everything."
-msgstr "- Aux + drop o kama ala jo e ijo wan la o kama ala jo e ijo ali"
+msgstr "- sina weka e ijo li kepeken lawa namako “Aux” la ijo ale li weka."
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
@@ -88,3 +86,49 @@ msgstr "- tenpo kama la: @1"
 #, fuzzy
 msgid "- If it takes more than 5 seconds to dig, you don't have the right tool."
 msgstr "- tenpo mute la leko li pakala ala la ilo sina li ike tawa leko ni"
+
+#, fuzzy
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "sina wile sona e ma sina la o kepeken mun."
+
+#, fuzzy
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "sina ken luka mute e kulupu. nanpa kulupu li ken suli."
+
+msgid "Adobe Bricks"
+msgstr "leko pi kiwen ma"
+
+#, fuzzy
+msgid "- Some recipes require "pummeling" a node."
+msgstr "nasin pali li ken kepeken luka mute."
+
+#, fuzzy
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "sina wile luka mute la o luka sike e ijo li pakala ALA."
+
+#, fuzzy
+msgid "Active Lens"
+msgstr "ilo suno wan open"
+
+#, fuzzy
+msgid "Active Prism"
+msgstr "ilo suno tawa open"
+
+msgid "Admin Tool"
+msgstr "ilo wawa"
+
+msgid "Adobe"
+msgstr "kiwen ma"
+
+#, fuzzy
+msgid "Aggregate"
+msgstr "ko kiwen"
+
+#, fuzzy
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr ""
+"sina lon ijo kiwen la o tawa ala. sina awen la sina weka lon tenpo kama."
+
+#, fuzzy
+msgid "Adobe Mix"
+msgstr "ko pi kiwen ma"
