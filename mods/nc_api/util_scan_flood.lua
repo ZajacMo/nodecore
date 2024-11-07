@@ -9,7 +9,8 @@ local dirs = nc.dirs()
 
 function nc.scan_flood(pos, range, func)
 	local q = {pos}
-	local seen = {core.hash_node_position(pos)}
+	local seen = {}
+	seen[core.hash_node_position(pos)] = true
 	for d = 0, range do
 		local nxt = {}
 		for _, p in ipairs(q) do
