@@ -1,23 +1,23 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-local loosevol = nodecore.rake_volume(2, 1)
-local loosetest = nodecore.rake_index(function(def)
+local loosevol = nc.rake_volume(2, 1)
+local loosetest = nc.rake_index(function(def)
 		return def.groups and def.groups.falling_node
 		and def.groups.snappy == 1
 	end)
-local snapvol = nodecore.rake_volume(1, 1)
-local crumbvol = nodecore.rake_volume(1, 0)
+local snapvol = nc.rake_volume(1, 1)
+local crumbvol = nc.rake_volume(1, 0)
 local function mkonrake(toolcaps)
-	local snaptest = nodecore.rake_index(function(def)
+	local snaptest = nc.rake_index(function(def)
 			return def.groups and def.groups.snappy
 			and def.groups.snappy <= toolcaps.opts.snappy
 		end)
-	local crumbtest = nodecore.rake_index(function(def)
+	local crumbtest = nc.rake_index(function(def)
 			return def.groups and def.groups.crumbly
 			and def.groups.crumbly <= toolcaps.opts.crumbly
 		end)
@@ -27,9 +27,9 @@ local function mkonrake(toolcaps)
 		if crumbtest(pos, node) then return crumbvol, crumbtest end
 	end
 end
-nodecore.lode_rake_function = mkonrake
+nc.lode_rake_function = mkonrake
 
-nodecore.register_lode("rake", {
+nc.register_lode("rake", {
 		type = "tool",
 		description = "## Lode Rake",
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_rake.png",
@@ -42,7 +42,7 @@ nodecore.register_lode("rake", {
 			elseif t.name == "hot" then
 				dlv = -1
 			end
-			d.tool_capabilities = nodecore.toolcaps({
+			d.tool_capabilities = nc.toolcaps({
 					snappy = 1,
 					crumbly = 1 + dlv,
 					uses = 20 + 5 * dlv
@@ -56,7 +56,7 @@ nodecore.register_lode("rake", {
 		tool_wears_to = modname .. ":prill_# 10"
 	})
 
-nodecore.register_lode_anvil_recipe(-2, function(temper)
+nc.register_lode_anvil_recipe(-2, function(temper)
 		local adze = {name = modname .. ":adze_" .. temper, wear = 0.05}
 		return {
 			label = "assemble lode rake",
@@ -77,7 +77,7 @@ nodecore.register_lode_anvil_recipe(-2, function(temper)
 		}
 	end)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode rake",
 		action = "pummel",
 		toolgroups = {choppy = 3},

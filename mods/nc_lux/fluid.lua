@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local core, nc, pairs, vector
+    = core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local wetdef = {
 	description = "Flux",
@@ -30,23 +30,23 @@ local wetdef = {
 	},
 	post_effect_color = {a = 64, r = 251, g = 241, b = 143},
 }
-minetest.register_node(modname .. ":flux_source", nodecore.underride({
+core.register_node(modname .. ":flux_source", nc.underride({
 			drawtype = "liquid",
 			liquidtype = "source"
 		}, wetdef))
-minetest.register_node(modname .. ":flux_flowing", nodecore.underride({
+core.register_node(modname .. ":flux_flowing", nc.underride({
 			drawtype = "flowingliquid",
 			liquidtype = "flowing",
 			paramtype2 = "flowingliquid"
 		}, wetdef))
 
 local outdirs = {}
-for _, v in pairs(nodecore.dirs()) do
+for _, v in pairs(nc.dirs()) do
 	if v.y <= 0 then
 		outdirs[#outdirs + 1] = v
 	end
 end
-minetest.register_abm({
+core.register_abm({
 		label = "lux flow leak",
 		interval = 1,
 		chance = 2,
@@ -54,20 +54,20 @@ minetest.register_abm({
 		action = function(pos)
 			for _, v in pairs(outdirs) do
 				local p = vector.add(pos, v)
-				if nodecore.buildable_to(p) then
-					nodecore.set_node_check(p, {name = modname .. ":flux_source"})
+				if nc.buildable_to(p) then
+					nc.set_node_check(p, {name = modname .. ":flux_source"})
 				end
 			end
 		end
 	})
 
 local indirs = {}
-for _, v in pairs(nodecore.dirs()) do
+for _, v in pairs(nc.dirs()) do
 	if v.y >= 0 then
 		indirs[#indirs + 1] = v
 	end
 end
-minetest.register_abm({
+core.register_abm({
 		label = "lux flow ebb",
 		interval = 1,
 		chance = 2,
@@ -76,9 +76,9 @@ minetest.register_abm({
 		action = function(pos)
 			for _, v in pairs(indirs) do
 				local p = vector.add(pos, v)
-				local def = minetest.registered_nodes[minetest.get_node(p).name]
+				local def = core.registered_nodes[core.get_node(p).name]
 				if def and def.groups and def.groups.lux_cobble_max then return end
 			end
-			return minetest.set_node(pos, {name = modname .. ":flux_flowing", param2 = 7})
+			return core.set_node(pos, {name = modname .. ":flux_flowing", param2 = 7})
 		end
 	})

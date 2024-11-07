@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local core, nc, vector
+    = core, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function prism_check(_, node, recv)
-	local face = nodecore.facedirs[node.param2]
+	local face = nc.facedirs[node.param2]
 
 	if recv(face.t) or recv(face.b) then
 		return modname .. ":prism_gated"
@@ -29,7 +29,7 @@ local basedef = {
 	description = "Prism",
 	drawtype = "mesh",
 	mesh = "nc_optics_prism.obj",
-	selection_box = nodecore.fixedbox(
+	selection_box = nc.fixedbox(
 		{-7/16, -7/16, -7/16, 7/16, 7/16, 7/16}
 	),
 	tiles = {
@@ -49,10 +49,10 @@ local basedef = {
 	},
 	silktouch = false,
 	drop = modname .. ":prism",
-	on_construct = nodecore.optic_check,
-	on_destruct = nodecore.optic_check,
-	on_nc_rotate = nodecore.optic_immediate,
-	after_place_node = nodecore.optic_immediate,
+	on_construct = nc.optic_check,
+	on_destruct = nc.optic_check,
+	on_nc_rotate = nc.optic_immediate,
+	after_place_node = nc.optic_immediate,
 	optic_check = prism_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -60,15 +60,15 @@ local basedef = {
 		return vector.equals(a.f, b.r)
 		and vector.equals(a.r, b.f)
 	end,
-	on_rightclick = nodecore.rotation_on_rightclick,
-	sounds = nodecore.sounds("nc_optics_glassy"),
+	on_rightclick = nc.rotation_on_rightclick,
+	sounds = nc.sounds("nc_optics_glassy"),
 	nc_optic_family = "prism",
 	mapcolor = {r = 139, g = 187, b = 212},
 }
 
 local function reg(suff, def)
-	minetest.register_node(modname .. ":prism" .. suff,
-		nodecore.underride(def, basedef))
+	core.register_node(modname .. ":prism" .. suff,
+		nc.underride(def, basedef))
 end
 reg("", {})
 reg("_on", {
@@ -81,7 +81,7 @@ reg("_on", {
 		light_source = 1,
 		groups = {optic_source = 1},
 		optic_source = function(_, node)
-			local fd = nodecore.facedirs[node.param2]
+			local fd = nc.facedirs[node.param2]
 			return {fd.k, fd.l}
 		end
 	})

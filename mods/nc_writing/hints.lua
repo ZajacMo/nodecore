@@ -1,46 +1,46 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs
-    = minetest, nodecore, pairs
+local core, nc, pairs
+    = core, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_hint("write on a surface with a charcoal lump",
+nc.register_hint("write on a surface with a charcoal lump",
 	"charcoal writing",
 	"nc_fire:lump_coal"
 )
 
-nodecore.register_hint("rotate a charcoal glyph",
+nc.register_hint("rotate a charcoal glyph",
 	"charcoal writing rotate",
 	"charcoal writing"
 )
 
 local placedall = {}
-for i = 1, #nodecore.writing_glyphs do
+for i = 1, #nc.writing_glyphs do
 	placedall[#placedall + 1] = "place:" .. modname .. ":glyph" .. i
 end
 
-nodecore.register_hint("cycle through all charcoal glyphs",
+nc.register_hint("cycle through all charcoal glyphs",
 	placedall,
 	"charcoal writing"
 )
 
 for _, v in pairs({"sand", "gravel", "dirt"}) do
-	nodecore.register_hint("rake " .. v,
+	nc.register_hint("rake " .. v,
 		"rake " .. v,
 		{"group:rakey", "nc_terrain:" .. v}
 	)
 end
-nodecore.register_hint("rake humus",
+nc.register_hint("rake humus",
 	"rake humus",
 	{"group:rakey", "nc_tree:humus"}
 )
 
-nodecore.register_hint("leach raked humus to dirt",
+nc.register_hint("leach raked humus to dirt",
 	"leach group:humus_raked",
 	"group:humus_raked"
 )
-nodecore.register_hint("leach raked dirt to sand",
+nc.register_hint("leach raked dirt to sand",
 	"leach group:dirt_raked",
 	"group:dirt_raked"
 )

@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs
-    = ItemStack, math, minetest, nodecore, pairs
+local ItemStack, core, math, nc, pairs
+    = ItemStack, core, math, nc, pairs
 local math_floor, math_random
     = math.floor, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_on_register_item({
+nc.register_on_register_item({
 		retroactive = true,
 		func = function(_, def)
 			if def.groups and def.groups.lode_temper_hot
@@ -18,15 +18,15 @@ nodecore.register_on_register_item({
 	})
 
 local tongs_pickup = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_items) do
+core.after(0, function()
+		for k, v in pairs(core.registered_items) do
 			if v.groups and v.groups.tongs_pickup then
 				tongs_pickup[k] = ((v.groups.tongs_wear_add_percent or 0) + 100) / 100
 			end
 		end
 	end)
 
-nodecore.register_lode("tongs", {
+nc.register_lode("tongs", {
 		type = "tool",
 		description = "## Lode Tongs",
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_tongs.png",
@@ -55,7 +55,7 @@ nodecore.register_lode("tongs", {
 				local oldname = mystack:get_name()
 				mystack:add_wear(dwear)
 				if mystack:get_count() < 1 then
-					nodecore.toolbreakeffects(player, minetest.registered_items[oldname])
+					nc.toolbreakeffects(player, core.registered_items[oldname])
 					mystack = ItemStack(modname .. ":prill_" .. temper.name .. " 5")
 				end
 				player:get_inventory():set_stack("main", myslot, mystack)
@@ -65,7 +65,7 @@ nodecore.register_lode("tongs", {
 		end
 	})
 
-nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
+nc.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 		return {
 			label = "anvil making lode tongs",
 			action = "pummel",
@@ -88,7 +88,7 @@ nodecore.register_lode_anvil_recipe({x = 1, y = -1}, function(temper)
 			}}
 		}
 	end)
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode tongs",
 		action = "pummel",
 		toolgroups = {choppy = 3},
@@ -106,34 +106,34 @@ nodecore.register_craft({
 	})
 
 local function coolto(pos, stack, tempername)
-	local def = minetest.registered_items[stack:get_name()]
+	local def = core.registered_items[stack:get_name()]
 	if not def then return end
 	local alt = def["lode_alt_" .. tempername]
 	if not alt then return end
-	nodecore.witness(pos, "metallurgize " .. alt)
-	nodecore.playcookfx(pos, true, "hiss", 80, 0.2)
+	nc.witness(pos, "metallurgize " .. alt)
+	nc.playcookfx(pos, true, "hiss", 80, 0.2)
 	return ItemStack(alt .. " " .. stack:get_count())
 end
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "tong-carried lode cooling",
 		itemnames = {"group:lode_temper_hot"},
 		action = function(stack, data)
 			-- Don't conflict with cooking ABMs already operating on stack nodes
 			if data.node then return end
 
-			if nodecore.quenched(data.pos) then
+			if nc.quenched(data.pos) then
 				return coolto(data.pos, stack, "tempered")
 			end
 
 			local meta = stack:get_meta()
 			local exp = meta:get_float("annealtime") or 0
-			if exp > 0 and exp <= nodecore.gametime then
+			if exp > 0 and exp <= nc.gametime then
 				return coolto(data.pos, stack, "annealed")
 			elseif exp <= 0 then
-				meta:set_float("annealtime", nodecore.gametime + 60)
+				meta:set_float("annealtime", nc.gametime + 60)
 			end
-			nodecore.playcookfx(data.pos, {smoke = true}, "", 2, 1)
+			nc.playcookfx(data.pos, {smoke = true}, "", 2, 1)
 			return stack
 		end
 	})

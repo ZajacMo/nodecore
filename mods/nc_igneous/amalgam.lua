@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local core, nc, vector
+    = core, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local cob = ""
 local loose = ""
@@ -26,7 +26,7 @@ end
 local amalgam = modname .. ":amalgam"
 local lavasrc = "nc_terrain:lava_source"
 
-minetest.register_node(amalgam, {
+core.register_node(amalgam, {
 		description = "Amalgamation",
 		old_names = {"nc_terrain:amalgam"},
 		tiles = {tile("")},
@@ -48,59 +48,59 @@ minetest.register_node(amalgam, {
 				crumbly = 2,
 				falling_repose = 3
 			},
-			sounds = nodecore.sounds("nc_terrain_chompy")
+			sounds = nc.sounds("nc_terrain_chompy")
 		},
 		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		mapcolor = {r = 238, g = 76, b = 0},
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "lava quench",
 		interval = 1,
 		chance = 2,
 		nodenames = {lavasrc},
 		neighbors = {"group:coolant"},
 		action = function(pos)
-			nodecore.sound_play("nc_api_craft_hiss", {gain = 0.25, pos = pos})
-			nodecore.smokeburst(pos)
-			nodecore.dynamic_shade_add(pos, 1)
-			return nodecore.set_loud(pos, {name = amalgam})
+			nc.sound_play("nc_api_craft_hiss", {gain = 0.25, pos = pos})
+			nc.smokeburst(pos)
+			nc.dynamic_shade_add(pos, 1)
+			return nc.set_loud(pos, {name = amalgam})
 		end
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "amalgam melt",
 		interval = 1,
 		chance = 2,
 		nodenames = {"group:amalgam"},
 		arealoaded = 1,
 		action = function(pos)
-			if nodecore.quenched(pos) then return end
-			return nodecore.set_loud(pos, {name = lavasrc})
+			if nc.quenched(pos) then return end
+			return nc.set_loud(pos, {name = lavasrc})
 		end
 	})
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "amalgam stack melt",
 		interval = 1,
 		chance = 2,
 		arealoaded = 1,
 		itemnames = {"group:amalgam"},
 		action = function(stack, data)
-			if nodecore.quenched(data.pos) then return end
+			if nc.quenched(data.pos) then return end
 			if stack:get_count() == 1 and data.node then
-				local def = minetest.registered_nodes[data.node.name]
+				local def = core.registered_nodes[data.node.name]
 				if def and def.groups and def.groups.is_stack_only then
-					nodecore.set_loud(data.pos, {name = lavasrc})
+					nc.set_loud(data.pos, {name = lavasrc})
 					stack:take_item(1)
 					return stack
 				end
 			end
-			for rel in nodecore.settlescan() do
+			for rel in nc.settlescan() do
 				local p = vector.add(data.pos, rel)
-				if nodecore.buildable_to(p) then
-					nodecore.set_loud(p, {name = lavasrc})
+				if nc.buildable_to(p) then
+					nc.set_loud(p, {name = lavasrc})
 					stack:take_item(1)
 					return stack
 				end

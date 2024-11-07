@@ -10,7 +10,7 @@ const codemap = {
 	zh_Hans: 'zh_CN',
 	zh_Hant: 'zh_TW',
 
-	// Languages unsupported by Minetest itself, see
+	// Languages unsupported by engine itself, see
 	// src/unsupported_language_list.txt in MT src
 	ar: false,
 	dv: false,

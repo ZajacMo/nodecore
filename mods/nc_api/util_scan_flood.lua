@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, core, nc, pairs, table
-    = ipairs, core, nc, pairs, table
+local core, ipairs, nc, pairs, table
+    = core, ipairs, nc, pairs, table
 local table_insert, table_shuffle
     = table.insert, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------

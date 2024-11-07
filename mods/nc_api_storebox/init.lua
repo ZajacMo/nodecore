@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-function nodecore.storebox_open_bottom(pos, node, def)
-	node = node or minetest.get_node(pos)
-	def = def or minetest.registered_nodes[node.name] or {}
+function nc.storebox_open_bottom(pos, node, def)
+	node = node or core.get_node(pos)
+	def = def or core.registered_nodes[node.name] or {}
 	return (not def.storebox_access) or def.storebox_access(
 		{type = "node", above = {x = pos.x, y = pos.y - 1, z = pos.z},
 			under = pos}, pos, node)
@@ -17,25 +17,25 @@ end
 
 local function doplace(stack, clicker, pointed_thing, ...)
 	local function helper(left, ok, ...)
-		if ok then nodecore.node_sound(pointed_thing.above, "place") end
+		if ok then nc.node_sound(pointed_thing.above, "place") end
 		return left, ok, ...
 	end
-	return helper(nodecore.item_place_node_or_stack(stack, clicker, pointed_thing, ...))
+	return helper(nc.item_place_node_or_stack(stack, clicker, pointed_thing, ...))
 end
 
-function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thing)
-	if not nodecore.interact(clicker) then return end
+function nc.storebox_on_rightclick(pos, node, clicker, stack, pointed_thing)
+	if not nc.interact(clicker) then return end
 	if (not stack) or stack:is_empty() then return end
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name]
+	node = node or core.get_node(pos)
+	local def = core.registered_items[node.name]
 	if not def then return end
-	if nodecore.protection_test(pos, clicker) then return stack end
+	if nc.protection_test(pos, clicker) then return stack end
 	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, pos, node)) then
 		return doplace(stack, clicker, pointed_thing)
 	end
 	if clicker and clicker.get_wielded_item
-	and nodecore.craft_check(pos, minetest.get_node(pos), {
+	and nc.craft_check(pos, core.get_node(pos), {
 			action = "stackapply",
 			crafter = clicker,
 			pointed = pointed_thing
@@ -45,49 +45,49 @@ function nodecore.storebox_on_rightclick(pos, node, clicker, stack, pointed_thin
 	if def.stack_allow and def.stack_allow(pos, node, stack) == false then
 		return doplace(stack, clicker, pointed_thing)
 	end
-	return nodecore.stack_add(pos, stack, clicker)
+	return nc.stack_add(pos, stack, clicker)
 end
 
-function nodecore.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
-	minetest.node_punch(pos, node, puncher, pointed_thing, ...)
-	if not nodecore.interact(puncher) then return end
+function nc.storebox_on_punch(pos, node, puncher, pointed_thing, ...)
+	core.node_punch(pos, node, puncher, pointed_thing, ...)
+	if not nc.interact(puncher) then return end
 	if puncher:get_player_control().sneak then return end
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name]
-	if nodecore.protection_test(pos, puncher) then return end
+	node = node or core.get_node(pos)
+	local def = core.registered_items[node.name]
+	if nc.protection_test(pos, puncher) then return end
 	if def.storebox_access and (not def.storebox_access(
 			pointed_thing, pos, node)) then return end
 	if pointed_thing.above.y < pointed_thing.under.y then return end
-	return nodecore.stack_giveto(pos, puncher)
+	return nc.stack_giveto(pos, puncher)
 end
 
-function nodecore.storebox_stack_allow(pos, node, stack)
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_items[node.name]
-	local idef = minetest.registered_items[stack:get_name()] or {}
+function nc.storebox_stack_allow(pos, node, stack)
+	node = node or core.get_node(pos)
+	local def = core.registered_items[node.name]
+	local idef = core.registered_items[stack:get_name()] or {}
 	if idef.groups and idef.groups.container
 	and idef.groups.container >= def.groups.storebox then return false end
 end
 
-function nodecore.storebox_on_settle_item(pos, node, stack, inside)
-	if inside and nodecore.storebox_open_bottom(pos, node)
-	and nodecore.stack_can_fall_in({
+function nc.storebox_on_settle_item(pos, node, stack, inside)
+	if inside and nc.storebox_open_bottom(pos, node)
+	and nc.stack_can_fall_in({
 			x = pos.x,
 			y = pos.y - 1,
 			z = pos.z
 		}, stack) then
 		return stack
 	end
-	local def = node and minetest.registered_items[node.name] or {}
+	local def = node and core.registered_items[node.name] or {}
 	if def.storebox_access and (not def.storebox_access(
 			{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
 				under = pos}, pos, node)) then return stack end
-	return nodecore.stack_add(pos, stack)
+	return nc.stack_add(pos, stack)
 end
 
-function nodecore.storebox_can_item_fall_in(pos, node, stack)
-	if not (nodecore.stack_get(pos):is_empty() or stack:is_empty()) then return end
-	local def = node and minetest.registered_items[node.name] or {}
+function nc.storebox_can_item_fall_in(pos, node, stack)
+	if not (nc.stack_get(pos):is_empty() or stack:is_empty()) then return end
+	local def = node and core.registered_items[node.name] or {}
 	if def.storebox_access and ((not def.storebox_access(
 				{type = "node", above = {x = pos.x, y = pos.y + 1, z = pos.z},
 					under = pos}, pos, node))
@@ -97,37 +97,37 @@ function nodecore.storebox_can_item_fall_in(pos, node, stack)
 	return true
 end
 
-function nodecore.storebox_check_item_fall_out(pos, node, stack)
-	if not nodecore.storebox_open_bottom(pos, node) then return end
+function nc.storebox_check_item_fall_out(pos, node, stack)
+	if not nc.storebox_open_bottom(pos, node) then return end
 	if stack:is_empty() then return false end
 
 	local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-	if not nodecore.stack_can_fall_in(below, stack) then
-		if not nodecore.stack_can_fall_in(below, "") then return false end
-		nodecore.stack_set(pos, nodecore.stack_add(below, stack))
+	if not nc.stack_can_fall_in(below, stack) then
+		if not nc.stack_can_fall_in(below, "") then return false end
+		nc.stack_set(pos, nc.stack_add(below, stack))
 		return false
 	end
 
-	nodecore.stack_set(pos, "")
-	nodecore.item_eject(pos, stack)
+	nc.stack_set(pos, "")
+	nc.item_eject(pos, stack)
 	return true
 end
 
-nodecore.storebox_on_stack_change = function(...)
-	return nodecore.storebox_check_item_fall_out(...)
+nc.storebox_on_stack_change = function(...)
+	return nc.storebox_check_item_fall_out(...)
 end
 
-nodecore.storebox_on_falling_check = function(pos)
-	return nodecore.storebox_check_item_fall_out(pos,
-		minetest.get_node(pos), nodecore.stack_get(pos))
+nc.storebox_on_falling_check = function(pos)
+	return nc.storebox_check_item_fall_out(pos,
+		core.get_node(pos), nc.stack_get(pos))
 end
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type ~= "node" or (not def.groups) or (not def.groups.storebox) then return end
 
 		if not def.drawtype then
 			def.drawtype = "mesh"
-			def.visual_scale = nodecore.z_fight_ratio
+			def.visual_scale = nc.z_fight_ratio
 			def.mesh = def.mesh or modname .. "_box.obj"
 			def.backface_culling = true
 			def.use_texture_alpha = def.use_texture_alpha or "clip"
@@ -137,17 +137,17 @@ nodecore.register_on_register_item(function(_, def)
 		def.groups.always_scalable = def.groups.always_scalable or 1
 		def.groups.container = def.groups.container or def.groups.storebox
 
-		def.on_construct = def.on_construct or nodecore.visinv_on_construct
-		def.after_destruct = def.after_destruct or nodecore.visinv_after_destruct
+		def.on_construct = def.on_construct or nc.visinv_on_construct
+		def.after_destruct = def.after_destruct or nc.visinv_after_destruct
 
-		def.on_rightclick = def.on_rightclick or nodecore.storebox_on_rightclick
-		def.on_punch = def.on_punch or nodecore.storebox_on_punch
+		def.on_rightclick = def.on_rightclick or nc.storebox_on_rightclick
+		def.on_punch = def.on_punch or nc.storebox_on_punch
 
-		def.stack_allow = def.stack_allow or nodecore.storebox_stack_allow
+		def.stack_allow = def.stack_allow or nc.storebox_stack_allow
 
-		def.on_settle_item = def.on_settle_item or nodecore.storebox_on_settle_item
-		def.can_item_fall_in = def.can_item_fall_in or nodecore.storebox_can_item_fall_in
+		def.on_settle_item = def.on_settle_item or nc.storebox_on_settle_item
+		def.can_item_fall_in = def.can_item_fall_in or nc.storebox_can_item_fall_in
 
-		def.on_stack_change = def.on_stack_change or nodecore.storebox_on_stack_change
-		def.on_falling_check = def.on_falling_check or nodecore.storebox_on_falling_check
+		def.on_stack_change = def.on_stack_change or nc.storebox_on_stack_change
+		def.on_falling_check = def.on_falling_check or nc.storebox_on_falling_check
 	end)

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, vector
-    = minetest, nodecore, vector
+local core, nc, vector
+    = core, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local function pumparticles(data, time, speed, qty)
@@ -8,9 +8,9 @@ local function pumparticles(data, time, speed, qty)
 	local nodedef = data.nodedef
 	local pname = data.pname
 
-	local stack = nodecore.stack_get(data.pos)
+	local stack = nc.stack_get(data.pos)
 	if stack and not stack:is_empty() then
-		nodedef = minetest.registered_items[stack:get_name()] or nodedef
+		nodedef = core.registered_items[stack:get_name()] or nodedef
 	end
 
 	local a = pointed.above
@@ -24,8 +24,8 @@ local function pumparticles(data, time, speed, qty)
 	vel = vector.multiply(vel, speed)
 
 	return function()
-		data.clearfx = nodecore.digparticles(nodedef, nodecore.underride(
-				nodecore.underride({}, data.recipe
+		data.clearfx = nc.digparticles(nodedef, nc.underride(
+				nc.underride({}, data.recipe
 					and data.recipe.pumparticles or {}),
 				{
 					amount = qty,
@@ -46,22 +46,22 @@ end
 
 local pummeling = {}
 
-nodecore.register_on_dignode(function(_, _, digger)
+nc.register_on_dignode(function(_, _, digger)
 		if not (digger and digger:is_player()) then return end
 		pummeling[digger:get_player_name()] = nil
 	end)
 
-nodecore.register_on_punchnode(function(pos, node, puncher, pointed)
+nc.register_on_punchnode(function(pos, node, puncher, pointed)
 		if (not puncher:is_player()) or puncher:get_player_control().sneak then return end
 		local pname = puncher:get_player_name()
-		if not nodecore.interact(pname) then return end
+		if not nc.interact(pname) then return end
 
-		node = node or minetest.get_node(pos)
-		local def = minetest.registered_items[node.name] or {}
+		node = node or core.get_node(pos)
+		local def = core.registered_items[node.name] or {}
 		if not def.pointable then return end
 
 		local wield = puncher:get_wielded_item()
-		local now = minetest.get_us_time() / 1000000
+		local now = core.get_us_time() / 1000000
 		local pum = {
 			action = "pummel",
 			crafter = puncher,
@@ -80,7 +80,7 @@ nodecore.register_on_punchnode(function(pos, node, puncher, pointed)
 		local old = pummeling[pname]
 		if old and old.clearfx then old.clearfx() end
 
-		local hash = minetest.hash_node_position
+		local hash = core.hash_node_position
 		if old and hash(old.pos) == hash(pum.pos)
 		and hash(old.pointed.above) == hash(pum.pointed.above)
 		and hash(old.pointed.under) == hash(pum.pointed.under)
@@ -95,13 +95,13 @@ nodecore.register_on_punchnode(function(pos, node, puncher, pointed)
 
 		if pum.count < 2 then return end
 
-		if nodecore.protection_test(pos, pname) then
+		if nc.protection_test(pos, pname) then
 			pummeling[pname] = nil
 			return
 		end
 
 		local doneparticles = pumparticles(pum, 0.05, 1, 25)
-		if nodecore.craft_check(pos, node, nodecore.underride({}, pum)) then
+		if nc.craft_check(pos, node, nc.underride({}, pum)) then
 			doneparticles()
 			pummeling[pname] = nil
 			return

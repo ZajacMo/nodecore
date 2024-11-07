@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "hud flags",
 		action = function(player, data)
-			local interact = nodecore.interact(player)
+			local interact = nc.interact(player)
 			data.hud_flags.crosshair = false
-			data.hud_flags.wielditem = (not nodecore.hud_hidden(player, "wield"))
+			data.hud_flags.wielditem = (not nc.hud_hidden(player, "wield"))
 			and interact or false
-			data.hud_flags.hotbar = (not nodecore.hud_hidden(player, "hotbar"))
+			data.hud_flags.hotbar = (not nc.hud_hidden(player, "hotbar"))
 			and interact or false
 			data.hud_flags.healthbar = false
 			data.hud_flags.breathbar = false

@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, minetest, nodecore
-    = include, minetest, nodecore
+local core, include, nc
+    = core, include, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-nodecore.register_limited_abm = function(...)
-	nodecore.log("warning", "deprecated register_limited_abm in "
-		.. (minetest.get_current_modname() or "unknown mod"))
-	return minetest.register_abm(...)
+nc.register_limited_abm = function(...)
+	nc.log("warning", "deprecated register_limited_abm in "
+		.. (core.get_current_modname() or "unknown mod"))
+	return core.register_abm(...)
 end
 
 include("abmmux")

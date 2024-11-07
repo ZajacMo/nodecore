@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("find a sponge",
+nc.register_hint("find a sponge",
 	"group:sponge",
 	{true,
 		"anim_swim_up",
@@ -12,17 +12,17 @@ nodecore.register_hint("find a sponge",
 	}
 )
 
-nodecore.register_hint("harvest a sponge",
+nc.register_hint("harvest a sponge",
 	"inv:nc_sponge:sponge_living",
 	"group:sponge"
 )
 
-nodecore.register_hint("dry out a sponge",
+nc.register_hint("dry out a sponge",
 	"nc_sponge:sponge",
 	"group:sponge"
 )
 
-nodecore.register_hint("squeeze out a sponge",
+nc.register_hint("squeeze out a sponge",
 	"squeeze sponge",
 	{true,
 		"nc_sponge:sponge",

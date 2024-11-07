@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local grassname = "nc_terrain:dirt_with_grass"
 
@@ -30,7 +30,7 @@ for i = 1, 5 do
 	allsedges[sedgename] = i
 	allsedges[i] = sedgename
 	local h = (i == 5) and (3/4) or (i / 8)
-	minetest.register_node(sedgename, {
+	core.register_node(sedgename, {
 			description = "Sedge",
 			drawtype = "plantlike",
 			waving = 1,
@@ -56,15 +56,15 @@ for i = 1, 5 do
 				peat_grindable_item = 1,
 				optic_opaque = i == 5 and 1 or nil,
 			},
-			sounds = nodecore.sounds("nc_terrain_grassy"),
-			selection_box = nodecore.fixedbox(
+			sounds = nc.sounds("nc_terrain_grassy"),
+			selection_box = nc.fixedbox(
 				{-3/8, -1/2, -3/8, 3/8, -1/2 + h, 3/8}
 			),
 			stack_family = modname .. ":sedge_1",
 			drop = {max_items = 1, items = droprates[i]},
 			destroy_on_dig = 20,
 			after_place_node = function(pos)
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 				if node.name ~= sedgename then return end
 				local r = math_random(1, 15)
 				if r >= 8 then
@@ -77,12 +77,12 @@ for i = 1, 5 do
 					node.name = modname .. ":sedge_4"
 				end
 				if node.name == sedgename then return end
-				nodecore.set_node_check(pos, node)
+				nc.set_node_check(pos, node)
 			end,
 			mapcolor = {r = 80, g = 106, b = 50, a = 128},
 		})
 
-	minetest.register_decoration({
+	core.register_decoration({
 			name = modname .. ":sedge_" .. i,
 			deco_type = "simple",
 			place_on = {grassname},
@@ -101,7 +101,7 @@ for i = 1, 5 do
 
 end
 
-nodecore.register_on_nodeupdate({
+nc.register_on_nodeupdate({
 		ignore = {
 			stack_set = true,
 			add_node = true,
@@ -113,12 +113,12 @@ nodecore.register_on_nodeupdate({
 		function(pos, node)
 			if node.name == "nc_terrain:dirt_with_grass" then return end
 			local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-			node = minetest.get_node(above)
-			if allsedges[node.name] then return minetest.remove_node(above) end
+			node = core.get_node(above)
+			if allsedges[node.name] then return core.remove_node(above) end
 		end
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "sedge growth/death",
 		interval = 2,
 		chance = 250,
@@ -126,35 +126,35 @@ minetest.register_abm({
 		nodenames = {"group:flora_sedges"},
 		action = function(pos, node)
 			local below = {x = pos.x, y = pos.y - 1, z = pos.z}
-			local bnode = minetest.get_node_or_nil(below)
+			local bnode = core.get_node_or_nil(below)
 			if not bnode then return end
 			if bnode.name ~= grassname
-			or not nodecore.can_grass_grow_under(pos) then
-				return minetest.remove_node(pos)
+			or not nc.can_grass_grow_under(pos) then
+				return core.remove_node(pos)
 			end
 
 			local lv = allsedges[node.name]
 			local grow = lv and allsedges[lv + 1]
 			if grow then
-				if #nodecore.find_nodes_around(pos, "group:moist", {2, 1, 2}) < 1
+				if #nc.find_nodes_around(pos, "group:moist", {2, 1, 2}) < 1
 				then return end
 
-				nodecore.set_loud(pos, {name = grow, param2 = 2})
-				return nodecore.witness(pos, "sedge growth")
+				nc.set_loud(pos, {name = grow, param2 = 2})
+				return nc.witness(pos, "sedge growth")
 			end
 		end
 	})
 
-nodecore.register_on_peat_compost(function(pos)
+nc.register_on_peat_compost(function(pos)
 		if math_random(1, 10) ~= 1 then return end
 
-		if minetest.get_node(pos).name ~= grassname then return end
+		if core.get_node(pos).name ~= grassname then return end
 
 		local above = {x = pos.x, y = pos.y + 1, z = pos.z}
-		if not (nodecore.air_equivalent(above)
-			and nodecore.can_grass_grow_under(above)
-			and #nodecore.find_nodes_around(above, "group:moist", {2, 1, 2}) > 0)
+		if not (nc.air_equivalent(above)
+			and nc.can_grass_grow_under(above)
+			and #nc.find_nodes_around(above, "group:moist", {2, 1, 2}) > 0)
 		then return end
 
-		nodecore.set_loud(above, {name = modname .. ":sedge_1", param2 = 2})
+		nc.set_loud(above, {name = modname .. ":sedge_1", param2 = 2})
 	end)

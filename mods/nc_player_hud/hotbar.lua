@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local hotbar_slots = 8
 
 local bar_scale = 32
 local bar_margin = 1
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "hotbar images",
 		action = function(player, data)
 			local bar = "[combine:" .. (hotbar_slots * bar_scale + bar_margin * 2)
@@ -39,6 +39,6 @@ nodecore.register_playerstep({
 		end
 	})
 
-nodecore.register_on_joinplayer(function(player)
+nc.register_on_joinplayer(function(player)
 		player:hud_set_hotbar_selected_image(modname .. "_hotbar_sel.png")
 	end)

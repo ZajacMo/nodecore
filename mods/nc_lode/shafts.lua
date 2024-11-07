@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_lode("Bar", {
+nc.register_lode("Bar", {
 		["type"] = "node",
 		description = "## Lode Bar",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
-		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0, 1/8),
+		node_box = nc.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
+		selection_box = nc.fixedbox(-1/8, -0.5, -1/8, 1/8, 0, 1/8),
 		tiles = {modname .. "_#.png"},
 		light_source = 1,
 		crush_damage = 1,
@@ -24,7 +24,7 @@ nodecore.register_lode("Bar", {
 		mapcolor = {a = 0},
 	})
 
-nodecore.register_lode_anvil_recipe(-1, function(temper)
+nc.register_lode_anvil_recipe(-1, function(temper)
 		return {
 			label = "anvil making lode bar",
 			priority = -1,
@@ -43,7 +43,7 @@ nodecore.register_lode_anvil_recipe(-1, function(temper)
 		}
 	end)
 
-nodecore.register_lode_anvil_recipe(-1, function(temper)
+nc.register_lode_anvil_recipe(-1, function(temper)
 		return {
 			label = "anvil recycle lode bar",
 			priority = -1,
@@ -63,12 +63,12 @@ nodecore.register_lode_anvil_recipe(-1, function(temper)
 		}
 	end)
 
-nodecore.register_lode("Rod", {
+nc.register_lode("Rod", {
 		["type"] = "node",
 		description = "## Lode Rod",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
-		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0.5, 1/8),
+		node_box = nc.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
+		selection_box = nc.fixedbox(-1/8, -0.5, -1/8, 1/8, 0.5, 1/8),
 		tiles = {modname .. "_#.png"},
 		light_source = 2,
 		crush_damage = 2,
@@ -82,7 +82,7 @@ nodecore.register_lode("Rod", {
 		mapcolor = {a = 0},
 	})
 
-nodecore.register_lode_anvil_recipe(-2, function(temper)
+nc.register_lode_anvil_recipe(-2, function(temper)
 		return {
 			label = "anvil making lode rod",
 			action = "pummel",
@@ -105,7 +105,7 @@ nodecore.register_lode_anvil_recipe(-2, function(temper)
 		}
 	end)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode rod",
 		action = "pummel",
 		toolgroups = {choppy = 3},

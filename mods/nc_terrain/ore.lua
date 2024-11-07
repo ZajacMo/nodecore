@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local core, math, nc, pairs
+    = core, math, nc, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_ore({
+core.register_ore({
 		name = "gravel",
 		ore_type = "blob",
 		ore = modname .. ":gravel",
@@ -29,23 +29,23 @@ minetest.register_ore({
 
 local queue = {}
 
-minetest.register_globalstep(function()
+core.register_globalstep(function()
 		for i = 1, #queue do
-			minetest.transforming_liquid_add(queue[i])
+			core.transforming_liquid_add(queue[i])
 		end
 		queue = {}
 	end)
 
-local c_air = minetest.get_content_id("air")
+local c_air = core.get_content_id("air")
 local c_stones = {}
-for _, n in pairs(minetest.registered_nodes[modname .. ":stone"].strata) do
-	c_stones[minetest.get_content_id(n)] = true
+for _, n in pairs(core.registered_nodes[modname .. ":stone"].strata) do
+	c_stones[core.get_content_id(n)] = true
 end
 local depthdoubledsqr = 128 * 128
 local factorlimit = 4
 local function regspring(label, node, rarity)
-	local c_node = minetest.get_content_id(node)
-	nodecore.register_mapgen_shared({
+	local c_node = core.get_content_id(node)
+	nc.register_mapgen_shared({
 			label = label,
 			func = function(minp, maxp, area, data, _, _, _, rng)
 				local factor = (1 + minp.y * minp.y / depthdoubledsqr)
@@ -69,8 +69,8 @@ local function regspring(label, node, rarity)
 						or data[idx - area.zstride] == c_air
 						or data[idx + area.zstride] == c_air)
 					then
-						nodecore.log("info", label .. " at "
-							.. minetest.pos_to_string({
+						nc.log("info", label .. " at "
+							.. core.pos_to_string({
 									x = x, y = y, z = z
 								}))
 						data[area:index(x, y, z)] = c_node

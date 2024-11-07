@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "inventory requires interact",
 		action = function(player)
-			if nodecore.interact(player) then return end
-			return nodecore.inventory_dump(player)
+			if nc.interact(player) then return end
+			return nc.inventory_dump(player)
 		end
 	})

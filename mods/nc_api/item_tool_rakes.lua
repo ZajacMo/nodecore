@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, table, vector
-    = ipairs, math, minetest, nodecore, pairs, table, vector
+local core, ipairs, math, nc, pairs, table, vector
+    = core, ipairs, math, nc, pairs, table, vector
 local math_abs, math_max, table_sort
     = math.abs, math.max, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -13,9 +13,9 @@ local math_abs, math_max, table_sort
 -- returns true to dig, nil to not dig, false to abort loop
 
 local volcache = {}
-function nodecore.rake_volume(dxmax, dymax, dzmax)
+function nc.rake_volume(dxmax, dymax, dzmax)
 	dzmax = dzmax or dxmax
-	local key = minetest.pos_to_string({x = dxmax, y = dymax, z = dzmax})
+	local key = core.pos_to_string({x = dxmax, y = dymax, z = dzmax})
 	local rakepos = volcache[key]
 	if rakepos then return rakepos end
 	rakepos = {}
@@ -35,10 +35,10 @@ function nodecore.rake_volume(dxmax, dymax, dzmax)
 	return rakepos
 end
 
-function nodecore.rake_index(filterfunc)
+function nc.rake_index(filterfunc)
 	local rakable = {}
-	minetest.after(0, function()
-			for k, v in pairs(minetest.registered_nodes) do
+	core.after(0, function()
+			for k, v in pairs(core.registered_nodes) do
 				if filterfunc(v, k) then
 					rakable[k] = true
 				end
@@ -48,10 +48,10 @@ function nodecore.rake_index(filterfunc)
 end
 
 local function deferfall(func, ...)
-	local oldfall = minetest.check_for_falling
-	minetest.check_for_falling = nodecore.fallcheck
+	local oldfall = core.check_for_falling
+	core.check_for_falling = nc.fallcheck
 	local function helper(...)
-		minetest.check_for_falling = oldfall
+		core.check_for_falling = oldfall
 		return ...
 	end
 	return helper(func(...))
@@ -59,10 +59,10 @@ end
 
 local laststack
 local lastraking
-local old_node_dig = minetest.node_dig
-minetest.node_dig = function(pos, node, user, ...)
-	laststack = nodecore.stack_get(pos)
-	local wield = nodecore.machine_digging and nodecore.machine_digging.tool
+local old_node_dig = core.node_dig
+core.node_dig = function(pos, node, user, ...)
+	laststack = nc.stack_get(pos)
+	local wield = nc.machine_digging and nc.machine_digging.tool
 	or user and user:is_player() and user:get_wielded_item()
 	lastraking = wield and (wield:get_definition() or {}).on_rake
 	if lastraking then return deferfall(old_node_dig, pos, node, user, ...) end
@@ -70,48 +70,48 @@ minetest.node_dig = function(pos, node, user, ...)
 end
 
 local stackonly = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.groups.is_stack_only then stackonly[k] = true end
 		end
 	end)
 local function matching(_, na, pb, nb)
 	if stackonly[na.name] then
 		if not stackonly[nb.name] then return end
-		return (laststack and nodecore.stack_family(laststack))
-		== nodecore.stack_family(nodecore.stack_get(pb))
+		return (laststack and nc.stack_family(laststack))
+		== nc.stack_family(nc.stack_get(pb))
 	end
-	return nodecore.stack_family(na.name) == nodecore.stack_family(nb.name)
+	return nc.stack_family(na.name) == nc.stack_family(nb.name)
 end
 
 local function dorake(volume, check, pos, node, user, ...)
-	local sneak = user and user:get_player_control().sneak or nodecore.machine_digging
+	local sneak = user and user:get_player_control().sneak or nc.machine_digging
 	local wield = user and user:get_wielded_item():get_name()
 	local objpos = {}
 	for _, rel in ipairs(volume) do
 		local p = vector.add(pos, rel)
-		if not (nodecore.machine_digging
-			and vector.equals(nodecore.machine_digging.toolpos, p)) then
-			local n = minetest.get_node(p)
+		if not (nc.machine_digging
+			and vector.equals(nc.machine_digging.toolpos, p)) then
+			local n = core.get_node(p)
 			local allow = (rel.d > 0 or nil) and check(p, n, rel)
 			if allow == false then break end
 			if allow and ((not sneak) or matching(pos, node, p, n)) then
-				if nodecore.machine_digging then
-					nodecore.machine_digging.auxpos = p
+				if nc.machine_digging then
+					nc.machine_digging.auxpos = p
 				end
 				if (user and user:get_wielded_item():get_name()) ~= wield then break end
-				minetest.node_dig(p, n, user, ...)
-				if nodecore.machine_digging then
-					nodecore.machine_digging.auxpos = nil
+				core.node_dig(p, n, user, ...)
+				if nc.machine_digging then
+					nc.machine_digging.auxpos = nil
 				end
-				objpos[minetest.hash_node_position(p)] = true
+				objpos[core.hash_node_position(p)] = true
 			end
 		end
 	end
-	for _, lua in pairs(minetest.luaentities) do
+	for _, lua in pairs(core.luaentities) do
 		if lua.name == "__builtin:item" then
 			local p = lua.object and lua.object:get_pos()
-			if p and objpos[minetest.hash_node_position(
+			if p and objpos[core.hash_node_position(
 				vector.round(p))] then
 				lua.object:set_pos(pos)
 			end
@@ -121,7 +121,7 @@ end
 
 local rakelock = {}
 
-nodecore.register_on_dignode(function(pos, node, user, ...)
+nc.register_on_dignode(function(pos, node, user, ...)
 		local nowraking = lastraking
 		if not nowraking then return end
 		lastraking = nil

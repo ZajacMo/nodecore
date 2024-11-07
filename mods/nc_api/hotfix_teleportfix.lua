@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, nodecore, pairs, string, type, vector
-    = getmetatable, minetest, nodecore, pairs, string, type, vector
+local core, getmetatable, nc, pairs, string, type, vector
+    = core, getmetatable, nc, pairs, string, type, vector
 local string_format
     = string.format
 -- LUALOCALS > ---------------------------------------------------------
 
-if minetest.features._hotfix_teleport_retry then return end
-minetest.features._hotfix_teleport_retry = true
+if core.features._hotfix_teleport_retry then return end
+core.features._hotfix_teleport_retry = true
 
 -- How fast the player is likely able to move under their own
 -- power or other game mechanics
@@ -25,14 +25,14 @@ local min_teleport_dist = 2
 
 local playerdata = {}
 
-local function now() return minetest.get_us_time() / 1000000 end
-local pstr = function(v) return minetest.pos_to_string(v, 0) end
+local function now() return core.get_us_time() / 1000000 end
+local pstr = function(v) return core.pos_to_string(v, 0) end
 
 local raw_set_pos
 
 local function check(player, pname, pdata)
 	if now() >= pdata.stamp + pdata.exp then
-		nodecore.log("info", string_format("teleport tracking for %s expired",
+		nc.log("info", string_format("teleport tracking for %s expired",
 				pname))
 		playerdata[pname] = nil
 		return
@@ -44,7 +44,7 @@ local function check(player, pname, pdata)
 	local odist = vector.distance(pos, pdata.old)
 	local ndist = vector.distance(pos, pdata.pos)
 	if odist < ndist then
-		nodecore.log("warning", string_format("correcting teleport regression of %s"
+		nc.log("warning", string_format("correcting teleport regression of %s"
 				.. " found at %s, teleported from %s (%d m) to %s (%d m)"
 				.. " %.3f s ago",
 				pname, pstr(pos), pstr(pdata.old), odist, pstr(pdata.pos),
@@ -54,8 +54,8 @@ local function check(player, pname, pdata)
 	end
 end
 
-minetest.register_globalstep(function()
-		for _, player in pairs(minetest.get_connected_players()) do
+core.register_globalstep(function()
+		for _, player in pairs(core.get_connected_players()) do
 			local pname = player:get_player_name()
 			local pdata = playerdata[pname]
 			if pdata then check(player, pname, pdata) end
@@ -63,9 +63,9 @@ minetest.register_globalstep(function()
 	end)
 
 local function patchplayers()
-	local anyplayer = (minetest.get_connected_players())[1]
+	local anyplayer = (core.get_connected_players())[1]
 	if not anyplayer then
-		return minetest.after(0, patchplayers)
+		return core.after(0, patchplayers)
 	end
 
 	local meta = getmetatable(anyplayer)
@@ -87,7 +87,7 @@ local function patchplayers()
 		end
 		local exp = dist / max_likely_speed
 		if exp > max_track_expire then exp = max_track_expire end
-		nodecore.log("action", string_format("teleport tracking for %s"
+		nc.log("action", string_format("teleport tracking for %s"
 				.. " from %s to %s, for %.3f s",
 				pname, pstr(old), pstr(pos), exp))
 		playerdata[pname] = {
@@ -98,6 +98,6 @@ local function patchplayers()
 		}
 		return raw_set_pos(self, pos, ...)
 	end
-	nodecore.log("info", "teleport regression detection player:set_pos hooked")
+	nc.log("info", "teleport regression detection player:set_pos hooked")
 end
-minetest.after(0, patchplayers)
+core.after(0, patchplayers)

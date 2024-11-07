@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local core, math, nc, pairs, vector
+    = core, math, nc, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local pumname = modname .. ":pumice"
 
@@ -24,14 +24,14 @@ pumdef = {
 	crush_damage = 1,
 	destroy_on_dig = true,
 	silktouch = false,
-	sounds = nodecore.sounds("nc_optics_glassy", nil, 0.8),
+	sounds = nc.sounds("nc_optics_glassy", nil, 0.8),
 	mapcolor = {r = 79, g = 79, b = 79},
 }
-minetest.register_node(pumname, pumdef)
+core.register_node(pumname, pumdef)
 
 do
-	local dirs = nodecore.dirs()
-	minetest.register_abm({
+	local dirs = nc.dirs()
+	core.register_abm({
 			label = "lava pumice",
 			interval = 1,
 			chance = 2,
@@ -40,17 +40,17 @@ do
 			action = function(pos)
 				if math_random() < 0.5 then
 					local p = vector.add(pos, dirs[math_random(1, #dirs)])
-					local n = minetest.get_node(p)
-					if minetest.get_item_group(n.name, "water") > 0 then
-						return nodecore.set_loud(p, {name = pumname})
+					local n = core.get_node(p)
+					if core.get_item_group(n.name, "water") > 0 then
+						return nc.set_loud(p, {name = pumname})
 					end
 				end
-				return nodecore.set_loud(pos, {name = pumname})
+				return nc.set_loud(pos, {name = pumname})
 			end
 		})
 end
 
-minetest.register_abm({
+core.register_abm({
 		label = "pumice melt",
 		interval = 1,
 		chance = 2,
@@ -58,10 +58,10 @@ minetest.register_abm({
 		neighbors = {"group:lava"},
 		arealoaded = 1,
 		action = function(pos)
-			if math_random() < 0.95 and nodecore.quenched(pos) then return end
-			nodecore.set_loud(pos, {name = "nc_terrain:lava_flowing", param2 = 7})
+			if math_random() < 0.95 and nc.quenched(pos) then return end
+			nc.set_loud(pos, {name = "nc_terrain:lava_flowing", param2 = 7})
 			pos.y = pos.y + 1
-			return nodecore.fallcheck(pos)
+			return nc.fallcheck(pos)
 		end
 	})
 
@@ -73,8 +73,8 @@ minetest.register_abm({
 local pumices = {ignore = true}
 local supports = {ignore = true}
 local directsupports = {ignore = true}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			local grp = v.groups or {}
 			if (not v.buildable_to) or
 			v.liquid_move_physics or
@@ -98,11 +98,11 @@ minetest.after(0, function()
 
 -- true = supported, nil = bridge, false = open
 local function checksupport(pos)
-	local nn = minetest.get_node(pos).name
+	local nn = core.get_node(pos).name
 	if supports[nn] then return true end
 	if not pumices[nn] then return false end
 	local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
-	local bn = minetest.get_node(bpos).name
+	local bn = core.get_node(bpos).name
 	return supports[bn]
 end
 local function checkbridge(pos, dx, dy, dz)
@@ -112,9 +112,9 @@ end
 
 local max_entities = 50
 local estimated_falling_ents = 0
-minetest.register_globalstep(function()
+core.register_globalstep(function()
 		estimated_falling_ents = 0
-		for _, ent in pairs(minetest.luaentities) do
+		for _, ent in pairs(core.luaentities) do
 			if ent.name == "__builtin:falling_node" then
 				estimated_falling_ents = estimated_falling_ents + 1
 				if estimated_falling_ents >= max_entities then return end
@@ -122,7 +122,7 @@ minetest.register_globalstep(function()
 		end
 	end)
 
-minetest.register_abm({
+core.register_abm({
 		label = "pumice collapse",
 		interval = 1,
 		chance = 100,
@@ -132,7 +132,7 @@ minetest.register_abm({
 			if estimated_falling_ents >= max_entities then return end
 
 			local bpos = {x = pos.x, y = pos.y - 1, z = pos.z}
-			local bnode = minetest.get_node(bpos)
+			local bnode = core.get_node(bpos)
 			if directsupports[bnode.name] then return end
 
 			local e = checksupport({x = pos.x + 1, y = pos.y, z = pos.z})
@@ -149,6 +149,6 @@ minetest.register_abm({
 			then return end
 
 			estimated_falling_ents = estimated_falling_ents + 1
-			return nodecore.fall_force(pos, node)
+			return nc.fall_force(pos, node)
 		end
 	})

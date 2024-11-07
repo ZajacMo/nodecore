@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, type, vector
-    = math, minetest, nodecore, pairs, table, type, vector
+local core, math, nc, pairs, table, type, vector
+    = core, math, nc, pairs, table, type, vector
 local math_pi, table_remove
     = math.pi, table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local seethru = {}
-minetest.after(0, function()
-		for name, def in pairs(minetest.registered_nodes) do
-			if (minetest.get_item_group(name, "witness_opaque") == 0)
+core.after(0, function()
+		for name, def in pairs(core.registered_nodes) do
+			if (core.get_item_group(name, "witness_opaque") == 0)
 			and (
-				minetest.get_item_group(name, "witness_transparent") > 0
+				core.get_item_group(name, "witness_transparent") > 0
 				or def.sunlight_propagates
 				or (
 					def.paramtype == "light"
@@ -35,11 +35,11 @@ local function witnessdata(player)
 	local data = cache[pname]
 	if not data then
 		data = meta:get_string(metakey) or ""
-		data = data and data ~= "" and minetest.deserialize(data)
+		data = data and data ~= "" and core.deserialize(data)
 		or {queue = {}, lookup = {}}
 		cache[pname] = data
 	end
-	return data, function() return meta:set_string(metakey, minetest.serialize(data)) end
+	return data, function() return meta:set_string(metakey, core.serialize(data)) end
 end
 
 local function canwitnessnow(player, pos)
@@ -53,24 +53,24 @@ local function canwitnessnow(player, pos)
 	if vector.angle(look, targ) > math_pi / 8 then return end
 
 	local rp = vector.round(pos)
-	for pt in minetest.raycast(pos, ppos, false, true) do
+	for pt in core.raycast(pos, ppos, false, true) do
 		if not pt.under then return end
 		if vector.equals(pt.under, rp) then return true end
-		local node = minetest.get_node(pt.under)
+		local node = core.get_node(pt.under)
 		if not seethru[node.name] then return end
 	end
 	return true
 end
 
 local function witnesslater(player, pos, disc)
-	disc = nodecore.flatkeys(disc)
+	disc = nc.flatkeys(disc)
 	local data, save = witnessdata(player)
 	local newdata = {
-		node = minetest.get_node(pos).name,
-		stack = nodecore.stack_get(pos):get_name(),
+		node = core.get_node(pos).name,
+		stack = nc.stack_get(pos):get_name(),
 		disc = disc
 	}
-	local posstr = minetest.pos_to_string(pos)
+	local posstr = core.pos_to_string(pos)
 	local olddata = data.lookup[posstr]
 	if olddata and (olddata.node == newdata.node) and (olddata.stack
 		== newdata.stack) and (type(olddata.disc) == "table") then
@@ -87,10 +87,10 @@ end
 
 local function witness_core(pos, disc, maxdist)
 	maxdist = maxdist or 16
-	for _, player in pairs(minetest.get_connected_players()) do
+	for _, player in pairs(core.get_connected_players()) do
 		local ppos = player:get_pos()
 		if vector.distance(ppos, pos) <= maxdist then
-			local deferred = nodecore.player_discover_deferred(
+			local deferred = nc.player_discover_deferred(
 				player, disc, "witness:")
 			if deferred then
 				if canwitnessnow(player, pos) then
@@ -102,7 +102,7 @@ local function witness_core(pos, disc, maxdist)
 		end
 	end
 end
-function nodecore.witness(pos, disc, maxdist)
+function nc.witness(pos, disc, maxdist)
 	if (not pos.x) and pos[1] and pos[1].x then
 		for i = 1, #pos do
 			witness_core(pos[i], disc, maxdist)
@@ -114,17 +114,17 @@ end
 
 local function delayed_witness(pos, node, player)
 	local data, save = witnessdata(player)
-	local posstr = minetest.pos_to_string(pos)
+	local posstr = core.pos_to_string(pos)
 	local found = data.lookup[posstr]
 	if not found then return end
 	data.lookup[posstr] = nil
 	save()
-	node = node or minetest.get_node(pos)
-	if (found.node ~= node.name) or (nodecore.stack_get(pos):get_name()
+	node = node or core.get_node(pos)
+	if (found.node ~= node.name) or (nc.stack_get(pos):get_name()
 		~= found.stack) then return end
-	return nodecore.player_discover(player, found.disc, "witness:")
+	return nc.player_discover(player, found.disc, "witness:")
 end
-minetest.register_on_punchnode(delayed_witness)
-nodecore.register_on_node_stare(function(player, pt)
-		delayed_witness(pt.under, minetest.get_node(pt.under), player)
+core.register_on_punchnode(delayed_witness)
+nc.register_on_node_stare(function(player, pt)
+		delayed_witness(pt.under, core.get_node(pt.under), player)
 	end)

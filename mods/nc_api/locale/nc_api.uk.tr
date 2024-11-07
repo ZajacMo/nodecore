@@ -8,7 +8,6 @@
 - Climbing spots may be climbed once black particles appear.=- Збиратись по виступам можна як тільки з'являються чорні часточки.
 - Crafting is done by building recipes in-world.=- Майстрування виконується шляхом обробки інгридієнтів у світі.
 - DONE: @1=- ГОТОВО: @1
-- Displaced nodes can be climbed through like climbing spots.=- Можна збиратися по зміщених "вузлах" так само як і по виступах.
 - Drop and pick up items to rearrange your inventory.=- Викиньте та підніміть речі у іншу кишеню, щоб перерозподілити інвентар.
 - Drop items onto ground to create stack nodes. They do not decay.=- Викиньте речі на землю, щоб створили груду вузла. Вони не зникають.
 - FUTURE: @1=- МАЙБУТНІ: @1
@@ -16,11 +15,8 @@
 - Hold/repeat right-click on walls/ceilings barehanded to create climbing spots.=- Затисніть/повторюйте ПКМ на стінах/стелях вільною рукою щоб створити виступити для лазання.
 - Hopelessly stuck? Try asking the community chatrooms (About tab).=- Безнадійно застрягли? Спробуйте попитати допомоги у розмовниках спільноти (вкладка Про гру).
 - If a recipe exists, you will see a special particle effect.=- Якщо рецепт існує, ви побачите спеціальний ефект з частинок.
-- If it takes more than 5 seconds to dig, you don't have the right tool.=- Якщо Ви копаєте більше ніж 5 секунд — у Вас відсутній правильний інструмент.
 - Items picked up try to fit into the current selected slot first.=- Підібрані речі будуть розміщені в найближчу вільну кишеню, або в руку якщо вільна.
 - Larger recipes are usually more symmetrical.=- Більші рецепти зазвичай симетричніші.
-- Learn to use the stars for long distance navigation.=- Навчіться використовувати зірки для навігації на далекі відстані.
-- Nodes dug without the right tool cannot be picked up, only displaced.=- "Вузли" викопані без правильного інструмента не можуть бути підібрані, а тільки зміщені.
 - Order and specific face of placement may matter for crafting.=- Послідовність і бік розміщення можуть бути важливими для майстрування.
 - Ores may be hidden, but revealed by subtle clues in terrain.=- Руди можуть бути приховані, але виявлені завдяки незначним відмінностям в поверхні.
 - Recipes are time-based, punching faster does not speed up.=- Рецепти засновані на часі, швидше лупцювання їх не прискорює.
@@ -437,7 +433,6 @@ Yellow Cup Flower=Жовтий Чашецвіт
 Yellow Rosette Flower=Жовта Розетка
 Yellow Star Flower=Жовтий Зорецвіт
 Yit Charcoal Glyph=Вугляний Ієрогліф "Йіт"
-Your Minetest version is outdated, please update!=Ваша версія Minetest застаріла, будь ласка, оновіться!
 Zin Charcoal Glyph=Вугляний Ієрогліф "Зін"
 activate a lens=активувати лінзу
 activate a prism=активувати призму

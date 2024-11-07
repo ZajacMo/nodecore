@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":glass", {
+core.register_node(modname .. ":glass", {
 		description = "Clear Glass",
 		drawtype = "glasslike_framed",
 		tiles = {
@@ -20,11 +20,11 @@ minetest.register_node(modname .. ":glass", {
 		},
 		sunlight_propagates = true,
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_optics_glassy"),
+		sounds = nc.sounds("nc_optics_glassy"),
 		mapcolor = {r = 255, g = 255, b = 255, a = 64},
 	})
 
-minetest.register_node(modname .. ":glass_opaque", {
+core.register_node(modname .. ":glass_opaque", {
 		description = "Chromatic Glass",
 		tiles = {modname .. "_glass_frost.png"},
 		groups = {
@@ -33,11 +33,11 @@ minetest.register_node(modname .. ":glass_opaque", {
 			scaling_time = 300
 		},
 		paramtype = "light",
-		sounds = nodecore.sounds("nc_optics_glassy"),
+		sounds = nc.sounds("nc_optics_glassy"),
 		mapcolor = {r = 139, g = 187, b = 212},
 	})
 
-minetest.register_node(modname .. ":glass_crude", {
+core.register_node(modname .. ":glass_crude", {
 		description = "Crude Glass",
 		drawtype = "glasslike_framed",
 		tiles = {
@@ -52,11 +52,11 @@ minetest.register_node(modname .. ":glass_crude", {
 			crumbly = 2,
 			scaling_time = 150
 		},
-		sounds = nodecore.sounds("nc_terrain_crunchy"),
+		sounds = nc.sounds("nc_terrain_crunchy"),
 		mapcolor = {r = 255, g = 255, b = 255, a = 128},
 	})
 
-minetest.register_node(modname .. ":glass_float", {
+core.register_node(modname .. ":glass_float", {
 		description = "Float Glass",
 		drawtype = "glasslike_framed",
 		tiles = {
@@ -71,7 +71,7 @@ minetest.register_node(modname .. ":glass_float", {
 			cracky = 3,
 			scaling_time = 300
 		},
-		sounds = nodecore.sounds("nc_optics_glassy"),
+		sounds = nc.sounds("nc_optics_glassy"),
 		mapcolor = {r = 255, g = 255, b = 255, a = 16},
 	})
 
@@ -122,22 +122,22 @@ local moltdef = {
 	post_effect_color = {a = 191, r = 255, g = 64, b = 0},
 	liquid_alternative_flowing = modname .. ":glass_hot_flowing",
 	liquid_alternative_source = modname .. ":glass_hot_source",
-	sounds = nodecore.sounds("nc_terrain_bubbly"),
+	sounds = nc.sounds("nc_terrain_bubbly"),
 	mapcolor = {r = 238, g = 76, b = 0},
 }
 
-minetest.register_node(modname .. ":glass_hot_source",
-	nodecore.underride({
+core.register_node(modname .. ":glass_hot_source",
+	nc.underride({
 			liquidtype = "source"
 		}, moltdef))
-minetest.register_node(modname .. ":glass_hot_flowing",
-	nodecore.underride({
+core.register_node(modname .. ":glass_hot_flowing",
+	nc.underride({
 			liquidtype = "flowing",
 			drawtype = "flowingliquid",
 			paramtype2 = "flowingliquid"
 		}, moltdef))
 
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "glass source ambiance",
 		nodenames = {modname .. ":glass_hot_source"},
 		neigbors = {"air"},
@@ -146,7 +146,7 @@ nodecore.register_ambiance({
 		sound_name = "nc_terrain_bubbly",
 		sound_gain = 0.2
 	})
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "glass flow ambiance",
 		nodenames = {modname .. ":glass_hot_flowing"},
 		neigbors = {"air"},

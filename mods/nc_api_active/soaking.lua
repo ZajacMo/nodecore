@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, math, minetest, nodecore, pairs, string, type, vector
-    = error, math, minetest, nodecore, pairs, string, type, vector
+local core, error, math, nc, pairs, string, type, vector
+    = core, error, math, nc, pairs, string, type, vector
 local math_floor, math_sqrt, string_format
     = math.floor, math.sqrt, string.format
 -- LUALOCALS > ---------------------------------------------------------
 
 local metacache = {}
 
-nodecore.register_on_nodeupdate({
+nc.register_on_nodeupdate({
 		ignore = {
 			stack_set = true,
 			swap_node = true,
@@ -15,7 +15,7 @@ nodecore.register_on_nodeupdate({
 			liquid_transformed = true,
 		},
 		func = function(pos)
-			metacache[minetest.hash_node_position(pos)] = nil
+			metacache[core.hash_node_position(pos)] = nil
 		end
 	})
 
@@ -73,7 +73,7 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 	if not def.soakrand then
 		if def.soakvary then
 			def.soakrand = function(rate, ticks)
-				return rate * (1 + def.soakvary * nodecore.boxmuller()
+				return rate * (1 + def.soakvary * nc.boxmuller()
 					/ math_sqrt(ticks)) * ticks
 			end
 		else
@@ -89,7 +89,7 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 			return ...
 		end
 
-		local now = nodecore.gametime
+		local now = nc.gametime
 
 		local metadata = metaget(meta, def, nodekey)
 		local total = metadata.qty or 0
@@ -137,36 +137,36 @@ local function soaking_core(def, reg, getmeta, getnodekey)
 end
 
 local soaking_abm_by_fieldname = {}
-function nodecore.register_soaking_abm(def)
-	def.nodeidx = nodecore.group_expand(def.nodenames, true)
+function nc.register_soaking_abm(def)
+	def.nodeidx = nc.group_expand(def.nodenames, true)
 	soaking_abm_by_fieldname[def.fieldname] = def
 	return soaking_core(def,
-		minetest.register_abm,
-		function(pos) return minetest.get_meta(pos) end,
-		minetest.hash_node_position
+		core.register_abm,
+		function(pos) return core.get_meta(pos) end,
+		core.hash_node_position
 	)
 end
-function nodecore.register_soaking_aism(def)
+function nc.register_soaking_aism(def)
 	return soaking_core(def,
-		nodecore.register_aism,
+		nc.register_aism,
 		function(stack) return stack:get_meta() end,
 		function() end
 	)
 end
 
 local pending
-function nodecore.soaking_abm_push(pos, fieldname, qty)
+function nc.soaking_abm_push(pos, fieldname, qty)
 	local abm = soaking_abm_by_fieldname[fieldname]
 	if not abm then return end
 
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if not abm.nodeidx[node.name] then return end
 
-	local meta = minetest.get_meta(pos)
-	local nodekey = minetest.hash_node_position(vector.round(pos))
+	local meta = core.get_meta(pos)
+	local nodekey = core.hash_node_position(vector.round(pos))
 	local data = metaget(meta, abm, nodekey)
 	metaset(meta, abm, nodekey, (data.qty or 0) + qty,
-		data.time or nodecore.gametime,
+		data.time or nc.gametime,
 		data.rate)
 
 	local func = abm.action
@@ -186,43 +186,43 @@ end
 
 local ticklemax = 600
 local function ticklelog(pos, fieldname, qty)
-	nodecore.log("info", string_format("abm push "
+	nc.log("info", string_format("abm push "
 			.. (type(qty) == "number" and "%0.2f" or "%q")
 			.. " for %q at %s",
-			qty, fieldname, minetest.pos_to_string(pos)))
+			qty, fieldname, core.pos_to_string(pos)))
 end
-function nodecore.soaking_abm_tickle(pos, fieldname)
+function nc.soaking_abm_tickle(pos, fieldname)
 	local abm = soaking_abm_by_fieldname[fieldname]
 	if not abm then return ticklelog(pos, fieldname, "bad fieldname") end
 
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if not abm.nodeidx[node.name] then return ticklelog(pos, fieldname, "index mismatch") end
 
 	local rate = abm.soakrate(pos, node)
 	if not rate then return ticklelog(pos, fieldname, "no soak rate") end
 
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local tickletime = meta:get_float(fieldname .. "tickle")
 	if not (tickletime and tickletime > 0
-		and tickletime < nodecore.gametime) then
-		tickletime = nodecore.gametime
+		and tickletime < nc.gametime) then
+		tickletime = nc.gametime
 	end
-	meta:set_float(fieldname .. "tickle", nodecore.gametime)
-	local diff = nodecore.gametime - tickletime
+	meta:set_float(fieldname .. "tickle", nc.gametime)
+	local diff = nc.gametime - tickletime
 	if diff > ticklemax then diff = ticklemax end
 	local qty = (diff ^ 0.5) * rate * 10
 	ticklelog(pos, fieldname, qty)
-	nodecore.soaking_abm_push(pos, fieldname, qty)
+	nc.soaking_abm_push(pos, fieldname, qty)
 	return qty
 end
 
 do
 	local zero = {x = 0, y = 0, z = 0}
-	function nodecore.soaking_particles(pos, amount, time, width, nodename)
-		nodename = nodename or minetest.get_node(pos).name
-		local def = minetest.registered_items[nodename]
+	function nc.soaking_particles(pos, amount, time, width, nodename)
+		nodename = nodename or core.get_node(pos).name
+		local def = core.registered_items[nodename]
 		if not def then return end
-		nodecore.digparticles(def,
+		nc.digparticles(def,
 			{
 				amount = amount,
 				time = time,

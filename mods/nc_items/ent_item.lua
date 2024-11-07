@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, pairs, vector
-    = ItemStack, ipairs, math, minetest, nodecore, pairs, vector
+local ItemStack, core, ipairs, math, nc, pairs, vector
+    = ItemStack, core, ipairs, math, nc, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local stackonly = nodecore.group_expand("group:is_stack_only", true)
+local stackonly = nc.group_expand("group:is_stack_only", true)
 
 local function nuke(self)
 	self.itemstring = ""
@@ -14,8 +14,8 @@ local function nuke(self)
 end
 
 local can_settle_on = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.walkable or (v.groups and v.groups.support_falling or 0) > 0 then
 				can_settle_on[k] = true
 			end
@@ -23,44 +23,44 @@ minetest.after(0, function()
 	end)
 
 local hand = ItemStack("")
-nodecore.register_item_entity_on_settle(function(self, pos)
-		local curnode = minetest.get_node(pos)
+nc.register_item_entity_on_settle(function(self, pos)
+		local curnode = core.get_node(pos)
 		if curnode.name == "ignore" then return end
 
 		local below = {x = pos.x, y = pos.y - 0.55, z = pos.z}
-		local bnode = minetest.get_node(below)
+		local bnode = core.get_node(below)
 
-		if (pos.y - 1 >= nodecore.map_limit_min) and (bnode.name == "ignore")
+		if (pos.y - 1 >= nc.map_limit_min) and (bnode.name == "ignore")
 		then return end
 
 		local item = ItemStack(self.itemstring)
-		item = nodecore.stack_settle(pos, item, curnode, nil, true)
+		item = nc.stack_settle(pos, item, curnode, nil, true)
 		if item:is_empty() then return nuke(self) end
-		if nodecore.stack_can_fall_in(below, item, bnode, nil, self) then
+		if nc.stack_can_fall_in(below, item, bnode, nil, self) then
 			self.object:set_pos({x = pos.x, y = pos.y - 0.55, z = pos.z})
 			self.object:set_velocity({x = 0, y = 0, z = 0})
 			return
 		end
-		item = nodecore.stack_settle(below, item, bnode)
+		item = nc.stack_settle(below, item, bnode)
 		if item:is_empty() then return nuke(self) end
 
-		if self.nextscan and nodecore.gametime < self.nextscan then return end
-		self.nextscan = (self.nextscan or nodecore.gametime) + 0.75 + 0.5 * math_random()
+		if self.nextscan and nc.gametime < self.nextscan then return end
+		self.nextscan = (self.nextscan or nc.gametime) + 0.75 + 0.5 * math_random()
 
 		local function placeat(p)
-			nodecore.place_stack(p, item)
-			nodecore.visinv_tween_from(p, self.object:get_pos())
+			nc.place_stack(p, item)
+			nc.visinv_tween_from(p, self.object:get_pos())
 			return nuke(self)
 		end
 
 		local itemname = item:get_name()
 		local function trydig(p)
-			local node = minetest.get_node(p)
+			local node = core.get_node(p)
 			if node.name ~= itemname then
-				local def = minetest.registered_nodes[node.name]
+				local def = core.registered_nodes[node.name]
 				if def and (not def.walkable) and def.diggable
-				and nodecore.tool_digs(hand, def.groups) then
-					nodecore.protection_bypass(minetest.dig_node, p)
+				and nc.tool_digs(hand, def.groups) then
+					nc.protection_bypass(core.dig_node, p)
 					return placeat(p)
 				end
 			end
@@ -68,21 +68,21 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 
 		local boxes = {}
 		local digs = {}
-		for rel in nodecore.settlescan() do
+		for rel in nc.settlescan() do
 			local p = vector.add(pos, rel)
-			local n = minetest.get_node(p)
+			local n = core.get_node(p)
 			if stackonly[n.name] then
-				item = nodecore.stack_add(p, item)
+				item = nc.stack_add(p, item)
 				if item:is_empty() then return nuke(self) end
 			else
 				boxes[#boxes + 1] = p
 			end
-			if ((p.y >= nodecore.map_limit_min)
-				and (rel.y <= 0 or (p.y - 1 < nodecore.map_limit_min)
-					or can_settle_on[minetest.get_node(
+			if ((p.y >= nc.map_limit_min)
+				and (rel.y <= 0 or (p.y - 1 < nc.map_limit_min)
+					or can_settle_on[core.get_node(
 						{x = p.x, y = p.y - 1, z = p.z})
 					.name])) then
-				if nodecore.buildable_to(p) then
+				if nc.buildable_to(p) then
 					return placeat(p)
 				elseif rel.x == 0 and rel.z == 0 and math_random(1, 10) == 1 then
 					if trydig(p) then return true end
@@ -92,7 +92,7 @@ nodecore.register_item_entity_on_settle(function(self, pos)
 			end
 		end
 		for _, p in ipairs(boxes) do
-			item = nodecore.stack_add(p, item)
+			item = nc.stack_add(p, item)
 			if item:is_empty() then return nuke(self) end
 		end
 		for _, p in ipairs(digs) do

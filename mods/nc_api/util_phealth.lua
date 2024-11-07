@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, type
-    = math, nodecore, type
+local math, nc, type
+    = math, nc, type
 local math_ceil
     = math.ceil
 -- LUALOCALS > ---------------------------------------------------------
@@ -9,7 +9,7 @@ local function getphealth(player)
 	if not (player and player.is_player and player:is_player()) then return 0 end
 	return player:get_hp() + player:get_meta():get_float("dhp")
 end
-nodecore.getphealth = getphealth
+nc.getphealth = getphealth
 
 local function setphealth(player, hp, reason, minwhole)
 	if not (player and player.is_player and player:is_player()) then return end
@@ -29,7 +29,7 @@ local function setphealth(player, hp, reason, minwhole)
 	player:set_hp(whole, reason)
 	return old ~= whole
 end
-nodecore.setphealth = setphealth
+nc.setphealth = setphealth
 
 local function addphealth(player, hp, reason)
 	return setphealth(player,
@@ -37,4 +37,4 @@ local function addphealth(player, hp, reason)
 		reason,
 		hp >= 0 and player:get_hp())
 end
-nodecore.addphealth = addphealth
+nc.addphealth = addphealth

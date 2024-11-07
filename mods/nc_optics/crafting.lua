@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "hammer prism from glass",
 		action = "pummel",
 		toolgroups = {thumpy = 5},
@@ -17,7 +17,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "cleave lenses from glass",
 		action = "pummel",
 		toolgroups = {choppy = 5},
@@ -32,7 +32,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "hammer glass to crude",
 		action = "pummel",
 		priority = -1,
@@ -45,12 +45,12 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "hammer case to crude",
 		action = "pummel",
 		priority = -1,
 		toolgroups = {thumpy = 3},
-		check = function(pos) return nodecore.stack_get(pos):is_empty() end,
+		check = function(pos) return nc.stack_get(pos):is_empty() end,
 		nodes = {
 			{
 				match = modname .. ":shelf",
@@ -59,7 +59,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "hammer glass back to sand",
 		action = "pummel",
 		priority = -2,
@@ -72,7 +72,7 @@ nodecore.register_craft({
 		}
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "hammer lenses back to sand",
 		action = "pummel",
 		toolgroups = {thumpy = 3},

@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, rawset, tostring, vector
-    = ItemStack, math, minetest, nodecore, rawset, tostring, vector
+local ItemStack, core, math, nc, rawset, tostring, vector
+    = ItemStack, core, math, nc, rawset, tostring, vector
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
 local countdesc = "@1 (@2)"
-nodecore.translate_inform(countdesc)
+nc.translate_inform(countdesc)
 
 local weardescs = {"@1"}
 for i = 1, 65535 do
@@ -15,14 +15,14 @@ for i = 1, 65535 do
 	for _ = 1, (5 - q) do t = t .. "|" end
 	for _ = 1, q do t = t .. "." end
 	weardescs[i] = t
-	nodecore.translate_inform(weardescs[i])
+	nc.translate_inform(weardescs[i])
 end
 
-function nodecore.touchtip_stack(s, noqty)
+function nc.touchtip_stack(s, noqty)
 	if s:is_empty() then return "" end
 
 	local n = s:get_name()
-	local d = minetest.registered_items[n] or {}
+	local d = core.registered_items[n] or {}
 
 	local sm = s:get_meta()
 	local t = sm:get_string("description")
@@ -32,13 +32,13 @@ function nodecore.touchtip_stack(s, noqty)
 		local c = sm:get_string("count_meta")
 		c = c and c ~= "" and c or tostring(s:get_count())
 		if c ~= "1" then
-			t = nodecore.translate(countdesc,
-				nodecore.translate(t), c)
+			t = nc.translate(countdesc,
+				nc.translate(t), c)
 		else
 			local w = s:get_wear()
 			if w > 1 then
-				t = nodecore.translate(t)
-				t = nodecore.translate(weardescs[w], t)
+				t = nc.translate(t)
+				t = nc.translate(weardescs[w], t)
 			end
 		end
 	end
@@ -50,22 +50,22 @@ function nodecore.touchtip_stack(s, noqty)
 end
 
 local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
-	node = node or minetest.get_node(pos)
+	node = node or core.get_node(pos)
 	name = name or node.name
-	def = def or minetest.registered_items[name] or {}
+	def = def or core.registered_items[name] or {}
 
-	local metaname = minetest.get_meta(pos):get_string("description")
+	local metaname = core.get_meta(pos):get_string("description")
 	if metaname and metaname ~= "" then
 		name = metaname
 	elseif def.groups and def.groups.is_stack_only then
-		name = nodecore.touchtip_stack(nodecore.stack_get(pos))
+		name = nc.touchtip_stack(nc.stack_get(pos))
 	elseif def.description then
 		name = def.description
 	end
 
 	if def.groups and def.groups.visinv and not def.groups.is_stack_only then
-		local s = nodecore.stack_get(pos)
-		local t = nodecore.touchtip_stack(s)
+		local s = nc.stack_get(pos)
+		local t = nc.touchtip_stack(s)
 		if t and t ~= "" then name = name .. "\n" .. t end
 	end
 
@@ -75,14 +75,14 @@ local function rawnodedesc(pos, node, name, def, puncher, pointed, ...)
 	return name
 end
 
-function nodecore.touchtip_node(pos, node, puncher, pointed, ...)
+function nc.touchtip_node(pos, node, puncher, pointed, ...)
 	if not (puncher and puncher:is_player()) then return end
 
 	local adesc = " "
 	if pointed and pointed.above and pointed.under
 	and vector.equals(pos, pointed.under) then
-		local anode = minetest.get_node(pointed.above)
-		local def = minetest.registered_items[anode.name] or {}
+		local anode = core.get_node(pointed.above)
+		local def = core.registered_items[anode.name] or {}
 		if def.on_node_touchthru then
 			return def.on_node_touchthru(pointed.above,
 				anode, pointed.under, puncher, ...)
@@ -95,32 +95,32 @@ function nodecore.touchtip_node(pos, node, puncher, pointed, ...)
 					anode.name, def, puncher, pointed, ...)
 				local ppos = puncher:get_pos()
 				ppos.y = ppos.y + puncher:get_properties().eye_height
-				local pnode = minetest.get_node(ppos)
+				local pnode = core.get_node(ppos)
 				local pdesc = rawnodedesc(ppos, pnode, pnode.name,
-					minetest.registered_items[pnode.name] or {},
+					core.registered_items[pnode.name] or {},
 					puncher, pointed, ...)
 				if adesc == pdesc then adesc = " " end
 			end
 		end
 	end
-	node = node or minetest.get_node(pos)
+	node = node or core.get_node(pos)
 	local name = node.name
-	local def = minetest.registered_items[name] or {}
+	local def = core.registered_items[name] or {}
 	if def.air_equivalent or def.pointable == false then return end
 
 	return adesc .. "\n" .. rawnodedesc(pos, node,
 		name, def, puncher, pointed, ...)
 end
 
-nodecore.show_touchtip = function() end
+nc.show_touchtip = function() end
 
 local function adddesc(entname, func)
-	local def = minetest.registered_entities[entname]
+	local def = core.registered_entities[entname]
 	rawset(def, "description", func)
 end
 adddesc("__builtin:item", function(self)
-		return nodecore.touchtip_stack(ItemStack(self.itemstring))
+		return nc.touchtip_stack(ItemStack(self.itemstring))
 	end)
 adddesc("__builtin:falling_node", function(self)
-		return nodecore.touchtip_stack(ItemStack(self.node.name))
+		return nc.touchtip_stack(ItemStack(self.node.name))
 	end)

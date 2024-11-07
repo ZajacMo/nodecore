@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local core, math, nc, pairs, vector
+    = core, math, nc, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
 --[[
 Helpers for visible inventory. Use "visinv" node group.
@@ -13,17 +13,17 @@ Sets up on_construct, after_destruct and an ABM to manage
 the visual entities.
 --]]
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 ------------------------------------------------------------------------
 -- VISIBLE STACK ENTITY
 
 local function getlightcheck(rp, obj, src)
 	return function()
-		local stack = nodecore.stack_get(rp)
+		local stack = nc.stack_get(rp)
 		if not stack or stack:is_empty() then return end
 
-		local def = minetest.registered_items[stack:get_name()] or {}
+		local def = core.registered_items[stack:get_name()] or {}
 		if (def.light_source or 0) ~= src then return end
 
 		local pos = obj:get_pos()
@@ -31,8 +31,8 @@ local function getlightcheck(rp, obj, src)
 	end
 end
 
-local hash = minetest.hash_node_position
-local unhash = minetest.get_position_from_hash
+local hash = core.hash_node_position
+local unhash = core.get_position_from_hash
 
 local check_queue = {}
 local check_queue_dirty
@@ -41,10 +41,10 @@ local function visinv_update_ents(pos)
 	check_queue[hash(pos)] = pos
 	check_queue_dirty = true
 end
-nodecore.visinv_update_ents = visinv_update_ents
+nc.visinv_update_ents = visinv_update_ents
 
 local tweenfrom = {}
-function nodecore.visinv_tween_from(nodepos, frompos)
+function nc.visinv_tween_from(nodepos, frompos)
 	tweenfrom[hash(vector.round(nodepos))] = frompos
 end
 
@@ -54,21 +54,21 @@ local function itemcheck(self)
 
 	local rp = self.pos
 	local tf = tweenfrom[self.poskey]
-	local stack = nodecore.stack_get(rp)
+	local stack = nc.stack_get(rp)
 	local sstr = stack:to_string()
 	if (not tf) and self.stackstring == sstr then return end
 	self.stackstring = sstr
 
 	if stack:is_empty() then return self.object:remove() end
 
-	local def = minetest.registered_items[stack:get_name()] or {}
+	local def = core.registered_items[stack:get_name()] or {}
 	local src = def.light_source or 0
 	if src > 0 then
 		self.light_source = src
-		nodecore.dynamic_light_add(rp, src, getlightcheck(rp, obj, src))
+		nc.dynamic_light_add(rp, src, getlightcheck(rp, obj, src))
 	end
 
-	local props, scale, yaw = nodecore.stackentprops(stack,
+	local props, scale, yaw = nc.stackentprops(stack,
 		rp.x * 3 + rp.y * 5 + rp.z * 7)
 	local op = {
 		x = rp.x,
@@ -93,8 +93,8 @@ local function itemcheck(self)
 end
 
 local entname = modname .. ":stackent"
-minetest.register_entity(entname, {
-		initial_properties = nodecore.stackentprops(),
+core.register_entity(entname, {
+		initial_properties = nc.stackentprops(),
 		is_stack = true,
 		itemcheck = itemcheck
 	})
@@ -103,7 +103,7 @@ local check_retry
 local function check_retry_add(key, val)
 	if not check_retry then
 		check_retry = {}
-		minetest.after(1 + math_random(), function()
+		core.after(1 + math_random(), function()
 				local total = 0
 				for k, v in pairs(check_retry) do
 					total = total + 1
@@ -111,21 +111,21 @@ local function check_retry_add(key, val)
 				end
 				check_queue_dirty = true
 				check_retry = nil
-				nodecore.log("warning", "visinv entity retry: " .. total)
+				nc.log("warning", "visinv entity retry: " .. total)
 			end)
 	end
 	check_retry[key] = val
 end
 
-local visinv_hidden = nodecore.group_expand("group:visinv_hidden", true)
+local visinv_hidden = nc.group_expand("group:visinv_hidden", true)
 
-nodecore.register_globalstep(function()
+nc.register_globalstep(function()
 		if not check_queue_dirty then return end
 		local batch = check_queue
 		check_queue = {}
 		check_queue_dirty = nil
 
-		for _, ent in pairs(minetest.luaentities) do
+		for _, ent in pairs(core.luaentities) do
 			if ent.name == entname then
 				local key = ent.poskey
 				if key then
@@ -133,7 +133,7 @@ nodecore.register_globalstep(function()
 					if data then
 						if data.entexists then
 							ent.object:remove() -- duplicate
-						elseif not visinv_hidden[minetest.get_node(data).name] then
+						elseif not visinv_hidden[core.get_node(data).name] then
 							itemcheck(ent)
 							data.entexists = true
 						else
@@ -145,9 +145,9 @@ nodecore.register_globalstep(function()
 		end
 
 		for poskey, data in pairs(batch) do
-			if (not data.entexists) and (not nodecore.stack_get(data):is_empty())
-			and (not visinv_hidden[minetest.get_node(data).name]) then
-				local obj = minetest.add_entity(data, entname)
+			if (not data.entexists) and (not nc.stack_get(data):is_empty())
+			and (not visinv_hidden[core.get_node(data).name]) then
+				local obj = core.add_entity(data, entname)
 				local ent = obj and obj:get_luaentity()
 				if ent then
 					ent.is_stack = true
@@ -164,48 +164,48 @@ nodecore.register_globalstep(function()
 ------------------------------------------------------------------------
 -- NODE REGISTRATION HELPERS
 
-function nodecore.visinv_on_construct(pos)
-	return nodecore.visinv_update_ents(pos)
+function nc.visinv_on_construct(pos)
+	return nc.visinv_update_ents(pos)
 end
 
-function nodecore.visinv_after_destruct(pos)
-	nodecore.visinv_update_ents(pos)
-	return nodecore.fallcheck(pos)
+function nc.visinv_after_destruct(pos)
+	nc.visinv_update_ents(pos)
+	return nc.fallcheck(pos)
 end
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 
 		def.groups = def.groups or {}
 
 		if def.groups.visinv then
 			def.can_have_itemstack = true
-			def.on_construct = def.on_construct or nodecore.visinv_on_construct
-			def.after_destruct = def.after_destruct or nodecore.visinv_after_destruct
+			def.on_construct = def.on_construct or nc.visinv_on_construct
+			def.after_destruct = def.after_destruct or nc.visinv_after_destruct
 		end
 	end)
 
-nodecore.register_lbm({
+nc.register_lbm({
 		name = modname .. ":init",
 		run_at_every_load = true,
 		nodenames = {"group:visinv"},
-		action = function(...) return nodecore.visinv_update_ents(...) end
+		action = function(...) return nc.visinv_update_ents(...) end
 	})
 
-nodecore.register_abm({
+nc.register_abm({
 		label = "visinv check",
 		interval = 2,
 		chance = 1,
 		nodenames = {"group:visinv"},
-		action = function(...) return nodecore.visinv_update_ents(...) end
+		action = function(...) return nc.visinv_update_ents(...) end
 	})
 
 ------------------------------------------------------------------------
 -- DIG INVENTORY
 
-nodecore.register_on_node_drops(function(pos, _, who, drops)
-		nodecore.stack_sounds(pos, "dug")
-		local stack = nodecore.stack_get(pos)
+nc.register_on_node_drops(function(pos, _, who, drops)
+		nc.stack_sounds(pos, "dug")
+		local stack = nc.stack_get(pos)
 		if stack and not stack:is_empty() then
 			local def = stack:get_definition()
 			local grps = def and def.groups
@@ -213,14 +213,14 @@ nodecore.register_on_node_drops(function(pos, _, who, drops)
 			if (dmg or 0) == 0 then dmg = def.groups.damage_touch end
 			if who and dmg and dmg > 0 then
 				local wield = who:get_wielded_item()
-				local wdef = wield and minetest.registered_items[wield:get_name()]
+				local wdef = wield and core.registered_items[wield:get_name()]
 				local ovr = wdef and wdef.on_item_hotpotato
 				local widx = ovr and who:get_wield_index()
 				if ovr and ovr(who, widx, wield, widx, stack, dmg) then dmg = 0 end
 			end
 			if who and dmg and dmg > 0 then
-				nodecore.addphealth(who, -dmg, "hot pickup")
-				nodecore.item_eject(pos, stack, 0.001)
+				nc.addphealth(who, -dmg, "hot pickup")
+				nc.item_eject(pos, stack, 0.001)
 			else
 				drops[#drops + 1] = stack
 			end

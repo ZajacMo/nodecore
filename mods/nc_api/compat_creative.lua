@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest
-    = minetest
+local core
+    = core
 -- LUALOCALS > ---------------------------------------------------------
 
-function minetest.is_creative_enabled() return false end
+function core.is_creative_enabled() return false end

@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function reg(name, climb, light, fx, lv)
 	local def = {
-		description = minetest.registered_nodes.air.description,
+		description = core.registered_nodes.air.description,
 		drawtype = "airlike",
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -23,10 +23,10 @@ local function reg(name, climb, light, fx, lv)
 			[modname .. "_fx"] = fx and 1 or nil
 		}
 	}
-	return minetest.register_node(modname .. ":" .. name, def)
+	return core.register_node(modname .. ":" .. name, def)
 end
 
-local ll = nodecore.scaling_light_level
+local ll = nc.scaling_light_level
 reg("ceil", true, ll, true, 4)
 reg("wall", true, ll, true, 3)
 reg("floor", nil, ll, nil, 2)

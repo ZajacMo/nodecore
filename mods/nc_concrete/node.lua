@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":sandstone", {
+core.register_node(modname .. ":sandstone", {
 		description = "Sandstone",
 		tiles = {modname .. "_sandstone.png"},
 		groups = {
@@ -14,11 +14,11 @@ minetest.register_node(modname .. ":sandstone", {
 		},
 		drop_in_place = "nc_terrain:sand",
 		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		mapcolor = {r = 160, g = 161, b = 89},
 	})
 
-minetest.register_node(modname .. ":adobe", {
+core.register_node(modname .. ":adobe", {
 		description = "Adobe",
 		tiles = {modname .. "_adobe.png"},
 		groups = {
@@ -27,11 +27,11 @@ minetest.register_node(modname .. ":adobe", {
 		},
 		drop_in_place = "nc_terrain:dirt",
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		mapcolor = {r = 57, g = 43, b = 28},
 	})
 
-minetest.register_node(modname .. ":cloudstone", {
+core.register_node(modname .. ":cloudstone", {
 		description = "Cloudstone",
 		tiles = {modname .. "_cloudstone.png"},
 		groups = {
@@ -40,14 +40,14 @@ minetest.register_node(modname .. ":cloudstone", {
 		},
 		drop_in_place = "nc_optics:glass_crude",
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		mapcolor = {r = 220, g = 220, b = 220},
 	})
 
-local coaldef = minetest.registered_nodes["nc_fire:coal8"]
+local coaldef = core.registered_nodes["nc_fire:coal8"]
 local coalparticles = coaldef and function(pos)
-	if nodecore.silktouch_digging then return end
-	nodecore.digparticles(coaldef, {
+	if nc.silktouch_digging then return end
+	nc.digparticles(coaldef, {
 			time = 0.05,
 			amount = 100,
 			minpos = {x = pos.x - 0.5, y = pos.y - 0.5, z = pos.z - 0.5},
@@ -66,7 +66,7 @@ local coalparticles = coaldef and function(pos)
 end
 or nil
 
-minetest.register_node(modname .. ":coalstone", {
+core.register_node(modname .. ":coalstone", {
 		description = "Tarstone",
 		tiles = {"nc_terrain_stone.png^[colorize:#000000:160"},
 		groups = {
@@ -75,12 +75,12 @@ minetest.register_node(modname .. ":coalstone", {
 		},
 		drop_in_place = "nc_terrain:cobble",
 		crush_damage = 2,
-		sounds = nodecore.sounds("nc_terrain_stony"),
+		sounds = nc.sounds("nc_terrain_stony"),
 		after_dig_node = coalparticles,
 		mapcolor = {r = 32, g = 32, b = 32},
 	})
 
-nodecore.register_stone_bricks("sandstone", "Sandstone",
+nc.register_stone_bricks("sandstone", "Sandstone",
 	modname .. "_sandstone.png",
 	192, 96,
 	modname .. ":sandstone",
@@ -88,7 +88,7 @@ nodecore.register_stone_bricks("sandstone", "Sandstone",
 	{cracky = 2},
 	{r = 160, g = 161, b = 89}
 )
-nodecore.register_stone_bricks("adobe", "Adobe",
+nc.register_stone_bricks("adobe", "Adobe",
 	modname .. "_adobe.png",
 	240, 120,
 	modname .. ":adobe",
@@ -96,7 +96,7 @@ nodecore.register_stone_bricks("adobe", "Adobe",
 	{cracky = 2, nc_door_scuff_opacity = 16},
 	{r = 57, g = 43, b = 28}
 )
-nodecore.register_stone_bricks("coalstone", "Tarstone",
+nc.register_stone_bricks("coalstone", "Tarstone",
 	"nc_terrain_stone.png^[colorize:#000000:160",
 	255, 160,
 	modname .. ":coalstone",
@@ -108,7 +108,7 @@ nodecore.register_stone_bricks("coalstone", "Tarstone",
 	},
 	{r = 32, g = 32, b = 32}
 )
-nodecore.register_stone_bricks("cloudstone", "Cloudstone",
+nc.register_stone_bricks("cloudstone", "Cloudstone",
 	modname .. "_cloudstone.png",
 	128, 64,
 	modname .. ":cloudstone",

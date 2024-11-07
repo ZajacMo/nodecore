@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.unregister_chatcommand("kill")
+core.unregister_chatcommand("kill")
 
-nodecore.register_on_joinplayer(function(player)
+nc.register_on_joinplayer(function(player)
 		local inv = player:get_inventory()
 		inv:set_size("main", 8)
 		inv:set_size("craft", 0)
@@ -36,6 +36,6 @@ nodecore.register_on_joinplayer(function(player)
 			})
 	end)
 
-minetest.register_allow_player_inventory_action(function(_, action)
+core.register_allow_player_inventory_action(function(_, action)
 		return action == "move" and 0 or 1000000
 	end)

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-27 00:09+0000\n"
+"PO-Revision-Date: 2024-09-25 20:15+0000\n"
 "Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -1830,3 +1830,101 @@ msgstr "@1 rejeté. (version du protocole @2)"
 
 msgid "grow a sedge on grass near moisture"
 msgstr "faîtes pousser de la laîche sur de l'herbe près de la moisissure"
+
+msgid "Braced Wooden Form"
+msgstr "Charpente en Bois Renforcée"
+
+msgid "Horzy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Horizontale"
+
+msgid "Iceboxy Cloudstone"
+msgstr "Pierre de Nuage Glacée"
+
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr ""
+"Découvrez et inventez dans un monde surréaliste et hostile de cubes, motifs "
+"et abstractions."
+
+msgid "Hashy Cloudstone"
+msgstr "Pierre de Nuage Hashée"
+
+msgid "Hashy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Hashée"
+
+msgid "Matrix: #+nodecore:matrix.org"
+msgstr "Matrix : #+nodecore :matrix.org"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "Panneau Pivotant de Pierre de Nuage Fixé"
+
+msgid "Iceboxy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Glacée"
+
+msgid "Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable"
+
+msgid "Verty Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Verticale"
+
+msgid "Horzy Cloudstone"
+msgstr "Pierre de Nuage Horizontale"
+
+msgid "Bindy Cloudstone"
+msgstr "Pierre de Nuage Liée"
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Pliée"
+
+msgid "Boxy Cloudstone"
+msgstr "Pierre de Nuage Carrée"
+
+msgid "Boxy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Carrée"
+
+msgid "Cloudstone Bricks"
+msgstr "Briques de Pierre de Nuage"
+
+msgid "Vermy Cloudstone"
+msgstr "Pierre de Nuage Vermoulue"
+
+msgid "Vermy Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Vermoulue"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "Panneau de Pierre de Nuage Fixé"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "Briques de Pierres de Nuage Fixées"
+
+msgid "Bricky Cloudstone"
+msgstr "Pierre de Nuage Briquée"
+
+msgid "Bricky Pliant Cloudstone"
+msgstr "Pierre de Nuage Malléable Briquée"
+
+msgid "Cloudstone"
+msgstr "Pierre de Nuage"
+
+msgid "Offline @1 day(s)"
+msgstr "Hors-ligne pendant @1 jours(s)"
+
+msgid "Offline @1 hour(s)"
+msgstr "Hors-ligne pendant @1 heure(s)"
+
+msgid "Offline @1 minute(s)"
+msgstr "Hors-ligne pendant @1 minute(s)"
+
+msgid "Offline @1 week(s)"
+msgstr "Hors-ligne @1 semaine(s)"
+
+msgid "Offline @1 year(s)"
+msgstr "Hors-ligne @1 an(s)"
+
+msgid "Tempered Lode Tongs"
+msgstr "Pinces en Métal Trempé"
+
+msgid "Verty Cloudstone"
+msgstr "Pierre de Nuage Verticale"
+
+msgid "brace a wooden form with a stick"
+msgstr "renforce une charpente en bois avec un baton"

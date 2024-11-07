@@ -1,9 +1,9 @@
 globals = {
-	"minetest",
+	"core",
 	"ItemStack",
 	"VoxelArea",
 	"vector",
-	"nodecore",
+	"nc",
 	"include",
 	"SecureRandom",
 	"PcgRandom",

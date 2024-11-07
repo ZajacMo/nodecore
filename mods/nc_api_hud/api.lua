@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, minetest, nodecore, pairs, string, type
-    = error, minetest, nodecore, pairs, string, type
+local core, error, nc, pairs, string, type
+    = core, error, nc, pairs, string, type
 local string_gmatch, string_rep
     = string.gmatch, string.rep
 -- LUALOCALS > ---------------------------------------------------------
@@ -34,7 +34,7 @@ local function differ(a, b)
 end
 
 local function updatehud(player, entry, phuds, dtime)
-	if nodecore.hud_hidden(player, entry.group or entry.label) then
+	if nc.hud_hidden(player, entry.group or entry.label) then
 		entry.ttl = 0
 	end
 	if entry.ttl then
@@ -64,7 +64,7 @@ local function hud_params(player, def)
 	local pname
 	if type(player) == "string" then
 		pname = player
-		player = minetest.get_player_by_name(pname)
+		player = core.get_player_by_name(pname)
 	else
 		pname = player:get_player_name()
 	end
@@ -72,7 +72,7 @@ local function hud_params(player, def)
 
 	def = copytbl(def)
 	local elemtype = def.hud_elem_type or def.type
-	local hdtf = minetest.features.hud_def_type_field
+	local hdtf = core.features.hud_def_type_field
 	def.hud_elem_type = (not hdtf) and elemtype or nil
 	def.type = hdtf and elemtype or nil
 
@@ -96,9 +96,9 @@ local function hud_set(player, def)
 	for k, v in pairs(def) do (myprops[k] and entry or entry.new)[k] = v end
 	if def.quick then return updatehud(player, entry, phuds, 0) end
 end
-nodecore.hud_set = hud_set
+nc.hud_set = hud_set
 
-function nodecore.hud_set_multiline(player, def, trans, txtkey)
+function nc.hud_set_multiline(player, def, trans, txtkey)
 	local pname
 	player, pname, def = hud_params(player, def)
 
@@ -137,9 +137,9 @@ function nodecore.hud_set_multiline(player, def, trans, txtkey)
 	end
 end
 
-minetest.after(0, function()
-		nodecore.register_globalstep(function(dtime)
-				for _, player in pairs(minetest.get_connected_players()) do
+core.after(0, function()
+		nc.register_globalstep(function(dtime)
+				for _, player in pairs(core.get_connected_players()) do
 					local pname = player:get_player_name()
 					local phuds = huds[pname]
 					if phuds then
@@ -151,6 +151,6 @@ minetest.after(0, function()
 			end)
 	end)
 
-nodecore.register_on_leaveplayer(function(player)
+nc.register_on_leaveplayer(function(player)
 		huds[player:get_player_name()] = nil
 	end)

@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, type
-    = nodecore, pairs, type
+local nc, pairs, type
+    = nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.hints = {}
+nc.hints = {}
 
 local function conv(spec)
 	if not spec then
@@ -29,13 +29,13 @@ local function conv(spec)
 	return function(db) return db[spec] end
 end
 
-function nodecore.register_hint(text, goal, reqs, ext)
-	local hints = nodecore.hints
+function nc.register_hint(text, goal, reqs, ext)
+	local hints = nc.hints
 	if type(text) == "table" then
 		hints[#hints + 1] = text
 		return text
 	end
-	local t = nodecore.translate(text)
+	local t = nc.translate(text)
 	local h = {
 		text = t,
 		goal = conv(goal),

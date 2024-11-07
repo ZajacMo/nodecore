@@ -1,11 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local include, nodecore
-    = include, nodecore
+local include, nc
+    = include, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
 include("api")
 include("injury")
 include("damage")
 include("radiant")
+include("visfx")

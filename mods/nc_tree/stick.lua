@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":stick", {
+core.register_node(modname .. ":stick", {
 		description = "Stick",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
-		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0, 1/8),
+		node_box = nc.fixedbox(-1/16, -0.5, -1/16, 1/16, 0, 1/16),
+		selection_box = nc.fixedbox(-1/8, -0.5, -1/8, 1/8, 0, 1/8),
 		tiles = {
 			modname .. "_tree_top.png",
 			modname .. "_tree_top.png",
@@ -25,11 +25,11 @@ minetest.register_node(modname .. ":stick", {
 			stack_as_node = 1,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nc.sounds("nc_tree_sticky"),
 		mapcolor = {a = 0},
 	})
 
-nodecore.register_leaf_drops(function(_, node, list)
+nc.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
 			name = modname .. ":stick",
 			prob = 0.2 * (node.param2 * node.param2)}

@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore
-    = ipairs, math, minetest, nodecore
+local core, ipairs, math, nc
+    = core, ipairs, math, nc
 local math_floor, math_sqrt
     = math.floor, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 -- "fire" is a flame node sustained by nearby fuel.
 -- "fire_burst" is a small self-contained burst of flame from its
 -- own internal fuel that goes out after a set time.
 for _, name in ipairs({":fire", ":fire_burst"}) do
-	minetest.register_node(modname .. name, {
+	core.register_node(modname .. name, {
 			description = "Fire",
 			drawtype = "firelike",
 			visual_scale = 1.5,
@@ -50,13 +50,13 @@ for _, name in ipairs({":fire", ":fire_burst"}) do
 		})
 end
 
-nodecore.register_dnt({
+nc.register_dnt({
 		name = modname .. ":fire_burst",
 		nodenames = {modname .. ":fire_burst"},
 		time = 2,
 		autostart = true,
 		action = function(pos)
-			return minetest.remove_node(pos)
+			return core.remove_node(pos)
 		end
 	})
 
@@ -92,20 +92,20 @@ local function rampcolor(r1, g1, b1, r2, g2, b2, q)
 	}
 end
 
-for num = 1, nodecore.fire_max do
-	minetest.register_node(modname .. ":coal" .. num, {
+for num = 1, nc.fire_max do
+	core.register_node(modname .. ":coal" .. num, {
 			description = "Charcoal",
 			tiles = {txrcoal(num) .. "^[noalpha"},
 			groups = {
 				crumbly = 1,
-				flammable = 5 - math_floor(num / nodecore.fire_max * 4),
+				flammable = 5 - math_floor(num / nc.fire_max * 4),
 				falling_node = 1,
 				fire_fuel = num,
 				charcoal = num
 			},
 			crush_damage = 1,
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
-			mapcolor = rampcolor(158, 158, 158, 32, 32, 32, num / nodecore.fire_max),
+			sounds = nc.sounds("nc_terrain_crunchy"),
+			mapcolor = rampcolor(158, 158, 158, 32, 32, 32, num / nc.fire_max),
 		})
 end
 
@@ -122,8 +122,8 @@ local function txrember(num)
 	return name
 end
 
-for num = 1, nodecore.fire_max do
-	minetest.register_node(modname .. ":ember" .. num, {
+for num = 1, nc.fire_max do
+	core.register_node(modname .. ":ember" .. num, {
 			description = "Burning Embers",
 			tiles = {txrember(num) .. "^[noalpha"},
 			paramtype = "light",
@@ -140,14 +140,14 @@ for num = 1, nodecore.fire_max do
 			stack_max = 1,
 			drop = "",
 			crush_damage = 1,
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
-			mapcolor = rampcolor(158, 158, 158, 244, 182, 94, num / nodecore.fire_max),
+			sounds = nc.sounds("nc_terrain_crunchy"),
+			mapcolor = rampcolor(158, 158, 158, 244, 182, 94, num / nc.fire_max),
 
 		})
 end
-minetest.register_alias(modname .. ":fuel", modname .. ":ember2")
+core.register_alias(modname .. ":fuel", modname .. ":ember2")
 
-minetest.register_node(modname .. ":ash", {
+core.register_node(modname .. ":ash", {
 		description = "Ash",
 		tiles = {modname .. "_ash.png"},
 		groups = {
@@ -156,7 +156,7 @@ minetest.register_node(modname .. ":ash", {
 			crumbly = 1
 		},
 		crush_damage = 0.25,
-		sounds = nodecore.sounds("nc_terrain_swishy"),
+		sounds = nc.sounds("nc_terrain_swishy"),
 		visinv_bulk_optimize = true,
 		mapcolor = {r = 158, g = 158, b = 158},
 	})

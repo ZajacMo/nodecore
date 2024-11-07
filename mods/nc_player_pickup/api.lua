@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, nodecore
-    = ItemStack, nodecore
+local ItemStack, nc
+    = ItemStack, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.inv_walk(player, widx, inv, list)
+function nc.inv_walk(player, widx, inv, list)
 	widx = widx or player:get_wield_index()
 	list = list or "main"
 	inv = inv or player:get_inventory()
@@ -18,14 +18,14 @@ function nodecore.inv_walk(player, widx, inv, list)
 	end
 end
 
-function nodecore.give_item(player, stack, list, inv)
+function nc.give_item(player, stack, list, inv)
 	stack = ItemStack(stack)
 	if stack:is_empty() then return stack end
 
 	inv = inv or player:get_inventory()
-	for idx in nodecore.inv_walk(player, nil, inv, list) do
+	for idx in nc.inv_walk(player, nil, inv, list) do
 		local s = inv:get_stack(list, idx)
-		stack = nodecore.stack_merge(s, stack)
+		stack = nc.stack_merge(s, stack)
 		inv:set_stack(list, idx, s)
 		if stack:is_empty() then return stack end
 	end

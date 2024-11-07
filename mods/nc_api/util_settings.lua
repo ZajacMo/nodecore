@@ -1,15 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, string, table, tonumber,
-      tostring
-    = ipairs, minetest, nodecore, pairs, string, table, tonumber,
-      tostring
+local core, ipairs, nc, pairs, string, table, tonumber, tostring
+    = core, ipairs, nc, pairs, string, table, tonumber, tostring
 local string_format, string_gmatch, string_match, string_sub,
       table_sort
     = string.format, string.gmatch, string.match, string.sub,
       table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local known_settings = {}
 local known_dirty
@@ -27,23 +25,23 @@ local function setting_learn(key, title, comment, typename, typedata)
 	known_dirty = true
 end
 
-function nodecore.setting_string(key, default, title, comment)
+function nc.setting_string(key, default, title, comment)
 	setting_learn(key, title, comment, "string",
 		default and string_format("%q", default))
-	local s = minetest.settings:get(key)
+	local s = core.settings:get(key)
 	return s == "" and default or s
 end
 
-function nodecore.setting_float(key, default, title, comment)
+function nc.setting_float(key, default, title, comment)
 	setting_learn(key, title, comment, "float",
 		default and tostring(default) or "")
-	return tonumber(minetest.settings:get(key)) or default
+	return tonumber(core.settings:get(key)) or default
 end
 
-function nodecore.setting_bool(key, default, title, comment)
+function nc.setting_bool(key, default, title, comment)
 	setting_learn(key, title, comment, "bool",
 		default ~= nil and (default and "true" or "false") or "")
-	return minetest.settings:get_bool(key, default)
+	return core.settings:get_bool(key, default)
 end
 
 ------------------------------------------------------------------------
@@ -51,9 +49,9 @@ end
 local function prefstr(str, pref)
 	return str and (pref .. str) or ""
 end
-function nodecore.infodump(sub)
-	local set = nodecore.setting_bool(
-		minetest.get_current_modname() .. "_infodump" .. prefstr(sub, "_"),
+function nc.infodump(sub)
+	local set = nc.setting_bool(
+		core.get_current_modname() .. "_infodump" .. prefstr(sub, "_"),
 		false,
 		"Developer info export - " .. (sub or "ALL"),
 		[[Write out after startup (and possibly maintain while running)
@@ -61,11 +59,11 @@ function nodecore.infodump(sub)
 		development use.]]
 	)
 	if set or not sub then return set end
-	return nodecore.infodump()
+	return nc.infodump()
 end
 
-if nodecore.infodump("setting") then
-	minetest.register_globalstep(function()
+if nc.infodump("setting") then
+	core.register_globalstep(function()
 			if not known_dirty then return end
 			known_dirty = nil
 
@@ -94,8 +92,8 @@ if nodecore.infodump("setting") then
 					data.title or k, data.typename, data.typedata or "")
 			end
 
-			local p = minetest.get_worldpath() .. "/settingtypes.txt"
-			minetest.safe_file_write(p, dump)
-			return nodecore.log("info", "dumped settingtypes.txt")
+			local p = core.get_worldpath() .. "/settingtypes.txt"
+			core.safe_file_write(p, dump)
+			return nc.log("info", "dumped settingtypes.txt")
 		end)
 end

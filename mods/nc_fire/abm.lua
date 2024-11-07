@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, vector
-    = ipairs, math, minetest, nodecore, pairs, vector
+local core, ipairs, math, nc, pairs, vector
+    = core, ipairs, math, nc, pairs, vector
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-local sparks_add, sparks_flush = nodecore.fairlimit(50)
+local sparks_add, sparks_flush = nc.fairlimit(50)
 
-nodecore.register_globalstep(function()
+nc.register_globalstep(function()
 		for _, pos in ipairs(sparks_flush()) do
-			minetest.after(math_random(), function()
-					minetest.add_particlespawner({
+			core.after(math_random(), function()
+					core.add_particlespawner({
 							amount = math_random(1, 3),
 							time = 1,
 							minpos = vector.subtract(pos, 0.5),
@@ -35,16 +35,16 @@ nodecore.register_globalstep(function()
 	end)
 
 do
-	local flamedirs = nodecore.dirs()
+	local flamedirs = nc.dirs()
 	local embers = {}
-	minetest.after(0, function()
-			for k, v in pairs(minetest.registered_items) do
+	core.after(0, function()
+			for k, v in pairs(core.registered_items) do
 				if v.groups.ember then
 					embers[k] = true
 				end
 			end
 		end)
-	minetest.register_abm({
+	core.register_abm({
 			label = "fire consume",
 			interval = 1,
 			chance = 1,
@@ -55,21 +55,21 @@ do
 				local found = {}
 				for _, dp in ipairs(flamedirs) do
 					local npos = vector.add(pos, dp)
-					local node = minetest.get_node_or_nil(npos)
+					local node = core.get_node_or_nil(npos)
 					if (not node) or embers[node.name] then
 						found[#found + 1] = npos
 					end
 				end
 				if #found < 1 then
-					return minetest.remove_node(pos)
+					return core.remove_node(pos)
 				end
-				local picked = nodecore.pickrand(found)
-				return nodecore.fire_check_expend(picked)
+				local picked = nc.pickrand(found)
+				return nc.fire_check_expend(picked)
 			end
 		})
 end
 
-minetest.register_abm({
+core.register_abm({
 		label = "flammables ignite",
 		interval = 5,
 		chance = 1,
@@ -79,28 +79,28 @@ minetest.register_abm({
 		arealoaded = 1,
 		action_delay = true,
 		action = function(pos)
-			nodecore.fire_check_ignite(pos)
+			nc.fire_check_ignite(pos)
 		end
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "ember snuff/flames",
 		interval = 1,
 		chance = 1,
 		nodenames = {"group:ember"},
 		arealoaded = 1,
 		action = function(pos, node)
-			local snuff, vents = nodecore.fire_check_snuff(pos, node)
+			local snuff, vents = nc.fire_check_snuff(pos, node)
 			if snuff or not vents then return end
 			for i = 1, #vents do
 				if vents[i].q < 1 then
-					nodecore.set_node_check(vents[i], {name = modname .. ":fire"})
+					nc.set_node_check(vents[i], {name = modname .. ":fire"})
 				end
 			end
 		end
 	})
 
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "flame ambiance",
 		nodenames = {"group:flame_ambiance"},
 		interval = 1,
@@ -109,7 +109,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.2
 	})
 
-nodecore.register_item_ambiance({
+nc.register_item_ambiance({
 		label = "flame ambiance",
 		itemnames = {"group:flame_ambiance"},
 		interval = 1,

@@ -1,26 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local core, nc, pairs, vector
+    = core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local floodable = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.floodable then floodable[k] = true end
 		end
 	end)
 
-function nodecore.fluidwander(name, gencheck, movedist, scandist)
+function nc.fluidwander(name, gencheck, movedist, scandist)
 	movedist = movedist or 2
 	scandist = scandist or 8
 	local function movesrc(pos, np, node, flowname, gen)
-		minetest.set_node(pos, {name = flowname, param2 = 7})
-		minetest.set_node(np, node)
-		minetest.get_meta(np):set_int("fluidgen_" .. name, gen + 1)
-		nodecore.dnt_set(np, "fluidwander_" .. name)
+		core.set_node(pos, {name = flowname, param2 = 7})
+		core.set_node(np, node)
+		core.get_meta(np):set_int("fluidgen_" .. name, gen + 1)
+		nc.dnt_set(np, "fluidwander_" .. name)
 	end
 	return function(pos, node)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local gen = meta:get_int("fluidgen_" .. name)
 		if gencheck(pos, node, gen) then return end
 
@@ -31,10 +31,10 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 		local found = {}
 		local attdist = 1/0
 		local attract = {}
-		local flowname = minetest.registered_items[node.name].liquid_alternative_flowing
-		nodecore.scan_flood(pos, movedist, function(p)
+		local flowname = core.registered_items[node.name].liquid_alternative_flowing
+		nc.scan_flood(pos, movedist, function(p)
 				if p.y > maxy then return false end
-				local nn = minetest.get_node(p).name
+				local nn = core.get_node(p).name
 				if nn == node.name then return end
 				if nn ~= flowname then return false end
 				if p.y > miny then return end
@@ -49,16 +49,16 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 
 		-- If a place is found where the node can move downward, go immediately.
 		if miny < maxy and #found > 0 then
-			return movesrc(pos, nodecore.pickrand(found), node, flowname, gen)
+			return movesrc(pos, nc.pickrand(found), node, flowname, gen)
 		end
 
 		-- If our only options are on the same level, search again to find
 		-- a place where we would be able to flow down if our flow reached.
 		-- This is interpeting the terrain as "subtly sloped" toward the
 		-- hole allowing the fluid to find it.
-		nodecore.scan_flood(pos, scandist, function(p)
+		nc.scan_flood(pos, scandist, function(p)
 				if p.y > maxy then return false end
-				local nn = minetest.get_node(p).name
+				local nn = core.get_node(p).name
 				if nn == node.name then return end
 				if nn ~= flowname and not floodable[nn] then return false end
 				if p.y < maxy then
@@ -78,11 +78,11 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 
 		-- If no hole was found, terrain is level, wander randomly.
 		if #attract < 1 then
-			return movesrc(pos, nodecore.pickrand(found), node, flowname, gen)
+			return movesrc(pos, nc.pickrand(found), node, flowname, gen)
 		end
 
 		-- Pick the flowing node that's closest to the down-hole.
-		local picked = nodecore.pickrand(attract)
+		local picked = nc.pickrand(attract)
 		local bestpos
 		local bestdsqr
 		for i = 1, #found do
@@ -98,17 +98,17 @@ function nodecore.fluidwander(name, gencheck, movedist, scandist)
 	end
 end
 
-function nodecore.register_fluidwandering(name, nodenames, interval,
+function nc.register_fluidwandering(name, nodenames, interval,
 		gencheck, movedist, scandist)
 	movedist = movedist or 2
 	scandist = scandist or 8
 	local labelname = "fluidwander_" .. name
-	nodecore.register_dnt({
+	nc.register_dnt({
 			name = labelname,
 			nodenames = nodenames,
 			time = interval,
 			autostart = true,
 			arealoaded = scandist > movedist and scandist or movedist,
-			action = nodecore.fluidwander(name, gencheck, movedist, scandist)
+			action = nc.fluidwander(name, gencheck, movedist, scandist)
 		})
 end

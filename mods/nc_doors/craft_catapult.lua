@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, vector
-    = ItemStack, minetest, nodecore, pairs, vector
+local ItemStack, core, nc, pairs, vector
+    = ItemStack, core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local presstoolcaps = {}
-minetest.after(0, function()
-		for name, def in pairs(minetest.registered_items) do
+core.after(0, function()
+		for name, def in pairs(core.registered_items) do
 			local caps
 			if def.tool_capabilities then
 				caps = {dig = true, groups = def.tool_capabilities.groupcaps}
 			elseif def.tool_head_capabilities then
 				caps = {groups = def.tool_head_capabilities.groupcaps}
 			end
-			if minetest.get_item_group(name, "nc_doors_pummel_first") > 0 then
+			if core.get_item_group(name, "nc_doors_pummel_first") > 0 then
 				caps.pummelfirst = true
 			end
 			presstoolcaps[name] = caps
@@ -23,8 +23,8 @@ local function checktarget(data, stack)
 	local target = vector.subtract(vector.multiply(
 			data.pointed.under, 2), data.pointed.above)
 	data.presstarget = target
-	local node = minetest.get_node(target)
-	local def = minetest.registered_items[node.name] or {walkable = true}
+	local node = core.get_node(target)
+	local def = core.registered_items[node.name] or {walkable = true}
 
 	-- Inject item into available storebox
 	if def.groups and def.groups.visinv and (def.groups.is_stack_only
@@ -39,7 +39,7 @@ local function checktarget(data, stack)
 		if dir.y <= 0 then
 			local one = ItemStack(stack:to_string())
 			one:set_count(1)
-			local tstack = nodecore.stack_get(target)
+			local tstack = nc.stack_get(target)
 			if tstack:item_fits(one) then
 				data.intostorebox = target
 				return true
@@ -71,7 +71,7 @@ local function checktarget(data, stack)
 		-- anything on second pass
 		pummelcheck = function() end
 
-		return nodecore.craft_search(target, node, pumdata)
+		return nc.craft_search(target, node, pumdata)
 	end
 	if caps and caps.pummelfirst then
 		data.presscommit = pummelcheck()
@@ -80,7 +80,7 @@ local function checktarget(data, stack)
 
 	-- Try to dig item
 	if caps and caps.dig and def and def.groups
-	and nodecore.tool_digs(stack, def.groups) then
+	and nc.tool_digs(stack, def.groups) then
 		data.pressdig = {
 			pos = target,
 			tool = stack,
@@ -96,14 +96,14 @@ local function checktarget(data, stack)
 	return data.presscommit
 end
 
-local hashpos = minetest.hash_node_position
+local hashpos = core.hash_node_position
 local toolfxqueue
 local function toolfx(toolpos, actpos)
-	nodecore.node_sound(toolpos, "dig")
+	nc.node_sound(toolpos, "dig")
 	if not toolfxqueue then
 		toolfxqueue = {}
-		minetest.after(0, function()
-				for _, ent in pairs(minetest.luaentities) do
+		core.after(0, function()
+				for _, ent in pairs(core.luaentities) do
 					local target = ent.is_stack and ent.poskey
 					and toolfxqueue[ent.poskey]
 					if target and ent.homepos then
@@ -111,7 +111,7 @@ local function toolfx(toolpos, actpos)
 						obj:set_pos(vector.add(target,
 								vector.subtract(ent.homepos,
 									ent.pos)))
-						minetest.after(0.1, function()
+						core.after(0.1, function()
 								obj:move_to(ent.homepos)
 							end)
 					end
@@ -125,28 +125,28 @@ end
 local function doitemeject(pos, data)
 	if data.pressdig then
 		toolfx(pos, data.presstarget)
-		nodecore.machine_digging = data.pressdig
-		nodecore.protection_bypass(minetest.dig_node, data.pressdig.pos)
-		nodecore.machine_digging = nil
-		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door dig")
+		nc.machine_digging = data.pressdig
+		nc.protection_bypass(core.dig_node, data.pressdig.pos)
+		nc.machine_digging = nil
+		nc.witness({pos, data.pointed.above, data.presstarget}, "door dig")
 		return
 	end
 	if data.presscommit then
 		toolfx(pos, data.presstarget)
 		data.presscommit()
-		nodecore.witness({pos, data.pointed.above, data.presstarget}, "door pummel")
+		nc.witness({pos, data.pointed.above, data.presstarget}, "door pummel")
 		return
 	end
 
-	local stack = nodecore.stack_get(pos)
+	local stack = nc.stack_get(pos)
 	if (not stack) or stack:is_empty() then return end
 	local one = ItemStack(stack:to_string())
 	one:set_count(1)
 
 	if data.intostorebox then
-		nodecore.witness({pos, data.pointed.above, data.intostorebox}, "door store")
-		one = nodecore.stack_add(data.intostorebox, one)
-		nodecore.stack_sounds(data.intostorebox, "place")
+		nc.witness({pos, data.pointed.above, data.intostorebox}, "door store")
+		one = nc.stack_add(data.intostorebox, one)
+		nc.stack_sounds(data.intostorebox, "place")
 		if not one:is_empty() then return end
 	else
 		local ctr = {
@@ -158,23 +158,23 @@ local function doitemeject(pos, data)
 			vector.subtract(pos, ctr),
 			vector.subtract(data.pointed.under, data.pointed.above)
 		)
-		local doorlv = minetest.get_item_group(minetest.get_node(
+		local doorlv = core.get_item_group(core.get_node(
 				data.pointed.above).name, "door") or 0
-		nodecore.item_eject(
+		nc.item_eject(
 			vector.add(pos, vector.multiply(vel, 0.25)),
 			one, 0, 1, vector.multiply(vel, 2 + doorlv)
 		)
 	end
-	nodecore.stack_sounds(pos, "dig")
+	nc.stack_sounds(pos, "dig")
 	stack:take_item(1)
-	if stack:is_empty() and nodecore.node_group("is_stack_only", pos) then
-		return minetest.remove_node(pos)
+	if stack:is_empty() and nc.node_group("is_stack_only", pos) then
+		return core.remove_node(pos)
 	end
-	nodecore.stack_set(pos, stack)
-	return nodecore.witness({pos, data.pointed.above}, "door catapult")
+	nc.stack_set(pos, stack)
+	return nc.witness({pos, data.pointed.above}, "door catapult")
 end
 
-nodecore.register_craft({
+nc.register_craft({
 		action = "press",
 		label = "eject item",
 		priority = 2,
@@ -182,14 +182,14 @@ nodecore.register_craft({
 			{match = {stacked = true, count = false}}
 		},
 		check = function(pos, data)
-			local stack = nodecore.stack_get(pos)
+			local stack = nc.stack_get(pos)
 			if (not stack) or stack:is_empty() then return end
 			return checktarget(data, stack)
 		end,
 		after = doitemeject
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		action = "press",
 		label = "eject from storebox",
 		priority = -1,
@@ -197,14 +197,14 @@ nodecore.register_craft({
 			{match = {groups = {storebox = true}}}
 		},
 		check = function(pos, data)
-			local stack = nodecore.stack_get(pos)
+			local stack = nc.stack_get(pos)
 			if (not stack) or stack:is_empty() then return end
 
 			if not checktarget(data, stack) then return end
 
 			local pt = data.pointed
-			local node = minetest.get_node(pt.under)
-			local def = minetest.registered_items[node.name] or {}
+			local node = core.get_node(pt.under)
+			local def = core.registered_items[node.name] or {}
 			if not def.storebox_access then return end
 
 			local access = {

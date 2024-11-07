@@ -1,23 +1,23 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore
-    = ipairs, minetest, nodecore
+local core, ipairs, nc
+    = core, ipairs, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local metakey = minetest.get_current_modname() .. "_hide"
+local metakey = core.get_current_modname() .. "_hide"
 
 local metacache = {}
 
-minetest.register_chatcommand("hidehuds", {
+core.register_chatcommand("hidehuds", {
 		description = "hide groups of HUDs",
 		func = function(name, param)
-			local player = minetest.get_player_by_name(name)
+			local player = core.get_player_by_name(name)
 			if not player then return false, "must be online" end
 			metacache[name] = param
 			player:get_meta():set_string(metakey, param)
 		end
 	})
 
-function nodecore.hud_hidden(player, group)
+function nc.hud_hidden(player, group)
 	if not group then return end
 	local pname = player:get_player_name()
 	local hidden = metacache[pname]

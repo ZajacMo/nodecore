@@ -1,22 +1,22 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, core, nc
+    = ItemStack, core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 local localpref = modname .. ":" .. modname:gsub("^nc_", "") .. "_"
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
+nc.register_concrete_etchable({
 		basename = "nc_terrain:stone",
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_chompy"),
+			sounds = nc.sounds("nc_terrain_chompy"),
 			drop_in_place = modname .. ":aggregate_wet_source",
 			silktouch = false
 		}
 	})
-nodecore.register_concrete({
+nc.register_concrete({
 		description = "Aggregate",
 		tile_powder = "nc_terrain_gravel.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
 		tile_wet = "nc_terrain_stone.png^(nc_fire_ash.png^("
@@ -30,22 +30,22 @@ nodecore.register_concrete({
 		to_molded = modname .. ":terrain_stone_blank_ply",
 		mapcolor = {r = 65, g = 65, b = 65},
 	})
-minetest.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
-minetest.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
+core.register_alias(modname .. ":wet_source", modname .. ":aggregate_wet_source")
+core.register_alias(modname .. ":wet_flowing", modname .. ":aggregate_wet_flowing")
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
+nc.register_concrete_etchable({
 		basename = modname .. ":sandstone",
 		pliant_opacity = 40,
 		pattern_opacity = 80,
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			sounds = nc.sounds("nc_terrain_crunchy"),
 			drop_in_place = modname .. ":render_wet_source",
 			silktouch = false
 		}
 	})
-nodecore.register_concrete({
+nc.register_concrete({
 		description = "Render",
 		tile_powder = "nc_terrain_sand.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
 		tile_wet = "nc_terrain_sand.png^(nc_fire_ash.png^("
@@ -63,16 +63,16 @@ nodecore.register_concrete({
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
+nc.register_concrete_etchable({
 		basename = modname .. ":adobe",
 		pattern_opacity = 56,
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			sounds = nc.sounds("nc_terrain_crunchy"),
 			drop_in_place = modname .. ":mud_wet_source",
 			silktouch = false
 		}
 	})
-nodecore.register_concrete({
+nc.register_concrete({
 		name = "mud",
 		description = "Adobe Mix",
 		tile_powder = "nc_terrain_dirt.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
@@ -91,17 +91,17 @@ nodecore.register_concrete({
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
+nc.register_concrete_etchable({
 		basename = modname .. ":coalstone",
 		pattern_opacity = 40,
 		pliant_opacity = 128,
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_chompy"),
+			sounds = nc.sounds("nc_terrain_chompy"),
 			drop_in_place = modname .. ":coalaggregate_wet_source",
 			silktouch = false
 		}
 	})
-nodecore.register_concrete({
+nc.register_concrete({
 		name = "coalaggregate",
 		description = "Tarry Aggregate",
 		register_dry = false,
@@ -119,17 +119,17 @@ nodecore.register_concrete({
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
+nc.register_concrete_etchable({
 		basename = modname .. ":cloudstone",
 		pattern_opacity = 32,
 		pattern_invert = true,
 		pliant = {
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
+			sounds = nc.sounds("nc_terrain_crunchy"),
 			drop_in_place = modname .. ":cloudmix_wet_source",
 			silktouch = false
 		}
 	})
-nodecore.register_concrete({
+nc.register_concrete({
 		name = "cloudmix",
 		description = "Spackling",
 		tile_powder = modname .. "_cloudstone.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",
@@ -149,34 +149,34 @@ nodecore.register_concrete({
 
 do
 	local aggwet = modname .. ":aggregate_wet_source"
-	local oldrc = nodecore.registered_nodes[aggwet].on_rightclick
-	minetest.override_item(aggwet, {
+	local oldrc = nc.registered_nodes[aggwet].on_rightclick
+	core.override_item(aggwet, {
 			on_rightclick = function(pos, node, clicker, stack, pt, ...)
 				if stack:get_name() ~= "nc_fire:lump_coal" then
 					if oldrc then return oldrc(pos, node, clicker, stack, pt, ...) end
 					if stack:get_definition().type == "node" then
-						return minetest.item_place_node(stack, clicker, pt)
+						return core.item_place_node(stack, clicker, pt)
 					end
 					return stack
 				end
-				nodecore.player_discover(clicker, "craft:"
+				nc.player_discover(clicker, "craft:"
 					.. modname .. ":coalaggregate")
-				nodecore.set_loud(pos,
+				nc.set_loud(pos,
 					{name = modname .. ":coalaggregate_wet_source"})
 				stack:take_item(1)
 				return stack
 			end
 		})
-	nodecore.register_item_entity_step(function(self)
+	nc.register_item_entity_step(function(self)
 			local stack = ItemStack(self.itemstring)
 			if stack:get_name() ~= "nc_fire:lump_coal" then return end
 			local pos = self.object:get_pos()
 			if not pos then return end
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			if node.name ~= aggwet then return end
-			nodecore.set_loud(pos,
+			nc.set_loud(pos,
 				{name = modname .. ":coalaggregate_wet_source"})
-			nodecore.witness(pos, "craft:" .. modname .. ":coalaggregate")
+			nc.witness(pos, "craft:" .. modname .. ":coalaggregate")
 			stack:take_item(1)
 			if stack:is_empty() then
 				self.object:remove()
@@ -188,17 +188,7 @@ end
 
 ------------------------------------------------------------------------
 
-nodecore.register_concrete_etchable({
-		basename = "nc_igneous:pumice",
-		pliant_opacity = 40,
-		pattern_opacity = 80,
-		pliant = {
-			sounds = nodecore.sounds("nc_terrain_crunchy"),
-			drop_in_place = modname .. ":pumpowder_wet_source",
-			silktouch = false
-		}
-	})
-nodecore.register_concrete({
+nc.register_concrete({
 		description = "Pumpowder",
 		description_wet = "Pumslush",
 		tile_powder = "nc_igneous_pumice.png^(nc_fire_ash.png^[mask:nc_concrete_mask.png)",

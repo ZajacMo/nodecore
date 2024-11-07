@@ -1,21 +1,21 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, math, minetest, nodecore, vector
-    = ItemStack, ipairs, math, minetest, nodecore, vector
+local ItemStack, core, ipairs, math, nc, vector
+    = ItemStack, core, ipairs, math, nc, vector
 local math_cos, math_pi, math_random, math_sin, math_sqrt
     = math.cos, math.pi, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_item_entity_step,
-nodecore.registered_item_entity_steps
-= nodecore.mkreg()
+nc.register_item_entity_step,
+nc.registered_item_entity_steps
+= nc.mkreg()
 
-nodecore.register_item_entity_on_settle,
-nodecore.registered_item_entity_on_settles
-= nodecore.mkreg()
+nc.register_item_entity_on_settle,
+nc.registered_item_entity_on_settles
+= nc.mkreg()
 
 local function stub() end
 
-local data_load, data_save = nodecore.entity_staticdata_helpers({
+local data_load, data_save = nc.entity_staticdata_helpers({
 		maxy = true,
 		itemstring = true,
 		spin = true,
@@ -23,7 +23,7 @@ local data_load, data_save = nodecore.entity_staticdata_helpers({
 		setvel = true
 	})
 
-minetest.register_entity(":__builtin:item", {
+core.register_entity(":__builtin:item", {
 		initial_properties = {
 			physical = true,
 			is_visible = false,
@@ -38,9 +38,9 @@ minetest.register_entity(":__builtin:item", {
 				self.itemstring = item
 				self.object:set_yaw(math_random() * math_pi * 2)
 			end
-			if nodecore.item_is_virtual(self.itemstring) then return self.object:remove() end
+			if nc.item_is_virtual(self.itemstring) then return self.object:remove() end
 			self.spin = self.spin or math_random(1, 2) * 2 - 3
-			local p, s = nodecore.stackentprops(self.itemstring, 0, self.spin, true)
+			local p, s = nc.stackentprops(self.itemstring, 0, self.spin, true)
 			s = s / math_sqrt(2)
 			self.collidesize = s
 			p.collisionbox = {-s, -s, -s, s, s, s}
@@ -52,7 +52,7 @@ minetest.register_entity(":__builtin:item", {
 
 		on_activate = function(self, data)
 			self.object:set_armor_groups({immortal = 1})
-			nodecore.entity_update_maxy(self)
+			nc.entity_update_maxy(self)
 			data_load(self, data)
 			return self:set_item()
 		end,
@@ -79,18 +79,18 @@ minetest.register_entity(":__builtin:item", {
 		enable_physics = stub,
 		disable_physics = stub,
 
-		settle_check = nodecore.entity_settle_check(function(self, ...)
-				for _, func in ipairs(nodecore.registered_item_entity_on_settles) do
+		settle_check = nc.entity_settle_check(function(self, ...)
+				for _, func in ipairs(nc.registered_item_entity_on_settles) do
 					if func(self, ...) == true then return true end
 				end
 			end),
 
 		on_step = function(self, ...)
 			if not self.itemstring then return self.object:remove() end
-			nodecore.entity_update_maxy(self)
+			nc.entity_update_maxy(self)
 			if self:settle_check(...) then return end
 
-			for _, func in ipairs(nodecore.registered_item_entity_steps) do
+			for _, func in ipairs(nc.registered_item_entity_steps) do
 				if func(self, ...) == true then return end
 			end
 		end,

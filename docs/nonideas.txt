@@ -105,7 +105,7 @@ NONIDEAS: Ideas already considered and rejected
 	- See "copying from other games" above.
 
 - Music
-	- Minetest engine only technically supports music, but it
+	- The engine only technically supports music, but it
 	  doesn't work smoothly.
 	- Music would increase the download size of the game, and
 	  correspondingly the media transfer time on joining servers,

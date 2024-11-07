@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "water source ambiance",
 		nodenames = {"nc_terrain:water_source", "nc_terrain:water_gray_source", "nc_terrain:river_water_source"},
 		neighbors = {"air"},
@@ -12,7 +12,7 @@ nodecore.register_ambiance({
 		sound_name = "nc_terrain_watery",
 		sound_gain = 0.05
 	})
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "water flow ambiance",
 		nodenames = {"nc_terrain:water_flowing", "nc_terrain:water_gray_flowing", "nc_terrain:river_water_flowing"},
 		neighbors = {"air"},
@@ -22,7 +22,7 @@ nodecore.register_ambiance({
 		sound_gain = 0.15
 	})
 
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "lava source ambiance",
 		nodenames = {"nc_terrain:lava_source"},
 		neighbors = {"air"},
@@ -31,7 +31,7 @@ nodecore.register_ambiance({
 		sound_name = "nc_terrain_bubbly",
 		sound_gain = 0.2
 	})
-nodecore.register_ambiance({
+nc.register_ambiance({
 		label = "lava flow ambiance",
 		nodenames = {"nc_terrain:lava_flowing"},
 		neighbors = {"air"},

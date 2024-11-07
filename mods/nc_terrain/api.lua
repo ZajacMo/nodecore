@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_floor, math_pow, math_random
     = math.floor, math.pow, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 ------------------------------------------------------------------------
 -- Hard Stone Strata
 
-nodecore.hard_stone_strata = 7
+nc.hard_stone_strata = 7
 
-function nodecore.hard_stone_tile(n)
+function nc.hard_stone_tile(n)
 	local o = math_floor(math_pow(n, 0.75) * 59)
 	if o <= 0 then
 		return modname .. "_stone.png"
@@ -34,48 +34,48 @@ local graywaterflow = "nc_terrain:water_gray_flowing"
 local graywatercache = {}
 
 local function rmwater(pos)
-	nodecore.node_sound(pos, "dig")
-	return minetest.set_node(pos, {name = graywaterflow, param2 = 7})
+	nc.node_sound(pos, "dig")
+	return core.set_node(pos, {name = graywaterflow, param2 = 7})
 end
-function nodecore.artificial_water_check(pos)
-	local cachekey = minetest.hash_node_position(pos)
+function nc.artificial_water_check(pos)
+	local cachekey = core.hash_node_position(pos)
 	local data = graywatercache[cachekey]
 	if not data then
-		data = minetest.get_meta(pos):get_string(modname)
-		data = data and data ~= "" and minetest.deserialize(data)
+		data = core.get_meta(pos):get_string(modname)
+		data = data and data ~= "" and core.deserialize(data)
 		graywatercache[cachekey] = data
 	end
 	if not data then return rmwater(pos) end
 
-	if data.recheck and nodecore.gametime < data.recheck then
-		return nodecore.dnt_set(pos, graywatersrc, data.recheck - nodecore.gametime)
+	if data.recheck and nc.gametime < data.recheck then
+		return nc.dnt_set(pos, graywatersrc, data.recheck - nc.gametime)
 	end
 
-	if nodecore.near_inactive(pos, nil, 3) then
-		return nodecore.dnt_set(pos, graywatersrc, 1 + math_random())
+	if nc.near_inactive(pos, nil, 3) then
+		return nc.dnt_set(pos, graywatersrc, 1 + math_random())
 	end
 
-	if data.expire and nodecore.gametime >= data.expire then
+	if data.expire and nc.gametime >= data.expire then
 		return rmwater(pos)
 	end
 
 	if data.matchpos and data.match then
-		local mnode = minetest.get_node(data.matchpos)
-		if mnode.name ~= "ignore" and not nodecore.match(mnode, data.match) then
+		local mnode = core.get_node(data.matchpos)
+		if mnode.name ~= "ignore" and not nc.match(mnode, data.match) then
 			return rmwater(pos)
 		end
 	end
 
-	return nodecore.dnt_set(pos, graywatersrc, 1 + math_random())
+	return nc.dnt_set(pos, graywatersrc, 1 + math_random())
 end
 
-nodecore.register_dnt({
+nc.register_dnt({
 		name = graywatersrc,
 		nodenames = {graywatersrc},
 		arealoaded = 1,
 		autostart = true,
 		autostart_time = 0,
-		action = function(pos) return nodecore.artificial_water_check(pos) end
+		action = function(pos) return nc.artificial_water_check(pos) end
 	})
 
 --[[
@@ -85,27 +85,27 @@ artificial water def:
 - minttl = minimum amount of time water must be there before rechecking for valid source
 - maxttl = maximum amount of time water will remain without being updated
 --]]
-function nodecore.artificial_water(pos, def, node)
-	node = node or minetest.get_node(pos)
+function nc.artificial_water(pos, def, node)
+	node = node or core.get_node(pos)
 	local nn = node.name
 	if nn ~= graywatersrc then
 		if nn ~= graywaterflow then
-			local nd = minetest.registered_nodes[nn]
+			local nd = core.registered_nodes[nn]
 			if not (nd and nd.floodable) then return end
 			if nd.on_flood and not nd.on_flood(
 				pos, node, {name = graywatersrc}) then return end
 		end
-		nodecore.set_loud(pos, {name = graywatersrc})
+		nc.set_loud(pos, {name = graywatersrc})
 	end
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local data = {
 		match = def.match,
 		matchpos = def.matchpos,
-		recheck = def.minttl and nodecore.gametime + def.minttl,
-		expire = def.maxttl and nodecore.gametime + def.maxttl
+		recheck = def.minttl and nc.gametime + def.minttl,
+		expire = def.maxttl and nc.gametime + def.maxttl
 	}
-	meta:set_string(modname, minetest.serialize(data))
-	graywatercache[minetest.hash_node_position(pos)] = data
-	nodecore.dnt_set(pos, graywatersrc, def.minttl or 1)
+	meta:set_string(modname, core.serialize(data))
+	graywatercache[core.hash_node_position(pos)] = data
+	nc.dnt_set(pos, graywatersrc, def.minttl or 1)
 	return true
 end

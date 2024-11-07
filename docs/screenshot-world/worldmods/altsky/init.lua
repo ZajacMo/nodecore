@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
 local txr
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "skyrealm skybox",
 		priority = -1000,
 		action = function(_, data)

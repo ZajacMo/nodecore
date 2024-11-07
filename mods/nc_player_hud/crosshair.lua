@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
 local function crosshair(player, fade)
-	nodecore.hud_set(player, {
+	nc.hud_set(player, {
 			label = "crosshair",
 			hud_elem_type = "image",
 			position = {x = 0.5, y = 0.5},
@@ -19,19 +19,19 @@ local function crosshair(player, fade)
 		})
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "crosshair",
 		priority = -101,
 		action = function(player, data)
 			local pt = data.raycast()
 			if pt then
-				if pt.type == "node" and nodecore.within_map_limits(pt.under) then
-					local llu = nodecore.get_node_light(pt.under) or 0
-					local lla = nodecore.get_node_light(pt.above) or 0
+				if pt.type == "node" and nc.within_map_limits(pt.under) then
+					local llu = nc.get_node_light(pt.under) or 0
+					local lla = nc.get_node_light(pt.above) or 0
 					local ll = (llu > lla) and llu or lla
 					return crosshair(player, ll <= 0)
 				elseif pt.type == "object" then
-					local ll = nodecore.get_node_light(pt.ref:get_pos()) or 0
+					local ll = nc.get_node_light(pt.ref:get_pos()) or 0
 					return crosshair(player, ll <= 0)
 				end
 			end

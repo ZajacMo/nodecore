@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local PcgRandom, math, minetest, nodecore, pairs
-    = PcgRandom, math, minetest, nodecore, pairs
+local PcgRandom, core, math, nc, pairs
+    = PcgRandom, core, math, nc, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local entname = modname .. ":ent"
 local genname = modname .. ":gen"
 
-minetest.register_entity(entname, {
+core.register_entity(entname, {
 		description = "Smoke",
 		initial_properties = {
 			visual = "sprite",
@@ -22,7 +22,7 @@ minetest.register_entity(entname, {
 		}
 	})
 
-minetest.register_node(genname, {
+core.register_node(genname, {
 		description = "Smoke Generator",
 		inventory_image = "nc_api_craft_smoke.png",
 		wield_image = "nc_api_craft_smoke.png",
@@ -39,7 +39,7 @@ local function myround(n)
 	return math_floor(n * 256) / 256
 end
 
-nodecore.register_dnt({
+nc.register_dnt({
 		name = genname,
 		nodenames = {genname},
 		time = 1,
@@ -48,7 +48,7 @@ nodecore.register_dnt({
 		autostart = true,
 		autostart_time = 0,
 		action = function(pos)
-			local pcg = PcgRandom(minetest.hash_node_position(pos))
+			local pcg = PcgRandom(core.hash_node_position(pos))
 			local rng = function() return pcg:next() / 2 ^ 32 + 0.5 end
 			for _ = 1, 10 do
 				local p = {
@@ -57,19 +57,19 @@ nodecore.register_dnt({
 					z = myround(pos.z + rng() - 0.5),
 					src = pos
 				}
-				smokepuffs[minetest.pos_to_string(p)] = p
+				smokepuffs[core.pos_to_string(p)] = p
 			end
 		end
 	})
 
-nodecore.interval(1, function()
+nc.interval(1, function()
 		local found = {}
-		for _, ent in pairs(minetest.luaentities) do
+		for _, ent in pairs(core.luaentities) do
 			if ent.name == entname then
 				local key = ent.key
 				local puff = key and smokepuffs[key]
 				if not (puff and puff.src
-					and minetest.get_node(puff.src).name == genname) then
+					and core.get_node(puff.src).name == genname) then
 					ent.object:remove()
 					smokepuffs[key] = nil
 				end
@@ -78,7 +78,7 @@ nodecore.interval(1, function()
 		end
 		for key, pos in pairs(smokepuffs) do
 			if not found[key] then
-				local obj = minetest.add_entity(pos, entname)
+				local obj = core.add_entity(pos, entname)
 				local ent = obj and obj:get_luaentity()
 				if ent then ent.key = key end
 			end

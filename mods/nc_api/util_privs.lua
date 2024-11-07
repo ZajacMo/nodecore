@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
 local warned
-function nodecore.get_player_privs_cached(...)
+function nc.get_player_privs_cached(...)
 	if not warned then
-		nodecore.log("warning", "deprecated nodecore.get_player_privs_cached(...)")
+		nc.log("warning", "deprecated nc.get_player_privs_cached(...)")
 		warned = true
 	end
-	return minetest.get_player_privs(...)
+	return core.get_player_privs(...)
 end
 
-function nodecore.interact(player)
-	return not player or minetest.get_player_privs(player).interact
+function nc.interact(player)
+	return not player or core.get_player_privs(player).interact
 end

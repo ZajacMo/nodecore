@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore, pairs, type
-    = nodecore, pairs, type
+local nc, pairs, type
+    = nc, pairs, type
 -- LUALOCALS > ---------------------------------------------------------
 
 local ratio = 127/128
-nodecore.z_fight_ratio = ratio
+nc.z_fight_ratio = ratio
 
 local function scantbl(t, adj)
 	local u = {}
@@ -22,7 +22,7 @@ local function scantbl(t, adj)
 	return u
 end
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type ~= "node" then return end
 		if def.node_box and def.node_box.fixed then
 			def.collision_box = def.collision_box or def.node_box

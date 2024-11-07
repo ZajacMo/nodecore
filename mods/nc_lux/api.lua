@@ -1,19 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, vector
-    = math, minetest, nodecore, pairs, vector
+local core, math, nc, pairs, vector
+    = core, math, nc, pairs, vector
 local math_ceil, math_pow
     = math.ceil, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function isfluid(pos)
-	local def = minetest.registered_nodes[minetest.get_node(pos).name]
+	local def = core.registered_nodes[core.get_node(pos).name]
 	return def and def.groups and def.groups.lux_fluid
 end
 
 local indirs = {}
-for _, v in pairs(nodecore.dirs()) do
+for _, v in pairs(nc.dirs()) do
 	if v.y == 0 then
 		indirs[#indirs + 1] = v
 	end
@@ -23,17 +23,17 @@ local checkflow
 do
 	local src = modname .. ":flux_source"
 	local flow = modname .. ":flux_flowing"
-	local hashpos = minetest.hash_node_position
+	local hashpos = core.hash_node_position
 	local cache = {}
 	checkflow = function(pos, nextpos, ...)
-		local nn = minetest.get_node(pos).name
+		local nn = core.get_node(pos).name
 		if nn == src then return 1 end
 		if nn ~= flow then return end
 		if nextpos then return checkflow(nextpos, ...) end
 		local d = cache[hashpos(pos)]
 		return d and d + 1
 	end
-	minetest.register_abm({
+	core.register_abm({
 			label = "trace flux sources",
 			chance = 2,
 			interval = 1,
@@ -65,7 +65,7 @@ do
 		})
 end
 
-function nodecore.lux_soak_rate(pos)
+function nc.lux_soak_rate(pos)
 	local above = vector.add(pos, {x = 0, y = 1, z = 0})
 	if not isfluid(above) then return false end
 	local qty = 1
@@ -73,7 +73,7 @@ function nodecore.lux_soak_rate(pos)
 		if isfluid(vector.add(pos, v)) then qty = qty + 1 end
 	end
 
-	local nn = minetest.get_node(above).name
+	local nn = core.get_node(above).name
 	if nn == modname .. ":flux_source" then return qty * 20 end
 	if nn ~= modname .. ":flux_flowing" then return false end
 	local dist = checkflow(above)
@@ -84,20 +84,20 @@ function nodecore.lux_soak_rate(pos)
 end
 
 local function is_lux_cobble(stack)
-	return (not stack:is_empty()) and minetest.get_item_group(stack:get_name(), "lux_cobble") > 0
+	return (not stack:is_empty()) and core.get_item_group(stack:get_name(), "lux_cobble") > 0
 end
 
-function nodecore.lux_react_qty(pos, adjust)
+function nc.lux_react_qty(pos, adjust)
 	local minp = vector.subtract(pos, {x = 1, y = 1, z = 1})
 	local maxp = vector.add(pos, {x = 1, y = 1, z = 1})
-	local qty = #minetest.find_nodes_in_area(minp, maxp, {"group:lux_cobble"})
+	local qty = #core.find_nodes_in_area(minp, maxp, {"group:lux_cobble"})
 	if adjust then qty = qty + adjust end
-	for _, p in pairs(minetest.find_nodes_with_meta(minp, maxp)) do
-		if is_lux_cobble(nodecore.stack_get(p)) then
+	for _, p in pairs(core.find_nodes_with_meta(minp, maxp)) do
+		if is_lux_cobble(nc.stack_get(p)) then
 			qty = qty + 1
 		end
 	end
-	for _, p in pairs(minetest.get_connected_players()) do
+	for _, p in pairs(core.get_connected_players()) do
 		if vector.distance(pos, vector.add(p:get_pos(), {x = 0, y = 1, z = 0})) < 2 then
 			local inv = p:get_inventory()
 			for i = 1, inv:get_size("main") do

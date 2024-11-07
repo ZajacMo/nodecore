@@ -1,21 +1,21 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, minetest, nodecore, pairs, table, type, vector
-    = ItemStack, math, minetest, nodecore, pairs, table, type, vector
+local ItemStack, core, math, nc, pairs, table, type, vector
+    = ItemStack, core, math, nc, pairs, table, type, vector
 local math_floor, math_pi, math_random, math_sqrt, table_insert,
       table_remove
     = math.floor, math.pi, math.random, math.sqrt, table.insert,
       table.remove
 -- LUALOCALS > ---------------------------------------------------------
 
-function minetest.spawn_falling_node(pos, node, meta)
-	node = node or minetest.get_node(pos)
+function core.spawn_falling_node(pos, node, meta)
+	node = node or core.get_node(pos)
 	if node.name == "air" or node.name == "ignore" then
 		return false
 	end
-	local obj = minetest.add_entity(pos, "__builtin:falling_node")
+	local obj = core.add_entity(pos, "__builtin:falling_node")
 	if obj then
-		obj:get_luaentity():set_node(node, meta or minetest.get_meta(pos):to_table())
-		minetest.remove_node(pos)
+		obj:get_luaentity():set_node(node, meta or core.get_meta(pos):to_table())
+		core.remove_node(pos)
 		return obj
 	end
 	return false
@@ -46,7 +46,7 @@ local function stack_tostring_clean(stack)
 	return stack:to_string()
 end
 
-function nodecore.stackentprops(stack, yaw, rotate, ss)
+function nc.stackentprops(stack, yaw, rotate, ss)
 	local props = {
 		hp_max = 1,
 		physical = false,
@@ -73,7 +73,7 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 		props.automatic_rotate = rotate
 		and rotate * 2 / math_sqrt(math_sqrt(ratio)) or 0
 
-		local def = minetest.registered_items[stack:get_name()]
+		local def = core.registered_items[stack:get_name()]
 		props.glow = def and (def.glow or def.light_source)
 
 		if ratio == 1 then ratio = 1 - (stack:get_wear() / 65536) end
@@ -84,46 +84,46 @@ function nodecore.stackentprops(stack, yaw, rotate, ss)
 	return props, scale, yaw * math_pi / 2
 end
 
-function nodecore.entity_staticdata_helpers(savedprops)
+function nc.entity_staticdata_helpers(savedprops)
 	return function(self, data)
-		data = data and minetest.deserialize(data) or {}
+		data = data and core.deserialize(data) or {}
 		for k in pairs(savedprops) do self[k] = data[k] end
 	end,
 	function(self)
 		local data = {}
 		for k in pairs(savedprops) do data[k] = self[k] end
-		return minetest.serialize(data)
+		return core.serialize(data)
 	end
 end
 
 local area_unloaded = {}
 
 local function collides(pos, ignorewalkable)
-	if pos.y < nodecore.map_limit_min then return {name = "ignore"} end
-	local node = minetest.get_node_or_nil(pos)
+	if pos.y < nc.map_limit_min then return {name = "ignore"} end
+	local node = core.get_node_or_nil(pos)
 	if not node then return area_unloaded end
-	local def = minetest.registered_nodes[node.name]
+	local def = core.registered_nodes[node.name]
 	if not def then return node end
 	if (def.walkable and not ignorewalkable)
 	or ((def.groups and def.groups.support_falling or 0) > 0)
 	then return node end
 end
 
-local oldcheck = minetest.check_single_for_falling
-function minetest.check_single_for_falling(...)
-	local oldget = minetest.get_node_or_nil
-	function minetest.get_node_or_nil(pos, ...)
-		if pos.y < nodecore.map_limit_min then return end
+local oldcheck = core.check_single_for_falling
+function core.check_single_for_falling(...)
+	local oldget = core.get_node_or_nil
+	function core.get_node_or_nil(pos, ...)
+		if pos.y < nc.map_limit_min then return end
 		return oldget(pos, ...)
 	end
 	local function helper(...)
-		minetest.get_node_or_nil = oldget
+		core.get_node_or_nil = oldget
 		return ...
 	end
 	return helper(oldcheck(...))
 end
 
-function nodecore.entity_update_maxy(self, pos, vel)
+function nc.entity_update_maxy(self, pos, vel)
 	pos = pos or self.object:get_pos()
 	if not pos then return end
 	if (not self.maxy) or pos.y > self.maxy then
@@ -134,7 +134,7 @@ function nodecore.entity_update_maxy(self, pos, vel)
 	if vel.y > 0 then self.maxy = pos.y end
 end
 
-local hash_node_position = minetest.hash_node_position
+local hash_node_position = core.hash_node_position
 local round = vector.round
 local function yqinsert(yq, ent)
 	local key = ent.maxy
@@ -168,13 +168,13 @@ local function yqinsertall(yq, bypos, pos)
 	end
 end
 local entity_settle_recursing
-function nodecore.entity_settle_recurse(pos)
+function nc.entity_settle_recurse(pos)
 	if entity_settle_recursing then return end
 	entity_settle_recursing = true
 	pos = round(pos)
 	local blocked = {[hash_node_position(pos)] = true}
 	local bypos = {}
-	for _, ent in pairs(minetest.luaentities) do
+	for _, ent in pairs(core.luaentities) do
 		if ent.settle_check and ent.maxy then
 			local p = ent.object:get_pos()
 			if p then
@@ -234,12 +234,12 @@ local function groundpos(moveresult)
 	return {x = pos.x, y = pos.y + 0.55, z = pos.z}
 end
 
-function nodecore.entity_settle_check(on_settle, isnode)
+function nc.entity_settle_check(on_settle, isnode)
 	return function(self, dtime, moveresult)
 		local pos = groundpos(moveresult) or self.object:get_pos()
 		if not pos then return end
-		if pos.y < nodecore.map_limit_min then
-			pos.y = nodecore.map_limit_min
+		if pos.y < nc.map_limit_min then
+			pos.y = nc.map_limit_min
 			self.object:set_pos(pos)
 			local vel = self.object:get_velocity()
 			vel.y = 0
@@ -276,7 +276,7 @@ function nodecore.entity_settle_check(on_settle, isnode)
 				self.setvel = nil
 			end
 			self.vel = self.object:get_velocity()
-			return nodecore.grav_air_accel_ent(self.object)
+			return nc.grav_air_accel_ent(self.object)
 		end
 		if coll == area_unloaded then
 			self.object:set_velocity({x = 0, y = 0, z = 0})
@@ -287,8 +287,8 @@ function nodecore.entity_settle_check(on_settle, isnode)
 		pos = vector.round(pos)
 
 		if not on_settle(self, pos, collides) then return end
-		nodecore.entity_settle_recurse(pos)
+		nc.entity_settle_recurse(pos)
 
-		return nodecore.fallcheck(pos)
+		return nc.fallcheck(pos)
 	end
 end

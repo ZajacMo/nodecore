@@ -1,13 +1,13 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, error, ipairs, math, minetest, nodecore, pairs, type
-    = ItemStack, error, ipairs, math, minetest, nodecore, pairs, type
+local ItemStack, core, error, ipairs, math, nc, pairs, type
+    = ItemStack, core, error, ipairs, math, nc, pairs, type
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addgroups(sum, pos)
-	local node = minetest.get_node(pos)
-	local def = minetest.registered_items[node.name] or {}
+	local node = core.get_node(pos)
+	local def = core.registered_items[node.name] or {}
 	if not def.groups then return end
 	for k, v in pairs(def.groups) do
 		sum[k] = (sum[k] or 0) + v
@@ -25,7 +25,7 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	data.rel = rel
 	data.wield = ItemStack(data.wield or data.crafter and data.crafter:get_wielded_item())
 	if recipe.check and not recipe.check(pos, data) then return end
-	if recipe.wield and (not data.wield or not nodecore.match(
+	if recipe.wield and (not data.wield or not nc.match(
 			{stack = data.wield}, recipe.wield)) then return end
 	if recipe.normal then
 		if data.pointed.type ~= "node" or
@@ -38,11 +38,11 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 	for _, v in pairs(recipe.nodes) do
 		if v.match then
 			local p = rel(v.x, v.y, v.z)
-			if not nodecore.match(p, v.match) then return end
+			if not nc.match(p, v.match) then return end
 		end
 	end
 	if recipe.heat then
-		data.heat = data.heat or minetest.get_node_heat(pos)
+		data.heat = data.heat or core.get_node_heat(pos)
 		if recipe.heat > 0 then
 			if data.heat < recipe.heat then return end
 		elseif recipe.heat < 0 then
@@ -135,60 +135,60 @@ local function craftcheck(recipe, pos, node, data, xx, xz, zx, zz)
 					r = {name = r}
 				end
 				if v.match.excess then
-					local s = nodecore.stack_get(p)
+					local s = nc.stack_get(p)
 					local x = s:get_count() - (v.match.count or 1)
 					if x > 0 then
 						s:set_count(x)
-						nodecore.item_eject(p, s)
+						nc.item_eject(p, s)
 					end
-					nodecore.stack_set(p, ItemStack(""))
+					nc.stack_set(p, ItemStack(""))
 				end
 				if r then
 					if not r.param2 then
-						local rd = minetest.registered_nodes[r.name]
+						local rd = core.registered_nodes[r.name]
 						if rd and rd.paramtype2 == "facedir" then
 							r.param2 = math_random(0, 3)
 						else
-							local n = minetest.get_node(p)
+							local n = core.get_node(p)
 							r.param2 = n.param2
 						end
 					end
-					nodecore.set_loud(p, r)
-					nodecore.fallcheck(p)
+					nc.set_loud(p, r)
+					nc.fallcheck(p)
 				end
 			end
 			if v.dig then
 				local p = rel(v.x, v.y, v.z)
-				minetest.node_dig(p, minetest.get_node(p))
+				core.node_dig(p, core.get_node(p))
 			end
 		end
 		if recipe.items then
 			for _, v in pairs(recipe.items) do
-				nodecore.item_eject(rel(v.x or 0, v.y or 0, v.z or 0),
+				nc.item_eject(rel(v.x or 0, v.y or 0, v.z or 0),
 					v.name, v.scatter, v.count, v.velocity)
 			end
 		end
 		if recipe.consumewield and data.crafter then
-			nodecore.consume_wield(data.crafter, recipe.consumewield)
+			nc.consume_wield(data.crafter, recipe.consumewield)
 		elseif recipe.toolgroups and recipe.toolwear and data.crafter then
-			nodecore.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
+			nc.wear_wield(data.crafter, recipe.toolgroups, recipe.toolwear)
 		end
 		if recipe.after then recipe.after(pos, data) end
 		if data.after then data.after(pos, data) end
 		local discover = {recipe.action, recipe.label, data.discover, recipe.discover}
-		nodecore.player_discover(data.crafter, discover, "craft:")
+		nc.player_discover(data.crafter, discover, "craft:")
 		if data.witness or recipe.witness then
-			nodecore.witness(pos, discover)
+			nc.witness(pos, discover)
 			for _, v in pairs(recipe.nodes) do
 				if v.x ~= 0 or v.y ~= 0 or v.z ~= 0 then
-					nodecore.witness(rel(v.x, v.y, v.z), discover)
+					nc.witness(rel(v.x, v.y, v.z), discover)
 				end
 			end
 		end
 		local pname = data.crafter and data.crafter:get_player_name()
-		nodecore.log(pname and "action" or "info", (pname or "unknown")
+		nc.log(pname and "action" or "info", (pname or "unknown")
 			.. " crafts \"" .. recipe.label .. "\" at " ..
-			minetest.pos_to_string(pos))
+			core.pos_to_string(pos))
 	end
 end
 
@@ -213,8 +213,8 @@ local function tryall(rc, pos, node, data)
 	return r
 end
 
-local craftidx, rebuildidx = nodecore.item_matching_index(
-	nodecore.registered_recipes,
+local craftidx, rebuildidx = nc.item_matching_index(
+	nc.registered_recipes,
 	function(i) return i.indexkeys or {true} end,
 	"register_craft",
 	true,
@@ -223,18 +223,18 @@ local craftidx, rebuildidx = nodecore.item_matching_index(
 
 do
 	local dirty
-	local oldreg = nodecore.register_craft
+	local oldreg = nc.register_craft
 	local function rebuildhelper(...)
 		if not dirty then
 			dirty = true
-			minetest.after(0, function()
+			core.after(0, function()
 					dirty = nil
 					rebuildidx()
 				end)
 		end
 		return ...
 	end
-	function nodecore.register_craft(...)
+	function nc.register_craft(...)
 		return rebuildhelper(oldreg(...))
 	end
 end
@@ -242,7 +242,7 @@ end
 local function checkall(pos, node, data, set)
 	for _, rc in ipairs(set) do
 		if data.action == rc.action
-		and nodecore.match(node, rc.root.match) then
+		and nc.match(node, rc.root.match) then
 			data.recipe = rc
 			if data.rootmatch then data.rootmatch(data) end
 			local r = tryall(rc, pos, node, data)
@@ -252,7 +252,7 @@ local function checkall(pos, node, data, set)
 	end
 end
 
-function nodecore.craft_search(pos, node, data)
+function nc.craft_search(pos, node, data)
 	if not data or not data.action then
 		return error("craft_check without data.action")
 	end
@@ -274,7 +274,7 @@ function nodecore.craft_search(pos, node, data)
 		end
 	end
 
-	local stack = pos and nodecore.stack_get(pos)
+	local stack = pos and nc.stack_get(pos)
 	if not stack:is_empty() then
 		local key = data.action .. "|" .. stack:get_name()
 		local set = craftidx[key]
@@ -291,8 +291,8 @@ function nodecore.craft_search(pos, node, data)
 	end
 end
 
-function nodecore.craft_check(...)
-	local commit = nodecore.craft_search(...)
+function nc.craft_check(...)
+	local commit = nc.craft_search(...)
 	if not commit then return end
 	commit()
 	return true

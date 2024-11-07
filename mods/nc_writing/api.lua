@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, table
-    = ItemStack, minetest, nodecore, pairs, table
+local ItemStack, core, nc, pairs, table
+    = ItemStack, core, nc, pairs, table
 local table_sort
     = table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -19,7 +19,7 @@ local glyphs = {
 	{name = "Prx"},
 	{name = "Xrp", flipped = "prx"}
 }
-nodecore.writing_glyphs = glyphs
+nc.writing_glyphs = glyphs
 
 local glyph_next = {}
 local glyph_alts = {}
@@ -32,14 +32,14 @@ for i = 2, #glyphs do
 	end
 	glyph_next[#glyphs] = 1
 end
-nodecore.writing_glyph_next = glyph_next
-nodecore.writing_glyph_alts = glyph_alts
+nc.writing_glyph_next = glyph_next
+nc.writing_glyph_alts = glyph_alts
 
 local spinmap
 do
 	local rots = {}
 	for i = 0, 23 do
-		local f = nodecore.facedirs[i]
+		local f = nc.facedirs[i]
 		local r = rots[f.t.n]
 		if not r then
 			r = {}
@@ -58,13 +58,13 @@ do
 		spinmap[t[#t]] = t[1]
 	end
 end
-nodecore.writing_spinmap = spinmap
+nc.writing_spinmap = spinmap
 
 local function writable(pos, node, default)
-	node = node or minetest.get_node_or_nil(pos)
+	node = node or core.get_node_or_nil(pos)
 	if not node then return default end
-	local def = minetest.registered_nodes[node.name]
+	local def = core.registered_nodes[node.name]
 	return def.walkable and def.paramtype ~= "light"
-	and not nodecore.tool_digs(ItemStack(""), def.groups)
+	and not nc.tool_digs(ItemStack(""), def.groups)
 end
-nodecore.writing_writable = writable
+nc.writing_writable = writable

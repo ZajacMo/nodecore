@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local core, math, nc, pairs
+    = core, math, nc, pairs
 local math_floor
     = math.floor
 -- LUALOCALS > ---------------------------------------------------------
@@ -8,16 +8,16 @@ local math_floor
 local cache = {}
 
 local function findfirst(i, func)
-	local fdi = nodecore.facedirs[i]
+	local fdi = nc.facedirs[i]
 	for j = 0, i do
-		if i == j or func(fdi, nodecore.facedirs[j]) then
+		if i == j or func(fdi, nc.facedirs[j]) then
 			return j
 		end
 	end
 end
 
 local function getlut(name)
-	local def = minetest.registered_nodes[name]
+	local def = core.registered_nodes[name]
 	if not def then return end
 	local func = def.nc_param2_equivalent
 	if not func then return end
@@ -57,15 +57,15 @@ local function param2_canonical(node, param2)
 	}
 end
 
-nodecore.param2_canonical = param2_canonical
+nc.param2_canonical = param2_canonical
 
 for k in pairs({
 		add_node = true,
 		set_node = true,
 		swap_node = true
 	}) do
-	local oldfunc = minetest[k]
-	minetest[k] = function(pos, node, ...)
+	local oldfunc = core[k]
+	core[k] = function(pos, node, ...)
 		return oldfunc(pos, param2_canonical(node), ...)
 	end
 end

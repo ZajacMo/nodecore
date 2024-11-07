@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-minetest.register_decoration({
+core.register_decoration({
 		deco_type = "schematic",
 		place_on = {"nc_terrain:dirt_with_grass"},
 		sidelen = 16,
@@ -18,7 +18,7 @@ minetest.register_decoration({
 		biomes = {"unknown"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = nodecore.tree_schematic,
+		schematic = nc.tree_schematic,
 		flags = "place_center_x, place_center_z",
 		rotation = "random",
 		replacements = {}

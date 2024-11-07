@@ -1,33 +1,33 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table, tonumber
-    = math, minetest, nodecore, pairs, table, tonumber
+local core, math, nc, pairs, table, tonumber
+    = core, math, nc, pairs, table, tonumber
 local math_random, table_concat
     = math.random, table.concat
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function growparticles(pos, rate, width)
-	nodecore.soaking_particles(pos, rate, 10, width, modname .. ":leaves_bud")
+	nc.soaking_particles(pos, rate, 10, width, modname .. ":leaves_bud")
 end
 
 local sproutcost = 2000
-nodecore.register_soaking_abm({
+nc.register_soaking_abm({
 		label = "eggcorn sprout",
 		fieldname = "eggcorn",
 		nodenames = {modname .. ":eggcorn_planted"},
 		interval = 10,
 		arealoaded = 1,
-		soakrate = nodecore.tree_growth_rate,
+		soakrate = nc.tree_growth_rate,
 		soakcheck = function(data, pos)
 			if data.total >= sproutcost then
-				nodecore.node_sound(pos, "dig")
-				nodecore.set_loud(pos, {name = modname .. ":root"})
+				nc.node_sound(pos, "dig")
+				nc.set_loud(pos, {name = modname .. ":root"})
 				local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
-				nodecore.set_loud(apos,
+				nc.set_loud(apos,
 					{name = modname .. ":tree_bud", param2 = 1})
-				nodecore.witness(apos, "tree growth")
-				return nodecore.soaking_abm_push(apos,
+				nc.witness(apos, "tree growth")
+				return nc.soaking_abm_push(apos,
 					"treegrow", data.total - sproutcost)
 			end
 			return growparticles(pos, data.rate, 0.2)
@@ -36,31 +36,31 @@ nodecore.register_soaking_abm({
 
 local function leafbud(pos, dx, dy, dz, param2, surplus, rate)
 	local npos = {x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
-	if not nodecore.buildable_to(npos) then
-		local node = minetest.get_node(npos)
-		if minetest.get_item_group(node.name, "canopy") == 0 or param2 < node.param2
+	if not nc.buildable_to(npos) then
+		local node = core.get_node(npos)
+		if core.get_item_group(node.name, "canopy") == 0 or param2 < node.param2
 		then return end
 	end
 	if param2 <= 1 then
 		if 240 < math_random(0, 255) then return end
-		return nodecore.set_loud(npos, nodecore.calc_leaves(npos))
+		return nc.set_loud(npos, nc.calc_leaves(npos))
 	end
-	nodecore.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
-	minetest.get_meta(npos):set_float("growrate", rate)
-	return nodecore.soaking_abm_push(npos, "leafgrow", surplus)
+	nc.set_loud(npos, {name = modname .. ":leaves_bud", param2 = param2})
+	core.get_meta(npos):set_float("growrate", rate)
+	return nc.soaking_abm_push(npos, "leafgrow", surplus)
 end
 
 local trunkcost = 1000
-nodecore.register_soaking_abm({
+nc.register_soaking_abm({
 		label = "tree trunk grow",
 		fieldname = "treegrow",
 		nodenames = {modname .. ":tree_bud"},
 		interval = 10,
 		arealoaded = 1,
 		soakrate = function(pos, ...)
-			local v = nodecore.tree_trunk_growth_rate(pos, ...)
+			local v = nc.tree_trunk_growth_rate(pos, ...)
 			if v == false then
-				minetest.set_node(pos, {name = modname .. ":tree"})
+				core.set_node(pos, {name = modname .. ":tree"})
 			end
 			return v
 		end,
@@ -69,23 +69,23 @@ nodecore.register_soaking_abm({
 				return growparticles(pos, data.rate, 0.45)
 			end
 
-			local tp = nodecore.tree_params[node.param2]
-			if not tp then return minetest.remove_node(pos) end
+			local tp = nc.tree_params[node.param2]
+			if not tp then return core.remove_node(pos) end
 
-			minetest.set_node(pos, {name = modname .. ":tree"})
+			core.set_node(pos, {name = modname .. ":tree"})
 
 			local apos = {x = pos.x, y = pos.y + 1, z = pos.z}
-			if not nodecore.buildable_to(apos)
-			and minetest.get_item_group(minetest.get_node(apos).name, "canopy") == 0
+			if not nc.buildable_to(apos)
+			and core.get_item_group(core.get_node(apos).name, "canopy") == 0
 			then return end
 
 			local param2 = node.param2 + 1
-			tp = nodecore.tree_params[param2]
-			if not tp then return minetest.remove_node(pos) end
+			tp = nc.tree_params[param2]
+			if not tp then return core.remove_node(pos) end
 			while tp.prob and (tp.prob < math_random(0, 255)) do
 				param2 = param2 + 1
-				tp = nodecore.tree_params[param2]
-				if not tp then return minetest.remove_node(pos) end
+				tp = nc.tree_params[param2]
+				if not tp then return core.remove_node(pos) end
 			end
 
 			local surplus = data.total - trunkcost
@@ -99,32 +99,32 @@ nodecore.register_soaking_abm({
 			if tp.notrunk then
 				leafbud(apos, 0, 0, 0, tp.leaves, surplus, data.rate)
 			else
-				nodecore.set_loud(apos, {
+				nc.set_loud(apos, {
 						name = modname .. ":tree_bud",
 						param2 = param2
 					})
-				nodecore.witness(apos, "tree growth")
-				nodecore.soaking_abm_push(apos,
+				nc.witness(apos, "tree growth")
+				nc.soaking_abm_push(apos,
 					"treegrow", surplus)
 			end
 		end
 	})
 
 local leafcost = trunkcost
-nodecore.register_soaking_abm({
+nc.register_soaking_abm({
 		label = "tree leaves grow",
 		nodenames = {modname .. ":leaves_bud"},
 		fieldname = "leafgrow",
 		interval = 10,
 		arealoaded = 1,
 		soakrate = function(pos)
-			local rate = minetest.get_meta(pos):get_float("growrate") or 0
+			local rate = core.get_meta(pos):get_float("growrate") or 0
 			return rate and rate ~= 0 and rate or 10
 		end,
 		soakcheck = function(data, pos, node)
 			if data.total < leafcost then return end
 
-			nodecore.set_loud(pos, nodecore.calc_leaves(pos))
+			nc.set_loud(pos, nc.calc_leaves(pos))
 
 			local surplus = data.total - leafcost
 			if node.param2 <= 1 then
@@ -149,11 +149,11 @@ nodecore.register_soaking_abm({
 
 local growtreedata = {
 	[modname .. ":eggcorn_planted"] = {
-		r = nodecore.tree_growth_rate,
+		r = nc.tree_growth_rate,
 		f = "eggcorn"
 	},
 	[modname .. ":tree_bud"] = {
-		r = nodecore.tree_trunk_growth_rate,
+		r = nc.tree_trunk_growth_rate,
 		f = "treegrow"
 	},
 	[modname .. ":leaves_bud"] = {
@@ -161,12 +161,12 @@ local growtreedata = {
 		f = "leafgrow"
 	}
 }
-minetest.register_chatcommand("growtrees", {
+core.register_chatcommand("growtrees", {
 		description = "Accelerate growth of nearby trees",
 		privs = {server = true},
 		params = "[radius]",
 		func = function(pname, param)
-			local player = minetest.get_player_by_name(pname)
+			local player = core.get_player_by_name(pname)
 			if not player then return end
 			local pos = player:get_pos()
 			local spec = {}
@@ -175,20 +175,20 @@ minetest.register_chatcommand("growtrees", {
 			param = tonumber(param) or 5
 			if param < 0 then param = 0 end
 			if param > 79 then param = 79 end
-			for _, p in pairs(nodecore.find_nodes_around(pos, spec, param)) do
-				local nn = minetest.get_node(p).name
+			for _, p in pairs(nc.find_nodes_around(pos, spec, param)) do
+				local nn = core.get_node(p).name
 				local data = growtreedata[nn]
 				local r = data.r(p)
 				if r and r > 0 then
-					nodecore.soaking_abm_push(p, data.f, 100000)
-					grew[#grew + 1] = nn .. " at " .. minetest.pos_to_string(p)
+					nc.soaking_abm_push(p, data.f, 100000)
+					grew[#grew + 1] = nn .. " at " .. core.pos_to_string(p)
 				end
 			end
 			return true, table_concat(grew, "\n")
 		end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "tickle eggcorn",
 		action = "pummel",
 		toolgroups = {cuddly = 1},
@@ -197,12 +197,12 @@ nodecore.register_craft({
 			{match = {name = modname .. ":eggcorn_planted", stacked = false}}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "eggcorn")
-			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
+			nc.soaking_abm_tickle(pos, "eggcorn")
+			nc.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
 		end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "tickle tree trunk",
 		action = "pummel",
 		toolgroups = {cuddly = 1},
@@ -211,12 +211,12 @@ nodecore.register_craft({
 			{match = {name = modname .. ":tree_bud", stacked = false}}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "treegrow")
-			nodecore.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
+			nc.soaking_abm_tickle(pos, "treegrow")
+			nc.soaking_particles(pos, 25, 0.5, .45, modname .. ":leaves_bud")
 		end
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "tickle tree leaves",
 		action = "pummel",
 		toolgroups = {cuddly = 1},
@@ -224,6 +224,6 @@ nodecore.register_craft({
 			{match = {name = modname .. ":leaves_bud", stacked = false}}
 		},
 		after = function(pos)
-			nodecore.soaking_abm_tickle(pos, "leafgrow")
+			nc.soaking_abm_tickle(pos, "leafgrow")
 		end
 	})

@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local root = {
 	".....",
@@ -48,7 +48,7 @@ local top = {
 	".....",
 }
 
-nodecore.tree_params = {
+nc.tree_params = {
 	{},
 	{
 		prob = 160
@@ -78,7 +78,7 @@ nodecore.tree_params = {
 	}
 }
 
-nodecore.tree_schematic = nodecore.ezschematic(
+nc.tree_schematic = nc.ezschematic(
 	{
 		["."] = {name = "air", prob = 0},
 		r = {name = modname .. ":root", prob = 255, force_place = true},

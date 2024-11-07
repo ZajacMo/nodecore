@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, math, nodecore, pairs
-    = ItemStack, math, nodecore, pairs
+local ItemStack, math, nc, pairs
+    = ItemStack, math, nc, pairs
 local math_pow
     = math.pow
 -- LUALOCALS > ---------------------------------------------------------
@@ -14,9 +14,9 @@ local basetimes = {
 	scratchy = 2,
 	cuddly = 2
 }
-nodecore.tool_basetimes = basetimes
+nc.tool_basetimes = basetimes
 
-function nodecore.toolcaps(opts)
+function nc.toolcaps(opts)
 	if opts.uses == nil then opts.uses = 1 end
 	local gcaps = {}
 	for gn, bt in pairs(basetimes) do
@@ -41,7 +41,7 @@ function nodecore.toolcaps(opts)
 	return {groupcaps = gcaps, opts = opts, punch_attack_uses = 0}
 end
 
-function nodecore.toolspeed(what, groups)
+function nc.toolspeed(what, groups)
 	if not what then return end
 	local dg = what:get_tool_capabilities().groupcaps
 	local t
@@ -52,22 +52,22 @@ function nodecore.toolspeed(what, groups)
 		if gt and (not t or t > gt) then t = gt end
 	end
 	if (not t) and (not what:is_empty()) then
-		return nodecore.toolspeed(ItemStack(""), groups)
+		return nc.toolspeed(ItemStack(""), groups)
 	end
 	return t
 end
-function nodecore.tool_digs(what, groups)
-	return nodecore.toolspeed(what, groups)
+function nc.tool_digs(what, groups)
+	return nc.toolspeed(what, groups)
 end
 
-function nodecore.toolheadspeed(what, groups)
-	return nodecore.toolspeed({
+function nc.toolheadspeed(what, groups)
+	return nc.toolspeed({
 			get_tool_capabilities = function()
 				return what:get_definition().tool_head_capabilities
 				or ItemStack(""):get_tool_capabilities()
 			end
 		}, groups)
 end
-function nodecore.tool_head_digs(what, groups)
-	return nodecore.toolheadspeed(what, groups)
+function nc.tool_head_digs(what, groups)
+	return nc.toolheadspeed(what, groups)
 end

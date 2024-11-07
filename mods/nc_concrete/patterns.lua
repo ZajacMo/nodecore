@@ -1,19 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local error, ipairs, minetest, nodecore, pairs, rawset, string, type
-    = error, ipairs, minetest, nodecore, pairs, rawset, string, type
+local core, error, ipairs, nc, pairs, rawset, string, type
+    = core, error, ipairs, nc, pairs, rawset, string, type
 local string_gsub, string_lower
     = string.gsub, string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_concrete_pattern,
-nodecore.registered_concrete_patterns
-= nodecore.mkreg()
+nc.register_concrete_pattern,
+nc.registered_concrete_patterns
+= nc.mkreg()
 
-nodecore.register_concrete_etchable,
-nodecore.registered_concrete_etchables
-= nodecore.mkreg()
+nc.register_concrete_etchable,
+nc.registered_concrete_etchables
+= nc.mkreg()
 
 local function applytile(tiles, spec)
 	if not spec then return tiles end
@@ -47,19 +47,19 @@ local function defaultgroup(def, group)
 end
 
 local function regetched(basenode, etch, patt)
-	basenode = nodecore.underride({}, basenode)
+	basenode = nc.underride({}, basenode)
 	basenode.alternate_loose = nil
 	basenode.after_dig_node = nil
 	basenode.node_dig_prediction = nil
 	basenode.silktouch = nil
 	basenode.strata = nil
 	local plyname = modname .. ":" .. etch.name .. "_" .. patt.name .. "_ply"
-	if not minetest.registered_nodes[plyname] then
+	if not core.registered_nodes[plyname] then
 		local def = {}
-		nodecore.underride(def, etch.pliant)
-		nodecore.underride(def, etch)
-		nodecore.underride(def, patt)
-		nodecore.underride(def, basenode)
+		nc.underride(def, etch.pliant)
+		nc.underride(def, etch)
+		nc.underride(def, patt)
+		nc.underride(def, basenode)
 		def.tiles = applytile(def.tiles, patttile(etch, patt))
 		def.tiles = applytile(def.tiles, etch.pliant_tile)
 		def.name = nil
@@ -74,19 +74,19 @@ local function regetched(basenode, etch, patt)
 		if def.paramtype2 == "4dir" then
 			def.on_rightclick = function(pos, node)
 				node.param2 = (node.param2 + 1) % 4
-				nodecore.set_loud(pos, node)
+				nc.set_loud(pos, node)
 			end
 		end
-		minetest.register_node(":" .. plyname, def)
+		core.register_node(":" .. plyname, def)
 	end
 	if not patt.blank then
 		local pattname = modname .. ":" .. etch.name .. "_" .. patt.name
-		if not minetest.registered_nodes[pattname] then
+		if not core.registered_nodes[pattname] then
 			local def = {}
-			nodecore.underride(def, etch.solid)
-			nodecore.underride(def, etch)
-			nodecore.underride(def, patt)
-			nodecore.underride(def, basenode)
+			nc.underride(def, etch.solid)
+			nc.underride(def, etch)
+			nc.underride(def, patt)
+			nc.underride(def, basenode)
 			def.tiles = applytile(def.tiles, patttile(etch, patt))
 			def.name = nil
 			def.description = (patt.blank and "" or (patt.description .. " "))
@@ -95,7 +95,7 @@ local function regetched(basenode, etch, patt)
 			def.etch_def = etch
 			defaultgroup(def, modname .. "_pattern_" .. patt.name)
 			defaultgroup(def, modname .. "_etched")
-			minetest.register_node(":" .. pattname, def)
+			core.register_node(":" .. pattname, def)
 		end
 	end
 end
@@ -110,15 +110,15 @@ local mudgroups = {
 	rock = 0
 }
 local function buildpatterns()
-	for _, patt in pairs(nodecore.registered_concrete_patterns) do
-		nodecore.translate_inform(patt.description)
+	for _, patt in pairs(nc.registered_concrete_patterns) do
+		nc.translate_inform(patt.description)
 		patt.name = patt.name or string_gsub(string_lower(patt.description),
 			"%W", "_")
 		patt.pattern_tile = patt.pattern_tile or string_gsub(
 			"#_etched.png^[mask:#_pattern_" .. patt.name
 			.. ".png", "#", modname)
 	end
-	for _, etch in pairs(nodecore.registered_concrete_etchables) do
+	for _, etch in pairs(nc.registered_concrete_etchables) do
 		if not etch.basename then return error("etchable basename required") end
 		etch.name = etch.name or string_gsub(string_lower(string_gsub(
 					etch.basename, "^nc_", "")), "%W", "_")
@@ -130,18 +130,18 @@ local function buildpatterns()
 		etch.solid = etch.solid or {}
 		etch.drop_in_place = etch.drop_in_place or etch.basenode
 	end
-	for _, etch in pairs(nodecore.registered_concrete_etchables) do
-		local basenode = minetest.registered_nodes[etch.basename]
+	for _, etch in pairs(nc.registered_concrete_etchables) do
+		local basenode = core.registered_nodes[etch.basename]
 		if basenode then
-			for _, patt in pairs(nodecore.registered_concrete_patterns) do
+			for _, patt in pairs(nc.registered_concrete_patterns) do
 				regetched(basenode, etch, patt)
 			end
 		end
 	end
 end
 
-minetest.after(0, function()
-		local patts = nodecore.registered_concrete_patterns
+core.after(0, function()
+		local patts = nc.registered_concrete_patterns
 		for i, patt in ipairs(patts) do
 			patt.next = patts[(i < #patts) and (i + 1) or 1]
 		end
@@ -151,8 +151,8 @@ for k in pairs({
 		register_concrete_pattern = true,
 		register_concrete_etchable = true
 	}) do
-	local old = nodecore[k];
-	rawset(nodecore, k, function(...)
+	local old = nc[k];
+	rawset(nc, k, function(...)
 			local function helper(...)
 				buildpatterns()
 				return ...
@@ -161,12 +161,12 @@ for k in pairs({
 		end)
 end
 
-nodecore.register_concrete_pattern({description = "Blank", blank = true})
-nodecore.register_concrete_pattern({description = "Bricky"})
-nodecore.register_concrete_pattern({description = "Vermy"})
-nodecore.register_concrete_pattern({description = "Hashy"})
-nodecore.register_concrete_pattern({description = "Bindy"})
-nodecore.register_concrete_pattern({description = "Verty", paramtype2 = "4dir"})
-nodecore.register_concrete_pattern({description = "Horzy", paramtype2 = "4dir"})
-nodecore.register_concrete_pattern({description = "Boxy"})
-nodecore.register_concrete_pattern({description = "Iceboxy"})
+nc.register_concrete_pattern({description = "Blank", blank = true})
+nc.register_concrete_pattern({description = "Bricky"})
+nc.register_concrete_pattern({description = "Vermy"})
+nc.register_concrete_pattern({description = "Hashy"})
+nc.register_concrete_pattern({description = "Bindy"})
+nc.register_concrete_pattern({description = "Verty", paramtype2 = "4dir"})
+nc.register_concrete_pattern({description = "Horzy", paramtype2 = "4dir"})
+nc.register_concrete_pattern({description = "Boxy"})
+nc.register_concrete_pattern({description = "Iceboxy"})

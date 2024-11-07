@@ -1,24 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs
-    = math, minetest, nodecore, pairs
+local core, math, nc, pairs
+    = core, math, nc, pairs
 local math_floor, math_pow
     = math.floor, math.pow
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function reg(suff, def)
-	def = nodecore.underride(def, {
+	def = nc.underride(def, {
 			description = "Lode " .. suff,
 			name = suff:lower(),
 			is_ground_content = true,
 			groups = {cracky = 2, lodey = 1},
-			sounds = nodecore.sounds("nc_terrain_stony")
+			sounds = nc.sounds("nc_terrain_stony")
 		})
 	def.fullname = modname .. ":" .. def.name
 	def.oldnames = {"nc_iron:" .. def.name}
 
-	minetest.register_node(def.fullname, def)
+	core.register_node(def.fullname, def)
 
 	return def.fullname
 end
@@ -49,8 +49,8 @@ local ore = reg("Ore", {
 		mapcolor = {r = 72, g = 72, b = 72},
 	})
 stratore[1] = ore
-for i = 1, nodecore.hard_stone_strata do
-	local hst = nodecore.hard_stone_tile(i)
+for i = 1, nc.hard_stone_strata do
+	local hst = nc.hard_stone_tile(i)
 	stratstone[i + 1] = reg("Stone_" .. i, {
 			description = "Stone",
 			tiles = {hst .. "^" .. stonetile},
@@ -98,7 +98,7 @@ reg("Cobble", {
 				crumbly = 2,
 				falling_repose = 3
 			},
-			sounds = nodecore.sounds("nc_terrain_chompy")
+			sounds = nc.sounds("nc_terrain_chompy")
 		},
 		mapcolor = {r = 67, g = 43, b = 32},
 	})
@@ -126,7 +126,7 @@ reg("cobble_hot", {
 local oreid = 0
 local function regore(name, def)
 	oreid = oreid + 1
-	return minetest.register_ore(nodecore.underride(def, {
+	return core.register_ore(nc.underride(def, {
 				name = modname .. oreid,
 				ore_type = "scatter",
 				ore = name,
@@ -162,16 +162,16 @@ regore(ore, {
 		clust_scarcity = 8 * 8 * 8,
 	})
 
-local c_ore = minetest.get_content_id(ore)
-local c_lodestone = minetest.get_content_id(stone)
-local c_rawstone = minetest.get_content_id("nc_terrain:stone")
-local getstoneids = nodecore.memoize(function()
+local c_ore = core.get_content_id(ore)
+local c_lodestone = core.get_content_id(stone)
+local c_rawstone = core.get_content_id("nc_terrain:stone")
+local getstoneids = nc.memoize(function()
 		local stoneids = {}
-		local stratadata = nodecore.stratadata()
+		local stratadata = nc.stratadata()
 		for _, id in pairs({
 				c_lodestone,
-				minetest.get_content_id(ore),
-				minetest.get_content_id("nc_terrain:stone")
+				core.get_content_id(ore),
+				core.get_content_id("nc_terrain:stone")
 			}) do
 			stoneids[id] = true
 			for _, v in pairs(stratadata.altsbyid[id] or {}) do
@@ -215,7 +215,7 @@ local function raycast(rng, data, area, ai, x, y, z, minp, maxp)
 	end
 end
 
-nodecore.register_mapgen_shared({
+nc.register_mapgen_shared({
 		label = "lode exposure",
 		func = function(minp, maxp, area, data, _, _, _, rng)
 			local stoneids = getstoneids()

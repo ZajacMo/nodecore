@@ -1,26 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, string
-    = minetest, nodecore, pairs, string
+local core, nc, pairs, string
+    = core, nc, pairs, string
 local string_gsub
     = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
+function nc.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 	local waters = {}
-	minetest.after(0, function()
-			for k, v in pairs(minetest.registered_nodes) do
+	core.after(0, function()
+			for k, v in pairs(core.registered_nodes) do
 				if v.groups and v.groups.water and v.groups.water > 0 then
 					waters[k] = true
 				end
 			end
 		end)
 	local function waterat(pos, dx, dy, dz)
-		return waters[minetest.get_node(
+		return waters[core.get_node(
 			{x = pos.x + dx, y = pos.y + dy, z = pos.z + dz}
 		).name]
 	end
 	local fieldname = "leach_" .. string_gsub(tonode, "%W+", "_")
-	nodecore.register_soaking_abm({
+	nc.register_soaking_abm({
 			label = fromnode .. " leaching to " .. tonode,
 			fieldname = fieldname,
 			nodenames = {fromnode},
@@ -40,13 +40,13 @@ function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 			end,
 			soakcheck = function(data, pos)
 				if data.total < 5000 then return end
-				nodecore.set_loud(pos, {name = tonode})
-				nodecore.witness(pos, "leach " .. fromnode)
-				return nodecore.fallcheck(pos)
+				nc.set_loud(pos, {name = tonode})
+				nc.witness(pos, "leach " .. fromnode)
+				return nc.fallcheck(pos)
 			end
 		})
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "tickle leach " .. fromnode,
 			action = "pummel",
 			toolgroups = {cuddly = 1},
@@ -59,18 +59,18 @@ function nodecore.register_dirt_leaching(fromnode, recipematch, tonode, rate)
 				{match = recipematch}
 			},
 			after = function(pos)
-				nodecore.soaking_abm_tickle(pos, fieldname)
-				nodecore.soaking_particles(pos, 25, 0.5, .45)
+				nc.soaking_abm_tickle(pos, fieldname)
+				nc.soaking_particles(pos, 25, 0.5, .45)
 			end
 		})
 end
 
-nodecore.register_dirt_leaching(
+nc.register_dirt_leaching(
 	"group:dirt_raked",
 	{groups = {dirt_raked = true}, stacked = false},
 	"nc_terrain:sand"
 )
-nodecore.register_dirt_leaching(
+nc.register_dirt_leaching(
 	"group:humus_raked",
 	{groups = {humus_raked = true}, stacked = false},
 	"nc_terrain:dirt",

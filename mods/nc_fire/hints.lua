@@ -1,24 +1,24 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("make fire by rubbing sticks together",
+nc.register_hint("make fire by rubbing sticks together",
 	"stick fire starting",
 	"nc_tree:stick"
 )
 
-nodecore.register_hint("find ash",
+nc.register_hint("find ash",
 	"nc_fire:ash",
 	"stick fire starting"
 )
 
-nodecore.register_hint("find charcoal",
+nc.register_hint("find charcoal",
 	"group:charcoal",
 	"stick fire starting"
 )
 
-nodecore.register_hint("chop up charcoal",
+nc.register_hint("chop up charcoal",
 	{true,
 		"chop nc_fire:coal1",
 		"chop nc_fire:coal2",
@@ -32,7 +32,7 @@ nodecore.register_hint("chop up charcoal",
 	"group:charcoal"
 )
 
-nodecore.register_hint("pack high-quality charcoal",
+nc.register_hint("pack high-quality charcoal",
 	"compress coal block",
 	"nc_fire:lump_coal"
 )

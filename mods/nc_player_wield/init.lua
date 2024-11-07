@@ -1,17 +1,17 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, vector
-    = minetest, nodecore, pairs, vector
+local core, nc, pairs, vector
+    = core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.amcoremod()
+nc.amcoremod()
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 ------------------------------------------------------------------------
 -- Slot Appearance
 
 for _, n in pairs({"slot", "sel"}) do
-	minetest.register_craftitem(modname .. ":" .. n, {
+	core.register_craftitem(modname .. ":" .. n, {
 			description = "",
 			inventory_image = "nc_player_wield_" .. n .. ".png",
 			virtual_item = true
@@ -49,12 +49,12 @@ local function itemprops(stack, iswield)
 
 	local itemname = stack:get_name()
 
-	local def = minetest.registered_items[itemname]
+	local def = core.registered_items[itemname]
 	if def and def.virtual_item then return hidden end
 
 	if itemname == "" then return iswield and hidden or emptyslot end
 
-	local props = nodecore.stackentprops(stack)
+	local props = nc.stackentprops(stack)
 	props.visual_size = iswield and (def and def.type == "tool" and size_w_tool
 		or size_w_item) or (itemname == "" and size_slot) or size_item
 	return props
@@ -64,7 +64,7 @@ end
 -- Entity Definition
 
 local entname = modname .. ":ent"
-minetest.register_entity(entname, {
+core.register_entity(entname, {
 		initial_properties = {
 			hp_max = 1,
 			physical = false,
@@ -121,11 +121,11 @@ local function setitem(ent, slot)
 	end
 end
 
-nodecore.register_globalstep(function()
+nc.register_globalstep(function()
 		local slots = {}
-		for _, player in pairs(minetest.get_connected_players()) do
+		for _, player in pairs(core.get_connected_players()) do
 			local pname = player:get_player_name()
-			if nodecore.interact(pname) and nodecore.player_visible(pname) then
+			if nc.interact(pname) and nc.player_visible(pname) then
 				local widx = player:get_wield_index()
 				local inv = player:get_inventory():get_list("main")
 				for i = 1, 8 do
@@ -143,7 +143,7 @@ nodecore.register_globalstep(function()
 			end
 		end
 
-		for _, ent in pairs(minetest.luaentities) do
+		for _, ent in pairs(core.luaentities) do
 			if ent.name == entname then
 				local found = slots[ent.slotkey]
 				if found then
@@ -156,7 +156,7 @@ nodecore.register_globalstep(function()
 		end
 
 		for k, v in pairs(slots) do
-			local obj = minetest.add_entity(v.player:get_pos(), entname)
+			local obj = core.add_entity(v.player:get_pos(), entname)
 			if obj then
 				local ent = obj:get_luaentity()
 				ent.slotkey = k

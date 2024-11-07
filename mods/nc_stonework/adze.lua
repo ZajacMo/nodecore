@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore
-    = ItemStack, minetest, nodecore
+local ItemStack, core, nc
+    = ItemStack, core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local adzedef
 adzedef = {
@@ -13,19 +13,19 @@ adzedef = {
 		firestick = 2,
 		flammable = 2
 	},
-	tool_capabilities = nodecore.toolcaps({
+	tool_capabilities = nc.toolcaps({
 			choppy = 2,
 			crumbly = 2
 		}),
-	sounds = nodecore.sounds("nc_tree_sticky"),
+	sounds = nc.sounds("nc_tree_sticky"),
 	after_use = function(_, who)
-		nodecore.toolbreakeffects(who, adzedef)
+		nc.toolbreakeffects(who, adzedef)
 		return ItemStack("nc_woodwork:adze")
 	end
 }
-minetest.register_tool(modname .. ":adze", adzedef)
+core.register_tool(modname .. ":adze", adzedef)
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble graveled adze",
 		action = "stackapply",
 		wield = {groups = {gravel = true}},
@@ -43,6 +43,6 @@ nodecore.register_craft({
 			{name = modname .. ":adze"}
 		},
 		after = function(pos, data)
-			nodecore.set_loud(pos, {name = data.wield:get_name()})
+			nc.set_loud(pos, {name = data.wield:get_name()})
 		end
 	})

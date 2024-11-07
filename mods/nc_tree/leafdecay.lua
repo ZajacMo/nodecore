@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, math, minetest, nodecore, pairs, table, vector
-    = ipairs, math, minetest, nodecore, pairs, table, vector
+local core, ipairs, math, nc, pairs, table, vector
+    = core, ipairs, math, nc, pairs, table, vector
 local math_random, table_shuffle
     = math.random, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
-local hashpos = minetest.hash_node_position
+local hashpos = core.hash_node_position
 
 local queue = {}
 local qsize = 0
@@ -20,11 +20,11 @@ local dirs = {
 	{x = -1, y = 0, z = 0},
 }
 
-nodecore.leaf_decay_forced = {}
+nc.leaf_decay_forced = {}
 
-function nodecore.leaf_decay(pos, node)
-	node = node or minetest.get_node(pos)
-	local def = minetest.registered_nodes[node.name]
+function nc.leaf_decay(pos, node)
+	node = node or core.get_node(pos)
+	local def = core.registered_nodes[node.name]
 	if def and def.leaf_decay_as then
 		for k, v in pairs(def.leaf_decay_as) do
 			node[k] = v
@@ -32,26 +32,26 @@ function nodecore.leaf_decay(pos, node)
 	end
 
 	local poskey = hashpos(pos)
-	local forced = nodecore.leaf_decay_forced[poskey]
-	or minetest.get_meta(pos):get_string("leaf_decay_forced")
-	nodecore.leaf_decay_forced[poskey] = nil
-	forced = forced and forced ~= "" and minetest.deserialize(forced, true) or nil
+	local forced = nc.leaf_decay_forced[poskey]
+	or core.get_meta(pos):get_string("leaf_decay_forced")
+	nc.leaf_decay_forced[poskey] = nil
+	forced = forced and forced ~= "" and core.deserialize(forced, true) or nil
 
 	local t = {}
 	if forced then
 		if not forced[1] then forced = {forced} end
 		t = forced
 	else
-		for _, v in ipairs(nodecore.registered_leaf_drops) do
+		for _, v in ipairs(nc.registered_leaf_drops) do
 			t = v(pos, node, t) or t
 		end
 	end
 
-	local p = nodecore.pickrand(t, function(x) return x.prob or 1 end)
+	local p = nc.pickrand(t, function(x) return x.prob or 1 end)
 	if not p then return end
 
-	minetest.set_node(pos, p)
-	if p.item then nodecore.item_eject(pos, p.item) end
+	core.set_node(pos, p)
+	if p.item then nc.item_eject(pos, p.item) end
 
 	for i = 1, #dirs do
 		local dp = vector.add(pos, dirs[i])
@@ -66,22 +66,22 @@ function nodecore.leaf_decay(pos, node)
 		end
 	end
 
-	return nodecore.fallcheck(pos)
+	return nc.fallcheck(pos)
 end
 
 local cache = {}
 
-local leaf_decay_support = nodecore.group_expand("group:leaf_decay_support", true)
-local leaf_decay_transmit = nodecore.group_expand("group:leaf_decay_transmit", true)
+local leaf_decay_support = nc.group_expand("group:leaf_decay_support", true)
+local leaf_decay_transmit = nc.group_expand("group:leaf_decay_transmit", true)
 local function check_decay(pos, node)
 	local hash = hashpos(pos)
 	local found = cache[hash]
-	if found and minetest.get_node(found).name == found.name then return true end
-	return nodecore.scan_flood(pos, 5, function(p)
-			local n = minetest.get_node(p).name
+	if found and core.get_node(found).name == found.name then return true end
+	return nc.scan_flood(pos, 5, function(p)
+			local n = core.get_node(p).name
 			if n == "ignore" or leaf_decay_support[n] then
 				while p.prev do
-					p.name = minetest.get_node(p).name
+					p.name = core.get_node(p).name
 					cache[hashpos(p.prev)] = p
 					p = p.prev
 				end
@@ -90,12 +90,12 @@ local function check_decay(pos, node)
 			if leaf_decay_transmit[n] then return end
 			return false
 		end
-	) or nodecore.leaf_decay(pos, node)
+	) or nc.leaf_decay(pos, node)
 end
 
 local decaynames = {}
-minetest.after(0, function()
-		for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+		for k, v in pairs(core.registered_nodes) do
 			if v.groups and v.groups.leaf_decay
 			and v.groups.leaf_decay > 0 then
 				decaynames[k] = true
@@ -103,7 +103,7 @@ minetest.after(0, function()
 		end
 	end)
 
-minetest.register_globalstep(function()
+core.register_globalstep(function()
 		if qsize < 1 then return end
 		local batch = queue
 		queue = {}
@@ -111,14 +111,14 @@ minetest.register_globalstep(function()
 		table_shuffle(batch)
 		for i = 1, #batch do
 			local pos = batch[i]
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			if decaynames[node.name] then
 				check_decay(pos, node)
 			end
 		end
 	end)
 
-minetest.register_abm({
+core.register_abm({
 		label = "leaves decay",
 		interval = 2,
 		chance = 5,

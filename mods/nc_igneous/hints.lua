@@ -1,31 +1,31 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_hint("quench pumwater to amalgamation",
+nc.register_hint("quench pumwater to amalgamation",
 	"group:amalgam",
 	{true, "group:amalgam", "group:lava"}
 )
 
-nodecore.register_hint("find pumice",
+nc.register_hint("find pumice",
 	modname .. ":pumice",
 	{true, "group:amalgam", "group:lava"}
 )
 
-nodecore.register_hint("harden stone",
+nc.register_hint("harden stone",
 	"stone hardened",
 	"group:lava"
 )
 
-nodecore.register_hint("weaken stone by soaking",
+nc.register_hint("weaken stone by soaking",
 	"stone softened",
 	"group:lava"
 )
 
-nodecore.register_hint("melt stone into pumwater",
+nc.register_hint("melt stone into pumwater",
 	"stone melted",
 	"group:lava"
 )

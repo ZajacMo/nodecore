@@ -1,26 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table, type
-    = ipairs, minetest, nodecore, pairs, table, type
+local core, ipairs, nc, pairs, table, type
+    = core, ipairs, nc, pairs, table, type
 local table_concat, table_insert, table_sort
     = table.concat, table.insert, table.sort
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local tabs = {}
-nodecore.registered_inventory_tabs = tabs
-function nodecore.register_inventory_tab(def)
+nc.registered_inventory_tabs = tabs
+function nc.register_inventory_tab(def)
 	tabs[#tabs + 1] = def
-	nodecore.translate_inform(def.title)
+	nc.translate_inform(def.title)
 	if type(def.content) == "table" then
 		for i = 1, #def.content do
-			nodecore.translate_inform(def.content[i])
+			nc.translate_inform(def.content[i])
 		end
 	end
 end
 
-local nct = nodecore.translate
-local fse = minetest.formspec_escape
+local nct = nc.translate
+local fse = core.formspec_escape
 
 local formwidth = 15
 local formheight = formwidth / 2
@@ -37,23 +37,23 @@ local textmarginy = 0.1
 local textheight = formheight + 0.8
 
 local metakey = modname .. "_inventory_key"
-function nodecore.inventory_tab_get(player)
+function nc.inventory_tab_get(player)
 	local n = player:get_meta():get_int(metakey)
-	return nodecore.registered_inventory_tabs[n] and n or 1
+	return nc.registered_inventory_tabs[n] and n or 1
 end
-function nodecore.inventory_tab_set(player, tab)
+function nc.inventory_tab_set(player, tab)
 	player:get_meta():set_int(metakey,
-		tab and nodecore.registered_inventory_tabs[tab] and tab or 0)
+		tab and nc.registered_inventory_tabs[tab] and tab or 0)
 end
 
-function nodecore.inventory_formspec(player)
+function nc.inventory_formspec(player)
 	local t = {
 		"bgcolor[#000000C0;true]",
 		"listcolors[#00000000;#00000000;#00000000;#000000FF;#FFFFFFFF]"
 	}
 
 	local tablist = {}
-	for i, v in ipairs(nodecore.registered_inventory_tabs) do
+	for i, v in ipairs(nc.registered_inventory_tabs) do
 		local vis = v.visible
 		if type(vis) == "function" then vis = vis(v, player) end
 		if vis == nil or vis then
@@ -66,7 +66,7 @@ function nodecore.inventory_formspec(player)
 	local x = 0
 	local y = 0
 	local tabdata
-	local curtab = nodecore.inventory_tab_get(player)
+	local curtab = nc.inventory_tab_get(player)
 	for i, v in ipairs(tablist) do
 		if curtab == v.idx then
 			tabdata = v.tab
@@ -113,11 +113,11 @@ function nodecore.inventory_formspec(player)
 end
 
 local invspeccache = {}
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 		invspeccache[player:get_player_name()] = nil
 	end)
-function nodecore.inventory_formspec_update(player)
-	local str = nodecore.inventory_formspec(player)
+function nc.inventory_formspec_update(player)
+	local str = nc.inventory_formspec(player)
 	local pname = player:get_player_name()
 	if invspeccache[pname] == str then return str end
 	player:set_inventory_formspec(str)
@@ -125,53 +125,53 @@ function nodecore.inventory_formspec_update(player)
 	return str
 end
 
-nodecore.register_on_joinplayer(nodecore.inventory_formspec_update)
+nc.register_on_joinplayer(nc.inventory_formspec_update)
 
-nodecore.register_on_player_receive_fields(function(player, formname, fields)
+nc.register_on_player_receive_fields(function(player, formname, fields)
 		if formname == "" then
 			local tab
-			for i = 1, #nodecore.registered_inventory_tabs do
+			for i = 1, #nc.registered_inventory_tabs do
 				if fields["tab" .. i] then
 					tab = i
 					break
 				end
 			end
-			if tab then nodecore.inventory_tab_set(player, tab) end
-			nodecore.inventory_formspec_update(player)
+			if tab then nc.inventory_tab_set(player, tab) end
+			nc.inventory_formspec_update(player)
 		end
 	end)
 
 local pending = {}
-function nodecore.inventory_notify(pname, event)
+function nc.inventory_notify(pname, event)
 	pname = type(pname) == "string" and pname or pname:get_player_name()
 	local key = pname .. "|" .. event
 	if pending[key] then return end
 	pending[key] = true
-	minetest.after(0, function()
+	core.after(0, function()
 			pending[key] = nil
 
-			local player = minetest.get_player_by_name(pname)
+			local player = core.get_player_by_name(pname)
 			if not player then return end
 
-			local tab = nodecore.inventory_tab_get(player)
-			tab = tab and nodecore.registered_inventory_tabs[tab]
+			local tab = nc.inventory_tab_get(player)
+			tab = tab and nc.registered_inventory_tabs[tab]
 			local evt = tab and tab["on_" .. event]
 			if type(evt) == "function" then evt = evt(player, pname) end
-			if evt then return nodecore.inventory_formspec_update(player) end
+			if evt then return nc.inventory_formspec_update(player) end
 		end)
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "hint tab watch interact",
 		action = function(player, data)
 			local privs = {}
-			for k, v in pairs(minetest.get_player_privs(data.pname)) do
+			for k, v in pairs(core.get_player_privs(data.pname)) do
 				if v then privs[#privs + 1] = k end
 			end
 			table_sort(privs)
 			privs = table_concat(privs, ",")
 			if privs == data.privstring then return end
 			data.privstring = privs
-			return nodecore.inventory_notify(player, "privchange")
+			return nc.inventory_notify(player, "privchange")
 		end
 	})

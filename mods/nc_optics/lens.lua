@@ -1,14 +1,14 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, string, vector
-    = minetest, nodecore, string, vector
+local core, nc, string, vector
+    = core, nc, string, vector
 local string_gsub
     = string.gsub
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function lens_check(pos, node, recv, getnode)
-	local face = nodecore.facedirs[node.param2]
+	local face = nc.facedirs[node.param2]
 
 	if recv(face.k) and node.name ~= modname .. ":lens_on" then
 		if node.name == modname .. ":lens_glow" then
@@ -20,7 +20,7 @@ local function lens_check(pos, node, recv, getnode)
 
 	local fore = vector.add(pos, face.f)
 	local nnode = getnode(fore)
-	local def = minetest.registered_items[nnode.name] or {}
+	local def = core.registered_items[nnode.name] or {}
 	if (def.light_source and def.light_source > 3)
 	or (def.groups and def.groups.activates_lens) then
 		return modname .. ":lens_on"
@@ -38,7 +38,7 @@ local basedef = {
 	description = "Lens",
 	drawtype = "mesh",
 	mesh = "nc_optics_lens.obj",
-	selection_box = nodecore.fixedbox(
+	selection_box = nc.fixedbox(
 		{-7/16, -7/16, -7/16, 7/16, 7/16, 7/16}
 	),
 	tiles = {
@@ -59,18 +59,18 @@ local basedef = {
 	},
 	silktouch = false,
 	drop = modname .. ":lens",
-	on_construct = nodecore.optic_check,
-	on_destruct = nodecore.optic_check,
-	on_nc_rotate = nodecore.optic_immediate,
-	after_place_node = nodecore.optic_immediate,
+	on_construct = nc.optic_check,
+	on_destruct = nc.optic_check,
+	on_nc_rotate = nc.optic_immediate,
+	after_place_node = nc.optic_immediate,
 	optic_check = lens_check,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	nc_param2_equivalent = function(a, b)
 		return vector.equals(a.f, b.f)
 	end,
-	on_rightclick = nodecore.rotation_on_rightclick,
-	sounds = nodecore.sounds("nc_optics_glassy"),
+	on_rightclick = nc.rotation_on_rightclick,
+	sounds = nc.sounds("nc_optics_glassy"),
 	nc_optic_family = "lens",
 	stackfamily = modname .. ":lens",
 	drop_as = modname .. ":lens",
@@ -78,8 +78,8 @@ local basedef = {
 }
 
 local function reg(suff, def)
-	minetest.register_node(modname .. ":lens" .. suff,
-		nodecore.underride(def, basedef))
+	core.register_node(modname .. ":lens" .. suff,
+		nc.underride(def, basedef))
 end
 reg("", {})
 reg("_on", {
@@ -92,7 +92,7 @@ reg("_on", {
 		light_source = 1,
 		groups = {optic_source = 1, optic_lens_emit = 1},
 		optic_source = function(_, node)
-			return {nodecore.facedirs[node.param2].k}
+			return {nc.facedirs[node.param2].k}
 		end
 	})
 reg("_glow", {
@@ -115,35 +115,35 @@ reg("_glow_start", {
 		}
 	})
 
-nodecore.register_dnt({
+nc.register_dnt({
 		name = modname .. ":lens_warmup",
 		nodenames = {"group:lens_glow_start"},
 		time = 2,
 		autostart = true,
 		action = function(pos, node)
 			node.name = string_gsub(node.name, "_start", "")
-			return nodecore.set_node(pos, node)
+			return nc.set_node(pos, node)
 		end
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "lens fire start",
 		interval = 2,
 		chance = 2,
 		nodenames = {"group:optic_lens_emit"},
 		action_delay = true,
 		action = function(pos, node)
-			local face = nodecore.facedirs[node.param2]
+			local face = nc.facedirs[node.param2]
 			local out = vector.add(face.k, pos)
-			local tn = minetest.get_node(out)
-			local tdef = minetest.registered_items[tn.name] or {}
+			local tn = core.get_node(out)
+			local tdef = core.registered_items[tn.name] or {}
 			local flam = tdef and tdef.groups and tdef.groups.flammable
 			if flam then
-				return nodecore.fire_check_ignite(out, tn)
+				return nc.fire_check_ignite(out, tn)
 			end
 			if tdef.groups and tdef.groups.is_stack_only then
-				local stack = nodecore.stack_get(out)
-				return nodecore.fire_check_ignite(out, {
+				local stack = nc.stack_get(out)
+				return nc.fire_check_ignite(out, {
 						name = stack:get_name(),
 						count = stack:get_count()
 					})
@@ -163,18 +163,18 @@ local function getdir(v)
 	return {x = 0, y = 0, z = -1}
 end
 
-nodecore.register_aism({
+nc.register_aism({
 		label = "lens light",
 		interval = 1,
 		chance = 1,
 		itemnames = {"group:optic_lens"},
 		action = function(stack, data)
 			local glow = data.player and
-			nodecore.optic_scan_recv(
+			nc.optic_scan_recv(
 				vector.round(data.pos),
 				getdir(data.player:get_look_dir()),
 				nil,
-				minetest.get_node)
+				core.get_node)
 			local nn = modname .. ":lens" .. (glow and "_glow" or "")
 			if stack:get_name() == nn then return end
 			stack:set_name(nn)

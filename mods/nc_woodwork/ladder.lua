@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local lt = 1/16
 local lw = 3/16
@@ -12,15 +12,15 @@ local lf = 1/8
 
 local tt = "nc_woodwork_frame.png^(nc_tree_tree_top.png^[mask:nc_woodwork_ladder_mask.png)"
 
-minetest.register_node(modname .. ":ladder", {
+core.register_node(modname .. ":ladder", {
 		description = "Wooden Ladder",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
+		node_box = nc.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-lw, -lt, -lt, lw, lt, lt},
 			{-lt, -lt, -lw, lt, lt, lw}
 		),
-		selection_box = nodecore.fixedbox(-lw, -ll, -lw, lw, ll, lw),
+		selection_box = nc.fixedbox(-lw, -ll, -lw, lw, ll, lw),
 		tiles = {tt},
 		groups = {
 			snappy = 1,
@@ -34,12 +34,12 @@ minetest.register_node(modname .. ":ladder", {
 		paramtype = "light",
 		sunlight_propagates = true,
 		climbable = true,
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nc.sounds("nc_tree_sticky"),
 		mapcolor = {r = 79, g = 54, b = 31, a = 64},
 
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble wood ladder",
 		normal = {x = 1},
 		indexkeys = {"nc_tree:stick"},
@@ -49,15 +49,15 @@ nodecore.register_craft({
 		}
 	})
 
-minetest.register_node(modname .. ":frame", {
+core.register_node(modname .. ":frame", {
 		description = "Wooden Frame",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(
+		node_box = nc.fixedbox(
 			{-lt, -ll, -lt, lt, ll, lt},
 			{-ll, -lt, -lt, ll, lt, lt},
 			{-lt, -lt, -ll, lt, lt, ll}
 		),
-		selection_box = nodecore.fixedbox(
+		selection_box = nc.fixedbox(
 			{-lf, -ll, -lf, lf, ll, lf},
 			{-ll, -lf, -lf, ll, lf, lf},
 			{-lf, -lf, -ll, lf, lf, ll}
@@ -72,11 +72,11 @@ minetest.register_node(modname .. ":frame", {
 		paramtype = "light",
 		climbable = true,
 		sunlight_propagates = true,
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nc.sounds("nc_tree_sticky"),
 		mapcolor = {r = 79, g = 54, b = 31, a = 128},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble wood frame",
 		normal = {x = 1},
 		indexkeys = {modname .. ":staff"},

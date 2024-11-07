@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-nodecore.register_hint("assemble a lode tote handle",
+nc.register_hint("assemble a lode tote handle",
 	"craft tote handle",
 	{"nc_lode:form", "nc_lode:frame_annealed", "group:totable"}
 )
 
-nodecore.register_hint("pack up a complete tote",
+nc.register_hint("pack up a complete tote",
 	"inv:" .. modname .. ":handle_full",
 	"craft tote handle"
 )

@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, nodecore, pairs, vector
-    = ItemStack, minetest, nodecore, pairs, vector
+local ItemStack, core, nc, pairs, vector
+    = ItemStack, core, nc, pairs, vector
 -- LUALOCALS > ---------------------------------------------------------
 
 local function addtodict(dict, key, item)
@@ -20,15 +20,15 @@ local function removesingles(dict)
 	return t
 end
 
-minetest.register_globalstep(function()
-		local gethash = minetest.hash_node_position
+core.register_globalstep(function()
+		local gethash = core.hash_node_position
 		local round = vector.round
 
 		local entpos = {}
 		local entvel = {}
 
 		local dict = {}
-		for _, ent in pairs(minetest.luaentities) do
+		for _, ent in pairs(core.luaentities) do
 			if ent.name == "__builtin:item" then
 				local pos = ent.object:get_pos()
 				local vel = ent.object:get_velocity()
@@ -44,7 +44,7 @@ minetest.register_globalstep(function()
 		for _, ents in pairs(dict) do
 			local groups = {}
 			for _, ent in pairs(ents) do
-				addtodict(groups, nodecore.stack_family(ent.itemstring), ent)
+				addtodict(groups, nc.stack_family(ent.itemstring), ent)
 			end
 			groups = removesingles(groups)
 			for _, grp in pairs(groups) do

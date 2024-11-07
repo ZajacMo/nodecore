@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, pairs, rawset, string, table
-    = minetest, nodecore, pairs, rawset, string, table
+local core, nc, pairs, rawset, string, table
+    = core, nc, pairs, rawset, string, table
 local string_format, string_sub, table_concat
     = string.format, string.sub, table.concat
 -- LUALOCALS > ---------------------------------------------------------
@@ -18,20 +18,20 @@ local function fixgroups(name, def)
 		end
 	end
 	for _, mux in pairs(muxdefs) do
-		if nodecore.would_match(name, def, mux.nodenames) then
+		if nc.would_match(name, def, mux.nodenames) then
 			groups[prefix .. mux.muxkey] = 1
 		end
 	end
 	return groups
 end
 
-nodecore.register_on_register_item(function(name, def)
+nc.register_on_register_item(function(name, def)
 		if def.type == "node" then
 			rawset(def, "groups", fixgroups(name, def))
 		end
 	end)
 
-local muxidx = nodecore.item_matching_index(muxdefs,
+local muxidx = nc.item_matching_index(muxdefs,
 	function(i) return i.nodenames end,
 	"register_abm",
 	true,
@@ -39,17 +39,17 @@ local muxidx = nodecore.item_matching_index(muxdefs,
 )
 
 local rawreg = {}
-nodecore.registered_abms_demux = rawreg
+nc.registered_abms_demux = rawreg
 
 local anonid = 1
 local function runaction(def, ...)
-	local start = minetest.get_us_time()
+	local start = core.get_us_time()
 	def.action(...)
 	def.runcount = def.runcount + 1
-	def.timeused = def.timeused + (minetest.get_us_time() - start) / 1000000
+	def.timeused = def.timeused + (core.get_us_time() - start) / 1000000
 end
-local oldreg = minetest.register_abm
-function minetest.register_abm(def)
+local oldreg = core.register_abm
+function core.register_abm(def)
 	rawreg[#rawreg + 1] = def
 	local rawkey = table_concat({
 			def.interval or 1,
@@ -58,17 +58,17 @@ function minetest.register_abm(def)
 			table_concat(def.neighbors or {}, ";")
 		}, "|")
 	def.rawkey = rawkey
-	local muxkey = minetest.sha1(rawkey):sub(1, 8)
+	local muxkey = core.sha1(rawkey):sub(1, 8)
 	def.muxkey = muxkey
 	def.timeused = 0
 	def.runcount = 0
 	if not def.label then
-		def.label = "unknown " .. anonid .. " " .. minetest.get_current_modname()
+		def.label = "unknown " .. anonid .. " " .. core.get_current_modname()
 		anonid = anonid + 1
 	end
 	muxdefs[#muxdefs + 1] = def
-	for k, v in pairs(minetest.registered_nodes) do
-		minetest.override_item(k, {groups = fixgroups(k, v)})
+	for k, v in pairs(core.registered_nodes) do
+		core.override_item(k, {groups = fixgroups(k, v)})
 	end
 	if abmsdefined[muxkey] then return end
 	abmsdefined[muxkey] = true
@@ -76,9 +76,9 @@ function minetest.register_abm(def)
 	local function warnunused(nn, pos)
 		if warned[nn] then return end
 		warned[nn] = true
-		return nodecore.log("warning", string_format(
+		return nc.log("warning", string_format(
 				"no abm found for mux %q node %s at %s",
-				rawkey, nn, minetest.pos_to_string(pos)))
+				rawkey, nn, core.pos_to_string(pos)))
 	end
 	return oldreg({
 			label = "mux abm for " .. rawkey,
@@ -96,7 +96,7 @@ function minetest.register_abm(def)
 				runaction(found[1], pos, node, ...)
 				if #found <= 1 then return end
 				for i = 2, #found do
-					if minetest.get_node(pos).name ~= oldname then return end
+					if core.get_node(pos).name ~= oldname then return end
 					runaction(found[i], pos, node, ...)
 				end
 			end

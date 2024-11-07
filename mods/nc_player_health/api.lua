@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore, pairs, table
-    = math, minetest, nodecore, pairs, table
+local core, math, nc, pairs, table
+    = core, math, nc, pairs, table
 local math_floor, math_random, table_remove, table_sort
     = math.floor, math.random, table.remove, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,23 +12,23 @@ local math_floor, math_random, table_remove, table_sort
 -- setqty(player, qty, reason) [recommended]
 -- - set the damaged proportion (0.0-1.0) of the hotbar
 
-nodecore.register_healthfx,
-nodecore.registered_healthfx
-= nodecore.mkreg()
+nc.register_healthfx,
+nc.registered_healthfx
+= nc.mkreg()
 
-minetest.register_privilege("ncdqd", {
+core.register_privilege("ncdqd", {
 		description = "Invulnerable to all kinds of damage",
 		give_to_singleplayer = false,
 		give_to_admin = false
 	})
 
-function nodecore.player_can_take_damage(player)
+function nc.player_can_take_damage(player)
 	return not player:get_armor_groups().immortal
-	and not minetest.get_player_privs(player).ncdqd
+	and not core.get_player_privs(player).ncdqd
 end
 
-function nodecore.register_virtual_item(name, def)
-	return minetest.register_craftitem(name, nodecore.underride(def, {
+function nc.register_virtual_item(name, def)
+	return core.register_craftitem(name, nc.underride(def, {
 				on_use = function() end,
 				on_drop = function(stack) return stack end,
 				on_place = function(stack) return stack end,
@@ -56,18 +56,18 @@ local function rounddist(n)
 	return 1 - n
 end
 
-nodecore.register_playerstep({
+nc.register_playerstep({
 		label = "health virtual items",
 		action = function(player)
 			if player:get_hp() <= 0 then return end
 
-			local dmg = nodecore.player_can_take_damage(player)
+			local dmg = nc.player_can_take_damage(player)
 			local inv = player:get_inventory()
 			local size = inv:get_size("main")
 			local max = size - 1
 
 			local items = {}
-			for _, def in pairs(nodecore.registered_healthfx) do
+			for _, def in pairs(nc.registered_healthfx) do
 				items[def.item] = {}
 			end
 
@@ -84,7 +84,7 @@ nodecore.register_playerstep({
 
 			local slots = {}
 			local total = 0
-			for _, def in pairs(nodecore.registered_healthfx) do
+			for _, def in pairs(nc.registered_healthfx) do
 				local q = dmg and (def.getqty(player) * (max + 1) - 1) or 0
 				if q > max then q = max end
 				if q < 0 then q = 0 end
@@ -109,7 +109,7 @@ nodecore.register_playerstep({
 			local slotidx = {}
 			for _, v in pairs(slots) do slotidx[v.item] = math_floor(v.qty) end
 
-			for _, def in pairs(nodecore.registered_healthfx) do
+			for _, def in pairs(nc.registered_healthfx) do
 				local need = slotidx[def.item]
 
 				if #reg > need then
@@ -118,8 +118,8 @@ nodecore.register_playerstep({
 						local i = reg[n]
 						table_remove(reg, n)
 						local stack = inv:get_stack("main", i)
-						if not nodecore.item_is_virtual(stack) then
-							nodecore.item_lose(player, "main", i, 5)
+						if not nc.item_is_virtual(stack) then
+							nc.item_lose(player, "main", i, 5)
 						end
 						inv:set_stack("main", i, def.item)
 					end

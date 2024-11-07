@@ -1,62 +1,62 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_hint("find a rush",
+nc.register_hint("find a rush",
 	"nc_flora:rush"
 )
 
-nodecore.register_hint("dry out a rush",
+nc.register_hint("dry out a rush",
 	"nc_flora:rush_dry",
 	"nc_flora:rush"
 )
 
-nodecore.register_hint("grow a rush on soil near moisture",
+nc.register_hint("grow a rush on soil near moisture",
 	"rush spread",
 	"nc_flora:rush"
 )
 
-nodecore.register_hint("find a sedge",
+nc.register_hint("find a sedge",
 	"group:flora_sedges"
 )
 
-nodecore.register_hint("pick a sedge",
+nc.register_hint("pick a sedge",
 	"inv:nc_flora:sedge_1",
 	"group:flora_sedges"
 )
 
-nodecore.register_hint("grow a sedge on grass near moisture",
+nc.register_hint("grow a sedge on grass near moisture",
 	"sedge growth",
 	"group:flora_sedges"
 )
 
-nodecore.register_hint("find a flower",
+nc.register_hint("find a flower",
 	"group:flower_living",
 	"group:flora_sedges"
 )
 
-nodecore.register_hint("wilt a flower",
+nc.register_hint("wilt a flower",
 	"group:flower_wilted",
 	"group:flower_living"
 )
 
-nodecore.register_hint("grow a flower on soil near moisture",
+nc.register_hint("grow a flower on soil near moisture",
 	"flower spread",
 	"group:flower_living"
 )
 
-nodecore.register_hint("breed a new flower variety",
+nc.register_hint("breed a new flower variety",
 	"group:flower_mutant",
 	{"group:flower_living", "flower spread"}
 )
 
-nodecore.register_hint("pack sedges into thatch",
+nc.register_hint("pack sedges into thatch",
 	"pack thatch",
 	"inv:nc_flora:sedge_1"
 )
 
-nodecore.register_hint("pack dry rushes into wicker",
+nc.register_hint("pack dry rushes into wicker",
 	"pack wicker",
 	"nc_flora:rush_dry"
 )

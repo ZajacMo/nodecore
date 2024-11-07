@@ -1,27 +1,27 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, pairs, tonumber
-    = math, minetest, pairs, tonumber
+local core, math, pairs, tonumber
+    = core, math, pairs, tonumber
 local math_floor, math_log, math_random
     = math.floor, math.log, math.random
 -- LUALOCALS > ---------------------------------------------------------
 
-if minetest.features._hotfix_background_recompute then return end
-minetest.features._hotfix_background_recompute = true
+if core.features._hotfix_background_recompute then return end
+core.features._hotfix_background_recompute = true
 
 ------------------------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 -- Proportion of time to spend each cycle on recalculations. For instance,
 -- a value of 0.05 will mean that we attempt to use about 5% of each step
 -- cycle trying to do recalculates.
-local cycletime = tonumber(minetest.settings:get(modname .. "_fixhack_cycletime")) or 0.02
+local cycletime = tonumber(core.settings:get(modname .. "_fixhack_cycletime")) or 0.02
 
 -- How often statistics are written to the log, to track server CPU use.
-local stattime = tonumber(minetest.settings:get(modname .. "_fixhack_stattime")) or 3600
+local stattime = tonumber(core.settings:get(modname .. "_fixhack_stattime")) or 3600
 
 -- How often a mapblock can be recalculated, at the earliest.
-local calctime = tonumber(minetest.settings:get(modname .. "_fixhack_calctime")) or 60
+local calctime = tonumber(core.settings:get(modname .. "_fixhack_calctime")) or 60
 
 -- Simple positional helper functions.
 local function posadd(a, b) return {x = a.x + b.x, y = a.y + b.y, z = a.z + b.z} end
@@ -42,12 +42,12 @@ local mapgenqueue = {}
 -- Run voxelmanip lighting calc on chunks post-mapgen. It seems as though
 -- the default mapgen lighting calc disagrees with this one (water does not
 -- absorb light; bug?)
-minetest.register_on_generated(function(minp, maxp)
+core.register_on_generated(function(minp, maxp)
 		for x = math_floor(minp.x / 16), math_floor(maxp.x / 16) do
 			for y = math_floor(minp.y / 16), math_floor(maxp.y / 16) do
 				for z = math_floor(minp.z / 16), math_floor(maxp.z / 16) do
 					local pos = {x = x, y = y, z = z}
-					mapgenqueue[minetest.hash_node_position(pos)] = pos
+					mapgenqueue[core.hash_node_position(pos)] = pos
 				end
 			end
 		end
@@ -69,24 +69,24 @@ local availtime = 0
 -- (shared by mapgen and random queue).
 local function procblock(pos, nextcalc)
 	-- Don't reprocess already-processed blocks too soon.
-	local h = minetest.hash_node_position(pos)
+	local h = core.hash_node_position(pos)
 	if processed[h] then return end
 
 	-- Don't process a block if it's not loaded, or if any of its
 	-- neighbors is not loaded, as that can cause lighting bugs (at least).
-	if not minetest.get_node_or_nil(blockmin(pos))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 1, z = 0})))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = 1, y = 0, z = 0})))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = -1, y = 0, z = 0})))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 0, z = 1})))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 0, z = -1})))
-	or not minetest.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = -1, z = 0})))
+	if not core.get_node_or_nil(blockmin(pos))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 1, z = 0})))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = 1, y = 0, z = 0})))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = -1, y = 0, z = 0})))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 0, z = 1})))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = 0, z = -1})))
+	or not core.get_node_or_nil(blockmin(posadd(pos, {x = 0, y = -1, z = 0})))
 	then return end
 
 	processed[h] = nextcalc
 
 	-- Recalc all fluids and lighting in that block.
-	local vm = minetest.get_voxel_manip(blockmin(pos), blockmax(pos))
+	local vm = core.get_voxel_manip(blockmin(pos), blockmax(pos))
 	vm:update_liquids()
 	vm:write_to_map(true)
 	vm:update_map()
@@ -96,11 +96,11 @@ local function procblock(pos, nextcalc)
 end
 
 -- Run recalculates during each cycle.
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 		-- Don't attempt to do anything if nobody is connected. There seems
 		-- to be some issue that may be crashing servers that run for a long
 		-- time with no players connected, which this may help avert.
-		local players = minetest.get_connected_players()
+		local players = core.get_connected_players()
 		if #players < 1 then return end
 
 		-- Add our allotment to the amount of time available.
@@ -114,7 +114,7 @@ minetest.register_globalstep(function(dtime)
 
 		-- Calculate when the recalculation is supposed to stop, based on
 		-- real-time clock.
-		local starttime = minetest.get_us_time() / 1000000
+		local starttime = core.get_us_time() / 1000000
 		local endtime = starttime + availtime
 
 		-- Get the current timestamp, to be used in expiration timestamps.
@@ -138,7 +138,7 @@ minetest.register_globalstep(function(dtime)
 		-- Skip random recalcs if we don't actually have any time to do them.
 		if endtime > starttime then
 			-- Keep searching for blocks to recalc until we run out of allotted time.
-			while (minetest.get_us_time() / 1000000) < endtime do
+			while (core.get_us_time() / 1000000) < endtime do
 				-- Pick a random player, and then pick a random exponentially-
 				-- distributed random block around that player.
 				local pos = players[math_random(1, #players)]:get_pos()
@@ -151,7 +151,7 @@ minetest.register_globalstep(function(dtime)
 
 		-- Update our actual end time (in case we ran long with voxel operations),
 		-- and keep track for periodic statistic summary.
-		endtime = minetest.get_us_time() / 1000000
+		endtime = core.get_us_time() / 1000000
 		totaltime = totaltime + dtime
 		proctime = proctime + endtime - starttime
 
@@ -163,14 +163,14 @@ minetest.register_globalstep(function(dtime)
 local function reportstats(noforce)
 	if noforce and totaltime == 0 then return end
 	local function ms(i) return math_floor(i * 1000000) / 1000 end
-	minetest.log("info", modname .. ": processed " .. totalqty .. " mapblocks using "
+	core.log("info", modname .. ": processed " .. totalqty .. " mapblocks using "
 		.. ms(proctime) .. "ms out of " .. ms(totaltime) .. "ms ("
 		.. (math_floor(proctime / totaltime * 10000) / 100)
 		.. "%), " .. ms(availtime) .. "ms saved")
 	totalqty = 0
 	totaltime = 0
 	proctime = 0
-	minetest.after(stattime, reportstats, true)
+	core.after(stattime, reportstats, true)
 end
-minetest.after(stattime, reportstats, true)
-minetest.register_on_shutdown(reportstats)
+core.after(stattime, reportstats, true)
+core.register_on_shutdown(reportstats)

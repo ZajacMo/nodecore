@@ -1,12 +1,12 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, minetest, type
-    = ItemStack, minetest, type
+local ItemStack, core, type
+    = ItemStack, core, type
 -- LUALOCALS > ---------------------------------------------------------
 
-local old_drop = minetest.item_drop
-function minetest.item_drop(itemstack, dropper, ...)
+local old_drop = core.item_drop
+function core.item_drop(itemstack, dropper, ...)
 	local name = itemstack:get_name()
-	local def = minetest.registered_items[name]
+	local def = core.registered_items[name]
 	if not (def and def.drop_as) then
 		return old_drop(itemstack, dropper, ...)
 	end

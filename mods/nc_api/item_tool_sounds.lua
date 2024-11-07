@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nodecore
-    = nodecore
+local nc
+    = nc
 -- LUALOCALS > ---------------------------------------------------------
 
-nodecore.register_on_register_item(function(_, def)
+nc.register_on_register_item(function(_, def)
 		if def.type == "tool" then
 			def.sound = def.sound or {}
 			def.sound.breaks = def.sound.breaks or {name = "nc_api_toolbreak", gain = 1}

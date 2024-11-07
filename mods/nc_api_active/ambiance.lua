@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, minetest, nodecore
-    = math, minetest, nodecore
+local core, math, nc
+    = core, math, nc
 local math_random
     = math.random
 -- LUALOCALS > ---------------------------------------------------------
@@ -12,7 +12,7 @@ local function ambiance_core(def, getpos)
 	local queue = {}
 	local total = 0
 
-	nodecore.register_globalstep(function()
+	nc.register_globalstep(function()
 			if #queue < 1 then return end
 
 			for i = 1, #queue do
@@ -20,8 +20,8 @@ local function ambiance_core(def, getpos)
 				opts.name = opts.name or def.sound_name
 				opts.gain = opts.gain or def.sound_gain
 				opts.pitch = opts.pitch or def.sound_pitch
-				minetest.after(opts.delay, function()
-						nodecore.sound_play(opts.name, opts)
+				core.after(opts.delay, function()
+						nc.sound_play(opts.name, opts)
 					end)
 			end
 
@@ -32,7 +32,7 @@ local function ambiance_core(def, getpos)
 
 	def.action = function(...)
 		local pos = getpos(...)
-		local hash = minetest.hash_node_position(pos)
+		local hash = core.hash_node_position(pos)
 		if seen[hash] then return end
 		seen[hash] = true
 		local opts
@@ -58,13 +58,13 @@ local function ambiance_core(def, getpos)
 end
 
 local function abm_pos(pos) return pos end
-function nodecore.register_ambiance(def)
+function nc.register_ambiance(def)
 	ambiance_core(def, abm_pos)
-	return minetest.register_abm(def)
+	return core.register_abm(def)
 end
 
 local function aism_pos(_, data) return data.pos end
-function nodecore.register_item_ambiance(def)
+function nc.register_item_ambiance(def)
 	ambiance_core(def, aism_pos)
-	return nodecore.register_aism(def)
+	return nc.register_aism(def)
 end

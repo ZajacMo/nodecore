@@ -1,6 +1,6 @@
 -- LUALOCALS < ---------------------------------------------------------
-local math, nodecore, pairs, table, vector
-    = math, nodecore, pairs, table, vector
+local math, nc, pairs, table, vector
+    = math, nc, pairs, table, vector
 local math_random, table_sort
     = math.random, table.sort
 -- LUALOCALS > ---------------------------------------------------------
@@ -36,7 +36,7 @@ for _, k in pairs(keys) do
 	local stamp = 0
 	local t = groups[k]
 	settleorder[#settleorder + 1] = function()
-		if stamp == nodecore.gametime then return t end
+		if stamp == nc.gametime then return t end
 		local n = #t
 		if n < 2 then return t end
 		for i = n, 2, -1 do
@@ -45,12 +45,12 @@ for _, k in pairs(keys) do
 			t[i] = t[j]
 			t[j] = x
 		end
-		stamp = nodecore.gametime
+		stamp = nc.gametime
 		return t
 	end
 end
 
-function nodecore.settlescan()
+function nc.settlescan()
 	local i = 0
 	local grp = {}
 	local j = 0

@@ -1,10 +1,10 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ItemStack, ipairs, minetest, nodecore
-    = ItemStack, ipairs, minetest, nodecore
+local ItemStack, core, ipairs, nc
+    = ItemStack, core, ipairs, nc
 -- LUALOCALS > ---------------------------------------------------------
 
 local function getcrushdamage(name, alreadyloose)
-	local def = minetest.registered_items[name]
+	local def = core.registered_items[name]
 	if def and def.crush_damage then return def.crush_damage end
 	if alreadyloose then return 0 end
 	return name and getcrushdamage(name .. "_loose", true) or 0
@@ -32,13 +32,13 @@ local function maketick(mult, getname, oldtick)
 			return oldtick(self, dtime, ...)
 		end
 		local q = v * v * dtime * self.crush_damage * mult
-		for _, player in ipairs(minetest.get_connected_players()) do
+		for _, player in ipairs(core.get_connected_players()) do
 			local ppos = player:get_pos()
 			if ppos.x <= pos.x + 1 and ppos.x >= pos.x - 1
 			and ppos.z <= pos.z + 1 and ppos.z >= pos.z - 1
 			and ppos.y <= pos.y + 0.5 and ppos.y >= pos.y - 2.5
 			then
-				nodecore.addphealth(player, -q, {
+				nc.addphealth(player, -q, {
 						nc_type = "crushing",
 						entity = self
 					})
@@ -49,5 +49,5 @@ local function maketick(mult, getname, oldtick)
 	end
 end
 
-nodecore.register_falling_node_step(maketick(1, function(s) return s.node.name end))
-nodecore.register_item_entity_step(maketick(0.2, function(s) return ItemStack(s.itemstring):get_name() end))
+nc.register_falling_node_step(maketick(1, function(s) return s.node.name end))
+nc.register_item_entity_step(maketick(0.2, function(s) return ItemStack(s.itemstring):get_name() end))

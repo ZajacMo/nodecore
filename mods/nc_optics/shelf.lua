@@ -1,26 +1,26 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, string
-    = minetest, nodecore, string
+local core, nc, string
+    = core, nc, string
 local string_lower
     = string.lower
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local txr_frame = modname .. "_glass_edges.png^(nc_tree_tree_side.png^[mask:"
 .. modname .. "_tank_mask.png)"
 
 local function register_tank(subname, desc, pane, recipeitem, alpha)
 	local tankname = modname .. ":" .. subname
-	minetest.register_node(tankname, {
+	core.register_node(tankname, {
 			description = desc .. " Glass Case",
 			tiles = {
 				pane .. txr_frame,
 				pane .. txr_frame,
 				txr_frame
 			},
-			selection_box = nodecore.fixedbox(),
-			collision_box = nodecore.fixedbox(),
+			selection_box = nc.fixedbox(),
+			collision_box = nc.fixedbox(),
 			groups = {
 				silica = 1,
 				silica_clear = 1,
@@ -36,18 +36,18 @@ local function register_tank(subname, desc, pane, recipeitem, alpha)
 			paramtype = "light",
 			sunlight_propagates = true,
 			air_pass = false,
-			sounds = nodecore.sounds("nc_optics_glassy"),
+			sounds = nc.sounds("nc_optics_glassy"),
 			storebox_access = function(pt) return pt.above.y > pt.under.y end,
 			on_ignite = function(pos)
-				if minetest.get_node(pos).name == tankname then
-					return {modname .. ":glass_crude", nodecore.stack_get(pos)}
+				if core.get_node(pos).name == tankname then
+					return {modname .. ":glass_crude", nc.stack_get(pos)}
 				end
 				return modname .. ":glass_crude"
 			end,
 			mapcolor = {r = 255, g = 255, b = 255, a = alpha},
 		})
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "assemble " .. string_lower(desc) .. " glass case",
 			action = "stackapply",
 			indexkeys = {"nc_woodwork:form"},

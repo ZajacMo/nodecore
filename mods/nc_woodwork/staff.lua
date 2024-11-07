@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-minetest.register_node(modname .. ":staff", {
+core.register_node(modname .. ":staff", {
 		description = "Staff",
 		drawtype = "nodebox",
-		node_box = nodecore.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
-		selection_box = nodecore.fixedbox(-1/8, -0.5, -1/8, 1/8, 0.5, 1/8),
+		node_box = nc.fixedbox(-1/16, -0.5, -1/16, 1/16, 0.5, 1/16),
+		selection_box = nc.fixedbox(-1/8, -0.5, -1/8, 1/8, 0.5, 1/8),
 		oldnames = {"nc_tree:staff"},
 		tiles = {
 			"nc_tree_tree_top.png",
@@ -25,11 +25,11 @@ minetest.register_node(modname .. ":staff", {
 			falling_repose = 2,
 			optic_opaque = 1,
 		},
-		sounds = nodecore.sounds("nc_tree_sticky"),
+		sounds = nc.sounds("nc_tree_sticky"),
 		mapcolor = {a = 0},
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "assemble staff",
 		normal = {y = 1},
 		indexkeys = {"nc_tree:stick"},

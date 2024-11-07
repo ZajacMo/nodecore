@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-21 19:55+0200\n"
+"PO-Revision-Date: 2024-10-21 18:26+0000\n"
+"Last-Translator: Honzapkcz <honzapkc@gmail.com>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/minetest/nodecore/"
+"cs/>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.8-rc\n"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr ""
+"- Místa na šplhání produkují velmi bludné světlo; zvyš si jas pro vidění."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- Místa pro lezení mohou být vylezena poté, co se objeví černé částice."
+
+msgid "- DONE: @1"
+msgstr "- HOTOVO: @1"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 vytvořil Aaron Suen <warr1024@@gmail.com>"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- Pec neexistuje; objev vypékání kovů s otevřeným ohněm."
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- Nemůžeš ničit stromy nebo trávu? Hledej klacky v přístřešcích."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr ""
+"- Měj se na pozoru on jeskynní/roklí; jsi zodpovědný abys se dostal ven."

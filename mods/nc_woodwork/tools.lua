@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function toolhead(name, from, group, sticks)
 	local n
 	if name then
 		n = modname .. ":toolhead_" .. name:lower()
 		local t = n:gsub(":", "_") .. ".png"
-		minetest.register_craftitem(n, {
+		core.register_craftitem(n, {
 				description = "Wooden " .. name .. " Head",
 				inventory_image = t,
 				stack_max = 1,
@@ -18,25 +18,25 @@ local function toolhead(name, from, group, sticks)
 					choppy = 1,
 					flammable = 2
 				},
-				tool_head_capabilities = nodecore.toolcaps({
+				tool_head_capabilities = nc.toolcaps({
 						[group] = 2
 					}),
-				sounds = nodecore.sounds("nc_tree_woody")
+				sounds = nc.sounds("nc_tree_woody")
 			})
 		local m = modname .. ":tool_" .. name:lower()
 		local u = m:gsub(":", "_") .. ".png"
-		minetest.register_tool(m, {
+		core.register_tool(m, {
 				description = "Wooden " .. name,
 				inventory_image = u,
 				groups = {
 					flammable = 2
 				},
-				tool_capabilities = nodecore.toolcaps({
+				tool_capabilities = nc.toolcaps({
 						[group] = 2
 					}),
-				sounds = nodecore.sounds("nc_tree_woody")
+				sounds = nc.sounds("nc_tree_woody")
 			})
-		nodecore.register_craft({
+		nc.register_craft({
 				label = "assemble wood " .. name:lower(),
 				normal = {y = 1},
 				indexkeys = {n},
@@ -50,7 +50,7 @@ local function toolhead(name, from, group, sticks)
 			})
 	end
 
-	nodecore.register_craft({
+	nc.register_craft({
 			label = "carve " .. from,
 			action = "pummel",
 			toolgroups = {choppy = 1},

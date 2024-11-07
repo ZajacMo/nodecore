@@ -1,11 +1,11 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore, tonumber
-    = minetest, nodecore, tonumber
+local core, nc, tonumber
+    = core, nc, tonumber
 -- LUALOCALS > ---------------------------------------------------------
 
 local function destroyparticles(name, def, pos)
-	def = minetest.registered_nodes[name] or def
-	nodecore.digparticles(def, {
+	def = core.registered_nodes[name] or def
+	nc.digparticles(def, {
 			time = 0.05,
 			amount = tonumber(def.destroy_on_dig) or 50,
 			minpos = {x = pos.x - 0.5, y = pos.y - 0.5, z = pos.z - 0.5},
@@ -23,12 +23,12 @@ local function destroyparticles(name, def, pos)
 		})
 end
 
-function nodecore.node_destroy_effect(pos, node)
-	node = node or minetest.get_node(pos)
+function nc.node_destroy_effect(pos, node)
+	node = node or core.get_node(pos)
 	return destroyparticles(node.name, nil, pos)
 end
 
-nodecore.register_on_register_item(function(name, def)
+nc.register_on_register_item(function(name, def)
 		if def.destroy_on_dig then
 			def.after_dig_node = def.after_dig_node or function(pos)
 				return destroyparticles(name, def, pos)

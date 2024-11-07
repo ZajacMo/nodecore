@@ -1,18 +1,18 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local function lodzecaps(lv)
-	return nodecore.toolcaps({
+	return nc.toolcaps({
 			choppy = lv,
 			crumbly = lv,
 			cracky = lv - 2
 		})
 end
-nodecore.register_lode("adze", {
+nc.register_lode("adze", {
 		type = "tool",
 		description = "## Lode Adze",
 		inventory_image = modname .. "_#.png^[mask:" .. modname .. "_adze.png",
@@ -29,7 +29,7 @@ nodecore.register_lode("adze", {
 		tool_wears_to = modname .. ":prill_# 2"
 	})
 
-nodecore.register_craft({
+nc.register_craft({
 		label = "anvil making lode adze",
 		action = "pummel",
 		toolgroups = {thumpy = 3},
@@ -53,7 +53,7 @@ nodecore.register_craft({
 			modname .. ":adze_annealed"
 		}
 	})
-nodecore.register_craft({
+nc.register_craft({
 		label = "recycle lode adze",
 		action = "pummel",
 		toolgroups = {choppy = 3},

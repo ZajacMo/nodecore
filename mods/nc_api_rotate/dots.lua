@@ -1,16 +1,16 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, vector
-    = ipairs, minetest, nodecore, vector
+local core, ipairs, nc, vector
+    = core, ipairs, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
-local hashpos = minetest.hash_node_position
-local rotation_center_ratio = nodecore.rotation_center_ratio
+local hashpos = core.hash_node_position
+local rotation_center_ratio = nc.rotation_center_ratio
 
 local dots = {}
 do
-	local dirs = nodecore.dirs()
+	local dirs = nc.dirs()
 	for _, ptnorm in ipairs(dirs) do
 		local list = {}
 		dots[hashpos(ptnorm)] = list
@@ -32,11 +32,11 @@ do
 	end
 end
 
-function nodecore.rotation_hud_dots(player, pos, ptnorm, scale)
+function nc.rotation_hud_dots(player, pos, ptnorm, scale)
 	local list = pos and ptnorm and scale and dots[hashpos(ptnorm)]
 	if list then
 		for i = 1, #list do
-			nodecore.hud_set(player, {
+			nc.hud_set(player, {
 					label = modname .. "_dot" .. i,
 					hud_elem_type = "image_waypoint",
 					text = "nc_api_rotate_huddot.png",
@@ -47,7 +47,7 @@ function nodecore.rotation_hud_dots(player, pos, ptnorm, scale)
 		end
 	else
 		for i = 1, 8 do
-			nodecore.hud_set(player, {
+			nc.hud_set(player, {
 					label = modname .. "_dot" .. i,
 					ttl = 0,
 				})

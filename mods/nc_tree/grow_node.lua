@@ -1,20 +1,20 @@
 -- LUALOCALS < ---------------------------------------------------------
-local minetest, nodecore
-    = minetest, nodecore
+local core, nc
+    = core, nc
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 local epname = modname .. ":eggcorn_planted"
 
-minetest.register_node(modname .. ":eggcorn", {
+core.register_node(modname .. ":eggcorn", {
 		description = "Eggcorn",
 		drawtype = "plantlike",
 		paramtype = "light",
 		visual_scale = 0.5,
 		wield_scale = {x = 0.75, y = 0.75, z = 1.5},
-		collision_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
-		selection_box = nodecore.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
+		collision_box = nc.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
+		selection_box = nc.fixedbox(-3/16, -0.5, -3/16, 3/16, 0, 3/16),
 		inventory_image = "[combine:24x24:4,4=" .. modname
 		.. "_eggcorn.png\\^[resize\\:16x16",
 		tiles = {modname .. "_eggcorn.png"},
@@ -26,20 +26,20 @@ minetest.register_node(modname .. ":eggcorn", {
 		},
 		node_placement_prediction = "nc_items:stack",
 		place_as_item = true,
-		sounds = nodecore.sounds("nc_tree_corny"),
+		sounds = nc.sounds("nc_tree_corny"),
 		mapcolor = {a = 0},
 	})
 
 local function soilboost(pos, name)
-	local def = minetest.registered_items[name]
+	local def = core.registered_items[name]
 	local soil = def.groups.soil or 0
 	if soil > 2 then
-		nodecore.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
-		nodecore.soaking_particles(pos, (soil - 2) * 10,
+		nc.soaking_abm_push(pos, "eggcorn", (soil - 2) * 500)
+		nc.soaking_particles(pos, (soil - 2) * 10,
 			0.5, .45, modname .. ":leaves_bud")
 	end
 end
-nodecore.register_item_entity_step(function(self)
+nc.register_item_entity_step(function(self)
 		if self.itemstring ~= modname .. ":eggcorn" then
 			return
 		end
@@ -47,18 +47,18 @@ nodecore.register_item_entity_step(function(self)
 		local pos = self.object:get_pos()
 		if not pos then return end
 
-		local curnode = minetest.get_node(pos)
-		if minetest.get_item_group(curnode.name, "dirt_loose") < 1 then
+		local curnode = core.get_node(pos)
+		if core.get_item_group(curnode.name, "dirt_loose") < 1 then
 			return
 		end
 
-		nodecore.set_loud(pos, {name = epname})
+		nc.set_loud(pos, {name = epname})
 		self.itemstring = ""
 		self.object:remove()
 
 		soilboost(pos, curnode.name)
 	end)
-nodecore.register_craft({
+nc.register_craft({
 		label = "eggcorn planting",
 		action = "stackapply",
 		wield = {groups = {dirt_loose = true}},
@@ -70,18 +70,18 @@ nodecore.register_craft({
 		end
 	})
 
-minetest.register_abm({
+core.register_abm({
 		label = "legacy eggcorn node conversion",
 		interval = 1,
 		chance = 1,
 		nodenames = {modname .. ":eggcorn"},
 		action = function(pos)
-			minetest.remove_node(pos)
-			return nodecore.place_stack(pos, modname .. ":eggcorn")
+			core.remove_node(pos)
+			return nc.place_stack(pos, modname .. ":eggcorn")
 		end
 	})
 
-nodecore.register_leaf_drops(function(_, node, list)
+nc.register_leaf_drops(function(_, node, list)
 		list[#list + 1] = {
 			name = "air",
 			item = modname .. ":eggcorn",
@@ -89,7 +89,7 @@ nodecore.register_leaf_drops(function(_, node, list)
 	end)
 
 local ldname = "nc_terrain:dirt_loose"
-local epdef = nodecore.underride({
+local epdef = nc.underride({
 		description = "Sprout",
 		drawtype = "plantlike_rooted",
 		falling_visual = ldname,
@@ -98,12 +98,12 @@ local epdef = nodecore.underride({
 		no_self_repack = true,
 		paramtype = "light",
 		groups = {grassable = 0, loose_repack = 0, flammable = 35, cheat = 1},
-		on_ignite = nodecore.fire_on_ignite_plantlike_rooted(ldname)
-	}, minetest.registered_items[ldname] or {})
+		on_ignite = nc.fire_on_ignite_plantlike_rooted(ldname)
+	}, core.registered_items[ldname] or {})
 epdef.groups.soil = nil
-minetest.register_node(epname, epdef)
+core.register_node(epname, epdef)
 
-minetest.register_node(modname .. ":tree_bud", {
+core.register_node(modname .. ":tree_bud", {
 		description = "Growing Tree Trunk",
 		tiles = {
 			modname .. "_bud_top.png",
@@ -120,7 +120,7 @@ minetest.register_node(modname .. ":tree_bud", {
 			leaf_decay_support = 1
 		},
 		crush_damage = 1,
-		sounds = nodecore.sounds("nc_tree_woody"),
+		sounds = nc.sounds("nc_tree_woody"),
 		drop_in_place = modname .. ":tree",
 		mapcolor = {r = 62, g = 90, b = 9},
 	})
@@ -129,7 +129,7 @@ local function fade(txr)
 	return txr .. "^[multiply:#a0a0a0^" .. txr
 end
 
-minetest.register_node(modname .. ":leaves_bud", {
+core.register_node(modname .. ":leaves_bud", {
 		description = "Growing Leaves",
 		drawtype = "allfaces_optional",
 		paramtype = "light",
@@ -150,10 +150,10 @@ minetest.register_node(modname .. ":leaves_bud", {
 		treeable_to = true,
 		drop = "",
 		after_dig_node = function(pos)
-			return nodecore.leaf_decay(pos, nodecore.calc_leaves(pos))
+			return nc.leaf_decay(pos, nc.calc_leaves(pos))
 		end,
 		node_dig_prediction = "air",
-		sounds = nodecore.sounds("nc_terrain_swishy"),
+		sounds = nc.sounds("nc_terrain_swishy"),
 		leaf_decay_as = {
 			name = modname .. ":leaves",
 			param2 = 0

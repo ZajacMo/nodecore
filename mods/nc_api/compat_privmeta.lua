@@ -1,9 +1,9 @@
 -- LUALOCALS < ---------------------------------------------------------
-local getmetatable, minetest, nodecore, pairs
-    = getmetatable, minetest, nodecore, pairs
+local core, getmetatable, nc, pairs
+    = core, getmetatable, nc, pairs
 -- LUALOCALS > ---------------------------------------------------------
 
-local modname = minetest.get_current_modname()
+local modname = core.get_current_modname()
 
 -- It was suggested to do this universally in
 -- https://github.com/minetest/minetest/issues/10127
@@ -14,7 +14,7 @@ local publicfields = {
 	formspec = true,
 	infotext = true
 }
-nodecore.public_meta_fields = publicfields
+nc.public_meta_fields = publicfields
 
 local function hook(meta)
 	for k, v in pairs(meta) do
@@ -25,19 +25,19 @@ local function hook(meta)
 				end
 				return v(data, name, val, ...)
 			end
-			nodecore.log("info", modname .. " auto-privatized meta " .. k)
+			nc.log("info", modname .. " auto-privatized meta " .. k)
 		end
 	end
 end
 
-local rawmeta = minetest.get_meta
-function minetest.get_meta(...)
+local rawmeta = core.get_meta
+function core.get_meta(...)
 	local raw = rawmeta(...)
 	if raw then
 		local meta = getmetatable(raw)
 		if meta then
 			hook(meta)
-			minetest.get_meta = rawmeta
+			core.get_meta = rawmeta
 		end
 	end
 	return raw
