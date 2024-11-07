@@ -1,15 +1,15 @@
 -- LUALOCALS < ---------------------------------------------------------
-local ipairs, minetest, nodecore, pairs, table
-    = ipairs, minetest, nodecore, pairs, table
+local ipairs, core, nc, pairs, table
+    = ipairs, core, nc, pairs, table
 local table_insert, table_shuffle
     = table.insert, table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
-local dirs = nodecore.dirs()
+local dirs = nc.dirs()
 
-function nodecore.scan_flood(pos, range, func)
+function nc.scan_flood(pos, range, func)
 	local q = {pos}
-	local seen = {}
+	local seen = {core.hash_node_position(pos)}
 	for d = 0, range do
 		local nxt = {}
 		for _, p in ipairs(q) do
@@ -23,7 +23,7 @@ function nodecore.scan_flood(pos, range, func)
 						z = p.z + v.z,
 						prev = p
 					}
-					local nk = minetest.hash_node_position(np)
+					local nk = core.hash_node_position(np)
 					if not seen[nk] then
 						seen[nk] = true
 						np.dir = v
