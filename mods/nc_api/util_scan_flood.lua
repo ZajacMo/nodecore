@@ -8,6 +8,7 @@ local table_insert, table_shuffle
 local dirs = nc.dirs()
 
 -- Scans pos, then its 6 neighbors, then their neighbors, recursively.
+-- Neighbors at the same distance are scanned in random order.
 -- Distance is 0 at pos, 1 at its 6 neighbors, 2 at theirs (taxicab distance).
 -- func(position, distance) is called at most once for each position within 'range' distance of pos (inclusive).
 -- If func returns nil then the scan continues as normal.
