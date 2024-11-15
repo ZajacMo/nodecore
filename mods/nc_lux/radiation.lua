@@ -174,7 +174,7 @@ nc.register_playerstep({
 				data.radtime = (data.radtime or 0) + dtime
 				if data.radtime > 1/4 then
 					local inrate = (nodescan(player) + itemscan(player)) / 256
-					local p = math.pow(0.99, data.radtime * 16)
+					local p = math_pow(0.99, data.radtime * 16)
 					rate = (rate or 0) * p + inrate * (1 - p)
 					if inrate > 0 and math_random() < inrate then
 						rad = 1 - (1 - rad) * 31/32
