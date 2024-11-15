@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-04 11:53+0200\n"
-"PO-Revision-Date: 2024-04-07 03:01+0000\n"
+"PO-Revision-Date: 2024-11-15 14:39+0000\n"
 "Last-Translator: Just Playing <aryadhisuma@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/id/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr ""
@@ -116,7 +116,7 @@ msgid "Stone"
 msgstr "Batu"
 
 msgid "NodeCore"
-msgstr "NodeCore(Indonesia)"
+msgstr "NodeCore (Bahasa Indonesia)"
 
 msgid "Annealed Lode Hatchet Head"
 msgstr "Kepala Kapak Logam Lemah"
@@ -143,7 +143,7 @@ msgid "Flux"
 msgstr "Flus"
 
 msgid "NodeCore ALPHA"
-msgstr "NodeCore ALPHA(Indonesia)"
+msgstr "NodeCore ALPHA (Bahasa Indonesia)"
 
 msgid "Bonded Cloudstone Bricks"
 msgstr "Batu Bata Awan Terikat"
@@ -315,7 +315,7 @@ msgstr ""
 "mengeluarkan diri anda sendiri."
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "- Untuk aksi 'memukul', pukul simpul berulang kali, TANPA menggali."
+msgstr "- Untuk aksi 'memukul', pukul node berulang kali, TANPA menggali."
 
 msgid "Player's Guide: Pummeling Recipes"
 msgstr "Panduan Pemain: Resep Memukul"
@@ -429,7 +429,7 @@ msgstr ""
 
 msgid "- Drop items onto ground to create stack nodes. They do not decay."
 msgstr ""
-"- Jatuhkan item ke tanah untuk membuat tumpukan simpul. Mereka tidak "
+"- Jatuhkan barang ke tanah untuk membuat tumpukan node. Mereka tidak "
 "membusuk."
 
 msgid "Horzy Stone"
@@ -439,7 +439,7 @@ msgid "Charcoal"
 msgstr "Arang"
 
 msgid "- Stacks may be pummeled, exact item count may matter."
-msgstr "- Tumpukan dapat dipukul, jumlah item yang tepat mungkin penting."
+msgstr "- Tumpukan dapat dipukul, jumlah barang yang tepat mungkin penting."
 
 msgid "- Climbing spots may be climbed once black particles appear."
 msgstr "- Titik pendakian mungkin akan naik setelah partikel hitam muncul."
@@ -512,7 +512,8 @@ msgid "Bonded Adobe Brick Hinged Panel"
 msgstr "Panel Engsel Batu Bata Tanah Liat Terikat"
 
 msgid "- Sneak+aux+drop an item to drop all matching items."
-msgstr "- Jongkok+aux+jatuhkan item untuk menjatuhkan semua item yang cocok."
+msgstr ""
+"- Jongkok+aux+jatuhkan barang untuk menjatuhkan semua barang yang cocok."
 
 msgid "Hashy"
 msgstr "Hasy"
@@ -569,7 +570,7 @@ msgstr "Tanah Liat Bindi Lunak"
 
 msgid "- Items picked up try to fit into the current selected slot first."
 msgstr ""
-"- Jika ingin mengambil item, cobalah untuk memilih slot yang diinginkan "
+"- Jika ingin mengambil barang, cobalah untuk memilih slot yang diinginkan "
 "terlebih dahulu."
 
 msgid "Crude Glass"
@@ -586,7 +587,7 @@ msgstr "Rumput"
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr ""
-"- Item yang digunakan, wajah target, dan simpul di sekitarnya mungkin "
+"- Barang yang digunakan, wajah target, dan node di sekitarnya mungkin "
 "penting."
 
 msgid "Infused Annealed Lode Mattock"
@@ -623,7 +624,7 @@ msgid "Glowing Lode Rod"
 msgstr "Tongkat Logam Bercahaya"
 
 msgid "- Aux+drop any item to drop everything."
-msgstr "- Aux+jatuhkan item apa pun untuk menjatuhkan semuanya."
+msgstr "- Aux+jatuhkan barang apa pun untuk menjatuhkan semuanya."
 
 msgid "Glued Lens"
 msgstr "Lensa Rekat"
@@ -713,7 +714,7 @@ msgid "Cloudstone"
 msgstr "Batu Awan"
 
 msgid "Displaced Node"
-msgstr "Simpul Dipindahkan"
+msgstr "Node Dipindahkan"
 
 msgid "@1 |...."
 msgstr "@1 +...."
@@ -847,7 +848,7 @@ msgid "Glowing Lode Hatchet Head"
 msgstr "Kepala Kapak Logam Bercahaya"
 
 msgid "@1 discovered, @2 available, @3 future"
-msgstr "@1 Ditemukan, @2 Tersedia, @3 di Masa Mendatang"
+msgstr "@1 Ditemukan, @2 Tersedia, @3 di Masa Depan"
 
 msgid "Black Bell Flower"
 msgstr "Bunga Bell Hitam"
@@ -878,10 +879,10 @@ msgstr "Penemuan"
 
 msgid "- For larger recipes, the center item is usually placed last."
 msgstr ""
-"- Untuk resep berukuran besar, item tengah biasanya ditempatkan terakhir."
+"- Untuk resep berukuran besar, barang tengah biasanya ditempatkan terakhir."
 
 msgid "- Sneak+drop to count out single items from stack."
-msgstr "- Jongkok+jatuhkan untuk menghitung satu item dari tumpukan."
+msgstr "- Jongkok+jatuhkan untuk menghitung satu barang dari tumpukan."
 
 msgid "Glowing Lode Bar"
 msgstr "Batang Logam Bercahaya"
@@ -971,7 +972,7 @@ msgid "Bonded Tarstone Bricks"
 msgstr "Batu Bata Tar Terikat"
 
 msgid "- Drop and pick up items to rearrange your inventory."
-msgstr "- Jatuhkan dan ambil item untuk mengatur ulang inventaris Anda."
+msgstr "- Jatuhkan dan ambil barang untuk mengatur ulang inventaris Anda."
 
 msgid "Bonded Sandstone Bricks"
 msgstr "Batu Bata Pasir Terikat"
@@ -981,7 +982,7 @@ msgstr ""
 "- Anda tidak perlu 'memukul' terlalu cepat (sekitar 1 pukulan per detik)."
 
 msgid "- Some recipes require "pummeling" a node."
-msgstr "- Beberapa resep mengharuskan 'memukul' sebuah simpul."
+msgstr "- Beberapa resep mengharuskan 'memukul' sebuah node."
 
 msgid "Glowing Lode Prill"
 msgstr "Butiran Logam Bercahaya"
@@ -1569,7 +1570,7 @@ msgid "bond stone bricks"
 msgstr "Mengikat Batu Bata"
 
 msgid "catapult an item with a hinged panel"
-msgstr "Melontarkan Item dengan Panel Engsel"
+msgstr "Melontarkan barang dengan Panel Engsel"
 
 msgid "change a stylus pattern"
 msgstr "Mengubah Pola Stilus"
@@ -1611,7 +1612,7 @@ msgid "cycle through all charcoal glyphs"
 msgstr "Menelusuri semua Tulisan Arang"
 
 msgid "dig a node with a hinged panel and tool"
-msgstr "Menggali simpul dengan Panel Engsel dan Alat"
+msgstr "Menggali node dengan Panel Engsel dan Alat"
 
 msgid "dig leaves"
 msgstr "Menggali Daun"
@@ -1638,10 +1639,10 @@ msgid "discovered - @1"
 msgstr "Ditemukan - @1"
 
 msgid "drop all your items at once"
-msgstr "Jatuhkan semua Item Anda sekaligus"
+msgstr "Jatuhkan semua barang Anda sekaligus"
 
 msgid "drop an item"
-msgstr "Jatuhkan Item"
+msgstr "Jatuhkan Barang"
 
 msgid "dry out a rush"
 msgstr "Mengeringkan Rush"
@@ -1713,7 +1714,9 @@ msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
 msgstr "(ContentDB): https://content.minetest.net/packages/Warr1024/nodecore/"
 
 msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
-msgstr "(Indonesia): https://hosted.weblate.org/projects/minetest/nodecore/id/"
+msgstr ""
+"( Terjemahan Indonesia) : https://hosted.weblate.org/projects/minetest/"
+"nodecore/id/"
 
 msgid "insert metal rod into a cobble panel"
 msgstr "Memasukkan Batang logam ke dalam Panel Batu Bulat"
@@ -1773,7 +1776,7 @@ msgid "pack up a complete tote"
 msgstr "Membungkus Tas seluruhnya"
 
 msgid "place a node with a hinged panel"
-msgstr "Menaruh simpul dengan Panel Engsel"
+msgstr "Menaruh node dengan Panel Engsel"
 
 msgid "plant an eggcorn"
 msgstr "Menanam Biji"
@@ -1785,7 +1788,7 @@ msgid "propel hinged panel with focused light"
 msgstr "Mendorong Panel Engsel dengan cahaya terfokus"
 
 msgid "push an item into a storage box with a hinged panel"
-msgstr "Mendorong Item ke Kotak Penyimpanan dengan Panel Engsel"
+msgstr "Mendorong Barang ke Kotak Penyimpanan dengan Panel Engsel"
 
 msgid "put a gravel tip on a wooden adze"
 msgstr "Menaruh Kerikil pada Pahat Kayu"
@@ -1833,7 +1836,7 @@ msgid "temper a lode tool head"
 msgstr "Mengeraskan Kepala Peralatan Logam"
 
 msgid "throw an item really fast"
-msgstr "Melemparkan Item dengan sangat cepat"
+msgstr "Melemparkan Barang dengan sangat cepat"
 
 msgid "weaken stone by soaking"
 msgstr "Melemahkan Batu dengan Merendamnya"
@@ -1867,3 +1870,19 @@ msgstr "Memadamkan Cairan Kaca menjadi Kaca Kromatik"
 
 msgid "~ @1% translated to your language (@2)"
 msgstr "~ @1% diterjemahkan ke bahasa Anda (@2)"
+
+msgid "Your client version is outdated, please update!"
+msgstr "Versi klien Anda sudah kedaluwarsa / lawas, harap perbarui segera!"
+
+msgid "- Continuing long enough allows you to phase through solid matter."
+msgstr ""
+"- Melanjutkan cukup lama memungkinkan Anda untuk menembus ke materi yang "
+"padat."
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- Perhatikan bintang untuk navigasi jarak jauh."
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr ""
+"- Terjebak di sesuatu yang padat? Tetaplah diam dan Anda akhirnya akan "
+"berteleportasi keluar."
