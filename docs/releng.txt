@@ -59,8 +59,11 @@ NEW MT RELEASE PROCESS
 
 AFTER 5.8 EOS:
 	- Remove set_bone_position hack, use only set_bone_override
-	- Check https://github.com/minetest/minetest/pull/14353
 	- Check https://github.com/minetest/minetest/pull/14343
+	- Consider replacing b3d player model with glTF
+	- We can do per-player entities to create "3D in-world HUDs"
+		- Use entity nametags instead of waypoint HUDs to allow
+		  location interpolation, e.g. attaching to a player?
 
 ........................................................................
 ========================================================================

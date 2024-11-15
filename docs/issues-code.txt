@@ -9,6 +9,11 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- New 5.10 features:
+	- Visual effects: simple liquid reflections and waves, translucent
+	  foliage, node specular highlights, softer clouds, and tinted shadows
+	- Bulk LBMs with bulk_action
+
 - Combine nodefall unsuspend and pumice decay falling
 	- General API that makes a thing fall if a certain check is
 	  made, unless there are already too many falling entities
