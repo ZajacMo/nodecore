@@ -7,10 +7,18 @@ local table_insert, table_shuffle
 
 local dirs = nc.dirs()
 
+-- Scans pos, then its 6 neighbors, then their neighbors, recursively.
+-- Neighbors at the same distance are scanned in random order.
+-- Distance is 0 at pos, 1 at its 6 neighbors, 2 at theirs (taxicab distance).
+-- func(position, distance) is called at most once for each position within 'range' distance of pos (inclusive).
+-- If func returns nil then the scan continues as normal.
+-- If func returns false then that position's neighbors will not be queued, though they may later be visited by a longer route.
+-- If func returns anything else then the whole scan stops.
+
 function nc.scan_flood(pos, range, func)
 	local q = {pos}
-	local seen = {}
-	for d = 0, range do
+	local seen = {[core.hash_node_position(pos)] = true}
+	for d = 0, range - 1 do
 		local nxt = {}
 		for _, p in ipairs(q) do
 			local res = func(p, d)
@@ -32,8 +40,12 @@ function nc.scan_flood(pos, range, func)
 				end
 			end
 		end
-		if #nxt < 1 then break end
+		if #nxt < 1 then return end
 		table_shuffle(nxt)
 		q = nxt
+	end
+	for _, p in ipairs(q) do
+		local res = func(p, range)
+		if res then return res end
 	end
 end
