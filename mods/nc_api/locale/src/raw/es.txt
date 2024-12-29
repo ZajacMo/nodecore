@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 00:25+0200\n"
-"PO-Revision-Date: 2024-10-14 22:57+0000\n"
+"PO-Revision-Date: 2024-12-18 00:00+0000\n"
 "Last-Translator: Jorge Rodríguez <mr.jrodriguez05@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "nodecore/es/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.9.2-dev\n"
 
 msgid "- FUTURE: @1"
 msgstr "- FUTURO: @1"
@@ -200,3 +200,501 @@ msgstr "Veta recocida"
 
 msgid "Annealed Lode Adze"
 msgstr "Achuela de veta recocida"
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- Presta atención a las estrellas para navegar largas distancias."
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 rechazado. (versión del protocolo @2)"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "Cabeza de Hachuela de Veta Recocida"
+
+msgid "Annealed Lode Ladder"
+msgstr "Escalera de Veta Recocida"
+
+msgid "Annealed Lode Mallet"
+msgstr "Mazo de Veta Recocida"
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr ""
+"- ¿Atrapado en algo sólido? Quédate quieto y con el tiempo te "
+"teletransportarás fuera."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 descubierto, @2 disponible, @3 futuro"
+
+msgid "Annealed Lode Bar"
+msgstr "Barra de Veta Recocida"
+
+msgid "Annealed Lode Frame"
+msgstr "Marco de Veta Recocida"
+
+msgid "Annealed Lode Hatchet"
+msgstr "Hachuela de Veta Recocida"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "Cabeza de Mazo de Veta Recocida"
+
+msgid "Annealed Lode Mattock"
+msgstr "Piqueta de Veta Recocida"
+
+msgid "Annealed Lode Pick"
+msgstr "Pico de Veta Recocida"
+
+msgid "Annealed Lode Pick Head"
+msgstr "Cabeza de Pico de Veta Recocida"
+
+msgid "Annealed Lode Rod"
+msgstr "Varilla de Veta Recocida"
+
+msgid "Annealed Lode Spade"
+msgstr "Pala de Veta Recocida"
+
+msgid "Annealed Lode Spade Head"
+msgstr "Cabeza de Pala de Veta Recocida"
+
+msgid "Annealed Lode Tongs"
+msgstr "Tenaza de Veta Recocida"
+
+msgid "Ash"
+msgstr "Ceniza"
+
+msgid "Ash Lump"
+msgstr "Terrón de Ceniza"
+
+msgid "Annealed Lode Prill"
+msgstr "Gránulo de Veta Recocida"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "Cabeza de Piqueta de Veta Recocida"
+
+msgid "Annealed Lode Rake"
+msgstr "Rastrillo de Veta Recocida"
+
+msgid "Azure Bell Flower"
+msgstr "Campanula Celeste"
+
+msgid "Azure Cluster Flower"
+msgstr "Flor de Racimo Celeste"
+
+msgid "Azure Cup Flower"
+msgstr "Flor de Copa Celeste"
+
+msgid "Azure Rosette Flower"
+msgstr "Flor Roseta Celeste"
+
+msgid "Azure Star Flower"
+msgstr "Flor Estrella Celeste"
+
+msgid "Black Cluster Flower"
+msgstr "Flor de Racimo Negra"
+
+msgid "Black Cup Flower"
+msgstr "Flor de Copa Negra"
+
+msgid "Black Rosette Flower"
+msgstr "Flor Roseta Negra"
+
+msgid "Black Star Flower"
+msgstr "Flor Estrella Negra"
+
+msgid "Black Bell Flower"
+msgstr "Campanula Negra"
+
+msgid "Blue Cluster Flower"
+msgstr "Flor de Racimo Azul"
+
+msgid "Blue Cup Flower"
+msgstr "Flor de Copa Azul"
+
+msgid "Blue Star Flower"
+msgstr "Flor Estrella Azul"
+
+msgid "Blue Rosette Flower"
+msgstr "Flor Roseta Azul"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "Panel con Bisagras de Ladrillos de Adobe Adheridos"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "Panel de Ladrillos de Adobe Adheridos"
+
+msgid "Bonded Adobe Bricks"
+msgstr "Ladrillos de Adobe Adheridos"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "Panel con Bisagras de Ladrillos de Piedranube Adheridos"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "Panel de Ladrillos de Piedranube Adheridos"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "Ladrillos de Piedranube Adheridos"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "Panel con Bisagras de Ladrillos de Piedra Adheridos"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "Panel de Ladrillos de Piedra Adheridos"
+
+msgid "Bonded Stone Bricks"
+msgstr "Ladrillos de Piedra Adheridos"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "Panel con Bisagras de Ladrillos de Alquitrán Adheridos"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "Ladrillos de Alquitrán Adheridos"
+
+msgid "Braced Wooden Form"
+msgstr "Marco de Madera Reforzado"
+
+msgid "Burning Embers"
+msgstr "Brasas Ardientes"
+
+msgid "Cannot teleport an offline player."
+msgstr "No se puede teletransportar a un jugador fuera de línea."
+
+msgid "Cav Charcoal Glyph"
+msgstr "Glifo de Carbón \"Cav\""
+
+msgid "Charcoal"
+msgstr "Carbón"
+
+msgid "Charcoal Lump"
+msgstr "Terrón de Carbón"
+
+msgid "Chromatic Glass"
+msgstr "Vidrio Cromático"
+
+msgid "Clear Glass"
+msgstr "Vidrio Transparente"
+
+msgid "Clear Glass Case"
+msgstr "Caja de Vidrio Transparente"
+
+msgid "Cloudstone"
+msgstr "Piedranube"
+
+msgid "Cloudstone Bricks"
+msgstr "Ladrillos de Piedranube"
+
+msgid "Cobble"
+msgstr "Adoquín"
+
+msgid "Cobble Hinged Panel"
+msgstr "Panel de Adoquín con Bisagras"
+
+msgid "Cobble Panel"
+msgstr "Panel de Adoquín"
+
+msgid "Cracked Stone"
+msgstr "Piedra Agrietada"
+
+msgid "Crude Glass"
+msgstr "Vidrio en Bruto"
+
+msgid "DEVELOPMENT VERSION"
+msgstr "VERSIÓN DE DESARROLLO"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "Panel de Ladrillos de Alquitrán Adheridos"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "Panel de Ladrillos de Arenisca Adheridos"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "Ladrillos de Arenisca Adheridos"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "Panel con Bisagras de Ladrillos de Arenisca Adheridos"
+
+msgid "Blue Bell Flower"
+msgstr "Campanula Azul"
+
+msgid "Dirt"
+msgstr "Tierra"
+
+msgid "Donate: https://liberapay.com/NodeCore"
+msgstr "Donar: https://liberapay.com/NodeCore"
+
+msgid "Geq Charcoal Glyph"
+msgstr "Glifo de Carbón \"Geq\""
+
+msgid "Dry Rush"
+msgstr "Junco Seco"
+
+msgid "Graveled Adze"
+msgstr "Achuela con Grava"
+
+msgid "Offline Player"
+msgstr "Jugador Desconectado"
+
+msgid "Pink Star Flower"
+msgstr "Flor Estrella Rosada"
+
+msgid "Player's Guide: Tips and Guidance"
+msgstr "Guía Para Jugadores: Consejos y Orientación"
+
+msgid "Red Bell Flower"
+msgstr "Campanula Roja"
+
+msgid "Lens"
+msgstr "Lente"
+
+msgid "Loose Leaves"
+msgstr "Hojas Sueltas"
+
+msgid "Loose Lux Cobble"
+msgstr "Adoquín de Lux Suelto"
+
+msgid "NodeCore ALPHA"
+msgstr "NodeCore ALFA"
+
+msgid "Odo Charcoal Glyph"
+msgstr "Glifo de Carbón \"Odo\""
+
+msgid "Orange Bell Flower"
+msgstr "Campanula Naranja"
+
+msgid "Orange Cluster Flower"
+msgstr "Flor de Racimo Naranja"
+
+msgid "Orange Cup Flower"
+msgstr "Flor de Copa Naranja"
+
+msgid "Orange Star Flower"
+msgstr "Flor Estrella Naranja"
+
+msgid "Peat"
+msgstr "Turba"
+
+msgid "Pink Bell Flower"
+msgstr "Campanula Rosada"
+
+msgid "Orange Rosette Flower"
+msgstr "Flor Roseta Naranja"
+
+msgid "Pink Cluster Flower"
+msgstr "Flor de Racimo Rosada"
+
+msgid "Pink Cup Flower"
+msgstr "Flor de Copa Rosada"
+
+msgid "Player's Guide: Inventory Management"
+msgstr "Guía Para Jugadores: Administrar el Inventario"
+
+msgid "Pink Rosette Flower"
+msgstr "Flor Roseta Rosada"
+
+msgid "Pliant Cloudstone"
+msgstr "Piedranube Maleable"
+
+msgid "Pliant Stone"
+msgstr "Piedra Maleable"
+
+msgid "Prx Charcoal Glyph"
+msgstr "Glifo de Carbón \"Prx\""
+
+msgid "Qeg Charcoal Glyph"
+msgstr "Glifo de Carbón \"Qeg\""
+
+msgid "Raked Dirt"
+msgstr "Tierra Rastrillada"
+
+msgid "Raked Gravel"
+msgstr "Grava Rastrillada"
+
+msgid "Raked Sand"
+msgstr "Arena Rastrillada"
+
+msgid "Red Cup Flower"
+msgstr "Flor de Copa Roja"
+
+msgid "Red Rosette Flower"
+msgstr "Flor Roseta Roja"
+
+msgid "Red Star Flower"
+msgstr "Flor Estrella Roja"
+
+msgid "Displaced Node"
+msgstr "Nodo Desplazado"
+
+msgid "Glowing Lode"
+msgstr "Veta Incandescente"
+
+msgid "Glowing Lode Adze"
+msgstr "Achuela de Veta Incandescente"
+
+msgid "Glowing Lode Ladder"
+msgstr "Escalera de Veta Incandescente"
+
+msgid "Glowing Lode Mattock Head"
+msgstr "Cabeza de Piqueta de Veta Incandescente"
+
+msgid "Glowing Lode Pick Head"
+msgstr "Cabeza de pico de Veta Incandescente"
+
+msgid "Glowing Lode Prill"
+msgstr "Gránulo de Veta Incandescente"
+
+msgid "Glowing Lode Rake"
+msgstr "Rastrillo de Veta Incandescente"
+
+msgid "Glowing Lode Tongs"
+msgstr "Tenaza de Veta Incandescente"
+
+msgid "Grass"
+msgstr "Pasto"
+
+msgid "Gravel"
+msgstr "Grava"
+
+msgid "Growing Leaves"
+msgstr "Hojas en Crecimiento"
+
+msgid "Inventory"
+msgstr "Inventario"
+
+msgid "Lantern"
+msgstr "Linterna"
+
+msgid "Living Sponge"
+msgstr "Esponja Viva"
+
+msgid "Lode Cobble"
+msgstr "Adoquín de Veta"
+
+msgid "Lode Crate"
+msgstr "Caja de Veta"
+
+msgid "Lode Form"
+msgstr "Marco de Veta"
+
+msgid "Lode Ore"
+msgstr "Veta Mineral"
+
+msgid "Log"
+msgstr "Leño"
+
+msgid "Loose Lode Cobble"
+msgstr "Adoquín de Veta Suelto"
+
+msgid "Lux Cobble"
+msgstr "Adoquín de Lux"
+
+msgid "MIT License (http://www.opensource.org/licenses/MIT)"
+msgstr "Licencia MIT: (http://www.opensource.org/licenses/MIT)"
+
+msgid "Mew Charcoal Glyph"
+msgstr "Glifo de Carbón \"Mew\""
+
+msgid "CHEATS ENABLED"
+msgstr "TRUCOS HABILITADOS"
+
+msgid "Leaves"
+msgstr "Hojas"
+
+msgid "Player's Guide: Movement and Navigation"
+msgstr "Guía Para Jugadores: Movimiento y Navegación"
+
+msgid "Player's Guide: Pummeling Recipes"
+msgstr "Guía Para Jugadores: Planos con \"Golpeteo\""
+
+msgid "Pliant Sandstone"
+msgstr "Arenisca Maleable"
+
+msgid "Pliant Tarstone"
+msgstr "Alquitrán Maleable"
+
+msgid "Prism"
+msgstr "Prisma"
+
+msgid "Red Cluster Flower"
+msgstr "For de Racimo Roja"
+
+msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
+msgstr ""
+"Edición de acceso anticipado de NodeCore con las últimas funciones (y quizás "
+"errores)"
+
+msgid "Fot Charcoal Glyph"
+msgstr "Glifo de Carbón \"Fot\""
+
+msgid "Glowing Lode Bar"
+msgstr "Barra de Veta Incandescente"
+
+msgid "Glowing Lode Cobble"
+msgstr "Adoquín de Veta Incandescente"
+
+msgid "Glowing Lode Frame"
+msgstr "Marco de Veta Incandescente"
+
+msgid "Glowing Lode Hatchet Head"
+msgstr "Cabeza de Hacha de Veta Incandescente"
+
+msgid "Glowing Lode Mallet Head"
+msgstr "Cabeza de Mazo de Veta Incandescente"
+
+msgid "Glowing Lode Spade Head"
+msgstr "Cabeza de Pala de Veta Incandescente"
+
+msgid "Glowing Lode Rod"
+msgstr "Varilla de Veta Incandescente"
+
+msgid "Growing Tree Trunk"
+msgstr "Tronco de Árbol en Crecimiento"
+
+msgid "Lit Torch"
+msgstr "Antorcha Encendida"
+
+msgid "Loose Amalgamation"
+msgstr "Amalgama Suelta"
+
+msgid "Loose Dirt"
+msgstr "Tierra Suelta"
+
+msgid "Loose Humus"
+msgstr "Humus Suelto"
+
+msgid "Loose Cobble"
+msgstr "Adoquín Suelto"
+
+msgid "Loose Gravel"
+msgstr "Grava Suelta"
+
+msgid "Loose Sand"
+msgstr "Arena Suelta"
+
+msgid "Player's Guide: Crafting"
+msgstr "Guía Para Jugadores: Fabricación"
+
+msgid "Pliant Adobe"
+msgstr "Adobe Maleable"
+
+msgid "Pumice"
+msgstr "Pumita"
+
+msgid "Raked Humus"
+msgstr "Humus Rastrillado"
+
+msgid "Discovery"
+msgstr "Descubrimiento"
+
+msgid "Molten Glass"
+msgstr "Vidrio Fundido"
+
+msgid "Movement"
+msgstr "Movimiento"
+
+msgid "Niz Charcoal Glyph"
+msgstr "Glifo de Carbón \"Niz\""
+
+msgid "NodeCore updated from @1 to @2"
+msgstr "NodeCore actualizado de @1 a @2"
+
+msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
+msgstr ""
+"Descubre e inventa en un surreal e incompasivo mundo de cubos, patrones y "
+"abstracción."

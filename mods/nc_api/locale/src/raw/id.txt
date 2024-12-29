@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-04 11:53+0200\n"
-"PO-Revision-Date: 2024-11-15 14:39+0000\n"
+"PO-Revision-Date: 2024-12-29 03:31+0000\n"
 "Last-Translator: Just Playing <aryadhisuma@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
 "nodecore/id/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr ""
@@ -187,7 +187,7 @@ msgid "Mew Charcoal Glyph"
 msgstr "Tulisan Arang Mew"
 
 msgid "Matrix: #+nodecore:matrix.org"
-msgstr "Matrix(NodeCore): #+nodecore:matrix.org"
+msgstr "Matrix (NodeCore): #+nodecore:matrix.org"
 
 msgid "Boxy Adobe"
 msgstr "Tanah Liat Box"
@@ -399,7 +399,7 @@ msgid "Annealed Lode Pick"
 msgstr "Beliung Logam Lemah"
 
 msgid "Donate: https://liberapay.com/NodeCore"
-msgstr "Donasi(NodeCore): https://liberapay.com/NodeCore"
+msgstr "Donasi (NodeCore): https://liberapay.com/NodeCore"
 
 msgid "Cobble"
 msgstr "Batu Bulat"
@@ -454,7 +454,7 @@ msgid "Glowing Lode Rake"
 msgstr "Penggaruk Logam Bercahaya"
 
 msgid "IRC: #nodecore @@ irc.libera.chat"
-msgstr "IRC(NodeCore): #nodecore @@ irc.libera.chat"
+msgstr "IRC (NodeCore): #nodecore @@ irc.libera.chat"
 
 msgid "Hashy Cloudstone"
 msgstr "Batu Awan Hasy"
@@ -666,7 +666,7 @@ msgid "Offline @1 day(s)"
 msgstr "Offline @1 hari(s)"
 
 msgid "Discord: https://discord.gg/NNYeF6f"
-msgstr "Perselisihan(Discord): https://discord.gg/NNYeF6f"
+msgstr "Discord (NodeCore): https://discord.gg/NNYeF6f"
 
 msgid "Adobe Bricks"
 msgstr "Batu Bata Tanah Liat"
@@ -696,7 +696,7 @@ msgid "Blue Cup Flower"
 msgstr "Bunga Cup Biru"
 
 msgid "GitLab: https://gitlab.com/sztest/nodecore"
-msgstr "GitLab(NodeCore): https://gitlab.com/sztest/nodecore"
+msgstr "GitLab (NodeCore): https://gitlab.com/sztest/nodecore"
 
 msgid "Burning Embers"
 msgstr "Bara Terbakar"
@@ -906,7 +906,7 @@ msgstr ""
 "medan bebatuan."
 
 msgid "Movement"
-msgstr "Gerakan"
+msgstr "Pergerakan"
 
 msgid "Black Cluster Flower"
 msgstr "Bunga Cluster Hitam"
@@ -1357,7 +1357,7 @@ msgid "find deep stone strata"
 msgstr "Menemukan Batu Dalam"
 
 msgid "find dry (loose) leaves"
-msgstr "Menemukan (Daun Gembur) Kering"
+msgstr "Menemukan Daun Gembur (Kering)"
 
 msgid "dig up dirt"
 msgstr "Menggali Tanah"
@@ -1715,7 +1715,7 @@ msgstr "(ContentDB): https://content.minetest.net/packages/Warr1024/nodecore/"
 
 msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
 msgstr ""
-"( Terjemahan Indonesia) : https://hosted.weblate.org/projects/minetest/"
+"(Terjemahan Indonesia) : https://hosted.weblate.org/projects/minetest/"
 "nodecore/id/"
 
 msgid "insert metal rod into a cobble panel"
@@ -1886,3 +1886,9 @@ msgid "- Stuck in something solid? Stand still and you will eventually teleport 
 msgstr ""
 "- Terjebak di sesuatu yang padat? Tetaplah diam dan Anda akhirnya akan "
 "berteleportasi keluar."
+
+msgid "Pumpowder"
+msgstr "Bubuk Batu"
+
+msgid "Pumslush"
+msgstr "Lumpur Batu"

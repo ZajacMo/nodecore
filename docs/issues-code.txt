@@ -9,6 +9,12 @@ ISSUES-CODE: Issues related to code quality and maintainability
  #    #  #       #    #     #    #       #       #   #   #    #
   ####   #        ####      #    ######  ######  #    #   ####
 
+- Upcoming 5.11-dev features:
+	- Particle blend mode clip
+	  https://github.com/minetest/minetest/pull/15444
+	- Enable for all particles
+	- Consider replacing round particles with square again
+
 - New 5.10 features:
 	- Visual effects: simple liquid reflections and waves, translucent
 	  foliage, node specular highlights, softer clouds, and tinted shadows
