@@ -1,23 +1,49 @@
 -- LUALOCALS < ---------------------------------------------------------
 local core, ipairs, nc, pairs, table
     = core, ipairs, nc, pairs, table
-local table_insert, table_shuffle
-    = table.insert, table.shuffle
+local table_shuffle
+    = table.shuffle
 -- LUALOCALS > ---------------------------------------------------------
 
+local hashpos = core.hash_node_position
 local dirs = nc.dirs()
 
--- Scans pos, then its 6 neighbors, then their neighbors, recursively.
--- Neighbors at the same distance are scanned in random order.
--- Distance is 0 at pos, 1 at its 6 neighbors, 2 at theirs (taxicab distance).
--- func(position, distance) is called at most once for each position within 'range' distance of pos (inclusive).
--- If func returns nil then the scan continues as normal.
--- If func returns false then that position's neighbors will not be queued, though they may later be visited by a longer route.
--- If func returns anything else then the whole scan stops.
+-- Flood-fill scan using a taxicab (i.e. 6-neighbor) metric.
+
+-- Each position within the scanned area is visited at most once. The
+-- actual scanned area can be limited by the visit function indicating
+-- that the position is an "obstacle".
+
+-- pos: starting position (always visited)
+-- range: maximum distance to scan; note that this is effectively
+-- > recursion depth, not absolute distance, if obstacles are present.
+-- func: visitor function to be called once per node position
+
+-- The visitor function is passed the following parameters:
+-- - position to be visited
+-- - depth (distance traveled along path) from the start
+
+-- The depth will always be the minimum possible value given any
+-- obstacles present, i.e. this is essentially Dijkstra's pathfinding
+-- algorithm with a naive uniform manhattan distance cost metric.
+
+-- The visitor function may return a single value (additional return
+-- values are ignored). The value will be interpreted as:
+
+-- nil = no special behavior; continue scan.
+-- false = do not add this position's neighbors to the scan queue (it
+-- > represents an "obstacle"); those neighbors may still be added by
+-- > other positions along other paths though.
+-- anything else (truthy) = stop the scan immediately and return this
+-- > value. This is used to make scan_flood operate as a "search"
+-- > function returning the nearest result.
+
+-- scan_flood will return whatever the first truthy return value from
+-- the visitor function is, otherwise will return nothing.
 
 function nc.scan_flood(pos, range, func)
 	local q = {pos}
-	local seen = {[core.hash_node_position(pos)] = true}
+	local seen = {[hashpos(pos)] = true}
 	for d = 0, range - 1 do
 		local nxt = {}
 		for _, p in ipairs(q) do
@@ -31,11 +57,11 @@ function nc.scan_flood(pos, range, func)
 						z = p.z + v.z,
 						prev = p
 					}
-					local nk = core.hash_node_position(np)
+					local nk = hashpos(np)
 					if not seen[nk] then
 						seen[nk] = true
 						np.dir = v
-						table_insert(nxt, np)
+						nxt[#nxt + 1] = np
 					end
 				end
 			end
@@ -44,6 +70,8 @@ function nc.scan_flood(pos, range, func)
 		table_shuffle(nxt)
 		q = nxt
 	end
+	-- Handle final depth specially, as there is no need
+	-- to do many checks or add neighbors to the queue.
 	for _, p in ipairs(q) do
 		local res = func(p, range)
 		if res then return res end
