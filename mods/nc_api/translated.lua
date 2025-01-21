@@ -1,6 +1,6 @@
 return {
 	cs = 8,
-	de = 593,
+	de = 598,
 	el = 8,
 	en = 607,
 	eo = 76,
@@ -19,9 +19,10 @@ return {
 	pt = 172,
 	pt_BR = 255,
 	ru = 607,
-	sk = 145,
+	sk = 607,
+	ta = 607,
 	tok = 28,
 	uk = 607,
 	zh_CN = 61,
-	zh_TW = 566,
+	zh_TW = 584,
 }

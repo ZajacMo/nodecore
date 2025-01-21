@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 04:43+0200\n"
-"PO-Revision-Date: 2024-08-20 09:09+0000\n"
-"Last-Translator: hugoalh <hugoalh@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"minetest/nodecore/zh_Hant/>\n"
+"PO-Revision-Date: 2025-01-08 16:01+0000\n"
+"Last-Translator: reimu105 <peter112548@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/minetest/nodecore/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "- Climbing spots also produce very faint light; raise display gamma to see."
 msgstr "- 調高 gamma 值查看攀登點發出的微光。"
@@ -1432,7 +1432,7 @@ msgid "wilt a flower"
 msgstr "風乾花"
 
 msgid "~ @1% translated to your language (@2)"
-msgstr "你的語言（@2）翻譯進度：約 @1%"
+msgstr "～@1%翻譯成你的語言（@2）"
 
 msgid "Blank"
 msgstr "無花紋"
@@ -1745,3 +1745,63 @@ msgstr "尋找浮石"
 
 msgid "Pumice"
 msgstr "浮石"
+
+msgid "- Continuing long enough allows you to phase through solid matter."
+msgstr "- 持續足夠長的時間可以讓你逐步穿過固體物質。"
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- 長途導航時注意星星。"
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr "- 卡在固體裡了？站著別動，你最終會傳送出去。"
+
+msgid "Bonded Stone Bricks"
+msgstr "黏結石磚"
+
+msgid "Infused Annealed Lode Adze"
+msgstr ""
+
+msgid "Infused Annealed Lode Hatchet"
+msgstr ""
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "粘合土磚面板"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "黏結焦油石磚"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "黏合雲石磚鉸接面板"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "黏合雲石磚板"
+
+msgid "Bonded Adobe Bricks"
+msgstr "黏合土磚"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "黏結雲石磚"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "黏結砂岩磚面板"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "黏結砂岩磚"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "黏結砂岩磚鉸接面板"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "黏結焦油石磚板"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "黏結石磚鉸接面板"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "黏結石磚面板"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "黏合土磚鉸接面板"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "黏合塔石磚鉸接面板"
