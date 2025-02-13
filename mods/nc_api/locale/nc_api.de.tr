@@ -6,6 +6,7 @@
 - Can't dig trees or grass? Search for sticks in the canopy.=- Du kannst keine Bäume oder Gras abzubauen? Suche Stöcke in den Baumkronen.
 - Climbing spots also produce very faint light; raise display gamma to see.=- Kletterstellen erzeugen sehr schwaches Licht; erhöhe deine Bildschirmhelligkeit um zu sehen.
 - Climbing spots may be climbed once black particles appear.=- Kletterstellen können erklommen werden, sobald schwarze Partikel erscheinen.
+- Continuing long enough allows you to phase through solid matter.=- Wenn Sie lange genug weitermachen, können Sie sich durch feste Materie hindurchbewegen.
 - Crafting is done by building recipes in-world.=- Werken funktioniert, indem man Baumuster in der Welt auslegt.
 - DONE: @1=- ERLEDIGT: @1
 - Drop and pick up items to rearrange your inventory.=- Lasse Gegenstände fallen und hebe sie wieder auf, um dein Inventar umzuordnen.
@@ -121,6 +122,7 @@ Boxy Sandstone=Kastiger Sandstein
 Boxy Stone=Kastiger Stein
 Boxy Tarstone=Kastiger Teerstein
 Boxy=Kastig
+Braced Wooden Form=Verstrebte Holzform
 Bricky Adobe=Mauriger Lehm
 Bricky Cloudstone=Mauriger Wolkenstein
 Bricky Pliant Adobe=Mauriger Weicher Lehm

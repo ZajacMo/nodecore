@@ -1,8 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-08 16:01+0000\n"
-"Last-Translator: mineplayer <realmineplayer@users.noreply.hosted.weblate.org>"
-"\n"
+"PO-Revision-Date: 2025-02-02 14:01+0000\n"
+"Last-Translator: anon <anon0000000000@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/nodecore/"
 "de/>\n"
 "Language: de\n"
@@ -1986,7 +1985,6 @@ msgstr ""
 "Entdecke und erfinde eine surreale, unsympathische Welt aus Würfeln, Mustern "
 "und Abstraktionen."
 
-#, fuzzy
 msgid "FIRE QUELLED"
 msgstr "FEUER GESTOPPT"
 
@@ -1996,7 +1994,6 @@ msgstr "Matrix: #+nodecore:matrix.org"
 msgid "Cannot teleport an offline player."
 msgstr "Offline-Spieler können nicht teleportiert werden."
 
-#, fuzzy
 msgid "- Pay attention to the stars for long distance navigation."
 msgstr "- Gib Acht auf die Sterne für die Langstreckennavigation."
 
@@ -2013,3 +2010,12 @@ msgid "- Stuck in something solid? Stand still and you will eventually teleport 
 msgstr ""
 "- Steckengeblieben in einer Flüssigkeit? Bleib still stehen und du wirst "
 "dich möglicherweise herausteleportieren."
+
+msgid "- Continuing long enough allows you to phase through solid matter."
+msgstr ""
+"- Wenn Sie lange genug weitermachen, können Sie sich durch feste Materie "
+"hindurchbewegen."
+
+#, fuzzy
+msgid "Braced Wooden Form"
+msgstr "Verstrebte Holzform"

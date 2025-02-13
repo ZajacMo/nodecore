@@ -1,0 +1,307 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-06 06:53+0200\n"
+"PO-Revision-Date: 2025-02-07 06:01+0000\n"
+"Last-Translator: Ilia <iliaabbasi@outlook.com>\n"
+"Language-Team: Persian <https://hosted.weblate.org/projects/minetest/"
+"nodecore/fa/>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- بازی ذاتا چالشی طراحی شده، بعضی وقتا هم ناامیدکننده میشه. کم نیار!"
+
+msgid "Active Lens"
+msgstr "لنز فعال"
+
+msgid "Movement"
+msgstr "حرکت"
+
+msgid "Blank"
+msgstr "خالی"
+
+msgid "Inventory"
+msgstr "اینونتوری"
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr ""
+"- توی یک جسم جامد گیر کردی؟ همینطوری بایست تا خود به خود بیرونش تلپورت بشی."
+
+msgid "Sandstone"
+msgstr "ماسه سنگ"
+
+msgid "hold your breath"
+msgstr "نفست را حبس کن"
+
+msgid "Sandstone Bricks"
+msgstr "آجر ماسه سنگ"
+
+msgid "activate a prism"
+msgstr "منشوری را فعال می کند"
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- لازم نیست خیلی سریع مشت بزنی (تقریبا یه مشت بر ثانیه)."
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- آیتم هارو بنداز و بردار تا اینونتوری ات رو مرتب کنی."
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- برای دستور العمل ها بزرگ تر، معمولا آیتم وسطی آخر گذاشته میشه."
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr "- گیر کردی؟ از چت روم های انجمن بپرس (بخش درباره)."
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- برای مسیریابی های طولانی به ستاره ها توجه کن."
+
+msgid "- There is NO inventory screen."
+msgstr "- هیچ صفحه اینونتوری ای وجود نداره."
+
+msgid "About"
+msgstr "درباره"
+
+msgid "Active Prism"
+msgstr "منشور فعال"
+
+msgid "Ash Lump"
+msgstr "توده خاکستر"
+
+msgid "CHEATS ENABLED"
+msgstr "تقلب ها فعال شده"
+
+msgid "Charcoal"
+msgstr "زغال"
+
+msgid "Charcoal Lump"
+msgstr "توده زغال"
+
+msgid "Clear Glass"
+msgstr "شیشه شفاف"
+
+msgid "Dirt"
+msgstr "خاک"
+
+msgid "Discovery"
+msgstr "اکتشاف"
+
+msgid "Fire"
+msgstr "آتش"
+
+msgid "GitLab: https://gitlab.com/sztest/nodecore"
+msgstr "گیت لب: https://gitlab.com/sztest/nodecore"
+
+msgid "Gravel"
+msgstr "سنگریزه"
+
+msgid "Humus"
+msgstr "گیاخاک"
+
+msgid "Leaves"
+msgstr "برگ ها"
+
+msgid "Lens"
+msgstr "لنز"
+
+msgid "Lit Torch"
+msgstr "مشعل روشن"
+
+msgid "Living Sponge"
+msgstr "اسفنج زنده"
+
+msgid "Loose Dirt"
+msgstr "خاک سست"
+
+msgid "Loose Humus"
+msgstr "گیاخاک سست"
+
+msgid "Loose Leaves"
+msgstr "برگ سست"
+
+msgid "Molten Glass"
+msgstr "شیشه مذاب"
+
+msgid "Offline @1 day(s)"
+msgstr "@1 روز آفلاین"
+
+msgid "Offline @1 hour(s)"
+msgstr "@1 ساعت آفلاین"
+
+msgid "Offline @1 minute(s)"
+msgstr "@1 دقیقه آفلاین"
+
+msgid "Offline @1 week(s)"
+msgstr "@1 هفته آفلاین"
+
+msgid "Offline @1 year(s)"
+msgstr "@1 سال آفلاین"
+
+msgid "Offline Player"
+msgstr "بازیکن آفلاین"
+
+msgid "Loose Sand"
+msgstr "ماسه سست"
+
+msgid "Log"
+msgstr "چوب"
+
+msgid "Prism"
+msgstr "منشور"
+
+msgid "Shining Lens"
+msgstr "لنز براق"
+
+msgid "Sponge"
+msgstr "اسفنج"
+
+msgid "Sprout"
+msgstr "جوانه"
+
+msgid "Stick"
+msgstr "شاخه"
+
+msgid "Stone"
+msgstr "سنگ"
+
+msgid "Stone Bricks"
+msgstr "آجر سنگ"
+
+msgid "Torch"
+msgstr "مشعل"
+
+#, fuzzy
+msgid "Tree Trunk"
+msgstr "تنه درخت"
+
+msgid "Version @1 or higher is required."
+msgstr "نسخه @1 یا بالاتر لازم است."
+
+msgid "Wooden Frame"
+msgstr "قاب چوبی"
+
+msgid "Wooden Ladder"
+msgstr "نردبان چوبی"
+
+msgid "Wooden Plank"
+msgstr "الوار"
+
+msgid "dig leaves"
+msgstr "برگ بکن"
+
+msgid "dig up dirt"
+msgstr "خاک بکن"
+
+msgid "drop all your items at once"
+msgstr "همه آیتم هایت را یکجا بنداز"
+
+msgid "drop an item"
+msgstr "آیتمی را بنداز"
+
+msgid "dry out a sponge"
+msgstr "اسفنجی را خشک کن"
+
+msgid "find a flower"
+msgstr "یک گل پیدا کن"
+
+msgid "find ash"
+msgstr "خاکستر پیدا کن"
+
+msgid "find charcoal"
+msgstr "زغال پیدا کن"
+
+msgid "go for a swim"
+msgstr "یه شنا برو"
+
+msgid "light a torch"
+msgstr "یک مشعل روشن کن"
+
+msgid "make fire by rubbing sticks together"
+msgstr "با مالیدن شاخه ها به هم آتش درست کن"
+
+msgid "navigate by touch in darkness"
+msgstr "با مشعل در تاریکی مسیریابی کن"
+
+msgid "produce light from a lens"
+msgstr "با یک لنز نور درست کن"
+
+msgid "run at full speed"
+msgstr "با تمام سرعت بدو"
+
+msgid "see a tree grow"
+msgstr "روییدن یک درخت را تماشا کن"
+
+msgid "~ @1% translated to your language (@2)"
+msgstr "~ @1% به زبان شما ترجمه شده (@2)"
+
+msgid "Discord: https://discord.gg/NNYeF6f"
+msgstr "دیسکورد: https://discord.gg/NNYeF6f"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "نمیتونی درخت یا چمن بکنی؟ بالای درخت ها دنبال شاخه باش."
+
+msgid "Cannot teleport an offline player."
+msgstr "نمیتوان بازیکن آفلاین را تلپورت کرد."
+
+msgid "Lantern"
+msgstr "فانوس"
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "سنگ معدن ها ممکنه پنهان باشن، ولی سرنخ های کوچیکی از اونا رو زمین هست."
+
+msgid "Sand"
+msgstr "ماسه"
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- اگر دستور العملی وجود داشته باشه، پارتیکل افکت خاصی رو میبینی."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr ""
+"- نمیتونی آتیش روشن کنی؟ از شاخه های بلندتر و مواد اشتعال زای بیشتر استفاده "
+"کن."
+
+msgid "Ash"
+msgstr "خاکستر"
+
+msgid "dig up gravel"
+msgstr "سنگریزه بکن"
+
+msgid "Grass"
+msgstr "چمن"
+
+msgid "Loose Gravel"
+msgstr "سنگریزه سست"
+
+msgid "Water"
+msgstr "آب"
+
+msgid "activate a lens"
+msgstr "لنزی را فعال می کند"
+
+msgid "cut down a tree"
+msgstr "درختی را قطع کن"
+
+msgid "discovered - @1"
+msgstr "@1 - کشف شد"
+
+msgid "find a sponge"
+msgstr "یک اسفنج پیدا کن"
+
+msgid "find a stick"
+msgstr "یک شاخه پیدا کن"
+
+msgid "https://content.minetest.net/packages/Warr1024/nodecore/"
+msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
+
+msgid "throw an item really fast"
+msgstr "یک آیتم را خیلی سریع پرتاب کن"
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- چیزی به اسم \"اجاق\" وجود نداره، پختن رو با شعله های آزاد کشف کن."
+
+msgid "Wet Sponge"
+msgstr "اسفنج خیس"
