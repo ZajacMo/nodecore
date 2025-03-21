@@ -31,6 +31,7 @@ core.register_node(modname .. ":hand", {
 		stack_max = 1,
 		node_placement_prediction = "",
 		paramtype = "light",
+		tool_capabilities = toolcaps,
 		on_punch = core.remove_node,
 		on_use = function() return ItemStack("") end,
 		on_drop = function() return ItemStack("") end,
