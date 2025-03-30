@@ -76,7 +76,7 @@ function nc.register_lode(shape, rawdef)
 		if def.bytemper then def.bytemper(temper, def) end
 
 		if not def.skip_register then
-			local fullname = modname .. ":" .. def.name
+			local fullname = ":" .. modname .. ":" .. def.name
 			core.register_item(fullname, def)
 			if def.type == "node" then
 				nc.register_cook_abm({
