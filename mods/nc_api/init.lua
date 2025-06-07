@@ -65,6 +65,7 @@ include("hotfix_teleportfix")
 include("compat_creative")
 include("compat_privmeta")
 include("compat_legacyent")
+include("compat_timecmd")
 
 include("util_settings")
 include("util_privs")
