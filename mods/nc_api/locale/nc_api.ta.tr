@@ -1,4 +1,5 @@
 # textdomain: nc_api
+(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>=(C)2018-@1 ஆரோன் மனி <warr1024@@gmail.com> மூலம்
 - "Furnaces" are not a thing; discover smelting with open flames.=- "உலைகள்" ஒரு சேதி அல்ல; திறந்த தீப்பிழம்புகளுடன் கரைப்பதைக் கண்டறியவும்.
 - Aux+drop any item to drop everything.=- AUX+எல்லாவற்றையும் கைவிட எந்த பொருளையும் கைவிடவும்.
 - Be wary of dark caves/chasms; you are responsible for getting yourself out.=- இருண்ட குகைகள்/இடைவெளிகளில் எச்சரிக்கையாக இருங்கள்; உங்களை வெளியேற்றுவதற்கு நீங்கள் பொறுப்பு.
@@ -29,7 +30,7 @@
 - Stuck in something solid? Stand still and you will eventually teleport out.=- திடமான ஒன்றில் சிக்கி? அசையாமல் நிற்கவும், நீங்கள் இறுதியில் டெலிபோர்ட் செய்வீர்கள்.
 - The game is challenging by design, sometimes frustrating. DON'T GIVE UP!=- விளையாட்டு வடிவமைப்பால் சவாலானது, சில நேரங்களில் வெறுப்பாக இருக்கிறது. விட்டுவிடாதீர்கள்!
 - There is NO inventory screen.=- சரக்குத் திரை இல்லை.
-- To pummel, punch a node repeatedly, WITHOUT digging.=- பம்மல் செய்ய, தோண்டாமல், ஒரு முனையை மீண்டும் மீண்டும் குத்துங்கள்.
+- To pummel, punch a node repeatedly, WITHOUT digging.=- பம்மல் செய்ய, தோண்டாமல், ஒரு முனையை மறுநிகழுவு குத்துங்கள்.
 - To run faster, walk/swim forward or climb/swim upward continuously.=- வேகமாக ஓட, முன்னோக்கி நடக்க/முன்னோக்கி நீந்தவும் அல்லது தொடர்ந்து மேல்நோக்கி நீந்தவும்.
 - Tools used as ingredients must be in very good condition.=- பொருட்களாகப் பயன்படுத்தப்படும் கருவிகள் மிகவும் நல்ல நிலையில் இருக்க வேண்டும்.
 - Trouble lighting a fire? Try using longer sticks, more tinder.=- நெருப்பை ஏற்றி வைப்பதில் சிக்கல் உள்ளதா? நீண்ட குச்சிகள், அதிக டிண்டரைப் பயன்படுத்த முயற்சிக்கவும்.

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-25 20:15+0000\n"
-"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"PO-Revision-Date: 2025-02-27 01:26+0000\n"
+"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/nodecore/"
 "fr/>\n"
 "Language: fr\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 msgid "(C)2018-2021 by Aaron Suen <warr1024@@gmail.com>"
 msgstr "(C)2018-2021 par Aaron Suen <warr1024@@gmail.com>"
@@ -1803,7 +1803,6 @@ msgstr "FEU ÉTOUFFÉ"
 msgid "assemble lode tongs"
 msgstr "assembler les pinces en métal"
 
-#, fuzzy
 msgid "WORLD FROZEN"
 msgstr "MONDE FIGÉ"
 
@@ -1820,7 +1819,7 @@ msgid "grow a rush on soil near moisture"
 msgstr "faîtes pousser des joncs sur de la terre près de la moisissure"
 
 msgid "mix crude glass into ash to make spackling"
-msgstr "mélanger du verre creux dans de la cendre pour faire de l'enduit."
+msgstr "mélanger du verre brut dans de la cendre pour faire de l'enduit"
 
 msgid "Glowing Lode Tongs"
 msgstr "Pinces de métal brillant"
@@ -1928,3 +1927,18 @@ msgstr "Pierre de Nuage Verticale"
 
 msgid "brace a wooden form with a stick"
 msgstr "renforce une charpente en bois avec un baton"
+
+msgid "- Continuing long enough allows you to phase through solid matter."
+msgstr "- Persévérer longtemps vous permet de traverser la matière."
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- Surveillez les étoiles pour la navigation en haute mer."
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr ""
+"- Coincé dans la matière ? Restez immobile et vous serez finalement dégagé."
+
+msgid "Your client version is outdated, please update!"
+msgstr ""
+"La version de votre client est trop ancienne, mettez là à jour, s'il vous "
+"plaît !"

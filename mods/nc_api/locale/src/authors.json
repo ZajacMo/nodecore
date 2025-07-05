@@ -2,17 +2,17 @@
 	"since": {
 		"de": "2025-02-01T16:33:57.396263+01:00",
 		"ru": "2025-02-12T09:51:35.107495+01:00",
-		"pl": "2024-04-21T17:08:07.175450+02:00",
+		"pl": "2025-07-05T12:41:22.779037+02:00",
 		"uk": "2024-11-21T18:47:49.446248+01:00",
 		"el": "2023-03-27T20:43:15.883336+02:00",
 		"zh_Hans": "2024-08-24T07:31:48.895522+02:00",
-		"sk": "2025-01-07T17:15:35.211296+01:00",
-		"zh_Hant": "2025-01-08T13:48:12.885244+01:00",
+		"sk": "2025-07-01T21:15:37.654928+02:00",
+		"zh_Hant": "2025-05-24T08:06:46.529724+02:00",
 		"it": "2024-06-03T23:48:42.990538+02:00",
-		"fr": "2024-09-24T21:47:26.010377+02:00",
+		"fr": "2025-02-26T22:28:15.084801+01:00",
 		"pt_BR": "2023-11-03T02:19:43.807415+01:00",
-		"pt": "2023-11-03T03:07:11.003948+01:00",
-		"es": "2025-01-22T16:39:11.944864+01:00",
+		"pt": "2025-03-28T22:32:13.477126+01:00",
+		"es": "2025-04-05T07:21:30.692356+02:00",
 		"eo": "2023-03-27T20:43:37.958443+02:00",
 		"es_US": "2024-11-10T16:06:11.144632+01:00",
 		"lzh": "2023-03-27T20:47:11.223249+02:00",
@@ -22,8 +22,11 @@
 		"ko": "2025-02-03T07:05:45.339169+01:00",
 		"jbo": "2024-03-16T00:05:19.199882+01:00",
 		"ar": "2024-07-28T11:49:13.255651+02:00",
-		"cs": "2024-10-21T20:22:11.970132+02:00",
-		"fa": "2025-02-06T07:37:55.378244+01:00"
+		"cs": "2025-05-10T14:33:00.159679+02:00",
+		"fa": "2025-02-06T07:37:55.378244+01:00",
+		"ta": "2025-06-22T04:47:46.245083+02:00",
+		"he": "2025-06-03T13:06:51.811878+02:00",
+		"br": "2025-03-26T09:28:08.783773+01:00"
 	},
 	"user": {
 		"https://hosted.weblate.org/api/users/Wuzzy/?format=json": {
@@ -104,7 +107,7 @@
 				"username": "Yic95"
 			},
 			"first": "2022",
-			"last": "2024"
+			"last": "2025"
 		},
 		"https://hosted.weblate.org/api/users/Oblomov/?format=json": {
 			"raw": {
@@ -406,7 +409,7 @@
 				"username": "Mr.JRodriguez"
 			},
 			"first": "2024",
-			"last": "2024"
+			"last": "2025"
 		},
 		"https://hosted.weblate.org/api/users/@.-_-.@/?format=json": {
 			"raw": {
@@ -503,6 +506,60 @@
 				"id": 104771,
 				"full_name": "Ilia",
 				"username": "ilia-abbasi"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/tanavit/?format=json": {
+			"raw": {
+				"id": 100581,
+				"full_name": "Tanavit MINETEST",
+				"username": "tanavit"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/AlanSCorreia/?format=json": {
+			"raw": {
+				"id": 109526,
+				"full_name": "AlanSCorreia",
+				"username": "AlanSCorreia"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/nauta-turbidus/?format=json": {
+			"raw": {
+				"id": 69296,
+				"full_name": "nauta-turbidus",
+				"username": "nauta-turbidus"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/TamilNeram/?format=json": {
+			"raw": {
+				"id": 66649,
+				"full_name": "தமிழ்நேரம்",
+				"username": "TamilNeram"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/jhongamepc2/?format=json": {
+			"raw": {
+				"id": 84668,
+				"full_name": "jhon game",
+				"username": "jhongamepc2"
+			},
+			"first": "2025",
+			"last": "2025"
+		},
+		"https://hosted.weblate.org/api/users/Divarrek/?format=json": {
+			"raw": {
+				"id": 15949,
+				"full_name": "Divarrek",
+				"username": "Divarrek"
 			},
 			"first": "2025",
 			"last": "2025"

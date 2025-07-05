@@ -1,0 +1,395 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-24 19:40+0200\n"
+"PO-Revision-Date: 2025-06-04 11:01+0000\n"
+"Last-Translator: jhon game <jhongamepc2@gmail.com>\n"
+"Language-Team: Hebrew <https://hosted.weblate.org/projects/minetest/nodecore/"
+"he/>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Weblate 5.12-dev\n"
+
+msgid "(C)2018-@1 by Aaron Suen <warr1024@@gmail.com>"
+msgstr "(C)2018-@1 מאת אהרון סוון <warr1024@@gmail.com>"
+
+msgid "- @1"
+msgstr "- @1"
+
+msgid "- Aux+drop any item to drop everything."
+msgstr "- Aux+שחרר כל פריט כדי להוריד הכל."
+
+msgid "- "Furnaces" are not a thing; discover smelting with open flames."
+msgstr "- \"תנורים\" אינם דבר; לגלות התכה עם להבות פתוחות."
+
+msgid "- Climbing spots may be climbed once black particles appear."
+msgstr "- ניתן לטפס על נקודות טיפוס לאחר הופעת חלקיקים שחורים."
+
+msgid "- Crafting is done by building recipes in-world."
+msgstr "- יצירה נעשית על ידי בניית מתכונים בעולם."
+
+msgid "- DONE: @1"
+msgstr "- בוצע: @1"
+
+msgid "- Drop and pick up items to rearrange your inventory."
+msgstr "- הורידו ואספו פריטים כדי לסדר מחדש את המלאי שלכם."
+
+msgid "- Drop items onto ground to create stack nodes. They do not decay."
+msgstr "- הניחו פריטים על הקרקע כדי ליצור צמתי ערימה. הם לא מתפרקים."
+
+msgid "- FUTURE: @1"
+msgstr "- עתיד: @1"
+
+msgid "- For larger recipes, the center item is usually placed last."
+msgstr "- עבור מתכונים גדולים יותר, הפריט המרכזי בדרך כלל מונח אחרון."
+
+msgid "- Items picked up try to fit into the current selected slot first."
+msgstr "- הפריטים שנאספו מנסים להיכנס תחילה לחריץ שנבחר."
+
+msgid "- Order and specific face of placement may matter for crafting."
+msgstr "- הסדר והמיקום הספציפי עשויים להיות בעלי חשיבות ליצירה."
+
+msgid "- Recipes are time-based, punching faster does not speed up."
+msgstr "- מתכונים מבוססי זמן, ניקוב מהיר יותר לא מאיץ."
+
+msgid "- The game is challenging by design, sometimes frustrating. DON'T GIVE UP!"
+msgstr "- המשחק מאתגר מעצם עיצובו, לפעמים מתסכל. אל תוותרו!"
+
+msgid "- There is NO inventory screen."
+msgstr "- אין מסך מלאי."
+
+msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
+msgstr "- כדי להכות, יש להכות צומת שוב ושוב, מבלי לחפור."
+
+msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
+msgstr "- כדי לרוץ מהר יותר, ללכת/לשחות קדימה או לטפס/לשחות מעלה ברציפות."
+
+msgid "- Tools used as ingredients must be in very good condition."
+msgstr "- הכלים המשמשים כמרכיבים חייבים להיות במצב טוב מאוד."
+
+msgid "- You do not have to punch very fast (about 1 per second)."
+msgstr "- אתה לא צריך לחבוט מהר מאוד (בערך אגרוף אחד לשנייה)."
+
+#, fuzzy
+msgid "@1 ||..."
+msgstr "@1 ||..."
+
+#, fuzzy
+msgid "@1 |||.."
+msgstr "@1 |||.."
+
+#, fuzzy
+msgid "@1 ||||."
+msgstr "@1 ||||."
+
+#, fuzzy
+msgid "@1 |||||"
+msgstr "@1 |||||"
+
+msgid "About"
+msgstr "אודות"
+
+msgid "Active Lens"
+msgstr "עדשה אקטיבית"
+
+msgid "Active Prism"
+msgstr "פריזמה אקטיבית"
+
+msgid "Additional Mods Loaded: @1"
+msgstr "מודים נוספים הועלו: @1"
+
+msgid "Admin Tool"
+msgstr "כלי ניהול"
+
+msgid "Adobe"
+msgstr "אדובי"
+
+msgid "Adobe Bricks"
+msgstr "לבני אדובי"
+
+msgid "Adobe Mix"
+msgstr "אדובי מיקס"
+
+msgid "Aggregate"
+msgstr "לקבץ"
+
+msgid "Annealed Lode Adze"
+msgstr "אדזה מחושלת"
+
+msgid "Annealed Lode Frame"
+msgstr "מסגרת עור מחושלת"
+
+msgid "Annealed Lode Hatchet"
+msgstr "גרזן עור מחושל"
+
+msgid "Annealed Lode Hatchet Head"
+msgstr "ראש גרזן עור מחושל"
+
+msgid "Annealed Lode Ladder"
+msgstr "סולם עור מחושל"
+
+msgid "Annealed Lode Mallet Head"
+msgstr "ראש פטיש לוד מחושל"
+
+msgid "Annealed Lode Mattock"
+msgstr "מאטוק מחושל"
+
+msgid "Annealed Lode Mattock Head"
+msgstr "ראש מאטוק מחושל"
+
+msgid "Annealed Lode Pick"
+msgstr "פיק עור מחושל"
+
+msgid "Annealed Lode Pick Head"
+msgstr "ראש פיק עור מחושל"
+
+msgid "Annealed Lode Prill"
+msgstr "פריל לוד מחושל"
+
+msgid "Annealed Lode Rake"
+msgstr "מגרפת עור מחושלת"
+
+msgid "Annealed Lode Spade"
+msgstr "ספייד עור מחושל"
+
+msgid "Annealed Lode Spade Head"
+msgstr "ראש ספייד עור מחושל"
+
+msgid "Annealed Lode Tongs"
+msgstr "מלקחיים מחושלים"
+
+msgid "Ash"
+msgstr "אפר"
+
+msgid "Ash Lump"
+msgstr "גוש אפר"
+
+msgid "Azure Bell Flower"
+msgstr "פרח הפעמון התכלת"
+
+msgid "Azure Cup Flower"
+msgstr "פרח גביע התכלת"
+
+msgid "Azure Star Flower"
+msgstr "פרח הכוכב התכול"
+
+msgid "Bindy"
+msgstr "בינדי"
+
+msgid "Bindy Adobe"
+msgstr "בינדי אדובי"
+
+msgid "Bindy Cloudstone"
+msgstr "בינדי קלאודסטון"
+
+msgid "Bindy Pliant Sandstone"
+msgstr "אבן חול בינדי פליאנט"
+
+msgid "Bindy Pliant Stone"
+msgstr "אבן בינדי פליאנט"
+
+msgid "Bindy Pliant Tarstone"
+msgstr "בינדי פליאנט טרסטון"
+
+msgid "Bindy Sandstone"
+msgstr "אבן חול בינדי"
+
+msgid "Black Bell Flower"
+msgstr "פרח הפעמון השחור"
+
+msgid "Black Cup Flower"
+msgstr "פרח הגביע השחור"
+
+msgid "Black Rosette Flower"
+msgstr "פרח שושנה שחורה"
+
+msgid "Blank"
+msgstr "‌ריק"
+
+msgid "Blue Bell Flower"
+msgstr "פרח הפעמון הכחול"
+
+msgid "Blue Cluster Flower"
+msgstr "פרח אשכול כחול"
+
+msgid "Blue Cup Flower"
+msgstr "פרח הכוס הכחול"
+
+msgid "Blue Rosette Flower"
+msgstr "פרח שושנה כחולה"
+
+msgid "Blue Star Flower"
+msgstr "פרח הכוכב הכחול"
+
+msgid "Bonded Adobe Bricks"
+msgstr "לבני אדובי מודבקות"
+
+msgid "Bonded Cloudstone Brick Hinged Panel"
+msgstr "פאנל צירים לבנים מלוכדות קלאודסטון"
+
+msgid "Bonded Cloudstone Brick Panel"
+msgstr "פאנל לבנים מלוכדות קלאודסטון"
+
+msgid "Bonded Cloudstone Bricks"
+msgstr "לבני קלאודסטון מודבקות"
+
+msgid "Bonded Sandstone Brick Hinged Panel"
+msgstr "פאנל צירים מאבן חול מודבקת"
+
+msgid "Bonded Sandstone Bricks"
+msgstr "לבני אבן חול מודבקות"
+
+msgid "Bonded Stone Brick Hinged Panel"
+msgstr "פאנל צירים לבני אבן מודבקות"
+
+msgid "Bonded Stone Brick Panel"
+msgstr "פאנל לבני אבן מודבקות"
+
+msgid "Bonded Stone Bricks"
+msgstr "לבני אבן מודבקות"
+
+msgid "Bonded Tarstone Brick Hinged Panel"
+msgstr "פאנל צירים מלבני טרסטון מודבקות"
+
+msgid "Bonded Tarstone Brick Panel"
+msgstr "פאנל לבני טרסטון מודבק"
+
+msgid "Bonded Tarstone Bricks"
+msgstr "לבני טרסטון מודבקות"
+
+msgid "Boxy Adobe"
+msgstr "אדובי קופסתי"
+
+msgid "Boxy Cloudstone"
+msgstr "אבן קלאודסטון קופסתית"
+
+msgid "Boxy Pliant Adobe"
+msgstr "אדובי קופסי גמיש"
+
+msgid "- Hold/repeat right-click on walls/ceilings barehanded to create climbing spots."
+msgstr ""
+"- החזק/חזור על לחיצה ימנית על קירות/תקרות ביד חשופה כדי ליצור נקודות טיפוס."
+
+msgid "- If a recipe exists, you will see a special particle effect."
+msgstr "- אם קיים מתכון, תראו אפקט חלקיקים מיוחד."
+
+msgid "Black Star Flower"
+msgstr "פרח כוכב שחור"
+
+msgid "- Hopelessly stuck? Try asking the community chatrooms (About tab)."
+msgstr ""
+"- תקועים לגמרי? נסו לשאול את חדרי הצ'אט של הקהילה (בכרטיסייה \"אודות\")."
+
+msgid "- Larger recipes are usually more symmetrical."
+msgstr "- מתכונים גדולים יותר בדרך כלל סימטריים יותר."
+
+msgid "- Wielded item, target face, and surrounding nodes may matter."
+msgstr "- הפריט המופעל, פני המטרה והצמתים הסובבים אותו עשויים להיות חשובים."
+
+msgid "- Ores may be hidden, but revealed by subtle clues in terrain."
+msgstr "- עפרות עשויות להיות מוסתרות, אך נחשפות על ידי רמזים עדינים בשטח."
+
+msgid "@1 ....."
+msgstr "@1 ....."
+
+msgid "- Sneak+aux+drop an item to drop all matching items."
+msgstr "- התגנבות + עזר + שחרור פריט כדי להפיל את כל הפריטים התואמים."
+
+msgid "- Sneak+drop to count out single items from stack."
+msgstr "- התגנבות + שחרור כדי לספור פריטים בודדים מהערימה."
+
+msgid "- Trouble lighting a fire? Try using longer sticks, more tinder."
+msgstr "- מתקשים להדליק אש? נסו להשתמש במקלות ארוכים יותר, יותר חומרי טינדר."
+
+msgid "Annealed Lode"
+msgstr "עור מחושל"
+
+msgid "Annealed Lode Mallet"
+msgstr "פטיש עור מחושל"
+
+msgid "Bonded Sandstone Brick Panel"
+msgstr "פאנל לבני אבן חול מודבקת"
+
+msgid "- Some recipes require "pummeling" a node."
+msgstr "- חלק מהמתכונים דורשים \"חבטה\" בצומת."
+
+msgid "- Stacks may be pummeled, exact item count may matter."
+msgstr "- ערימות עלולות להיות מטושטשות, מספר הפריטים המדויק עשוי להיות חשוב."
+
+msgid "- Stuck in something solid? Stand still and you will eventually teleport out."
+msgstr "תקוע במשהו מוצק? עמוד במקום ובסופו של דבר תצא בטלפורטציה."
+
+msgid "Annealed Lode Bar"
+msgstr "מוט עור מחושל"
+
+msgid "Annealed Lode Rod"
+msgstr "מוט עור מחושל"
+
+msgid "@1 rejected. (protocol version @2)"
+msgstr "@1 נדחה. (גרסת פרוטוקול @2)"
+
+msgid "@1 |...."
+msgstr "@1 |...."
+
+msgid "Bindy Tarstone"
+msgstr "בינדי טרסטון"
+
+msgid "Black Cluster Flower"
+msgstr "פרח אשכול שחור"
+
+msgid "Bindy Stone"
+msgstr "בינדי אבן"
+
+msgid "Bonded Adobe Brick Panel"
+msgstr "פאנל לבנים מלוכדות של אדובי"
+
+msgid "Azure Rosette Flower"
+msgstr "פרח שושנת תכלת"
+
+msgid "Bindy Pliant Adobe"
+msgstr "בינדי פליאנט אדובי"
+
+msgid "Bonded Adobe Brick Hinged Panel"
+msgstr "פאנל צירים של לבני אדובי מודבקות"
+
+msgid "- Can't dig trees or grass? Search for sticks in the canopy."
+msgstr "- לא יכולים לחפור בעצים או בדשא? חפשו מקלות בחופה."
+
+msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
+msgstr "- היזהרו ממערות/תהומות אפלות; אתם אחראים לצאת מהן בעצמכם."
+
+msgid "Bindy Pliant Cloudstone"
+msgstr "בינדי פליאנט קלאודסטון"
+
+msgid "Azure Cluster Flower"
+msgstr "פרח אשכול תכלת"
+
+msgid "- Continuing long enough allows you to phase through solid matter."
+msgstr "- המשך מספיק זמן מאפשר לך לעבור בשלבים דרך חומר מוצק."
+
+msgid "Boxy"
+msgstr "קופסתי"
+
+msgid "@1 (@2)"
+msgstr "@1 (@2)"
+
+msgid "- Pay attention to the stars for long distance navigation."
+msgstr "- שימו לב לכוכבים לניווט למרחקים ארוכים."
+
+msgid "- Something seems tedious? Find better tech, subtle factors, or a better way."
+msgstr ""
+"משהו נראה מייגע? מצא טכנולוגיה טובה יותר, גורמים עדינים, או דרך טובה יותר."
+
+msgid "@1 discovered, @2 available, @3 future"
+msgstr "@1 התגלה, @2 זמין, @3 עתידי"
+
+msgid "Amalgamation"
+msgstr "התמזגות"
+
+msgid "- Climbing spots also produce very faint light; raise display gamma to see."
+msgstr "- נקודות טיפוס מייצרות גם אור חלש מאוד; הגבר את גמא התצוגה כדי לראות."

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-30 20:35+0200\n"
-"PO-Revision-Date: 2025-01-08 16:01+0000\n"
+"PO-Revision-Date: 2025-07-02 20:01+0000\n"
 "Last-Translator: Lukáš Lizák <lukas.lizak15@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/nodecore/"
 "sk/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid "Annealed Lode Bar"
 msgstr "Žíhaný Kovový Ingot"
@@ -21,7 +21,7 @@ msgid "- Aux+drop any item to drop everything."
 msgstr "- Aux+pusti akúkoľvek vec a pustíš všetko."
 
 msgid "- "Furnaces" are not a thing; discover smelting with open flames."
-msgstr "- \"Pece\" ako také neexistujú; objav tavenie pomocou otvoreného ohňa."
+msgstr "- \"Pece\" neexistujú; objav tavenie pomocou otvoreného ohňa."
 
 msgid "- Be wary of dark caves/chasms; you are responsible for getting yourself out."
 msgstr ""
@@ -86,17 +86,18 @@ msgid "- Sneak+drop to count out single items from stack."
 msgstr "- Skrčenie+pusť a pustíš jednu vec z kôpky."
 
 msgid "- Some recipes require "pummeling" a node."
-msgstr "- Niektoré recepty vyžadujú \"pobúchať\" na kocku."
+msgstr "- Niektoré recepty vyžadujú \"opracovať\" blok."
 
 msgid "- Stacks may be pummeled, exact item count may matter."
 msgstr ""
-"- Búchať môžeš aj kôpky, môže záležať aj na presnom počte predmetov v kôpke."
+"- Opracovať môžeš aj kôpky, môže záležať aj na presnom počte predmetov v "
+"kôpke."
 
 msgid "- There is NO inventory screen."
 msgstr "- Obrazovka inventára NEEXISTUJE."
 
 msgid "- To pummel, punch a node repeatedly, WITHOUT digging."
-msgstr "- \"Pobúchať\", znamená opakovane udierať do kocky, BEZ kopania."
+msgstr "- Na opracovanie, udierajte do bloku opakovane, BEZ kopania."
 
 msgid "- To run faster, walk/swim forward or climb/swim upward continuously."
 msgstr "- Keď bežíš/plávaš bez prerušenia, postupne zrýchliš."
@@ -106,7 +107,7 @@ msgstr "- Ak sú nástroje použité v recepte musia byť vo veľmi dobrom stave
 
 msgid "- Wielded item, target face, and surrounding nodes may matter."
 msgstr ""
-"- Na držanom predmete, zamierenej strane a okolitých kockách možno záleží."
+"- Na držanom predmete, zamierenej strane a okolitých blokoch možno záleží."
 
 msgid "- You do not have to punch very fast (about 1 per second)."
 msgstr "- Nemusíš udierať veľmi rýchlo (približne raz za sekundu)."
@@ -118,7 +119,7 @@ msgid "Active Lens"
 msgstr "Aktívna Šošovka"
 
 msgid "Active Prism"
-msgstr "Aktívny Hranol"
+msgstr "Aktívna Prizma"
 
 msgid "Additional Mods Loaded: @1"
 msgstr "Načítané Doplnkové Modifikácie: @1"
@@ -208,16 +209,16 @@ msgid "Bindy Tarstone"
 msgstr "Dechtový Kameň - Bindy"
 
 msgid "Bonded Adobe Brick Hinged Panel"
-msgstr "Otočný Panel zo Spojených Nepálených Tehál"
+msgstr "Otočný Panel z Lepených Nepálených Tehál"
 
 msgid "Bonded Adobe Brick Panel"
-msgstr "Panel zo Spojených Nepálených Tehál"
+msgstr "Panel z Lepených Nepálených Tehál"
 
 msgid "Bonded Tarstone Brick Panel"
-msgstr "Panel zo Spojených Dechtových Tehál"
+msgstr "Panel z Lepených Dechtových Tehál"
 
 msgid "Bonded Tarstone Bricks"
-msgstr "Spojené Dechtové Tehly"
+msgstr "Lepené Dechtové Tehly"
 
 msgid "Inventory"
 msgstr "Inventár"
@@ -232,10 +233,10 @@ msgid "Black Star Flower"
 msgstr "Čierny Kvet - Hviezda"
 
 msgid "Bonded Stone Bricks"
-msgstr "Spojené Kamenné Tehly"
+msgstr "Lepené Kamenné Tehly"
 
 msgid "Cobble Panel"
-msgstr "Panel zo Skaly"
+msgstr "Panel z Okruhliaka"
 
 msgid "Crafting"
 msgstr "Vyrábanie"
@@ -283,7 +284,7 @@ msgid "Bindy Pliant Sandstone"
 msgstr "Poddajný Pieskovec - Bindy"
 
 msgid "Displaced Node"
-msgstr "Premeistnená Kocka"
+msgstr "Premeistnený Blok"
 
 msgid "Discovery"
 msgstr "Objavenia"
@@ -366,22 +367,22 @@ msgid "Blue Star Flower"
 msgstr "Modrý Kvet - Hviezda"
 
 msgid "Bonded Sandstone Brick Hinged Panel"
-msgstr "Otočný Panel zo Spojených Pieskovcových Tehál"
+msgstr "Otočný Panel z Lepených Pieskovcových Tehál"
 
 msgid "Bonded Sandstone Brick Panel"
-msgstr "Panel zo Spojených Pieskovcových Tehál"
+msgstr "Panel z Lepených Pieskovcových Tehál"
 
 msgid "Bonded Sandstone Bricks"
-msgstr "Spojené Pieskovcové Tehly"
+msgstr "Lepené Pieskovcové Tehly"
 
 msgid "Bonded Stone Brick Hinged Panel"
-msgstr "Otočný Panel zo Spojených Kamenných Tehál"
+msgstr "Otočný Panel z Lepených Kamenných Tehál"
 
 msgid "Bonded Stone Brick Panel"
-msgstr "Panel zo Spojených Kamenných Tehál"
+msgstr "Panel z Lepených Kamenných Tehál"
 
 msgid "Bonded Tarstone Brick Hinged Panel"
-msgstr "Otočný Panel zo Spojených Dechtových Tehál"
+msgstr "Otočný Panel z Lepených Dechtových Tehál"
 
 msgid "Boxy"
 msgstr "Boxy"
@@ -417,46 +418,46 @@ msgid "Cav Charcoal Glyph"
 msgstr "Uhoľný Znak - Cav"
 
 msgid "Charcoal"
-msgstr "Uhoľ"
+msgstr "Drevené Uhlie"
 
 msgid "Charcoal Lump"
-msgstr "Uhoľná Hruda"
+msgstr "Hrudka Dreveného Uhlia"
 
 msgid "Chromatic Glass"
 msgstr "Chromatické Sklo"
 
 msgid "Clear Glass"
-msgstr "Číre Sklo"
+msgstr "Čisté Sklo"
 
 msgid "Clear Glass Case"
-msgstr "Číra Sklenená Vitrína"
+msgstr "Vitrína z Čistého Skla"
 
 msgid "Cobble"
-msgstr "Skala"
+msgstr "Okruhliak"
 
 msgid "Cobble Hinged Panel"
-msgstr "Otočný Panel zo Skaly"
+msgstr "Otočný Panel z Okruhliaka"
 
 msgid "DEVELOPMENT VERSION"
 msgstr "VERZIA VO VÝVOJI"
 
 msgid "Eggcorn"
-msgstr "Vajcosemä"
+msgstr "Vajcožaluď"
 
 msgid "Float Glass"
-msgstr "Dokonalé Sklo"
+msgstr "Číre Sklo"
 
 msgid "Annealed Lode Pick Head"
 msgstr "Žíhaná Kovová Hlava Krompáča"
 
 msgid "Annealed Lode Adze"
-msgstr "Žíhaný Kovový Topor"
+msgstr "Žíhaná Kovová Teselica"
 
 msgid "Annealed Lode Mallet Head"
 msgstr "Žíhaná Kovová Hlava Kladiva"
 
 msgid "Bonded Adobe Bricks"
-msgstr "Spojené Nepálené Tehly"
+msgstr "Lepené Nepálené Tehly"
 
 msgid "Bricky Pliant Stone"
 msgstr "Poddajný Kameň - Bricky"
@@ -465,7 +466,7 @@ msgid "Bricky Sandstone"
 msgstr "Pieskovec - Bricky"
 
 msgid "Boxy Pliant Stone"
-msgstr "Krabicový poddajný kameň"
+msgstr "Poddajný Kameň - Boxy"
 
 msgid "Bricky Adobe"
 msgstr "Nepálenec - Bricky"
@@ -588,7 +589,7 @@ msgid "Wilted Cup Flower"
 msgstr "Zvädnutý Kvet - Pohár"
 
 msgid "carve a wooden plank completely"
-msgstr "celkom vyrež dosku"
+msgstr "celkom vysekaj dosku"
 
 msgid "Red Cluster Flower"
 msgstr "Červený Kvet - Strapec"
@@ -621,25 +622,25 @@ msgid "Wooden Plank"
 msgstr "Drevená Doska"
 
 msgid "Wooden Spade"
-msgstr "Rýľ z Dreva"
+msgstr "Drevený Rýľ"
 
 msgid "Wooden Spade Head"
-msgstr "Hlava Rýľu z Dreva"
+msgstr "Drevená Hlava Rýľu"
 
 msgid "brace a wooden form with a stick"
-msgstr "vyztuž drevenú formu s tyčkou"
+msgstr "vystuž drevenú formu s tyčkou"
 
 msgid "carve wooden tool heads from planks"
-msgstr "vyrež drevené hlavy nástrojov z dosky"
+msgstr "vysekaj drevené hlavy nástrojov z dosky"
 
 msgid "chisel a hinge groove into a wooden plank"
-msgstr "vydláb pántovú drážku do dosky"
+msgstr "vytesaj pántovú drážku do dosky"
 
 msgid "insert wooden pin into wooden panel"
 msgstr "vlož drevený kolík do panela z dreva"
 
 msgid "put a gravel tip on a wooden adze"
-msgstr "daj štrk na hrot dreveného toporu"
+msgstr "daj štrk na hrot drevenej teselice"
 
 msgid "wilt a flower"
 msgstr "nechaj kvet zvädnúť"
@@ -672,22 +673,22 @@ msgid "Iceboxy Pliant Stone"
 msgstr "Poddajný Kameň - Iceboxy"
 
 msgid "Wooden Adze"
-msgstr "Topor z Dreva"
+msgstr "Drevená Teselica"
 
 msgid "Wilted Star Flower"
 msgstr "Zvädnutý Kvet - Hviezda"
 
 msgid "Wooden Frame"
-msgstr "Rám z Dreva"
+msgstr "Drevený Rám"
 
 msgid "Wooden Hatchet"
-msgstr "Sekera z Dreva"
+msgstr "Drevená Sekera"
 
 msgid "Wooden Pick"
-msgstr "Krompáč z Dreva"
+msgstr "Drevený Krompáč"
 
 msgid "Wooden Rake"
-msgstr "Hrable z Dreva"
+msgstr "Drevené Hrable"
 
 msgid "Wooden Shelf"
 msgstr "Drevená Polička"
@@ -696,10 +697,10 @@ msgid "Yellow Rosette Flower"
 msgstr "Žltý Kvet - Ružička"
 
 msgid "Wooden Pick Head"
-msgstr "Hlava Krompáča z Dreva"
+msgstr "Drevená Hlava Krompáča"
 
 msgid "put a stone tip onto a wooden tool"
-msgstr "daj kameň na cíp dreveného nástroja"
+msgstr "daj kamenný hrot na drevený nástroj"
 
 msgid "Hashy Tarstone"
 msgstr "Dechtový Kameň - Hashy"
@@ -726,7 +727,7 @@ msgid "Violet Rosette Flower"
 msgstr "Fialový Kvet - Ružička"
 
 msgid "Wooden Mallet Head"
-msgstr "Hlava Kladiva z Dreva"
+msgstr "Drevená Hlava Kladiva"
 
 msgid "Wooden Panel"
 msgstr "Panel z Dreva"
@@ -744,13 +745,13 @@ msgid "convert a wooden frame to a form"
 msgstr "premeň drevený rám na formu"
 
 msgid "Wooden Hatchet Head"
-msgstr "Hlava Sekery z Dreva"
+msgstr "Drevená Hlava Sekery"
 
 msgid "Wooden Hinged Panel"
 msgstr "Otočný Panel z Dreva"
 
 msgid "Wooden Mallet"
-msgstr "Kladivo z Dreva"
+msgstr "Drevené Kladivo"
 
 msgid "Yellow Bell Flower"
 msgstr "Žltý Kvet - Zvonček"
@@ -771,7 +772,7 @@ msgid "Yellow Star Flower"
 msgstr "Žltý Kvet - Hviezda"
 
 msgid "Wooden Form"
-msgstr "Forma z Dreva"
+msgstr "Drevená Forma"
 
 msgid "Braced Wooden Form"
 msgstr "Vyztužená Drevená Forma"
@@ -786,7 +787,7 @@ msgid "White Cluster Flower"
 msgstr "Biely Kvet - Strapec"
 
 msgid "Bonded Cloudstone Bricks"
-msgstr "Spojené Oblačné Tehly"
+msgstr "Lepené Oblačné Tehly"
 
 msgid "Boxy Cloudstone"
 msgstr "Oblačný Kameň - Boxy"
@@ -855,10 +856,10 @@ msgid "Sandstone"
 msgstr "Pieskovec"
 
 msgid "Bonded Cloudstone Brick Panel"
-msgstr "Panel zo Spojených Oblačných Tehál"
+msgstr "Panel z Lepených Oblačných Tehál"
 
 msgid "Bonded Cloudstone Brick Hinged Panel"
-msgstr "Otočný Panel zo Spojených Oblačných Tehál"
+msgstr "Otočný Panel z Lepených Oblačných Tehál"
 
 msgid "Pliant Tarstone"
 msgstr "Poddajný Dechtový Kameň"
@@ -918,16 +919,16 @@ msgid "mix dirt into ash to make adobe mix"
 msgstr "zamiešaj hlinu do popolu na vytvorenie zmesi nepálenca"
 
 msgid "melt stone into pumwater"
-msgstr "roztav kameň na sopovodu"
+msgstr "roztav kameň na pemvodu"
 
 msgid "pack stone chips back into cobble"
-msgstr "stlač kamenné ívery späť do skaly"
+msgstr "stlač kamenné črepy naspäť na okruhliak"
 
 msgid "Verty Pliant Adobe"
 msgstr "Poddajný Nepálenec - Verty"
 
 msgid "chisel stone bricks"
-msgstr "vydláb kamenné tehly z kameňa"
+msgstr "vytesaj kamenné tehly"
 
 msgid "Hashy Adobe"
 msgstr "Nepálenec - Hashy"
@@ -951,7 +952,7 @@ msgid "Pliant Adobe"
 msgstr "Poddajný Nepálenec"
 
 msgid "find deep stone strata"
-msgstr "nájdi vrstvu hlbokého kameňa"
+msgstr "nájdi hlboké kamenné vrstvy"
 
 msgid "Verty Adobe"
 msgstr "Nepálenec - Verty"
@@ -969,13 +970,13 @@ msgid "Hashy Pliant Adobe"
 msgstr "Poddajný Nepálenec - Hashy"
 
 msgid "Stone-Tipped Hatchet"
-msgstr "Sekera s Kamenným Cípom"
+msgstr "Sekera s Kamenným Hrotom"
 
 msgid "Stone-Tipped Mallet"
-msgstr "Kladivo s Kamenným Cípom"
+msgstr "Kladivo s Kamenným Hrotom"
 
 msgid "Stone-Tipped Pick"
-msgstr "Krompáč s Kamenným Cípom"
+msgstr "Krompáč s Kamenným Hrotom"
 
 msgid "Vermy Pliant Stone"
 msgstr "Poddajný Kameň - Vermy"
@@ -984,13 +985,13 @@ msgid "Vermy Stone"
 msgstr "Kameň - Vermy"
 
 msgid "weaken stone by soaking"
-msgstr "oslab kameň presaknutím"
+msgstr "oslab kameň namáčaním"
 
 msgid "work glowing lode on a stone anvil"
 msgstr "opracuj žeravý kov na kamennej nákove"
 
 msgid "Stone-Tipped Stylus"
-msgstr "Rydlo s Kamenným Cípom"
+msgstr "Rydlo s Kamenným Hrotom"
 
 msgid "Verty Pliant Stone"
 msgstr "Poddajný Kameň - Verty"
@@ -999,22 +1000,22 @@ msgid "Verty Stone"
 msgstr "Kameň - Verty"
 
 msgid "Stone-Tipped Spade"
-msgstr "Rýľ s Kamenným Cípom"
+msgstr "Rýľ s Kamenným Hrotom"
 
 msgid "Stone Bricks"
 msgstr "Kamenné Tehly"
 
 msgid "Stone Chip"
-msgstr "Kamenný Íver"
+msgstr "Kamenný Črep"
 
 msgid "Glowing Lode Cobble"
-msgstr "Žeravá Rudná Skala"
+msgstr "Žeravý Rudný Okruhliak"
 
 msgid "Pumslush"
-msgstr "Sopokaša"
+msgstr "Pemkaša"
 
 msgid "Pumpowder"
-msgstr "Sopoprach"
+msgstr "Pemprach"
 
 msgid "WORLD FROZEN"
 msgstr "SVET ZAMRZNUTÝ"
@@ -1023,19 +1024,19 @@ msgid "Your client version is outdated, please update!"
 msgstr "Tvoj klient je zastaralý, prosím aktualizuj!"
 
 msgid "break cobble into chips"
-msgstr "rozbi skalu na ívery"
+msgstr "rozbi okruhliak na črepy"
 
 msgid "assemble lode tongs"
 msgstr "zmontuj kovové kliešte"
 
 msgid "chisel a hinge groove into cobble"
-msgstr "vydláb drážku na pánt do skaly"
+msgstr "vytesaj drážku na pánt do okruhliaka"
 
 msgid "dig up cobble"
-msgstr "vykop skalu"
+msgstr "vykop okruhliak"
 
 msgid "melt down lode metal from lode cobble"
-msgstr "tavením získaj kov z rudnej skaly"
+msgstr "tavením získaj kov z rudného okruhliaka"
 
 msgid "~ @1% translated to your language (@2)"
 msgstr "~@1% preložené do tvojho jazyka (@2)"
@@ -1045,29 +1046,29 @@ msgstr "https://content.minetest.net/packages/Warr1024/nodecore/"
 
 msgid "Discover and invent in a surreal, unsympathetic world of cubes, patterns, and abstractions."
 msgstr ""
-"Objavujte a vynaliezajte v bizardnom a nesúcitnom svete kociek, vzorov a "
+"Objavujte a vynaliezajte v neskutočnom a nesúcitnom svete kociek, vzorov a "
 "abstrakcií."
 
 msgid "Lode Cobble"
-msgstr "Rudná Skala"
+msgstr "Rudný Okruhliak"
 
 msgid "Loose Lode Cobble"
-msgstr "Voľná Rudná Skala"
+msgstr "Voľný Rudný Okruhliak"
 
 msgid "Loose Lux Cobble"
-msgstr "Voľná Luxová Skala"
+msgstr "Voľný Luxitový Okruhliak"
 
 msgid "Loose Cobble"
-msgstr "Voľná Skala"
+msgstr "Voľný Okruhliak"
 
 msgid "Lux Cobble"
-msgstr "Luxová Skala"
+msgstr "Luxitový Okruhliak"
 
 msgid "insert metal rod into a cobble panel"
-msgstr "vlož kovovú tyč do panela zo skaly"
+msgstr "vlož kovovú tyč do panela z okruhliaka"
 
 msgid "dig up lux cobble"
-msgstr "vykop luxovú skalu"
+msgstr "vykop luxitový okruhliak"
 
 msgid "https://hosted.weblate.org/projects/minetest/nodecore/"
 msgstr "https://hosted.weblate.org/projects/minetest/nodecore/"
@@ -1100,7 +1101,7 @@ msgid "mix crude glass into ash to make spackling"
 msgstr "zmiešaj drsné sklo do popola na vyrobenie tmelu"
 
 msgid "Early-access edition of NodeCore with latest features (and maybe bugs)"
-msgstr "Verzia predbežného prístupu NodeCore s novinkami (a možno s chybami)"
+msgstr "Verzia predbežného prístupu NodeCore s novinkami (možno aj chybami)"
 
 msgid "FIRE QUELLED"
 msgstr "OHEŇ POTLAČENÝ"
@@ -1124,7 +1125,7 @@ msgid "Offline @1 week(s)"
 msgstr "Offline @1 týždňov"
 
 msgid "grow a sedge on grass near moisture"
-msgstr "vypestuj byľu na tráve v blízkosti vlhkosti"
+msgstr "vypestuj ostricu na tráve v blízkosti vlhkosti"
 
 msgid "Wet Spackling"
 msgstr "Mokrý Tmel"
@@ -1133,10 +1134,10 @@ msgid "Glowing Lode Pick Head"
 msgstr "Žeravá Kovová Hlava Krompáča"
 
 msgid "Glowing Lode Adze"
-msgstr "Žeravý Kovový Topor"
+msgstr "Žeravá Kovová Teselica"
 
 msgid "Glued Active Prism"
-msgstr "Zalepený Aktivovaný Hranol"
+msgstr "Zalepená Aktívna Prizma"
 
 msgid "Glowing Lode"
 msgstr "Žeravý Kov"
@@ -1145,16 +1146,16 @@ msgid "Glowing Lode Ladder"
 msgstr "Žeravý Kovový Rebrík"
 
 msgid "Float Glass Case"
-msgstr "Vitrína z Dokonalého Skla"
+msgstr "Vitrína z Číreho Skla"
 
 msgid "Flux"
-msgstr "Tok"
+msgstr "Žiar"
 
 msgid "Fot Charcoal Glyph"
 msgstr "Uhoľný Znak - Fot"
 
 msgid "Gated Prism"
-msgstr "Logický Hranol"
+msgstr "Logická Prizma"
 
 msgid "Geq Charcoal Glyph"
 msgstr "Uhoľný Znak - Geq"
@@ -1178,7 +1179,7 @@ msgid "Glowing Lode Hatchet Head"
 msgstr "Žeravá Kovová Hlava Sekery"
 
 msgid "Glued Active Lens"
-msgstr "Zalepená Aktivovaná Šošovka"
+msgstr "Zalepená Aktívna Šošovka"
 
 msgid "Glued Shining Lens"
 msgstr "Zalepená Svietiaca Šošovka"
@@ -1190,7 +1191,7 @@ msgid "Glued Lens"
 msgstr "Zalepená Šošovka"
 
 msgid "Glued Prism"
-msgstr "Zalepený Hranol"
+msgstr "Zalepená Prizma"
 
 msgid "Glowing Lode Mallet Head"
 msgstr "Žeravá Kovová Hlava Kladiva"
@@ -1202,16 +1203,16 @@ msgid "Glowing Lode Rake"
 msgstr "Žeravé Kovové Hrable"
 
 msgid "Glued Gated Prism"
-msgstr "Zalepený Logický Hranol"
+msgstr "Zalepená Logická Prizma"
 
 msgid "Infused Tempered Lode Adze"
-msgstr "Ožiarený Kalený Kovový Topor"
+msgstr "Ožiarená Kalená Kovová Teselica"
 
 msgid "Pumice"
-msgstr "Sopkaľ"
+msgstr "Pemza"
 
 msgid "Pummel"
-msgstr "Pobúchať"
+msgstr "Opracovať"
 
 msgid "dig up a tree stump"
 msgstr "vyťaž peň stromu"
@@ -1241,16 +1242,16 @@ msgid "Offline Player"
 msgstr "Offline Hráč"
 
 msgid "Player's Guide: Inventory Management"
-msgstr "Hráčov Návod: Manažment Inventáru"
+msgstr "Sprievodca Hráča: Manažment Inventáru"
 
 msgid "Player's Guide: Movement and Navigation"
-msgstr "Hráčov Návod: Pohyb a Navigácia"
+msgstr "Sprievodca Hráča: Pohyb a Navigácia"
 
 msgid "Player's Guide: Pummeling Recipes"
-msgstr "Hráčov Návod: Pobúchanie"
+msgstr "Sprievodca Hráča: Opracovanie"
 
 msgid "Prism"
-msgstr "Hranol"
+msgstr "Prizma"
 
 msgid "Prx Charcoal Glyph"
 msgstr "Uhoľný Znak - Prx"
@@ -1280,7 +1281,7 @@ msgid "Tempered Lode"
 msgstr "Kalený Kov"
 
 msgid "Tempered Lode Adze"
-msgstr "Kalený Kovový Topor"
+msgstr "Kalená Kovová Teselica"
 
 msgid "Tempered Lode Hatchet"
 msgstr "Kalená Kovová Sekera"
@@ -1331,28 +1332,28 @@ msgid "Wicker"
 msgstr "Prútie"
 
 msgid "assemble a float glass case"
-msgstr "zmontuj vitrínu z dokonalého skla"
+msgstr "zmontuj vitrínu z číreho skla"
 
 msgid "assemble a lantern from a tote handle"
 msgstr "zmontuj lampáš z rúčky prenosnej skrinky"
 
 msgid "assemble a lode adze"
-msgstr "zmontuj kovový topor"
+msgstr "zmontuj kovovú teselicu"
 
 msgid "assemble an adze out of sticks"
-msgstr "zmontuj topor z tyčiek"
+msgstr "zmontuj teselicu z tyčiek"
 
 msgid "charge a lantern"
 msgstr "nabi lampáš"
 
 msgid "chip chromatic glass into prisms"
-msgstr "odštep chomatické sklo na hranoly"
+msgstr "odštep chromatické sklo na prizmy"
 
 msgid "cycle through all charcoal glyphs"
 msgstr "prezri si všetky uhoľné znaky"
 
 msgid "dig a node with a hinged panel and tool"
-msgstr "vykop kocku s použitím otočného panela a nástroja"
+msgstr "vykop blok s použitím otočného panela a nástroja"
 
 msgid "dig up dirt"
 msgstr "vyťaž hlinu"
@@ -1376,16 +1377,16 @@ msgid "find a stick"
 msgstr "nájdi tyčku"
 
 msgid "find an eggcorn"
-msgstr "nájdi vajcosemä"
+msgstr "nájdi vajcožaluď"
 
 msgid "find ash"
 msgstr "nájdi popol"
 
 msgid "find charcoal"
-msgstr "nájdi uhoľ"
+msgstr "nájdi drevené uhlie"
 
 msgid "find pumwater"
-msgstr "nájdi sopovodu"
+msgstr "nájdi pemvodu"
 
 msgid "Infused Tempered Lode Mattock"
 msgstr "Ožiarený Kalený Kovový Čakan"
@@ -1400,10 +1401,10 @@ msgid "Vermy"
 msgstr "Vermy"
 
 msgid "find lux"
-msgstr "nájdi lux"
+msgstr "nájdi luxit"
 
 msgid "find pumice"
-msgstr "nájdi sopkaľ"
+msgstr "nájdi pemzu"
 
 msgid "Grass"
 msgstr "Tráva"
@@ -1412,7 +1413,7 @@ msgid "Gravel"
 msgstr "Štrk"
 
 msgid "Graveled Adze"
-msgstr "Poštrkovaný Topor"
+msgstr "Poštrkovaná Teselica"
 
 msgid "Growing Leaves"
 msgstr "Rastúce Listy"
@@ -1424,7 +1425,7 @@ msgid "Iceboxy"
 msgstr "Iceboxy"
 
 msgid "Infused Annealed Lode Adze"
-msgstr "Ožiarený Žíhaný Kovový Topor"
+msgstr "Ožiarená Žíhaná Kovová Teselica"
 
 msgid "Infused Annealed Lode Hatchet"
 msgstr "Ožiarená Žíhaná Kovová Sekera"
@@ -1457,7 +1458,7 @@ msgid "Lens"
 msgstr "Šošovka"
 
 msgid "Living Sponge"
-msgstr "Žijúca Špongia"
+msgstr "Živá Špongia"
 
 msgid "Lode Crate"
 msgstr "Kovová Prepravka"
@@ -1505,7 +1506,7 @@ msgid "Lode Form"
 msgstr "Kovová Forma"
 
 msgid "Pumwater"
-msgstr "Sopovoda"
+msgstr "Pumvoda"
 
 msgid "Tempered Lode Pick Head"
 msgstr "Kalená Kovová Hlava Krompáča"
@@ -1532,7 +1533,7 @@ msgid "IRC: #nodecore @@ irc.libera.chat"
 msgstr "IRC: #nodecore @@ irc.libera.chat"
 
 msgid "Sedge"
-msgstr "Byľa"
+msgstr "Ostrica"
 
 msgid "Shining Lens"
 msgstr "Svietiaca Šošovka"
@@ -1565,22 +1566,22 @@ msgid "activate a lens"
 msgstr "aktivuj šošovku"
 
 msgid "activate a prism"
-msgstr "aktivuj hranol"
+msgstr "aktivuj prizmu"
 
 msgid "anneal a lode cube"
 msgstr "žíhaj kovovú kocku"
 
 msgid "assemble a clear glass case"
-msgstr "zmontuj vitrínu z číreho skla"
+msgstr "zmontuj vitrínu z čistého skla"
 
 msgid "assemble a lode rake"
 msgstr "zmontuj kovové hrable"
 
 msgid "assemble a rake from adzes and a staff"
-msgstr "zmontuj hrable z toporov a palice"
+msgstr "zmontuj hrable z teselíc a palice"
 
 msgid "assemble a lode tote handle"
-msgstr "zmontuj kovovú rúčku nosiča"
+msgstr "zmontuj kovovú rúčku prenosnej skrinky"
 
 msgid "assemble a staff from sticks"
 msgstr "zmontuj palicu z tyčiek"
@@ -1595,10 +1596,10 @@ msgid "chop chromatic glass into lenses"
 msgstr "rozsekni chromatické sklo na šošovky"
 
 msgid "chop up charcoal"
-msgstr "posekaj uhoľ"
+msgstr "posekaj drevené uhlie"
 
 msgid "craft a torch from staff and coal lump"
-msgstr "vyrob fakľu z palice a hrudky uhľa"
+msgstr "vyrob fakľu z palice a hrudky uhlia"
 
 msgid "Peat"
 msgstr "Rašelina"
@@ -1616,7 +1617,7 @@ msgid "Loose Leaves"
 msgstr "Voľné Listy"
 
 msgid "Player's Guide: Crafting"
-msgstr "Hráčov Návod: Vyrábanie"
+msgstr "Sprievodca Hráča: Vyrábanie"
 
 msgid "Raked Gravel"
 msgstr "Pohrabaný Štrk"
@@ -1634,7 +1635,7 @@ msgid "find a rush"
 msgstr "nájdi trstinu"
 
 msgid "find a sedge"
-msgstr "nájdi byľu"
+msgstr "nájdi ostricu"
 
 msgid "find dry (loose) leaves"
 msgstr "nájdi suché (voľné) listy"
@@ -1658,7 +1659,7 @@ msgid "dig up gravel"
 msgstr "vyťaž štrk"
 
 msgid "complete a pummel with a hinged panel and tool head"
-msgstr "pobúchaj niečo s použitím otočného panela a nástroja"
+msgstr "opracuj niečo s použitím otočného panela a nástroja"
 
 msgid "Sand"
 msgstr "Piesok"
@@ -1673,7 +1674,7 @@ msgid "Tempered Lode Hatchet Head"
 msgstr "Kalená Kovová Hlava Sekery"
 
 msgid "Player's Guide: Tips and Guidance"
-msgstr "Hráčov Návod: Tipy a Návody"
+msgstr "Sprievodca Hráča: Tipy a Návody"
 
 msgid "Staff"
 msgstr "Palica"
@@ -1715,7 +1716,7 @@ msgid "fully charge a lantern"
 msgstr "celkom nabi lampáš"
 
 msgid "gate a prism"
-msgstr "daj logiku hranolu"
+msgstr "daj logiku prizme"
 
 msgid "go for a swim"
 msgstr "choď si zaplávať"
@@ -1751,19 +1752,19 @@ msgid "make fire by rubbing sticks together"
 msgstr "vytvor oheň trením tyčiek"
 
 msgid "melt sand into molten glass"
-msgstr "roztav sklo na roztavené sklo"
+msgstr "roztav piesok na roztavené sklo"
 
 msgid "mold molten glass into clear glass"
-msgstr "vyformuj roztavené sklo na číre sklo"
+msgstr "vyformuj roztavené sklo na čisté sklo"
 
 msgid "mold molten glass into float glass"
-msgstr "vyformuj roztavené sklo na dokonalé sklo"
+msgstr "vyformuj roztavené sklo na číre sklo"
 
 msgid "navigate by touch in darkness"
 msgstr "orientuj sa v tme pomocou dotyku"
 
 msgid "pack sedges into thatch"
-msgstr "stlač byľe do štice"
+msgstr "stlač ostrice do štice"
 
 msgid "harvest a sponge"
 msgstr "získaj špongiu"
@@ -1772,16 +1773,16 @@ msgid "hold your breath"
 msgstr "zadrž svoj dych"
 
 msgid "observe a lux reaction"
-msgstr "pozoruj lux reakciu"
+msgstr "pozoruj luxitovú reakciu"
 
 msgid "observe lux criticality"
-msgstr "pozoruj luxovú kritikálnosť"
+msgstr "pozoruj kritickú luxitovú reakciu"
 
 msgid "pack dry rushes into wicker"
 msgstr "stlač suché tŕstie do prútia"
 
 msgid "pack high-quality charcoal"
-msgstr "stlač vysoko-kvalitný uhoľ"
+msgstr "stlač vysoko-kvalitné drevené uhlie"
 
 msgid "mix sand into ash to make render"
 msgstr "zmiešaj piesok do popola na vytvorenie omietky"
@@ -1790,13 +1791,13 @@ msgid "mix gravel into ash to make aggregate"
 msgstr "zmiešaj štrk do popola na vytvorenie agregátu"
 
 msgid "place a node with a hinged panel"
-msgstr "polož kocku použitím otočného panela"
+msgstr "polož blok použitím otočného panela"
 
 msgid "plant an eggcorn"
-msgstr "zasaď vajcosemä"
+msgstr "zasaď vajcožaluď"
 
 msgid "pick a sedge"
-msgstr "zdvihni byľu"
+msgstr "zdvihni ostricu"
 
 msgid "pack up a complete tote"
 msgstr "zatvor kompletnú prenosnú skrinku"
@@ -1814,7 +1815,7 @@ msgid "quench molten glass into chromatic glass"
 msgstr "uhas roztavené sklo na chromatické sklo"
 
 msgid "quench pumwater to amalgamation"
-msgstr "uhas sopovodu na amalgamáciu"
+msgstr "uhas pemvodu na amalgamáciu"
 
 msgid "rake gravel"
 msgstr "pohrab štrk"
@@ -1829,16 +1830,16 @@ msgid "see a tree grow"
 msgstr "pozoruj ako strom rastie"
 
 msgid "squeeze out a sponge"
-msgstr "vystískaj špongiu"
+msgstr "stlač špongiu"
 
 msgid "stick a lens/prism in place"
-msgstr "prilep šošovku/hranol na mieste"
+msgstr "prilep šošovku/prizmu na mieste"
 
 msgid "throw an item really fast"
 msgstr "hoď nejaký predmet veľmi rýchlo"
 
 msgid "weld glowing lode pick and spade heads together"
-msgstr "zvar žiarivé hlavy krompáča a rýľu dokopy"
+msgstr "zvar žeravé hlavy krompáča a rýľu dokopy"
 
 msgid "wet a concrete mix"
 msgstr "pridaj vodu do betónovej zmesi"
@@ -1847,7 +1848,7 @@ msgid "work annealed lode on a tempered lode anvil"
 msgstr "opracuj žíhaný kov na kalenej kovovej nákove"
 
 msgid "write on a surface with a charcoal lump"
-msgstr "píš na povrch z hrudou uhľa"
+msgstr "píš na povrch z hrudkou dreveného uhlia"
 
 msgid "temper a lode cube"
 msgstr "zakal kovovú kocku"
