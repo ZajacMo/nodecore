@@ -12,7 +12,7 @@ local function timecore()
 	local hr = math_floor(min / 60)
 	min = min - hr * 60
 	local day = math_floor(hr / 24)
-	hr = hr - day * 60
+	hr = hr - day * 24
 	local parts = {}
 	if day > 0 then
 		parts[#parts + 1] = string_format("%d day%s", day, day == 1 and "" or "s")
