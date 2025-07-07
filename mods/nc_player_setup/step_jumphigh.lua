@@ -7,7 +7,7 @@ local hijump_cooldown = 1
 local hijump_amount = vector.new(0, 5, 0)
 
 nc.register_playerstep({
-		label = "jumping",
+		label = "hijump",
 		action = function(player, data)
 			local hijump = data.hijump
 			if not hijump then
