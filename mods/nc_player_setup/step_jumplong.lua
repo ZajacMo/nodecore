@@ -3,7 +3,7 @@ local nc, vector
     = nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
-local longjump_cooldown = 1
+local longjump_cooldown = 3
 local longjump_minvel = 6
 
 nc.register_playerstep({
@@ -41,7 +41,7 @@ nc.register_playerstep({
 					local dir = player:get_look_dir()
 					dir.y = 0
 					dir = vector.normalize(dir)
-					player:add_velocity(vector.multiply(dir, 3 * longjump.maxvel))
+					player:add_velocity(vector.multiply(dir, 2 * longjump.maxvel))
 					minetest.add_particlespawner({
 							amount = 50,
 							time = 0.05,
@@ -56,9 +56,11 @@ nc.register_playerstep({
 							attached = player,
 							glow = 14,
 							minpos = vector.new(-1, 1, -1),
-							maxpos = vector.new(1, 3, 3 * longjump.maxvel),
-							velocity = vector.new(0, 0, -5 * longjump.maxvel)
+							maxpos = vector.new(1, 3, 2 * longjump.maxvel),
+							velocity = vector.new(0, 0, -4 * longjump.maxvel)
 						})
+					-- force reset run speed
+					data.autoruntime = nodecore.gametime
 				end
 			end
 		end
