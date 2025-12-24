@@ -17,7 +17,7 @@ local function show(player, text, ttl)
 end
 
 local wields = {}
-local wieldIndex = nil
+local wieldIndex = {}
 
 nc.register_playerstep({
 		label = "wield touchtips",
@@ -25,9 +25,9 @@ nc.register_playerstep({
 			if not nc.interact(player) then return end
 			local wn = nc.touchtip_stack(player:get_wielded_item(), true)
 			local wi = player:get_wield_index()
-			if wn ~= wields[data.pname] or wi ~= wieldIndex then
+			if wn ~= wields[data.pname] or wi ~= wieldIndex[data.pname] then
 				wields[data.pname] = wn
-				wieldIndex = wi
+				wieldIndex[data.pname] = wi
 				show(player, wn)
 			end
 		end
@@ -36,4 +36,5 @@ nc.register_playerstep({
 nc.register_on_joinplayer(function(player)
 		local pname = player:get_player_name()
 		wields[pname] = nil
+		wieldIndex[pname] = nil
 	end)
