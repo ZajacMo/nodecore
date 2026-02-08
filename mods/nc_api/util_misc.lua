@@ -395,7 +395,7 @@ function nc.player_swimming(player)
 				node = core.get_node(p)
 			end
 			if node.name == "air" then swimming = nil
-			elseif not liquids[node.name] then
+			elseif not (liquids[node.name] and liquids[node.name].liquid_move_physics) then
 				player_was_swimming[pname] = nil
 				return
 			end
