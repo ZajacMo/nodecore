@@ -367,47 +367,6 @@ function nc.get_node_light(pos)
 	return artificial > natural and artificial or natural
 end
 
-local liquids = {}
-core.after(0, function()
-		for k, v in pairs(core.registered_items) do
-			if v.liquidtype and v.liquidtype ~= "none" then
-				liquids[k] = v
-			end
-		end
-	end)
-nc.registered_liquids = liquids
-local player_was_swimming = {}
-function nc.player_swimming(player)
-	local pname = player:get_player_name()
-	local pos = player:get_pos()
-	local r = 0.6
-	local swimming = true
-	for dz = -r, r, r do
-		for dx = -r, r, r do
-			local p = {
-				x = pos.x + dx,
-				y = pos.y,
-				z = pos.z + dz
-			}
-			local node = core.get_node(p)
-			if (node.name == "air" or liquids[node.name]) then
-				p.y = p.y - 0.35
-				node = core.get_node(p)
-			end
-			if node.name == "air" then swimming = nil
-			elseif not (liquids[node.name] and liquids[node.name].liquid_move_physics) then
-				player_was_swimming[pname] = nil
-				return
-			end
-		end
-	end
-	if swimming then
-		player_was_swimming[pname] = true
-		return true
-	end
-	return player_was_swimming[pname]
-end
-
 local function mismatch(a, b, exact)
 	if type(a) == "table" then
 		if type(b) ~= "table" then return true end

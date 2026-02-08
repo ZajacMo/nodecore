@@ -105,6 +105,54 @@ end
 
 local wave_cooldown = 1.2
 
+do
+	local liquids = {}
+	local airequiv = {}
+	core.after(0, function()
+			for k, v in pairs(core.registered_items) do
+				if v.liquidtype and v.liquidtype ~= "none"
+				and (v.liquid_move_physics or
+					v.liquid_move_physics == nil) then
+					liquids[k] = v
+				end
+				if v.air_equivalent then
+					airequiv[k] = v
+				end
+			end
+		end)
+	local player_was_swimming = {}
+	function nc.player_swimming(player)
+		local pname = player:get_player_name()
+		local pos = player:get_pos()
+		local r = 0.6
+		local swimming = true
+		for dz = -r, r, r do
+			for dx = -r, r, r do
+				local p = {
+					x = pos.x + dx,
+					y = pos.y,
+					z = pos.z + dz
+				}
+				local node = core.get_node(p)
+				if (airequiv[node.name] or liquids[node.name]) then
+					p.y = p.y - 0.35
+					node = core.get_node(p)
+				end
+				if airequiv[node.name] then swimming = nil
+				elseif not liquids[node.name] then
+					player_was_swimming[pname] = nil
+					return
+				end
+			end
+		end
+		if swimming then
+			player_was_swimming[pname] = true
+			return true
+		end
+		return player_was_swimming[pname]
+	end
+end
+
 nc.player_anim = nc.player_anim or function(player, data)
 	local hp = player:get_hp()
 	if hp <= 0 then
