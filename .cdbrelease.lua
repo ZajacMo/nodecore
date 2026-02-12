@@ -66,7 +66,7 @@ return {
 	.. (alpha and readtext('.cdb-alpha.md') or readtext('.cdb-release.md'))
 	.. "\n\n" .. readtext('.cdb-footer.md') .. transtext,
 	repo = "https://gitlab.com/sztest/nodecore",
-	website = "https://nc.mine.nu",
+	website = "https://nodecore.mine.nu",
 	issue_tracker = "https://discord.gg/NNYeF6f",
 	donate_url = "https://liberapay.com/NodeCore",
 	forums = 24857,
