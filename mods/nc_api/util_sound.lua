@@ -5,14 +5,13 @@ local math_exp, math_random, math_sin, math_sqrt
     = math.exp, math.random, math.sin, math.sqrt
 -- LUALOCALS > ---------------------------------------------------------
 
-local oldplay = core.sound_play
 function nc.sound_play(name, spec, ephem, ...)
 	if spec and type(spec) == "table" then
 		spec.pitch = (spec.pitch or 1) * math_exp(
 			(math_random() - 0.5) * (spec.pitchvary or 0.05))
 	end
 	if ephem == nil then ephem = not spec.not_ephemeral end
-	return oldplay(name, spec, ephem, ...)
+	return core.sound_play(name, spec, ephem, ...)
 end
 
 function nc.sound_play_except(name, def, pname)
