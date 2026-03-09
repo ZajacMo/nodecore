@@ -5,7 +5,8 @@ local core, nc, pairs, vector
 
 local cache = {}
 
-local tunnel_repeat_count = 4 -- +1 to place initial scaling node
+local tunnel_repeat_count = 3
+local tunnel_max_time = 30
 
 nc.register_globalstep(function()
 		local keep = {}
@@ -39,13 +40,15 @@ hand.on_place = function(stack, player, pointed, ...)
 	local resetto = {
 		pointed = pointed,
 		start = now,
-		last = now
+		last = now,
+		count = 0
 	}
 	local stats = cache[pname] or resetto
 	if stats.last < (now - 2)
 	or (not vector.equals(stats.pointed.under, pointed.under))
 	or (not vector.equals(stats.pointed.above, pointed.above))
 	then stats = resetto else stats.last = now end
+	stats.tunnellimit = stats.tunnellimit or stats.start + tunnel_max_time
 	cache[pname] = stats
 
 	local timecost = (pointed.under.y > pointed.above.y) and 5 or 3
@@ -56,7 +59,14 @@ hand.on_place = function(stack, player, pointed, ...)
 		if groups.cobbley then timecost = timecost * 0.75 end
 		if groups.falling_node then timecost = timecost * 1.2 end
 	end
-	if now < stats.start + timecost then
+	local done = now >= stats.start + timecost
+
+	if (done and stats.count >= tunnel_repeat_count) or now > stats.tunnellimit then
+		cache[pname] = resetto
+		return nc.scaling_tunnel(pointed, player)
+	end
+
+	if not done then
 		if now >= stats.start + 1 then
 			if nc.dynamic_light_add(pointed.above,
 				nc.scaling_light_level,
@@ -72,15 +82,9 @@ hand.on_place = function(stack, player, pointed, ...)
 		return
 	end
 
-	local count = (stats.count or 0) + 1
-	resetto.count = count
-
-	if count < tunnel_repeat_count then
-		cache[pname] = resetto
-	else
-		cache[pname] = nil
-		return nc.scaling_tunnel(pointed, player)
-	end
+	resetto.count = stats.count + 1
+	resetto.tunnellimit = stats.tunnellimit
+	cache[pname] = resetto
 
 	if def and def.on_scaling and def.on_scaling(stats,
 		stack, player, pointed, node, ...) then return end
