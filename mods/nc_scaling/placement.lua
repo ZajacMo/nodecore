@@ -5,6 +5,8 @@ local core, nc, pairs, vector
 
 local cache = {}
 
+local tunnel_repeat_count = 4 -- +1 to place initial scaling node
+
 nc.register_globalstep(function()
 		local keep = {}
 		for _, player in pairs(core.get_connected_players()) do
@@ -70,7 +72,15 @@ hand.on_place = function(stack, player, pointed, ...)
 		return
 	end
 
-	cache[pname] = nil
+	local count = (stats.count or 0) + 1
+	resetto.count = count
+
+	if count < tunnel_repeat_count then
+		cache[pname] = resetto
+	else
+		cache[pname] = nil
+		return nc.scaling_tunnel(pointed, player)
+	end
 
 	if def and def.on_scaling and def.on_scaling(stats,
 		stack, player, pointed, node, ...) then return end

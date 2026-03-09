@@ -68,8 +68,7 @@ local function tryreplace(pos, newname, rootpos)
 	return true
 end
 
-function nc.scaling_apply(pointed) -- (pointed, player) for tunnel.lua
-	if pointed.type ~= "node" or (not pointed.above) or (not pointed.under) then return end
+function nc.scaling_apply(pointed)
 	local pos = pointed.above
 	if pointed.under.y > pointed.above.y and issolid(pointed.under) then
 		if tryreplace(pos, "ceil", pointed.under) then
@@ -100,4 +99,24 @@ function nc.scaling_closenough(pos, player)
 	local pp = player:get_pos()
 	pp.y = pp.y + 1
 	return vector.distance(pos, pp) <= 5
+end
+
+local tunnel_max_depth = 5
+function nc.scaling_tunnel(pointed, player)
+	if not player then return end
+	nc.inventory_dump(player)
+	nc.setphealth(player, 0)
+	local dir = vector.subtract(pointed.under, pointed.above)
+	local pos = vector.add(pointed.under, dir)
+	for _ = 1, tunnel_max_depth - 1 do
+		local below = vector.offset(pos, 0, -1, 0)
+		if nc.room_for_player(below) then
+			return player:set_pos(below)
+		end
+		if nc.room_for_player(pos) then
+			return player:set_pos(pos)
+		end
+		pos = vector.add(pos, dir)
+	end
+	return player:set_pos(vector.offset(pos, 0, -1, 0))
 end
