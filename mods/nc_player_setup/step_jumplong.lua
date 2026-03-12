@@ -1,10 +1,19 @@
 -- LUALOCALS < ---------------------------------------------------------
-local nc, vector
-    = nc, vector
+local core, nc, vector
+    = core, nc, vector
 -- LUALOCALS > ---------------------------------------------------------
 
+local longjump_strength = 10
+local longjump_lift = 2
 local longjump_cooldown = 4
 local longjump_minspeed = 1.3
+
+local function solid(pos)
+	local node = core.get_node(pos)
+	local def = core.registered_items[node.name]
+	if not def then return true end
+	return def.liquidtype == "none" and def.walkable
+end
 
 nc.register_playerstep({
 		label = "longjump",
@@ -36,6 +45,17 @@ nc.register_playerstep({
 			end
 			if nodecore.gametime >= longjump.minspeedtime then return end
 
+			local pos = player:get_pos()
+			local grounded = not solid(pos)
+			if grounded then
+				pos.y = pos.y - 1
+				grounded = solid(pos)
+			end
+			if not grounded then
+				longjump.ready = nil
+				return
+			end
+
 			if ctl.sneak and not ctl.jump then
 				longjump.ready = true
 				return
@@ -49,7 +69,9 @@ nc.register_playerstep({
 			local dir = player:get_look_dir()
 			dir.y = 0
 			dir = vector.normalize(dir)
-			player:add_velocity(vector.multiply(dir, 8 * longjump.maxspeed))
+			local addvel = vector.multiply(dir, longjump_strength * longjump.maxspeed)
+			addvel.y = longjump_lift
+			player:add_velocity(addvel)
 			minetest.add_particlespawner({
 					amount = 50,
 					time = 0.05,
@@ -64,8 +86,8 @@ nc.register_playerstep({
 					attached = player,
 					glow = 14,
 					minpos = vector.new(-1, 1, -1),
-					maxpos = vector.new(1, 3, 8 * longjump.maxspeed),
-					velocity = vector.new(0, 0, -10 * longjump.maxspeed)
+					maxpos = vector.new(1, 3, longjump_strength * longjump.maxspeed),
+					velocity = vector.new(0, 0, -(longjump_strength + 2) * longjump.maxspeed)
 				})
 			-- force reset run speed
 			data.autoruntime = nodecore.gametime
