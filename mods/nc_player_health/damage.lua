@@ -14,7 +14,7 @@ nc.register_on_player_hpchange(function(player, hp)
 			local pname = player:get_player_name()
 			hurtcache[pname] = nc.gametime
 			player:get_meta():set_float("hurttime", nc.gametime)
-			if nc.player_visible(player) then
+			if nc.player_visible(player) and nc.interact(player) then
 				core.after(0, function()
 						local now = player:get_hp()
 						if now >= orig then return end
