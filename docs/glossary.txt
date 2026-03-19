@@ -70,8 +70,7 @@ Fot:
 
 Float Glass:
 	Glass made using the modern process of floating molten glass
-	on top of another molten/liquid substance.  See
-	wikipedia/dictionary.
+	on top of another molten/liquid substance.
 	https://en.wikipedia.org/wiki/Float_glass
 
 Flux:
