@@ -1,2 +1,0 @@
-update:
-	node update.js

@@ -1,2 +1,0 @@
-Y forwards, -X Up
-Uncheck 'Geometry->Write Materials'
