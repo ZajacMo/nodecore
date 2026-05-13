@@ -1,0 +1,3 @@
+[submodule "mods/player_data_recorder"]
+	path = mods/player_data_recorder
+	url = https://github.com/ZajacMo/player_data_recorder.git
